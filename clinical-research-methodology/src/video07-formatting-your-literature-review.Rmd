@@ -1,0 +1,362 @@
+---
+title: "Video 7 - Formatting your literature review"
+author: "Steve Simon"
+output: 
+  powerpoint_presentation:
+    slide_level: 3
+---
+
+```{r echo=FALSE}
+source("prelims.R", echo=FALSE)
+```
+
+***
+`r read_text("objectives06")`
+
+<div class="notes">
+
+Here are the objectives for this week.
+
+</div>
+
+***
+`r read_text("readings07")`
+
+<div class="notes">
+
+This is what you should have read already. If you haven't done the reading yet, pause this video and read this material. You'll get more out of the video if you do so.
+
+</div>
+
+### The title page
+
+![](../images/07/title-page.png)
+
+<div class="notes">
+
+Here is what your title page should look like. The fonts are small and hard to read, so I will zoom in on several sections.
+
+</div>
+
+### The title page
+
+![](../images/07/title-page-1.png)
+
+<div class="notes">
+
+Don't type the line in brackets.
+
+Notice the extra generous top margin here. Also your title is centered in all caps and double spaced.
+
+Change "History and Sociology" to your degree area.
+
+</div>
+
+### The title page
+
+![](../images/07/title-page-2.png)
+
+<div class="notes">
+
+Note the single spacing of the "Presented to" paragraph. Your degree is probably a Master of Science. Your full name is in all caps. Put the year you expect to graduate at the bottom. You can't tell from this snip, but there is a generous bottom margin as well.
+
+</div>
+
+### The title page
+
+![](../images/07/title-page-3.png)
+
+<div class="notes">
+
+Ths student single spaced where double spacing was needed and double spaced where single spacing was needed. Note that the "Great!" refers to the overall paper, adnd not the title page.
+
+</div>
+
+### The title page
+
+![](../images/07/title-page-4.png)
+
+<div class="notes">
+
+This is a more serious deviation from the standard. The title should be all caps and no bold. The students name (which I have blacked out) comes in way to early. This student also forgot the "A THESIS IN" section. Notice again the problem of using double spacing in the wrong section.
+
+</div>
+
+### The title page
+
+![](../images/07/title-page-5.png)
+
+<div class="notes">
+
+This student, whose name is blocked out made many mistakes. There is no running head in a thesis, no page numbers in the upper right corner. Page numbers go in the bottom center and do not start until after the first two pages. The title needed to be all caps and the students name comes after the "A THESIS IN" and "Presented to" sections.
+
+</div>
+
+### The copyright page
+
+![](../images/07/copyright-page-1.png)
+
+<div class="notes">
+
+Put in a second page, to keep with the format. This is the copyright page. Put your name in, and you have the option of using an open source license if you like.
+
+It may seem wasteful to add a page like this, but I want you to get comfortable with the general thesis format. Anyway, you are submitting a PDF rather than a paper copy, so no trees will be lost in the process.
+
+</div>
+
+### The copyright page
+
+![](../images/07/copyright-page-2.png)
+
+<div class="notes">
+
+Watch for little details. One student used bold which I commented on. I failed at the time to notice that everything on the copyright page is all uppercase. There's also no copyright symbol (C within a circle). This is a minor deviation and probably did not lead to loss of more than a single point.
+
+But please try to get these details down now. I do look for strict consistency to the published guidelines.
+
+</div>
+
+### The approval page
+
+![](../images/07/approval-page.png)
+
+<div class="notes">
+
+Also put in an approval page. Just make up some names, put my name in, put in some "To be added later" text. It doesn't matter. Just make sure that you get the format right.
+
+</div>
+
+### The abstract page
+
+![](../images/07/abstract-page.png)
+
+<div class="notes">
+
+Put in an abstract page, but list the abstract itself as "To be added later". I am more interested in seeing if you can follow the format. ABSTRACT is centered and in all caps for example. Some of my students last year put in an abstract and that's fine. I offered some comments and suggestions, but did not grade on the basis of what was in the abstract.
+
+Of course, if you do include an abstract, do not talk about results. You don't have any results, and don't try to make them up.
+
+</div>
+
+### Table of contents page
+
+![](../images/07/contents-page-1.png)
+
+<div class="notes">
+
+Put in a Table of Contents. I know you don't know the page numbers yet. You don't even know what the sections are yet. Just put in some reasonable guess. Notice the use of Roman numbers for the first few sections and regular numbers for the rest. I want you to get all these little details down accurately.
+
+</div>
+
+### Table of contents page
+
+![](../images/07/contents-page-2.png)
+
+<div class="notes">
+
+THis one is not too bad. I missed a few details when I graded it thought. The words "TABLE OF CONTENTS" should just be "CONTENTS". The "LIST OF TABLES" and "LIST OF ILLUSTRATIONS" should be on a single line and not broken across two lines. The word "CHAPTER" should not be all upper case. These are fairly minor deviations and if I would have noticed them I would not have taken off more than a single point.
+
+</div>
+
+### Table of contents page
+
+![](../images/07/contents-page-3.png)
+
+<div class="notes">
+
+This one made several mistakes, but the most glaring is forgetting to insert blank lines everywhere.
+
+</div>
+
+### Section heads and subheads
++ Main (chapter) heads 
+  + Centered
+  + No bold
+  + All uppercase
++ First subheads
+  + Centered
+  + Bold or italic
+  + Headline (title) case 
++ Second, third, etc. subheads
+  + See guidelines
+  
+<div class="notes">
+
+There are fairly strict rules for section heads and subheads. The main heads (the names of each chapter) have to be centered, no bold, and all uppercase.
+
+If you have a subheading within a chapter, that is also centered, with a bold or italic font, and headline case.
+
+</div>
+
+### Headline (title) case
+
++ Initial capital for "important" words
+  + Nouns, pronouns, verbs, adjectives, adverbs
++ Lower case for short and "unimportant" words
+  + Articles, prepositions, conjunctions
++ Initial capital for very first word and very last word
+  + Even "unimportant" words
++ Longer "unimportant" words also use initial caps
+  + Five letters or longer
++ Some other details
++ Minor contradictions from one source to another
+  
+<div class="notes">
+
+Headline case is initial capital letters for all "important" words (nouns, pronouns, verbs, adjectives, adverbs). Do not capitalize most unimportant words: articles (a, an, the), prepositions (of, to, from), and conjunctions (and, but, or, if, who). Some exceptions are made for prepositions that are five letters or longer (among, between). 
+
+There are minor details involving words following marks of punctuation (colons and dashes).
+
+Also there are contradictions from one source to another, but these are fairly minor.
+
+</div>
+
+### Section heads and subheads
+
+![](../images/07/heads-and-subheads-1.png)
+
+<div class="notes">
+
+Here's an example of someone who did fine with the main heading, but not for the first level beneath the main head.
+
+</div>
+
+### Section heads and subheads
+
+![](../images/07/heads-and-subheads-4.png)
+
+<div class="notes">
+
+This person got the subhead correct, but not the main head. "Literature Review" should be all caps and centered. If you want to get realy fussy, it should be preceded by a line with "CHAPTER 2" also centered and all caps.
+
+</div>
+
+
+### Section heads and subheads
+
+![](../images/07/heads-and-subheads-2.png)
+
+<div class="notes">
+
+This is an example of how it should be done.
+
+</div>
+
+### References
+
++ Use any style, but be consistent!
++ Common inconsistencies
+  + Journal abbreviations
+  + Use of "et al"
+  + Placement of year
+  + Unneeded elements
+  
+<div class="notes">
+
+In your references, use any style you like, but follow that style consistently. Inconsistencies are very easy to notice.
+
+</div>
+
+### References
+
+![](../images/07/references-page-1.png)
+
+<div class="notes">
+
+Notice that the first reference has a journal with three abbreviations: Med for Medical, J for Journal, and Aust for Australia and leaves out the "of". The second journal spells 
+Diabetic, Metaboloc, and Syndrome and includes the word "and".
+
+I don't know what citation style this person was using, but clearly one of these two has to be incorrect.
+
+</div>
+
+### References
+
+![](../images/07/references-page-2.png)
+
+<div class="notes">
+
+This person cut-and-pasted from PubMed, but then accidentally left in some information that doesn't belong.
+
+</div>
+
+### References
+
+![](../images/07/references-page-3.png)
+
+<div class="notes">
+
+This person had several references to the Morbidity and Mortality Weekly Report ahd in one location is is fully abbreviated (MMWR) and in another it is partially spelled out. Also notice that it is italicized in one spot but not the other.
+
+</div>
+
+### References
+
+![](../images/07/references-page-4.png)
+
+<div class="notes">
+
+There is no date here. The date in non-standard references (webpages, pamphlets, booklets) are often hard to find. Look in your guideline to see if you need an option like "no date" expicitly places on your reference.
+
+</div>
+
+### References
+
+![](../images/07/references-page-5.png)
+
+<div class="notes">
+
+Without seeing the actual style guide, I can only guess, but most guides do not use single letter abbreviations like JAMA and NEJM.
+
+</div>
+
+### References
+
+![](../images/07/references-page-6.png)
+
+<div class="notes">
+
+Normally URLs are not included in a bibliography. Certainly not URLs that use a proxy server available only as a single site.
+
+</div>
+
+### References
+
+![](../images/07/references-page-7.png)
+
+<div class="notes">
+
+There are several issues with this bibliography. Notice that a website is in the list. Websites are very tricky in a bibliography as important details like the author and date are often difficult to track down. Pretty much every style is different as well. The one thing, though, that many bibliographies ask for is an access date. This is an acknowledgement that websites are often dynamic and can change frequently.
+
+Notice that most of the authors are last name followed by initials. But some styles put periods in and others don't. Either is fine, but don't mix them. 
+
+Finally, when you do get a journal article rather than a web page, you have to find the page numbers, the volume, and the issue. For a journal that is only published online, this can be tricky. What is the page number, for example, when an article appears only online. Even so, with a bit of effort, you can find these. 
+
+</div>
+
+### References
+
+![](../images/07/references-page-8.png)
+
+<div class="notes">
+
+This bibliography has two inconsistencies. One journal is spelled out and another is abbreviated. One author list has four authors followed by et al and another has three authors followed by et al.
+
+</div>
+
+### Do I really need to be this detail oriented?
++ Yes
+
+<div class="notes">
+
+In the examples I've shown, it must seem like I am the world's worst nit picker. That may be true, but you still have to master most of these details. Some are very important and some not at all, but you won't know which are which.
+
+Close attention to details will impress everyone who reviews your work. It will help you get your scholarship taken more seriously. It is well worth the effort.
+
+But why, do you ask, can't I just be marching to a different drummer. In some settings that is fine. On my website, I can choose whatever style I want. I am the judge and the jury.
+
+That's also true in my classroom, though I really should be more respectful of standards here, as I am setting a bad example at times. My only defense is that my lectures are an evolving standard.
+
+But you are not the judge and jury in a thesis. This also carries over to pretty much any research publication that you send you thesis work to.
+
+</div>

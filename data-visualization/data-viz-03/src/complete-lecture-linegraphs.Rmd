@@ -1,0 +1,50 @@
+---
+title: "Data visualization, line graphs"
+author: "Steve Simon"
+date: "Created: 2019-08-19"
+output: powerpoint_presentation
+---
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+source("../../common-files/src/setup.R")
+```
+
+```{r child="../component/preparation.Rmd"}
+```
+
+```{r child="../component/newspaper-graphs.Rmd"}
+```
+
+```{r child="../../common-files/src/exercise-message.Rmd"}
+```
+
+```{r child="../component/tutorial-gestalt.Rmd"}
+```
+
+```{r child="../component/fundamentals.Rmd"}
+```
+
+```{r child="../component/recommendations-gestalt.Rmd"}
+```
+
+```{r child="../component/recommendations-linegraphs.Rmd"}
+```
+
+```{r child="../../common-files/src/exercise-aesthetics.Rmd"}
+```
+
+```{r child="../component/quiz.Rmd"}
+```
+
+```{r child="../component/exercise-sleep.Rmd"}
+```
+
+### Summary
++ Gestalt principles
+  + ((List here))
++ Aesthetics for lines
+  + Size, Shape, Color
++ Lines as summary statistics
++ Families of lines
+  

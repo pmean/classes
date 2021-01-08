@@ -1,0 +1,342 @@
+---
+title: "Recommendations, Gestalt principles"
+author: "Steve Simon"
+date: "Created: 2019-08-19"
+output: powerpoint_presentation
+---
+
+```{r child="../../common-files/src/component-header.Rmd"}
+```
+
+### Gestalt, Experiment with perceptual principles
++ Some Gestalt principlies are stronger than others
++ Different groupings lead to different messages
+
+<div class="notes">
+
+The Gestalt principles covered earlier help you to create the appropriate areas of emphasis in your graph. First, you need to recognize that some Gestalt features are stronger than others. Second, you can use Gestalt to create groupings that lead to different messages.
+
+</div>
+
+### Gestalt, Fictional data set
++ Ficitonal data on three individuals
+```{r fictional-data}
+exam <- rep(1:4, 3)
+score <- c(80, 50, 20, 22, 90, 70, 30, 28, 20, 30, 70, 73)
+id <- rep(1:3, each=4)
+name <- rep(c("Able", "Baker", "Charlie"), each=4)
+fiction <- data.frame(id=id, name=name, exam=exam, score=score)
+fiction
+```
+
+<div class="notes">
+
+These ideas drawn from the Bergen and Iverson workshop. The data is purely fictional, but it is a great example of how you can emphasize different features of your data in a visualization.
+
+</div>
+
+### Gestalt, How do you establish groupings
+
+```{r fictional-ungrouped}
+initiate_image()
+ggplot(fiction, aes(exam, score)) +
+  geom_point()
+finalize_image()
+```
+
+`r display_image`
+
+<div class="notes">
+
+Here are the data points without any indication of which values belong to which individuals. How can you best show the individual values?
+
+</div>
+
+### Gestalt, Using shape to establish groupings
+
+```{r groupings-shape}
+initiate_image()
+ggplot(fiction, aes(exam, score, shape=name)) +
+  geom_point(size=5)
+finalize_image()
+
+```
+
+`r display_image`
+
+<div class="notes">
+
+You are relying on the principle of similarity, and there needs to be sufficient dissimilarity in the different symbols to make this work. A closed circle, a closed square, and a closed triangle all loop pretty much alike. How can you get more contrast?
+
+</div>
+
+### Gestalt, shape choices in R
+
+```{r different-shapes}
+initiate_image()
+nx <- 5
+ny <- 5
+x <- rep(1:nx, ny)
+y <- rep(1:ny, each=nx)
+df <- data.frame(x, y)
+z <- 1:(nx*ny)
+ggplot(df, aes(x, y)) + 
+  geom_point(shape=z, size=5)
+finalize_image()
+```
+
+`r display_image`
+
+<div class="notes">
+
+Here are the shape choices available in R. You can get similar shapes in Python and Tableau. It should not be too hard to choose three shapes that are markedly distinct from one another.
+
+</div>
+
+### Gestalt, Better contrasting shapes
+
+```{r contrasting-shapes}
+initiate_image()
+ggplot(fiction, aes(exam, score, shape=name)) +
+  geom_point(size=5) +
+  scale_shape_manual(values=c(1, 15, 3))
+finalize_image()
+
+```
+
+`r display_image`
+
+<div class="notes">
+
+Here is one possible choice. You can more clearly see differences when you use the solid square, open circle, and plus sign. It gets more difficult if you have a fourth or fifth symbol in the mix.
+
+</div>
+
+### Gestalt, Color
+
+```{r contrasting-colors}
+initiate_image()
+ggplot(fiction, aes(exam, score, color=name)) +
+  geom_point(size=5) +
+  scale_color_manual(values=c("Red", "Darkgreen", "Blue"))
+finalize_image()
+
+```
+
+`r display_image`
+
+<div class="notes">
+
+You can use color to emphasize the groupings. Here the colors are red, dark green, and blue. There is some contrast here, but there is not a lot of variation in the brightness.
+
+</div>
+
+### Gestalt, Color
+
+```{r contrasting-better-colors}
+initiate_image()
+ggplot(fiction, aes(exam, score, color=name)) +
+  geom_point(size=5) +
+  scale_color_manual(values=c("Red", "Green", "Yellow"))
+finalize_image()
+
+```
+
+`r display_image`
+
+<div class="notes">
+
+These colors differ in brightness, and provide more of a contrast. There are times when you want this extra contrast, but there are times when you don't. In particular, the yellow is so bright that it tends to get lost against a light gray background.
+
+</div>
+
+### Gestalt, Connectedness
+
+```{r connected-shapes}
+shp <- function(i) {c(1, 3, 15)[1:i]}
+initiate_image()
+ggplot(fiction, aes(exam, score, shape=name)) +
+  geom_point(size=5) +
+  scale_shape_manual(values=c(1, 15, 3)) + 
+  geom_line(group=fiction$name)
+finalize_image()
+
+```
+
+`r display_image`
+
+<div class="notes">
+
+Connectedness is a very powerful Gestalt principle. This graph shows much more than the others that there are three distinct sets of points corresponding to the three subjects.
+
+
+</div>
+
+### Gestalt, Text versus legend
++ Legends
+  + Violates the rule of proximity
++ Use obvious letters, colors, codes for gender
+  + M and F
+  + Blue and pink
+  + `r "\u2642"`(\\u2642) and `r "\u2640"` (\\u2640)
++ Other obvious codes
+  + negative (-) and positive (+)
+  + Green (go), yellow (caution), red (stop)
+  + T for treatment, C for control
+
+<div class="notes">
+
+Legends are very common in visualization, but they violate the rule of proximity. A legend forces your eye to go back and forth between the graph and a location far outside the graph.
+
+It takes some work, but if you can identify groups properly without a legend, you are much better off. There are several strategies that could help here.
+
+Certain letter codes are expected and almost second-nature for visualizations. The letters M and F are commonly understood to represent male and female, at least among your English speaking audience. The colors blue and pink also evoke a similar recognition. You could also use the commonly recognized symbols for male and female. These are 2642 and 2640 in the Unicode font.
+
+For something other than gender, you might be able to find well understood associations. The - and plus symbols are generally recognized as negative and positive. The colors associated with a traffic light (green, yellow, and red) are commonly associated with go, caution, and stop.
+
+Treatment and Control groups are also readily recognized with the letters T and C.
+
+With well recognized codes, you might be able to dispense with a legend and just point out the obvious association in a footnote to your graph.
+
+</div>
+
+### Gestalt, Repalce legend with text labels
+
+```{r poor-text-labels}
+shp <- function(i) {c(1, 3, 15)[1:i]}
+initiate_image()
+ggplot(fiction, aes(exam, score, color=name)) +
+  geom_point(size=5) +
+  geom_line(group=fiction$name) +
+  scale_color_manual(values=c("Red", "Darkgreen", "Blue")) +
+  geom_text(x=3.5, y=25, label="Able", size=8, color="black") +
+  geom_text(x=3.5, y=35, label="Baker", size=8, color="black") +
+  geom_text(x=3.5, y=75, label="Charlie", size=8, color="black") +
+  theme(legend.position="none")
+finalize_image()
+
+```
+
+`r display_image`
+
+<div class="notes">
+
+By putting the labels directly on the graph, you minimize the distance that your eye has to travel. No more back and forth between the legend and the graph.
+
+You can improve further on these labels. You might have had a moment of hesitation when you saw the label for Abel. Does it belong with the line just above or the line just below. It only slows you down for a second, because by process of elimination, you can quickly decide that it belongs with the line just below it.
+
+But you can improve the sense of belongingness by using some of your Gestalt principles.
+
+</div>
+
+### Gestalt, text labels
+
+```{r better-text-labels}
+shp <- function(i) {c(1, 3, 15)[1:i]}
+initiate_image()
+ggplot(fiction, aes(exam, score, color=name)) +
+  geom_point(size=5) +
+  geom_line(group=fiction$name) +
+  scale_color_manual(values=c("Red", "Darkgreen", "Blue")) +
+  geom_text(x=3.5, y=24, label="Able", size=8, color="red", angle=4) +
+  geom_text(x=3.5, y=32, label="Baker", size=8, color="darkgreen", angle=-4) +
+  geom_text(x=3.5, y=75, label="Charlie", size=8, color="blue", angle=8) +
+  theme(legend.position="none")
+finalize_image()
+
+```
+
+`r display_image`
+
+<div class="notes">
+
+Notice how the labels in this example have been moved closer to the lines. The exploits the Gestalt principle of proximity. Notice how the names have the same colors as the lines. Thie exploits the Gestalt principle of similarity. It would be very hard to incorrectly assign the red label of Abel with the green line of Baker. Notice further that the labels have a slope that roughly matches the lines they are attached to. This exploits the Gestalt principle of common fate.
+
+</div>
+
+### What patterns do you see in this graph?
+
+```{r what-message}
+shp <- function(i) {c(1, 3, 15)[1:i]}
+initiate_image()
+ggplot(fiction, aes(exam, score, color=name)) +
+  geom_point(size=5) +
+  geom_line(group=fiction$name) +
+  geom_text(x=3.5, y=24, label="Able", size=8, angle=4) +
+  geom_text(x=3.5, y=32, label="Baker", size=8, angle=-4) +
+  geom_text(x=3.5, y=75, label="Charlie", size=8, angle=8) +
+  scale_color_manual(values=rep("black", 3)) +
+  theme(legend.position="none")
+finalize_image()
+```
+
+`r display_image`
+
+<div class="notes">
+
+There are at least two messages hiding in this graph. What are they? 
+
+</div>
+
+### Gestalt, Emphasis on Charlie
+
+```{r subject-emphasis}
+shp <- function(i) {c(1, 3, 15)[1:i]}
+initiate_image()
+ggplot(fiction, aes(exam, score, color=name)) +
+  geom_point(size=5) +
+  geom_line(group=fiction$name) +
+  geom_text(x=3.5, y=24, label="Able", size=8, angle=4, color="black") +
+  geom_text(x=3.5, y=32, label="Baker", size=8, angle=-4, color="black") +
+  geom_text(x=3.5, y=75, label="Charlie", size=8, angle=8, color="red") +
+  scale_color_manual(values=c("black", "black", "red")) +
+  theme(legend.position="none")
+finalize_image()
+```
+
+`r display_image`
+
+<div class="notes">
+
+Using a single color to emphasize the one subject who trends in the opposite direction from the other two.
+
+</div>
+
+### Gestalt, Emphasis on exams 3 and 4
+
+```{r exam-emphasis}
+shp <- function(i) {c(1, 3, 15)[1:i]}
+initiate_image()
+ggplot(fiction, aes(exam, score, color=name)) +
+  geom_point(size=5) +
+  geom_line(group=fiction$name) +
+  # geom_text(x=3.5, y=24, label="Able", size=8, angle=4, color="black") +
+  # geom_text(x=3.5, y=32, label="Baker", size=8, angle=-4, color="black") +
+  # geom_text(x=3.5, y=75, label="Charlie", size=8, angle=8, color="black") +
+  scale_color_manual(values=c("black", "black", "black")) +
+  geom_segment(x=2.9, y=18, xend=4.1, yend=18) +
+  geom_segment(x=4.1, y=18, xend=4.1, yend=92) +
+  geom_segment(x=4.1, y=92, xend=2.9, yend=92) +
+  geom_segment(x=2.9, y=92, xend=2.9, yend=18) +
+  theme(legend.position="none")
+finalize_image()
+```
+
+`r display_image`
+
+<div class="notes">
+
+Using enclosure to emphasize the similarity of exam 3 and exam 4. Notice how the emphasis on individual subjects is lessened by keeping them the same color and removing the text labels.
+
+</div>
+
+### Gestalt, summary
++ Experiment with different principles
++ Replace legends with text labels
++ Emphasize what is important and de-emphasize what is not
+
+<div class="notes">
+
+In summary, you should experiment with different Gestalt principles. Some principles work more effectively than others. Legends are commonly used in visualization, but they violate the Gestalt principle of proximity.
+
+</div>
