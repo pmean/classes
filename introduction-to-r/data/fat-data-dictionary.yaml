@@ -9,11 +9,13 @@ source:
   described in the article, Roger W. Johnson (1996)
   Fitting Percentage of Body Fat to Simple Body 
   Measurements, Journal of Statistics Education, 
-  4(1), DOI 10.1080/10691898.1996.11910505. It 
-  includes two measures of body fat, a quantity
-  that is normally quite difficult to measure along
-  with some simpler measuresof body size that could
-  be used to predict body fat.
+  4(1), DOI 10.1080/10691898.1996.11910505.
+
+description:  
+  This dataset includes two measures of body fat (a 
+  quantity  that is normally quite difficult to 
+  measure) along with some simpler measures of body
+  size that could be used to predict body fat.
 
 download:
   text-format: http://jse.amstat.org/datasets/fat.dat.txt
