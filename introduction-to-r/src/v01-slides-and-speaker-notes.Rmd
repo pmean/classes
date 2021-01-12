@@ -117,7 +117,7 @@ This is a full listing of a small program written in Rmarkdown. The font is too 
 
 ```{r echo=FALSE, comment=""}
 suppressMessages(suppressWarnings(library(stringr)))
-tx <- readLines("small_program.Rmd", warn=FALSE)
+tx <- readLines("p01-small-program.Rmd", warn=FALSE)
 header_lines <- str_which(tx, "---")
 backtick_lines <- str_which(tx, "``")
 eof_line <- length(tx)
