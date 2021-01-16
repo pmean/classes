@@ -1,0 +1,284 @@
+---
+title: "Input data sets for R"
+author: "Steve Simon"
+date: "December 28, 2020"
+output: html_document
+---
+
+This program reads a variety of different text files and produces binary files in R format.
+
+```{r setup}
+suppressMessages(suppressWarnings(library(dplyr)))
+suppressMessages(suppressWarnings(library(magrittr)))
+suppressMessages(suppressWarnings(library(readr)))
+suppressMessages(suppressWarnings(library(stringr)))
+```
+
+### fly1.txt
+
+```{r fly1}
+data_name <- "fly1"
+text_name <- paste0(data_name, ".txt")
+bin_name  <- paste0(data_name, ".RData")
+fly1 <- data.frame(read_table2(text_name, col_names=FALSE))
+names(fly1) <- "day"
+save(fly1, file=bin_name)
+rm(list="fly1")
+load(file=bin_name)
+head(fly1)
+str(fly1)
+list.files(pattern=data_name)
+```
+
+### fly2.txt
+
+```{r fly2}
+data_name <- "fly2"
+text_name <- paste0(data_name, ".txt")
+bin_name  <- paste0(data_name, ".RData")
+fly2 <- data.frame(read_table2(text_name, col_names=FALSE))
+names(fly2) <- c("day", "cens")
+save(fly2, file=bin_name)
+rm(list="fly2")
+load(file=bin_name)
+head(fly2)
+str(fly2)
+list.files(pattern=data_name)
+```
+
+### fly3.txt
+
+```{r fly3}
+data_name <- "fly3"
+text_name <- paste0(data_name, ".txt")
+bin_name  <- paste0(data_name, ".RData")
+fly3 <- data.frame(read_table2(text_name, col_names=FALSE))
+names(fly3) <- c("day", "cens")
+save(fly3, file=bin_name)
+rm(list="fly3")
+load(file=bin_name)
+head(fly3)
+str(fly3)
+list.files(pattern=data_name)
+```
+
+### grace1000.dat
+
+```{r grace1000}
+data_name <- "grace1000"
+text_name <- paste0(data_name, ".dat")
+bin_name  <- paste0(data_name, ".RData")
+grace1000 <- data.frame(read_table2(text_name, col_names=FALSE))[ , -10]
+names(grace1000) <- c(
+  "id",
+  "days",
+  "death",
+  "revasc",
+  "revascdays",
+  "los",
+  "age",
+  "sysbp",
+  "stchange"
+)
+save(grace1000, file=bin_name)
+rm(list="grace1000")
+load(file=bin_name)
+head(grace1000)
+str(grace1000)
+list.files(pattern=data_name)
+```
+
+### heart.csv
+
+```{r heart}
+data_name <- "heart"
+text_name <- paste0(data_name, ".csv")
+bin_name  <- paste0(data_name, ".RData")
+heart <- data.frame(read_csv(text_name, col_names=TRUE))
+save(heart, file=bin_name)
+rm(list="heart")
+load(file=bin_name)
+head(heart)
+str(heart)
+list.files(pattern=data_name)
+```
+
+### heroin.txt
+
+```{r heroin}
+data_name <- "heroin"
+text_name <- paste0(data_name, ".txt")
+bin_name  <- paste0(data_name, ".RData")
+heroin_two_up <- data.frame(read_table2(text_name, col_names=FALSE, skip=1))
+heroin1 <- heroin_two_up[ , 1:5]
+heroin2 <- heroin_two_up[ , 6:10]
+names_heroin <- c(
+  "clinic",
+  "status",
+  "time",
+  "prison",
+  "dose"
+)
+names(heroin1) <- names_heroin
+names(heroin2) <- names_heroin
+heroin <- bind_rows(heroin1, heroin2)
+save(heroin, file=bin_name)
+rm(list="heroin")
+load(file=bin_name)
+head(heroin)
+str(heroin)
+list.files(pattern=data_name)
+```
+
+### leader.txt
+
+```{r leader}
+data_name <- "leader"
+text_name <- paste0(data_name, ".txt")
+bin_name  <- paste0(data_name, ".RData")
+leader <- data.frame(read_table2(text_name, col_names=TRUE))
+save(leader, file=bin_name)
+rm(list="leader")
+load(file=bin_name)
+head(leader)
+str(leader)
+list.files(pattern=data_name)
+```
+
+### psychiatric-patients.txt
+
+```{r psychiatric}
+data_name <- "psychiatric"
+text_name <- paste0(data_name, "-patients.txt")
+bin_name  <- paste0(data_name, ".RData")
+psychiatric <- data.frame(read_table2(text_name, col_names=TRUE))
+save(psychiatric, file=bin_name)
+rm(list="psychiatric")
+load(file=bin_name)
+head(psychiatric)
+str(psychiatric)
+list.files(pattern=data_name)
+```
+
+### rats.csv
+
+```{r rats}
+data_name <- "rats"
+text_name <- paste0(data_name, ".csv")
+bin_name  <- paste0(data_name, ".RData")
+rats <- data.frame(read_csv(text_name, col_names=TRUE))
+save(rats, file=bin_name)
+rm(list="rats")
+load(file=bin_name)
+head(rats)
+str(rats)
+list.files(pattern=data_name)
+```
+
+### transplant.txt
+
+```{r transplant}
+data_name <- "transplant"
+text_name <- paste0(data_name, ".txt")
+bin_name  <- paste0(data_name, ".RData")
+transplant <- data.frame(read_tsv(text_name, col_names=TRUE))
+save(transplant, file=bin_name)
+rm(list="transplant")
+load(file=bin_name)
+head(transplant)
+str(transplant)
+list.files(pattern=data_name)
+```
+
+### transplant1.csv
+
+```{r transplant1}
+data_name <- "transplant1"
+text_name <- paste0(data_name, ".csv")
+bin_name  <- paste0(data_name, ".RData")
+transplant1 <- data.frame(read_csv(text_name, col_names=TRUE))
+save(transplant1, file=bin_name)
+rm(list="transplant1")
+load(file=bin_name)
+head(transplant1)
+str(transplant1)
+list.files(pattern=data_name)
+```
+
+### transplant2.csv
+
+```{r transplant2}
+data_name <- "transplant2"
+text_name <- paste0(data_name, ".csv")
+bin_name  <- paste0(data_name, ".RData")
+transplant2 <- data.frame(read_csv(text_name, col_names=TRUE))
+save(transplant2, file=bin_name)
+rm(list="transplant2")
+load(file=bin_name)
+head(transplant2)
+str(transplant2)
+list.files(pattern=data_name)
+```
+
+### whas100.dat
+
+```{r whas100}
+data_name <- "whas100"
+text_name <- paste0(data_name, ".dat")
+bin_name  <- paste0(data_name, ".RData")
+whas100 <- data.frame(read_table2(text_name, col_names=FALSE))[ , -10]
+names(whas100) <- c(
+  "id", 
+  "admitdate",
+  "foldate",
+  "los",
+  "lenfol",
+  "fstat",
+  "age",
+  "gender",
+  "bmi")
+save(whas100, file=bin_name)
+rm(list="whas100")
+load(file=bin_name)
+head(whas100)
+str(whas100)
+list.files(pattern=data_name)
+```
+
+### whas500.dat
+
+```{r whas500}
+data_name <- "whas500"
+text_name <- paste0(data_name, ".dat")
+bin_name  <- paste0(data_name, ".RData")
+whas500 <- data.frame(read_table2(text_name, col_names=FALSE))[ , -23]
+names(whas500) <- c(
+  "id", 
+  "age",
+  "gender",
+  "hr",
+  "sysbp",
+  "diasbp",
+  "bmi",
+  "cvd",
+  "afb",
+  "sho",
+  "chf",
+  "av3",
+  "miord",
+  "mitype",
+  "year",
+  "admitdate",
+  "disdate",
+  "fdate",
+  "los",
+  "dstat",
+  "lenfol",
+  "fstat")
+save(whas500, file=bin_name)
+rm(list="whas500")
+load(file=bin_name)
+head(whas500)
+str(whas500)
+list.files(pattern=data_name)
+```
