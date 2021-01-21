@@ -8,10 +8,8 @@ output:
 ---
 
 ```{r echo=FALSE}
-suppressMessages(suppressWarnings(library(lubridate)))
 suppressMessages(suppressWarnings(library(magrittr)))
 suppressMessages(suppressWarnings(library(stringr)))
-suppressMessages(suppressWarnings(library(tidyverse)))
 path <- 
 "https://raw.githubusercontent.com/pmean/pmean.github.io/master/data/"
 syllabus_files <- c(
