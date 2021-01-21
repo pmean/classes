@@ -2,8 +2,11 @@
 title: "Video 00 - Course overview"
 author: "Steve Simon"
 output: 
-  powerpoint_presentation:
-    slide_level: 4
+  - powerpoint_presentation
+  - pdf_document
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding,
+  output_dir = "../results", output_format = "all") })  
 ---
 
 ```{r echo=FALSE}
