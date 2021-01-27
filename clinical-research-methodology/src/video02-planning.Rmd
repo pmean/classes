@@ -5,6 +5,11 @@ output:
   powerpoint_presentation:
     reference_doc: ../doc/template.pptx
     slide_level: 3
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, 
+    encoding=encoding,
+    output_dir = "../results", 
+    output_format = "all") })  
 ---
 
 ```{r echo=FALSE}
@@ -12,7 +17,8 @@ source("prelims.R", echo=FALSE)
 ```
 
 ***
-`r read_text("objectives02")`
+```{r child="../data/objectives02.md"}
+```
 
 <div class="notes">
 
@@ -188,6 +194,14 @@ In particular, if there is something you are interested in, please, please, plea
 </div>
 
 ***
+### Break #1
+
++ What have we learned?
+  + Steps in a research project
++ What's coming up next?
+  + Picking a research topic
+
+***
 ### Step 1 - Identify a research problem
 
 Definitions are vague
@@ -324,6 +338,14 @@ Publications are important, but the goal is not publication but making a substan
 Think about what happens if the results do not turn out they way you "want" them to. There is a myth that researchers are fully disinterested, but you have to think about your responsibilities of sharing information even if it is not what you wanted. Besides, you have done a disservice to those volunteers who helped you with the study. They gave up their Saturday morning cartoons (what's that new one: Square Bob Sponge something?) to help you with your research and they didn't do it for you. They did it for the benefit of patients like themselves.
 
 </div>
+
+***
+### Break #2
+
++ What have you learned?
+  + Picking a research topic
++ What's coming up next.
+  + Developing a research hypothesis
 
 ***
 ### FINER criteria
@@ -497,9 +519,17 @@ I don't want to say much more about the associational and descriptive approaches
 </div>
 
 ***
+### Break #3
+
++ What have you learned?
+  + Developing a research hypothesis
++ What's coming up next?
+  + Ethical issues in research
+
+***
 ### Landmarks in research ethics
 
-* Federal Food, Drug, and cosmetic Act (1938)
+* Federal Food, Drug, and Cosmetic Act (1938)
 
 * Nuremberg code (1947)
 

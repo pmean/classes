@@ -1,3 +1,7 @@
+---
+title: "Clinical Research Methods, Module02, Objectives"
+---
+
 ### Learning objectives
 
 + To describe the variety of research that can be conducted while doing clinical research.
