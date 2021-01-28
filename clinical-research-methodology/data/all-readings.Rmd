@@ -1,24 +1,90 @@
 ---
 title: "List of all readings"
 author: "Steve Simon"
-output: html_document
+output: pdf_document
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, 
+    encoding=encoding,
+    output_dir = "../results", 
+    output_format = "all") })  
 ---
 
 Created: 2020-03-19
 
 Last modified: `r Sys.Date()`
 
-```{r read, echo=FALSE}
-discussion_files <- list.files(pattern="^readings")
-compiled_text <- NULL
-for (i_file in discussion_files) {
-  compiled_text <- 
-    append(
-      compiled_text, 
-      c("", paste("##", i_file), "", readLines(i_file)))
-}
+## Module01
+
+```{r child="readings01.md"}
 ```
 
-`r length(compiled_text)`
+## Module02
 
-`r paste0(compiled_text, collapse="\n")`
+```{r child="readings02.md"}
+```
+
+## Module03
+
+```{r child="readings03.md"}
+```
+
+## Module04
+
+```{r child="readings04.md"}
+```
+
+## Module05
+
+```{r child="readings05.md"}
+```
+
+## Module06
+
+```{r child="readings06.md"}
+```
+
+## Module07
+
+```{r child="readings07.md"}
+```
+
+## Module08
+
+```{r child="readings08.md"}
+```
+
+## Module09
+
+```{r child="readings09.md"}
+```
+
+## Module10
+
+```{r child="readings10.md"}
+```
+
+## Module11
+
+```{r child="readings11.md"}
+```
+
+## Module13
+
+```{r child="readings13.md"}
+```
+
+## Module14
+
+```{r child="readings14.md"}
+```
+
+## Module15
+
+```{r child="readings15.md"}
+```
+
+## Module16
+
+```{r child="readings16.md"}
+```
+

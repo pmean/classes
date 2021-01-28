@@ -10,7 +10,7 @@ The Writing Center, University of North Carolina, Chapel Hill. Literature Review
 
 Pautasso, Marco. "Ten simple rules for writing a literature review" PLoS computational biology vol. 9,7 (2013): e100314. DOI: 10.1371/journal.pcbi.1003149. Available in [html format](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003149) and [PDF format](https://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1003149&type=printable).
 
-Kathleen Clarke. Organizing Your Literature: Spreadsheet Style. Gadhaccker blog entry, October 24, 2017. Available in [html format](https://www.insidehighered.com/blogs/gradhacker/organizing-your-literature-spreadsheet-style).
+Kathleen Clarke. Organizing Your Literature: Spreadsheet Style. Gradhacker blog, October 24, 2017. Available in [html format](https://www.insidehighered.com/blogs/gradhacker/organizing-your-literature-spreadsheet-style).
 
 Martin J. Osborne. using bibtex: a short guide. Published January 13, 2008. Available in [html format](https://www.economics.utoronto.ca/osborne/latex/BIBTEX.HTM).
 
