@@ -1,3 +1,7 @@
+---
+title: "Clinical Research Methods, Module10, Readings"
+---
+
 ### Required reading
 
 Gliner, Morgan, and Leech, Chapter 13

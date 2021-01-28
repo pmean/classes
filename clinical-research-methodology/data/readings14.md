@@ -1,3 +1,7 @@
+---
+title: "Clinical Research Methods, Module04, Readings"
+---
+
 ### Required reading
 
 1. Canvas – L.G. Portney & M.P. Watkins. Chapter 32 "Writing a research proposal." Foundations of Clinical Research: Applications to Practice, 3rd ed. Upper Saddle River, New Jersey: Pearson Prentice Hall.

@@ -1,3 +1,7 @@
+---
+title: "Clinical Research Methods, Module08, Readings"
+---
+
 ### Required reading
 
 1. Chapter 10

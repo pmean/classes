@@ -1,3 +1,7 @@
+---
+title: "Clinical Research Methods, Module11, Readings"
+---
+
 ### Required reading
 
 Chapters 16, 17

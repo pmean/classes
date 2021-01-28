@@ -1,3 +1,7 @@
+---
+title: "Clinical Research Methods, Module15, Readings"
+---
+
 ### Required reading
 
 1. Chapters 23, 24, 25

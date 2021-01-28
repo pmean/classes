@@ -1,3 +1,7 @@
+---
+title: "Clinical Research Methods, Module04, Readings"
+---
+
 ### Required reading
 
 Chapter 5.

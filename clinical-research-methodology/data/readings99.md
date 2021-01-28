@@ -1,3 +1,7 @@
+---
+title: "Clinical Research Methods, Module04, Readings"
+---
+
 ### Recommendations from students
 
 Su YY, Tsai YY, Chu CL, Lin CC, Chen CM. Exploring a Path Model of Cognitive Impairment, Functional Disability, and Incontinence Among Male Veteran Home Residents in Southern Taiwan. Sci Rep. 2020 Mar 27;10(1):5553. doi:10.1038/s41598-020-62477-y. PubMed PMID: 32221413; PubMed Central PMCID:PMC7101370.

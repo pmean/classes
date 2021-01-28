@@ -1,3 +1,7 @@
+---
+title: "Clinical Research Methods, Module06, Readings"
+---
+
 ### Required reading
 
 Chapters 7

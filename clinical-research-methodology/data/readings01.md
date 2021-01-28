@@ -1,3 +1,7 @@
+---
+title: "Clinical Research Methods, Module01, Readings"
+---
+
 ### Required reading
 
 Chapter 1

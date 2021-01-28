@@ -1,8 +1,8 @@
-### Required reading
+---
+title: "Clinical Research Methods, Module03, Readings"
+---
 
-+ Chapters 2
-
-### Recommended reading <a name="recommended"></a>
+### Recommended reading
 
 UMKC University Libraries. Literature Reviews: Graduate Writing Resources. Available in [html format](https://libguides.library.umkc.edu/gradwriting/lit-reviews).
 
