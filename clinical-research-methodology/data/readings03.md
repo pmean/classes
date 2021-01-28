@@ -18,7 +18,7 @@ Robinson KA, Goodman SN. Systematic Examination of the Citation of Prior Researc
 
 Ashford University. Writing a literature review. Available in [html format](https://writingcenter.ashford.edu/writing-literature-review).
 
-USC Libraries. The importance of a good literature review. Available in [html format(https://libguides.usc.edu/writingguide/literaturereview).
+USC Libraries. The importance of a good literature review. Available in [html format](https://libguides.usc.edu/writingguide/literaturereview).
 
 Leite DFB, Padilha MAS, Cecatti JG. Approaching literature review for academic purposes: The Literature Review Checklist. Clinics (Sao Paulo). 2019;74:e1403. Published 2019 Nov 25. doi:10.6061/clinics/2019/e1403. Available in [html format](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6862708/) or [pdf format](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6862708/pdf/cln-74-1403.pdf).
 
