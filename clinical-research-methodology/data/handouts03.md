@@ -14,8 +14,7 @@ Please view the 2021 recording and only look at the 2019 if you are curious. Stu
 + V03-01, Literature review
   + 2021 recording available soon in Panopto format.
   + 2019 recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=afeaefb5-5a85-458b-ae20-a9e70182c110).
-  + Slides and speaker notes available soon in pdf format.
-  
+
 #### Handouts
 
 + Slides and speaker notes available soon in pdf format.
