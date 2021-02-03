@@ -17,6 +17,30 @@ In these videos you will learn
 + find and account for missing values
 + produce histograms and scatterplots
 
+This module covers the following R functions
+
++ [cor](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/cor.html)
++ dev.off
++ dim
++ geom_histogram
++ geom_point
++ geom_smooth
++ ggplot
++ ggtitle
++ head
++ is.na
++ library
++ mean
++ png
++ round
++ scale_x_continuous
++ sd
++ summary
++ tail
++ which
++ xlab
++ ylab
+
 ## Videos
 
 There are five videos in this module specific to the R programming language and two general videos about good programming practices.
@@ -93,3 +117,5 @@ Q3. Calculate the mean and standard deviation for TotalSleep.
 Q4. Do bigger animals sleep longer or live longer? Show your results using a correlation coefficient.
 
 Q5. Do animals who have high degrees of Predation, Exposure, or Danger sleep less? Show your results using a plot and a trendline.
+
+You can find an [earlier overview of this module](http://www.pmean.com/introduction-to-r/results/overview02.html) on my website.
