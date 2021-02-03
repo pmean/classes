@@ -1,3 +1,7 @@
+---
+title: "Clinical Research Methodology, Module03"
+---
+
 #### Objectives
 
 + To define what a literature review is and to contrast it with an annotated bibliography and a systematic overview.
