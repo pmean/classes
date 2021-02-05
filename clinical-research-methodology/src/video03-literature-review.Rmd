@@ -5,6 +5,9 @@ output:
   powerpoint_presentation:
     reference_doc: ../doc/template.pptx
     slide_level: 3
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding,
+  output_dir = "../results", output_format = "all") })     
 ---
 
 ```{r echo=FALSE}
@@ -131,6 +134,15 @@ For what it's worth, there has been a call in the research community to replace 
 </div>
 
 ***
+
+### Break #1
+
++ What have you learned
+  + What is a literature review
+  + Contrasts to systematic overview, annotated bibliography
++ What's next
+  + Finding articles for your literature review
+
 ### Finding sources for your literature review
 
 * Talk to a librarian
@@ -320,6 +332,13 @@ Don't feel that you have to follow these writing guidelines slavishly. Use them 
 
 </div>
 
+### Break #2
+
++ What have you learned?
+  + Organizing your literature review
++ What's next
+  + Evaluating individual articles
+
 ***
 ### Evaluating
 
@@ -425,6 +444,13 @@ Also, if I can editorialize here, intention to treat analysis, while it is a nic
 
 </div>
   
+### Break #3
+
++ What have you learned?
+  + Evaluating individual articles
++ What's next
+  + An organizing structure to your literature review
+
 ***
 ### Synthesizing
 
