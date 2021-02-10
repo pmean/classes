@@ -1,10 +1,10 @@
 ---
 title: "Video 04 - Design of randomized studies"
 author: "Steve Simon"
-output: 
-  powerpoint_presentation:
-    reference_doc: ../doc/template.pptx
-    slide_level: 3
+output: powerpoint_presentation
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding,
+  output_dir = "../results", output_format = "all") }) 
 ---
 
 ```{r echo=FALSE}
@@ -60,7 +60,7 @@ When the treatment group is apples and the control group is oranges, you can't m
   + No birth control
 * Differences in these three groups
   + Age at first intercourse
-  + Number of secual partners
+  + Number of sexual partners
   + Use of tobacco, alcohol, other drugs
 * Most importantly, number of pap smears
   + Oral contraceptives require regular doctor visits
@@ -111,6 +111,15 @@ When you have an active independent variable, you don't always have a level of c
 It's easy to sneer at quasi-experimental studies and think of them as an inferior form of research. But they are not, and quasi-experimental designs form the backbone of many quality improvement studies. We'll talk more about this in the following week.
 
 </div>
+
+### Break #1
+
++ What have you learned
+  + Examples where randomization was needed
+  + Distinction between experimental, quasi-experimental, and observational studies
++ What's next
+  + How to randomize
+  + Fishy example of randomization
 
 
 ### How to randomize
@@ -224,6 +233,15 @@ What you should have done was to assign each fish randomly to a tank. That way e
 
 </div>
 
+### Break #2
+
++ What have you learned
+  + How to randomize
+  + Fishy example of randomization
++ What's next
+  + Advantages and disadvantages of randomization
+  + Alternatives to randomization
+
 ### Advantages of randomization
 
 * Insures covariate balance
@@ -330,6 +348,15 @@ There's a lot of concern about how gender and race may play a part in what sort 
 You may find information during the course of your clinical trial, either from your own research or research that has just been published by others, that changes equipoise. A study that seemed to be ethical at the start, becomes unethical to continue. In these settings, you have to plan for an early end to your research. This must be done carefully. I will try to highlight some of the issues associated with early stopping of clinical trials later in this class.
 
 </div>
+
+### Break #3
+
++ What have you learned
+  + Advantages and disadvantages of randomization
+  + Alternatives to randomization
++ What's next
+  + Blinding
+  + Subversion of randomization
 
 ### Blinding/partial blinding. Who knew what when?
 
@@ -454,6 +481,16 @@ You can't blame the patients for this behavior. They are acting in their best in
 
 </div>
 
+### Break #4
+
++ What have you learned
+  + Blinding
+  + Subversion of randomization
++ What's next
+  + Problems with randomization
+  + Intention to treat analysis
+  + Baseline measurements
+
 ### Problems with randomized trials
 
 * Volunteer bias.
@@ -563,3 +600,15 @@ A baseline measurement also provides a nice quality check for drop outs. You sho
 
 </div>
 
+### Conclusion
+
++ What have you learned
+  + Distinction between experimental, quasi-experimental, and observational studies
+  + How to randomize
+  + Advantages and disadvantages of randomization
+  + Blinding
+  + Problems with randomization
+  + Intention to treat analysis
+  + Baseline measurements
++ Next lecture
+  + Quasi-experimental design

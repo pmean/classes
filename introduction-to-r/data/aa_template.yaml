@@ -1,6 +1,9 @@
 ---
 data_dictionary: <<one or more filenames>>
 
+authors:
+  <<Who wrote/revised this, when was it created and when was it last modified>>
+
 copyright:  
   <<text>>
 
@@ -16,8 +19,9 @@ format:
     space
     tab
 
-  varnames: <<first row of data, not included>>
-
+  varnames: <<choose one>>
+    first row of data
+    not included
   missing-value-code: <<choose one>>
     .
     *
