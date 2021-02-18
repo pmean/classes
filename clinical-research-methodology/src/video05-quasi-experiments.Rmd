@@ -5,27 +5,20 @@ output:
   powerpoint_presentation:
     reference_doc: ../doc/template.pptx
     slide_level: 3
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding,
+  output_dir = "../results", output_format = "all") })  
 ---
 
-```{r echo=FALSE}
-source("prelims.R", echo=FALSE)
-```
+### Objectives
 
-***
-`r read_text("objectives05")`
+1. To contrast the features of a quality improvement study with a research study
+
+2. To describe the various quasi-experimental approaches
 
 <div class="notes">
 
 Here are the objectives for this week. I want to introduce some new material on quality improvement (QI) studies and this is the best place to put it. Althought QI and medical research share many features, you need to appreciate some important differences between the two approaches. Many QI studies use quasi-experimental approaches and we'll discuss a few of the more common ones.
-
-</div>
-
-***
-`r read_text("readings05", char_max=500)`
-
-<div class="notes">
-
-This is what you should have read already. Take the opportunity to re-read Chapter 5. Some of the material relates to last week's lecture but some is new in this week's lecture. There are a large number of side readings that cover quality improvement topics.
 
 </div>
 
@@ -103,6 +96,13 @@ There is substantial overlap between QI and health care research, but you should
 The final distinction and the reason I am talking about the QI process in this class it that QI relies heavily (but not exclusively) on quasi-experimental studies.
 
 </div>
+
+### Break #1
+
++ What have you learned
+  + Definition of quality improvement
++ What's next
+  + Framework for quality improvement studies
 
 ### The SMART approach
 
@@ -184,6 +184,13 @@ Process measures are typically in top or middle of a flow chart (or upstream). I
 Balancing measures account for unintended consequences. Did an improvement in one area lead to an offsetting decline in another area? This would be like the famous saying, "jumping from the frying pan into the fire."
 
 </div>
+
+### Break #2
+
++ What have you learned
+  + Framework for quality improvement studies
++ What's next
+  + Fishbone diagrams
 
 ### Drawing a fishbone diagram (1 of 3)
 
@@ -273,6 +280,13 @@ Here's one last example. The problem is non-adherence. The major bones are patie
 
 </div>
 
+### Break #3
+
++ What have you learned
+  + Fishbone diagrams
++ What's next
+  + Pareto charts
+
 ### The Pareto chart
 
 * Based on the Pareto 80-20 principle.
@@ -319,6 +333,13 @@ This is second example. The problem is unplanned return visits and the first two
 This is third example. The problem is invalid surgical consents, and it does not quite follow the Pareto principle because the causes are quite varied. The top five causes (No initials after amendments, Witness initials incomplete or absent, Consent forms were expired, Dates incomplete or absent, Illegible handwriting, and use of abbreviations) account for 80% of the invalid consents.
 
 </div>
+
+### Break #4
+
++ What have you learned
+  + Pareto charts
++ What's next
+  + Simple quasi-experimental studies
 
 ### What is a quasi-experimental study?
 
@@ -468,6 +489,13 @@ cat("NR E: O1 X O2\nNR C: O1   O2")
 * Cannot check for unmeasured covariates
 * Cannot check for treatment interaction
 
+### Break #5
+
++ What have you learned
+  + Quasi-experimental studies
++ What's next
+  + Interrupted time series designs
+
 ### Interrupted time series design
 
 ```{r time-series-1, echo=FALSE, comment=""}
@@ -591,6 +619,13 @@ axis(side=1, at=1:10, labels=paste0("O", 1:10))
 title("Third patient")
 ```
 
+### Break #6
+
++ What have you learned
+  + Interrupted time series designs
++ What's next
+  + Withdrawal designs
+
 ### Withdrawal design (1 of 2)
 
 ```{r time-series-7, echo=FALSE, comment=""}
@@ -643,3 +678,14 @@ segments(2.5, 1.1, 2.5, 3.5, lty="dotted", col="gray")
 axis(side=1, at=x, labels=paste0("O", x))
 title("Bad")
 ```
+
+### Conclusion
+
++ What have you learned
+  + Definition of quality improvement studies
+  + Framework for quality improvement studies
+  + Fishbone diagrams
+  + Pareto diagrams
+  + Quasi-experimental studies
+  + Interrupted time series designs
+  + Withdrawal design
