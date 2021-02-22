@@ -46,14 +46,25 @@ This module covers the following R functions
 There are five videos in this module specific to the R programming language and two general videos about good programming practices.
 
 + V02-01. Rmarkdown structure
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a2622a72-d29f-439a-bf45-ab61011c61ad).
+  + The slides and speaker notes for this video can be found [here](http://www.pmean.com/introduction-to-r/results/v02-slides-and-speaker-notes.pdf).
 + V02-02. Outliers and missing values
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a6dff7ac-7500-4a51-9fcd-ab610122d7e4).
+  + See above for slides and speaker notes.
 + V02-03. Histograms
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8b88dd72-c299-4c4c-a067-ab61012884b9).
+  + See above for slides and speaker notes.
 + V02-04. Correlations and scatterplots
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3f2813a2-d934-4531-ad86-ab61012cec46).
 + V02-05. Description of sleep data
-  + The slides and speaker notes for these five videos can be found [here](http://www.pmean.com/introduction-to-r/results/v02-slides-and-speaker-notes.pdf).
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f4c09be7-bdf9-47b5-a506-ab61013219fc).
+  + See above for slides and speaker notes.
 + General video. Data dictionary
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=180e269c-32a1-42e6-bd1f-ab19014ba38a).
+  + The slides and speaker notes for this video are not yet available.
 + General video. Good computing practices, part 1
-  + The slides and speaker notes for these videos are not yet available.
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=55cf0d09-3647-4135-8354-ab1901530b60).
+  + The slides and speaker notes for this video are not yet available.
 
 You can find links to the videos on the Canvas website.
 
@@ -114,8 +125,22 @@ Q2. Which variables have missing data?
 
 Q3. Calculate the mean and standard deviation for TotalSleep.
 
-Q4. Do bigger animals sleep longer or live longer? Show your results using a correlation coefficient.
+### HW02. Draw graphs using the sleep data
 
-Q5. Do animals who have high degrees of Predation, Exposure, or Danger sleep less? Show your results using a plot and a trendline.
+Graded: 3 points, one point deducted if submitted late.
+
+Download the the file [module02-datasets.RData](../data/module02-datasets.RData) and store it in the appropriate folder. Then run a program using Rmarkdown to answer the following questions.
+
+Include both the question and your answer to the question in the Rmarkdown code. Submit your work as a single PDF file.
+
+If there are errors or warnings in your output, send me PDF files of your code and your output by email and I will see if I can help.
+
+Q1. Draw a histogram for total sleep and life span. Would a normal distribution (bell shaped curve) be a fair representation of the distribution of either variable?
+
+Q2. Do animals who have high degrees of Predation, Exposure, or Danger sleep less? Show your results using a correlation coefficient and a plot with a trendline.
+
+### Previous work
+
+I am including links to previous work for people who are curious, and to give me an opportunity to review and incorporate the best of each efforts.
 
 You can find an [earlier overview of this module](http://www.pmean.com/introduction-to-r/results/overview02.html) on my website.

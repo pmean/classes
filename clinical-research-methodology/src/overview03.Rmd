@@ -5,34 +5,28 @@ output:
   html_document: default
 ---
 
-```{r echo=FALSE}
-source(file="prelims.R", echo=FALSE)
-wk <- "03"
-no <- as.numeric(wk)
-```
+### Videos and handouts
 
-Created: Friday, February 07, 2020
+Please view the 2021 recording and only look at the 2019 if you are curious. Students who attended the live lecture on Wednesday do not have to view either recording, unless they want to.
 
-Updated: `r format(Sys.Date(), "%A, %B %d, %Y")`
++ V03-01, What is a literature review
+  + 2021 recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4e060cb3-e018-4021-9d11-acc500fd7b04).
+  + Slides and speaker notes available in [pdf format](https://github.com/pmean/classes/blob/master/clinical-research-methodology/results/video03-slides-and-speaker-notes.pdf).
++ V03-02, Finding articles
+  + 2021 recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9d4aeae5-f600-4de5-b82e-acc501006e85).
+  + Slides and speaker notes, see above
++ V03-03, Analyzing articles
+  + 2021 recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2015e9ec-e5f4-4acd-b676-acc5010a73b9).
+  + Slides and speaker notes, see above
++ V03-04, Evaluating articles
+  + 2021 recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d9bc67fc-34a7-474b-aba6-acc5010db9d2).
+  + Slides and speaker notes, see above
++ V02-05, Organizing your literature review
+  + 2021 recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8b3fe862-aad8-4761-879c-acc501127e9e).
+  + Live demo, no slides available
++ V02-06, Reviewing your homework for this module
+  + Video not yet available
 
-This is a list of assignments, readings, and discussion questions for module`r wk`. This module should be released sometime during the week starting on `r mon[no]`, but if it is delayed, I will adjust all the deadlines appropriately. Please complete all work by the stated deadlines to receive full credit.
-
-**If you notice a discrepancy between this overview and what appears on the Canvas website, please contact me. But do note that the Canvas website always takes precence over this overview.**
-
-`r read_text("objectives" %0% wk)`
-
-`r read_text("readings" %0% wk)`
-
-`r read_text("copyright")`
-
-`r read_text("handouts" %0% wk)`
-
-`r read_text("quiz" %0% wk)`
-
-### Discussion boards
-
-`r read_text("d" %0% wk %0% "-01")`
-
-`r read_text("d" %0% wk %0% "-02")`
-
-`r read_text("d" %0% wk %0% "-ec")`
+#### From 2019  
++ V03-01, Literature review
+  + 2019 recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=afeaefb5-5a85-458b-ae20-a9e70182c110).
