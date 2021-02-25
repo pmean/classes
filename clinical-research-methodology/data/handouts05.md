@@ -24,13 +24,16 @@ Please view the 2021 recording and only look at the 2019 if you are curious. Stu
   + 2021 recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=97db490b-0ec0-41f3-94ff-acd300103542).
   + There is no corresponding video from 2019.
 + V05-05, Quasi-experimental studies
-  + 2021 recording available soon in Panopto format.
+  + 2021 recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c50e722b-a294-452c-8fc0-acd300ecfba6).
   + There is no corresponding video from 2019.
 + V05-06, Time series designs
-  + 2021 recording available soon in Panopto format.
+  + 2021 recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=26ee0e3a-884e-4bd0-a568-acd30136312a).
   + There is no corresponding video from 2019.
-+ V05-07, Quasi-experimental studies
-  + 2021 recording available soon in Panopto format.
++ V05-07, Withdrawal designs
+  + 2021 recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=05cc566c-5701-496b-906e-acd30138c6b3).
+  + There is no corresponding video from 2019.
++ V05-08, Review of homework assignments
+  + 2021 recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=04cfcb28-8c9f-44e2-b748-acd4015c45b1).
   + There is no corresponding video from 2019.
 
 #### Handouts
