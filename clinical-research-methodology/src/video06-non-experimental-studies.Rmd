@@ -4,27 +4,24 @@ author: "Steve Simon"
 output: 
   powerpoint_presentation:
     slide_level: 3
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding,
+  output_dir = "../results", output_format = "all") })  
 ---
 
 ```{r echo=FALSE}
 source("prelims.R", echo=FALSE)
 ```
 
-***
-`r read_text("objectives06")`
+### Learning objectives
+
+1. To distinguish different types of quantitative non-experimental approaches
+
+2. To discuss strengths and weaknesses of qualitative research
 
 <div class="notes">
 
 Here are the objectives for this week.
-
-</div>
-
-***
-`r read_text("readings06")`
-
-<div class="notes">
-
-This is what you should have read already. If you haven't done the reading yet, pause this video and read this material. You'll get more out of the video if you do so.
 
 </div>
 
@@ -65,7 +62,7 @@ If the data set has already been analyzed, is there really anything else you can
 
 Don't fret, though. Many researchers collect more data than what they strictly need for their own purposes. 
 
-You do need, as the Apple slogan says to "Think different."
+You do need, as the Apple slogan says, to "Think different."
 
 You might look at different outcomes or different exposure variables that address the same general hypotheses. You could develop hypotheses involving new and untested relationships. You might be interested in a particular demographic subgroup. Or finally, you might test the same things that original researchers tested using more or less the same variables, but you might apply a new and different analysis approach.
 
@@ -214,6 +211,13 @@ Read the literature on papers that have used this data set. This will help you i
 
 </div>
 
+### Break #1
+
++ What have you learned?
+  + Advantages and disadvantages of secondary data analysis
++ What's next?
+  + Overview of the Centers for Disease Control and Prevention
+
 
 ### "The Nation's Health Protection Agency"
 
@@ -316,6 +320,31 @@ FoodNet tracks laboratory confirmed food-borne illnesses in ten geographic areas
 The Active Bacterial Core Surveillance collects data on invasive bacterial infections in ten states representing up to 42 million people (Langley 2015).
 
 </div>
+
+### Summary
+
++ CDC
+  + NHIS
+  + NHANES
+  + BRFSS
+  + NDI
+  + FluSurv-NET
+  + FluView
+  + FoodNet
+
+<div class="notes">
+
+Here's a quick overview of all the big data produced by CDC.
+
+</div>
+
+
+### Break #2
+
++ What have you learned?
+  + Overview of the Centers for Disease Control and Prevention
++ What's next?
+  + Overview of the Bureau of the Census
 
 ### United States Bureau of the Census
 
@@ -431,20 +460,29 @@ The National Crime Victimization Survey, a joint effort with the Bureau of Justi
 
 ### Summary
 
-CDC
-
-* NHIS, NHANES, BRFSS, NDI, FluSurv-NET, FluView, FoodNet
-
-Census
-
-* ACS, MAF, Census blocks, TIGER files, AHS, CPS, CES, NCVS
++ Census
+  + ACS
+  + MAF
+  + Census blocks
+  + TIGER files
+  + AHS
+  + CPS
+  + CES
+  + NCVS
 
 <div class="notes">
 
-Here's a quick overview of all the big data produced by CDC and the Census Bureau.
+Here's a quick overview of all the big data produced by the Census Bureau.
 
 </div>
 
+
+### Break #3
+
++ What have you learned?
+  + Overview of the Bureau of the Census
++ What's next?
+  + Cohort designs
 
 ### Research Approaches 
 
@@ -556,6 +594,13 @@ It is usually (but not always) easy to define and collect data on a control grou
 
 </div>
 
+### Break #4
+
++ What have you learned?
+  + Cohort designs
++ What's next?
+  + Case-control designs
+
 ### Case control designs (1 of 4)
 
 * Cases defined by outcome
@@ -626,6 +671,13 @@ Because of the difficulty in finding a good set of controls, researchers will al
 
 </div>
 
+### Break #5
+
++ What have you learned?
+  + Case-control designs
++ What's next?
+  + Cross-sectional designs
+
 ### Cross-sectional designs (1 of 3)
 
 * Single group
@@ -677,6 +729,18 @@ The cross-sectional design is also the most natural and intuitive setting for a 
 
 </div>
 
+### Break #6
+
++ What have you learned?
+  + Advantages and disadvantages of secondary data analysis
+  + Overview of the Centers for Disease Control and Prevention
+  + Overview of the Bureau of the Census
+  + Cohort designs
+  + Case-control designs
+  + Cross-sectional designs
++ What's next?
+  + Historical control designs
+
 ### Historical control designs (1 of 2)
 
 * Controls separated by time
@@ -714,6 +778,13 @@ The big advantage of the historical control design is time and money. Your histo
 Everyone sneers at a historical control group and for once I might be tempted to sneer at it also. There is one exception, though. If an exposure is associated with near 100% morbidity or mortality, then a historical control group works just fine. You would be hard pressed to convince anyone to forgo a treatment in this setting, so why even try. The point, though, is that any improvement will be patently obvious in a disease that, left to its own, kills almost everyone that it touches.
 
 </div>
+
+### Break #7
+
++ What have you learned?
+  + Historical control designs
++ What's next?
+  + Confusion among these designs
 
 ### Confusion between designs (1 of 6)
 
@@ -802,6 +873,13 @@ So how can the stroke group be both a cohort group and a case group? It's all in
 The point of this example is that classifying a study into one of the four categories (cohort, cross-sectional, case-control, or historical control) is a tricky process. The experts who publish these papers often get these terms wrong themselves, so don't worry too much if you can't figure things out.
 
 </div>
+
+### Break #8
+
++ What have you learned?
+  + Confusion among these designs
++ What's next?
+  + Establishing causation in an observational design
 
 ### Causation and observational designs
 
@@ -979,6 +1057,13 @@ A paper by Fedak in your recommended reading suggests that the similarity in sha
 
 </div>
 
+### Break #9
+
++ What have you learned?
+  + Establishing causation in an observational design
++ What's next?
+  + Analysis of qualitative data, phenomenology
+
 ### Analysis of Qualitative Data 
 
 + Qualitative – 5 main approaches
@@ -1047,6 +1132,14 @@ The researchers identified four main issues.
 
 </div>
 
+### Break #10
+
++ What have you learned?
+  + Analysis of qualitative data, phenomenology
++ What's next?
+  + Grounded theory
+
+
 ### Qualitative research: grounded theory (1 of 3)
 
 * Generate theory from data collected from participants
@@ -1083,6 +1176,23 @@ The general conclusion was that ... "If women who have previously experienced a 
 
 </div>
 
+### Break #11
+
++ What have you learned?
+  + Advantages and disadvantages of secondary data analysis
+  + Overview of the Centers for Disease Control and Prevention
+  + Overview of the Bureau of the Census
+  + Cohort designs
+  + Case-control designs
+  + Cross-sectional designs
+  + Historical control designs
+  + Confusion among these designs
+  + Establishing causation in an observational design
+  + Analysis of qualitative data, phenomenology
+  + Grounded theory
++ What's next?
+  + Ethnography
+
 ### Qualitative research: ethnography (1 of 3)
 
 * Study of individuals who share the same culture
@@ -1117,6 +1227,13 @@ The researchers discovered  ... "Three major themes ...  1) life in the context 
 
 </div>
 
+### Break #12
+
++ What have you learned?
+  + Ethnography
++ What's next?
+  + The case study
+  
 ### Qualitative research: the case study (1 of 3)
 
 * In depth examination of a case or series of cases
@@ -1157,6 +1274,12 @@ The general conclusion was that ... "Inequitably resourced catchment areas, uncl
 
 </div>
 
+### Break #13
+
+  + The case study
++ What's next?
+  + Narrative
+  
 ### Qualitative research: narrative (1 of 3)
 
 * Narrative is a written account of an event
@@ -1191,6 +1314,13 @@ The general conclusion was that ...  "'Inhibited autonomy' was extracted as a ce
 
 </div>
 
+### Break #14
+
++ What have you learned?
+  + Narrative
++ What's next?
+  + Community-Based Participatory Research
+  
 ### Problems with traditional research
 
 * "Researchers are like mosquitoes; they suck your blood and leave" from Cochran 2008.
@@ -1318,3 +1448,14 @@ You also have the advantage of understanding the standards of research, ESPECIAL
 What you are looking for in the community is insights into the local context. The community knows best what their specific needs are and can help you prioritize. They know where to find volunteers, and can tell you what they will do and what they will refuse to do. They know how to adapt your proposed intervention to the special features of their community. In general, they offer very pragmatic advice about how to make a good fit between your research and their community.
 
 </div>
+
+### Conclusion
+
++ What have you learned?
+  + Advantages and disadvantages of secondary data analysis
+  + Overview of the Centers for Disease Control and Prevention
+  + Overview of the Bureau of the Census
+  + Observational studies (Cohort, Case-control, Cross-sectional, Historical control)
+  + Analysis of qualitative data (Phenomenology, Grounded theory, Ethnography, The case study, Narrative)
+  + Community-Based Participatory Research
+  

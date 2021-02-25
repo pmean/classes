@@ -3,7 +3,6 @@ title: "Video 5 - Quasi-experimental studies"
 author: "Steve Simon"
 output: 
   powerpoint_presentation:
-    reference_doc: ../doc/template.pptx
     slide_level: 3
 knit: (function(inputFile, encoding) {
   rmarkdown::render(inputFile, encoding = encoding,
