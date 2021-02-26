@@ -15,15 +15,15 @@ Please view the 2021 recording and only look at the 2019 if you are curious. Stu
 + V06-03, Bureau of the Census
   + 2021 recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=b7eb9f4e-59c4-470d-b4d8-acda016e7cf6).
 + V06-04, Cohort designs
-  + 2021 recording available soon in Panopto format.
+  + 2021 recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=79154de3-fd80-4f37-8deb-acdb0175ed0c).
 + V06-05, Case-control designs
-  + 2021 recording available soon in Panopto format.
+  + 2021 recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d79c6668-451d-441b-8715-acdb017bc76b).
 + V06-06, Cross-sectional designs
-  + 2021 recording available soon in Panopto format.
+  + 2021 recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2db8bf63-1b9f-4883-a509-acdb017eb0df).
 + V06-07, Historical control designs
-  + 2021 recording available soon in Panopto format.
-+ V06-08, and more coming soon.
-  + 2021 recordings available soon in Panopto format.
+  + 2021 recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=86a7e3c3-cdde-4ffc-a92b-acdb0180b8f0).
++ V06-08, your homework.
+  + 2021 recordings available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=fb23bcea-7fef-4b8b-8b80-acdb018408ea).
   
 Recordings from 2019 (These are listed mostly for my benefit, but you are welcome to view them if you are curious).  
 
