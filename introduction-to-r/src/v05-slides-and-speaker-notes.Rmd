@@ -9,7 +9,9 @@ output: powerpoint_presentation
 knitr::opts_chunk$set(echo=TRUE)
 ``` 
 
-<div class="notes"></div>### Introduction
+<div class="notes"></div>
+
+### Introduction
 
 This Powerpoint presentation was created using an R Markdown file.
 
