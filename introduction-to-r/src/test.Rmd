@@ -1,0 +1,69 @@
+---
+title: "Homework 3"
+author: "Saeeda Irfan"
+date: "Created 2021-3-04"
+output:html_document: default
+---
+
+This program written in Rmarkdown to read different data sets.
+
+```{r version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+This program will read in data from 3 different data sets.
+We will show first 6 entries of each data set.
+
+1. The oyster data set shows two different computer vision methods that can be used to estimate oyster weight and oyster volume.This is a tab delimited file.
+```{r read- oyster_data_file}
+fn<-"../dat/oyster.tsv"
+mydata1<-read.table(file=fn,header=TRUE,stringsAsFactors=FALSE,sep = "\t")
+head(mydata1)
+
+```
+2. An experiment with litters of rats is described in rates.cvs file.This is a comma separated text file. Read it into R and print the first six rows of data.
+```{r read-rdata-file}
+fn<-"../dat/rates.csv"
+mydata2<-read.csv(file=fn,stringsAsFactors=FALSE)
+head(mydata2)
+```
+Question # 3
+A study of diamond ring prices is described in diamond.text file.This is a fixed width text file. Read it into R and print the first six rows of data.
+
+``````{r read-rdata-file-1}
+fn<-"../dat/diamond.txt"
+mydata3<-read.fwf(fn,c(9,10))
+head(mydata3)
+```
+
+---
+title: "Test"
+author: "Steve Simon"
+date: "3/4/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

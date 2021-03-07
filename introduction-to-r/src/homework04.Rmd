@@ -81,3 +81,141 @@ This is a brief description of the file.
 ### How should you read in this file?
 
 The data looks a bit unusual, but the relatively even spacing seems to indicate a tab delimited file. The hint that it is not a fixed width file is in the very first line, where the variable name Cracker does not line up with data directly beneath it.
+
+### 1. Create factors for AgeGroup, Race, Completed. Show frequency counts for all four of these variables.
+
+First, read in the data. I downloaded the tab separated value file from the web and stored it in the data folder with the name gardasil.tsv.
+
+```{r read-gardasil}
+raw_data <- read.delim("../data/gardasil.tsv", header=TRUE, sep="\t")
+head(raw_data)
+```
+
+The last two columns are empty, so store the first ten in a new data frame.
+
+```{r first-ten}
+gar <- raw_data[ , 1:10]
+```
+
+Create factors with the factor function.
+
+```{r create-factors}
+gar$age_factor <- 
+  factor(gar$AgeGroup, 
+    labels=c(
+      "child", 
+      "adult"))
+table(gar$age_factor)
+
+gar$race_factor <- 
+  factor(gar$Race, 
+    labels=c(
+      "white", 
+      "black", 
+      "Hispanic", 
+      "other/unknown"))
+table(gar$race_factor)
+
+gar$completed_factor <-
+  factor(gar$Completed,
+    labels=c(
+      "no", 
+      "yes"))
+table(gar$completed_factor)
+
+gar$insurance_factor <- 
+  factor(gar$InsuranceType,
+    labels=c(
+      "medical assistance", 
+      "private payer", 
+      "hospital based", 
+      "military"))
+table(gar$insurance_factor)
+
+gar$assistance_factor <-
+  factor(gar$MedAssist,
+    labels=c(
+      "no", 
+      "yes"))
+table(gar$assistance_factor)
+
+gar$location_factor <-
+  factor(gar$Location,
+    labels=c(
+      "Odenton", 
+      "White Marsh", 
+      "Johns Hopkins Outpatient Center", 
+      "Bayview"))
+
+gar$type_factor <- 
+  factor(gar$LocationType,
+    labels=c(
+      "suburban", 
+      "urban"))
+table(gar$type_factor)
+
+gar$practice_factor <-
+  factor(gar$PracticeType,
+    labels=c(
+      "pediatric", 
+      "family practice", 
+      "ob-gyn"))
+```
+
+### 2. What percentage of patients completed all three shots?
+
+```{r completed}
+prop.table(table(gar$completed_factor))
+```
+
+About 33% of the patients completed all three shots.
+
+### 3. Use a crosstabulation to compare Age to AgeGroup. Are the recodings into AgeGroup done properly?
+
+```{r age-by-agegroup}
+table(gar$Age, gar$AgeGroup)
+```
+
+No, there is an inconsistency in how 18 year olds were classified.
+
+### 4. Does the likelihood of completing all four shots vary by AgeGroup or Race? Calculate the appropriate percentages.
+
+```{r likelihood-by-agegroup}
+prop.table(table(gar$age_factor, gar$completed_factor), margin=1)
+```
+
+Children are slightly more likely to complete all shots.
+
+```{r likelihood-by-race}
+prop.table(table(gar$race_factor, gar$completed_factor), margin=1)
+```
+
+Blacks are slightly less likely to complete all shots compared to the other three groups.
+
+### 5. Calculate frequency tables for both categorical variables in the dataset. Are there any missing values?
+
+First, read in the data.
+
+```{r read-diet}
+raw_data <- read.delim("../data/diet.txt", header=TRUE, sep="\t")
+head(raw_data)
+```
+
+The data look good as is. Store in a more descriptive variable name and calculated the frequencies of the two variables.
+
+```{r diet-frequencies}
+diet <- raw_data
+table(diet$Bloat)
+table(diet$Cracker)
+```
+
+### 6. Calculate a crosstabulation with nicely rounded percentages. Try to arrange the rows and columns and percentages so that your table best addresses the question, what type of cracker had the most and the least bloating.
+
+```{r nice-percentages}
+diet_counts <- table(diet$Cracker, diet$Bloat)
+diet_proportions <- prop.table(diet_counts, margin=1)
+diet_percentages <- round(100*diet_proportions)
+diet_percentages
+```
+
+Gum had the most bloating and Bran had the least bloating.
