@@ -29,7 +29,7 @@ Please view the 2021 recording and only look at the 2019 if you are curious. Stu
     + No slides or speaker notes. Refer to the homework pages on Canvas.  
 
 + 2019 videos
-  + V01-01. Where do research ideas come from? Recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=035c8a81-58fa-438c-b552-a9dc01664f27
+  + V01-01. Where do research ideas come from? Recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=035c8a81-58fa-438c-b552-a9dc01664f27).
   + V01-02. Research dichotomies, part 1. Recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c678bd15-cf3c-4fc5-9fb1-a9dc01774782).
   + V01-03. Research dichotomies, part 2. Recording available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=051577a7-7027-41ae-a8d1-a9dc017c574c).
   
