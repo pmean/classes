@@ -25,7 +25,7 @@ Please view the 2021 recording and only look at the 2019 if you are curious. Stu
     + Slides and speaker notes, please see above
   + V01-03. Research dichotomies, part 2. Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4caeb562-3b18-4101-9915-acb70170c743).
     + Slides and speaker notes, please see above
-  + V01-04. Module01 homework. Available in [Panopto format]().
+  + V01-04. Module01 homework. Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5ae86e1d-b15b-4ecc-8878-acb7017587d7).
     + No slides or speaker notes. Refer to the homework pages on Canvas.  
 
 + 2019 videos
