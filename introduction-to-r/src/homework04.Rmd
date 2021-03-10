@@ -11,7 +11,7 @@ For every question, include the relevant R output and a brief written commentary
 
 The first four questions relate to the Gardasil dataset, a study of patients who received the Gardasil vaccine. A key question that this dataset was intended to address is what factors influenced whether a patient got all the required shots. More details are given below.
 
-1. Create factors for AgeGroup, Race, Completed. Show frequency counts for all four of these variables.
+1. Create factors for AgeGroup, Race, Completed.  You do not have to create factors for the remaining categorical variables. Show frequency counts for all of these variables.
 
 2. What percentage of patients completed all three shots?
 
@@ -23,7 +23,7 @@ The next two questions relate to the diet dataset that compares four different t
 
 5. Calculate frequency tables for both categorical variables in the dataset. Are there any missing values?
 
-6. Calculate a crosstabulation with nicely rounded percentages. Try to arrange the rows and columns and percentages so that your table best addresses the question, what type of cracker had the most and the least bloating.
+6. Calculate a crosstabulation with nicely rounded percentages. Note: do not add the "%" symbol, as it causes problems with R. Try to arrange the rows and columns and percentages so that your table best addresses the question, what type of cracker had the most and the least bloating.
 
 ### Gardasil dataset
 
@@ -81,3 +81,4 @@ This is a brief description of the file.
 ### How should you read in this file?
 
 The data looks a bit unusual, but the relatively even spacing seems to indicate a tab delimited file. The hint that it is not a fixed width file is in the very first line, where the variable name Cracker does not line up with data directly beneath it.
+
