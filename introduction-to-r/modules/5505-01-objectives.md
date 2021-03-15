@@ -6,11 +6,11 @@ title: "MEDB 5505, Introduction to R, Module01, Objectives"
 
 + The various ways to run R at UMKC
 + History of R
-+ Printing all or part of a dataframe
-+ Displaying information about a dataframe
++ Loading an RData file
++ Listing the first few lines of a data frame
 
 #### You will also see the following R functions
 
 + load
 + ls
-+ str
++ head
