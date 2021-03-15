@@ -11,7 +11,7 @@ output:
 source("prelims.R", echo=FALSE)
 ```
 
-### Sampling 
+### 9c, Sampling 
 
 + Sample size
 	+ General rules
@@ -34,7 +34,7 @@ In cases with really large sample sizes where you get statistical significance w
 </div>
 
 
-### Internal Validity 
+### 9c, Internal Validity 
 
 + “The extent to which we can infer that the independent variable *caused* the dependent variable.”
 	+ For non-experimental studies –
@@ -50,7 +50,7 @@ The cause has to precede the effect, it must be connected to the effect, and the
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + “The extent to which we can infer that the independent variable *caused* the dependent variable.”
 + Three criteria for causality
@@ -65,7 +65,7 @@ The cause has to precede the effect, it must be connected to the effect, and the
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Three criteria for causality –
 	+ IV *must precede* the outcome variable
@@ -85,7 +85,7 @@ The cause has to precede the effect, it must be connected to the effect, and the
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 ```{r tbl5, echo = FALSE, eval=FALSE}
 tbl5 <- tibble::tribble(
@@ -105,7 +105,7 @@ For randomized designs, the cause precedes the effect, the cause is related to t
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Meeting the 3 causality criteria based on –
 	+ Strength of the research design
@@ -118,7 +118,7 @@ The strength of the research design and the internal validity determine whether 
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Internal validity -
 	+ Most often discussed with reference to randomized experimental and quasi-experimental designs
@@ -131,7 +131,7 @@ The strength of the research design and the internal validity determine whether 
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Evaluating the internal validity of a study –
 	+ Equivalence of the groups on participant characteristics
@@ -144,7 +144,7 @@ There are two aspects of internal validity, equivalence and control.
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Equivalence of the groups on participant characteristics –
 	+ Are groups equivalent prior to introduction of IV?
@@ -164,7 +164,7 @@ In quasi-experimental design, you don't have random assignment, but you can rand
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Equivalence of the groups on participant characteristics –
 	+ Are groups equivalent prior to introduction of IV?
@@ -181,7 +181,7 @@ Since non-randomized trials have an attribute variable, you need to rely on stat
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Equivalence of the groups on participant characteristics –
 	+ Are groups equivalent prior to introduction of IV?
@@ -198,7 +198,7 @@ Equivalence when you have a continuous independent variable means that those who
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Control of extraneous experiences and environmental variables –
 	+ Extraneous variables – variables other than the IV and DV
@@ -220,7 +220,7 @@ In a controlled setting, there are fewer extraneous variables, but this changes 
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Rating the dimensions of internal validity
 	+ Figure 8.2
@@ -234,7 +234,7 @@ Internal validity is measured by whether the two dimensions are addressed.
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 ![Rating the dimensions of internal validity](../images/image-07-02.png)
 
@@ -245,7 +245,7 @@ Figure 8.2.
 </div>
 
 ***
-### Threats to Internal Validity 
+### 9c, Threats to Internal Validity 
 
 ![](../images/image-07-03.png)
 
@@ -264,7 +264,7 @@ Cook and Campbell.
 </div>
 
 ***
-### Threats to Internal Validity 
+### 9c, Threats to Internal Validity 
 
 + Equivalence of Groups
 	+ Use of extreme groups
@@ -278,7 +278,7 @@ Cook and Campbell.
 </div>
 
 ***
-### Threats to Internal Validity 
+### 9c, Threats to Internal Validity 
 
 + Control of extraneous/environmental variables
 	+ Changes due to time or growth and development
@@ -307,7 +307,7 @@ Temporal order of the variables. If you can't assure that the independent variab
 </div>
 
 ***
-### Threats to Internal Validity 
+### 9c, Threats to Internal Validity 
 
 + Other threats
 	+ Effects of being in the control group
@@ -326,7 +326,7 @@ Blinding helps control for expectation effects and observer bias.
 </div>
 
 ***
-### Validity 
+### 9c, Validity 
 
 ![](../images/image-07-04.png)
 
@@ -337,7 +337,7 @@ Here is figure 8.1 again. The next part of this lecture talks about sampling and
 </div>
 
 ***
-### Validity 
+### 9c, Validity 
 
 ![](../images/image-07-05.png)
 
@@ -349,7 +349,7 @@ Here is figure 8.1 again. The extent to which results will generalize.
 
 ***
 
-### Measurement 
+### 9c, Measurement 
 
 + What do we mean “ measurement ” ?
 	+ assignment of numbers or symbols to the different levels or values of variables according to rules. ” 
@@ -369,7 +369,7 @@ Conditions, distinctions.
 </div>
 
 ***
-### Measurement 
+### 9c, Measurement 
 
 + Assigning a number to represent …
 	+ Continuous value
@@ -387,7 +387,7 @@ Discrete values because of rounding, using counts, or a limited number of catego
 </div>
 
 ***
-### Measurement 
+### 9c, Measurement 
 
 + What is the measurement representing?
 	+ Actual measurement …
@@ -410,7 +410,7 @@ Formalizing the rules for measurement helps reduce bias. This is a real concern 
 </div>
 
 ***
-### Measurement 
+### 9c, Measurement 
 
 + Traditional levels (scales) of measurement
 	+ Nominal
@@ -435,7 +435,7 @@ Ratio. There is a true zero point.
 </div>
 
 ***
-### Measurement 
+### 9c, Measurement 
 
 + Authors categorization of levels of measurement
 	+ Nominal
@@ -453,7 +453,7 @@ Look at the literature in the area you work with. Several Likert scales summed t
 </div>
 
 ***
-### Measurement 
+### 9c, Measurement 
 
 ![](../images/image-08-01.png)
 
@@ -470,7 +470,7 @@ Approximately normal scale requires at least five levels accorind to Gliner et a
 </div>
 
 ***
-### Measurement 
+### 9c, Measurement 
 
 ![](../images/image-08-02.png)
 
@@ -481,7 +481,7 @@ Table 10.3 gives examples of the Gliner et al scales.
 </div>
 
 ***
-### Measurement 
+### 9c, Measurement 
 
 + Why does the scale of measurement matter?
 	+ How it reflects your design and your research question
@@ -497,7 +497,7 @@ Measurement scales can limit what you can say about your results.
 </div>
 
 
-### External Validity 
+### 9c, External Validity 
 
 + Generalizability
 	+ Fig. 9.3
@@ -521,7 +521,7 @@ Figure 9.3.
 </div>
 
 
-### External Validity 
+### 9c, External Validity 
 
 + Population external validity
 	+ How participants were selected for the study?
@@ -535,7 +535,7 @@ Figure 9.3.
 </div>
 
 
-### External Validity 
+### 9c, External Validity 
 
 + Ecological external validity
 	+ Whether the results can be generalized to real-life outcomes
@@ -549,7 +549,7 @@ Figure 9.3.
 </div>
 
 
-### External Validity 
+### 9c, External Validity 
 
 ![](../images/image-07-07.png)
 
@@ -560,7 +560,7 @@ Figure 9.3.
 </div>
 
 
-### Sampling and Validity 
+### 9c, Sampling and Validity 
 
 ![](../images/image-07-08.png)
 
@@ -571,7 +571,7 @@ Figure 9.4. External validity is influenced by the sampling process. Internal va
 </div>
 
 ***
-### Measurement Validity 
+### 9c, Measurement Validity 
 
 + Internal structure evidence –
 	+ “Evidence from several types of analysis, including factor analysis and differential item functioning …”
@@ -590,7 +590,7 @@ There is a somatic factor in this scale. This might be considered a subscale. Ru
 </div>
 
 ***
-### Measurement Validity 
+### 9c, Measurement Validity 
 
 + Factor analysis – Beliefs about ART measure
 + The following questions involve your personal views about the HIV medications that have been prescribed for you.  Please indicate the extent to which you agree or disagree with the following statements.
@@ -606,7 +606,7 @@ A factor analysis allows us to see if the measure is behaving the way we expect 
 
 </div>
 
-### Sampling 
+### 9c, Sampling 
 
 + Sample size
 	+ General rules
@@ -629,7 +629,7 @@ In cases with really large sample sizes where you get statistical significance w
 </div>
 
 
-### Internal Validity 
+### 9c, Internal Validity 
 
 + “The extent to which we can infer that the independent variable *caused* the dependent variable.”
 	+ For non-experimental studies –
@@ -645,7 +645,7 @@ The cause has to precede the effect, it must be connected to the effect, and the
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + “The extent to which we can infer that the independent variable *caused* the dependent variable.”
 + Three criteria for causality
@@ -660,7 +660,7 @@ The cause has to precede the effect, it must be connected to the effect, and the
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Three criteria for causality –
 	+ IV *must precede* the outcome variable
@@ -679,7 +679,7 @@ The cause has to precede the effect, it must be connected to the effect, and the
 
 </div>
 
-### Internal validity
+### 9c, Internal validity
 
 <div class="notes">
 
@@ -688,7 +688,7 @@ For randomized designs, the cause precedes the effect, the cause is related to t
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Meeting the 3 causality criteria based on –
 	+ Strength of the research design
@@ -701,7 +701,7 @@ The strength of the research design and the internal validity determine whether 
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Internal validity -
 	+ Most often discussed with reference to randomized experimental and quasi-experimental designs
@@ -714,7 +714,7 @@ The strength of the research design and the internal validity determine whether 
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Evaluating the internal validity of a study –
 	+ Equivalence of the groups on participant characteristics
@@ -727,7 +727,7 @@ There are two aspects of internal validity, equivalence and control.
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Equivalence of the groups on participant characteristics –
 	+ Are groups equivalent prior to introduction of IV?
@@ -747,7 +747,7 @@ In quasi-experimental design, you don't have random assignment, but you can rand
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Equivalence of the groups on participant characteristics –
 	+ Are groups equivalent prior to introduction of IV?
@@ -764,7 +764,7 @@ Since non-randomized trials have an attribute variable, you need to rely on stat
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Equivalence of the groups on participant characteristics –
 	+ Are groups equivalent prior to introduction of IV?
@@ -781,7 +781,7 @@ Equivalence when you have a continuous independent variable means that those who
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Control of extraneous experiences and environmental variables –
 	+ Extraneous variables – variables other than the IV and DV
@@ -803,7 +803,7 @@ In a controlled setting, there are fewer extraneous variables, but this changes 
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 + Rating the dimensions of internal validity
 	+ Figure 8.2
@@ -817,7 +817,7 @@ Internal validity is measured by whether the two dimensions are addressed.
 </div>
 
 ***
-### Internal Validity 
+### 9c, Internal Validity 
 
 ![Rating the dimensions of internal validity](../images/image-07-02.png)
 
@@ -828,7 +828,7 @@ Figure 8.2.
 </div>
 
 ***
-### Threats to Internal Validity 
+### 9c, Threats to Internal Validity 
 
 ![](../images/image-07-03.png)
 
@@ -847,7 +847,7 @@ Cook and Campbell.
 </div>
 
 ***
-### Threats to Internal Validity 
+### 9c, Threats to Internal Validity 
 
 + Equivalence of Groups
 	+ Use of extreme groups
@@ -861,7 +861,7 @@ Cook and Campbell.
 </div>
 
 ***
-### Threats to Internal Validity 
+### 9c, Threats to Internal Validity 
 
 + Control of extraneous/environmental variables
 	+ Changes due to time or growth and development
@@ -890,7 +890,7 @@ Temporal order of the variables. If you can't assure that the independent variab
 </div>
 
 ***
-### Threats to Internal Validity 
+### 9c, Threats to Internal Validity 
 
 + Other threats
 	+ Effects of being in the control group
@@ -909,7 +909,7 @@ Blinding helps control for expectation effects and observer bias.
 </div>
 
 ***
-### Validity 
+### 9c, Validity 
 
 ![](../images/image-07-04.png)
 
@@ -920,7 +920,7 @@ Here is figure 8.1 again. The next part of this lecture talks about sampling and
 </div>
 
 ***
-### Validity 
+### 9c, Validity 
 
 ![](../images/image-07-05.png)
 
@@ -930,7 +930,7 @@ Here is figure 8.1 again. The extent to which results will generalize.
 
 </div>
 
-### Measurement 
+### 9c, Measurement 
 
 + What do we mean “ measurement ” ?
 	+ assignment of numbers or symbols to the different levels or values of variables according to rules. ” 
@@ -950,7 +950,7 @@ Conditions, distinctions.
 </div>
 
 ***
-### Measurement 
+### 9c, Measurement 
 
 + Assigning a number to represent …
 	+ Continuous value
@@ -968,7 +968,7 @@ Discrete values because of rounding, using counts, or a limited number of catego
 </div>
 
 ***
-### Measurement 
+### 9c, Measurement 
 
 + What is the measurement representing?
 	+ Actual measurement …
@@ -991,7 +991,7 @@ Formalizing the rules for measurement helps reduce bias. This is a real concern 
 </div>
 
 ***
-### Measurement 
+### 9c, Measurement 
 
 + Traditional levels (scales) of measurement
 	+ Nominal
@@ -1016,7 +1016,7 @@ Ratio. There is a true zero point.
 </div>
 
 ***
-### Measurement 
+### 9c, Measurement 
 
 + Authors categorization of levels of measurement
 	+ Nominal
@@ -1034,7 +1034,7 @@ Look at the literature in the area you work with. Several Likert scales summed t
 </div>
 
 ***
-### Measurement 
+### 9c, Measurement 
 
 ![](../images/image-08-01.png)
 
@@ -1051,7 +1051,7 @@ Approximately normal scale requires at least five levels accorind to Gliner et a
 </div>
 
 ***
-### Measurement 
+### 9c, Measurement 
 
 ![](../images/image-08-02.png)
 
@@ -1062,7 +1062,7 @@ Table 10.3 gives examples of the Gliner et al scales.
 </div>
 
 ***
-### Measurement 
+### 9c, Measurement 
 
 + Why does the scale of measurement matter?
 	+ How it reflects your design and your research question
@@ -1078,7 +1078,7 @@ Measurement scales can limit what you can say about your results.
 </div>
 
 ***
-### Assignment #6 
+### 9c, Assignment #6 
 
 + Prepare a brief paragraph that describes the research design you are using for your research proposal. This is the information that will probably appear in the Methods section of your proposal.
 
@@ -1088,7 +1088,7 @@ Go back are refer to Figure 4.1. Week 8 activities relate to the exemplar articl
 
 </div>
 
-### External Validity 
+### 9c, External Validity 
 
 + Generalizability
 	+ Fig. 9.3
@@ -1112,7 +1112,7 @@ Figure 9.3.
 </div>
 
 
-### External Validity 
+### 9c, External Validity 
 
 + Population external validity
 	+ How participants were selected for the study?
@@ -1126,7 +1126,7 @@ Figure 9.3.
 </div>
 
 
-### External Validity 
+### 9c, External Validity 
 
 + Ecological external validity
 	+ Whether the results can be generalized to real-life outcomes
@@ -1140,7 +1140,7 @@ Figure 9.3.
 </div>
 
 
-### External Validity 
+### 9c, External Validity 
 
 ![](../images/image-07-07.png)
 
@@ -1151,7 +1151,7 @@ Figure 9.3.
 </div>
 
 
-### Sampling and Validity 
+### 9c, Sampling and Validity 
 
 ![](../images/image-07-08.png)
 
@@ -1162,7 +1162,7 @@ Figure 9.4. External validity is influenced by the sampling process. Internal va
 </div>
 
 ***
-### Measurement Validity 
+### 9c, Measurement Validity 
 
 + Internal structure evidence –
 	+ “Evidence from several types of analysis, including factor analysis and differential item functioning …”
@@ -1181,7 +1181,7 @@ There is a somatic factor in this scale. This might be considered a subscale. Ru
 </div>
 
 ***
-### Measurement Validity 
+### 9c, Measurement Validity 
 
 + Factor analysis – Beliefs about ART measure
 + The following questions involve your personal views about the HIV medications that have been prescribed for you.  Please indicate the extent to which you agree or disagree with the following statements.
