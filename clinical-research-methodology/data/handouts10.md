@@ -4,6 +4,10 @@ title: "Clinical Research Methodology, Module10"
 
 #### Objectives
 
++ To describe the resources needed to conduct focus groups or a series of interviews.
++ To develop strategies for putting together a questionnaire.
++ To recognize the special issues associated with secondary data sources.
+
 #### Videos
 
 Please view the 2021 recording and only look at the 2019 if you are curious. Students who attended the live lecture on Wednesday do not have to view either recording, unless they want to.
