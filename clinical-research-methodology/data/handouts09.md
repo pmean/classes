@@ -18,8 +18,8 @@ Please view the 2021 recording and only look at the 2019 if you are curious. Stu
   + V09b-02, Three dichotomies of measurement. Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ee388924-4170-44dc-bdd1-acf40178350a).
   + V09b-03, Measurement reliability. Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2634c26e-5959-468d-8292-acf4017c48a2).
   + V09b-04, Measurement validity. Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5e55bea3-338c-44a6-b123-acf40180ca41).
-  + V09b-05, Available in [Panopto format]().
-  + V09b-06, Available in [Panopto format]().
+  + V09b-05, Five case studies, revisited. Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=70845fc3-a09f-4a15-a156-acf4018407f4).
+  + V09b-06, your homework. Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1e2cea3a-7132-4b94-8d9c-acf40188869a).
 
 + 2019 recordings 
   + V09-01, Reliability coefficient.Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=59d33e20-33ac-4c51-b6cf-aa14014be36a).
@@ -30,4 +30,5 @@ Please view the 2021 recording and only look at the 2019 if you are curious. Stu
 
 #### Handouts
 
-A set of slides and speaker notes for the required videos (V09a) is available in [pdf format](http://www.pmean.com/clinical-research-methods/video09a-slides-and-speaker-notes.pdf). Slides and speaker notes are also available for the optional videos (V09) in [pdf format](http://www.pmean.com/clinical-research-methods/video09-slides-and-speaker-notes.pdf)
++ Video09a slides and speaker notes available in [pdf format](https://github.com/pmean/classes/blob/master/clinical-research-methodology/results/video09a-slides-and-speaker-notes.pdf).
++ Video09b slides and speaker notes available in [pdf format](https://github.com/pmean/classes/blob/master/clinical-research-methodology/results/video09b-slides-and-speaker-notes.pdf).
