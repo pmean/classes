@@ -19,7 +19,7 @@ title: "MEDB 5505, Introduction to R, Module04, Objectives"
 + prop.table, converts counts into proportions
 + range, computes minimum and maximum
 + round, rounds a number
-+ scale_y_continuous, defines features for a plot’s y-axis
++ scale_y_continuous, defines features for a plot's y-axis
 + sum, adds up all the values
 + table, produces frequency counts and crosstabulations
 + which, selects rows which meet a logical condition
