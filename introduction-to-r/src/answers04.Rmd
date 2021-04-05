@@ -106,6 +106,19 @@ diet_percentages
 
 Gum had the most bloating and Bran had the least bloating.
 
+Some students will use margin=2 instead of margin=1. It is not wrong per se, but the results are a bit trickier to interpret. Here is what you get.
+
+```{r nice-percentages}
+diet_counts <- table(diet$Cracker, diet$Bloat)
+diet_proportions <- prop.table(diet_counts, margin=2)
+diet_percentages <- round(100*diet_proportions)
+diet_percentages
+```
+
+Notice that the percentages add up to 100 with each column rather than within each row. What this table tells you is that among patients reporting bloat, 10% were eating bran crackers, 29% combo, 19% control, and 43% gum. Since there were roughly the same number of patients in each group, this works out okay. But if you had more gum crackers, you wouldn't know if the differential percentages could be accounted for by this excess in crackers. It's a subtle but important issue.
+
+
+
 Note that if you try to add a percent sign to the table, you lose the row and column names.
 
 ```{r lost-names}
