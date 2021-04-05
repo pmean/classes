@@ -1,0 +1,173 @@
+---
+title: "Introduction to R, module08"
+author: "Steve Simon"
+date: "Created 2021-03-02"
+output: powerpoint_presentation
+---
+
+### Setup
+
+```{r setup}
+knitr::opts_chunk$set(echo=FALSE)
+options(width=45)
+``` 
+
+<div class="notes">
+
+Here are some options that I set to make the Powerpoint slides look nice.
+
+The first line sets the default to not showing the R code. I find that sometimes it helps to hide the R code or save it for display on a different slide. The second line keeps the width of the output from causing inappropriate line breaks inside of Powerpoint.
+
+</div>
+
+### Introduction
+
+This Powerpoint presentation was created using an R Markdown file.
+
+```{r r-version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+<div class="notes">
+
+Like the earlier presentations, this Powerpoint file was created using Rmarkdown.
+
+</div>
+
+### Why do you want to create your own functions
+
++ Saves time
++ Improves quality
++ Creates "dry" code
+  + Don't repeat yourself
+
+<div class="notes">
+
+
+
+</div>
+
+### Let's read in the sleep data
+
+```{r read, echo=TRUE}
+fn <- "http://www.statsci.org/data/general/sleep.txt"
+sleep <- read.table(fn, header=TRUE, sep="\t")
+```
+<div class="notes">
+
+The sleep dataset is a tab delimited file. 
+
+</div>
+
+### The first few lines
+
+```{r head, echo=TRUE}
+head(sleep, n=3)
+```
+
+<div class="notes">
+
+Normally you would print out the first five lines or so as a quality check, but I can only print out three lines and have it fit on a single slide.
+
+</div>
+
+### Structure of a function
+
+```{}
+function_name <- function(arg1, arg2) {
+  R code line 1
+  R code line 2
+}
+```
+
++ *function_name* is a name your choose for your function
++ **arg1, arg2** are arguments to the function. 
+  + Any number of arguments allowed
++ **R code line 1, R code line 2** are lines of R code
+  + Any number of code lines
++ Results of last code line (**R code line 2**) are returned
+
+<div class="notes">
+
+A function starts with a name that you choose for your function. This is assigned a function through the "function" function. You list arguments that are passed to the function. Think of these arguments as placeholders for future use. This example shows two arguments, but you can have one (or zero even) or you can have more than two arguments. Then you have lines of code that use these argments. This example shows two lines of code, but any number of lines of code is okay. The results of the last line of code within the brackets is what is displayed when you run the function.
+
+</div>
+
+### Your custom correlation function
+
+```{r function-use, echo=TRUE}
+custom_cor <- function(x, y) {
+  # This function computes a rounded correlation
+  # with the pairwise.complete.obs option.
+  r <- cor(x, y, use="pairwise.complete.obs")
+  round(r, 2)
+}
+custom_cor(sleep$TotalSleep, sleep$Predation)
+custom_cor(sleep$TotalSleep, sleep$Exposure)
+custom_cor(sleep$TotalSleep, sleep$Danger)
+```
+
+<div class="notes">
+
+Suppose the you always want to select the 
+
+use="pairwise.complete.obs"
+
+option in the cor function and round the correlation to two decimal places, but didn't want to remember the code. Here's the code to do this.
+
+Functions have the greatest value when they are repeated with different arguments.
+
+</div>
+
+### An improvement to your function.
+
+```{r function-improve, echo=TRUE}
+custom_cor <- function(x, y) {
+  # This function computes a rounded correlation
+  # with the pairwise.complete.obs option.
+  error_code <- sd(x)==0 | sd(y)==0
+  if (error_code) return("Error: constant data")
+  r <- cor(x, y, use="pairwise.complete.obs")
+  round(r, 2)
+}
+```
+
+<div class="notes">
+
+Here's an enhancement to the function, which may be a bit of overkill, but which could make sense if you are developing a function that will be used in a lot of different settings. The first line of code checks to see if either variable is constant (has zero standard deviation). The second line will return early with a message if that is the case, but will continue to the next line if that is not the case.
+
+
+</div>
+
+### Special case for ggplot2
+
+```{r histogram-function, echo=TRUE}
+histogram_10 <- function(dataset, variable) {
+  ggplot({{dataset}}, aes(x={{variable}})) + 
+    geom_histogram(fill="white", color="black", bins=10)
+}
+```
+
+<div class="notes">
+
+If you place a ggplot2 function inside your custom function, you will need to surround your arguments by two curly brackets. This is a true for many of the functions that you will find in the tidyverse. It takes a bit of effort to figure out where and how to use the curly braces. If you want the technical details, consult the documentation on non-standard evaluation.
+
+</div>
+
+### Test
+
+```{r test, warning=FALSE}
+library(ggplot2)
+histogram_10(sleep, LifeSpan)
+```
+
+<div class="notes">
+
+Here's a test to make sure that my function actually works.
+
+</div>
+
+```{r save-image, echo=FALSE}
+save.image("../data/slides08.RData")
+```

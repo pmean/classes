@@ -41,7 +41,7 @@ cat(tx, sep="\n")
 ```
 
 + Save it
-  + in the dat directory
+  + in the data directory
   + filename: simple.csv
 
 <div class="notes">
@@ -91,7 +91,7 @@ cat(tx, sep="\n")
 ```
 
 + Save it
-  + in the dat directory
+  + in the data directory
   + filename: simple.txt
 
 <div class="notes">
@@ -128,7 +128,7 @@ cat(tx, sep="\n")
 ```
 
 + Save it
-  + in the dat directory
+  + in the data directory
   + filename: simple.tsv
 
 <div class="notes">
@@ -153,7 +153,7 @@ cat(tx, sep="\n")
 ```
 
 + Save it
-  + in the dat directory
+  + in the data directory
   + filename: tilde.txt
 
 
@@ -193,7 +193,7 @@ cat(tx, sep="\n")
 ```
 
 + Save it
-  + in the dat directory
+  + in the data directory
   + filename: fixed.txt
 
 
@@ -228,6 +228,57 @@ raw_data
 <div class="notes">
 
 You should also consider the read.fortran function. Check out the help file.
+
+</div>
+
+### A special case
+
++ Type the following into notepad
+  + Three spaces between the 1 and 4
+  + Three spaces between the 2 and 8
+  + Two spaces between the 3 and 12
+  + Two spaces between the 4 and 16
+
+```{r white-space, echo=FALSE, comment=""}
+tx <- readLines("../data/white-space.txt")
+cat(tx, sep="\n")
+```
+
++ Save it
+  + in the data directory
+  + filename: white-space.txt
+
+
+<div class="notes">
+
+Here's a special case of fixed width format.
+
+Sometimes a fixed width file will include enough blanks so that each data value is separated from any other data value. This requires more room, but it makes the data file easier to read.
+Create a fixed width file in notepad with the following lines.
+
+1   4
+
+2   8
+
+3  12
+
+4  16
+
+and store it as white-space.txt.
+
+</div>
+
+### White-space delimited files
+
+```{r read.table}
+fn <- "../data/white-space.txt"
+raw_data <- read.table(fn, sep="")
+raw_data
+```
+
+<div class="notes">
+
+The argument sep="" will use "white space" as a delimiter. White space is defined as one or more blanks or tabs or even a mix of spaces and tabs.
 
 </div>
 
