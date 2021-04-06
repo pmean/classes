@@ -13,11 +13,11 @@ source("prelims.R", echo=FALSE)
 
 ### Data management
 
-* Data dictionary
++ Data dictionary
   + Variable names, Variable labels, Value labels, Missing value codes
-* Managing complex files
++ Managing complex files
   + Multiple response, Longitudinal/repeated measures data
-* Storage options
++ Storage options
   + Spreadsheet, Text file, Database, REDCap
   
 <div class="notes">
@@ -30,9 +30,9 @@ Let me just mention how happy I am to talk about data management issues. You don
 
 ### Data dictionary
 
-* Also called a code book
-* Start before collecting data
-* Revise as needed
++ Also called a code book
++ Start before collecting data
++ Revise as needed
 
 <div class="notes">
 
@@ -50,10 +50,10 @@ I'll describe what belongs in a data dictionary after I describe the various ele
 
 ### Variable names
 
-* Brief, but descriptive explanation
-* Roughly 4 to 16 characters
-* No blanks and (almost) no symbols
-* One to three words
++ Brief, but descriptive explanation
++ Roughly 4 to 16 characters
++ No blanks and (almost) no symbols
++ One to three words
 
 <div class="notes">
 
@@ -65,14 +65,14 @@ Sometimes a very brief abbreviation is okay, like bw for birthweight or bmi for 
 
 ### Good and bad variable names
 
-* Names to avoid (www.writersexchange.com)
++ Names to avoid (www.writersexchange.com)
   + systolic blood pressure
   + systolic-blood-pressure
-* Names that work
++ Names that work
   + systolic_blood_pressure
   + systolic.blood.pressure
   + SystolicBloodPressure
-* NEVER USE ALL CAPS FOR VARIABLE NAMES
++ NEVER USE ALL CAPS FOR VARIABLE NAMES
   + Lower case ascenders (e.g., f and l)
   + Lower case descenders (e.g., g and y)
   
@@ -92,7 +92,7 @@ Please avoid the use of all upper case for variable names. It looks bad, but mor
 
 ### Variable labels
 
-* Longer descriptions
++ Longer descriptions
   + Can include spaces and punctuation
   + Ideal length is 20-40 characters
   + Mention units of measurement, special qualifiers
@@ -109,11 +109,11 @@ If your variable has units of measurement, here is where you specify grams, kilo
 
 ### Missing value codes
 
-* Explain WHY the value is missing
-* For a survey
++ Explain WHY the value is missing
++ For a survey
   + Did not answer
   + Not applicable
-* For a lab result
++ For a lab result
   + Below the limit of detection
   + Insufficient volume for testing
   + Dropped the test tube and it shattered making a huge mess
@@ -134,15 +134,15 @@ That's whay the reason for missingness is so important.
 
 ### Example of missing value codes
 
-* Use extreme number code
++ Use extreme number code
   + 9, 99, 999
   + -1
-* Use symbols
++ Use symbols
   + NA
   + (asterisk)
   + (dot)
-* Never use blanks to designate missing
-* Note missing value code on data dictionary
++ Never use blanks to designate missing
++ Note missing value code on data dictionary
 
 <div class="notes">
 
@@ -168,11 +168,11 @@ Here's a humorous example of failure to account properly for missing values. The
 
 ### First break
 
-* What have you learned
++ What have you learned
   + variable names
   + Variable labels
   + Missing value codes
-* What's coming up
++ What's coming up
   + Date formats
   + Categorical values
 
@@ -208,10 +208,10 @@ Never, never, never code your data as two digit years. Even if all the dates are
 
 ### Internal storage formats
 
-* Excel - number of days since 1899-12-31 (1900-01-00)
-* R - number of days since January 1, 1970
-* SAS - number of days since January 1, 1960
-* SPSS - number of seconds since October 14, 1582
++ Excel - number of days since 1899-12-31 (1900-01-00)
++ R - number of days since January 1, 1970
++ SAS - number of days since January 1, 1960
++ SPSS - number of seconds since October 14, 1582
 
 <div class="notes">
 
@@ -265,12 +265,12 @@ So why did SPSS choose the number of seconds since October 14, 1582 rather than 
 
 ### Categorical values
 
-* Definition: small number of possible values
-* Beware of ambiguities
++ Definition: small number of possible values
++ Beware of ambiguities
   + YES, yes, and Yes are three distinct levels.
-* Use number codes
++ Use number codes
   + 0, 1, 9 for binary variables
-* Single letter codes
++ Single letter codes
   + M, F, and U for gender
   + Potentially ambiguous
   + Consistent case is important.
@@ -305,8 +305,8 @@ One more nitpick. The code for A is ambiguous. Does it mean Asian American or Am
 
 ### Reverse coding (1 of 2)
 
-* Context specific
-* Sequence of IF THEN ELSE statements
++ Context specific
++ Sequence of IF THEN ELSE statements
   + if (is.na(x)) then y=NA
   +   else if (x=1) then y=4
   +   else if (x=2) then y=3
@@ -324,12 +324,12 @@ You can also use a series of IF THEN ELSE commands to do the reverse coding. Alw
 
 ### Reverse coding (2 of 2)
 
-* Functional transformations
++ Functional transformations
   + 0,1 to 1,0 is f(x)=1-x
   + 1,2,3,4 to 4,3,2,1 is f(x)=5-x
   + 0,1,2,3,4 to 4,3,2,1,0 is f(x)=4-x
-* Always check your results
-* Watch out for missing value codes
++ Always check your results
++ Watch out for missing value codes
 
 <div class="notes">
 
@@ -345,11 +345,11 @@ Always account properly for missing values when reverse scaling. It's a good ide
 
 ### Second break
 
-* What have you learned
++ What have you learned
   + Dates
   + Value labels
   + Reverse coding
-* What's coming next
++ What's coming next
   + Multiple response
   + Longitudinal/repeated measures data
 
@@ -501,13 +501,13 @@ Also note another big advantage here--no blank cells!
 
 ### Longitudinal data, Repeated measures data
 
-* Longitunal
++ Longitunal
   + Multiple time points per patient
-* Repeated measurements
++ Repeated measurements
   + Measuring patient repeatedly under different conditions
-* Tall and thin format
++ Tall and thin format
   + One line per visit/measurement
-* Short and fat format
++ Short and fat format
   + One line per patient
   
 <div class="notes">
@@ -568,10 +568,10 @@ Here's the data in the short and fat format. Look again at the scroll bar on the
 
 ### A simple alternative to both tall/thin and short/fat
 
-* Disadvantages of tall/thin
++ Disadvantages of tall/thin
   + Too much repetition
-* Disadvantages of short/fat
-* Database format
++ Disadvantages of short/fat
++ Database format
   + Time constant table
   + Time varying table
 
@@ -632,22 +632,22 @@ If your variable is categorical, specify what the categories are. There is nothi
 
 ### Third break
 
-* What have you learned
++ What have you learned
   + Multiple response variables
   + Longitudinal/repeated measures data
-* What's next
++ What's next
   + Double entry coding
   + Excel files
 
 ### Double entry coding
 
-* Great quality check
++ Great quality check
   + If you can afford it
-* Prepare a code book first
++ Prepare a code book first
   + Count the proportion of discrepancies
-* If too many discrepancies
++ If too many discrepancies
   + Revise the code book and re-do the data entry.
-* If discrepancies small enough
++ If discrepancies small enough
   + Report this number in your publication
 
 <div class="notes">
@@ -666,14 +666,14 @@ Once you get a good undetected error rate, publish this number in your methods o
 
 ### If you enter data into Excel
 
-* Do not use colors
-* Do not include summary statistics
-* Rectangular grid
-* Don't squeeze two data values into one cell
++ Do not use colors
++ Do not include summary statistics
++ Rectangular grid
++ Don't squeeze two data values into one cell
   + Systolic/diastolic blood pressures
   + 44M for a 44 year old male
-* Variable names in first row
-* No blank cells
++ Variable names in first row
++ No blank cells
   + Contradicts your book
 
 <div class="notes">
@@ -752,17 +752,17 @@ I also cut and pasted some of the preliminary rows in the original spreadsheet a
 
 ### Fourth break
 
-* What have you learned
++ What have you learned
   + Double entry
   + Excel files
-* What's coming next
++ What's coming next
   + Text files
   + Database files
 
 ### Text files
 
-* Fixed width
-* Delimited
++ Fixed width
++ Delimited
   + Commas
   + Spaces
   + Tabs
@@ -861,7 +861,7 @@ It's hard sometimes to figure out if a file is using tabs or spaces as delimiter
 
 ### Database systems
 
-* Terminology
++ Terminology
   + Tables
   + Fields
   + Records
@@ -902,14 +902,14 @@ You wouldn't want to type the long labels in over and over again. So you would u
 
 ### REDCap
   
-* Research Electronic Data Capture
-* Not open source, but freely distributed by Vanderbilt
-* Software components
++ Research Electronic Data Capture
++ Not open source, but freely distributed by Vanderbilt
++ Software components
   + PHP
   + JavaScript
   + MySQL
-* Case report forms
-* Strongly recommended
++ Case report forms
++ Strongly recommended
 
 <div class="notes">
 
@@ -925,10 +925,10 @@ You should use REDCap for pretty much any research project. It has a bit less va
 
 ### Conclusion
 
-* Data dictionary
++ Data dictionary
   + Variable names, Variable labels, Value labels, Missing value codes
-* Managing complex files
++ Managing complex files
   + Multiple response, Longitudinal/repeated measures data
-* Storage options
++ Storage options
   + Spreadsheet, Text file, Database, REDCap
   
