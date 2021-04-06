@@ -772,7 +772,12 @@ I also cut and pasted some of the preliminary rows in the original spreadsheet a
 
 You may wish to create a text file for others to use. The text format is popular for sharing your data, because others can inspect the data easily without needing any specialized software.
 
-You can used a fixed width format. The
+You can used a fixed width format. The individual data values are limited to specific columns and are not allowed to creep over into the wrong columns. It takes a bit of planning to develop a fixed width format, because you need to specify, in advance, how many columns are enough to fit any possible value for your data. You may know this for some data. An Apgar score, for example, would require two columns, while an IQ score would require thee columns. But how many columns would you need for a person's name?
+
+A delimited file uses a special character, called a delimiter, to separate individual data values within a row. The common delimiters are commas, spaces, and tabs. Often delimited files will place quote marks around text, especially for comma delimited files.
+
+I want to show some examples of each of these types of text files.
+
 
 </div>
 
