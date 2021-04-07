@@ -5,6 +5,9 @@ output:
   powerpoint_presentation:
     reference_doc: ../doc/template.pptx
     slide_level: 3
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding,
+  output_dir = "../results", output_format = "all") }) 
 ---
 
 ```{r echo=FALSE}
