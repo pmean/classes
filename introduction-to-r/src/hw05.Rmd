@@ -1,0 +1,43 @@
+---
+title: "Module05 homework assignment"
+author: "Steve Simon"
+date: "Created 2021-04-08"
+output: html_document
+---
+
+Having completed all the videos in this module, I would like you to turn in some simple analyses that you run on two fresh data sets. This homework assignment will be graded pass/fail.
+
+For every question, include the relevant R output and a brief written commentary explaining what the results mean. When you send your answers, please include the original questions (e.g., Q1: What is the 18th letter of the alphabet. A. The letter “R”).
+
+Questions 1-5 refer to the Albuquerque dataset.
+
+1. Convert the number codes for the categorical variables to factors. Show frequency tables for these variables after conversion. Are any values missing for these categorical variables?
+
+2. Compute means and standard deviations for all the continuous variables. How many missing values are there for age and for tax?
+
+3. Find the largest house (biggest square footage) in the data set. Is the largest house also the most expensive house?
+
+4. Evaluate the relationship between PRICE and SQFT using a scatterplot. Do larger houses tend to cost more?
+
+5. Show how much more expensive custom built homes are compared to standard homes using a boxplot and through calculation of the means and standard deviations.
+
+Questions 6-7 refer to the Diamond dataset.
+
+6. Show the relationship between carat size and price using a scatterplot.
+
+7. Show the relationship between color and price and the relatonship between clarity and price using boxplots.
+
++ The Albuquerque dataset
+  + [Data dictionary][git1]
+  + [Text file of data][git2]
+  + How should you read in this file? There is only a single blank between each data value. Use a blank as a delimiter.
+
++ The Diamond dataset
+  + [Data dictionary][git3]
+  + [Text file of data][git4]
+  + How should you read in this file? This could either be a tab delimited file or a fixed width file. If you scroll through enough of the data, you will see that the price is right justified. Tab delimited files almost always have left justification for all data. So try a fixed width format.
+
+[git1]: http://www.pmean.com/introduction-to-r/data/albuquerque-data-dictionary.txt
+[git2]: http://www.pmean.com/introduction-to-r/data/albuquerque-housing.txt
+[git3]: http://jse.amstat.org/v9n2/4C.txt
+[git4]: http://jse.amstat.org/v9n2/4Cdata.txt

@@ -1,0 +1,65 @@
+---
+title: "Module05 homework answers"
+author: "Steve Simon"
+date: "Created 2021-04-08"
+output: html_document
+---
+
+Questions 1-5 refer to the Albuquerque dataset.
+
+1. Convert the number codes for the categorical variables to factors. Show frequency tables for these variables after conversion. Are any values missing for these categorical variables?
+
+```{r factors}
+fn <- "../data/albuquerque-housing.txt"
+al <- read.table(fn, header=TRUE, sep=" ")
+head(al)
+al$ne_factor <- 
+  factor(
+    al$ne,
+    levels=0:1,
+    labels=c("No", "Yes"))
+table(al$ne_factor, useNA="always")
+
+al$custom_factor <- 
+  factor(
+    al$cust,
+    levels=0:1,
+    labels=c("No", "Yes"))
+table(al$custom_factor, useNA="always")
+
+al$corner_factor <- 
+  factor(
+    al$cor,
+    levels=0:1,
+    labels=c("No", "Yes"))
+table(al$corner_factor, useNA="always")
+```
+
+There are no missing values for any of these three variables.
+
+2. Compute means and standard deviations for all the continuous variables. How many missing values are there for age and for tax?
+
+```{r means}
+mean(al$price, na.rm=TRUE)
+sd(al$price, na.rm=TRUE)
+sum(is.na(al$price))
+```
+
+3. Find the largest house (biggest square footage) in the data set. Is the largest house also the most expensive house?
+
+4. Evaluate the relationship between PRICE and SQFT using a scatterplot. Do larger houses tend to cost more?
+
+5. Show how much more expensive custom built homes are compared to standard homes using a boxplot and through calculation of the means and standard deviations.
+
+Questions 6-7 refer to the Diamond dataset.
+
+6. Show the relationship between carat size and price using a scatterplot.
+
+```{r read-diamond}
+fn <- "http://jse.amstat.org/v9n2/4Cdata.txt"
+di <- read.table(fn)
+names(di) <- c("carat", "color", "clarity", "certification", "price")
+head(di)
+```
+
+7. Show the relationship between color and price and the relatonship between clarity and price using boxplots.

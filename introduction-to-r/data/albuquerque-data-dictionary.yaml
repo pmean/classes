@@ -1,5 +1,6 @@
 ---
 data_dictionary: albuqueuque-housing.txt
+---
 
 source: 
   This file was found originally at a website 
@@ -58,9 +59,15 @@ vars:
       
   CustomBuild:
     label: Custom built?
+    values:
+      Yes: 1
+      No: 0
     
   CornerLot:
     label: Corner location?
+    values:
+      Yes: 1
+      No: 0
 
   Tax:
     label: Yearly property tax
