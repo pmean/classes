@@ -3,6 +3,9 @@ title: "Video 1a, syllabus review"
 author: "Steve Simon"
 date: "December 26, 2018"
 output: ioslides_presentation
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding,
+  output_dir = "../results", output_format = "all") }) 
 ---
 
 ## Slide #1
