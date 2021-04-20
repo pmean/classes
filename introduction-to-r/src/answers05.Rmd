@@ -39,17 +39,75 @@ There are no missing values for any of these three variables.
 
 2. Compute means and standard deviations for all the continuous variables. How many missing values are there for age and for tax?
 
-```{r means}
+```{r price}
 mean(al$price, na.rm=TRUE)
 sd(al$price, na.rm=TRUE)
 sum(is.na(al$price))
 ```
 
+```{r sqft}
+mean(al$sqft, na.rm=TRUE)
+sd(al$sqft, na.rm=TRUE)
+sum(is.na(al$sqft))
+```
+
+```{r age}
+mean(al$age, na.rm=TRUE)
+sd(al$age, na.rm=TRUE)
+sum(is.na(al$age))
+```
+
+There are 49 missing values for age.
+
+```{r feats}
+mean(al$feats, na.rm=TRUE)
+sd(al$feats, na.rm=TRUE)
+sum(is.na(al$freats))
+```
+
+Note: some people would consider the number of features out of 11 as a categorical variable rather than a continuous variable. I won't deduct any points if you do or do not include it here.
+
+```{r tax}
+mean(al$tax, na.rm=TRUE)
+sd(al$tax, na.rm=TRUE)
+sum(is.na(al$tax))
+```
+
+There are 10 missing values for tax.
+
 3. Find the largest house (biggest square footage) in the data set. Is the largest house also the most expensive house?
+
+```{r biggest}
+biggest_house <- which(al$sqft==max(al$sqft))
+al[biggest_house, ]
+most_expensive <- which(al$price==max(al$price))
+al[most_expensive, ]
+```
+
+The biggest house is 3,750 square feet, but it only sold for $129,500. There are three houses that sold for the maximum price, $215,000.
 
 4. Evaluate the relationship between PRICE and SQFT using a scatterplot. Do larger houses tend to cost more?
 
+```{r price-vs-sqft}
+library(ggplot2)
+ggplot(al, aes(x=sqft, y=price)) +
+  geom_point()
+```
+
+Larger houses do indeed tend to cost more.
+
 5. Show how much more expensive custom built homes are compared to standard homes using a boxplot and through calculation of the means and standard deviations.
+
+```{r custom}
+ggplot(al, aes(x=factor(cust), y=price)) + 
+  geom_boxplot()
+price_means <- by(al$price, al$cust, mean, na.rm=TRUE)
+price_means
+price_sdev <- by(al$price, al$cust, sd, na.rm=TRUE)
+price_sdev
+```
+
+Coustom built houses are about $50,000 more expensive on average.
 
 Questions 6-7 refer to the Diamond dataset.
 
@@ -62,4 +120,14 @@ names(di) <- c("carat", "color", "clarity", "certification", "price")
 head(di)
 ```
 
+```{r carat}
+ggplot(di, aes(x=carat, y=price)) +
+  geom_point()
+```
+
 7. Show the relationship between color and price and the relatonship between clarity and price using boxplots.
+
+```{r color}
+ggplot(di, aes(x=factor(color), y=price)) +
+  geom_boxplot()
+```
