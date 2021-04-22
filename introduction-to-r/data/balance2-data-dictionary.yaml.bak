@@ -46,7 +46,7 @@ vars:
     scale: alphanumeric categories
     values: open, closed, dome
     
-  CTSIB:
+  CTSIB
     label: Balance measure
     scale: ordinal (lower is better)
     range: 1 to 4

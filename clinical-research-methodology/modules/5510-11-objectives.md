@@ -1,5 +1,5 @@
 ---
-title: "MEDB 5510, Clinical Research Methods, Module11
+title: "MEDB 5510, Clinical Research Methods, Module11"
 ---
 
 #### Module11, Data management, Learning objectives
