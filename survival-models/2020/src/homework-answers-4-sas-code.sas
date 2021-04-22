@@ -2,8 +2,6 @@
   written by Steve Simon
   May 15, 2018;
 
-** Page **** Page **** Page **** Page **** Page **** Page **** Page **;
-
   title1 "Introduction to survival analysis. Exercises 04, SAS";
   title3 "1. Open the WHAS500 data set in the software program";
   title4 "of your choice";
@@ -26,8 +24,6 @@ proc print
     data=time_recode(obs=5);
 run;
 
-** Page **** Page **** Page **** Page **** Page **** Page **** Page **;
-
   title3 "a. Calculate a Cox regression model for systolic blood";
   title4 "pressure (sysbp) by itself"; 
 
@@ -41,8 +37,6 @@ proc phreg
   model time_yrs*fstat(0)=sysbp;
 run;
 
-** Page **** Page **** Page **** Page **** Page **** Page **** Page **;
-
   title3 "and then adjusted for gender and age.";
 
   footnote1 "The inclusion of gender and age does not appear to";
@@ -52,8 +46,6 @@ proc phreg
     data=time_recode;
   model time_yrs*fstat(0)=sysbp gender age;
 run;
-
-** Page **** Page **** Page **** Page **** Page **** Page **** Page **;
 
   footnote1 "Neither gender nor age appears to be associated with sysbp.";
 
@@ -68,8 +60,6 @@ proc sgplot
   scatter x=age y=sysbp;
 run;
 
-
-** Page **** Page **** Page **** Page **** Page **** Page **** Page **;
 
   title3 "Calculate the unadjusted survival curves for patients";
   title4 "with systolic blood pressures of 120, 140, and 160.";
@@ -90,8 +80,6 @@ proc phreg
   model time_yrs*fstat(0)=sysbp;
 run;
 
-** Page **** Page **** Page **** Page **** Page **** Page **** Page **;
-
   title3 "Then recalculate these survival curves with age set";
   title4 "to the overall average age, and to a population";
   title5 "that is 30% female. Interpret your results.";
@@ -111,8 +99,6 @@ proc phreg
   baseline covariates=sysbp_adjusted;
   model time_yrs*fstat(0)=sysbp age gender;
 run;
-
-** Page **** Page **** Page **** Page **** Page **** Page **** Page **;
 
   title3 "b. Calculate cubic spline model for systolic blood";
   title4 "pressure with four degrees of freedom.";
@@ -140,8 +126,6 @@ proc phreg
   output out=spline_data xbeta=log_hazard_ratio;
 run;
 
-** Page **** Page **** Page **** Page **** Page **** Page **** Page **;
-
   title3 "Plot this spline and offer an informal assessment";
   title4 "as to whether your spline function deviates markedly";
   title5 "from a linear relationship.";
@@ -158,8 +142,6 @@ proc sgplot
     data=spline_data;
   scatter x=sysbp y=hazard_ratio;
 run;
-
-** Page **** Page **** Page **** Page **** Page **** Page **** Page **;
 
   title3 "c. Calculate the Martingale residuals from your Cox model";
   title4 "with a linear term for systolic blood pressure and for age";
@@ -182,8 +164,6 @@ proc sgplot
   pbspline x=diasbp y=martingale_residual;
 run;
 
-** Page **** Page **** Page **** Page **** Page **** Page **** Page **;
-
   title3 "Repeat this residual plot analysis";
   title4 "using myocardial infection type (mitype).";
 
@@ -195,4 +175,4 @@ proc sgplot
   hbox martingale_residual / category=mitype;
 run;
 
-ods word close;
+ods pdf close;
