@@ -266,7 +266,7 @@ Here's an example using the print procedure in SAS. It's not too hard to read, b
 
 </div>
 
-### Add line break
+### SAS example, Add line break
 
 ```{}
 proc sort data=intro.sleep_modified;
@@ -285,7 +285,7 @@ A blank link emphasizes the two steps in this program, sorting and printing.
 
 </div>
 
-### Indent
+### SAS example, Indent
 
 ```{}
 proc sort data=intro.sleep_modified;
@@ -305,7 +305,7 @@ By indenting the by subcommand within the sort and the var and title1 subcommand
 
 </div>
 
-### Break long lines
+### SAS example, Break long lines
 
 ```{}
 proc sort
@@ -328,7 +328,7 @@ I used a double indent here to emphasize that data is part of the previous proce
 
 </div>
 
-### Create vertical lists
+### SAS example, Create vertical lists
 
 ```{}
 proc sort
@@ -347,26 +347,164 @@ run;
 
 <div class="notes">
 
-When there are multiple variable names within a statement, a vertical list can sometimes make things easier to read.
+When there are multiple variable names within a statement, a vertical list can sometimes make things easier to read. You can also use this when you have multiple options in a single statement or multiple arguments in single function.
+
+</div>
+
+### SQL example
+
+```{}
+select 
+    sex, 
+    count(*) as number_of_children
+  from titanic_table
+  where age < 18
+  group by sex
+```
+
+<div class="notes">
+
+You can see some of the same principles in this SQL code.
+
+The from, where, and group by statements are indented.
+
+The varibles sex and count(*) are a vertical list and are double indented because they are pare of the select statement. 
+
+</div>
+
+### R example (hard to read)
+
+```{}
+radius <- sqrt(ts[ , last_date])
+zero <- radius == 0
+ggplot(data=states) +
+geom_sf(color="gray", fill="white") +
+geom_sf(data=ts[!zero, ], size=radius[!zero]) +
+coord_sf(xlim=lat, ylim=lon, expand=FALSE) +
+ggtitle("Bubble plot of COVID-19 cases")
+```
+
+<div class="notes">
+
+Here's an example using R. It's a bit more advanced, but notice the three commands that create new variables: i, circle_size, and non_zero_cases. They are separated by a blank line from the ggplot function.
+
+The ggplot function has several graphics options that are added: geom_sf (twice), coord_sf, and ggtitle. Each of these is on a separate line and indented consistently.
+
+Each of these graphics options have multiple arguments and they are arranged in a vertical list.
+
+</div>
+
+### R example (easier to read)
+
+```{}
+radius <- sqrt(ts[ , last_date])
+zero <- radius == 0
+
+ggplot(data=states) +
+  geom_sf(
+    color="gray",
+    fill="white") +
+  geom_sf(
+    data=ts[!zero, ],
+    size=radius[!zero]) +
+  coord_sf(
+    xlim=lat,
+    ylim=lon,
+    expand=FALSE) +
+  ggtitle("Bubble plot of COVID-19 cases")
+```
+
+<div class="notes">
+
+Here's an example using R. It's a bit more advanced, but notice the two commands that create new variables: zero and circle_size. They are separated by a blank line from the ggplot function.
+
+The ggplot function has several graphics options that are added: geom_sf (twice), coord_sf, and ggtitle. Each of these is on a separate line and indented consistently.
+
+Each of these graphics options have multiple arguments and they are arranged in a vertical list. Notice how easy it is now to identify the individual arguments:
+
+color and file for the first geom_sf option
+
+data and size for the second geom_sf option
+
+xlim, ylim, and expand for the coord_sf option
 
 </div>
 
 ### No lengthy outputs
 
-### Summary
++ Avoid long printouts
+  + R: `head(sleep, n=10)`
+  + SAS: `proc print sleep(obs=10)`
+  + SQLite: `limit 10`
+  + Oracle SQL: `where row_num <= 10`
+  + SAS SQL: `where monotonic() <= 10`
+  
+<div class="notes">
 
-+ Guidelines for every programming assignment
-  + Introduction to R
-  + Introduction to SAS
-  + Introduction to SQL
-+ File name and format requirements
-+ Documentation header
-+ Readable code
-+ No lengthy outputs
+You should never print out all the rows in a lengthy dataset. If I don't explicitly ask you to limit the number of rows that you print, limit them anyway.
+
+In R, you use the head function and in SAS you include obs= in parentheses after the dataset name.
+
+In SQL it is a bit trickier and depends on which version of Oracle you are using. It is also complicated by a monotonic function that SAS uses when it accesses SQL files.
+
+You'll see lots of examples of this in various lectures.
+
+</div>
+  
+### Show both the code and the output
+
++ Code
+  + Check documentation and readability
+  + Helps debugging if things go wrong
 
 <div class="notes">
 
-Remember that you need to follow certain guidelines for every assignment that you turn in. There are requirements for the names of the files and the directory structure that you use for your programs. Any program you write must have a documentation with certain key elements. Your code must be easily readable and you must avoid lengthy outputs.
+I need to see both your code and your output. Ideally this should be combined in a single pdf document, but you can submit two separate files, one for the code and one for the output.
+
+The code is important because it allows me to assess whether you have a good documentation header and if you are using line breaks, indents, and vertical lists to make your code more readable.
+
+It also helps with debugging if your program doesn't do what it is supposed to do.
+
+You need to include the output, of course, to prove that your program actually ran properly.
+
+</div>
+
+### Include both my questions and your answers
+
++ Use comments or titles for questions
+  + Cut-and-paste orginal question
++ Add text interpretation before or after your output
+  + One or sometimes two sentences.
+  + Output without interpretation will be downgraded.
+  + Examples:
+    + Here are the first ten rows of data.
+    + The largest animal in the data set is the African elephant.
+    + Only 30% of the patients got all three shots.
+    + There are no missing values for this data set.
+
+<div class="notes">
+
+I need to see the original questions in the code as a comment or in the output as a title or footnote. With mutliple assignments to grade in multiple classes, I often fail to remember what I wanted you to do for a particular homework assignment.
+
+As you answer each question, I want a brief comment. Often it is a single sentence, but you might need two or maybe three sentences. What I needs is an explanation of how the output answers the question. This might be obvious, but it still needs to be done. If you include the correct output, but do not add a brief comment, you will lose points on your assignment.
+
+Here are some examples of the comments you might include.
+
+</div>
+
+### Summary
+
++ Guidelines for every programming assignment
+  + File name and format requirements
+  + Documentation header
+  + Readable code
+  + No lengthy outputs
+  + Show both the code and the output
+  + Include both my questions and your answers
+
+<div class="notes">
+
+Remember these guidelinesfor every assignment that you turn in. Use the proper file name and format, include a documentation header, make your code readable, avoid lengthy outputs, show both your code and your output and be sure that both the original question and your answer appear in what you submit.
 
 </div>
 
