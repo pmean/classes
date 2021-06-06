@@ -2,6 +2,8 @@
 title: General grading rubric
 ---
 
+For more details about the items listed below, please see my [programming expectations handout][pro1].
+
 + Filename (2 points)
   + Poor (0 points): Missing two or more required elements
   + Fair (1 point): Missing only one required element
@@ -29,3 +31,5 @@ title: General grading rubric
   + Excellent (12 points): Complete and accurate answers to all questions
 
 This file was created on 2021-06-06.
+
+[pro1]: https://github.com/pmean/classes/blob/master/software-engineering/src/programming-expectations.md

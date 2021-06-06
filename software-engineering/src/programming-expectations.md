@@ -61,6 +61,10 @@ All of my classes are divided into modules and you need to indicate which module
 
 There are several ways you can name your files and meet these requirements. Here are two examples.
 
+"Steve Simon homework, part a, for 5505, Module02" is lengthy file name.
+
+"hw02a-5505-simon" is a terse file name. Either is fine as long as it has "02"" for module02, "5505" for Introduction to R and "simon" (actually your name would go here).
+
 It is hard for me to grade if I have to juggle several different programs because student submit their assignments in several different formats. It really helps if you can produce pdf files, no matter what the original format of your work.
 
 Ideally, you should combine all the pdf files into a single file.
