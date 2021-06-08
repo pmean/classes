@@ -4,20 +4,20 @@ title: General grading rubric
 
 For more details about the items listed below, please see my [programming expectations handout][pro1].
 
-+ Filename (2 points)
++ Filename and format (2 points) Required elements: Your last name, class number, module number, pdf format
   + Poor (0 points): Missing two or more required elements
   + Fair (1 point): Missing only one required element
   + Good (2 points): Includes all required elements
   
-+ Documentation header (2 points)
++ Documentation header (2 points) Required elements: Author, creation date, purpose, permissions
   + Poor (0 points): Missing two or more required elements
   + Fair (1 point): Missing only one required element
   + Good (2 points): Includes all required elements
 
-+ Readability (2 points)
-  + Poor (0 points): Code is very difficult to read
-  + Fair (1 point): Code is readable, but uses poor or inconsistent style
-  + Good (2 points): Code is easy to read with a consistent style
++ Readability (2 points) Required elements: Line breaks, indents, break long lines, vertical lists
+  + Poor (0 points): Code is very difficult to read or output is cluttered with excessively long and unnecessary tables
+  + Fair (1 point): Code is readable, but uses poor or inconsistent style or  output includes one or two unnecessary elements
+  + Good (2 points): Code is easy to read with a consistent style, output includes only necessary elements
 
 + Completeness (2 points)
   + Poor (0 points): Missing both the original question and your answer

@@ -355,7 +355,22 @@ When there are multiple variable names within a statement, a vertical list can s
 
 </div>
 
-### SQL example
+### SQL code (hard to read)
+
+```{}
+select sex, count(*) as number_of_children from titanic_table
+where age < 18
+group by sex
+```
+
+<div class="notes">
+
+You can see some of the same principles in this SQL code. It is not terrible, but it could be a bit better.
+
+
+</div>
+
+### SQL code (easier to read)
 
 ```{}
 select 
@@ -368,7 +383,7 @@ select
 
 <div class="notes">
 
-You can see some of the same principles in this SQL code.
+Notice the changes.
 
 The from, where, and group by statements are indented.
 
