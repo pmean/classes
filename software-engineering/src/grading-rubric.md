@@ -4,7 +4,7 @@ title: General grading rubric
 
 For more details about the items listed below, please see my [programming expectations handout][pro1].
 
-+ Filename and format (2 points) Required elements: Your last name, class number, module number, pdf format
++ Filename and format (2 points) Required elements: Your last name, class number, module number, single file in pdf format
   + Poor (0 points): Missing two or more required elements
   + Fair (1 point): Missing only one required element
   + Good (2 points): Includes all required elements
