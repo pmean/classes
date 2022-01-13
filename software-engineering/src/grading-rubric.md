@@ -4,6 +4,8 @@ title: General grading rubric
 
 For more details about the items listed below, please see my [programming expectations handout][pro1].
 
+Note: I added a couple of things on 2021-09-27. There is a new "conciseness" element. It addresses a concern of mine when students include output that is not needed to answer the homework assignment. An extra page or two of irrelevant output will lose you a point. More than that will lose you two points. An example of poor conciseness is giving every possible correlation coefficient in a large data set rather than the single correlation I asked for. For some data sets, computing every possible correlation could end up wasting a dozen or more pages. I also clarified the "accuracy" element. If you are totally missing something that I asked for, that is just as bad as making a major error. So listing the wrong cigarette brand with the most tar or not listing at all the cigarette brand with the most tar will both lose you three points. I will apply this new rubric on any assignments due on or after 2021-10-01.
+
 + Filename and format (2 points) Required elements: Your last name, class number, module number, single file in pdf format
   + Poor (0 points): Missing two or more required elements
   + Fair (1 point): Missing only one required element
@@ -24,11 +26,16 @@ For more details about the items listed below, please see my [programming expect
   + Fair (1 point): Missing either the original question or your answer
   + Good (2 points): Includes both the orginal question and your answer
   
-+ Accuracy (12 points)
-  + Poor (0 points): Three or more major errors
-  + Fair (4 points): Two major errors
-  + Good (8 points): Two minor errors or one major error
-  + Excellent (12 points): Complete and accurate answers to all questions
++ Conciseness (2 points)
+  + Poor (0 points): Three or more extra pages not relevant to what the assignment asked for
+  + Fair (1 point): One or two extra pages not relevant to what the assignment asked for
+  + Good (2 points): Includes only what the assignment asked for
+  
++ Accuracy (10 points)
+  + Poor (0 points): Three or more major errors or omissions
+  + Fair (4 points): Two major errors or omissions
+  + Good (7 points): Two minor errors or one major error or omission
+  + Excellent (10 points): Complete and accurate answers to all questions
 
 This file was created on 2021-06-06.
 
