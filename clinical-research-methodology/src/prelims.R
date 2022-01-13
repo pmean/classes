@@ -1,4 +1,4 @@
-semester_start <- "2020-01-20"
+semester_start <- "2022-01-17"
 
 suppressMessages(suppressWarnings(library(lubridate)))
 suppressMessages(suppressWarnings(library(magrittr)))
