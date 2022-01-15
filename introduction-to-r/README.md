@@ -1,5 +1,5 @@
 ---
-title: "MEDB 5507: Introduction to R, Course overview"
+title: "MEDB 5505: Introduction to R, Course overview"
 ---
 
 <!--This file was first created on 2022-01-15.-->
