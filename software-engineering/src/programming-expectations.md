@@ -49,13 +49,10 @@ You need at least your last name, and if your last name is fairly common, either
 
 You need to indicate the four digit number for the class. The classes that I currently teach are
 
-MEDB 5505, for Introduction to R
-
-MEDB 5507, for Introduction to SAS
-
-MEDB 5508, for Introduction to SQL (co-taught with Suman Sahil)
-
-MEDB 5510, for Clinical Research Methodology, though this class will not have any programming exercises.
++ MEDB 5505, for Introduction to R
++ MEDB 5507, for Introduction to SAS
++ MEDB 5508, for Introduction to SQL (co-taught with Suman Sahil)
++ MEDB 5510, for Clinical Research Methodology, though this class will not have any programming exercises.
 
 All of my classes are divided into modules and you need to indicate which module your assignment came from. 
 
