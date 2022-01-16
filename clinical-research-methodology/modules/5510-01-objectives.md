@@ -2,10 +2,10 @@
 title: "MEDB 5510, Clinical Research Methods, Module01
 ---
 
-#### Module01, Overview of research, Learning objectives
+### Introduction to research
 
-+ To describe the variety of research that can be conducted while doing clinical research.
+In this module, you will learn how to
 
-+ To describe what is needed in order to identify and define a research question that could be the basis for a research project.
-
-+ To learn what is expected in terms of professional ethics and ethical research with humans.
++ Define "clinical research methodology"
++ Select an appropriate research topic
++ Distinguish between various research approaches

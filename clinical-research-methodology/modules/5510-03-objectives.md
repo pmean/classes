@@ -1,9 +1,11 @@
 ---
-title: "MEDB 5510, Clinical Research Methods, Module03
+title: "MEDB 5510, Clinical Research Methods, Module03, Objectives
 ---
 
-#### Module03, Writing a literature review, Learning objectives
+### Writing a literature review
 
-+ To define what a literature review is and to contrast it with an annotated bibliography and a systematic overview.
+In this module, you will learn how to
 
-+ To recognize the different approaches to organizing a literature review.
++ define what a literature review is
++ contrast it with an annotated bibliography and a systematic overview.
++ recognize the different approaches to organizing a literature review.

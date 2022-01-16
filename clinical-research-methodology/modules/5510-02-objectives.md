@@ -1,11 +1,10 @@
 ---
-title: "MEDB 5510, Clinical Research Methods, Module02
+title: "MEDB 5510, Clinical Research Methods, Module02, Objectives
 ---
 
-#### Module02, Planning and ethical conduct of research, Learning objectives
+### Planning and ethical conduct of research
 
-+ To describe the variety of research that can be conducted while doing clinical research.
+In this module, you will learn how to
 
-+ To describe what is needed in order to identify and define a research question that could be the basis for a research project.
-
-+ To learn what is expected in terms of professional ethics and ethical research with humans.
++ describe the difficulties faces by whistleblowers
++ list the historical events that influenced the development of research ethics

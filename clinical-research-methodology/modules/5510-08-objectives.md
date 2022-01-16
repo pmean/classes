@@ -1,9 +1,10 @@
 ---
-title: "MEDB 5510, Clinical Research Methods, Module08
+title: "MEDB 5510, Clinical Research Methods, Module08, Objectives
 ---
 
-#### Module08, Sampling designs
+### Sampling designs
 
-+ To describe different approaches to probability sampling
+In this module, you will learn how to
 
-+ To discuss advantages and disadvantages of non-probability samples
++ describe different approaches to probability sampling
++ discuss advantages and disadvantages of non-probability samples

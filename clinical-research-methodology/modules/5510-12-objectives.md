@@ -1,12 +1,12 @@
 ---
-title: "MEDB 5510, Clinical Research Methods, Module12
+title: "MEDB 5510, Clinical Research Methods, Module12, Objectives
 ---
 
-#### Module12, Hypothesis testing, Learning objectives
+### Hypothesis testing
 
-+ To discuss the goal of data analysis and interpretation in research projects
+In this module, you will learn how to
 
-+ To discuss statistical power and how to determine it
-
-+ To describe what is needed in order to determine sample size for a research project
++ discuss the goal of data analysis and interpretation in research projects
++ discuss statistical power and how to determine it
++ describe what is needed in order to determine sample size for a research project
 

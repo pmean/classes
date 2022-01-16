@@ -1,9 +1,10 @@
 ---
-title: "MEDB 5510, Clinical Research Methods, Module05
+title: "MEDB 5510, Clinical Research Methods, Module05, Objectives
 ---
 
-#### Module05, Quasi-experimental designs, Learning objectives
+### Quasi-experimental designs
 
-+ To contrast the features of a quality improvement study with a research study
+In this module, you will learn how to
 
-+ To describe the various quasi-experimental approaches
++ contrast the features of a quality improvement study with a research study
++ describe the various quasi-experimental approaches

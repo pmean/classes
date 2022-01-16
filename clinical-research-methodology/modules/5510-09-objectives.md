@@ -1,9 +1,10 @@
 ---
-title: "MEDB 5510, Clinical Research Methods, Module09
+title: "MEDB 5510, Clinical Research Methods, Module09, Objectives
 ---
 
-#### Module09, Validity and reliability, Learning objectives
+### Validity and reliability
 
-+ To understand when test-retest reliability and interrater reliability can be used.
+In this module, you will learn how to
 
-+ To describe the process by which you can establish face and content validity.
++ understand when test-retest reliability and interrater reliability can be used.
++ describe the process by which you can establish face and content validity.

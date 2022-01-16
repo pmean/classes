@@ -1,9 +1,10 @@
 ---
-title: "MEDB 5510, Clinical Research Methods, Module04
+title: "MEDB 5510, Clinical Research Methods, Module04, Objectives
 ---
 
-#### Module04, Randomized trials, Learning objectives
+### Randomized trials
 
-+ To define what a randomized study is and explain its advantages and disadvantages.
+In this module, you will learn how to
 
-+ To describe how blinding, concealed allocation, and intention to treat analysis can improve the persuasiveness of a randomized trial.
++ define what a randomized study is and explain its advantages and disadvantages.
++ describe how blinding, concealed allocation, and intention to treat analysis can improve the persuasiveness of a randomized trial.

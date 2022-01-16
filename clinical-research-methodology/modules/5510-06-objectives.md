@@ -1,9 +1,10 @@
 ---
-title: "MEDB 5510, Clinical Research Methods, Module06
+title: "MEDB 5510, Clinical Research Methods, Module06, Objectives
 ---
 
-#### Module06, Observational studies, Learning objectives
+### Observational studies
 
-+ To distinguish different types of quantitative non-experimental approaches
+In this module, you will learn how to
 
-+ To discuss strengths and weaknesses of qualitative research
++ distinguish different types of quantitative non-experimental approaches
++ discuss strengths and weaknesses of qualitative research
