@@ -1,11 +1,11 @@
 ---
-title: "MEDB 5510, Clinical Research Methods, Module11"
+title: "MEDB 5510, Clinical Research Methods, Module11, Objectives"
 ---
 
-#### Module11, Data management, Learning objectives
+### Data management
 
-+ To understand the value of a data dictionary.
+In this module, you will learn how to
 
-+ To identify how best to store dates and missing value codes.
-
-+ To describe the strengths and weaknesses of storing data in a spreadsheet.
++ understand the value of a data dictionary.
++ identify how best to store dates and missing value codes.
++ describe the strengths and weaknesses of storing data in a spreadsheet.

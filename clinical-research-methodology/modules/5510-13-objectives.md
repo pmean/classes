@@ -1,9 +1,10 @@
 ---
-title: "MEDB 5510, Clinical Research Methods, Module13
+title: "MEDB 5510, Clinical Research Methods, Module13, Objectives
 ---
 
-#### Module13, Statistical models and writing a methods section, Learning objectives
+#### Module13, Statistical models and writing a methods section
 
-+ To demonstrate knowledge of data analysis basic concepts
+In this module, you will learn how to
 
-+ To describe analysis methods appropriate for exploratory, descriptive, explanatory, and quasi-experimental designs
++ demonstrate knowledge of data analysis basic concepts
++ describe analysis methods appropriate for exploratory, descriptive, explanatory, and quasi-experimental designs

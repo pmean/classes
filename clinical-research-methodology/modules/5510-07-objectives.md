@@ -1,9 +1,10 @@
 ---
-title: "MEDB 5510, Clinical Research Methods, Module07
+title: "MEDB 5510, Clinical Research Methods, Module07, Objectives
 ---
 
-#### Module07, Review, Learning objectives
+### Review, Learning objectives
 
-+ To understand the format of a thesis
+In this module, you will learn how to
 
-+ To prepare a bibliography using a consistent standard
++ understand the format of a thesis
++ prepare a bibliography using a consistent standard
