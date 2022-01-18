@@ -15,11 +15,11 @@ suppressMessages(suppressWarnings(library(stringr)))
 path <- 
 "https://raw.githubusercontent.com/pmean/pmean.github.io/master/data/"
 syllabus_files <- c(
-  "syllabus-part-a-5508.Rmd",
+  "syllabus-part-a-5505.Rmd",
   "syllabus-part-b-all-classes.Rmd",
-  "syllabus-part-c-5508.Rmd",
+  "syllabus-part-c-5505.Rmd",
   "syllabus-part-d-all-classes.Rmd",
-  "syllabus-part-e-5508.Rmd"
+  "syllabus-part-e-5505.Rmd"
 )
 full_syllabus <- NULL
 for (f in paste0(path, syllabus_files)) {
