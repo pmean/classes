@@ -2,4 +2,4 @@
 title: "MEDB 5510, Clinical Research Methods, Module11, Synopsis
 ---
 
-To be added.
+Data management is often tedious and time-consuming, but it is vital for assuring good quality data for your analyses.
