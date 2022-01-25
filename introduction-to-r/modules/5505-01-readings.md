@@ -1,7 +1,8 @@
 ---
 title: "MEDB 5505, Introduction to R, Module01, Readings"
 ---
-### Readings
+
+### Readings and resources
 
 Programs used in this module
 
@@ -32,6 +33,8 @@ Slides and speaker notes
 + Basic programming expectations available in [pdf format][sprog].
   + Slides and speaker notes in the [original R Markdown code][rprog].
 + Grading rubric for all homework assignments
+
+Students should use the pdf format of slides and speaker notes. The link to the original R markdown code is ony for students who want to see more details about how you can create Powerpoint presentations in R Markdown.
 
 There are a few more readings and resources to be added.
 
