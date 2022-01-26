@@ -16,7 +16,7 @@ knit: (function(inputFile, encoding) {
 source("prelims.R", echo=FALSE)
 ```
 
-***
+
 ```{r child="../data/objectives02.md"}
 ```
 
@@ -24,9 +24,13 @@ source("prelims.R", echo=FALSE)
 
 Here are your objectives.
 
+We are going to talk about planning and ethics. We are going talk more about the variety of research that can be conducted. We'll introduce new dichotomies and we're going to describe what's needed to identify research question.
+
+Now, in the short amount of time, we really can't do justice to ethics. We have an entire course, Ethical Conduct of Researchthat covers all the issues in greater detail. What I hope to do is to review a few basic issues and discuss the historical events associated with the increasing concern and demand for oversight. 
+
 </div>
 
-***
+
 ### Planning a Research Project 
 
 ![](../images/gliner-2017-figure-2-1.png)
@@ -41,10 +45,10 @@ The process is for a quantitative study, but it still closely matches the proces
 
 </div>
 
-***
+
 ### Steps in a research project
 
-* Step 1: Identify a research problem
++ Step 1: Identify a research problem
   + Chapter 2 of Gliner et al.
   + Week 2 of this class.
   
@@ -54,10 +58,10 @@ The first step in this flow chart is to identify your research problem. We talke
 
 </div>
 
-***
+
 ### Steps in a research project
 
-* Step 2: Conduct your literature review
++ Step 2: Conduct your literature review
   + Chapter 2 of Gliner et al.
   + Various web resources.
   + Week 3 of this class.
@@ -70,10 +74,10 @@ We will cover this topic in week 3. The key thing to keep in mind is that your l
 
 </div>
 
-***
+
 ### Steps in a research project
 
-* Step 3: Specify your research hypothesis
++ Step 3: Specify your research hypothesis
   + Chapter 3 of Gliner et al.
   + Week 2 of this class.
   + PICO format
@@ -85,24 +89,31 @@ The next step is specifying your research hypothesis. Not every research study h
 
 </div>
 
-***
+
 ### Steps in a research project
 
-* Step 4: Select your research approach
++ Step 4: Select your research approach
   + Randomized experiments (Chapter 4, Week 4)
   + Quasi experimental designs (Chapter 4, Week 5)
   + Observational designs (Chapter 6, Week 6)
 
 <div class="notes">
 
-There are three different research approaches that you can choose from. In a randomized experiment, you control who gets what, and you use a random device, typically a computer random number generator. In a quasi-experimental design, you have less control over who gets what, and the choices are made without the benefits of randomization. In an observational study, you do not control the asisgnnment of patients into the groups being studied. These are important topics and I'll be spending three full weeks on them.
+There are three different research approaches that you can choose from.
 
+We will spend three full weeks on this, because the topic is so important. 
+
+In a randomized experiment, you control who gets what, and you use a random device, typically a computer random number generator. In a quasi-experimental design, you have less control over who gets what, and the choices are made without the benefits of randomization.
+
+Now I have to be honest, quasiexperimental designs have a bad reputation. I'm going to try to disabuse you of that notion. Quasiexperimental designs--the word "quasi" seems almost critical of this type of the approach. Really what a quasiexperimental design is the design that reflects the reality of the difficulties associated with doing research in a variety of different settings.
+
+In an observational study, you do not control the assignnment of patients into the groups being studied. The patients themselves control who gets what, or the choice is beyond the control of anyone.
 </div>
 
-***
+
 ### Steps in a research project
 
-* Step 5: Create a plan for your research
++ Step 5: Create a plan for your research
   + Sampling issues (Chapter 9, Week 7)
   + Measurement issues (Chapters 10-12, Week 8)
 
@@ -112,10 +123,10 @@ Your research plan should mention how you get your sample, which we will cover i
 
 </div>
 
-***
+
 ### Steps in a research project
 
-* Step 6: Obtain ethical approval
++ Step 6: Obtain ethical approval
   + Chapter 14 of Gliner et al.
   + Week 2 of this class.
   + Think about ethical issues from the very start.
@@ -127,10 +138,10 @@ Your book places the material on ethical improvement (ethical conduct, I should 
 
 </div>
 
-***
+
 ### Steps in a research project
 
-* Step 7: Collect your data
++ Step 7: Collect your data
   + Chapters 13, 15.
   + Week 9.
   
@@ -144,10 +155,10 @@ I've not done a lot of qualitative research but I've read a lot about it and adv
 
 </div>
 
-***
+
 ### Steps in a research project
 
-* Step 8: Analyze your data
++ Step 8: Analyze your data
   + Chapters 16-22 of Gliner et al.
   + Week 10, 12 of this class.
   
@@ -157,10 +168,10 @@ This class is not a course in data analysis, but I do want to give you enough in
 
 </div>
 
-***
+
 ### Steps in a research project
 
-* Step 9: Interpret your data
++ Step 9: Interpret your data
   + Chapter 23-25 of Gliner et al.
   + Week 13.
   
@@ -170,10 +181,10 @@ You'll get an overview of how to interpret your data analyses and evaluate the v
 
 </div>
 
-***
+
 ### Steps in a research project
 
-* Step 10: Communicate your findings
++ Step 10: Communicate your findings
   + Chapter 26 of Gliner et al.
   + Week 14.
   + Written paper
@@ -193,7 +204,7 @@ In particular, if there is something you are interested in, please, please, plea
 
 </div>
 
-***
+
 ### Break #1
 
 + What have we learned?
@@ -201,14 +212,14 @@ In particular, if there is something you are interested in, please, please, plea
 + What's coming up next?
   + Picking a research topic
 
-***
+
 ### Step 1 - Identify a research problem
 
 Definitions are vague
 
   + What is a research problem? question? aim? goal?
   
-* Sources of research problems
++ Sources of research problems
 
 	+ Read
 
@@ -238,10 +249,10 @@ I want to put in a big plug for community or participatory research. This is ano
 
 </div>
 
-***
+
 ### Characteristics of a good research problem
 
-* More dichotomies
++ More dichotomies
 	
 	+ Broad vs Narrow
 	
@@ -269,12 +280,12 @@ Both are important. Whenever I present a dichotomoy it is not because I want you
 
 </div>
 
-***
+
 ### Considerations in Choosing a Topic
 
-* Interest and enthusiasm
++ Interest and enthusiasm
 
-* Resources
++ Resources
 
   + Time
   
@@ -286,9 +297,9 @@ Both are important. Whenever I present a dichotomoy it is not because I want you
   
   + Control
 
-* Scope of the problem
++ Scope of the problem
 
-* Contribution to the profession
++ Contribution to the profession
 
   + Adapted from Cottrell & McKenzie. *Health Promotion & Education Research Methods* . 2005.
 
@@ -314,10 +325,10 @@ Contribution to the profession addresses the "so what" question. Is it going to 
 
 </div>
 
-***
+
 ### Planning a Research Project 
 
-* What should NOT drive picking a research question
++ What should NOT drive picking a research question
 
 	+ A specific research methodology
 
@@ -325,7 +336,7 @@ Contribution to the profession addresses the "so what" question. Is it going to 
 
 	+ A publication-focused motivation
 
-* Always publish your work.
++ Always publish your work.
 
 <div class="notes">
 
@@ -339,7 +350,7 @@ Think about what happens if the results do not turn out they way you "want" them
 
 </div>
 
-***
+
 ### Break #2
 
 + What have you learned?
@@ -347,18 +358,18 @@ Think about what happens if the results do not turn out they way you "want" them
 + What's coming up next.
   + Developing a research hypothesis
 
-***
+
 ### FINER criteria
 
-* Feasible
++ Feasible
 
-* Interesting
++ Interesting
 
-* Novel
++ Novel
 
-* Ethical
++ Ethical
 
-* Relevant
++ Relevant
 
   + Hulley, Cummings, Browner, Grady, Hearst, & Newman. *Designing Clinical Research* . 2001.
 
@@ -378,18 +389,18 @@ R. Relevant does your research provide information that other care about. This c
 
 </div>
 
-***
+
 ### Developing a research hypothesis
 
-* Identify your research hypothesis early.
-* Use the PICOTS framework.
++ Identify your research hypothesis early.
++ Use the PICOTS framework.
   + P = patient
   + I = intervention
   + C = comparison
   + O = outcome
   + T = time frame
   + S = setting
-* Your hypothesis may change as you delve deeper.
++ Your hypothesis may change as you delve deeper.
 
 <div class="notes">
 
@@ -419,7 +430,7 @@ The value of specifying a hypothesis is that it helps you avoid what is often ca
 
 </div>
 
-***
+
 ### Not all research needs a hypothesis.
 
 + Examples
@@ -440,18 +451,18 @@ Another example of identification is documenting the different treatment paths u
 
 </div>
 
-***
+
 ### Three types of variables. 
 
-* Outcome variable(s)
++ Outcome variable(s)
 
-* Independent variable(s)
++ Independent variable(s)
 
 	+ Active
 
 	+ Attribute
 	
-* Covariates
++ Covariates
 
 <div class="notes">
 
@@ -467,18 +478,18 @@ You also might measure covariates because they help you define characteristics o
 
 </div>
 
-***
+
 ### Three types of analyses
 
-* Difference
++ Difference
 
   + A - B > 0
 
-* Associational
++ Associational
 
   + A and B are correlated
 
-* Descriptive
++ Descriptive
 
   + Means, standard deviations, or proportions of A and B.
 
@@ -501,7 +512,7 @@ Descriptive statistics involve simple univariate summary. What is the average va
 
 </div>
 
-***
+
 ### Schematic diagram of research approaches 
 
 ![](../images/image-02-03.png)
@@ -518,7 +529,7 @@ I don't want to say much more about the associational and descriptive approaches
 
 </div>
 
-***
+
 ### Break #3
 
 + What have you learned?
@@ -526,20 +537,20 @@ I don't want to say much more about the associational and descriptive approaches
 + What's coming up next?
   + Ethical issues in research
 
-***
+
 ### Landmarks in research ethics
 
-* Federal Food, Drug, and Cosmetic Act (1938)
++ Federal Food, Drug, and Cosmetic Act (1938)
 
-* Nuremberg code (1947)
++ Nuremberg code (1947)
 
-* Declaration of Helsinki (1964)
++ Declaration of Helsinki (1964)
 
-* Belmont report (1978)
++ Belmont report (1978)
 
-* Title 45 of the Code of Federal Regulations, Part 46 (1981)
++ Title 45 of the Code of Federal Regulations, Part 46 (1981)
 
-* Health Insurance Portability and Accountability Act (1996)
++ Health Insurance Portability and Accountability Act (1996)
 
 <div class="notes">
 
@@ -561,18 +572,18 @@ The Health Insurance Portability and Accountability Act of 1996 recognized the f
 
 </div>
 
-***
+
 ### Landmarks in research ethics
 
-* Pure Food and Drugs Act (1906)
++ Pure Food and Drugs Act (1906)
 
-* Federal Food, Drug, and cosmetic Act (1938)
++ Federal Food, Drug, and cosmetic Act (1938)
 
-* Kefauver Harris amendments (1962)
++ Kefauver Harris amendments (1962)
 
-* FDA Modernization Act (1997)
++ FDA Modernization Act (1997)
 
-* Best Pharmaceuticals for Children Act (2002)
++ Best Pharmaceuticals for Children Act (2002)
 
 <div class="notes">
 
@@ -590,10 +601,10 @@ The Best Pharmaceuticals for Children Act was passed in 2002 to encourage pediat
 
 </div>
 
-***
+
 ### Does my study need IRB approval
 
-* Is it research?
++ Is it research?
 
   + Designed in advance
   
@@ -603,7 +614,7 @@ The Best Pharmaceuticals for Children Act was passed in 2002 to encourage pediat
   
   + Quality improvement versus research
 
-* Does it involve human subjects?
++ Does it involve human subjects?
 
   + interaction with a person, or
   
@@ -630,14 +641,14 @@ Who decides whether it is research and whether it involves human subject varies 
 
 </div>
 
-***
+
 ### IRB categories of approval
 
-* Exempt from review
++ Exempt from review
 
-* Expedited review
++ Expedited review
 
-* Full review
++ Full review
 
 <div class="notes">
 
@@ -652,18 +663,18 @@ It is not you, but rather the IRB that determines whether research is exempt, or
 </div>
 
 
-***
+
 ### Ethical issues
 
-* Conflict of interest
++ Conflict of interest
 
-* Unfavorable risk/benefit ratio
++ Unfavorable risk/benefit ratio
 
-* Loss of equipoise
++ Loss of equipoise
 
-* Deception
++ Deception
 
-* Violating privacy
++ Violating privacy
 
 <div class="notes">
 
@@ -685,10 +696,10 @@ Privacy violations are a big and growing concern in research. You should try to 
 
 </div>
 
-***
+
 ### Ethical concerns in animal studies
 
-* Review by IACUC.
++ Review by IACUC.
 
   + Mandated by Animal Welfare Act and USDA regulations
 
@@ -708,20 +719,20 @@ Ther IACUC is going to take a very careful look at the sample size justification
 
 </div>
 
-***
+
 ### Fraud in research
 
 Fraud falls into three broad categories (FFP).
 
-* Fabrication
++ Fabrication
 
-* Falsification
++ Falsification
 
   + Data alteration
 
   + Misreporting
 
-* Plagiarism.
++ Plagiarism.
 
 Note: A difference of scientific opinion does not mean that one party is behaving fraudulently.
 
@@ -739,10 +750,10 @@ We'll talk about appropriate actions that you should take if you suspect fraud i
 
 </div>
 
-***
+
 ### Research misconduct (other than fraud)
 
-* Inappropriate authorship
++ Inappropriate authorship
 
   + Ghost writing
   
@@ -750,9 +761,9 @@ We'll talk about appropriate actions that you should take if you suspect fraud i
   
   + "Honorary" authorship
 
-* Violation of confidentiality
++ Violation of confidentiality
 
-* Sabotage
++ Sabotage
 
 <div class="notes">
 
@@ -764,11 +775,11 @@ I have never seen it, but there have been reports of scientists who deliberately
 
 </div>
 
-***
+
 ### Whistle blowing
 
-* Failure to report research misconduct is research misconduct
-* No retaliation for legitimate complaints.
++ Failure to report research misconduct is research misconduct
++ No retaliation for legitimate complaints.
 
 <div class="notes">
 
@@ -778,10 +789,10 @@ There are protections for whistleblowers, but that does not always protect you a
 
 </div>
 
-***
+
 ### Whistle blowing
 
-* There is more than one avenue for reporting misconduct
++ There is more than one avenue for reporting misconduct
   + Do nothing.
   + Talk with the person directly.
   + Talk to some of your peers.
@@ -797,7 +808,7 @@ If you do talk to someone, please be open to the possibility that you may just b
 
 </div>
 
-***
+
 ### Research Ethics 
 
 + NIH definition (NIH Catalyst, 2001)
@@ -818,7 +829,7 @@ The penalties are fairly severe.
 
 </div>
 
-***
+
 ### Research Ethics 
 
 + Training
@@ -834,4 +845,4 @@ The penalties are fairly severe.
 
 </div>
 
-***
+
