@@ -2,6 +2,8 @@
 title: "MEDB 5510, Clinical Research Methodology, Readings, All modules"
 ---
 
+All of these readings are made available to you under the Fair Use provisions of copyright law, but please note the copyright restrictions before sharing this material with others.
+
 ## All modules, Recommended readings
 
 Note: Students in my Clinical Research Methodology class. {You can improve this page and earn one more point of extra credit. See the Canvas site for details.
