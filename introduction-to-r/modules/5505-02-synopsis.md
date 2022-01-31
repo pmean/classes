@@ -1,5 +1,5 @@
 ---
-title: "MEDB 5505, Introduction to R, Module01, Synopsis"
+title: "MEDB 5505, Introduction to R, Module02, Synopsis"
 author: "Steve Simon"
 date: "Created 2022-01-15"
 ---
