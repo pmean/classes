@@ -43,7 +43,7 @@ It involves evaluation. You need to assess the validity of the research papers. 
 
 It involves synthesis. You have to combine your knowledge of each individual study into a cohesive structure.
 
-What all of this means is that you have to live and breath these studies. You can't summarize, analyzie, evaluate, or synthesize with only a superficial understanding of these papers.
+What all of this means is that you have to live and breath these studies. You can't summarize, analyze, evaluate, or synthesize with only a superficial understanding of these papers.
 
 </div>
 
@@ -72,7 +72,7 @@ Even if the literature review does not help you, it is still of value to anyone 
 </div>
 
 ***
-### Contrasts to the literature review
+### Annotated bibliography versus the literature review 
 
 * Annotated bibliography
 
@@ -94,16 +94,16 @@ If you are thinking of starting a website or blog, consider developing an annota
 
 Like a literature review, an annotated bibliography requires summarization. Usually the summaries are a bit longer in an annotated bibliography. In fact, in a literature review, if you find three articles that say the same thing, you lump them all together and talk about them as if they were one.
 
-Annotated bibliographies are also like literature rviews in that most of them provide an analysis and evaluation of the articles.
+Annotated bibliographies are also like literature reviews in that most of them provide an analysis and evaluation of the articles.
 
-The big difference is that an annotated bibliography does not try to synthesize the articles. It discussed each article individually, but does not try to organize them in a narrative flow (we'll talk about organizaiton in just a bit).
+The big difference is that an annotated bibliography does not try to synthesize the articles. It discussed each article individually, but does not try to organize them in a narrative flow (we'll talk about organization in just a bit).
 
 The other difference is that in an annotated bibliography, you usually try to be comprehensive in the studies you cite. In a literature review, if you find one or two articles that make a particular point, then you don't typically need or want to include others as well.
 
 </div>
 
 ***
-### Contrasts to the literature review
+### Systematic overview versus the literature review
 
 * Systematic overview
 
@@ -121,7 +121,7 @@ A systematic overview (often called a meta-analysis, though there is a subtle di
 
 The first distinguishing feature of a systematic overview is that it is systematic. It follows a pre-specified structure from a detailed protocol.  You require such rigidity because you want a systematic overview to be repeatable. With a literature review, you change how you search for articles and how you evaluate them as you go along. It is a very ad hoc approach.
 
-A systematic overview attempts to get all studies related to a particular research hypothesis and this hypothesis is usually drawn more narrowly than a literature review. In a literature review, by contrast, you might talk first about defining stuides that define the magnitude of your health care problem and then switch to interventions that have been tested in your area. The systematic overview is likely to consider only studies within a certain time range, but your literature review might provide some much earlier studies to provide some historical context.
+A systematic overview attempts to get all studies related to a particular research hypothesis and this hypothesis is usually drawn more narrowly than a literature review. In a literature review, by contrast, you might talk first about defining studies that define the magnitude of your health care problem and then switch to interventions that have been tested in your area. The systematic overview is likely to consider only studies within a certain time range, but your literature review might provide some much earlier studies to provide some historical context.
 
 Systematic overviews often contain a quantitative summary (the meta-analysis) while literature reviews almost always use a qualitative approach.
 
@@ -167,7 +167,7 @@ You should specify the scope of your literature review. This may change as you f
 
 The almost uniform recommendation is that a literature review should only include primary sources and not any secondary source. A secondary source is an analysis of one or more research studies by someone who did not conduct the research. The primary source is written by the researchers themselves. Note that most people would consider a systematic overview to be a primary resource, even though it does not meet this particular definition.
 
-It's hard to pin down why there is such an insistence on primary sources. One possible explanation is that different people can read the same research study and draw markedly different conclusions. So you need to read the study yourself rather than rely on somone else's opinion. A second explanation might be that the primary source is going to have a greater level of detail.
+It's hard to pin down why there is such an insistence on primary sources. One possible explanation is that different people can read the same research study and draw markedly different conclusions. So you need to read the study yourself rather than rely on someone else's opinion. A second explanation might be that the primary source is going to have a greater level of detail.
 
 That doesn't mean you can peek at a secondary source. They are great for helping you see possible organizational structures. They also are valuable to help you "prime the pump" meaning that they can help you get a critical mass of references together right from the start.
 
@@ -194,7 +194,7 @@ It's worthwhile, as you are writing to go back and talk to a librarian.
 
   + Zotero
   
-  + Mendelay
+  + Mendeley
   
   + BibTeX
   
@@ -208,13 +208,13 @@ The "low tech" approach, but one that still has many advocates is writing things
 
 Many people advocate using a spreadsheet to organize your results. As for me, I hate spreadsheets, but a lot of people who are a lot smarter than I am use them. This includes the previous instructor for this class, Mary Gerkovich. So go ahead and use a spreadsheet and I promise I won't sneer. There are too many people who are too easy to condemn things because they don't match their view of the perfect world. I hope I never become like them.
 
-There are several excellent bibliographic software programs out there. I used Endnotes for quite a while. It is a commercial product, and I have recently tried to wean myself as much as possible from commercial software. But I wll say that I loved Endnotes when I used it.
+There are several excellent bibliographic software programs out there. I used Endnotes for quite a while. It is a commercial product, and I have recently tried to wean myself as much as possible from commercial software. But I will say that I loved Endnotes when I used it.
 
 I've also used Zotero. It scans the metadata for a website and scrapes the information that you need to build a bibliography. It used to be tied very tightly to the Firefox browser, but that has changed. You can also store information from Zotero in the cloud. I used it for quite a while and liked it, but I've stopped using it for reasons I can't explain.
 
 I have not used Mendeley, but it has gotten good reviews, especially from some of the librarians I know. It functions quite similarly to Zotero.
 
-BibTeX (notice the curious capitalization) is an add-on to the TeX document production system. I am using BibTeX on an off these days, but have not done all my work in it just yet. BibTeX is an open source product and it uses plain text files for storage. That's a strong trend in recent years, to store things in a file that humans can read rather than a binary format. The advantage is that you can use BibTeX easily with version control software. It also integrates nicely with R Markdown, a system that I am using more and more, not just for statistical analysis, but for the production of papers, web pages, and presentations. There's a steep learning curve to BibTeX, but if you are already using TeX, it is a natural fit. I've included a reading about BibTeX in the recommended readings section, not because I want you to use it (it is an acquired taste), but rather because I want you to undestand how it works. It takes a much different approach than some of the other systems, and I really do think it is the wave of the future.
+BibTeX (notice the curious capitalization) is an add-on to the TeX document production system. I am using BibTeX on an off these days, but have not done all my work in it just yet. BibTeX is an open source product and it uses plain text files for storage. That's a strong trend in recent years, to store things in a file that humans can read rather than a binary format. The advantage is that you can use BibTeX easily with version control software. It also integrates nicely with R Markdown, a system that I am using more and more, not just for statistical analysis, but for the production of papers, web pages, and presentations. There's a steep learning curve to BibTeX, but if you are already using TeX, it is a natural fit. I've included a reading about BibTeX in the recommended readings section, not because I want you to use it (it is an acquired taste), but rather because I want you to understand how it works. It takes a much different approach than some of the other systems, and I really do think it is the wave of the future.
 
 But I promise not to sneer if you use something other than BibTeX.
 
@@ -400,7 +400,7 @@ Don't accept everything blindly just because it has been published. Become criti
   
 <div class="notes">
 
-I could spend hours and hours talking about evaluating ehst your book calls "research validity". I prefer talking about how strong or how persuasive the evidence is.. This is the critical appraisal step in Evidence-Based Health Care, and I've written a whole book about it.
+I could spend hours and hours talking about evaluating what your book calls "research validity". I prefer talking about how strong or how persuasive the evidence is.. This is the critical appraisal step in Evidence-Based Health Care, and I've written a whole book about it.
 
 Let me just give a quick summary here.
 
@@ -473,13 +473,13 @@ Also, if I can editorialize here, intention to treat analysis, while it is a nic
 
 <div class="notes">
 
-One way of organizing your review might by chronological. This is appealing if new theories or new approaches emerge over time. But beware, becuase a chronological list can sometimes come across as dull.
+One way of organizing your review might by chronological. This is appealing if new theories or new approaches emerge over time. But beware, because a chronological list can sometimes come across as dull.
 
 The approach I like best (and your book also likes it) is to move from the general to the specific. There are several directions you can go, but one way would be talking about the disease, talking about a particular treatment of the disease, and then talking about that treatment in a particular subpopulation. Of course, talking about the disease, then a subpopulation and then a treatment within that subpopulation also works.
 
 You start with the general because that is what your reader is most likely to be familiar with. As you make things more specific, you draw them in to the need for your research.
 
-Whicever organizational approach you choose, your last paragraph summarizes everything and leads into the work you plan.
+Whichever organizational approach you choose, your last paragraph summarizes everything and leads into the work you plan.
 
 </div>
 
@@ -515,7 +515,7 @@ Whicever organizational approach you choose, your last paragraph summarizes ever
 
 There are more possible themes than I could mention, but here are a few examples. 
 
-Start with consensus (questions where everyone agrees on the correct answer), then list disagrements (questions with debates among competing answers), and end with the unknown (questions with no answers yet).
+Start with consensus (questions where everyone agrees on the correct answer), then list disagreements (questions with debates among competing answers), and end with the unknown (questions with no answers yet).
 
 Or say what the problem is, say what has already been done, and say what needs to be done.
 
@@ -538,7 +538,7 @@ It's really hard to give examples here because there are so many different thema
 
 <div class="notes">
 
-You will revisit your literature review after you've collected the data, written your results and written your discussion section. The discussion section talks about the strengths and weaknesses of your particluar study and places your study in a broader context. When you do this, you may notice some gaps or inconsistencies in your literature review.
+You will revisit your literature review after you've collected the data, written your results and written your discussion section. The discussion section talks about the strengths and weaknesses of your particular study and places your study in a broader context. When you do this, you may notice some gaps or inconsistencies in your literature review.
 
 There is a standard format for the literature review for a thesis. This is more detailed than what you might put in a paper.
 
