@@ -113,10 +113,14 @@ Outside of the core package, some of the packages that I like are broom (which s
 
 ### Load tidyverse quietly
 
-```{r, echo=FALSE}
-suppressMessages(suppressWarnings(library(tidyverse)))
-suppressMessages(suppressWarnings(library(yaml)))
-options(width=45)
+```{r}
+suppressMessages(
+  suppressWarnings(
+    library(tidyverse)))
+suppressMessages(
+  suppressWarnings(
+    library(yaml)))
+options(width=30)
 ```
 
 <div class="notes">
@@ -124,12 +128,6 @@ options(width=45)
 Because tidyverse provides so many diagnostic messages and warnings, I have used the suppressMessages and suppressWarnings functions to avoid this in my programs. For this program, I need two more things. I need the yaml package to simplify the presentation of information from the data dictionary. I also cut the line width down to 45 characters. This is rather extreme, but it is necessary when you are producing PowerPoint documents.
 
 </div>
-
-```{r}
-tx <- readLines("p01-small-program.Rmd")
-dashes <- str_which(tx, fixed("---"))
-backticks <- str_which(tx, "```")
-```
 
 ### General structure of Rmarkdown
 
@@ -167,6 +165,7 @@ You should always print out the version of R that you are using and the date tha
 ```{r load}
 load("../data/module02-datasets.RData")
 ls()
+bump <- bump[ , c(1, 4, 5)]
 ```
 
 <div class="notes">
@@ -189,7 +188,7 @@ Here is the first paragraph from the data dictionary.
 
 ### Displaying data
 
-```{r display}
+```{r display, comment=""}
 bump
 ```
 
@@ -201,8 +200,8 @@ R has a print function, but if you just list the name of a data frame, it will, 
 
 ### Showing the structure
 
-```{r str}
-str(bump)
+```{r str, comment=""}
+glimpse(bump)
 ```
 
 <div class="notes">
@@ -215,9 +214,9 @@ Data frames are the workhorse of R. There are other ways of storing data: lists,
 
 ### Displaying a single value
 
-```{r single-value}
+```{r single-value, comment=""}
 bump[1, 1]
-bump[12, 5]
+bump[12, 3]
 ```
 
 <div class="notes">
@@ -228,7 +227,7 @@ You can display individual data points by specifying the row and column inside s
 
 ### Displaying a single row
 
-```{r single-row}
+```{r single-row, comment=""}
 bump[1, ]
 bump[12, ]
 ```
@@ -242,11 +241,7 @@ You can display an entire row by specifying it and leaving the column entry blan
 
 ### Displaying a single column (1/2)
 
-```{r echo=FALSE}
-options(width=40)
-```
-
-```{r single-column-1}
+```{r single-column-1, comment=""}
 bump[ , 1]
 ```
 
@@ -258,8 +253,8 @@ You can display an entire column similarly.
 
 ### Displaying a single column (2/2)
 
-```{r single-column-2}
-bump[ , 5]
+```{r single-column-2, comment=""}
+bump[ , 3]
 ```
 
 <div class="notes">
@@ -270,7 +265,7 @@ There is an important difference in the display here. When you display a single 
 
 ### Using column names
 
-```{r column-names}
+```{r column-names, comment=""}
 bump$airline
 ```
 
@@ -282,7 +277,7 @@ Each column has a name and you can use that name instead of the column number.
 
 ### Displaying multiple rows or columns
 
-```{r multiple-1}
+```{r multiple-1, comment=""}
 bump[1:5, ]
 ```
 
@@ -294,8 +289,8 @@ The code "1:5" means 1, 2, 3, 4, 5.
 
 ### Displaying multiple rows or columns
 
-```{r multiple-2}
-bump[ , c(2,4)]
+```{r multiple-2, comment=""}
+bump[ , c(1, 3)]
 ```
 
 <div class="notes">
@@ -306,7 +301,7 @@ The "c" function allows you to select values that are not in a perfect sequence.
 
 ### Skipping a row or column
 
-```{r skipping}
+```{r skipping, comment=""}
 bump[ , -1]
 ```
 
@@ -318,11 +313,7 @@ A negative number means that you want to exclude that row or column. In this exa
 
 ### The head function
 
-```{r echo=FALSE}
-options(width=50)
-```
-
-```{r head}
+```{r head, comment=""}
 head(bump)
 ```
 
@@ -334,13 +325,25 @@ The "head" function displays the first five rows of data.
 
 ### The tail function
 
-```{r tail}
+```{r tail, comment=""}
 tail(bump)
 ```
 
 <div class="notes">
 
 The "tail" function displays the last five rows of data. If there is a problem with a data set, it often shows up more obviously at the bottom of a data frame than the top.
+
+</div>
+
+### Nice display of data
+
+```{r kable}
+knitr::kable(bump)
+```
+
+<div class="notes">
+
+If you want a format that is a bit closer to publication quality, the kable function (in the knitr package) is often a good start. I could spend a whole lecture on kable and other methods for printing nicely, but it is beyond the scope of this class.
 
 </div>
 
