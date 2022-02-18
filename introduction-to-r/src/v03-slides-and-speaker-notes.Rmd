@@ -5,11 +5,6 @@ date: "Created 2020-02-08"
 output: powerpoint_presentation
 ---
 
-```{r echo=FALSE}
-suppressMessages(suppressWarnings(library(stringr)))
-options(width=45)
-```
-
 ### Text files
 + Advantages
   + Easy import into many programs
@@ -32,6 +27,25 @@ Text files come in a variety of format. A delimited file uses a special characte
 Many text files include the names of the variables in the first row of text. This is not required, but it is strongly recommended. I will talk about at least one example where you don't have the names of the variables in the first line of text.
 
 Not every data set that you find is going to have a data dictionary but always look for it, because often that will give you some helpful advice. It will make it easier for you to read the data into a program like R. 
+
+</div>
+
+### Preliminary code
+
+```{r setup}
+suppressMessages(
+  suppressWarnings(
+    library(tidyverse)))
+options(width=45)
+R.version
+Sys.Date()
+```
+
+<div class="notes">
+
+We are loading the tidyverse packages again. The options command sets a width that works well with PowerPoint, but I do not recommend it for your homework which will create an html document that you then convert to pdf format.
+
+The version and date should be part of any R program.
 
 </div>
 
@@ -71,10 +85,10 @@ and save the file using the name simple.csv. Note the directory that you are sav
 ### the read.csv function 
 
 ```{r read-csv}
-fn <- "../data/simple.txt"
+fn <- "../data/simple.csv"
 raw_data <- 
-  read.csv(fn,
-    header=TRUE)
+  read_csv(fn,
+    col_types="n")
 ```
 
 <div class="notes">
@@ -324,7 +338,6 @@ raw_data <-
   read.fwf(fn, 
     widths=c(1, 2),
     header=FALSE)
-raw_data
 ```
 
 <div class="notes">
@@ -423,7 +436,7 @@ The argument sep="" will use "white space" as a delimiter. White space is define
 
 ### Display the white-space data
 
-```{r disaply-fwf}
+```{r disaply-white-space}
 raw_data
 ```
 
@@ -470,6 +483,48 @@ The best thing to do, if there is any potential problems is to enclose your data
 
 </div>
 
+### String data
+
++ Type the following into notepad.
+
+```{r string-data, echo=FALSE, comment=""}
+tx <- readLines("../data/string.csv")
+cat(tx, sep="\n")
+```
+
++ Save it
+  + in the data directory
+  + filename: string.csv
+
+<div class="notes">
+
+</div>
+
+### Using string data
+
+```{r string}
+fn <- "../data/string.csv"
+raw_data <- 
+  read.csv(fn, 
+    header=TRUE)
+```
+
+<div class="notes">
+
+</div>
+
+### Display string data
+
+```{r display-string-data}
+raw_data
+```
+
+<div class="notes">
+
+The data has been read in correctly.
+
+</div>
+
 ### Break #6
 
 + What have you learned
@@ -493,11 +548,12 @@ If you want to write a text file, you can use either the write.csv or write.tabl
 ### Writing text files 
 
 ```{r write-text}
-raw_data <- data.frame(x=c(1, 2, 3, 4), y=c(4, 8, 12, 16))
+raw_data <- data.frame(
+  x=c(1, 2, 3, 4), 
+  y=c(4, 8, 12, 16))
 fn <- "../results/output_data.txt"
 write.table(
-  raw_data, 
-  fn, 
+  raw_data, fn, 
   row.names=FALSE)
 ```
 
