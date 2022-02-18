@@ -203,7 +203,7 @@ glimpse(bump)
 
 <div class="notes">
 
-The "str" function provides a description of "bump." It is a data frame. A data frame is a rectangular grid of data. The data values in a single column of data has to be consistent: either a set of numbers, a set of dates, a set of character strings, etc. But the type of data in one column can differ from the next column.
+The "glimpse" function provides a description of "bump." It is a data frame. A data frame is a rectangular grid of data. The data values in a single column of data has to be consistent: either a set of numbers, a set of dates, a set of character strings, etc. But the type of data in one column can differ from the next column.
 
 Data frames are the workhorse of R. There are other ways of storing data: lists, arrays, vectors. But most of the data you will analyze in R will be stored in a data frame.
 
@@ -476,6 +476,11 @@ You can use the which function to identify the row with this unusual value for f
 ```{r which}
 short_row <- which(fd$ht==29.5)
 short_row
+```
+
+### Displaying the unusual row
+
+```{r display-unusual}
 fd[short_row, ]
 ```
 
@@ -523,6 +528,7 @@ We'll use the data set with the 29.5 changed to a missing value for all of the r
 </div>
 
 ### Break #3
+
 + What have you learned
   + Definitions of categorical and continuous data
   + The "fat" data set
@@ -591,15 +597,14 @@ For univariate functions, there are only two realistic ways to handle missing va
 
 </div>
 
-### Histogram
+### Histogram with default options - code
 
-```{r histogram01}
-library(ggplot2)
-histogram_default <- ggplot(fd2, aes(x=ht)) + 
-  geom_histogram(fill="white", color="black")
-png("../images/histogram01.png")
-histogram_default
-dev.off()
+```{r histogram-default}
+histogram_framework <-
+  ggplot(fd, aes(x=ht))
+histogram_default <-
+  histogram_framework + 
+    geom_histogram()
 ```
 
 <div class="notes">
@@ -610,7 +615,21 @@ Always start with the default option, but don't settle for it.
 
 </div>
 
-### Histogram
+### Histogram with default options - saving
+
+```{r save-histogram-default}
+png("../images/histogram01.png")
+histogram_default
+dev.off()
+```
+
+<div class="notes">
+
+My system for creating PowerPoint slides requires me to store any graphs in a file. It is a bit simpler if you are creating an html document. Just leave off the png function and the dev.off function.
+
+</div>
+
+### Histogram with default options - graph
 
 ![](../images/histogram01.png)
 
@@ -620,30 +639,82 @@ Here is what the graph looks like.
 
 </div>
 
-```{r histogram02}
-histogram_enhanced <- ggplot(fd2, aes(x=ht)) + 
-  geom_histogram(
-    fill="white", color="black", 
-    binwidth=3, na.rm=TRUE) +
-  xlab("Height in inches") +
-  scale_x_continuous(
-    breaks=c(63, 66, 69, 72, 75, 78), 
-    labels=c("62-64", "65-67", "68-70",
-             "71-73", "74-76", "77-79"))
+### Histogram with 3 unit bins - code
+
+```{r histogram-bin}
+histogram_bin_sized <- 
+  histogram_framework +
+    geom_histogram(binwidth=3)
+```
+
+```{r save-bin, include=FALSE}
 png("../images/histogram02.png")
-histogram_enhanced
+histogram_bin_sized
+dev.off()
+```
+
+### Histogram with 3 unit bins - graph
+
+![](../images/histogram02.png)
+
+<div class="notes">
+
+Here is what the graph looks like.
+
+</div>
+
+### Histogram with white fill - code
+
+```{r histogram-white}
+histogram_white <-
+  histogram_framework +
+  geom_histogram(
+    binwidth=3, 
+    fill="white",
+    color="black")
+```
+
+```{r save-white, include=FALSE}
+png("../images/histogram03.png")
+histogram_white
+dev.off()
+```
+
+### Histogram with white fill - graph
+
+![](../images/histogram03.png)
+
+<div class="notes">
+
+Here is what the graph looks like.
+
+</div>
+
+### Histogram with nice labels - code
+
+```{r nice-labels}
+histogram_labeled <- 
+  histogram_white +
+    xlab("Height in inches") +
+    ylab("Frequency count") +
+    ggtitle("Histogram with outlier")
+```
+
+```{r save-histogram-labeled, include=FALSE}
+png("../images/histogram04.png")
+histogram_labeled
 dev.off()
 ```
 
 <div class="notes">
 
-I like to have the border color of the bars and the fill color of the bars to be different. It took a bit of trial and error to get the binwidth, breaks, and labels to work properly.
+This code shows how to put nice labels on the X and Y axes along with a title.
 
 </div>
 
-### Histogram
+### Histogram with nice labels - graph
 
-![](../images/histogram02.png)
+![](../images/histogram04.png)
 
 <div class="notes">
 
