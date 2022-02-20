@@ -2,11 +2,13 @@
 data_dictionary: module02-datasets.RData
 
 description:
-  This is an R binary file that contains three 
+  This is an R binary file that contains four 
   dataframes. See the data dictionaries
   listed below for more details.
 
-  bump, airline-data_dictionary.yaml
-  fd,  fat-data_dictionary.yaml
-  sleep,  sleep-data_dictionary.yaml
+content:
+  burgers: burgers-data-dictionary.yaml
+  bump: airline-data_dictionary.yaml
+  fd:  fat-data_dictionary.yaml
+  sleep:  sleep-data_dictionary.yaml
 ---
