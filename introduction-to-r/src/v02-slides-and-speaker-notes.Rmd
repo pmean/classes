@@ -261,7 +261,9 @@ burgers[ , 3]
 
 <div class="notes">
 
-There is an important difference in the display here. When you display a single column, it will fit more than one data point in the same row to save space. This may seem trivial and but once in a while it is not. The distinction may come up later in this class.
+There is an important difference in the display here. When you display a single column, it no longer keeps the structure of a data frame. It becomes a vector, which is a single dimensional quantity. You lose the name associated with the column and it prints the results horizontally, even though the column prints inside the data frame vertically.
+
+This may seem to be a trivial matter and but once in a while it is not. The distinction may come up later in this class.
 
 </div>
 
@@ -288,7 +290,9 @@ burgers[1:3, ]
 
 <div class="notes">
 
-The code "1:3" means 1, 2, 3.
+The code "1:3" means 1, 2, 3. Notice that when you select two columns rather than one that it maintains the dataframe structure.
+
+This again represents a subtle distinction, but one that can sometimes be important.
 
 </div>
 
@@ -544,7 +548,7 @@ Your data set may arrive with missing values in it already. Data might be design
 
 Notice that I store the revised data sets with the row removed and with the 29.5 replaced by a missing value in different data frames. This is good programming practice. If you ever have to make a destructive change to your data set (a change that wipes out one or more values or a change that is difficult to undo), it is good form to store the new results in a fresh spot. That way, if you get cold feet, you can easily backtrack.
 
-We'll use the data set with the 29.5 changed to a missing value for all of the remaining analyses of this data set.
+We'll use the data set with the 29.5 changed to a missing value for most of the remaining analyses of this data set.
 
 </div>
 
@@ -644,107 +648,31 @@ For univariate functions, there are only two realistic ways to handle missing va
 ### Histogram with default options - code
 
 ```{r histogram-default}
-histogram_framework <-
-  ggplot(fat, aes(x=ht))
-histogram_default <-
-  histogram_framework + 
-    geom_histogram()
+histogram_white <- 
+  ggplot(fat, aes(x=ht)) +
+    geom_histogram(
+      binwidth=1,
+      fill="white",
+      color="black")
 ```
 
 <div class="notes">
 
 A histogram is useful for displaying a continuous variable graphically.
 
-Always start with the default option, but don't settle for it.
+It is very important to explicitly choose the widths of your bars. It's a bit too busy, perhaps, but I chose bar widths of 1.
 
-</div>
+The default colors in ggplot2, black bars with a black border, are terrible. At a minimum, you should use a different color for the inside (fill) and border (color). Here is how you draw white bars with a black border.
 
-### Histogram with default options - saving
-
-```{r save-histogram-default}
-png("../images/histogram01.png")
-histogram_default
-dev.off()
-```
-
-<div class="notes">
-
-My system for creating PowerPoint slides requires me to store any graphs in a file. It is a bit simpler if you are creating an html document. Just leave off the png function and the dev.off function.
+Please note that I cannot easily add speaker notes to a slide with a graph on it. So I will typically comment about the graph before I display it. 
 
 </div>
 
 ### Histogram with default options - graph
 
-![](../images/histogram01.png)
-
-<div class="notes">
-
-Here is what the graph looks like.
-
-</div>
-
-### Histogram with 3 unit bins - code
-
-```{r histogram-bin}
-histogram_bin_sized <- 
-  histogram_framework +
-    geom_histogram(binwidth=3)
-```
-
-```{r save-bin, include=FALSE}
-png("../images/histogram02.png")
-histogram_bin_sized
-dev.off()
-```
-
-<div class="notes">
-
-Use the "binwidth" argument to specify how wide you want your bars to be.
-
-</div>
-
-### Histogram with 3 unit bins - graph
-
-![](../images/histogram02.png)
-
-<div class="notes">
-
-Here is what the graph looks like.
-
-</div>
-
-### Histogram with white fill - code
-
-```{r histogram-white}
-histogram_white <-
-  histogram_framework +
-  geom_histogram(
-    binwidth=3, 
-    fill="white",
-    color="black")
-```
-
-```{r save-white, include=FALSE}
-png("../images/histogram03.png")
+```{r display-histogram01, echo=FALSE}
 histogram_white
-dev.off()
 ```
-
-<div class="notes">
-
-The default colors in ggplot2, black bars with a black border, are terrible. At a minimum, you should use a different color for the inside (fill) and border (color). Here is how to draw white bars with a black border.
-
-</div>
-
-### Histogram with white fill - graph
-
-![](../images/histogram03.png)
-
-<div class="notes">
-
-Here is what the graph looks like.
-
-</div>
 
 ### Histogram with nice labels - code
 
@@ -756,30 +684,29 @@ histogram_labeled <-
     ggtitle("Histogram with outlier")
 ```
 
-```{r save-histogram-labeled, include=FALSE}
-png("../images/histogram04.png")
-histogram_labeled
-dev.off()
-```
-
 <div class="notes">
 
 This code shows how to put nice labels on the X and Y axes along with a title.
+
+There is an important pattern to note here. Graphs created with ggplot2 can be built with layers. This makes programming a bit easier and your code is also more readable.
+
+The next slide shows what the labeled histogram looks like.
 
 </div>
 
 ### Histogram with nice labels - graph
 
-![](../images/histogram04.png)
 
-<div class="notes">
+```{r display-histogram-labeled, echo=FALSE}
+histogram_labeled
+```
 
-Here is what the graph looks like.
+### Break #6
 
-There is an important pattern to note here. Graphs created with ggplot2 can be built with layers. This makes programming a bit easier and your code is also more readable.
-
-</div>
-
++ What have you learned
+  + Histograms
++ What is coming next
+  + Correlations
 
 ### Correlation coefficients
 
@@ -950,12 +877,6 @@ scatterplot_default <-
       geom_point()
 ```
 
-```{r save-scatterplot01, include=FALSE}
-png(filename="../images/scatterplot01.png")
-scatterplot_default
-dev.off()
-```
-
 <div class="notes">
 
 A simple and commonly used graphical approach to showing a relationship between two continuous variables is a scatterplot.
@@ -964,13 +885,9 @@ A simple and commonly used graphical approach to showing a relationship between 
 
 ### Simple scatterplot - graph
 
-![](../images/scatterplot01.png)
-
-<div class="notes">
-
-There are lots of options available to customize your graph. Here are just a few. The xlab and ylab arguments in the plot function control what is displayed on the horizontal (x) and vertical (y) axes. The pch argument control what is used as the plotting character.
-
-</div>
+```{r display-scatterplot01, echo=FALSE}
+scatterplot_default
+```
 
 ### Scatterplot with labels - code
 
@@ -981,27 +898,19 @@ scatterplot_enhanced <- scatterplot_default +
   ggtitle("Figure 1.")
 ```
 
-```{r save-scatterplot02, include=FALSE}
-png(file="../images/scatterplot02.png")
-scatterplot_enhanced
-dev.off()
-```
-
 <div class="notes">
 
-Here are some adaptations, including better labels.
+There are lots of options available to customize your graph. Here are just a few. The xlab and ylab arguments in the plot function control what is displayed on the horizontal (x) and vertical (y) axes. The pch argument control what is used as the plotting character.
+
+Here are some adaptations, including better labels, on the following slide.
 
 </div>
 
 ### Scatterplot with labels - graph
 
-![](../images/scatterplot02.png)
-
-<div class="notes">
-
-Here is what the graph looks like.
-
-</div>
+```{r display-scatterplot02, echo=FALSE}
+scatterplot_enhanced
+```
 
 ### Scatterplot with a trend line - code
 
@@ -1010,27 +919,17 @@ scatterplot_lm <- scatterplot_enhanced +
   geom_smooth(method=lm)
 ```
 
-```{r save-scatterplot03, include=FALSE}
-png("../images/scatterplot03.png")
-scatterplot_lm
-dev.off()
-```
-
 <div class="notes">
 
-Here's the code to produce a smooth curve on top of the data points.
+Here's the code to produce a smooth curve on top of the data points. The graph is on the following slide.
 
 </div>
 
 ### Scatterplot with a linear trend line - graph
 
-![](../images/scatterplot03.png)
-
-<div class="notes">
-
-Here is what the graph looks like.
-
-</div>
+```{r display-scatterplot03, echo=FALSE}
+scatterplot_lm
+```
 
 ### Scatterplot with smoothing - code
 
@@ -1039,25 +938,149 @@ scatterplot_loess <- scatterplot_enhanced +
   geom_smooth(method=loess)
 ```
 
-```{r save-scatterplot04, include=FALSE}
-png("../images/scatterplot04.png")
-scatterplot_loess
-dev.off()
-```
-
 <div class="notes">
 
 Here's the code to produce a smooth curve on top of the data points.
+
+Always be cautious about smooth curves and splines at the left and right edges of the graph. These are often highly variable, because there is less data to use at the extremes. So the downward dip you see on the right hand side of the graph on the following page is driven by just a few data points.
 
 </div>
 
 ### Scatterplot with smoothing - graph
 
-![](../images/scatterplot04.png)
+```{r display-scatterplot04, echo=FALSE}
+scatterplot_loess
+```
+
+### Break #8
+
++ What have you learned
+  + Scatterplots
++ What is coming next
+  + Transformations
+
+### Reasons for transformations of continuous variables
+
++ For continuous variables
+  + Convert an outlier to missing
+  + Change units of measure
+  + Combine two variables
+  + Reduce skewness
++ For categorical variables
+  + Converting from a continuum
+  + Combining rare categories
+  + Creating new categories
++ For both
+  + Impute a missing value
+  + Fix obvious errors
+  
+<div class="notes">
+
+Transformations are an important part of data management. The reasons are different for continuous and categorical variables, For continuous variables, you've already seen how to convert an outlier to a missing value. You might also transform a variable to change its units of measurement. An example would be moving measurements from the English system to the metric system. Sometimes you might combine two variables to create a third. An example might be calculation of the body mass index which is the weight divided by the height squared. Another common transformation is using logarithms to reduce skewness in a variable.
+
+For categorical data, you might convert a continuous variable into categories. As an example, you might convert an age variable so that any vaule under 18 is categorized as a child and 18 and above is categorized as an adult. Often some categories occur so infrequently that you need to combine them. The standard categories for race, as an example, might have the vast majority being Black, and you would combine White, Asian, and Native American into an "Other" category. You could create new categories, such as using separate race and ethnicity variables into a combined race/ethnicity variable.
+
+For both you might impute a missing value. In studies of smoking cessation, for example, it is common to treat dropouts as treatment failures. So a missing value for smoking yes/no, could be converted to yes for anyone who drops out midway through the study.
+
+Finally, some errors are so obvious that it is easy to fix them. You have a LIkert scale 1 through 5 and you notice a value of 11. Clearly this is a typo and should be 1.
+
+</div>
+
+### Avoid transformations not easily undone.
++ Bad
+  + fat[short_row, "ht"] <- NA
++ Good 
+```{}
+fat2 <- fat
+fat2[short_row, "ht"] <- NA
+```
++ Also good
+```{}
+fat$ht_trimmed <- fat$ht
+fat$ht_trimmed[short_row] <- NA
+```
 
 <div class="notes">
 
-Here is what the graph looks like.
+It is good programming practice to avoid destructive transformations. A destructive transformation is one that is not easily undone. You might decide at a later date that you don't want a particular transformation. Or perhaps you want a different transformation.
+
+You can avoid destrictuve transformations by creating a new dataframe or creating a new variable within an existing dataframe.
+
+</div>
+
+### Units conversion
+
+```{r units-conversion}
+metric <- fat
+metric$ht <- fat$ht/39.37
+metric$wt <- fat$wt/2.205
+round(mean(metric$ht), 1)
+round(mean(fat$ht), 1)
+```
+
+<div class="notes">
+
+If you look at the data dictionary
+
+</div>
+
+### Combining two variables - code
+
+```{r combining}
+metric$check <-
+  sqrt(metric$wt / metric$bmi)
+height_comparisons <- 
+  ggplot(metric,
+    aes(x=ht, y=check)) + 
+      geom_point()
+```
+
+<div class="notes">
+
+Usually, you use weight and height to calculate body mass index, but you can invert that calculation to compute height from weight and bmi. This allows us to see what the value for the unusual height of 29.5 inches (70 centimeters) might be if the weight and bmi values were correct.
+
+The graph on the following slide shows the height values compared to the back calculated height values. 
+
+</div>
+
+### Combining two variables - graph
+
+```{r display-comparison, echo=FALSE}
+height_comparisons
+```
+
+<div class="notes">
+
+</div>
+
+### Two more errors?
+
+```{r errors}
+metric$delta <- 
+  abs(metric$ht-metric$check)
+odd_rows <- 
+  which(metric$delta > 0.1)
+```
+
+<div class="notes">
+
+
+
+</div>
+
+### Two more errors?
+
+```{r errors-2}
+round(metric[odd_rows , c(
+  "ht", 
+  "check", 
+  "wt", 
+  "bmi")], 2)
+```
+
+<div class="notes">
+
+
 
 </div>
 
@@ -1070,5 +1093,5 @@ Here is what the graph looks like.
   + Histograms
   + Correlations
   + Scatterplots
-  + Description of the sleep data
+  + Transformations
  

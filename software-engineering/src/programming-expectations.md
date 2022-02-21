@@ -99,27 +99,7 @@ Backup your folder regularly. The simplest way to do this is to have an archive 
 
 ### Example of directory structure
 
-`+-5505`
-
-`+---data`
-
-`+-----airline.txt`
-
-`+-----gardasil.RData`
-
-`+---src`
-
-`+-----simon-5505-hw02.Rmd`
-
-`+-----simon-5505-hw03.Rmd`
-
-`+-archive`
-
-`+---5505_backup_2021-05-17`
-
-`+---5505_backup_2021-05-18`
-
-`+---5505_backup_2021-05-19`
+![](../images/program-expectations-12.png)
 
 <div class="notes">
 
@@ -192,25 +172,15 @@ You have a lot of flexibility with your documentation header, but if it is not i
 
 </div>
 
-### Documentation header example in R Markdown.
+### Documentation header example in R Markdown
 
-`---`
-
-`title: "Homework 02, MEDB 5505"`
-
-`author: "Steve Simon"`
-
-`date: "Created 2020-02-26"`
-
-`output: html_document`
-
-`---`
-
-`This program provides the answers to homework in module02 of MEDB 5505, Introduction to R, where you were asked to read in data from module02.Rdata and calculate some simple statistics. This program is in the public domain and aynone can use the code in any way they wish without asking permission. You will be able to view this code after you have submitted your assignment. If you are having trouble getting your program to work, compare what you did to my code. If you are still having problems after viewing my code, please contact me.`
+![](../images/program-expectations-10.png)
 
 <div class="notes">
 
-Here's an example of a documentation header using R Markdown. The author and creation date are in the yaml header. The first sentence below the yaml header describes the purpose of the program.
+Here's an example of a documentation header using R Markdown. The author and creation date are in the yaml header.
+
+The first sentence below the yaml header describes the purpose of the program.
 
 The second sentence places the code in the public domain so you can use the code any way that you might please.
 
@@ -218,25 +188,11 @@ The second sentence places the code in the public domain so you can use the code
 
 ### Documentation header example in SAS
 
-`/* simon-5507-hw01.sas`
-
-` `
-
-`Written by Steve Simon, creation date: 2018-09-17`
-
-` `
-
-`This program reads the sleep data set and produces`
-
-`some simple descriptive statistics. It is placed`
-
-`in the public domain and you can use this in any`
-
-`way you please. */`
+![](../images/program-expectations-11.png)
 
 <div class="notes">
 
-Here's an example using SAS. The comment starts with an asterisk and ends with a semi-colon. It covers the same details.
+Here's an example using SAS. The comment starts with an asterisk and ends with a semi-colon on the next slide. It covers the same details.
 
 I won't show the code in SQL, but it would look similar 
 
@@ -252,33 +208,17 @@ I won't show the code in SQL, but it would look similar
 
 ### SAS example (difficult to read code)
 
-```{}
-proc sort data=intro.sleep_modified;
-by bodywt;
-run;
-proc print data=intro.sleep_modified(obs=1);
-title1 "The smallest body weight";
-run;
-```
+![](../images/program-expectations-01.png)
 
 <div class="notes">
 
-Here's an example using the print procedure in SAS. It's not too hard to read, but you can improve it quite a bit by adding line breaks, indenting, andshould 
+Here's an example using the print procedure in SAS. It's not too hard to read, but you can improve it quite a bit by adding line breaks, indenting, and vertical lists 
 
 </div>
 
 ### SAS example, Add line break
 
-```{}
-proc sort data=intro.sleep_modified;
-by bodywt;
-run;
-
-proc print data=intro.sleep_modified(obs=1);
-var species bodywt;
-title1 "The smallest body weight";
-run;
-```
+![](../images/program-expectations-02.png)
 
 <div class="notes">
 
@@ -288,16 +228,8 @@ A blank link emphasizes the two steps in this program, sorting and printing.
 
 ### SAS example, Indent
 
-```{}
-proc sort data=intro.sleep_modified;
-  by bodywt;
-run;
+![](../images/program-expectations-03.png)
 
-proc print data=intro.sleep_modified(obs=1);
-  var species bodywt;
-  title1 "The smallest body weight";
-run;
-```
 
 <div class="notes">
 
@@ -308,18 +240,7 @@ By indenting the by subcommand within the sort and the var and title1 subcommand
 
 ### SAS example, Break long lines
 
-```{}
-proc sort
-    data=intro.sleep_modified;
-  by bodywt;
-run;
-
-proc print
-    data=intro.sleep_modified(obs=1);
-  var species bodywt;
-  title1 "The smallest body weight";
-run;
-```
+![](../images/program-expectations-04.png)
 
 <div class="notes">
 
@@ -331,20 +252,7 @@ I used a double indent here to emphasize that data is part of the previous proce
 
 ### SAS example, Create vertical lists
 
-```{}
-proc sort
-    data=intro.sleep_modified;
-  by bodywt;
-run;
-
-proc print
-    data=intro.sleep_modified(obs=1);
-  var
-    species
-    bodywt;
-  title1 "The smallest body weight";
-run;
-```
+![](../images/program-expectations-05.png)
 
 <div class="notes">
 
@@ -354,29 +262,17 @@ When there are multiple variable names within a statement, a vertical list can s
 
 ### SQL code (hard to read)
 
-```{}
-select sex, count(*) as number_of_children from titanic_table
-where age < 18
-group by sex
-```
+![](../images/program-expectations-06.png)
 
 <div class="notes">
 
 You can see some of the same principles in this SQL code. It is not terrible, but it could be a bit better.
 
-
 </div>
 
 ### SQL code (easier to read)
 
-```{}
-select 
-    sex, 
-    count(*) as number_of_children
-  from titanic_table
-  where age < 18
-  group by sex
-```
+![](../images/program-expectations-07.png)
 
 <div class="notes">
 
@@ -384,21 +280,13 @@ Notice the changes.
 
 The from, where, and group by statements are indented.
 
-The varibles sex and count(*) are a vertical list and are double indented because they are pare of the select statement. 
+The variables sex and count(*) are a vertical list and are double indented because they are pare of the select statement. The age conditions (>12 and <20) are split and lined up beneath one another.
 
 </div>
 
 ### R example (hard to read)
 
-```{}
-radius <- sqrt(ts[ , last_date])
-zero <- radius == 0
-ggplot(data=states) +
-geom_sf(color="gray", fill="white") +
-geom_sf(data=ts[!zero, ], size=radius[!zero]) +
-coord_sf(xlim=lat, ylim=lon, expand=FALSE) +
-ggtitle("Bubble plot of COVID-19 cases")
-```
+![](../images/program-expectations-08.png)
 
 <div class="notes">
 
@@ -412,23 +300,7 @@ Each of these graphics options have multiple arguments and they are arranged in 
 
 ### R example (easier to read)
 
-```{}
-radius <- sqrt(ts[ , last_date])
-zero <- radius == 0
-
-ggplot(data=states) +
-  geom_sf(
-    color="gray",
-    fill="white") +
-  geom_sf(
-    data=ts[!zero, ],
-    size=radius[!zero]) +
-  coord_sf(
-    xlim=lat,
-    ylim=lon,
-    expand=FALSE) +
-  ggtitle("Bubble plot of COVID-19 cases")
-```
+![](../images/program-expectations-09.png)
 
 <div class="notes">
 
@@ -491,11 +363,12 @@ You need to include the output, of course, to prove that your program actually r
   + Cut-and-paste orginal question
 + Add text interpretation before or after your output
   + One or sometimes two sentences.
+  + Round numbers liberally
   + Output without interpretation will be downgraded.
   + Examples:
     + Here are the first ten rows of data.
     + The largest animal in the data set is the African elephant.
-    + Only 30% of the patients got all three shots.
+    + About 40% of the patients got all three shots.
     + There are no missing values for this data set.
 
 <div class="notes">
@@ -504,7 +377,39 @@ I need to see the original questions in the code as a comment or in the output a
 
 As you answer each question, I want a brief comment. Often it is a single sentence, but you might need two or maybe three sentences. What I needs is an explanation of how the output answers the question. This might be obvious, but it still needs to be done. If you include the correct output, but do not add a brief comment, you will lose points on your assignment.
 
+If any numbers are part of your interpretation, round them liberally (see the next slide for details)
+
 Here are some examples of the comments you might include.
+
+Note the use of 40% in the first interpretation. This reads a whole lot better than "Only 39.56% of the patients." Even a percentage like 41.7% reads better when rounded to "about 40%."
+
+</div>
+
+### Round your results
+
++ Two significant digits is best
+  + 54.23% -> 54%
+  + 0.03476 -> 0.035
++ Sometimes one or three digits
+  + Values close to one or a bit larger than 100
++ SQL and R
+  + round function
++ No easy equivalent in SAS  
++ Always round in your interpretations
+
+<div class="notes">
+
+Numbers with lots of digits in them are hard to read. The rule of thumb is that you round to two significant digits. This is not the same as rounding to two decimal places. 
+
+A value of 0.03426 is properly rounded to 0.034 as the leading zeros do not count as significant digits.
+
+Percentages almost never need more than two digits. Too many people report one or even two decimal places for a percentage. No one cares about the .23 in 54.23%. Round it to 54%, It is much more readable.
+
+Now no one ever got thrown in jail for violating a rule of thumb. Sometimes you might prefer to round to one or three significant digits. Numbers close to 1, especially odds ratios, might need an extra digit. Values just a bit larger than 100 might require a third significant digit. Correlations are sometimes between with a single significant digit. I won't quibble with you for one, two, or three significant digits, but once you include a fourth significant digit, I'm going to complain.
+
+Both R and SQL use the round function. There is no equivalent in SAS. There are ways to control rounding in the data step, but getting SAS to do rounding in the output is tricky. When you can do it, it is buried as an obscure option deep in the documentation and what works for one SAS PROC will often not work for another.
+
+Even when you can't get rounded results in your output, though, make sure that any interpretation that you provide uses nice round numbers.
 
 </div>
 
