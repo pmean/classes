@@ -1,23 +1,69 @@
 ---
-title: "Small program"
+title: "Examples from the video"
 author: "Steve Simon"
 date: "Created 2019-01-28"
 output: html_document
 ---
 
-This is a small program written in Rmarkdown to help you get started if you've never written an R program before.
+This is a small program written in Rmarkdown to show how to work with a dataset with mostly continuous variables.
+
+This program is in the public domain. You can use it any way that you please.
 
 ```{r version-and-current-date}
 R.version.string
 Sys.Date()
+suppressMessages(
+  suppressWarnings(
+    library(tidyverse)
+  )
+)
 ```
 
 This program will read in data from an RData file. It will then list all the objects that you just read in, and list the first few lines for one of those objects.
 
 ```{r read-rdata-file}
-load("../data/two-small-dataframes.RData")
+load("../data/module02-datasets.RData")
 ls()
-head(bump)
+fat[1:10, 1:5]
 ```
 
-This is a very simple program, but if you can get this program to run, you will probably have smooth sailing for the rest of the class.
+Print summary statistics for all continuous variables.
+
+```{r summary}
+summary(fat$ht)
+```
+
+Notice there is an outlier. Create two new datasets with the outlier and its whole row removed (fat1) and with the 29.5 value converted to missing (fat2).
+
+```{r create-new-datasets}
+short_row <- which(fat$ht==29.5)
+short_row
+fat1 <- fat[-short_row, ]
+fat2 <- fat
+fat2$ht[short_row] <- NA
+```
+
+Create a histogram for the original height values including the outlying value.
+
+```{r default-histogram}
+histogram_default <- 
+  ggplot(fat, aes(x=ht)) +
+    geom_histogram(
+      fill="white",
+      color="black",
+      binwidth=3)
+histogram_default
+```
+
+Add labels to the default histogram.
+
+```{r labels-on-histogram}
+histogram_labeled <- 
+  histogram_default +
+    xlab("Height in inches") +
+    ylab("Frequency count") +
+    ggtitle("Histogram example in video02")
+histogram_labeled
+```
+
+Notice the histogram shows a roughly bell shaped curve with the exception of one extreme outlier.

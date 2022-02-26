@@ -425,7 +425,7 @@ Even when you can't get rounded results in your output, though, make sure that a
 
 <div class="notes">
 
-Remember these guidelinesfor every assignment that you turn in. Use the proper file name and format, include a documentation header, make your code readable, avoid lengthy outputs, show both your code and your output and be sure that both the original question and your answer appear in what you submit.
+Remember these guidelines for every assignment that you turn in. Use the proper file name and format, include a documentation header, make your code readable, avoid lengthy outputs, show both your code and your output and be sure that both the original question and your answer appear in what you submit.
 
 </div>
 
