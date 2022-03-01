@@ -5,10 +5,25 @@ date: "Created 2020-02-08"
 output: powerpoint_presentation
 ---
 
-### Text files
+### Text files (1/2)
+
 + Advantages
   + Easy import into many programs
   + Review using notepad
++ Disadvantages
+  + Bigger size
+  + Slower read
+
+<div class="notes">
+
+One of the most important skills you will learn in this class is how to read data from text files. Text files are commonly used for data storage because they are easily imported into a variety of different programs. You can often peek at a text file using a simple program like Notepad in order to get a quick feel for what the data looks like.
+
+Text files are popular because just about any program out there can read a text file. You can import a nontext format, one that has special binary characters, but this often limits the types of programs that can read the data. So people who want to make their data widely available will almost store that data in a text file.
+
+</div>
+
+### Text files (2/2)
+
 + Wide range of formats
   + Delimited
   + Fixed width
@@ -17,10 +32,6 @@ output: powerpoint_presentation
 + Always look for a data dictionary
 
 <div class="notes">
-
-One of the most important skils you will learn in this class is how to read data from text files. Text files are commonly used for data storage because they are easily imported into a variety of different programs. You can often peek at a text file using a simple program like Notepad in order to get a quick feel for what the data looks like.
-
-Text files are popular because just about any program out there can read a text file. You can import a nontext format, one that has special binary characters, but this often limits the types of programs that can read the data. So people who want to make their data widely available will almost store that data in a text file.
 
 Text files come in a variety of format. A delimited file uses a special character, often a comma, to designiate where one data value ends and the next one begins. In contrast, a fixed width file requires every variable to occupy a particular column or columns.
 
@@ -37,7 +48,7 @@ suppressMessages(
   suppressWarnings(
     library(tidyverse)))
 options(width=45)
-R.version
+R.version.string
 Sys.Date()
 ```
 
@@ -54,7 +65,7 @@ The version and date should be part of any R program.
 + Type the following into notepad.
 
 ```{r csv, echo=FALSE, comment=""}
-tx <- readLines("../data/simple.csv")
+tx <- read_lines("../data/simple.csv")
 cat(tx, sep="\n")
 ```
 
@@ -82,28 +93,25 @@ and save the file using the name simple.csv. Note the directory that you are sav
 
 </div>
 
-### the read.csv function 
+### the read_csv function 
 
 ```{r read-csv}
 fn <- "../data/simple.csv"
-raw_data <- 
-  read_csv(fn,
-    col_types="n")
+raw_data <- read_csv(fn,
+  col_types="n")
 ```
 
 <div class="notes">
 
 I want to show you how to read data using the readr library. The readr library is part of the tidyverse, and effort by Hadley Wickham and others to modernize the R language. 
 
-Comma separated files are so common that R has several dedicated functions for reading them. The simplest function is read.csv.
+Comma separated files are so common that R has several dedicated functions for reading them. There is read.csv, which is part of the base R package, and read_csv, which is part of the readr library.
 
-In versions of R prior to 4.0, many people, including me, recommended that you use the option stringsAsFactors=FALSE. You will not learn much about strings and factors until the next module, but R used to convert strings into factors by default. This conversion was very unpopular among many R programmers. Factors, you will learn, are great during the data analysis phase, but not during the data management phase of the program.
-
-The R programming team got so many complaints that they changed the default option, starting with R 4.0.0. This may not seem like a lot, but when you change the default option, you pretty much guarantee that thousands of programs will no longer work in the new version of R. You don't want to do this without a very good reason. But the R programming team made the right choice here, in my opinion.
+The readr package has several arguments that make your life easier, but the most important, when you are beginning is the col_types argument. if you specify col_types="n", that tells R to expect numbers (rather than strings or dates) for all of the columns that you input. You'll see in just a bit how to change this if some of your data is strings.
 
 </div>
 
-### Display the csv data
+### Display the comma separated data
 
 ```{r display-csv}
 raw_data
@@ -131,7 +139,7 @@ Okay, not too exciting. It's a small data set. You will likely work with some mo
 + Type the following into notepad.
 
 ```{r space-delimited, echo=FALSE, comment=""}
-tx <- readLines("../data/simple.txt")
+tx <- read_lines("../data/simple.txt")
 cat(tx, sep="\n")
 ```
 
@@ -149,14 +157,13 @@ We're going to give the file we create a different name. Instead of simple.CSV, 
 
 </div>
 
-### Using the read.delim function
+### Using the read_delim function
 
 ```{r txt}
 fn <- "../data/simple.txt"
-raw_data <- 
-  read.delim(fn, 
-    header=TRUE,
-    sep=" ")
+raw_data <- read_delim(fn, 
+  delim=" ",
+  col_types="n")
 ```
 
 <div class="notes">
@@ -194,7 +201,7 @@ The data has been read in correctly.
 + Use the tab key instead of the space bar.
 
 ```{r tab, echo=FALSE, comment=""}
-tx <- readLines("../data/simple.tsv")
+tx <- read_lines("../data/simple.tsv")
 cat(tx, sep="\n")
 ```
 
@@ -208,17 +215,15 @@ Type the following into notepad and what appears to be multiple blanks, I want y
 
 </div>
 
-### Using the read.delim function, again
+### Using the read_tsv function
 
 ```{r tsv}
 fn <- "../data/simple.tsv"
-raw_data <- 
-  read.delim(fn, 
-    header=TRUE,
-    sep="\t")
+raw_data <- read_tsv(fn, 
+  col_types="n")
 ```
 
-### Display tab-delimted data
+### Display tab-delimited data
 
 ```{r display-tab}
 raw_data
@@ -242,7 +247,7 @@ The data has been read in correctly.
 + Type the following into notepad
 
 ```{r anything, echo=FALSE, comment=""}
-tx <- readLines("../data/tilde.txt")
+tx <- read_lines("../data/tilde.txt")
 cat(tx, sep="\n")
 ```
 
@@ -261,10 +266,9 @@ Here is how you would use read.table to read this file.
 
 ```{r tilde}
 fn <- "../data/tilde.txt"
-raw_data <- 
-  read.table(fn,
-    header=TRUE,
-    sep="~")
+raw_data <- read_delim(fn,
+  delim="~",
+  col_types="n")
 ```
 
 <div class="notes">
@@ -301,7 +305,7 @@ The data has been read in correctly.
   + No space between the 4 and 16
 
 ```{r fixed, echo=FALSE, comment=""}
-tx <- readLines("../data/fixed.txt")
+tx <- read_lines("../data/fixed.txt")
 cat(tx, sep="\n")
 ```
 
@@ -334,10 +338,9 @@ Okay, I deliberately did not put the header and here I just said type the number
 
 ```{r read.fwf}
 fn <- "../data/fixed.txt"
-raw_data <- 
-  read.fwf(fn, 
-    widths=c(1, 2),
-    header=FALSE)
+raw_data <- read_fwf(fn, 
+  fwf_cols(1, 2),
+  col_types="n")
 ```
 
 <div class="notes">
@@ -367,11 +370,9 @@ raw_data
 
 <div class="notes">
 
-When this happens, add more descriptive names than V1 and V2 as quickly as possible.
+When this happens, add more descriptive names than X1 and x2 as quickly as possible.
 
-Now I have to confess that x and y are not any more descriptive than V1 and V2, but you get the idea.
-
-You should also consider the read.fortran function. Check out the help file.
+Now I have to confess that x and y are not any more descriptive than x1 and x2, but you get the idea.
 
 </div>
 
@@ -392,7 +393,7 @@ You should also consider the read.fortran function. Check out the help file.
   + Two spaces between the 4 and 16
 
 ```{r white-space, echo=FALSE, comment=""}
-tx <- readLines("../data/white-space.txt")
+tx <- read_lines("../data/white-space.txt")
 cat(tx, sep="\n")
 ```
 
@@ -422,10 +423,9 @@ and store it as white-space.txt.
 
 ```{r read.table}
 fn <- "../data/white-space.txt"
-raw_data <- 
-  read.table(fn, 
-    header=FALSE,
-    sep="")
+raw_data <- read_table(fn, 
+  col_names=c("x", "y"),
+  col_types="n")
 ```
 
 <div class="notes">
@@ -488,7 +488,7 @@ The best thing to do, if there is any potential problems is to enclose your data
 + Type the following into notepad.
 
 ```{r string-data, echo=FALSE, comment=""}
-tx <- readLines("../data/string.csv")
+tx <- read_lines("../data/string.csv")
 cat(tx, sep="\n")
 ```
 
@@ -566,7 +566,7 @@ Open these files in notepad to see what they look like.
 ### Writing text files
 
 ```{r output1, echo=FALSE}
-tx <- readLines(fn)
+tx <- read_lines(fn)
 cat(tx, sep="\n")
 ```
 
@@ -590,7 +590,7 @@ If you opened up the data in notepad or some other program, you would see a spac
 
 ```{r ex1, echo=FALSE}
 fn <- "https://stats.idre.ucla.edu/stat/data/binary.csv"
-tx <- readLines(fn)
+tx <- read_lines(fn)
 cat(tx[1:6], sep="\n")
 ```
 
