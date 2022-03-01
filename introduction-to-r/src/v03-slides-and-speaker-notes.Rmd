@@ -262,7 +262,7 @@ Here is how you would use read.table to read this file.
 
 </div>
 
-### Using the read.table function with sep="~"
+### Using the read_table function with delim="~"
 
 ```{r tilde}
 fn <- "../data/tilde.txt"
@@ -334,9 +334,9 @@ Okay, I deliberately did not put the header and here I just said type the number
 
 </div>
 
-### The read.fwf function 
+### The read_fwf function 
 
-```{r read.fwf}
+```{r read_fwf}
 fn <- "../data/fixed.txt"
 raw_data <- read_fwf(fn, 
   fwf_cols(1, 2),
@@ -421,11 +421,11 @@ and store it as white-space.txt.
 
 ### White-space delimited files
 
-```{r read.table}
+```{r read_table}
 fn <- "../data/white-space.txt"
 raw_data <- read_table(fn, 
-  col_names=c("x", "y"),
   col_types="n")
+names(raw_data) <- c("x", "y")
 ```
 
 <div class="notes">
@@ -448,6 +448,9 @@ The data has been read in properly.
 
 ### Reading character data
 
++ Also know as
+  + alphanumeric data
+  + string data
 + Character data is data composed of 
   + letters, or
   + a mix of letters, symbols, and numbers
