@@ -12,13 +12,15 @@ output: powerpoint_presentation
   + Review using notepad
 + Disadvantages
   + Bigger size
-  + Slower read
+  + Slower to import
 
 <div class="notes">
 
 One of the most important skills you will learn in this class is how to read data from text files. Text files are commonly used for data storage because they are easily imported into a variety of different programs. You can often peek at a text file using a simple program like Notepad in order to get a quick feel for what the data looks like.
 
-Text files are popular because just about any program out there can read a text file. You can import a nontext format, one that has special binary characters, but this often limits the types of programs that can read the data. So people who want to make their data widely available will almost store that data in a text file.
+Text files are popular because just about any program out there can read a text file. You can import a non-text format, one that has special binary characters, but this often limits the types of programs that can read the data. So people who want to make their data widely available will almost store that data in a text file.
+
+Text files do usually take more room than other formats. As cheap as storage is becoming, this may not be that serious a problem. You also need more computing time and power, but again this less of a problem as computers get faster and more powerful.
 
 </div>
 
@@ -33,7 +35,7 @@ Text files are popular because just about any program out there can read a text 
 
 <div class="notes">
 
-Text files come in a variety of format. A delimited file uses a special character, often a comma, to designiate where one data value ends and the next one begins. In contrast, a fixed width file requires every variable to occupy a particular column or columns.
+Text files come in a variety of format. A delimited file uses a special character, often a comma, to designate where one data value ends and the next one begins. In contrast, a fixed width file requires every variable to occupy a particular column or columns.
 
 Many text files include the names of the variables in the first row of text. This is not required, but it is strongly recommended. I will talk about at least one example where you don't have the names of the variables in the first line of text.
 
@@ -98,7 +100,7 @@ and save the file using the name simple.csv. Note the directory that you are sav
 ```{r read-csv}
 fn <- "../data/simple.csv"
 raw_data <- read_csv(fn,
-  col_types="n")
+  col_types="nn")
 ```
 
 <div class="notes">
@@ -107,7 +109,7 @@ I want to show you how to read data using the readr library. The readr library i
 
 Comma separated files are so common that R has several dedicated functions for reading them. There is read.csv, which is part of the base R package, and read_csv, which is part of the readr library.
 
-The readr package has several arguments that make your life easier, but the most important, when you are beginning is the col_types argument. if you specify col_types="n", that tells R to expect numbers (rather than strings or dates) for all of the columns that you input. You'll see in just a bit how to change this if some of your data is strings.
+The readr package has several arguments that make your life easier, but the most important, when you are beginning is the col_types argument. if you specify col_types="nn", that tells R to expect numbers (rather than strings or dates) for all of the columns that you input. You'll see in just a bit how to change this if some of your data is strings.
 
 </div>
 
@@ -163,16 +165,12 @@ We're going to give the file we create a different name. Instead of simple.CSV, 
 fn <- "../data/simple.txt"
 raw_data <- read_delim(fn, 
   delim=" ",
-  col_types="n")
+  col_types="nn")
 ```
 
 <div class="notes">
 
-Review the options for the read.table command.
-
-Type in the same data, but using the tilde (~) as a separator (e.g., 1~4). Save the file as tilde.txt.
-
-Here is how you would use read.table to read this file.
+Here is how you would use read_delim to read this file. The argument delim=" " tells R to look for exactly one blank between two numbers.
 
 </div>
 
@@ -220,8 +218,14 @@ Type the following into notepad and what appears to be multiple blanks, I want y
 ```{r tsv}
 fn <- "../data/simple.tsv"
 raw_data <- read_tsv(fn, 
-  col_types="n")
+  col_types="nn")
 ```
+
+<div class="notes">
+
+The read_tsv function works when you have a tab character as the delimiter. It uses the same arguments as the read_csv function.
+
+</div>
 
 ### Display tab-delimited data
 
@@ -253,27 +257,28 @@ cat(tx, sep="\n")
 
 + Save as tilde.txt
 
-
 <div class="notes">
 
 Type in the same data, but using the tilde (~) as a separator (e.g., 1~4). Save the file as tilde.txt.
 
-Here is how you would use read.table to read this file.
+Here is how you would use read_delim to read this file.
 
 </div>
 
-### Using the read_table function with delim="~"
+### Using the read_delim function with delim="~"
 
 ```{r tilde}
 fn <- "../data/tilde.txt"
 raw_data <- read_delim(fn,
   delim="~",
-  col_types="n")
+  col_types="nn")
 ```
 
 <div class="notes">
 
 The data reads in just fine. Why would you use a tilde as a delimiter? Sometimes your data itself includes delimiters like spaces and commas, and then you might want to choose an obscure out of the way symbol to serve as a delimiter.
+
+Another obscure character that is sometimes used as a delimiter is the veritical bar (|).
 
 </div>
 
@@ -330,7 +335,9 @@ Create a fixed width file in notepad with the following lines.
 
 and store it as fixed.txt.
 
-Okay, I deliberately did not put the header and here I just said type the numbers because I wanted show you what happens if you don't have a header.
+Okay, I deliberately did not put the variable names as the first line.
+
+Fixed width files often do not include the variable names in the file itself.
 
 </div>
 
@@ -340,7 +347,7 @@ Okay, I deliberately did not put the header and here I just said type the number
 fn <- "../data/fixed.txt"
 raw_data <- read_fwf(fn, 
   fwf_cols(1, 2),
-  col_types="n")
+  col_types="nn")
 ```
 
 <div class="notes">
@@ -424,13 +431,15 @@ and store it as white-space.txt.
 ```{r read_table}
 fn <- "../data/white-space.txt"
 raw_data <- read_table(fn, 
-  col_types="n")
+  col_types="nn")
 names(raw_data) <- c("x", "y")
 ```
 
 <div class="notes">
 
-The argument sep="" will use "white space" as a delimiter. White space is defined as one or more blanks or tabs or even a mix of spaces and tabs.
+The read_table function will use "white space" as a delimiter. White space is defined as one or more blanks or tabs or even a mix of spaces and tabs.
+
+Now, you could also use read_fwf for this dataset.
 
 </div>
 
@@ -449,8 +458,8 @@ The data has been read in properly.
 ### Reading character data
 
 + Also know as
+  + string data, or
   + alphanumeric data
-  + string data
 + Character data is data composed of 
   + letters, or
   + a mix of letters, symbols, and numbers
@@ -508,8 +517,8 @@ cat(tx, sep="\n")
 ```{r string}
 fn <- "../data/string.csv"
 raw_data <- 
-  read.csv(fn, 
-    header=TRUE)
+  read_csv(fn, 
+  col_types="ccn")
 ```
 
 <div class="notes">
@@ -534,17 +543,40 @@ The data has been read in correctly.
   + Multiple blanks in a text file
   + Reading character data
 + What's next?
+  + Advanced options when reading
   + Writing text files
+
+### Advanced options when reading
+
++ col_select=
++ na=
++ name_repair=
++ skip=
+
+<div class="notes">
+
+There are some nice options that I won't show in this video, but they are still worth noting.
+
+You can use the col_select argument to read in only some of the columns of data. 
+
+Use the na argument to designate codes for missing values. By default, R looks for NA or a width of zero. But sometimes, other symbols, such as an asterisk or a dot may represent missing values.
+
+You can use the name_repair argument to suggest how to handle names that are duplicates or which violate the rules in R for variable names.
+
+You can use the skip argument to ignore a certain number of rows before reading data.
+
+</div>
 
 ### Writing text files
 
 + Similar structure to read functions
-  + write.csv
-  + write.table
+  + write_csv
+  + write_delim
+  + write_tsv
 
 <div class="notes">
 
-If you want to write a text file, you can use either the write.csv or write.table functions. Look up the help files on these functions. We'll create a small data frame and store it in a comma delimited and tab delimited format.
+If you want to write a text file, you can use the write_csv, write_delim, or write_tsv functions. Look up the help files on these functions. We'll create a small data frame and store it in a comma delimited and tab delimited format.
 
 </div>
 
@@ -555,9 +587,7 @@ raw_data <- data.frame(
   x=c(1, 2, 3, 4), 
   y=c(4, 8, 12, 16))
 fn <- "../results/output_data.txt"
-write.table(
-  raw_data, fn, 
-  row.names=FALSE)
+write_csv(raw_data, fn)
 ```
 
 <div class="notes">
@@ -582,6 +612,7 @@ If you opened up the data in notepad or some other program, you would see a spac
 ### Break #7
 
 + What have you learned
+  + Advanced options when reading
   + Writing text files
 + What's next?
   + Some real world examples
@@ -620,14 +651,13 @@ There is no formal data dictionary, which is a shame, but you can find a brief d
 
 ```{r read-binary}
 fn <- "https://stats.idre.ucla.edu/stat/data/binary.csv"
-mydata <-
-  read.csv(fn,
-    header=TRUE)
+mydata <- read_csv(fn,
+  col_types="nnnn")
 ```
 
 <div class="notes">
 
-Choose the read.csv function and the header=TRUE option.
+Choose the read_csv function and the header=TRUE option.
 
 </div>
 
