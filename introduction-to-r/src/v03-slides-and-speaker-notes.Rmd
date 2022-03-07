@@ -3,6 +3,9 @@ title: "Module03: Reading text files"
 author: "Steve Simon"
 date: "Created 2020-02-08"
 output: powerpoint_presentation
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding,
+  output_dir = "../results", output_format = "all") })  
 ---
 
 ### Text files (1/2)
@@ -618,19 +621,28 @@ If you opened up the data in notepad or some other program, you would see a spac
   + Some real world examples
 
 
-### Example #1, the data file
+### Example #1, binary.csv
 
-+ https://stats.idre.ucla.edu/stat/data/binary.csv
+![Figure 1. Excerpt from website](../images/binary-01.png)
+
+<div class="notes">
+
+Let's look at some real world examples. The first one comes from one of the pages at the UCLA site on data analysis examples.
+
+</div>
+
+### Example #1, the data
 
 ```{r ex1, echo=FALSE}
-fn <- "https://stats.idre.ucla.edu/stat/data/binary.csv"
+# Original source is https://stats.idre.ucla.edu/stat/data/binary.csv
+fn <- "../data/binary.csv"
 tx <- read_lines(fn)
 cat(tx[1:6], sep="\n")
 ```
 
 <div class="notes">
 
-Here is the first real-world example. Peeking at the first six lines of data, you can see clearly that it is uses comma delimiter and the first row of data contains the variable names.
+Peeking at the first six lines of data, you can see clearly that it is uses comma delimiter and the first row of data contains the variable names.
 
 </div>
 
@@ -639,8 +651,7 @@ Here is the first real-world example. Peeking at the first six lines of data, yo
 
 + No formal data dictionary, but here is a description
   + "This dataset has a binary response (outcome, dependent) variable called admit. There are three predictor variables: gre, gpa and rank. We will treat the variables gre and gpa as continuous. The variable rank takes on the values 1 through 4. Institutions with a rank of 1 have the highest prestige, while those with a rank of 4 have the lowest."
-  + Description found at 
-  
+
 <div class="notes">
 
 There is no formal data dictionary, which is a shame, but you can find a brief description on a second page where this data set is used.
@@ -650,14 +661,14 @@ There is no formal data dictionary, which is a shame, but you can find a brief d
 ### Example #1, the code
 
 ```{r read-binary}
-fn <- "https://stats.idre.ucla.edu/stat/data/binary.csv"
-mydata <- read_csv(fn,
+fn <- "../data/binary.csv"
+raw_data <- read_csv(fn,
   col_types="nnnn")
 ```
 
 <div class="notes">
 
-Choose the read_csv function and the header=TRUE option.
+Choose the read_csv function and specify four numeric variables.
 
 </div>
 
@@ -665,22 +676,36 @@ Choose the read_csv function and the header=TRUE option.
 ### Example #1, the output
 
 ```{r display-binary}
-head(mydata)
+raw_data
 ```
 
 <div class="notes">
 
-The read.csv file does a fine job here. I am only printing the first few rows of the data.
+The read.csv file does a fine job here.
 
 </div>
 
+### Example #2, barbershop-music.txt
+
+![Figure 2. Excerpt from website](../images/barbershop-00.png)
+
 ### Example #2, the data file
 
-![](../images/barbershop-in-notepad.png)
+![](../images/barbershop-01.png)
 
 <div class="notes">
 
-This is a second dataset. Looking at it in notepad, it looks like it is a tab delimited file.
+This is a second dataset. Looking at it in notepad, it looks like it is a tab delimited file. But you need to fix the file. The first two lines accidentally got stuck together.
+
+</div>
+
+### Example #2, the data file, fixed
+
+![](../images/barbershop-02.png)
+
+<div class="notes">
+
+This is what the fixed file looks like. Normally, I discouraging modifying the data before you input it into R, but here a quick fix makes sense.
 
 </div>
 
@@ -688,13 +713,19 @@ This is a second dataset. Looking at it in notepad, it looks like it is a tab de
 
 + No data dictionary
   + Brief description: "At a barbershop music singing competition, choruses are judged on three scales: Music (quality of the arrangement, etc.), Performance, and Singing."
-  + Description found at 
+
+<div class="notes">
+
+There is no formal data dictionary, but the website does offer a brief description.
+
+</div>
 
 ### Example #2, the code
 
 ```{r read-tsa-3}
-fn <- "https://dasl.datadescription.com/download/data/3061"
-mydata <- read_tsv(fn,
+# Original source is https://dasl.datadescription.com/download/data/3061
+fn <- "../data/barbershop-music.txt"
+raw_data <- read_tsv(fn,
   col_types="nnn")
 ```
 
@@ -707,12 +738,22 @@ The read_tsv function works well here.
 ### Example #2, the output
 
 ```{r display-example-2}
-head(mydata)
+raw_data
 ```
 
 <div class="notes">
 
 The data appears to have been read in nicely.
+
+</div>
+
+### Example #3, airport.txt
+
+![Figure 3. Excerpt from website](../images/airport-01.png)
+
+<div class="notes">
+
+The third example comes from the Journal of Statistics Education website.
 
 </div>
 
@@ -728,7 +769,7 @@ This is a third data set. Notice that there are no variable names at the top of 
 
 ### Example #3, the data dictionary
 
-+ Data dictionary at . Here is an excerpt.
++ Here is an excerpt from the data dictionary.
 
 ```{}
 VARIABLE DESCRIPTIONS:
@@ -746,9 +787,10 @@ This dataset has a very nice data dictionary. From the description, you can tell
 ### Example #3, the code
 
 ```{r airport}
-fn <- "http://jse.amstat.org/datasets/airport.dat.txt"
+# Original source is http://jse.amstat.org/datasets/airport.dat.txt
+fn <- "../data/airport.txt"
 raw_data <- read_fwf(fn, 
-  fwf_cols(21,22,6,7,9,10,10),
+  fwf_cols(21, 22, 6, 7, 9, 10, 10),
   col_types="ccnnnnn")
 ```
 
@@ -778,6 +820,13 @@ Data dictionary links
 2. https://dasl.datadescription.com/datafile/barbershop-music/
 3. http://jse.amstat.org/datasets/airport.txt
 
+### Break #8
+
++ What have you learned
+  + Some real world examples
++ What's next?
+  + Some general advice
+
 ### Should I download before reading?
 + Read directly from website
   + Convenient
@@ -799,7 +848,11 @@ If you download the file and then read it, you provide yourself with some insura
 
 ### Disadvantages of fixed width formatting?
 + Confusing
-  + What is 312? 3, 1, and 2? 31, and 2? 3 and 12? 312?
+  + What is 312? 
+    + 3, 1, and 2?
+    + 31 and 2?
+    + 3 and 12?
+    + 312?
 + More work
 + Prone to errors
 
