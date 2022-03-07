@@ -618,7 +618,7 @@ If you opened up the data in notepad or some other program, you would see a spac
   + Some real world examples
 
 
-### Example #1
+### Example #1, the data file
 
 + https://stats.idre.ucla.edu/stat/data/binary.csv
 
@@ -635,11 +635,11 @@ Here is the first real-world example. Peeking at the first six lines of data, yo
 </div>
 
 
-### Example #1
+### Example #1, the data dictionary
 
 + No formal data dictionary, but here is a description
   + "This dataset has a binary response (outcome, dependent) variable called admit. There are three predictor variables: gre, gpa and rank. We will treat the variables gre and gpa as continuous. The variable rank takes on the values 1 through 4. Institutions with a rank of 1 have the highest prestige, while those with a rank of 4 have the lowest."
-  + Description found at https://stats.idre.ucla.edu/r/dae/logit-regression/
+  + Description found at 
   
 <div class="notes">
 
@@ -647,7 +647,7 @@ There is no formal data dictionary, which is a shame, but you can find a brief d
 
 </div>
 
-### Example #1
+### Example #1, the code
 
 ```{r read-binary}
 fn <- "https://stats.idre.ucla.edu/stat/data/binary.csv"
@@ -662,7 +662,7 @@ Choose the read_csv function and the header=TRUE option.
 </div>
 
 
-### Display binary data
+### Example #1, the output
 
 ```{r display-binary}
 head(mydata)
@@ -674,7 +674,7 @@ The read.csv file does a fine job here. I am only printing the first few rows of
 
 </div>
 
-### Example #2
+### Example #2, the data file
 
 ![](../images/barbershop-in-notepad.png)
 
@@ -684,29 +684,27 @@ This is a second dataset. Looking at it in notepad, it looks like it is a tab de
 
 </div>
 
-### Example #2
+### Example #2, the data dictionary
 
 + No data dictionary
   + Brief description: "At a barbershop music singing competition, choruses are judged on three scales: Music (quality of the arrangement, etc.), Performance, and Singing."
-  + Description found at https://dasl.datadescription.com/datafile/barbershop-music/
+  + Description found at 
 
-### Example #2
+### Example #2, the code
 
 ```{r read-tsa-3}
 fn <- "https://dasl.datadescription.com/download/data/3061"
-mydata <- 
-  read.delim(fn,
-    header=TRUE,
-    sep="\t")
+mydata <- read_tsv(fn,
+  col_types="nnn")
 ```
 
 <div class="notes">
 
-The read.table command works well here. The separator or delimiter is the tab character, which is coded in R as \t.
+The read_tsv function works well here.
 
 </div>
 
-### Display barbershop data
+### Example #2, the output
 
 ```{r display-example-2}
 head(mydata)
@@ -718,7 +716,7 @@ The data appears to have been read in nicely.
 
 </div>
 
-### Example #3
+### Example #3, the data file
 
 ![](../images/airport-in-browser.png)
 
@@ -728,19 +726,15 @@ This is a third data set. Notice that there are no variable names at the top of 
 
 </div>
 
-### Example #3
+### Example #3, the data dictionary
 
-+ Data dictionary at http://jse.amstat.org/datasets/airport.txt. Here is an excerpt.
++ Data dictionary at . Here is an excerpt.
 
 ```{}
 VARIABLE DESCRIPTIONS:
 Airport                          Columns 1-21
 City                             Columns 22-43 
 Scheduled departures             Columns 44-49 
-Performed departures             Columns 51-56
-Enplaned passengers              Columns 58-65
-Enplaned revenue tons of freight Columns 67-75
-Enplaned revenue tons of mail    Columns 77-85
 ```
 
 <div class="notes">
@@ -749,13 +743,13 @@ This dataset has a very nice data dictionary. From the description, you can tell
 
 </div>
 
-### Example #3
+### Example #3, the code
 
 ```{r airport}
 fn <- "http://jse.amstat.org/datasets/airport.dat.txt"
-raw_data <- read.fwf(fn, 
-  c(21, 22, 6, 7, 9, 10, 10), header=FALSE)
-head(raw_data, 2)
+raw_data <- read_fwf(fn, 
+  fwf_cols(21,22,6,7,9,10,10),
+  col_types="ccnnnnn")
 ```
 
 <div class="notes">
@@ -763,6 +757,26 @@ head(raw_data, 2)
 You have to do a bit of math here. If the first variable ends in column 21 and the second variable ends in column 43, then the number of columns for the second variable is 43-21.
 
 </div>
+
+### Example #3, the output
+
+```{r airport-print}
+raw_data
+```
+
+### Links for examples 1-3
+
+Data file links
+
+1. https://stats.idre.ucla.edu/stat/data/binary.csv
+2. https://dasl.datadescription.com/download/data/3061
+3. http://jse.amstat.org/datasets/airport.dat.txt
+
+Data dictionary links
+
+1. https://stats.idre.ucla.edu/r/dae/logit-regression/
+2. https://dasl.datadescription.com/datafile/barbershop-music/
+3. http://jse.amstat.org/datasets/airport.txt
 
 ### Should I download before reading?
 + Read directly from website
