@@ -2,7 +2,9 @@
 title: "Module03: Reading text files"
 author: "Steve Simon"
 date: "Created 2020-02-08"
-output: powerpoint_presentation
+output: 
+  powerpoint_presentation: 
+    reference_doc: template-slides-and-speaker-notes.potx
 knit: (function(inputFile, encoding) {
   rmarkdown::render(inputFile, encoding = encoding,
   output_dir = "../results", output_format = "all") })  
@@ -634,7 +636,6 @@ Let's look at some real world examples. The first one comes from one of the page
 ### Example #1, the data
 
 ```{r ex1, echo=FALSE}
-# Original source is https://stats.idre.ucla.edu/stat/data/binary.csv
 fn <- "../data/binary.csv"
 tx <- read_lines(fn)
 cat(tx[1:6], sep="\n")
@@ -723,7 +724,6 @@ There is no formal data dictionary, but the website does offer a brief descripti
 ### Example #2, the code
 
 ```{r read-tsa-3}
-# Original source is https://dasl.datadescription.com/download/data/3061
 fn <- "../data/barbershop-music.txt"
 raw_data <- read_tsv(fn,
   col_types="nnn")
@@ -787,7 +787,6 @@ This dataset has a very nice data dictionary. From the description, you can tell
 ### Example #3, the code
 
 ```{r airport}
-# Original source is http://jse.amstat.org/datasets/airport.dat.txt
 fn <- "../data/airport.txt"
 raw_data <- read_fwf(fn, 
   fwf_cols(21, 22, 6, 7, 9, 10, 10),

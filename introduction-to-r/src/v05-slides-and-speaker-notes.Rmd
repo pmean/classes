@@ -2,7 +2,9 @@
 title: "Introduction to R, module05"
 author: "Steve Simon"
 date: "Created 2020-04-02"
-output: powerpoint_presentation
+output: 
+  powerpoint_presentation: 
+    reference_doc: template-slides-and-speaker-notes.potx
 knit: (function(inputFile, encoding) {
   rmarkdown::render(inputFile, encoding = encoding,
   output_dir = "../results", output_format = "all") })  
@@ -10,15 +12,20 @@ knit: (function(inputFile, encoding) {
 
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo=TRUE)
+options(width=42)
 ``` 
 
-<div class="notes"></div>
+<div class="notes">
+
+
+</div>
 
 ### Introduction
 
-This Powerpoint presentation was created using an R Markdown file.
-
 ```{r r-version-and-current-date}
+suppressMessages(
+  suppressWarnings(
+    library(tidyverse)))
 R.version.string
 Sys.Date()
 ```
@@ -30,6 +37,7 @@ Like the earlier presentations, this Powerpoint file was created using Rmarkdown
 </div>
 
 ### How do you characterize relationships?
+
 + Between two continuous variables
   + Correlations and scatterplots
 + Between two categorical variables
@@ -48,6 +56,7 @@ In this module, you will see datasets that have a mix of continuous and categori
 </div>
 
 ### FEV data
+
 + FEV dataset
   + http://www.amstat.org/publications/jse/datasets/fev.dat.txt
 + FEV data dictionary
@@ -55,7 +64,7 @@ In this module, you will see datasets that have a mix of continuous and categori
 
 <div class="notes">
 
-The first data set looks at pumonary function in a group of children. The acronym FEV stands for Forced Expiratory Volume and represents how air you can blow out of your lungs.
+The first data set looks at pulmonary function in a group of children. The acronym FEV stands for Forced Expiratory Volume and represents how air you can blow out of your lungs.
 
 </div>
 
@@ -79,32 +88,47 @@ This is a listing of the first few rows. It could be a tab delimited file or a f
 
 </div>
 
+### read in the FEV data set, code
 
-
-### read in the FEV data set
-
-```{r read_fev}
-fn <- "http://www.amstat.org/publications/jse/datasets/fev.dat.txt"
-fev <- read.fwf(file=fn, widths=c(3, 7, 5, 4, 6), header=FALSE, stringsAsFactors=FALSE)
-names(fev) <- c("age","fev","ht","sex","smoke")
-head(fev)
+```{r read-fev-code}
+fn <- "../data/fev.txt"
+fev <- read_fwf(file=fn,
+  col_positions=fwf_cols(
+    age=3, 
+    fev=7,
+    ht=5,
+    sex=4,
+    smoke=6),
+  col_types="nnnnn")
 ```
 
 <div class="notes">
 
-If you count carefully, you will see that the first three columns represent the first variable, you need seven more columns for the second variable, and so forth. Print out the first few lines of data to be sure.
+If you count carefully, you will see that the first three columns represent the first variable, you need seven more columns for the second variable, and so forth.
 
 </div>
 
-### Display the bottom of FEV data
+### read in the FEV data set, output
 
-```{r fev-tail}
-tail(fev)
+```{r read-fev-output}
+fev
 ```
 
 <div class="notes">
 
-It's always good to view the last few lines of data as well.
+Print out the first few lines of data to be sure.
+
+</div>
+
+### read in the FEV data set, glimpse
+
+```{r read-fev-glimpse}
+glimpse(fev)
+```
+
+<div class="notes">
+
+Here is the structure of the data frame.
 
 </div>
 

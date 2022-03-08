@@ -2,7 +2,9 @@
 title: "Introduction to R, module04"
 author: "Steve Simon"
 date: "Created 2016-08-13"
-output: powerpoint_presentation
+output: 
+  powerpoint_presentation: 
+    reference_doc: template-slides-and-speaker-notes.potx
 knit: (function(inputFile, encoding) {
   rmarkdown::render(inputFile, encoding = encoding,
   output_dir = "../results", output_format = "all") })  
@@ -10,18 +12,22 @@ knit: (function(inputFile, encoding) {
 
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo=TRUE)
+options(width=42)
 ``` 
 
 ### Introduction
 
-This Powerpoint presentation was created using an R Markdown file. It is always a good idea to print the version of R and the current date as the very first few lines of any R program.
-
 ```{r r-version-and-current-date}
+suppressMessages(
+  suppressWarnings(
+    library(tidyverse)))
 R.version.string
 Sys.Date()
 ```
 
 <div class="notes">
+
+This Powerpoint presentation was created using an R Markdown file. It is always a good idea to print the version of R and the current date as the very first few lines of any R program.
 
 The version of R is stored in an internal constant, R.version.string. You can find the current data with the Sys.Date() function.
 
@@ -65,11 +71,21 @@ So let's try reading it in as a tab delimited file.
 ### Reading in the Titanic data set
 
 ```{r read}
-fn <- "http://www.statsci.org/data/general/titanic.txt"
-ti <- read.table(
-  file=fn, header=TRUE, 
-  stringsAsFactors=FALSE, sep="\t")
-head(ti, n=4)
+fn <- "../data/titanic_v00.txt"
+ti <- read_tsv(fn,
+  col_types="ccncn")
+```
+
+<div class="notes">
+
+The name, passenger class, and gender are strings. The age and survival variables are numeric.
+
+</div>
+
+### Viewing the Titanic data set
+
+```{r view}
+ti
 ```
 
 <div class="notes">
@@ -78,10 +94,10 @@ It reads in fairly well, it seems. The first few lines of data are hard to read 
 
 </div>
 
-### Displaying without the names
+### Displaying without the passenger names
 
 ```{r display}
-head(ti[ , -1])
+ti[1:4, -1]
 ```
 
 <div class="notes">
@@ -93,14 +109,12 @@ Notice how much nicer things look when you take out the column of names.
 ### Peek at the bottom also
 
 ```{r tail}
-tail(ti[ , -1])
+ti[1310:1313, -1]
 ```
 
 <div class="notes">
 
 It's also a good idea to peek at the bottom of a data set right after you read it in. Sometimes a line in the middle gets out of sync and it throws the rest of the data off. If that happens then you will see weird things at the bottom of the data.
-
-Notice that Miss Tamini Zabour has an "NA" for age.  We'll take a careful look at this.
 
 </div>
 
@@ -116,31 +130,36 @@ You learned how to get descriptive statistics for continuous variables in a prev
 
 </div>
 
-### Print out information on youngest and oldest
+### Print out information on youngest
 
-```{r extremes}
-ti[which.min(ti$Age), ]
-ti[which.max(ti$Age), ]
+```{r min}
+ti[which.min(ti$Age), "Name"]
 ```
 
 <div class="notes">
 
 The which.min and which.max functions simplify the task of finding the row or rows where a data value reaches its minimum or maximum.
 
-Notice that the little baby survived, but not the old man.
+</div>
+
+### Print out information on oldest
+
+```{r max}
+ti[which.max(ti$Age), "Name"]
+```
+
+<div class="notes">
+
+Here is the oldest passenger. It turns out that the little baby survived, but not the old man.
 
 </div>
 
-### First break
+### Break #1
 + What have you learned
   + Reading in the Titanic dataset
 + What's next
   + Categorical versus continuous variables
   + Counts, proportions, and percentage
-  + Factors
-  + Crosstabulations
-  + Barplots
-  + New categorical variables
 
 ### Categorical versus continuous variables
 
@@ -189,7 +208,8 @@ So the table function produces only counts.
 ### Proportions
 
 ```{r table-proportion}
-PClass_proportions <- prop.table(PClass_counts)
+PClass_proportions <-
+  prop.table(PClass_counts)
 PClass_proportions
 ```
 
@@ -204,7 +224,8 @@ The prop.table function takes a frequency table and converts it to a proportion.
 ### Percentages
 
 ```{r table-pct}
-PClass_percents <- round(100*PClass_proportions)
+PClass_percents <- 
+  round(100*PClass_proportions)
 PClass_percents
 ```
 
@@ -218,7 +239,8 @@ Multiply by 100 and round to get percentages.
 
 ```{r table-pct-sign}
 pct.sign <- "%"
-PClass_nice_percents <- paste(PClass_percents, pct.sign)
+PClass_nice_percents <- 
+  paste0(PClass_percents, pct.sign)
 PClass_nice_percents
 ```
 
@@ -230,27 +252,14 @@ You can get even fancier. The paste function concatenates several string variabl
 
 ### Percentages
 
-```{r table-pct-sign-no-space}
-PClass_nicer_percents <- paste(PClass_percents, pct.sign, sep="")
-PClass_nicer_percents
-```
-
-<div class="notes">
-
-The "sep" parameter tells R what to put between the two values you are pasting together. By default it is a single blank character, but we don't want a blank between the number and the percent sign.
-
-</div>
-
-### Percentages
-
 ```{r table-names}
 colon <- ": "
 PClass_nicest_percents <- 
-  paste(
+  paste0(
     names(PClass_percents), 
     colon,
     PClass_percents, 
-    pct.sign, sep="")
+    pct.sign)
 PClass_nicest_percents
 ```
 
@@ -266,10 +275,9 @@ Somehow, the names of the passenger class got lost. So let's add them back in. A
 n  <- sum(PClass_counts)
 slash <- "/"
 comma <- ", "
-percents_and_fractions <- paste(
+percents_and_fractions <- paste0(
   PClass_nicest_percents, comma,
-  PClass_counts, slash, n,
-  sep="")
+  PClass_counts, slash, n)
 percents_and_fractions
 ```
 
@@ -286,7 +294,9 @@ In contrast, most other statistical packages try to produce polished results rig
 ### Tables that include counts of missing values.
 
 ```{r table-usena}
-table(ti$PClass, useNA="always")
+PClass_missing <- 
+  table(ti$PClass, useNA="always")
+PClass_missing
 ```
 
 <div class="notes">
@@ -298,7 +308,9 @@ The default option in the table function is to not list missing values. During t
 ### Total count
 
 ```{r table-addmargins}
-addmargins(table(ti$PClass, useNA="always"))
+PClass_total <- 
+  addmargins(PClass_missing)
+PClass_total
 ```
 
 <div class="notes">
@@ -307,21 +319,22 @@ You can add a total count to the frequency table with the addmargins function.
 
 </div>
 
-### Second break
+### Break #2
 + What have you learned
-  + Reading in the Titanic dataset
   + Categorical versus continuous variables
   + Counts, proportions, and percentage
 + What's next
   + Factors
   + Crosstabulations
-  + Barplots
-  + New categorical variables
 
 ### Factors
 
 ```{r factors}
-ti$surv_factor <- factor(ti$Survived, levels=0:1, labels=c("No","Yes"))
+ti$surv_factor <- 
+  factor(
+    ti$Survived, 
+    levels=0:1, 
+    labels=c("No","Yes"))
 table(ti$surv_factor)
 ```
 
@@ -334,7 +347,8 @@ The factor function is similar to the variable label in SPSS and the format stat
 ### Crosstabulation
 
 ```{r crosstabs1}
-pclass_by_gender <- table(ti$PClass, ti$Sex)
+pclass_by_gender <- 
+  table(ti$PClass, ti$Sex)
 pclass_by_gender
 ```
 
@@ -344,16 +358,30 @@ A crosstabulation shows counts across the combination of two different categoric
 
 </div>
 
-### Row proportions
+### Row proportions, code
 
 ```{r row_proportions}
-row_proportions <- prop.table(pclass_by_gender, margin=1)
+row_proportions <- 
+  prop.table(
+    pclass_by_gender, 
+    margin=1)
+```
+
+<div class="notes">
+
+The prop.table function converts counts into proportions. Use margin=1 to get row proportions.
+
+</div>
+
+### Row proportions, output
+
+```{r display-row-proportions}
 row_proportions
 ```
 
 <div class="notes">
 
-The prop.table function converts counts into proportions. Here is an example of row proportions.
+Row proportions add up to 1 within each row.
 
 </div>
 
@@ -370,35 +398,63 @@ It is a lot easier to read if you convert the proportions into percentages and t
 
 </div>
 
-### Column percentages
+### Column percentages, code
 
-```{r col_pcts}
-col_proportions <- prop.table(pclass_by_gender, margin=2)
+```{r compute-column-percentages}
+col_proportions <- 
+  prop.table(
+    pclass_by_gender,
+    margin=2)
 col_pcts <- round(100*col_proportions)
+```
+
+<div class="notes">
+
+Setting the margin parameter to 2 gives column proportions.
+
+</div>
+
+### Column percentages, output
+
+```{r display-column-percentages}
 col_pcts
 ```
 
 <div class="notes">
 
-Setting the margin parameter to 2 gives column proportions. Column proportions add up to 1 within each column. Again, converting to percents and rounding helps a lot. Among the female passengers, `r col_pcts[1, 1]`% traveled in first class, `r col_pcts[2, 1]`% in second class, and `r col_pcts[3, 1]`% in third class.
+Column proportions add up to 1 within each column. Again, converting to percents and rounding helps a lot. Among the female passengers, `r col_pcts[1, 1]`% traveled in first class, `r col_pcts[2, 1]`% in second class, and `r col_pcts[3, 1]`% in third class.
 
 </div>
 
-### Column percentages
+### Cell percentages, code
 
-```{r cell_pcts}
-cell_proportions <- prop.table(pclass_by_gender)
-cell_pcts <- round(100*cell_proportions)
+```{r cell_pcts-code}
+cell_proportions <- 
+  prop.table(pclass_by_gender)
+cell_pcts <- 
+  round(100*cell_proportions)
+```
+
+<div class="notes">
+
+If you omit the margin parameter, R produces cell proportions.
+
+</div>
+
+### Cell percentages, output
+
+```{r cell-pcts-output}
 cell_pcts
 ```
 
 <div class="notes">
 
-If you omit the margin parameter, R produces cell proportions. Cell proportions add up to 1 across all the cells in the table. Converting to percents, you can see that `r cell_pcts[1, 1]`% of the passengers were first class femles, `r cell_pcts[1, 2]`% were first class males, `r cell_pcts[2, 1]`% were second class females, etc.
+Cell proportions add up to 1 across all the cells in the table. Converting to percents, you can see that `r cell_pcts[1, 1]`% of the passengers were first class femles, `r cell_pcts[1, 2]`% were first class males, `r cell_pcts[2, 1]`% were second class females, etc.
 
 </div>
 
 ### Which percentages should you use
+
 + General guidance
   + Set the rows to your treatment/exposure 
   + Set the columns to your outcome
@@ -416,12 +472,22 @@ That being said, I would also encourage you to try several different approaches.
 
 </div>
 
-### Practical example
+### Practical example, code
 
 ```{r survival-chart}
-gender_by_survival <- table(ti$Sex, ti$surv_factor)
-survival_proportions <- prop.table(gender_by_survival, margin=1)
-survival_percents <- round(100*survival_proportions)
+gender_by_survival <- 
+  table(ti$Sex, ti$surv_factor)
+survival_proportions <- 
+  prop.table(
+    gender_by_survival, 
+    margin=1)
+survival_percents <- 
+  round(100*survival_proportions)
+```
+
+### Practical example, output
+
+```{r survival_percents}
 survival_percents
 ```
 
@@ -431,29 +497,28 @@ The key question in the Titanic dataset is survival. Who lived and who died. Kat
 
 Using the rules shown on the previous slide, survival is obviously the outcome. Make that the columns and gender the rows. Then compute row percentages (margin=1).
 
-For this, you can see that only `r survival_proportions[1, 2]`% of the women survived, but `r survival_proportions[2, 2]`% of the men did.
+For this, you can see that `r survival_percents[1, 2]`% of the women survived, but only `r survival_percents[2, 2]`% of the men did.
 
 </div>
 
-### Third break
+### Break #3
 + What have you learned
-  + Reading in the Titanic dataset
-  + Categorical versus continuous variables
-  + Counts, proportions, and percentage
   + Factors
   + Crosstabulations
 + What's next
   + Barplots
-  + New categorical variables
 
-### Barplot of counts, code only
+### Barplot of counts, code
 
 ```{r barplot1}
-library(ggplot2)
 simple_barplot <- 
   ggplot(ti, aes(x=PClass)) + 
     geom_bar()
-ggsave("../images/barplot1.png", simple_barplot, width=4, height=4)
+ggsave(
+  "../images/barplot1.png", 
+  simple_barplot, 
+  width=4, 
+  height=4)
 ```
 
 <div class="notes">
@@ -464,7 +529,7 @@ Because of the way Rmarkdown displays graphs, I have to put the code on a separa
 
 </div>
 
-### Barplot of counts, graph only
+### Barplot of counts, graph
 
 ![Barplot of counts](../images/barplot1.png)
 
@@ -475,14 +540,17 @@ Here is what the plot looks like.
 </div>
 
 
-### Barplot of proportions, code only
+### Barplot of percentages, code
 
 ```{r barplot2}
-proportions_barplot <- 
+percentages_barplot <- 
   ggplot(ti, aes(x=PClass)) + 
-    geom_bar(aes(weight=1/n)) +
-    scale_y_continuous("Proportion")
-ggsave("../images/barplot2.png", proportions_barplot, width=4, height=4)
+    geom_bar(aes(weight=100/n))
+ggsave(
+  "../images/barplot2.png", 
+  percentages_barplot, 
+  width=4, 
+  height=4)
 ```
 
 <div class="notes">
@@ -491,7 +559,7 @@ Use weights to get a bar chart of proportions.
 
 </div>
 
-### Barplot of proportions, graph only
+### Barplot of proportions, graph
 
 ![Barplot of proportions](../images/barplot2.png)
 
@@ -501,14 +569,20 @@ Here is what the plot looks like.
 
 </div>
 
-### Barplot of percentages, code only
+### Barplot of percentages, code
 
 ```{r barplot3}
-proportions_barplot <- 
-  ggplot(ti, aes(x=PClass)) + 
-    geom_bar(aes(weight=100/n)) +
-    scale_y_continuous("Percent", breaks=c(0, 20, 40), labels=c("0%", "20%", "40%"))
-ggsave("../images/barplot3.png", proportions_barplot, width=4, height=4)
+labeled_barplot <- 
+  percentages_barplot +
+    scale_y_continuous(
+      "Percent", 
+      breaks=c(0, 20, 40), 
+      labels=c("0%", "20%", "40%"))
+ggsave(
+  "../images/barplot3.png", 
+  labeled_barplot, 
+  width=4, 
+  height=4)
 ```
 
 <div class="notes">
@@ -527,13 +601,8 @@ Here is what the plot looks like.
 
 </div>
 
-### Fourth break
+### Break #4
 + What have you learned
-  + Reading in the Titanic dataset
-  + Categorical versus continuous variables
-  + Counts, proportions, and percentage
-  + Factors
-  + Crosstabulations
   + Barplots
 + What's next
   + New categorical variables
@@ -566,33 +635,33 @@ Anytime you create a new categorical variable, you should run a quality check to
 
 </div>
 
-### Quality check
+### More on recoding, code
 
-```{r recode-check2}
-chk <- table(ti$Age,ti$child,useNA="always")
-head(chk)
-```
-
-<div class="notes">
-
-An alternative is to run a crosstabulation. I am only showing the first few rows, but if you print the entire crosstabulation, you will see the switch over from child=1 to child=0 at 18 years of age.
-
-</div>
-
-### More on recoding
-
-
-```{r recode-combine}
-ti$lower.class <- as.numeric(ti$PClass=="2nd" | ti$PClass=="3rd")
-ti$lower.class <- factor(ti$lower.class, levels=c(0,1), labels=c("No", "Yes"))
-table(ti$PClass, ti$lower.class)
+```{r recode-combine-code}
+ti$lower.class <- 
+  as.numeric(ti$PClass=="2nd" | ti$PClass=="3rd")
+ti$lower.class <- 
+  factor(
+    ti$lower.class, 
+    levels=c(0,1), 
+    labels=c("No", "Yes"))
 ```
 
 <div class="notes">
 
 Sometimes you want to combine two or more of the categories together. Here is how you might create a new passenger class variable with values of 1 for second and third class and 0 for first class.
 
-The vertical bar (|) is the R symobl for logical OR.
+The vertical bar (|) is the R symbol for logical OR.
+
+</div>
+
+### More on recoding, output
+
+```{r recode-combine-output}
+table(ti$PClass, ti$lower.class)
+```
+
+<div class="notes">
 
 As before, it's a good a idea to run a crosstabulation to verify that the new coding was done properly.
 
@@ -614,27 +683,45 @@ If you are familiar with math notation, the square bracket means that the value 
 
 </div>
 
-### Creating multi-level categories
+### Adding labels to multi-level categories, code
 
-```{r labels}
-lb <- c("Infant", "Child", "Teenager", "Adult")
-ti$age_groups <- cut(ti$Age, breaks=cut_points, labels=lb)
+```{r labels-code}
+lb <- c(
+  "Infant", 
+  "Child", 
+  "Teenager", 
+  "Adult")
+ti$age_groups <- cut(
+  ti$Age, 
+  breaks=cut_points,
+  labels=lb)
+```
+
+<div class="notes">
+
+Use the labels argument to describe the groups using words rather than numbers.
+
+</div>
+
+### Adding labels to multi-level categories, output
+
+```{r labels-output}
 table(ti$age_groups, useNA="always")
 ```
 
 <div class="notes">
 
-It might be better to include labels to describe the age groups.
+Notice how much nicer the output looks with words.
 
 </div>
 
 ### Quality check
 
 ```{r qc}
-range(ti$Age[which(ti$age_groups=="Infant")])
-range(ti$Age[which(ti$age_groups=="Child")])
-range(ti$Age[which(ti$age_groups=="Teenager")])
-range(ti$Age[which(ti$age_groups=="Adult")])
+range(ti$Age[ti$age_groups=="Infant"])
+range(ti$Age[ti$age_groups=="Child"])
+range(ti$Age[ti$age_groups=="Teenager"])
+range(ti$Age[ti$age_groups=="Adult"])
 ```
 
 ### Summary
