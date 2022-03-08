@@ -12,7 +12,7 @@ knit: (function(inputFile, encoding) {
 
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo=TRUE)
-options(width=42)
+options(width=40)
 ``` 
 
 <div class="notes">
@@ -93,13 +93,13 @@ This is a listing of the first few rows. It could be a tab delimited file or a f
 ```{r read-fev-code}
 fn <- "../data/fev.txt"
 fev <- read_fwf(file=fn,
+  col_types="nnnnn",
   col_positions=fwf_cols(
     age=3, 
     fev=7,
     ht=5,
     sex=4,
-    smoke=6),
-  col_types="nnnnn")
+    smoke=6))
 ```
 
 <div class="notes">
@@ -177,10 +177,11 @@ Again, these seem to be reasonable values.
 ### Scatterplot
 
 ```{r fev_scatterplot}
-library(ggplot2)
 plot1 <- ggplot(fev, aes(x=age, y=fev)) +
   geom_point()
-ggsave("../images/age-by-fev.png", plot1, width=4, height=4)
+ggsave(
+  "../images/age-by-fev.png", 
+  plot1)
 ```
 
 <div class="notes">
@@ -233,16 +234,19 @@ The two categorical variables have no missing values.
 
 ### Crosstabs
 
-Also recall that you use a crosstabulation to examine the relationship between two categorical variables.
-
 ```{r fev_crosstabs}
-crosstab <- table(fev$sex_factor,fev$smoke_factor)
-prop_table <- prop.table(crosstab ,margin=1)
-pct_table <- round(100*prop_table)
+crosstab <- 
+  table(fev$sex_factor,fev$smoke_factor)
+prop_table <- 
+  prop.table(crosstab ,margin=1)
+pct_table <- 
+  round(100*prop_table)
 pct_table
 ```
 
 <div class="notes">
+
+Also recall that you use a crosstabulation to examine the relationship between two categorical variables.
 
 The females smoke more often than the males, `r pct_table["female", "smoker"]`% versus `r pct_table["male", "smoker"]`%.
 
@@ -267,8 +271,9 @@ Coming up next is how you examine relationships between a continuous variable an
 ### Boxplots
 
 ```{r fev_boxplots-fev}
-plot2 <- ggplot(fev, aes(x=smoke_factor, y=fev)) +
-  geom_boxplot()
+plot2 <- 
+  ggplot(fev, aes(x=smoke_factor, y=fev)) +
+    geom_boxplot()
 ggsave("../images/smoke-by-fev.png")
 ```
 
@@ -293,9 +298,12 @@ You can get a hint as to why smokers might have higher fev values than non-smoke
 ### Boxplots
 
 ```{r fev_boxplots-age}
-plot3 <- ggplot(fev, aes(smoke_factor, age)) +
-  geom_boxplot()
-ggsave("../images/smoke-by-age.png", plot3, height=4, width=4)
+plot3 <- 
+  ggplot(fev, aes(smoke_factor, age)) +
+    geom_boxplot()
+ggsave(
+  "../images/smoke-by-age.png", 
+  plot3)
 ```
 
 <div class="notes">
@@ -329,10 +337,26 @@ Coming up next is the calculation of group means and standard deviations.
 
 </div>
 
-### Group means
+### Group means, code
 
 ```{r fev_means}
-fev_means <- by(fev$fev, fev$smoke_factor, mean, na.rm=TRUE)
+fev_means <- 
+  by(
+    fev$fev, 
+    fev$smoke_factor, 
+    mean, 
+    na.rm=TRUE)
+```
+
+<div class="notes">
+
+Calculate means for subgroups using the by function.
+
+</div>
+
+### Group means, code
+
+```{r fev_means}
 fev_means
 ```
 
@@ -342,49 +366,90 @@ Here are the group means.
 
 </div>
 
-### Group standard deviations
+### Don't forget to round
+
+```{r rounded-means}
+round(fev_means, 1)
+```
+
+### More statistics, code (1/5)
 
 ```{r fev_sd}
-fev_stdev <- by(fev$fev, fev$smoke_factor, sd, na.rm=TRUE)
-fev_stdev
+fev_stdev <- 
+  by(
+    fev$fev, 
+    fev$smoke_factor, 
+    sd, 
+    na.rm=TRUE)
 ```
 
 <div class="notes">
 
-Here are the group standard deviations.
+I want to show an advanced example, for a variety of reasons. It emphasizes how in R, you take small pieces and put them together to create something complex. It also shows how to make output close to publication-ready. Finally, it explains the counter-intuitive finding the smokers have a higher average FEV than non-smokers.
 
-The output is not labelled all that clearly, but you can use the paste function to make things look nicer.
+You don't need to use this extra level of effort for your homework. 
+
+First start by computing standard deviations for FEV. grouped by smoking status.
 
 </div>
 
-### Group means
+### More statistics, code (2/5)
+
+```{r fev_sd}
+age_means <- 
+  by(
+    fev$fev, 
+    fev$smoke_factor, 
+    mean, 
+    na.rm=TRUE)
+```
+
+<div class="notes">
+
+Now compute the average age, grouped by smoking status.
+
+</div>
+
+### More statistics, code (3/5)
+
+```{r fev_sd}
+age_stdev <- 
+  by(
+    fev$fev, 
+    fev$smoke_factor, 
+    sd, 
+    na.rm=TRUE)
+```
+
+<div class="notes">
+
+Compute the standard deviations for age, grouped by smoking status.
+
+</div>
+
+### More statistics, code (4/5)
 
 ```{r fev_paste_fev}
 colon <- ": "
 plus_minus <- "+/-"
-paste(
+fev_stats <- paste0(
   names(fev_means),
   colon,
   round(fev_means, 1),
   plus_minus,
-  round(fev_stdev, 1),
-  sep="")
+  round(fev_stdev, 1))
 ```
 
 <div class="notes">
 
-You don't need to use this extra level of effort for your homework. It's just an attempt by me to show again a common pattern in R. Simple functions produce simple results and these can be combined in a variety of different ways.
+Now combine the FEV means and standard deviations into a single string.
 
 </div>
 
-### Group means
+### More statistics, code (5/5)
 
 ```{r fev_paste_age}
-age_means <- by(fev$age, fev$smoke_factor, mean, na.rm=TRUE)
-age_stdev <- by(fev$age, fev$smoke_factor, sd, na.rm=TRUE)
-colon <- ": "
-plus_minus <- "+/-"
-paste(
+age_stats <- paste0(
   names(age_means),
   colon,
   round(age_means,1),
@@ -395,7 +460,22 @@ paste(
 
 <div class="notes">
 
-Let's calculate mean ages for smokers and nonsmokers. Notice that smokers are 4 years older on average than nonsmokers.
+Now combine the age means and standard deviations the same way.
+
+</div>
+
+### More statistics, output
+
+```{r counter-intuitive}
+fev_stats
+age_stats
+```
+
+<div class="notes">
+
+Notice that smokers are 4 years older on average than nonsmokers. Older children have bigger lungs and larger FEV values. So age is a confounding variable for the effect of smoking on FEV.
+
+Now I need to emphasize again that you don't have to provide this level of complexity in your homework...unless you are ambitious and want to try something a bit out of the ordinary.
 
 </div>
 

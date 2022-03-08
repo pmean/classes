@@ -12,7 +12,7 @@ knit: (function(inputFile, encoding) {
 
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo=TRUE)
-options(width=42)
+options(width=40)
 ``` 
 
 ### Introduction
@@ -79,6 +79,18 @@ ti <- read_tsv(fn,
 <div class="notes">
 
 The name, passenger class, and gender are strings. The age and survival variables are numeric.
+
+</div>
+
+### Glimpse of the Titanic data set
+
+```{r titanic-glimpse}
+glimpse(ti)
+```
+
+<div class="notes">
+
+It reads in fairly well, it seems. The first few lines of data are hard to read because the passenger names are so long.
 
 </div>
 
@@ -516,9 +528,7 @@ simple_barplot <-
     geom_bar()
 ggsave(
   "../images/barplot1.png", 
-  simple_barplot, 
-  width=4, 
-  height=4)
+  simple_barplot)
 ```
 
 <div class="notes">
@@ -548,14 +558,12 @@ percentages_barplot <-
     geom_bar(aes(weight=100/n))
 ggsave(
   "../images/barplot2.png", 
-  percentages_barplot, 
-  width=4, 
-  height=4)
+  percentages_barplot)
 ```
 
 <div class="notes">
 
-Use weights to get a bar chart of proportions.
+Use weights to get a bar chart of percentages.
 
 </div>
 
@@ -580,14 +588,12 @@ labeled_barplot <-
       labels=c("0%", "20%", "40%"))
 ggsave(
   "../images/barplot3.png", 
-  labeled_barplot, 
-  width=4, 
-  height=4)
+  labeled_barplot)
 ```
 
 <div class="notes">
 
-Use different weights to get a bar chart of proportions.
+You can control how the y-axis is labeled with the scale_y_continuous function.
 
 </div>
 
@@ -610,7 +616,11 @@ Here is what the plot looks like.
 ### New categorical variables
 
 ```{r recode-simple}
-ti$child <- as.numeric(ti$Age<18)
+ti$child <- case_when(
+  is.na(ti$Age) ~ "Unknown",
+  ti$Age <=  0   ~ "Invalid",
+  ti$Age <  18    ~ "Yes",
+  ti$Age >= 18    ~ "No")
 table(ti$child, useNA="always")
 ```
 
@@ -622,11 +632,12 @@ Suppose you wanted to compute a categorical variable called "child" which is equ
 
 </div>
 
-### Quality check
+### Quality check for child
 
-```{r recode-check1}
-range(ti[which(ti$child==1), "Age"])
-range(ti[which(ti$child==0), "Age"])
+```{r recode-child-check}
+range(ti$Age[ti$child=="No"])
+range(ti$Age[ti$child=="Yes"])
+table(ti$Age[ti$child=="Unknown"], useNA="always")
 ```
 
 <div class="notes">
@@ -635,30 +646,30 @@ Anytime you create a new categorical variable, you should run a quality check to
 
 </div>
 
-### More on recoding, code
+### More on recoding
 
 ```{r recode-combine-code}
-ti$lower.class <- 
-  as.numeric(ti$PClass=="2nd" | ti$PClass=="3rd")
-ti$lower.class <- 
-  factor(
-    ti$lower.class, 
-    levels=c(0,1), 
-    labels=c("No", "Yes"))
+ti$lower_class <- case_when(
+  is.na(ti$PClass) ~ "Unknown",
+  ti$PClass=="1st" ~ "No",
+  ti$PClass=="2nd" ~ "Yes",
+  ti$PClass=="3rd" ~ "Yes")
+table(ti$lower_class, useNA="always")
 ```
 
 <div class="notes">
 
 Sometimes you want to combine two or more of the categories together. Here is how you might create a new passenger class variable with values of 1 for second and third class and 0 for first class.
 
-The vertical bar (|) is the R symbol for logical OR.
-
 </div>
 
 ### More on recoding, output
 
 ```{r recode-combine-output}
-table(ti$PClass, ti$lower.class)
+table(
+  ti$lower_class,
+  ti$PClass, 
+  useNA="always")
 ```
 
 <div class="notes">
@@ -667,51 +678,33 @@ As before, it's a good a idea to run a crosstabulation to verify that the new co
 
 </div>
 
-### Creating multi-level categories
+### Creating multi-level categories, code
 
-```{r recode-cut}
-cut_points <- c(0, 1.5, 12, 19, 99)
-ti$age_groups <- cut(ti$Age, breaks=cut_points)
+```{r recode-cut-code}
+ti$age_groups <- case_when(
+  is.na(ti$Age) ~ "Missing",
+  ti$Age <= 0   ~ "Invalid",
+  ti$Age <= 1.5 ~ "Infant",
+  ti$Age <= 12  ~ "Child",
+  ti$Age <= 19  ~ "Teenager",
+  ti$Age >  19  ~ "Adult")
+```
+
+<div class="notes">
+
+Here's a more complex example. Notice that I check instinctively for invalid values.
+
+</div>
+
+### Creating multi-level categories, output
+
+```{r recode-cut-output}
 table(ti$age_groups, useNA="always")
 ```
 
 <div class="notes">
 
-You can create multi-level categories using a complex logic system, but you can do it simpler and faster with the cut function.
-
-If you are familiar with math notation, the square bracket means that the value on the boundary belongs in the set, and a parentheses means that it does not belong in the set. So (1.5, 12] means don't include the 1.5 in this set, but do include the 12.
-
-</div>
-
-### Adding labels to multi-level categories, code
-
-```{r labels-code}
-lb <- c(
-  "Infant", 
-  "Child", 
-  "Teenager", 
-  "Adult")
-ti$age_groups <- cut(
-  ti$Age, 
-  breaks=cut_points,
-  labels=lb)
-```
-
-<div class="notes">
-
-Use the labels argument to describe the groups using words rather than numbers.
-
-</div>
-
-### Adding labels to multi-level categories, output
-
-```{r labels-output}
-table(ti$age_groups, useNA="always")
-```
-
-<div class="notes">
-
-Notice how much nicer the output looks with words.
+These are the counts for each of the age groups.
 
 </div>
 
@@ -723,6 +716,12 @@ range(ti$Age[ti$age_groups=="Child"])
 range(ti$Age[ti$age_groups=="Teenager"])
 range(ti$Age[ti$age_groups=="Adult"])
 ```
+
+<div class="notes">
+
+Notice that the ages are consistent with our expectations. A table like this is nice documentation, since decisions about who is an adult (18 and older? 21 and older?) are sometimes forgotten.
+
+</div>
 
 ### Summary
 + What have you learned
