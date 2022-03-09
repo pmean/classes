@@ -155,7 +155,7 @@ Maybe, but keep in mind that you won't find every criminal in prison. A better c
 
 </div>
 
-### Breask #1
+### Break #1
 
 * What have we learned so far?
   + Definitions: population, sampling frame, sample
@@ -435,6 +435,128 @@ Training interventions also don't work. You can't train someone one way, get the
 Generally, you have to have a treatment that is short and easily reversible. You gain a lot of precision because all of the factors that are difficult to get perfect balance for in a normal trial disappear in a cross-over trial. Differences in demographics and differences in severity of illness completely disappear.
 
 For drugs that have a carry-over effect, you should probably wait until the first drug is completely washed out of the body before starting the second drug. This can be a problem for certain drugs that have a long half-life.
+
+</div>
+
+### What purpose does a methods section serve?
++ Assessment of the quality of your research
+  + Brag here about your rigor
+  + Save limitations for discussion
++ Allow others to replicate/extend
+  + Non-obvious details
+  
+<div class="notes">
+
+When you write a methods section, keep the two set of readers in mind: those who want to evaluate your research and those who want to use your research as a model for their own replication or extension of your work.
+
+</div>
+
+### What should not be included in the methods section
+
++ "The Methods section should include only information that was available at the time the plan or protocol for the study was being written; all information obtained during the study belongs in the Results section."
+  + Uniform requirements for manuscripts submitted to biomedical journals: Writing and editing for biomedical publication. J Pharmacol Pharmacother. 2010;1(1):42–58.
++ Exceptions
+  + Patient counts, Dropout rates, Protocol changes
+  
+<div class="notes">
+
+There is a sharp dividing line, according to some, about what goes in methods and what does in the results section.
+
+some people will put a few details like patient counts and dropout ratesin the methods section, but in general, you should only put information in methods if it was known prior to data collection. The one exception, perhaps, would be changes in the protocol that occur during the study. Ideally, you do not have this, but it happens and you must document these changes.
+
+</div>
+
+### What belongs in the methods section
++ Every methods section is different
++ General structure
+  + Participants
+  + Materials
+  + Procedures
+  + Measures
+  + Analysis
+  
+<div class="notes">
+
+There is no consensus on the organization of material in a methods section. Here is one strucure that I developed by synthesizing several of the structures that I liked.
+
+</div>
+  
+### Participants
++ Where you will find your participants
++ Inclusion/exclusion criteria
++ Efforts to insure representativeness
+
+<div class="notes">
+
+Since clinical research almost always involves humans, tell us where you find those humans.
+
+</div>
+
+### Materials/Procedures
++ Only document the non-routine
++ Materials
+  + Chemicals
+  + Include company and location
++ Procedures
+  + Running complex equipment
+  + Multiple step laboratory methods
+  
+<div class="notes">
+
+For materials and procedures, only document the stuff that is non-obvious. Anyone with a reasonable medical background knows how to take a blood pressure, so don't mention any details, unless you are deviating from a common norm (e.g., taking blood pressure from a leg).
+
+</div>
+
+### Measures
++ Outcome variables
++ Independent variables
++ Covariates
++ Validity/reliability
+
+<div class="notes">
+
+Define your variables and classify them into outcomes, independent variables, and covariates. For those variables where it is appropriate, discuss what you already know about validity and reliability.
+
+</div>
+
+
+### Analysis
++ Research hypotheses / questions
++ Sample size justification
++ Descriptive methods 
+  + Boilerplate: "Continuous variables were summarized as means and SDs, and categorical variables were summarized as percentages." Saleem 2019.
+
+<div class="notes">
+
+Boilerplate refers to text that is used so often and without any changes that you can safely use it in your publication without fear of being accused of plagiarism. The first boilerplate comes early in your data analysis methods, and describes how you are summarizing continuous variables using means and standard deviations and summarizing categorical variables using percentages. The second boilerplate mentions that all of your statistical tests are two sided (which they are 90% of the time) and that you use an alpha level of 0.05 to decide what is statistically significant (which you do 99.99% of the time).
+
+</div>
+
+### Analysis
++ Statistical model
++ Adjustments for multiplicity
++ Handling missing values/dropout
++ Alpha level and one/two sided tests
+  + Boilerplate: "All tests were two sided, and P values below the 5% level were regarded as significant." Lokken 1995.
+
+<div class="notes">
+
+
+</div>
+
+### What goes in the methods section of a qualitative study
++ Recruitment process
++ Structure of the interview/focus group
++ Recording and transcription details
++ SoftWare used to create categories
++ Process to insure reliability
+  + Multiple raters
+  + Adjudication of disagreement
+  + Other audits
+  
+<div class="notes">
+
+The methods that you document in a qualitative study are quite different than those you use for a qualitative study. Here are some of the elements that you need to talk about.
 
 </div>
 
