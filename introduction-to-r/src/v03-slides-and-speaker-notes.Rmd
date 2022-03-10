@@ -435,14 +435,16 @@ and store it as white-space.txt.
 
 ```{r read_table}
 fn <- "../data/white-space.txt"
-raw_data <- read_table(fn, 
+raw_data <- read_table(fn,
+  col_names=c("x", "y"),                     
   col_types="nn")
-names(raw_data) <- c("x", "y")
 ```
 
 <div class="notes">
 
 The read_table function will use "white space" as a delimiter. White space is defined as one or more blanks or tabs or even a mix of spaces and tabs.
+
+Note you can also use col_names=FALSE here.
 
 Now, you could also use read_fwf for this dataset.
 

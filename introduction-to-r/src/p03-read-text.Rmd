@@ -1,0 +1,103 @@
+---
+title: "Examples from module03"
+author: "Steve Simon"
+date: "Created 2022-03-09"
+output: html_document
+---
+
+This is a small program written in Rmarkdown to show how to read in some simple text datasets.
+
+This program is in the public domain. You can use it any way that you please.
+
+```{r version-and-current-date}
+R.version.string
+Sys.Date()
+suppressMessages(
+  suppressWarnings(
+    library(tidyverse)))
+```
+
+This shows how to read in a comma delimited file.
+
+```{r read-csv}
+fn <- "../data/simple.csv"
+raw_data <- read_csv(file=fn, col_types="nn")
+raw_data
+```
+
+This shows how to read in a space delimited file.
+
+```{r read-space}
+fn <- "../data/simple.txt"
+raw_data <- read_delim(
+  file=fn, 
+  delim=" ",
+  col_types="nn")
+raw_data
+```
+
+This shows how to read in a tab delimited file.
+
+```{r read-tab}
+fn <- "../data/simple.tsv"
+raw_data <- read_tsv(file=fn, col_types="nn")
+raw_data
+```
+
+This shows how to read in a tilde delimited file.
+
+```{r read-tilde}
+fn <- "../data/tilde.txt"
+raw_data <- read_delim(
+  file=fn, 
+  delim="~",
+  col_types="nn")
+raw_data
+```
+
+This shows how to read in a fixed-width file.
+
+```{r read-fixed-width}
+fn <- "../data/fixed.txt"
+raw_data <- read_fwf(fn, 
+  fwf_cols(1, 2),
+  col_types="nn")
+raw_data
+```
+
+This shows how to read in string data.
+
+```{r string-data}
+fn <- "../data/string.csv"
+raw_data <- read_csv(fn,
+  col_types="ccn")
+raw_data
+```
+
+This shows how to store a data frame as a text file.
+
+```{r store-data}
+raw_data <- data.frame(
+  x=c(1, 2, 3, 4),
+  y=c(4, 8, 12, 16))
+fn <- "../results/output_data.txt"
+write_csv(raw_data, fn)
+```
+
+This shows how to read the airport data.
+
+```{r read-airport}
+fn <- "../data/airport.txt"
+raw_data <- read_fwf(fn,
+  fwf_cols(21, 22, 6, 7, 9, 10, 10),
+  col_types="ccnnnnn")
+names(raw_data) <- c(
+  "airport", 
+  "city", 
+  "scheduled_departures", 
+  "performed_departures", 
+  "enplaned_passengers", 
+  "enplaned_freight",
+  "enplaned_mail")
+raw_data
+```
