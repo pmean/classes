@@ -10,8 +10,10 @@ title: "MEDB 5505, Introduction to R, Module03, Objectives"
 
 #### You will also see the following R functions
 
-+ read.csv
-+ read.fwf
-+ read.table
-+ write.csv
-+ write.table
++ names
++ read_csv
++ read_delim
++ read_fwf
++ read_table
++ read_tsv
++ write_csv
