@@ -654,7 +654,6 @@ ti$lower_class <- case_when(
   ti$PClass=="1st" ~ "No",
   ti$PClass=="2nd" ~ "Yes",
   ti$PClass=="3rd" ~ "Yes")
-table(ti$lower_class, useNA="always")
 ```
 
 <div class="notes">
