@@ -12,13 +12,13 @@ title: "MEDB 5505, Introduction to R, Module02, Objectives"
 #### You will also see the following R functions
 
 + cor
-+ dev.off
 + dim
-+ geom_boxplot
 + geom_point
 + geom_smooth
 + ggplot
++ ggsave
 + ggtitle
++ glimpse
 + head
 + is.na
 + library
