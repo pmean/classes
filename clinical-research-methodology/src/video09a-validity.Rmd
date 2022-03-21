@@ -331,6 +331,7 @@ You do need to be careful, though. The reliability of a composite measurement is
 ### 9a, Kuder-Richardson 20
 
 * Only for composite measures with binary items
++ $\frac{1}{I-1}\big(1-\frac{\Sigma_ip_iq_i}{S^2}\big)$
 * Book's formula is confusing
   + $S^2$ and $\sigma^2$ used interchangably
   + $\Sigma pq$ is a theoretical minimum variation
