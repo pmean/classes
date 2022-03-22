@@ -10,8 +10,9 @@ suppressMessages(
   suppressWarnings(
     library(tidyverse)))
 excerpt <- function(n) {
+  n <- ifelse(n<10, paste0("0", n), as.character(n))
   '5510-xx-overview.md'                  %>%
-    str_replace('xx', '01')              %>%
+    str_replace('xx', n)                 %>%
     read_lines                           %>%
     paste0(collapse='\n')                %>%
     str_split('####')                    %>%
@@ -26,21 +27,13 @@ excerpt <- function(n) {
     '\n\n',
     '</div>')
 }
+full_text <- NULL
+for (i in 1:2) {
+  full_text <- paste(full_text, excerpt(i), sep="\n\n")
+}
 ```
 
-`r excerpt("01")`
-
-## Module02
-
-```{r, child="5510-02-objectives.md"}
-```
-
-<div class="notes">
-
-```{r, child="5510-02-synopsis.md"}
-```
-
-</div>
+`r full_text`
 
 ## Module03
 
