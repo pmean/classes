@@ -20,44 +20,22 @@ excerpt <- function(n) {
   paste0(
     '## Module', n, 
     ', ',
-    sections[3],
+    sections[2],
+    '### ',
+    sections[4],
     '<div class="notes">',
     '\n\n',
-    sections[2],
+    sections[3],
     '\n\n',
     '</div>')
 }
 full_text <- NULL
-for (i in 1:2) {
+for (i in 1:4) {
   full_text <- paste(full_text, excerpt(i), sep="\n\n")
 }
 ```
 
 `r full_text`
-
-## Module03
-
-```{r, child="5510-03-objectives.md"}
-```
-
-<div class="notes">
-
-```{r, child="5510-03-synopsis.md"}
-```
-
-</div>
-
-## Module04
-
-```{r, child="5510-04-objectives.md"}
-```
-
-<div class="notes">
-
-```{r, child="5510-04-synopsis.md"}
-```
-
-</div>
 
 ## Module05
 

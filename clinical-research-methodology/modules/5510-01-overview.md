@@ -2,6 +2,8 @@
 title: "MEDB 5510, Clinical Research Methodology, Module01, Videos"
 ---
 
+#### Getting started in research
+
 #### Synopsis
 
 How do you get started in research? First, you have to choose a problem to study. This is sometimes easy, but sometimes not so easy. This module will help you think about how to identify a research topic. It will also outline some of the fundamental choices that you will need to make as you work on your research problem. Do you want to do theoretical or applied research? Laboratory or field research? Qualitative or quantitative research? Inductive or deductive research? You should become familiar with all of these aspects of research so you can thoughtfully select the approach that makes the most sense for your topic.

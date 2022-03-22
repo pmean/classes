@@ -1,8 +1,25 @@
 ---
-title: "MEDB 5510, Clinical Research Methodology, Module03, Videos"
+title: "MEDB 5510, Clinical Research Methodology, Module03"
 ---
 
-### Readings and Resources
+#### Writing a literature review
+
+#### Synopsis
+
+A literature review provides your reader with the context needed to understand your research. It reviews what is already known about your topic, gaps in the existing knowledge, and how your proposed work will fill some of those gaps. It is important to understand how a literature review contrasts with other summaries of the existing research (such as an annotated bibliography or a systematic overview). You also need to choose an organizational structure for your literature review.
+
+You will have to submit a literature review in a few weeks, so please start working on it now. If you are having trouble getting started, please talk to me.
+
+#### Learning objectives 
+
+In this module, you will learn how to
+
++ define what a literature review is
++ contrast it with an annotated bibliography and a systematic overview.
++ recognize the different approaches to organizing a literature review.
+
+
+#### Readings and Resources
 
 Handouts associated with the videos are draft only at this point. They will be finalized on or before noon on 2022-02-02 (Wednesday).
 
@@ -15,7 +32,7 @@ Handouts associated with the videos are draft only at this point. They will be f
 + Handouts associated with videos
   + Video03. Literature review. Slides and speaker notes available in [pdf format][git1]
 
-### Videos
+#### Videos
 
 I plan to review the videos from last year and either re-use them or re-record them. You will get live links to these videos on or before 5pm on 2022-02-04 (Friday).
 
@@ -31,7 +48,7 @@ There are 6 videos with a total of 64 minutes.
 
 For archival purposes, I am including a [page with links to video recordings][git0] done back in 2019, 2020, and 2021. You do not need to watch these, and you probably do not want to watch them. I am putting them here because I want to eventually turn the content of these videos into a book about research methods.
 
-### Active Learning
+#### Active Learning
 
 There is
 

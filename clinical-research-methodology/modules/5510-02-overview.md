@@ -1,6 +1,8 @@
 ---
-title: "MEDB 5510, Clinical Research Methodology, Module02, Videos"
+title: "MEDB 5510, Clinical Research Methodology, Module02"
 ---
+
+#### Ethical conduct of research
 
 #### Synopsis
 
