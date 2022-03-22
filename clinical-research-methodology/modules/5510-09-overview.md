@@ -1,8 +1,22 @@
 ---
-title: "MEDB 5510, Clinical Research Methodology, Module09, Videos"
+title: "MEDB 5510, Clinical Research Methodology, Module09"
 ---
 
-### Readings and Resources
+#### Validity and reliability
+
+#### Synopsis
+
+Establishing validity and reliability for your measurements can greatly improve the credibility of your work. Some measurements do not require establishment of validity and reliabity, and for the others, the methods depend largely on the type of measurement.
+
+#### Learning objectives
+
+In this module, you will learn how to
+
++ understand when test-retest reliability and interrater reliability can be used.
++ describe the process by which you can establish face and content validity.
+
+
+#### Readings and Resources
 
 Handouts associated with the videos are draft only at this point. They will be finalized on or before noon on 2022-03-16 (Wednesday).
 
@@ -15,7 +29,7 @@ Handouts associated with the videos are draft only at this point. They will be f
 + Handouts associated with videos
   + Video09. Validity and Reliability. Slides and speaker notes available in [pdf format][git1]
 
-### Videos
+#### Videos
 
 I plan to review the videos from last year and either re-use them or re-record them. You will get live links to these videos on or before 5pm on 2022-03-18 (Friday).
 
@@ -38,7 +52,7 @@ There are 11 videos with a total of about ? minutes.
 
 For archival purposes, I am including a [page with links to video recordings][git0] done back in 2019, 2020, and 2021. You do not need to watch these, and you probably do not want to watch them. I am putting them here because I want to eventually turn the content of these videos into a book about research methods.
 
-### Active Learning
+#### Active Learning
 
 Links to the assignments will be finalized on or before noon on 2022-03-16 (Wednesday).
 

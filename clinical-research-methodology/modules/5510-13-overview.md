@@ -1,10 +1,21 @@
 ---
-title: "MEDB 5510, Clinical Research Methodology, Module13 Videos"
+title: "MEDB 5510, Clinical Research Methodology, Module13"
 ---
 
-Note that I am including some recordings done back in 2019. You do not need to watch these, and you probably do not want to watch them. I am putting them here because I want to eventually turn the content of these videos into a book about research methods. Students who attended the live lecture on Wednesday do not have to view either recording, unless they want to.
+#### Statistical models and writing a methods section
 
-### Readings and Resources
+#### Synopsis
+
+You must define your statistical analysis approach in your research plan. This module will cover the conceptual ideas behind a variety of statistical models (linear regression, logistic regression, survival analysis) not to the level of detail that you will need to know to conduct those analyses, but rather how to defend and justify these approaches in your methods section.
+
+#### Learning objectives
+
+In this module, you will learn how to
+
++ demonstrate knowledge of data analysis basic concepts
++ describe analysis methods appropriate for exploratory, descriptive, explanatory, and quasi-experimental designs
+
+#### Readings and Resources
 
 Handouts associated with the videos are draft only at this point. They will be finalized on or before noon on 2022-04-20 (Wednesday).
 
@@ -17,7 +28,7 @@ Handouts associated with the videos are draft only at this point. They will be f
 + Handouts associated with videos
   + Video11. Data management. Slides and speaker notes available in [pdf format][git1]
 
-### Videos
+#### Videos
 
 I plan to review the videos from last year and either re-use them or re-record them. You will get live links to these videos on or before 5pm on 2022-04-22 (Friday).
 
@@ -32,7 +43,7 @@ There are 7 videos with a total of about 153 minutes.
   + V13-06, Qualitative analysis methods (about 15 minutes)
   + V13-07, Writing a methods section (about 11 minutes)
 
-### Active Learning
+#### Active Learning
 
 Handouts associated with the videos are draft only at this point. They will be finalized on or before noon on 2022-04-20 (Wednesday).
 

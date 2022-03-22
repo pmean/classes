@@ -1,8 +1,22 @@
 ---
-title: "MEDB 5510, Clinical Research Methodology, Module11 Videos"
+title: "MEDB 5510, Clinical Research Methodology, Module11"
 ---
 
-### Readings and Resources
+#### Data management
+
+#### Synopsis
+
+Data management is often tedious and time-consuming, but it is vital for assuring good quality data for your analyses.
+
+#### Learning objectives
+
+In this module, you will learn how to
+
++ understand the value of a data dictionary.
++ identify how best to store dates and missing value codes.
++ describe the strengths and weaknesses of storing data in a spreadsheet.
+
+#### Readings and Resources
 
 Handouts associated with the videos are draft only at this point. They will be finalized on or before noon on 2022-04-06 (Wednesday).
 
@@ -15,7 +29,7 @@ Handouts associated with the videos are draft only at this point. They will be f
 + Handouts associated with videos
   + Video11. Data management. Slides and speaker notes available in [pdf format][git1]
 
-### Videos
+#### Videos
 
 I plan to review the videos from last year and either re-use them or re-record them. You will get live links to these videos on or before 5pm on 2022-04-08 (Friday).
 
@@ -30,7 +44,7 @@ There are 5 videos with a total of about ? minutes.
 
 For archival purposes, I am including a [page with links to video recordings][git0] done back in 2019, 2020, and 2021. You do not need to watch these, and you probably do not want to watch them. I am putting them here because I want to eventually turn the content of these videos into a book about research methods.
 
-### Active Learning
+#### Active Learning
 
 Handouts associated with the videos are draft only at this point. They will be finalized on or before noon on 2022-04-06 (Wednesday).
 

@@ -1,12 +1,26 @@
 ---
-title: "MEDB 5510, Clinical Research Methodology, Module12 Videos"
+title: "MEDB 5510, Clinical Research Methodology, Module12"
 ---
 
-Note that I am including some recordings done back in 2019. You do not need to watch these, and you probably do not want to watch them. I am putting them here because I want to eventually turn the content of these videos into a book about research methods. Students who attended the live lecture on Wednesday do not have to view either recording, unless they want to.
+#### Hypothesis testing
 
-### 2021 recordings
+#### Synopsis
 
-### Readings and Resources
+If your research involves hypothesis testing, you need a basic understanding of Type I and II errors, p-values, and confidence intervals. You should also be aware of a Bayesian alternative to the classical approach to hypothesis testing.
+
+#### Learning objectives
+
+In this module, you will learn how to
+
++ discuss the goal of data analysis and interpretation in research projects
++ discuss statistical power and how to determine it
++ describe what is needed in order to determine sample size for a research project
+
+
+
+#### 2021 recordings
+
+#### Readings and Resources
 
 Handouts associated with the videos are draft only at this point. They will be finalized on or before noon on 2022-04-13 (Wednesday).
 
@@ -21,7 +35,7 @@ Handouts are in draft form. I hope to finalize them by 2022-03-09 (Wednesday) at
 + Handouts associated with videos
   + Video12. Hypothesis testing. Slides and speaker notes available in [pdf format][git1]
 
-### Videos
+#### Videos
 
 I plan to review the videos from last year and either re-use them or re-record them. You will get live links to these videos on or before 5pm on 2022-04-15 (Friday).
 
@@ -38,7 +52,7 @@ There are 7 videos with a total of about 166 minutes.
 
 For archival purposes, I am including a [page with links to video recordings][git0] done back in 2019, 2020, and 2021. You do not need to watch these, and you probably do not want to watch them. I am putting them here because I want to eventually turn the content of these videos into a book about research methods.
 
-### Active Learning
+#### Active Learning
 
 Handouts associated with the videos are draft only at this point. They will be finalized on or before noon on 2022-04-13 (Wednesday).
 
