@@ -1,7 +1,0 @@
----
-title: "MEDB 5510, Clinical Research Methods, Module01, Synopsis
----
-
-How do you get started in research? First, you have to choose a problem to study. This is sometimes easy, but sometimes not so easy. This module will help you think about how to identify a research topic. It will also outline some of the fundamental choices that you will need to make as you work on your research problem. Do you want to do theoretical or applied research? Laboratory or field research? Qualitative or quantitative research? Inductive or deductive research? You should become familiar with all of these aspects of research so you can thoughtfully select the approach that makes the most sense for your topic.
-
-Throughout this class, you will be asked to produce writing related to a research topic of your own choosing. Ideally, you should select a topic that you will go on to address in your thesis (or capstone project). If you are in a track that does not require a thesis, that's okay. Just select something that relates to your long-term career goals. If you do not know what you want to do yet for your thesis, that's okay also. Just pick something that you think MIGHT relate to your eventual thesis As the class progresses, you may decide to modify your topic or abandon it for a completely different topic. That's okay also. Some students, especially students with a more mathematical background, may find it difficult to select a good research topic. I would be glad to meet with anyone and brainstorm some ideas.

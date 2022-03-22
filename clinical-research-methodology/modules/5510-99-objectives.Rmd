@@ -5,17 +5,30 @@ output:
     slide_level: 2
 ---
 
-## Module01
-
-```{r, child="5510-01-objectives.md"}
+```{r read01, echo=FALSE}
+suppressMessages(
+  suppressWarnings(
+    library(tidyverse)))
+excerpt <- function(n) {
+  '5510-xx-overview.md'                  %>%
+    str_replace('xx', '01')              %>%
+    read_lines                           %>%
+    paste0(collapse='\n')                %>%
+    str_split('####')                    %>%
+    unlist                                -> sections
+  paste0(
+    '## Module', n, 
+    ', ',
+    sections[3],
+    '<div class="notes">',
+    '\n\n',
+    sections[2],
+    '\n\n',
+    '</div>')
+}
 ```
 
-<div class="notes">
-
-```{r, child="5510-01-synopsis.md"}
-```
-
-</div>
+`r excerpt("01")`
 
 ## Module02
 
