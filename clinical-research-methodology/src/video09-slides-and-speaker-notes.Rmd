@@ -925,6 +925,110 @@ Some people confuse the concept of internal consistency with uni-dimensionality.
 
 </div>
   
+### Break #8
+
++ What have you learned so far.
+  + KR-20
+  + Cronbach's alpha
++ What is coming next
+  + Test-retest reliability
+  + Inter-rater reliability
+
+<div class="notes">
+
+Wow. That's a lot to digest. Don't be afraid to ask me questions about reliability. Let's take a break here. We talked about measures of internal consistency and why I don't like them. We also talked about some practical advice: report reliability measures from your literature review and measure reliability, if you can, in your current study.
+
+</div>
+
+
+### Test-retest reliability
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo=FALSE)
+suppressMessages(suppressWarnings(library(tidyverse)))
+```
+
+```{r image}
+data.frame(x=0:1, y=0:1) %>%
+  ggplot(aes(x, y)) +
+  xlab(" ") + 
+  ylab(" ") +
+  geom_label(x=0.5, y=0.5, label="Measurement\n1") +
+  geom_label(x=0.8, y=0.5, label="Measurement\n2") +
+  geom_text(x=0.5, y=0.2, label="Time 1") +
+  geom_text(x=0.8, y=0.2, label="Time 2") +
+  geom_text(x=0.2, y=0.5, label="Observer 1") +
+  theme_void()
+```
+
+### Test-retest reliability (also called repeatability)
++ Correlation of two measurements separated by time
++ Length of time interval is critical
+  + No carry-over
+  + No changes in the true score
++ Useful for composite scores and single values
++ Useful for self-report and researcher evaluation
++ Not possible for some measures
+
+<div class="notes">
+
+Test-retest reliability is the correlation coefficient of two measurements taken at different times. This is also known as repeatability.
+
+The correlation coefficient between the two measurments is an estimate of the reliability coefficient.
+
+The time interval is critical here. You don't want two measurements that are so close together that the measurement error for the first measurement is correlated with the measurement error of the second measurement.
+
+Suppose you are measuring your patient's knowledge about a disease. If you give the same test only a few minutes apart, your patient will remember his/her answers to the first test when answering the second test.
+
+So you want a long enough time interval that there is no carry over effect.
+
+But too large an interval is also problematic. You want to make sure that the true score is the same (or very close)
+
+Over what size interval would you expect the measure to be stable? It depends on what you are measuring. Intelligence is likely to be stable along long time frames but mood changes rapidly.
+
+Test-retest reliability works well for any type of measure. But it can't always be applied. The Apgar score has to be measured at the time of birth. If the baby is blue, limp, and unresponsive after three hours, that's not quite the same as the same occuring right after birth.
+
+</div>
+
+### Inter-rater reliability
+
+```{r image-2}
+data.frame(x=0:1, y=0:1) %>%
+  ggplot(aes(x, y)) +
+  xlab(" ") + 
+  ylab(" ") +
+  geom_label(x=0.5, y=0.5, label="Measurement\n1") +
+  geom_label(x=0.5, y=0.8, label="Measurement\n2") +
+  geom_text(x=0.5, y=0.2, label="Time 1") +
+  geom_text(x=0.2, y=0.5, label="Observer 1") +
+  geom_text(x=0.2, y=0.8, label="Observer 2") +
+  theme_void()
+```
+
+### Inter-rater reliability
+
++ Used for researcher evaluations only
++ Simplest case
+  + Two independent raters
+  + Ratings for every patient
++ Analysis
+  + Intraclass correlation or Cohen's Kappa
++ Extensions
+
+<div class="notes">
+
+When the researcher does the evaluation and there is concern that a subjective element may creep in and cause measurement error. Your observed score might be higher or lower depending only on who is rating you.
+
+Reliability is pretty simple to measure in this setting, if you have the resources. Just get two raters and have them both compute the measurement. If the correlation between the two raters is high, you have good reliability.
+
+Rather than computing a direct correlation, inter-rater reliability is usually computed as an intra-class correlation. The intraclass correlation generalizes naturally to more complex settings.
+
+If your measurement is binary (note the entire measurement is binary, which is not the same as saying that the individual components of a composite score are binary), then a different statistic, Cohen's Kappa is used. Like the intraclass correlation, there are extensions of Kappa to multiple raters.
+
+You can't always have all the raters rate all the patients, especially if you have more than two raters. There are extensions to cases where you have random assignments of patients to different raters, but the formulas are tricky.
+
+</div>
+
 ### Practical guidance on reliability
 
 * Is there previous literature?
@@ -960,23 +1064,15 @@ The general target value for a reliability coefficient is 0.7 or higher. You mig
 
 </div>
 
-### Break #8
+### Break #9
 
 + What have you learned so far.
-  + KR-20
-  + Cronbach's alpha
+  + Test-retest reliability
+  + Interrater reliability
 + What is coming next
   + Face validity
   + Content validity
   + Response process evidence
-
-<div class="notes">
-
-Wow. That's a lot to digest. Don't be afraid to ask me questions about reliability. Let's take a break here. We talked about measures of internal consistency and why I don't like them. We also talked about some practical advice: report reliability measures from your literature review and measure reliability, if you can, in your current study.
-
-Next, we'll tackle measurement validity.
-
-</div>
 
 ### Types of measurement validity 
 
@@ -1068,7 +1164,7 @@ You can do this sort of exercise with experts as well as patients. Ask your expe
 
 </div>
 
-### Break #9
+### Break #10
 
 + What have you learned so far.
   + Face validity
@@ -1163,7 +1259,7 @@ Diagnostic tests are a special example of validation. It is essentially criterio
 
 </div>
 
-### Break #10
+### Break #11
 
 + What have you learned so far?
   + Criterion validity

@@ -20,7 +20,7 @@ In this module, you will learn how to
 Handouts associated with the videos are draft only at this point. They will be finalized on or before noon on 2022-04-20 (Wednesday).
 
 + Required reading
-  + Chapter 8 of Gliner, Morgan, and Leech.
+  + Chapter 19-22 of Gliner, Morgan, and Leech.
 
 + Recommended reading
   + See the [recommended reading page][git2] on my github site.
