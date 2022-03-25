@@ -36,7 +36,7 @@ Handouts are in draft form. I hope to finalize them by 2022-03-09 (Wednesday) at
 
 I plan to review the videos from last year and either re-use them or re-record them. You will get live links to these videos on or before 5pm on 2022-03-25 (Friday).
 
-There are 6 videos with a total of about ? minutes.
+There are 7 videos with a total of 69 minutes.
 
 + Videos to be recorded
   + V10-01, Focus groups aqnd interviews, 10 minutes, available in [Panopto format][20221001].
