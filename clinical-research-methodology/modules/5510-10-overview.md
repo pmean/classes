@@ -36,15 +36,24 @@ Handouts are in draft form. I hope to finalize them by 2022-03-09 (Wednesday) at
 
 I plan to review the videos from last year and either re-use them or re-record them. You will get live links to these videos on or before 5pm on 2022-03-25 (Friday).
 
-There are 6 videos with a total of about ? minutes.
+There are 7 videos with a total of 69 minutes.
 
 + Videos to be recorded
-  + V10-01, Focus groups available in Panopto format (? minutes).
-  + V10-02, Interviews available in Panopto format (? minutes).
-  + V10-03, Questionnaires available in Panopto format (? minutes).
-  + V10-04, Likert scales available in Panopto format (? minutes).
-  + V10-05, Nominal scales available in Panopto format (? minutes).
-  + V10-06, Homework available in Panopto format (? minutes).
+  + V10-01, Focus groups aqnd interviews, 10 minutes, available in [Panopto format][20221001].
+  + V10-02, Questionnaires, 11 minutes, available in [Panopto format][20221002].
+  + V10-03, Likert scales, 10 minutes,  available in [Panopto format][20221003].
+  + V10-04, Nominal scales, 13 minutes, available in [Panopto format][20221004].
+  + V10-05, Case Report Forms, 4 minutes, available in [Panopto format][20221005].
+  + V10-06, Existing data sources, 14 minutes, available in [Panopto format][20221006].
+  + V10-07, Homework, 7 minutes, available in [Panopto format][20221007].
+
+[20221001]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d424ffa2-a2ba-4ba3-be0c-ae630155d79f
+[20221002]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5a45aa02-451a-416c-97b8-ae6301588d67
+[20221003]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a84879c5-8f20-4b8f-8e47-ae63015be8d3
+[20221004]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8ae93590-f325-4450-8881-ae63015ef42f
+[20221005]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2df460dd-0976-4283-91d0-ae630162f802
+[20221006]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c0017bca-2796-42d1-80e6-ae6301644616
+[20221007]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=0ce061ba-9ee0-40d9-b5b5-ae63016883cd
 
 For archival purposes, I am including a [page with links to video recordings][git0] done back in 2019, 2020, and 2021. You do not need to watch these, and you probably do not want to watch them. I am putting them here because I want to eventually turn the content of these videos into a book about research methods.
 

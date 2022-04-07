@@ -16,10 +16,11 @@ source("prelims.R", echo=FALSE)
 
 ### Data collection methods
 
-* Data collection methods
++ Data collection methods
   + Focus groups
   + Interviews
   + Questionnaires
+  + Case report forms
   + Existing data
 
 <div class="notes">
@@ -30,14 +31,14 @@ This talk will cover various data collection methods: focus groups, interviews, 
 
 ### Running focus groups
 
-* Two person job
-* Facilitator
++ Two person job
++ Facilitator
   + Asks questions
   + Guide discussion, but stays neutral
-* Recorder
++ Recorder
   + Runs the tape recorder
   + Keeps written notes
-* Debriefing session
++ Debriefing session
   
 <div class="notes">
 
@@ -53,15 +54,15 @@ After the session is complete, the two of you sit down and talk about how things
 
 ### Structure of a focus group
 
-* Six to ten participants
-* Multiple groups
++ Six to ten participants
++ Multiple groups
   + Stop when you achieve saturation
-* Sixty to ninety minutes
-* Ten questions, semi-structured interview
++ Sixty to ninety minutes
++ Ten questions, semi-structured interview
 
 <div class="notes">
 
-The size of a focus group can vary, but I've seen recommendations of six to twelve people.
+The size of a focus group can vary, but I've seen recommendations of six to ten people.
 
 What the research community does agree on is that you need to plan for more than one group. The consistency of responses from one group to the next will tell you if you have reached saturation. 
 
@@ -77,10 +78,10 @@ Getting information from a group is a double-edged sword. Often in a focus group
 
 ### Interview
 
-* Administration
++ Administration
   + Telephone
   + Face-to-face
-* Format
++ Format
   + Unstructured
   + Semi-structured
   + Structured
@@ -91,9 +92,9 @@ An interview is direct communication between the researcher and the subject. You
 
 A face-to-face interview takes more effort, but can sometimes help with building a sense of rapport and trust.
 
-Interviews have three formats, unstructured, semi-structured, or structured. An unstructured format is rarely used in research because it makes you work impossible to replicate.
+Interviews have three formats, unstructured, semi-structured, or structured.
 
-An unstructured interview is not used too often, because of problems with repeatability. The interviewer goes in with a general idea of what to discuss, but no specific questions. The general direction of the interview will determine what questions to ask next.
+In an unstructured interview, you go in with a general idea of what to discuss, but no specific questions. The general direction of the interview will determine what questions to ask next. An unstructured format is rarely used in research because it makes you work impossible to replicate.
 
 A semi-structured interview has a planned structure that includes a list of questions to ask. These questions are typically open ended, to allow the patient to bring up issues that the researcher may not have been aware of. Most semi-structured interviews have a series of probe questions that are intended to prompt the research subject to elaborate further on a topic of interest.
 
@@ -127,36 +128,36 @@ Do they ever physically hit you?
 
 How do they punish you?
 
-Further probing was done depending on the responses to the questions: : having been hit, punched, kicked, or otherwise struck or pushed down; cut, bruised, made to bleed, scratched, having broken bones, broken teeth, or having been hurt physically
+Further probing was done depending on the responses to the questions: having been hit, punched, kicked, or otherwise struck or pushed down; cut, bruised, made to bleed, scratched, having broken bones, broken teeth, or having been hurt physically
  
 The questions in this structured interview are close ended. This is quite common, but you can also have a structured interview with open ended questions. For the semi-structured or unstructured interview, however, the questions must be open ended so that you can probe for more information.
 
-The article that these interview questions came from noted that the unstructured interview was far more likely to uncover reports of abus than the structured interview.
+The article that these interview questions came from noted that the unstructured interview was far more likely to uncover reports of abuse than the structured interview.
 
 Image source: Diaz 2017 (see the reading list for full details).
 
 </div>
 
-### Take a break here
+### Break #1
 
-* What have you learned?
++ What have you learned?
   + Focus groups
   + Interviews
-* What is coming next?
++ What is coming next?
   + Questionnaires
   
 <div class="notes">
 
-We've covered quite a bit of ground already, talking about focus groups and intervirews. Let's take a break. When I return, I'll talk about questionnaires.
+We've covered quite a bit of ground already, talking about focus groups and interviews. Let's take a break. When I return, I'll talk about questionnaires.
 
 </div>
 
 ### Questionnaire
 
-* Not the same as a survey
++ Not the same as a survey
   + Questionnaire is the form
   + Survey is the process
-* Administration
++ Administration
   + Mail
   + Computer (REDCap)
   + Telephone
@@ -166,7 +167,7 @@ Note: telephone and in person questionnaires could be classified as interviews.
   
 <div class="notes">
 
-A questionnaire is a form with questions that your research subjects fill out by themselves. The term "quesitonnaire" is often used interchangably with the word "survey," but there is a distinction. The questionnaire is a specific term referring to the form itself, while a survey is intended to describe the entire process of data collection.
+A questionnaire is a form with questions that your research subjects fill out by themselves. The term "questionnaire" is often used interchangeably with the word "survey," but there is a distinction. The questionnaire is a specific term referring to the form itself, while a survey is intended to describe the entire process of data collection.
 
 Now I myself use these terms without regard to the semantics, so if you do so also, you are in good company. But once in a while you will find someone who insists on careful choices of words like this.
 
@@ -182,10 +183,10 @@ REDCap will also do some basic spot checking for you and will prevent some probl
   
 ### Question types
 
-* No one to supervise if person answers "incorrectly".
++ No one to supervise if person answers "incorrectly".
   + Q. What is your age? A. Older than dirt.
   + Q. What is the one word that describes your greatest weakness? A. Inability to follow directions.
-* Three broad classes of questions
++ Three broad classes of questions
   + Open ended
   + Partial open ended
   + Close ended
@@ -200,9 +201,9 @@ For both questionnaires and interviews, you have three broad class of questions:
 
 ### Advantages of open ended questions
 
-* Richer, more detailed responses
-* Captures unanticipated responses
-* Avoids "pigeonholing".
++ Richer, more detailed responses
++ Captures unanticipated responses
++ Avoids "pigeonholing".
   + "Pigeonholing is a process that attempts to classify disparate entities into a limited number of categories (usually, mutually exclusive ones). The term usually carries connotations of criticism, implying that the classification scheme referred to inadequately reflects the entities being sorted, or that it is based on stereotypes." Wikipedia.
   
 <div class="notes">
@@ -217,9 +218,9 @@ The other big advantage of open ended questions is that it avoids pigeon-holing.
   
 ### Advantages of close ended questions
 
-* Faster
-* Easier to analyze
-* Better quality control
++ Faster
++ Easier to analyze
++ Better quality control
 
 Note: partially open ended questions are a compromise and have the worst of both worlds.
 
@@ -235,12 +236,12 @@ Quality control is a bit easier with close ended questions. That doesn't mean th
 
 ### Types of close ended questions
 
-* Fill in the blank
-* Ordinal scales
++ Fill in the blank
++ Ordinal scales
   + Semantic differential scales
   + Likert scale
   + Visual analog scale
-* Nominal scales
++ Nominal scales
   + Select one option
   + Select all that apply
 
@@ -258,16 +259,16 @@ For a nominal response, the order is largely arbitrary. Suppose you had to choos
 
 Ordinal responses typically are collected using a semantic differential scale, a visual analog scale or some type of Likert scale.
 
-Nominal responses are collectetd using a check box, but there are two possibilities: check only one, or check all that apply.
+Nominal responses are collected using a check box, but there are two possibilities: check only one, or check all that apply.
 
 </div>
 
 ### Semantic differential scale
 
-* Pairs of polar opposite adjectives
-* Internal scale with no intermediate descriptors
-* Select a response along the continuum.
-* Common themes
++ Pairs of polar opposite adjectives
++ Internal scale with no intermediate descriptors
++ Select a response along the continuum.
++ Common themes
   + Evaluative (good-bad)
   + Potency (strong-weak)
   + Activity (fast-slow)
@@ -290,12 +291,12 @@ Here's an example of a semantic differential scale that is found in the article 
 
 </div>
 
-### Take a second break
+### Break #2
 
-* What have you learned?
++ What have you learned?
   + Questionnaires
   + Semantic differential scale
-* What's up next?
++ What's up next?
   + Likert scales
 
 <div class="notes">
@@ -307,13 +308,13 @@ There's a lot of material here, so let's take another break.
 
 ### Visual analog scale
 
-* Line segment
++ Line segment
   + Total length 100 millimeters
-* Labels at two extremes
++ Labels at two extremes
   + Alert/Extremely drowsy
   + Energetic/worn out
   + completely full/starving
-* Mark an X along the continuum
++ Mark an X along the continuum
 
 <div class="notes">
 
@@ -329,15 +330,15 @@ It seems like a difficult task, but for many different measurements, the visual 
 
 <div class="notes">
 
-This is an example of the visual analog scale. You are measruing pain, with the left endpoint representing no pain and the right endpoint representing pain as bad as it could possibly be.
+This is an example of the visual analog scale. You are measuring pain, with the left endpoint representing no pain and the right endpoint representing pain as bad as it could possibly be.
 
 </div>
 
 ### Likert scale
 
-* Discrete values
-* Extremes and intermediate points labelled.
-* Measurements of frequency
++ Discrete values
++ Extremes and intermediate points labelled.
++ Measurements of frequency
   + Very frequently, Frequently, Occasionally, Rarely
   + Never, Rarely, Sometimes, Often
   + Every day, Two or three times a week, Once a week, Less than once a week
@@ -351,11 +352,11 @@ The Likert scale could measure frequency. The choices could be Very frequently, 
 </div>
 
 ### Likert scale  
-* Satisfaction (Very satisfied, satisfied, dissatistfied, very dissatisfied)
-* Quality (Very good, Good, Fair, Poor)
-* Agreement scale (5 points)
++ Satisfaction (Very satisfied, satisfied, dissatisfied, very dissatisfied)
++ Quality (Very good, Good, Fair, Poor)
++ Agreement scale (5 points)
   + Strongly disagree, disagree, neutral, agree, strongly agree
-* Agreement scale (6 points)
++ Agreement scale (6 points)
   + Strongly disagree, disagree, slightly disagree, slightly agree, agree, strongly agree
   
 <div class="notes">
@@ -370,7 +371,7 @@ In the most common form, you are asked to read a statement and choose among five
 
 If the Likert scale and the semantic differentiation scale sound similar, well they are. The difference is, perhaps, that the Likert scale is uses the same anchors for a series of measurements, while the semantic differential scale changes from one pair of polar opposites to a different pair for every measurement. The semantic differential scale does not normally include anchors for the intermediate values, while a Likert scale normally does include anchors.
 
-But if you use these terms interchangably, I certainly won't complain.
+But if you use these terms interchangeably, I certainly won't complain.
 
 </div>
 
@@ -389,11 +390,11 @@ https://www.flickr.com/photos/billsophoto/4175299981
 
 ### Likert response options
 
-* Number of points
++ Number of points
   + Larger is better? worse? than smaller
   + Even is better? worse? than odd
-* Not applicable, Don't know
-* Reverse scaling
++ Not applicable, Don't know
++ Reverse scaling
 
 <div class="notes">
 
@@ -413,28 +414,30 @@ Reverse scaling is the inclusion of questions where a positive result is sometim
 
 </div>
 
-### Time for a third break
+### Break #3
 
-* What have you learned?
++ What have you learned?
   + Visual analog scales
   + Likert scales
-* What's next?
++ What's next?
   + Nominal scales
   
 <div class="notes">
 
 That's a lot to digest. Let's take another break.
 
+</div>
+
 ### Nominal responses
 
-* Pick one of the following
++ Pick one of the following
   + Assumes mutually exclusive
-* Pick all that apply
++ Pick all that apply
   + Allows for overlap
   + Code as multiple binaries
-* Code for "other"
++ Code for "other"
   + Partial open ended
-* Code for "Prefer not to answer"
++ Code for "Prefer not to answer"
   
 <div class="notes">
 
@@ -454,19 +457,19 @@ If you are asking a question that some people might consider sensitive (such as 
 
 ### General structure of a questionnaire
 
-* Sensitive questions last
-* Broad categories
++ Sensitive questions last
++ Broad categories
   + Income
-* Do you really need to ask?
-* Avoid leading up to a question
++ Do you really need to ask?
++ Avoid leading up to a question
 
 <div class="notes">
 
 Many researchers advise that you put sensitive questions at the end. If you ask about age and income at the start, your patients might get nervous or upset. "Why do they need to know this information?" If you place these questions at the end, your patients will have gotten a general sense of what you are interested in and may no longer see the questions as intrusive. Note that this is anecdotal evidence. A lot of people cite this but I have not seen any empirical data to support their viewpoint.
 
-Sometimes, you can avoid concerns about sensitive questions by asking for broad categories rather than specific numbers. For income, as an example, you might only be interested in whether someone is at or near the poverty line. If you stop income at a value close to the median income (say $50,000 per year and higher), you'll have some issues for some people on the low end, but at the high end, you'll ease some concerns about people who don't wnat to admit exactly how rich they are.
+Sometimes, you can avoid concerns about sensitive questions by asking for broad categories rather than specific numbers. For income, as an example, you might only be interested in whether someone is at or near the poverty line. If you stop income at a value close to the median income (say $50,000 per year and higher), you'll have some issues for some people on the low end, but at the high end, you'll ease some concerns about people who don't want to admit exactly how rich they are.
 
-I recall a survey I was asked to fill out. It was on perceptions about web sites or something other quite technical. They asked the standard questions about demographics: age, gender, race/ethnicity. Then there was a question about sexual identity. It listed heterosexual. It listed homosexual. It listed bi-sexual. It listed transexual. It went on and on and on. Every choice for LGBTQIA and then some. Now I have a fairly open mind when it comes to sexuality, and there are times when you really do need to know this level of detail. A study of sexually transmitted diseases might need to understand sexuality at such a fine level of detail. But a tech questionnaire about web sites? I suspect that the person who wrote this survey had a close friend who was LGBT and wanted to be sure that his survey was sensitive to the variety of sexualities that too often are disparaged or ignored.
+I recall a survey I was asked to fill out. It was on perceptions about web sites or something other quite technical. They asked the standard questions about demographics: age, gender, race/ethnicity. Then there was a question about sexual identity. It listed heterosexual. It listed homosexual. It listed bi-sexual. It listed transsexual. It went on and on and on. Every choice for LGBTQIA and then some. Now I have a fairly open mind when it comes to sexuality, and there are times when you really do need to know this level of detail. A study of sexually transmitted diseases might need to understand sexuality at such a fine level of detail. But a tech questionnaire about web sites? I suspect that the person who wrote this survey had a close friend who was LGBT and wanted to be sure that his survey was sensitive to the variety of sexualities that too often are disparaged or ignored.
 
 Question order in a questionnaire is important in that asking a series of questions might tend to nudge someone towards one extreme or the other. Some unscrupulous pollsters do this to get a result more favorable to their customer. Look at the short clip from the British comedy, Yes Prime Minister, for an example of nudging someone with a series of leading questions.
 
@@ -476,10 +479,10 @@ There isn't a lot of practical advice about how to avoid leading questions, unfo
   
 ### Practical advice
 
-* Don't ask for what you don't need
++ Don't ask for what you don't need
   + More data than you have time to analyze
-* Make your questionnaire easy for data entry
-* Pilot test your questionnaire
++ Make your questionnaire easy for data entry
++ Pilot test your questionnaire
 
 <div class="notes">
 
@@ -499,29 +502,78 @@ Also get an estimate on how much labor is needed to distribute and recollect all
 
 </div>
 
-### Take a fourth break
+### Break #4
 
-* What have we learned
++ What have we learned
   + Nominal scale questions on questionnaires
-* What is coming up next
-  + Existing data sources
-  + Advantages of different data collection approaches
-  
++ What is coming up next
+  + Case report forms
+
 <div class="notes">
 
 That's about it for questionnaires. Let's take another break.
 
 </div>
 
+### Case report form (CRF)
+
++ Paper or electronic form
+  + Prospective studies
+  + Retrospective chart reviews
++ Used to collect and store data
+  + Filled out by researcher
+  + One form per patient
+  
+<div class="notes">
+
+A case report form is a paper or electronic form used by a member of the research team to collect and store data. There is a separate form for each patient, though sometimes there are multiple forms, especially for a longitudinal study. 
+
+Most of the references on CRFs discuss it from the perspective of a prospective clinical trial. It can also be used to extract information from an existing database where more direct approaches such as a SQL query are not possible. This is often when the information is not structured and requires human judgement to extract the information, which can reside in several different places.
+
+</div>
+
+### What sort of data 
+
++ Medical history
++ Physical
++ Potentially other types of data
++ No personal identifiers
+
+<div class="notes">
+
+While the CRF can contain any type of data, it most commonly is used to collect information from a physical exam plus a medical history.
+
+To protect privacy, the CRF will commonly avoid any personal identifiers, but instead use a subject code.
+
+</div>
+
+### Design issues
+
++ See the discussion board.
+
+<div class="notes">
+
+A poorly designed CRF can lead to data quality problems. A well-designed CRF is clear, unambiguous, easy to read, and follows a consistent format. There are several articles about CRFs that go into great detail on this, and I want you to discuss a suggestion from one of these articles in a discussion board on Canvas.
+
+</div>
+
+### Break #5
+
++ What have we learned
+  + Case report forms
++ What is coming up next
+  + Existing data sources
+  + Advantages of different data collection approaches
+
 ### Existing data sources
 
-* Re-analysis of published data
++ Re-analysis of published data
   + Protect confidentiality
   + Give appropriate acknowledgement or co-authorship
-* Curated databases
++ Curated databases
   + Contractual limitations
   + Sample weights
-* Web scraping
++ Web scraping
   + Respect limits on volume and speed of download
   + Protect copyrights
 
@@ -533,11 +585,11 @@ If you are taking data from an existing research publication (or, in the case of
 
 If the data that you are getting includes Protected Health Information (PHI), there are important regulations that you must follow under the Health Insurance Portability and Accountability Act. Because you are working with PHI, you need to get approval from your local IRB even though the original authors got IRB approval at their site.
 
-If the authors have made their data set available for free download, your life is a bit easier. There is no PHI in a publicly available data set, or if there were, the person who would get in trouble for this would be the original authors. You have to promise not to take the disparite pieces of information that by themselves are innocuous enogh, but which in aggregate might allow you to figure out the identity of some of the people in the sample.
+If the authors have made their data set available for free download, your life is a bit easier. There is no PHI in a publicly available data set, or if there were, the person who would get in trouble for this would be the original authors. You have to promise not to take the disparate pieces of information that by themselves are innocuous enough, but which in aggregate might allow you to figure out the identity of some of the people in the sample.
 
 Various groups will collect data not for their own benefit, but rather to let others publish interesting things. This might be through a government program or through a charitable foundation. These data sets are carefully curated and have excellent documentation. The people behind these data sets are very eager to help. They see your publications as being one of the strongest rationales for what they are doing. They want you to be successful.
 
-Read the documentation carefully, including the limits on how you can use this data. Even though the data has been anonymized, you will be asked to promise that you will not try to use certain crosstabulations that might identify individual respondents.
+Read the documentation carefully, including the limits on how you can use this data. Even though the data has been anonymized, you will be asked to promise that you will not try to use certain cross-tabulations that might identify individual respondents.
 
 Many of these data sets have sample weights associated with them. The sample weights help you properly calibrate your results to nationwide totals, or they help you properly account for oversampling of minority groups. Some of these data sets use clustering and stratification to reduce costs and improve the coverage and quality of their data. If you are using data that requires sample weights, failure to choose the appropriate analysis will produce invalid results.
 
@@ -549,8 +601,8 @@ A new source of data is stored on the Internet, and getting this data often requ
 
 ### Advantages of focus groups
 
-* Faster than separate interviews
-* Participants build each others comments
++ Faster than separate interviews
++ Participants build each others comments
 
 <div class="notes">
 
@@ -560,23 +612,23 @@ Focus groups are great. You get six or ten people in the room and interview all 
 
 ### Advantages of interviews
 
-* On-the-spot fixes
-* Increased participation rate
++ On-the-spot fixes
++ Increased participation rate
 
 <div class="notes">
 
-Interviews are great. You get a rich set of reponses, and if someone goes off track and provides a weird answer, the interviewer has an opportunity to fix things.
+Interviews are great. You get a rich set of responses, and if someone goes off track and provides a weird answer, the interviewer has an opportunity to fix things.
 
 </div>
 
 ### Advantages of a questionnaire
 
-* Less labor
-* No interviewer bias
++ Less labor
++ No interviewer bias
 
 <div class="notes">
 
-Questionnaires are great. If you have to interview people, you'll be spending half your life on the phone. If that's wahat's needed for research, fine. But if your patients are capable and willing and can do so accurately, you'll save a lot of time.
+Questionnaires are great. If you have to interview people, you'll be spending half your life on the phone. If that's what's needed for research, fine. But if your patients are capable and willing and can do so accurately, you'll save a lot of time.
 
 You'll also avoid interviewer bias. Interviewer bias is the tendency to get different results depending on the race, gender, age, or other overt feature of the person conducting the interview. It's not the interviewer's fault, necessarily. The person being interviewed might be more open and honest with certain interviewers than others.
 
@@ -584,9 +636,9 @@ You'll also avoid interviewer bias. Interviewer bias is the tendency to get diff
 
 ### Advantages of existing data
 
-* Fast
-* Cheap
-* Naturalistic
++ Fast
++ Cheap
++ Naturalistic
 
 <div class="notes">
 
@@ -600,15 +652,15 @@ A big advantage of many (but not all) existing data sets is that the data is col
 
 ### We're done
 
-* What have you learned
++ What have you learned
   + Methods of data collection (focus groups, interviews, questionnaires, existing data sources)
   + Advantage of different data collection methods
-* What is coming next week
++ What is coming next week
   + Data quality/data management
 
 <div class="notes">
 
-we're done. We've talked about four major ways to collect data: focus groups, interviews, questionnaires, and existing data sources. Next week we'll talk about data quality and data management.
+We're done. We've talked about four major ways to collect data: focus groups, interviews, questionnaires, and existing data sources. Next week we'll talk about data quality and data management.
 
 </div>
 
