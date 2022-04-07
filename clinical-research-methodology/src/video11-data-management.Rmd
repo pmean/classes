@@ -211,7 +211,8 @@ Never, never, never code your data as two digit years. Even if all the dates are
 
 ### Internal storage formats
 
-+ Excel - number of days since 1899-12-31 (1900-01-00)
++ Excel - number of days since 1899-12-31
+  + Actually January 0, 1900 (1900-01-00)!
 + R - number of days since January 1, 1970
 + SAS - number of days since January 1, 1960
 + SPSS - number of seconds since October 14, 1582
