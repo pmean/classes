@@ -26,7 +26,7 @@ Handouts associated with the videos are draft only at this point. They will be f
   + See the [recommended reading page][git2] on my github site.
 
 + Handouts associated with videos
-  + Video11. Data management. Slides and speaker notes available in [pdf format][git1]
+  + Video13. Data management. Slides and speaker notes available in [pdf format][git1]
 
 #### Videos
 
@@ -55,4 +55,5 @@ There is
 
 available on the Canvas website.
 
+[git1]: https://github.com/pmean/classes/blob/master/clinical-research-methodology/results/video13-slides-and-speaker-notes.pdf
 [git2]: https://github.com/pmean/classes/blob/master/clinical-research-methodology/modules/5510-99-readings.md
