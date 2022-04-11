@@ -57,5 +57,5 @@ There is
 available on the Canvas website.
 
 [git0]: https://github.com/pmean/classes/blob/master/clinical-research-methodology/modules/5510-99-videos.md
-[git1]: https://github.com/pmean/classes/blob/master/clinical-research-methodology/results/video10-slides-and-speaker-notes.pdf
+[git1]: https://github.com/pmean/classes/blob/master/clinical-research-methodology/results/video11-slides-and-speaker-notes.pdf
 [git2]: https://github.com/pmean/classes/blob/master/clinical-research-methodology/modules/5510-99-readings.md
