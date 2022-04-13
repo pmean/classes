@@ -79,7 +79,7 @@ By the way, if you weren't writhing in the floor in agony when you saw this inte
 
 Here's a definition of a population that I found somewhere but then I lost the link. So if anyone ever runs across this list of characteristics of a population, please let me know. It is too clever a list for me to have figured it out by myself.
 
-A population is a collection of items of research. In clinical research, the population is often a collection of people, sharing some commmon features. They may all be in the same demographic group, the may all come from the same area, they may all have the same job, they may be getting the same type of medical care, they may have the same diseases, or it may be a combination of these items.
+A population is a collection of items of research. In clinical research, the population is often a collection of people, sharing some common features. They may all be in the same demographic group, the may all come from the same area, they may all have the same job, they may be getting the same type of medical care, they may have the same diseases, or it may be a combination of these items.
 
 </div>
 
@@ -116,7 +116,7 @@ during their first year of life (time, again)
   
 <div class="notes">
 
-A sample is a subet of a population. Usually it is of a much smaller size than the population. It has to be small enough to be manageable.
+A sample is a subset of a population. Usually it is of a much smaller size than the population. It has to be small enough to be manageable.
 
 The primary goal of much research is to use information collected from a sample to try to characterize a certain population. As such, you should pay a lot of attention to how representative the sample is of the population.
 
@@ -159,7 +159,7 @@ Researchers will often designate a null and alternative hypothesis. The null hyp
 
 The alternative hypothesis implies some type of change, either an improvement or decrement. It could also imply some type of association: a positive association (as one variable increases, the other variable also increases), or a negative association (as one variable increases, the other variable decreases).
 
-Hypotheses are statements about population parameters. Because you new know exactly what a parameter is, you can never state with certainty whether a hypothesis about a parameter is true or false. Remeber this, as it becomes important later.
+Hypotheses are statements about population parameters. Because you new know exactly what a parameter is, you can never state with certainty whether a hypothesis about a parameter is true or false. Remember this, as it becomes important later.
 
 The decision rule is a statement about what particular values in the sample would lead you to accept the null hypothesis and what values would lead you to reject the null hypothesis.
 
@@ -198,7 +198,7 @@ Another common hypothesis involves a comparison of binary outcomes between two g
 
 Close to zero, as before, means close to zero relative to the amount of sampling error.
 
-Example: in the same study, the researchers hypothesized that the difference in proportions for patients experiencing serious adverse events was zero. The sample proportions were 20% (50/252) and 16% (42/257). Since the differrence in proportions was small, the researchers accepted the null hypothesis and concluded that "Nilvadipine appeared to be safe and well tolerated"
+Example: in the same study, the researchers hypothesized that the difference in proportions for patients experiencing serious adverse events was zero. The sample proportions were 20% (50/252) and 16% (42/257). Since the difference in proportions was small, the researchers accepted the null hypothesis and concluded that "Nilvadipine appeared to be safe and well tolerated"
 
 </div>
 
@@ -215,7 +215,7 @@ Example: in the same study, the researchers hypothesized that the difference in 
 
 I'll talk a lot about regression models later, but let me introduce a hypothesis involving a regression model. Typically, but not always, a regression model has an intercept term and a slope term. The slope term quantifies the relationship between your independent variable and your dependent variable. If the population parameter is zero that means there is no relationship in the population. Like the other models, you compute a sample statistic and accept the null hypothesis if that sample statistic is close to zero.
 
-Example: in a study of endothelial function and cognitive preformance in patients with coronary heart disease, the researchers hypothesized that there was no linear relationship between change in reactive hyperemia index (RHI) and the change in overall cognition. The regression coefficient was 0.55 which was not close to zero, so the researchers rejected the null hypothesis and concluded that "an increased RHI was significantly associated with an improvement in overall cognition."
+Example: in a study of endothelial function and cognitive performance in patients with coronary heart disease, the researchers hypothesized that there was no linear relationship between change in reactive hyperemia index (RHI) and the change in overall cognition. The regression coefficient was 0.55 which was not close to zero, so the researchers rejected the null hypothesis and concluded that "an increased RHI was significantly associated with an improvement in overall cognition."
 
 Saleem M, Herrmann N, Dinoff A, et al. Association Between Endothelial Function and Cognitive Performance in Patients With Coronary Artery Disease During Cardiac Rehabilitation. Psychosom Med. 2019;81(2):184–191. doi:10.1097/PSY.0000000000000651.
 
@@ -228,7 +228,7 @@ This is not a data analysis class, but I do want to provide you with enough info
 ### First break
 
 + What have you learned
-  + Poulation, sample
+  + Population, sample
   + Parameter, statistic
   + Basic hypotheses
 + What's coming next
@@ -347,7 +347,7 @@ A Type I error is rejecting the null hypothesis when the null hypothesis is true
 
 Consider a new drug that we will put on the market if we can show that it is better than a placebo. In this context, H0 would represent the hypothesis that the average improvement (or perhaps the probability of improvement) among all patients taking the new drug is equal to the average improvement (probability of improvement) among all patients taking the placebo. A Type I error would be allowing an ineffective drug onto the market.
 
-Remember that the hypotheses involve population paramters. Population parameters are impossible to compute. So you can only talk about Type I errors in an abstract sense. You will never know for certain if you have made a Type I error.
+Remember that the hypotheses involve population parameters. Population parameters are impossible to compute. So you can only talk about Type I errors in an abstract sense. You will never know for certain if you have made a Type I error.
 
 Alpha is the probability of a Type I error, and alpha is a value that you can compute. In most studies, researchers work hard to keep the probability of a Type I error low, typically at 5%.
 
@@ -474,7 +474,7 @@ I wrote this question quickly, so shame, shame on me. But I've reproduced the ex
 
 The p-value is not a measure for either hypothesis. It is always a measure against a particular hypothesis. Now when the p-value is small, you can make a strong statement. We have lots of evidence against the null hypothesis. That translates into lots of evidence in favor of the alternative hypothesis.
 
-When the p-value is large, however, you are in a quandry. Little or no evidence against the null hypothesis is not the same as lots of evidence for the null hypothesis.
+When the p-value is large, however, you are in a quandary. Little or no evidence against the null hypothesis is not the same as lots of evidence for the null hypothesis.
 
 It's possible to have little or no evidence against the null and also have little or no evidence against the alternative. This happens whenever you have a really small sample size combined with a lot of noise.
 
@@ -498,7 +498,7 @@ In the first panel, a woman runs up to a man and shouts: Jelly beans cause acne!
 
 The man replies : Scientists! Investigate!
 
-In the second panel, one scientist, holind a clipboard announces: We found no link between jelly beans and acne (p > 0.05).
+In the second panel, one scientist, holding a clipboard announces: We found no link between jelly beans and acne (p > 0.05).
 
 In the third panel, the woman says: I hear it's only a certain color that causes it.
 
@@ -550,7 +550,7 @@ This is an example of p-hacking. You change the testing process to increase the 
 
 Some examples of p-hacking. Run multiple tests on the same outcome measure. Start with the regular t-test, include the t-test that allows for unequal variances, and run two different non-parametric tests, the Wilcoxon-Mann-Whitney test and the sign test. Choose the test with the smallest p-value.
 
-You also might consider multiple outcome measures. Compare the mortality rate, the relapse rate, and the rehospitalization rate. If any of the three is statistically significant, claim victory.
+You also might consider multiple outcome measures. Compare the mortality rate, the relapse rate, and the re-hospitalization rate. If any of the three is statistically significant, claim victory.
 
 You could also do this with longitudinal data. Compare pain relief at one hour and at four hours. If you see a difference at one hour, claim that your new medication is faster acting. If you see a difference at four hours, claim that your medication is longer lasting.
 
@@ -669,7 +669,7 @@ Clinical indifference is a medical judgment, and not a statistical judgment. It 
 
 One the other hand, if part of the confidence interval lies outside the range of clinical indifference, then you should consider the possibility that the sample size is too small.
 
-The interval contains zero, so it is plausible to behave as if the difference in population means or proportions is zero. But the interval also contains values that are clinically important. So it is plausible to behave as if there is a clinically important difference in means. How can you have two such different interpretations being plausible at the same time? That's the definition of ambiguity. If you don't like it, get used to it. Statisics will often identify areas of ambiguity, which is a good thing, because it tells us to not act prematurely, but instead demand more data before you make a definitive decision.
+The interval contains zero, so it is plausible to behave as if the difference in population means or proportions is zero. But the interval also contains values that are clinically important. So it is plausible to behave as if there is a clinically important difference in means. How can you have two such different interpretations being plausible at the same time? That's the definition of ambiguity. If you don't like it, get used to it. Statistics will often identify areas of ambiguity, which is a good thing, because it tells us to not act prematurely, but instead demand more data before you make a definitive decision.
 
 </div>
 
@@ -766,7 +766,7 @@ Other times, it's tricky. A side effect of the flu vaccine is localized soreness
 
 If the new vaccine were 50% cheaper, you'd just have to figure out the dollar value associated with a single case of the flu and do make sure that the proportion of fewer cures times cost of a single cure was smaller than the cost savings. So if all the bad things associated with the flu, the suffering, the lost work time, and the increased risk of other bad things like pneumonia had a dollar value of five thousand dollars, and you could save two hundred dollars per dose of vaccine, then you'd need to need to make sure that the decline in efficacy was not 4% or worse. 
 
-I'm vastly oversimplifying things here. I'm not talking, for example, about the complexities associated with absolute versus relative risk. And some of my math calculations might be a bit dicey. But to be honest, no one even tries to look at things from this simpilistic of an approach. They just pick a number out of thin air, and don't offer any justification. If you need to set a non-inferiority margin, talk to a bunch of people and make sure that you are assessing the trade-offs properly.
+I'm vastly oversimplifying things here. I'm not talking, for example, about the complexities associated with absolute versus relative risk. And some of my math calculations might be a bit dicey. But to be honest, no one even tries to look at things from this simplistic of an approach. They just pick a number out of thin air, and don't offer any justification. If you need to set a non-inferiority margin, talk to a bunch of people and make sure that you are assessing the trade-offs properly.
 
 Once you have your non-inferiority margin, the rest is easy. Your alternative hypothesis is that the difference in means is above the non-inferiority margin. The way I have described the hypotheses might need to change the direction of the sign depending on whether you label the group with the new drug with a 1 or a 2. Instead of rejecting H0 if you are above zero by a certain amount determined by sampling error, you reject 
 
@@ -791,7 +791,7 @@ There area lot of formulas out there and a lot of software that will help you ju
 
 The first of these is the rule of 50. If you are measuring a binary outcome, you need to plan for a large enough sample size so that you see 25 to 50 events in each group. This is a very useful rule for seeing if your sample size needs to be in the hundreds, or if it needs to be in the thousands.
 
-I was working with a researcher who wanted to study infants who were breastfeeding while at the hospital, go home and then come back in seven days with breastfeeding jaundice. I said, okay, about how often does this happen. And he said maybe somewhere between a half a percent and two percent of the babies. So I did the math. If the rate is on the high end, 2%, that means one out of every 50 patients will be readmitted. So you needs to get 50 times as many babies to assure that you will get 50 events. Thats 2,500. In one group. And with the numbers on the high end of his interval. So I tell him, you'll probably need to study around 5,000 infants. He was not happy.
+I was working with a researcher who wanted to study infants who were breastfeeding while at the hospital, go home and then come back in seven days with breastfeeding jaundice. I said, okay, about how often does this happen. And he said maybe somewhere between a half a percent and two percent of the babies. So I did the math. If the rate is on the high end, 2%, that means one out of every 50 patients will be readmitted. So you needs to get 50 times as many babies to assure that you will get 50 events. That's 2,500. In one group. And with the numbers on the high end of his interval. So I tell him, you'll probably need to study around 5,000 infants. He was not happy.
 
 No one every got thrown in jail for violating a rule of thumb. But when you do the formal sample size formula, you sure as heck won't get a sample size of 100. A sample of 100 patients would mean that you'd expect to see two infants readmitted. Do you want to hang your hat on two infants?
 
@@ -799,11 +799,11 @@ The other rule, called the rule of 16, is useful for continuous outcomes. If you
 
 You can also justify your sample size by specifying how narrow you'd like your confidence intervals to be. This is especially useful in settings where there is no formal research hypothesis. The calculations here are a bit tedious, but manageable. Suppose you are running a diagnostic test and you want sensitivity and specificity to both have very narrow confidence intervals. You plan to recruit in a population where the prevalence of the disease is only 10%. This means that sensitivity, which has the proportion of diseased patients in the denominator, is your most crucial confidence interval. Trial and error works well here. You'd like any interval to have a maximum width of plus or minus 0.1. If sensitivity were 90%, your 95% confidence interval would be 0.871 to 0.928. Now try 70% sensitivity. Your interval is 0.655 to 0.745. It looks like we could get by with a slightly smaller sample size.
 
-A formal power calculation is the most common way to justify your sample size. I won't show the details, but justificaiton using a power calculation requires you to specify a research hypothesis (using Greek symbols like mu, pi, or beta), the standard deviation of your outcome measure (assuming a continuous outcome measure), and the minimum clinically important difference.
+A formal power calculation is the most common way to justify your sample size. I won't show the details, but justification using a power calculation requires you to specify a research hypothesis (using Greek symbols like mu, pi, or beta), the standard deviation of your outcome measure (assuming a continuous outcome measure), and the minimum clinically important difference.
 
 Never try to justify your sample size after the fact. It is called a post hoc power calculation. It is very bad. If you didn't have the foresight to justify your sample size before collecting your data, rely on the width of your confidence intervals to show that your sample size was adequate.
 
-Your book and a lot of other books talk about effect sizes. While an effect size is a useful intermediate calculation, you cannot use the effect size, by ifself, as it is impossible to interpret. Imagine a store with a sign in front announcing "Giant sae: all prices reduced by half a standard deviation".
+Your book and a lot of other books talk about effect sizes. While an effect size is a useful intermediate calculation, you cannot use the effect size, by itself, as it is impossible to interpret. Imagine a store with a sign in front announcing "Giant sale: all prices reduced by half a standard deviation".
 
 if you want to define a minimum clinically important difference, you must do it in the original scale of measurement, not using some unitless quantity like an effect size.
 
@@ -831,7 +831,7 @@ if you want to define a minimum clinically important difference, you must do it 
   
 <div class="notes">
 
-There are many cricisms of hypothesis testing. You need to be aware of these criticisms, but I am not suggesting that you abandon hypothesis testing because of these criticisms.
+There are many criticisms of hypothesis testing. You need to be aware of these criticisms, but I am not suggesting that you abandon hypothesis testing because of these criticisms.
 
 The first set of criticisms deals with the binary nature of the hypotheses.
 
@@ -859,13 +859,13 @@ Many of these criticisms of the binary hypothesis would disappear if we allowed 
 
 <div class="notes">
 
-The p-value that lies at the heart of hpyothesis testing has also been roundly criticized. It seems backwards in more than one way. It is evidence against a hypothesis rather than for a hypothesis. You get lots of evidence against the null hypothesis when the p-value is small and little or no evidence when the p-value is large. And the conditional probability that your p-value represents, the probability of getting sample results or results more extreme given that the null hypothesis is true represents the reverse of what you really want. What you really want is the probability that the null hypothesis is true given the data that you observed.
+The p-value that lies at the heart of hypothesis testing has also been roundly criticized. It seems backwards in more than one way. It is evidence against a hypothesis rather than for a hypothesis. You get lots of evidence against the null hypothesis when the p-value is small and little or no evidence when the p-value is large. And the conditional probability that your p-value represents, the probability of getting sample results or results more extreme given that the null hypothesis is true represents the reverse of what you really want. What you really want is the probability that the null hypothesis is true given the data that you observed.
 
-A lot of people dislike the idea of looking for a probability involving the sample results or results more extreme. Why, they ask, do you want a probabilty involving results more extreme. You didn't observe a value more extreme. You observed a single vlaue.
+A lot of people dislike the idea of looking for a probability involving the sample results or results more extreme. Why, they ask, do you want a probability involving results more extreme. You didn't observe a value more extreme. You observed a single value.
 
-The p-vaue ignores clinical importance. This would be easy to fix if people used an interval -delta to delta for the null hypothesis as mentioned earlier, but no one is ready to do this.
+The p-value ignores clinical importance. This would be easy to fix if people used an interval -delta to delta for the null hypothesis as mentioned earlier, but no one is ready to do this.
 
-Finally, the p-value is unaffected by threats to internal validity. If you conduct the study poorly, such as failing to keep information away from patients in a blineded study, or having a large number of protocol violations, that should be reflected in your p-value. But the p-value ignore these problems.
+Finally, the p-value is unaffected by threats to internal validity. If you conduct the study poorly, such as failing to keep information away from patients in a blinded study, or having a large number of protocol violations, that should be reflected in your p-value. But the p-value ignore these problems.
 
 </div>
 
@@ -879,13 +879,13 @@ Finally, the p-value is unaffected by threats to internal validity. If you condu
 
 <div class="notes">
 
-Hypothesis testing has been criticized because it is too hard to reject the null hypothesis, especially for small samples in a noisy setting. The conservative inside of you and me probably thinks this is good. Don't make a choice between two therapies or drugs until you've accumulated sufficient evidence. But failing to act quickly can sometimes force you to pay a price. This relates to the tradeoffs that you see all the time between false negative results and false positive results. The hypothesis testing framework is biased towards preventing a false positive result (a Type I error) and it is very difficult to get this framework to work well when a false negative result is worse. This can occur, for example, in a setting with a 100% fatal disease with no known cure.
+Hypothesis testing has been criticized because it is too hard to reject the null hypothesis, especially for small samples in a noisy setting. The conservative inside of you and me probably thinks this is good. Don't make a choice between two therapies or drugs until you've accumulated sufficient evidence. But failing to act quickly can sometimes force you to pay a price. This relates to the trade-offs that you see all the time between false negative results and false positive results. The hypothesis testing framework is biased towards preventing a false positive result (a Type I error) and it is very difficult to get this framework to work well when a false negative result is worse. This can occur, for example, in a setting with a 100% fatal disease with no known cure.
 
 The opposite problem is also true. It is often too easy to reject the null hypothesis. In this era of big data, you can quickly get millions of data points or more and you have so much precision that any sample statistics even of a trivial size will lead to a statistically significant result. This is not good. Instead of identifying one or two risk factors as being statistically significant, a really big data set will identify hundreds or even thousands of risk factors as being statistically significant.
 
 The p-value is too reliant on a single study and does not consider what previous research has been done.
 
-My biggest criticism of p-values, though, is the thougtless way in which they are applied. I've written about the p-value receptor inside a scientist's brain.
+My biggest criticism of p-values, though, is the thoughtless way in which they are applied. I've written about the p-value receptor inside a scientist's brain.
 
 A research team took ten scientists and placed them inside an fMRI. The fMRI shows which parts of your brain are active as your brain processes different types of information. The scientists were shown a variety of graphs taken from actual peer-reviewed publications.
 
@@ -899,7 +899,7 @@ If the p-value receptor is activated and the p-value is 0.05 or smaller, the p-v
 
 The scientists also examined the effect of p-values reported in scientific notation. There was an increase in latency when the p-value receptor is fed a p-value in scientific notation. This probably represents an attempt to decode the scientific notation. But p-values in scientific notation with exponents of -4 or smaller showed an eventual spike in activation of the pleasure centers of the brain that are comparable to those achieved during orgasm.
 
-The research also noted a second important effect of the p-value receptor. Once the p-value receptor is stimulated, the entire cereberal cortex, the portion of your brain associated with logic and complex thinking, is immediately shut down. This insures that a scientist’s brain will focus only on the pleasure or pain associated with the p-value and will ignore the power of the study, the magnitude of the treatment effect, and other unimportant issues.
+The research also noted a second important effect of the p-value receptor. Once the p-value receptor is stimulated, the entire cerebral cortex, the portion of your brain associated with logic and complex thinking, is immediately shut down. This insures that a scientist’s brain will focus only on the pleasure or pain associated with the p-value and will ignore the power of the study, the magnitude of the treatment effect, and other unimportant issues.
 
 The researchers suggest that statisticians who want to earn more consulting income and insure repeated business should do their best to produce only p-values that stimulate the pleasure centers of the brain.
 
@@ -1025,7 +1025,7 @@ We don't know if ECMO is better or worse, so let's start out by placing half the
 
 <div class="notes">
 
-Now spread out the remaining 50% of the probability across the remainder of the table. There are 90 cells remaining, so when you divide 50% by 90, you get 0.56%. Notice that the upper triangle gets just as much probabilty as the lower triangle. if the parameter were found in the upper triangle, that would represent cases where ECMO has a higher survival rate than the control group.
+Now spread out the remaining 50% of the probability across the remainder of the table. There are 90 cells remaining, so when you divide 50% by 90, you get 0.56%. Notice that the upper triangle gets just as much probability as the lower triangle. if the parameter were found in the upper triangle, that would represent cases where ECMO has a higher survival rate than the control group.
 
 </div>
 
@@ -1035,7 +1035,7 @@ Now spread out the remaining 50% of the probability across the remainder of the 
 
 <div class="notes">
 
-Put these two together and check that the total probability is 100%. These represents your prior belief, and since this study was run before there was much research, it makes sense to spread the probability more or less evenly across the table, but also spliting the data so that the probability on the diagonal, the probability of the null hypothesis, is the same as the probabilty off the diagonal, the probability of the alternative hypothesis.
+Put these two together and check that the total probability is 100%. These represents your prior belief, and since this study was run before there was much research, it makes sense to spread the probability more or less evenly across the table, but also splitting the data so that the probability on the diagonal, the probability of the null hypothesis, is the same as the probability off the diagonal, the probability of the alternative hypothesis.
 
 Now if the thought of assigning probabilities to hypotheses prior to collecting data makes you feel queasy, you are in good company. But bear with me for a moment.
 
@@ -1063,7 +1063,7 @@ The table above shows the binomial probabilities under each of the 100 different
 
 Now multiply the prior probability of each hypothesis by the likelihood of the data under each hypothesis. For ECMO=0.9, conventional therapy=0.6, this product is 5 out of a thousand times 38 out of a thousand, which equals 190 out of a million (actually it is 173 out of a million when you don't round the data so much). For ECMO=conventional=0.8, the product is 45 out of a thousand times 1 out of a thousand, or 45 out of a million.
 
-This table shows the product of the prior probabilities and the likelihoods. We're almost done, but there is one catch. These numbers do not add up to 1 (they add up to 794 out of a million), so we need to rescale them. We divide by P(E) which is defined in the wikipedia article as
+This table shows the product of the prior probabilities and the likelihoods. We're almost done, but there is one catch. These numbers do not add up to 1 (they add up to 794 out of a million), so we need to rescale them. We divide by P(E) which is defined in the Wikipedia article as
 
 P(E) = P(E|H1) P(H1) + P(E|H2) P(H2) + ...
 
