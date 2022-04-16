@@ -80,6 +80,11 @@ There are seven videos for this module.
 
 ### Active learning
 
+Please refer to the [programming expectations handout][git98]. I will use a [standard grading rubric][git99] for all homework assignments.
+
+[git98]: https://github.com/pmean/classes/blob/master/software-engineering/results/programming-expectations.pdf
+[git99]: https://github.com/pmean/classes/blob/master/software-engineering/src/grading-rubric.md
+
 Having completed all the videos in this module, I would like you to turn in some simple analyses that you run on two fresh data sets. 
 
 For every question, include the relevant R output and a brief written commentary explaining what the results mean. When you send your answers, please include the original questions (e.g., Q1: What is the 18th letter of the alphabet. A. The letter “R”).
