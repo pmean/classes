@@ -1,88 +1,39 @@
 ---
-title: "MEDB 5505, Introduction to R, Module04"
+title: "MEDB 5505, Introduction to R, Module05"
 ---
 
 ### Synopsis
 
-#### Working with categorical data
+#### Working with a mix of categorical and continuous data
 
-Categorical data requires different approaches for data management and data analysis. You will spend much of your time calculating counts and percentages. While these are simple from a mathematical perspective, you have a broad range of choices for displaying these data.
-
-**If you've already found a dataset for use in the final project, take at the categorical variables in it and see what names you should use for the individual categories.**
+(To be added)
 
 ### Learning objectives
 
-In this module, you will learn how to 
+#### In this module, you will learn how to 
 
-+ Define factors for categorical variables
-+ Calculate crosstabulations
-+ Draw bar charts
++ Compute group means and standard deviations
++ Draw boxplots
 
-You will also see the following R functions
+#### You will also see the following R functions
 
-+ addmargins
-+ case_when
-+ factor
-+ geom_bar
-+ names
-+ paste0
-+ prop.table
-+ range
-+ round
-+ table
-+ which.max
-+ which.min
++ by, calculates within values of a categorical variable
++ geom_boxplot, adds boxplots to your graph
++ range, displays both the minimum and maximum value
 
 ### Readings and Resources
 
-Programs used in this module
-
-+ [v04-slides-and-speaker-notes.Rmd][git1]
-+ [p04-categorical.Rmd](Not available yet)
-
-+ Handouts associated with videos
-  + Video04 slides and speaker notes available in [pdf format][git3]
-
-[git1]: https://github.com/pmean/classes/blob/master/introduction-to-r/src/v04-slides-and-speaker-notes.Rmd
-[git2]: 
-[git3]: https://github.com/pmean/classes/blob/master/introduction-to-r/results/v04-slides-and-speaker-notes.pdf
-
-Datasets used in this module
-
-+ Diet
-
-+ Gardasil
-
-+ Titanic
-  + The data dictionary, available in [yaml format][titanic1]
-  + The dataset, available in [text format][titanic2].
-
-[titanic1]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/titanic-data-dictionary.yaml
-[titanic2]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/titanic_v00.txt
+(To be added)
 
 ### Videos
 
-There are seven videos for this module.
-
-+ V04-01, The Titanic data set, 7 minutes, available in [Panopto format][2022a0401].
-+ V04-02, Counts and percentages, 13 minutes, available in [Panopto format][2022a0402].
-+ V04-03, Factors, crosstabulations, 16 minutes, available in [Panopto format][2022a0403].
-+ V04-04, Bar plots, 6 minutes, available in [Panopto format][2022a0404].
-+ V04-05, New categorical variables, 9 minutes, available in [Panopto format][2022a0405].
-+ V04-06, live demo, ?? minutes, available soon in [Panopto format][2022a0406].
-+ V04-07, assignments, ?? minutes, available soon in [Panopto format][2022a0407].
-
-[2022a0401]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ac7c5012-71d2-48f3-8703-ae78016ac1c5
-[2022a0402]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5e86215c-0efa-4b61-824e-ae78016cd9b4
-[2022a0403]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=47c3fa8f-a133-4e1a-ab11-ae780170e8db
-[2022a0404]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9c46a59a-6076-4745-b15f-ae7801759190
-[2022a0405]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=eaf95eef-eab1-4b91-9c43-ae7801775ffd
-[2022a0406]: 
-[2022a0407]: 
+(To be added)
 
 ### Active learning
 
 Please refer to the [programming expectations handout][git98]. I will use a [standard grading rubric][git99] for all homework assignments.
+
+(More to be added)
 
 [git98]: https://github.com/pmean/classes/blob/master/software-engineering/results/programming-expectations.pdf
 [git99]: https://github.com/pmean/classes/blob/master/software-engineering/src/grading-rubric.md

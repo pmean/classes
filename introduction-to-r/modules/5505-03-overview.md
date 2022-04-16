@@ -1,5 +1,5 @@
 ---
-title: "MEDB 5505, Introduction to R, Module04, Videos"
+title: "MEDB 5505, Introduction to R, Module03"
 ---
 
 ### Synopsis
