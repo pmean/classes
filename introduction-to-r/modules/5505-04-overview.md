@@ -10,13 +10,13 @@ Categorical data requires different approaches for data management and data anal
 
 ### Learning objectives
 
-#### In this module, you will learn how to 
+In this module, you will learn how to 
 
 + Define factors for categorical variables
 + Calculate crosstabulations
 + Draw bar charts
 
-#### You will also see the following R functions
+You will also see the following R functions
 
 + addmargins
 + case_when
@@ -35,11 +35,15 @@ Categorical data requires different approaches for data management and data anal
 
 Programs used in this module
 
-+ [p04-categorical.Rmd][git1]
-+ [v04-slides-and-speaker-notes.Rmd][git2]
++ [v04-slides-and-speaker-notes.Rmd][git1]
++ [p04-categorical.Rmd](Not available yet)
 
-[git1]: 
++ Handouts associated with videos
+  + Video04 slides and speaker notes available in [pdf format][git3]
+
+[git1]: https://github.com/pmean/classes/blob/master/introduction-to-r/src/v04-slides-and-speaker-notes.Rmd
 [git2]: 
+[git3]: https://github.com/pmean/classes/blob/master/introduction-to-r/results/v04-slides-and-speaker-notes.pdf
 
 Datasets used in this module
 
@@ -56,15 +60,27 @@ Datasets used in this module
 
 ### Videos
 
-There are two videos for this module. The first one is about the R programming language and the second is a general video on .
+There are seven videos for this module.
 
-+ V04-01, title, xx minutes, available in [Panopto format][v0401].
++ V04-01, The Titanic data set, 7 minutes, available in [Panopto format][2022a0401].
++ V04-02, Counts and percentages, 13 minutes, available in [Panopto format][2022a0402].
++ V04-03, Factors, crosstabulations, 16 minutes, available in [Panopto format][2022a0403].
++ V04-04, Bar plots, 6 minutes, available in [Panopto format][2022a0404].
++ V04-05, New categorical variables, 9 minutes, available in [Panopto format][2022a0405].
++ V04-06, live demo, ?? minutes, available soon in [Panopto format][2022a0406].
++ V04-07, assignments, ?? minutes, available soon in [Panopto format][2022a0407].
 
-[v0401]: 
-  
+[2022a0401]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ac7c5012-71d2-48f3-8703-ae78016ac1c5
+[2022a0402]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5e86215c-0efa-4b61-824e-ae78016cd9b4
+[2022a0403]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=47c3fa8f-a133-4e1a-ab11-ae780170e8db
+[2022a0404]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9c46a59a-6076-4745-b15f-ae7801759190
+[2022a0405]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=eaf95eef-eab1-4b91-9c43-ae7801775ffd
+[2022a0406]: 
+[2022a0407]: 
+
 ### Active learning
 
-Having completed all the videos in this module, I would like you to turn in some simple analyses that you run on two fresh data sets. This homework assignment will be graded pass/fail.
+Having completed all the videos in this module, I would like you to turn in some simple analyses that you run on two fresh data sets. 
 
 For every question, include the relevant R output and a brief written commentary explaining what the results mean. When you send your answers, please include the original questions (e.g., Q1: What is the 18th letter of the alphabet. A. The letter “R”).
 
