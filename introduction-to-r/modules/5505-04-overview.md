@@ -123,11 +123,11 @@ How should you read in this file?
 The data looks a bit unusual, but the relatively even spacing, except for the first line seems to indicate a tab delimited file. The second format is obviously a comma separated value format. You can tell by the file extension (csv) and by peeking at the file in a text editor.
 
 + Diet dataset
-  + Diet dataset (Text file)
-  + Diet data dictionary
+  + Diet [dataset][diet1]
+  + Diet [data dictionary][diet2]
 
-https://dasl.datadescription.com/download/data/3163
-http://dasl.datadescription.com/datafile/diet
+[diet1]: https://raw.githubusercontent.com/pmean/classes/master/introduction-to-r/data/diet.txt
+[diet2]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/gardasil-data-dictionary.yaml
 
 How should you read in this file?
 
