@@ -108,13 +108,13 @@ The next two questions relate to the diet dataset that compares four different t
 2. Calculate a crosstabulation with nicely rounded percentages. Note: do not add the “%” symbol, as it causes problems with R. Try to arrange the rows and columns and percentages so that your table best addresses the question, what type of cracker had the most and the least bloating.
 
 + Gardasil dataset
-  + Gardasil dataset (Text file)
-  + Gardasil dataset (Alternate text file)
-  + Gardasil data dictionary
+  + Gardasil dataset ([Comma delimited][gar1])
+  + Gardasil dataset ([Tab delimited][gar2])
+  + Gardasil [data dictionary][gar3]
 
-http://www.amstat.org/publications/jse/v19n1/gardasil.dat.txt
-http://www.pmean.com/15/images/day2gardasil.csv
-http://www.amstat.org/publications/jse/v19n1/gardasil.txt
+[gar1]: https://raw.githubusercontent.com/pmean/classes/master/introduction-to-r/data/gardasil.csv
+[gar2]: https://raw.githubusercontent.com/pmean/classes/master/introduction-to-r/data/gardasil.tsv
+[gar3]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/gardasil-data-dictionary.yaml
 
 The Gardasil vaccine requires three shots in order to be effective. A study conducted at Johns Hopkins looked at how often patients failed to get all three shots. They wanted to see if insurance status, age, and other factors could predict who was at greatest risk for failing to get all three shots.
 
