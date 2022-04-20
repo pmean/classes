@@ -1,5 +1,5 @@
 ---
-data_dictionary: gardasil.csv
+data_dictionary: gardasil.csv, gardasil.tsv
 
 source:
   This data file is part of the data 
@@ -13,7 +13,7 @@ description:
   women who received the Gardasil shot. Of
   particular interest is the proportion of
   women who received all three shots. A more
-  detailed description is avaialalbe at
+  detailed description is available at
   http://www.amstat.org/publications/jse/v19n1/gardasil.txt
   
 download:
