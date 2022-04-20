@@ -90,7 +90,7 @@ glimpse(ti)
 
 <div class="notes">
 
-It reads in fairly well, it seems. The first few lines of data are hard to read because the passenger names are so long.
+It reads in fairly well, it seems. 
 
 </div>
 
@@ -102,7 +102,7 @@ ti
 
 <div class="notes">
 
-It reads in fairly well, it seems. The first few lines of data are hard to read because the passenger names are so long.
+The first few lines of data are hard to read because the passenger names are so long.
 
 </div>
 
@@ -145,7 +145,7 @@ You learned how to get descriptive statistics for continuous variables in a prev
 ### Print out information on youngest
 
 ```{r min}
-ti[which.min(ti$Age), "Name"]
+ti[which.min(ti$Age), -1]
 ```
 
 <div class="notes">
@@ -157,7 +157,7 @@ The which.min and which.max functions simplify the task of finding the row or ro
 ### Print out information on oldest
 
 ```{r max}
-ti[which.max(ti$Age), "Name"]
+ti[which.max(ti$Age), -1]
 ```
 
 <div class="notes">
