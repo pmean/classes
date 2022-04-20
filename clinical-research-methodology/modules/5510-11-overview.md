@@ -51,7 +51,8 @@ Handouts associated with the videos are draft only at this point. They will be f
 
 There is
 
-+ a discussion board
++ a discussion board, and
++ a short quiz
 
 available on the Canvas website.
 
