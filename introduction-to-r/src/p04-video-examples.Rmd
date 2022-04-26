@@ -1,0 +1,142 @@
+---
+title: "Video examples from module04"
+author: "Steve Simon"
+date: "Created 2019-04-20"
+output: html_document
+---
+
+This is a small program written in Rmarkdown to show how to work with a dataset with mostly categorical variables.
+
+This program is in the public domain. You can use it any way that you please.
+
+```{r version-and-current-date}
+R.version.string
+Sys.Date()
+suppressMessages(
+  suppressWarnings(
+    library(tidyverse)))
+```
+
+## Titanic data set
+
+### Read in the data
+
+```{r read-titanic}
+fn <- "../data/titanic_v00.txt"
+ti <- read_tsv(fn,
+  col_types="ccncn")
+glimpse(ti)
+```
+
+### View first few rows
+
+```{r display-first-few-rows}
+print(ti, n=20)
+```
+
+Print without the names
+
+```{r display-without-names}
+print(ti[ , -1], n=20)
+```
+
+### view last few rows
+
+```{r last-rows}
+ti[1310:1313, -1]
+```
+
+### Who are the youngest and oldest passengers?
+
+```{r min}
+ti[which.min(ti$Age), ]
+```
+
+```{r max}
+ti[which.max(ti$Age), ]
+```
+
+### Frequency counts and percentages
+
+```{r counts}
+PClass_counts <- table(ti$PClass)
+PClass_counts
+```
+
+```{r percentages}
+PClass_percents <- round(100*prop.table(PClass_counts))
+paste0(PClass_percents,"%")
+```
+
+### Any missing values
+
+```{r check-missing}
+table(ti$PClass, useNA="always")
+```
+
+### Factors for survived
+
+```{r survived-counts}
+table(ti$Survived)
+```
+
+```{r create-factor}
+ti$surv_factor <- factor(
+  ti$Survived,
+  levels=0:1,
+  labels=c("No", "Yes"))
+```
+
+This gives the counts of those who survived and those who did not.
+
+```{r surived-counts-factor}
+table(ti$surv_factor)
+```
+
+### Crosstabulation
+
+```{r crosstabs-1}
+pclass_by_gender <-
+  table(ti$PClass, ti$Sex)
+pclass_by_gender
+```
+
+```{r crosstabs-2}
+row_proportions <-
+  prop.table(
+    pclass_by_gender,
+    margin=1)
+row_proportions
+```
+
+### Bar chart
+
+This plot shows the number of people in each passenger class.
+
+```{r draw-bar-chart}
+simple_barplot <-
+  ggplot(ti, aes(x=PClass)) +
+    geom_bar()
+simple_barplot
+```
+
+### New categorical variables
+
+Child is defined as less than 18 years.
+
+```{r new-age-categories}
+ti$child <- case_when(
+  is.na(ti$Age) ~ "Unknown",
+  ti$Age <=  0 ~ "Invalid",
+  ti$Age <  18 ~ "Yes",
+  ti$Age >= 18 ~ "No")
+table(ti$child, useNA="always")
+```
+
+Quality check. Does the new variable have sensible age limits.
+
+```{r quality-check-age}
+range(ti$Age[ti$child=="No"])
+range(ti$Age[ti$child=="Yes"])
+table(ti$Age[ti$child=="Unknown"], useNA="always")
+```

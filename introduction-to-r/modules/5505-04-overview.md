@@ -107,28 +107,34 @@ The next two questions relate to the diet dataset that compares four different t
 
 2. Calculate a crosstabulation with nicely rounded percentages. Note: do not add the “%” symbol, as it causes problems with R. Try to arrange the rows and columns and percentages so that your table best addresses the question, what type of cracker had the most and the least bloating.
 
-+ Gardasil dataset
-  + Gardasil dataset (Text file)
-  + Gardasil dataset (Alternate text file)
-  + Gardasil data dictionary
+### Gardasil dataset
 
-http://www.amstat.org/publications/jse/v19n1/gardasil.dat.txt
-http://www.pmean.com/15/images/day2gardasil.csv
-http://www.amstat.org/publications/jse/v19n1/gardasil.txt
++ Gardasil dataset ([Comma delimited][gar1])
++ Gardasil dataset ([Tab delimited][gar2])
++ Gardasil [data dictionary][gar3]
 
 The Gardasil vaccine requires three shots in order to be effective. A study conducted at Johns Hopkins looked at how often patients failed to get all three shots. They wanted to see if insurance status, age, and other factors could predict who was at greatest risk for failing to get all three shots.
 
-How should you read in this file?
+[gar1]: https://raw.githubusercontent.com/pmean/classes/master/introduction-to-r/data/gardasil.csv
+[gar2]: https://raw.githubusercontent.com/pmean/classes/master/introduction-to-r/data/gardasil.tsv
+[gar3]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/gardasil-data-dictionary.yaml
+
+The Gardasil vaccine requires three shots in order to be effective. A study conducted at Johns Hopkins looked at how often patients failed to get all three shots. They wanted to see if insurance status, age, and other factors could predict who was at greatest risk for failing to get all three shots.
+
+### How should you read in this file?
 
 The data looks a bit unusual, but the relatively even spacing, except for the first line seems to indicate a tab delimited file. The second format is obviously a comma separated value format. You can tell by the file extension (csv) and by peeking at the file in a text editor.
 
-+ Diet dataset
-  + Diet dataset (Text file)
-  + Diet data dictionary
+### Diet dataset
 
-https://dasl.datadescription.com/download/data/3163
-http://dasl.datadescription.com/datafile/diet
++ Diet [dataset][diet1]
++ Diet [data dictionary][diet2]
 
-How should you read in this file?
+Crackers designed to help in weight loss program sometimes caused bloating symptoms. This varied by the type of cracker.
+
+[diet1]: https://raw.githubusercontent.com/pmean/classes/master/introduction-to-r/data/diet.txt
+[diet2]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/gardasil-data-dictionary.yaml
+
+### How should you read in this file?
 
 The data looks a bit unusual, but the relatively even spacing seems to indicate a tab delimited file. The hint that it is not a fixed width file is in the very first line, where the variable name Cracker does not line up with data directly beneath it.
