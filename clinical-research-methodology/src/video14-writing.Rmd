@@ -14,21 +14,60 @@ knit: (function(inputFile, encoding) {
 source("prelims.R", echo=FALSE)
 ```
 
-***
-`r read_text("objectives14")`
+### Research grant process
+
++ Read the solicitation and guidelines
++ Build a research team
++ Submit a letter of intent, if asked
++ Prepare a draft proposal
++ Get internal reviewers and administrative approval
++ Submit proposal and wait
 
 <div class="notes">
 
-
+Every research grant is different, but here are the general steps that most grants follow.
 
 </div>
 
-***
-`r read_text("readings14")`
+### Read the solicitation and guidelines
+
++ Solicitation
+  + BAA, RFA, RFP, others
+  + List of what you can/cannot propose
+  + Allowable expenses
+  + Deadline
++ Guidelines
+  + Proposal length
+  + Proposal structure
 
 <div class="notes">
 
+I'm going to describe the granting process from the perspective of the National Institutes of Health. There are other governmental agencies that distribute grant money for research, such as the Department of Defense and the National Science Foundation. Grants are also available from private organizations, such as the Bill and Melinda Gates Foundation and the American Heart Association. 
 
+Almost all grant opportunities are described in some type of solicitation. It may be called a Broad Agency Announcement (BAA), Request for Applications (RFA), or Request for Proposals (RFP). These are the NIH terms, but other granting agencies will probably use different acronyms.
+
+</div>
+
+### Elements of a research proposal
+
++ Literature review
++ Methods section
++ Preliminary data
+  + Proof of your capabilities
+  + Not always available
++ Strengths of the research team
+  
+<div class="notes">
+
+Broadly speaking, you already know the bulk of what is needed for a research grant. You summarize what is already known and the propose methods to add to what we know.
+
+The third element in most grants is discussion of preliminary data. Preliminary data is data that you yourself have collected. It isn't data that addresses your proposed research. Otherwise you wouldn't need money--the work is already done. Preliminary data is data that shows that you have been an active participant in this research area. It demonstrates that you have proven yourself capable of doing research along the same lines of what you propose in your methods section.
+
+You would summarize your preliminary data the same way that you summarize other people's work with two exceptions. First, you spend a lot more time and discuss your own work in a lot more detail. Second, you include preliminary data, even if it has not been published yet.
+
+Some grants require you to have preliminary data. If you don't have it, you will get a tepid review. Other grants do not require preliminary data. Even when the grant solicitations or guidelines states that preliminary data is not needed, it does help to present it when you have it.  
+
+You also need to convince the reviewers 
 
 </div>
 

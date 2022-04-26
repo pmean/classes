@@ -6,7 +6,7 @@ title: "MEDB 5505, Introduction to R, Module05"
 
 #### Working with a mix of categorical and continuous data
 
-(To be added)
+In addition to reviewing methods appropriate for continuous variables and those appropriate for categorical variables, we will examine methods that help in exploring the relationship between a continuous and a categorical variable. This includes tables of means and standard deviations as well as boxplots.
 
 ### Learning objectives
 
