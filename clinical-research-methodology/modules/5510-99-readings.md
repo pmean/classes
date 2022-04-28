@@ -10,7 +10,7 @@ Note: Students in my Clinical Research Methodology class. {You can improve this 
 
 ### Patient reported outcomes (optional readings for Module01)
 
-Simon. The Post-Modern Assault on Evidence-Based Medicine. Available in [html format][sim1].
+Steve Simon. The Post-Modern Assault on Evidence-Based Medicine. Available in [html format][sim1].
 
 Locklear D, Weinfurt KP, Abernethy A, Flynn KE, Riley W, Johnson LL. Patient Reported Outcomes. Available in [pdf format][loc1].
 
@@ -448,13 +448,63 @@ Regina Nuzzo. Scientific method: Statistical errors. Nature journal, February 12
 
 This is a truly interesting article where the author addresses various limitations of using p-value in science. The concept of P-hacking is also introduced in the article. Edited by Purva Patel.
 
-### Writing a methods section (optional readings for Module13)
-
-Simon SD. Writing the introduction section of a thesis or dissertation. P.Mean blog, March 29, 2019. Available in [html format][simd].
+Steve Simon. What is a p-value? Blog entry, no date. Available in [html format][siml].
 
 No description available.
 
-Simon SD. Writing the methods section of a research paper. Blog entry, April 25, 2019. Available in [html format][sime].
+Steve Simon. The unthinking approach to borderline p-values. Blog entry, 2017-10-19. Available in [html format][simm].
+
+No description available.
+
+Steve Simon. Quiz about p-values. Blog entry, 2010-04-14. Available in [html format][simn].
+
+No description available.
+
+Steve Simon. One tailed p-values. Blog entry, 2004-04-12. Available in [html format][simo].
+
+No description available.
+
+Steve Simon. Is my confidence interval too wide? Blog entry, 2006-09-21. Available in [html format][simp].
+
+No description available.
+
+### Statistical models (optional readings for Module13)
+
+Steve Simon. The first three steps in a linear regression analysis with examples in IBM SPSS. Available in [pdf format][simf].
+
+No description available.
+
+Steve Simon. Interpreting coefficients in a linear regression model. Blog entry, 2002-06-24. Available in [html format][simg].
+
+Please note that there are some missing images on this page. That will be fixed soon. No description available.
+
+Steve Simon. The concepts behind the logistic regression model. Blog entry, 2002-07-23. Available in [html format][simh].
+
+Please note that there are some missing images on this page. That will be fixed soon. No description available.
+
+Steve Simon. Modeling a declining count variable. Blog entry, 2008-06-14. Available in [html format][simi].
+
+No description available.
+
+Steve Simon. Kaplan-Meier curves in R. Blog entry, 2014-10-31. Available in [html format][simj].
+
+No description available.
+
+Steve Simon. More Kaplan-Meier curves in R. Blog entry, 2014-10-31. Available in [html format][simk].
+
+No description available.
+
+James McCormack, Ben Vandermeer, G Michael Allan. How confidence intervals become confusion intervals. BMC Med Res Methodol 13, 134 (2013). Available in [html format][mcc1] or [pdf format][mcc2].
+
+No description available.
+
+### Writing a methods section (optional readings for Module14)
+
+Steve Simon. Writing the introduction section of a thesis or dissertation. P.Mean blog, 2019-03-29. Available in [html format][simd].
+
+No description available.
+
+Steve Simon. Writing the methods section of a research paper. Blog entry, 2019-04-25. Available in [html format][sime].
 
 No description available.
 
@@ -537,6 +587,8 @@ Note: These entries are inconsistently formatted. The preferred format uses the 
 [lil1]: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1995522/
 [lil2]: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1995522/pdf/bmj-335-7621-ac-00648.pdf
 [loc1]: http://rethinkingclinicaltrials.org/resources/patient-reported-outcomes-3/
+[mcc1]: https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/1471-2288-13-134
+[mcc2]: https://bmcmedresmethodol.biomedcentral.com/track/pdf/10.1186/1471-2288-13-134.pdf
 [mck1]: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3170214/
 [mck2]: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3170214/pdf/1741-7015-9-86.pdf
 [mcl1]: https://www.simplypsychology.org/interviews.html
@@ -592,6 +644,17 @@ Note: These entries are inconsistently formatted. The preferred format uses the 
 [simc]: http://www.pmean.com/99/dates.html
 [simd]: http://blog.pmean.com/introduction-section/
 [sime]: http://blog.pmean.com/writing-methods-section/
+[simf]: http://www.pmean.com/webinars/20100526/LinearRegression.pdf
+[simg]: http://new.pmean.com/lin_coef-02/
+[simh]: http://new.pmean.com/logist_concepts/
+[simi]: http://www.pmean.com/08/DecliningCount.html
+[simj]: http://blog.pmean.com/kaplan-meier/
+[simk]: http://blog.pmean.com/more-kaplan-meier/
+[siml]: http://www.pmean.com/definitions/pvalue.htm
+[simm]: http://blog.pmean.com/unthinking-approach/
+[simn]: http://www.pmean.com/10/PvalueQuiz.html
+[simo]: http://new.pmean.com/when-to-use-one-tail/
+[simp]: http://www.pmean.com/06/IntervalTooWide.html
 [str1]: https://www.straightdope.com/columns/read/1511/why-do-we-have-leap-years/
 [sur1]: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3136079/
 [tau1]: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5342644/
