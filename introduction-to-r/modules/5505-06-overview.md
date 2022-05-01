@@ -27,7 +27,50 @@ Longitudinal data is data measured at several different time points. There are t
 
 ### Readings and Resources
 
-(To be added)
+#### Datasets used in this module
+
++ Balance
+  + [Overview][bal0]
+  + Short and fat format
+    + [Original web source][bal1]
+    + [My github site][g1a]
+    + [Data dictionary][g1b]
+  + Tall and thin format
+    + [Original web source][bal2]
+    + [My github site][g2a]
+    + [Data dictionary][g2b]
++ Energy
+  + [Overview][en0]
+  + [Original web source][en1]
+  + [My github site][g3a]
+  + [Data dictionary][g3b]
++ Quake    
+  + [Overview][qu0]
+  + [Original web source][qu1]
+  + [My github site][g4a]
+  + [Data dictionary][g4b]
+
+  
+[bal0]: http://www.statsci.org/data/oz/ctsib.html
+[bal1]: http://www.statsci.org/data/oz/ctsibrm.txt
+[bal2]: http://www.statsci.org/data/oz/ctsibuni.txt
+
+[en0]: http://www.statsci.org/data/general/energy.html
+[en1]: http://www.statsci.org/data/general/energy.txt
+
+[qu0]: http://www.statsci.org/data/general/lomaprie.html
+[qu1]: http://www.statsci.org/data/general/lomaprie.txt
+
+[g1a]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/balance1.txt
+[g2a]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/balance2.txt
+[g3a]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/energy.txt
+[g4a]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/quake.txt
+
+[g1b]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/balance1-data-dictionary.yaml
+[g2b]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/balance2-data-dictionary.yaml
+[g3b]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/energy-data-dictionary.yaml
+[g4b]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/quake-data-dictionary.yaml
+
 
 ### Videos
 
