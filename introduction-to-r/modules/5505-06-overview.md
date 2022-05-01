@@ -29,6 +29,11 @@ Longitudinal data is data measured at several different time points. There are t
 
 #### Datasets used in this module
 
++ Backpain
+  + [Overview][back0]
+  + [Original web source][back1]
+  + [My github site][g5a]
+  + [Data dictionary][g5b]
 + Balance
   + [Overview][bal0]
   + Short and fat format
@@ -50,7 +55,9 @@ Longitudinal data is data measured at several different time points. There are t
   + [My github site][g4a]
   + [Data dictionary][g4b]
 
-  
+[back0]: http://www.statsci.org/data/oz/backpain.html
+[back1]: http://www.statsci.org/data/oz/backpain.txt
+
 [bal0]: http://www.statsci.org/data/oz/ctsib.html
 [bal1]: http://www.statsci.org/data/oz/ctsibrm.txt
 [bal2]: http://www.statsci.org/data/oz/ctsibuni.txt
@@ -65,11 +72,13 @@ Longitudinal data is data measured at several different time points. There are t
 [g2a]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/balance2.txt
 [g3a]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/energy.txt
 [g4a]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/quake.txt
+[g5a]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/backpain.csv
 
 [g1b]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/balance1-data-dictionary.yaml
 [g2b]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/balance2-data-dictionary.yaml
 [g3b]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/energy-data-dictionary.yaml
 [g4b]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/quake-data-dictionary.yaml
+[g5b]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/backpain-data-dictionary.yaml
 
 
 ### Videos

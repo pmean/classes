@@ -251,9 +251,13 @@ Here is the graph. Notice the inverted V shape for each line. This shows that ru
 
 ### Earthquake dataset
 
-+ Earthquake data dictionary
-  + www.statsci.org/data/general/lomaprie.html
-+ Earthquake dataset
++ Longitudinal study of stress
+  + Study started two weeks prior to major earthquake (Week0)
+  + Researchers added extra stress measurments
+    + Week3, Week6, Week9, Week12
+  + There are 26 subjects
+  + There are 5*26=130 measurements
++ For more information
   + www.statsci.org/data/general/lomaprie.txt
 
 <div class="notes">
@@ -405,11 +409,20 @@ I want to keep these videos short, so let's stop here.
 
 ### Backpain dataset
 
-+ Backpain data dictionary
-  + www.pmean.com/introduction-to-r/data/backpain-data-dictionary.txt
-+ Backpain data
-  + www.pmean.com/introduction-to-r/data/backpain.csv
-  
++ Matched case-control study
+  + Study of 11 runners with back pain
+  + Two control groups
+    + Runners without pain, Sedentary volunteers
+    + Matched by age, height, weight
+  + Outcome variables
+    + Flexibility and length of various muscle groups
+  + Also collected covariates
+    + Type of running, number of years running
+  + Our focus: quality of matching
+  + There are 3*11=33 measurements
++ For more information
+  + http://www.statsci.org/data/oz/backpain.html
+
 <div class="notes">
 
 Now let's read in a tall and thin format and convert it to a
@@ -417,7 +430,7 @@ short and wide format.
 
 </div>
 
-### Backpain dataset
+### Backpain overview
 
 ![Data dictionary for backpain dataset](../images/backpain-data-dictionary.png)
 
@@ -459,7 +472,7 @@ glimpse(pain)
 ### Converting to short and fat
 
 ```{r spread-pain}
-age_fat <- pivot_wider(pain,
+pain_fat <- pivot_wider(pain,
   id_cols=Match,
   names_from=Group,
   values_from=c(Age, Height, Weight))
@@ -468,7 +481,7 @@ age_fat <- pivot_wider(pain,
 ### Display new structure
 
 ```{r structure-wider-pain}
-glimpse(age_fat)
+glimpse(pain_fat)
 ```
 
 <div class="notes">
@@ -477,20 +490,40 @@ The spread function takes a single column of data and spreads it across multiple
 
 </div>
 
-### Plots of agreement
+### Remaining variables
 
-```{r agreement-plot}
+```{r remaining}
+names(pain_fat)[7:10]
+```
+
+
+
+### Backpain plot code (1 of 3)
+
+```{r agreement-1}
 age_range <- range(c(
-  age_fat$Age_Pain, 
-  age_fat$Age_NoPain, 
-  age_fat$Age_Sedentary))
-agreement_age <- ggplot(age_fat, 
+  pain_fat$Age_Pain, 
+  pain_fat$Age_NoPain, 
+  pain_fat$Age_Sedentary))
+```
+
+### Backpain plot code (2 of 3)
+
+```{r agreement-2}
+agreement_age <- ggplot(pain_fat, 
   aes(x=Age_Pain, 
       y=Age_NoPain, 
       label=Match)) +
-    geom_text() +
-    geom_text(aes(y=Age_Sedentary))
-agreement_age + 
+    geom_text(color="darkgreen") +
+    geom_text(aes(y=Age_Sedentary), color="red") + 
+    ylab("Age_Sedentary (red) and Age_NoPain (green)" )
+```
+
+### Backpain plot code (3 of 3)
+
+```{r agreement-3}
+agreement_age <-
+  agreement_age + 
     expand_limits(
       x=age_range, 
       y=age_range) +
@@ -512,7 +545,7 @@ This code shows the agreement between the ages of the patients in the NoPain gro
 
 ### Plots of agreement
 
-![Plot showing agreement in ages](../images/agreement12.png)
+![Plot showing agreement in ages](../images/agreement_age.png)
 
 <div class="notes">
 
@@ -542,19 +575,6 @@ I want to keep these videos short, so let's stop here.
   + Put time constant data in first table
   + Put time varying data in second table
   
-### Balance dataset
-+ Short and fat format
-  + www.statsci.org/data/oz/ctsibrm.txt
-+ Tall and thin format
-  + www.statsci.org/data/oz/ctsibuni.txt
-+ Look here for context
-  + www.statsci.org/data/oz/ctsib.html
-
-<div class="notes">
-
-You saw this data very early in the video.
-
-</div>
 
 ### Balance data set: Short and fat format
 
@@ -587,6 +607,12 @@ short_and_fat_data <- read_tsv(fn, col_types="ncnnnnnnnnnnnnnnnnnn")
 
 ```{r display-balance-1}
 glimpse(short_and_fat_data)
+```
+
+### Additional variables
+
+```{r balance-1-additional}
+names(short_and_fat_data)[7:17]
 ```
 
 ### Create time constant data
@@ -622,6 +648,12 @@ tall_and_thin_data <-
 
 ```{r balance-structure-2}
 glimpse(tall_and_thin_data)
+```
+
+### Additional variables
+
+```{r balance-2-additional}
+names(tall_and_thin_data)[7:8]
 ```
 
 ### Create time varying table
