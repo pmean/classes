@@ -23,17 +23,52 @@ In addition to reviewing methods appropriate for continuous variables and those 
 
 ### Readings and Resources
 
-(To be added)
+Handouts associated with videos
+
++ Video05 slides and speaker notes available in [pdf format][git1]
+
+Programs used in this module
+
++ [v05-slides-and-speaker-notes.Rmd][git2]
++ [p04-categorical.Rmd][git3]
+
+Datasets used in this module
+
++ diamond
+  + Data in [fixed width text format][git4]
+  + [Data dictionary][git5]
++ fev
+  + Data in [comma delimited text format][git6]
+  + [Data dictionary][git7]
++ housing
+  + Data in [space delimited text format][git8]
+  + [Data dictionary][git9]
 
 ### Videos
 
-(To be added)
+There are five videos for this module, with a total of 47 minutes.
+
+V05-01, Review summaries for continuous/categorical data, 8 minutes, available in [Panopto format][200501].
+V05-02, Boxplots, 5 minutes, available in [Panopto format][200502].
+V05-03, Group means and standard deviations, 4 minutes, available in [Panopto format][200503].
+V05-04, Assignments, 9 minutes, available in [Panopto format][200504].
+V05-05, Live demo, 21 minutes, available in [Panopto format][200505].
 
 ### Active learning
 
 Please refer to the [programming expectations handout][git98]. I will use a [standard grading rubric][git99] for all homework assignments.
 
 (More to be added)
+
+[git1]: 
+[git2]: 
+[git3]: 
+[git4]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/diamonds.txt
+[git5]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/diamonds-data-dictionary.yaml
+[git6]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/fev.csv
+[git7]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/fev-data-dictionary.yaml
+[git8]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/albuquerque-housing.txt
+[git9]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/albuquerque-data-dictionary.yaml
 
 [git98]: https://github.com/pmean/classes/blob/master/software-engineering/results/programming-expectations.pdf
 [git99]: https://github.com/pmean/classes/blob/master/software-engineering/src/grading-rubric.md
@@ -83,3 +118,10 @@ http://dasl.datadescription.com/datafile/diet
 How should you read in this file?
 
 The data looks a bit unusual, but the relatively even spacing seems to indicate a tab delimited file. The hint that it is not a fixed width file is in the very first line, where the variable name Cracker does not line up with data directly beneath it.
+
+[200501]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=633092ca-6867-4e26-be98-ae89014956fd
+[200502]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6e45f8a9-9305-40b0-9189-ae89014ba501
+[200503]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=22fec431-e5da-43a5-a923-ae89014d580a
+[200504]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5e80f911-c5f1-4268-bba1-ae89014ebb4b
+[200505]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1f0a3d5a-cea3-4c29-a4d5-ae89015212f9
+
