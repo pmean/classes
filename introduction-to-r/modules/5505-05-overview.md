@@ -48,21 +48,48 @@ Datasets used in this module
 
 There are five videos for this module, with a total of 47 minutes.
 
-V05-01, Review summaries for continuous/categorical data, 8 minutes, available in [Panopto format][200501].
-V05-02, Boxplots, 5 minutes, available in [Panopto format][200502].
-V05-03, Group means and standard deviations, 4 minutes, available in [Panopto format][200503].
-V05-04, Assignments, 9 minutes, available in [Panopto format][200504].
-V05-05, Live demo, 21 minutes, available in [Panopto format][200505].
++ V05-01, Review summaries for continuous/categorical data, 8 minutes, available in [Panopto format][200501].
++ V05-02, Boxplots, 5 minutes, available in [Panopto format][200502].
++ V05-03, Group means and standard deviations, 4 minutes, available in [Panopto format][200503].
++ V05-04, Assignments, 9 minutes, available in [Panopto format][200504].
++ V05-05, Live demo, 21 minutes, available in [Panopto format][200505].
 
 ### Active learning
 
 Please refer to the [programming expectations handout][git98]. I will use a [standard grading rubric][git99] for all homework assignments.
 
-(More to be added)
+Having completed all the videos in this module, I would like you to turn in some simple analyses that you run on two fresh data sets. 
 
-[git1]: 
-[git2]: 
-[git3]: 
+For every question, include the relevant R output and a brief written commentary explaining what the results mean. When you send your answers, please include the original questions (e.g., Q1: What is the 18th letter of the alphabet. A. The letter “R”).
+
+The first five questions relate to the housing dataset, an analysis of real estate purchases in Albuquerque, New Mexico in 1993.
+
+1. Convert the number codes for the categorical variables to factors. Show frequency tables for these variables after conversion. Are any values missing for these categorical variables?
+
+2. Compute means and standard deviations for all the continuous variables. How many missing values are there for age and for tax?
+
+3. Find the largest house (biggest square footage) in the data set. Is the largest house also the most expensive house?
+
+4. Evaluate the relationship between PRICE and SQFT using a scatterplot. Do larger houses tend to cost more?
+
+5. Show how much more expensive custom built homes are compared to standard homes using a boxplot and through calculation of the means and standard deviations.
+
+The last two questions relate to the diamond dataset, an analysis of facors influencing pricing of diamonds.
+
+6. Show the relationship between carat size and price using a scatterplot.
+
+7. Show the relationship between color and price and the relatonship between clarity and price using boxplots.
+
+
+[200501]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=633092ca-6867-4e26-be98-ae89014956fd
+[200502]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6e45f8a9-9305-40b0-9189-ae89014ba501
+[200503]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=22fec431-e5da-43a5-a923-ae89014d580a
+[200504]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5e80f911-c5f1-4268-bba1-ae89014ebb4b
+[200505]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1f0a3d5a-cea3-4c29-a4d5-ae89015212f9
+
+[git1]: https://github.com/pmean/classes/blob/master/introduction-to-r/results/v05-slides-and-speaker-notes.pdf
+[git2]: https://github.com/pmean/classes/blob/master/introduction-to-r/src/v05-slides-and-speaker-notes.Rmd
+[git3]: https://github.com/pmean/classes/blob/master/introduction-to-r/src/p05-video-examples.Rmd
 [git4]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/diamonds.txt
 [git5]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/diamonds-data-dictionary.yaml
 [git6]: https://github.com/pmean/classes/blob/master/introduction-to-r/data/fev.csv
@@ -72,56 +99,4 @@ Please refer to the [programming expectations handout][git98]. I will use a [sta
 
 [git98]: https://github.com/pmean/classes/blob/master/software-engineering/results/programming-expectations.pdf
 [git99]: https://github.com/pmean/classes/blob/master/software-engineering/src/grading-rubric.md
-
-Having completed all the videos in this module, I would like you to turn in some simple analyses that you run on two fresh data sets. 
-
-For every question, include the relevant R output and a brief written commentary explaining what the results mean. When you send your answers, please include the original questions (e.g., Q1: What is the 18th letter of the alphabet. A. The letter “R”).
-
-The first four questions relate to the Gardasil dataset, a study of patients who received the Gardasil vaccine. A key question that this dataset was intended to address is what factors influenced whether a patient got all the required shots. More details are given below.
-
-1. Create factors for AgeGroup, Race, Completed. You do not have to create factors for the remaining categorical variables. Show frequency counts for all of these variables.
-
-2. What percentage of patients completed all three shots?
-
-3. Use a crosstabulation to compare Age to AgeGroup. Are the recodings into AgeGroup done properly?
-
-4. Does the likelihood of completing all four shots vary by AgeGroup or Race? Calculate the appropriate percentages.
-
-The next two questions relate to the diet dataset that compares four different types of crackers. The 13 subjects that ate the crackers rated them on the amount of bloating. More details are given below.
-
-1. Calculate frequency tables for both categorical variables in the dataset. Are there any missing values?
-
-2. Calculate a crosstabulation with nicely rounded percentages. Note: do not add the “%” symbol, as it causes problems with R. Try to arrange the rows and columns and percentages so that your table best addresses the question, what type of cracker had the most and the least bloating.
-
-+ Gardasil dataset
-  + Gardasil dataset (Text file)
-  + Gardasil dataset (Alternate text file)
-  + Gardasil data dictionary
-
-http://www.amstat.org/publications/jse/v19n1/gardasil.dat.txt
-http://www.pmean.com/15/images/day2gardasil.csv
-http://www.amstat.org/publications/jse/v19n1/gardasil.txt
-
-The Gardasil vaccine requires three shots in order to be effective. A study conducted at Johns Hopkins looked at how often patients failed to get all three shots. They wanted to see if insurance status, age, and other factors could predict who was at greatest risk for failing to get all three shots.
-
-How should you read in this file?
-
-The data looks a bit unusual, but the relatively even spacing, except for the first line seems to indicate a tab delimited file. The second format is obviously a comma separated value format. You can tell by the file extension (csv) and by peeking at the file in a text editor.
-
-+ Diet dataset
-  + Diet dataset (Text file)
-  + Diet data dictionary
-
-https://dasl.datadescription.com/download/data/3163
-http://dasl.datadescription.com/datafile/diet
-
-How should you read in this file?
-
-The data looks a bit unusual, but the relatively even spacing seems to indicate a tab delimited file. The hint that it is not a fixed width file is in the very first line, where the variable name Cracker does not line up with data directly beneath it.
-
-[200501]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=633092ca-6867-4e26-be98-ae89014956fd
-[200502]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6e45f8a9-9305-40b0-9189-ae89014ba501
-[200503]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=22fec431-e5da-43a5-a923-ae89014d580a
-[200504]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5e80f911-c5f1-4268-bba1-ae89014ebb4b
-[200505]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1f0a3d5a-cea3-4c29-a4d5-ae89015212f9
 

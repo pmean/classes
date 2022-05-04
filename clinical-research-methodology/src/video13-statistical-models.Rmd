@@ -3,15 +3,22 @@ title: "Video 13 - Statistical models"
 author: "Steve Simon"
 output: 
   powerpoint_presentation:
-    reference_doc: ../doc/template.pptx
+    reference_doc: ../results/wide-screen-template.pptx
     slide_level: 3
 knit: (function(inputFile, encoding) {
   rmarkdown::render(inputFile, encoding = encoding,
   output_dir = "../results", output_format = "all") }) 
 ---
 
-```{r echo=FALSE}
+```{r setup, echo=FALSE}
 source("prelims.R", echo=FALSE)
+knitr::opts_chunk$set(echo=FALSE)
+suppressMessages(
+  suppressWarnings(
+    library(broom)))
+suppressMessages(
+  suppressWarnings(
+    library(tidyverse)))
 ```
 
 ### Measurement 
@@ -699,7 +706,7 @@ That's a lot to digest. There is more good stuff coming. The linear regression m
 
 </div>
 
-### Linear regression
+### Linear regression (1/2)
 + Continuous outcome variable
 + Very flexible
   + Either categorical or continuous independent variables
@@ -719,7 +726,7 @@ I'll talk about two other approaches used commonly, the t-test and analysis of v
 
 </div>
 
-### Linear regression
+### Linear regression (2/2)
 
 + High school algebra
   + Y = m X + b
@@ -906,6 +913,7 @@ I love linear regression models and thought it would be helpful to spend a bit o
 </div>
   
 ### Logistic regression
+
 + Binary outcome variable
 + Either categorical or continuous independent variables
 + Multiple variables (risk adjustment)
@@ -925,9 +933,11 @@ A logistic regression model examines the relationship between one or more indepe
 
 </div>
 
-### A linear model for probability (1/2)
+### A linear (additive) model for probability (1/4)
 
-![Table showing a reasonable linear relationship](../images/13/logistic-linear-1.gif)
+```{r linear-1}
+data.frame(ga=28:34, pct_bf=4+2*(28:34))
+```
 
 <div class="notes">
 
@@ -951,9 +961,34 @@ A simple interpretation of this model is that each additional week of GA adds an
 
 </div>
 
-### A linear model for probability (2/2)
+### A linear (additive) model for probability (2/4)
 
-![Table showing an unreasonable linear relationship](../images/13/logistic-linear-2.gif)
+```{r linear-2}
+data.frame(ga=28:34, pct_bf=4+2*(28:34)) %>%
+  ggplot(aes(ga, pct_bf)) +
+    geom_point() +
+    expand_limits(x=c(27, 35)) +
+    expand_limits(y=c(0, 100)) +
+    geom_segment(x=27, y=58, xend=35, yend=74)
+```
+
+### A linear (additive) model for probability (3/4)
+
+```{r linear-3}
+data.frame(ga=28:34, pct_bf=4+2*(28:34)) %>%
+  ggplot(aes(ga, pct_bf)) +
+    geom_point() +
+    expand_limits(x=0) +
+    expand_limits(y=c(0, 100)) +
+    geom_segment(x=0, y=4, xend=35, yend=74)
+```
+
+
+### A linear (additive) model for probability (4/4)
+
+```{r linear-4}
+data.frame(ga=28:34, pct_bf=4+3*(28:34))
+```
 
 <div class="notes">
 
@@ -967,9 +1002,11 @@ You may find it difficult to explain what a probability of 106% means. This is a
 
 </div>
 
-### A multiplicative model for probability
+### A multiplicative model for probability (1/3)
 
-![A reasonable multiplicative model for probability](../images/13/logistic-multiplicative-1.gif)
+```{r multiplicative-1}
+data.frame(ga=28:34, pct_bf=0.01*3^(0:6))
+```
 
 <div class="notes">
 
@@ -983,13 +1020,34 @@ A multiplicative model can't produce any probabilities less than 0%, but it's pr
 
 </div>
 
+### A multiplicative model for probability (2/3)
+
+```{r multiplicative-2}
+data.frame(ga=28:34, pct_bf=0.01*3^(0:6)) %>%
+  ggplot(aes(ga, pct_bf)) +
+    geom_point() +
+    geom_line()
+```
+
+### A multiplicative model for probability (3/3)
+
+```{r multiplicative-3}
+data.frame(ga=28:34, pct_bf=0.01*5^(0:6))
+```
+
 ### The relationship between odds and probability
 + Usually only seen in gambling contexts
 + Sometimes ambiguous
   + Odds in favor versus odds against
-+ Odds = Prob / (1-Prob)
 + Prob = Odds / (1+Odds)
-
++ Odds = Prob / (1-Prob)
++ Examples
+  + 3 to 1 odds in favor of winning
+    + Prob = 3 / (3+1) = 0.75
+  + 20% chance of winning
+    + Odds = 0.2 / 0.8 = 1 / 4
+    + Odds of 4 to 1 against
+    
 <div class="notes">
 
 Another approach is to try to model the odds rather than the probability of BF. You see odds mentioned quite frequently in gambling contexts. If the odds are three to one in favor of your favorite football team, that means you would expect a win to occur about three times as often as a loss. If the odds are four to one against your team, you would expect a loss to occur about four times as often as a win.
@@ -1014,7 +1072,13 @@ In medicine and epidemiology, when an event is less likely to happen and more li
 
 ### A multiplicative odds model
 
-![A multiplicative model for odds](../images/13/logistic-multiplicative-2.gif)
+```{r multiplicative-odds-1}
+odds_bf <- round(3^(-3:3), 3)
+n <- c(1, 1, 1, 1, 3, 9, 27)
+interpretation <- paste0(rev(n), " to ", n)
+data.frame(ga=28:34, odds_bf, interpretation)
+```
+
 
 <div class="notes">
 
@@ -1032,9 +1096,12 @@ Notice that even when the odds get as large as 27 to 1, the probability still st
 
 </div>
 
-### Linearity on log-odds scale
+### Linear (additive) on log-odds scale
 
-![Table showing linearity on the log odds scale](../images/13/logistic-log-odds-1.gif)
+```{r log-odds-1, echo=FALSE}
+data.frame(ga=28:34, odds_bf, log_odds=round(log(odds_bf), 2))
+```
+
 
 <div class="notes">
 
@@ -1044,111 +1111,125 @@ If you take a logarithm of these odds, you will notice an interesting pattern. E
 
 ### The S-shaped logistic curve (1/2)
 
-![Table converting back to probabilities](../images/13/logistic-log-odds-2.gif)
+```{r s-shape-1}
+prob_bf <- round(odds_bf/(1+odds_bf), 3)
+data.frame(ga=28:34, odds_bf, prob_bf)
+```
 
 <div class="notes">
 
 You can also convert the odds into probabilities. Remember the formula? The probability of an events is the odds divided by 1 plus the odds.
 
-</div>
-
-### The S-shaped logistic curve (2/2)
-
-![Graph of  probabilities](../images/13/logistic-log-odds-3.gif)
-
-<div class="notes">
-
 The probabilities follow an S-shaped curve that is characteristic of all logistic regression models. The curve levels off at zero on one side and at one on the other side. This curve ensures that the estimated probabilities are always between 0% and 100%.
 
 </div>
 
+### The S-shaped logistic curve (2/2)
+
+```{r s-shape}
+ga_extended <- seq(-4, 4, length=1001)
+odds_extended <- 3^ga_extended
+prob_extended <- odds_extended/(1+odds_extended)
+data.frame(ga=ga_extended, prob_bf=prob_extended) %>%
+  ggplot(aes(ga_extended, prob_bf)) +
+    geom_line() +
+    geom_point(
+      data=data.frame(ga=-3:3, prob_bf),
+      aes(ga, prob_bf))
+```
+
 ### An example of a log odds model with real data (1/2)
 
-![Log odds model for real data set](../images/13/logistic-ga-example-1.gif)
+```{r real-ga-data}
+bf <- c(2, 2, 7, 7, 16, 14)
+no <- c(4, 3, 2, 2,  4,  1)
+df <- data.frame(
+  ga=c(28:33,28:33),
+  n=rep(1:0, each=6),
+  w=c(bf, no))
+glm(n~ga, family=binomial(), data=df, weights=w)
+glm(n~ga, family=binomial(), data=df, weights=w) %>%
+  tidy %>%
+  select(term, estimate) %>%
+  mutate(estimate=round(estimate, 2)) %>%
+  data.frame -> m1
+```
 
 <div class="notes">
 
-Here are the results of a logistic regresion model with real data. 
+Here are the results of a logistic regresion model with real data.
 
-</div>
-
-### An example of a log odds model with real data (2/2)
-
-![Log odds model for real data set](../images/13/logistic-ga-example-2.gif)
-
-<div class="notes">
-
-There are other approaches that also work well for this type of data, such as a probit model, that I won't discuss here. But I did want to show you what the data relating GA and BF really looks like.
+The output does not fit on a single slide, but the important things to note at the intercept and slope. The intercept and slope help you predict on the log odds scale.
 
 I've simplified this data set by removing some of the extreme gestational ages. The estimated logistic regression model is
 
-log odds = -16.72 + 0.577*GA
-
-The table below shows the predicted log odds, and the calculations needed to transform this estimate back into predicted probabilities.
-
-Let's examine these calculations for GA = 30. The predicted log odds would be
-
-log odds = -16.72 + 0.577*30 = 0.59
-
-Convert from log odds to odds by exponentiating.
-
-odds = exp(0.59) = 1.80
-
-And finally, convert from odds back into probability.
-
-prob = 1.80 / (1+1.80) = 0.643
-
-The predicted probability of 64.3% is reasonably close to the true probability (77.8%).
-
-You might also want to take note of the predicted odds. Notice that the ratio of any odds to the odds in the next row is 1.78. For example,
-
-3.20/1.80 = 1.78
-
-5.70/3.20 = 1.78
-
-It's not a coincidence that you get the same value when you exponentiate the slope term in the log odds equation.
-
-exp(0.59) = 1.78
-
-This is a general property of the logistic model. The slope term in a logistic regression model represents the log of the odds ratio representing the increase (decrease) in risk as the independent variable increases by one unit.
+log odds = -16.72 + 0.58*GA
 
 </div>
 
-### Model computations
-+ log odds = -16.72 + 0.577*GA
-+ Example: GA=30, estimated probability = 64.3%
-  + log odds = -16.72 + 0.577*30 = 0.59
-  + odds = exp(0.59) = 1.80
-  + prob = 1.80 / (1+1.80) = 0.643
-+ GS=31
-  + log odds = 1.16, odds = 3.20, prob = 76.2%
-+ GS=32
-  + log odds = 1.74, odds = 5.70, prob = 85.1%
-+ Constant odds ratio
-  + 3.20 / 1.80 = 1.78
-  + 5.70 / 3.20 = 1.78
+###  Predicted log odds
+
+```{r predicted-log-odds}
+b0 <- round(m1[1, 2], 2)
+b1 <- round(m1[2, 2], 2)
+b0 %>%
+  paste0("+") %>%
+  paste0(b1) %>%
+  paste0("*") %>%
+  paste0(28:33) %>%
+  data.frame %>%
+  set_names("calculations") -> calculations
+data.frame(ga=28:33) %>%
+  bind_cols(calculations) %>%
+  mutate(log_odds=b0+b1*(28:33)) %>%
+  mutate(odds=round(exp(log_odds), 2)) %>%
+  mutate(prob=round(odds/(1+odds), 2)) -> predictions
+predictions %>%
+  select(ga, calculations, log_odds)
+```
+
+### Predicted probabilities
+
+```{r predicted-probs}
+predictions %>%
+  select(ga, log_odds, odds, prob)
+```
+
+### Plot of predicted probabilities
+
+```{r predicted-probs-plot}
+predictions %>%
+  mutate(p=bf/(bf+no)) %>%
+  ggplot(aes(ga, p)) +
+    geom_point() +
+    geom_line(aes(y=prob)) + 
+    expand_limits(y=0:1)
+```
+
+### Predicted odds and odds ratios
+
+```{r predicted-odds}
+predictions$odds[-1] %>%
+  paste0("/") %>%
+  paste0(predictions$odds[-6]) %>%
+  append("", after=0) %>%
+  data.frame %>%
+  set_names("calculations") -> calculations
+predictions$odds[-1] %>%
+  divide_by(predictions$odds[-6]) %>%
+  round(2) %>%
+  append("", after=0) %>%
+  data.frame() %>%
+  set_names("or") -> or
+predictions %>%
+  select(ga, log_odds, odds) %>%
+  bind_cols(calculations) %>%
+  bind_cols(or)
+```
 
 <div class="notes">
 
-The estimated logistic regression model is
-
-log odds = -16.72 + 0.577*GA
-
-The table below shows the predicted log odds, and the calculations needed to transform this estimate back into predicted probabilities.
-
-Let's examine these calculations for GA = 30. The predicted log odds would be
-
-log odds = -16.72 + 0.577*30 = 0.59
-
-Convert from log odds to odds by exponentiating.
-
-odds = exp(0.59) = 1.80
-
-And finally, convert from odds back into probability.
-
-prob = 1.80 / (1+1.80) = 0.643
-
-The predicted probability of 64.3% is reasonably close to the true probability (77.8%).
+The table below shows the predicted log odds, and the calculations needed to compute the predicted log odds.
 
 You might also want to take note of the predicted odds. Notice that the ratio of any odds to the odds in the next row is 1.78. For example,
 
@@ -1162,9 +1243,26 @@ exp(0.59) = 1.78
 
 This is a general property of the logistic model. The slope term in a logistic regression model represents the log of the odds ratio representing the increase (decrease) in risk as the independent variable increases by one unit.
 
+It's not a coincidence that you get the same value when you exponentiate the slope term in the log odds equation.
+
+exp(0.59) = 1.78
+
+This is a general property of the logistic model. The slope term in a logistic regression model represents the log of the odds ratio representing the increase (decrease) in risk as the independent variable increases by one unit.
 
 </div>
 
+### Interpretation of slope in logistic regression
+
++ Slope in logistic regression
+  + log odds ratio
+    + for one unit change in x
+  + exponentiate to get odds ratio
+  
+```{r odds-ratio-calculation, echo=TRUE}
+exp(0.58)
+```
+
+  
 ### Categorical variables in a logistic regression (1/2)
 
 ![Crosstabulation of gender and mortality on the Titanic](../images/13/titanic01.gif)
@@ -1213,7 +1311,7 @@ Coding is very important here. Suppose you had chosen the coding for SexFemale w
 + Logistic regression
   + Binary outcome variable
   + Both categorical and continuous independent variables
-  + Risk adjustmentsn and interactions possible
+  + Risk adjustments and interactions possible
 + Alternative methods
   + Test of two proportions
   + Chi-square test
@@ -1227,6 +1325,12 @@ We spent a lot of time on logistic regression. It was worth it because logistic 
 
 </div>
 
+### Fourth break
++ What have you learned?
+  + Logistic regression
++ What's coming next?
+  + Poisson regression
+  
 ### Poisson regression
 + The problems with counts
   + Skewed
@@ -1254,39 +1358,41 @@ Poisson regression can also be used to analyze rate data. Rates are simply count
 
 </div>
 
-### Poisson regression example - data
+### Poisson regression example, responses to an ad
 
-+ Responses to a mailing
-  + 0 9
-  + 1 4
-  + 2 2
-  + 3 3
-  + 4 0
-  + 5 0
-  + 6 1
+```{r responses}
+ad_responses <- data.frame(
+  t=0:6, 
+  n=c(9, 4, 2, 3, 0, 0, 1)) 
+ad_responses
+```
 
 <div class="notes">
 
-I've been working on an interesting project that requires Poisson regression. A company sends out a mailing and gets a certain number of telephone calls back on each of the days following. The number of phone calls is typically (but not always) highest on the first day afterwards and declines rapidly on successive days. I wanted to develop a simple Poisson regression model for this data.
+I've been working on an interesting project that requires Poisson regression. A company put out an ad on radio and gets a certain number of telephone calls back on the same day (t=0) or any of the days following. The number of phone calls is typically (but not always) highest on the first day afterwards and declines rapidly on successive days. I wanted to develop a simple Poisson regression model for this data.
 
 </div>
 
 ### Poisson regression example - output
 
-```{}
-Call: glm(formula = ct ~ tm, family = poisson)
-
-Coefficients:
-(Intercept)           tm
-     2.1063      -0.5505
-
-Degrees of Freedom: 6 Total (i.e. Null); 5 Residual
+```{r glm-poisson}
+glm(n~t, family=poisson(), data=ad_responses)
+glm(n~t, family=poisson(), data=ad_responses) %>%
+  tidy %>%
+  select(term, estimate) %>%
+  mutate(estimate=round(estimate, 2)) %>%
+  data.frame -> m2
+m2
 ```
+
+<div class="notes">
+
+Here is the output from R. Again, the output is too big to fit on a single slide, but the key values, the intercept and slope are shown here.
+
+The intercept and slope produce predicted values on a log count scale. You need to exponentiate these values to get predictions on the count scale.
 
 + exp(2.1063) = 8.2
 + exp(-0.5505) = 0.58
-
-<div class="notes">
 
 How would you interpret these coefficients?  The Poisson regression model uses a log link function. This means that the average value for the data is assumed to be linear on a log scale.
 
@@ -1304,18 +1410,26 @@ The predict function in R produces estimated average values on a log scale for e
 
 ### Poisson regression example: Predictions 
 
-```{}
-round(predict(pmod),4)
-     1      2      3      4       5       6       7
-2.1063 1.5558 1.0053 0.4548 -0.0957 -0.6462 -1.1967
-
-> round(exp(predict(pmod)),4)
-     1      2      3      4      5      6      7
-8.2177 4.7388 2.7327 1.5758 0.9087 0.5240 0.3022
+```{r poisson-predictions}
+b0 <- round(m2[1, 2], 2)
+b1 <- round(m2[2, 2], 2)
+b0 %>%
+  paste0(b1) %>%
+  paste0("*") %>%
+  paste0(0:6) %>%
+  data.frame %>%
+  set_names("calculations") -> calculations
+b0+b1*(0:6) %>%
+  data.frame %>%
+  set_names("log_count") -> log_count
+ad_responses %>%
+  bind_cols(calculations) %>%
+  bind_cols(log_count) %>%
+  mutate(count=exp(log_count)) %>%
+  mutate(count=round(count, 2)) -> poisson_predictions
+poisson_predictions %>%
+  select(-count)
 ```
-
-+ 4.7388 / 8.2177 = 0.58
-+ 2.7327 / 4.7388 = 0.58
 
 <div class="notes">
 
@@ -1325,10 +1439,58 @@ If you take the antilog of these values, you get the estimated average count at 
 
 </div>
 
-### Fourth break
+### Transform to count scale
+
+```{r transform-to-count}
+poisson_predictions %>%
+  select(-calculations)
+```
+
+### Plot predicted counts
+
+```{r plot-counts}
+poisson_predictions %>%
+  ggplot(aes(x=t, y=count)) +
+    geom_line() +
+    geom_point(aes(y=n))
+```
+
+### Calculate rate ratio
+
+```{r rate-ratio}
+poisson_predictions$count[-1] %>%
+  paste0("/") %>%
+  paste0(poisson_predictions$count[-7]) %>%
+  append(paste0("exp(", b1, ")"), after=0) %>%
+  data.frame %>%
+  set_names("rr_calculations") -> rr_calculations
+poisson_predictions$count[-1] %>%
+  divide_by(poisson_predictions$count[-7]) %>%
+  append(exp(b1), after=0) %>%
+  round(2) %>%
+  data.frame %>%
+  set_names("rr") -> rr
+poisson_predictions %>%
+  select(-log_count) %>%
+  select(-calculations) %>%
+  bind_cols(rr_calculations) %>%
+  bind_cols(rr)
+```
+
+### Interpretation of slope in logistic regression
+
++ Slope in Poisson regression
+  + log rate ratio
+    + for one unit change in x
+  + exponentiate to get rate ratio
+  
+```{r rate-ratio-calculation, echo=TRUE}
+exp(-0.55)
+```
+
+### Fifth break
 
 + What have you learned?
-  + Logistic regression
   + Poisson regression
 + What's coming next?
   + Cox regression
@@ -1361,23 +1523,40 @@ These observations are called censored observations. With censored observations,
 ### Fruit fly experiment - the data
 
 ```{}
-Day Prob Day Prob Day Prob
- 37 96%   40 92%   43 88%
- 44 84%   45 80%   47 76%
- 49 72%   54 68%   56 64%
- 58 60%   59 56%   60 52%
- 61 48%   62 44%   68 40%
- 70 36%   71 32%   72 28%
- 73 24%   75 20%   77 16%
- 79 12%   89  8%   94  4%
- 96  0%
+Day      Day      Day      Day     
+ 37       40       43       44    
+ 45       47       49       54    
+ 56       58       59       60    
+ 61       62       68       70    
+ 71       72       73       75    
+ 77       79       89       94    
+ 96    
 ```
 
 <div class="notes">
 
 The following data represents survival time for a group of fruit flies and is a subset of a larger data set found at the Data and Story Library (DASL). The data set has been slightly modified to simplify some of these explanations.
 
-There are 25 flies in the sample, with the first fly dying on day 37 and the last fly dying on day 96. If you wanted to estimate the survival probability for this data, you would draw a curve that decreases by 4% (1/25) every time a fly dies.
+There are 25 flies in the sample, with the first fly dying on day 37 and the last fly dying on day 96.
+
+</div>
+
+### Fruit fly experiment - survival probabilities
+
+```{}
+Day Prob Day Prob Day Prob Day Prob
+ 37 96%   40 92%   43 88%   44 84%
+ 45 80%   47 76%   49 72%   54 68%
+ 56 64%   58 60%   59 56%   60 52%
+ 61 48%   62 44%   68 40%   70 36%
+ 71 32%   72 28%   73 24%   75 20%
+ 77 16%   79 12%   89  8%   94  4%
+ 96  0%
+```
+
+<div class="notes">
+
+If you wanted to estimate the survival probability for this data, you would draw a curve that decreases by 4% (1/25) every time a fly dies.
 
 </div>
 
@@ -1398,15 +1577,13 @@ You're probably worried that the whole experiment has been ruined. But don't be 
 ### The data, round 2
 
 ```{}
-Day Prob  Day Prob  Day Prob
- 37 96%    40 92%    43 88%
- 44 84%    45 80%    47 76%
- 49 72%    54 68%    56 64%
- 58 60%    59 56%    60 52%
- 61 48%    62 44%    68 40%
- 70+ ?     70+ ?     70+ ?
- 70+ ?     70+ ?     70+ ?
- 70+ ?     70+ ?     70+ ?
+Day Prob  Day Prob  Day Prob  Day Prob
+ 37 96%    40 92%    43 88%    44 84%
+ 45 80%    47 76%    49 72%    54 68%
+ 56 64%    58 60%    59 56%    60 52%
+ 61 48%    62 44%    68 40%    70+ ?
+ 70+ ?     70+ ?     70+ ?     70+ ?
+ 70+ ?     70+ ?     70+ ?     70+ ?
  70+ ?
 ```
 
@@ -1430,15 +1607,13 @@ Let's look at a third experiment, where the screen cover is left open and all bu
 
 ```{}
 
-Day Prob  Day Prob  Day Prob
- 37 96%    40 92%    43 88%
- 44 84%    45 80%    47 76%
- 49 72%    54 68%    56 64%
- 58 60%    59 56%    60 52%
- 61 48%    62 44%    68 40%
- 70+ ?     71 30%    70+ ?
- 70+ ?     75 20%    70+ ?
- 70+ ?     89 10%    70+ ?
+Day Prob  Day Prob  Day Prob  Day Prob
+ 37 96%    40 92%    43 88%    44 84%
+ 45 80%    47 76%    49 72%    54 68%
+ 56 64%    58 60%    59 56%    60 52%
+ 61 48%    62 44%    68 40%    70+ ?
+ 71 30%    70+ ?     70+ ?     75 20%
+ 70+ ?     70+ ?     89 10%    70+ ?
  96  0%
 ```
 
@@ -1590,6 +1765,15 @@ There are lots of alternatives, but they typically have lots of limitations or c
 
 </div>
 
+### Sixth break
+
++ What have you learned?
+  + Cox regression
++ What's coming next?
+  + Longitudinal/hierarchical designs
+  
+
+
 ### Hierarchical/longitudinal designs
 + Matching
 + Baseline measures
@@ -1697,10 +1881,9 @@ The two analysis methods used here are random effects models and hierarchical mo
 
 </div>
 
-### Fifth break
+### Seventh break
 
 + What have you learned?
-  + Cox regression
   + Longitudinal/hierarchical designs
 + What's coming next?
   + Qualitative data analysis
@@ -1805,7 +1988,7 @@ One way to avoid pre-conceptions is to be constantly on the lookout for negative
 + Recruitment process
 + Structure of the interview/focus group
 + Recording and transcription details
-+ Softare used to create categories
++ Software used to create categories
 + Process to insure reliability
   + Multiple raters
   + Adjudication of disagreement
@@ -1817,28 +2000,12 @@ The methods that you document in a qualitative study are quite different than th
 
 </div>
 
-### Sixth break
-
-+ What have you learned?
-  + Qualitative data analysis
-+ What's coming next?
-  + Writing a methods section
-  
-<div class="notes">
-
-We are done, but let me take some time to talk about how you put all this together in a written summary of your methods.
-
-</div>
-  
-
-
 ### Conclusion
 
 + Scales of measurement
 + Descriptive statistics
 + Linear, logistic, Poisson, and Cox regression
 + Analysis of qualitative data
-+ Writing a methods section
 
 <div class="notes">
 
