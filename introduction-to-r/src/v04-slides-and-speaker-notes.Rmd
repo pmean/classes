@@ -4,7 +4,7 @@ author: "Steve Simon"
 date: "Created 2016-08-13"
 output: 
   powerpoint_presentation: 
-    reference_doc: template-slides-and-speaker-notes.potx
+    reference_doc: ../results/wide-screen-template.pptx
 knit: (function(inputFile, encoding) {
   rmarkdown::render(inputFile, encoding = encoding,
   output_dir = "../results", output_format = "all") })  
@@ -330,6 +330,62 @@ PClass_total
 You can add a total count to the frequency table with the addmargins function.
 
 </div>
+
+### An alternative approach to counts and percentages (1/6)
+
+```{r alt-1}
+pclass_count <- 
+  count(ti, PClass)
+pclass_count
+```
+
+### An alternative approach to counts and percentages (2/6)
+
+```{r alt-2}
+pclass_totals <- 
+  mutate(pclass_count, total=sum(n))
+pclass_totals
+```
+
+### An alternative approach to counts and percentages (3/6)
+
+```{r alt-3}
+pclass_percents <- 
+  mutate(
+    pclass_totals, 
+    pct=round(100*n/total))
+```
+
+### An alternative approach to counts and percentages (4/6)
+
+```{r alt-4}
+pclass_percents
+```
+
+### An alternative approach to counts and percentages (5/6)
+
+```{r alt-5}
+pclass_nice_percents <- 
+  mutate(
+    pclass_percents, 
+    pct=
+      paste0(
+        pct, "% (", n, "/", total, ")"))
+```
+
+### An alternative approach to counts and percentages (6/6)
+
+```{r alt-6}
+select(pclass_nice_percents, PClass, pct)
+```
+
+### One more
+
+```{r alt-7}
+pclass_nice_percents %>%
+  select(PClass, pct) %>%
+  pivot_wider(names_from=PClass, values_from=pct)
+```
 
 ### Break #2
 + What have you learned

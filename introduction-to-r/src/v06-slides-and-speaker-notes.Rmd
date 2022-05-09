@@ -69,7 +69,7 @@ Longitudinal data usually come in one of two specific formats. The first is the 
   + Surface has 2 levels
     + Normal or foam
   + Two replications of each format
-  + There are 3*2*2=12 measurements
+  + There are 3\*2\*2=12 measurements
   + Look here for more details
     + www.statsci.org/data/oz/ctsib.html
 
@@ -99,14 +99,15 @@ The tall and thin format has one row per patient encounter and therefore multipl
 
 </div>
 
-### Which format is better?
+### Which format is better? (1/2)
 
 + Short and fat advantages:
   + easy to compute change scores
   + easy to examine correlations over time
   + easy to insure consistency of demographic data
 + Short and fat disadvantages:
-  + hard to read because of the excessive need to scroll left and right
+  + hard to read 
+    +  excessive need to scroll left and right
 
 <div class="notes">
 
@@ -118,7 +119,7 @@ Because the short and fat format stretches each visits data out to the right, yo
 
 </div>
 
-### Which format is better?
+### Which format is better? (2/2)
 
 + Tall and thin advantages:
   + easy to plot longitudinal trends
@@ -157,7 +158,7 @@ I want to keep these videos short, so let's stop here.
   + Blocks are subjects (8 total)
   + Treatment are exercise
     + Running, walking, cycling
-  + There are 3*2*2=12 measurements
+  + There are 3*8=24 measurements
   + Look here for more details
     + www.statsci.org/data/general/energy.html
 
@@ -171,9 +172,21 @@ Here's another interesting data set that you can work with. It comes in a short 
 
 ![](../images/energy-data-dictionary.png)
 
+<div class="notes">
+
+This is a description of the data set. 
+
+</div>
+
 ### Energy dataset (short and fat format)
 
 ![](../images/energy-view.png)
+
+<div class="notes">
+
+Here is the data in the short and fat format. It's a small dataset so it doesn't look very fat. But we can make it taller and thinner.
+
+</div>
 
 ### Import energy dataset (short and fat format)
 
@@ -181,6 +194,12 @@ Here's another interesting data set that you can work with. It comes in a short 
 fi <- "../data/energy.txt"
 en <- read_table(fi, col_types="nnnn")
 ```
+
+<div class="notes">
+
+This is the code to read in the data. With multiple spaces between data values, the read_table function is a good choice.
+
+</div>
 
 ### Energy dataset, glimpse
 
@@ -190,7 +209,7 @@ glimpse(en)
 
 <div class="notes">
 
-This dataset is small enough that you can safely print out the entire thing.
+This is the structure of the data. Eight rows, one for each subject. The values are stretched horizontally across three columns, and there is an additional column to indicate which subject is which. This column is not really needed for the short and fat format, but it becomes important when you convert it to a tall and thin format.
 
 You can convert this to a tall and thin format by stacking the running, walking, and cycling values in a single column. You'll need a new variable to remind you whether the value you are converting comes from the first row, second row, etc.
 
@@ -208,6 +227,12 @@ en_tall <-
     values_to="energy")
 ```
 
+<div class="notes">
+
+The pivot_longer function does the conversion. The first argument is the name of the dataset. The second is the names of the columns that you wish to re-arrange. The names_to argument provides a name to the new column that indicates what type of activity is represented by a particular row. The values_to argument provides a name to the new column that holds the data.
+
+</div>
+
 ### Converting to tall and thin, output
 
 ```{r energy-longer-display}
@@ -216,7 +241,9 @@ glimpse(en_tall)
 
 <div class="notes">
 
-Gather creates two new variables. The "key" variable is the name of the column where the data value came from and "value" is the data value itself. Any variable or variables left out of the list are treated like an identifier for a particular row.
+This is the structure of the new data. The "activity" variable is the name of the column where the data value came from and "energy" variable is the data value itself. Any variable or variables left out of the list are treated like an identifier for a particular row.
+
+Notice that the tall and thin format has 24 rows, not 8, because each of the 8 subjects now have three rows of data.
 
 </div>
 
@@ -256,7 +283,7 @@ Here is the graph. Notice the inverted V shape for each line. This shows that ru
   + Researchers added extra stress measurments
     + Week3, Week6, Week9, Week12
   + There are 26 subjects
-  + There are 5*26=130 measurements
+  + There are 5\*26=130 measurements
 + For more information
   + www.statsci.org/data/general/lomaprie.txt
 
@@ -315,6 +342,14 @@ qu_tall <- pivot_longer(qu,
   values_to="depression")
 ```
 
+<div class="notes">
+
+There is no subject id for each row of the data set. That's okay for the short and fat format. But for the tall and thin format, where there are multiple rows for each subject, you need an id variable.
+
+The contains function creates a variable list of any variable that has the text "Week". That's a lot shorter than typing c(Week0, Week3, Week6, Week9, Week12). The "time" variable identifies which column (Week0, Week3, etc.) that data originally came from and the "depression" variable contains the actual data.
+
+</div>
+
 ### Display new structure
 
 ```{r quake-longer-structure}
@@ -323,11 +358,11 @@ glimpse(qu_tall)
 
 <div class="notes">
  
-Suggestion: create an id variable with values 1:25 before you convert the format. It is not needed for the boxplots, but if you do anything more complex with this data, you need to know which data in the tall and thin format comes from the first row of the original data set, from the second row, etc.
+Here's the structure of the tall and thin format. 
 
 </div>
 
-### Boxplot
+### Boxplot, code
 
 ```{r boxplots}
 depression_boxplot01 <- 
@@ -340,11 +375,11 @@ ggsave(
 
 <div class="notes">
 
-Notice how R orders the weeks. From a strict alphabetical perspective, week12 is between week0 and week3. Here's a fix.
+This is the code to produce a set of boxplots. 
 
 </div>
 
-### Boxplot
+### Boxplot, output
 
 ![Boxplots showing depression levels over time](../images/time-by-depression01.png)
 
@@ -356,7 +391,7 @@ There are several ways to fix this.
 
 </div>
 
-### Boxplot
+### Boxplot, revised code (1/2)
 
 ```{r recode-time}
 qu_tall$time <- case_when(
@@ -367,7 +402,13 @@ qu_tall$time <- case_when(
   qu_tall$time=="Week12"~"week12")
 ```
 
-### Re-drawn boxplot
+<div class="notes">
+
+The case_when function allows you to insert a leading zero for the single digit weeks.
+
+</div>
+
+### Boxplot, revised code (2/2)
 
 ```{r redrawn}
 depression_boxplot02 <- 
@@ -380,11 +421,11 @@ ggsave("../images/time-by-depression02.png",
 
 <div class="notes">
 
-An easy way to fix this is to use two numeric digits, even for weeks that have only a single digit.
+This is the code for boxplots with the modified names.
 
 </div>
 
-### Boxplot
+### Boxplot, revised
 
 ![Modified boxplots showing depression levels over time](../images/time-by-depression02.png)
 
@@ -419,14 +460,13 @@ I want to keep these videos short, so let's stop here.
   + Also collected covariates
     + Type of running, number of years running
   + Our focus: quality of matching
-  + There are 3*11=33 measurements
+  + There are 3\*11=33 measurements
 + For more information
   + http://www.statsci.org/data/oz/backpain.html
 
 <div class="notes">
 
-Now let's read in a tall and thin format and convert it to a
-short and wide format.
+Now let's read in a tall and thin format and convert it to a short and wide format.
 
 </div>
 
@@ -457,6 +497,12 @@ fn <- "../data/backpain.csv"
 pain <- read_csv(fn, col_types="ncnnn")
 ```
 
+<div class="notes">
+
+Here is the code for reading in the backpain data. The second column of data is character and the other columns are numeric.
+
+</div>
+
 ### Display
 
 ```{r structure-backpain}
@@ -465,35 +511,41 @@ glimpse(pain)
 
 <div class="notes">
 
-
+This shows the structure of the data.
 
 </div>
 
 ### Converting to short and fat
 
 ```{r spread-pain}
-pain_fat <- pivot_wider(pain,
+pain_wide <- pivot_wider(pain,
   id_cols=Match,
   names_from=Group,
   values_from=c(Age, Height, Weight))
 ```
 
+<div class="notes">
+
+The pivot_wider function converts a tall and thin format into a short and fat format. Notice that there is a "names_from" argument instead of "names_to" and a "values_from" instead of "values_to".
+
+</div>
+
 ### Display new structure
 
 ```{r structure-wider-pain}
-glimpse(pain_fat)
+glimpse(pain_wide)
 ```
 
 <div class="notes">
 
-The spread function takes a single column of data and spreads it across multiple columns. The first argument is the dataframe that you want to transform. The second argument gives the categorical variable that identifies which new column a particular value goes into. The third argument provides the values that in the original data set sit in a single column and that we now want to spread across multiple columns.
+Here is the structure of the modified data in short and fat format.
 
 </div>
 
 ### Remaining variables
 
 ```{r remaining}
-names(pain_fat)[7:10]
+names(pain_wide)[7:10]
 ```
 
 
@@ -502,15 +554,15 @@ names(pain_fat)[7:10]
 
 ```{r agreement-1}
 age_range <- range(c(
-  pain_fat$Age_Pain, 
-  pain_fat$Age_NoPain, 
-  pain_fat$Age_Sedentary))
+  pain_wide$Age_Pain, 
+  pain_wide$Age_NoPain, 
+  pain_wide$Age_Sedentary))
 ```
 
 ### Backpain plot code (2 of 3)
 
 ```{r agreement-2}
-agreement_age <- ggplot(pain_fat, 
+agreement_age <- ggplot(pain_wide, 
   aes(x=Age_Pain, 
       y=Age_NoPain, 
       label=Match)) +
@@ -546,6 +598,52 @@ This code shows the agreement between the ages of the patients in the NoPain gro
 ### Plots of agreement
 
 ![Plot showing agreement in ages](../images/agreement_age.png)
+
+<div class="notes">
+
+The agreement is quite good. There is a bit less agreement for older subjects.
+
+</div>
+
+### Backpain plot for height
+
+```{r agreement-4, echo=FALSE}
+height_range <- range(c(
+  pain_wide$Height_Pain, 
+  pain_wide$Height_NoPain, 
+  pain_wide$HeightAge_Sedentary))
+agreement_height <- ggplot(pain_wide, 
+  aes(x=Height_Pain, 
+      y=Height_NoPain, 
+      label=Match)) +
+    geom_text(color="darkgreen") +
+    geom_text(aes(y=Height_Sedentary), color="red") + 
+    ylab("Height_Sedentary (red) and Height_NoPain (green)" )
+agreement_height <-
+  agreement_height + 
+    expand_limits(
+      x=height_range, 
+      y=height_range) +
+    geom_segment(
+      x=age_range[1], 
+      y=age_range[1], 
+      xend=age_range[2], 
+      yend=age_range[2])
+ggsave(
+  "../images/agreement_height.png",
+  agreement_height, width=4, height=4)
+```
+
+![Plot showing agreement in heights](../images/agreement_height.png)
+
+<div class="notes">
+
+This code shows the agreement between the height of the patients in the NoPain group and the patients in the Pain group.
+
+</div>
+
+### Plots of agreement
+
 
 <div class="notes">
 
@@ -644,7 +742,7 @@ tall_and_thin_data <-
   read_table(fn, col_types="ncnnnccn")
 ```
 
-### Balance data, tall and thing structure
+### Balance data, tall and thin structure
 
 ```{r balance-structure-2}
 glimpse(tall_and_thin_data)
