@@ -20,10 +20,10 @@ Longitudinal data is data measured at several different time points. There are t
 #### You will also see the following R functions
 
 + expand_limits, Expand the range of the x and/or y axis
-+ gather, converts to a tall and thin format
 + geom_line, draws a linegraph
 + geom_segment, adds a line segment to a graph
-+ spread, converts to a short and fat format
++ pivot_longer, converts to a tall and thin format
++ pivot_wider, converts to a short and fat format
 
 ### Readings and Resources
 
@@ -83,7 +83,17 @@ Longitudinal data is data measured at several different time points. There are t
 
 ### Videos
 
-(To be added)
+There are four videos for this module, with a total of 36 minutes.
+
++ V06-01, Two structures for longitudinal data, 8 minutes, available in [Panopto format][200601].
++ V06-02, Converting to short and fat format, 13 minutes, available in [Panopto format][200602].
++ V06-03, Converting to tall and thin format, 8 minutes, available in [Panopto format][200603].
++ V06-04, Time constant and time variable tables, 7 minutes, available in [Panopto format][200604].
+
+[200601]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ff06e6ff-b61e-4228-bbd8-ae900169a745
+[200602]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4ac560f1-2195-4219-9a1c-ae90016ccdf6
+[200603]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=df7ae0d6-db3f-4cf2-942d-ae900170b5c9
+[200604]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d77f37ee-e19e-4237-95ce-ae90017361a4
 
 ### Active learning
 
