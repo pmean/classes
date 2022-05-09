@@ -71,7 +71,7 @@ Longitudinal data usually come in one of two specific formats. The first is the 
   + Surface has 2 levels
     + Normal or foam
   + Two replications of each format
-  + There are 3\*2\*2=12 measurements
+  + 40 subjects, 3\*2\*2=12 measurements
 
 <div class="notes">
 
@@ -114,7 +114,7 @@ The tall and thin format has one row per patient encounter and therefore multipl
 
 Both formats have advantages and disadvantages, and you need to know how to create a longitudinal file in either format and how to transform from one format to another.
 
-The short and fat format makes it easy to compute change scores, the difference between a later measurementn and an earlier one. Correlations are also easier.
+The short and fat format makes it easy to compute change scores, the difference between a later measurement and an earlier one. Correlations are also easier.
 
 Because the short and fat format stretches each visits data out to the right, you end up doing a lot of left/right scrolling with this type of file. 
 
@@ -159,7 +159,7 @@ I want to keep these videos short, so let's stop here.
   + Blocks are subjects (8 total)
   + Treatment are exercise
     + Running, walking, cycling
-  + There are 3\*2\*2=12 measurements
+    + There are 3 measurements per subject
 
 <div class="notes">
 
@@ -266,8 +266,7 @@ Here is the graph. Notice the inverted V shape for each line. This shows that ru
   + Study started two weeks prior to major earthquake (Week0)
   + Researchers added extra stress measurments
     + Week3, Week6, Week9, Week12
-  + There are 26 subjects
-  + There are 5\*26=130 measurements
+  + There are 25 subjects, 5 measurements
 
 <div class="notes">
 
@@ -440,7 +439,7 @@ I want to keep these videos short, so let's stop here.
   + Also collected covariates
     + Type of running, number of years running
   + Our focus: quality of matching
-  + There are 3\*11=33 measurements
+  + Convert to one row per matched triple
 
 <div class="notes">
 
@@ -592,7 +591,7 @@ The agreement is quite good. There is a bit less agreement for older subjects.
 </div>
 
 
-### Break #2
+### Break #3
 
 + What have you learned
   + Converting to short and fat format
