@@ -49,6 +49,7 @@ Don't worry about the technical distinctions among these terms. The important th
 </div>
 
 ### Two formats for longitudinal data
+
 + Short and fat format
   + Many columns
   + Not so many rows
@@ -63,19 +64,20 @@ Longitudinal data usually come in one of two specific formats. The first is the 
 </div>
 
 ### Example: effect of surface and vision on balance
+
 + Repeated measures experiment
   + Vision has 3 levels
     + Eyes open, eyes closed, dome
   + Surface has 2 levels
     + Normal or foam
   + Two replications of each format
-  + There are 3*2*2=12 measurements
-  + Look here for more details
-    + www.statsci.org/data/oz/ctsib.html
+  + There are 3\*2\*2=12 measurements
 
 <div class="notes">
 
 Normally, you can only find a dataset stored in one of the two formats, but I did find an example of the same dataset being stored in both formats.
+
+Look here for more details: www.statsci.org/data/oz/ctsib.html
 
 </div>
 
@@ -157,13 +159,14 @@ I want to keep these videos short, so let's stop here.
   + Blocks are subjects (8 total)
   + Treatment are exercise
     + Running, walking, cycling
-  + There are 3*2*2=12 measurements
-  + Look here for more details
-    + www.statsci.org/data/general/energy.html
+  + There are 3\*2\*2=12 measurements
 
 <div class="notes">
 
 Here's another interesting data set that you can work with. It comes in a short and fat format.
+
+Look here for more details: www.statsci.org/data/general/energy.html
+
 
 </div>
 
@@ -264,7 +267,7 @@ Here is the graph. Notice the inverted V shape for each line. This shows that ru
   + Researchers added extra stress measurments
     + Week3, Week6, Week9, Week12
   + There are 26 subjects
-  + There are 5*26=130 measurements
+  + There are 5\*26=130 measurements
 
 <div class="notes">
 
@@ -437,7 +440,7 @@ I want to keep these videos short, so let's stop here.
   + Also collected covariates
     + Type of running, number of years running
   + Our focus: quality of matching
-  + There are 3*11=33 measurements
+  + There are 3\*11=33 measurements
 
 <div class="notes">
 
@@ -483,7 +486,9 @@ glimpse(pain)
 
 <div class="notes">
 
+There are 33 rows in this dataset. Each is a different subject, but we are interested in examing the matched triples. Notice for example that the ages for the first group of three matched patients are 19, 22, and 21. For the second goup of matched patients, that are 18, 17, and 19. That looks pretty good to me, but to look at this across the entire data set, we need to put the ages, heights, and weights side by side in a short and fat format.
 
+This means that we need to reduce the dataset from 33 rows to 11 rows, and we need to note the age for the No Pain, Pain, and Sedentary patients, the Height for the No Pain, Pain, and Sedentary patients, and the Weight for the No Pain, Pain, and Sedentary patients. So the Age, Height, and Weight columns will be expanded from 3 to 9.
 
 </div>
 
@@ -496,6 +501,12 @@ pain_fat <- pivot_wider(pain,
   values_from=c(Age, Height, Weight))
 ```
 
+<div class="notes">
+
+To expand the columns from 3 to 9, we need to pull names from the Group column. This will be appended to the Age, Height, and Weight columns.
+
+</div>
+
 ### Display new structure
 
 ```{r structure-wider-pain}
@@ -504,7 +515,7 @@ glimpse(pain_fat)
 
 <div class="notes">
 
-The spread function takes a single column of data and spreads it across multiple columns. The first argument is the dataframe that you want to transform. The second argument gives the categorical variable that identifies which new column a particular value goes into. The third argument provides the values that in the original data set sit in a single column and that we now want to spread across multiple columns.
+Here is the structure of the short and fat format. There are too many columns to display on a single PowerPoint slide, so I am listing the names of the remaining columns on a separate slide.
 
 </div>
 
@@ -514,8 +525,6 @@ The spread function takes a single column of data and spreads it across multiple
 names(pain_fat)[7:10]
 ```
 
-
-
 ### Backpain plot code (1 of 3)
 
 ```{r agreement-1}
@@ -524,6 +533,12 @@ age_range <- range(c(
   pain_fat$Age_NoPain, 
   pain_fat$Age_Sedentary))
 ```
+
+<div class="notes">
+
+One thing that you can do in the new format that couldn't be done in the old format is graphically displaying the closeness of matching. In a visualization of matching, it is important to use the same scale for the X and Y axis, so your first step is to find a range that would include Ages for the Pain, No Pain, and Sedentary groups combined.
+
+</div>
 
 ### Backpain plot code (2 of 3)
 
@@ -537,25 +552,30 @@ agreement_age <- ggplot(pain_fat,
     ylab("Age_Sedentary (red) and Age_NoPain (green)" )
 ```
 
+<div class="notes">
+
+Getting the Age_Pain and Age_NoPain values in a scatterplot is pretty easy. They are plotted in dark green. Plotting Age_Pain versus Age _sedentary requires a second call to the geom_text function.
+
+</div>
+
 ### Backpain plot code (3 of 3)
 
 ```{r agreement-3}
 agreement_age <-
   agreement_age + 
     expand_limits(
-      x=age_range, 
-      y=age_range) +
+      x=age_range, y=age_range) +
     geom_segment(
-      x=age_range[1], 
-      y=age_range[1], 
-      xend=age_range[2], 
-      yend=age_range[2])
+      x=age_range[1], xend=age_range[2], 
+      y=age_range[1], yend=age_range[2])
 ggsave(
   "../images/agreement_age.png",
   agreement_age, width=4, height=4)
 ```
 
 <div class="notes">
+
+We have to expand the limits on both the X and Y axis to insure that the graph is "square" meaning it has the same range in either direction. I am also drawing a reference line using the geom_segment function.
 
 This code shows the agreement between the ages of the patients in the NoPain group and the patients in the Pain group.
 
@@ -636,10 +656,14 @@ names(short_and_fat_data)[7:17]
 ### Create time constant data
 
 ```{r creat-time-constant}
-time_constant_list <- 
-  c("Subject", "Sex", "Age", "Height", "Weight")
+time_constant <- c(
+  "Subject", 
+  "Sex", 
+  "Age", 
+  "Height", 
+  "Weight")
 time_constant_data <- 
-  short_and_fat_data[ , time_constant_list]
+  short_and_fat_data[ , time_constant]
 ```
 
 ### Structure of time constant data
@@ -677,10 +701,13 @@ names(tall_and_thin_data)[7:8]
 ### Create time varying table
 
 ```{r create-time-variable}
-time_variable_list <- 
-  c("Subject", "Surface", "Vision", "CTSIB")
+time_variable <- c(
+  "Subject", 
+  "Surface", 
+  "Vision", 
+  "CTSIB")
 time_variable_data <- 
-  tall_and_thin_data[ , time_variable_list]
+  tall_and_thin_data[ , time_variable]
 ```
 
 ### Display structure of time varying table
