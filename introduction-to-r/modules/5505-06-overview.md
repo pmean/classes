@@ -27,6 +27,12 @@ Longitudinal data is data measured at several different time points. There are t
 
 ### Readings and Resources
 
+#### Handouts associated with videos
+
+Video06 slides and speaker notes available in [pdf format][git0].
+
+[git0]: https://github.com/pmean/classes/blob/master/introduction-to-r/results/v06-slides-and-speaker-notes.pdf
+
 #### Datasets used in this module
 
 + Backpain
