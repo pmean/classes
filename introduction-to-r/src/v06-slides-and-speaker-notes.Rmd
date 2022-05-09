@@ -190,9 +190,11 @@ glimpse(en)
 
 <div class="notes">
 
-This dataset is small enough that you can safely print out the entire thing.
+Here is the structure of this dataset. It doesn't look that fat, but it strings out three separate measurements on each patient across three columns. 
 
-You can convert this to a tall and thin format by stacking the running, walking, and cycling values in a single column. You'll need a new variable to remind you whether the value you are converting comes from the first row, second row, etc.
+You can convert this to a tall and thin format by stacking the running, walking, and cycling values in a single column. You'll need a new variable to remind you whether the value you are converting comes from the first patient, second patient, etc.
+
+This is important to remember. For the short and fat datasets, with one row per subject, you do not need to record a patient identification number. But with the tall and thin format, with multiple rows per patient, if you don't have an identification number, you won't be able to know which rows belong together under a single patient.
 
 </div>
 
@@ -208,6 +210,12 @@ en_tall <-
     values_to="energy")
 ```
 
+<div class="notes">
+
+The pivot_longer function creates two new variables. The "names_to" variable is the name of the column where the data value came from and "values_to" is the data value itself. Any variable or variables left out of the list are treated like an identifier for a particular row.
+
+</div>
+
 ### Converting to tall and thin, output
 
 ```{r energy-longer-display}
@@ -216,7 +224,7 @@ glimpse(en_tall)
 
 <div class="notes">
 
-Gather creates two new variables. The "key" variable is the name of the column where the data value came from and "value" is the data value itself. Any variable or variables left out of the list are treated like an identifier for a particular row.
+Here is the tall and thin format. Notice that there are 24 rows now, 3 for each of the 8 subjects. All the energy measurements are now in a single column.
 
 </div>
 
@@ -315,6 +323,14 @@ qu_tall <- pivot_longer(qu,
   values_to="depression")
 ```
 
+<div class="notes">
+
+Suggestion: create an id variable with values 1:25 before you convert the format. It is not needed for the boxplots that I draw later, but if you do anything more complex with this data, you need to know which data in the tall and thin format comes from the first row of the original data set, from the second row, etc.
+
+The names of the columns Week0, Week3, etc. will be stored in a new column, Week, and the values in a new column, depression.
+
+</div>
+
 ### Display new structure
 
 ```{r quake-longer-structure}
@@ -322,8 +338,8 @@ glimpse(qu_tall)
 ```
 
 <div class="notes">
- 
-Suggestion: create an id variable with values 1:25 before you convert the format. It is not needed for the boxplots, but if you do anything more complex with this data, you need to know which data in the tall and thin format comes from the first row of the original data set, from the second row, etc.
+
+Here is the structore of the tall and thin format.
 
 </div>
 
