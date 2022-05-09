@@ -236,9 +236,9 @@ activity_lineplot <- ggplot(en_tall,
       y=energy, 
       group=Subject)) +
     geom_line()
-ggsave("../images/activity-by-energy.png", 
-  activity_lineplot,
-  width=4, height=4)
+ggsave(
+  "../images/activity-by-energy.png", 
+  activity_lineplot, width=4, height=4)
 ```
 
 <div class="notes">
@@ -265,12 +265,12 @@ Here is the graph. Notice the inverted V shape for each line. This shows that ru
     + Week3, Week6, Week9, Week12
   + There are 26 subjects
   + There are 5*26=130 measurements
-+ For more information
-  + www.statsci.org/data/general/lomaprie.txt
 
 <div class="notes">
 
 Here is a dataset stored in the short and fat format. This dataset will serve as a second example of how to convert from a short and fat format to a tall and thin format.
+
+For more information, see www.statsci.org/data/general/lomaprie.txt
 
 </div>
 
@@ -347,7 +347,9 @@ Here is the structore of the tall and thin format.
 
 ```{r boxplots}
 depression_boxplot01 <- 
-  ggplot(qu_tall, aes(x=time, y=depression)) +
+  ggplot(
+      qu_tall, 
+      aes(x=time, y=depression)) +
     geom_boxplot()
 ggsave(
   "../images/time-by-depression01.png", 
@@ -436,13 +438,13 @@ I want to keep these videos short, so let's stop here.
     + Type of running, number of years running
   + Our focus: quality of matching
   + There are 3*11=33 measurements
-+ For more information
-  + http://www.statsci.org/data/oz/backpain.html
 
 <div class="notes">
 
 Now let's read in a tall and thin format and convert it to a
 short and wide format.
+
+For more information about this dataset, see http://www.statsci.org/data/oz/backpain.html
 
 </div>
 
