@@ -1,0 +1,81 @@
+---
+title: "Video examples from module0%"
+author: "Steve Simon"
+date: "Created 2022-05-02"
+output: html_document
+---
+
+This is a small program written in Rmarkdown to show how to work with a dataset with a mix of categorical and continuous variables.
+
+This program is in the public domain. You can use it any way that you please.
+
+```{r version-and-current-date}
+R.version.string
+Sys.Date()
+library(tidyverse)
+```
+
+### Read the fev dataset
+
+Put in some comments about where you found the fev dataset.
+
+```{r read-fev}
+fn <- "../data/fev.txt"
+fev <- read_fwf(
+  file=fn,
+  col_types="nnnnn",
+  col_positions=fwf_cols(
+    age=3,
+    fev=7,
+    ht=5,
+    sex=4,
+    smoke=6))
+glimpse(fev)
+```
+
+### Create factors
+
+```{r factors}
+fev$smoke_factor <-
+  factor(
+    fev$smoke,
+    levels=0:1,
+    labels=c("Non-smoker", "Smoker"))
+fev$sex_factor <- 
+  factor(
+    fev$sex,
+    levels=0:1,
+    labels=c("Female", "Male"))
+table(fev$smoke_factor, useNA="always")
+table(fev$sex_factor, useNA="always")
+```
+
+### Draw boxplots
+
+```{r fev-boxplot}
+fev_box <-
+  ggplot(
+    fev,
+    aes(x=smoke_factor, y=fev)) +
+      geom_boxplot()
+fev_box
+```      
+
+```{r age-boxplot}
+age_box <-
+  ggplot(
+    fev,
+    aes(x=smoke_factor, y=age)) +
+      geom_boxplot()
+age_box
+```      
+      
+### Calculate group means and standard deviations
+
+```{r group-summaries}
+age_stats <- by(
+  fev$age,
+  fev$smoke_factor,
+  mean)
+round(age_stats, 1)
+```
