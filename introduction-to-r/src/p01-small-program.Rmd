@@ -22,7 +22,7 @@ suppressMessages(
 This program will read in data from an RData file. It will then list all the objects that you just read in, and list the first few lines for one of those objects.
 
 ```{r read-rdata-file}
-load("../data/module02-datasets.RData")
+load("../data/two-small-dataframes.RData")
 ls()
 fat[1:10, 1:5]
 ```
