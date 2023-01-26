@@ -46,6 +46,18 @@ All of these readings are made available to you under the Fair Use provisions of
 
 I plan to review the videos from last year and either re-use them or re-record them. You will get live links to these videos on or before 5pm on 2022-01-21 (Friday).
 
+I am listening to the videos I recorded in 2022 and they are quite good. I doubt that I could do as well in 2023, but I will judge this for future modules. Some of the videos may need to be re-recorded. I will post the links to either the new or old videos by each Wednesday of the semester.
+
+A few issues have changed from 2022.
+
++ The syllabus on Canvas for the 2023 course is final, not provisional as it was in 2022.
++ No one signed up for the in-class, synchronous option. So everyone will be taking the course asynchronously. That means that you listen to lectures on video at your own time and place. 
++ I am now openly encouraging face-to-face meetings, but Zoom is often a more convenient option as it avoids travel time. Choose whatever suits you best. 
++ There are a few "gaffes" like in one of the videos where I forget for almost three minutes to advance to the proper Powerpoint slide. Oops! I would probably have a different gaffe if I re-recorded.
++ I discuss the content of the thirteen modules in one of the videos. I may add a fourteenth module. It would be short and not add a lot of extra assignments. I don't have the fourteenth module ready yet and may not get it done this semester. I also might add a bit of extra content of some of the thirteen modules, but only a very little bit.
+
+In general, the content of the 2022 videos for module01 are very good. Enjoy!
+
 There are 12 videos with a total of 107 minutes.
 
 + Videos
@@ -153,7 +165,7 @@ Group of answer choices
 
 [syll]: https://umsystem.instructure.com/courses/72483/assignments/syllabus
 
-[v0001]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=035c8a81-58fa-438c-b552-a9dc01664f27
+[v0001]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d8399019-f6e7-4ffe-9533-ae2400e7350b
 [v0101]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=755bcbac-8846-4d0e-a950-ae2400edf11c
 [v0102]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e38624d4-000b-4e22-af77-ae2400f1d9ec
 [v0103]: https://umsystem.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5a9f765e-389f-4fd7-8544-ae2400f5d1d9
