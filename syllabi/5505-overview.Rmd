@@ -1,0 +1,95 @@
+---
+title: "MEDB 5505, Introduction to R. Overview"
+---
+
+```{r setup}
+suppressMessages(suppressWarnings(library(lubridate)))
+suppressMessages(suppressWarnings(library(magrittr)))
+d0 <- ymd("2021-01-19")
+mon <- function(i) {
+  paste0(d0-8+7*i, " (Monday)")
+}
+```
+    
+### General information
+    
+This file was created by Steve Simon using R Markdown on 2020-01-04 and last updated on `r Sys.Date()`. You can find the [source code](https://github.com/classes-medb/classes-medb.github.io/blob/master/5508-overview.Rmd) on my github repository, [classes-medb](https://github.com/classes-medb).
+
+This class is taught using the Canvas learning management system. Access to Canvas is limited to me and students currently enrolled. If you have access, the main page for the Canvas site for Spring Semester 2020 is found [here](https://umkc.instructure.com/courses/58364).
+
+The resources on this website will be generally consistent with those on Canvas. If you find any major discrepancies, please bring them to my attention. The information on Canvas takes precedence over the information presented here.
+
+### Syllabus
+
+The syllabus is available on [Canvas]() or in [html format](5505-syllabus.html). These should be identical, but if there are any discrepancies, the Canvas site takes precedence.
+
+Here are the overviews for each module of the class.
+
+## Module01.
+
+### Objectives
+
++ In this module, you will learn  how to
+
+### Data
+
+### Videos
+
++ Video01a. xx (xx minutes)
+  + Available in [Panopto format]().
+  + Slides with speaker notes available [here]().
+
+### Assignments, due start of week 3, `r mon(3)`
+
+Adapt the small program to run on your computer.
+
+Graded: 3 points, one point deducted if submitted late.
+
+Download the code for small-program.Rmd and the datafile two-small-dataframes.RData(../data/two-small-dataframes.RData) and store the files in a src and data directory somewhere on your computer. Modify the code so that you are listed as the author. Run the program and submit it as a PDF file.
+
+If there are errors or warnings in your output, make your best effort to fix them, but getting anything to run, even something with error messages will be sufficient for this very first homework assignment.
+
++ Discuss01a, One minute feedback
+  + Review the videos in this module and briefly answer the following questions
+    + What was the most important thing that you learned?
+    + What concept(s) do you still find confusing?
+    + What would you like to learn next?
+  + Please keep your answers brief. You are welcome to say something generic like "I found nothing confusing" or "I found everything confusing" or "I agree with the previous comment."
+  + Submit your discussion comments [here]().
+
++ HW01a,
+  
++ Quiz01, 
+  
+## Module02
+
+(To be added)
+
+### Assignments, due start of week 5, `r mon(5)`
+
+## Module03
+
+(To be added)
+
+### Assignments, due start of week 7, `r mon(7)`
+
+## Module04
+
+(To be added)
+
+## Module05
+
+(To be added)
+
+### Assignments, due start of week 9, `r mon(9)`
+
+## Module06
+
+(To be added)
+
+### Assignments, due start of week 12, `r mon(12)`
+
+## Final project, due start of week 15, `r mon(15)`
+
+
+

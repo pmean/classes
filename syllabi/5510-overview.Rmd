@@ -1,0 +1,674 @@
+---
+title: "MEDB 5510, Clinical Research Methods. Overview"
+---
+    
+### General information
+    
+This file was created by Steve Simon using R Markdown on 2021-01-08 and last updated on `r Sys.Date()`. You can find the [source code](https://github.com/classes-medb/classes-medb.github.io/blob/master/5510-overview.Rmd) on my github repository, [classes-medb](https://github.com/classes-medb).
+
+This class is taught using the Canvas learning management system. Access to Canvas is limited to me and students currently enrolled. If you have access, the main page for the Canvas site for Fall Semester 2020 is found [here](https://umkc.instructure.com/courses/58364).
+
+The resources on this website will be generally consistent with those on Canvas. If you find any major discrepancies, please bring them to my attention. The information on Canvas takes precedence over the information presented here.
+
+### Syllabus
+
+The syllabus is available on [Canvas](https://umkc.instructure.com/courses/58364/assignments/syllabus) or in [html format](5510-syllabus.html). These should be identical, but if there are any discrepancies, the Canvas site takes precedence.
+
+Here are the overviews for each module of the class.
+
+## Module01.
+
+(To be added)
+
+## Module02.
+
+### Objectives
+
++ In this module, you will learn  how to
+  + Retrieve a limited number of fields
+  + Retrieve distinct values
+  + Change field names
+  
+### Data
+
+This page provides a bit more details about the database used in this module. Please note that there might be small inconsistencies between the Oracle version and the SQLite version of the data.
+
++ Airlines
+  + [Data dictionary](https://github.com/classes-medb/5508/blob/master/data/airlines-data-dictionary.txt)
+  + Oracle: no download needed, use schema=melange
+  + SQLite: download [melange.SQLite](https://github.com/classes-medb/5508/blob/master/data/melange.SQLite)
+  + There is a backup of this data in [CSV format](https://github.com/classes-medb/5508/blob/master/data/airlines.csv). You should not need to access this backup.
+
++ Crawling
+  + [Data dictionary](https://github.com/classes-medb/5508/blob/master/data/crawling-data-dictionary.txt)
+  + Oracle: no download needed, use schema=melange
+  + SQLite: download [melange.SQLite](https://github.com/classes-medb/5508/blob/master/data/melange.SQLite)
+  + There is a backup of this data in [CSV format](https://github.com/classes-medb/5508/blob/master/data/crawling.csv). You should not need to access this backup.
+
++ Hospital
+  + [Data dictionary](https://github.com/classes-medb/5508/blob/master/data/hospital-data-dictionary.txt)
+  + Oracle: no download needed, use schema=ehr
+  + SQLite: download [ehr.SQLite](https://github.com/classes-medb/5508/blob/master/data/ehr.SQLite)
+  + There is a backup of this data in [CSV format](https://github.com/classes-medb/5508/blob/master/data/hospital.csv). You should not need to access this backup.
+
++ Patient_type
+  + [Data dictionary](https://github.com/classes-medb/5508/blob/master/data/patient-type-data-dictionary.txt)
+  + Oracle: no download needed, use schema=ehr
+  + SQLite: download [ehr.SQLite](https://github.com/classes-medb/5508/blob/master/data/ehr.SQLite)
+  + There is a backup of this data in [CSV format](https://github.com/classes-medb/5508/blob/master/data/patient_type.csv). You should not need to access this backup.
+
+### Videos
+
++ Video02a. Retrieving data using the SQL Select statement (15 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4b2a0448-a776-46eb-a17f-aaa7010bfcbb).
+  + Slides with speaker notes available [here](https://github.com/classes-medb/5508/blob/master/results/video02a.pdf).
++ Video02b. Connecting to database and retrieving data (9 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=617dafb4-b773-4c78-ab31-aaaa00ff29e3).
+  + Slides with speaker notes available [here](https://github.com/classes-medb/5508/blob/master/results/video02b.pdf).
+  
+### Assignments
+
++ Discuss02a, One minute feedback
+  + Review the videos in this module and briefly answer the following questions
+    + What was the most important thing that you learned?
+    + What concept(s) do you still find confusing?
+    + What would you like to learn next?
+  + Please keep your answers brief. You are welcome to say something generic like "I found nothing confusing" or "I found everything confusing" or "I agree with the previous comment."
+  + Submit your discussion comments [here](https://umkc.instructure.com/courses/58364/discussion_topics/188507).
+
++ HW02a, Practice using the SELECT statemement.
+  + Use the table crawling. 
+    + Refer to the page "Data used in this module" for a description of the data and where you can download it. 
+  + Run a query to display all three fields and all records.
+  + Run a query that changes Temperature to Temperature_F and displays all three fields and all records.
++ Show all your code and all your output.
+  + Convert your code and results for both queries into PDF files and combine them, if you can into a single PDF file.
+  + Submit your assignment [here](https://umkc.instructure.com/courses/58364/assignments/233726).
+  
++ HW02b, Practice using the SELECT statement for EHR data.
+  + Use patient_type table in EHR Datamart. Refer to the page "Data used in this module" for a description of the data and where you can download it. Oracle users do not need to download anything.
+    + Read all fields and  all records
+    + Change Pat_type_desc to Patient_Type_Desc
+    + Put your code and the output in a single PDF file
+  + Submit your assignment [here](https://umkc.instructure.com/courses/58364/assignments/233727).
+  
++ Quiz02, The SELECT statement
+  + Your quiz for this module is available [here](https://umkc.instructure.com/courses/58364/quizzes/54820).
+  
+## Module03
+
+(To be added)
+
+## Module04, Sorting and restricting data
+
+### Objectives
++ In this module, you will learn  how to
+  + Limit the rows  that are retrieved by a query
+  + Sort the rows that are retrieved by a query
+  + Select a random sample of records
+  
+### Data
+
++ Airlines (see module02)
+
++ Cigarettes
+  + [Data dictionary](https://github.com/classes-medb/5508/blob/master/data/cigarettes-data-dictionary.txt)
+  + Oracle: no download needed, use schema=melange
+  + SQLite: download [melange.SQLite](https://github.com/classes-medb/5508/blob/master/data/melange.SQLite)
+  + There is a backup of this data in [CSV format](https://github.com/classes-medb/5508/blob/master/data/cigarettes.csv). You should not need to access this backup.
+
++ Encounter
+  + [Data dictionary](https://github.com/classes-medb/5508/blob/master/data/encounter-data-dictionary.txt)
+  + Oracle: no download needed, use schema=melange
+  + SQLite: download [melange.SQLite](https://github.com/classes-medb/5508/blob/master/data/ehr.SQLite)
+  + There is a backup of this data in [CSV format](https://github.com/classes-medb/5508/blob/master/data/encounter.csv). You should not need to access this backup.
+  
++ Fat
+  + [Data dictionary](https://github.com/classes-medb/5508/blob/master/data/fat-data-dictionary.txt)
+  + Oracle: no download needed, use schema=melange
+  + SQLite: download [melange.SQLite](https://github.com/classes-medb/5508/blob/master/data/melange.SQLite)
+  + There is a backup of this data in [CSV format](https://github.com/classes-medb/5508/blob/master/data/fat.csv). You should not need to access this backup.
+
++ Hospital (see module02)
+
++ Patient_type (see module02)
+
+### Videos
+
++ Video04a. Restricting and sorting data (24 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f3fa124f-bbf2-4234-9852-aab1013258c2).
+  + Slides available [here](https://github.com/classes-medb/5508/blob/master/results/video04a.pdf).
++ Video04b. WHERE keyword (24 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3d8e748e-03d4-4e1c-8038-aab70105f3d7).
+  + Slides with speaker notes available [here](https://github.com/classes-medb/5508/blob/master/results/video04b.pdf).
++ Video04c. Data dictionary (9 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=180e269c-32a1-42e6-bd1f-ab19014ba38a).
+  + Slides with speaker notes not yet available.
+
+### Assignments
+
++ Discuss04a, One minute feedback
+  + Review the videos in this module and briefly answer the following questions
+    + What was the most important thing that you learned?
+    + What concept(s) do you still find confusing?
+    + What would you like to learn next?
+  + Please keep your answers brief. You are welcome to say something generic like "I found nothing confusing" or "I found everything confusing" or "I agree with the previous comment."
+  + Submit your discussion comments [here](https://umkc.instructure.com/courses/58364/discussion_topics/188505).
+
++ Discuss04b, Review this week's readings
+  + Review the reading provide in this module and provide a brief summary (3 or 4 sentences). Was there anything in this reading that surprised you.
+  + Submit your discussion comments [here](https://umkc.instructure.com/courses/58364/discussion_topics/188514).
+
++ HW04a, Practice with sorting and restricting data - EHR Data.
+  + Use table patient_type in EHR data mart.
+    + Order all the fields by Pat_type_desc
+    + Select all fields where Pat_type_desc starts with ‘Inp’
+    + Select first four rows from the table
+    + Put your code and the output in a single PDF file
+  + Submit your assignment [here](https://umkc.instructure.com/courses/58364/assignments/233728).
+  
++ HW04b, Practice with the WHERE keyword.
+  + Use the cigarettes database.
+    + Find and print the records for cigarettes that have an ampersand (&) in their name
+    + Find and print the records for cigarettes that are a single word brand name (no spaces)
+    + Put your code and output in a single pdf file
+  + Submit your assignment [here](https://umkc.instructure.com/courses/58364/assignments/233729).
+  
++ Quiz04, Sorting and restricting
+  + Your quiz for this module is available [here](https://umkc.instructure.com/courses/58364/quizzes/54818).
+  
+## Module05 (To be added)
+
+## Module06
+
+### Objectives
++ In this module, you will learn  how to
+  + count missing and non-missing values
+  + recognize how missing values influence averages and counts
+  
+### Data
+
++ Hospital (see module02)
+
++ Titanic
+  + [Data dictionary](https://github.com/classes-medb/5508/blob/master/data/titanic-data-dictionary.txt)
+  + Oracle: no download needed, use schema=melange
+  + SQLite: download [melange.SQLite](https://github.com/classes-medb/5508/blob/master/data/melange.SQLite)
+  + There is a backup of this data in [CSV format](https://github.com/classes-medb/5508/blob/master/data/titanic.csv). You should not need to access this backup.
+
+### Videos
+
++ Video06a. Null values, Part 1 (13 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=873a9bdc-1bad-47c7-8e1b-aac4013aa333).
+  + Slides with speaker notes available [here](https://github.com/classes-medb/5508/blob/master/results/video06a.pdf).
++ Video06b. Null values, Part 2 (23 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=0d481f87-e7c2-49c2-a933-aac4013e693f).
+  + Slides with speaker notes, see above.
+  
+### Assignments
+
++ Discuss06a, One minute feedback
+  + Review the videos in this module and briefly answer the following questions
+    + What was the most important thing that you learned?
+    + What concept(s) do you still find confusing?
+    + What would you like to learn next?
+  + Please keep your answers brief. You are welcome to say something generic like "I found nothing confusing" or "I found everything confusing" or "I agree with the previous comment."
+  + Submit your discussion comments [here](https://umkc.instructure.com/courses/58364/modules/items/665908).
+
++ Discuss06b, Review this week's readings
+  + Review the reading provide in this module and provide a brief summary (3 or 4 sentences). Was there anything in this reading that surprised you.
+  + Submit your discussion comments [here](https://umkc.instructure.com/courses/58364/modules/items/665909).
+
++ HW06a, Practice with NULL values.
+  + For your homework, use the hospital database that I mentioned briefly earlier in this lecture.
+    + Verify that the hospital id code (HOSP_ID) has no missing values.
+    + There are only two fields in the database that have null values. 
+    + Get a count of the number of missing values for the indicator for teaching hospital (TEACHING_IND).
+    + There is only one hospital where the number of beds (BED_SIZE) is unknown. Find the id of that hospital.
+  + Combine your results into a single PDF file and submit it.
+  + Submit your assignment [here](https://umkc.instructure.com/courses/58364/assignments/233730).
+  
++ Quiz06, 
+  + Your quiz for this module is available [here](https://umkc.instructure.com/courses/58364/modules/items/665911).
+  
+## Module07
+
+### Objectives
++ In this module, you will learn  how to
+  + Describe various types of functions available in SQL
+  + Use character, number, and date functions in SELECT statements
+  + Learn different types of single-row functions.
+    + Character
+    + Number
+    + Date
+    + Conversion
+    + General
++ Please note that a few of the single row functions in the videos are not available for SQLite or are slight variations. For a list of SQL single-row functions, please look [here](https://www.sqlite.org/lang_corefunc.html). Here are some functions not available in SQLite.
+  + The case conversion function, initcap.
+  + The character conversion functions concat, lpad, or rpad are (but there is an alternative for concat (Links to an external site.)).
+  + The number functions mod or trunc (but there is an alternative for mod (Links to an external site.)).
+  + The general functions, nvl and decode.
+  + SQLite has a slightly different approach (Links to an external site.) for displaying and manipulating dates. None of these issues will affect any of the homework exercises.
+  
+### Data
+
++ No new data tables.
+
+### Videos
+
++ Video07a. Single row functions to customize output (11 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=60a366ed-290e-4858-a9cc-aac3011d23ca).
+  + Slides available [here](https://github.com/classes-medb/5508/blob/master/results/video07a.pdf).
++ Video07b. Date and general functions (11 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=afef21f6-2a3a-456d-8468-aac4016e8dd3).
+  + Slides, see above.
++ Video07c. Executing single row functions to customize output (21 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f8348c42-a5a9-4d96-88e3-aac30168137e).
+  + Slides, see above.
++ Program output from single row functions. Available in [txt format](https://github.com/classes-medb/5508/blob/master/results/video07a_code.txt).  
++ Video07d. Good computing practices, Part 2 (13 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c4813050-49b8-4ff3-a649-ab190159a79c).
+  + Slides not available.
+  
+### Assignments
+
++ Discuss07a, One minute feedback
+  + Review the videos in this module and briefly answer the following questions
+    + What was the most important thing that you learned?
+    + What concept(s) do you still find confusing?
+    + What would you like to learn next?
+  + Please keep your answers brief. You are welcome to say something generic like "I found nothing confusing" or "I found everything confusing" or "I agree with the previous comment."
+  + Submit your discussion comments [here](https://umkc.instructure.com/courses/58364/discussion_topics/188500).
+
++ Discuss07b, Review this week's readings
+  + Review the reading provide in this module and provide a brief summary (3 or 4 sentences). Was there anything in this reading that surprised you. 
+  + Submit your discussion comments [here](https://umkc.instructure.com/courses/58364/discussion_topics/188518).
+
++ HW07a, Practice with single row functions.
+  + Your homework
+    + Round the value 29.526 to two decimal places.
+    + Truncate the value 29.526 to zero decimal places.
+    + Calculate the remainder of the value 2500 after it is divided by 500
+    + Put your code and output in a single pdf file
+  + Please note that if you use Oracle, you will need the code "from dual" as part of your query. That code is not needed for SQLite. Also, if you are using SQLite, there is no truncate function, but if you subtract 0.5 before rounding, you get the same answer as truncation. SQLite also uses the % operator to compute remainders. So 20 % 8 will produce a value of 4. 
+  + Submit your assignment [here](https://umkc.instructure.com/courses/58364/assignments/233731).
+  
++ Quiz07, three parts 
+  + Your quiz for this module is available [here](https://umkc.instructure.com/courses/58364/quizzes/54822), [here](https://umkc.instructure.com/courses/58364/quizzes/54809), and [here](https://umkc.instructure.com/courses/58364/quizzes/54814).
+  
+## Module08
+
+### Objectives
++ In this module, you will learn about
+  + Statistical summary functions
+  + The having keyword
+  + How statistical functions treat missing values
+  
+### Data
+
++ No new data tables.
+
+### Videos
+
++ Video08a. Statistical summary functions (29 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a2cf66c5-6d1e-4e99-86c6-aad3014c57c4).
+  + Slides with speaker notes available [here](https://github.com/classes-medb/5508/blob/master/results/video08a.pdf).
++ Video08b. Good computing practices (11 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=88c130ee-7317-490f-b6af-ab19015daa71).
+  + Slides not available.
+  
+### Assignments
+
++ Discuss08a, One minute feedback
+  + Review the videos in this module and briefly answer the following questions
+    + What was the most important thing that you learned?
+    + What concept(s) do you still find confusing?
+    + What would you like to learn next?
+  + Please keep your answers brief. You are welcome to say something generic like "I found nothing confusing" or "I found everything confusing" or "I agree with the previous comment."
+  + Submit your discussion comments [here](https://umkc.instructure.com/courses/58364/discussion_topics/188501).
+
++ Discuss08b, Review this week's readings
+  + Review the reading provide in this module and provide a brief summary (3 or 4 sentences). Was there anything in this reading that surprised you. 
+  + Submit your discussion comments [here](https://umkc.instructure.com/courses/58364/discussion_topics/188517).
+
++ HW08a, Practice with statistical summaries.
+  + For your homework, use the titanic database.
+    + Count the number of passengers with the title "Mr" somewhere in their name.
+    + Run a query that counts the number of male and female children (Age <= 18)
+    + Run a query that identifies the ages of the youngest and oldest patients in each passenger class.
+    + The Survived field has values of 0 (died) and 1 (alive) and an average of this value provides a probability of survival. Calculate this probability for six categories representing the combination of passenger class and sex. Include only those groups where the survival probability is greater than 30%.
+  + Place the SQL code and the results of all your queries in a single PDF file.
+  + Submit your assignment [here](https://umkc.instructure.com/courses/58364/assignments/233732).
+  
++ Quiz08, Statistical summary functions
+  + Your quiz for this module is available [here](https://umkc.instructure.com/courses/58364/quizzes/54819).
+  
+## Module09
+
+### Objectives
++ In this module, you will learn about
+  + Implicit and Explicit Conversions
+  + Manipulating dates
+  + Conditional Expressions
+  
+### Data
+
++ No new data tables.
+
+### Videos
+
++ Video09a. Conversion functions and conditional expressions (16 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=69c3af9b-5856-4364-81d8-aad3014c7ec8).
+  + Slides available [here](https://github.com/classes-medb/5508/blob/master/results/video09a.pdf).
++ Video09b. Executing conversion functions and conditional expressions (13 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1a04e3b6-59d1-4fa3-81dc-aad3016c7e48).
+  + Slides, see above.
++ Conversion functions and conditional expressions output. Available in [PDF format](https://github.com/classes-medb/5508/blob/master/results/video09a_code.pdf).
++ Video09c. Good computing practices, part 4 (8 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4fb06e69-fb02-429b-bb08-ab1901610c71).
+  + Slides not available.
+  
+### Assignments
+
++ Discuss09a, One minute feedback
+  + Review the videos in this module and briefly answer the following questions
+    + What was the most important thing that you learned?
+    + What concept(s) do you still find confusing?
+    + What would you like to learn next?
+  + Please keep your answers brief. You are welcome to say something generic like "I found nothing confusing" or "I found everything confusing" or "I agree with the previous comment."
+  + Submit your discussion comments [here]().
+
++ Discuss09b, Review this week's readings
+  + Review the reading provide in this module and provide a brief summary (3 or 4 sentences). Was there anything in this reading that surprised you. 
+  + Submit your discussion comments [here](https://umkc.instructure.com/courses/58364/discussion_topics/188509).
+
++ HW09a, Conversion Functions and Conditional Expressions.
+  + Use Encounter Table
+    + Use case expression to classify age <= 20 as ‘Group 1’, and age > 20 as ‘Group 2’ 
+  + Use hospital table
+    + Use coalesce function to return -1 for null values of teaching_ind in hospital table where census_reg = ‘West’
+  + Put your code and the output in a single PDF file
+  + Submit your assignment [here]().
+  
++ Quiz09, Conversion Functions and Conditional Expressions
+  + Your quiz for this module is available [here](https://umkc.instructure.com/courses/58364/quizzes/54817).
+  
+## Module10
+
+### Objectives
++ In this module, you will learn about
+  + The rationale for using multiple tables
+  + Getting names of all the tables in a database
+  + Getting field names for a particular table
+  
+### Data
+
++ 
+
+### Videos
+
++ Video10a. Metadata for databases with more than one table (24 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=91501179-ea5b-4c35-903e-aad801422d51).
+  + Slides with speaker notes available [here](https://github.com/classes-medb/5508/blob/master/results/video10a.pdf).
++ Video10b. Good computing practices, part 5 (10 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ddc5da52-8300-4f12-996e-ab1901641800).
+  + Slides not available.
+  
+### Assignments
+
++ Discuss10a, One minute feedback
+  + Review the videos in this module and briefly answer the following questions
+    + What was the most important thing that you learned?
+    + What concept(s) do you still find confusing?
+    + What would you like to learn next?
+  + Please keep your answers brief. You are welcome to say something generic like "I found nothing confusing" or "I found everything confusing" or "I agree with the previous comment."
+  + Submit your discussion comments [here](https://umkc.instructure.com/courses/58364/discussion_topics/188498).
+
++ HW10a, Metadata for databases with more than one table.
+  + Pick a database (any database). Use one of the approaches shown in the video to list all the table names. It is okay if the database that you chose has only one table.
+  + Pick a table (any table). Use one of the approaches shown in the video to list all the field names.
+  + Do an Google search on how to get table names in a database other than Oracle and SQLite. For example, do a Google search on "MySQL list table names".  Find a page that explains the process clearly and list the link to that page along with a brief description in your own words about how this works.
+  + Submit your assignment [here](https://umkc.instructure.com/courses/58364/assignments/233734).
+  
++ There is no quiz for this module
+  
+## Module11
+
+### Objectives
++ In this module, you will learn
+  + Basic terminology: primary keys, foreign keys
+  + One to one, many to one, many to many merges
+  + Reading a database schema
+  
+### Data
+
++ Acupuncture
+  + Details to be added soon.
+
+### Videos
+
++ Video11a. Retreiving data from multiple tables - Overview (6 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=57794837-cc4b-41cb-88cb-aae600ee69b1).
+  + Slides available [here](https://github.com/classes-medb/5508/blob/master/results/video11a.pdf).
++ Video11b. Retreiving data from multiple tables - Database Design (5 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6ebdc433-6956-4c94-9bd2-aae600f01315).
+  + Slides, see above.
++ Video11c. Using tables to add labels (32 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=87e714e8-6c7f-4446-a4e6-aae6014bb97a).
+  + Slides with speaker notes available [here](https://github.com/classes-medb/5508/blob/master/results/video11c.pdf).
++ Video11d. Good computing practices, part 6 (20 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=681ca99d-55bf-4c7c-a1e4-ab190167c797).
+  + Slides not available.
+  
+### Assignments
+
++ Discuss11a, One minute feedback
+  + Review the videos in this module and briefly answer the following questions
+    + What was the most important thing that you learned?
+    + What concept(s) do you still find confusing?
+    + What would you like to learn next?
+  + Please keep your answers brief. You are welcome to say something generic like "I found nothing confusing" or "I found everything confusing" or "I agree with the previous comment."
+  + Submit your discussion comments [here](https://umkc.instructure.com/courses/58364/discussion_topics/188497).
+
++ HW11a, Use the acupuncture for headache database.
+  + List id and migraine_label for the first ten records after joining the results_table and migraine_table.
+  + Get a count of the number of records in the database in the control group and the treatment group. Use the label for group and not the number code.
+  + Get a count of the numbers of males and females where you restrict age to be less than 40. Use the label for sex, but convert it to all uppercase.
+  + Submit your work in pdf format.
+  + Submit your assignment [here](https://umkc.instructure.com/courses/58364/assignments/233735).
+  
++ Quiz11, Retrieving data from multiple tables
+  + Your quiz for this module is available [here](https://umkc.instructure.com/courses/58364/quizzes/54812).
+  
+## Module12
+
+### Objectives
++ In this module, you will learn how to
+  + Generate a Cartesian product of all rows from two or more tables
+  + Matching using an equijoin
+  + Matching using the EXISTS criteria
+  + The importance of aliases in joining tables
+  + Handling unmatched records: inner, left, right, and outer join
+  + Join a table to itself by using a self-join
+  
+### Data
+
++ No new data tables
+
+### Videos
+
++ Video12a. Displaying data from multiple tables - Displaying Data (6 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9ae3efa4-7da9-4b8f-b36d-aaf6006e374c).
+  + Slides available [here](https://github.com/classes-medb/5508/blob/master/results/video12a.pdf).
++ Video12b. Displaying data from multiple tables - Joins (14 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=939fc4b0-944c-4e48-8206-aaf600707cef).
+  + Slides available [here](https://github.com/classes-medb/5508/blob/master/results/video12b.pdf).
++ Video12c. Using Joins with Electronic Health Records (14 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3749d09c-6920-448d-8e26-aaf600a1f926).
+  + Slides available [here](https://github.com/classes-medb/5508/blob/master/results/video12c.pdf).
++ Video12d. Good computing practices, Part 7 (14 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=31ad3ca7-2db7-4d1d-a5a8-ab19016db1c6).
+  + Slides not available.
+
+### Assignments
+
++ Discuss12a, One minute feedback
+  + Review the videos in this module and briefly answer the following questions
+    + What was the most important thing that you learned?
+    + What concept(s) do you still find confusing?
+    + What would you like to learn next?
+  + Please keep your answers brief. You are welcome to say something generic like "I found nothing confusing" or "I found everything confusing" or "I agree with the previous comment."
+  + Submit your discussion comments [here](https://umkc.instructure.com/courses/58364/discussion_topics/188510).
+
++ HW12a.
+  + Details to be added later.
+  
++ Quiz12, 
+  + Your quiz for this module is available [here](https://umkc.instructure.com/courses/58364/quizzes/54811).
+  
+## Module13
+
+### Objectives
++ In this module, you will learn how to
+  + handle a category label that does not have a match in the main table
+  + handle a category code in the main table that has no corresponding category label
+  + count records using the category label instead of the category code
+  + handle dropouts in a longitudinal database
+  + compute change scores and means in a longitudinal database
+  
+### Data
+
++ No new data tables.
+
+### Videos
+
++ Video13a. Mismatches (42 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=60290cf7-f6c7-4e05-8973-aaf40158fcd2).
+  + Slides with speaker notes available [here](https://github.com/classes-medb/5508/blob/master/results/slides-and-speaker-notes-13.pdf).
++ Video13b. Counting mismatches (24 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=902a7780-2684-4495-8fc4-aaf40165ca75).
+  + Slides with speaker notes, see above.
+  
+### Assignments
+
++ Discuss13a, One minute feedback
+  + Review the videos in this module and briefly answer the following questions
+    + What was the most important thing that you learned?
+    + What concept(s) do you still find confusing?
+    + What would you like to learn next?
+  + Please keep your answers brief. You are welcome to say something generic like "I found nothing confusing" or "I found everything confusing" or "I agree with the previous comment."
+  + Submit your discussion comments [here](https://umkc.instructure.com/courses/58364/discussion_topics/188496).
+
++ HW13a, Mismatches.
+  + Do an inner join of baseline_table and one_year_table. Display the first ten rows of data only.
+  +  Explain why id 104 included in this inner join, but not the inner join shown in the video?
+  + Count the number of records after an inner join of baseline_table and year_one_table. Compare this to the number of records in the year_one_table.
+  + Compute the average pk score at baseline, the average score at one year, and the average change score.
+  + Find and list the two labels in migraine_table that do not correspond to any codes in demog_table.
+  + Show that there are no unmatched labels or unmatched codes for group_table.
+  + Submit your assignment [here](https://umkc.instructure.com/courses/58364/assignments/233738).
++ No quiz for this module. 
+
+## Module14
+
+### Objectives
++ In this module, you will learn how to
+  + Describe set operators
+  + Use a set operator to combine multiple queries into a single query
+  
+### Data
+
++ No new data tables
+
+### Videos
+
++ Video14a. Using set operators (9 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=25e3a256-fcd6-448c-9fa1-ab10014d349c).
+  + Slides with speaker notes available [here](https://github.com/classes-medb/5508/blob/master/results/video14a.pdf).
++ Video14b. Electronic Health Records-Using Set Operators (9 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7cddb2ce-9b84-468a-8252-ab10015b7a19).
+  + Slides with speaker notes available [here]().
+  
+### Assignments
+
++ Discuss14a, One minute feedback
+  + Review the videos in this module and briefly answer the following questions
+    + What was the most important thing that you learned?
+    + What concept(s) do you still find confusing?
+    + What would you like to learn next?
+  + Please keep your answers brief. You are welcome to say something generic like "I found nothing confusing" or "I found everything confusing" or "I agree with the previous comment."
+  + Submit your discussion comments [here](https://umkc.instructure.com/courses/58364/discussion_topics/188511).
+
++ HW14a.
+  + Details are available [here](https://umkc.instructure.com/courses/58364/assignments/233739).
+
++ Quiz14
+  + Your quiz for this module is available [here](https://umkc.instructure.com/courses/58364/quizzes/54810).
+  
+## Module15
+
+### Objectives
++ In this module, you will learn  how to
+  +  Describe the types of problems that the subqueries can solve
+  +  Define subqueries
+  +  Write single-row and multiple-row subqueries
+  +  List the types of subqueries
+  
+### Data
+
++ Bricks.csv is available [here](https://umkc.instructure.com/courses/58364/files/2407421)
++ Colours.csv is available [here](https://umkc.instructure.com/courses/58364/files/2407422)
+
+### Videos
+
++ Video15a. Using subqueries to solve queries (10 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9e7d1727-b75f-4f9a-bbd6-ab1700a3760c).
+  + Slides with speaker notes available [here](https://github.com/classes-medb/5508/blob/master/results/video15a.pdf).
++ Video15b. Connecting to database and retrieving data ( minutes)
+  + Available in [Panopto format]().
+  + Slides with speaker notes available [here]().
+  
+### Assignments
+
++ Discuss15a, One minute feedback
+  + Review the videos in this module and briefly answer the following questions
+    + What was the most important thing that you learned?
+    + What concept(s) do you still find confusing?
+    + What would you like to learn next?
+  + Please keep your answers brief. You are welcome to say something generic like "I found nothing confusing" or "I found everything confusing" or "I agree with the previous comment."
+  + Submit your discussion comments [here](https://umkc.instructure.com/courses/58364/discussion_topics/188512).
+
++ HW15a, .
+  + Answer the following questions:
+    + What is a nested query?
+    + Describe inline views?
+  + Submit your assignment [here](https://umkc.instructure.com/courses/58364/assignments/233740).
+  
++ Quiz15, 
+  + Your quiz for this module is available [here](https://umkc.instructure.com/courses/58364/quizzes/54813).
+  
+## Module16
+
+### Objectives
++ In this module, you will learn  how to
+  + Gathering: combining multiple columns representing the same measurement at different time points into a single column. This converts a short-and-fat format for longitudinal data into a a tall-and-thin format.
+  + Spreading: taking a single column with measurements at different time points and placing them in separate columns. This converts a tall-and-thin format to a short-and-fat format.
+  + The Entity-Attribute-Value model. This format is a universal format that provides great flexibility for complex information, such as what might appear in a database of electronic health records.
+  
+### Data
+
++ cholesterol, see [data dictionary](https://github.com/classes-medb/5508/blob/master/data/cholesterol-data-dictionary.md)
++ eav, see [data dictionary](https://github.com/classes-medb/5508/blob/master/data/eav-data-dictionary.md)
++ lomaprie, see [data dictionary](https://github.com/classes-medb/5508/blob/master/data/lomaprie-data-dictionary.md)
+
+### Videos
+
++ Video16a. Gathering and spreading (41 minutes)
+  + Available in [Panopto format](https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=711e8644-20d9-4112-902e-ab18012a2f55).
+  + Slides with speaker notes available [here](https://github.com/classes-medb/5508/blob/master/results/slides-and-speaker-notes-16.pdf).
+
+### Assignments
+
++ No discussion boards
++ No homework
++ No quizzes

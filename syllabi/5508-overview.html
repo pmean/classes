@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>MEDB 5508, Introduction to SQL. Overview</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home page</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="5505-overview.html">5505 Overview</a>
+</li>
+<li>
+  <a href="5507-overview.html">5507 Overview</a>
+</li>
+<li>
+  <a href="5510-overview.html">5508 Overview</a>
+</li>
+<li>
+  <a href="5508-overview.html">5510 Overview</a>
+</li>
+<li>
+  <a href="reproducible-research.html">Reproducible research</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">MEDB 5508, Introduction to SQL. Overview</h1>
+
+</div>
+
+
+<div id="general-information" class="section level3">
+<h3>General information</h3>
+<p>This file was created by Steve Simon using R Markdown on 2020-09-24 and last updated on 2021-01-08. You can find the <a href="https://github.com/classes-medb/classes-medb.github.io/blob/master/5508-overview.Rmd">source code</a> on my github repository, <a href="https://github.com/classes-medb">classes-medb</a>.</p>
+<p>This class is taught using the Canvas learning management system. Access to Canvas is limited to me and students currently enrolled. If you have access, the main page for the Canvas site for Fall Semester 2020 is found <a href="https://umkc.instructure.com/courses/58364">here</a>.</p>
+<p>The resources on this website will be generally consistent with those on Canvas. If you find any major discrepancies, please bring them to my attention. The information on Canvas takes precedence over the information presented here.</p>
+</div>
+<div id="syllabus" class="section level3">
+<h3>Syllabus</h3>
+<p>The syllabus is available on <a href="https://umkc.instructure.com/courses/58364/assignments/syllabus">Canvas</a> or in <a href="5508-syllabus.html">html format</a>. These should be identical, but if there are any discrepancies, the Canvas site takes precedence.</p>
+<p>Here are the overviews for each module of the class.</p>
+</div>
+<div id="module01." class="section level2">
+<h2>Module01.</h2>
+<p>(To be added)</p>
+</div>
+<div id="module02." class="section level2">
+<h2>Module02.</h2>
+<div id="objectives" class="section level3">
+<h3>Objectives</h3>
+<ul>
+<li>In this module, you will learn how to
+<ul>
+<li>Retrieve a limited number of fields</li>
+<li>Retrieve distinct values</li>
+<li>Change field names</li>
+</ul></li>
+</ul>
+</div>
+<div id="data" class="section level3">
+<h3>Data</h3>
+<p>This page provides a bit more details about the database used in this module. Please note that there might be small inconsistencies between the Oracle version and the SQLite version of the data.</p>
+<ul>
+<li>Airlines
+<ul>
+<li><a href="https://github.com/classes-medb/5508/blob/master/data/airlines-data-dictionary.txt">Data dictionary</a></li>
+<li>Oracle: no download needed, use schema=melange</li>
+<li>SQLite: download <a href="https://github.com/classes-medb/5508/blob/master/data/melange.SQLite">melange.SQLite</a></li>
+<li>There is a backup of this data in <a href="https://github.com/classes-medb/5508/blob/master/data/airlines.csv">CSV format</a>. You should not need to access this backup.</li>
+</ul></li>
+<li>Crawling
+<ul>
+<li><a href="https://github.com/classes-medb/5508/blob/master/data/crawling-data-dictionary.txt">Data dictionary</a></li>
+<li>Oracle: no download needed, use schema=melange</li>
+<li>SQLite: download <a href="https://github.com/classes-medb/5508/blob/master/data/melange.SQLite">melange.SQLite</a></li>
+<li>There is a backup of this data in <a href="https://github.com/classes-medb/5508/blob/master/data/crawling.csv">CSV format</a>. You should not need to access this backup.</li>
+</ul></li>
+<li>Hospital
+<ul>
+<li><a href="https://github.com/classes-medb/5508/blob/master/data/hospital-data-dictionary.txt">Data dictionary</a></li>
+<li>Oracle: no download needed, use schema=ehr</li>
+<li>SQLite: download <a href="https://github.com/classes-medb/5508/blob/master/data/ehr.SQLite">ehr.SQLite</a></li>
+<li>There is a backup of this data in <a href="https://github.com/classes-medb/5508/blob/master/data/hospital.csv">CSV format</a>. You should not need to access this backup.</li>
+</ul></li>
+<li>Patient_type
+<ul>
+<li><a href="https://github.com/classes-medb/5508/blob/master/data/patient-type-data-dictionary.txt">Data dictionary</a></li>
+<li>Oracle: no download needed, use schema=ehr</li>
+<li>SQLite: download <a href="https://github.com/classes-medb/5508/blob/master/data/ehr.SQLite">ehr.SQLite</a></li>
+<li>There is a backup of this data in <a href="https://github.com/classes-medb/5508/blob/master/data/patient_type.csv">CSV format</a>. You should not need to access this backup.</li>
+</ul></li>
+</ul>
+</div>
+<div id="videos" class="section level3">
+<h3>Videos</h3>
+<ul>
+<li>Video02a. Retrieving data using the SQL Select statement (15 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4b2a0448-a776-46eb-a17f-aaa7010bfcbb">Panopto format</a>.</li>
+<li>Slides with speaker notes available <a href="https://github.com/classes-medb/5508/blob/master/results/video02a.pdf">here</a>.</li>
+</ul></li>
+<li>Video02b. Connecting to database and retrieving data (9 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=617dafb4-b773-4c78-ab31-aaaa00ff29e3">Panopto format</a>.</li>
+<li>Slides with speaker notes available <a href="https://github.com/classes-medb/5508/blob/master/results/video02b.pdf">here</a>.</li>
+</ul></li>
+</ul>
+</div>
+<div id="assignments" class="section level3">
+<h3>Assignments</h3>
+<ul>
+<li>Discuss02a, One minute feedback
+<ul>
+<li>Review the videos in this module and briefly answer the following questions
+<ul>
+<li>What was the most important thing that you learned?</li>
+<li>What concept(s) do you still find confusing?</li>
+<li>What would you like to learn next?</li>
+</ul></li>
+<li>Please keep your answers brief. You are welcome to say something generic like “I found nothing confusing” or “I found everything confusing” or “I agree with the previous comment.”</li>
+<li>Submit your discussion comments <a href="https://umkc.instructure.com/courses/58364/discussion_topics/188507">here</a>.</li>
+</ul></li>
+<li>HW02a, Practice using the SELECT statemement.
+<ul>
+<li>Use the table crawling.
+<ul>
+<li>Refer to the page “Data used in this module” for a description of the data and where you can download it.</li>
+</ul></li>
+<li>Run a query to display all three fields and all records.</li>
+<li>Run a query that changes Temperature to Temperature_F and displays all three fields and all records.</li>
+</ul></li>
+<li>Show all your code and all your output.
+<ul>
+<li>Convert your code and results for both queries into PDF files and combine them, if you can into a single PDF file.</li>
+<li>Submit your assignment <a href="https://umkc.instructure.com/courses/58364/assignments/233726">here</a>.</li>
+</ul></li>
+<li>HW02b, Practice using the SELECT statement for EHR data.
+<ul>
+<li>Use patient_type table in EHR Datamart. Refer to the page “Data used in this module” for a description of the data and where you can download it. Oracle users do not need to download anything.
+<ul>
+<li>Read all fields and all records</li>
+<li>Change Pat_type_desc to Patient_Type_Desc</li>
+<li>Put your code and the output in a single PDF file</li>
+</ul></li>
+<li>Submit your assignment <a href="https://umkc.instructure.com/courses/58364/assignments/233727">here</a>.</li>
+</ul></li>
+<li>Quiz02, The SELECT statement
+<ul>
+<li>Your quiz for this module is available <a href="https://umkc.instructure.com/courses/58364/quizzes/54820">here</a>.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="module03" class="section level2">
+<h2>Module03</h2>
+<p>(To be added)</p>
+</div>
+<div id="module04-sorting-and-restricting-data" class="section level2">
+<h2>Module04, Sorting and restricting data</h2>
+<div id="objectives-1" class="section level3">
+<h3>Objectives</h3>
+<ul>
+<li>In this module, you will learn how to
+<ul>
+<li>Limit the rows that are retrieved by a query</li>
+<li>Sort the rows that are retrieved by a query</li>
+<li>Select a random sample of records</li>
+</ul></li>
+</ul>
+</div>
+<div id="data-1" class="section level3">
+<h3>Data</h3>
+<ul>
+<li><p>Airlines (see module02)</p></li>
+<li><p>Cigarettes</p>
+<ul>
+<li><a href="https://github.com/classes-medb/5508/blob/master/data/cigarettes-data-dictionary.txt">Data dictionary</a></li>
+<li>Oracle: no download needed, use schema=melange</li>
+<li>SQLite: download <a href="https://github.com/classes-medb/5508/blob/master/data/melange.SQLite">melange.SQLite</a></li>
+<li>There is a backup of this data in <a href="https://github.com/classes-medb/5508/blob/master/data/cigarettes.csv">CSV format</a>. You should not need to access this backup.</li>
+</ul></li>
+<li><p>Encounter</p>
+<ul>
+<li><a href="https://github.com/classes-medb/5508/blob/master/data/encounter-data-dictionary.txt">Data dictionary</a></li>
+<li>Oracle: no download needed, use schema=melange</li>
+<li>SQLite: download <a href="https://github.com/classes-medb/5508/blob/master/data/ehr.SQLite">melange.SQLite</a></li>
+<li>There is a backup of this data in <a href="https://github.com/classes-medb/5508/blob/master/data/encounter.csv">CSV format</a>. You should not need to access this backup.</li>
+</ul></li>
+<li><p>Fat</p>
+<ul>
+<li><a href="https://github.com/classes-medb/5508/blob/master/data/fat-data-dictionary.txt">Data dictionary</a></li>
+<li>Oracle: no download needed, use schema=melange</li>
+<li>SQLite: download <a href="https://github.com/classes-medb/5508/blob/master/data/melange.SQLite">melange.SQLite</a></li>
+<li>There is a backup of this data in <a href="https://github.com/classes-medb/5508/blob/master/data/fat.csv">CSV format</a>. You should not need to access this backup.</li>
+</ul></li>
+<li><p>Hospital (see module02)</p></li>
+<li><p>Patient_type (see module02)</p></li>
+</ul>
+</div>
+<div id="videos-1" class="section level3">
+<h3>Videos</h3>
+<ul>
+<li>Video04a. Restricting and sorting data (24 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f3fa124f-bbf2-4234-9852-aab1013258c2">Panopto format</a>.</li>
+<li>Slides available <a href="https://github.com/classes-medb/5508/blob/master/results/video04a.pdf">here</a>.</li>
+</ul></li>
+<li>Video04b. WHERE keyword (24 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3d8e748e-03d4-4e1c-8038-aab70105f3d7">Panopto format</a>.</li>
+<li>Slides with speaker notes available <a href="https://github.com/classes-medb/5508/blob/master/results/video04b.pdf">here</a>.</li>
+</ul></li>
+<li>Video04c. Data dictionary (9 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=180e269c-32a1-42e6-bd1f-ab19014ba38a">Panopto format</a>.</li>
+<li>Slides with speaker notes not yet available.</li>
+</ul></li>
+</ul>
+</div>
+<div id="assignments-1" class="section level3">
+<h3>Assignments</h3>
+<ul>
+<li>Discuss04a, One minute feedback
+<ul>
+<li>Review the videos in this module and briefly answer the following questions
+<ul>
+<li>What was the most important thing that you learned?</li>
+<li>What concept(s) do you still find confusing?</li>
+<li>What would you like to learn next?</li>
+</ul></li>
+<li>Please keep your answers brief. You are welcome to say something generic like “I found nothing confusing” or “I found everything confusing” or “I agree with the previous comment.”</li>
+<li>Submit your discussion comments <a href="https://umkc.instructure.com/courses/58364/discussion_topics/188505">here</a>.</li>
+</ul></li>
+<li>Discuss04b, Review this week’s readings
+<ul>
+<li>Review the reading provide in this module and provide a brief summary (3 or 4 sentences). Was there anything in this reading that surprised you.</li>
+<li>Submit your discussion comments <a href="https://umkc.instructure.com/courses/58364/discussion_topics/188514">here</a>.</li>
+</ul></li>
+<li>HW04a, Practice with sorting and restricting data - EHR Data.
+<ul>
+<li>Use table patient_type in EHR data mart.
+<ul>
+<li>Order all the fields by Pat_type_desc</li>
+<li>Select all fields where Pat_type_desc starts with ‘Inp’</li>
+<li>Select first four rows from the table</li>
+<li>Put your code and the output in a single PDF file</li>
+</ul></li>
+<li>Submit your assignment <a href="https://umkc.instructure.com/courses/58364/assignments/233728">here</a>.</li>
+</ul></li>
+<li>HW04b, Practice with the WHERE keyword.
+<ul>
+<li>Use the cigarettes database.
+<ul>
+<li>Find and print the records for cigarettes that have an ampersand (&amp;) in their name</li>
+<li>Find and print the records for cigarettes that are a single word brand name (no spaces)</li>
+<li>Put your code and output in a single pdf file</li>
+</ul></li>
+<li>Submit your assignment <a href="https://umkc.instructure.com/courses/58364/assignments/233729">here</a>.</li>
+</ul></li>
+<li>Quiz04, Sorting and restricting
+<ul>
+<li>Your quiz for this module is available <a href="https://umkc.instructure.com/courses/58364/quizzes/54818">here</a>.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="module05-to-be-added" class="section level2">
+<h2>Module05 (To be added)</h2>
+</div>
+<div id="module06" class="section level2">
+<h2>Module06</h2>
+<div id="objectives-2" class="section level3">
+<h3>Objectives</h3>
+<ul>
+<li>In this module, you will learn how to
+<ul>
+<li>count missing and non-missing values</li>
+<li>recognize how missing values influence averages and counts</li>
+</ul></li>
+</ul>
+</div>
+<div id="data-2" class="section level3">
+<h3>Data</h3>
+<ul>
+<li><p>Hospital (see module02)</p></li>
+<li><p>Titanic</p>
+<ul>
+<li><a href="https://github.com/classes-medb/5508/blob/master/data/titanic-data-dictionary.txt">Data dictionary</a></li>
+<li>Oracle: no download needed, use schema=melange</li>
+<li>SQLite: download <a href="https://github.com/classes-medb/5508/blob/master/data/melange.SQLite">melange.SQLite</a></li>
+<li>There is a backup of this data in <a href="https://github.com/classes-medb/5508/blob/master/data/titanic.csv">CSV format</a>. You should not need to access this backup.</li>
+</ul></li>
+</ul>
+</div>
+<div id="videos-2" class="section level3">
+<h3>Videos</h3>
+<ul>
+<li>Video06a. Null values, Part 1 (13 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=873a9bdc-1bad-47c7-8e1b-aac4013aa333">Panopto format</a>.</li>
+<li>Slides with speaker notes available <a href="https://github.com/classes-medb/5508/blob/master/results/video06a.pdf">here</a>.</li>
+</ul></li>
+<li>Video06b. Null values, Part 2 (23 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=0d481f87-e7c2-49c2-a933-aac4013e693f">Panopto format</a>.</li>
+<li>Slides with speaker notes, see above.</li>
+</ul></li>
+</ul>
+</div>
+<div id="assignments-2" class="section level3">
+<h3>Assignments</h3>
+<ul>
+<li>Discuss06a, One minute feedback
+<ul>
+<li>Review the videos in this module and briefly answer the following questions
+<ul>
+<li>What was the most important thing that you learned?</li>
+<li>What concept(s) do you still find confusing?</li>
+<li>What would you like to learn next?</li>
+</ul></li>
+<li>Please keep your answers brief. You are welcome to say something generic like “I found nothing confusing” or “I found everything confusing” or “I agree with the previous comment.”</li>
+<li>Submit your discussion comments <a href="https://umkc.instructure.com/courses/58364/modules/items/665908">here</a>.</li>
+</ul></li>
+<li>Discuss06b, Review this week’s readings
+<ul>
+<li>Review the reading provide in this module and provide a brief summary (3 or 4 sentences). Was there anything in this reading that surprised you.</li>
+<li>Submit your discussion comments <a href="https://umkc.instructure.com/courses/58364/modules/items/665909">here</a>.</li>
+</ul></li>
+<li>HW06a, Practice with NULL values.
+<ul>
+<li>For your homework, use the hospital database that I mentioned briefly earlier in this lecture.
+<ul>
+<li>Verify that the hospital id code (HOSP_ID) has no missing values.</li>
+<li>There are only two fields in the database that have null values.</li>
+<li>Get a count of the number of missing values for the indicator for teaching hospital (TEACHING_IND).</li>
+<li>There is only one hospital where the number of beds (BED_SIZE) is unknown. Find the id of that hospital.</li>
+</ul></li>
+<li>Combine your results into a single PDF file and submit it.</li>
+<li>Submit your assignment <a href="https://umkc.instructure.com/courses/58364/assignments/233730">here</a>.</li>
+</ul></li>
+<li>Quiz06,
+<ul>
+<li>Your quiz for this module is available <a href="https://umkc.instructure.com/courses/58364/modules/items/665911">here</a>.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="module07" class="section level2">
+<h2>Module07</h2>
+<div id="objectives-3" class="section level3">
+<h3>Objectives</h3>
+<ul>
+<li>In this module, you will learn how to
+<ul>
+<li>Describe various types of functions available in SQL</li>
+<li>Use character, number, and date functions in SELECT statements</li>
+<li>Learn different types of single-row functions.
+<ul>
+<li>Character</li>
+<li>Number</li>
+<li>Date</li>
+<li>Conversion</li>
+<li>General</li>
+</ul></li>
+</ul></li>
+<li>Please note that a few of the single row functions in the videos are not available for SQLite or are slight variations. For a list of SQL single-row functions, please look <a href="https://www.sqlite.org/lang_corefunc.html">here</a>. Here are some functions not available in SQLite.
+<ul>
+<li>The case conversion function, initcap.</li>
+<li>The character conversion functions concat, lpad, or rpad are (but there is an alternative for concat (Links to an external site.)).</li>
+<li>The number functions mod or trunc (but there is an alternative for mod (Links to an external site.)).</li>
+<li>The general functions, nvl and decode.</li>
+<li>SQLite has a slightly different approach (Links to an external site.) for displaying and manipulating dates. None of these issues will affect any of the homework exercises.</li>
+</ul></li>
+</ul>
+</div>
+<div id="data-3" class="section level3">
+<h3>Data</h3>
+<ul>
+<li>No new data tables.</li>
+</ul>
+</div>
+<div id="videos-3" class="section level3">
+<h3>Videos</h3>
+<ul>
+<li>Video07a. Single row functions to customize output (11 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=60a366ed-290e-4858-a9cc-aac3011d23ca">Panopto format</a>.</li>
+<li>Slides available <a href="https://github.com/classes-medb/5508/blob/master/results/video07a.pdf">here</a>.</li>
+</ul></li>
+<li>Video07b. Date and general functions (11 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=afef21f6-2a3a-456d-8468-aac4016e8dd3">Panopto format</a>.</li>
+<li>Slides, see above.</li>
+</ul></li>
+<li>Video07c. Executing single row functions to customize output (21 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f8348c42-a5a9-4d96-88e3-aac30168137e">Panopto format</a>.</li>
+<li>Slides, see above.</li>
+</ul></li>
+<li>Program output from single row functions. Available in <a href="https://github.com/classes-medb/5508/blob/master/results/video07a_code.txt">txt format</a>.<br />
+</li>
+<li>Video07d. Good computing practices, Part 2 (13 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=c4813050-49b8-4ff3-a649-ab190159a79c">Panopto format</a>.</li>
+<li>Slides not available.</li>
+</ul></li>
+</ul>
+</div>
+<div id="assignments-3" class="section level3">
+<h3>Assignments</h3>
+<ul>
+<li>Discuss07a, One minute feedback
+<ul>
+<li>Review the videos in this module and briefly answer the following questions
+<ul>
+<li>What was the most important thing that you learned?</li>
+<li>What concept(s) do you still find confusing?</li>
+<li>What would you like to learn next?</li>
+</ul></li>
+<li>Please keep your answers brief. You are welcome to say something generic like “I found nothing confusing” or “I found everything confusing” or “I agree with the previous comment.”</li>
+<li>Submit your discussion comments <a href="https://umkc.instructure.com/courses/58364/discussion_topics/188500">here</a>.</li>
+</ul></li>
+<li>Discuss07b, Review this week’s readings
+<ul>
+<li>Review the reading provide in this module and provide a brief summary (3 or 4 sentences). Was there anything in this reading that surprised you.</li>
+<li>Submit your discussion comments <a href="https://umkc.instructure.com/courses/58364/discussion_topics/188518">here</a>.</li>
+</ul></li>
+<li>HW07a, Practice with single row functions.
+<ul>
+<li>Your homework
+<ul>
+<li>Round the value 29.526 to two decimal places.</li>
+<li>Truncate the value 29.526 to zero decimal places.</li>
+<li>Calculate the remainder of the value 2500 after it is divided by 500</li>
+<li>Put your code and output in a single pdf file</li>
+</ul></li>
+<li>Please note that if you use Oracle, you will need the code “from dual” as part of your query. That code is not needed for SQLite. Also, if you are using SQLite, there is no truncate function, but if you subtract 0.5 before rounding, you get the same answer as truncation. SQLite also uses the % operator to compute remainders. So 20 % 8 will produce a value of 4.</li>
+<li>Submit your assignment <a href="https://umkc.instructure.com/courses/58364/assignments/233731">here</a>.</li>
+</ul></li>
+<li>Quiz07, three parts
+<ul>
+<li>Your quiz for this module is available <a href="https://umkc.instructure.com/courses/58364/quizzes/54822">here</a>, <a href="https://umkc.instructure.com/courses/58364/quizzes/54809">here</a>, and <a href="https://umkc.instructure.com/courses/58364/quizzes/54814">here</a>.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="module08" class="section level2">
+<h2>Module08</h2>
+<div id="objectives-4" class="section level3">
+<h3>Objectives</h3>
+<ul>
+<li>In this module, you will learn about
+<ul>
+<li>Statistical summary functions</li>
+<li>The having keyword</li>
+<li>How statistical functions treat missing values</li>
+</ul></li>
+</ul>
+</div>
+<div id="data-4" class="section level3">
+<h3>Data</h3>
+<ul>
+<li>No new data tables.</li>
+</ul>
+</div>
+<div id="videos-4" class="section level3">
+<h3>Videos</h3>
+<ul>
+<li>Video08a. Statistical summary functions (29 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a2cf66c5-6d1e-4e99-86c6-aad3014c57c4">Panopto format</a>.</li>
+<li>Slides with speaker notes available <a href="https://github.com/classes-medb/5508/blob/master/results/video08a.pdf">here</a>.</li>
+</ul></li>
+<li>Video08b. Good computing practices (11 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=88c130ee-7317-490f-b6af-ab19015daa71">Panopto format</a>.</li>
+<li>Slides not available.</li>
+</ul></li>
+</ul>
+</div>
+<div id="assignments-4" class="section level3">
+<h3>Assignments</h3>
+<ul>
+<li>Discuss08a, One minute feedback
+<ul>
+<li>Review the videos in this module and briefly answer the following questions
+<ul>
+<li>What was the most important thing that you learned?</li>
+<li>What concept(s) do you still find confusing?</li>
+<li>What would you like to learn next?</li>
+</ul></li>
+<li>Please keep your answers brief. You are welcome to say something generic like “I found nothing confusing” or “I found everything confusing” or “I agree with the previous comment.”</li>
+<li>Submit your discussion comments <a href="https://umkc.instructure.com/courses/58364/discussion_topics/188501">here</a>.</li>
+</ul></li>
+<li>Discuss08b, Review this week’s readings
+<ul>
+<li>Review the reading provide in this module and provide a brief summary (3 or 4 sentences). Was there anything in this reading that surprised you.</li>
+<li>Submit your discussion comments <a href="https://umkc.instructure.com/courses/58364/discussion_topics/188517">here</a>.</li>
+</ul></li>
+<li>HW08a, Practice with statistical summaries.
+<ul>
+<li>For your homework, use the titanic database.
+<ul>
+<li>Count the number of passengers with the title “Mr” somewhere in their name.</li>
+<li>Run a query that counts the number of male and female children (Age &lt;= 18)</li>
+<li>Run a query that identifies the ages of the youngest and oldest patients in each passenger class.</li>
+<li>The Survived field has values of 0 (died) and 1 (alive) and an average of this value provides a probability of survival. Calculate this probability for six categories representing the combination of passenger class and sex. Include only those groups where the survival probability is greater than 30%.</li>
+</ul></li>
+<li>Place the SQL code and the results of all your queries in a single PDF file.</li>
+<li>Submit your assignment <a href="https://umkc.instructure.com/courses/58364/assignments/233732">here</a>.</li>
+</ul></li>
+<li>Quiz08, Statistical summary functions
+<ul>
+<li>Your quiz for this module is available <a href="https://umkc.instructure.com/courses/58364/quizzes/54819">here</a>.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="module09" class="section level2">
+<h2>Module09</h2>
+<div id="objectives-5" class="section level3">
+<h3>Objectives</h3>
+<ul>
+<li>In this module, you will learn about
+<ul>
+<li>Implicit and Explicit Conversions</li>
+<li>Manipulating dates</li>
+<li>Conditional Expressions</li>
+</ul></li>
+</ul>
+</div>
+<div id="data-5" class="section level3">
+<h3>Data</h3>
+<ul>
+<li>No new data tables.</li>
+</ul>
+</div>
+<div id="videos-5" class="section level3">
+<h3>Videos</h3>
+<ul>
+<li>Video09a. Conversion functions and conditional expressions (16 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=69c3af9b-5856-4364-81d8-aad3014c7ec8">Panopto format</a>.</li>
+<li>Slides available <a href="https://github.com/classes-medb/5508/blob/master/results/video09a.pdf">here</a>.</li>
+</ul></li>
+<li>Video09b. Executing conversion functions and conditional expressions (13 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=1a04e3b6-59d1-4fa3-81dc-aad3016c7e48">Panopto format</a>.</li>
+<li>Slides, see above.</li>
+</ul></li>
+<li>Conversion functions and conditional expressions output. Available in <a href="https://github.com/classes-medb/5508/blob/master/results/video09a_code.pdf">PDF format</a>.</li>
+<li>Video09c. Good computing practices, part 4 (8 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4fb06e69-fb02-429b-bb08-ab1901610c71">Panopto format</a>.</li>
+<li>Slides not available.</li>
+</ul></li>
+</ul>
+</div>
+<div id="assignments-5" class="section level3">
+<h3>Assignments</h3>
+<ul>
+<li>Discuss09a, One minute feedback
+<ul>
+<li>Review the videos in this module and briefly answer the following questions
+<ul>
+<li>What was the most important thing that you learned?</li>
+<li>What concept(s) do you still find confusing?</li>
+<li>What would you like to learn next?</li>
+</ul></li>
+<li>Please keep your answers brief. You are welcome to say something generic like “I found nothing confusing” or “I found everything confusing” or “I agree with the previous comment.”</li>
+<li>Submit your discussion comments <a href="">here</a>.</li>
+</ul></li>
+<li>Discuss09b, Review this week’s readings
+<ul>
+<li>Review the reading provide in this module and provide a brief summary (3 or 4 sentences). Was there anything in this reading that surprised you.</li>
+<li>Submit your discussion comments <a href="https://umkc.instructure.com/courses/58364/discussion_topics/188509">here</a>.</li>
+</ul></li>
+<li>HW09a, Conversion Functions and Conditional Expressions.
+<ul>
+<li>Use Encounter Table
+<ul>
+<li>Use case expression to classify age &lt;= 20 as ‘Group 1’, and age &gt; 20 as ‘Group 2’</li>
+</ul></li>
+<li>Use hospital table
+<ul>
+<li>Use coalesce function to return -1 for null values of teaching_ind in hospital table where census_reg = ‘West’</li>
+</ul></li>
+<li>Put your code and the output in a single PDF file</li>
+<li>Submit your assignment <a href="">here</a>.</li>
+</ul></li>
+<li>Quiz09, Conversion Functions and Conditional Expressions
+<ul>
+<li>Your quiz for this module is available <a href="https://umkc.instructure.com/courses/58364/quizzes/54817">here</a>.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="module10" class="section level2">
+<h2>Module10</h2>
+<div id="objectives-6" class="section level3">
+<h3>Objectives</h3>
+<ul>
+<li>In this module, you will learn about
+<ul>
+<li>The rationale for using multiple tables</li>
+<li>Getting names of all the tables in a database</li>
+<li>Getting field names for a particular table</li>
+</ul></li>
+</ul>
+</div>
+<div id="data-6" class="section level3">
+<h3>Data</h3>
+<ul>
+<li></li>
+</ul>
+</div>
+<div id="videos-6" class="section level3">
+<h3>Videos</h3>
+<ul>
+<li>Video10a. Metadata for databases with more than one table (24 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=91501179-ea5b-4c35-903e-aad801422d51">Panopto format</a>.</li>
+<li>Slides with speaker notes available <a href="https://github.com/classes-medb/5508/blob/master/results/video10a.pdf">here</a>.</li>
+</ul></li>
+<li>Video10b. Good computing practices, part 5 (10 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ddc5da52-8300-4f12-996e-ab1901641800">Panopto format</a>.</li>
+<li>Slides not available.</li>
+</ul></li>
+</ul>
+</div>
+<div id="assignments-6" class="section level3">
+<h3>Assignments</h3>
+<ul>
+<li>Discuss10a, One minute feedback
+<ul>
+<li>Review the videos in this module and briefly answer the following questions
+<ul>
+<li>What was the most important thing that you learned?</li>
+<li>What concept(s) do you still find confusing?</li>
+<li>What would you like to learn next?</li>
+</ul></li>
+<li>Please keep your answers brief. You are welcome to say something generic like “I found nothing confusing” or “I found everything confusing” or “I agree with the previous comment.”</li>
+<li>Submit your discussion comments <a href="https://umkc.instructure.com/courses/58364/discussion_topics/188498">here</a>.</li>
+</ul></li>
+<li>HW10a, Metadata for databases with more than one table.
+<ul>
+<li>Pick a database (any database). Use one of the approaches shown in the video to list all the table names. It is okay if the database that you chose has only one table.</li>
+<li>Pick a table (any table). Use one of the approaches shown in the video to list all the field names.</li>
+<li>Do an Google search on how to get table names in a database other than Oracle and SQLite. For example, do a Google search on “MySQL list table names”. Find a page that explains the process clearly and list the link to that page along with a brief description in your own words about how this works.</li>
+<li>Submit your assignment <a href="https://umkc.instructure.com/courses/58364/assignments/233734">here</a>.</li>
+</ul></li>
+<li>There is no quiz for this module</li>
+</ul>
+</div>
+</div>
+<div id="module11" class="section level2">
+<h2>Module11</h2>
+<div id="objectives-7" class="section level3">
+<h3>Objectives</h3>
+<ul>
+<li>In this module, you will learn
+<ul>
+<li>Basic terminology: primary keys, foreign keys</li>
+<li>One to one, many to one, many to many merges</li>
+<li>Reading a database schema</li>
+</ul></li>
+</ul>
+</div>
+<div id="data-7" class="section level3">
+<h3>Data</h3>
+<ul>
+<li>Acupuncture
+<ul>
+<li>Details to be added soon.</li>
+</ul></li>
+</ul>
+</div>
+<div id="videos-7" class="section level3">
+<h3>Videos</h3>
+<ul>
+<li>Video11a. Retreiving data from multiple tables - Overview (6 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=57794837-cc4b-41cb-88cb-aae600ee69b1">Panopto format</a>.</li>
+<li>Slides available <a href="https://github.com/classes-medb/5508/blob/master/results/video11a.pdf">here</a>.</li>
+</ul></li>
+<li>Video11b. Retreiving data from multiple tables - Database Design (5 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=6ebdc433-6956-4c94-9bd2-aae600f01315">Panopto format</a>.</li>
+<li>Slides, see above.</li>
+</ul></li>
+<li>Video11c. Using tables to add labels (32 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=87e714e8-6c7f-4446-a4e6-aae6014bb97a">Panopto format</a>.</li>
+<li>Slides with speaker notes available <a href="https://github.com/classes-medb/5508/blob/master/results/video11c.pdf">here</a>.</li>
+</ul></li>
+<li>Video11d. Good computing practices, part 6 (20 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=681ca99d-55bf-4c7c-a1e4-ab190167c797">Panopto format</a>.</li>
+<li>Slides not available.</li>
+</ul></li>
+</ul>
+</div>
+<div id="assignments-7" class="section level3">
+<h3>Assignments</h3>
+<ul>
+<li>Discuss11a, One minute feedback
+<ul>
+<li>Review the videos in this module and briefly answer the following questions
+<ul>
+<li>What was the most important thing that you learned?</li>
+<li>What concept(s) do you still find confusing?</li>
+<li>What would you like to learn next?</li>
+</ul></li>
+<li>Please keep your answers brief. You are welcome to say something generic like “I found nothing confusing” or “I found everything confusing” or “I agree with the previous comment.”</li>
+<li>Submit your discussion comments <a href="https://umkc.instructure.com/courses/58364/discussion_topics/188497">here</a>.</li>
+</ul></li>
+<li>HW11a, Use the acupuncture for headache database.
+<ul>
+<li>List id and migraine_label for the first ten records after joining the results_table and migraine_table.</li>
+<li>Get a count of the number of records in the database in the control group and the treatment group. Use the label for group and not the number code.</li>
+<li>Get a count of the numbers of males and females where you restrict age to be less than 40. Use the label for sex, but convert it to all uppercase.</li>
+<li>Submit your work in pdf format.</li>
+<li>Submit your assignment <a href="https://umkc.instructure.com/courses/58364/assignments/233735">here</a>.</li>
+</ul></li>
+<li>Quiz11, Retrieving data from multiple tables
+<ul>
+<li>Your quiz for this module is available <a href="https://umkc.instructure.com/courses/58364/quizzes/54812">here</a>.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="module12" class="section level2">
+<h2>Module12</h2>
+<div id="objectives-8" class="section level3">
+<h3>Objectives</h3>
+<ul>
+<li>In this module, you will learn how to
+<ul>
+<li>Generate a Cartesian product of all rows from two or more tables</li>
+<li>Matching using an equijoin</li>
+<li>Matching using the EXISTS criteria</li>
+<li>The importance of aliases in joining tables</li>
+<li>Handling unmatched records: inner, left, right, and outer join</li>
+<li>Join a table to itself by using a self-join</li>
+</ul></li>
+</ul>
+</div>
+<div id="data-8" class="section level3">
+<h3>Data</h3>
+<ul>
+<li>No new data tables</li>
+</ul>
+</div>
+<div id="videos-8" class="section level3">
+<h3>Videos</h3>
+<ul>
+<li>Video12a. Displaying data from multiple tables - Displaying Data (6 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9ae3efa4-7da9-4b8f-b36d-aaf6006e374c">Panopto format</a>.</li>
+<li>Slides available <a href="https://github.com/classes-medb/5508/blob/master/results/video12a.pdf">here</a>.</li>
+</ul></li>
+<li>Video12b. Displaying data from multiple tables - Joins (14 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=939fc4b0-944c-4e48-8206-aaf600707cef">Panopto format</a>.</li>
+<li>Slides available <a href="https://github.com/classes-medb/5508/blob/master/results/video12b.pdf">here</a>.</li>
+</ul></li>
+<li>Video12c. Using Joins with Electronic Health Records (14 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3749d09c-6920-448d-8e26-aaf600a1f926">Panopto format</a>.</li>
+<li>Slides available <a href="https://github.com/classes-medb/5508/blob/master/results/video12c.pdf">here</a>.</li>
+</ul></li>
+<li>Video12d. Good computing practices, Part 7 (14 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=31ad3ca7-2db7-4d1d-a5a8-ab19016db1c6">Panopto format</a>.</li>
+<li>Slides not available.</li>
+</ul></li>
+</ul>
+</div>
+<div id="assignments-8" class="section level3">
+<h3>Assignments</h3>
+<ul>
+<li>Discuss12a, One minute feedback
+<ul>
+<li>Review the videos in this module and briefly answer the following questions
+<ul>
+<li>What was the most important thing that you learned?</li>
+<li>What concept(s) do you still find confusing?</li>
+<li>What would you like to learn next?</li>
+</ul></li>
+<li>Please keep your answers brief. You are welcome to say something generic like “I found nothing confusing” or “I found everything confusing” or “I agree with the previous comment.”</li>
+<li>Submit your discussion comments <a href="https://umkc.instructure.com/courses/58364/discussion_topics/188510">here</a>.</li>
+</ul></li>
+<li>HW12a.
+<ul>
+<li>Details to be added later.</li>
+</ul></li>
+<li>Quiz12,
+<ul>
+<li>Your quiz for this module is available <a href="https://umkc.instructure.com/courses/58364/quizzes/54811">here</a>.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="module13" class="section level2">
+<h2>Module13</h2>
+<div id="objectives-9" class="section level3">
+<h3>Objectives</h3>
+<ul>
+<li>In this module, you will learn how to
+<ul>
+<li>handle a category label that does not have a match in the main table</li>
+<li>handle a category code in the main table that has no corresponding category label</li>
+<li>count records using the category label instead of the category code</li>
+<li>handle dropouts in a longitudinal database</li>
+<li>compute change scores and means in a longitudinal database</li>
+</ul></li>
+</ul>
+</div>
+<div id="data-9" class="section level3">
+<h3>Data</h3>
+<ul>
+<li>No new data tables.</li>
+</ul>
+</div>
+<div id="videos-9" class="section level3">
+<h3>Videos</h3>
+<ul>
+<li>Video13a. Mismatches (42 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=60290cf7-f6c7-4e05-8973-aaf40158fcd2">Panopto format</a>.</li>
+<li>Slides with speaker notes available <a href="https://github.com/classes-medb/5508/blob/master/results/slides-and-speaker-notes-13.pdf">here</a>.</li>
+</ul></li>
+<li>Video13b. Counting mismatches (24 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=902a7780-2684-4495-8fc4-aaf40165ca75">Panopto format</a>.</li>
+<li>Slides with speaker notes, see above.</li>
+</ul></li>
+</ul>
+</div>
+<div id="assignments-9" class="section level3">
+<h3>Assignments</h3>
+<ul>
+<li>Discuss13a, One minute feedback
+<ul>
+<li>Review the videos in this module and briefly answer the following questions
+<ul>
+<li>What was the most important thing that you learned?</li>
+<li>What concept(s) do you still find confusing?</li>
+<li>What would you like to learn next?</li>
+</ul></li>
+<li>Please keep your answers brief. You are welcome to say something generic like “I found nothing confusing” or “I found everything confusing” or “I agree with the previous comment.”</li>
+<li>Submit your discussion comments <a href="https://umkc.instructure.com/courses/58364/discussion_topics/188496">here</a>.</li>
+</ul></li>
+<li>HW13a, Mismatches.
+<ul>
+<li>Do an inner join of baseline_table and one_year_table. Display the first ten rows of data only.</li>
+<li>Explain why id 104 included in this inner join, but not the inner join shown in the video?</li>
+<li>Count the number of records after an inner join of baseline_table and year_one_table. Compare this to the number of records in the year_one_table.</li>
+<li>Compute the average pk score at baseline, the average score at one year, and the average change score.</li>
+<li>Find and list the two labels in migraine_table that do not correspond to any codes in demog_table.</li>
+<li>Show that there are no unmatched labels or unmatched codes for group_table.</li>
+<li>Submit your assignment <a href="https://umkc.instructure.com/courses/58364/assignments/233738">here</a>.</li>
+</ul></li>
+<li>No quiz for this module.</li>
+</ul>
+</div>
+</div>
+<div id="module14" class="section level2">
+<h2>Module14</h2>
+<div id="objectives-10" class="section level3">
+<h3>Objectives</h3>
+<ul>
+<li>In this module, you will learn how to
+<ul>
+<li>Describe set operators</li>
+<li>Use a set operator to combine multiple queries into a single query</li>
+</ul></li>
+</ul>
+</div>
+<div id="data-10" class="section level3">
+<h3>Data</h3>
+<ul>
+<li>No new data tables</li>
+</ul>
+</div>
+<div id="videos-10" class="section level3">
+<h3>Videos</h3>
+<ul>
+<li>Video14a. Using set operators (9 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=25e3a256-fcd6-448c-9fa1-ab10014d349c">Panopto format</a>.</li>
+<li>Slides with speaker notes available <a href="https://github.com/classes-medb/5508/blob/master/results/video14a.pdf">here</a>.</li>
+</ul></li>
+<li>Video14b. Electronic Health Records-Using Set Operators (9 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7cddb2ce-9b84-468a-8252-ab10015b7a19">Panopto format</a>.</li>
+<li>Slides with speaker notes available <a href="">here</a>.</li>
+</ul></li>
+</ul>
+</div>
+<div id="assignments-10" class="section level3">
+<h3>Assignments</h3>
+<ul>
+<li>Discuss14a, One minute feedback
+<ul>
+<li>Review the videos in this module and briefly answer the following questions
+<ul>
+<li>What was the most important thing that you learned?</li>
+<li>What concept(s) do you still find confusing?</li>
+<li>What would you like to learn next?</li>
+</ul></li>
+<li>Please keep your answers brief. You are welcome to say something generic like “I found nothing confusing” or “I found everything confusing” or “I agree with the previous comment.”</li>
+<li>Submit your discussion comments <a href="https://umkc.instructure.com/courses/58364/discussion_topics/188511">here</a>.</li>
+</ul></li>
+<li>HW14a.
+<ul>
+<li>Details are available <a href="https://umkc.instructure.com/courses/58364/assignments/233739">here</a>.</li>
+</ul></li>
+<li>Quiz14
+<ul>
+<li>Your quiz for this module is available <a href="https://umkc.instructure.com/courses/58364/quizzes/54810">here</a>.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="module15" class="section level2">
+<h2>Module15</h2>
+<div id="objectives-11" class="section level3">
+<h3>Objectives</h3>
+<ul>
+<li>In this module, you will learn how to
+<ul>
+<li>Describe the types of problems that the subqueries can solve</li>
+<li>Define subqueries</li>
+<li>Write single-row and multiple-row subqueries</li>
+<li>List the types of subqueries</li>
+</ul></li>
+</ul>
+</div>
+<div id="data-11" class="section level3">
+<h3>Data</h3>
+<ul>
+<li>Bricks.csv is available <a href="https://umkc.instructure.com/courses/58364/files/2407421">here</a></li>
+<li>Colours.csv is available <a href="https://umkc.instructure.com/courses/58364/files/2407422">here</a></li>
+</ul>
+</div>
+<div id="videos-11" class="section level3">
+<h3>Videos</h3>
+<ul>
+<li>Video15a. Using subqueries to solve queries (10 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9e7d1727-b75f-4f9a-bbd6-ab1700a3760c">Panopto format</a>.</li>
+<li>Slides with speaker notes available <a href="https://github.com/classes-medb/5508/blob/master/results/video15a.pdf">here</a>.</li>
+</ul></li>
+<li>Video15b. Connecting to database and retrieving data ( minutes)
+<ul>
+<li>Available in <a href="">Panopto format</a>.</li>
+<li>Slides with speaker notes available <a href="">here</a>.</li>
+</ul></li>
+</ul>
+</div>
+<div id="assignments-11" class="section level3">
+<h3>Assignments</h3>
+<ul>
+<li>Discuss15a, One minute feedback
+<ul>
+<li>Review the videos in this module and briefly answer the following questions
+<ul>
+<li>What was the most important thing that you learned?</li>
+<li>What concept(s) do you still find confusing?</li>
+<li>What would you like to learn next?</li>
+</ul></li>
+<li>Please keep your answers brief. You are welcome to say something generic like “I found nothing confusing” or “I found everything confusing” or “I agree with the previous comment.”</li>
+<li>Submit your discussion comments <a href="https://umkc.instructure.com/courses/58364/discussion_topics/188512">here</a>.</li>
+</ul></li>
+<li>HW15a, .
+<ul>
+<li>Answer the following questions:
+<ul>
+<li>What is a nested query?</li>
+<li>Describe inline views?</li>
+</ul></li>
+<li>Submit your assignment <a href="https://umkc.instructure.com/courses/58364/assignments/233740">here</a>.</li>
+</ul></li>
+<li>Quiz15,
+<ul>
+<li>Your quiz for this module is available <a href="https://umkc.instructure.com/courses/58364/quizzes/54813">here</a>.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="module16" class="section level2">
+<h2>Module16</h2>
+<div id="objectives-12" class="section level3">
+<h3>Objectives</h3>
+<ul>
+<li>In this module, you will learn how to
+<ul>
+<li>Gathering: combining multiple columns representing the same measurement at different time points into a single column. This converts a short-and-fat format for longitudinal data into a a tall-and-thin format.</li>
+<li>Spreading: taking a single column with measurements at different time points and placing them in separate columns. This converts a tall-and-thin format to a short-and-fat format.</li>
+<li>The Entity-Attribute-Value model. This format is a universal format that provides great flexibility for complex information, such as what might appear in a database of electronic health records.</li>
+</ul></li>
+</ul>
+</div>
+<div id="data-12" class="section level3">
+<h3>Data</h3>
+<ul>
+<li>cholesterol, see <a href="https://github.com/classes-medb/5508/blob/master/data/cholesterol-data-dictionary.md">data dictionary</a></li>
+<li>eav, see <a href="https://github.com/classes-medb/5508/blob/master/data/eav-data-dictionary.md">data dictionary</a></li>
+<li>lomaprie, see <a href="https://github.com/classes-medb/5508/blob/master/data/lomaprie-data-dictionary.md">data dictionary</a></li>
+</ul>
+</div>
+<div id="videos-12" class="section level3">
+<h3>Videos</h3>
+<ul>
+<li>Video16a. Gathering and spreading (41 minutes)
+<ul>
+<li>Available in <a href="https://umkc.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=711e8644-20d9-4112-902e-ab18012a2f55">Panopto format</a>.</li>
+<li>Slides with speaker notes available <a href="https://github.com/classes-medb/5508/blob/master/results/slides-and-speaker-notes-16.pdf">here</a>.</li>
+</ul></li>
+</ul>
+</div>
+<div id="assignments-12" class="section level3">
+<h3>Assignments</h3>
+<ul>
+<li>No discussion boards</li>
+<li>No homework</li>
+<li>No quizzes</li>
+</ul>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
