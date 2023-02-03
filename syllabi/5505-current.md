@@ -44,13 +44,9 @@ At the end of this course, you will be able to:
 
 Students are responsible for reading all assignments from the text, Canvas material, internet materials, and instructor provided resources before the class period in which they are to be discussed. Each student will complete Human Subjects training, assignments, a research proposal, and an oral presentation of the research proposal that will include poster material.
 
-### Course Framework
-
-To be added.
-
 ### Class structure
 
-In general, each class session will consist of a mixture of recorded material available on Canvas as preparation for the session, individual assignments, and discussion/activities that are related to the topic and are completed either individually, within pairs, or within small groups of students. The lecture material is designed to supplement the information assigned from the textbook and other sources.
+In general, each class session will consist of a mixture of recorded material available on Canvas as preparation for the session, individual assignments, and discussion boards
 
 ### Required Materials
 
@@ -59,10 +55,6 @@ There is no required textbook for this class.
 ### Recommended Materials
 
 There are a wealth of free materials that you can find with a basic Internet search. Some free and low cost textbooks are also available. Everything I looked at is good, and it is hard to recommend one resource over another. If you try something and have an opinion (good or bad), please let me know.
-
-### Resources
-
-To be added.
 
 ### Course Evaluation
 
@@ -92,18 +84,9 @@ If a student feels that he/she has been unfairly graded, information on the appe
 
 Unless otherwise noted, all material that is submitted to Dr. Simon must be submitted via the course Canvas site and should be .pdf format. If you have difficulty producing pdf format files, alternate formats may be acceptable, but please clear this in advance. All files sent to Dr. Simon must include the student’s name in the filename.
 
-### Canvas Discussions
-
-During the semester, you will be expected to participate in online discussions through the course Canvas site. Online discussion forums will provided the basis for discussions and activities that normally take place during an on-campus class period. Your engagement in the discussions will be reflected in the points you earn for participation. The minimum expectation is that you will respond to the topic, using the information you have read and/or the material presented in the recordings. Full participation in the discussion topics will be demonstrated by responses you make to the entries made by other students as well as the content of your own posting, and making these contributions in a timely manner (first posting must be made by Sunday midnight following the posting of the forums. A vital discussion board should include responses between students that expand on the original posting. Think of this as the interchange that occurs when we are all in the same room.
-
-When a discussion topic is posted, please add your contribution by replying to the original topic. When you are responding to another student’s posting, use the reply function.
-
-I will regularly assign a student to be the participation leader in a specific discussion forum. The leader is expected to respond to each posting, adding to the discussion as appropriate and findings links between individual postings in a way that adds value to the overall discussion. The quality of what you do when you are the participation leader will be factored into the participation part of the course evaluation.
-
-Discussion forums
+### Discussion forums
 
 You are expected to complete the readings prior to class and be prepared for discussion. A portion of the course grade will be based on discussion board participation. It is VERY IMPORTANT to keep these discussions contemporaneous. Please post your discussion comments by the due date.
-
 
 ## Policies
 
