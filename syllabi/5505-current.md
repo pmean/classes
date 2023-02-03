@@ -28,19 +28,7 @@ Your instructor is Steve Simon in the Department of Biomedical and Health Inform
 
 ### Course Description
 
-To be added.
-
-### Course Topics
-
-To be added.
-
-### Introduction
-
-To be added.
-
-### Course Objectives
-
-To be added.
+R is a very popular and very powerful software system for data management and data analysis. In this class, you will learn basic features of R that will help you get started with simple and basic statistical projects.
 
 ### Student Learning Objectives
 
@@ -70,7 +58,7 @@ There is no required textbook for this class.
 
 ### Recommended Materials
 
-To be added.
+There are a wealth of free materials that you can find with a basic Internet search. Some free and low cost textbooks are also available. Everything I looked at is good, and it is hard to recommend one resource over another. If you try something and have an opinion (good or bad), please let me know.
 
 ### Resources
 
@@ -80,30 +68,31 @@ To be added.
 
 Completion of the confidential course evaluation at the end of the semester is available for the course and strongly encouraged. You will receive information about completing the evaluation from the Department office towards the end of the semester.
 
-Assignments
-Schedule
+## Assignments
+
+### Schedule
 
 The detailed listing of topics, assignments, and deadlines is shown in the Course Overview document in the “Course Content” section of the course Canvas site.
 
 A calendar showing all dates for submissions (assessment items, assignments, final project oral presentation, and final project written proposal) is shown in the Calendar document in the "Course Content" section of the course Canvas site.
 
-Evaluation Criteria
+### Evaluation Criteria
 
 Participation via discussion boards, 3 points each, with a one point deduction for late submissions.
 
 Homework assignments, 20 points each, with a one point deduction for late submissions.
 
-Grading criteria
+### Grading criteria
 
 This class is graded credit/no credit (also know as pass/fail). A passing grade will be 80% or better.
 
 If a student feels that he/she has been unfairly graded, information on the appeal process can be found in the academic regulations information.
 
-Submission format
+### Submission format
 
 Unless otherwise noted, all material that is submitted to Dr. Simon must be submitted via the course Canvas site and should be .pdf format. If you have difficulty producing pdf format files, alternate formats may be acceptable, but please clear this in advance. All files sent to Dr. Simon must include the student’s name in the filename.
 
-Canvas Discussions
+### Canvas Discussions
 
 During the semester, you will be expected to participate in online discussions through the course Canvas site. Online discussion forums will provided the basis for discussions and activities that normally take place during an on-campus class period. Your engagement in the discussions will be reflected in the points you earn for participation. The minimum expectation is that you will respond to the topic, using the information you have read and/or the material presented in the recordings. Full participation in the discussion topics will be demonstrated by responses you make to the entries made by other students as well as the content of your own posting, and making these contributions in a timely manner (first posting must be made by Sunday midnight following the posting of the forums. A vital discussion board should include responses between students that expand on the original posting. Think of this as the interchange that occurs when we are all in the same room.
 
@@ -178,21 +167,21 @@ To ensure academic integrity and prevent plagiarism, UMKC has purchased the Inte
 
 Academic Inquiry, Course Discussion and Privacy: University of Missouri System Executive Order No. 38 lays out principles regarding the sanctity of classroom discussions at the university. The policy is described fully in Section 200.015 of the Collected Rules and Regulations. In this class, students may make audio or video recordings of course activity unless specifically prohibited by the faculty member. However, the redistribution of any audio or video recordings of statements or comments from the course to individuals who are not students in the course is prohibited without the express permission of the faculty member and of any students who are recorded, including those recordings prepared by an instructor. Students found to have violated this policy are subject to discipline in accordance with provisions of Section 200.020 of the Collected Rules and Regulations of the University of Missouri pertaining to student conduct matters.
 
-Attendance Policy
+### Attendance Policy
 
 Students are expected to attend and participate in classes. Advance notice of attendance policies of academic units and individual instructors should be given, and such notice should be in writing. Students should notify instructors of excused absences in advance, where possible. Students who have an excused absence are expected to make arrangements with instructors for alternative or make-up work. Such arrangements should be made in advance of the absence, where possible. Instructors should accommodate excused absences to the extent that an accommodation can be made that does not unreasonably interfere with the learning objectives of the course or unduly burden the instructor. Attendance policies shall be applied in a non-discriminatory manner.
 
-Discrimination
+### Discrimination
 
 The course faculty is committed to creating and maintaining a supportive learning environment. If at any time you find yourself in an environment that does not support learning, it is best to first contact the course faculty. If faculty members are unable to resolve the situation for you, you may contact: the Chair of the Department, the Associate Dean for Student Affairs, Dr. Brenda Rogers, SOM Rm M4-207, rogersbr@umkc.edu, (816) 235-1782; Sam Turner, Office of Diversity & Community Partnership, SOM Rm.M1-109, (816) 235-1780.
 
 Discrimination Grievance Procedures for Students: Discrimination Grievance Procedures for Students can be found here.
 
-English Proficiency Statement
+### English Proficiency Statement
 
 Students who encounter difficulty in their courses because of the English proficiency of their instructors should speak directly with their instructors. If additional assistance is needed, students may contact the UMKC Help Line at 816-235-2222 for assistance.
 
-Grade Appeal Policy
+### Grade Appeal Policy
 
 Students are responsible for meeting the standards of academic performance established for each course in which they are enrolled. The establishment of the criteria for grades and the evaluation of student academic performance are the responsibilities of the instructor.
 
@@ -208,21 +197,22 @@ Students who have concerns about this course should first consult with the speci
 
 In the event a student would like to appeal a course grade they must follow the School of Medicine procedure for grade appeal for graduate courses, which is outlined in the student handbook or can be found at the School of Medicine Graduate Council web page.
 
-Resources
+### Resources
 
-Academic Calendar: Students are encouraged to review important add, drop or withdraw dates: https://www.umkc.edu/calendar/
+**Academic Calendar**: Students are encouraged to review important add, drop or withdraw dates: https://www.umkc.edu/calendar/
 
-Campus Safety: Inclement weather, mass notification, and emergency response guide.
+**Campus Safety**: Inclement weather, mass notification, and emergency response guide.
 
-Counseling and Health Services Available at UMKC: UMKC students may experience many challenges in their lives while attending college – stress, depression, suicidality, trauma, relationship issues, health concerns, etc. As your professor I care about your success and well-being, and want to make you aware of some helpful resources on campus. The UMKC Counseling Center, located at 4825 Troost in Room 206, offers a wide range of supportive services to students. Appointments can be made by calling 816.235.1635. UMKC Student Health and Wellness, located at 4825 Troost in Room 115, offers a full range of health care and promotion services. Appointments can be scheduled online or by calling 816.235.6133. The MindBody Connection is located in the Atterbury Student Success Center in Room 112 and offers a variety of stress-reduction services.
+**Counseling and Health Services Available at UMKC**: UMKC students may experience many challenges in their lives while attending college – stress, depression, suicidality, trauma, relationship issues, health concerns, etc. As your professor I care about your success and well-being, and want to make you aware of some helpful resources on campus. The UMKC Counseling Center, located at 4825 Troost in Room 206, offers a wide range of supportive services to students. Appointments can be made by calling 816.235.1635. UMKC Student Health and Wellness, located at 4825 Troost in Room 115, offers a full range of health care and promotion services. Appointments can be scheduled online or by calling 816.235.6133. The MindBody Connection is located in the Atterbury Student Success Center in Room 112 and offers a variety of stress-reduction services.
 
-Disability Support Services: To obtain disability related accommodations and/or auxiliary aids, students with disabilities must contact the Office of Services for Students with Disabilities (OSSD) as soon as possible. To contact OSSD, call (816) 235-5696 or visit their website. Once verified, OSSD will notify the course instructor and outline the accommodation and/or auxiliary aids to be provided. UMKC has a web page with more information about disability services.
+**Disability Support Services**: To obtain disability related accommodations and/or auxiliary aids, students with disabilities must contact the Office of Services for Students with Disabilities (OSSD) as soon as possible. To contact OSSD, call (816) 235-5696 or visit their website. Once verified, OSSD will notify the course instructor and outline the accommodation and/or auxiliary aids to be provided. UMKC has a web page with more information about disability services.
 
-Severe Weather Policy: Cancellation of classes will be posted on the front page of the University’s website as well as through the UMKC Alert message system.
+**Severe Weather Policy**: Cancellation of classes will be posted on the front page of the University’s website as well as through the UMKC Alert message system.
 
-Statement of Human Rights: The Board of Curators and UMKC are committed to the policy of equal opportunity, regardless of race, color, religion, sex, sexual orientation, national origin, age, disability and status as a Vietnam era veteran. Commitment to the policy is mentored by the Division of Diversity Equity, but it is the responsibility of the entire university community to provide equal opportunity through relevant practices, initiatives and programs.
+**Statement of Human Rights**: The Board of Curators and UMKC are committed to the policy of equal opportunity, regardless of race, color, religion, sex, sexual orientation, national origin, age, disability and status as a Vietnam era veteran. Commitment to the policy is mentored by the Division of Diversity Equity, but it is the responsibility of the entire university community to provide equal opportunity through relevant practices, initiatives and programs.
 
-Title IX: Under the University of Missouri’s Title IX policy, discrimination, violence and harassment based on sex, gender, and gender identity are subject to the same kinds of accountability and support applied to offenses based on other protected characteristics such as race, color, ethnic or national origin, sexual orientation, religion, age, ancestry, disability, military status, and veteran status. If you or someone you know has been harassed or assaulted, you can find the appropriate resources by visiting UMKC’s Title IX Office webpage or contacting UMKC’s Title IX Coordinator, Mikah K. Thompson (816.235.6910 or thompsonmikah@umkc.edu). Additionally, you can file a complaint using UMKC’s online discrimination complaint form.
+**Title IX**: Under the University of Missouri’s Title IX policy, discrimination, violence and harassment based on sex, gender, and gender identity are subject to the same kinds of accountability and support applied to offenses based on other protected characteristics such as race, color, ethnic or national origin, sexual orientation, religion, age, ancestry, disability, military status, and veteran status. If you or someone you know has been harassed or assaulted, you can find the appropriate resources by visiting UMKC’s Title IX Office webpage or contacting UMKC’s Title IX Coordinator, Mikah K. Thompson (816.235.6910 or thompsonmikah@umkc.edu). Additionally, you can file a complaint using UMKC’s online discrimination complaint form.
 
 While most UMKC employees are required to report any known or suspected violation of Title IX, students may seek confidential guidance from the following campus locations: UMKC Counseling Service Volker Campus 4825 Troost Ave, Suite 206 Kansas City, MO 64110 Phone – (816) 235-1635 UMKC Counseling Service Health Sciences Campus Health Sciences Building 1418 2464 Charlotte Kansas City, MO 64108 Phone – (816) 235-1635 (open Tuesdays, 1-5pm) Student Health and Wellness 4825 Troost Ave., Suite 115 Kansas City, MO 64110 Phone - (816) 235-6133
-This document was written on 2020-08-26 and last modifed on `r Sys.Date()`.
+
+This document was originally written on 2020-08-26.
