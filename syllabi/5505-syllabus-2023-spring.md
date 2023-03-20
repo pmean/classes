@@ -6,6 +6,7 @@ output: html_document
 
 <!--1-->#### **Questions you may have about your instructors**
 
+
 <!--1a-->#### Who will be my instructor(s)?
 
 Steve Simon, PhD
