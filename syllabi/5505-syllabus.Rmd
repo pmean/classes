@@ -10,7 +10,7 @@ suppressMessages(suppressWarnings(library(stringr)))
 ```
 
 ```{r}
-s0 <- readLines("data/5505-syllabus.txt")
+s0 <- readLines("5505-syllabus.txt")
 i <- 0
 n <- length(s0) %/% 3
 subheads <- str_detect(s0, "^  ")

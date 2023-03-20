@@ -50,6 +50,12 @@ Cassandra Willyard. Should you blow the whistle? What to do when you suspect you
 
 No description available.
 
+National Institutes of Health. Guiding Principles for Ethical Research. Available in [html format][nih1].
+
+[nih1]: https://www.nih.gov/health-information/nih-clinical-research-trials-you/guiding-principles-ethical-research
+
+No description available.
+
 ### Literature reviews (optional readings for Module03)
 
 UMKC University Libraries. Literature Reviews: Graduate Writing Resources. Available in [html format][umk1].
