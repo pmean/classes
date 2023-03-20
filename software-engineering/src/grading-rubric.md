@@ -4,7 +4,7 @@ title: General grading rubric
 
 For more details about the items listed below, please see my [programming expectations handout][pro1].
 
-Note: I added a couple of things on 2021-09-27. There is a new "conciseness" element. It addresses a concern of mine when students include output that is not needed to answer the homework assignment. An extra page or two of irrelevant output will lose you a point. More than that will lose you two points. An example of poor conciseness is giving every possible correlation coefficient in a large data set rather than the single correlation I asked for. For some data sets, computing every possible correlation could end up wasting a dozen or more pages. I also clarified the "accuracy" element. If you are totally missing something that I asked for, that is just as bad as making a major error. I will apply this new rubric on any assignments due on or after 2021-10-01.
+Note: I added a couple of things on 2021-09-27 and clarified them on 2023-02-15. There is a new "conciseness" element. It addresses a concern of mine when students include output that is not needed to answer the homework assignment. It's fine to have an extra page or two that gives, for example, a brief glimpse of the data. Too much irrelevant output  though (use three or more pages as a rough guideline) will cause you to lose you a point or two. An example of poor conciseness is giving every possible correlation coefficient in a large data set rather than the single correlation I asked for. For some data sets, computing every possible correlation could end up wasting a dozen or more pages. I also clarified the "accuracy" element. If you are totally missing something that I asked for, that is just as bad as making a major error.
 
 + Filename and format (2 points) Required elements: Your last name, class number, module number, single file in pdf format
   + Poor (0 points): Missing two or more required elements
@@ -17,9 +17,9 @@ Note: I added a couple of things on 2021-09-27. There is a new "conciseness" ele
   + Good (2 points): Includes all required elements
 
 + Readability (2 points) Required elements: Line breaks, indents, break long lines, vertical lists, rounding
-  + Poor (0 points): Code is very difficult to read or output is cluttered with excessively long and unnecessary tables
-  + Fair (1 point): Code is readable, but uses poor or inconsistent style or  output includes one or two unnecessary elements
-  + Good (2 points): Code is easy to read with a consistent style, output includes only necessary elements
+  + Poor (0 points): Code is very difficult to read
+  + Fair (1 point): Code is readable, but uses poor or inconsistent style
+  + Good (2 points): Code is easy to read with a consistent style
 
 + Completeness (2 points)
   + Poor (0 points): Missing both the original question and your answer
@@ -27,9 +27,9 @@ Note: I added a couple of things on 2021-09-27. There is a new "conciseness" ele
   + Good (2 points): Includes both the orginal question and your answer
   
 + Conciseness (2 points)
-  + Poor (0 points): Three or more extra pages not relevant to what the assignment asked for
-  + Fair (1 point): One or two extra pages not relevant to what the assignment asked for
-  + Good (2 points): Includes only what the assignment asked for
+  + Poor (0 points): Five or more extra pages not relevant to what the assignment asked for
+  + Fair (1 point): Three or four extra pages not relevant to what the assignment asked for
+  + Good (2 points): Other than a page or two, includes only what the assignment asked for
   
 + Accuracy (10 points)
   + Poor (0 points): Three or more major errors or omissions
