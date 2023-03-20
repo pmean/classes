@@ -4,8 +4,11 @@ author: "Steve Simon"
 output: html_document
 ---
 
+&nbsp;
+
 <!--1-->#### **Questions you may have about your instructors**
 
+&nbsp;
 
 <!--1a-->#### Who will be my instructor(s)?
 
@@ -35,7 +38,11 @@ Office hours are by appointment only, and normally will be conducted using the Z
 
 Zoom links will be sent by email once an appointment has been scheduled.
 
+&nbsp;
+
 <!--2-->#### **Common Questions about Course Details**
+
+&nbsp;
 
 <!--2a-->#### Catalog Course ID 	
 
@@ -65,7 +72,11 @@ You will learn how to read data into R from a variety of text formats, how to ma
 
 This course will provide a working familiarity with R. Students are not expected to have advanced programming or statistical analysis skills. A basic understanding of statistical terminology and a working familiarity with computer-based data files (e.g., Excel) is necessary.
 
+&nbsp;
+
 <!--3-->#### **General Policies for UMKC Courses**
+
+&nbsp;
 
 <!--3a-->#### Will I be dropped from class if I not attend class?  What happens if I do not attend class without communicating with my instructor?
 
@@ -94,7 +105,11 @@ Additional important information is available on the [UMKC Academic policies and
 
 [u4]: https://online.umkc.edu/support-policies
 
+&nbsp;
+
 <!--4-->#### **COVID-19 Policies**
+
+&nbsp;
 
 <!--4a-->#### Do I need to have a Mask/Face-Coverings while on campus?
 
@@ -110,7 +125,11 @@ Any student seeking COVID-related academic accommodations should contact Scott L
   
 [u6]: https://www.umkc.edu/news/coronavirus.html
 
+&nbsp;
+
 <!--5-->### **Specific Information about this class**
+
+&nbsp;
 
 <!--5a-->#### Required and Recommended Materials
 
@@ -130,7 +149,11 @@ This course is grade Credit/No Credit (Pass/Fail). Students who complete at leas
 
 This is no final exam. Your final project needs to be completed prior to the last day of classes.
 
+&nbsp;
+
 <!--6-->#### **Description of Course Topics, Assignments, Requirements and Assignment deadlines**
+
+&nbsp;
 
 <!--6a-->#### Student Learning Outcomes
 
