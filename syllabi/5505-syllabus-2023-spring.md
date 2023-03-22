@@ -6,7 +6,7 @@ output: html_document
 
 &nbsp;
 
-<!--1-->#### **Questions you may have about your instructors**
+<!--1-->### Questions you may have about your instructors
 
 &nbsp;
 
@@ -40,7 +40,7 @@ Zoom links will be sent by email once an appointment has been scheduled.
 
 &nbsp;
 
-<!--2-->#### **Common Questions about Course Details**
+<!--2-->### Common Questions about Course Details
 
 &nbsp;
 
@@ -74,7 +74,7 @@ This course will provide a working familiarity with R. Students are not expected
 
 &nbsp;
 
-<!--3-->#### **General Policies for UMKC Courses**
+<!--3-->### General Policies for UMKC Courses
 
 &nbsp;
 
@@ -94,7 +94,10 @@ You will need access to the computing resources necessary to complete this cours
 
 <!--3d-->#### If I am having difficulty is there Technical Support that I can contact?
 
-The links below will connect you with answers and information for the most common technical questions and issues students experience: [UM System Keep Learning][u2];  [UMKC Instructional Design/Technology][u3]
+The links below will connect you with answers and information for the most common technical questions and issues students experience:
+
++ [UM System Keep Learning][u2];
++ [UMKC Instructional Design/Technology][u3]
 
 [u2]: https://keeplearning.umsystem.edu/students
 [u3]: https://idt.umkc.edu/support
@@ -107,7 +110,7 @@ Additional important information is available on the [UMKC Academic policies and
 
 &nbsp;
 
-<!--4-->#### **COVID-19 Policies**
+<!--4-->### COVID-19 Policies
 
 &nbsp;
 
@@ -127,7 +130,7 @@ Any student seeking COVID-related academic accommodations should contact Scott L
 
 &nbsp;
 
-<!--5-->### **Specific Information about this class**
+<!--5-->### Specific Information about this class
 
 &nbsp;
 
@@ -145,13 +148,22 @@ Students will be required to post messages on the Canvas discussion boards, take
 
 This course is grade Credit/No Credit (Pass/Fail). Students who complete at least 80% of the regular coursework and successfully complete the final project will receive credit for the course.
 
+Point values for all assignments
+
++ Discussion boards, 3 points
++ Homework, 20 points
++ Quizzes, 1 point per question
++ Final project, 100 points
+
+Quizzes are graded automatically by Canvas. Grades for discussion boards, homework, and your final project will be completed within 7 days of the due date.
+
 <!--5d-->#### Final Exam
 
 This is no final exam. Your final project needs to be completed prior to the last day of classes.
 
 &nbsp;
 
-<!--6-->#### **Description of Course Topics, Assignments, Requirements and Assignment deadlines**
+<!--6-->### Description of Course Topics, Assignments, Requirements and Assignment deadlines
 
 &nbsp;
 
@@ -172,35 +184,51 @@ Most modules will have a discussion board, homework assignment, and quiz. Due da
 
 You should start out slowly. You will learn how to set up the recommended directory structure and get a simple R program to run. You will also provide reasonable documentation for your program and use good coding style.
 
-There is a discussion board, homework assignment, and quiz. Due dates are listed on the Canvas site.
+There is a discussion board, homework assignment, and quiz.
+
+Start this module immediately and complete all the videos and assignments by the end of the fourth week of class (second week in summer session). The due dates for assignments may vary slightly from this time schedule.
 
 <!--6c-->#### Module02
 
 If your data consists of mostly continuous variables, you should summarize your data using means, standard deviations, and ranges. You should look for extreme values (outliers) in your data. Your graphical displays should include histograms and scatterplots. This module will cover how to produce these using R.
 
+There is a discussion board, homework assignment, and quiz.
+
+Start this module in the fourth week of class (second week in summer session) and complete all the assignments by the end of the sixth week of class (third week in summer session). The due dates for assignments may vary slightly from this time schedule.
+
 <!--6d-->#### Module03
 
 Much of the data you will analyze in R comes from plain text files. These files come in a variety of forms. This module will show you how to read some of the more common forms of text data into R.
 
-There is a discussion board, homework assignment, and quiz. Due dates are listed on the Canvas site.
+There is a discussion board, homework assignment, and quiz.
+
+Start this module in the sixth week of class (third week in summer session) and complete all the assignments by the end of the eighth week of class (fourth week in summer session). The due dates for assignments may vary slightly from this time schedule.
+
+
 
 <!--6e-->#### Module04
 
 Categorical data requires different approaches for data management and data analysis. You will spend much of your time calculating counts and percentages. While these are simple from a mathematical perspective, you have a broad range of choices for displaying these data.
 
-There is a discussion board, homework assignment, and quiz. Due dates are listed on the Canvas site.
+There is a discussion board, homework assignment, and quiz.
+
+Start this module in the eighth week of class (fourth week in summer session) and complete all the assignments by the end of the tenth week of class (fifth week in summer session). The due dates for assignments may vary slightly from this time schedule.
 
 <!--6f-->#### Module05
 
 In addition to reviewing methods appropriate for continuous variables and those appropriate for categorical variables, we will examine methods that help in exploring the relationship between a continuous and a categorical variable. This includes tables of means and standard deviations as well as boxplots.
 
-There is a discussion board, homework assignment, and quiz. Due dates are listed on the Canvas site.
+There is a discussion board, homework assignment, and quiz.
+
+Start this module in the tenth week of class (fifth week in summer session) and complete all the assignments by the end of the twelfth week of class (sixth week in summer session). The due dates for assignments may vary slightly from this time schedule.
 
 <!--6g-->#### Module06
 
 Longitudinal data is data measured at several different time points. There are two common formats for longitudinal data. The short and fat format has one line per subject and the measurements at multiple time points stretch out to the right. The tall and thin format has multiple lines per subject, each line representing measurements at a different visit. Certain graphs and analyses are done more easily in the short and fat format, but others are done more easily in the tall and thin format. In this module, you will several examples of data sets in both formats and see how to convert from one format to another.
 
 There are no assignments in this module. Please start work on your final project.
+
+Start this module in the twelfth fourth week of class (sixth week in summer session).
 
 <!--6h-->#### Final project
 
@@ -213,3 +241,6 @@ Find a data set that interests you.
 + Provide a brief interpretation in the context of your data set for everything that you produce above.
 
 You may already have a data set that interests you, but if you do not, there are many data sources on the web that you can use. Contact me if you need any help finding an appropriate data set.
+
+Start your final project in the twelfth week of class (sixth week in summer session) and complete all the assignments by the end of the semester.
+
