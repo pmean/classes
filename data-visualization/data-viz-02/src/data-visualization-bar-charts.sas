@@ -50,17 +50,63 @@ run;
 proc sgplot
     data=storage.titanic;
   styleattrs datacolors=(pink lightblue);
-  vbar PClass / group=Sex;
+  vbar PClass / 
+    group=Sex
+    groupdisplay=stack;
   title1 "Stacked bar chart";
 run;
 
 proc sgplot
     data=storage.titanic;
   styleattrs datacolors=(pink lightblue);
-  vbar PClass / group=Sex groupdisplay=cluster;
+  vbar PClass / 
+    group=Sex
+    groupdisplay=cluster;
   title1 "Clustered bar chart";
 run;
 
+* This gives the cell percents;
 
+proc sgplot
+    data=storage.titanic;
+  styleattrs datacolors=(pink lightblue);
+  vbar PClass / 
+    group=Sex
+    groupdisplay=stack
+    stat=percent;
+  title1 "Normalized bar chart";
+run;
+
+proc freq
+    noprint 
+    data=storage.titanic;
+  tables PClass*Sex /
+    outpct
+    out=d;
+run;
+
+proc print
+    data=d;
+run;
+
+proc sgplot
+    data=d;
+  styleattrs datacolors=(pink lightblue);
+  vbar PClass / 
+    response=pct_row
+    group=Sex
+    groupdisplay=stack;
+  title1 "Normalized bar chart";
+run;
+
+proc sgplot
+    data=d;
+  styleattrs datacolors=(green yellow red);
+  vbar Sex / 
+    response=pct_col
+    group=PClass
+    groupdisplay=stack;
+  title1 "Normalized bar chart";
+run;
 
 ods pdf close;
