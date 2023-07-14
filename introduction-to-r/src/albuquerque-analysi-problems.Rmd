@@ -1,0 +1,39 @@
+---
+title: "Problems with Alburquerque housing analysis"
+author: "Steve Simon"
+date: '2023-04-19'
+output: html_document
+---
+
+Put in comments about use of program etc.
+
+```{r setup}
+library(tidyverse)
+```
+
+Read the data
+
+```{r read-albuquerque-housing}
+al <- read_table(
+  "../data/albuquerque-housing.txt",
+  col_names=TRUE)
+head(al)
+names(al)
+names(al) <- c(
+  glimpse(al)
+```
+
+Good way to analyze the data.
+
+```{r}
+mean(al$"sqft")
+```
+
+Bad way to analyze the data
+
+```{r bad}
+al$meansqft <- mean(
+  al$sqft,
+  na.rm-TRUE)
+al$meansqft
+```
