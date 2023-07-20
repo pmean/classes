@@ -36,6 +36,12 @@ run;
 
 proc sgplot
     data=storage.titanic;
+  vbar Sex;
+  title1 "Chaning the variable in the basic bar chart";
+run;
+
+proc sgplot
+    data=storage.titanic;
   vbar PClass / fillattrs=(color=red);
   title1 "Chart with red bars";
 run;
@@ -45,6 +51,13 @@ proc sgplot
   styleattrs datacolors=(green yellow red);
   vbar PClass / group=PClass;
   title1 "Chart with different colors for each bar";
+run;
+
+proc sgplot
+    data=storage.titanic;
+  styleattrs datacolors=(red black black);
+  vbar PClass / group=PClass;
+  title1 "Chart with first class in red";
 run;
 
 proc sgplot
