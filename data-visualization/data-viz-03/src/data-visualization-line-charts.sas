@@ -79,5 +79,71 @@ proc print
   title1 "Listing of first two rows";
 run;
 
+proc sgplot 
+    data=storage.cpi_food;
+  series x=t y=cpi /
+    group=index;
+  title1 "Multiple lines";
+run;
+
+proc sgplot 
+    data=storage.cpi_food;
+  styleattrs datacontrastcolors=(red darkgreen blue);
+  series x=t y=cpi /
+    group=index
+    lineattrs=(thickness=3);
+  yaxis min=100 max=200;
+  title1 "Multiple lines with specific colors";
+run;
+
+%let path = e:/git/classes/data-visualization/data-viz-01;
+
+filename rawdata
+    "&path/data/saratoga-house-prices.txt";
+
+proc import
+    datafile=rawdata
+    out=storage.saratoga
+    dbms=dlm
+    replace;
+  delimiter='09'x;
+  getnames=yes;
+run;
+
+proc print
+    data=storage.saratoga(obs=2);
+  title1 "Listing of first two rows of housing data";
+run;
+
+proc means
+    data=storage.saratoga
+	noprint;
+  class Bedrooms;
+  var Price;
+  output
+    out=f
+	mean=price_mean;
+run;
+
+proc print
+    data=f;
+  title1 "Listing of mean data";
+run;
+
+data g;
+  set f storage.saratoga;
+run;
+
+proc print
+    data=g(obs=10);
+  title1 "Listing of merged data";
+run;
+
+proc sgplot
+    data=g;
+  scatter x=Bedrooms y=Price;
+  series x=Bedrooms y=price_mean;
+  title1 "Basic scatterplot";
+run;
 
 ods pdf close;

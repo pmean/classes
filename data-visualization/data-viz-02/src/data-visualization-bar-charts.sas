@@ -66,7 +66,16 @@ proc sgplot
   vbar PClass / 
     group=Sex
     groupdisplay=stack;
-  title1 "Stacked bar chart";
+  title1 "Stacked bar chart of gender for each passgenger class";
+run;
+
+proc sgplot
+    data=storage.titanic;
+  styleattrs datacolors=(green yellow red);
+  vbar Sex / 
+    group=PClass
+    groupdisplay=stack;
+  title1 "Stacked bar chart of passgenger class for each gender";
 run;
 
 proc sgplot
@@ -87,7 +96,7 @@ proc sgplot
     group=Sex
     groupdisplay=stack
     stat=percent;
-  title1 "Normalized bar chart";
+  title1 "Normalized bar chart (cell percents)";
 run;
 
 proc freq
@@ -109,7 +118,7 @@ proc sgplot
     response=pct_row
     group=Sex
     groupdisplay=stack;
-  title1 "Normalized bar chart";
+  title1 "Normalized bar chart (row percents)";
 run;
 
 proc sgplot
@@ -119,7 +128,33 @@ proc sgplot
     response=pct_col
     group=PClass
     groupdisplay=stack;
-  title1 "Normalized bar chart";
+  title1 "Normalized bar chart (column percents)";
+run;
+
+data n;
+  set storage.titanic;
+  age_in_years=input(Age, ?? 8.);
+run;
+
+proc means
+    noprint 
+    data=n;
+  class Survived;
+  var age_in_years;
+    output
+      out=e
+      mean=age_mean; 
+run;
+
+proc print
+    data=e;
+run;
+
+proc sgplot
+    data=e;
+  vbar Survived / 
+    response=age_mean;
+  title1 "Plot of mean ages by survival";
 run;
 
 ods pdf close;
