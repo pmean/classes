@@ -4,8 +4,8 @@ title: General grading rubric
 This file was written by Steve Simon on 
 2023-08-15. It is in the public domain
 and you can use it any way you please.
-
-Note: This is adapted from a grading rubric used in my Introduction to SAS class.
+This is adapted from a grading rubric
+used in my Introduction to SAS class.
 
 + Filename and format (2 points) Required elements: Your last name, class number, module number, single file in pdf format
 
@@ -19,7 +19,7 @@ Note: This is adapted from a grading rubric used in my Introduction to SAS class
   + Fair (1 point): Missing only one required element
   + Good (2 points): Includes all required elements
 
-+ Readability. Although I am not grading on the readability of your code if you use a program other than SPSS, I strongly encourage you to use line breaks, indents, and vertical lists to make your code more readable.
++ Readability. I am not grading on the readability of your code. Nevertheless, if you use a program other than SPSS, I strongly encourage you to use line breaks, indents, and vertical lists to make your code more readable.
 
 + Accuracy (6 points)
   + Poor (0 points): Three or more major errors or omissions
