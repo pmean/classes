@@ -2,31 +2,6 @@
 title: MEDB 5501, Applied Biostatistics I syllabus
 ---
 
-# MEDB 5501, Applied Biostatistics I
-
-## Section 0001, Synchronous (Zoom)
-
-## Section 0002, Asynchronous Online
-
-## Section 0003, International Student
-
-## Fall Semester, 2023
-
-Contents
-
-Contents	2
-Instructor	2
-Prerequisites	2
-Required Email	3
-Required Textbook	3
-Course Description	3
-Course Policies	4
-Course Work	6
-Course Evaluation	7
-Department and University Policies	8
-Course Schedule	12
-Semester Statistical Analysis Project	14
-
 ### Course instructor
 
 + Steve Simon, PhD
