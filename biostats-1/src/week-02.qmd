@@ -3,6 +3,29 @@ title: "Comments for MEDB 5501, Week 2"
 format: pptx
 ---
 
+### Extensions on homework
+
++ Automatic extension for students adding late
++ All others
+  + Must be asked for in advance
+  + Must have a reasonable explanation
+  + Do not abuse this privilege
++ Assign a zero if no extension was asked for.
+
+:::notes
+Let me briefly mention a few issues about homework extensions. A few students added the class late, and I am happy to give them an extra week to catch up.
+
+All others must ask for permission in advance. This is very important.
+
+I've told Xi Wang to assign a zero to anyone who did not turn in the homework and who did not add the class late and who did not ask for an extension.
+
+Doing all the assignments by the due dates are very important. If I lost track of who asked for an extension and accidentally give you a zero, please let me know. I'll fix it.
+
+If you have extenuating circumstances that prevented you from asking in advance, please let me know. I'll fix it.
+
+I want to be reasonable with extensions and ask in return that you do not abuse this privilege.
+:::
+
 ### August 23 email inquiry
 
 ![Screenshot from an email message](../images/email-2023-08-23){#fig-email fig-align="left"}
@@ -21,15 +44,62 @@ Now I don't want you to ever feel that you can't complain about grades. That's s
 Thanks!
 :::
 
+### Possible choices for copyright
+
+One student listed
+
++ Copyright: only author can view it
+
+This is not a good option. Here are some possible choices.
+
++ You cannot use, modify, or re-publish this program without the express written consent of the author.
++ Contact the author is you wish to use this program.
++ Creative Commons CC-BY license
++ Public domain
+
+:::notes
+The choices for copyright varied. Most students placed their programs in the public domain. At least one was a bit confusing. 
+
+Public domain is what I recommend. My programs are not good enough to make money off of, so I might as well make it as easy as possible for others to use them freely and without restrictions. But other choices are listed here.
+:::
+
+### Mistake on documentation header
+
+![Screenshot from homework submission](../images/header-mistake.png){#fig-email fig-align="left"}
+
+:::notes
+There are several ways to put in a documentation header, and this one was close, but not close.
+
+SPSS let's you put anything you want at the top (header) and bottom (footer) of each page of output. The header here could just be a one line title, or it could be multiple lines that described the author, creation date, purpose, and copyright.
+
+But this header did not include any of this information.
+
+In the real world, documentation headers are very important. I put them on almost all of my programs. The one exception is a program that I write once and then throw away. Anything that I keep for possible re-use has a documentation header.
+
+There's a great quote, documentation is a gift to my future self. I can't tell you how many times I have had to re-use a program and I look at it and say "Who's the idiot who wrote this piece of junk." A bit of documentation will remind you what you were thinking of six months earlier when you originally wrote that program.
+:::
+
 ### Review of Discussion Board 00
 
 Thanks for all your wonderful comments.
+
+### Quiz 00, I goofed, you get a second chance
+
++ Problems with my syllabus quiz
+  + Subtle wording issues
+  + At least one flat out mistake
++ All students will get a chance to retake the quiz
+  + Deadline date extended
+  + Number of tries extended
 
 ### Quiz 00, question 1
 
 ![Screenshot from quiz](../images/quiz00-01){#fig-q01 fig-align="left"}
 
 :::notes
+There were some problems with the syllabus quiz. Part of it was me not be precise with the language, but one question was just a flat out mistake.
+
+
 Q1. Attendance is required for the Synchronous Zoom  section of MEDB5501, Biostatistics I.
 
 True.
@@ -370,10 +440,50 @@ Ratio data is continuous data where both differences and ratios have a reasonabl
 
 ### Distinctions between ordinal and interval data
 
++ Biggest area of controversy
++ Purists versus pragmatist
+  + Never argue with a purist
++ Grade point
+  + Clearly ordinal, but everyone uses GPA
+
 ### Distinctions between interval and ratio data
+
++ "Interpretable" is a judgement call
++ "Natural zero" is a judgement call
+
+### Special cases
+
++ Counts
++ Proportions
+  + Count divided by another count
+  + Numerator is subset of denominator
+  + Always between 0 and 1
++ Rates
+  + Count divided by time (sometimes area)
+  + Greater than 0, sometimes can be larger than 1
 
 ### Independent versus dependent variables
 
 + Gestational age
   + Dependent variable to ob/gyn
   + Independent variable to neonatologist
+  
+### One more classification!
+
++ Intervention
+  + Something you do that you HOPE will make things better.
++ Exposure
+  + Something that your patients endure that you worry might harm them.
++ Sometimes, interventions cause harm or exposures are actually helpful
+  + The original intention matters, not the final outcome
+  
+### Data dictionaries
+
++ Separate PowerPoint file
+
+### Summary
+
++ Data types
+  + Categorical, continuous
+  + Nominal, ordinal, interval, ratio
+  + Counts, proportions, rates
