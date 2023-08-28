@@ -353,7 +353,7 @@ The final paper should include at a minimum:
 + the data set,
 + all SPSS analysis output,
 + any appropriate tables and graphs 
-+ the research question/hypothesi
++ the research question/hypothesis
 + a description and justification of your choice of the analysis methods used,
 + a results and analysis section including all of your findings and the statistical conclusion(s) obtained written in manuscript form.
 
