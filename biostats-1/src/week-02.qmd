@@ -325,9 +325,9 @@ If there are inconsistencies caused by some of the changes I made to the class, 
 
 + Limited to a small number of possible values
 + Types of categorical data
-  + Binary, Dichotomous
+  + Binary, dichotomous
   + Polychotomous, polytomous
-    + Andy Filed uses nominal variable
+    + Andy Field uses nominal variable
   + Nominal scale
   + Ordinal scale
     
@@ -340,10 +340,21 @@ If there are inconsistencies caused by some of the changes I made to the class, 
   + Interval scale
   + Ratio scale
   + Counts
-  + Proportions
+  + Proportions, Rates
 
+:::notes
+In contrast to categorical data, you have continuous data. The distinction is in the number of possible values.
+:::
 
+### Discrete data
 
++ Very similar to continuous data
+  + But not all values in an interval are possible
++ Examples
+  + Counts
+  + Age (rounded to the nearest year)
++ Mean may be difficult to interpret
+  + Average family has 2.2 children
 
 ### Data types
 
@@ -371,7 +382,6 @@ Now there are some statisticians who argue with this. In particular, they fight 
   + Computing the mode
   + There is no good measure of variation
 + Note: "primitive" versus "limited"
-
 
 :::notes
 Nominal data represents categories where the categories do not have a natural ordering. The Wikpedia page on scales of measurement is quite good and I am stealing some information from them on this and the next few slides.
@@ -477,6 +487,17 @@ Ratio data is continuous data where both differences and ratios have a reasonabl
 + Sometimes, interventions cause harm or exposures are actually helpful
   + The original intention matters, not the final outcome
   
+### Are data types confusing?
+
++ YES!
+  + Sometimes a distinction without a difference
++ But they help with
+  + Choosing best statistic
+  + Choosing the best graph
++ If you have to remember two distinctions...
+  + Categorical versus continuous/discrete
+  + Nominal versus ordinal
+  
 ### Data dictionaries
 
 + Separate PowerPoint file
@@ -484,6 +505,6 @@ Ratio data is continuous data where both differences and ratios have a reasonabl
 ### Summary
 
 + Data types
-  + Categorical, continuous
+  + Categorical, continuous, discrete
   + Nominal, ordinal, interval, ratio
   + Counts, proportions, rates
