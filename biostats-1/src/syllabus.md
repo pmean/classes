@@ -301,11 +301,11 @@ Week 1, Introduction to SPSS, read SPSS text, Chapter 4, The IBM SPSS Statistics
 
 Week 2, Types of data, read SPSS text, Chapter 1 though section 1.6 (Collecting data: measurement) or SAS text, Chapter 1 through section 1.5 (Data collection 1: what to measure).
 
-Week 3 Statistical models, read Chapter 2
+Week 3 Statistical models, see the module overview for readings.
 
-Week 4, Null hypothesis significance tests, read Chapter 3
+Week 4, Null hypothesis significance tests, see the module overview for readings.
 
-Week 5, Graphs, read Chapter 5
+Week 5, Graphs, read SPSS text, Chapter 5 (Exploring Data with Graphs), or SAS text Chapter 4 (Exploring Data with Graphs)
 
 Week 6, Parametric statistical analysis, read Chapter 6
 
