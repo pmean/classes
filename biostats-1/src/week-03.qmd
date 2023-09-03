@@ -3,6 +3,101 @@ title: "Comments for MEDB 5501, Week 3"
 format: pptx
 ---
 
+### Measurement error
+
++ Imprecision in a physical measurement
+  + Example: GPS location
+    + Can be off by up to 8 meters
+    + Worse around large buildings
+  + Other examples
+    + Weight
+    + Body temperature
+    + Blood glucose
+
+:::notes
+Statisticians are the only ones who openly admit the possibility of error. In fact, we obsess about error.
+
+One important source of error is measurement error. This is typically defined with respect to a physical measurement.
+
+I run outdoors for fun and to help me stay fit and lose weight. I've not been doing so hot on the weight loss side, but mostly because I indulge on the diet side of the equation. Anyway, one of the most fun parts of running is tracking the routes that you run and how fast you run those routes. I use two apps, Sportractive and Run Keeper. The Sportractive app shows me where I am at any point during the run using GPS satellites. It can be off by as much as 8 meters (about 26 feet), which causes some variation in how fast the app thinks I am running versus my actual speed. It doesn't make the app useless, but you do have to account for this.
+
+In medicine, there are lots of physical measurements that have measurement error: weight, body temperature, blood glucose levels.
+:::
+
+### Reducing measurement error
+
++ Calibration
++ Consistent environment
++ Good equipment
++ Quality control
++ Training 
+
+:::notes
+While you can't prevent measurement error, you can reduce it. Measurement that is done with medical equipment requires regular calibration. By the way, don't run all your control samples in the morning, re-calibrate during lunch, and the run all your treatment samples in the afternoon. This sounds obvious, but you'd be surprised how often researchers screw this up.
+
+Consistency is also important. When I weigh myself, I try to do it in the morning before I've had anything to eat. It's usually when I weigh the less, but I'm not doing this to pretend that I am a few pounds lighter. I do it because I get more consistency.
+
+You can get your blood glucose monitored, and it's always best if you can get it monitored after an overnight fast. Don't eat a Snickers bar on the way to your test!
+
+You can measure your body temperature on your forehead, under your arm pit, under your tongue, or at least one other place that I won't mention. Some locations are more consistent (have less measurement error) than others.
+
+Using good equipment can help. Your measurement on a balance beam scale is a bit more accurate than a digital scale. Try to use the exact same piece of equipment for measuring everyone in the study, or try to use the same model from the same manufacturer if you can.
+
+A quality control program with regular assessments using known samples can also help. Monitor your lab daily or weekly with a control chart. If the control chart shows an out of control point, re-run all the samples from the time that the laboratory process was last shown to be in control. 
+
+Training of the operators of an medical equipment can also help reduce measurement error.
+:::
+
+### Errors of validity
+
++ Mostly used for constructs
++ Types of validity
+  + Criterion
+    + Concurrent
+    + Predictive
+  + Content/face
+  + Many others
++ Re-establishing validity
+
+:::notes
+Statisticians also worry about errors in validity. These are errors that occur because you are measuring something different that what you think you are measuring. 
+
+Assessment of errors in validity is typically reserved for constructs. A construct is an assessment of something that has no direct physical manifestation. Your blood pressure is a physical measurement, but your stress level is not. Now maybe stress induces changes in blood pressure, hormone levels, etc. but stress itself is not a physical measurement like blood pressure is. 
+
+Typically, you measure a construct by asking a series of questions that all relate to that construct. There is a scale that measures how easily someone gets disgusted, and it asks questions about cockroaches, unwashed underwear, and ketchup on vanilla ice cream.
+
+There are many types of validity. Criterion validity is comparison of your measurement to a well-accepted criterion. This is often called a gold standard. If you measure your construct and the criterion at the same time, this is called concurrent validity. Often this is comparison of a new construct to an existing and already validated construct. The Yale Single Question Depression Scale (Do you
+frequently feel sad or depressed?) was compared to the Beck Depression Inventory, a 21 item scale. It did not not show a really strong correlation, but might be good enough to serve as an initial screen.
+
+Concurrent validity is when the criterion or gold standard is measured at the same time as the construct. If the criterion is measured later, it is predictive validity. When the use of SAT scores as a measure of student success is validated by comparing it to college graduation rates, that is an example of predictive validity.
+
+Content validity is an examination of individual elements of a construct by a panel of experts. It is a qualitative approach to validity. Closely related is face validity, the use of patients (read non-experts) to examine the elements of a construct. The line between content validity and face validity is very fuzzy.
+
+There are many other types of validity. Don't get lost in all the terminology. Validity, at least the quantitative measures of validity, is almost always some type of correlation. When it is high, you have good validity.
+
+If you are using a construct in a markedly different patient population, with different languages and different cultural norms, you need to re-establish validity, even for measures that have previously demonstrated good validity.
+:::
+
+### Errors of reliability
+
++ Synonym: repeatability(?)
++ Not reproducibility
++ Both physical measurements and constructs
++ Types of reliability
+  + Test-retest
+  + Inter-rater
+  + Inter-method
+
+:::notes
+You might see errors associated with the use of unreliable measurements. Often the term "repeatable" is used interchangably. Some researchers make a distinction between these terms, but I don't. I do, however, draw a distinction between reliability and reproducibility. Reproducibility is a demonstration that two different researchers agree when given access to the same dataset and the same software code.
+
+You can assess reliability for both physical measurements and constructs. You demonstrate inter-rater reliability by showing that two evaluators working independently produce close to the same results. This does not work for self-reported outcomes like pain because only you can evaluate yourself.
+
+A measurement taken twice allows you to assess test-retest reliability. The time spacing for the test and the retest is tricky. You want them far enough apart that the assessments are not done from memory, but not too far apart that temporal trends can appear. Some measures are stable over time. IQ, for example, is a measure that does not change overnight. It is presumed to be stable over many years or even many decades. At least until my age, when the deterioration of the brain starts to set in.
+:::
+
 ### Counts are tricky
 
 ### The median is not the message
+
+Q15, Q20
