@@ -3,6 +3,48 @@ title: "Comments for MEDB 5501, Week 3"
 format: pptx
 ---
 
+### Count the occurrences of the letter "e".
+
+```         
+A quality control program is easiest
+to implement from the top down. 
+Make sure that you understand the 
+the commitment of time and money
+that is involved. Every workplace is
+different, but think about allocating
+10% of your time and 10% of the 
+time of all your employees to 
+quality control.
+```
+
+::: notes
+*Speaker notes*
+
+Here's an exercise I want you to do. Just count the number of occurrences of the letter "e". Once you have your answer, type it in the chat box.
+
+PAUSE HERE.
+
+The numbers are different because of two things. First, it is easy to make mistakes. Did anyone notice the repetition of the word "the" at the end of the third line and the beginning of the fourth. It would be easy to miss that and count one less "e".
+
+What did you do with the first e in "Every"?
+
+Did you count the e's in the quotes itself or also on the slide instructions and the slide header?
+:::
+
+###
+
+![Image of a haemocytometer](../images/sperm-count.png)
+
+::: notes
+*Speaker notes*
+
+This image is take from the WHO laboratory manual for the examination and processing of human semen, published in 2021. It shows a haemocytometer, an instrument used for counting the number of cells. To get a proper count, you need to include any cells inside the four by four grid of large squares in the middle of this micrograph. But what does "inside" mean? Should you count only those cells entirely inside the four by four grid. Or should you include cells that are partially inside the grid?
+
+One rule is to count cells if the head of the sperm cell touches the top or right side of a square, but not if it touches the bottom or left side of the square. And don't count a sperm cell if only the tail is inside the square.
+
+That's not the only way you can do this, but just make sure that whatever convention you use for deciding "inside" versus "outside" is consistent across your laboratory.
+:::
+
 ### Measurement error
 
 + Imprecision in a physical measurement
@@ -96,7 +138,362 @@ You can assess reliability for both physical measurements and constructs. You de
 A measurement taken twice allows you to assess test-retest reliability. The time spacing for the test and the retest is tricky. You want them far enough apart that the assessments are not done from memory, but not too far apart that temporal trends can appear. Some measures are stable over time. IQ, for example, is a measure that does not change overnight. It is presumed to be stable over many years or even many decades. At least until my age, when the deterioration of the brain starts to set in.
 :::
 
-### Counts are tricky
+### Errors due to sampling
+
+### 
+
+![Cartoon image of Professor Mean](../images/professor-mean.png){#fig-professor-mean fig-align="left"}
+
+::: notes
+*Speaker notes*
+
+Here's a cartoon image of Professor Mean. I know this looks like it was drawn by a professional artist, but it was actually drawn by me. Really!
+
+Professor Mean is my alter ego on the Internet. For those who don't get the inside joke, I point out that Professor Mean is not just your average professor.
+
+I will use the terms mean and average interchangeably througout this talk.
+:::
+
+### 
+
+![Road with a median strip](../images/road-median.jpg){#fig-road-median fig-align="left"}
+
+::: notes
+*Speaker notes*
+
+This is an image of a traffic median. This is a strip of land, typically raised from the road surface, that splits the road in half.
+
+In Statistics, the median is the data value that splits the data in half. Half of the data is smaller than the median and half of the data is larger than the median.
+:::
+
+### Calculation of the mean and median
+
+-   Mean
+    -   Add up all the values, divide by the sample size
+-   Median
+    -   Sort the data
+        -   Select the middle value if n is odd
+        -   go halfway between the two middle values if n is even
+
+::: notes
+*Speaker notes*
+
+You already know how to compute the average. Add up all the values and divide by the sample size.
+
+The median is also simple. Sort the data and choose the "middle" value. If n is odd, there is one value that is right in the middle. With five data values, the median is the third value of the sorted list. The first and second values are smaller and the fourth and fifth values are larger.
+
+With an even number, there are two middle values. Go halfway between them. If you have eight data values, the midpoint between the fourth and fifth values splits the data in half. The first through fourth values in the sorted list are smaller and the fifth through eighth values are larger.
+:::
+
+### Formal mathematical definitions
+
+-   Mean
+    -   $\bar{X}=\frac{1}{n}\Sigma X_i$
+-   Median
+    -   Sorted values $X_{[1]},X_{[2]},...,X_{[n]}$
+        -   $X_{[(n+1)/2]}$ if n is odd,
+        -   $(X_{[n/2]}+X_{[n/2+1]})/2$ if n is even
+
+::: notes
+*Speaker notes*
+
+Here are the mathematical formulas for the mean and median. I know some people hate formulas, but I love them. With a few symbols and Greek letters, you can express really deep and beautiful ideas. Well these formulas aren't all that deep.
+:::
+
+### Bacteria before and after A/C upgrade
+
+```{r}
+suppressMessages(
+  suppressWarnings(
+    library(glue)))
+suppressMessages(
+  suppressWarnings(
+    library(magrittr)))
+suppressMessages(
+  suppressWarnings(
+    library(tidyverse)))
+```
+
+```{r}
+room <- c(
+  121,
+  125,
+  163,
+  218,
+  233,
+  264,
+  324,
+  325)
+```
+
+```{r}
+bacteria_0 <- c(
+  11.8,
+  7.1,
+  8.2,
+  10.1,
+  10.8,
+  14,
+  14.6,
+  14)
+```
+
+```{r}
+bacteria_1 <- c(
+  10.1,
+  3.8,
+  7.2,
+  10.5,
+  8.3,
+  12,
+  12.1,
+  13.7)
+```
+
+```         
+Room Before  After
+ 121   11.8   10.1
+ 125    7.1    3.8
+ 163    8.2    7.2
+ 218   10.1   10.5
+ 233   10.8    8.3
+ 264   14     12  
+ 324   14.6   12.1
+ 325   14     13.7
+```
+
+::: notes
+*Speaker notes*
+
+Here is some data that I got off the web.
+
+https://dasl.datadescription.com/datafile/legionnaires-disease/
+
+This represents bacteria counts before and after a new air conditioning unit was installed in a small hotel.
+
+I want to illustrate the calculation of the mean and median.
+:::
+
+### Before remediation mean
+
+```{r}
+adds_0 <- paste0(bacteria_0, collapse=" + ") 
+sum_0 <- sum(bacteria_0)
+mean_0 <- mean(bacteria_0)
+```
+
+```         
+`r adds_0` = `r sum_0`
+
+`r sum_0` / 8 = `r mean_0`
+
+Round to `r round(mean_0, 1)`
+```
+
+::: notes
+*Speaker notes*
+
+Here's the data for bacterial counts before remediation. If you add the eight values up, you get `r sum_0`. Divide this by eight to get `r mean_0`. Always round liberally when you are talking about the mean.
+:::
+
+### After remediation mean
+
+```{r}
+adds_1 <- paste0(bacteria_1, collapse=" + ") 
+sum_1 <- sum(bacteria_1)
+mean_1 <- mean(bacteria_1)
+```
+
+```         
+`r adds_1` = `r sum_1`
+
+`r sum_1` / 8 = `r mean_1`
+
+Round to `r round(mean_1, 1)`
+```
+
+::: notes
+*Speaker notes*
+
+Here are the same calculations for the bacterial counts after remediation.
+:::
+
+### Before remediation median (1/4)
+
+```{r}
+space <- function(x) {
+  x1 <- rep("", 15)
+  x1[2*(1:8)-1] <- x
+  return(x1)
+}
+
+sq <- function(x) {
+  paste0(x, collapse="\n")
+}
+
+step1 <- function(x) {
+  y <- sprintf("%4.1f", x)
+  room %>%
+    paste(y, sep="  ") %>%
+    space
+}
+```
+
+```         
+`r sq(step1(bacteria_0))`
+```
+
+::: notes
+*Speaker notes*
+
+Now for the median.
+
+Here is the data for bacteria counts before remediation. Notice that the data is arranged by room number.
+:::
+
+### Before remediation median (2/4)
+
+```{r}
+step2 <- function(x) {
+  o <- order(x)
+  y <- sprintf("%4.1f", x[o])
+  room[o] %>%
+    paste(y, sep="  ") %>%
+    space
+}
+```
+
+```         
+`r sq(step2(bacteria_0))`
+```
+
+::: notes
+*Speaker notes*
+
+The first thing you do is sort the data from the lowest bacteria count to the highest bacteria count.
+
+The data was arranged by room number, but now it is arranged by bacterial count. The smallest bacteria count is listed at the top and the largest is listed at the bottom.
+:::
+
+### Before remediation median (3/4)
+
+```{r}
+step3 <- function(x, div=4:5) {
+  o <- order(x)
+  y <- rep("", 8)
+  y[div] <- x[o][div]
+  step2(x) %>%
+    paste(space(y), sep="  ")
+}
+```
+
+```         
+`r sq(step3(bacteria_0))`
+```
+
+::: notes
+*Speaker notes*
+
+Then pick out the middle value. If you have an even number of data points, there will be two middle values.
+
+In this data set, the two middle values are the fourth and fifth largest values out of eight.
+:::
+
+### Before remediation median (4/4)
+
+```{r}
+step4 <- function(x, div=4:5) {
+  o <- order(x)
+  x1 <- x[o]
+  x4 <- step3(x, div)
+  blanks <- paste0(rep(" ", 18), collapse="")
+  x4[2*div[1]] <- glue(
+    "{blanks}",
+    "({x1[div[1]]} + {x1[div[2]]}) / 2",
+    " = {(x1[div[1]]+x1[div[2]])/2}")
+  return(x4)
+}
+```
+
+```         
+`r sq(step4(bacteria_0)) `
+```
+
+::: notes
+*Speaker notes*
+
+If there are two middle values, just average them.
+:::
+
+### After remediation median (1/4)
+
+```         
+`r sq(step1(bacteria_1))`
+```
+
+::: notes
+*Speaker notes*
+
+Here is the data for bacteria counts after remediation.
+:::
+
+### After remediation median (2/4)
+
+```         
+`r sq(step2(bacteria_1))`
+```
+
+::: notes
+*Speaker notes*
+
+Just like before, you sort the data.
+:::
+
+### After remediation median (3/4)
+
+```         
+`r sq(step3(bacteria_1))`
+```
+
+::: notes
+*Speaker notes*
+
+Then pick out the middle value. Here again, there are two middle values.
+:::
+
+### After remediation median (4/4)
+
+```         
+`r sq(step4(bacteria_1)) `
+```
+
+::: notes
+*Speaker notes*
+
+Just average the two middle values.
+:::
+
+### Criticisms of the mean and median
+
+-   Are you combining apples and onions?
+-   Are you ignoring minorities?
+
+::: notes
+*Speaker notes*
+
+There's a wonderful cartoon by Dana Fradon that appeared in The New Yorker in 1976. She shows a road going into town and the sign by the side of the road reads "Hillsdale, Founded 1802, Altitude 600, Population 3,700. Total 6,122." You can't add these things together.
+
+It's similar for means. There was a dataset showing housing prices for homes in Boston and none of the analyses seemed to make sense. The problem in Boston is that a small number of the houses had prices that were out of sync with their other homes. These were historical houses, such as Paul Revere's house.
+
+When you are averaging numbers, maybe it's okay to have a few oranges in with the apples. A mix of apples and oranges is just fruit salad. You shouldn't have a problem with that.
+
+When it becomes a problem is when the data are so diverse that it becomes a mix of apples and onions. There are lots of great recipes that mix apples and oranges, but none that mix apples and onions.
+
+The other problem is that an average may be a reasonable number to represent the majority of patients in your sample, but it may masks some important trends that appear in a minority.
+
+This is a big problem in a larger context than just the mean or median. There are some very fancy high tech prediction models that work very well for most people and the statistics like the mean and median back this up quite nicely. But the prediction models perform terribly for minority groups. Something that does well for the average person may not be so great for a large segment of society.
+:::
+
 
 ### The median is not the message
 
