@@ -169,13 +169,16 @@ We'll still teach about sampling error, because a huge proportion of the data an
 
 ## Short break
 
-+ What have you learned?
-  + Errors
-    + Measurement
-    + Validity
-    + Reliability
-    + Sampling
-  What's next? + Descriptive statistics + Mean + Median
+-   What have you learned?
+    -   Errors
+        -   Measurement
+        -   Validity
+        -   Reliability
+        -   Sampling
+-   What's next?
+    -   Descriptive statistics
+        -   Mean
+        -   Median
 
 ::: notes
 *Speaker notes*
@@ -382,11 +385,9 @@ step1 <- function(x) {
 }
 ```
 
-::: {style="font-size: 50%;"}
 ```         
 `r sq(step1(bacteria_0))`
 ```
-:::
 
 ::: notes
 *Speaker notes*
@@ -568,7 +569,7 @@ Gould was momentarily distressed, but then he thought carefully about the proble
 
 He goes on to find a bit more reason for optimism.
 
-"Another technical point then added even more solace. I immediately recognized that the distribution of variation about the eight-month median would almost surely be what statisticians call "right skewed." (In a symmetrical distribution, the profile of variation to the left of the central tendency is a mirror image of variation to the right. Skewed distributions are asymmetrical, with variation stretching out more in one direction than the other---left skewed if extended to the left, right skewed if stretched out to the right.) The distribution of variation had to be right skewed, I reasoned. After all, the left of the distribution contains an irrevocable lower boundary of zero (since mesothelioma can only be identified at death or before). Thus, little space exists for the distribution's lower (or left) half---it must be scrunched up between zero and eight months. But the upper (or right) half can extend out for years and years, even if nobody ultimately survives. The distribution must be right skewed, and I needed to know how long the extended tail ran---for I had already concluded that my favorable profile made me a good candidate for the right half of the curve."
+"Another technical point then added even more solace. I immediately recognized that the distribution of variation about the eight-month median would almost surely be what statisticians call"right skewed." (In a symmetrical distribution, the profile of variation to the left of the central tendency is a mirror image of variation to the right. Skewed distributions are asymmetrical, with variation stretching out more in one direction than the other---left skewed if extended to the left, right skewed if stretched out to the right.) The distribution of variation had to be right skewed, I reasoned. After all, the left of the distribution contains an irrevocable lower boundary of zero (since mesothelioma can only be identified at death or before). Thus, little space exists for the distribution's lower (or left) half---it must be scrunched up between zero and eight months. But the upper (or right) half can extend out for years and years, even if nobody ultimately survives. The distribution must be right skewed, and I needed to know how long the extended tail ran---for I had already concluded that my favorable profile made me a good candidate for the right half of the curve."
 
 Gould did indeed find himself on the happy side of the eight month median, a good 20 years beyond the median.
 
@@ -1328,6 +1329,128 @@ Break into small groups. The first group take the first four measures and the se
 Also, calculate the mean plus of minus two standard deviations for any observations that report the mean and standard deviation.
 :::
 
+## Normal probabilities in SPSS (P[Z < 2.5]=?)
+
+![Screenshot of SPSS dialog box](../images/spss-normal-01.png)
+
+:::notes
+Here is a dialog box showing how to compute the probability that a standard normal variable is less than 2.5.
+
+Select Transform | Compute from the menu.
+:::
+
+## Normal probabilities in SPSS (P[Z < 2.5]=0.9938)
+
+![Screenshot of SPSS data window](../images/spss-normal-02.png)
+
+:::notes
+Here is the result.
+:::
+
+## Normal probabilities in SPSS (P[Z > 2.5]=?)
+
+![Screenshot of SPSS dialog box](../images/spss-normal-03.png)
+
+:::notes
+Here is a dialog box showing how to compute the probability that a standard normal variable is greater than 2.5.
+:::
+
+## Normal probabilities in SPSS (P[Z > 2.5]=0.0062)
+
+![Screenshot of SPSS data window](../images/spss-normal-04.png)
+
+:::notes
+Here is the result.
+:::
+
+## Normal probabilities in SPSS (P[-2.5 < Z < 2.5]=?)
+
+![Screenshot of SPSS dialog box](../images/spss-normal-05.png)
+
+:::notes
+Here is a dialog box showing how to compute the probability that a standard normal variable is between -2.5 and 2.5.
+:::
+
+## Normal probabilities in SPSS (P[-2.5 < Z < 2.5]=0.9876)
+
+![Screenshot of SPSS data window](../images/spss-normal-06.png)
+
+:::notes
+Here is the result.
+:::
+
+## Normal percentiles in SPSS (P[Z < ?]=0.75)
+
+![Screenshot of SPSS dialog box](../images/spss-normal-07.png)
+
+:::notes
+Here is a dialog box showing how to compute the 75th percentile of a standard normal variable.
+
+Select Transform | Compute from the menu.
+:::
+
+## Normal percentiles in SPSS (P[Z < 0.67]=0.75)
+
+![Screenshot of SPSS data window](../images/spss-normal-08.png)
+
+:::notes
+Here is the result.
+:::
+
+## Normal percentiles in SPSS (P[Z < ?]=0.25)
+
+![Screenshot of SPSS dialog box](../images/spss-normal-09.png)
+
+:::notes
+Here is a dialog box showing how to compute the 25th percentile of a standard normal variable.
+:::
+
+## Normal percentiles in SPSS (P[Z < -0.67]=0.25)
+
+![Screenshot of SPSS data window](../images/spss-normal-10.png)
+
+:::notes
+Here is the result.
+:::
+
+## Normal probability plot in SPSS (1/2)
+
+![Screenshot of SPSS dialog box](../images/spss-normal-11.png)
+
+:::notes
+Here is a dialog box showing how to a normal probability plot.
+
+Select Analyze | Descriptive Statistics | Q-Q Plot from the menu.
+:::
+
+## Normal probability plot in SPSS (2/2)
+
+![Screenshot of SPSS data window](../images/spss-normal-08.png)
+
+:::notes
+Here is the result.
+:::
+
+## Standardizing data in SPSS (1/2)
+
+![Screenshot of SPSS dialog box](../images/spss-standardize-01.png)
+
+:::notes
+Here is a dialog box showing how to standardize a variable in SPSS.
+
+Select Analyze | Descriptive Statistics | Descriptives from the menu and click on the Save standardized values as variables option.
+:::
+
+## Normal probability plot in SPSS (2/2)
+
+![Screenshot of SPSS data window](../images/spss-standardize-02.png)
+
+:::notes
+Here is the result.
+:::
+
+
+
 ## What is a population?
 
 -   Population: a group that you wish to generalize your research results to. it is defined in terms of
@@ -1454,6 +1577,8 @@ Add note
 
 Add note
 :::
+
+
 
 ## The median is not the message
 
