@@ -941,6 +941,23 @@ These are known as proof of concept trials. If a new therapy cannot succeed even
 If you are planning a trial that comes after many similar trials, you actually may want to encourage variation. Broaden the inclusion criteria so that the patients in the trial look no different than the patients you see every day in your clinic.
 :::
 
+## Break
+
+-   What have you just learned?
+    -   Variation
+-   What is coming next?
+    -   The bell-shaped curve
+
+::: notes
+*Speaker notes*
+
+Let me pause here for a second. Are there any questions?
+:::
+
+## 
+
+
+
 ## The bell shaped curve
 
 -   Does your variation follow a bell shaped curve?
@@ -1065,6 +1082,21 @@ ggsave("../images/normal-histogram.png")
 Here's a histogram that shows a symmetric distribution, with the most frequent values in the center and frequencies that taper off on either side. This is a bell shaped curve.
 :::
 
+## Break
+
+-   What have you just learned?
+    -   The bell-shaped curve
+-   What is coming next?
+    -   Percentages for the bell-shaped curve
+
+::: notes
+*Speaker notes*
+
+Let me pause here for a second. Are there any questions?
+:::
+
+## 
+
 ## Why concern yourself with the bell shaped curve?
 
 -   You can characterize individual observations
@@ -1160,6 +1192,19 @@ What does this mean from a practical sense? It means that averages are much more
 Now it is possible to get all eight colonoscopies taking longer than average. It doesn't happen very often, but on those days, the doctor earns every penny that they pay her.
 
 Remember this perspective. Sometimes you care mostly about the individual value and sometimes you care mostly about the average value.
+:::
+
+## Break
+
+-   What have you just learned?
+    -   Percentages for the bell-shaped curve
+-   What is coming next?
+    -   Diagnosing distributional issues
+
+::: notes
+*Speaker notes*
+
+Let me pause here for a second. Are there any questions?
 :::
 
 ## Diagnosing distributional issues (1/2)
@@ -1329,6 +1374,21 @@ Break into small groups. The first group take the first four measures and the se
 Also, calculate the mean plus of minus two standard deviations for any observations that report the mean and standard deviation.
 :::
 
+## Break
+
+-   What have you just learned?
+    -   Diagnosing distributional issues
+-   What is coming next?
+    -   Computing normal probabilities
+    
+::: notes
+*Speaker notes*
+
+Let me pause here for a second. Are there any questions?
+:::
+
+
+
 ## Normal probabilities in SPSS (P[Z < 2.5]=?)
 
 ![Screenshot of SPSS dialog box](../images/spss-normal-01.png)
@@ -1449,6 +1509,19 @@ Select Analyze | Descriptive Statistics | Descriptives from the menu and click o
 Here is the result.
 :::
 
+## Break
+
+-   What have you just learned?
+    -   Computing normal probabilities
+-   What is coming next?
+    -   Populations and samples
+    
+::: notes
+*Speaker notes*
+
+Let me pause here for a second. Are there any questions?
+:::
+
 
 
 ## What is a population?
@@ -1526,14 +1599,14 @@ There are a variety of responses here. The sample does not include home schooled
 
 ## Fixing a biased sample
 
--   Redfine your population
+-   Redefine your population
     -   Not all teenagers,
         -   but those attending public high schools.
 
 ::: notes
 *Speaker notes*
 
-Add note
+A biased sample for a large and very general population might be less biased if you redefine your population more narrowly.
 :::
 
 ## What is a parameter?
@@ -1544,11 +1617,13 @@ Add note
         -   Proportion of these 29,637 children who died in their first year of life.
         -   Correlation between gestational age and number of ER visits of these 29,637 children.
     -   Designated by Greek letters ($\mu$, $\pi$, $\rho$)
+-   Parameters are usually unknown
+-   Parameters have no sampling error
 
 ::: notes
 *Speaker notes*
 
-Add note
+
 :::
 
 ## What is a statistic?
@@ -1557,13 +1632,14 @@ Add note
     -   Examples
         -   Average health care cost associated with 100 children.
         -   Proportion of these 100 children who died in their first year of life.
-        -   Correlation between genstational age and number of ER visits of these 100 children.
+        -   Correlation between gestational age and number of ER visits of these 100 children.
     -   Designated by non-Greek letters ($\bar{X}$, $\hat{p}$, r).
+    -   or by a "hat" ($\hat \mu$, $\hat \pi$, $\hat \rho$)
 
 ::: notes
 *Speaker notes*
 
-Add note
+Statistics, since they are computed from a subset of a population, are often known. That's the good news. But they do have sampling error. That's the bad news.
 :::
 
 ## What is Statistics?
@@ -1575,11 +1651,48 @@ Add note
 ::: notes
 *Speaker notes*
 
-Add note
+While it is perhaps a bit narrow, one definition of the field of Statistics is that it used statistics (obviously enough), but a bit less obvious is that the statistics are used to make inferences about a population.
 :::
 
 
+## Break
 
-## The median is not the message
+-   What have you just learned?
+    -   Populations and samples
+-   What is coming next?
+    -   Standard errors and confidence intervals
+    
+::: notes
+*Speaker notes*
 
-Q15, Q20
+Let me pause here for a second. Are there any questions?
+:::
+
+
+## Standard errors
+
+-   Standard deviation of a statistic
+    -   Not the same as standard deviation of an individual
+    -   Available for a variety of statistics
+-   Standard error of $\bar X$ is $\frac{S}{\sqrt{n}}$
+
+::: notes
+*Speaker notes*
+
+You will see the term standard error quite a lot. It is a measure of the variation of a statistic. The standard error of x-bar is the standard deviation of the data divided by the square root of the sample size.
+:::
+
+## Confidence intervals
+
+There are many formulas that people use for confidence intervals for a parameter. These range from easy to calculate to more difficult. The more difficult approaches are more accurate.
+-   Statistic $\pm 2 \times$standard error
+-   Statistic $\pm 1.96 \times$standard error
+-   Statistic $\pm (z or t) \times$standard error
+-   Statistic $\pm t \times$standard error
+
+::: notes
+*Speaker notes*
+
+I would like to defer most of the discussion of confidence intervals until next week, but here is a quick overview.
+:::
+
