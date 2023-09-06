@@ -1611,7 +1611,7 @@ A biased sample for a large and very general population might be less biased if 
 
 ## What is a parameter?
 
--   A parameter is a number computed from a sample.
+-   A parameter is a number computed from a population.
     -   Examples
         -   Average health care cost associated with the 29,637 children
         -   Proportion of these 29,637 children who died in their first year of life.
@@ -1685,6 +1685,7 @@ You will see the term standard error quite a lot. It is a measure of the variati
 ## Confidence intervals
 
 There are many formulas that people use for confidence intervals for a parameter. These range from easy to calculate to more difficult. The more difficult approaches are more accurate.
+
 -   Statistic $\pm 2 \times$standard error
 -   Statistic $\pm 1.96 \times$standard error
 -   Statistic $\pm (z or t) \times$standard error
