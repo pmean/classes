@@ -238,7 +238,7 @@ As another aside, I was involved with prayer study. We planned this study using 
 -   What have you just learned?
     -   The null and alternative hypotheses
 -   What is coming next?
-    -   Decision rules and p-values
+    -   Decision rules, Type I and II errors
 
 ::: notes
 Let me pause here for a second. Are there any questions?
@@ -300,6 +300,17 @@ It bears repeating that population parameters are impossible to compute. So you 
 Beta is the probability of a Type II error. Beta is a known quantity. Typically researchers try to keep beta small. 10% is a typical value, though in some settings, a Type II error rate as large as 20% could be tolerated.
 
 Power is defined as 1-beta. I will talk more about power in a little bit.
+:::
+
+## Break
+
+-   What have you just learned?
+    -   Decision rules, Type I and II errors
+-   What is coming next?
+    -   p-values
+
+::: notes
+Let me pause here for a second. Are there any questions?
 :::
 
 ## What is a p-value?
@@ -395,6 +406,17 @@ A research paper computes a p-value of 0.45. How would you interpret this p-valu
 Here's that pop quiz again. Take a look at it quickly. Note that the p-value is of evidence against the null hypothesis. So each of the first four responses is wrong.
 
 I wrote this question quickly, so shame, shame on me. But I've reproduced the example because it illustrates an important point.
+:::
+
+## Break
+
+-   What have you just learned?
+    -   p-values
+-   What is coming next?
+    -   Criticisms of p-values and hypothesis testing
+
+::: notes
+Let me pause here for a second. Are there any questions?
 :::
 
 ## 
@@ -594,11 +616,43 @@ Add note
 ## Break
 
 -   What have you just learned?
-    -   Computing percentiles
+    -   Criticisms of p-values and hypothesis testing
 -   What is coming next?
-    -   Computing the standard deviation
+    -   SPSS examples
 
 ::: notes
 Let me pause here for a second. Are there any questions?
 :::
 
+## Baseball data dictionary
+
+This file was downloaded from the DASL (Data and Story Library) website. There are no details about who created the data set or what permissions are allowed. Educational uses of this data are probably allowed under the Fair Use provisions of U.S. Copyright Law.
+
+This is a tab delimited data file. There are 50 rows and 2 columns of data.
+
+The first variable is the sample number (1 to 50). The second variable is the circumference of the baseball in inches. The variable names are included at the top of the data.
+
+The standard sized baseball, according to Wikipedia and other sources on the Internet is 9 to 9.25 inches. There are no missing values in this data set.
+
+This data dictionary was written by Steve Simon on 2023-09-10 and is placed in the public domain.
+
+:::notes
+I want to show some SPSS analyses. The first relates to a dataset on baseballs.
+:::
+
+
+### BMI data dictionary
+
+This file is included as part of the base package of R and was converted by Steve Simon to a text file. There are no details about who created the data set. The code for R is published under an open source license, and the datasets included with R are presumably covered by the same license.
+
+This is a tab delimited data file. There are 15 rows and 3 columns of data.
+
+The first variable is the sample number (1 to 15). The second variable is the weight of an adult female (inches). The third variable is the weight (pounds). The variable names are not included at the top of the data.
+
+This data dictionary was written by Steve Simon on 2023-09-10 and is placed in the public domain.
+
+Remove this documentation and save the file under a different name before trying to import it.
+
+:::notes
+Here is the data dictionary for the BMI data.
+:::
