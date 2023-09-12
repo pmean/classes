@@ -1,5 +1,5 @@
 ---
-title: "Comments for MEDB 5501, Week 3"
+title: "Comments for MEDB 5501, Week 4"
 format: 
   revealjs:
     slide-number: true
@@ -121,7 +121,7 @@ Add note
 
 ## What is a parameter?
 
--   A parameter is a number computed from a sample.
+-   A parameter is a number computed from a population.
     -   Examples
         -   Average health care cost associated with the 29,637 children
         -   Proportion of these 29,637 children who died in their first year of life.
@@ -250,9 +250,9 @@ Let me pause here for a second. Are there any questions?
 -   $H_1:\ \mu \ne C$
 -   t = ($\bar{X}-C$) / se
 -   Accept $H_0$ if t is close to zero.
-    -   \$-2 \< t \< 2 or
-    -   \$-Z\_{\alpha/2} \< t \< Z\_{\alpha/2} or
-    -   \$-t\_{\alpha/2; n-1} \< t \< t\_{\alpha/2; n-1}
+    -   $-2 < t < 2$ or
+    -   $-Z_{\alpha/2} < t < Z_{\alpha/2}$ or
+    -   $-t_{\alpha/2; n-1} < t < t_{\alpha/2; n-1}$
 
 ::: notes
 Add note
@@ -625,11 +625,11 @@ Let me pause here for a second. Are there any questions?
 
 General form of standardization
 
--   $Z\ or\ t = \frac{statistic-parameter}{s.e.(statistic)}$
+-   $Z\ or\ t = \frac{statistic-parameter}{se(statistic)}$
 
 Specific standardization for the mean
 
--   $Z\ or\ t = \frac{\bar{X}-\mu}{s.e.(\bar{X})}$
+-   $Z\ or\ t = \frac{\bar{X}-\mu}{se(\bar{X})}$
 
 ::: notes
 
@@ -638,15 +638,15 @@ Specific standardization for the mean
 ## Convert this to a confidence interval
 
 
--   $P[-t(\alpha/2; n-1) < \frac{\bar{X}-\mu}{s.e.(\bar{X})} < t(\alpha/2; n-1)] = 1-\alpha$
+-   $P[-t(\alpha/2; n-1) < \frac{\bar{X}-\mu}{se(\bar{X})} < t(\alpha/2; n-1)] = 1-\alpha$
 
--   $P[-t(\alpha/2; n-1)s.e.(\bar{X}) < \bar{X}-\mu < t(\alpha/2; n-1)s.e.(\bar{X})] = 1-\alpha$
+-   $P[-t(\alpha/2; n-1)se(\bar{X}) < \bar{X}-\mu < t(\alpha/2; n-1)se(\bar{X})] = 1-\alpha$
 
--   $P[\bar{X}-t(\alpha/2; n-1)s.e.(\bar{X}) < \mu < \bar{X} + t(\alpha/2; n-1)s.e.(\bar{X})] = 1-\alpha$
+-   $P[\bar{X}-t(\alpha/2; n-1)se(\bar{X}) < \mu < \bar{X} + t(\alpha/2; n-1)se(\bar{X})] = 1-\alpha$
 
 If n > 30 
 
--   $P[\bar{X}-Z(\alpha/2)s.e.(\bar{X}) < \mu < \bar{X} + Z(\alpha/2)s.e.(\bar{X})] \approx 1-\alpha$
+-   $P[\bar{X}-Z(\alpha/2)se(\bar{X}) < \mu < \bar{X} + Z(\alpha/2)se(\bar{X})] \approx 1-\alpha$
 
 ::: notes
 
@@ -656,34 +656,27 @@ If n > 30
 
 If n < 30, we have 1-$\alpha$ level of confidence that the population mean lies between
 
--   $\bar{X}-t(\alpha/2; n-1)s.e.(\bar{X})$ and 
--   $\bar{X}+t(\alpha/2; n-1)s.e.(\bar{X})$ 
+-   $\bar{X}-t(\alpha/2; n-1)se(\bar{X})$ and 
+-   $\bar{X}+t(\alpha/2; n-1)se(\bar{X})$ 
 
 If n > 30, we have 1-$\alpha$ level of confidence that the population mean lies between
 
--   $\bar{X}-Z(\alpha/2)s.e.(\bar{X})$ and 
--   $\bar{X}+Z(\alpha/2)s.e.(\bar{X})$
+-   $\bar{X}-Z(\alpha/2)se(\bar{X})$ and 
+-   $\bar{X}+Z(\alpha/2)se(\bar{X})$
 
 ::: notes
 The formula for the confidence interval for the population mean 
+:::
 
 ## Other forms of the confidence interval
 
 -   Simpler (too simple?)
-    -   $\bar{X}-2\ s.e.(\bar{X})$ and 
-    -   $\bar{X}+2\ s.e.(\bar{X})$ and 
+    -   $\bar{X}-2\ se(\bar{X})$ and 
+    -   $\bar{X}+2\ se(\bar{X})$ and 
 
 -   Use $t(\alpha/2; n-1)$ even if n > 30
-    -   $\bar{X}-2\ s.e.(\bar{X})$ and 
-    -   $\bar{X}+2\ s.e.(\bar{X})$ and 
+-   Do not use these alternate forms for your homework.
 
-## Example
-
-![Table 1 from Mondal 2023](../images/chatgpt-01.png){#fig-chat01}
-
-::: notes
-Add notes.
-:::
 
 ## 
 
@@ -703,10 +696,8 @@ This is Table 1 from the paper.
 
 ## Confidence interval for Ease Score
 
--   Results from Table 1 and paper
-    -   $\bar{X}=46.94,\ S = 8.23,\ n=14$
 -   Calculations
-    -   $s.e.(\bar{X})=\frac{8.23}{\sqrt{14}}=2.19956$
+    -   $se(\bar{X})=\frac{8.23}{\sqrt{14}}=2.19956$
     -   $t(0.025, 13) = 2.16$ 
     -   $46.94 - 2.16 \times 2.19956=42.18895$
     -   $46.94 + 2.16 \times 2.19956=51.69105$
@@ -718,10 +709,8 @@ The ease score represents ease of reading with larger values representing better
 
 ## Confidence interval for overall similarity
 
--   Results from Table 1 and paper
-    -   $\bar{X}=27.07,\ S = 11.46,\ n=14$
 -   Calculations
-    -   $s.e.(\bar{X})=\frac{11.46}{\sqrt{14}}=3.062814$
+    -   $se(\bar{X})=\frac{11.46}{\sqrt{14}}=3.062814$
     -   $t(0.025, 13) = 2.16$ 
     -   $27.07 - 2.16 \times 7.234762=20.45432$
     -   $27.07 + 2.16 \times 3.062814=33.68568$
@@ -733,7 +722,7 @@ The similarity score is used for plagiarism checks. A value of 15% or more is ta
 
 ## Effect sizes
 
--   Cohen's d = $\frac{\bar{X}-C}{s.e.(\bar{X})}$
+-   Cohen's d = $\frac{\bar{X}-C}{se(\bar{X})}$
 -   Useful for
     -   Systematic overviews
     -   Intermediate calculation in sample size formulas
@@ -793,29 +782,7 @@ Please be sure to skip past this documentation while importing the data.
 I want to show some SPSS analyses. The first relates to a dataset on baseballs.
 :::
 
-## BMI data dictionary (1/2)
-
-This file is included as part of the base package of R and was converted by Steve Simon to a text file. There are no details about who created the data set. The code for R is published under an open source license, and the datasets included with R are presumably covered by the same license.
-
-This is a tab delimited data file. There are 15 rows and 3 columns of data.
-
-::: notes
-Here is the first half of the data dictionary for the BMI data.
-:::
-
-## BMI data dictionary (1/2)
-
-The first variable is the sample number (1 to 15). The second variable is the weight of an adult female (inches). The third variable is the weight (pounds). The variable names are not included at the top of the data.
-
-This data dictionary was written by Steve Simon on 2023-09-10 and is placed in the public domain.
-
-Please be sure to skip past this documentation while importing the data.
-
-::: notes
-Here is the second half of the data dictionary for the BMI data.
-:::
-
-## Importing the baseball data
+## 
 
 ![SPSS import dialog box](../images/baseball-analysis-01.png){#fig-ball01}
 
@@ -831,9 +798,9 @@ Add note.
 Add note.
 :::
 
-## T-test output (1/3)
+## 
 
-![SPSS one-sample t-test output](../images/baseball-analysis-03.png){#fig-ball03}
+![SPSS one-sample t-test output (1/3)](../images/baseball-analysis-03.png){#fig-ball03}
 
 $\ $
 
@@ -845,7 +812,7 @@ Ask for some help to check the calculation for the standard error.
 
 ## Approximate confidence interval
 
--   Note that $s.e.(\bar{X}) \approx 0.007$
+-   Note that $se(\bar{X}) \approx 0.007$
     -  9.118 - 0.014 = 9.104
     -  9.118 + 0.014 = 9.132
     
@@ -853,9 +820,9 @@ Ask for some help to check the calculation for the standard error.
 You can get an approximate 95% confidence interval using the plus or minus two standard errors rule. The standard error is roughly 0.007. Two standard errors would be roughly 0.014. Subtracting and adding from the mean provides an approximate confidence interval of 9.104 to 9.132.
 :::
 
-## Importing the baseball data
+## 
 
-![SPSS import dialog box](../images/baseball-analysis-04.png){#fig-ball04}
+![SPSS one-sample t-test output (2/3)](../images/baseball-analysis-04.png){#fig-ball04}
 
 $\ $
 
@@ -874,9 +841,9 @@ Add note.
 -   Always round at the end.
     - We are 95% confidence that the population mean circumference is between 9.10 and 9.13.
 
-## Importing the baseball data
+## 
 
-![SPSS import dialog box](../images/baseball-analysis-05.png){#fig-ball05}
+![SPSS one-sample t-test output (3/3)](../images/baseball-analysis-05.png){#fig-ball05}
 
 Check that $\frac{9.11754-9.125}{0.049415}=-0.151$.
 
@@ -884,3 +851,112 @@ Check that $\frac{9.11754-9.125}{0.049415}=-0.151$.
 I am not a big fan of effect sizes, but I am in a minority perspective here. Life is too short to worry about Cohen's d versus the Hedges correction. Both indicate a small effect size (less than 0.2).
 :::
 
+## BMI data dictionary (1/2)
+
+This file is included as part of the base package of R and was converted by Steve Simon to a text file. There are no details about who created the data set. The code for R is published under an open source license, and the datasets included with R are presumably covered by the same license.
+
+This is a tab delimited data file. There are 15 rows and 3 columns of data.
+
+::: notes
+Here is the first half of the data dictionary for the BMI data.
+:::
+
+## BMI data dictionary (1/2)
+
+The first variable is the sample number (1 to 15). The second variable is the height of an adult female (inches). The third variable is the weight (pounds). The variable names are not included at the top of the data.
+
+This data dictionary was written by Steve Simon on 2023-09-10 and is placed in the public domain.
+
+Please be sure to skip past this documentation while importing the data.
+
+::: notes
+Here is the second half of the data dictionary for the BMI data.
+:::
+
+## 
+
+![SPSS data after importing](../images/bmi-analysis-01.png){#fig-bmi01}
+
+::: notes
+Add note.
+:::
+
+## 
+
+![SPSS data after variable name change](../images/bmi-analysis-02.png){#fig-bmi02}
+
+::: notes
+Add note.
+:::
+
+## Converting height to meters
+
+![SPSS dialog box for converting from inches to meters](../images/bmi-analysis-03.png){#fig-bmi03}
+
+::: notes
+Add note.
+:::
+
+## 
+
+![SPSS dialog box for converting from pounds to kilograms](../images/bmi-analysis-04.png){#fig-bmi04}
+
+::: notes
+Add note.
+:::
+
+## 
+
+![SPSS dialog box for BMI](../images/bmi-analysis-05.png){#fig-bmi05}
+
+::: notes
+Add note.
+:::
+
+## 
+
+Select Analyze | Compare Means and Proportions | One-sample T Test from the SPSS menu.
+
+![SPSS dialog box for one-sample t-test](../images/bmi-analysis-06.png){#fig-bmi06}
+
+::: notes
+Add note.
+:::
+
+## Output from a one-sample t-test (1/3)
+
+![SPSS output from one-sample t-test (1/3)](../images/bmi-analysis-07.png){#fig-bmi07}
+
+::: notes
+Add note.
+:::
+
+## 
+
+![SPSS output from one-sample t-test (2/3)](../images/bmi-analysis-08.png){#fig-bmi08}
+
+::: notes
+Add note.
+:::
+
+## 
+
+![SPSS output from one-sample t-test (3/3)](../images/bmi-analysis-09.png){#fig-bmi09}
+
+::: notes
+Add note.
+:::
+
+## Summary
+
+-   What have you learned?
+    -   Populations, samples, parameters, statistics
+    -   The null and alternative hypotheses
+    -   Decision rules, Type I and II errors
+    -   p-values and criticisms
+    -   Confidence intervals
+    -   SPSS examples
+    
+::: notes
+That's a lot that we just covered. Any questions?
+:::
