@@ -1,0 +1,144 @@
+---
+title: "Comments for MEDB 5501, Week 5"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: visual
+---
+
+## Bloat data
+
+```{}
+data_dictionary: diet.txt
+
+source:
+  This data file is part of the Data and 
+  Story library, an archive of various
+  data sets useful for teaching.
+  The entire archive is at
+  https://dasl.datadescription.com/
+
+description:
+  This data set shows side effects of specially
+  prepared diet crackers. A more detailed
+  description is available at
+  https://dasl.datadescription.com/datafile/diet/
+  
+```
+
+::: notes
+Here is the top third of the data dictionary for a file, diet.txt. It comes from the DASL repository.
+
+## Bloat data
+
+```{}
+download:
+  https://dasl.datadescription.com/download/data/3163
+  
+copyright:  
+  Unknown. You should be able to use this data for
+  individual educational purposes under the Fair Use
+  guidelines of U.S. copyright law.
+
+format: 
+  delimiter: tab
+  varnames: first row of data
+  missing-value-code: not needed
+  rows: 51
+  columns: 2
+```
+
+::: notes
+This is a tab delimited file with 51 rows and 2 columns.
+:::
+
+## Bloat data
+
+```{}
+vars:
+  Bloat:
+    label: Did the patient experience bloating?
+    format: string
+
+  Cracker:
+    label: Type of cracker
+    format: string
+```
+
+::: notes
+There are two variables, Bloat and Cracker. Both are strings.
+:::
+
+## 
+
+![SPSS data window](../images/diet-analysis-01.png){#fig-diet01}
+
+::: notes
+Here is what the first few rows of data show.
+:::
+
+## 
+
+![SPSS data window](../images/diet-analysis-02.png){#fig-diet02}
+
+::: notes
+Here is what the first few rows of data show.
+:::
+
+## 
+
+![SPSS data window](../images/diet-analysis-03.png){#fig-diet03}
+
+::: notes
+Here is what the first few rows of data show.
+:::
+
+## 
+
+![SPSS data window](../images/diet-analysis-04.png){#fig-diet04}
+
+::: notes
+Here is what the first few rows of data show.
+:::
+
+## 
+
+![SPSS data window](../images/diet-analysis-05.png){#fig-diet05}
+
+::: notes
+Here is what the first few rows of data show.
+:::
+
+## 
+
+![SPSS properties dialog box](../images/diet-analysis-06.png){#fig-diet06}
+
+::: notes
+This dialog box allows you tHere is what the first few rows of data show.
+:::
+
+## 
+
+![SPSS properties dialog box](../images/diet-analysis-07.png){#fig-diet07}
+
+::: notes
+This dialog box allows you to control the number of decimals displayed on the axes.
+:::
+
+## 
+
+![SPSS properties dialog box](../images/diet-analysis-08.png){#fig-diet08}
+
+::: notes
+This dialog box allows you to change the fill and border colors of the bars.
+:::
+
+## 
+
+![SPSS graph after modifications](../images/diet-analysis-09.png){#fig-diet09}
+
+::: notes
+Here is what the first few rows of data show.
+:::
+
