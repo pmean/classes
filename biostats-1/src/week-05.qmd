@@ -9,7 +9,7 @@ editor: visual
 
 ## Bloat data
 
-```{}
+```         
 data_dictionary: diet.txt
 
 source:
@@ -32,7 +32,7 @@ Here is the top third of the data dictionary for a file, diet.txt. It comes from
 
 ## Bloat data
 
-```{}
+```         
 download:
   https://dasl.datadescription.com/download/data/3163
   
@@ -55,7 +55,7 @@ This is a tab delimited file with 51 rows and 2 columns.
 
 ## Bloat data
 
-```{}
+```         
 vars:
   Bloat:
     label: Did the patient experience bloating?
@@ -80,34 +80,34 @@ Here is what the first few rows of data show.
 
 ## 
 
-![SPSS data window](../images/diet-analysis-02.png){#fig-diet02}
+![SPSS chart builder dialog box](../images/diet-analysis-02.png){#fig-diet02}
 
 ::: notes
-Here is what the first few rows of data show.
+To create any type of chart, select Graphs | Chart Builder from the SPSS menus. Then drag and drop the chart type.
 :::
 
 ## 
 
-![SPSS data window](../images/diet-analysis-03.png){#fig-diet03}
+![SPSS chart builder dialog box](../images/diet-analysis-03.png){#fig-diet03}
 
 ::: notes
-Here is what the first few rows of data show.
+Drag and drop the variables into the X-axis and Stack windows.
 :::
 
 ## 
 
-![SPSS data window](../images/diet-analysis-04.png){#fig-diet04}
+![SPSS output window](../images/diet-analysis-04.png){#fig-diet04}
 
 ::: notes
-Here is what the first few rows of data show.
+Here is the default graph produced by SPSS. Let's see what modifcations can be made.
 :::
 
 ## 
 
-![SPSS data window](../images/diet-analysis-05.png){#fig-diet05}
+![SPSS options menu](../images/diet-analysis-05.png){#fig-diet05}
 
 ::: notes
-Here is what the first few rows of data show.
+Select Options | Scale to 100% to use percentages rather than counts.
 :::
 
 ## 
@@ -115,7 +115,7 @@ Here is what the first few rows of data show.
 ![SPSS properties dialog box](../images/diet-analysis-06.png){#fig-diet06}
 
 ::: notes
-This dialog box allows you tHere is what the first few rows of data show.
+This dialog box allows you to change the order of the bars.
 :::
 
 ## 
@@ -142,3 +142,52 @@ This dialog box allows you to change the fill and border colors of the bars.
 Here is what the first few rows of data show.
 :::
 
+## Titanic data
+
+```{}
+data_dictionary: titanic.txt
+
+description:
+  Mortality among passengers of the Titanic
+  http://www.statsci.org/data/general/titanic.html
+
+download:
+  http://www.statsci.org/data/general/titanic.txt
+  http://www.pmean.com/15/images/day2titanic.txt
+
+vars:
+  Name:
+    label: Passenger name
+  
+```
+
+::: notes
+Here is the data dictionary for the titanic data.
+:::
+
+## Titanic data
+
+```{}
+  PClass:
+    label: Passenger class
+    scale: ordinal text categories
+    values: 1st, 2nd, 3rd
+    
+  Age:
+    unit: years
+    scale: positive real
+    
+  Sex:
+    scale: nominal text categories
+    values: female, male
+
+  Survived:
+    scale: binary integer categories
+    values:
+      yes: 1
+      no: 0 
+```
+
+::: notes
+Here is the data dictionary for the titanic data.
+:::
