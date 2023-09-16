@@ -139,7 +139,7 @@ This dialog box allows you to change the fill and border colors of the bars.
 ![SPSS graph after modifications](../images/diet-analysis-09.png){#fig-diet09}
 
 ::: notes
-Here is what the first few rows of data show.
+Here is the modified bar chart.
 :::
 
 ## Titanic data
@@ -154,20 +154,19 @@ description:
 download:
   http://www.statsci.org/data/general/titanic.txt
   http://www.pmean.com/15/images/day2titanic.txt
-
-vars:
-  Name:
-    label: Passenger name
-  
 ```
 
 ::: notes
-Here is the data dictionary for the titanic data.
+Ths is the data dictionary for the titanic data. You can find a nice description of the data at the website listed here.
 :::
 
 ## Titanic data
 
 ```{}
+vars:
+  Name:
+    label: Passenger name
+  
   PClass:
     label: Passenger class
     scale: ordinal text categories
@@ -176,7 +175,15 @@ Here is the data dictionary for the titanic data.
   Age:
     unit: years
     scale: positive real
-    
+```
+
+::: notes
+This shows details for the first three variables in the titanic data set.
+:::
+
+## Titanic data
+
+```{}
   Sex:
     scale: nominal text categories
     values: female, male
@@ -189,5 +196,46 @@ Here is the data dictionary for the titanic data.
 ```
 
 ::: notes
-Here is the data dictionary for the titanic data.
+This is information on the remaining two variables.
 :::
+
+## 
+
+![SPSS](../images/titanic-analysis-01.png){#fig-titanic01}
+
+::: notes
+Add note.
+:::
+
+## 
+
+![SPSS](../images/titanic-analysis-02.png){#fig-titanic02}
+
+::: notes
+Add note.
+:::
+
+## 
+
+![SPSS](../images/titanic-analysis-03.png){#fig-titanic03}
+
+::: notes
+Add note.
+:::
+
+## 
+
+![SPSS](../images/titanic-analysis-04.png){#fig-titanic04}
+
+::: notes
+Add note.
+:::
+
+## 
+
+![SPSS](../images/titanic-analysis-05.png){#fig-titanic05}
+
+::: notes
+Add note.
+:::
+
