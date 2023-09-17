@@ -15,20 +15,21 @@ vars:
   
   PClass:
     label: Passenger class
-    scale: ordinal text categories
+    scale: ordinal
     values: 1st, 2nd, 3rd
     
   Age:
     unit: years
-    scale: positive real
+    scale: positive discrete
+    missing: NA
     
   Sex:
-    scale: nominal text categories
+    scale: binary
     values: female, male
 
   Survived:
-    scale: binary integer categories
+    scale: binary
     values:
-      yes: 1
-      no: 0 
+      1: yes
+      0: no
 ---
