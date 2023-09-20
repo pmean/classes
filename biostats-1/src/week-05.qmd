@@ -9,7 +9,7 @@ editor: visual
 
 ## Diet data dictionary, 1 of 3
 
-```{}
+```         
 data_dictionary: diet.txt
 
 source:
@@ -33,7 +33,7 @@ Here is the top third of the data dictionary for a file, diet.txt. It comes from
 
 ## Diet data dictionary, 2 of 3
 
-```{}         
+```         
 download:
   https://dasl.datadescription.com/download/data/3163
   
@@ -56,7 +56,7 @@ This is a tab delimited file with 51 rows and 2 columns.
 
 ## Diet data dictionary, 3 of 3
 
-```{}         
+```         
 vars:
   Bloat:
     label: Did the patient experience bloating?
@@ -84,7 +84,7 @@ Here is what the first few rows of data show.
 ![SPSS Chart Builder, stacked bar chart, before adding variables](../images/diet-analysis-02.png){#fig-diet02}
 
 ::: notes
-To create any type of chart, select Graphs | Chart Builder from the SPSS menus. Then drag and drop the chart type. Here, you see the stacked bar chart, represented by the icon in the first row, third from the left.
+To create any type of chart, select Graphs \| Chart Builder from the SPSS menus. Then drag and drop the chart type. Here, you see the stacked bar chart, represented by the icon in the first row, third from the left.
 :::
 
 ## 
@@ -108,7 +108,7 @@ Here is the default graph produced by SPSS. Let's see what modifications can be 
 ![SPSS Properties dialog box, options menu](../images/diet-analysis-05.png){#fig-diet05}
 
 ::: notes
-Select Options | Scale to 100% to use percentages rather than counts.
+Select Options \| Scale to 100% to use percentages rather than counts.
 :::
 
 ## 
@@ -145,18 +145,18 @@ Here is the modified bar chart.
 
 ## Break 1
 
-+ What have you learned?
-  + Creating and modifying stacked bar chart
-+ What's coming next
-  + Titanic data, stacked bar chart
-  
+-   What have you learned?
+    -   Creating and modifying stacked bar chart
+-   What's coming next
+    -   Titanic data, stacked bar chart
+
 ::: notes
 Time for a break. Any questions?
 :::
 
 ## Titanic data dictionary, 1 of 3
 
-```{}
+```         
 data_dictionary: titanic.txt
 
 description:
@@ -174,7 +174,7 @@ Ths is the data dictionary for the titanic data. You can find a nice description
 
 ## Titanic data dictionary, 2 of 3
 
-```{}
+```         
 vars:
   Name:
     label: Passenger name
@@ -196,7 +196,7 @@ This shows details for the first three variables in the titanic data set.
 
 ## Titanic data dictionary, 3 of 3
 
-```{}
+```         
   Sex:
     scale: nominal text categories
     values: female, male
@@ -225,7 +225,7 @@ This is a listing of the first few rows of the data.
 ![SPSS Chart Builder, stacked bar chart](../images/titanic-analysis-02.png){#fig-titanic02}
 
 ::: notes
-To create a stacked bar chart, select Graph | Chart Builder from the SPSS menu. Drag and drop the stacked bar chart icon (first row, third from the left). Drag and drop one categorical variable in the x-axis box and one in the stack box.
+To create a stacked bar chart, select Graph \| Chart Builder from the SPSS menu. Drag and drop the stacked bar chart icon (first row, third from the left). Drag and drop one categorical variable in the x-axis box and one in the stack box.
 :::
 
 ## 
@@ -256,18 +256,18 @@ This is what the final plot looks like. I'm not thrilled with this graph and mig
 
 ## Break 2
 
-+ What have you learned?
-  + Titanic data, stacked bar chart
-+ What's coming next
-  + Housing data, scatterplot
-  
+-   What have you learned?
+    -   Titanic data, stacked bar chart
+-   What's coming next
+    -   Housing data, scatterplot
+
 ::: notes
 Time for a break. Any questions?
 :::
 
 ## Housing data dictionary, 1 of 5
 
-```{}
+```         
 source: 
   This file was found originally at a website 
   DASL (Data And Story Library) that is no 
@@ -292,7 +292,7 @@ Sales from 1993 are now three decades old, so some of the details may seem out o
 
 ## Housing data dictionary, 2 of 5
 
-```{}
+```         
 copyright:  
     Unknown. You should be able to use this data for
   individual educational purposes under the Fair Use
@@ -312,7 +312,7 @@ This data uses an asterisk to denote missing values. This will cause a bit of a 
 
 ## Housing data dictionary, 3 of 5
 
-```{}
+```         
 vars:
   Price:
     label: Selling price
@@ -333,7 +333,7 @@ Here are the first three variables in the data. The key variable in all my analy
 
 ## Housing data dictionary, 4 of 5
 
-```{}
+```         
   NumberFeatures:
     label: 
       Home features (dishwasher, refrigerator,
@@ -356,7 +356,7 @@ This data is from 1993, and some of the features that were optional then are pre
 
 ## Housing data dictionary, 5 of 5
 
-```{}
+```         
   CustomBuild:
     label: Custom built?
     values:
@@ -446,11 +446,11 @@ Circles are good markers, but I prefer to see behind the color rather than havin
 
 ## Break 3
 
-+ What have you learned?
-  + Housing data, scatterplot
-+ What's coming next
-  + Housing data, boxplot
-  
+-   What have you learned?
+    -   Housing data, scatterplot
+-   What's coming next
+    -   Housing data, boxplot
+
 ::: notes
 Time for a break. Any questions?
 :::
@@ -515,9 +515,9 @@ This is what the modified boxplot looks like. There are a few things I do not li
 
 ## Alternatives to the boxplot
 
-+ Bar chart or line chart
-  + Should you include error bars?
-+ Scatterplot
+-   Bar chart or line chart
+    -   Should you include error bars?
+-   Scatterplot
 
 ::: notes
 Although I do not like bar charts or line charts in place of boxplots, they are popular. Sometimes I will grudgingly admit that they work well. They are sometimes preferred to clustered boxplots, which you will see a bit later.
@@ -541,11 +541,11 @@ Number of features could be compared using a scatterplot rather than a boxplot. 
 
 ## Break 4
 
-+ What have you learned?
-  + Housing data, boxplot
-+ What's coming next
-  + Adding a third variable
-  
+-   What have you learned?
+    -   Housing data, boxplot
+-   What's coming next
+    -   Adding a third variable
+
 ::: notes
 Time for a break. Any questions?
 :::
@@ -579,7 +579,7 @@ You can add a third variable using color. Drag and drop the icon in the first ro
 ![SPSS output](../images/housing-analysis-10.png){#fig-housing10}
 
 ::: notes
-This is what the plot looks like with the default options. It is  not too bad, but could use some improvement. The trend between square footage and price is similar for the custom built and regular houses, though the custom built houses are a bit more expensive.
+This is what the plot looks like with the default options. It is not too bad, but could use some improvement. The trend between square footage and price is similar for the custom built and regular houses, though the custom built houses are a bit more expensive.
 :::
 
 ## 
@@ -600,30 +600,30 @@ Add note.
 
 ## Break 5
 
-+ What have you learned?
-  + Adding a third variable
-+ What's coming next
-  + Best practices for visualization
-  
+-   What have you learned?
+    -   Adding a third variable
+-   What's coming next
+    -   Best practices for visualization
+
 ::: notes
 Time for a break. Any questions?
 :::
 
 ## General purpose of visualization
 
-+ Why use a graph?
-  + Table look-up
-  + Comparison
-  + Pattern recognition
-+ What makes a good graph?
-  + Speed
-  + Accuracy
-  
+-   Why use a graph?
+    -   Table look-up
+    -   Comparison
+    -   Pattern recognition
+-   What makes a good graph?
+    -   Speed
+    -   Accuracy
+
 ::: notes
 There are three basic things that people use graphs for.
 :::
 
-##
+## 
 
 ![What percentage of second class passengers died?](../images/titanic-analysis-05.png){#fig-titanic05}
 
@@ -631,7 +631,7 @@ There are three basic things that people use graphs for.
 An example of table look-up is shown in this bar graph.
 :::
 
-##
+## 
 
 ![How much worse was the mortality rate among third class passengers?](../images/titanic-analysis-05.png){#fig-titanic05}
 
@@ -639,7 +639,7 @@ An example of table look-up is shown in this bar graph.
 An example of comparison is also shown in this bar graph.
 :::
 
-##
+## 
 
 ![How does passenger class affect mortality rates?](../images/titanic-analysis-05.png){#fig-titanic05}
 
@@ -649,10 +649,10 @@ You can also look for patterns in this graph.
 
 ## Use proximity to your advantage
 
-+ Closeness makes comparisons faster, more accurate
-  + Comparisons of greatest interest
-  + Most difficult comparisons
-+ Place most important bar/boxplot closest to Y-axis
+-   Closeness makes comparisons faster, more accurate
+    -   Comparisons of greatest interest
+    -   Most difficult comparisons
+-   Place most important bar/boxplot closest to Y-axis
 
 ::: notes
 Add note.
@@ -670,26 +670,29 @@ When you are planing the order of the stacked bars, keep in mind that the best l
 
 ## 
 
-![Comparisons in pie charts are difficult](../images/pie-chart.jpg){#fig-pie}
+![Comparisons in pie charts are difficult](../images/pie-chart.jpg){#fig-pie} 
+
 ::: notes
 Pie charts are controversial. Many researchers dislike them because comparisons among the wedges are difficult. It is never a horizontal or vertical projection.
 
-I generally avoid pie charts. They are not a terrible choice, but there is often a better choice.
+I generally avoid pie charts. They are not a terrible choice, but there is often a better choice. 
 :::
 
 ## Two versus many colors
 
++ See webpage
+
 ## Colors for nominal versus ordinal
 
-## Markers and size don't mix
++ See webpage
 
 ## Summary
 
-+ Stacked bar chart
-+ Scatterplot
-+ Boxplot
-+ Adding a third variable
-+ Best practices
+-   Stacked bar chart
+-   Scatterplot
+-   Boxplot
+-   Adding a third variable
+-   Best practices
 
 ::: notes
 You've seen a lot of material. Are there any questions?
