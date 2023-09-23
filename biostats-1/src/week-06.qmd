@@ -1,0 +1,161 @@
+---
+title: "Comments for MEDB 5501, Week 6"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: visual
+---
+
+## Assessing normality
+
++ Problems caused by non-normality
+  + Poor confidence intervals, hypothesis tests
+    + Too much imprecision
+    + Poor coverage probability
+      + Especially for one tailed tests
+  + Inability to extrapolate
++ What about the Central Limit Theorem?
+
+::: notes
+Sometimes, I think that researchers obsess too much about non-normality, but in fairness to them, it is an important issue. If your data does not follow a bell shaped curve, then several problems could happen.
+
+First, you might see a greater degree of imprecision, reflected in very wide confidence intervals and loss of statistical power.
+
+Second, you might have poor coverage probability. The 95% confidence interval might only reprent a 92% confidence level. The Type I error rate might be greater than 5%.
+
+Third, and this point is not emphasized enough, is that non-normal data makes it difficult for you to extrapolate to future observations. Prediction of future events is a big part of Statistics. It is difficult even with normal data and becomes much more difficult with non-normal data.
+
+Yes, you might say, but doesn't the Central Limit Theorem help us out? Well, yes, if the sample size is large, but it only helps with assuring accurate confidence levels and good control of the Type I error rate. Non-normal data will still often produce intervals that are too wide and tests that have too little power.
+:::
+
+## How to handle non-normality
+
++ Ignore it
+  + Central Limit Theorem
++ Transform your data
++ Use alternatives
+  + Nonparametric tests (covered in a later module)
+  + Bootstrap (covered in a later module)
+  + Randomization tests (not covered in this class)
+
+::: notes
+Yes, you might say, but doesn't the Central Limit Theorem help us out? Well, yes, but it only helps with assuring accurate confidence levels and good control of the Type I error rate. Non-normal data will still often produce intervals that are too wide and tests that have too little power.
+
+Still, there often is benefit in not worrying so much about non-normality. If your sample size is large and the deviations from normality are minor, don't let this keep you up at night.
+
+Even so, there are some benefits to addressing non-normality. Transformations, which I will cover in just a bit, can often help out tremendously. There are also alternatives to the simple tests using a sample mean: nonparametric tests and the bootstrap. I will cover those in a later module. There are also randomization tests, which I don't think are covered. I've given a talk on randomization tests and I have a few webpages that talk about this topic.
+:::
+
+```{r}
+suppressMessages(suppressWarnings(library(ggplot2)))
+n <- 100
+m <- 1
+
+hn <- function(n, m) {
+  ymax <- n*(pnorm(m)-pnorm(-m))
+  x <- rnorm(n)
+  ggplot(data.frame(x), aes(x)) +
+    geom_histogram(
+        binwidth=m,
+        center=0,
+        fill="white",
+        color="black") + 
+    expand_limits(x=c(-6, 6)) +
+    expand_limits(y=ymax) +
+    scale_x_continuous(breaks=-6:6) +
+    scale_y_continuous(name=NULL, labels=NULL)
+}
+```
+
+## Normal histogram with n=`r format(n, scientific=FALSE, big.mark=",")`
+
+```{r}
+hn(n, m)
+n <- 10*n
+m <- m/2
+```
+
+## Normal histogram with n=`r format(n, scientific=FALSE, big.mark=",")`
+
+```{r}
+hn(n, m)
+n <- 10*n
+m <- m/2
+```
+
+## Normal histogram with n=`r format(n, scientific=FALSE, big.mark=",")`
+
+```{r}
+hn(n, m)
+n <- 10*n
+m <- m/2
+```
+
+## Normal histogram with n=`r format(n, scientific=FALSE, big.mark=",")`
+
+```{r}
+hn(n, m)
+n <- 10*n
+m <- m/2
+```
+
+## Normal histogram with n=`r format(n, scientific=FALSE, big.mark=",")`
+
+```{r}
+hn(n, m)
+n <- 10*n
+m <- m/2
+```
+
+```{r}
+dn <- function(mu, sigma) {
+  x <- seq(-6, 6, length=1000)
+  y <- dnorm(x, mu, sigma)
+  ymax <- dnorm(0, 0, 0.5)
+  ggplot(data.frame(x, y), aes(x, y)) +
+    geom_line() +
+    expand_limits(y=ymax) +
+    scale_x_continuous(breaks=-6:6) +
+    scale_y_continuous(name=NULL, labels=NULL)
+}
+mu <- 0
+sigma <- 1
+```
+
+## Normal distribution (n=infinity)
+
+```{r}
+dn(mu, sigma)
+mu <- 2
+```
+
+## N(`r mu`, `r sigma`)
+
+```{r}
+dn(mu, sigma)
+mu <- -1
+```
+
+## N(`r mu`, `r sigma`)
+
+```{r}
+dn(mu, sigma)
+mu <- 0
+sigma=2
+```
+
+## N(`r mu`, `r sigma`)
+
+```{r}
+dn(mu, sigma)
+mu <- 0
+sigma=0.5
+```
+
+## N(`r mu`, `r sigma`)
+
+```{r}
+dn(mu, sigma)
+```
+
