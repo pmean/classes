@@ -221,9 +221,145 @@ Recognize this pattern right away because it is the most common deviation from n
 
 ## Normal probability plot
 
-+ Compare the percentiles of the data to comparable percentiles of the normal distribution
++ Compare  data to evenly spaced percentiles of the normal distribution
 + Example with n=4
   + Compare smallest value with $Z_{0.2}$
   + Compare next value with $Z_{0.4}$
   + Compare next value with $Z_{0.6}$
   + Compare largest value with $Z_{0.8}$
++ No best definition for evenly spaced
+  + 12.5, 37.5, 62.5, 87.5, for example
+  
+::: notes
+The normal probability plot is an excellent way to examine whether data is normally distributed. Compare each value to the corresponding percentile of a normal distribution.
+
+For a simple example with four data points, compare your values to the 20th, 40th, 60th, and 80th percentiles.
+
+There are alternative ways to define evenly spaced. They might lead to slightly different plots, but they are not worth fussing over. Any definition of evenly spaced works just fine.
+:::
+
+## Histogram for right skewed data
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](../images/histograms-narrow-0.png)
+![](../images/qq-plots-0.png)
+:::
+
+::: {.column width="50%"}
+![](../images/histograms-wide-0.png)
+
+![](../images/skew-kurt-0.png)
+:::
+
+::::
+
+::: notes
+Add note.
+:::
+
+## Histogram for left skewed data
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](../images/histograms-narrow-1.png)
+![](../images/qq-plots-2.png)
+:::
+
+::: {.column width="50%"}
+![](../images/histograms-wide-1.png)
+
+![](../images/skew-kurt-1.png)
+:::
+
+::::
+
+::: notes
+Add note.
+:::
+
+## Histogram for heavy tailed data
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](../images/histograms-narrow-2.png)
+![](../images/qq-plots-4.png)
+:::
+
+::: {.column width="50%"}
+![](../images/histograms-wide-2.png)
+
+![](../images/skew-kurt-2.png)
+:::
+
+::::
+
+::: notes
+Add note.
+:::
+
+## Histogram for light tailed data
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](../images/histograms-narrow-3.png)
+![](../images/qq-plots-6.png)
+:::
+
+::: {.column width="50%"}
+![](../images/histograms-wide-3.png)
+
+![](../images/skew-kurt-3.png)
+:::
+
+::::
+
+::: notes
+Add note.
+:::
+
+## Histogram for bimodal data
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](../images/histograms-narrow-4.png)
+![](../images/qq-plots-8.png)
+:::
+
+::: {.column width="50%"}
+![](../images/histograms-wide-4.png)
+
+![](../images/skew-kurt-4.png)
+:::
+
+::::
+
+::: notes
+Add note.
+:::
+
+## Histogram for normal data
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](../images/histograms-narrow-5.png)
+![](../images/qq-plots-10.png)
+:::
+
+::: {.column width="50%"}
+![](../images/histograms-wide-5.png)
+
+![](../images/skew-kurt-5.png)
+:::
+
+::::
+
+::: notes
+Add note.
+:::
