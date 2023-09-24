@@ -632,11 +632,9 @@ Specific standardization for the mean
 -   $Z\ or\ t = \frac{\bar{X}-\mu}{se(\bar{X})}$
 
 ::: notes
-
 :::
 
 ## Convert this to a confidence interval
-
 
 -   $P[-t(\alpha/2; n-1) < \frac{\bar{X}-\mu}{se(\bar{X})} < t(\alpha/2; n-1)] = 1-\alpha$
 
@@ -644,39 +642,36 @@ Specific standardization for the mean
 
 -   $P[\bar{X}-t(\alpha/2; n-1)se(\bar{X}) < \mu < \bar{X} + t(\alpha/2; n-1)se(\bar{X})] = 1-\alpha$
 
-If n > 30 
+If n \> 30
 
 -   $P[\bar{X}-Z(\alpha/2)se(\bar{X}) < \mu < \bar{X} + Z(\alpha/2)se(\bar{X})] \approx 1-\alpha$
 
 ::: notes
-
 :::
 
 ## Intepretation
 
-If n < 30, we have 1-$\alpha$ level of confidence that the population mean lies between
+If n \< 30, we have 1-$\alpha$ level of confidence that the population mean lies between
 
--   $\bar{X}-t(\alpha/2; n-1)se(\bar{X})$ and 
--   $\bar{X}+t(\alpha/2; n-1)se(\bar{X})$ 
+-   $\bar{X}-t(\alpha/2; n-1)se(\bar{X})$ and
+-   $\bar{X}+t(\alpha/2; n-1)se(\bar{X})$
 
-If n > 30, we have 1-$\alpha$ level of confidence that the population mean lies between
+If n \> 30, we have 1-$\alpha$ level of confidence that the population mean lies between
 
--   $\bar{X}-Z(\alpha/2)se(\bar{X})$ and 
+-   $\bar{X}-Z(\alpha/2)se(\bar{X})$ and
 -   $\bar{X}+Z(\alpha/2)se(\bar{X})$
 
 ::: notes
-The formula for the confidence interval for the population mean 
+The formula for the confidence interval for the population mean
 :::
 
 ## Other forms of the confidence interval
 
 -   Simpler (too simple?)
-    -   $\bar{X}-2\ se(\bar{X})$ and 
-    -   $\bar{X}+2\ se(\bar{X})$ and 
-
--   Use $t(\alpha/2; n-1)$ even if n > 30
+    -   $\bar{X}-2\ se(\bar{X})$ and
+    -   $\bar{X}+2\ se(\bar{X})$ and
+-   Use $t(\alpha/2; n-1)$ even if n \> 30
 -   Do not use these alternate forms for your homework.
-
 
 ## 
 
@@ -698,7 +693,7 @@ This is Table 1 from the paper.
 
 -   Calculations
     -   $se(\bar{X})=\frac{8.23}{\sqrt{14}}=2.19956$
-    -   $t(0.025, 13) = 2.16$ 
+    -   $t(0.025, 13) = 2.16$
     -   $46.94 - 2.16 \times 2.19956=42.18895$
     -   $46.94 + 2.16 \times 2.19956=51.69105$
 -   We are 95% confident that the population mean reading age of ChatGPT education guides is between 42 and 52.
@@ -711,7 +706,7 @@ The ease score represents ease of reading with larger values representing better
 
 -   Calculations
     -   $se(\bar{X})=\frac{11.46}{\sqrt{14}}=3.062814$
-    -   $t(0.025, 13) = 2.16$ 
+    -   $t(0.025, 13) = 2.16$
     -   $27.07 - 2.16 \times 7.234762=20.45432$
     -   $27.07 + 2.16 \times 3.062814=33.68568$
 -   We are 95% confident that the population mean similarity is between 20% and 34%.
@@ -729,7 +724,7 @@ The similarity score is used for plagiarism checks. A value of 15% or more is ta
 -   Critcisms
     -   Clinical relevance requires units of measure
     -   Small, medium, large are arbitrary labels
-    
+
 ::: notes
 The effect size for a sample mean is calculated by subtracting the hypothesized mean, C, from the sample mean and dividing by the standard error of the mean.
 
@@ -747,8 +742,7 @@ Even though I dislike effect sizes, I feel the obligation to teach them because 
 ## Break
 
 -   What have you just learned?
-    -   Review confidence intervals
-testing
+    -   Review confidence intervals testing
 -   What is coming next?
     -   SPSS examples
 
@@ -802,7 +796,7 @@ Add note.
 
 ![SPSS one-sample t-test output (1/3)](../images/baseball-analysis-03.png){#fig-ball03}
 
-$\ $
+$\$
 
 Check that $\frac{0.049415}{\sqrt{50}}=0.006988$.
 
@@ -813,9 +807,9 @@ Ask for some help to check the calculation for the standard error.
 ## Approximate confidence interval
 
 -   Note that $se(\bar{X}) \approx 0.007$
-    -  9.118 - 0.014 = 9.104
-    -  9.118 + 0.014 = 9.132
-    
+    -   9.118 - 0.014 = 9.104
+    -   9.118 + 0.014 = 9.132
+
 ::: notes
 You can get an approximate 95% confidence interval using the plus or minus two standard errors rule. The standard error is roughly 0.007. Two standard errors would be roughly 0.014. Subtracting and adding from the mean provides an approximate confidence interval of 9.104 to 9.132.
 :::
@@ -824,7 +818,7 @@ You can get an approximate 95% confidence interval using the plus or minus two s
 
 ![SPSS one-sample t-test output (2/3)](../images/baseball-analysis-04.png){#fig-ball04}
 
-$\ $
+$\$
 
 Check that $\frac{9.11754-9.125}{0.006988}=-1.068$.
 
@@ -834,12 +828,12 @@ Add note.
 
 ## Converting the SPSS confidence interval
 
--   We are 95% confident that $\mu-9.125$ is between -.02150 and 0.00658. 
+-   We are 95% confident that $\mu-9.125$ is between -.02150 and 0.00658.
     -   Add 9.125 to both sides.
-    -   -0.02150 + 9.125 = 9.10350 
+    -   -0.02150 + 9.125 = 9.10350
     -   0.00658 + 9.125 = 9.13158
 -   Always round at the end.
-    - We are 95% confidence that the population mean circumference is between 9.10 and 9.13.
+    -   We are 95% confidence that the population mean circumference is between 9.10 and 9.13.
 
 ## 
 
@@ -915,7 +909,7 @@ Add note.
 
 ## 
 
-Select Analyze | Compare Means and Proportions | One-sample T Test from the SPSS menu.
+Select Analyze \| Compare Means and Proportions \| One-sample T Test from the SPSS menu.
 
 ![SPSS dialog box for one-sample t-test](../images/bmi-analysis-06.png){#fig-bmi06}
 
@@ -956,7 +950,7 @@ Add note.
     -   p-values and criticisms
     -   Confidence intervals
     -   SPSS examples
-    
+
 ::: notes
 That's a lot that we just covered. Any questions?
 :::
