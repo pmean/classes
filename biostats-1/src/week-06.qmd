@@ -49,9 +49,6 @@ Even so, there are some benefits to addressing non-normality. Transformations, w
 
 ```{r}
 suppressMessages(suppressWarnings(library(ggplot2)))
-n <- 100
-m <- 1
-
 hn <- function(n, m) {
   ymax <- n*(pnorm(m)-pnorm(-m))
   x <- rnorm(n)
@@ -66,7 +63,21 @@ hn <- function(n, m) {
     scale_x_continuous(breaks=-6:6) +
     scale_y_continuous(name=NULL, labels=NULL)
 }
+n <- 100
+m <- 1
 ```
+
+## Normal histogram with n=`r format(n, scientific=FALSE, big.mark=",")`
+
+```{r}
+hn(n, m)
+n <- 10*n
+m <- m/2
+```
+
+::: notes
+I'm going to show a sequence of histograms where the sample size increases and the width of the bars simultaneously decreases.
+:::
 
 ## Normal histogram with n=`r format(n, scientific=FALSE, big.mark=",")`
 
@@ -100,21 +111,18 @@ n <- 10*n
 m <- m/2
 ```
 
-## Normal histogram with n=`r format(n, scientific=FALSE, big.mark=",")`
-
 ```{r}
-hn(n, m)
-n <- 10*n
-m <- m/2
-```
-
-```{r}
-dn <- function(mu, sigma) {
+dn <- function(mu, sigma, k=2000) {
+  # A gamma with a large shape parameter is almost
+  # identical to a normal distribution.
   x <- seq(-6, 6, length=1000)
   y <- dnorm(x, mu, sigma)
+  y <- dgamma(x-mu+sqrt(k)*sigma, k, sqrt(k)/sigma)
+  z <- dnorm(x, 0, 1)
   ymax <- dnorm(0, 0, 0.5)
-  ggplot(data.frame(x, y), aes(x, y)) +
-    geom_line() +
+  ggplot(data.frame(x, y, z), aes(x, z)) +
+    geom_line(color="gray", linewidth=1.5) +
+    geom_line(aes(x, y), color="black", linewidth=1.5) +
     expand_limits(y=ymax) +
     scale_x_continuous(breaks=-6:6) +
     scale_y_continuous(name=NULL, labels=NULL)
@@ -130,14 +138,28 @@ dn(mu, sigma)
 mu <- 2
 ```
 
-## N(`r mu`, `r sigma`)
+::: notes
+It's impossible to show an infinite number of bars with zero width, but if you could, it would look like this.
+
+This is the curve that you see in your text box and many other sources. It is a theoretical curve becuase
+
+(a) it represents a mathematical limit, and 
+
+(b) no reall world data will ever match the smoothness and symmetry that you see here. Some data sets do come close, though.
+
+This curve is for the standard normal distribution, a distribution with mu=0 and sigma=1. There are other distributions, which I will show in the upcoming slides.
+:::
+
+## Normal(`r mu`, `r sigma`)
 
 ```{r}
 dn(mu, sigma)
 mu <- -1
 ```
 
-## N(`r mu`, `r sigma`)
+
+
+## Normal(`r mu`, `r sigma`)
 
 ```{r}
 dn(mu, sigma)
@@ -145,7 +167,7 @@ mu <- 0
 sigma=2
 ```
 
-## N(`r mu`, `r sigma`)
+## Normal(`r mu`, `r sigma`)
 
 ```{r}
 dn(mu, sigma)
@@ -153,9 +175,55 @@ mu <- 0
 sigma=0.5
 ```
 
-## N(`r mu`, `r sigma`)
+## Normal(`r mu`, `r sigma`)
 
 ```{r}
 dn(mu, sigma)
 ```
 
+::: notes
+You can stretch of squeeze the normal curve, you can shift it to the left or to the right, but it still maintains a characteristic shape.
+:::
+
+## Skewed right
+
+```{r}
+mu <- 0
+sigma <- 1
+dn(mu, sigma, k=5)
+```
+
+::: notes
+Here's an example of a distribution that is skewed to the right. I have scaled this distribution so that the mean is zero and the standard deviation is one.
+
+There are three key features for a skewed right distribution.
+
+First, the chances of seeing an outlier on the low end (more than two standard deviations below the mean) is less for a skewed right distribution. Skewed right distributions almost never produce outliers on the low end.
+
+Second, the chances of seeing an outlier on the high end (more than two standard deviations above the mean) is greater for a skewed right distribution.
+
+Third, the probability of any value being less than the mean is a bit more than 50%. That's because the outliers on the high end of this distribution tend to have an undue influence on the mean, making it bigger than the bulk of the data.
+:::
+
+## Right skewness is characterized by the tails of the distribution
+
++ Heavy right tail
+  + Greater tendency to produce extreme values on the right
++ Light left tail
+  + Lesser tendency to produce extreme values on the left
++ Right skewness is the most common type of non-normality
+
+::: notes
+A right skewed distribution means a heavy tail on the right and a light tail on the left. A heavy right tail means lots of probability associated with extreme values on the right (the high end). A light left tail means much less probability associated with extreme values on the left (the low end).
+
+Recognize this pattern right away because it is the most common deviation from normality.
+:::
+
+## Normal probability plot
+
++ Compare the percentiles of the data to comparable percentiles of the normal distribution
++ Example with n=4
+  + Compare smallest value with $Z_{0.2}$
+  + Compare next value with $Z_{0.4}$
+  + Compare next value with $Z_{0.6}$
+  + Compare largest value with $Z_{0.8}$
