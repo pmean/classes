@@ -238,7 +238,7 @@ For a simple example with four data points, compare your values to the 20th, 40t
 There are alternative ways to define evenly spaced. They might lead to slightly different plots, but they are not worth fussing over. Any definition of evenly spaced works just fine.
 :::
 
-## Histogram for right skewed data
+## Right skewed data
 
 :::: {.columns}
 
@@ -256,10 +256,10 @@ There are alternative ways to define evenly spaced. They might lead to slightly 
 ::::
 
 ::: notes
-Add note.
+Here is some artificial data the has a right skew.
 :::
 
-## Histogram for left skewed data
+## Left skewed data
 
 :::: {.columns}
 
@@ -277,10 +277,10 @@ Add note.
 ::::
 
 ::: notes
-Add note.
+It is less common, but sometimes you may see left skewed data. This is heavy tailed on the left and light tail on the right. This means that if you see outliers, they tend to appear on the left (the low end).
 :::
 
-## Histogram for heavy tailed data
+## Heavy tailed data
 
 :::: {.columns}
 
@@ -298,10 +298,10 @@ Add note.
 ::::
 
 ::: notes
-Add note.
+Sometimes you see an excess of extreme values on both ends. This is a heavy tail on the left and a heavy tail on the right.
 :::
 
-## Histogram for light tailed data
+## Light tailed data
 
 :::: {.columns}
 
@@ -319,10 +319,10 @@ Add note.
 ::::
 
 ::: notes
-Add note.
+You might see a light tailed distribution. This means there are fewer extremes at either end. The data just drops off suddenly in both directions.
 :::
 
-## Histogram for bimodal data
+## Bimodal data
 
 :::: {.columns}
 
@@ -340,10 +340,10 @@ Add note.
 ::::
 
 ::: notes
-Add note.
+Bimodal data is tricky to diagnose with a histogram because what looks bimodal with a large number of bars can look quite different with fewer bars.
 :::
 
-## Histogram for normal data
+## Normal data
 
 :::: {.columns}
 
@@ -361,5 +361,5 @@ Add note.
 ::::
 
 ::: notes
-Add note.
+Not everything is non-normal. Here is what you would see with the various diagnostics for normal data.
 :::
