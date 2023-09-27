@@ -1,0 +1,92 @@
+---
+title: "Comments for MEDB 5501, Week 7"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: visual
+---
+
+## Two-sample t-test (Independent-samples t-test)
+
+-   Randomized trial
+    -   Convenience sample
+    -   Random assignment to treatment, control
+    -   Measure continuous outcome
+-   Cohort design
+    -   Observe exposed and control subjects
+    -   No random assignment
+    -   Measure continuous outcome
+
+::: notes
+Things will start to get really interesting now. The two sample t-test, also known as the independent samples t-test, is important in its own right, but also serves as a foundation for other methodologies, especially analysis of variance and analysis of covariance.
+
+This test arises in a variety of settings but two of the most common are the randomized trial and the cohort design.
+:::
+
+## Assumptions
+
+-   Group 1, 2 both normally distributed
+    -   Assessed with histograms, boxplots, Q-Q plots
+    -   Or rely on Central Limit Theorem
+-   Possibly different means, but same variance
+    -   Assessed with boxplot, descriptive statistics
+    -   Also Levene's test (not recommended)
+-   Observations are independent
+    -   Between groups
+    -   Within groups
+    -   Assessed qualitatively
+
+::: notes
+There are three important assumptions that must be met.
+:::
+
+## Normality
+
+-   Assess each group separately, or
+-   Combine after subtracting means
+-   Less concern with normality for large sample sizes
+
+::: notes
+You can assess normality in each group separately. If you combine the two groups, however, you might see a bimodal pattern if the means differ. It is better to center the data: subtract the group mean from each value in the group. Then you can combine the two groups together.
+
+How concerned you should be about the normality assumption depends on several factors. First is the sample size. With larger sample sizes, you can rely on the Central Limit Theorem. Second is the degree of deviation from normality. A slight skewness, for example, is not that serious. Third, the type of deviation from normality makes a difference. Distributions that are highly skewed or heavy tailed are more of a concern than light tailed distributions.
+:::
+
+## Equal variances (homescedascity)
+
+-   Compare the box part of the box plots
+    -   Look for large disparities only (2 or 3 fold)
+-   Calculate and compare the standard deviations
+    -   Again, large disparities only
+-   Levene's test (not recommended)
+    -   Too little power for small sample sizes
+    -   Too much power for large sample sizes
+    -   Very sensitive to normality assumption
+    
+::: notes
+
+:::
+
+## Independence
+
+-   Assessed qualitatively
+-   Independence between groups
+    -   No matching
+    -   No longitudinal measures
+-   Independence within groups
+    -   No cluster effects
+    -   No infectious spread
+    
+::: notes
+Independence is almost always assessed qualitatively. You have to assume indpendence between the two groups first. Data that is matched or paired violates this assumption (see the paired t-test later). You also can't use the same subjects again. If you want to compare the same subjects at different time points that would be a violation of independeance.
+
+You also have to assume independence within groups. I was doing a study of breast feeding where the researchers recruited 84 infants. There were 72 singleton births and 6 sets of twins. I bet the researchers were excited to get these twins: two observations for the price of a single consent form. But the measurement of breast feeding duration is not going to be independent. If one baby in the twin pair stops breast feeding, it increases the chances that the other baby will stop at the same time. It doesn't happen all the time, but it happens enough that you can't say that the data are independent.
+
+Any time you have a clustering effect, measurements in the same family, for example, you should probably assume that the outcomes are not independent. If you conduct studies at multiple clinics, the observations of two patients at the same clinic are not going to be independent because the standard of care, skill of the medical personnel, and patient referral patterns are going to influence the results.
+
+It's okay if only a single clinic evaluates all of the patients. It's only when there are multiple clinics that this may become an issue.
+
+If you have clusters in your data, you can still analyze the data, but you have to account for the clusters in the model. Otherwise, the confidence intervals and hypothesis tests will be distorted.
+:::
+    
