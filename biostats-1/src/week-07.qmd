@@ -63,9 +63,8 @@ How concerned you should be about the normality assumption depends on several fa
     -   Too little power for small sample sizes
     -   Too much power for large sample sizes
     -   Very sensitive to normality assumption
-    
-::: notes
 
+::: notes
 :::
 
 ## Independence
@@ -77,7 +76,7 @@ How concerned you should be about the normality assumption depends on several fa
 -   Independence within groups
     -   No cluster effects
     -   No infectious spread
-    
+
 ::: notes
 Independence is almost always assessed qualitatively. You have to assume indpendence between the two groups first. Data that is matched or paired violates this assumption (see the paired t-test later). You also can't use the same subjects again. If you want to compare the same subjects at different time points that would be a violation of independeance.
 
@@ -89,4 +88,3 @@ It's okay if only a single clinic evaluates all of the patients. It's only when 
 
 If you have clusters in your data, you can still analyze the data, but you have to account for the clusters in the model. Otherwise, the confidence intervals and hypothesis tests will be distorted.
 :::
-    
