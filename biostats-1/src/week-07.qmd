@@ -88,3 +88,117 @@ It's okay if only a single clinic evaluates all of the patients. It's only when 
 
 If you have clusters in your data, you can still analyze the data, but you have to account for the clusters in the model. Otherwise, the confidence intervals and hypothesis tests will be distorted.
 :::
+
+## Housing data dictionary, 1 of 5
+
+```         
+source: 
+  This file was found originally at a website 
+  DASL (Data And Story Library) that is no 
+  longer available. 
+
+description:  
+  The original source describes the data as
+  "a random sample of records of resales of 
+  homes from Feb 15 to Apr 30, 1993 from the
+  files maintained by the Albuquerque Board 
+  of Realtors. This type of data is 
+  collected by multiple listing agencies in
+  many cities and is used by realtors as an
+  information base."
+```
+
+::: notes
+I've used this data in a lot of my classes, but it is no longer available on the web. There are lots of other similar data sets on housing resales.
+
+Sales from 1993 are now three decades old, so some of the details may seem out of date.
+:::
+
+## Housing data dictionary, 2 of 5
+
+```         
+copyright:  
+    Unknown. You should be able to use this data for
+  individual educational purposes under the Fair Use
+  guidelines of U.S. copyright law.
+
+format: 
+  delimiter: space
+  varnames: first row of data
+  missing-value-code: *
+  rows: 117
+  columns: 8
+```
+
+::: notes
+This data uses an asterisk to denote missing values. This will cause a bit of a hassle, but not too much during data import.
+:::
+
+## Housing data dictionary, 3 of 5
+
+```         
+vars:
+  Price:
+    label: Selling price
+    unit: dollars
+    
+  SquareFeet:
+    label: Living space
+    unit: square feet
+    
+  AgeYears:
+    label: Age of home
+    unit: years
+```
+
+::: notes
+Here are the first three variables in the data. The key variable in all my analyses would be the selling price. This might be influenced by the size of the home and/or how old the home is.
+:::
+
+## Housing data dictionary, 4 of 5
+
+```         
+  NumberFeatures:
+    label: 
+      Home features (dishwasher, refrigerator,
+      microwave, disposer, washer, intercom, 
+      skylight(s), compactor, dryer, handicap
+      fit, cable TV access)
+    scale: count
+    range: 0 to 11  
+    
+  Northeast:
+    label: Located in northeast sector of city?
+    values:
+      Yes: 1
+      No: 0
+```
+
+::: notes
+This data is from 1993, and some of the features that were optional then are pretty much standard now. Location may or may not be important, and the data has an indicator of whether the house is located in the northeast sector of the city.
+:::
+
+## Housing data dictionary, 5 of 5
+
+```         
+  CustomBuild:
+    label: Custom built?
+    values:
+      Yes: 1
+      No: 0
+    
+  CornerLot:
+    label: Corner location?
+    values:
+      Yes: 1
+      No: 0
+
+  Tax:
+    label: Yearly property tax
+    unit: dollars
+```
+
+::: notes
+Here is information on the final three variables. Some houses are built to a pre-existing plan, but others are custom designed with an architect. Houses on a corner lot have some disadvantages, such as noise and less privacy. Finally, the yearly tax bill should be correlated with the price, though sometimes the government valuation of a property is out of date.
+:::
+
