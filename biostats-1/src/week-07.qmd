@@ -202,7 +202,7 @@ This data is from 1993, and some of the features that were optional then are pre
 Here is information on the final three variables. Some houses are built to a pre-existing plan, but others are custom designed with an architect. Houses on a corner lot have some disadvantages, such as noise and less privacy. Finally, the yearly tax bill should be correlated with the price, though sometimes the government valuation of a property is out of date.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-41.png)
 
@@ -210,7 +210,7 @@ Here is information on the final three variables. Some houses are built to a pre
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-42.png)
 
@@ -218,7 +218,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-43.png)
 
@@ -226,7 +226,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-44.png)
 
@@ -234,7 +234,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-45.png)
 
@@ -242,7 +242,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-46.png)
 
@@ -250,7 +250,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-47.png)
 
@@ -258,7 +258,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-48.png)
 
@@ -266,7 +266,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-49.png)
 
@@ -274,7 +274,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-50.png)
 
@@ -282,7 +282,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-51.png)
 
@@ -290,7 +290,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-52.png)
 
@@ -298,7 +298,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-53.png)
 
@@ -306,7 +306,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-54.png)
 
@@ -314,7 +314,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-55.png)
 
@@ -322,7 +322,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-56.png)
 
@@ -330,7 +330,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-57.png)
 
@@ -338,7 +338,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-58.png)
 
@@ -346,7 +346,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-59.png)
 
@@ -354,7 +354,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-60.png)
 
@@ -362,7 +362,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-61.png)
 
@@ -370,7 +370,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-62.png)
 
@@ -378,7 +378,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-63.png)
 
@@ -386,7 +386,7 @@ Add note.
 Add note.
 :::
 
-## Housing analysis 
+## Housing analysis
 
 ![](../images/housing-analysis-64.png)
 
@@ -394,7 +394,7 @@ Add note.
 Add note.
 :::
 
-## Sample size calculation 
+## Sample size calculation
 
 ![](../images/power-calculation-01.png)
 
@@ -402,7 +402,7 @@ Add note.
 Add note.
 :::
 
-## Sample size calculation 
+## Sample size calculation
 
 ![](../images/power-calculation-02.png)
 
@@ -410,10 +410,75 @@ Add note.
 Add note.
 :::
 
-## Sample size calculation 
+## Sample size calculation
 
 ![](../images/power-calculation-03.png)
 
 ::: notes
 Add note.
 :::
+
+## Moon data dictionary (1/5)
+
+```{}
+---
+data_dictionary: moon.txt
+
+source:
+  This data file is part of OzDASL, an archive of various data sets 
+  useful for teaching. The maintainers of the data archive are from
+  Australia, but this particular data set is not specific to that part
+  of the world. The entire archive is at
+  https://dasl.datadescription.com/
+```
+
+## Moon data dictionary (1/5)
+
+```{}
+description:
+  This data set shows a perceptual experiment where subjects were asked
+  to estimate a size ratio with their head level to the ground and then
+  with their head elevated (in other words, looking upward). Although
+  the objects being compared were the same size, almost all subjects 
+  overestimated the relative sizes. The hypothesis to be tested is 
+  whether the overestimation is greater with eyes level than with eyes
+  elevated. A more detailed description is available at
+  https://gksmyth.github.io/ozdasl/general/moon.html
+  
+download:
+  https://gksmyth.github.io/ozdasl/general/moon.txt
+```
+
+## Moon data dictionary (1/5)
+
+```{}
+copyright:  
+  Unknown. You should be able to use this data for individual 
+  educational purposes under the Fair Use guidelines of U.S. 
+  copyright law.
+
+format: 
+  delimiter: tab
+  varnames: first row of data
+  missing-value-code: not needed
+  rows: 10
+  columns: 3
+```
+
+## Moon data dictionary (1/5)
+
+```{}
+vars:
+  Subject:
+    label: Subject number
+    format: numeric
+
+  Elevated:
+    label: Perceived ratio with eyes elevated
+    format: numeric
+    
+  Level:
+    label: Perceived ratio with eyes level
+    format: numeric
+---
+```
