@@ -202,11 +202,16 @@ This data is from 1993, and some of the features that were optional then are pre
 Here is information on the final three variables. Some houses are built to a pre-existing plan, but others are custom designed with an architect. Houses on a corner lot have some disadvantages, such as noise and less privacy. Finally, the yearly tax bill should be correlated with the price, though sometimes the government valuation of a property is out of date.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## Split file dialog box
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-41.png)
 
 ::: notes
+<<<<<<< HEAD
 Add note.
 :::
 
@@ -219,54 +224,90 @@ Add note.
 :::
 
 ## Housing analysis
+=======
+To get separate histograms for each subgroup, select Data | Split File from the SPSS menu.
+:::
+
+## Price histogram (1/2) 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-43.png)
 
 ::: notes
-Add note.
+Here is the histogram for the first group, not custom built. Note a few things.
+
+1. Removal of the needless blue color
+2. Change frequency to remove unneeded decimals
+3. Use of comma and dollar signs for price.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## Price histogram (2/2)
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-44.png)
 
 ::: notes
-Add note.
+Here is the histogram for custom built=Yes. In addition to the changes mentioned on the previous slide, you should change the scaling on the X and Y axes so the two histograms are directly comparable.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## Stop grouping, using the Split file dialog box
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-45.png)
 
 ::: notes
-Add note.
+I always forget, but you should remember to turn off the split file option before doing any further analyses.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## Population pyramid 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-46.png)
 
 ::: notes
-Add note.
+I'm not a big fan of the population pyramid, but it does pretty well right here. It has the advantage of not needing to use the split file command and it scales the X and y axes to a common appearance.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## Agggregate data dialog box
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-47.png)
 
 ::: notes
-Add note.
+If you want to draw a Q-Q plot, you could do it separately for each group, but I recommend that you combine them. Before you combine them, though, be sure to adjust the means of the two groups so they are both the same. This is a multi-step process.
+
+First select Data | Aggregate from the menu.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## Compute variable dialog box 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-48.png)
 
 ::: notes
-Add note.
+Then subtract the means from each group using Transform | Compute from the SPSS menu.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## Q-Q plot for all of the data 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-49.png)
 
@@ -274,95 +315,163 @@ Add note.
 Add note.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## Boxplots 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-50.png)
 
 ::: notes
-Add note.
+The boxplot is very useful for examining normality and the equal variation assumption. For housing prices, it looks like the custom built houses have both a larger mean and a larger standard deviation. I generally worry a little bit about the equal variances assumption if the one interquartile range is at least twice as big than the other, and worry more when it is three times bigger. 
+
+Here is it a bit of a concern. Normality, though, is probably close enough to not be a concern.
 :::
 
+## Should you consider a log transformation?
+
+-   Yes because
+    -   Data bounded below by zero
+    -   Some evidence of non-normality
+    -   Some evidence of unequal variation.
+        -   Unbalanced sample sizes
+-   No because
+    -   Some evidence of normality
+        -   Sample size is large
+    -   Differences in variation not too extreme
+
+::: notes
+The evidence is mixed but points to the possible use of a log transformation.
+:::
+
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## Compute Variable dialog box 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-51.png)
 
 ::: notes
-Add note.
+Select Transform | Compute from the SPSS menu to get a log transformation. Remember that SPSS uses "lg10" for the log transformation.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## bosplots of the log transformed variables 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-52.png)
 
 ::: notes
-Add note.
+Here is the boxplot for the log transformed data.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## Independent Samples T-Test dialog box
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-53.png)
 
 ::: notes
-Add note.
+Select Analyze | Compare Means | Independent Samples T-test from the SPSS menu.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## Define Groups dialog box 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-54.png)
 
 ::: notes
-Add note.
+SPSS does not automatically determine the group codes from your data.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## T-test output (1/5)
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-55.png)
 
 ::: notes
-Add note.
+SPSS produces way too much information in its output and you can't really suppress most of it. The groups statistics are not bad. The standard error is not really that helpful, to be honest, but that is a nitpick.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## T-test output (2/5) 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-56.png)
 
 ::: notes
-Add note.
+I do not recommend Leven's test, for reasons mentioned earlier. There is no easy way to keep this test from appearing in your output.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## T-test output (3/5) 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-57.png)
 
 ::: notes
-Add note.
+SPSS provides two t-tests. The first row (Equal variances assumed) is the traditional t-test. The second row (Equal variances not assumed) is a modification of the t-test to account for unequal variances.
+
+SPSS also provides one-sided and two-sided p-values.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## T-test output (4/5) 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-58.png)
 
 ::: notes
-Add note.
+SPSS also provides two different confidence intervals.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## T-test output (5/5)
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-59.png)
 
 ::: notes
-Add note.
+Finally, SPSS provides effect size measures. I do not like effect sizes and there is no easy way to suppress this.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## Univariate model dialog box
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-60.png)
 
 ::: notes
-Add note.
+I prefer to conduct a two-sample t-test using a regression model. Select Analyze | General Linear Model | Univariate from the menu. 
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## Univariate model dialog box 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-61.png)
 
@@ -370,7 +479,11 @@ Add note.
 Add note.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## General linear model output (1/3) 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-62.png)
 
@@ -378,7 +491,11 @@ Add note.
 Add note.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## General linear model output (2/3) 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-63.png)
 
@@ -386,7 +503,11 @@ Add note.
 Add note.
 :::
 
+<<<<<<< HEAD
 ## Housing analysis
+=======
+## General linear model output (3/3) 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-64.png)
 
@@ -394,30 +515,141 @@ Add note.
 Add note.
 :::
 
+<<<<<<< HEAD
 ## Sample size calculation
+=======
+## Compare means dialog box
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
-![](../images/power-calculation-01.png)
+![](../images/housing-analysis-65.png)
 
 ::: notes
 Add note.
 :::
 
+<<<<<<< HEAD
 ## Sample size calculation
+=======
+## Compare means output
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
-![](../images/power-calculation-02.png)
+![](../images/housing-analysis-66.png)
 
 ::: notes
 Add note.
 :::
 
+<<<<<<< HEAD
 ## Sample size calculation
+=======
+## Geometric means
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
-![](../images/power-calculation-03.png)
+:::: {.columns}
+::: {.column width="50%"}
+![](../images/calculator-01.png)
+:::
+
+::: {.column width="50%"}
+![](../images/calculator-02.png)
+:::
+::::
+
+::: notes
+Add note
+:::
+
+## Geometric standard deviations
+
+:::: {.columns}
+::: {.column width="50%"}
+![](../images/calculator-03.png)
+:::
+
+::: {.column width="50%"}
+![](../images/calculator-04.png)
+:::
+::::
+
+::: notes
+Add note
+:::
+
+## General linear model for log transformed data
+
+![](../images/housing-analysis-67.png)
 
 ::: notes
 Add note.
 :::
 
+## Back-calculated statistics
+
+:::: {.columns}
+::: {.column width="50%"}
+![](../images/calculator-05.png)
+:::
+
+::: {.column width="50%"}
+![](../images/calculator-06.png)
+:::
+::::
+
+::: notes
+Add note
+:::
+
+## Back calculated confidence intervals (1/2)
+
+:::: {.columns}
+::: {.column width="50%"}
+![](../images/calculator-07.png)
+:::
+
+::: {.column width="50%"}
+![](../images/calculator-08.png)
+:::
+::::
+
+::: notes
+Add note
+:::
+
+## Back calculated confidence intervals (2/2)
+
+:::: {.columns}
+::: {.column width="50%"}
+![](../images/calculator-09.png)
+:::
+
+::: {.column width="50%"}
+![](../images/calculator-10.png)
+:::
+::::
+
+::: notes
+Add note
+:::
+
+
+
+## Conceptual formula for sample size justification (1/2)
+
+![](../images/sackett-01.png)
+
+::: notes
+Add note.
+:::
+
+## Conceptual formula for sample size justification (2/2)
+
+![](../images/sackett-02.png)
+
+::: notes
+Add note.
+:::
+
+<<<<<<< HEAD
 ## Moon data dictionary (1/5)
 
 ```{}
@@ -482,3 +714,67 @@ vars:
     format: numeric
 ---
 ```
+=======
+## Three things you need for a sample size justification
+
+-   Hypothesis
+-   Standard deviation
+-   Minimum clinically important difference
+
+::: notes
+If you work with a researcher who wants to justify a particular sample size, you need to get three things from them.
+
+First, they need a research hypothesis. If they don't have one, help them formulate one. Some research does not need a research hypothesis, of course. If you are conducting a descriptive study, try to find an important descriptive statistic and select a sample size so the confidence interval using that statistic is reasonably narrow. If your study has a qualitative goal, then you can use a qualitative justification for your sample size.
+
+Second, they need to know how much noise there is in the data. This is measured by the standard deviation. They may have a standard deviation from a pilot study or from previous research. If they don't have this, ask them for a paper that's reasonably similar to theirs. It doesn't have to be identical, but it should use the same outcome measure and the same types of patients. That paper should have a standard deviation in one of the tables.
+
+If not, perhaps you can extrapolate from the range. The range divided by 4 (or maybe 6) is often a reasonable approximation to the standard deviation. You might be able to back-calculate the standard deviation from a confidence interval or p-value, but this is tricky. If all else fails, just use a reasonable guess.
+
+Third, they need to know the minimum clinically important difference. This requires clinical judgement. How much of a change is large enough to get other clinicians to sit up and take notice?
+
+Some people bypass the specification of the minimum clinically important difference and just say that they want to esimate a small, medium, or large effect size. This is a mistake. You cannot plan a study on the basis of a unitless measure.
+:::
+
+## Rule of 16
+
+-  n per group = 16 / ES^2
+-  Examples:
+   -   ES = 0.5, n per group = 64
+   -   ES = 0.1, n per group = 1,600
+   
+::: notes
+A simple rule for sample size justification that you can do without a lot of calculation is the rule of 16. Take 16 and divide it by the effect size squared.
+
+If your minimum clinically important difference corresponds to half a standard deviation, then 16 divided by 1/2 squared is 64 patients per group.
+
+This is not a formula you use in your grant proposal. It just helps during a brain storming session, or if you are reviewing someone else's work.
+
+The approximation is based on a two-sided alpha level of 0.04, power of 0.80 and equal sample sizes per group.
+:::
+
+## Sample size calculation dialog box
+
+![](../images/power-calculation-01.png)
+
+::: notes
+I worked on a study at Children's Mercy many years ago where the research team wanted to compare two different skin barrier methods for burn victims. The main outcome was pain after treatment as measured on the Oucher scale. The Oucher scale is a pictorial scale showing faces of patients in various levels of pain from 0 (a child's face showing no expression) to 10 (a face showing a screaming and crying child). Previous research showed that the Oucher scale had a standard deviation of 1.5. A difference of one unit on the Oucher scale was considered clinically significant.
+
+Plug these values into the dialog box.
+:::
+
+## Sample size calculation output 
+
+![](../images/power-calculation-02.png)
+
+::: notes
+This output shows that you need 37 patients per group.
+:::
+
+## Sample size calculation output for second scenario
+
+![](../images/power-calculation-03.png)
+
+::: notes
+Suppose you were told that your research budget would allow a larger sample size. Your research team decides that even a smaller change in the Oucher score, a 0.5 unit change, would still be clinically important. This represents an effect size of 0.33. Plug the numbers into SPSS and you can see that you need 143 patients per group.
+:::
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
