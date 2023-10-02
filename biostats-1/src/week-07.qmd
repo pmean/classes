@@ -202,15 +202,34 @@ This data is from 1993, and some of the features that were optional then are pre
 Here is information on the final three variables. Some houses are built to a pre-existing plan, but others are custom designed with an architect. Houses on a corner lot have some disadvantages, such as noise and less privacy. Finally, the yearly tax bill should be correlated with the price, though sometimes the government valuation of a property is out of date.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## Split file dialog box
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-41.png)
 
 ::: notes
+<<<<<<< HEAD
+Add note.
+:::
+
+## Housing analysis
+
+![](../images/housing-analysis-42.png)
+
+::: notes
+Add note.
+:::
+
+## Housing analysis
+=======
 To get separate histograms for each subgroup, select Data | Split File from the SPSS menu.
 :::
 
 ## Price histogram (1/2) 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-43.png)
 
@@ -222,7 +241,11 @@ Here is the histogram for the first group, not custom built. Note a few things.
 3. Use of comma and dollar signs for price.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## Price histogram (2/2)
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-44.png)
 
@@ -230,7 +253,11 @@ Here is the histogram for the first group, not custom built. Note a few things.
 Here is the histogram for custom built=Yes. In addition to the changes mentioned on the previous slide, you should change the scaling on the X and Y axes so the two histograms are directly comparable.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## Stop grouping, using the Split file dialog box
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-45.png)
 
@@ -238,7 +265,11 @@ Here is the histogram for custom built=Yes. In addition to the changes mentioned
 I always forget, but you should remember to turn off the split file option before doing any further analyses.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## Population pyramid 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-46.png)
 
@@ -246,7 +277,11 @@ I always forget, but you should remember to turn off the split file option befor
 I'm not a big fan of the population pyramid, but it does pretty well right here. It has the advantage of not needing to use the split file command and it scales the X and y axes to a common appearance.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## Agggregate data dialog box
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-47.png)
 
@@ -256,7 +291,11 @@ If you want to draw a Q-Q plot, you could do it separately for each group, but I
 First select Data | Aggregate from the menu.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## Compute variable dialog box 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-48.png)
 
@@ -264,7 +303,11 @@ First select Data | Aggregate from the menu.
 Then subtract the means from each group using Transform | Compute from the SPSS menu.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## Q-Q plot for all of the data 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-49.png)
 
@@ -272,7 +315,11 @@ Then subtract the means from each group using Transform | Compute from the SPSS 
 Add note.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## Boxplots 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-50.png)
 
@@ -298,7 +345,11 @@ Here is it a bit of a concern. Normality, though, is probably close enough to no
 The evidence is mixed but points to the possible use of a log transformation.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## Compute Variable dialog box 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-51.png)
 
@@ -306,7 +357,11 @@ The evidence is mixed but points to the possible use of a log transformation.
 Select Transform | Compute from the SPSS menu to get a log transformation. Remember that SPSS uses "lg10" for the log transformation.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## bosplots of the log transformed variables 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-52.png)
 
@@ -314,7 +369,11 @@ Select Transform | Compute from the SPSS menu to get a log transformation. Remem
 Here is the boxplot for the log transformed data.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## Independent Samples T-Test dialog box
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-53.png)
 
@@ -322,7 +381,11 @@ Here is the boxplot for the log transformed data.
 Select Analyze | Compare Means | Independent Samples T-test from the SPSS menu.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## Define Groups dialog box 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-54.png)
 
@@ -330,7 +393,11 @@ Select Analyze | Compare Means | Independent Samples T-test from the SPSS menu.
 SPSS does not automatically determine the group codes from your data.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## T-test output (1/5)
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-55.png)
 
@@ -338,7 +405,11 @@ SPSS does not automatically determine the group codes from your data.
 SPSS produces way too much information in its output and you can't really suppress most of it. The groups statistics are not bad. The standard error is not really that helpful, to be honest, but that is a nitpick.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## T-test output (2/5) 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-56.png)
 
@@ -346,7 +417,11 @@ SPSS produces way too much information in its output and you can't really suppre
 I do not recommend Leven's test, for reasons mentioned earlier. There is no easy way to keep this test from appearing in your output.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## T-test output (3/5) 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-57.png)
 
@@ -356,7 +431,11 @@ SPSS provides two t-tests. The first row (Equal variances assumed) is the tradit
 SPSS also provides one-sided and two-sided p-values.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## T-test output (4/5) 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-58.png)
 
@@ -364,7 +443,11 @@ SPSS also provides one-sided and two-sided p-values.
 SPSS also provides two different confidence intervals.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## T-test output (5/5)
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-59.png)
 
@@ -372,7 +455,11 @@ SPSS also provides two different confidence intervals.
 Finally, SPSS provides effect size measures. I do not like effect sizes and there is no easy way to suppress this.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## Univariate model dialog box
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-60.png)
 
@@ -380,7 +467,11 @@ Finally, SPSS provides effect size measures. I do not like effect sizes and ther
 I prefer to conduct a two-sample t-test using a regression model. Select Analyze | General Linear Model | Univariate from the menu. 
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## Univariate model dialog box 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-61.png)
 
@@ -388,7 +479,11 @@ I prefer to conduct a two-sample t-test using a regression model. Select Analyze
 Add note.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## General linear model output (1/3) 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-62.png)
 
@@ -396,7 +491,11 @@ Add note.
 Add note.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## General linear model output (2/3) 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-63.png)
 
@@ -404,7 +503,11 @@ Add note.
 Add note.
 :::
 
+<<<<<<< HEAD
+## Housing analysis
+=======
 ## General linear model output (3/3) 
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-64.png)
 
@@ -412,7 +515,11 @@ Add note.
 Add note.
 :::
 
+<<<<<<< HEAD
+## Sample size calculation
+=======
 ## Compare means dialog box
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-65.png)
 
@@ -420,7 +527,11 @@ Add note.
 Add note.
 :::
 
+<<<<<<< HEAD
+## Sample size calculation
+=======
 ## Compare means output
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-66.png)
 
@@ -428,7 +539,11 @@ Add note.
 Add note.
 :::
 
+<<<<<<< HEAD
+## Sample size calculation
+=======
 ## Geometric means
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -534,6 +649,72 @@ Add note.
 Add note.
 :::
 
+<<<<<<< HEAD
+## Moon data dictionary (1/5)
+
+```{}
+---
+data_dictionary: moon.txt
+
+source:
+  This data file is part of OzDASL, an archive of various data sets 
+  useful for teaching. The maintainers of the data archive are from
+  Australia, but this particular data set is not specific to that part
+  of the world. The entire archive is at
+  https://dasl.datadescription.com/
+```
+
+## Moon data dictionary (1/5)
+
+```{}
+description:
+  This data set shows a perceptual experiment where subjects were asked
+  to estimate a size ratio with their head level to the ground and then
+  with their head elevated (in other words, looking upward). Although
+  the objects being compared were the same size, almost all subjects 
+  overestimated the relative sizes. The hypothesis to be tested is 
+  whether the overestimation is greater with eyes level than with eyes
+  elevated. A more detailed description is available at
+  https://gksmyth.github.io/ozdasl/general/moon.html
+  
+download:
+  https://gksmyth.github.io/ozdasl/general/moon.txt
+```
+
+## Moon data dictionary (1/5)
+
+```{}
+copyright:  
+  Unknown. You should be able to use this data for individual 
+  educational purposes under the Fair Use guidelines of U.S. 
+  copyright law.
+
+format: 
+  delimiter: tab
+  varnames: first row of data
+  missing-value-code: not needed
+  rows: 10
+  columns: 3
+```
+
+## Moon data dictionary (1/5)
+
+```{}
+vars:
+  Subject:
+    label: Subject number
+    format: numeric
+
+  Elevated:
+    label: Perceived ratio with eyes elevated
+    format: numeric
+    
+  Level:
+    label: Perceived ratio with eyes level
+    format: numeric
+---
+```
+=======
 ## Three things you need for a sample size justification
 
 -   Hypothesis
@@ -596,3 +777,4 @@ This output shows that you need 37 patients per group.
 ::: notes
 Suppose you were told that your research budget would allow a larger sample size. Your research team decides that even a smaller change in the Oucher score, a 0.5 unit change, would still be clinically important. This represents an effect size of 0.33. Plug the numbers into SPSS and you can see that you need 143 patients per group.
 :::
+>>>>>>> 8825625958fb234f4150e816ea63c472b993f185
