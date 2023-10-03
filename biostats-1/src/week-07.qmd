@@ -24,28 +24,14 @@ Things will start to get really interesting now. The two sample t-test, also kno
 This test arises in a variety of settings but two of the most common are the randomized trial and the cohort design.
 :::
 
-## Assumptions
+## Assumptions, 1 of 3
 
 -   Group 1, 2 both normally distributed
     -   Assessed with histograms, boxplots, Q-Q plots
+
+        -   Assess each group separately, or
+        -   Combine after subtracting means
     -   Or rely on Central Limit Theorem
--   Possibly different means, but same variance
-    -   Assessed with boxplot, descriptive statistics
-    -   Also Levene's test (not recommended)
--   Observations are independent
-    -   Between groups
-    -   Within groups
-    -   Assessed qualitatively
-
-::: notes
-There are three important assumptions that must be met.
-:::
-
-## Normality
-
--   Assess each group separately, or
--   Combine after subtracting means
--   Less concern with normality for large sample sizes
 
 ::: notes
 You can assess normality in each group separately. If you combine the two groups, however, you might see a bimodal pattern if the means differ. It is better to center the data: subtract the group mean from each value in the group. Then you can combine the two groups together.
@@ -53,29 +39,33 @@ You can assess normality in each group separately. If you combine the two groups
 How concerned you should be about the normality assumption depends on several factors. First is the sample size. With larger sample sizes, you can rely on the Central Limit Theorem. Second is the degree of deviation from normality. A slight skewness, for example, is not that serious. Third, the type of deviation from normality makes a difference. Distributions that are highly skewed or heavy tailed are more of a concern than light tailed distributions.
 :::
 
-## Equal variances (homescedascity)
+## Assumptions, 2 of 3
 
--   Compare the box part of the box plots
-    -   Look for large disparities only (2 or 3 fold)
--   Calculate and compare the standard deviations
-    -   Again, large disparities only
--   Levene's test (not recommended)
-    -   Too little power for small sample sizes
-    -   Too much power for large sample sizes
-    -   Very sensitive to normality assumption
+-   Possibly different means, but same variance
+    -   Compare the box part of the box plots
+        -   Interquartile range
+        -   Look for large disparities only (2 or 3 fold)
+    -   Calculate and compare the standard deviations
+         -   Again, large disparities only
+    -   Levene's test (not recommended)
+        -   Too little power for small sample sizes and  too much power for large sample sizes
+        -   Very sensitive to normality assumption
+-   The equal variance assumption is important mostly for unequal sample sizes.
 
 ::: notes
+An important assumption is equality of variances.
 :::
 
-## Independence
+## Assumptions, 3 of 3
 
--   Assessed qualitatively
--   Independence between groups
-    -   No matching
-    -   No longitudinal measures
--   Independence within groups
-    -   No cluster effects
-    -   No infectious spread
+-   Observations are independent
+    -   Between groups
+        -   No matching
+        -   No longitudinal measures
+    -   Within groups
+        -   No cluster effects
+        -   No infectious spread
+    -   Assessed qualitatively
 
 ::: notes
 Independence is almost always assessed qualitatively. You have to assume indpendence between the two groups first. Data that is matched or paired violates this assumption (see the paired t-test later). You also can't use the same subjects again. If you want to compare the same subjects at different time points that would be a violation of independeance.
@@ -202,16 +192,12 @@ This data is from 1993, and some of the features that were optional then are pre
 Here is information on the final three variables. Some houses are built to a pre-existing plan, but others are custom designed with an architect. Houses on a corner lot have some disadvantages, such as noise and less privacy. Finally, the yearly tax bill should be correlated with the price, though sometimes the government valuation of a property is out of date.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
 ## Split file dialog box
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-41.png)
 
 ::: notes
-<<<<<<< HEAD
+
 Add note.
 :::
 
@@ -220,16 +206,10 @@ Add note.
 ![](../images/housing-analysis-42.png)
 
 ::: notes
-Add note.
-:::
-
-## Housing analysis
-=======
 To get separate histograms for each subgroup, select Data | Split File from the SPSS menu.
 :::
 
-## Price histogram (1/2) 
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
+## Price histogram, 1 of 2
 
 ![](../images/housing-analysis-43.png)
 
@@ -241,11 +221,8 @@ Here is the histogram for the first group, not custom built. Note a few things.
 3. Use of comma and dollar signs for price.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
-## Price histogram (2/2)
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
+
+## Price histogram, 2 of 2
 
 ![](../images/housing-analysis-44.png)
 
@@ -253,11 +230,7 @@ Here is the histogram for the first group, not custom built. Note a few things.
 Here is the histogram for custom built=Yes. In addition to the changes mentioned on the previous slide, you should change the scaling on the X and Y axes so the two histograms are directly comparable.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
 ## Stop grouping, using the Split file dialog box
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-45.png)
 
@@ -265,11 +238,7 @@ Here is the histogram for custom built=Yes. In addition to the changes mentioned
 I always forget, but you should remember to turn off the split file option before doing any further analyses.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
 ## Population pyramid 
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-46.png)
 
@@ -277,11 +246,7 @@ I always forget, but you should remember to turn off the split file option befor
 I'm not a big fan of the population pyramid, but it does pretty well right here. It has the advantage of not needing to use the split file command and it scales the X and y axes to a common appearance.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
 ## Agggregate data dialog box
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-47.png)
 
@@ -291,11 +256,7 @@ If you want to draw a Q-Q plot, you could do it separately for each group, but I
 First select Data | Aggregate from the menu.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
 ## Compute variable dialog box 
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-48.png)
 
@@ -303,23 +264,14 @@ First select Data | Aggregate from the menu.
 Then subtract the means from each group using Transform | Compute from the SPSS menu.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
 ## Q-Q plot for all of the data 
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
-
 ![](../images/housing-analysis-49.png)
 
 ::: notes
 Add note.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
 ## Boxplots 
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-50.png)
 
@@ -345,11 +297,7 @@ Here is it a bit of a concern. Normality, though, is probably close enough to no
 The evidence is mixed but points to the possible use of a log transformation.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
 ## Compute Variable dialog box 
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-51.png)
 
@@ -357,11 +305,7 @@ The evidence is mixed but points to the possible use of a log transformation.
 Select Transform | Compute from the SPSS menu to get a log transformation. Remember that SPSS uses "lg10" for the log transformation.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
-## bosplots of the log transformed variables 
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
+## boxplots of the log transformed variables 
 
 ![](../images/housing-analysis-52.png)
 
@@ -369,11 +313,7 @@ Select Transform | Compute from the SPSS menu to get a log transformation. Remem
 Here is the boxplot for the log transformed data.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
 ## Independent Samples T-Test dialog box
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-53.png)
 
@@ -381,11 +321,7 @@ Here is the boxplot for the log transformed data.
 Select Analyze | Compare Means | Independent Samples T-test from the SPSS menu.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
 ## Define Groups dialog box 
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-54.png)
 
@@ -393,11 +329,7 @@ Select Analyze | Compare Means | Independent Samples T-test from the SPSS menu.
 SPSS does not automatically determine the group codes from your data.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
-## T-test output (1/5)
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
+## T-test output, 1 of 5
 
 ![](../images/housing-analysis-55.png)
 
@@ -405,23 +337,15 @@ SPSS does not automatically determine the group codes from your data.
 SPSS produces way too much information in its output and you can't really suppress most of it. The groups statistics are not bad. The standard error is not really that helpful, to be honest, but that is a nitpick.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
-## T-test output (2/5) 
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
+## T-test output, 2 of 5 
 
 ![](../images/housing-analysis-56.png)
 
 ::: notes
-I do not recommend Leven's test, for reasons mentioned earlier. There is no easy way to keep this test from appearing in your output.
+I do not recommend Levene's test, for reasons mentioned earlier. There is no easy way to keep this test from appearing in your output.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
-## T-test output (3/5) 
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
+## T-test output, 3 of 5 
 
 ![](../images/housing-analysis-57.png)
 
@@ -431,11 +355,7 @@ SPSS provides two t-tests. The first row (Equal variances assumed) is the tradit
 SPSS also provides one-sided and two-sided p-values.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
-## T-test output (4/5) 
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
+## T-test output, 4 of 5 
 
 ![](../images/housing-analysis-58.png)
 
@@ -443,11 +363,7 @@ SPSS also provides one-sided and two-sided p-values.
 SPSS also provides two different confidence intervals.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
-## T-test output (5/5)
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
+## T-test output, 5 of 5
 
 ![](../images/housing-analysis-59.png)
 
@@ -455,11 +371,7 @@ SPSS also provides two different confidence intervals.
 Finally, SPSS provides effect size measures. I do not like effect sizes and there is no easy way to suppress this.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
 ## Univariate model dialog box
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-60.png)
 
@@ -467,11 +379,7 @@ Finally, SPSS provides effect size measures. I do not like effect sizes and ther
 I prefer to conduct a two-sample t-test using a regression model. Select Analyze | General Linear Model | Univariate from the menu. 
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
 ## Univariate model dialog box 
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-61.png)
 
@@ -479,11 +387,7 @@ I prefer to conduct a two-sample t-test using a regression model. Select Analyze
 Add note.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
-## General linear model output (1/3) 
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
+## General linear model output, 1 of 3
 
 ![](../images/housing-analysis-62.png)
 
@@ -491,11 +395,7 @@ Add note.
 Add note.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
-## General linear model output (2/3) 
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
+## General linear model output, 2 of 3
 
 ![](../images/housing-analysis-63.png)
 
@@ -503,11 +403,7 @@ Add note.
 Add note.
 :::
 
-<<<<<<< HEAD
-## Housing analysis
-=======
-## General linear model output (3/3) 
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
+## General linear model output, 3 of 3
 
 ![](../images/housing-analysis-64.png)
 
@@ -515,11 +411,95 @@ Add note.
 Add note.
 :::
 
-<<<<<<< HEAD
-## Sample size calculation
-=======
+## What belongs in an interpretation
+
+"We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion. Alpha was set at 0.05.  Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of only 6.5 degrees with a standard deviation of 3.4. This 9.5 degree difference was statistically significant (95% CI = 7.23 to 11.73, two-tailed Student's t test, t=8.43, P < 0.001)."
+
+-   Lang and Secic, How to Report Statistics in Medicine, p47.
+
+::: notes
+I have not stressed interpretation enough. Here is the interpretation found word for word in an excellent book by Lang and Secic.
+
+Let me parse this word by word.
+:::
+
+## Power calculation, if possible
+
+"**We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion.** Alpha was set at 0.05.  Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of only 6.5 degrees with a standard deviation of 3.4. This 9.5 degree difference was statistically significant (95% CI = 7.23 to 11.73, two-tailed Student's t test, t=8.43, P < 0.001)."
+
+-   Lang and Secic, How to Report Statistics in Medicine, p47.
+
+::: notes
+You may not have a power calculation conducted prior to the start of the experiment. If you do, be sure to brag about it. 
+:::
+
+## Alpha level
+
+"We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion. **Alpha was set at 0.05.**  Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of only 6.5 degrees with a standard deviation of 3.4. This 9.5 degree difference was statistically significant (95% CI = 7.23 to 11.73, two-tailed Student's t test, t=8.43, P < 0.001)."
+
+-   Lang and Secic, How to Report Statistics in Medicine, p47.
+
+::: notes
+Although almost everyone uses an alpha level of 0.05, it never hurts to restate it.
+:::
+
+## Sample statistics for each group
+
+"We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion. Alpha was set at 0.05.  **Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of** *only* **6.5 degrees with a standard deviation of 3.4.** This 9.5 degree difference was statistically significant (95% CI = 7.23 to 11.73, two-tailed Student's t test, t=8.43, P < 0.001)."
+
+-   Lang and Secic, How to Report Statistics in Medicine, p47.
+
+
+::: notes
+State the sample statistics for each group (mean, standard deviation, and range).
+
+The use of comparative words like "only" are strongly encouraged.
+:::
+
+## P-value AND confidence interval
+
+"We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion. Alpha was set at 0.05.  Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of only 6.5 degrees with a standard deviation of 3.4. This 9.5 degree difference was statistically significant (**95% CI = 7.23 to 11.73**, two-tailed Student's t test, t=8.43, **P < 0.001**)."
+
+-   Lang and Secic, How to Report Statistics in Medicine, p47.
+
+
+::: notes
+State the p-value and the confidence interval. Both are important. I do not agree with reporting the t-statistic, but that is a minor quibble. 
+:::
+
+## One or two sided test
+
+"We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion. Alpha was set at 0.05.  Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of only 6.5 degrees with a standard deviation of 3.4. This 9.5 degree difference was statistically significant (95% CI = 7.23 to 11.73, **two-tailed Student's t test**, t=8.43, P < 0.001)."
+
+-   Lang and Secic, How to Report Statistics in Medicine, p47.
+
+
+::: notes
+State the p-value and the confidence interval. Both are important. I do not agree with reporting the t-statistic, but that is a minor quibble. 
+:::
+
+## My interpretation
+
+-   "Comparison of housing prices between groups used a two-sample t-test."
+-   "All tests were conducted using a two-sided alpha level of 0.05."
+-   "Houses that were custom built had an average price of 145 thousand dollars, which was 50 thousand dollars higher than the average price of normal houses. This difference was statistically significant (95% CI 36 thousand dollars to 64 thousand dollars, p=0.001)."
+
+::: notes
+There was no power calculation done prior to data collection, so don't mention it at all. I like to state some of the details in the methods section rather than the results section.
+:::
+
+## What I look for 
+
+-   The test you are using
+-   Specify the number of tails
+-   Round
+-   Units of measure
+
+::: notes
+Here are the things I look for.
+:::
+
 ## Compare means dialog box
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-65.png)
 
@@ -527,11 +507,7 @@ Add note.
 Add note.
 :::
 
-<<<<<<< HEAD
-## Sample size calculation
-=======
 ## Compare means output
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 ![](../images/housing-analysis-66.png)
 
@@ -539,11 +515,7 @@ Add note.
 Add note.
 :::
 
-<<<<<<< HEAD
-## Sample size calculation
-=======
 ## Geometric means
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -599,7 +571,7 @@ Add note.
 Add note
 :::
 
-## Back calculated confidence intervals (1/2)
+## Back calculated confidence intervals, 1 of 2
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -615,7 +587,7 @@ Add note
 Add note
 :::
 
-## Back calculated confidence intervals (2/2)
+## Back calculated confidence intervals, 2 of 2
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -633,7 +605,7 @@ Add note
 
 
 
-## Conceptual formula for sample size justification (1/2)
+## Conceptual formula for sample size justification, 1 of 2
 
 ![](../images/sackett-01.png)
 
@@ -641,7 +613,7 @@ Add note
 Add note.
 :::
 
-## Conceptual formula for sample size justification (2/2)
+## Conceptual formula for sample size justification, 2 of 2
 
 ![](../images/sackett-02.png)
 
@@ -649,72 +621,6 @@ Add note.
 Add note.
 :::
 
-<<<<<<< HEAD
-## Moon data dictionary (1/5)
-
-```{}
----
-data_dictionary: moon.txt
-
-source:
-  This data file is part of OzDASL, an archive of various data sets 
-  useful for teaching. The maintainers of the data archive are from
-  Australia, but this particular data set is not specific to that part
-  of the world. The entire archive is at
-  https://dasl.datadescription.com/
-```
-
-## Moon data dictionary (1/5)
-
-```{}
-description:
-  This data set shows a perceptual experiment where subjects were asked
-  to estimate a size ratio with their head level to the ground and then
-  with their head elevated (in other words, looking upward). Although
-  the objects being compared were the same size, almost all subjects 
-  overestimated the relative sizes. The hypothesis to be tested is 
-  whether the overestimation is greater with eyes level than with eyes
-  elevated. A more detailed description is available at
-  https://gksmyth.github.io/ozdasl/general/moon.html
-  
-download:
-  https://gksmyth.github.io/ozdasl/general/moon.txt
-```
-
-## Moon data dictionary (1/5)
-
-```{}
-copyright:  
-  Unknown. You should be able to use this data for individual 
-  educational purposes under the Fair Use guidelines of U.S. 
-  copyright law.
-
-format: 
-  delimiter: tab
-  varnames: first row of data
-  missing-value-code: not needed
-  rows: 10
-  columns: 3
-```
-
-## Moon data dictionary (1/5)
-
-```{}
-vars:
-  Subject:
-    label: Subject number
-    format: numeric
-
-  Elevated:
-    label: Perceived ratio with eyes elevated
-    format: numeric
-    
-  Level:
-    label: Perceived ratio with eyes level
-    format: numeric
----
-```
-=======
 ## Three things you need for a sample size justification
 
 -   Hypothesis
@@ -777,4 +683,158 @@ This output shows that you need 37 patients per group.
 ::: notes
 Suppose you were told that your research budget would allow a larger sample size. Your research team decides that even a smaller change in the Oucher score, a 0.5 unit change, would still be clinically important. This represents an effect size of 0.33. Plug the numbers into SPSS and you can see that you need 143 patients per group.
 :::
->>>>>>> 8825625958fb234f4150e816ea63c472b993f185
+## Moon data dictionary, 1 of 4
+
+```{}
+---
+data_dictionary: moon.txt
+
+source:
+  This data file is part of OzDASL, an archive of various data sets 
+  useful for teaching. The maintainers of the data archive are from
+  Australia, but this particular data set is not specific to that part
+  of the world. The entire archive is at
+  https://dasl.datadescription.com/
+```
+
+## Moon data dictionary, 2 of 4
+
+```{}
+description:
+  This data set shows a perceptual experiment where subjects were asked
+  to estimate a size ratio with their head level to the ground and then
+  with their head elevated (in other words, looking upward). Although
+  the objects being compared were the same size, almost all subjects 
+  overestimated the relative sizes. The hypothesis to be tested is 
+  whether the overestimation is greater with eyes level than with eyes
+  elevated. A more detailed description is available at
+  https://gksmyth.github.io/ozdasl/general/moon.html
+  
+download:
+  https://gksmyth.github.io/ozdasl/general/moon.txt
+```
+
+## Moon data dictionary, 3 of 4
+
+```{}
+copyright:  
+  Unknown. You should be able to use this data for individual 
+  educational purposes under the Fair Use guidelines of U.S. 
+  copyright law.
+
+format: 
+  delimiter: tab
+  varnames: first row of data
+  missing-value-code: not needed
+  rows: 10
+  columns: 3
+```
+
+## Moon data dictionary, 4 of 4
+
+```{}
+vars:
+  Subject:
+    label: Subject number
+    format: numeric
+
+  Elevated:
+    label: Perceived ratio with eyes elevated
+    format: numeric
+    
+  Level:
+    label: Perceived ratio with eyes level
+    format: numeric
+---
+```
+
+## QQ plot of ratio under elevated eye condition
+
+![](../images/moon-analysis-01.png)
+
+::: notes
+Add note.
+:::
+
+## QQ plot of ratio under level eye condition
+
+![](../images/moon-analysis-02.png)
+
+::: notes
+Add note.
+:::
+
+## QQ plot of differences
+
+![](../images/moon-analysis-03.png)
+
+::: notes
+Add note.
+:::
+
+## Moon data, descriptive statistics
+
+![](../images/moon-analysis-04.png)
+
+::: notes
+Add note.
+:::
+
+## Paired Samples T Test dialog box
+
+![](../images/moon-analysis-05.png)
+
+::: notes
+Add note.
+:::
+
+## Paired T Test output, 1 of 5
+
+![](../images/moon-analysis-06.png)
+
+::: notes
+Add note.
+:::
+
+## Paired T Test output, 2 of 5
+
+![](../images/moon-analysis-07.png)
+
+::: notes
+Add note.
+:::
+
+## Paired T Test output, 3 of 5
+
+![](../images/moon-analysis-08.png)
+
+::: notes
+Add note.
+:::
+
+## Paired T Test output, 4 of 5
+
+![](../images/moon-analysis-09.png)
+
+::: notes
+Add note.
+:::
+
+## Paired T Test output, 5 of 5
+
+![](../images/moon-analysis-10.png)
+
+::: notes
+Add note.
+:::
+
+## My interpretation
+
+-   "Comparison of viewing ratios between the eyes level and eyes elevated conditions used a paired t-test."
+-   "All tests were conducted using a two-sided alpha level of 0.05."
+-   "Viewing ratios under both conditions had comaparable sample means and standard deviations. The mean difference was 0.02 with a standard deviation of 0.14. This difference was not statistically significant (95% CI: -0.08 to 0.12, p=0.67).
+
+::: notes
+Again, there was no power calculation done prior to data collection, so don't mention it at all. The first two sentences might belong better in the methods section.
+:::
+
