@@ -207,19 +207,19 @@ Here is information on the final three variables. Some houses are built to a pre
 ![](../images/housing-analysis-41.png)
 
 ::: notes
-To get separate histograms for each subgroup, select Data | Split File from the SPSS menu.
+To get separate histograms for each subgroup, select Data \| Split File from the SPSS menu.
 :::
 
-## Price histogram (1/2) 
+## Price histogram (1/2)
 
 ![](../images/housing-analysis-43.png)
 
 ::: notes
 Here is the histogram for the first group, not custom built. Note a few things.
 
-1. Removal of the needless blue color
-2. Change frequency to remove unneeded decimals
-3. Use of comma and dollar signs for price.
+1.  Removal of the needless blue color
+2.  Change frequency to remove unneeded decimals
+3.  Use of comma and dollar signs for price.
 :::
 
 ## Price histogram (2/2)
@@ -238,7 +238,7 @@ Here is the histogram for custom built=Yes. In addition to the changes mentioned
 I always forget, but you should remember to turn off the split file option before doing any further analyses.
 :::
 
-## Population pyramid 
+## Population pyramid
 
 ![](../images/housing-analysis-46.png)
 
@@ -253,18 +253,18 @@ I'm not a big fan of the population pyramid, but it does pretty well right here.
 ::: notes
 If you want to draw a Q-Q plot, you could do it separately for each group, but I recommend that you combine them. Before you combine them, though, be sure to adjust the means of the two groups so they are both the same. This is a multi-step process.
 
-First select Data | Aggregate from the menu.
+First select Data \| Aggregate from the menu.
 :::
 
-## Compute variable dialog box 
+## Compute variable dialog box
 
 ![](../images/housing-analysis-48.png)
 
 ::: notes
-Then subtract the means from each group using Transform | Compute from the SPSS menu.
+Then subtract the means from each group using Transform \| Compute from the SPSS menu.
 :::
 
-## Q-Q plot for all of the data 
+## Q-Q plot for all of the data
 
 ![](../images/housing-analysis-49.png)
 
@@ -272,12 +272,12 @@ Then subtract the means from each group using Transform | Compute from the SPSS 
 Add note.
 :::
 
-## Boxplots 
+## Boxplots
 
 ![](../images/housing-analysis-50.png)
 
 ::: notes
-The boxplot is very useful for examining normality and the equal variation assumption. For housing prices, it looks like the custom built houses have both a larger mean and a larger standard deviation. I generally worry a little bit about the equal variances assumption if the one interquartile range is at least twice as big than the other, and worry more when it is three times bigger. 
+The boxplot is very useful for examining normality and the equal variation assumption. For housing prices, it looks like the custom built houses have both a larger mean and a larger standard deviation. I generally worry a little bit about the equal variances assumption if the one interquartile range is at least twice as big than the other, and worry more when it is three times bigger.
 
 Here is it a bit of a concern. Normality, though, is probably close enough to not be a concern.
 :::
@@ -298,15 +298,15 @@ Here is it a bit of a concern. Normality, though, is probably close enough to no
 The evidence is mixed but points to the possible use of a log transformation.
 :::
 
-## Compute Variable dialog box 
+## Compute Variable dialog box
 
 ![](../images/housing-analysis-51.png)
 
 ::: notes
-Select Transform | Compute from the SPSS menu to get a log transformation. Remember that SPSS uses "lg10" for the log transformation.
+Select Transform \| Compute from the SPSS menu to get a log transformation. Remember that SPSS uses "lg10" for the log transformation.
 :::
 
-## bosplots of the log transformed variables 
+## bosplots of the log transformed variables
 
 ![](../images/housing-analysis-52.png)
 
@@ -319,10 +319,10 @@ Here is the boxplot for the log transformed data.
 ![](../images/housing-analysis-53.png)
 
 ::: notes
-Select Analyze | Compare Means | Independent Samples T-test from the SPSS menu.
+Select Analyze \| Compare Means \| Independent Samples T-test from the SPSS menu.
 :::
 
-## Define Groups dialog box 
+## Define Groups dialog box
 
 ![](../images/housing-analysis-54.png)
 
@@ -338,7 +338,7 @@ SPSS does not automatically determine the group codes from your data.
 SPSS produces way too much information in its output and you can't really suppress most of it. The groups statistics are not bad. The standard error is not really that helpful, to be honest, but that is a nitpick.
 :::
 
-## T-test output (2/5) 
+## T-test output (2/5)
 
 ![](../images/housing-analysis-56.png)
 
@@ -346,7 +346,7 @@ SPSS produces way too much information in its output and you can't really suppre
 I do not recommend Leven's test, for reasons mentioned earlier. There is no easy way to keep this test from appearing in your output.
 :::
 
-## T-test output (3/5) 
+## T-test output (3/5)
 
 ![](../images/housing-analysis-57.png)
 
@@ -356,7 +356,7 @@ SPSS provides two t-tests. The first row (Equal variances assumed) is the tradit
 SPSS also provides one-sided and two-sided p-values.
 :::
 
-## T-test output (4/5) 
+## T-test output (4/5)
 
 ![](../images/housing-analysis-58.png)
 
@@ -377,10 +377,10 @@ Finally, SPSS provides effect size measures. I do not like effect sizes and ther
 ![](../images/housing-analysis-60.png)
 
 ::: notes
-I prefer to conduct a two-sample t-test using a regression model. Select Analyze | General Linear Model | Univariate from the menu. 
+I prefer to conduct a two-sample t-test using a regression model. Select Analyze \| General Linear Model \| Univariate from the menu.
 :::
 
-## Univariate model dialog box 
+## Univariate model dialog box
 
 ![](../images/housing-analysis-61.png)
 
@@ -388,7 +388,7 @@ I prefer to conduct a two-sample t-test using a regression model. Select Analyze
 Add note.
 :::
 
-## General linear model output (1/3) 
+## General linear model output (1/3)
 
 ![](../images/housing-analysis-62.png)
 
@@ -396,7 +396,7 @@ Add note.
 Add note.
 :::
 
-## General linear model output (2/3) 
+## General linear model output (2/3)
 
 ![](../images/housing-analysis-63.png)
 
@@ -404,7 +404,7 @@ Add note.
 Add note.
 :::
 
-## General linear model output (3/3) 
+## General linear model output (3/3)
 
 ![](../images/housing-analysis-64.png)
 
@@ -430,7 +430,7 @@ Add note.
 
 ## Geometric means
 
-:::: {.columns}
+::: columns
 ::: {.column width="50%"}
 ![](../images/calculator-01.png)
 :::
@@ -438,7 +438,7 @@ Add note.
 ::: {.column width="50%"}
 ![](../images/calculator-02.png)
 :::
-::::
+:::
 
 ::: notes
 Add note
@@ -446,7 +446,7 @@ Add note
 
 ## Geometric standard deviations
 
-:::: {.columns}
+::: columns
 ::: {.column width="50%"}
 ![](../images/calculator-03.png)
 :::
@@ -454,7 +454,7 @@ Add note
 ::: {.column width="50%"}
 ![](../images/calculator-04.png)
 :::
-::::
+:::
 
 ::: notes
 Add note
@@ -470,7 +470,7 @@ Add note.
 
 ## Back-calculated statistics
 
-:::: {.columns}
+::: columns
 ::: {.column width="50%"}
 ![](../images/calculator-05.png)
 :::
@@ -478,7 +478,7 @@ Add note.
 ::: {.column width="50%"}
 ![](../images/calculator-06.png)
 :::
-::::
+:::
 
 ::: notes
 Add note
@@ -486,7 +486,7 @@ Add note
 
 ## Back calculated confidence intervals (1/2)
 
-:::: {.columns}
+::: columns
 ::: {.column width="50%"}
 ![](../images/calculator-07.png)
 :::
@@ -494,7 +494,7 @@ Add note
 ::: {.column width="50%"}
 ![](../images/calculator-08.png)
 :::
-::::
+:::
 
 ::: notes
 Add note
@@ -502,7 +502,7 @@ Add note
 
 ## Back calculated confidence intervals (2/2)
 
-:::: {.columns}
+::: columns
 ::: {.column width="50%"}
 ![](../images/calculator-09.png)
 :::
@@ -510,13 +510,11 @@ Add note
 ::: {.column width="50%"}
 ![](../images/calculator-10.png)
 :::
-::::
+:::
 
 ::: notes
 Add note
 :::
-
-
 
 ## Conceptual formula for sample size justification (1/2)
 
@@ -556,11 +554,11 @@ Some people bypass the specification of the minimum clinically important differe
 
 ## Rule of 16
 
--  n per group = 16 / ES^2
--  Examples:
-   -   ES = 0.5, n per group = 64
-   -   ES = 0.1, n per group = 1,600
-   
+-   n per group = 16 / ES\^2
+-   Examples:
+    -   ES = 0.5, n per group = 64
+    -   ES = 0.1, n per group = 1,600
+
 ::: notes
 A simple rule for sample size justification that you can do without a lot of calculation is the rule of 16. Take 16 and divide it by the effect size squared.
 
@@ -581,7 +579,7 @@ I worked on a study at Children's Mercy many years ago where the research team w
 Plug these values into the dialog box.
 :::
 
-## Sample size calculation output 
+## Sample size calculation output
 
 ![](../images/power-calculation-02.png)
 
