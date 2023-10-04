@@ -7,8 +7,27 @@ format:
 editor: visual
 ---
 
-## Artificial data
+## Review two-sample t-test
 
+-   $H_0:\ \mu_1=\mu_2$
+-   $H_1:\ \mu_1 \ne \mu_2$
+    -   Or a one tailed alternative
+-   $T=\frac{\bar X_1-\bar X_2}{SE(\bar X_1-\bar X_2)}$
+    -   Accept H0 if T is close to zero.
+    
+::: notes
+You saw how to compare two means last week. Here is the general framework.
+:::
+
+## What to do with three or more groups?
+
+-   $H_0:\ \mu_1=\mu_2=...=\mu_k$
+-   $H_1:\ \mu_i \ne \mu_j$ for some i, j
+    -   Note: one-tailed test is tricky.
+-   Accept H0 if the F ratio (defined below) is close to 1.
+
+
+## Artificial data
 
 ::: notes
 To motivate some of the calculations in Analysis of Variance, I created an artificial data set with numbers that are easy to work with.
@@ -27,9 +46,9 @@ ybarbar <- rep(mean(y), 11)
 ybar <- rep(tapply(y, g, mean), c(3, 5, 3))
 xpos <- c(1:3, 6:10, 13:15)
 d <- data.frame(g, y, ybarbar, ybar, xpos)
-ssto <- (y-ybarbar)^2
-sse  <- (y-ybar)^2
-sstr <- (ybar-ybarbar)^2
+sst <- (y-ybarbar)^2
+ssw  <- (y-ybar)^2
+ssb <- (ybar-ybarbar)^2
 d[ , 1:2]
 write_csv(d[ , 1:2], file="../data/data-08-artificial-anova.csv")
 ```
@@ -58,65 +77,107 @@ g2
 Here is a plot of the data.
 :::
 
-## Total SS = `r sum(ssto)`
+## Total SS = `r sum(sst)`
 
 ```{r}
 g2 +
   geom_segment(xend=xpos, yend=ybarbar) +
   geom_text(y=ybarbar, label=ybarbar) +
-  geom_text(y=15, label=ssto)
+  geom_text(y=15, label=sst)
 ```
 
 ::: notes
 Total sums of squares is the squared deviation between each individual value and the overall mean.
 :::
 
-## Error SS = `r sum(sse)`
+## Within SS = `r sum(ssw)`
 
 ```{r}
 g2 +
   geom_segment(xend=xpos, yend=ybar) +
   geom_text(y=ybar, label=ybar) +
-  geom_text(y=15, label=sse)
+  geom_text(y=15, label=ssw)
 ```
 
 ::: notes
-Error sums of squares is the squared deviation between each individual value and the group means.
+Within sums of squares is the squared deviation between each individual value and the group means.
 :::
 
-
-## Treatment SS = `r sum(sstr)`
+## Between SS = `r sum(ssb)`
 
 ```{r}
 g1 +
   geom_text(y=ybar, label=ybar) +
   geom_segment(x=xpos, y=ybar, xend=xpos, yend=ybarbar) +
   geom_text(y=ybarbar, label=ybarbar) +
-  geom_text(y=15, label=sstr)
+  geom_text(y=15, label=ssb)
 ```
 
 ::: notes
-Treatment SS is the squared deviation between the group means and the overall mean.
+Between SS is the squared deviation between the group means and the overall mean.
 :::
 
 ## Degrees of freedom
 
 -   For Total SS, df = 10
--   For Error SS, df = 8
--   For Treatment SS, df = 2
--   In general, if N = number of observations, k = number of groups, then
-    -   Total df = N-1
-    -   Error df = N-k
-    -   Treatment df = k-1
-    
+-   For Within SS, df = 8
+-   For Between SS, df = 2
+-   In general,
+    -   N = number of observations
+    -   k = number of groups
+        -   Total df = N-1
+        -   Within df = N-k
+        -   Between df = k-1
+
 ::: notes
 The concept of degrees of freedom is tricky. It is the number of "independent" observations, or the number of observations minus the number of estimated parameters.
 
 For Total SS, you have 11 observations, but one estimated parameter, the overall mean of 32. The degrees of freedom is 11-1 = 10.
 
-For Error SS, you also have 11 observations, but there are 3 estimated parameters, the three group means. The degrees of freedom is 11-3 = 8
+For Within SS, you also have 11 observations, but there are 3 estimated parameters, the three group means. The degrees of freedom is 11-3 = 8
 
-For Treatment SS, you only have three observations, the three group means. There is one estimated parameter, the overall mean. The degrees of freedom is 3-1 = 2.
+For Between SS, you only have three observations, the three group means. There is one estimated parameter, the overall mean. The degrees of freedom is 3-1 = 2.
 
 In general, if you let N represent the total number of observations across all groups and let k represent the number of groups, then the degrees of freedom are N-1, N-k, and k-1.
 :::
+
+## ANOVA table, 1 of 4
+
+![](../images/artificial-anova-01.png)
+
+::: notes
+You can lay out the sums of squares and the degrees of freedom in a table.
+:::
+
+## ANOVA table, 2 of 4
+
+![](../images/artificial-anova-01.png)
+
+::: notes
+Define the mean squares as the sum of squares divided by the degrees of freedom.
+:::
+
+## ANOVA table, 3 of 4
+
+![](../images/artificial-anova-03.png)
+
+::: notes
+Calculate the F ratio as the Between Groups Mean Square divided by the Within Groups Mean Square.
+:::
+
+## ANOVA table, 4 of 4
+
+![](../images/artificial-anova-04.png)
+
+::: notes
+Calculate the F ratio as the Between Groups Mean Square divided by the Within Groups Mean Square.
+:::
+
+## ANOVA table from the general linear model
+
+![](../images/artificial-anova-05.png)
+
+::: notes
+You can lay out the sums of squares and the degrees of freedom in a table.
+:::
+
