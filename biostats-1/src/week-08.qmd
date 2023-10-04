@@ -104,12 +104,10 @@ Treatment SS is the squared deviation between the group means and the overall me
 -   For Total SS, df = 10
 -   For Error SS, df = 8
 -   For Treatment SS, df = 2
--   In general, 
-    -   N = number of observations
-    -   k = number of groups
-        -   Total df = N-1
-        -   Error df = N-k
-        -   Treatment df = k-1
+-   In general, if N = number of observations, k = number of groups, then
+    -   Total df = N-1
+    -   Error df = N-k
+    -   Treatment df = k-1
     
 ::: notes
 The concept of degrees of freedom is tricky. It is the number of "independent" observations, or the number of observations minus the number of estimated parameters.
