@@ -1,0 +1,124 @@
+---
+title: "Comments for MEDB 5501, Week 8"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: visual
+---
+
+## Artificial data
+
+
+::: notes
+To motivate some of the calculations in Analysis of Variance, I created an artificial data set with numbers that are easy to work with.
+:::
+
+```{r}
+library(ggplot2)
+library(readr)
+g <- rep(1:3, c(3, 5, 3))
+y <- c(
+  23, 30, 25, 
+  33, 36, 41, 37, 43,
+  24, 29, 31
+)
+ybarbar <- rep(mean(y), 11)
+ybar <- rep(tapply(y, g, mean), c(3, 5, 3))
+xpos <- c(1:3, 6:10, 13:15)
+d <- data.frame(g, y, ybarbar, ybar, xpos)
+ssto <- (y-ybarbar)^2
+sse  <- (y-ybar)^2
+sstr <- (ybar-ybarbar)^2
+d[ , 1:2]
+write_csv(d[ , 1:2], file="../data/data-08-artificial-anova.csv")
+```
+
+::: notes
+To motivate some of the calculations in Analysis of Variance, I created an artificial data set with numbers that are easy to work with.
+:::
+
+## Scatterplot
+
+```{r}
+ggplot(d, aes(xpos, y, col=factor(g))) +
+  expand_limits(y=c(15,50), breaks=5**(3:10)) +
+  scale_x_continuous(
+      breaks=c(2, 8, 14), 
+      minor=NULL,
+      labels=1:3) +
+  xlab(" ") +
+  ylab(" ") +
+  theme(legend.position="none") -> g1
+  g1 + geom_text(label=y) -> g2
+g2
+```
+
+::: notes
+Here is a plot of the data.
+:::
+
+## Total SS = `r sum(ssto)`
+
+```{r}
+g2 +
+  geom_segment(xend=xpos, yend=ybarbar) +
+  geom_text(y=ybarbar, label=ybarbar) +
+  geom_text(y=15, label=ssto)
+```
+
+::: notes
+Total sums of squares is the squared deviation between each individual value and the overall mean.
+:::
+
+## Error SS = `r sum(sse)`
+
+```{r}
+g2 +
+  geom_segment(xend=xpos, yend=ybar) +
+  geom_text(y=ybar, label=ybar) +
+  geom_text(y=15, label=sse)
+```
+
+::: notes
+Error sums of squares is the squared deviation between each individual value and the group means.
+:::
+
+
+## Treatment SS = `r sum(sstr)`
+
+```{r}
+g1 +
+  geom_text(y=ybar, label=ybar) +
+  geom_segment(x=xpos, y=ybar, xend=xpos, yend=ybarbar) +
+  geom_text(y=ybarbar, label=ybarbar) +
+  geom_text(y=15, label=sstr)
+```
+
+::: notes
+Treatment SS is the squared deviation between the group means and the overall mean.
+:::
+
+## Degrees of freedom
+
+-   For Total SS, df = 10
+-   For Error SS, df = 8
+-   For Treatment SS, df = 2
+-   In general, 
+    -   N = number of observations
+    -   k = number of groups
+        -   Total df = N-1
+        -   Error df = N-k
+        -   Treatment df = k-1
+    
+::: notes
+The concept of degrees of freedom is tricky. It is the number of "independent" observations, or the number of observations minus the number of estimated parameters.
+
+For Total SS, you have 11 observations, but one estimated parameter, the overall mean of 32. The degrees of freedom is 11-1 = 10.
+
+For Error SS, you also have 11 observations, but there are 3 estimated parameters, the three group means. The degrees of freedom is 11-3 = 8
+
+For Treatment SS, you only have three observations, the three group means. There is one estimated parameter, the overall mean. The degrees of freedom is 3-1 = 2.
+
+In general, if you let N represent the total number of observations across all groups and let k represent the number of groups, then the degrees of freedom are N-1, N-k, and k-1.
+:::
