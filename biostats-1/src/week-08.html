@@ -1151,12 +1151,12 @@ margin-right: 0; }
 <ul>
 <li>Type I error: rejecting the null hypothesis when the null hypothesis is true.
 <ul>
-<li>Multiple hypotheses increase the Type I error rate.</li>
+<li>Multiple simultaneous hypotheses increase the Type I error rate.</li>
 </ul></li>
 </ul>
 </section>
-<section id="bonferroni-adjustment." class="slide level2">
-<h2>Bonferroni adjustment.</h2>
+<section id="bonferroni-inequality-1-of-2" class="slide level2">
+<h2>Bonferroni inequality, 1 of 2</h2>
 <p>Start with two hypotheses. Define</p>
 <ul>
 <li><span class="math inline">\(E_1\)</span> = Type I error for Hypothesis 1</li>
@@ -1167,10 +1167,36 @@ margin-right: 0; }
 <li><span class="math inline">\(P[E_1\ \cup\ E_2]\ \le\ P[E_1]+P[E_2]\)</span></li>
 <li><span class="math inline">\(P[E_1\ \cup\ E_2]\ \le\ 2 \alpha\)</span></li>
 </ul></li>
+</ul>
+</section>
+<section id="bonferroni-adjustment" class="slide level2">
+<h2>Bonferroni adjustment</h2>
+<ul>
 <li>For m hypotheses
 <ul>
 <li><span class="math inline">\(P[E_1\ \cup\ ...\ \cup E_m]\ \le\ m \alpha\)</span></li>
 </ul></li>
+<li>Test each hypothesis at <span class="math inline">\(\alpha/m\)</span>
+<ul>
+<li>Preserves overall Type I error rate</li>
+</ul></li>
+</ul>
+</section>
+<section id="controversies-over-bonferroni-adjustment" class="slide level2">
+<h2>Controversies over Bonferroni adjustment</h2>
+<ul>
+<li>Increases Type II errors</li>
+<li>Impractical for large values of m</li>
+<li>Works poorly for highly correlated tests</li>
+<li>Ambiguity in definition of simultaneous hypotheses</li>
+</ul>
+</section>
+<section id="alternatives-to-bonferroni-adjustment" class="slide level2">
+<h2>Alternatives to Bonferroni adjustment</h2>
+<ul>
+<li>False discovery rate</li>
+<li>Designation of primary and secondary outcomes</li>
+<li>Subjective assessment of simultaneous hypotheses</li>
 </ul>
 </section>
 <section id="review-two-sample-t-test" class="slide level2">
@@ -1209,6 +1235,41 @@ display:block!important;
 <li>Note: one-tailed test is tricky.</li>
 </ul></li>
 <li>Accept H0 if the F ratio (defined below) is close to 1.</li>
+</ul>
+</section>
+<section id="important-assumptions" class="slide level2">
+<h2>Important assumptions</h2>
+<ul>
+<li>Same as independent-samples t-test
+<ul>
+<li>Normality</li>
+<li>Equal variances</li>
+<li>Independence</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-to-check-assumptions" class="slide level2">
+<h2>How to check assumptions</h2>
+<ul>
+<li>Boxplots</li>
+<li>Analysis of residuals
+<ul>
+<li>Residual = Observed - Predicted
+<ul>
+<li>$e_{ij} = Y_{ij}-{Y}_i</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="post-hoc-tests" class="slide level2">
+<h2>Post hoc tests</h2>
+<ul>
+<li>If you reject H0, which values are unequal
+<ul>
+<li>With k groups, there are k(k-1)/2 comparisons</li>
+</ul></li>
+<li>Studentized range (Tukey test)</li>
+<li>Bonferroni adjustment</li>
 </ul>
 </section>
 <section id="artificial-data" class="slide level2">
