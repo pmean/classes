@@ -12,9 +12,9 @@ editor: visual
 -   Type I error: rejecting the null hypothesis when the null hypothesis is true.
     -   Multiple simultaneous hypotheses increase the Type I error rate.
 
-## Bonferroni inequality, 1 of 2
+## Bonferroni inequality for two simultaneous hypotheses
 
-Start with two hypotheses. Define
+Define
 
 -   $E_1$ = Type I error for Hypothesis 1
 -   $E_2$ = Type I error for Hypothesis 2
@@ -29,13 +29,15 @@ Start with two hypotheses. Define
     -   $P[E_1\ \cup\ ...\ \cup E_m]\ \le\ m \alpha$
 -   Test each hypothesis at $\alpha/m$
     -   Preserves overall Type I error rate
+-   Example, 3 simultaneous hypotheses
+    -   Reject H0 if p-value < 0.0133
 
 ## Controversies over Bonferroni adjustment
 
 -   Increases Type II errors
 -   Impractical for large values of m
 -   Works poorly for highly correlated tests
--   Ambiguity in definition of simultaneous hypotheses
+-   Ambiguity in definition of "simultaneous" hypotheses
 
 ## Alternatives to Bonferroni adjustment
 
@@ -72,16 +74,29 @@ You saw how to compare two means last week. Here is the general framework.
 ## How to check assumptions
 
 -   Boxplots
--   Analysis of residuals
-    -   Residual = Observed - Predicted
-        -   $e_{ij} = Y_{ij}-\bar{Y}_i
+-   Analysis of residuals, $e_{ij}$
+    -   $e_{ij}$= Observed - Predicted
+    -   $e_{ij}= Y_{ij}-\bar{Y}_i$
 
-## Post hoc tests
+## Tukey post hoc tests
 
 -   If you reject H0, which values are unequal
     -   With k groups, there are k(k-1)/2 comparisons
 -   Studentized range (Tukey test)
+    -   Requires equal sample sizes per group
+    -   Uses harmonic mean approximation for unequal sample sizes.
+        -   Do not use harmonic means if seriously different sample sizes.
+
+## Alternatives to Tukey post hoc tests
+
 -   Bonferroni adjustment
+    -   Works for unequal sample sizes per group
+    -   Works for unequal variances
+-   Dunnett's test
+    -   Treatment versus multiple controls
+-   Scheffe's test
+    -   Works for complex comparison
+        -   Example $\mu_1\ vs.\ \frac{\mu_2+\mu_3+\mu_4}{3}$
 
 ## Artificial data
 
@@ -237,7 +252,55 @@ Calculate the F ratio as the Between Groups Mean Square divided by the Within Gr
 You can lay out the sums of squares and the degrees of freedom in a table.
 :::
 
-## YRBSS analysis
+## Regression approach to ANOVA, 1 of 4
+
+![](../images/artificial-anova-06.png)
+
+::: notes
+Add note.
+:::
+
+## Regression approach to ANOVA, 2 of 4
+
+![](../images/artificial-anova-07.png)
+
+::: notes
+Add note.
+:::
+
+## Regression approach to ANOVA, 3 of 4
+
+![](../images/artificial-anova-08.png)
+
+::: notes
+Add note.
+:::
+
+## Regression approach to ANOVA, 4 of 4
+
+![](../images/artificial-anova-09.png)
+
+::: notes
+Add note.
+:::
+
+## Predicted values and residuals, 1 of 2
+
+![](../images/artificial-anova-10.png)
+
+::: notes
+Add note.
+:::
+
+## Predicted values and residuals, 2 of 2
+
+![](../images/artificial-anova-11.png)
+
+::: notes
+Add note.
+:::
+
+## Recode into different variables dialog box
 
 ![](../images/yrbss-analysis-01.png)
 
@@ -245,7 +308,7 @@ You can lay out the sums of squares and the degrees of freedom in a table.
 Add note.
 :::
 
-## YRBSS analysis
+## Old and new Values dialog box
 
 ![](../images/yrbss-analysis-02.png)
 
@@ -253,7 +316,7 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## General Linear Model | Univariate dialog box
 
 ![](../images/yrbss-analysis-03.png)
 
@@ -261,7 +324,7 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## Descriptives output
 
 ![](../images/yrbss-analysis-04.png)
 
@@ -269,7 +332,7 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## Boxplot
 
 ![](../images/yrbss-analysis-05.png)
 
@@ -277,7 +340,7 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## Analysis of variance table
 
 ![](../images/yrbss-analysis-06.png)
 
@@ -285,7 +348,15 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## Analysis of variance table with irrelevant rows removed
+
+![](../images/yrbss-analysis-06a.png)
+
+::: notes
+Add note.
+:::
+
+## Parameter estimates
 
 ![](../images/yrbss-analysis-07.png)
 
@@ -293,7 +364,7 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## Tukey post hoc test, 1 of 7
 
 ![](../images/yrbss-analysis-08.png)
 
@@ -301,7 +372,7 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## Tukey post hoc test, 2 of 7
 
 ![](../images/yrbss-analysis-09.png)
 
@@ -309,7 +380,7 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## Tukey post hoc test, 3 of 7
 
 ![](../images/yrbss-analysis-10.png)
 
@@ -317,7 +388,7 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## Tukey post hoc test, 4 of 7
 
 ![](../images/yrbss-analysis-11.png)
 
@@ -325,7 +396,7 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## Tukey post hoc test, 5 of 7
 
 ![](../images/yrbss-analysis-12.png)
 
@@ -333,7 +404,7 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## Tukey post hoc test, 6 of 7
 
 ![](../images/yrbss-analysis-13.png)
 
@@ -341,7 +412,7 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## Tukey post hoc test, 7 of 7
 
 ![](../images/yrbss-analysis-14.png)
 
@@ -349,7 +420,7 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## Checking assumptions, boxplots
 
 ![](../images/yrbss-analysis-15.png)
 
@@ -357,7 +428,7 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## Checking assumptions, descriptive statistics
 
 ![](../images/yrbss-analysis-16.png)
 
@@ -365,7 +436,23 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## Residual analysis, 1 of 2
+
+![](../images/yrbss-analysis-21.png)
+
+::: notes
+Add note.
+:::
+
+## Residual analysis, 2 of 2
+
+![](../images/yrbss-analysis-22.png)
+
+::: notes
+Add note.
+:::
+
+## Analysis of school year, 1 of 4
 
 ![](../images/yrbss-analysis-17.png)
 
@@ -373,7 +460,7 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## Analysis of school year, 2 of 4
 
 ![](../images/yrbss-analysis-18.png)
 
@@ -381,7 +468,7 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## Analysis of school year, 3 of 4
 
 ![](../images/yrbss-analysis-19.png)
 
@@ -389,10 +476,11 @@ Add note.
 Add note.
 :::
 
-## YRBSS analysis
+## Analysis of school year, 4 of 4
 
 ![](../images/yrbss-analysis-20.png)
 
 ::: notes
 Add note.
 :::
+
