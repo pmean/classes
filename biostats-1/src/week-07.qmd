@@ -31,6 +31,7 @@ This test arises in a variety of settings but two of the most common are the ran
 
         -   Assess each group separately, or
         -   Combine after subtracting means
+
     -   Or rely on Central Limit Theorem
 
 ::: notes
@@ -46,9 +47,9 @@ How concerned you should be about the normality assumption depends on several fa
         -   Interquartile range
         -   Look for large disparities only (2 or 3 fold)
     -   Calculate and compare the standard deviations
-         -   Again, large disparities only
+        -   Again, large disparities only
     -   Levene's test (not recommended)
-        -   Too little power for small sample sizes and  too much power for large sample sizes
+        -   Too little power for small sample sizes and too much power for large sample sizes
         -   Very sensitive to normality assumption
 -   The equal variance assumption is important mostly for unequal sample sizes.
 
@@ -197,7 +198,6 @@ Here is information on the final three variables. Some houses are built to a pre
 ![](../images/housing-analysis-41.png)
 
 ::: notes
-
 Add note.
 :::
 
@@ -206,7 +206,7 @@ Add note.
 ![](../images/housing-analysis-42.png)
 
 ::: notes
-To get separate histograms for each subgroup, select Data | Split File from the SPSS menu.
+To get separate histograms for each subgroup, select Data \| Split File from the SPSS menu.
 :::
 
 ## Price histogram, 1 of 2
@@ -216,11 +216,10 @@ To get separate histograms for each subgroup, select Data | Split File from the 
 ::: notes
 Here is the histogram for the first group, not custom built. Note a few things.
 
-1. Removal of the needless blue color
-2. Change frequency to remove unneeded decimals
-3. Use of comma and dollar signs for price.
+1.  Removal of the needless blue color
+2.  Change frequency to remove unneeded decimals
+3.  Use of comma and dollar signs for price.
 :::
-
 
 ## Price histogram, 2 of 2
 
@@ -238,7 +237,7 @@ Here is the histogram for custom built=Yes. In addition to the changes mentioned
 I always forget, but you should remember to turn off the split file option before doing any further analyses.
 :::
 
-## Population pyramid 
+## Population pyramid
 
 ![](../images/housing-analysis-46.png)
 
@@ -253,30 +252,31 @@ I'm not a big fan of the population pyramid, but it does pretty well right here.
 ::: notes
 If you want to draw a Q-Q plot, you could do it separately for each group, but I recommend that you combine them. Before you combine them, though, be sure to adjust the means of the two groups so they are both the same. This is a multi-step process.
 
-First select Data | Aggregate from the menu.
+First select Data \| Aggregate from the menu.
 :::
 
-## Compute variable dialog box 
+## Compute variable dialog box
 
 ![](../images/housing-analysis-48.png)
 
 ::: notes
-Then subtract the means from each group using Transform | Compute from the SPSS menu.
+Then subtract the means from each group using Transform \| Compute from the SPSS menu.
 :::
 
-## Q-Q plot for all of the data 
+## Q-Q plot for all of the data
+
 ![](../images/housing-analysis-49.png)
 
 ::: notes
 Add note.
 :::
 
-## Boxplots 
+## Boxplots
 
 ![](../images/housing-analysis-50.png)
 
 ::: notes
-The boxplot is very useful for examining normality and the equal variation assumption. For housing prices, it looks like the custom built houses have both a larger mean and a larger standard deviation. I generally worry a little bit about the equal variances assumption if the one interquartile range is at least twice as big than the other, and worry more when it is three times bigger. 
+The boxplot is very useful for examining normality and the equal variation assumption. For housing prices, it looks like the custom built houses have both a larger mean and a larger standard deviation. I generally worry a little bit about the equal variances assumption if the one interquartile range is at least twice as big than the other, and worry more when it is three times bigger.
 
 Here is it a bit of a concern. Normality, though, is probably close enough to not be a concern.
 :::
@@ -297,15 +297,15 @@ Here is it a bit of a concern. Normality, though, is probably close enough to no
 The evidence is mixed but points to the possible use of a log transformation.
 :::
 
-## Compute Variable dialog box 
+## Compute Variable dialog box
 
 ![](../images/housing-analysis-51.png)
 
 ::: notes
-Select Transform | Compute from the SPSS menu to get a log transformation. Remember that SPSS uses "lg10" for the log transformation.
+Select Transform \| Compute from the SPSS menu to get a log transformation. Remember that SPSS uses "lg10" for the log transformation.
 :::
 
-## boxplots of the log transformed variables 
+## boxplots of the log transformed variables
 
 ![](../images/housing-analysis-52.png)
 
@@ -318,10 +318,10 @@ Here is the boxplot for the log transformed data.
 ![](../images/housing-analysis-53.png)
 
 ::: notes
-Select Analyze | Compare Means | Independent Samples T-test from the SPSS menu.
+Select Analyze \| Compare Means \| Independent Samples T-test from the SPSS menu.
 :::
 
-## Define Groups dialog box 
+## Define Groups dialog box
 
 ![](../images/housing-analysis-54.png)
 
@@ -337,7 +337,7 @@ SPSS does not automatically determine the group codes from your data.
 SPSS produces way too much information in its output and you can't really suppress most of it. The groups statistics are not bad. The standard error is not really that helpful, to be honest, but that is a nitpick.
 :::
 
-## T-test output, 2 of 5 
+## T-test output, 2 of 5
 
 ![](../images/housing-analysis-56.png)
 
@@ -345,7 +345,7 @@ SPSS produces way too much information in its output and you can't really suppre
 I do not recommend Levene's test, for reasons mentioned earlier. There is no easy way to keep this test from appearing in your output.
 :::
 
-## T-test output, 3 of 5 
+## T-test output, 3 of 5
 
 ![](../images/housing-analysis-57.png)
 
@@ -355,7 +355,7 @@ SPSS provides two t-tests. The first row (Equal variances assumed) is the tradit
 SPSS also provides one-sided and two-sided p-values.
 :::
 
-## T-test output, 4 of 5 
+## T-test output, 4 of 5
 
 ![](../images/housing-analysis-58.png)
 
@@ -376,10 +376,10 @@ Finally, SPSS provides effect size measures. I do not like effect sizes and ther
 ![](../images/housing-analysis-60.png)
 
 ::: notes
-I prefer to conduct a two-sample t-test using a regression model. Select Analyze | General Linear Model | Univariate from the menu. 
+I prefer to conduct a two-sample t-test using a regression model. Select Analyze \| General Linear Model \| Univariate from the menu.
 :::
 
-## Univariate model dialog box 
+## Univariate model dialog box
 
 ![](../images/housing-analysis-61.png)
 
@@ -413,7 +413,7 @@ Add note.
 
 ## What belongs in an interpretation
 
-"We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion. Alpha was set at 0.05.  Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of only 6.5 degrees with a standard deviation of 3.4. This 9.5 degree difference was statistically significant (95% CI = 7.23 to 11.73, two-tailed Student's t test, t=8.43, P < 0.001)."
+"We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion. Alpha was set at 0.05. Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of only 6.5 degrees with a standard deviation of 3.4. This 9.5 degree difference was statistically significant (95% CI = 7.23 to 11.73, two-tailed Student's t test, t=8.43, P \< 0.001)."
 
 -   Lang and Secic, How to Report Statistics in Medicine, p47.
 
@@ -425,17 +425,17 @@ Let me parse this word by word.
 
 ## Power calculation, if possible
 
-"**We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion.** Alpha was set at 0.05.  Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of only 6.5 degrees with a standard deviation of 3.4. This 9.5 degree difference was statistically significant (95% CI = 7.23 to 11.73, two-tailed Student's t test, t=8.43, P < 0.001)."
+"**We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion.** Alpha was set at 0.05. Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of only 6.5 degrees with a standard deviation of 3.4. This 9.5 degree difference was statistically significant (95% CI = 7.23 to 11.73, two-tailed Student's t test, t=8.43, P \< 0.001)."
 
 -   Lang and Secic, How to Report Statistics in Medicine, p47.
 
 ::: notes
-You may not have a power calculation conducted prior to the start of the experiment. If you do, be sure to brag about it. 
+You may not have a power calculation conducted prior to the start of the experiment. If you do, be sure to brag about it.
 :::
 
 ## Alpha level
 
-"We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion. **Alpha was set at 0.05.**  Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of only 6.5 degrees with a standard deviation of 3.4. This 9.5 degree difference was statistically significant (95% CI = 7.23 to 11.73, two-tailed Student's t test, t=8.43, P < 0.001)."
+"We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion. **Alpha was set at 0.05.** Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of only 6.5 degrees with a standard deviation of 3.4. This 9.5 degree difference was statistically significant (95% CI = 7.23 to 11.73, two-tailed Student's t test, t=8.43, P \< 0.001)."
 
 -   Lang and Secic, How to Report Statistics in Medicine, p47.
 
@@ -445,10 +445,9 @@ Although almost everyone uses an alpha level of 0.05, it never hurts to restate 
 
 ## Sample statistics for each group
 
-"We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion. Alpha was set at 0.05.  **Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of** *only* **6.5 degrees with a standard deviation of 3.4.** This 9.5 degree difference was statistically significant (95% CI = 7.23 to 11.73, two-tailed Student's t test, t=8.43, P < 0.001)."
+"We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion. Alpha was set at 0.05. **Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of** *only* **6.5 degrees with a standard deviation of 3.4.** This 9.5 degree difference was statistically significant (95% CI = 7.23 to 11.73, two-tailed Student's t test, t=8.43, P \< 0.001)."
 
 -   Lang and Secic, How to Report Statistics in Medicine, p47.
-
 
 ::: notes
 State the sample statistics for each group (mean, standard deviation, and range).
@@ -458,24 +457,22 @@ The use of comparative words like "only" are strongly encouraged.
 
 ## P-value AND confidence interval
 
-"We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion. Alpha was set at 0.05.  Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of only 6.5 degrees with a standard deviation of 3.4. This 9.5 degree difference was statistically significant (**95% CI = 7.23 to 11.73**, two-tailed Student's t test, t=8.43, **P < 0.001**)."
+"We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion. Alpha was set at 0.05. Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of only 6.5 degrees with a standard deviation of 3.4. This 9.5 degree difference was statistically significant (**95% CI = 7.23 to 11.73**, two-tailed Student's t test, t=8.43, **P \< 0.001**)."
 
 -   Lang and Secic, How to Report Statistics in Medicine, p47.
 
-
 ::: notes
-State the p-value and the confidence interval. Both are important. I do not agree with reporting the t-statistic, but that is a minor quibble. 
+State the p-value and the confidence interval. Both are important. I do not agree with reporting the t-statistic, but that is a minor quibble.
 :::
 
 ## One or two sided test
 
-"We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion. Alpha was set at 0.05.  Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of only 6.5 degrees with a standard deviation of 3.4. This 9.5 degree difference was statistically significant (95% CI = 7.23 to 11.73, **two-tailed Student's t test**, t=8.43, P < 0.001)."
+"We designed the study to have 90% power to detect a 4 degree difference between the groups in the increased range of elbow flexion. Alpha was set at 0.05. Patients receiving electrical stimulation (n=26) increased their range of elbow flexion by a mean of 16 degrees with a standard deviation of 4.5, whereas patients in the control group (n=25) increased their range of flexion by a mean of only 6.5 degrees with a standard deviation of 3.4. This 9.5 degree difference was statistically significant (95% CI = 7.23 to 11.73, **two-tailed Student's t test**, t=8.43, P \< 0.001)."
 
 -   Lang and Secic, How to Report Statistics in Medicine, p47.
 
-
 ::: notes
-State the p-value and the confidence interval. Both are important. I do not agree with reporting the t-statistic, but that is a minor quibble. 
+State the p-value and the confidence interval. Both are important. I do not agree with reporting the t-statistic, but that is a minor quibble.
 :::
 
 ## My interpretation
@@ -488,7 +485,7 @@ State the p-value and the confidence interval. Both are important. I do not agre
 There was no power calculation done prior to data collection, so don't mention it at all. I like to state some of the details in the methods section rather than the results section.
 :::
 
-## What I look for 
+## What I look for
 
 -   The test you are using
 -   Specify the number of tails
@@ -517,7 +514,7 @@ Add note.
 
 ## Geometric means
 
-:::: {.columns}
+::: columns
 ::: {.column width="50%"}
 ![](../images/calculator-01.png)
 :::
@@ -525,7 +522,7 @@ Add note.
 ::: {.column width="50%"}
 ![](../images/calculator-02.png)
 :::
-::::
+:::
 
 ::: notes
 Add note
@@ -533,7 +530,7 @@ Add note
 
 ## Geometric standard deviations
 
-:::: {.columns}
+::: columns
 ::: {.column width="50%"}
 ![](../images/calculator-03.png)
 :::
@@ -541,7 +538,7 @@ Add note
 ::: {.column width="50%"}
 ![](../images/calculator-04.png)
 :::
-::::
+:::
 
 ::: notes
 Add note
@@ -557,7 +554,7 @@ Add note.
 
 ## Back-calculated statistics
 
-:::: {.columns}
+::: columns
 ::: {.column width="50%"}
 ![](../images/calculator-05.png)
 :::
@@ -565,7 +562,7 @@ Add note.
 ::: {.column width="50%"}
 ![](../images/calculator-06.png)
 :::
-::::
+:::
 
 ::: notes
 Add note
@@ -573,7 +570,7 @@ Add note
 
 ## Back calculated confidence intervals, 1 of 2
 
-:::: {.columns}
+::: columns
 ::: {.column width="50%"}
 ![](../images/calculator-07.png)
 :::
@@ -581,7 +578,7 @@ Add note
 ::: {.column width="50%"}
 ![](../images/calculator-08.png)
 :::
-::::
+:::
 
 ::: notes
 Add note
@@ -589,7 +586,7 @@ Add note
 
 ## Back calculated confidence intervals, 2 of 2
 
-:::: {.columns}
+::: columns
 ::: {.column width="50%"}
 ![](../images/calculator-09.png)
 :::
@@ -597,13 +594,11 @@ Add note
 ::: {.column width="50%"}
 ![](../images/calculator-10.png)
 :::
-::::
+:::
 
 ::: notes
 Add note
 :::
-
-
 
 ## Conceptual formula for sample size justification, 1 of 2
 
@@ -643,11 +638,11 @@ Some people bypass the specification of the minimum clinically important differe
 
 ## Rule of 16
 
--  n per group = 16 / ES^2
--  Examples:
-   -   ES = 0.5, n per group = 64
-   -   ES = 0.1, n per group = 1,600
-   
+-   n per group = 16 / ES\^2
+-   Examples:
+    -   ES = 0.5, n per group = 64
+    -   ES = 0.1, n per group = 1,600
+
 ::: notes
 A simple rule for sample size justification that you can do without a lot of calculation is the rule of 16. Take 16 and divide it by the effect size squared.
 
@@ -668,7 +663,7 @@ I worked on a study at Children's Mercy many years ago where the research team w
 Plug these values into the dialog box.
 :::
 
-## Sample size calculation output 
+## Sample size calculation output
 
 ![](../images/power-calculation-02.png)
 
@@ -683,9 +678,10 @@ This output shows that you need 37 patients per group.
 ::: notes
 Suppose you were told that your research budget would allow a larger sample size. Your research team decides that even a smaller change in the Oucher score, a 0.5 unit change, would still be clinically important. This represents an effect size of 0.33. Plug the numbers into SPSS and you can see that you need 143 patients per group.
 :::
+
 ## Moon data dictionary, 1 of 4
 
-```{}
+```         
 ---
 data_dictionary: moon.txt
 
@@ -699,7 +695,7 @@ source:
 
 ## Moon data dictionary, 2 of 4
 
-```{}
+```         
 description:
   This data set shows a perceptual experiment where subjects were asked
   to estimate a size ratio with their head level to the ground and then
@@ -716,7 +712,7 @@ download:
 
 ## Moon data dictionary, 3 of 4
 
-```{}
+```         
 copyright:  
   Unknown. You should be able to use this data for individual 
   educational purposes under the Fair Use guidelines of U.S. 
@@ -732,7 +728,7 @@ format:
 
 ## Moon data dictionary, 4 of 4
 
-```{}
+```         
 vars:
   Subject:
     label: Subject number
@@ -837,4 +833,3 @@ Add note.
 ::: notes
 Again, there was no power calculation done prior to data collection, so don't mention it at all. The first two sentences might belong better in the methods section.
 :::
-
