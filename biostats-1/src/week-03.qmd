@@ -956,8 +956,6 @@ Let me pause here for a second. Are there any questions?
 
 ## 
 
-
-
 ## The bell shaped curve
 
 -   Does your variation follow a bell shaped curve?
@@ -1380,96 +1378,94 @@ Also, calculate the mean plus of minus two standard deviations for any observati
     -   Diagnosing distributional issues
 -   What is coming next?
     -   Computing normal probabilities
-    
+
 ::: notes
 *Speaker notes*
 
 Let me pause here for a second. Are there any questions?
 :::
 
-
-
-## Normal probabilities in SPSS (P[Z < 2.5]=?)
+## Normal probabilities in SPSS (P\[Z \< 2.5\]=?)
 
 ![Screenshot of SPSS dialog box](../images/spss-normal-01.png)
 
-:::notes
+::: notes
 Here is a dialog box showing how to compute the probability that a standard normal variable is less than 2.5.
 
-Select Transform | Compute from the menu.
+Select Transform \| Compute from the menu.
 :::
 
-## Normal probabilities in SPSS (P[Z < 2.5]=0.9938)
+## Normal probabilities in SPSS (P\[Z \< 2.5\]=0.9938)
 
 ![Screenshot of SPSS data window](../images/spss-normal-02.png)
 
-:::notes
+::: notes
 Here is the result.
 :::
 
-## Normal probabilities in SPSS (P[Z > 2.5]=?)
+## Normal probabilities in SPSS (P\[Z \> 2.5\]=?)
 
 ![Screenshot of SPSS dialog box](../images/spss-normal-03.png)
 
-:::notes
+::: notes
 Here is a dialog box showing how to compute the probability that a standard normal variable is greater than 2.5.
 :::
 
-## Normal probabilities in SPSS (P[Z > 2.5]=0.0062)
+## Normal probabilities in SPSS (P\[Z \> 2.5\]=0.0062)
 
 ![Screenshot of SPSS data window](../images/spss-normal-04.png)
 
-:::notes
+::: notes
 Here is the result.
 :::
 
-## Normal probabilities in SPSS (P[-2.5 < Z < 2.5]=?)
+## Normal probabilities in SPSS (P\[-2.5 \< Z \< 2.5\]=?)
 
 ![Screenshot of SPSS dialog box](../images/spss-normal-05.png)
 
-:::notes
+::: notes
 Here is a dialog box showing how to compute the probability that a standard normal variable is between -2.5 and 2.5.
 :::
 
-## Normal probabilities in SPSS (P[-2.5 < Z < 2.5]=0.9876)
+## Normal probabilities in SPSS (P\[-2.5 \< Z \< 2.5\]=0.9876)
 
 ![Screenshot of SPSS data window](../images/spss-normal-06.png)
 
-:::notes
+::: notes
 Here is the result.
 :::
 
-## Normal percentiles in SPSS (P[Z < ?]=0.75)
+## Normal percentiles in SPSS (P\[Z \< ?\]=0.75)
 
 ![Screenshot of SPSS dialog box](../images/spss-normal-07.png)
 
-:::notes
+::: notes
 Here is a dialog box showing how to compute the 75th percentile of a standard normal variable.
 
-Select Transform | Compute from the menu.
+Select Transform \| Compute from the menu.
 :::
 
-## Normal percentiles in SPSS (P[Z < 0.67]=0.75)
+## Normal percentiles in SPSS (P\[Z \< 0.67\]=0.75)
 
 ![Screenshot of SPSS data window](../images/spss-normal-08.png)
 
-:::notes
+::: notes
 Here is the result.
 :::
 
-## Normal percentiles in SPSS (P[Z < ?]=0.25)
+## Normal percentiles in SPSS (P\[Z \< ?\]=0.25)
 
 ![Screenshot of SPSS dialog box](../images/spss-normal-09.png)
 
-:::notes
+::: notes
 Here is a dialog box showing how to compute the 25th percentile of a standard normal variable.
 :::
 
-## Normal percentiles in SPSS (P[Z < -0.67]=0.25)
+## Normal percentiles in SPSS (P\[Z \< -0.67\]=0.25)
 
 ![Screenshot of SPSS data window](../images/spss-normal-10.png)
 
-:::notes
+::: notes
 Here is the result.
 :::
 
@@ -1477,17 +1473,17 @@ Here is the result.
 
 ![Screenshot of SPSS dialog box](../images/spss-normal-11.png)
 
-:::notes
+::: notes
 Here is a dialog box showing how to a normal probability plot.
 
-Select Analyze | Descriptive Statistics | Q-Q Plot from the menu.
+Select Analyze \| Descriptive Statistics \| Q-Q Plot from the menu.
 :::
 
 ## Normal probability plot in SPSS (2/2)
 
 ![Screenshot of SPSS data window](../images/spss-normal-08.png)
 
-:::notes
+::: notes
 Here is the result.
 :::
 
@@ -1495,17 +1491,17 @@ Here is the result.
 
 ![Screenshot of SPSS dialog box](../images/spss-standardize-01.png)
 
-:::notes
+::: notes
 Here is a dialog box showing how to standardize a variable in SPSS.
 
-Select Analyze | Descriptive Statistics | Descriptives from the menu and click on the Save standardized values as variables option.
+Select Analyze \| Descriptive Statistics \| Descriptives from the menu and click on the Save standardized values as variables option.
 :::
 
 ## Normal probability plot in SPSS (2/2)
 
 ![Screenshot of SPSS data window](../images/spss-standardize-02.png)
 
-:::notes
+::: notes
 Here is the result.
 :::
 
@@ -1515,14 +1511,12 @@ Here is the result.
     -   Computing normal probabilities
 -   What is coming next?
     -   Populations and samples
-    
+
 ::: notes
 *Speaker notes*
 
 Let me pause here for a second. Are there any questions?
 :::
-
-
 
 ## What is a population?
 
@@ -1622,8 +1616,6 @@ A biased sample for a large and very general population might be less biased if 
 
 ::: notes
 *Speaker notes*
-
-
 :::
 
 ## What is a statistic?
@@ -1654,20 +1646,18 @@ Statistics, since they are computed from a subset of a population, are often kno
 While it is perhaps a bit narrow, one definition of the field of Statistics is that it used statistics (obviously enough), but a bit less obvious is that the statistics are used to make inferences about a population.
 :::
 
-
 ## Break
 
 -   What have you just learned?
     -   Populations and samples
 -   What is coming next?
     -   Standard errors and confidence intervals
-    
+
 ::: notes
 *Speaker notes*
 
 Let me pause here for a second. Are there any questions?
 :::
-
 
 ## Standard errors
 
@@ -1696,4 +1686,3 @@ There are many formulas that people use for confidence intervals for a parameter
 
 I would like to defer most of the discussion of confidence intervals until next week, but here is a quick overview.
 :::
-
