@@ -1,0 +1,106 @@
+---
+title: "Comments for MEDB 5501, Week 10, part 2"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: visual
+---
+
+## Chi-square tests
+
+-   Variants: Chi squared, chisquare? $\chi^2$, $X^2$
+    -   Goodness of fit
+    -   Independence
+    -   Variance (not covered today)
+    -   Other uses (also not covered today)
+
+::: notes
+The chi-square test is a very common test used in a variety of settings. You may see it with or without a dash, and some researchers will put a "d" at the end (Chi squared). Sometimes the C is capitalized and sometimes not. Sometimes you will see the Greek letter chi or a capital X.
+
+The chi-square test is useful for a broad class of tests, known as goodness of fit. It is a also useful test of independence between two categorical variables. There's a third test, comparing a variance or standard deviation to a fixed quantity. This third test will not be covered today.
+
+There are other uses of the chi-square test, I can't recall any simple uses, but the test appears all over the place.
+:::
+
+## Formula
+
+-   $\Sigma \frac{(O-E)^2}{E}$
+    -   O = Observed, E= Expected
+-   Cell contribution to Ch-square: $\frac{(O-E)^2}{E}$
+-   Standardized Residual: $\frac{O-E}{\sqrt E}$
+
+::: notes
+The general formula for the chi-square test that works both for the goodness of fit and independence tests is the sum of the observed minus the expected squared divided by the expected. You'll see precise formulas for Observed and Expected in a bit.
+
+Sometimes software will show the individual components to the sum. This is the cell contribution to chi-square. You might also see the standardized residual, which is Observed - Expected divided by the square root of Expected. Either of these quantities will identify important deviations from goodness of fit or independence.
+:::
+
+## Chi-square goodness of fit test, 1 of 2
+
+-   Single categorical variable,
+    -   $n_1$ is frequency of first category,
+    -   $n_2$ is frequency of second category,
+    -   ...
+    -   $n_k$ is frequency of last category.
+    -   $N = n_1+n_2+...+n_k$
+-   Most often used for k > 2
+    -   Works for k = 2, but simpler test is available.
+
+::: notes
+The goodness of fit test uses a single categorical variable with k levels. You count the frequencies of each level, $n_1,\ n_2,\ ...,\ n_k$. The sum of these values, N, is the sample size.
+:::
+
+## Chi-square goodness of fit test, 2 of 2
+-   Are all categories equally likely?
+    -   $H_0:\ \pi_1=\pi_2=...=\pi_k$
+    -   $H_1:\ \pi_i \ne\ \pi_j$, for some i,j
+        -   $\pi_i$ is population proportion for category i.
+-   $O_i=n_i$
+-   $E_i=N/k$
+
+::: notes
+The chi-square goodness of fit test answers the question, are all the categories equally likely. In mathematical notation, you are testing the hypothesis that all the $pi_i$ values are equal where $pi_i$ represents the hypothetical probability of each category, if you were able to measure the categorical variable in the entire population. Many researchers will call the $\pi_i$ values population probabilities instead of population proportions, but the concept is the same.
+
+The observed values are the counts for each category. The expected counts distribute the N values equally across all categories. 
+:::
+
+## Example, clinic recruitment, 1 of 4
+
+```{}
+Clinic              A   B   C   D   E Total
+Patients recruited 17  29  37  15  27   125
+```
+
+Arrange the data as follows for importing into SPSS
+
+```{}
+"clinic","patients"
+"A",17
+"B",29
+"C",37
+"D",15
+"E",27
+```
+
+::: notes
+In a hypothetical example, five clinics of roughly equal sizes participated in a clinical trial. The number of participants recruited at each site are listed here. Is the probability of getting patients from each clinic the same?
+:::
+
+## Example, clinic recruitment, 1 of 4
+
+```{}
+Clinic              A     B     C     D     E
+Observed           17    29    37    15    27
+Expected           25    25    25    25    25
+O-E                -8     4    12   -10     2
+(O-E)/sqrt E     -1.6   0.8   2.4  -2.0   0.4
+(O-E)^2/E        2.56  0.64  5.76  4.00  0.16  Sum=13.12
+```
+
+::: notes
+With 125 total observations, you would expect 25 in each of the 5 categories if the probabilities were the same. 
+:::
+
+
+
