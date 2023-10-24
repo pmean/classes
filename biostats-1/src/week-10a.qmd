@@ -24,12 +24,10 @@ One of the most common statistics you will encounter are counts in a two by two 
 
 ![](../images/two-by-two-table-01.png)
 
-Source: [CDC][cdc1]
+Source: [CDC](https://www.cdc.gov/epiinfo/user-guide/statcalc/tablestwobytwo.html)
 
 ::: notes
 Here's an example, using hypothetical data, from the CDC website.
-
-[cdc1]: https://www.cdc.gov/epiinfo/user-guide/statcalc/tablestwobytwo.html
 :::
 
 ## Inputting this table into SPSS
@@ -61,7 +59,7 @@ You can't run any statistics on this right away. If you try you will only get fo
 ![](../images/two-by-two-table-03.png)
 
 ::: notes
-Select Data | Weight Cases from the menu. 
+Select Data \| Weight Cases from the menu.
 :::
 
 ## Use weights, 3 of 4
@@ -103,7 +101,7 @@ Original coding
 ```
 
 ::: notes
-While I had originally chosen 1 for "Used" and 2 for "Never used", I could have just as easily chosen the reverse (2 for "Used" and 1 for "Never used"). 
+While I had originally chosen 1 for "Used" and 2 for "Never used", I could have just as easily chosen the reverse (2 for "Used" and 1 for "Never used").
 :::
 
 ## Remember how you coded your categories, 2 of 2
@@ -119,7 +117,7 @@ Original coding
 ::: notes
 Then your crosstabulation would look like this. What was the top row is now the bottom row and what was the bottom row is now the top row.
 
-This leads to some minor changes in how SPSS presents the data. A difference of -10 might now be presented as a difference of +10. A ratio of 2/3 might now be presented as 3/2. It's a small detail, but one that you should track carefully. If you do not, then you might conclude that never using 
+This leads to some minor changes in how SPSS presents the data. A difference of -10 might now be presented as a difference of +10. A ratio of 2/3 might now be presented as 3/2. It's a small detail, but one that you should track carefully. If you do not, then you might conclude that never using
 :::
 
 ## Pfizer vaccine example, 1 of 4
@@ -129,7 +127,6 @@ This leads to some minor changes in how SPSS presents the data. A difference of 
 ::: notes
 Let me work out a second example using data from the Pfizer Covid vaccine trial.
 :::
-
 
 ## Pfizer vaccine example, 2 of 4
 
@@ -141,7 +138,7 @@ The abstract lists some of the numbers that you need, but not all of them. You c
 
 ## Pfizer vaccine example, 3 of 4
 
-```{}
+```         
 
 Numbers from the abstract
 
@@ -157,7 +154,6 @@ Vaccine     8    21,712   21,720
 Placebo   162    21,566   21,728
 Total     170    43,278   43,448
 
-
 ```
 
 ::: notes
@@ -166,7 +162,7 @@ A simple subtraction will show that the number of non-Covid patients. Then add u
 
 ## Pfizer vaccine example, 4 of 4
 
-```{}
+```         
 shot,outcome,count
 1,1,8
 1,0,21712
@@ -219,7 +215,7 @@ The odds ratio compares the relative odds of death in each group. For females, t
 ## Relative risk calculation
 
 ```         
-          Alive   Dead  Total  Odds
+          Alive   Dead  Total  Probability
   Female    308    154    462  154/462 = 0.3333
   Male      142    709    851  709/851 = 0.8331
   Total     450    863  1,313  
@@ -246,13 +242,13 @@ There are three issues here: The relative risk measures events in a way that is 
 
 ## Fractions are funny
 
--   Stock investment of $1,000
-    -    First day decease by 20%
-    -    Second day increase by 20%
+-   Stock investment of \$1,000
+    -   First day decease by 20%
+    -   Second day increase by 20%
 -   Investment after one day
-    -    $\$1,000 \times 0.8=\$800$
+    -   $\$1,000 \times 0.8=\$800$
 -   Investment after two days
-    -    $\$800 \times 1.2=\$960$
+    -   $\$800 \times 1.2=\$960$
 -   An increase of 25% (1.25 = 5/4) is needed to counteract a decrease of 20% (0.8 = 4/5).
 
 ::: notes
@@ -263,7 +259,7 @@ Take the value of the stock and multiply by 0.8 to get the price after the first
 It turns out that **to counteract a 20% decrease, you need a 25% increase**. That is because **0.8 and 1.25 are reciprocal**. This is easier to see if you express them as simple fractions: **4/5 and 5/4 are reciprocal fractions**. Listed below is a table of common reciprocal fractions.
 :::
 
-## [Car Talk puzzler][car1]
+## [Car Talk puzzler](https://www.cartalk.com/radio/puzzler/porch-potatoes-0)
 
 RAY: Potatoes are 99 percent water and one percent what? Potato. So say you take a bunch of potatoes, like 100 pounds of potatoes and you set them out on your back porch to dry out.
 
@@ -274,8 +270,6 @@ RAY: Well, not drying out completely. And as they dry out the water begins to ev
 TOM: They'd be lighter.
 
 RAY: Yes, how much lighter?
-
-[car1]: https://www.cartalk.com/radio/puzzler/porch-potatoes-0
 
 ::: notes
 Car Talk was a show on National Public Radio featuring Tom and Ray Magliozzi. They took questions from the public about car problems and tossed in a lot of humor along the way. They also added a quiz in each episode called the Car Talk Puzzler. This was normally a question about cars, but they also tossed in a few questions about other topics, including a few mathematical puzzlers. Here's one that illustrates just how funny fractions could be.
@@ -303,7 +297,7 @@ For example, we computed **2.5 as the relative risk** in the example above. In t
 
 ## Interpretability of the relative risk, 1 of 3
 
-```{}
+```         
          Alive   Dead  Total
 Exposed    200    200   400
 Control    300    100   400
@@ -320,7 +314,7 @@ The relative risk comes closer to what most people think of when they compare th
 
 ## Interpretability of the relative risk, 2 of 3
 
-```{}
+```         
          Alive   Dead  Total
 Exposed    200    200   400
 Control    360     40   400
@@ -339,7 +333,7 @@ Even more extreme examples are possible. A change from **50% to 10% mortality** 
 
 ## Interpretability of the relative risk, 3 of 3
 
-```{}
+```         
          Alive   Dead  Total
 Exposed     40    360   400
 Control    360     40   400
@@ -373,7 +367,7 @@ Some research designs, particularly the **case-control design**, prevent you fro
 Consider a case-control study of prostate cancer risk and male pattern balding. The goal of this research was to examine whether men with certain hair patterns were at greater risk of prostate cancer. In that study, roughly equal numbers of prostate cancer patients and controls were selected. **Among the cancer patients, 72 out of 129 had either vertex or frontal baldness** compared to **82 out of 139 among the controls** (see table below).
 
 In this type of study, **you can estimate the probability of balding for cancer patients, but you can't calculate the probability of cancer for bald patients**. The prevalence of prostate cancer was **artificially inflated to almost 50%** by the nature of the case-control design.
-::: 
+:::
 
 ## Risk in a cohort study
 
@@ -427,7 +421,6 @@ RR(Cath)    = 0.906 / 0.847 = 1.07 (reciprocal 0.93)
 RR(No cath) = 0.094 / 0.153 = 0.61 (reciprocal 1.63)        
 ```
 
-
 ::: notes
 The relative risk can sometimes produce ambiguous and confusing situations. Recall the Car Talk Puzzler about the 100 pound sack of potatoes. A reduction of 99% water to 98% water seems like a small relative reduction. But you are making a large change in the potato concentration, from 1% to 2%.
 
@@ -446,7 +439,7 @@ This is the same thing that we just saw in the Car Talk puzzler: a small relativ
 
 ## Ambiguous and confusing situations, 2 of 2
 
-```{}
+```         
            Continued bf  Stopped bf  Total  
 Treatment   19 (37.3%)   32 (62.7%)    51  
   Control    5 ( 8.8%)   52 (91.2%)    57  
@@ -455,11 +448,9 @@ Treatment   19 (37.3%)   32 (62.7%)    51
 OR = (32/19) / (52/5) = 1.684 / 10.400 = 0.16 (reciprocal 6.2)
 RR (Stopped bf)   = 0.627 / 0.912 = 0.69 (reciprocal 1.45)
 RR (Continued bf) = 0.373 / 0.088 = 4.3  (reciprocal 0.23)
-
 ```
 
-::: notes
-Thus, **for every problem, there are two possible ways to compute relative risk**. Sometimes, it is obvious which relative risk is appropriate. For the Titanic passengers, the appropriate risk is for death rather than survival. But what about a breast feeding study. Are we trying to measure **how much an intervention increases the probability of breast feeding success** or are we trying to see **how much the intervention decreases the probability of breast feeding failure**? For example, Deeks 1998 expresses concern about an odds ratio calculation in a study aimed at increasing the duration of breast feeding. At three months, **32/51 (63%) of the mothers in the treatment group** had stopped breast feeding compared to **52/57 (91%) in the control group**.
+::: notes Thus, **for every problem, there are two possible ways to compute relative risk**. Sometimes, it is obvious which relative risk is appropriate. For the Titanic passengers, the appropriate risk is for death rather than survival. But what about a breast feeding study. Are we trying to measure **how much an intervention increases the probability of breast feeding success** or are we trying to see **how much the intervention decreases the probability of breast feeding failure**? For example, Deeks 1998 expresses concern about an odds ratio calculation in a study aimed at increasing the duration of breast feeding. At three months, **32/51 (63%) of the mothers in the treatment group** had stopped breast feeding compared to **52/57 (91%) in the control group**.
 
 While the **relative risk of 0.69 (reciprocal 1.45)** for this data is much less extreme than the **odds ratio of 0.16 (reciprocal 6.2)**, one has to wonder why Deeks chose to compare probabilities of breast feeding failures rather than successes. The **rate of successful breast feeding at three months was 4.2 times higher in the treatment group than the control group**. This is still not as extreme as the odds ratio; the **odds ratio for successful breast feeding is 6.25**, which is simply the inverse of the odds ratio for breast feeding failure.
 
@@ -486,6 +477,7 @@ Both the odds ratio and the relative risk compare the relative likelihood of an 
 
 ARR = 0.8331 - 0.3333 = 0.4998 
 ```
+
 ::: notes
 You can also compute the difference in death probabilities. An 83% mortality in men is 0.5 units larger than the 33% mortality in women.
 :::
