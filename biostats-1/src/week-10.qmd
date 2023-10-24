@@ -9,15 +9,15 @@ editor: visual
 
 ## The two by two table
 
-```{}
-             Outcome
+```         
+               Outcome
               Yes   No
 Exposure Yes  O_11 O_12
           No  O_21 O_22
 ```
 
 ::: notes
-One of the most common statistics you will encounter are counts in a two by two table. 
+One of the most common statistics you will encounter are counts in a two by two table.
 :::
 
 ## Example of a two by two table
@@ -27,14 +27,14 @@ One of the most common statistics you will encounter are counts in a two by two 
 Source: [CDC][cdc1]
 
 ::: notes
-Here's an [example, using hypothetical data][cdc1], from the CDC website.
+Here's an example, using hypothetical data, from the CDC website.
 
 [cdc1]: https://www.cdc.gov/epiinfo/user-guide/statcalc/tablestwobytwo.html
 :::
 
 ## Inputting this table into SPSS
 
-```{}
+```         
 "sweetener","bladder_cancer","count" 
 1,1,129
 1,2,245
@@ -43,7 +43,7 @@ Here's an [example, using hypothetical data][cdc1], from the CDC website.
 ```
 
 ::: notes
-You have to lay out the data differently than it appears. For each of the four counts (129, 245, 171  332), specify which row and which column it falls in. If your table includes row and column totals, do not include these in the data.
+You have to lay out the data differently than it appears. For each of the four counts (129, 245, 171 332), specify which row and which column it falls in. If your table includes row and column totals, do not include these in the data.
 
 I have used number codes here. When you enter number codes, be sure to specify value labels.
 :::
@@ -53,16 +53,15 @@ I have used number codes here. When you enter number codes, be sure to specify v
 ![](../images/two-by-two-table-02.png)
 
 ::: notes
-Add note
+You can't run any statistics on this right away. If you try you will only get four observations.
 :::
-
 
 ## Use weights, 2 of 4
 
 ![](../images/two-by-two-table-03.png)
 
 ::: notes
-Add note
+Select Data | Weight Cases from the menu. 
 :::
 
 ## Use weights, 3 of 4
@@ -70,7 +69,7 @@ Add note
 ![](../images/two-by-two-table-04.png)
 
 ::: notes
-Add note
+Then your crosstabulation would look like this.
 :::
 
 ## Use weights, 4 of 4
@@ -78,137 +77,359 @@ Add note
 ![](../images/two-by-two-table-05.png)
 
 ::: notes
-Add note
+You have to make a choice regarding what goes in as the rows and what goes in as the columns. While this may not seem to important, you do need to think about this.
+:::
+
+## Remember how you coded your categories, 1 of 2
+
+New coding
+
+```         
+"sweetener","bladder_cancer","count" 
+2,1,129
+2,2,245
+1,1,171
+1,2,332
+```
+
+Original coding
+
+```         
+"sweetener","bladder_cancer","count" 
+1,1,129
+1,2,245
+2,1,171
+2,2,332
+```
+
+::: notes
+While I had originally chosen 1 for "Used" and 2 for "Never used", I could have just as easily chosen the reverse (2 for "Used" and 1 for "Never used"). 
+:::
+
+## Remember how you coded your categories, 2 of 2
+
+New coding
+
+![](../images/two-by-two-table-06.png)
+
+Original coding
+
+![](../images/two-by-two-table-04.png)
+
+::: notes
+Then your crosstabulation would look like this. What was the top row is now the bottom row and what was the bottom row is now the top row.
+
+This leads to some minor changes in how SPSS presents the data. A difference of -10 might now be presented as a difference of +10. A ratio of 2/3 might now be presented as 3/2. It's a small detail, but one that you should track carefully. If you do not, then you might conclude that never using 
+:::
+
+## Pfizer vaccine example, 1 of 4
+
+![](../images/pfizer-vaccine-01.png)
+
+::: notes
+Let me work out a second example using data from the Pfizer Covid vaccine trial.
 :::
 
 
-## How to measure
+## Pfizer vaccine example, 2 of 4
+
+![](../images/pfizer-vaccine-02.png)
+
+::: notes
+The abstract lists some of the numbers that you need, but not all of them. You can work out the numbers that are not listed easily.
+:::
+
+## Pfizer vaccine example, 3 of 4
+
+```{}
+
+Numbers from the abstract
+
+         Covid  No covid   Total
+Vaccine     8       ?     21,720
+Placebo   162       ?     21,728
+Total       ?       ?     43,448
+
+Numbers inferred
+
+         Covid  No covid   Total
+Vaccine     8    21,712   21,720
+Placebo   162    21,566   21,728
+Total     170    43,278   43,448
+
+
+```
+
+::: notes
+A simple subtraction will show that the number of non-Covid patients. Then add up within each column to get the column totals.
+:::
+
+## Pfizer vaccine example, 4 of 4
+
+```{}
+shot,outcome,count
+1,1,8
+1,0,21712
+0,1,162
+0,0,21566
+```
+
+::: notes
+The data should include the four individual cells and not the totals.
+:::
+
+## How to measure risk
 
 *Dear Professor Mean: There is some confusion about the use of the odds ratio versus the relative risk. Can you explain the difference between these two numbers?*
 
-Dear Reader,
+::: notes
+Monica Gaddis gave a very nice introduction to odds ratios and relative risks, but let me share how I present these concepts. I had a paper published in the Journal of Andrology on this topic and later turned it into a web page. On many of my web pages, I couch the information in an advice column: Ask Professor Mean. Professor Mean is my alter ego on the Internet. For those who don't get the joke, I point out that Professor Mean isn't just your average professor.
+:::
 
-Both the odds ratio and the relative risk compare the likelihood of an event between two groups. Consider the following data on survival of passengers on the Titanic. There were **462 female passengers: 308 survived and 154 died**. There were **851 male passengers: 142 survived and 709 died** (see table below).
+## Titanic data
 
-```{}
-  ------------ ----------- ---------- -----------
-                 Alive       Dead       Total  
-     Female        308        154         462  
-      Male         142        709         851  
-     Total         450        863        1,313  
-  ------------ ----------- ---------- -----------
+```         
+          Alive   Dead  Total  
+  Female    308    154    462  
+  Male      142    709    851  
+  Total     450    863  1,313  
 ```
 
+::: notes
+Both the odds ratio and the relative risk compare the likelihood of an event between two groups. Consider the following data on survival of passengers on the Titanic. There were **462 female passengers: 308 survived and 154 died**. There were **851 male passengers: 142 survived and 709 died**.
+
 Clearly, a male passenger on the Titanic was more likely to die than a female passenger. But how much more likely? You can compute the odds ratio or the relative risk to answer this question.
+:::
 
+## Odds ratio calculation
+
+```         
+          Alive   Dead  Total  Odds
+  Female    308    154    462  154/308 = 0.5
+  Male      142    709    851  709/142 = 4.993
+  Total     450    863  1,313  
+
+OR = 4.993 / 0.5 = 9.986
+```
+
+::: notes
 The odds ratio compares the relative odds of death in each group. For females, the odds were exactly **2 to 1 against dying (154/308=0.5)**. For males, the odds were almost **5 to 1 in favor of death (709/142=4.993)**. The odds ratio is **9.986 (4.993/0.5)**. There is a **ten fold greater odds of death for males than for females**.
+:::
 
+## Relative risk calculation
+
+```         
+          Alive   Dead  Total  Odds
+  Female    308    154    462  154/462 = 0.3333
+  Male      142    709    851  709/851 = 0.8331
+  Total     450    863  1,313  
+
+RR = 0.8331 / 0.3333 = 2.499 
+```
+
+::: notes
 The relative risk (sometimes called the risk ratio) compares the probability of death in each group rather than the odds. For females, the probability of death is **33% (154/462=0.3333)**. For males, the probability is **83% (709/851=0.8331)**. The relative risk of death is **2.5 (0.8331/0.3333)**. There is a **2.5 greater probability of death for males than for females**.
 
 There is quite a difference. Both measurements show that men were more likely to die. But the odds ratio implies that men are much worse off than the relative risk. Which number is a fairer comparison?
+:::
 
+## Relative risk versus odds ratio
+
+-   Relative risks
+    -   Consistent with our perceptions of risk
+    -   Cannot be computed for some research designs
+    -   Sometimes ambiguous
+
+::: notes
 There are three issues here: The relative risk measures events in a way that is **interpretable and consistent with the way people really think**. The relative risk, though, **cannot always be computed** in a research design. Also, the relative risk can sometimes lead to **ambiguous and confusing situations**. But first, we need to remember that fractions are funny.
+:::
 
 ## Fractions are funny
 
+-   Stock investment of $1,000
+    -    First day decease by 20%
+    -    Second day increase by 20%
+-   Investment after one day
+    -    $\$1,000 \times 0.8=\$800$
+-   Investment after two days
+    -    $\$800 \times 1.2=\$960$
+-   An increase of 25% (1.25 = 5/4) is needed to counteract a decrease of 20% (0.8 = 4/5).
+
+::: notes
 Suppose you invested money in a stock. On the first day, the value of the stock **decreased by 20%**. On the second day it **increased by 20%**. You would think that you have broken even, but that's not true.
 
-Take the value of the stock and multiply by 0.8 to get the price after the first day. Then multiply by 1.2 to get the price after the second day. The successive multiplications do not cancel out because 0.8 * 1.2 = 0.96. A 20% decrease followed by a 20% increase leaves you slightly worse off.
+Take the value of the stock and multiply by 0.8 to get the price after the first day. Then multiply by 1.2 to get the price after the second day. The successive multiplications do not cancel out because 0.8 \* 1.2 = 0.96. A 20% decrease followed by a 20% increase leaves you slightly worse off.
 
 It turns out that **to counteract a 20% decrease, you need a 25% increase**. That is because **0.8 and 1.25 are reciprocal**. This is easier to see if you express them as simple fractions: **4/5 and 5/4 are reciprocal fractions**. Listed below is a table of common reciprocal fractions.
+:::
 
-```{}
-  ---------------- ----------------
-     0.8 (4/5)        1.25 (5/4)  
-     0.75 (3/4)       1.33 (4/3)  
-     0.67 (2/3)       1.50 (3/2)  
-     0.50 (1/2)       2.00 (2/1)  
-  ---------------- ----------------
+## [Car Talk puzzler][car1]
+
+RAY: Potatoes are 99 percent water and one percent what? Potato. So say you take a bunch of potatoes, like 100 pounds of potatoes and you set them out on your back porch to dry out.
+
+TOM: Yeah, when they are dry they should weigh about a pound.
+
+RAY: Well, not drying out completely. And as they dry out the water begins to evaporate. And after a while, enough water has evaporated so that the potatoes are now 98 percent water. If you were to weigh those potatoes at that moment...
+
+TOM: They'd be lighter.
+
+RAY: Yes, how much lighter?
+
+[car1]: https://www.cartalk.com/radio/puzzler/porch-potatoes-0
+
+::: notes
+Car Talk was a show on National Public Radio featuring Tom and Ray Magliozzi. They took questions from the public about car problems and tossed in a lot of humor along the way. They also added a quiz in each episode called the Car Talk Puzzler. This was normally a question about cars, but they also tossed in a few questions about other topics, including a few mathematical puzzlers. Here's one that illustrates just how funny fractions could be.
+
+You might guess that to go from 99% water to 98% water would cause the weight to decrease to something like 98/99th of 100 pounds, but the surprising answer is that when the potatoes are reduced from 99% water to 98% water, the weight drops from 100 pounds to 50 pounds.
+
+One way to look at it is that changing from 99% water to 98% water is equivalent to changing from 1% potato to 2% potato. And to double the potato concentration, you have to remove about half of the water.
+:::
+
+## Reciprocal fractions
+
+```         
+  Fraction    Reciprocal
+  0.8  (4/5)  1.25 (5/4)  
+  0.75 (3/4)  1.33 (4/3)  
+  0.67 (2/3)  1.50 (3/2)  
+  0.50 (1/2)  2.00 (2/1)  
 ```
 
+::: notes
 Sometimes when we are comparing two groups, we'll put the first group in the numerator and the other in the denominator. Sometimes we will reverse ourselves and put the second group in the numerator. The numbers may look quite different (e.g., 0.67 and 1.5) but as long as you remember what the reciprocal fraction is, you shouldn't get too confused.
 
 For example, we computed **2.5 as the relative risk** in the example above. In this calculation we divided the male probability by the female probability. If we had divided the female probability by the male probability, we would have gotten a **relative risk of 0.4**. This is fine because **0.4 (2/5) and 2.5 (5/2) are reciprocal fractions**.
+:::
 
-## Interpretability
+## Interpretability of the relative risk, 1 of 3
 
+```{}
+         Alive   Dead  Total
+Exposed    200    200   400
+Control    300    100   400
+
+RR = 0.5 / 0.25 = 2
+OR   3.0 / 1.0  = 3
+```
+
+::: notes
+The most commonly cited advantage of the relative risk over the odds ratio is that the former is the more natural interpretation.
+
+The relative risk comes closer to what most people think of when they compare the relative likelihood of events. Suppose there are two groups, one with a **25% chance of mortality** and the other with a **50% chance of mortality**. Most people would say that the latter group has it twice as bad. But the **odds ratio is 3**, which seems too big. The latter odds are **even (1 to 1)** and the former odds are **3 to 1 against**.
+:::
+
+## Interpretability of the relative risk, 2 of 3
+
+```{}
+         Alive   Dead  Total
+Exposed    200    200   400
+Control    360     40   400
+
+RR = 0.5 / 0.1   = 5
+OR   9.0 / 1.0   = 9
+```
+
+::: notes
 The most commonly cited advantage of the relative risk over the odds ratio is that the former is the more natural interpretation.
 
 The relative risk comes closer to what most people think of when they compare the relative likelihood of events. Suppose there are two groups, one with a **25% chance of mortality** and the other with a **50% chance of mortality**. Most people would say that the latter group has it twice as bad. But the **odds ratio is 3**, which seems too big. The latter odds are **even (1 to 1)** and the former odds are **3 to 1 against**.
 
-Even more extreme examples are possible. A change from **25% to 75% mortality** represents a **relative risk of 3**, but an **odds ratio of 9**.
+Even more extreme examples are possible. A change from **50% to 10% mortality** represents a **relative risk of 5**, but an **odds ratio of 9**.
+:::
 
+## Interpretability of the relative risk, 3 of 3
+
+```{}
+         Alive   Dead  Total
+Exposed     40    360   400
+Control    360     40   400
+
+RR = 0.9 / 0.1   =  9
+OR   9.0 / 0.111 = 81
+```
+
+::: notes
 A change from **10% to 90% mortality** represents a **relative risk of 9** but an **odds ratio of 81**.
 
 There are some additional issues about interpretability that are beyond the scope of this paper. In particular, **both the odds ratio and the relative risk are computed by division and are relative measures**. In contrast, absolute measures, computed as a difference rather than a ratio, produce estimates with quite different interpretations (Fahey et al 1995, Naylor et al 1992).
+:::
 
-## Designs that rule out the use of the relative risk
+## Risk in a case/control study
 
+```         
+         Cancer  Controls  Total  
+Balding    72       82      154  
+  Hairy    55       57      112  
+  Total   129      139      268  
+  
+P[Cancer | Balding] does not equal 72/154 = 46.7%
+
+Only an odds ratio is interpretable.
+```
+
+::: notes
 Some research designs, particularly the **case-control design**, prevent you from computing a relative risk. A case-control design involves the selection of research subjects on the basis of the outcome measurement rather than on the basis of the exposure.
 
 Consider a case-control study of prostate cancer risk and male pattern balding. The goal of this research was to examine whether men with certain hair patterns were at greater risk of prostate cancer. In that study, roughly equal numbers of prostate cancer patients and controls were selected. **Among the cancer patients, 72 out of 129 had either vertex or frontal baldness** compared to **82 out of 139 among the controls** (see table below).
 
-```{}
-  ------------- ------------------ -------------- -----------
-                   Cancer cases       Controls       Total  
-     Balding            72               82           154  
-      Hairy             55               57           112  
-      Total            129              139           268  
-  ------------- ------------------ -------------- -----------
+In this type of study, **you can estimate the probability of balding for cancer patients, but you can't calculate the probability of cancer for bald patients**. The prevalence of prostate cancer was **artificially inflated to almost 50%** by the nature of the case-control design.
+::: 
+
+## Risk in a cohort study
+
+```         
+         Heart disease       Healthy     Total  
+Balding    127 (9.4%)     1,224 (90.6%)  1,351  
+  Hairy    548 (6.7%)     7,611 (93.3%)  8,159  
+  Total    675            8,835          9,510  
+  
+Relative risk or odds ratio is interpretable.  
 ```
 
-In this type of study, **you can estimate the probability of balding for cancer patients, but you can't calculate the probability of cancer for bald patients**. The prevalence of prostate cancer was **artificially inflated to almost 50%** by the nature of the case-control design.
-
+::: notes
 So you would need additional information or a different type of research design to estimate the relative risk of prostate cancer for patients with different types of male pattern balding. Contrast this with data from a cohort study of male physicians (Lotufo et al 2000). In this study of the association between male pattern baldness and coronary heart disease, the researchers could estimate relative risks, since 1,446 physicians had coronary heart disease events during the 11-year follow-up period.
 
 For example, among the **8,159 doctors with hair, 548 (6.7%) developed coronary heart disease** during the 11 years of the study. Among the **1,351 doctors with severe vertex balding, 127 (9.4%) developed coronary heart disease** (see table below). The **relative risk is 1.4 = 9.4% / 6.7%.**
 
-```{}
-  ------------- ------------------- ------------------- -----------
-                   Heart disease          Healthy          Total  
-     Balding        127 (9.4%)         1,224 (90.6%)       1,351  
-      Hairy         548 (6.7%)         7,611 (93.3%)       8,159  
-      Total             675                8,835           9,510  
-  ------------- ------------------- ------------------- -----------
+**You can always calculate and interpret the odds ratio in a case control study. It has a reasonable interpretation as long as the outcome event is rare** (Breslow and Day 1980, page 70). The interpretation of the odds ratio in a case-control design is, however, also dependent on how the controls were recruited (Pearce 1993).
+:::
+
+## Risk adjustment
+
+```         
+          Children   No children  Total  
+Epilepsy  232 (40%)  354 (60%)      586  
+ Control   79 (72%)   30 (28%)      109  
+   Total  311        384            695  
+   
+OR = 0.25 (unadjusted)
+   = 0.36 (adjusted for age and other covariates)
 ```
 
-**You can always calculate and interpret the odds ratio in a case control study. It has a reasonable interpretation as long as the outcome event is rare** (Breslow and Day 1980, page 70). The interpretation of the odds ratio in a case-control design is, however, also dependent on how the controls were recruited (Pearce 1993).
-
+::: notes
 **Another situation which calls for the use of odds ratio is covariate adjustment**. It is easy to adjust an odds ratio for confounding variables; the adjustments for a relative risk are much trickier.
 
 In a study on the **likelihood of pregnancy among people with epilepsy** (Schupf and Ottman 1994), **232 out of 586 males with idiopathic/cryptogenic epilepsy** had fathered one or more children. In the control group, the respective counts were **79 out of 109** (see table below).
 
-```{}
-  -------------- --------------- ----------------- -----------
-                    Children        No children       Total  
-     Epilepsy       232 (40%)        354 (60%)         586  
-     Control        79 (72%)         30 (28%)          109  
-      Total            311              384            695  
-  -------------- --------------- ----------------- -----------
+The **simple relative risk is 0.55** and the **simple odds ratio is 0.25**. Clearly the **probability of fathering a child is strongly dependent on a variety of demographic variables, especially age** (the issue of marital status was dealt with by a separate analysis). The **control group was 8.4 years older on average (43.5 years versus 35.1)**, showing the need to adjust for this variable. With a multivariate logistic regression model that included age, education, ethnicity and sibship size, the **adjusted odds ratio for epilepsy status was 0.36**. Although this ratio was closer to 1.0 than the crude odds ratio, it was still highly significant. A comparable adjusted relative risk would be more difficult to compute (although it can be done as in Lotufo et al 2000).
+:::
+
+## Ambiguous and confusing situations, 1 of 2
+
+```         
+                 No cath       Cath      Total  
+  Male patient  34 ( 9.4%)  326 (90.6%)   360  
+Female patient  55 (15.3%)  305 (84.7%)   360  
+         Total  89          631           720  
 ```
 
-The **simple relative risk is 0.55** and the **simple odds ratio is 0.25**. Clearly the **probability of fathering a child is strongly dependent on a variety of demographic variables, especially age** (the issue of marital status was dealt with by a separate analysis). The **control group was 8.4 years older on average (43.5 years versus 35.1)**, showing the need to adjust for this variable. With a multivariate logistic regression model that included age, education, ethnicity and sibship size, the **adjusted odds ratio for epilepsy status was 0.36**. Although this ratio was closer to 1.0 than the crude odds ratio, it was still highly significant. A comparable adjusted relative risk would be more difficult to compute (although it can be done as in Lotufo et al 2000).
 
-## Ambiguous and confusing situations
-
-The relative risk can sometimes produce ambiguous and confusing situations. Part of this is due to the fact that **relative measurements are often counter-intuitive**. Consider an interesting case of relative comparison that comes from a puzzle on the Car Talk radio show. You have a hundred pound sack of potatoes. Let's assume that these potatoes are 99% water. That means 99 parts water and 1 part potato. These are soggier potatoes than I am used to seeing, but it makes the problem more interesting.
-
-If you dried out the potatoes completely, they would only weigh one pound. But let's suppose you only wanted to dry out the potatoes partially, until they were 98% water. How much would they weigh then?
-
-The counter-intuitive answer is 50 pounds. 98% water means 49 parts water and 1 part potato. An alternative way of thinking about the problem is that in order to double the concentration of potato (from 1% to 2%), you have to remove about half of the water.
+::: notes
+The relative risk can sometimes produce ambiguous and confusing situations. Recall the Car Talk Puzzler about the 100 pound sack of potatoes. A reduction of 99% water to 98% water seems like a small relative reduction. But you are making a large change in the potato concentration, from 1% to 2%.
 
 Relative risks have the same sort of counter-intuitive behavior. **A small relative change in the probability of a common event's occurrence can be associated with a large relative change in the opposite probability (the probability of the event not occurring)**.
 
 Consider a recent study on **physician recommendations for patients with chest pain** (Schulman et al 1999). This study found that when doctors viewed videotape of hypothetical patients, **race and sex influenced their recommendations**. One of the findings was that doctors were more likely to recommend cardiac catheterization for men than for women. **326 out of 360 (90.6%) doctors** viewing the videotape of male hypothetical patients recommended cardiac catheterization, while only **305 out of 360 (84.7%)** of the doctors who viewed tapes of female hypothetical patients made this recommendation.
-
-```{}
-  -------------------- ---------------- ----------------- -----------
-                           No cath            Cath           Total  
-      Male patient        34 (9.4%)        326 (90.6%)        360  
-     Female patient       55 (15.3%)       305 (84.7%)        360  
-         Total                89               631            720  
-  -------------------- ---------------- ----------------- -----------
-```
 
 The **odds ratio is either 0.57 or 1.74**, depending on which group you place in the numerator. The authors reported the odds ratio in the original paper and concluded that physicians make different recommendations for male patients than for female patients.
 
@@ -217,17 +438,23 @@ A **critique of this study** (Schwarz et al 1999) noted among other things that 
 Although the relative change from 90.6% to 84.7% is modest, consider the opposite perspective. The rates for recommending a less aggressive intervention than catheterization was **15.3% for doctors viewing the female patients** and **9.4% for doctors viewing the male patients**, a **relative risk of 1.63 (reciprocal 0.61)**.
 
 This is the same thing that we just saw in the Car Talk puzzler: a small relative change in the water content implies a large relative change in the potato content. In the physician recommendation study, a small relative change in the probability of a recommendation in favor of catheterization corresponds to a large relative change in the probability of recommending against catheterization.
+:::
 
-Thus, **for every problem, there are two possible ways to compute relative risk**. Sometimes, it is obvious which relative risk is appropriate. For the Titanic passengers, the appropriate risk is for death rather than survival. But what about a breast feeding study. Are we trying to measure **how much an intervention increases the probability of breast feeding success** or are we trying to see **how much the intervention decreases the probability of breast feeding failure**? For example, Deeks 1998 expresses concern about an odds ratio calculation in a study aimed at increasing the duration of breast feeding. At three months, **32/51 (63%) of the mothers in the treatment group** had stopped breast feeding compared to **52/57 (91%) in the control group**.
+## Ambiguous and confusing situations, 2 of 2
 
 ```{}
-  --------------- ------------------ ---------------- -----------
-                     Continued bf       Stopped bf       Total  
-     Treatment        19 (37.3%)        32 (62.7%)        51  
-      Control          5 (8.8%)         52 (91.2%)        57  
-       Total              24                84            108  
-  --------------- ------------------ ---------------- -----------
+           Continued bf  Stopped bf  Total  
+Treatment   19 (37.3%)   32 (62.7%)    51  
+  Control    5 ( 8.8%)   52 (91.2%)    57  
+    Total   24           84           108  
+
+RR (Stopped bf)   = 0.627 / 0.912 = 0.69 (reciprocal 1.45)
+RR (Continued bf) = 0.373 / 0.088 = 4.3  (reciprocal 0.23)
+
 ```
+
+::: notes
+Thus, **for every problem, there are two possible ways to compute relative risk**. Sometimes, it is obvious which relative risk is appropriate. For the Titanic passengers, the appropriate risk is for death rather than survival. But what about a breast feeding study. Are we trying to measure **how much an intervention increases the probability of breast feeding success** or are we trying to see **how much the intervention decreases the probability of breast feeding failure**? For example, Deeks 1998 expresses concern about an odds ratio calculation in a study aimed at increasing the duration of breast feeding. At three months, **32/51 (63%) of the mothers in the treatment group** had stopped breast feeding compared to **52/57 (91%) in the control group**.
 
 While the **relative risk of 0.69 (reciprocal 1.45)** for this data is much less extreme than the **odds ratio of 0.16 (reciprocal 6.2)**, one has to wonder why Deeks chose to compare probabilities of breast feeding failures rather than successes. The **rate of successful breast feeding at three months was 4.2 times higher in the treatment group than the control group**. This is still not as extreme as the odds ratio; the **odds ratio for successful breast feeding is 6.25**, which is simply the inverse of the odds ratio for breast feeding failure.
 
@@ -235,23 +462,28 @@ While the **relative risk of 0.69 (reciprocal 1.45)** for this data is much less
 
 ## Summary
 
+-   Relative risks
+    -   Consistent with our perceptions of risk
+    -   Cannot be computed for some research designs
+    -   Sometimes ambiguous
+
+::: notes
 Both the odds ratio and the relative risk compare the relative likelihood of an event occurring between two distinct groups. The relative risk is **easier to interpret and consistent with the general intuition**. Some designs, however, **prevent the calculation of the relative risk**. Also there is **some ambiguity as to which relative risk you are comparing.** When you are reading research that summarizes the data using odds ratios, or relative risks, you need to be aware of the limitations of both of these measures.
+:::
 
-## Bibliography
+## Absolute risk reduction
 
-**When can odds ratios mislead? Odds ratios should be used only in case-control studies and logistic regression analyses [letter].** Deeks J. British Medical Journal 1998:317(7166);1155-6; discussion 1156-7.
+```         
+          Alive   Dead  Total  Odds
+  Female    308    154    462  154/462 = 0.3333
+  Male      142    709    851  709/851 = 0.8331
+  Total     450    863  1,313  
 
-**Evidence-based purchasing: understanding results of clinical trials and systematic reviews.** Fahey T, Griffiths S and Peters TJ. British Medical Journal 1995:311(7012);1056-9; discussion 1059-60.
+ARR = 0.8331 - 0.3333 = 0.4998 
+```
+::: notes
+You can also compute the difference in death probabilities. An 83% mortality in men is 0.5 units larger than the 33% mortality in women.
+:::
 
-**Interpretation and Choice of Effect Measures in Epidemiologic Analyses.** Greenland S. American Journal of Epidemiology 1987:125(5);761-767.
-
-**Male Pattern Baldness and Coronary Heart Disease: The Physician's Health Study.** Lotufo PA. Archives of Internal Medicine 2000:160(165-171.
-
-**Measured Enthusiasm: Does the Method of Reporting Trial Results Alter Perceptions of Therapeutic Effectiveness?** Naylor C, Chen E and Strauss B. American College of Physicians 1992:117(11);916-21.
-
-**What Does the Odds Ratio Estimate in a Case-Control Study?** Pearce N. Int J Epidemiol 1993:22(6);1189-92.
-
-**Likelihood of Pregnancy in Individuals with Idiopathic/Cryptogenic Epilepsy: Social and Biologic Influences.** Schupf N. Epilepsia 1994:35(4);750-756.
-
-**A Haircut in Horse Town: And Other Great Car Talk Puzzlers.** (1999) Tom Magliozzi, Ray Magliozzi, Douglas Berman. New York NY: Berkley Publishing Group.
+## Advantages of absolute risk reduction
 
