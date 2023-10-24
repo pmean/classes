@@ -421,6 +421,10 @@ The **simple relative risk is 0.55** and the **simple odds ratio is 0.25**. Clea
   Male patient  34 ( 9.4%)  326 (90.6%)   360  
 Female patient  55 (15.3%)  305 (84.7%)   360  
          Total  89          631           720  
+
+OR = (326/34) / (305/55) = 9.588 / 5.545 = 1.73 (reciprocal 0.58)       
+RR(Cath)    = 0.906 / 0.847 = 1.07 (reciprocal 0.93)         
+RR(No cath) = 0.094 / 0.153 = 0.61 (reciprocal 1.63)        
 ```
 
 
@@ -448,6 +452,7 @@ Treatment   19 (37.3%)   32 (62.7%)    51
   Control    5 ( 8.8%)   52 (91.2%)    57  
     Total   24           84           108  
 
+OR = (32/19) / (52/5) = 1.684 / 10.400 = 0.16 (reciprocal 6.2)
 RR (Stopped bf)   = 0.627 / 0.912 = 0.69 (reciprocal 1.45)
 RR (Continued bf) = 0.373 / 0.088 = 4.3  (reciprocal 0.23)
 
@@ -487,3 +492,9 @@ You can also compute the difference in death probabilities. An 83% mortality in 
 
 ## Advantages of absolute risk reduction
 
+If the control probability is small, even a large relative change can be trivial.
+
+-   Untreated sleep apnea triples the risk of stroke.
+-   Smoking
+    -   Ten fold increase in risk of lung cancer
+    -   Doubling in the risk of heart attack
