@@ -36,6 +36,8 @@ You can choose to place your program in the public domain (no restrictions) or y
 
 ### Grading rubric
 
+This grading rubric is for an assignment worth 10 points. Change these numbers proportionately for an assignment worth a different number of points (e.g, triple all the point values for an assignment worth 30 points).
+
 -   How well did you follow the general requirements specified above?
     -    Poor (0 points) Complete failure to address two or more of the required elements (filename, documentation, or graphs).
     -    Fair (2 points) Complete failure to address one of the required elements or missing two or more parts of a required element.
