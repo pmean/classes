@@ -1,0 +1,253 @@
+---
+title: "Comments for MEDB 5501, Week 13"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: visual
+---
+
+## Covariance
+
+-   $Cov(X,Y)=\frac{1}{n-1}\Sigma(X_i-\bar{X})(Y_i-\bar{Y})$
+    -   $(X_i-\bar{X})(Y_i-\bar{Y})$ is positive if
+        -   $X_i$ and $Y_i$ both above average
+        -   $X_i$ and $Y_i$ both below average
+    -   $(X_i-\bar{X})(Y_i-\bar{Y})$ is negative if
+        -   $X_i$ above average and $Y_i$ below average
+        -   $X_i$ below average and $Y_i$ above average
+
+::: notes
+Add note.
+:::
+
+## 
+
+```{r}
+library(tidyverse)
+y <- 6 + 4*(1:6)
+e <- c(4, -2, -6, 6, -6, 4)
+x <- rev(y) + 2*e + 20
+x <- x/2
+y <- y/2
+print(data.frame(x, y), row.names=FALSE)
+xbar <- mean(x)
+ybar <- mean(y)
+sx <- round(sd(x), 1)
+sy <- round(sd(y), 1)
+```
+
+$\ $
+ $\bar{X}=`r xbar`$; $S_X=`r sx`$
+ $\bar{Y}=`r ybar`$; $S_Y=`r sy`$
+
+##
+
+```{r}
+data.frame(x, y) %>%
+  ggplot(aes(x, y)) + 
+    scale_y_continuous(
+      expand=expansion(add=0.75),
+      breaks=2*(0:10)) +
+    scale_x_continuous(
+      expand=expansion(add=2),
+      breaks=10+2*(0:10)) -> base_plot
+base_plot +
+    geom_point(size=3)
+```
+
+## 
+
+```{r}
+zx <- paste0(ifelse(x-xbar>0, "+", ""), x-xbar)
+zy <- paste0(ifelse(y-ybar>0, "+", ""), y-ybar)
+lab <- paste0("(",zx, ",", zy, ")")
+base_plot +
+    geom_segment(
+      x=mean(x), 
+      y=min(y)-0.5,
+      xend=mean(x), 
+      yend=max(y)+0.5,
+      linetype=2) +
+    geom_segment(
+      x=min(x)-1.5, 
+      y=mean(y),
+      xend=max(x)+1.5, 
+      yend=mean(y),
+      linetype=2) +
+    geom_text(label=lab)
+```
+
+## Calculation of covariance
+
+```{r}
+d <- data.frame(
+  x_centered=x-xbar, 
+  y_centered=y-ybar, 
+  product=(x-xbar)*(y-ybar))
+print(d, row.names=FALSE)
+total <- sum(d$product)
+```
+
+$\ $
+
+-   $Cov(X,Y)=\frac{1}{5}(`r total`)=`r var(x,y)`$
+
+## Correlation
+
+-   $Corr(X,Y)=\frac{Cov(X,Y)}{S_XS_Y}$
+    -   Also use $r_{XY}$
+    -   Population correlation is $\rho_{XY}$
+
+## Calculation of correlation
+
+-   $r_{XY}=\frac{`r var(x,y)`}{`r sx` \times `r sy`}=`r cor(x,y)`$
+    -   Always round!
+        -   $r_{XY}=`r round(cor(x,y), 2)`$ or $`r round(cor(x,y), 1)`$
+
+## Interpretation of correlation
+
+-   r is always between -1 and +1
+    -   Positive values imply positive association
+    -   Negative values imply negative association
+    -   Strongest associations closest to -1 or +1
+
+## r between -1 and -0.7, strong negative association
+
+```{r}
+gen <- function(r, n=100) {
+  x <- rnorm(n)
+  x <- (x - mean(x))/sd(x)
+  y <- rnorm(n)
+  e <- resid(lm(y~x))
+  e <- (e - mean(e))/sd(e)
+  y <- sign(r)*(x+e*sqrt((1/r^2-1)))
+  y <- (y- mean(y))/sd(y)
+  data.frame(x, y) %>%
+    ggplot(aes(x, y)) + 
+      geom_point(shape=1, size=3) +
+      expand_limits(x=c(-3,3), y=c(-3,3)) +
+    ggtitle(paste("Example of data with r =", cor(x,y)))
+}
+```
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+gen(-0.9)
+```
+:::
+::: {.column width="50%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+gen(-0.8)
+```
+:::
+::::
+  
+## r between -0.7 and -0.3, weak negative association   
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+gen(-0.6)
+```
+:::
+::: {.column width="50%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+gen(-0.4)
+```
+:::
+::::
+
+## r between -0.3 and +0.3, little or no association
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+gen(-0.1)
+```
+:::
+::: {.column width="50%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+gen(0.1)
+```
+:::
+::::
+
+## r between +0.3 and +0.7, weak positive association   
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+gen(0.4)
+```
+:::
+::: {.column width="50%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+gen(0.6)
+```
+:::
+::::
+
+## r between +0.7 and +1, strong positive association   
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+gen(0.8)
+```
+:::
+::: {.column width="50%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+gen(0.9)
+```
+:::
+::::
+
+## Extreme case, perfect association
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+gen(1)
+```
+:::
+::: {.column width="50%"}
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+gen(-1)
+```
+:::
+::::
+
+## Extreme case, perfect negative association
+
+```{r}
+#| fig-width: 4
+#| fig-height: 4
+gen(-1)
+```
+
