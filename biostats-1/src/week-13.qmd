@@ -127,7 +127,11 @@ gen <- function(r, n=100) {
     ggplot(aes(x, y)) + 
       geom_point(shape=1, size=3) +
       expand_limits(x=c(-3,3), y=c(-3,3)) +
-    ggtitle(paste("Example of data with r =", cor(x,y)))
+    ggtitle(
+      paste0(
+        "Example of data with r =",
+        ifelse(r > 0, " +"," "),
+        round(cor(x,y),1)))
 }
 ```
 
@@ -242,12 +246,4 @@ gen(-1)
 ```
 :::
 ::::
-
-## Extreme case, perfect negative association
-
-```{r}
-#| fig-width: 4
-#| fig-height: 4
-gen(-1)
-```
 
