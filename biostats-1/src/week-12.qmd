@@ -16,7 +16,7 @@ editor: visual
     -   Especially independence
 -   Nonparametric implies no population parameter
     -   Mathematical form of hypotheses is tricky
- 
+
 ::: notes
 There are a broad range of statistical tests that are described as non-parametric tests. These were almost all developed in the 1950s. Statistics, as a discipline, was relatively new at this time. Sad to say, but relatively little has been done since the 1950s on these tests. In general, they do not extend easily to more complex settings like risk adjustment models.
 :::
@@ -113,7 +113,6 @@ Add note.
 ```{=tex}
 \begin{matrix} & X_{1} & X_{2} & X_{3} \\ Y_{1} & 0\ or\ 1 & 0\ or\ 1 & 0\ or\ 1 \\ Y_{2} & 0\ or\ 1 & 0\ or\ 1 & 0\ or\ 1 \\ Y_{3} & 0\ or\ 1 & 0\ or\ 1 & 0\ or\ 1 \\ Y_{4} & 0\ or\ 1 & 0\ or\ 1 & 0\ or\ 1 \\ Y_{5} & 0\ or\ 1 & 0\ or\ 1 & 0\ or\ 1 \\ Y_{6} & 0\ or\ 1 & 0\ or\ 1 & 0\ or\ 1 \end{matrix}
 ```
-
 ::: notes
 Add note.
 :::
@@ -143,10 +142,10 @@ Add note.
     -   Accept H0 if U is close to $n \times\frac{n+m+1}{2}$
 -   $W = \Sigma_i \Sigma_j H[X_i-Y_j]$
     -   H is a counting function
-        - = 1 for zero or positive values
-        - = 0 for zero or negative values   
+        -   = 1 for zero or positive values
+        -   = 0 for zero or negative values\
     -   Accept H0 if W is close to $\frac{nm}{2}$
-    
+
 ::: notes
 Add note.
 :::
@@ -257,17 +256,15 @@ Add note.
 -   What is coming next
     -   Tables, exact tests, Monte Carlo tests, and normal approximation
 
-
 ## MWW test using tables
 
-![](../images/mww-04.png)
-::: notes
+![](../images/mww-04.png) ::: notes
 
 :::
 
 ## MWW test using an exact test
 
-```{}
+```         
 # r code to list all possible test values for
 # MWW test with n=3, m=6
 
@@ -293,7 +290,7 @@ Add note.
 
 ## MWW test using a Monte Carlo approximation
 
-```{}
+```         
 # r code to compute a Monte Carlo approximation 
 # for the Mann-Whitney-Wilcoxon test with n=3, m=6
 
@@ -339,18 +336,19 @@ There is a fair amount of disagreement about when to use the MMW test. Typically
 :::
 
 ## Which MMW test?
+
 -   Tables: never!
--   Exact test: small (n+m < 100) sample sizes
--   Monte Carlo approximation: moderate (100 < n+m < 1 million) sample sizes
--   Normal approximation: moderate or large (n+m > 1 million) sample sizes
+-   Exact test: small (n+m \< 100) sample sizes
+-   Monte Carlo approximation: moderate (100 \< n+m \< 1 million) sample sizes
+-   Normal approximation: moderate or large (n+m \> 1 million) sample sizes
     -   The cutoffs for small, moderate, and large are my interpretations only.
-    
+
 ::: notes
 I would not recommend using tables. They are tedious, error prone, and only work if there are no ties in the data.
 
 An exact test is ideal. It does require a lot of computing power, but today's computers can handle exact tests for a total sample size of a hundred or so.
 
-The Monte Carlo approximation is a fall back option for moderate sample sizes. This depends on how much computing power 
+The Monte Carlo approximation is a fall back option for moderate sample sizes. This depends on how much computing power
 :::
 
 ## Example: FEV data, 1 of 2
@@ -358,7 +356,7 @@ The Monte Carlo approximation is a fall back option for moderate sample sizes. T
 ![](../images/mww-05.png)
 
 ::: notes
-This is a dataset you've seen before, forced expiratory volume in a sample of children. You have information on age, height, sex, and smoking status. 
+This is a dataset you've seen before, forced expiratory volume in a sample of children. You have information on age, height, sex, and smoking status.
 
 Although the sample size is large and the data appears to be not too far from a normal distribution, let's run a MWW test comparing FEV values for males and females.
 
@@ -410,7 +408,7 @@ Add note.
 ## Criticisms of parametric tests
 
 -   Perform poorly when data skewed, or has outliers
--   Cannot handle ordinal data 
+-   Cannot handle ordinal data
 
 ::: notes
 Add note.
