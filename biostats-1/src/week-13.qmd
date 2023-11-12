@@ -35,6 +35,11 @@ xbar <- mean(x)
 ybar <- mean(y)
 sx <- round(sd(x), 1)
 sy <- round(sd(y), 1)
+
+fn <- "../data/data-13-correlation.csv"
+write_csv(
+  data.frame(x, y), 
+  file=fn)
 ```
 
 $\ $
@@ -246,4 +251,149 @@ gen(-1)
 ```
 :::
 ::::
+
+## Sleep data dictionary, 1 of 6
+
+```{r}
+fn <- "../data/data-13-sleep-data-dictionary.yaml"
+ft <- readLines(fn)
+i <- 1:14
+cat(ft[i], sep="\n")
+```
+
+::: notes
+Add note.
+:::
+
+## Sleep data dictionary, 2 of 6
+
+```{r}
+i <- 15:30
+cat(ft[i], sep="\n")
+```
+
+::: notes
+Add note.
+:::
+
+## Sleep data dictionary, 3 of 6
+
+```{r}
+i <- 31:37
+cat(ft[i], sep="\n")
+```
+
+::: notes
+Add note.
+:::
+
+## Sleep data dictionary, 4 of 6
+
+```{r}
+i <- 38:49
+cat(ft[i], sep="\n")
+```
+
+::: notes
+Add note.
+:::
+
+## Sleep data dictionary, 5 of 6
+
+```{r}
+i <- 50:64
+cat(ft[i], sep="\n")
+```
+
+::: notes
+Add note.
+:::
+
+## Sleep data dictionary, 6 of 6
+
+```{r}
+i <- 65:79
+cat(ft[i], sep="\n")
+```
+
+::: notes
+Add note.
+:::
+
+
+## SPSS analysis, 1 of 9
+
+![](../images/fat-analysis-01.png)
+
+::: notes
+Add note.
+:::
+
+## SPSS analysis, 2 of 9
+
+![](../images/fat-analysis-02.png)
+
+::: notes
+Add note.
+:::
+
+## SPSS analysis, 3 of 9
+
+![](../images/fat-analysis-03.png)
+
+::: notes
+Add note.
+:::
+
+## SPSS analysis, 4 of 9
+
+![](../images/fat-analysis-04.png)
+
+::: notes
+Add note.
+:::
+
+## SPSS analysis, 5 of 9
+
+![](../images/fat-analysis-05.png)
+
+::: notes
+Add note.
+:::
+
+## SPSS analysis, 6 of 9
+
+![](../images/fat-analysis-06.png)
+
+::: notes
+Add note.
+:::
+
+## SPSS analysis, 7 of 9
+
+![](../images/fat-analysis-07.png)
+
+::: notes
+Add note.
+:::
+
+## SPSS analysis, 8 of 9
+
+![](../images/fat-analysis-08.png)
+
+::: notes
+Add note.
+:::
+
+## SPSS analysis, 9 of 9
+
+![](../images/fat-analysis-09.png)
+
+::: notes
+Add note.
+:::
+
+## Partial correlation
+
+-   $\rho_{XY\cdot Z}=\frac{\rho_{XY}-\rho_{XZ}\rho_{ZY}}   {\sqrt{1-\rho_{XZ}^2}\sqrt{1-\rho_{ZY}^2}}$
 
