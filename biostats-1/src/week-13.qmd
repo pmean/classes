@@ -18,7 +18,17 @@ editor: visual
         -   $X_i$ below average and $Y_i$ above average
 
 ::: notes
-Add note.
+I want to start this section with a discussion of covariance. Covariance is a term that the more mathematically oriented statisticians love to use. It is an interesting statistic from a theoretical perspective and it forms the foundation for a large number of statistical tests.
+
+It doesn't, however, have as much practical application, compared to the correlation, which you will see in just a bit. I am introducing it here to get you familiar with the terminology.
+
+It is sort of analogous to the term variance versus standard deviation. The variance is interesting from a theoretical perspective, but the standard deviation has far more practical implications.
+
+To compute the covariance, you add up a bunch of terms, each of which is a product. The product is positive if both X and Y are above average or if both X and Y are below average. A positive times a positive is positive and a negative times a negative is also positive.
+
+The product is negative if one value is above average and the other value is below average. A positive times a negative or a negative times a positive produces a negative product.
+
+Think of the covariance as measuring the tendency for two variables to co-vary in a positive sense (large pairing with large and small pairing with small) or in a negative sense (large pairing with small and small pairing with large).
 :::
 
 ## 
@@ -43,10 +53,16 @@ write_csv(
 ```
 
 $\ $
- $\bar{X}=`r xbar`$; $S_X=`r sx`$
- $\bar{Y}=`r ybar`$; $S_Y=`r sy`$
+ $\bar{X}=`r xbar`$;
+ $S_X=`r sx`$
+ $\bar{Y}=`r ybar`$;
+ $S_Y=`r sy`$
 
 ##
+
+::: notes
+Here is an artificial data set that I chose to make some of the calculations simpler. There are two variables, X and Y, and you want to measure how much they co-vary.
+:::
 
 ```{r}
 data.frame(x, y) %>%
@@ -60,6 +76,10 @@ data.frame(x, y) %>%
 base_plot +
     geom_point(size=3)
 ```
+
+::: notes
+Here is a plot of the data. Notice a slight downward trend in the data. Admittedly, there isn't much data, but bear with me on this.
+:::
 
 ## 
 
@@ -83,6 +103,16 @@ base_plot +
     geom_text(label=lab)
 ```
 
+::: note
+The covariance measures how much each value deviates from the mean. Notice for two of the data points in the upper left corner of the graph, the X value is below average and the Y value is above average. 
+
+There is only one data point in the lower left corner, representing a data value where both X and Y are below average.
+
+There are two points in the lower right corner, representing a data value where X is above average and Y is below average.
+
+Finally, there is a single point in the upper right corner, representing a data value where both X and Y are above average.
+:::
+
 ## Calculation of covariance
 
 ```{r}
@@ -98,11 +128,19 @@ $\ $
 
 -   $Cov(X,Y)=\frac{1}{5}(`r total`)=`r var(x,y)`$
 
+::: notes
+Take the products of the terms in the previous graph, add them up and divide by n-1. In this example, n-1=5.
+:::
+
 ## Correlation
 
 -   $Corr(X,Y)=\frac{Cov(X,Y)}{S_XS_Y}$
     -   Also use $r_{XY}$
     -   Population correlation is $\rho_{XY}$
+
+::: notes
+The correlation is just the covariance divided by the two standard deviations. This calculation makes the quantity unitless, which is both an advantage and a disadvantage (but mostly an advantage).
+:::
 
 ## Calculation of correlation
 
@@ -323,7 +361,7 @@ Add note.
 
 ## SPSS analysis, 1 of 9
 
-![](../images/fat-analysis-01.png)
+![](../images/sleep-analysis-01.png)
 
 ::: notes
 Add note.
@@ -331,7 +369,7 @@ Add note.
 
 ## SPSS analysis, 2 of 9
 
-![](../images/fat-analysis-02.png)
+![](../images/sleep-analysis-02.png)
 
 ::: notes
 Add note.
@@ -339,7 +377,7 @@ Add note.
 
 ## SPSS analysis, 3 of 9
 
-![](../images/fat-analysis-03.png)
+![](../images/sleep-analysis-03.png)
 
 ::: notes
 Add note.
@@ -347,7 +385,7 @@ Add note.
 
 ## SPSS analysis, 4 of 9
 
-![](../images/fat-analysis-04.png)
+![](../images/sleep-analysis-04.png)
 
 ::: notes
 Add note.
@@ -355,7 +393,7 @@ Add note.
 
 ## SPSS analysis, 5 of 9
 
-![](../images/fat-analysis-05.png)
+![](../images/sleep-analysis-05.png)
 
 ::: notes
 Add note.
@@ -363,7 +401,7 @@ Add note.
 
 ## SPSS analysis, 6 of 9
 
-![](../images/fat-analysis-06.png)
+![](../images/sleep-analysis-06.png)
 
 ::: notes
 Add note.
@@ -371,7 +409,7 @@ Add note.
 
 ## SPSS analysis, 7 of 9
 
-![](../images/fat-analysis-07.png)
+![](../images/sleep-analysis-07.png)
 
 ::: notes
 Add note.
@@ -379,7 +417,7 @@ Add note.
 
 ## SPSS analysis, 8 of 9
 
-![](../images/fat-analysis-08.png)
+![](../images/sleep-analysis-08.png)
 
 ::: notes
 Add note.
@@ -387,7 +425,23 @@ Add note.
 
 ## SPSS analysis, 9 of 9
 
-![](../images/fat-analysis-09.png)
+![](../images/sleep-analysis-09.png)
+
+::: notes
+Add note.
+:::
+
+## SPSS analysis, 10 of 9
+
+![](../images/sleep-analysis-10.png)
+
+::: notes
+Add note.
+:::
+
+## SPSS analysis, 11 of 9
+
+![](../images/sleep-analysis-11.png)
 
 ::: notes
 Add note.
