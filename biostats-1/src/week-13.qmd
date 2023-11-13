@@ -40,7 +40,10 @@ e <- c(4, -2, -6, 6, -6, 4)
 x <- rev(y) + 2*e + 20
 x <- x/2
 y <- y/2
-print(data.frame(x, y), row.names=FALSE)
+o <- order(x)
+data.frame(x, y) %>%
+  arrange(x) %>%
+  print(row.names=FALSE)
 xbar <- mean(x)
 ybar <- mean(y)
 sx <- round(sd(x), 1)
@@ -53,9 +56,13 @@ write_csv(
 ```
 
 $\ $
+
  $\bar{X}=`r xbar`$;
- $S_X=`r sx`$
+ 
  $\bar{Y}=`r ybar`$;
+ 
+ $S_X=`r sx`$;
+ 
  $S_Y=`r sy`$
 
 ##
@@ -103,7 +110,7 @@ base_plot +
     geom_text(label=lab)
 ```
 
-::: note
+::: notes
 The covariance measures how much each value deviates from the mean. Notice for two of the data points in the upper left corner of the graph, the X value is below average and the Y value is above average. 
 
 There is only one data point in the lower left corner, representing a data value where both X and Y are below average.
@@ -147,6 +154,10 @@ The correlation is just the covariance divided by the two standard deviations. T
 -   $r_{XY}=\frac{`r var(x,y)`}{`r sx` \times `r sy`}=`r cor(x,y)`$
     -   Always round!
         -   $r_{XY}=`r round(cor(x,y), 2)`$ or $`r round(cor(x,y), 1)`$
+        
+::: notes
+Here is an example of how to compute a correlation. It's easy once you have the covariance. Be sure to round your correlations to two decimal places. I'm in a minority here, but I often think that rounding to a single decimal place is appropriate. It may be a bit extreme, but you'll see some examples where this amount of rounding makes it much easier to see patterns.
+:::
 
 ## Interpretation of correlation
 
@@ -154,6 +165,10 @@ The correlation is just the covariance divided by the two standard deviations. T
     -   Positive values imply positive association
     -   Negative values imply negative association
     -   Strongest associations closest to -1 or +1
+    
+::: notes
+The correlation is always between -1 and +1. That's because two measurements cannot co-vary more than the variation that the individual measurements have. It's pretty easy to show this, actually, but I won't do it here.
+:::
 
 ## r between -1 and -0.7, strong negative association
 
@@ -194,6 +209,10 @@ gen(-0.8)
 ```
 :::
 ::::
+
+::: notes
+A correlation close to -1 indicates a strong negative relationship or association. Here are two artificial examples illustrating what a correlation of -0.9 and -0.8 look like.
+:::
   
 ## r between -0.7 and -0.3, weak negative association   
 
@@ -214,6 +233,10 @@ gen(-0.4)
 :::
 ::::
 
+::: notes
+A correlation between -0.3 and -0.7 indicates a weak negative relationship or association. Here are two examples with correlations of -0.6 and -0.4.
+:::
+
 ## r between -0.3 and +0.3, little or no association
 
 :::: {.columns}
@@ -221,17 +244,21 @@ gen(-0.4)
 ```{r}
 #| fig-width: 4
 #| fig-height: 4
-gen(-0.1)
+gen(-0.2)
 ```
 :::
 ::: {.column width="50%"}
 ```{r}
 #| fig-width: 4
 #| fig-height: 4
-gen(0.1)
+gen(0.2)
 ```
 :::
 ::::
+
+::: notes
+A correlation between -0.3 and 0.3 indicates little or no association. Here are two examples with correlations of -0.2 and +0.2.
+:::
 
 ## r between +0.3 and +0.7, weak positive association   
 
@@ -252,6 +279,10 @@ gen(0.6)
 :::
 ::::
 
+::: notes
+A correlation between +0.3 and +0.7 indicates a weak positive association. Here are two examples with correlations of +0.4 and +0.6.
+:::
+
 ## r between +0.7 and +1, strong positive association   
 
 :::: {.columns}
@@ -270,6 +301,10 @@ gen(0.9)
 ```
 :::
 ::::
+
+::: notes
+A correlation close to +1 indicates a strong positive association. Here are two examples with correlations of 0.8 and 0.9.
+:::
 
 ## Extreme case, perfect association
 
@@ -290,6 +325,10 @@ gen(-1)
 :::
 ::::
 
+::: notes
+A correlation equaling +1 or -1 exactly implies a perfect association.
+:::
+
 ## Sleep data dictionary, 1 of 6
 
 ```{r}
@@ -300,7 +339,7 @@ cat(ft[i], sep="\n")
 ```
 
 ::: notes
-Add note.
+You will see some practical applications of correlation using a dataset from OzDASL looking at sleep patterns in mammals.
 :::
 
 ## Sleep data dictionary, 2 of 6
@@ -311,7 +350,7 @@ cat(ft[i], sep="\n")
 ```
 
 ::: notes
-Add note.
+Note that there is no information about how you might use or share this data. This is a common problem with data sources on the Internet.
 :::
 
 ## Sleep data dictionary, 3 of 6
@@ -322,7 +361,7 @@ cat(ft[i], sep="\n")
 ```
 
 ::: notes
-Add note.
+Here's the interesting thing about this data. It has missing value codes. I want to talk about missing values in more detail in just a bit.
 :::
 
 ## Sleep data dictionary, 4 of 6
@@ -333,7 +372,7 @@ cat(ft[i], sep="\n")
 ```
 
 ::: notes
-Add note.
+Here's the information on the first few variables...
 :::
 
 ## Sleep data dictionary, 5 of 6
@@ -344,7 +383,7 @@ cat(ft[i], sep="\n")
 ```
 
 ::: notes
-Add note.
+...and the next set of variables...
 :::
 
 ## Sleep data dictionary, 6 of 6
@@ -355,9 +394,77 @@ cat(ft[i], sep="\n")
 ```
 
 ::: notes
-Add note.
+...and the last few variables.
 :::
 
+## What does a missing value represent
+
+-   Dropout
+-   Refuse to answer survey question
+-   Survey question is not applicable
+-   Lab result is lost
+-   Concentration below detectable limit
+-   Many other reasons
+
+::: notes
+There are many reasons why a data value might be designated as missing. If you are involved with data analysis, you need to understand WHY a data value is missing and adjust the statistical analysis plan appropriately. How you adjust your plan is difficult to say. It does depend a lot on the context.
+:::
+
+## Common missing value codes
+
+-   A single dot (.)
+    -   SPSS and SAS
+-   NA
+    -   R
+-   Asterisk (*) and other symbols
+-   Unusual number codes (-1, 9, 99, 999)
+
+::: notes
+There are a variety of codes for missing values. You will see all of these if you work with data long enough.
+
+A single dot is common, and is the default option in SPSS and SAS. The letters "NA" are also common. This is the default for the R programming language. I've seen an asterisk used frequently for missing values.
+
+Also common is the use of unusual number codes. These are numbers outside the range of reasonable values. A negative value is common for many variables that can only take on positive values. A birthweight of -1, for example, either means missing or a baby that floats to the ceiling after it is born.
+
+For other variables a field with one, two, or three nines is common.
+:::
+
+## Importing missing values
+
+-   No problems for default value
+-   NA and * convert numeric to string
+    -   Fix during import, or
+    -   Convert back after import
+-   Unusual number codes
+    -   Designate after import
+    -   Don't forget!
+
+::: notes
+When you are importing a dataset with missing data into SPSS, use of the default code, a single dot, will usually work just fine.
+
+The problem occurs when the data you get uses a different code, like NA or asterisk. SPSS will often take a column of numbers with one or more missing value codes, and convert it into a string. This makes it impossible for you to run most of the analyses that you would want to run.
+
+You can tell SPSS during the import to designate the column of data as numeric, and SPSS will automatically convert any NA or asterisk to missing. Or you can convert from string to numeric after import. The conversion process will convert your NA and asterisk to missing.
+
+If your dataset uses number codes for missing, you should have no trouble during import, but you do need to designate which numeric code or codes represents a missing value.
+
+Don't forget this, or any statistics that you compute will be wrong, sometimes very wrong.
+:::
+
+## Imputing missing values, 1 of 2
+
+-   Several simple (simplistic?) imputation choices
+    -   No news is good news
+    -   No news is bad news
+    -   No news is average news
+    -   No news is last week's news
+    
+## Imputing missing values, 2 of 2
+
+-   Rigorous approaches (beyond the scope of this class)
+    -   Maximum likelihood/Bayesian approaches
+    -   Multiple imputation
+-   You cannot avoid imputation
 
 ## SPSS analysis, 1 of 9
 
