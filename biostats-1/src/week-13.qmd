@@ -437,7 +437,7 @@ For other variables a field with one, two, or three nines is common.
     -   Convert back after import
 -   Unusual number codes
     -   Designate after import
-    -   Don't forget!
+    -   **Don't forget!**
 
 ::: notes
 When you are importing a dataset with missing data into SPSS, use of the default code, a single dot, will usually work just fine.
@@ -454,43 +454,117 @@ Don't forget this, or any statistics that you compute will be wrong, sometimes v
 ## Imputing missing values, 1 of 2
 
 -   Several simple (simplistic?) imputation choices
-    -   No news is good news
     -   No news is bad news
-    -   No news is average news
-    -   No news is last week's news
+    -   No news is good news
+    -   No news is average news (MCAR)
+    -   No news is last week's news (LOCF)
+    
+::: notes
+Sometimes you can use a bit of knowledge about the context of your research to help infer what the missing value might be. 
+
+A common scenario is what I call "no news is bad news". If someone drops out of a weight loss study, there's a good chance it is because the intervention was not effective. You might make a similar assumption for a smoking cessation study. Now you might consider this a bit extreme. But it is a more realistic scenario than some of the other choices that you might make.
+
+You might also consider the opposite scenario, "no news is good news". If you have information about adverse events in a drug trial, perhaps it is because people forget to say "no problems" more often than they forget to specify problems.
+
+A third scenario is "no news is average news". This might apply when the reason an observation is missing stems from a cause that is totally unrelated to anything else in the study. You might not have results from a blood test because a technician lost one of your blood samples. That would not be related to any treatment received or any outcome that could have been measured. It was just dumb luck. In such a case, you might replace the missing value with the average of the non-missing values. This case is often called missing completely at random, known by the acronym MCAR.
+
+A final scenario is "no news is last week's news". If you are measuring a patient longitudinally, and the patient misses the last visit, you might take the value from the next to last visit and assume that things have not changed too much from the previous week (or month). This is often referred to as last observation carried forward, known by the acronym LOCF.
+:::
     
 ## Imputing missing values, 2 of 2
 
 -   Rigorous approaches (beyond the scope of this class)
+    -   Missing at random (MAR), Missing not at random (MNAR)
+    -   Ignorable, Non-ignorable
+    -   Single/Multiple imputation
     -   Maximum likelihood/Bayesian approaches
-    -   Multiple imputation
--   You cannot avoid imputation
+-   You cannot ignore missingness, you cannot avoid imputation
 
-## SPSS analysis, 1 of 9
+::: notes
+Statisticians will sometimes classify missingness into two other categories besides missing completely at random. There is missing at random, where missingness might depend on some covariates like age and gender. This might allow you to predict missingness using some type of regression model.
+
+If you use regression models to impute the missing values, you need to do it carefully. The regression model itself has some uncertainty associated with it. Failure to account for this uncertainty can lead to falsely precise results. Generally, you need to impute the missing values multiple times (multiple imputation), but practical considerations may force you to impute just once (single imputation). 
+
+In contrast, if the data is described as missing not at random, then missingness might be related to the missing value itself. The cases of "no news is bad news" and "no news is good news" are extreme examples of this. Generally, things get messy if a missing outcome is related to what the outcome might have been if you could have observed the value. You often have to make untestable assumptions about your data.
+
+In addition to the regression approaches, there are methods based on maximum likelihood principles or Bayesian models. It turns out that Bayesian models are quite good at handling the messiest case, the missing not at random case.
+
+While I will not expect you to apply these complex approaches, I did want to make you aware of some of the terminology used when discussing missing values.
+
+One point that bears remembering is that you cannot ignore missing values. If you try, you are effectively adopting a "no news is average news" assumption.
+
+It is somewhat analogous to the saying "not to decide is to decide." Ignoring missingness is effectively imputing a value for missing data that is averaging out the missing data. So you will end up imputing anyway.
+:::
+
+## SPSS investigation of missing data, 1 of 2
 
 ![](../images/sleep-analysis-01.png)
 
 ::: notes
-Add note.
+SPSS has a nice set of procedures that help you investigate patterns in missing values that may help you understand the processes behind missingness. This might guide you towards an appropriate method of imputation. Here is one table from SPSS that shows how often values are missing and also tries to identify extreme values. These might be missing value codes that you forget to tell SPSS about, or they might represent values that you have to designate as missing because they are so extreme that they cannot be anything other than a coding error. Examples might be a body mass index of 3.2, which is incompatible with life.
+
+Converting an extreme value to a missing value is something that you should not do with caution and only after discussing this choice with your research team. Sometimes the outlier itself may be the only interesting feature of your data and you don't want to toss it aside without thinking in depth about it.
 :::
 
-## SPSS analysis, 2 of 9
+## SPSS investiation of missing data, 2 of 2
 
 ![](../images/sleep-analysis-02.png)
 
 ::: notes
-Add note.
+Another interesting table that SPSS produces shows patterns among missing values. If there is missing values for one variable, how often is a second value missing. In a longitudinal study, for example, some people drop out of the study and stay dropped out. Others may drop back in. They just missed an appointment, but didn't really stop participating in your study.
 :::
 
-## SPSS analysis, 3 of 9
+## Missing value approaches for correlations, 1 of 2
+
+\begin{matrix}
+A_1 & B_1 & C_1\\
+A_2 & B_2 & C_2\\
+A_3 & B_3 & C_3\\
+A_4 & B_4 & C_4\\
+A_5 & B_5 & C_5\\
+A_6 & B_6 & .\\
+\end{matrix}
+
+::: notes
+When you are computing more than one correlation, you have to face how to handle missing values right away. The two choices you are offered are pairwise analysis and complete case analysis. Consider a simple scenario with three variables: A, B, and C. Assume that you have all the data (6 rows) for A and B, but only 5 rows for C because the last value is missing. 
+:::
+
+## Missing value approaches for correlations, 2 of 2
+
+-   Complete case analysis, 
+    -   Use 5 pairs for $r_{AB}$, $r_{AC}$, and $r_{BC}$
+-   Pairwise deletion
+    -   Use 5 pairs for $r_{AC}$, and $r_{BC}$
+    -   Use all 6 pairs for $r_{AB}$
+-   My recommendation
+    -   Pairwise deletion for descriptive statistics
+    -   Multiple imputation for inferential statistics
+    -   Never use complete case analysis
+
+::: notes
+
+For complete case analysis, you toss out the row where C is missing entirely. All correlations, correlations between A and B, between A and C, and between B and C are all based on only five observations.
+
+For pairwise deletion, you still use five observations for the correlation between A and C because C is unknown for one row. Likewise, you use five observations for the correlation between B and C. But you do have six pairs for A and B. Why not use all six pairs?
+
+For simple settings, such as a descriptive analysis, pairwise deletion makes sense. Use the extra data when you have it for certain correlations.
+
+When you use the correlations as part of a more complex inferential analysis, spend the extra time for multiple imputation or something similar like maximum likelihood or a Bayesian approach.
+
+Never use complete case analysis. It provides a small amount of protection compared to pairwise deletion. It still makes some pretty strong assumptions about missing completely at random that are as difficult to justify for complete case analysis as it is for pairwise deletion.
+
+You get a bit more precision with pairwise deletion, but it may cause problems if you do further analyses based on the correlations. In particular, factor analysis (a method beyond the scope of this class), can sometimes produce non-sensical results using correlations with pairwise deletion.
+:::
+
+## SPSS correlation analysis with pairwise deletion
 
 ![](../images/sleep-analysis-03.png)
 
 ::: notes
-Add note.
+Here is a set of correlations from SPSS using pairwise deletion. 
 :::
 
-## SPSS analysis, 4 of 9
+## SPSS analysis with complete cases
 
 ![](../images/sleep-analysis-04.png)
 
@@ -498,7 +572,7 @@ Add note.
 Add note.
 :::
 
-## SPSS analysis, 5 of 9
+## SPSS analysis, scatterplot matrix
 
 ![](../images/sleep-analysis-05.png)
 
@@ -514,7 +588,7 @@ Add note.
 Add note.
 :::
 
-## SPSS analysis, 7 of 9
+## SPSS analysis with a log transformation
 
 ![](../images/sleep-analysis-07.png)
 
@@ -522,7 +596,9 @@ Add note.
 Add note.
 :::
 
-## SPSS analysis, 8 of 9
+## Spearman correlation
+
+## SPSS Spearman correlations, 1 of 2
 
 ![](../images/sleep-analysis-08.png)
 
@@ -530,7 +606,7 @@ Add note.
 Add note.
 :::
 
-## SPSS analysis, 9 of 9
+## SPSS Spearman correlations, 2 of 2
 
 ![](../images/sleep-analysis-09.png)
 
@@ -538,7 +614,7 @@ Add note.
 Add note.
 :::
 
-## SPSS analysis, 10 of 9
+## SPSS large correlation matrix
 
 ![](../images/sleep-analysis-10.png)
 
@@ -546,13 +622,15 @@ Add note.
 Add note.
 :::
 
-## SPSS analysis, 11 of 9
+## Large correlation matrix after reduction, rounding
 
 ![](../images/sleep-analysis-11.png)
 
 ::: notes
 Add note.
 :::
+
+## Large correlation matrix after further reduction
 
 ## Partial correlation
 
