@@ -41,38 +41,41 @@ x <- rev(y) + 2*e + 20
 x <- x/2
 y <- y/2
 o <- order(x)
+
 data.frame(x, y) %>%
-  arrange(x) %>%
+  arrange(x) -> simple_data
+
+simple_data %>%
   print(row.names=FALSE)
+
 xbar <- mean(x)
 ybar <- mean(y)
 sx <- round(sd(x), 1)
 sy <- round(sd(y), 1)
 
 fn <- "../data/data-13-correlation.csv"
-write_csv(
-  data.frame(x, y), 
-  file=fn)
+
+write_csv(simple_data, file=fn)
 ```
 
-$\ $
+$\$
 
- $\bar{X}=`r xbar`$;
- 
- $\bar{Y}=`r ybar`$;
- 
- $S_X=`r sx`$;
- 
- $S_Y=`r sy`$
+$\bar{X}=`r xbar`$;
 
-##
+$\bar{Y}=`r ybar`$;
+
+$S_X=`r sx`$;
+
+$S_Y=`r sy`$
+
+## 
 
 ::: notes
 Here is an artificial data set that I chose to make some of the calculations simpler. There are two variables, X and Y, and you want to measure how much they co-vary.
 :::
 
 ```{r}
-data.frame(x, y) %>%
+simple_data %>%
   ggplot(aes(x, y)) + 
     scale_y_continuous(
       expand=expansion(add=0.75),
@@ -111,7 +114,7 @@ base_plot +
 ```
 
 ::: notes
-The covariance measures how much each value deviates from the mean. Notice for two of the data points in the upper left corner of the graph, the X value is below average and the Y value is above average. 
+The covariance measures how much each value deviates from the mean. Notice for two of the data points in the upper left corner of the graph, the X value is below average and the Y value is above average.
 
 There is only one data point in the lower left corner, representing a data value where both X and Y are below average.
 
@@ -131,7 +134,7 @@ print(d, row.names=FALSE)
 total <- sum(d$product)
 ```
 
-$\ $
+$\$
 
 -   $Cov(X,Y)=\frac{1}{5}(`r total`)=`r var(x,y)`$
 
@@ -144,9 +147,15 @@ Take the products of the terms in the previous graph, add them up and divide by 
 -   $Corr(X,Y)=\frac{Cov(X,Y)}{S_XS_Y}$
     -   Also use $r_{XY}$
     -   Population correlation is $\rho_{XY}$
+    
+-   Other names
+    -   Pearson correlation
+    -   Product moment correlation
 
 ::: notes
 The correlation is just the covariance divided by the two standard deviations. This calculation makes the quantity unitless, which is both an advantage and a disadvantage (but mostly an advantage).
+
+While I will normally just use the word "correlation" you will sometimes see  reference to the Pearson correlation or the product moment correlation or even the Pearson product moment correlation.
 :::
 
 ## Calculation of correlation
@@ -154,7 +163,7 @@ The correlation is just the covariance divided by the two standard deviations. T
 -   $r_{XY}=\frac{`r var(x,y)`}{`r sx` \times `r sy`}=`r cor(x,y)`$
     -   Always round!
         -   $r_{XY}=`r round(cor(x,y), 2)`$ or $`r round(cor(x,y), 1)`$
-        
+
 ::: notes
 Here is an example of how to compute a correlation. It's easy once you have the covariance. Be sure to round your correlations to two decimal places. I'm in a minority here, but I often think that rounding to a single decimal place is appropriate. It may be a bit extreme, but you'll see some examples where this amount of rounding makes it much easier to see patterns.
 :::
@@ -165,7 +174,7 @@ Here is an example of how to compute a correlation. It's easy once you have the 
     -   Positive values imply positive association
     -   Negative values imply negative association
     -   Strongest associations closest to -1 or +1
-    
+
 ::: notes
 The correlation is always between -1 and +1. That's because two measurements cannot co-vary more than the variation that the individual measurements have. It's pretty easy to show this, actually, but I won't do it here.
 :::
@@ -193,7 +202,7 @@ gen <- function(r, n=100) {
 }
 ```
 
-:::: {.columns}
+::: columns
 ::: {.column width="50%"}
 ```{r}
 #| fig-width: 4
@@ -201,6 +210,7 @@ gen <- function(r, n=100) {
 gen(-0.9)
 ```
 :::
+
 ::: {.column width="50%"}
 ```{r}
 #| fig-width: 4
@@ -208,15 +218,15 @@ gen(-0.9)
 gen(-0.8)
 ```
 :::
-::::
+:::
 
 ::: notes
 A correlation close to -1 indicates a strong negative relationship or association. Here are two artificial examples illustrating what a correlation of -0.9 and -0.8 look like.
 :::
-  
-## r between -0.7 and -0.3, weak negative association   
 
-:::: {.columns}
+## r between -0.7 and -0.3, weak negative association
+
+::: columns
 ::: {.column width="50%"}
 ```{r}
 #| fig-width: 4
@@ -224,6 +234,7 @@ A correlation close to -1 indicates a strong negative relationship or associatio
 gen(-0.6)
 ```
 :::
+
 ::: {.column width="50%"}
 ```{r}
 #| fig-width: 4
@@ -231,7 +242,7 @@ gen(-0.6)
 gen(-0.4)
 ```
 :::
-::::
+:::
 
 ::: notes
 A correlation between -0.3 and -0.7 indicates a weak negative relationship or association. Here are two examples with correlations of -0.6 and -0.4.
@@ -239,7 +250,7 @@ A correlation between -0.3 and -0.7 indicates a weak negative relationship or as
 
 ## r between -0.3 and +0.3, little or no association
 
-:::: {.columns}
+::: columns
 ::: {.column width="50%"}
 ```{r}
 #| fig-width: 4
@@ -247,6 +258,7 @@ A correlation between -0.3 and -0.7 indicates a weak negative relationship or as
 gen(-0.2)
 ```
 :::
+
 ::: {.column width="50%"}
 ```{r}
 #| fig-width: 4
@@ -254,15 +266,15 @@ gen(-0.2)
 gen(0.2)
 ```
 :::
-::::
+:::
 
 ::: notes
 A correlation between -0.3 and 0.3 indicates little or no association. Here are two examples with correlations of -0.2 and +0.2.
 :::
 
-## r between +0.3 and +0.7, weak positive association   
+## r between +0.3 and +0.7, weak positive association
 
-:::: {.columns}
+::: columns
 ::: {.column width="50%"}
 ```{r}
 #| fig-width: 4
@@ -270,6 +282,7 @@ A correlation between -0.3 and 0.3 indicates little or no association. Here are 
 gen(0.4)
 ```
 :::
+
 ::: {.column width="50%"}
 ```{r}
 #| fig-width: 4
@@ -277,15 +290,15 @@ gen(0.4)
 gen(0.6)
 ```
 :::
-::::
+:::
 
 ::: notes
 A correlation between +0.3 and +0.7 indicates a weak positive association. Here are two examples with correlations of +0.4 and +0.6.
 :::
 
-## r between +0.7 and +1, strong positive association   
+## r between +0.7 and +1, strong positive association
 
-:::: {.columns}
+::: columns
 ::: {.column width="50%"}
 ```{r}
 #| fig-width: 4
@@ -293,6 +306,7 @@ A correlation between +0.3 and +0.7 indicates a weak positive association. Here 
 gen(0.8)
 ```
 :::
+
 ::: {.column width="50%"}
 ```{r}
 #| fig-width: 4
@@ -300,7 +314,7 @@ gen(0.8)
 gen(0.9)
 ```
 :::
-::::
+:::
 
 ::: notes
 A correlation close to +1 indicates a strong positive association. Here are two examples with correlations of 0.8 and 0.9.
@@ -308,7 +322,7 @@ A correlation close to +1 indicates a strong positive association. Here are two 
 
 ## Extreme case, perfect association
 
-:::: {.columns}
+::: columns
 ::: {.column width="50%"}
 ```{r}
 #| fig-width: 4
@@ -316,6 +330,7 @@ A correlation close to +1 indicates a strong positive association. Here are two 
 gen(1)
 ```
 :::
+
 ::: {.column width="50%"}
 ```{r}
 #| fig-width: 4
@@ -323,7 +338,7 @@ gen(1)
 gen(-1)
 ```
 :::
-::::
+:::
 
 ::: notes
 A correlation equaling +1 or -1 exactly implies a perfect association.
@@ -416,7 +431,7 @@ There are many reasons why a data value might be designated as missing. If you a
     -   SPSS and SAS
 -   NA
     -   R
--   Asterisk (*) and other symbols
+-   Asterisk (\*) and other symbols
 -   Unusual number codes (-1, 9, 99, 999)
 
 ::: notes
@@ -432,7 +447,7 @@ For other variables a field with one, two, or three nines is common.
 ## Importing missing values
 
 -   No problems for default value
--   NA and * convert numeric to string
+-   NA and \* convert numeric to string
     -   Fix during import, or
     -   Convert back after import
 -   Unusual number codes
@@ -458,9 +473,9 @@ Don't forget this, or any statistics that you compute will be wrong, sometimes v
     -   No news is good news
     -   No news is average news (MCAR)
     -   No news is last week's news (LOCF)
-    
+
 ::: notes
-Sometimes you can use a bit of knowledge about the context of your research to help infer what the missing value might be. 
+Sometimes you can use a bit of knowledge about the context of your research to help infer what the missing value might be.
 
 A common scenario is what I call "no news is bad news". If someone drops out of a weight loss study, there's a good chance it is because the intervention was not effective. You might make a similar assumption for a smoking cessation study. Now you might consider this a bit extreme. But it is a more realistic scenario than some of the other choices that you might make.
 
@@ -470,7 +485,7 @@ A third scenario is "no news is average news". This might apply when the reason 
 
 A final scenario is "no news is last week's news". If you are measuring a patient longitudinally, and the patient misses the last visit, you might take the value from the next to last visit and assume that things have not changed too much from the previous week (or month). This is often referred to as last observation carried forward, known by the acronym LOCF.
 :::
-    
+
 ## Imputing missing values, 2 of 2
 
 -   Rigorous approaches (beyond the scope of this class)
@@ -483,7 +498,7 @@ A final scenario is "no news is last week's news". If you are measuring a patien
 ::: notes
 Statisticians will sometimes classify missingness into two other categories besides missing completely at random. There is missing at random, where missingness might depend on some covariates like age and gender. This might allow you to predict missingness using some type of regression model.
 
-If you use regression models to impute the missing values, you need to do it carefully. The regression model itself has some uncertainty associated with it. Failure to account for this uncertainty can lead to falsely precise results. Generally, you need to impute the missing values multiple times (multiple imputation), but practical considerations may force you to impute just once (single imputation). 
+If you use regression models to impute the missing values, you need to do it carefully. The regression model itself has some uncertainty associated with it. Failure to account for this uncertainty can lead to falsely precise results. Generally, you need to impute the missing values multiple times (multiple imputation), but practical considerations may force you to impute just once (single imputation).
 
 In contrast, if the data is described as missing not at random, then missingness might be related to the missing value itself. The cases of "no news is bad news" and "no news is good news" are extreme examples of this. Generally, things get messy if a missing outcome is related to what the outcome might have been if you could have observed the value. You often have to make untestable assumptions about your data.
 
@@ -516,6 +531,7 @@ Another interesting table that SPSS produces shows patterns among missing values
 
 ## Missing value approaches for correlations, 1 of 2
 
+```{=tex}
 \begin{matrix}
 A_1 & B_1 & C_1\\
 A_2 & B_2 & C_2\\
@@ -524,14 +540,16 @@ A_4 & B_4 & C_4\\
 A_5 & B_5 & C_5\\
 A_6 & B_6 & .\\
 \end{matrix}
-
+```
 ::: notes
-When you are computing more than one correlation, you have to face how to handle missing values right away. The two choices you are offered are pairwise analysis and complete case analysis. Consider a simple scenario with three variables: A, B, and C. Assume that you have all the data (6 rows) for A and B, but only 5 rows for C because the last value is missing. 
+When you are computing more than one correlation, you have to face how to handle missing values right away. 
+
+Consider a simple scenario with three variables: A, B, and C. Assume that you have all the data (6 rows) for A and B, but only 5 rows for C because the last value is missing.
 :::
 
 ## Missing value approaches for correlations, 2 of 2
 
--   Complete case analysis, 
+-   Listwise deletion (complete case analysis),
     -   Use 5 pairs for $r_{AB}$, $r_{AC}$, and $r_{BC}$
 -   Pairwise deletion
     -   Use 5 pairs for $r_{AC}$, and $r_{BC}$
@@ -542,8 +560,9 @@ When you are computing more than one correlation, you have to face how to handle
     -   Never use complete case analysis
 
 ::: notes
+The two choices you are offered are pairwise deletion and listwise deletion (also known as complete case analysis).
 
-For complete case analysis, you toss out the row where C is missing entirely. All correlations, correlations between A and B, between A and C, and between B and C are all based on only five observations.
+For listwise deletion, you toss out the entire if any of the values in the list of variables is missing. In this example, it means tossing out the sixth row. All correlations, correlations between A and B, between A and C, and between B and C are all based on only five observations.
 
 For pairwise deletion, you still use five observations for the correlation between A and C because C is unknown for one row. Likewise, you use five observations for the correlation between B and C. But you do have six pairs for A and B. Why not use all six pairs?
 
@@ -553,23 +572,23 @@ When you use the correlations as part of a more complex inferential analysis, sp
 
 Never use complete case analysis. It provides a small amount of protection compared to pairwise deletion. It still makes some pretty strong assumptions about missing completely at random that are as difficult to justify for complete case analysis as it is for pairwise deletion.
 
-You get a bit more precision with pairwise deletion, but it may cause problems if you do further analyses based on the correlations. In particular, factor analysis (a method beyond the scope of this class), can sometimes produce non-sensical results using correlations with pairwise deletion.
+You get a bit more precision with pairwise deletion, but it may cause problems if you do further analyses based on the correlations. In particular, factor analysis (a method beyond the scope of this class), can sometimes produce nonsensical results using correlations with pairwise deletion.
 :::
 
-## SPSS correlation analysis with pairwise deletion
+## SPSS correlations with pairwise deletion
 
 ![](../images/sleep-analysis-03.png)
 
 ::: notes
-Here is a set of correlations from SPSS using pairwise deletion. 
+Here is a set of correlations from SPSS using pairwise deletion. Notice the sample sizes. 58 for two of the correlations and 55 for the other.
 :::
 
-## SPSS analysis with complete cases
+## SPSS analysis with listwise deletion
 
 ![](../images/sleep-analysis-04.png)
 
 ::: notes
-Add note.
+With listwise deletion, every correlation is based on 55 observations.
 :::
 
 ## SPSS analysis, scatterplot matrix
@@ -577,7 +596,7 @@ Add note.
 ![](../images/sleep-analysis-05.png)
 
 ::: notes
-Add note.
+A scatterplot matrix is an interesting alternative to a matrix of correlations. Notice the clustering of body weight values near the low end.
 :::
 
 ## SPSS analysis, 6 of 9
@@ -585,7 +604,7 @@ Add note.
 ![](../images/sleep-analysis-06.png)
 
 ::: notes
-Add note.
+A log transformation produces a better spread among body weights.
 :::
 
 ## SPSS analysis with a log transformation
@@ -593,10 +612,34 @@ Add note.
 ![](../images/sleep-analysis-07.png)
 
 ::: notes
-Add note.
+The correlations with log body weight are also different. These correlations are not as strongly influenced by outliers on the high end.
 :::
 
 ## Spearman correlation
+
+```{r}
+simple_data %>%
+  mutate(rank_x=rank(x)) %>%
+  mutate(rank_y=rank(y)) %>%
+  print(row.names=FALSE)
+```
+
+::: notes
+To compute the Spearman correlation, convert the data values into ranks and then compute the correlation of the ranks.
+:::
+
+## When to use the Spearman correlation
+
+-   Similar to considerations for other nonparametric tests
+    -   Non-normal data
+    -   Small sample size
+    -   Ordinal data
+-   Measures degree of monotonicity
+
+
+::: notes
+There is no hard and fast rule about when to use the Spearman correlation. Three important considerations are lack of normality, small sample size and/or ordinal data.
+:::
 
 ## SPSS Spearman correlations, 1 of 2
 
@@ -632,7 +675,30 @@ Add note.
 
 ## Large correlation matrix after further reduction
 
+![](../images/sleep-analysis-12.png)
+
+::: notes
+Often it helps to look at a rectangular subregion.
+:::
+
+## Confidence intervals and hypothesis tests
+
+-   $r_{XY}$ is a statistic, $\rho_{XY}$ is a parameter.
+    -   $H_0:\ \rho_XY=0$
+    -   Accept $H_0$ if $r_{XY}$ is close to zero, or 
+    -   Accept $H_0$ if confidence interval includes zero.
+
+::: notes
+Add note.
+:::
+
+## SPSS correlation confidence intervals
+
+![](../images/sleep-analysis-13.png)
 ## Partial correlation
 
--   $\rho_{XY\cdot Z}=\frac{\rho_{XY}-\rho_{XZ}\rho_{ZY}}   {\sqrt{1-\rho_{XZ}^2}\sqrt{1-\rho_{ZY}^2}}$
+-   $\rho_{XY\cdot Z}=\frac{\rho_{XY}-\rho_{XZ}\rho_{ZY}} {\sqrt{1-\rho_{XZ}^2}\sqrt{1-\rho_{ZY}^2}}$
 
+## SPSS partial correlation
+
+![](../images/sleep-analysis-14.png)
