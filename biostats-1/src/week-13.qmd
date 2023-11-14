@@ -7,6 +7,17 @@ format:
 editor: visual
 ---
 
+## What this talk will cover
+
+-   Calculation of the covariance and correlation.
+-   Interpretation of the correlation
+-   Missing values
+-   SPSS calculations of correlations
+-   Spearman correlation
+-   Large correlation matrices
+-   Confidence intervals and hypothesis tests
+-   Partial correlations
+
 ## Covariance
 
 -   $Cov(X,Y)=\frac{1}{n-1}\Sigma(X_i-\bar{X})(Y_i-\bar{Y})$
@@ -58,7 +69,7 @@ fn <- "../data/data-13-correlation.csv"
 write_csv(simple_data, file=fn)
 ```
 
-$\$
+$\ $
 
 $\bar{X}=`r xbar`$;
 
@@ -167,6 +178,14 @@ While I will normally just use the word "correlation" you will sometimes see  re
 ::: notes
 Here is an example of how to compute a correlation. It's easy once you have the covariance. Be sure to round your correlations to two decimal places. I'm in a minority here, but I often think that rounding to a single decimal place is appropriate. It may be a bit extreme, but you'll see some examples where this amount of rounding makes it much easier to see patterns.
 :::
+
+
+## Break #1
+
+-   What have you learned
+    -   Calculation of the covariance and correlation.
+-   What is coming next
+    -   Interpretation of the correlation
 
 ## Interpretation of correlation
 
@@ -343,6 +362,13 @@ gen(-1)
 ::: notes
 A correlation equaling +1 or -1 exactly implies a perfect association.
 :::
+
+## Break #2
+
+-   What have you learned
+    -   Interpretation of the correlation
+-   What is coming next
+    -   Missing values
 
 ## Sleep data dictionary, 1 of 6
 
@@ -575,6 +601,13 @@ Never use complete case analysis. It provides a small amount of protection compa
 You get a bit more precision with pairwise deletion, but it may cause problems if you do further analyses based on the correlations. In particular, factor analysis (a method beyond the scope of this class), can sometimes produce nonsensical results using correlations with pairwise deletion.
 :::
 
+## Break #3
+
+-   What have you learned
+    -   Missing values
+-   What is coming next
+    -   SPSS calculations of correlations
+
 ## SPSS correlations with pairwise deletion
 
 ![](../images/sleep-analysis-03.png)
@@ -614,6 +647,13 @@ A log transformation produces a better spread among body weights.
 ::: notes
 The correlations with log body weight are also different. These correlations are not as strongly influenced by outliers on the high end.
 :::
+
+## Break #4
+
+-   What have you learned
+    -   SPSS calculations of correlations
+-   What is coming next
+    -   Spearman correlation
 
 ## Spearman correlation
 
@@ -657,6 +697,13 @@ Add note.
 Add note.
 :::
 
+## Break #5
+
+-   What have you learned
+    -   Spearman correlation
+-   What is coming next
+    -   Large correlation matrices
+
 ## SPSS large correlation matrix
 
 ![](../images/sleep-analysis-10.png)
@@ -681,6 +728,13 @@ Add note.
 Often it helps to look at a rectangular subregion.
 :::
 
+## Break #6
+
+-   What have you learned
+    -   Large correlation matrices
+-   What is coming next
+    -   Confidence intervals and hypothesis tests
+
 ## Confidence intervals and hypothesis tests
 
 -   $r_{XY}$ is a statistic, $\rho_{XY}$ is a parameter.
@@ -695,6 +749,13 @@ Add note.
 ## SPSS correlation confidence intervals
 
 ![](../images/sleep-analysis-13.png)
+## Break #7
+
+-   What have you learned
+    -   Confidence intervals and hypothesis tests
+-   What is coming next
+    -   Partial correlations
+
 ## Partial correlation
 
 -   $\rho_{XY\cdot Z}=\frac{\rho_{XY}-\rho_{XZ}\rho_{ZY}} {\sqrt{1-\rho_{XZ}^2}\sqrt{1-\rho_{ZY}^2}}$
@@ -702,3 +763,15 @@ Add note.
 ## SPSS partial correlation
 
 ![](../images/sleep-analysis-14.png)
+
+## Summary
+
+-   Calculation of the covariance and correlation.
+-   Interpretation of the correlation
+-   Missing values
+-   SPSS calculations of correlations
+-   Spearman correlation
+-   Large correlation matrices
+-   Confidence intervals and hypothesis tests
+-   Partial correlations
+
