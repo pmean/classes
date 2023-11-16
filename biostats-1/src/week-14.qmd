@@ -9,3 +9,14 @@ editor: visual
 
 ## Covariance
 
+```{r}
+library(tidyverse)
+fn <- "../data/data-13-correlation.csv"
+simple_data <- read_csv(file=fn)
+names(simple_data) <- c("y", "x")
+simple_data %>%
+  ggplot(aes(x, y)) +
+    geom_point() +
+    geom_smooth(method="lm") +
+    expand_limits(x=0, y=0)
+```
