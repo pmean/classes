@@ -69,7 +69,7 @@ fn <- "../data/data-13-correlation.csv"
 write_csv(simple_data, file=fn)
 ```
 
-$\ $
+$\$
 
 $\bar{X}=`r xbar`$;
 
@@ -145,7 +145,7 @@ print(d, row.names=FALSE)
 total <- sum(d$product)
 ```
 
-$\$
+$\ $
 
 -   $Cov(X,Y)=\frac{1}{5}(`r total`)=`r var(x,y)`$
 
@@ -158,7 +158,6 @@ Take the products of the terms in the previous graph, add them up and divide by 
 -   $Corr(X,Y)=\frac{Cov(X,Y)}{S_XS_Y}$
     -   Also use $r_{XY}$
     -   Population correlation is $\rho_{XY}$
-    
 -   Other names
     -   Pearson correlation
     -   Product moment correlation
@@ -166,7 +165,7 @@ Take the products of the terms in the previous graph, add them up and divide by 
 ::: notes
 The correlation is just the covariance divided by the two standard deviations. This calculation makes the quantity unitless, which is both an advantage and a disadvantage (but mostly an advantage).
 
-While I will normally just use the word "correlation" you will sometimes see  reference to the Pearson correlation or the product moment correlation or even the Pearson product moment correlation.
+While I will normally just use the word "correlation" you will sometimes see reference to the Pearson correlation or the product moment correlation or even the Pearson product moment correlation.
 :::
 
 ## Calculation of correlation
@@ -178,7 +177,6 @@ While I will normally just use the word "correlation" you will sometimes see  re
 ::: notes
 Here is an example of how to compute a correlation. It's easy once you have the covariance. Be sure to round your correlations to two decimal places. I'm in a minority here, but I often think that rounding to a single decimal place is appropriate. It may be a bit extreme, but you'll see some examples where this amount of rounding makes it much easier to see patterns.
 :::
-
 
 ## Break #1
 
@@ -568,7 +566,7 @@ A_6 & B_6 & .\\
 \end{matrix}
 ```
 ::: notes
-When you are computing more than one correlation, you have to face how to handle missing values right away. 
+When you are computing more than one correlation, you have to face how to handle missing values right away.
 
 Consider a simple scenario with three variables: A, B, and C. Assume that you have all the data (6 rows) for A and B, but only 5 rows for C because the last value is missing.
 :::
@@ -676,7 +674,6 @@ To compute the Spearman correlation, convert the data values into ranks and then
     -   Ordinal data
 -   Measures degree of monotonicity
 
-
 ::: notes
 There is no hard and fast rule about when to use the Spearman correlation. Three important considerations are lack of normality, small sample size and/or ordinal data.
 :::
@@ -739,7 +736,7 @@ Often it helps to look at a rectangular subregion.
 
 -   $r_{XY}$ is a statistic, $\rho_{XY}$ is a parameter.
     -   $H_0:\ \rho_XY=0$
-    -   Accept $H_0$ if $r_{XY}$ is close to zero, or 
+    -   Accept $H_0$ if $r_{XY}$ is close to zero, or
     -   Accept $H_0$ if confidence interval includes zero.
 
 ::: notes
@@ -748,8 +745,7 @@ Add note.
 
 ## SPSS correlation confidence intervals
 
-![](../images/sleep-analysis-13.png)
-## Break #7
+![](../images/sleep-analysis-13.png) \## Break #7
 
 -   What have you learned
     -   Confidence intervals and hypothesis tests
@@ -774,4 +770,3 @@ Add note.
 -   Large correlation matrices
 -   Confidence intervals and hypothesis tests
 -   Partial correlations
-
