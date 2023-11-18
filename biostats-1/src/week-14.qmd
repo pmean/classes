@@ -7,16 +7,57 @@ format:
 editor: visual
 ---
 
-## Covariance
+## Artificial data
 
 ```{r}
 library(tidyverse)
 fn <- "../data/data-13-correlation.csv"
-simple_data <- read_csv(file=fn)
-names(simple_data) <- c("y", "x")
-simple_data %>%
-  ggplot(aes(x, y)) +
-    geom_point() +
-    geom_smooth(method="lm") +
-    expand_limits(x=0, y=0)
+simple <- read_csv(file=fn)
+names(simple) <- c("y", "x")
+simple
 ```
+
+## Sum of squares error
+
+```{r}
+simple %>%
+  ggplot(aes(x, y)) +
+    expand_limits(x=c(0, 20), y=c(0, 40)) -> simple_plot
+
+draw_line <- function(a, b, points=simple$y) {
+  pred <- a+b*simple$x
+  res <- simple$y - pred
+  sse <- sum(res^2)
+  simple_plot +
+    geom_point(aes(x=simple$x, y=points)) +
+    geom_segment(x=0, y=a, xend=20, yend=a+b*20) +
+    geom_segment(
+      x=simple$x, 
+      y=points, 
+      xend=simple$x, 
+      yend=pred)
+}
+draw_line(30, -1)
+```
+
+## Sum of squares total
+
+```{r}
+draw_line(20, 0)
+```
+
+## Sum of squares regression
+
+```{r}
+pred <- 30-simple$x
+draw_line(20, 0, pred)
+```
+
+## Sum of squares intercept
+
+```{r}
+pred <- rep(20, length(simple$x))
+draw_line(0, 0, pred)
+```
+
+
