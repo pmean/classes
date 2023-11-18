@@ -12,9 +12,12 @@ editor: visual
 ```{r}
 library(tidyverse)
 fn <- "../data/data-13-correlation.csv"
-simple <- read_csv(file=fn)
-names(simple) <- c("y", "x")
-simple
+read_csv(file=fn) %>% 
+  data.frame() %>%
+  set_names(c("y", "x")) -> simple
+simple[ , 2:1] %>%
+  arrange(x) %>%
+  print(row.names=FALSE)
 ```
 
 ## Sum of squares error
@@ -60,4 +63,13 @@ pred <- rep(20, length(simple$x))
 draw_line(0, 0, pred)
 ```
 
+## SPSS linear regression
 
+![](../images/simple-regression-02.png)
+![](../images/simple-regression-03.png)
+
+## SPSS General Linear Model
+
+
+![](../images/simple-regression-01.png)
+![](../images/simple-regression-04.png)
