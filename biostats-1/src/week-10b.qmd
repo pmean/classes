@@ -60,9 +60,9 @@ The goodness of fit test uses a single categorical variable with k levels. You c
 -   $O_i=n_i$
 -   $E_i=N/k$
 -   $T=\Sigma\frac{(O_i-E_i)^2}{E_i}$
--   Reject H0 if T > $\chi^2(0.05,k-1)$
+-   Reject H0 if T \> $\chi^2(0.05,k-1)$
     -   Only reject for large positive values
-    
+
 ::: notes
 The chi-square goodness of fit test answers the question, are all the categories equally likely. In mathematical notation, you are testing the hypothesis that all the $pi_i$ values are equal where $pi_i$ represents the hypothetical probability of each category, if you were able to measure the categorical variable in the entire population. Many researchers will call the $\pi_i$ values population probabilities instead of population proportions, but the concept is the same.
 
@@ -112,10 +112,10 @@ With 125 total observations, you would expect 25 in each of the 5 categories if 
     -   $P[A \cap B]=P[A]\times P[B]$
 -   Two categorical variables are independent if
     -   $P[A=i \cap B=j]=P[A=i] \times P[B=j]$
-    
+
 ## Passenger class and mortality counts
 
-```{}
+```         
              Survived
               No  Yes   Total
 PClass  1st  129  193    322
@@ -126,18 +126,18 @@ Total        863  450  1,313
 
 ## Passenger class and mortality probabilities
 
-```{}
+```         
                Survived
                No    Yes    Total
 PClass  1st   9.8%  14.7%    24.5%
-        2nd  12.3%	 9.1%    21.3%
-        3rd  43.6%	10.5%    54.2%
+        2nd  12.3%   9.1%    21.3%
+        3rd  43.6%  10.5%    54.2%
 Total        65.7%  34.3%   100.0%
 ```
 
 ## Passenger class and mortality expected counts
 
-```{}
+```         
                Survived
               No     Yes    Total
 PClass  1st  211.6  110.4    322.0
@@ -148,7 +148,7 @@ Total        863.0  450.0  1,313.0
 
 ## Passenger class and mortality standardized residuals
 
-```{}
+```         
               Survived
               No   Yes
 PClass  1st  -5.7  7.9
@@ -158,10 +158,4 @@ PClass  1st  -5.7  7.9
 T = 172.3, p-value < 0.001
 ```
 
-
-
-
-
-```
-
-
+\`\`\`

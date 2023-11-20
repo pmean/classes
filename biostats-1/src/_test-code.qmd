@@ -1,0 +1,98 @@
+## Algebra formula for a straight line
+
+-   $Y=mx+b$
+-   $m = \Delta y / \Delta x$
+-   m = slope
+-   b = y-intercept
+
+::: notes
+One formula in algebra that most people can recall is the formula for a straight line. Actually, there are several different formulas, but the one that most people cite is
+
+Y = m X + b
+
+where m represents the slope, and b represents the y-intercept (we'll call it just the intercept here). They can also sometimes remember the formula for the slope:
+
+$m = \increment y / \increment x$
+
+In English, we would say that this is the change in y divided by the change in x.
+:::
+
+## Linear regression interpretation of a straight line
+
+-   The slope represents the estimated average change in Y when X increases by one unit.
+
+-   The intercept represents the estimated average value of Y when X equals zero.
+
+::: notes
+In linear regression, we use a straight linear to estimate a trend in data. We can't always draw a straight line that passes through every data point, but we can find a line that "comes close" to most of the data. This line is an estimate, and we interpret the slope and the intercept of this line as follows:
+
+Be cautious with your interpretation of the intercept. Sometimes the value X=0 is impossible, implausible, or represents a dangerous extrapolation outside the range of the data.
+:::
+
+## First regression example with interpretation
+
+![](http://www.pmean.com/new-images/02/lin_coef-0201.gif)
+
+::: notes
+The graph shown below represents the relationship between mother's age and the duration of breast feeding in a research study on breast feeding in pre-term infants.
+
+The regression coefficients are shown below. The intercept, 6, is represented the estimated average duration of breast feeding for a mother that is zero years old. This is an impossible value, so the interpretation is not useful. What is useful, is the interpretation of the slope, approximately 0.4. The estimated average duration of breast feeding increases by 0.4 weeks for every extra year in the mother's age.
+:::
+
+## Output from SPSS
+
+![](http://www.pmean.com/new-images/02/lin_coef-0202.gif)
+
+::: notes
+Here is what the output from SPSS looks like.
+:::
+
+## Interpretation when X is categorical
+
+-   Code X as 0-1
+-   Intercept: Estimated average value of Y for the "0" category.
+-   Slope: Estimated average change in Y when category changes from "0" to "1".
+
+::: notes
+When X is categorical, the interpretation changes somewhat. Let's look at the simplest situation, a binary variable. A binary variable can have only two possible categories. Some examples are live/dead, treatment/control, diseased/healthy, male/female. We need to assign number codes to the categories. Most people assign the codes 1 and 2, but it is actually better to assign the codes 0 and 1.
+
+When we represent a binary variable using 0-1 coding, the slope represents the estimated average change in Y when you switch from one group to the other. The intercept represents the estimated average value of Y for the group coded as zero.
+
+The interpretation of the regression coefficient for a categorical variable with more than two values is a bit trickier.
+:::
+
+## Second regression example with interpretation
+
+![](http://www.pmean.com/new-images/02/lin_coef-0203.gif)
+
+::: notes
+In a study of breast feeding, we have a treatment group and a control group. Let us label the treatment group as 1 and the control group as 0. The outcome variable is the age when breast feeding stopped.
+
+The control group had a mean duration of breast feeding just a bit larger than 13. The mean for the treatment group is just a bit larger than 20. Notice that the regression line shown above connects the two means.
+:::
+
+## SPSS output
+
+![](http://www.pmean.com/new-images/02/lin_coef-0204.gif)
+
+::: notes
+In this situation, the intercept, 13, represents the average duration for the control group. The slope is 7, which is the change in the average duration when we move from the control group to the treatment group.
+:::
+
+## Alternate coding
+
+![Figure 5. Scatterplot with alternate ordering of treatment](http://www.pmean.com/new-images/02/lin_coef-0205.gif)
+
+::: notes
+We could have just as easily labeled the treatment group as 0 and the control group as 1. If we did that, we would get a graph that looks like the following:
+
+Here, the intercept, 20, represents the mean of the treatment group. The slope, -7, represents the change in average duration as we move from the treatment group to the control group. It is actually this reverse coding that SPSS chooses as a default.
+:::
+
+## SPSS output
+
+![](http://www.pmean.com/new-images/02/lin_coef-0206.gif)
+
+::: notes
+Neither coding is correct or incorrect. Just make sure that you understand the difference. If you get a slope that is in the opposite direction of what you expected, perhaps it is because your software is using a different coding than what you expected.
+:::

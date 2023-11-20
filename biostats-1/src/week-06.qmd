@@ -65,7 +65,7 @@ I'll describe the normal probability plot in a bit. It requires a lot more inter
 
 Some researchers advocate the test of a correlation based off of the normal probability plot as a measure of normality. I do not recommend this test.
 
-There are two summary statistics, skewness and kurtosis, that are also commonly used. 
+There are two summary statistics, skewness and kurtosis, that are also commonly used.
 
 There are two tests that I also do not recommend, the Kolmogorov-Smirnow test and the Shapiro-Wilk test
 :::
@@ -294,7 +294,7 @@ ggplot(d, aes(x=x0, xend=x1, y=y0, yend=y1)) +
 ```
 
 ::: notes
-Interpreting the normal probability plot is a bit tricky. I like to look at the behavior on the left third of the data then the right third of the data. 
+Interpreting the normal probability plot is a bit tricky. I like to look at the behavior on the left third of the data then the right third of the data.
 
 If the left third of the data is relatively flat (less than 45 degrees), this is an indication that the extreme values on the low end are moving faster than the normal percentiles, indicating a tendency towards extreme values on the left. This is evidence of a heavy left tail.
 :::
@@ -348,7 +348,6 @@ ggplot(d, aes(x=x0, xend=x1, y=y0, yend=y1)) +
 ::: notes
 Look for the same behavior on the right side. If the right third of the data is relatively flat (less than 45 degrees), this is an indication that the extreme values on the high end are moving faster than the normal percentiles, indicating a tendency towards extreme values on the right. This is evidence of a heavy right tail.
 :::
-
 
 ## Interpreting, light right tail
 
@@ -491,7 +490,7 @@ Not everything is non-normal. Here is what you would see with the various diagno
     -   log base 10: ($log_{10}$)
     -   log base 2: ($log_2$)
     -   natural log, log base e: ($ln$)
--   Important! SPSS uses lg10, not log10. 
+-   Important! SPSS uses lg10, not log10.
 
 ::: notes
 I don't use a lot of mathematics in this class, but I do want to talk about the logarithm function.
@@ -502,9 +501,9 @@ I don't use a lot of mathematics in this class, but I do want to talk about the 
 -   Log units are common in science
     -   Richter scale (1 unit equals 10 fold change)
     -   Decibel (20 units equals 10 fold change)
-    
+
 ::: notes
-You might be familiar with several measures that are represented on a log scale. 
+You might be familiar with several measures that are represented on a log scale.
 :::
 
 ## Why use the log function
@@ -518,7 +517,7 @@ You might be familiar with several measures that are represented on a log scale.
     -   Model simplification
 
 ::: notes
-The logarithm function tends to squeeze together the larger values in your data set and stretches out the smaller values. This squeezing and stretching can correct one or more of the following problems with your data. 
+The logarithm function tends to squeeze together the larger values in your data set and stretches out the smaller values. This squeezing and stretching can correct one or more of the following problems with your data.
 
 Not all data sets will suffer from these problems. Even if they do, the log transformation is not guaranteed to solve these problems. Nevertheless, the log transformation works surprisingly well in many situations.
 
@@ -529,7 +528,7 @@ Furthermore, a log transformation can sometimes simplify your statistical models
 
 -   Data bounded below by zero
 -   Data defined as a ratio
--   Max / Min > 3
+-   Max / Min \> 3
 
 ::: notes
 There are several things that you should look for when deciding whether to use a log transformation.
@@ -547,20 +546,18 @@ There's an informal rule about the log transformation, though, that you should c
 
 ![](http://www.pmean.com/new-images/02/log-0201.gif)
 
-
 ::: notes
 The logarithm function squeezes together big data values (anything larger than 1). The bigger the data value, the more the squeezing. The graph below shows this effect.
 
 The first two values are 2.0 and 2.2. Their logarithms, 0.69 and 0.79 are much closer. The second two values, 2.6 and 2.8, are squeezed even more. Their logarithms are 0.96 and 1.03.
 :::
 
-## Stretching 
+## Stretching
 
 ![](http://www.pmean.com/new-images/02/log-0202.gif)
 
 ::: notes
 The logarithm also stretches small values apart (values less than 1). The smaller the values the more the stretching. This is illustrated below.
-
 
 The values of 0.4 and 0.45 have logarithms (-0.92 and -0.80) that are further apart. The values of 0.20 and 0.25 are stretched even further. Their logarithms are -1.61 and -1.39, respectively.
 :::
@@ -637,16 +634,16 @@ With this pattern of variation, the log transformation can equalize the variatio
 ## Multiplicative models
 
 -   Additive model
-    -   Catalogs +1,000 causes sales +$5,000
+    -   Catalogs +1,000 causes sales +\$5,000
 -   Multiplicative model
-    -   Rain + 1 inch causes pollen * 0.5
+    -   Rain + 1 inch causes pollen \* 0.5
 -   Multiplicative models are tricky
 -   Log converts it to an additive model
 
 ::: notes
 There are two common statistical models, additive and multiplicative.
 
-An additive model assumes that factors that change your outcome measure, change it by addition or subtraction. An example of an additive model would when we increase the number of mail order catalogs sent out by 1,000, and that adds an extra $5,000 in sales.
+An additive model assumes that factors that change your outcome measure, change it by addition or subtraction. An example of an additive model would when we increase the number of mail order catalogs sent out by 1,000, and that adds an extra \$5,000 in sales.
 
 A multiplicative model assumes that factors that change your outcome measure, change it by multiplication or division. An example of a multiplicative model would be when an inch of rain takes half of the pollen out of the air.
 
@@ -705,11 +702,8 @@ After a log transformation, the standard deviations are much closer.
 
 ## Further reading
 
--   Oliver N. Keene. The log transformation is special. Keene ON. Stat Med 1995: 14(8); 811-9. Article is [behind a paywall][kee1]
--   Wikipedia. The Log-normal distribution. Available in [html format][wik1]
-    
-[kee1]: https://onlinelibrary.wiley.com/doi/10.1002/sim.4780140810
-[wik1]: http://en.wikipedia.org/wiki/Log-normal_distribution
+-   Oliver N. Keene. The log transformation is special. Keene ON. Stat Med 1995: 14(8); 811-9. Article is [behind a paywall](https://onlinelibrary.wiley.com/doi/10.1002/sim.4780140810)
+-   Wikipedia. The Log-normal distribution. Available in [html format](http://en.wikipedia.org/wiki/Log-normal_distribution)
 
 ## Algebra formula for a straight line
 
@@ -780,7 +774,6 @@ The interpretation of the regression coefficient for a categorical variable with
 
 ::: notes
 In a study of breast feeding, we have a treatment group and a control group. Let us label the treatment group as 1 and the control group as 0. The outcome variable is the age when breast feeding stopped.
-
 
 The control group had a mean duration of breast feeding just a bit larger than 13. The mean for the treatment group is just a bit larger than 20. Notice that the regression line shown above connects the two means.
 :::

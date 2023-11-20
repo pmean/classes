@@ -73,29 +73,31 @@ draw_line(0, 0, simple$y)
 
 ## ANOVA table for linear regression
 
+```{=tex}
 \begin{matrix}
             &  SS &  df &                  MS &           F-ratio \\
  Regression & SSR &   1 &   MSR=\frac{SSR}{1} & F=\frac{MSR}{MSE} \\
  Error      & SSE & n-2 & MSE=\frac{SSE}{n-2} &                   \\
  Total      & SST & n-1 &                     &
 \end{matrix}
-
+```
 ## REVIEW: ANOVA table for oneway ANOVA
 
+```{=tex}
 \begin{matrix}
          &  SS &  df &                    MS &           F-ratio \\
  Between & SSB & k-1 &   MSB=\frac{SSB}{k-1} & F=\frac{MSB}{MSW} \\
  Within  & SSW & n-k & MSW=\frac{SSW}{n-k-1} &                   \\
  Total   & SST & n-1 &                       &
 \end{matrix}
-
+```
 ## SPSS linear regression
 
-![](../images/simple-regression-02.png)
-![](../images/simple-regression-03.png)
+![](../images/simple-regression-02.png) ![](../images/simple-regression-03.png)
 
 ## SPSS General Linear Model
 
+![](../images/simple-regression-01.png) ![](../images/simple-regression-04.png)
 
-![](../images/simple-regression-01.png)
-![](../images/simple-regression-04.png)
+{{< include _test-code.qmd >}}
+
