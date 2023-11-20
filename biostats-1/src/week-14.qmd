@@ -4,100 +4,91 @@ format:
   revealjs:
     slide-number: true
     embed-resources: true
-editor: visual
+params:
+  topic_1: "Interpretation of regression slope and intercept"
+  topic_2: "Relationship to the correlation coefficient"
+  topic_3: "Definition of residuals"
+  topic_4: "Calculation of sums of squares"
+  topic_5: "Proportion of explained variation"
+  topic_6: "Assumptions in linear regression"
+  topic_7: "Interpretation with two independent variables"
+editor: source
 ---
 
-## Artificial data
+## Topics to be covered
+-   What you will learn
+    -   `r params$topic_1`
+    -   `r params$topic_2`
+    -   `r params$topic_3`
+    -   `r params$topic_4`
+    -   `r params$topic_5`
+    -   `r params$topic_6`
+    -   `r params$topic_7`
 
-```{r}
-library(tidyverse)
-fn <- "../data/data-13-correlation.csv"
-read_csv(file=fn) %>% 
-  data.frame() %>%
-  set_names(c("y", "x")) -> simple
-simple[ , 2:1] %>%
-  arrange(x) %>%
-  print(row.names=FALSE)
-```
+{{< include _14-01.qmd >}}
 
-```{r}
-simple %>%
-  ggplot(aes(x, y)) +
-    expand_limits(x=c(0, 20), y=c(-5, 40)) -> simple_plot
+## Break #1
 
-draw_line <- function(a, b, points=simple$y) {
-  pred <- a+b*simple$x
-  res <- points - pred
-  sse <- sum(res^2)
-  simple_plot +
-    geom_point(aes(x=simple$x, y=points)) +
-    geom_segment(x=0, y=a, xend=20, yend=a+b*20) +
-    geom_segment(
-      x=simple$x, 
-      y=points, 
-      xend=simple$x, 
-      yend=pred) +
-    geom_label(
-      x=simple$x,
-      y=-3,
-      label=res)
-}
-```
+-   What you have learned
+    -   `r params$topic_1`
+-   What's coming next
+    -   `r params$topic_2`
 
-## Sum of squares regression
+{{< include _14-02.qmd >}}
 
-```{r}
-pred <- 30-simple$x
-draw_line(20, 0, pred)
-```
+## Break #2
 
-## Sum of squares error
+-   What you have learned
+    -   `r params$topic_2`
+-   What's coming next
+    -   `r params$topic_3`
 
-```{r}
-draw_line(30, -1)
+{{< include _14-03.qmd >}}
 
-```
+## Break #3
 
-## Sum of squares total / corrected total
+-   What you have learned
+    -   `r params$topic_3`
+-   What's coming next
+    -   `r params$topic_4`
 
-```{r}
-draw_line(20, 0)
-```
+## include _14-04.qmd
 
-## Sum of squares total (uncorrected)
+## Break #4
 
-```{r}
-pred <- rep(20, length(simple$x))
-draw_line(0, 0, simple$y)
-```
+-   What you have learned
+    -   `r params$topic_4`
+-   What's coming next
+    -   `r params$topic_5`
 
-## ANOVA table for linear regression
+## include _14-04.qmd
 
-```{=tex}
-\begin{matrix}
-            &  SS &  df &                  MS &           F-ratio \\
- Regression & SSR &   1 &   MSR=\frac{SSR}{1} & F=\frac{MSR}{MSE} \\
- Error      & SSE & n-2 & MSE=\frac{SSE}{n-2} &                   \\
- Total      & SST & n-1 &                     &
-\end{matrix}
-```
-## REVIEW: ANOVA table for oneway ANOVA
+## Break #5
 
-```{=tex}
-\begin{matrix}
-         &  SS &  df &                    MS &           F-ratio \\
- Between & SSB & k-1 &   MSB=\frac{SSB}{k-1} & F=\frac{MSB}{MSW} \\
- Within  & SSW & n-k & MSW=\frac{SSW}{n-k-1} &                   \\
- Total   & SST & n-1 &                       &
-\end{matrix}
-```
-## SPSS linear regression
+-   What you have learned
+    -   `r params$topic_5`
+-   What's coming next
+    -   `r params$topic_6`
 
-![](../images/simple-regression-02.png) ![](../images/simple-regression-03.png)
+## include _14-06.qmd
 
-## SPSS General Linear Model
+## Break #6
 
-![](../images/simple-regression-01.png) ![](../images/simple-regression-04.png)
+-   What you have learned
+    -   `r params$topic_6`
+-   What's coming next
+    -   `r params$topic_7`
 
-{{< include _test-code.qmd >}}
+## include _14-07.qmd
+
+## Summary
+
+-   What you have learned
+    -   `r params$topic_1`
+    -   `r params$topic_2`
+    -   `r params$topic_3`
+    -   `r params$topic_4`
+    -   `r params$topic_5`
+    -   `r params$topic_6`
+    -   `r params$topic_7`
 

@@ -4,7 +4,7 @@ format:
   revealjs:
     slide-number: true
     embed-resources: true
-editor: visual
+editor: source
 ---
 
 ## What this talk will cover
@@ -69,7 +69,7 @@ fn <- "../data/data-13-correlation.csv"
 write_csv(simple_data, file=fn)
 ```
 
-$\$
+\$\$
 
 $\bar{X}=`r xbar`$;
 
@@ -145,7 +145,7 @@ print(d, row.names=FALSE)
 total <- sum(d$product)
 ```
 
-$\ $
+\$\$
 
 -   $Cov(X,Y)=\frac{1}{5}(`r total`)=`r var(x,y)`$
 
