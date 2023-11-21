@@ -1,0 +1,13 @@
+---
+title: "Interpretation with two independent variables"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Model
+
+-   $Y_i=\beta_0+\beta_1 X_{1i}+\beta_2 X_{2i}+\epsilon_i$
+-   Least squares estimates: $b_0,\ b_1,\ b_2$

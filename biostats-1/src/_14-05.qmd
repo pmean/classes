@@ -1,0 +1,30 @@
+---
+title: "Relationship to the correlation coefficient"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Calculation of the regression slope and intercept
+
+-   $b_1=\frac{\Sigma (X_i-\bar{X})(Y_i-\bar{Y})}{\Sigma (X_i-\bar{X})}$
+-   $b_0=\bar{Y}-b_1\bar{X}$
+
+## Relationship to the correlation coefficient
+
+-   Recall from the previous module
+    -   $Cov(X,Y)=\frac{1}{n-1}\Sigma(X_i-\bar{X})(Y_i-\bar{Y})$
+    -   $r_{XY}=\frac{Cov(X,Y)}{S_X S_Y}$
+-   This implies that
+    -   $b_1=r_{XY}\frac{S_Y}{S_X}$
+
+## Important implications
+
+-   $r_{XY}$ is unitless, $b_1$ is Y units per X units
+-   $r_{XY}>0$ implies $b_1>0$
+-   $r_{XY}=0$ implies $b_1=0$
+-   $r_{XY}<0$ implies $b_1<0$
+    -   and vice versa
+

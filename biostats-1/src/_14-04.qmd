@@ -1,0 +1,17 @@
+---
+title: "Confidence intervals and hypothesis tests"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Confidence interval
+
+-   $b_1 \pm t(\alpha/2, n-2) s.e.(b_1)$
+    -   $s.e.(b_1)=\sqrt{\frac{MSE}{\Sigma (X_i-\bar{X})^2}}$
+
+::: notes
+Add note.
+:::
