@@ -22,98 +22,12 @@ editor: source
 
 ## Residual
 
--   $e_i=\hat{Y}_i-Y_i$
-
-## Artificial data
-
-```{r}
-library(tidyverse)
-fn <- "../data/data-13-correlation.csv"
-read_csv(file=fn) %>% 
-  data.frame() %>%
-  set_names(c("y", "x")) -> simple
-simple[ , 2:1] %>%
-  arrange(x) %>%
-  print(row.names=FALSE)
-```
-
-```{r}
-simple %>%
-  ggplot(aes(x, y)) +
-    expand_limits(x=c(0, 20), y=c(-5, 40)) -> simple_plot
-
-draw_line <- function(a, b, points=simple$y) {
-  pred <- a+b*simple$x
-  res <- points - pred
-  sse <- sum(res^2)
-  simple_plot +
-    geom_point(aes(x=simple$x, y=points)) +
-    geom_segment(x=0, y=a, xend=20, yend=a+b*20) +
-    geom_segment(
-      x=simple$x, 
-      y=points, 
-      xend=simple$x, 
-      yend=pred) +
-    geom_label(
-      x=simple$x,
-      y=-3,
-      label=res)
-}
-```
-
-## Sum of squares regression
-
-```{r}
-pred <- 30-simple$x
-draw_line(20, 0, pred)
-```
-
-## Sum of squares error
-
-```{r}
-draw_line(30, -1)
-
-```
-
-## Sum of squares total / corrected total
-
-```{r}
-draw_line(20, 0)
-```
-
-## Sum of squares total (uncorrected)
-
-```{r}
-pred <- rep(20, length(simple$x))
-draw_line(0, 0, simple$y)
-```
-
-## ANOVA table for linear regression
-
-```{=tex}
-\begin{matrix}
-            &  SS &  df &                  MS &           F-ratio \\
- Regression & SSR &   1 &   MSR=\frac{SSR}{1} & F=\frac{MSR}{MSE} \\
- Error      & SSE & n-2 & MSE=\frac{SSE}{n-2} &                   \\
- Total      & SST & n-1 &                     &
-\end{matrix}
-```
-## REVIEW: ANOVA table for oneway ANOVA
-
-```{=tex}
-\begin{matrix}
-         &  SS &  df &                    MS &           F-ratio \\
- Between & SSB & k-1 &   MSB=\frac{SSB}{k-1} & F=\frac{MSB}{MSW} \\
- Within  & SSW & n-k & MSW=\frac{SSW}{n-k-1} &                   \\
- Total   & SST & n-1 &                       &
-\end{matrix}
-```
-
-## SPSS linear regression
-
-![](../images/simple-regression-02.png) ![](../images/simple-regression-03.png)
-
-## SPSS General Linear Model
-
-![](../images/simple-regression-01.png) ![](../images/simple-regression-04.png)
+-   $e_i=Y_i-\hat{Y}_i$
+    -   Error in prediction
+    -   $\Sigma e_i=0$
+    -   Estimate of $\epsilon_i$
+    
+::: notes
+The residual is the difference between what you observed ($Y_i$) and what the linear regression model would predict ($\hat{Y}_i$). If the residual is zero, you nailed it. A perfect prediction. That may happen once in a while, but you will almost never see perfect predictions for every patient in your study. The residuals will sum to zero because the linear regression uses the least squares principle to 
+:::
 

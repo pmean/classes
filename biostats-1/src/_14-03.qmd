@@ -10,45 +10,26 @@ editor: source
 ## Artificial data
 
 ```{r}
-library(tidyverse)
-fn <- "../data/data-13-correlation.csv"
-read_csv(file=fn) %>% 
-  data.frame() %>%
-  set_names(c("y", "x")) -> simple
-simple[ , 2:1] %>%
-  arrange(x) %>%
-  print(row.names=FALSE)
+xbar <- mean(simple$x)
+ybar <- mean(simple$y)
+sx <- round(sd(simple$x), 1)
+sy <- round(sd(simple$y), 1)
+print(simple, row.names=FALSE)
 ```
 
-```{r}
-simple %>%
-  ggplot(aes(x, y)) +
-    expand_limits(x=c(0, 20), y=c(-5, 40)) -> simple_plot
+-   $\bar{X}$
 
-draw_line <- function(a, b, points=simple$y) {
-  pred <- a+b*simple$x
-  res <- points - pred
-  sse <- sum(res^2)
-  simple_plot +
-    geom_point(aes(x=simple$x, y=points)) +
-    geom_segment(x=0, y=a, xend=20, yend=a+b*20) +
-    geom_segment(
-      x=simple$x, 
-      y=points, 
-      xend=simple$x, 
-      yend=pred) +
-    geom_label(
-      x=simple$x,
-      y=-3,
-      label=res)
-}
-```
+-   X-bar = `r xbar`
+-   Y-bar = `r ybar`
+-   SD(X) = `r sx`
+-   SD(Y) = `r sy`
+
 
 ## Sum of squares regression
 
 ```{r}
-pred <- 30-simple$x
-draw_line(20, 0, pred)
+yhat <- 30-simple$x
+draw_line(20, 0, pts=yhat)
 ```
 
 ## Sum of squares error
@@ -67,8 +48,7 @@ draw_line(20, 0)
 ## Sum of squares total (uncorrected)
 
 ```{r}
-pred <- rep(20, length(simple$x))
-draw_line(0, 0, simple$y)
+draw_line(0, 0, pts=simple$y)
 ```
 
 ## ANOVA table for linear regression
@@ -81,7 +61,7 @@ draw_line(0, 0, simple$y)
  Total      & SST & n-1 &                     &
 \end{matrix}
 ```
-## REVIEW: ANOVA table for oneway ANOVA
+## Review: ANOVA table for oneway ANOVA
 
 ```{=tex}
 \begin{matrix}
@@ -92,11 +72,38 @@ draw_line(0, 0, simple$y)
 \end{matrix}
 ```
 
+## R-squared
+
+-   SST, total variation, is split into
+    -    SSR, explained variation, and
+    -    SSE, unexplained variation
+-   $R^2=\frac{SSR}{SST}=1-\frac{SSE}{SST}$
+    -    $0 < R^2 < 1$
+    -    Proportion of explained variation
+
 ## SPSS linear regression
 
-![](../images/simple-regression-02.png) ![](../images/simple-regression-03.png)
+![](../images/simple-regression-02.png)
+
+-   Row 1: SSR, df, MSR, F-ratio, p-value
+-   Row 2: SSE, df, MSE
+-   Row 3: SST, df
 
 ## SPSS General Linear Model
 
-![](../images/simple-regression-01.png) ![](../images/simple-regression-04.png)
+![](../images/simple-regression-01.png)
 
+-   Row 1: SSR, df, MSR, F-ratio, p-value
+-   Row 3: same as Row 1
+-   Row 4: SSE, df, MSE
+-   Row 6: SST, df
+
+::: notes
+Ignore Row 2 completely. 
+
+Row 3 is the same as Row 1 when you have a single independent variable. With multiple independent variables, SPSS will divide the variation in row 1 across multiple rows, one for each independent variable.
+
+Row 5 is often referred to as the uncorrected total. SPSS does it differently and refers to the uncorrected total as just plain "total" and then uses "Corrected total" where most researchers would use just plain "total".
+
+You may prefer the previous output as being less confusing and that's fine. The big advantage of the general linear model lies in its ability to model a variety of different analyses.
+:::

@@ -11,7 +11,7 @@ params:
   topic_04: "Confidence intervals and hypothesis tests"
   topic_05: "Relationship to the correlation coefficient"
   topic_06: "Definition of residuals"
-  topic_07: "Proportion of explained variation"
+  topic_07: "Diagnostic plots"
   topic_08: "Interpretation with two independent variables"
 editor: source
 ---
@@ -26,6 +26,8 @@ editor: source
     -   `r params$topic_06`
     -   `r params$topic_07`
     -   `r params$topic_08`
+
+{{< include _14-00.qmd >}}
 
 {{< include _14-01.qmd >}}
 
