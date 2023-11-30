@@ -9,7 +9,7 @@ editor: source
 
 ## Calculation of the regression slope and intercept
 
--   $b_1=\frac{\Sigma (X_i-\bar{X})(Y_i-\bar{Y})}{\Sigma (X_i-\bar{X})}$
+-   $b_1=\frac{\Sigma (X_i-\bar{X})(Y_i-\bar{Y})}{\Sigma (X_i-\bar{X})^2}$
 -   $b_0=\bar{Y}-b_1\bar{X}$
 
 ## Relationship to the correlation coefficient
