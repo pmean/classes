@@ -1,0 +1,72 @@
+---
+title: "Review module01, running SPSS"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## You learned how to run SPSS
+
+-   Advantages
+    -   Easy to learn
+    -   Covers all of the basics
+-   Disadvantages
+    -   Expensive
+    -   Legacy limitations
+    -   Difficult to customize output
+    -   Fewer advanced methods
+    
+::: notes
+In the first week of class, you learned SPSS. It is a very popular program among researchers, especially those who do not have the time to learn a more complex system. Because almost all of your data management and analytical choices in SPSS come from the menus, there is less to memorize. SPSS also does a very good job at providing all of the basic approaches for data analysis.
+
+It is an expensive program, and there are certain features that are held over from the days of the mainframe computer. SPSS offers few ways that you can customize your output. It is often difficult to suppresss statistics that you don't really want and SPSS will also often fail to round their output to a reasonable number of significant digits.
+
+While SPSS has some advanced methods, it does tend to lag a few years behind other software in incorporating new approaches.
+:::
+
+## Why not R or Python?
+
+-   Advantages
+    -    Easy to customize output
+    -    Fastest to incorporate new methods
+    -    No start-up cost (but TANSTAAFL)
+    -    Best tools for reproducible research
+-   Disadvantages
+    -   Inconsistent syntax
+    -   Must learn coding
+
+    
+::: notes
+I am a big fan of R and am in the process of learning Python. Both systems have been very good at quickly incorporating new methods. You can control the output at a very fine level of detail. You can easily choose what to include or exclude and can change the number of digits to round to.
+
+There is no start-up cost for either system. You can try out the programs without any initial investment. Keep in mind, however, the acronym, TANSTAAFL. This was first popularized by a science fiction writer, Robert Heinlein. It standds for "There Ain't No Such Thing As A Free Lunch". While you may not need any initial investment in Python or R, you will have to expend time and energy as these  systems have a very steep learning curve. There's a cost associated with the steep learning curve and it may outweigh the "free" initial cost.
+
+Both R and Python have built in tools that make it easy to make your research reproducible. This is largely through the use of literate programming and integration with version control software.
+
+The syntax is wildly inconsistent, unfortunately. There's a joke about how a camel is a horse designed by a committee. Well both R and Python were created by a committee effort and new enhancements are added in a scattershot approach. This leads to a lot of inconsistency in how you code your program. 
+
+Corporate programs like SPSS, Stata, and SAS have strong internal controls. While this does not always guarantee perfect consistency, these companies do a lot better than R and Python.
+
+You have to develop at least a limited amount of programming skills to effectively use R or Python. There is no comprehensive menu system that you can rely on.
+:::
+
+## Why not SAS/Stata?
+
+-   Advantages
+    -   Fast to incorporate new methods
+    -   Not as much programming as Python/R
+    -   Very strong customer support
+-   Disadvantages
+    -   Expensive start-up costs
+    -   Rigid output
+
+::: notes
+Both SAS and Stata are very good at incorporating new methods. Maybe not quite as fast as R and Python, but close. Both systems require a bit of programming. More than SPSS, but not as much as R and Python. Stata does have a pretty good menu system. It is not quite as user-friendly as SPSS but it comes close.
+
+Both programs, but especially SAS, have very strong customer support. This at least partially offsets the initial start-up costs.
+
+Like SPSS, the output from SAS and Stata is a bit rigid and difficult to modify.
+:::
+
