@@ -5,18 +5,24 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "Module 01, running SPSS"
-  topic_02: "Assumptions in linear regression"
-  topic_03: "Calculation of sums of squares"
+  topic_01: "Running SPSS"
+  topic_02: "Data types"
+  topic_03: "Descriptive statistics"
   topic_04: "Confidence intervals and hypothesis tests"
-  topic_05: "Relationship to the correlation coefficient"
-  topic_06: "Definition of residuals"
-  topic_07: "Diagnostic plots"
-  topic_08: "Interpretation with two independent variables"
+  topic_05: "Visualization"
+  topic_06: "Assessing normality"
+  topic_07: "Independent samples and paired samples t-tess"
+  topic_08: "One factor ANOVA"
+  topic_09: "To be added"
+  topic_10: "To be added"
+  topic_11: "To be added"
+  topic_12: "To be added"
+  topic_13: "To be added"
+  topic_14: "To be added"
 editor: source
 ---
 
-## Topics to be covered
+## Topics to be covered (1/2)
 -   What you will learn
     -   `r params$topic_01`
     -   `r params$topic_02`
@@ -25,7 +31,16 @@ editor: source
     -   `r params$topic_05`
     -   `r params$topic_06`
     -   `r params$topic_07`
+
+## Topics to be covered (2/2)
+-   What you will learn
     -   `r params$topic_08`
+    -   `r params$topic_09`
+    -   `r params$topic_10`
+    -   `r params$topic_11`
+    -   `r params$topic_12`
+    -   `r params$topic_13`
+    -   `r params$topic_14`
 
 {{< include _15-00.qmd >}}
 
@@ -94,8 +109,61 @@ editor: source
 
 {{< include _15-08.qmd >}}
 
-## Summary
+## Break #8
 
+-   What you have learned
+    -   `r params$topic_08`
+-   What's coming next
+    -   `r params$topic_09`
+
+{{< include _15-09.qmd >}}
+
+## Break #9
+
+-   What you have learned
+    -   `r params$topic_09`
+-   What's coming next
+    -   `r params$topic_10`
+
+{{< include _15-10.qmd >}}
+
+## Break #10
+
+-   What you have learned
+    -   `r params$topic_10`
+-   What's coming next
+    -   `r params$topic_11`
+
+{{< include _15-11.qmd >}}
+
+## Break #11
+
+-   What you have learned
+    -   `r params$topic_11`
+-   What's coming next
+    -   `r params$topic_12`
+
+{{< include _15-12.qmd >}}
+
+## Break #12
+
+-   What you have learned
+    -   `r params$topic_12`
+-   What's coming next
+    -   `r params$topic_13`
+
+{{< include _15-13.qmd >}}
+
+## Break #13
+
+-   What you have learned
+    -   `r params$topic_13`
+-   What's coming next
+    -   `r params$topic_14`
+
+{{< include _15-14.qmd >}}
+
+## Summary (1/2)
 -   What you have learned
     -   `r params$topic_01`
     -   `r params$topic_02`
@@ -104,47 +172,17 @@ editor: source
     -   `r params$topic_05`
     -   `r params$topic_06`
     -   `r params$topic_07`
-    -   `r params$topic_08`
-    
-## Additional topics??
 
-::: notes
--   Define Simple Linear Regression in terms of usage
--   Define Predictor Variable
--   Define Outcome Variable
--   Define Line of Best Fit
--   Define Slope
--   Define Y intercept
--   Define residuals
--   Explain why the residuals are squared in the regression equation
--   Define the Least Squares Method
--   Identify the type of data used in a Linear Regression Analysis
--   Explain the two main purposes of Linear Regression Analysis
--   Identify the two assumptions that must be met for a Linear Regression Analysis to be valid
--   Identify three additional assumptions that must be met for a Linear Regression Analysis to be run
--   Explain Homoscedasticity of Residuals
--   Define the assumption that must be met for a Linear Regression Analysis to be run
--   Write the Null and Alternative Hypothesis for a Linear Regression Analysis
--   Know the processes to test each assumption for a Linear Regression Analysis
--   Define Autocorrelation
--   Define the Durbin-Watson Test
--   Define the interpretation of the Durbin-Watson Test
--   Know the SPSS process for running a Linear Regression Analysis
--   Run a Linear Regression Analysis using SPSS
--   List all relevant output for a Linear Regression Analysis
--   Define R
--   Define R squared
--   Define adjusted R squared
--   Interpret R, R squared and adjusted R squared
--   Know the mathematical equation for R squared
--   Relate the significance test for ANOVA to Linear Regression Analysis
--   Explain the model test for a Linear Regression Analysis
--   Write the model equation using the Linear Regression Analysis output
--   Define B
--   Define constant
--   Understand the limits of Linear Regression Analysis
--   Correctly and completely write up a Linear Regression Analysis
-:::
+## Summary (2/2)
+-   What you have learned
+    -   `r params$topic_08`
+    -   `r params$topic_09`
+    -   `r params$topic_10`
+    -   `r params$topic_11`
+    -   `r params$topic_12`
+    -   `r params$topic_13`
+    -   `r params$topic_14`
+
 
 <!---
       You have to put the title down 
@@ -153,5 +191,5 @@ editor: source
 --->
 
 ---
-title: "Comments for MEDB 5501, Week 14"
+title: "Comments for MEDB 5501, Week 15"
 ---

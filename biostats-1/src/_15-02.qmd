@@ -7,4 +7,41 @@ format:
 editor: source
 ---
 
-## To be added
+## Data types
+
+-   Nominal
+    -   Summarize using proportions/percentages
+    -   Show both numerator and denominator?
+-   Ordinal
+    -   Summarize using median/interquartile range
+-   Interval/Ratio
+    -   Summarize using mean/standard deviation
+    -   SPSS calls this "scale"
+-   Controversy: can you add/average ordinal data?
+    
+::: notes
+Nominal data has no natural ordering, and is usually summarized as a percentage/proportion. In general, I think it is a good idea to show the numerator and denominator along with the percentage. Both 2/8 and 100/400 produce a percentage of 25%. But one is quite different from the other.
+
+Ordinal data is categorical where the categories have a natural ordering, but the spacing between categories is ambiguous. When assigning grades, the difference between an A and a B is not quite the same as the difference between a B and a C. It certainly is quite different from the difference between a D and an F.
+
+You should summarize ordinal data using a median and the interquartile range.
+
+Interval and ratio data represent measurements where differences are considered meaningful. A red blood cell count of 4.2 million per ml differs from another count of 4.1 million by same amount as counts of 3.6 million per ml versus 3.5 million per ml.
+
+There is quite a bit of controversy about ordinal data. Can you take two or more ordinal measurements and add them together? Can you average an ordinal measurement? There is no easy answer to this. I am fairly liberal in allowing this, but others who are smarter than I am disagree.
+:::
+
+## Other distinctions
+
+-   Discrete
+    -   Fractional values not allowed
+-   Continuous
+    -   Potentially any value in some interval
+-   Binary
+    -   Code as 0 and 1
+    
+::: notes
+Some people take interval/ratio data make a further distinction between discrete and continuous. A discrete variable does not allow fractional values, only whole numbers. If you want to quibble, you could also say that something like shoe sizes where you can have a limited number of sizes like 9 1/2 that are not whole numbers.
+
+Counts are a special case of discrete data. Rates are a count divided by a measure of time. There are some specialized statistical methods for counts and rates.
+:::
