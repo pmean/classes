@@ -23,6 +23,8 @@ Rates are a count divided by a measure of time. Rates can never be negative, but
 There are some specialized statistical methods for counts, proportions, and rates.
 :::
 
+## Demonstrate how to get counts and proportions in SPSS
+
 ## Errors
 
 -   Measurement
@@ -59,6 +61,8 @@ The lower quartile is the 25th percentile and the upper quartile is the 75th per
 The standard deviation is a measure of variation. If the data is roughly normally distributed then about 68% of the data lies within one standard deviation of the mean, about 95% of the data lies within two standard deviations of the mean and almost all of the data lies within three standard deviations of the mean.
 :::
 
+## Demonstrate how to get means and standard deviations in SPSS
+
 ## Behavior of the mean versus an individual
 
 -   Central Limit Theorem
@@ -66,18 +70,7 @@ The standard deviation is a measure of variation. If the data is roughly normall
     -   Even if individual observations are not
 -   $s.e.(\bar{X})=\frac{s}{\sqrt{n}}$
 
-## Is your data normally distributed?
-
--   Best approaches
-    -   Q-Q plot
-    -   Histogram
-    -   Boxplot
--   Non-visual approaches
-    -   Does mean differ only slightly from the median
-    -   Is the median halfway between the two quartiles
--   For non-negative data
-    -   Is the standard deviation large relative to the mean
-
-
-
+::: notes
 Standard deviation divided by the square root of the sample size. 
+:::
+

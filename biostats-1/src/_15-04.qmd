@@ -15,4 +15,14 @@ editor: source
 -   Type I and Type II error rates
 -   P-values
 
-## To be added
+## General form of confidence interval
+
+-   statistic $\pm$ t or z $\times$ s.e.(statistic)
+    -   $\bar{X} \pm t(1-\alpha/2; n-1) \frac{S}{\sqrt{n}}$
+
+## General form of test
+
+-   T = (statistic-hypothesized value) / s.e.(statistic)
+    - $\frac{\bar{X}-\mu0}{S/\sqrt{n}}$
+    
+## Demonstrate one sample t-test and confidence interval in SPSS

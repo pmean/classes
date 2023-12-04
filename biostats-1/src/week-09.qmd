@@ -4,7 +4,7 @@ format:
   revealjs:
     slide-number: true
     embed-resources: true
-editor: visual
+editor: source
 ---
 
 ## Review confidence interval for a single mean, 1 of 3
@@ -41,12 +41,12 @@ represent an approximate 95% confidence interval for the population mean.
     -   $21.6 \pm 2 \times 0.23$
     -   $21.6 \pm 0.46$
     -   $(21.14, 22.06)$
-    
+
 ## Example, 3 of 3
 
 -   Interpretation
-    -    We are 95% confident that the average weight of all women in Great Britain who smoked during their pregnancy is somewhere between 21.14 and 22.06 kilograms per meter squared.
-    
+    -   We are 95% confident that the average weight of all women in Great Britain who smoked during their pregnancy is somewhere between 21.14 and 22.06 kilograms per meter squared.
+
 ## Confidence interval for a single proportion, 1 of 2
 
 Let p represent a proportion computed from a sample. You wish to create a confidence interval for $\pi$, the proportion in the entire population.
