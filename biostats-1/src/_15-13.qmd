@@ -1,5 +1,5 @@
 ---
-title: "Review module12, to be added"
+title: "Review module13, Correlations"
 format: 
   revealjs:
     slide-number: true
@@ -7,4 +7,12 @@ format:
 editor: source
 ---
 
-## To be added
+## Correlations
+
+-   Pearson correlation
+    -   $Cov(X,Y)=\frac{1}{n-1}\Sigma(X_i-\bar{X})(Y_i-\bar{Y})$
+    -   $Corr(X,Y)=\frac{Cov(X,Y)}{S_XS_Y}$
+-   Spearman correlation
+    -   $Corr(R(X), R(Y))
+    
+## Demonstrate Pearson and Spearman correlations in SPSS
