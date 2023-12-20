@@ -10,72 +10,17 @@ editor: source
 
 The second in the Applied Biostatistics sequence and is intended for graduate, doctoral, and professional students in the biological, clinical and medical fields, and medical education. Statistical concepts, analysis methods, and research designs commonly used in these fields are included: diagnostic testing, hypothesis testing, power analysis, analysis of variance, analysis of covariance, multivariate analysis of variance, propensity scoring, simple and multiple regression, logistic regression, and survival analysis. Familiarity with basic statistics and the statistical techniques presented in Applied Biostatistics I is required. Statistical analyses involved in this course will be performed primarily using the SPSS statistical analysis package. The course will also cover the interpretation, presentation and the write up of analytical results and graphs.
 
-### Multiple linear regression
+### (Wk 01) Review
 
--   Correlation:
-    -   Define correlation
-    -   Determine when to use correlation analysis
-    -   Identify and run all assumptions and tests for the Pearson Correlation analysis
-    -   Define the calculated statistics for the Pearson Correlation analysis
-    -   Explain the range of values of the correlation coefficient
-    -   Interpret a correlation coefficient
-    -   Explain the limitations of a correlation analysis
-    -   Explain why correlation is not causation
-    -   Write the Null and Alternative hypotheses for a correlation analysis
-    -   Set up data for a correlation analysis in SPSS
-    -   Define Monotonic
-    -   Write the implications of correlation analysis results when outliersare in a data set
-    -   Define bivariate normality
-    -   Test for bivariate normality
-    -   Run a correlation analysis in SPSS for a Pearson Correlation analysis
-    -   Interpret the output of a Pearson Correlation analysis
-    -   Report the effect size for a Pearson correlation analysis
-    -   Explain the relationship between sample size and correlation significance
-    -   Correctly write a summary of a Pearson Correlation analysis
--   Regression Analysis:
-    -   Define Simple Linear Regression in terms of usage
-    -   Define Predictor Variable and Outcome Variable
-    -   Define Line of Best Fit, Slope and Y intercept
-    -   Define residuals
-    -   Explain why the residuals are squared in the regression equation
-    -   Define the Least Squares Method
-    -   Identify the type of data used in a Linear Regression Analysis
-    -   Identify the two assumptions that must be met for a Linear Regression Analysis to be valid
-    -   Identify three additional assumptions that must be met for a Linear Regression Analysis to be run
-    -   Define and Explain Homoscedasticity of Residuals
-    -   Define and know the processes to test each of the assumptions that must be met for a Linear Regression Analysis to be run
-    -   Write the Null and Alternative Hypothesis for a Linear Regression Analysis
-    -   Define Autocorrelation
-    -   Define and know how to interpret the Durbin-Watson Test
-    -   Show the SPSS process for running a Linear Regression Analysis
-    -   Run a Linear Regression Analysis using SPSS
-    -   List all relevant output for a Linear Regression Analysis
-    -   Define R, R squared and adjusted R squared
-    -   Interpret R, R squared and adjusted R squared
-    -   Write the mathematical equation for R squared and adjusted R squared.
-    -   Relate ANOVA to Linear Regression Analysis
-    -   Explain the model test for a Linear Regression Analysis
-    -   Write the model equation using the Linear Regression Analysis output
-    -   Define B and the constant
-    -   Explain in writing, the limits of Linear Regression Analysis
-    -   Correctly and completely write up a Linear Regression Analysis
--   Power Analysis:
-    -   Define Power and Effect Size
-    -   List and define the components that influence power
-    -   Define a power analysis
-    -   Explain why a power analysis is run
-    -   Explain the relationship between Power and Sample Size
-    -   Define the "Law of diminishing returns"
-    -   Explain the relationship between Power and Effect Size
-    -   List and define the types of Power Analyses
-    -   Explain how alpha and beta are set in a power analysis
-    -   Identify the components needed to run a power analysis
-    -   Identify and explain the methods for running a power analysis
-    -   Explain how a researcher accounts for possible "lost data"
-    -   Define the rules of 50, 16 and 15
-    -   Show where to locate and how to use online sample size calculators
-    
--   Multiple linear regression
+-   Correlation (Chapter 8)
+-   Simple linear regression (Sections 9.1 through 9.7)
+-   Independent-samples and paired t-test (Chapter 10)
+-   One factor analysis of variance (Chapter 12)
+
+
+### (Wk 02) Multiple linear regression (Sections 9.8 through 9.11) and mediation analysis (Section 11.4)
+
+-   Learning objectives
     -   List the differences and similarities between Simple Linear Regression and Multiple Regression
     -   Write the Null and Alternative Hypotheses for a  Multiple Regression analysis
     -   Write the research question for a multiple regression analysis
@@ -106,52 +51,9 @@ The second in the Applied Biostatistics sequence and is intended for graduate, d
     -   Explain which predictors are included int he resultant Multiple Regression model
     -   Completely write up a Multiple Regression analysis
 
-### Analysis of variance, analysis of covariance
+### (Wk 03) Analysis of covariance (Chapter 13)
 
--   Analysis of variance learning objectives
-    -   Know the conditions for use of an Independent One way ANOVA
-    -   Know the conditions for use of a Repeated Measures ANOVA
-    -   List and define the assumptions for an Independent One way ANOVA
-    -   List and define the assumptions for a Repeated Measures ANOVA
-    -   Run the assumptions for an Independent One way ANOVA
-    -   Run the assumptions for a Repeated Measures ANOVA
-    -   Interpret the output of the assumptions tests for an Independent One way ANOVA
-    -   Interpret the output of the assumptions tests for a Repeated Measures ANOVA
-    -   Run an Independent One way ANOVA using SPSS or SAS
-    -   Run a Repeated Measures ANOVA using SPSS or SAS
-    -   Interpret the output of an Independent One way ANOVA
-    -   Interpret the output of a Repeated Measures ANOVA
-    -   Calculate and interpret an effect size for an Independent One way ANOVA
-    -   Calculate and interpret an effect size for a Repeated Measures ANOVA
-    -   Understand the mathematical theory behind ANOVA
-    -   Complete an ANOVA output table given partial information
-    -   Calculate the Degrees of Freedom for an Independent One way ANOVA
-    -   Calculate the Degrees of Freedom for a Repeated Measures ANOVA
-    -   Relate Sums of Squares, Degrees of Freedom, Mean Square Error and the F-ratio
-    -   Explain the relationship of power and type of ANOVA
-    -   Relate effect size to power
--   Analysis of covariance learning objectives
-    -   Set up a data set for a Repeated Measures ANOVA
-    -   Explain when a n-way RM ANOVA would be used to analyze data
-    -   Explain the data requirements for a n-way RM ANOVA
-    -   Write a research question for a n-way RM ANOVA
-    -   Write the Null and Research Hypotheses for a n-way RM ANOVA
-    -   Run a complete n-way RM ANOVA
-    -   List the assumptions for a n-way RM ANOVA
-    -   Explain the tests for the assumptions for a n-way RM ANOVA
-    -   Run the assumptions tests for a n-way RM ANOVA
-    -   Interpret the assumptions tests for a n-way RM ANOVA
-    -   Explain the issue that arises if the assumption of sphericity is violated
-    -   Explain how the Epsilon correction works
-    -   Explain the condition of a significant interaction effect
-    -   Explain the process to run simple main effects for a Repeated Measures n-way ANOVA
-    -   Run simple main effects for a Repeated Measures n-way ANOVA
-    -   Interpret simple main effects for a Repeated Measures n-way ANOVA
-    -   Explain the special considerations for simple main effects for a Repeated Measures n-way ANOVA with a factor with >2 levels
-    -   Explain the process to run  main effects for a Repeated Measures n-way ANOVA
-    -   Run main effects for a Repeated Measures n-way ANOVA
-    -   Interpret main effects for a Repeated Measures n-way ANOVA
-    -   Summarize the output of a complete n-way RM ANOVA
+-   Learning objectives
     -   Explain when an ANCOVA would be used to analyze data
     -   Explain the purpose of including covariates in an ANCOVA
     -   Identify the impact of controlling for a covariate on variance, power and the F-ratio
@@ -167,7 +69,7 @@ The second in the Applied Biostatistics sequence and is intended for graduate, d
     -   Explain, using output, how to note the influence of the covariate
     -   Summarize the interpretation of an ANCOVA
 
-### Multifactor analysis of variance
+### (Wk 04) Multifactor analysis of variance (Chapter 14) and moderation analysis (Section 11.3)
 
 -   Learning objectives for multifactor ANOVA
     -   Define Factor
@@ -201,43 +103,10 @@ The second in the Applied Biostatistics sequence and is intended for graduate, d
     -   Define Marginal Means
     -   Explain the difference between Marginal Means and Means
     -   Complete a statistical write-up of a multi-factorial ANOVA with all elements included
--   Learning objectives for mixed models
-    -   Define the meaning of mixed model
-    -   Define Between Subjects in relation to the mixed model
-    -   Define Within Subjects in relation to the mixed model
-    -   Be familiar with the various names for a mixed model ANOVA
-    -   List the purpose of running a mixed model ANOVA
-    -   Identify Between and Within factors for a mixed model ANOVA
-    -   List the type of data that can be used to define the levels in a mixed model ANOVA
-    -   List the assumptions for a mixed model ANOVA
-    -   Successfully run the statistical analysis tests for the assumptions of a mixed model ANOVA
-    -   Interpret the statistical analysis tests for the assumptions of a mixed model ANOVA
-    -   Explain how normality of the data is assessed
-    -   Explain the rules for violation of the assumption of homogeneity of variances
-    -   Define Homogeneity of Covariances
-    -   Identify Box's Test
-    -   Develop a research question for a mixed model ANOVA
-    -   Write the Null and Alternative for a mixed model ANOVA
-    -   Set up data for a mixed model ANOVA in the SPSS data editor
-    -   Run a two-way mixed model ANOVA analysis using SPSS
-    -   Interpret the output of a two-way mixed model ANOVA analysis
-    -   Understand the process of determining the presence or not of an interaction effect
-    -   Define Simple Main Effects
-    -   Determine when Simple Main Effects would be run
-    -   Define Main Effects
-    -   Determine when  Main Effects would be run
-    -   Run the Simple Main Effects following a decision about the interaction effect
-    -   Interpret the Simple Main Effects
-    -   Run the Main Effects following a decision about the interaction effect
-    -   Interpret the Main Effects
-    -   Interpret Pair-Wise comparisons
-    -   Create a complete write up of a mixed model ANOVA analysis
+    
+### (Wk 05) Factor analysis (Chapter 18)
 
-### Moderation and mediation
-
-### Factor analysis
-
-### Logistic regression
+### (Wk 06) Logistic regression (Chapter 20)
 
 -   Logistic regression
     -   Define Logistic Regression analysis
@@ -278,7 +147,33 @@ The second in the Applied Biostatistics sequence and is intended for graduate, d
     -   Create a complete write up for a Logistic Regression analysis
     -   Know the table that must be included in a write up for a Logistic Regression analysis
 
-### Propensity score
+### (Wk 07) Diagnostic testing (not in Field)
+
+-   Learning objectives
+    -   Create a 2 x 2 contingency table for a diagnostic Test
+    -   Define Gold Standard
+    -   Define and calculate Sensitivity, Specificity, Positive and Negative Predictive Values and Positive and Negative Likelihood ratios.
+    -   Define True Positive Rate
+    -   Define True Negative Rate
+    -   Define True Positive, True Negative, False Positive and False Negative values
+    -   Identify True Positive, True Negative, False Positive and False Negative values in a contingency table.
+    -   Define Prevalence
+    -   Calculate Disease Prevalence
+    -   Define and Calculate Positive and Negative Likelihood ratios
+    -   Compare and Contrast Likelihood ratios and Predictive Values
+    -   Define and explain Pre-test Probability
+    -   Define and explain Post-test Probability
+    -   Define the Fagan Nomogram
+    -   Demonstrate correct use of a Fagan Nomogram
+    -   Define a Receiver Operator Curve
+    -   Explain the x axis and y axis of a Receiver Operator Curve
+    -   Create a Receiver Operator Curve using SPSS or SAS and by "hand"
+    -   Interpret a Receiver Operator Curve
+    -   Compare two or more diagnostic tests on a Receiver Operator Curve
+    -   Define the "C" statistic
+    -   Define Area under the Curve
+
+### (Wk 08) Propensity score (not in Field)
 
 -   Learning objectives
     -   Define Propensity Score
@@ -300,7 +195,7 @@ The second in the Applied Biostatistics sequence and is intended for graduate, d
     -   Explain the benefits of Propensity Score Matching over using a regression model for covariate control.
     -   Explain the benefits of using a regression model over Propensity Score Matching for covariate control.
 
-### Survival analysis
+### (Wk 09) Survival analysis (not in Field)
 
 -   Kaplan-Meyer - Survival Analysis
     -   Define Survival Analysis
@@ -352,38 +247,66 @@ The second in the Applied Biostatistics sequence and is intended for graduate, d
     -   Interpret the Hazard Function Curve
     -   Create a complete write-up of a Cox Regression analysis
 
-### Diagnostic testing
+### (Wk 10) Imputation of missing data (not in Field)
 
--   Learning objectives
-    -   Create a 2 x 2 contingency table for a diagnostic Test
-    -   Define Gold Standard
-    -   Define and calculate Sensitivity, Specificity, Positive and Negative Predictive Values and Positive and Negative Likelihood ratios.
-    -   Define True Positive Rate
-    -   Define True Negative Rate
-    -   Define True Positive, True Negative, False Positive and False Negative values
-    -   Identify True Positive, True Negative, False Positive and False Negative values in a contingency table.
-    -   Define Prevalence
-    -   Calculate Disease Prevalence
-    -   Define and Calculate Positive and Negative Likelihood ratios
-    -   Compare and Contrast Likelihood ratios and Predictive Values
-    -   Define and explain Pre-test Probability
-    -   Define and explain Post-test Probability
-    -   Define the Fagan Nomogram
-    -   Demonstrate correct use of a Fagan Nomogram
-    -   Define a Receiver Operator Curve
-    -   Explain the x axis and y axis of a Receiver Operator Curve
-    -   Create a Receiver Operator Curve using SPSS or SAS and by "hand"
-    -   Interpret a Receiver Operator Curve
-    -   Compare two or more diagnostic tests on a Receiver Operator Curve
-    -   Define the "C" statistic
-    -   Define Area under the Curve
+### (Wk 11) Meta-analysis (not in Field)
 
-### Imputation of missing data
+### (Wk 12) Mixed models (Chapters 15, 16, 21)
 
-### Meta-analysis
+-   Learning objectives for mixed models
+    -   Set up a data set for a Repeated Measures ANOVA
+    -   Explain when a n-way RM ANOVA would be used to analyze data
+    -   Explain the data requirements for a n-way RM ANOVA
+    -   Write a research question for a n-way RM ANOVA
+    -   Write the Null and Research Hypotheses for a n-way RM ANOVA
+    -   Run a complete n-way RM ANOVA
+    -   List the assumptions for a n-way RM ANOVA
+    -   Explain the tests for the assumptions for a n-way RM ANOVA
+    -   Run the assumptions tests for a n-way RM ANOVA
+    -   Interpret the assumptions tests for a n-way RM ANOVA
+    -   Explain the issue that arises if the assumption of sphericity is violated
+    -   Explain how the Epsilon correction works
+    -   Explain the condition of a significant interaction effect
+    -   Explain the process to run simple main effects for a Repeated Measures n-way ANOVA
+    -   Run simple main effects for a Repeated Measures n-way ANOVA
+    -   Interpret simple main effects for a Repeated Measures n-way ANOVA
+    -   Explain the special considerations for simple main effects for a Repeated Measures n-way ANOVA with a factor with >2 levels
+    -   Explain the process to run  main effects for a Repeated Measures n-way ANOVA
+    -   Run main effects for a Repeated Measures n-way ANOVA
+    -   Interpret main effects for a Repeated Measures n-way ANOVA
+    -   Summarize the output of a complete n-way RM ANOVA
+    -   Define the meaning of mixed model
+    -   Define Between Subjects in relation to the mixed model
+    -   Define Within Subjects in relation to the mixed model
+    -   Be familiar with the various names for a mixed model ANOVA
+    -   List the purpose of running a mixed model ANOVA
+    -   Identify Between and Within factors for a mixed model ANOVA
+    -   List the type of data that can be used to define the levels in a mixed model ANOVA
+    -   List the assumptions for a mixed model ANOVA
+    -   Successfully run the statistical analysis tests for the assumptions of a mixed model ANOVA
+    -   Interpret the statistical analysis tests for the assumptions of a mixed model ANOVA
+    -   Explain how normality of the data is assessed
+    -   Explain the rules for violation of the assumption of homogeneity of variances
+    -   Define Homogeneity of Covariances
+    -   Identify Box's Test
+    -   Develop a research question for a mixed model ANOVA
+    -   Write the Null and Alternative for a mixed model ANOVA
+    -   Set up data for a mixed model ANOVA in the SPSS data editor
+    -   Run a two-way mixed model ANOVA analysis using SPSS
+    -   Interpret the output of a two-way mixed model ANOVA analysis
+    -   Understand the process of determining the presence or not of an interaction effect
+    -   Define Simple Main Effects
+    -   Determine when Simple Main Effects would be run
+    -   Define Main Effects
+    -   Determine when  Main Effects would be run
+    -   Run the Simple Main Effects following a decision about the interaction effect
+    -   Interpret the Simple Main Effects
+    -   Run the Main Effects following a decision about the interaction effect
+    -   Interpret the Main Effects
+    -   Interpret Pair-Wise comparisons
+    -   Create a complete write up of a mixed model ANOVA analysis
 
-### Bayesian analysis
+### (Wk 13) Bayesian analysis (scattered throughout Field)
 
-### Mixed models
+### (Wk 14) Cluster analysis
 
-### Cluster analysis
