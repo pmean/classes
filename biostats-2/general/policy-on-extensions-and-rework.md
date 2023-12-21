@@ -8,28 +8,9 @@ editor: source
 
 This policy was written on 2023-12-02 and last revised on 2023-12-21.
 
-## Deadlines
-
-Assignments for one module will be due at 11:59pm on the beginning of the following week. The first week's due dates, for example, will be on the beginning of the second week of class (Monday, January 22, 2024).
-
--   Beginning of week 2: Monday, January 22
--   Beginning of week 3: Monday, January 29
--   Beginning of week 4: Monday, February 5
--   Beginning of week 5: Monday, February 12
--   Beginning of week 6: Monday, February 19
--   Beginning of week 7: Monday, February 26
--   Beginning of week 8: Monday, March 4
--   Beginning of week 9: Monday, March 11
--   Beginning of week 10: Monday, March 18
--   Start of Spring Break: Monday, March 25
--   Beginning of week 11: Monday, April 1
--   Beginning of week 12: Monday, April 8
--   Beginning of week 13: Monday, April 15
--   Beginning of week 14: Monday, April 22
--   Beginning of week 15: Monday, April 29
--   Beginning of finals week: Monday, May 6
-
 ## Extensions
+
+$${\color{red}Red}$$
 
 Please try your best to finish all your programming assignments on time. If you need a short extension of the deadline (up to seven days), just submit a file briefly explaining the circumstances that require an extension and submit it on Canvas in PDF format in the same location where you would submit your homework. Include the proposed date that you will turn in your work. A sample document might read.
 
