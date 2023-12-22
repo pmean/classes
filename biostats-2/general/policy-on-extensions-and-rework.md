@@ -10,14 +10,6 @@ This policy was written on 2023-12-02 and last revised on 2023-12-21.
 
 ## Extensions
 
-$${\color{red}Red}$$
-
-${\color{red}Red}$
-
-Testing $${\color{red}Red}$$ one-two-three
-
-Testing ${\color{red}Red}$ one-two-three
-
 Please try your best to finish all your programming assignments on time. If you need a short extension of the deadline (up to seven days), just submit a file briefly explaining the circumstances that require an extension and submit it on Canvas in PDF format in the same location where you would submit your homework. Include the proposed date that you will turn in your work. A sample document might read.
 
 *Please grant me an extension on programming assignment 03. I have been on travel at a research conference. I will turn in the programming assignment on February 3, 2024.* 
