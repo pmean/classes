@@ -32,6 +32,13 @@ You can choose to place your program in the public domain (no restrictions) or y
 -   Including your name and date on the title of any graph
     -   For example, "This graph was produced by Steve Simon on 2023-09-19."
 
+**Interpretations**. If the assignment requires interpretation, you must provide a simple description that a typical medical professional would expect. This means
+
+-   Rounding your numbers liberally (do not say that the mean is $49,637)
+-   Using the actual units of measurement when they are available
+
+In addition, you must not confuse sample statistics with parameters. A hypothesis about a difference in means is a difference in population means not sample means. Allude to the population you are trying to generalize your results to.
+
 **Readability**. I am not grading on the readability of your code. Nevertheless, if you use a program other than SPSS, I strongly encourage you to use line breaks, indents, and vertical lists to make your code more readable.
 
 ### Grading rubric
