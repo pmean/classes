@@ -1,0 +1,143 @@
+---
+title: "Analysis of variance table"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Data for multiple linear regression
+
+-   Dependent variable: $Y_1, Y_2,...,Y_n$
+-   First independent variable: $X_{11}, X_{12}, ..., X_{1n}$
+-   Second independent variable: $X_{21}, X_{22}, ..., X_{2n}$
+-   kth independent variable: $X_{k1}, X_{k2}, ..., X_{kn}$
+
+::: notes
+For a multiple linear regression model, you need a dependent or outcome variable, traditionally designated by the letter "Y". The are n values of Y, one for each patient in your research study.
+
+Then you have k independent variables. The first one, designated by $X_1$ also has n values. The second independent variable, $X_2$ works similarly. There are k total independent variables.
+
+For now, let's assume that every variable, the one dependent variable and the k independent variables, is continuous.
+:::
+
+## Why use multiple linear regression
+
+-   Two competing purposes
+    -   Understanding mechanisms
+    -   Predicting the future
+        -   "It is difficult to make predictions, especially about the future." Niels Bohr
+    
+::: notes
+It is important to note that there are two competing reasons for using multiple linear regression (and other statistical models as well). The first is to try to understand the underlying mechanisms that explain the "how". You are looking to understand how a disease harms or how a treatment helps. This could be called a "white box" feature that you get with multiple linear regression. The size and signs of the regression coefficients help you understand what factors contribute to the "how".
+
+Alternatively, you can use a multiple linear regression model to predict the future. You want to tell a patient about his or her prognosis, you want to estimate the staffing needs in a hospital, or you want to estimate the cost savings associated changes in health care delivery.
+
+Predicting the future is a perilous process. Pretty much every investment opportunity carries a warning "Past performance is no guarantee of future results
+:::
+
+## Multiple linear regression model and estimates
+
+-   $Y_i=\beta_0+\beta_1 X_{1i}+\beta_2 X_{2i}+...+\beta_k X_{ki}+\epsilon_i$
+    -   Assumptions: $\epsilon_i$ are
+        -   independent, 
+        -   same variance,
+        -   normally distributed.
+-   Use least squares to estimate $\hat\beta_0,\ \hat\beta_1,\ \hat\beta_2,\ ...,\ \hat\beta_k$
+    -   $\hat Y_i=\hat\beta_0+\hat\beta_1 X_{1i}+\hat\beta_2 X_{2i}+...+\hat\beta_k X_{ki}$
+    -   $e_i=Y_i-\hat Y_i$
+
+::: notes
+The multiple linear regression model says that $Y_i$ is a linear function of $X_{1i},\ X_{2i},\ ...,\ X_{ki}$ plus an error term. The error term accounts for the fact that even the best set of independent variables will still fall a bit short.
+
+The $\epsilon_i$ have to meet three assumptions: independence, equal variances, and normally distributed.
+
+To estimate the $\beta$ values, use the principle of least squares. In other words find the $\beta$ values that make the predicted values, $\hat Y_i$ as close as possible to the original $Y_i$.
+
+The residual, $e_i$, is the deviation between the actual data value and what you predict based on the k independent variables.
+:::
+
+## Sum of squares
+
+-   "Bad" regression results.
+    -   All $\hat Y_i$ close  to each other
+    -   Few $\hat Y_i$ close  to $Y_i$
+-   "Good" regression results.
+    -   The $\hat Y_i$ are spread out
+    -   Many $\hat Y_i$ close to $Y_i$
+    
+::: notes
+Let's talk about a bad regression result. The word "bad" is a bit judgemental. You might substitute "disappointing" but that is also troublesome. Maybe "not too useful" is what I really mean.
+
+Let me give a hypothetical example. Suppose you paid a statistician a fortune to produce a linear regression model that predicted the average length of stay for heart attack patients of a particular age with particular systolic and diastolic blood pressure. 
+
+An 84 year old patient with 130/90 blood pressure? The model predicts 2.7 days length of stay.
+
+A 35 year old patient with 120/80 blood pressure? The model predicts 2.4 days length of stay.
+
+A 69 year old patient with 190/140 blood pressure? The model predicts 2.6 days length of stay.
+
+You ask yourself, why are we bothering collecting information about age and blood pressure. The predictions are pretty much all the same.
+
+Another way of looking at this is that a "bad" or "not too useful" regression model is one where the predictions are not very close to the actual data values.
+
+In contrast a "good" or "useful" regression model is one where the predictions change a lot for patients with different characteristics. A wide spread of the predicted values means that you have information that can help you. The first patient's predicted length of stay is 6.8, the second is 1.5 and the third is 3.1? That's useful information.
+
+Another way of thinking about a "good" regression model is that it's predictions are generally pretty close to the actual values.
+
+The analysis of variance table helps you identify "good" and "bad" regression models.
+:::
+
+## Analysis of variance table for multiple linear regression, 1 of 3
+
+-   $SS_{regression}=\Sigma(\hat Y_i-\bar Y)^2$
+-   $SS_{error}=\Sigma(Y_i-\hat Y_i)^2$
+-   $SS_{total}=\Sigma(Y_i-\bar Y)^2$
+
+::: notes
+The first column in the analysis of variance table is the sum of squares. The regression sum of squares is a measure of how spread out the predicted values ($\hat Y_i$) are.The error sum of squares is a measure of how close the predicted values are to the data. The total sum of squares is the variation of the data itself.
+:::
+
+## Analysis of variance table for multiple linear regression, 2 of 3
+
+-   $df_{regression}=k$
+-   $df_{error}=n-k-1$
+-   $df_{total}=n-1$
+    -   $MS=SS/df$
+
+::: notes
+The degrees of freedom for regression is k, the number of independent variables. The degrees of freedom for error and total are n-k-1 and n-1 respectively. You divide the sum of squares by the degrees of freedom to get the mean squares.
+:::
+
+## Analysis of variance table for multiple linear regression, 3 of 3
+
+-   $F=MS_{regression}/MS_{error}$
+-   This tests the hypotheses
+    -   $H_0:\ \beta_1=\beta_2=...=\beta_k=0$
+    -   $H_1:\ \beta_j \ne 0$ for at least one j
+    -   Accept $H_0$ is F is close to 1
+    -   Reject $H_0$ is F is much larger than 1
+    
+::: notes
+You compute the F ratio by dividing the mean square for regression into the mean square for error. Think of the numerator as signal and the denominator as noise. If this ratio is close to 1, then you should accept the null hypothesis.
+:::
+
+## R-squared
+
+-   $R^2$
+    -   $\frac{SS_{regression}}{SS_{total}}$ or
+    -   $1-\frac{SS_{error}}{SS_{total}}$
+    -   Proportion of explained variation
+-   Adjusted $R^2$
+    -   $1-\frac{MS_{error}}{MS_{total}}$ or 
+    -   $1-\frac{SS_{error}}{SS_{total}}\frac{(n-1)}{(n-k)}$
+    -   Field textbook suggests a more complex formula
+    -   Penalizes for model complexity (but not enough)
+    
+::: notes
+R-squared is defined pretty much the same way as in simple linear regression (regression with only one independent variable). It is the ratio of explained variation ($SS_{regression}$) to total variation ($SS_{total}$) or 1 minus the ratio of unexplained variation ($SS_{error}$) to total variation. This is a descriptive measure and there is no rule of thumb, but you are happier with the quality of the regression predictions if R-squared is closer to 1. Often you will see R-squared displayed as a percentage instead of a proportion (e.g., 62% instead of 0.62).
+
+Many researchers propose an alternative measure, adjusted R-squared. This statistic modifies R-squared slightly downward. You can view this as a penalty for model complexity, but unfortunately, the penalty is small and does help enough to discourage the use of needlessly complex regression models.
+:::
+

@@ -1,0 +1,158 @@
+---
+title: "Comments for MEDB 5502, Week 02"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+params:
+  topic_01: "Three models for predicting a continuous outcome"
+  topic_02: "Analysis of variance table"
+  topic_03: "Variable selection"
+  topic_04: "Regression diagnostics, residuals"
+  topic_05: "Multicollinearity (VIF)"
+  topic_06: "Checking assumptions"
+  topic_07: "Comparing models, AIC"
+  topic_08: "To be determined"
+editor: source
+---
+
+## Topics to be covered
+
+```{r}
+# Preliminaries, if needed
+
+# Keep this chunk, even if no code, so that
+# params is populated from the yaml header.
+```
+
+-   What you will learn
+    -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
+    -   `r params$topic_07`
+    -   `r params$topic_08`
+
+{{< include _02-01.qmd >}}
+
+## Break #1
+
+-   What you have learned
+    -   `r params$topic_01`
+-   What's coming next
+    -   `r params$topic_02`
+
+{{< include _02-02.qmd >}}
+
+## Break #2
+
+-   What you have learned
+    -   `r params$topic_02`
+-   What's coming next
+    -   `r params$topic_03`
+
+{{< include _02-03.qmd >}}
+
+## Break #3
+
+-   What you have learned
+    -   `r params$topic_03`
+-   What's coming next
+    -   `r params$topic_04`
+
+{{< include _02-04.qmd >}}
+
+## Break #4
+
+-   What you have learned
+    -   `r params$topic_04`
+-   What's coming next
+    -   `r params$topic_05`
+
+{{< include _02-05.qmd >}}
+
+## Break #5
+
+-   What you have learned
+    -   `r params$topic_05`
+-   What's coming next
+    -   `r params$topic_06`
+
+{{< include _02-06.qmd >}}
+
+## Break #6
+
+-   What you have learned
+    -   `r params$topic_06`
+-   What's coming next
+    -   `r params$topic_07`
+
+{{< include _02-07.qmd >}}
+
+## Break #7
+
+-   What you have learned
+    -   `r params$topic_07`
+-   What's coming next
+    -   `r params$topic_08`
+
+{{< include _02-08.qmd >}}
+
+## Summary
+
+-   What you have learned
+    -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
+    -   `r params$topic_07`
+    -   `r params$topic_08`
+    
+## Additional topics??
+
+::: notes
+-   Learning objectives
+    -   List the differences and similarities between Simple Linear Regression and Multiple Regression
+    -   Write the Null and Alternative Hypotheses for a  Multiple Regression analysis
+    -   Write the research question for a multiple regression analysis
+    -   Identify the variable type for the Outcome Variable in a Multiple Regression analysis
+    -   Identify the variable type(s) for the Predictor Variables in a Multiple Regression analysis
+    -   Write the equation form for a Multiple Regression analysis
+    -   Define Linear Combination
+    -   Define the conditions for which Multiple Regression analysis would be applied
+    -   Identify and detail what must be considered before running a Multiple Regression analysis
+    -   Explain the Rule of 15
+    -   Calculate the sample size for a Multiple Regression analysis
+    -   List the assumptions that must be met for a Multiple Regression analysis to proceed
+    -   Define: multicollinearity and homoscedasticity of residuals
+    -   List the methods used to assess for all assumptions
+    -   Explain why multicollinearity should never be present between the variables used in a Multiple Regressions Analysis
+    -   List and explain the methods of variable entry into an Multiple Regression model
+    -   List and Explain the methods of cross-validation of a Multiple Regression model
+    -   Explain how predictor variables are selected for inclusion in a Multiple Regression analysis
+    -   List all of the pertinent output found for a Multiple Regression analysis
+    -   Define: Variance Inflation Factors and Tolerance
+    -   Relate Variance Inflation Factors and Tolerance
+    -   Define the interpretation of Variance Inflation Factors and Tolerance
+    -   Explain the use of Cooks Influence
+    -   List and define R, R squared and Adjusted R squared
+    -   Explain the meaning of the ANOVA table generated in a Multiple Regression analysis
+    -   Explain the difference between the standardized and unstandardized Beta Coefficients
+    -   Interpret the Unstandardized Beta Coefficients from a Multiple Regression analysis
+    -   Explain which predictors are included int he resultant Multiple Regression model
+    -   Completely write up a Multiple Regression analysis
+:::
+
+<!---
+      You have to put the title down 
+      here to override the titles of
+      all the include files.
+--->
+
+---
+title: "Comments for MEDB 5502, Week 02"
+---

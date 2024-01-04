@@ -1,0 +1,25 @@
+---
+title: "Variable selection"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Avoid needlessly complex regression models
+
+-   "Everything should be made as simple as possible, but not simpler" Albert Einstein (?)
+-   "If you have two competing ideas to explain the same phenomenon, you should prefer the simpler one." Occam's Razor
+-   "The parsimony principle for a statistical model states that: a simpler model with fewer parameters is favored over more complex models with more parameters, provided the models fit the data similarly well." - ClubVITA
+-   "With four parameters I can fit an elephant and with five I can make him wiggle his trunk." — John von Neumann
+
+::: notes
+Here are a series of quotes that all advise against needlessly complex models. There is some empirical evidence that complex models do not extrapolate well, but these exhortations for simplicity are largely based on subjective opinions. Even so, this is an attitude that I endorse heartily (with one reservation).
+
+## Counterpoint on complexity
+
+-   Machine learning algorithms
+-   Risk adjustment
+:::
+

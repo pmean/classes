@@ -1,0 +1,69 @@
+---
+title: "Three models for predicting a continuous outcome"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Three models
+
+-   All use a continuous dependent (outcome) variables
+-   All include multiple independent variables
+-   Multiple linear regression (Week 02)
+    -   All independent variables are continuous
+-   Analysis of covariance (Week 03)
+    -   Mix of continous and categorical independent variables
+-   Multi-factor analysis of variance (Week 04)
+    -   All independent variables are categorical
+
+::: notes
+Over the next three weeks, you will learn about three different models for predicting a continuous outcome. All of these models will incorporate multiple independent variables.
+:::
+
+## Why three models
+
+-   Historical precedents
+-   Different issues
+    -   Multicollinearity
+    -   Mediator variable
+    -   Risk adjustment
+    -   Moderator variable
+    -   Interactions
+
+::: notes
+If it seems arbitrary to have such different names, you are right. Some of this is historical. If you invent something, you get the right to name it, and different inventors for multiple linear regression, analysis of covariance, and multifactor analysis of variance just decided to use different names.
+
+There are also issues that arise far more often in one model than the other. Multicollinearity, for example, is reserved primarily for multiple linear regression. You'll hear discussion about multicollinearity this week as well as mediator variables. Risk adjustment is a topic for next week under analysis of covariance, and you will see discussion of moderator variables and interactions two weeks from now under multifactor analysis of variance. In theory, these issues are not exclusive to one model or another. It's just easier to talk about them within a particular context.
+:::
+
+## The general linear model 
+
+-   Single model that unites all three models.
+-   Use of indicator variables for categorical data
+-   Not the same as generalIZED linear model
+
+::: notes
+It didn't take long for researchers to discover a common linkage between multiple linear regression, analysis of covariance, and multifactor analysis of variance. In particular, you can treat categorical variables as if they were continuous through the use of indicator variables. You'll see more discussion about this later. 
+
+One bad thing about statistics are all the terms that sound almost the same but mean something quite different. You may have noticed "moderator" and "mediator" from an earlier slide. I can never remember which is which. You'll also learn about sensitivity and specificity in week 7 (Diagnostic testing) and these are also so easily confused. 
+
+But the worst, by far, are the general linear model and the generalized linear model. The IZED added to the end of "general" makes it an entirely different model.
+
+You may see a bit about the generalized linear model in week 7 (logistic regression).
+
+In any case, I have really preferred the use of a single model, the general linear model, in place of multiple linear regression, analysis of covariance, and multifactor analysis of variance. I am a "lumper" and not a "splitter". For what it is worth, SPSS forces you to use the individual approaches at times instead of the single general linear model.
+:::
+
+## The dialog box for the general linear model
+
+![](images/glm-dialog-01.png)
+
+::: notes
+This is the dialog box you see when you select Analyze | General Linear Model | Univariate from the SPSS menu. The dependent variable gets added to the dependent variable field. Obviously!
+
+The nice thing about this dialog box is that you can added one or more categorical independent variables into the Fixed Factors field and one or more continuous independent variables into the Covariates field. Ignore the Random Factors and WLS Weight fields for now.
+
+I will try to show how you might fit a multiple linear regression model using the general linear model. Ditto for analysis of covariance and multi-factor analysis of variance. Not this week, though.
+:::
