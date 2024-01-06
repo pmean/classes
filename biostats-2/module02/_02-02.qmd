@@ -25,8 +25,10 @@ For now, let's assume that every variable, the one dependent variable and the k 
 ## Why use multiple linear regression
 
 -   Two competing purposes
-    -   Understanding mechanisms
-    -   Predicting the future
+    -   Mechanisms
+        -   What variables have an impact on your outcome?
+    -   Prediction
+        -   What outcome will you see on tomorrow's patient?
         -   "It is difficult to make predictions, especially about the future." Niels Bohr
     
 ::: notes
@@ -68,7 +70,7 @@ The residual, $e_i$, is the deviation between the actual data value and what you
     -   Many $\hat Y_i$ close to $Y_i$
     
 ::: notes
-Let's talk about a bad regression result. The word "bad" is a bit judgemental. You might substitute "disappointing" but that is also troublesome. Maybe "not too useful" is what I really mean.
+Let's talk about a bad regression result. The word "bad" is a bit judgmental. You might substitute "disappointing" but that is also troublesome. Maybe "not too useful" is what I really mean.
 
 Let me give a hypothetical example. Suppose you paid a statistician a fortune to produce a linear regression model that predicted the average length of stay for heart attack patients of a particular age with particular systolic and diastolic blood pressure. 
 
@@ -91,9 +93,9 @@ The analysis of variance table helps you identify "good" and "bad" regression mo
 
 ## Analysis of variance table for multiple linear regression, 1 of 3
 
--   $SS_{regression}=\Sigma(\hat Y_i-\bar Y)^2$
--   $SS_{error}=\Sigma(Y_i-\hat Y_i)^2$
--   $SS_{total}=\Sigma(Y_i-\bar Y)^2$
+-   SSR or $SS_{regression}=\Sigma(\hat Y_i-\bar Y)^2$
+-   SSE or $SS_{error}$ or $SS_{residual}=\Sigma(Y_i-\hat Y_i)^2$
+-   SST or $SS_{total}=\Sigma(Y_i-\bar Y)^2$
 
 ::: notes
 The first column in the analysis of variance table is the sum of squares. The regression sum of squares is a measure of how spread out the predicted values ($\hat Y_i$) are.The error sum of squares is a measure of how close the predicted values are to the data. The total sum of squares is the variation of the data itself.
@@ -112,7 +114,7 @@ The degrees of freedom for regression is k, the number of independent variables.
 
 ## Analysis of variance table for multiple linear regression, 3 of 3
 
--   $F=MS_{regression}/MS_{error}$
+-   $F=MSR/MSE$
 -   This tests the hypotheses
     -   $H_0:\ \beta_1=\beta_2=...=\beta_k=0$
     -   $H_1:\ \beta_j \ne 0$ for at least one j
@@ -123,21 +125,43 @@ The degrees of freedom for regression is k, the number of independent variables.
 You compute the F ratio by dividing the mean square for regression into the mean square for error. Think of the numerator as signal and the denominator as noise. If this ratio is close to 1, then you should accept the null hypothesis.
 :::
 
+## Example using fat data
+
+![](images/anova-table-01.png)
+
+::: notes
+Here is an example using the dataset with body fat measurements and circumference measurements at the hip, chest, and abdomen. The sum of squares are 10,500 for regression, 4,500 for residual or error and 15,000 for total. The respective degrees of freedom are 3 (for the three independent variables), 248 (252-3-1) for error and 251 (252-1) for total. The mean squares are quite different 3,500 versus 18. The F-ratio, 192, is a lot larger than 1 and the small p-value indicates that you should reject the null hypothesis and conclude that at least one of the three regression slopes is not equal to zero.
+:::
+
 ## R-squared
 
--   $R^2$
-    -   $\frac{SS_{regression}}{SS_{total}}$ or
-    -   $1-\frac{SS_{error}}{SS_{total}}$
-    -   Proportion of explained variation
--   Adjusted $R^2$
-    -   $1-\frac{MS_{error}}{MS_{total}}$ or 
-    -   $1-\frac{SS_{error}}{SS_{total}}\frac{(n-1)}{(n-k)}$
+-   $R^2=SSR/SST$ or $1-SSE/SST$
+    -    Proportion of explained variation
+
+::: notes
+R-squared is defined pretty much the same way as in simple linear regression (regression with only one independent variable). It is the ratio of explained variation ($SS_{regression}$) to total variation ($SS_{total}$) or 1 minus the ratio of unexplained variation ($SS_{error}$) to total variation. This is a descriptive measure and there is no rule of thumb, but you are happier with the quality of the regression predictions if R-squared is closer to 1. 
+:::
+
+## Example using the fat data
+
+![](images/r-squared-01.png)
+
+- 10,548.480/15,079.017 = 0.70
+
+::: notes
+You can compute R-squared from the analysis of variance table. The sum of squares for regression is 10,548.480 and the sum of squares total is 15,079.017. When you are calculating, please use the maximum precision for any intermediate calculation, but then round aggressively with the final result.
+
+Often you will see R-squared displayed as a percentage instead of a proportion (e.g., 70% instead of 0.70).
+:::
+
+## Adjusted $R^2$
+
+-   $1-\frac{MSE}{MST}$ or 
+-   $1-\frac{SSE}{SST}\frac{(n-1)}{(n-k)}$
     -   Field textbook suggests a more complex formula
     -   Penalizes for model complexity (but not enough)
     
 ::: notes
-R-squared is defined pretty much the same way as in simple linear regression (regression with only one independent variable). It is the ratio of explained variation ($SS_{regression}$) to total variation ($SS_{total}$) or 1 minus the ratio of unexplained variation ($SS_{error}$) to total variation. This is a descriptive measure and there is no rule of thumb, but you are happier with the quality of the regression predictions if R-squared is closer to 1. Often you will see R-squared displayed as a percentage instead of a proportion (e.g., 62% instead of 0.62).
-
 Many researchers propose an alternative measure, adjusted R-squared. This statistic modifies R-squared slightly downward. You can view this as a penalty for model complexity, but unfortunately, the penalty is small and does help enough to discourage the use of needlessly complex regression models.
 :::
 

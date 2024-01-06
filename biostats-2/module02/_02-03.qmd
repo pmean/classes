@@ -12,14 +12,62 @@ editor: source
 -   "Everything should be made as simple as possible, but not simpler" Albert Einstein (?)
 -   "If you have two competing ideas to explain the same phenomenon, you should prefer the simpler one." Occam's Razor
 -   "The parsimony principle for a statistical model states that: a simpler model with fewer parameters is favored over more complex models with more parameters, provided the models fit the data similarly well." - ClubVITA
--   "With four parameters I can fit an elephant and with five I can make him wiggle his trunk." — John von Neumann
 
 ::: notes
 Here are a series of quotes that all advise against needlessly complex models. There is some empirical evidence that complex models do not extrapolate well, but these exhortations for simplicity are largely based on subjective opinions. Even so, this is an attitude that I endorse heartily (with one reservation).
+:::
 
 ## Counterpoint on complexity
 
 -   Machine learning algorithms
 -   Risk adjustment
+
+::: notes
+There are many who advocate that machine learning algorithms, which automatically choose among some very complex models, are preferred in many settings. In particular, if you are interested in prediction but not mechanisms, then complexity can be your friend, as long as you are careful about this.
+
+A second area where a more complex model is called for is in risk adjustment. If you have an observational study and you want to control for confounding, it is often best to adjust for every medically plausible variable that could influence your outcome. A simple model may lead to residual confounding, a lingering bias that remains after you try to adjust with a simple model.
 :::
 
+## Comparing models with k and k-1 predictors
+
+-   $Y_i=\beta_0+\beta_1 X_{1i}+\beta_2 X_{2i}+...+\beta_k X_{ki}+\epsilon_i$
+    -   Test $H_0:\ \beta_j=0$ versus $H_0:\ \beta_j \ne 0$
+        -   Remaining $\beta$'s  could be anything
+    -   Use least squares to estimate $\hat\beta_0,\ \hat\beta_1,\ \hat\beta_2,\ ...,\ \hat\beta_k$
+    -   Compute T=\frac{\hat\beta_j}{se(\hat\beta_j)}
+    -   Accept $H_0$ if T is close to zero
+    -   Reject $h_0$ if T is large negative or large positive
+    
+::: notes    
+If you want to look at the impact of an individual independent variable in a multiple regression model, compute the full model and compare the coefficient of one of the independent variables to its standard error. If that ratio is close to zero, accept the null hypothesis.
+
+Now keep in mind that the test is highly dependent on what other variables are in the model. You are looking at the impact of the jth variable while holding the other variables constant. That is NOT the same as the impact of the jth variable by itself in a single variable linear regression model.
+:::
+
+## Testing the impact of chest circumference
+
+![](images/regression-coefficients-01.png)
+
+::: notes
+What is the impact of chest circumference in a model that already includes abdomen and hip circumference? This table shows the regression coefficients and the standard errors for a multiple linear regression model with all three variables. The regression coefficient for chest is -0.186 and the standard error is 0.081. The test statistic is -2.304 which is large negative and the p-value is small. You should reject H0 and conclude that there is a negative relationship between chest circumference and body fat, after holding hip and abdomen circumference constant.
+:::
+
+## Change in R-squared
+
+![](images/r-squared-01.png)
+
+![](images/r-squared-02.png)
+
+::: notes
+The regression model with chest, abdomen, and hip accounts for 70% of the variation, but a model with just abdomen and hip does almost as well, accounting for 69.3% of the variation. The difference, 0.7% is the amount of additional variation accounted for when you add chest to a model that already included abdomen and hip.
+
+That seems to contradict the earlier finding with the large negative test statistic and the small p-value. But actually, what it is saying is that although there is sufficient statistical evidence to conclude that chest circumference has a real impact, that impact is small. You will see this a lot, especially with datasets with very large sample sizes. You can often achieve statistical significance for an individual variable, but the practical impact can still be negligible.  
+:::
+
+## Assessing the joint impact of two or more variables
+
+-   Calculate ANOVA table for k+j independent variables
+    -   Note various SS and MS values for the "full" model
+-   Recalculate ANOVA table for only k independent variables
+    -   Note various SS and MS values for the "reduced" model.
+-   Calculate $F=\frac{(SSR_{reduced}-SSR_{full})/j}{SSE_{full}/(n-(k+j+1))}$
