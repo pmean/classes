@@ -66,8 +66,21 @@ That seems to contradict the earlier finding with the large negative test statis
 
 ## Assessing the joint impact of two or more variables
 
+-   Test $H_0:\ \beta_{k+1}=\beta_{k+2}=...=\beta_{k+j}=0$
 -   Calculate ANOVA table for k+j independent variables
     -   Note various SS and MS values for the "full" model
 -   Recalculate ANOVA table for only k independent variables
     -   Note various SS and MS values for the "reduced" model.
 -   Calculate $F=\frac{(SSR_{reduced}-SSR_{full})/j}{SSE_{full}/(n-(k+j+1))}$
+
+::: notes
+Although SPSS does not directly test the joint impact of two or more variables, you can run a test with a bit of work. Fit a model with k+j independent variables and print the analysis of variance table. Call this the full model. Then fit a model with only k independent variables. Call this the reduced model. Then see how much difference there is between the sum of squares regression in the full versus reduced model. This is a measure how much stronger the signal becomes when you add j new indpendent variables to a model which already has k independent variables.
+:::
+
+## Testing the impact of hips and chest
+
+![](images/anova-table-02.png)
+
+::: notes
+
+:::
