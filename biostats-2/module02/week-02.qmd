@@ -8,10 +8,10 @@ params:
   topic_01: "Three models for predicting a continuous outcome"
   topic_02: "Analysis of variance table"
   topic_03: "Variable selection"
-  topic_04: "Regression diagnostics, residuals"
-  topic_05: "Multicollinearity (VIF)"
-  topic_06: "Checking assumptions"
-  topic_07: "Comparing models, AIC"
+  topic_04: "Stepwise regression"
+  topic_05: "Regression diagnostics, residuals"
+  topic_06: "Multicollinearity (VIF)"
+  topic_07: "To be determined"
   topic_08: "To be determined"
 editor: source
 ---
@@ -46,14 +46,18 @@ editor: source
 
 {{< include _02-02.qmd >}}
 
+## Live demo, ANOVA and R-squared
+
 ## Break #2
 
 -   What you have learned
     -   `r params$topic_02`
 -   What's coming next
     -   `r params$topic_03`
-
+    
 {{< include _02-03.qmd >}}
+
+## Live demo, partial F test
 
 ## Break #3
 
@@ -61,8 +65,10 @@ editor: source
     -   `r params$topic_03`
 -   What's coming next
     -   `r params$topic_04`
-
+    
 {{< include _02-04.qmd >}}
+
+## Live demo, stepwise regression
 
 ## Break #4
 
@@ -73,6 +79,8 @@ editor: source
 
 {{< include _02-05.qmd >}}
 
+## Live demo, regression diagnostics
+
 ## Break #5
 
 -   What you have learned
@@ -81,6 +89,8 @@ editor: source
     -   `r params$topic_06`
 
 {{< include _02-06.qmd >}}
+
+## Live demo, multicollinearity
 
 ## Break #6
 

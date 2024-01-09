@@ -1,5 +1,5 @@
 ---
-title: "Regression diagnostics, residuals"
+title: "Stepwise regression"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,110 @@ format:
 editor: source
 ---
 
-## Slide 02-04
+## What is a good model
+
+-   "Everything but the kitchen sink" model
+-   Stepwise models
+-   Hierarchical models
+-   "Maximimum adjusted R-squared" model
+-   "Out of sample error" model
+-   "Use your brain" model
+-   Some combination of the above?
 
 ::: notes
-
+Finding a good regression model is not easy. There are several criteria that have been used.
 :::
 
+## "Everything but the kitchen sink" model
+
+-   Include anything that seems remotely plausible
+-   Advantages
+    -   Simple computationally
+-   Disadvantages
+    -   Does not identify mechanisms
+    -   Can be expensive
+    -   Fails if k is very large
+    
+::: notes
+"Everything but the kitchen sink" is an American idiom for "everything imaginable". In this approach, you brainstorm a list of variables that might be associated with your outcome. Use your knowledge of past research in the area, your understanding of the medical and scientific processes involved, and just your plain old intuition. Anything that seems remotely possible to be related to the outcome variable is included in the regression model.
+:::
+
+## Kitchen sink model for body fat
+
+![](images/regression-coefficients-02.png)
+
+::: notes
+Here's a model with all the circumference measurements included.
+:::
+
+## Stepwise model, 1 of 2
+
+-   Forward selection
+-   Backward elimination
+-   Composite of both
+
+::: notes
+A stepwise model uses p-values to identify which variables to add to the model (forward selection) or which variables to remove from the model (backward elimination). You can combine these two approaches.
+
+Forward selection starts with nothing. It looks at the p-values for every single variable model and chooses the variable with the smallest p-value. Then it looks at every possible two variable model that includes the first selected variable and chooses the second variable based on the smallest p-value. Then it looks at every possible third variable in a model that includes the first two variables. And so forth.
+
+Backward elimination starts with everything. It looks at all the p-values for the k indepdent variables in the model and eliminates the variable with the largest p-value. Then it looks at all the p-values in the model with k-1 independent variables and removes the independent variable with the smallest p-value.
+
+Both approaches take a "one step at a time" approach. You might be tempted in the backward elimination step to toss out every independent variable with a large p-value. But the p-values do change as you start removing variables. One of your independent variables might have a large p-value when you have all k variables in the model, but that p-value might shrink as other variables are tossed out.
+
+A general approach is to start with a forward selection approach, but each time a new variable is added, you check to see if one of the variables which had a promising p-value earlier now looks not so hot. So each forward step is followed with a backward elimination check.
+:::
+
+## Stepwise model, 2 of 2
+-   Advantages
+    -   Automated in SPSS and other packages
+-   Disadvantages
+    -   Does not incorporate medical knowledge
+    -   Does not control Type I error rate
+
+::: notes
+The forward selection and backward elimination approaches are easy to program and are available in SPSS and most other statistical software packages.
+
+Stepwise regression, however, does not incorporate medical knowledge into the process. You might have two variables that both have large p-values in a backward elimination approach. One is well known to be important by anyone with a medical background, but if it's p-value is a bit larger than the second one that is a bit of a stretch, you will make the wrong choice, at least from a medical perspective.
+
+The other criticism of stepwise models is that they do not control the Type I error rate. You use repeated hypothesis tests and the chances of making a Type I error and including a variable that does not really belong gets inflated. The number of tests that stepwise regression requires is very large, even if you only have a have only a handful of variables.
+:::
+
+## Hierarchical models
+
+-   Sometimes variables fall into natural groups.
+    -   Demographic features
+    -   Patient frailty
+    -   Environmental factors
+    -   Current treatments
+-   Enter data in blocks
+
+::: notes
+Be careful with the term "hierarchical" as it means many things. In the context of multiple linear regression, it means that variables fall into natural groups or blocks. Some examples are variables that represent demographic features (such as age, race, and gender) versus variables that represent patient frailty (stage of cancer, severity of illness, previous history of health issues) versus environmental factors (exposure to allergens, second hand smoke) versus current treatments (number of medications, dosages).
+
+In a hierarchical multiple linear regression model, you enter all variables in a particular group together at once and then add a second group, third group, etc.
+:::
+
+## "Maximimum adjusted R-squared" model
+
+-   Fit all possible models ($=2^k$)
+    -    Select model with largest adjusted R-squared
+    -    Alternative criteria
+         -    Mallows Cp
+         -    AIC
+         -    LASSO
+
+::: notes
+If the number of independent variables is not too big, you can look at every possible combination of independent variables. For the body fat example, there are ten measures and this means examining 1,024 different models. Not easy for you maybe, but your computer can do this in the blink of an eye. 
+
+Be careful, though. You may notice that $2^k$, the number of models, increases (literally) exponentially. With 20 independent variables, you would need to fit over a million models. With 30, it would be over a billion.
+
+You cannot choose the model that maximizes R-squared. R-squared never decreases as the model becomes more complex. It may only increase by a trivial amount, but because it never decreases. Choosing the model with the largest R-squared value will always select the most complex model, the one with every independent variable.
+
+Adjusted R-squared can go down, because it adjusts for the degrees of freedom. In general, though, adjusted R-squared doesn't do enough adjusting and will tend to select needlessly complex models. There are other criteria, Mallows Cp, Akaike Information Criteria, and LASSO, that do a better job of avoiding overly complex models.
+:::
+
+
+## "Out of sample error" model
+
+## "Use your brain" model

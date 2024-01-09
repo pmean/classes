@@ -17,6 +17,34 @@ editor: source
 Here are a series of quotes that all advise against needlessly complex models. There is some empirical evidence that complex models do not extrapolate well, but these exhortations for simplicity are largely based on subjective opinions. Even so, this is an attitude that I endorse heartily (with one reservation).
 :::
 
+## Choosing independent variables is a balancing act
+
+-   Too many is bad
+    -   Expensive
+    -   May not replicate well
+-   Too few is bad
+    -   May not explain much of the variation
+    -   May miss important features
+-   Finding the right balance depends on your goals
+    -   Mechanistic approach versus prediction
+    
+::: notes
+I have heard many times that Statistics is as much of an art as it is of a science, and I largely agree with this perspective. The selection of independent variables in a multiple linear regression model is an example of the artistic side of statistics.
+
+It is a balancing act. You want a model that is as simple as possible, but not so simple as to oversimplify. This is a very subjective criteria, but it should not be ignored.
+
+Selecting too many independent variables is definitely bad. It can be expensive. Looking at the data on body fat measurements, do you really need to measure circumferences at 10 different parts of the body to get a good handle on how much body fat someone has? Maybe you could do almost as well with only measurements at 3 locations.
+
+The other problem with overly complex models is that they tend to do a poor job of replication. You might do really well with your own dataset, but when others collect similar data, the overly complex models generally don't look quite as good. You may even find that new data collected at your own location does work so well with a really complex model.
+
+A model that is too simple might not explain enough of the variation in the data. It may also miss out on important features.
+
+Deciding where to go between the simplest models and the most complex models is a tricky choice. It may depend on the goals of your research. If your goal is to try to understand the mechanisms behind a disease or behind a health care delivery process, you might gravitate towards the simpler models. Including too many variables just makes it harder to understand what is going on "under the hood". Too many variables is less of a problem if your main goal is prediction. You can tolerate a few extra unneeded variables. The complexity doesn't hurt you as much if you are only interested in prediction.
+
+I'll return to this topic in the next section.
+:::
+
+
 ## Counterpoint on complexity
 
 -   Machine learning algorithms
@@ -64,23 +92,34 @@ The regression model with chest, abdomen, and hip accounts for 70% of the variat
 That seems to contradict the earlier finding with the large negative test statistic and the small p-value. But actually, what it is saying is that although there is sufficient statistical evidence to conclude that chest circumference has a real impact, that impact is small. You will see this a lot, especially with datasets with very large sample sizes. You can often achieve statistical significance for an individual variable, but the practical impact can still be negligible.  
 :::
 
-## Assessing the joint impact of two or more variables
+## Partial F test
 
--   Test $H_0:\ \beta_{k+1}=\beta_{k+2}=...=\beta_{k+j}=0$
--   Calculate ANOVA table for k+j independent variables
+-   Test $H_0:\ \beta_{k+1}=\beta_{k+2}=...=\beta_{k+m}=0$
+-   Calculate ANOVA table for k+m independent variables
     -   Note various SS and MS values for the "full" model
 -   Recalculate ANOVA table for only k independent variables
     -   Note various SS and MS values for the "reduced" model.
--   Calculate $F=\frac{(SSR_{reduced}-SSR_{full})/j}{SSE_{full}/(n-(k+j+1))}$
+-   Calculate $F=\frac{(SSR_{full}-SSR_{reduced})/m}{SSE_{full}/(n-(k+m+1))}$
 
 ::: notes
-Although SPSS does not directly test the joint impact of two or more variables, you can run a test with a bit of work. Fit a model with k+j independent variables and print the analysis of variance table. Call this the full model. Then fit a model with only k independent variables. Call this the reduced model. Then see how much difference there is between the sum of squares regression in the full versus reduced model. This is a measure how much stronger the signal becomes when you add j new indpendent variables to a model which already has k independent variables.
+Although SPSS does not directly test the joint impact of two or more variables, you can run a test with a bit of work. Fit a model with k+m independent variables and print the analysis of variance table. Call this the full model. Then fit a model with only k independent variables. Call this the reduced model. Then see how much difference there is between the sum of squares regression in the full versus reduced model. This is a measure how much stronger the signal becomes when you add m new indpendent variables to a model which already has k independent variables.
 :::
 
-## Testing the impact of hips and chest
+## Testing the impact of hips and chest, 1 of 2
 
 ![](images/anova-table-02.png)
 
 ::: notes
-
+You can place abdomen in the first block of variables. Then place hips and chest in the second block. SPSS will calculate the analysis of variance table for the reduced model (only abdomen) and the full model (abdomen, hips, and chest).
 :::
+
+## Testing the impact of hips and chest, 2 of 2
+
+-   $F=\frac{(SSR_{full}-SSR_{reduced})/m}{SSE_{full}/(n-(k+m+1))}$
+-   $F=\frac{(10,548.480-9984.086)/2}{4530.537}/(252-(1+2+1))}$
+-   $F=\frac{282.2}{18.26829}=15.4$
+
+::: notes
+The calculations are tedious, but not too difficult. The F ratio is a lot larger than 1, so you would rejuct the null hypothesis and conclude that hip and/or chest circumference measures provide additional predictive power above and beyond the impact of abdomen alone.
+:::
+

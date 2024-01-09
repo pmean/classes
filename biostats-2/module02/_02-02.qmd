@@ -34,6 +34,8 @@ For now, let's assume that every variable, the one dependent variable and the k 
 ::: notes
 It is important to note that there are two competing reasons for using multiple linear regression (and other statistical models as well). The first is to try to understand the underlying mechanisms that explain the "how". You are looking to understand how a disease harms or how a treatment helps. This could be called a "white box" feature that you get with multiple linear regression. The size and signs of the regression coefficients help you understand what factors contribute to the "how".
 
+You might think of a mechanistic goal as being able to peek under the hood. Some people are perfectly happy driving a car without having any idea of how the engine works. This is fine, and you are treating the automobile as a black box. You don't know what goes on underneath the hood of the car. Other people want to understand how a car works and they believe (properly in my opinion) that this understanding makes them a better driver.
+
 Alternatively, you can use a multiple linear regression model to predict the future. You want to tell a patient about his or her prognosis, you want to estimate the staffing needs in a hospital, or you want to estimate the cost savings associated changes in health care delivery.
 
 Predicting the future is a perilous process. Pretty much every investment opportunity carries a warning "Past performance is no guarantee of future results
