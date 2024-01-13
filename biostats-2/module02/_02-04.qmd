@@ -97,7 +97,7 @@ In a hierarchical multiple linear regression model, you enter all variables in a
     -    Select model with largest adjusted R-squared
     -    Alternative criteria
          -    Mallows Cp
-         -    AIC
+         -    AIC, AICc
          -    LASSO
 
 ::: notes
@@ -107,10 +107,13 @@ Be careful, though. You may notice that $2^k$, the number of models, increases (
 
 You cannot choose the model that maximizes R-squared. R-squared never decreases as the model becomes more complex. It may only increase by a trivial amount, but because it never decreases. Choosing the model with the largest R-squared value will always select the most complex model, the one with every independent variable.
 
-Adjusted R-squared can go down, because it adjusts for the degrees of freedom. In general, though, adjusted R-squared doesn't do enough adjusting and will tend to select needlessly complex models. There are other criteria, Mallows Cp, Akaike Information Criteria, and LASSO, that do a better job of avoiding overly complex models.
+Adjusted R-squared can go down, because it adjusts for the degrees of freedom. In general, though, adjusted R-squared doesn't do enough adjusting and will tend to select needlessly complex models. There are other criteria: Mallows Cp, Akaike Information Criteria (AIC), a corrected version of AIC (AICc), and LASSO. These all do a better job of avoiding overly complex models.
 :::
 
-
 ## "Out of sample error" model
+
+-   Split data into training/test sets
+    -    Use training data to build the model
+    -    Use test dataset to evaluate fit
 
 ## "Use your brain" model

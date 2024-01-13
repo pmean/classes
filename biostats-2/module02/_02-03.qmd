@@ -56,6 +56,36 @@ There are many who advocate that machine learning algorithms, which automaticall
 A second area where a more complex model is called for is in risk adjustment. If you have an observational study and you want to control for confounding, it is often best to adjust for every medically plausible variable that could influence your outcome. A simple model may lead to residual confounding, a lingering bias that remains after you try to adjust with a simple model.
 :::
 
+## Rule of 15
+
+-   Developed by Frank Harrell in a different context
+    -   Ratio of observations to independent variables
+        -    n/k > 15
+        -    Some use 10 instead of 15
+    -   Smaller ratios imply poor replicability
+-   Not a replacement for a power calculation
+-   Some researchers have argued against this rule
+
+::: notes
+A commonly cited rule about model complexity is the rule of 15. It is a reminder that the more complex your statistical model, the more data you need.
+
+This rule was originally developed by Frank Harrell in a slightly different context, logistic regression. It is commonly applied in a multiple linear regression context, and it seems reasonable enough.
+
+The rule is that the number of observations in your dataset need to be a lot larger than the number of independent variables. Fifteen times larger, as a matter of fact. So if you have 20 independent variables, then you need at least 300 observations to insure a ratio of 15 to 1. If you have 6 independent variables, you need at least 90 observations.
+
+Now there is nothing stopping you from running a regression model with fewer observations. If you have 50 observations and you want to run a model with 10 independent variables (a 5 to 1 ratio), there is nothing to stop you. 
+
+The rule of 15 is a rule of thumb and no one ever got thrown in jail for violating a rule of thumb.
+
+The concern with running a really complex model with a small number of observations is that these models do not replicate well. 
+
+Now some researchers argue that a 10 to 1 ratio of observations to independent variables is fine.
+
+Other researchers have argued that this rule of thumb is not valid and that it is okay to run complex models on small datasets. This is a minority viewpoint, however, and running a 10 variable model on just 50 observations is likely to get you in trouble.
+
+An important point to remember here is that k is the number of candidate variables that are considered at some time during the data analysis. It is NOT the number of variables in the final model.
+:::
+
 ## Comparing models with k and k-1 predictors
 
 -   $Y_i=\beta_0+\beta_1 X_{1i}+\beta_2 X_{2i}+...+\beta_k X_{ki}+\epsilon_i$
