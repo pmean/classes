@@ -66,7 +66,7 @@ There is a long tradition of data management and statistical analysis as applied
     -   816-235-6617
     -   simons@umkc.edu
     
-Both of our offices are located in the Department of Biomedical and Health Informatics, School of Medicine, M5- 100. 
+Both of our offices are located in the Department of Biomedical and Health Informatics, School of Medicine, M5-100. 
 
 ## Office hours
 
@@ -94,7 +94,7 @@ You should complete programming assignments by the following Monday at 11:59pm. 
 
 You will have quizzes to complete every week and a final exam to complete at the end of the semester. You are welcome to review any notes, review any videos, or find resources on the web during the quizzes or final. You can ask for assistance from any computerized resource (Google, Siri, ChatGPT, etc.), but you cannot ask for assistance from any live person.
 
-You are expected to run your own programs in SPSS or other statistical software, but if you need help resolving an error message, you can ask for assistance from your instructors, from other students or from any other person who is willing to help. You must write the interpretations of the SPSS output by yourself.
+You are expected to run your own programs in SPSS or other statistical software, but if you need help resolving an error message, you can ask for assistance from your instructors, from other students, or from any other person who is willing to help. You must write the interpretations of the SPSS output by yourself.
 
 Please review the required readings prior to the Tuesday Zoom class or prior to watching the recorded videos.
 
@@ -185,14 +185,15 @@ University of Missouri System Executive Order No. 38 lays out principles regardi
 
 ## Statement on Privacy of Student Records
 
-All educational records are protected by FERPA (Family Education Rights and Privacy Act) as described in the University Collected Rules and Regulations, section 180.020 Student Records. If you have questions or would like more information regarding this regulation and its [fer1].
+All educational records are protected by FERPA (Family Education Rights and Privacy Act) as described in the University Collected Rules and Regulations, section 180.020 Student Records. If you have questions or would like more information refer to [this regulation and its its implementation at UMKC][fer1].
 
 [fer1]: https://www.umsystem.edu/ums/rules/collected_rules/information/ch180/180.020_student_records
 
 ## Attendance Policy
 
-Students are expected to attend and participate in classes. Students should notify the instructor of excused absences in advance, where possible. Students who have an excused absence are expected to make arrangements with instructors for alternative or make-up work. Such arrangements should be made in advance of the absence, where possible. This attendance policy shall be applied in a non-discriminatory manner. In the case of cancellation of classes due to inclement weather or other reasons, all students will follow the course calendar and complete the weekly materials using Canvas and recorded lectures. In Class and online students will be responsible for the quiz questions during those weeks. 
-Campus Safety: Inclement weather, mass notification, and emergency response guide: http://www.umkc.edu/umkcalert/ 
+Students are expected to attend and participate in classes. Students should notify the instructor of excused absences in advance, where possible. Students who have an excused absence are expected to make arrangements with instructors for alternative or make-up work. Such arrangements should be made in advance of the absence, where possible. This attendance policy shall be applied in a non-discriminatory manner. In the case of cancellation of classes due to inclement weather or other reasons, all students will follow the course calendar and complete the weekly materials using Canvas and recorded lectures. In Class and online students will be responsible for the quiz questions during those weeks. Please refer to the [Inclement weather, mass notification, and emergency response guide][inc1].
+
+[inc1]: http://www.umkc.edu/umkcalert/ 
 
 Cancellation of classes will be posted on the front page of the [University’s website][umk1] as well as through UMKC Alert message system. At the time of this syllabus creation, the above UMKC inclement weather policy no longer applied. Courses are to be moved to online/Zoom or other mode of instruction. 
 
@@ -206,117 +207,94 @@ In order to maintain a proper learning environment within the classroom, it is i
 
 ## Counseling and Health Services Available at UMKC
 
-UMKC students may experience many challenges in their lives while attending college – stress, depression, suicidality, trauma, relationship issues, health concerns, etc.  As your professor I care about your success and well-being, and want to make you aware of some helpful resources on campus. The [UMKC Counseling Center][cou1], located at 4825 Troost in Room 206, offers a wide range of supportive services to students. Appointments can be made by calling 816.235.1635. UMKC Student Health and Wellness (http://info.umkc.edu/studenthealth/), located at 4825 Troost in Room 115, offers a full range of health care and promotion services.  Appointments can be scheduled online or by calling 816.235.6133. The Mind-Body Connection (www.umkc.edu/mindbody) is located in the Atterbury Student Success Center in Room 112 and offers a variety of stress-reduction services. 
+UMKC students may experience many challenges in their lives while attending college – stress, depression, suicidality, trauma, relationship issues, health concerns, etc.  As your professor I care about your success and well-being, and want to make you aware of some helpful resources on campus. The [UMKC Counseling Center][cou1], located at 4825 Troost in Room 206, offers a wide range of supportive services to students. Appointments can be made by calling 816.235.1635. [UMKC Student Health and Wellness][hea1], located at 4825 Troost in Room 115, offers a full range of health care and promotion services.  Appointments can be scheduled online or by calling 816.235.6133. The [Mind-Body Connection][min1] is located in the Atterbury Student Success Center in Room 112 and offers a variety of stress-reduction services. 
 
 [cou1]: https://www.umkc.edu/counselingcenter
+[hea1]: https://info.umkc.edu/studenthealth/
+[min1]: https://www.umkc.edu/wellness/resources/mental-health/mindbody-connection.html
 
-Disability Support Services: To obtain disability related accommodations and/or auxiliary aids, students with disabilities must contact the Office of Services for Students with Disabilities (OSSD) as soon as possible. To contact OSSD, call (816) 235-5696.  Once verified, OSSD will notify the course instructor and outline the accommodation and/or auxiliary aids to be provided.  For more information go to: http://www.umkc.edu/disability/ 
+## Disability Support Services
 
-English Proficiency Statement: Students who encounter difficulty in their courses because of the English proficiency of their instructors should speak directly with their instructors. If additional assistance is needed, students may contact the UMKC Help Line at 816-235-2222 for assistance.
+To obtain disability related accommodations and/or auxiliary aids, students with disabilities must contact the Office of Services for Students with Disabilities (OSSD) as soon as possible. To contact OSSD, call (816) 235-5696.  Once verified, OSSD will notify the course instructor and outline the accommodation and/or auxiliary aids to be provided.  For more information, go to the [UMKC page on disability resources][dis1].
 
-Grade Appeal Policy: Students are responsible for meeting the standards of academic performance established for each course in which they are enrolled. The establishment of the criteria for grades and the evaluation of student academic performance are the responsibilities of the instructor. 
+[dis1]: https://www.umkc.edu/disability/ 
+
+## English Proficiency Statement
+
+Students who encounter difficulty in their courses because of the English proficiency of their instructors should speak directly with their instructors. If additional assistance is needed, students may contact the UMKC Help Line at 816-235-2222 for assistance.
+
+## Grade Appeal Policy
+
+Students are responsible for meeting the standards of academic performance established for each course in which they are enrolled. The establishment of the criteria for grades and the evaluation of student academic performance are the responsibilities of the instructor. 
 The University grade appeal procedure is available only for the review of allegedly capricious grading and not for review of the instructor's evaluation of the student's academic performance. Capricious grading, as that term is used here, comprises any of the following: 
-• The assignment of a grade to a particular student on some basis other than the performance in the course; 
-• The assignment of a grade to a particular student according to more exacting or demanding standards than were applied to other students in the course; (Note: Additional or different grading criteria may be applied to graduate students enrolled for graduate credit in 300- and 400-level courses.) 
-• The assignment of a grade by a substantial departure from the instructor's previously announced standards. 
-Students who have concerns about this course should first consult with the specific instructor with whom there is a problem. If the issues are not satisfactorily resolved the student should contact the course director. In the event a student would like to appeal a course grade they must follow the School of Medicine procedure for grade appeal for graduate courses, which is outlined in the student handbook or can be found at: http://med.umkc.edu/councils/graduate/documents/
+-   The assignment of a grade to a particular student on some basis other than the performance in the course; 
+-   The assignment of a grade to a particular student according to more exacting or demanding standards than were applied to other students in the course; (Note: Additional or different grading criteria may be applied to graduate students enrolled for graduate credit in 300- and 400-level courses.) 
+-   The assignment of a grade by a substantial departure from the instructor's previously announced standards. 
 
-Discrimination Grievance Procedures for Students: Discrimination Grievance Procedures for Students can be found here: http://www.umsystem.edu/ums/rules/collected_rules/grievance/ch390/grievance_390.010
+Students who have concerns about this course should first consult with the specific instructor with whom there is a problem. If the issues are not satisfactorily resolved the student should contact the course director. In the event a student would like to appeal a course grade they must follow the [School of Medicine procedure for grade appeal for graduate courses][app1].
+
+[app1]: https://med.umkc.edu/docs/coe/COE-Policy-Manual-Guidelines.pdf
+
+
+Discrimination Grievance Procedures for Students: 
+
+Discrimination Grievance Procedures for Students can be found in [Chapter 390 of the collected rules and regulations][gri1].
+
+[gri1]: https://www.umsystem.edu/ums/rules/collected_rules/grievance/ch390
  
-The course faculty is committed to creating and maintaining a supportive learning environment. If at any time you find yourself in an environment that does not support learning, it is best to first contact the course faculty.  If faculty members are unable to resolve the situation for you, you may contact: The Chair of the Department, the Associate Dean for Student Affairs, Dr. Brenda Rogers, SOM Rm M4-207, rogersbr@umkc.edu, (816) 235-1782; Sam Turner, Office of Diversity & Community Partnership, SOM Rm. M1-109, (816) 235-1780.
+The course faculty is committed to creating and maintaining a supportive learning environment. If at any time you find yourself in an environment that does not support learning, it is best to first contact the course faculty.  If faculty members are unable to resolve the situation for you, you may contact 
 
-Statement of Human Rights: The Board of Curators and UMKC are committed to the policy of equal opportunity, regardless of race, color, religion, sex, sexual orientation, national origin, age, disability and status as a Vietnam era veteran. Commitment to the policy is mentored by the Division of Diversity, Access & Equity, but it is the responsibility of the entire university community to provide equal opportunity through relevant practices, initiatives and programs. 
+-   the Chair of the Department, 
+-   the Associate Dean for Student Affairs,
+    -   Dr. Brenda Rogers, SOM Rm M4-207, rogersbr@umkc.edu, (816) 235-1782, or
+-   the Office of Diversity & Community Partnership,
+    -   Sam Turner, SOM Rm. M1-109, (816) 235-1780.
 
-Title IX: Under the University of Missouri’s Title IX policy, discrimination, violence and harassment based on sex, gender, and gender identity are subject to the same kinds of accountability and support applied to offenses based on other protected characteristics such as race, color, ethnic or national origin, sexual orientation, religion, age, ancestry, disability, military status, and veteran status. If you or someone you know has been harassed or assaulted, you can find the appropriate resources by visiting UMKC’s Title IX Office webpage (http://info.umkc.edu/title9/) or contacting UMKC’s Title IX Coordinator, Sybil B. Wyatt, JD, EdD, MS (816.235.6910 or wyattsb@umkc.edu). 
+## Statement of Human Rights
+
+The Board of Curators and UMKC are committed to the policy of equal opportunity, regardless of race, color, religion, sex, sexual orientation, national origin, age, disability and status as a Vietnam era veteran. Commitment to the policy is mentored by the Division of Diversity, Access & Equity, but it is the responsibility of the entire university community to provide equal opportunity through relevant practices, initiatives and programs. 
+
+## Title IX
+
+Under the University of Missouri’s Title IX policy, discrimination, violence and harassment based on sex, gender, and gender identity are subject to the same kinds of accountability and support applied to offenses based on other protected characteristics such as race, color, ethnic or national origin, sexual orientation, religion, age, ancestry, disability, military status, and veteran status. If you or someone you know has been harassed or assaulted, you can find the appropriate resources 
+-   by visiting [UMKC’s Title IX Office webpage][tix1]
+-   or contacting UMKC’s Title IX Coordinator,
+    -   Sybil B. Wyatt, JD, EdD, MS (816.235.6910 or wyattsb@umkc.edu). 
+
+[tix1]: https://info.umkc.edu/title9/
 
 While most UMKC employees are required to report any known or suspected violation of Title IX, students may seek confidential guidance from the following campus locations:
 
-UMKC Counseling Service
-Volker Campus
-4825 Troost Ave, Suite 206
-Kansas City, MO 64110
-Phone – (816) 235-1635	UMKC Counseling Service
-Health Sciences Campus
-Health Sciences Building 1418
-2464 Charlotte
-Kansas City, MO 64108
-Phone – (816) 235-1635
-(open Tuesdays, 1-5pm)	Student Health and Wellness
-4825 Troost Ave., Suite 115
-Kansas City, MO 64110
-Phone - (816) 235-6133
-
-
+-   UMKC Counseling Service, Volker Campus
+    -   4825 Troost Ave, Suite 206
+    -   Kansas City, MO 64110
+    -   Phone – (816) 235-1635
+-   UMKC Counseling Service, Health Sciences Campus
+    -   Health Sciences Building 1418
+    -   2464 Charlotte
+    -   Kansas City, MO 64108
+    -   Phone – (816) 235-1635
+-   Student Health and Wellness
+    -   open Tuesdays, 1-5pm
+    -   4825 Troost Ave., Suite 115
+    -   Kansas City, MO 64110
+    -   Phone - (816) 235-6133
 
 ## Topics
 
 The second in the Applied Biostatistics sequence and is intended for graduate, doctoral, and professional students in the biological, clinical and medical fields, and medical education. Statistical concepts, analysis methods, and research designs commonly used in these fields are included: diagnostic testing, hypothesis testing, power analysis, analysis of variance, analysis of covariance, multivariate analysis of variance, propensity scoring, simple and multiple regression, logistic regression, and survival analysis. Familiarity with basic statistics and the statistical techniques presented in Applied Biostatistics I is required. Statistical analyses involved in this course will be performed primarily using the SPSS statistical analysis package. The course will also cover the interpretation, presentation and the write up of analytical results and graphs.
 
-### (Wk 01) Review
+### (Wk 01) Review, Simple linear regression (Sections 9.1 through 9.7) and One factor analysis of variance (Chapter 12)
 
 <--Originally "Introduction and Information"-->
-
--   Correlation (Chapter 8)
--   Simple linear regression (Sections 9.1 through 9.7)
--   Independent-samples and paired t-test (Chapter 10)
--   One factor analysis of variance (Chapter 12)
-
 
 ### (Wk 02) Multiple linear regression (Sections 9.8 through 9.11) and mediation analysis (Section 11.4)
 
 <--Originally "Diagnostic testing"-->
 
-
--   Learning objectives
-    -   List the differences and similarities between Simple Linear Regression and Multiple Regression
-    -   Write the Null and Alternative Hypotheses for a  Multiple Regression analysis
-    -   Write the research question for a multiple regression analysis
-    -   Identify the variable type for the Outcome Variable in a Multiple Regression analysis
-    -   Identify the variable type(s) for the Predictor Variables in a Multiple Regression analysis
-    -   Write the equation form for a Multiple Regression analysis
-    -   Define Linear Combination
-    -   Define the conditions for which Multiple Regression analysis would be applied
-    -   Identify and detail what must be considered before running a Multiple Regression analysis
-    -   Explain the Rule of 15
-    -   Calculate the sample size for a Multiple Regression analysis
-    -   List the assumptions that must be met for a Multiple Regression analysis to proceed
-    -   Define: multicollinearity and homoscedasticity of residuals
-    -   List the methods used to assess for all assumptions
-    -   Explain why multicollinearity should never be present between the variables used in a Multiple Regressions Analysis
-    -   List and explain the methods of variable entry into an Multiple Regression model
-    -   List and Explain the methods of cross-validation of a Multiple Regression model
-    -   Explain how predictor variables are selected for inclusion in a Multiple Regression analysis
-    -   List all of the pertinent output found for a Multiple Regression analysis
-    -   Define: Variance Inflation Factors and Tolerance
-    -   Relate Variance Inflation Factors and Tolerance
-    -   Define the interpretation of Variance Inflation Factors and Tolerance
-    -   Explain the use of Cooks Influence
-    -   List and define R, R squared and Adjusted R squared
-    -   Explain the meaning of the ANOVA table generated in a Multiple Regression analysis
-    -   Explain the difference between the standardized and unstandardized Beta Coefficients
-    -   Interpret the Unstandardized Beta Coefficients from a Multiple Regression analysis
-    -   Explain which predictors are included int he resultant Multiple Regression model
-    -   Completely write up a Multiple Regression analysis
-
 ### (Wk 03) Analysis of covariance (Chapter 13)
 
 <--Originally "Correlation, Regression, Power analysis"-->
-
--   Learning objectives
-    -   Explain when an ANCOVA would be used to analyze data
-    -   Explain the purpose of including covariates in an ANCOVA
-    -   Identify the impact of controlling for a covariate on variance, power and the F-ratio
-    -   Explain the data requirements for an ANCOVA
-    -   Set up a data set for an ANCOVA
-    -   Write a research question forn ANCOVA
-    -   Write the Null and Research Hypotheses for an ANCOVA
-    -   List the assumptions for an ANCOVA
-    -   Explain the tests for the assumptions for an ANCOVA
-    -   Run the assumptions tests for an ANCOVA
-    -   Interpret the assumptions tests for an ANCOVA
-    -   Run a complete ANCOVA
-    -   Explain, using output, how to note the influence of the covariate
-    -   Summarize the interpretation of an ANCOVA
 
 ### (Wk 04) Multifactor analysis of variance (Chapter 14) and moderator analysis (Section 11.3)
 
