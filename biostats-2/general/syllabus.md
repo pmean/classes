@@ -72,7 +72,7 @@ Both of our offices are located in the Department of Biomedical and Health Infor
 
 -   There will be one hour review sessions on Zoom, Fridays at 11:30am and Mondays at 12:30pm. Individual meetings are also available by appointment. Most meetings will be handled by Zoom, but face-to-face meetings are also possible.
 
-## Synchronous Zoom Section (-0001) and Inperson section (-0003)
+## Synchronous Zoom Section (0001)
 
 You must show up for class via zoom on Tuesdays from 1:00pm to 3:45pm. You may be excused from attendance a limited number of times with appropriate notice in advance.
 
@@ -82,7 +82,7 @@ You will watch video recordings of the Tuesday sessions, which will be available
 
 ## In person section (0003)
 
-You must show up for class via zoom on Tuesdays from 1:00pm to 3:45pm. You may be excused from attendance a limited number of times with appropriate notice in advance. You must also sign in in person weekly on an attendance sheet available in the School of Medicine building, room M5-100.
+You must show up for class via zoom on Tuesdays from 1:00pm to 3:45pm. You may be excused from attendance a limited number of times with appropriate notice in advance. You must also sign an attendance sheet in person weekly. This sheet is available in the School of Medicine building, room M5-100.
 
 ## Students in all sections
 
@@ -92,9 +92,10 @@ You should complete programming assignments by the following Monday at 11:59pm. 
 
 [ext1]: https://github.com/pmean/classes/blob/master/biostats-2/general/policy-on-extensions-and-rework.md
 
-You will have quizzes to complete every week and a final exam to complete at the end of the semester. You are welcome to review any notes, review any videos, or find resources on the web during the quizzes or final. You can ask for assistance from any Internet resource (Google, Siri, ChatGPT, etc.), but you cannot ask for assistance from any live person.
+You will have quizzes to complete every week and a final exam to complete at the end of the semester. You are welcome to review any notes, review any videos, or find resources on the web during the quizzes or final. You can ask for assistance from any computerized resource (Google, Siri, ChatGPT, etc.), but you cannot ask for assistance from any live person.
 
-You are expected to run your own programs in SPSS or other statistical software, but if you need help resolving an error message, you can ask for assistance from your instructors or any other person who is willing to help. You must write the interpretations of the SPSS output by yourself.
+You are expected to run your own programs in SPSS or other statistical software, but if you need help resolving an error message, you can ask for assistance from your instructors, from other students or from any other person who is willing to help. You must write the interpretations of the SPSS output by yourself.
+
 Please review the required readings prior to the Tuesday Zoom class or prior to watching the recorded videos.
 
 The student’s grade for the class will be based on the percentage of possible points the student has earned. A letter grade will be assigned based on the following scale:
@@ -116,55 +117,98 @@ The student’s grade for the class will be based on the percentage of possible 
 
 If a student feels that he/she has been unfairly graded, information on the appeal process can be found in the academic regulations information (http://www.umkc.edu/catalog/Procedure_for_Appeal_of_Grades.html).
 
+## Course Evaluation 
 
-Course Evaluation 
+You will be asked to complete a confidential evaluation at the end of the semester on this course and your instructors. The evaluation will be completed through REDCap.
 
-Completion of the confidential evaluation at the end of the semester is available for the course. The evaluation will be completed through REDCap.
-Required Reading 
+## Required Reading 
 
-The required text book for this course is one of the following: 
-Discovering Statistics Using IBM SPSS Statistics North American Edition: 4th or 5th Edition. Andy Field. Sage Publications. ISBN-13: 9781446249185 or ISBN-13: 9781526436566 or
-Discovering Statistics using SAS by Andy Field and Jeremy Miles. Sage Publications. ISBN: 9781849200929 
-Assignments and readings are made from the printed versions.
+The required text book for this course is 
 
-Canvas
+Discovering Statistics Using IBM SPSS Statistics North American Edition: 5th Edition. Andy Field. Sage Publications. ISBN-13: 9781526436566.
 
-Announcements and schedule updates, readings and all course materials will be posted on Canvas. All students are REQUIRED to log onto their Canvas site and administer the course via this site. It is requireded that the student check Canvas frequently throughout each week for any and all communications and postings related to this course.
-Many materials on the Canvas website can be read and/or printed with a standard web browser.  Other items require Adobe Acrobat Reader to view.  Acrobat Reader may be downloaded for FREE from the Adobe website at: http://www.adobe.com/products/acrobat/readstep2.html
-Required Technology
+## Canvas
 
-SPSS and SAS: This course will use SPSS or SAS for all statistical analyses for assignments, exams, and the final project. Students will have access to SPSS and SAS via the UMKC Remote Labs Site. Additionally, SPSS and/or SAS may already be installed on other UMKC computers that have student access or that are routinely used by the student. Also, SPSS can be purchased in the form of Grad Pac (Purchase the SPSS Standard 6 month license for a personal computer) and SAS can be accessed for free via SAS OnDemand via https://www.sas.com/en_us/software/on-demand-for-academics.html.
+Announcements and schedule updates, readings and all course materials will be posted on Canvas. You are REQUIRED to log onto their Canvas site and administer the course via this site. You must check Canvas frequently throughout each week for any and all communications and postings related to this course.
 
-Remote labs:  SPSS and SAS can be obtained via Remote Labs. http://www.umkc.edu/is/remotelabs/ For assistance with remote labs, contact UMKC Information Services at 816-235-2000.
+Many materials on the Canvas website can be read and/or printed with a standard web browser. Other items require Adobe Acrobat Reader to view.  Acrobat Reader may be downloaded for FREE from the [Adobe website][ado1]
 
-E-mail: 
-You will be required to use a UMKC e-mail account for correspondence in this class.  The instructor will not be responsible for the receipt of e-mails that are sent to locations other than those ending with “umkc.edu”.
-Canvas:
+[ado1]: http://www.adobe.com/products/acrobat/readstep2.html
+
+## Required Technology
+
+This course will use IBM SPSS for all programming assignments. You will have access to SPSS via the [UMKC Remote Labs Site][rem1]. For assistance with remote labs, contact UMKC Information Services at 816-235-2000.
+
+Additionally, SPSS may already be installed on your UMKC computer. Also, SPSS can be purchased in the form of Grad Pac (Purchase the SPSS Standard 6 month license for a personal computer).
+
+[rem1]: http://www.umkc.edu/is/remotelabs/
+
+While most students like using SPSS, you may be interested in applying what you learn using an alternative package, such as Python, R, SAS or Stata. If you have already used one of these programs, or if you expect to use it in your future work, you are certainly welcome to answer all your programming assignments with an alternative package. These alternative packages will not be presented during the lectures, so you are expected to find out how to do these analyses on your own. You are welcome to ask for assistance by email, during one of the scheduled help sessions, or at an individual appointment. It may be difficult for your instructors to know all the details about every alternative package, but we will try our best to help. 
+
+If a particular statistic is not available in your alternative package (this happens very rarely), please note the lack of availability in your assignment submission. You will not be penalized for any shortcoming in an alternative package.
+
+If a statistic is not available in SPSS, this is an error on the part of your instructors. Please notify us as soon as you notice this.
+
+
+## E-mail
+
+You must use a UMKC e-mail account for correspondence in this class.  The instructor will not be responsible for the receipt of e-mails that are sent to locations other than those ending with “umkc.edu”.
+
+## Canvas
+
 All students are required to be registered with Canvas in order to have access to course-related material that is posted on that site. All Announcements will be posted on Canvas and the student will also receive that Announcement via their UMKC email. All students will be responsible for knowledge and /or completion of any posted Announcement directives.
 UMKC Resources & Policy Statements 
 
-Academic Calendar: Students are encouraged to review important add, drop or withdraw dates: http://www.umkc.edu/registrar/acal.asp 
+Academic Calendar: Students are encouraged to review important [add, drop or withdraw dates][add1]
 
-Academic Honesty: The Board of Curators of the University of Missouri recognizes that academic honesty is essential for the intellectual life of the University. Faculty members have a special obligation to expect high standards of academic honesty in all student work. Students have a special obligation to adhere to such standards. Academic dishonesty, including cheating, plagiarism or sabotage, is adjudicated through the University of Missouri Student Conduct Code and Rules of Procedures in Student Conduct Matters. 
+[add1]: http://www.umkc.edu/registrar/acal.asp 
+
+## Academic Honesty
+
+The Board of Curators of the University of Missouri recognizes that academic honesty is essential for the intellectual life of the University. Faculty members have a special obligation to expect high standards of academic honesty in all student work. Students have a special obligation to adhere to such standards. Academic dishonesty, including cheating, plagiarism or sabotage, is adjudicated through the University of Missouri Student Conduct Code and Rules of Procedures in Student Conduct Matters. 
+
 Conduct for which students are subject to sanctions includes academic dishonesty, such as cheating, plagiarism, or sabotage. In the event misconduct is confirmed, the students will receive 0 points on the exam or assignment. If academic dishonesty is admitted or confirmed by evidence the faculty are required to report the incident to the Assistant Dean for Graduate Studies, who will meet with the faculty member and student to review the event and then determine whether it should be further referred to the Dean of the School of Graduate Studies.  
 
 Students enrolled in this course assume an obligation to behave in a manner compatible with the University's function as an educational institution as described in the University Collected Rules and Regulations Chapter 200 Student Conduct, section 200.010 Standard of Conduct. Conduct for which students are subject to sanctions includes academic dishonesty, such as cheating, plagiarism, or sabotage. Conduct for which students are subject to sanctions are outlined as follows: 
+
 The term cheating includes but is not limited to: (i) use of any unauthorized assistance in taking quizzes, tests, or examinations; (ii) dependence upon the aid of sources beyond those authorized by the instructor in writing papers, preparing reports, solving problems, or carrying out other assignments; (iii) acquisition or possession without permission of tests or other academic material belonging to a member of the University faculty or staff; or (iv) knowingly providing any unauthorized assistance to another student on quizzes, tests, or examinations. 
+
 The term plagiarism includes, but is not limited to: (i) use by paraphrase or direct quotation of the published or unpublished work of another person without fully and properly crediting the author with footnotes, citations or bibliographical reference; (ii) unacknowledged use of materials prepared by another person or agency engaged in the selling of term papers or other academic materials; or (iii) unacknowledged use of original work/material that has been produced through collaboration with others without release in writing from collaborators. 
-The term sabotage includes, but is not limited to, the unauthorized interference with, modification of, or destruction of the work or intellectual property of another member of the University community. 
+
+The term sabotage includes, but is not limited to, the unauthorized interference with, modification of, or destruction of the work or intellectual property of another member of the University community.
+
 To ensure academic integrity and prevent plagiarism, UMKC has purchased the Internet-based Turn It In.  This site allows faculty and students to submit papers online to examine a paper’s originality. The site compares submitted papers with several proprietary algorithm databases to check for plagiarism. The course director reserves the right to have student assignments reviewed on Turnitin.com in this course.  Submissions will have all identifying student information (name, student ID number etc.) removed from the submission to ensure that student’s rights are protected.  
 
-Academic Inquiry, Course Discussion and Privacy: University of Missouri System Executive Order No. 38 lays out principles regarding the sanctity of classroom discussions at the university. The policy is described fully in Section 200.015 of the Collected Rules and Regulations. In this class, students may make audio or video recordings of course activity with permission from the instructor. However, the redistribution of any audio or video recordings of statements or comments from the course to individuals who are not students in the course is prohibited without the express permission of instructor and of any students who are recorded, including those recordings prepared by the instructor. Students found to have violated this policy are subject to discipline in accordance with provisions of Section 200.020 of the Collected Rules and Regulations of the University of Missouri pertaining to student conduct matters. 
+## Academic Inquiry, Course Discussion and Privacy
 
-Statement on Privacy of Student Records
-All educational records are protected by FERPA (Family Education Rights and Privacy Act) as described in the University Collected Rules and Regulations, section180.020 Student Records. If you have questions or would like more information regarding this regulation and its implementation at UMKC visit https://www.umsystem.edu/ums/rules/collected_rules/information/ch180/180.020_student_records
+University of Missouri System Executive Order No. 38 lays out principles regarding the sanctity of classroom discussions at the university. The policy is described fully in Section 200.015 of the Collected Rules and Regulations. In this class, students may make audio or video recordings of course activity with permission from the instructor. However, the redistribution of any audio or video recordings of statements or comments from the course to individuals who are not students in the course is prohibited without the express permission of instructor and of any students who are recorded, including those recordings prepared by the instructor. Students found to have violated this policy are subject to discipline in accordance with provisions of Section 200.020 of the Collected Rules and Regulations of the University of Missouri pertaining to student conduct matters. 
 
-Attendance Policy: Students are expected to attend and participate in classes. Students should notify the instructor of excused absences in advance, where possible. Students who have an excused absence are expected to make arrangements with instructors for alternative or make-up work. Such arrangements should be made in advance of the absence, where possible. This attendance policy shall be applied in a non-discriminatory manner. In the case of cancellation of classes due to inclement weather or other reasons, all students will follow the course calendar and complete the weekly materials using Canvas and recorded lectures. In Class and online students will be responsible for the quiz questions during those weeks. 
+## Statement on Privacy of Student Records
+
+All educational records are protected by FERPA (Family Education Rights and Privacy Act) as described in the University Collected Rules and Regulations, section 180.020 Student Records. If you have questions or would like more information regarding this regulation and its [fer1].
+
+[fer1]: https://www.umsystem.edu/ums/rules/collected_rules/information/ch180/180.020_student_records
+
+## Attendance Policy
+
+Students are expected to attend and participate in classes. Students should notify the instructor of excused absences in advance, where possible. Students who have an excused absence are expected to make arrangements with instructors for alternative or make-up work. Such arrangements should be made in advance of the absence, where possible. This attendance policy shall be applied in a non-discriminatory manner. In the case of cancellation of classes due to inclement weather or other reasons, all students will follow the course calendar and complete the weekly materials using Canvas and recorded lectures. In Class and online students will be responsible for the quiz questions during those weeks. 
 Campus Safety: Inclement weather, mass notification, and emergency response guide: http://www.umkc.edu/umkcalert/ 
-Cancellation of classes will be posted on the front page of the University’s website (www.umkc.edu) as well as through UMKC Alert message system. At the time of this syllabus creation, the above UMKC inclement weather policy no longer applied. Courses are to be moved to online/Zoom or other mode of instruction. 
-Statement on Expectations Regarding Student Conduct
-In order to maintain a proper learning environment within the classroom, it is important for all students enrolled in this course to treat both the faculty and their peers with courtesy, civility and respect. Conduct for which students are subject to sanctions includes academic dishonesty, such as cheating, plagiarism, or sabotage. For more information regarding this regulation visit https://www.umsystem.edu/ums/rules/collected_rules/programs/ch200 Students whose behavior is deemed disruptive by their instructor may be told to leave the classroom for the remainder of the session. 
-Counseling and Health Services Available at UMKC: UMKC students may experience many challenges in their lives while attending college – stress, depression, suicidality, trauma, relationship issues, health concerns, etc.  As your professor I care about your success and well-being, and want to make you aware of some helpful resources on campus. The UMKC Counseling Center (www.umkc.edu/counselingcenter), located at 4825 Troost in Room 206, offers a wide range of supportive services to students. Appointments can be made by calling 816.235.1635. UMKC Student Health and Wellness (http://info.umkc.edu/studenthealth/), located at 4825 Troost in Room 115, offers a full range of health care and promotion services.  Appointments can be scheduled online or by calling 816.235.6133. The Mind-Body Connection (www.umkc.edu/mindbody) is located in the Atterbury Student Success Center in Room 112 and offers a variety of stress-reduction services. 
+
+Cancellation of classes will be posted on the front page of the [University’s website][umk1] as well as through UMKC Alert message system. At the time of this syllabus creation, the above UMKC inclement weather policy no longer applied. Courses are to be moved to online/Zoom or other mode of instruction. 
+
+[umk1]: https://www.umkc.edu
+
+## Statement on Expectations Regarding Student Conduct
+
+In order to maintain a proper learning environment within the classroom, it is important for all students enrolled in this course to treat both the faculty and their peers with courtesy, civility and respect. Conduct for which students are subject to sanctions includes academic dishonesty, such as cheating, plagiarism, or sabotage. For more information regarding this regulation visit the [UM System rules on student conduct][rul1]. Students whose behavior is deemed disruptive by their instructor may be told to leave the classroom for the remainder of the session. 
+
+[rul1]: https://www.umsystem.edu/ums/rules/collected_rules/programs/ch200 
+
+## Counseling and Health Services Available at UMKC
+
+UMKC students may experience many challenges in their lives while attending college – stress, depression, suicidality, trauma, relationship issues, health concerns, etc.  As your professor I care about your success and well-being, and want to make you aware of some helpful resources on campus. The [UMKC Counseling Center][cou1], located at 4825 Troost in Room 206, offers a wide range of supportive services to students. Appointments can be made by calling 816.235.1635. UMKC Student Health and Wellness (http://info.umkc.edu/studenthealth/), located at 4825 Troost in Room 115, offers a full range of health care and promotion services.  Appointments can be scheduled online or by calling 816.235.6133. The Mind-Body Connection (www.umkc.edu/mindbody) is located in the Atterbury Student Success Center in Room 112 and offers a variety of stress-reduction services. 
+
+[cou1]: https://www.umkc.edu/counselingcenter
 
 Disability Support Services: To obtain disability related accommodations and/or auxiliary aids, students with disabilities must contact the Office of Services for Students with Disabilities (OSSD) as soon as possible. To contact OSSD, call (816) 235-5696.  Once verified, OSSD will notify the course instructor and outline the accommodation and/or auxiliary aids to be provided.  For more information go to: http://www.umkc.edu/disability/ 
 
