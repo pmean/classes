@@ -125,21 +125,38 @@ editor: source
 ## Additional topics??
 
 ::: notes
--   Learning objectives
-    -   Explain when an ANCOVA would be used to analyze data
-    -   Explain the purpose of including covariates in an ANCOVA
-    -   Identify the impact of controlling for a covariate on variance, power and the F-ratio
-    -   Explain the data requirements for an ANCOVA
-    -   Set up a data set for an ANCOVA
-    -   Write a research question forn ANCOVA
-    -   Write the Null and Research Hypotheses for an ANCOVA
-    -   List the assumptions for an ANCOVA
-    -   Explain the tests for the assumptions for an ANCOVA
-    -   Run the assumptions tests for an ANCOVA
-    -   Interpret the assumptions tests for an ANCOVA
-    -   Run a complete ANCOVA
-    -   Explain, using output, how to note the influence of the covariate
-    -   Summarize the interpretation of an ANCOVA
+-   Learning objectives for multifactor ANOVA
+    -   Define Factor
+    -   Define Level
+    -   Assess types of ANOVA based on factors and levels
+    -   Calculate the maximum number of groups in a multi-factorial ANOVA
+    -   Define interaction
+    -   Explain how to determine if an interaction between the factors exists
+    -   Explain how to "name" a multi-factorial ANOVA
+    -   Write the Null and Alternative Hypothesis for a multi-factorial ANOVA
+    -   Write the Research Questions for a multi-factorial ANOVA
+    -   Write the Research Interaction Questions for a multi-factorial ANOVA
+    -   Define and explain the order of interpretation for a multi-factorial ANOVA
+    -   Define Main Effects
+    -   Explain the test of the Main Effects
+    -   Define Simple Main Effects
+    -   Explain the test of the Simple Main Effects
+    -   Define Interaction Effect
+    -   Explain the test of the Interaction Effect
+    -   Explain what information the Interaction Effect test provides
+    -   Explain the difference in information obtained between a 2-way ANOVA and 2 one way ANOVA's
+    -   Define the  "Differences Between the Differences"
+    -   Calculate the "Differences Between the Differences"
+    -   Draw conclusions about the "Differences Between the Differences"
+    -   Interpret the Interaction Effect test
+    -   Determine the next steps of interpretation with a significant interaction effect
+    -   Determine the next steps of interpretation with a non-significant interaction effect
+    -   Interpret the Main Effects
+    -   Interpret the Simple Main Effects
+    -   List and define the Assumptions  and tests for a multi-factorial ANOVA
+    -   Define Marginal Means
+    -   Explain the difference between Marginal Means and Means
+    -   Complete a statistical write-up of a multi-factorial ANOVA with all elements included
 :::
 
 <!---

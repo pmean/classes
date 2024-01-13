@@ -5,7 +5,7 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "To be determined"
+  topic_01: "Mixed models"
   topic_02: "To be determined"
   topic_03: "To be determined"
   topic_04: "To be determined"
@@ -125,21 +125,58 @@ editor: source
 ## Additional topics??
 
 ::: notes
--   Learning objectives
-    -   Explain when an ANCOVA would be used to analyze data
-    -   Explain the purpose of including covariates in an ANCOVA
-    -   Identify the impact of controlling for a covariate on variance, power and the F-ratio
-    -   Explain the data requirements for an ANCOVA
-    -   Set up a data set for an ANCOVA
-    -   Write a research question forn ANCOVA
-    -   Write the Null and Research Hypotheses for an ANCOVA
-    -   List the assumptions for an ANCOVA
-    -   Explain the tests for the assumptions for an ANCOVA
-    -   Run the assumptions tests for an ANCOVA
-    -   Interpret the assumptions tests for an ANCOVA
-    -   Run a complete ANCOVA
-    -   Explain, using output, how to note the influence of the covariate
-    -   Summarize the interpretation of an ANCOVA
+-   Learning objectives for mixed models
+    -   Set up a data set for a Repeated Measures ANOVA
+    -   Explain when a n-way RM ANOVA would be used to analyze data
+    -   Explain the data requirements for a n-way RM ANOVA
+    -   Write a research question for a n-way RM ANOVA
+    -   Write the Null and Research Hypotheses for a n-way RM ANOVA
+    -   Run a complete n-way RM ANOVA
+    -   List the assumptions for a n-way RM ANOVA
+    -   Explain the tests for the assumptions for a n-way RM ANOVA
+    -   Run the assumptions tests for a n-way RM ANOVA
+    -   Interpret the assumptions tests for a n-way RM ANOVA
+    -   Explain the issue that arises if the assumption of sphericity is violated
+    -   Explain how the Epsilon correction works
+    -   Explain the condition of a significant interaction effect
+    -   Explain the process to run simple main effects for a Repeated Measures n-way ANOVA
+    -   Run simple main effects for a Repeated Measures n-way ANOVA
+    -   Interpret simple main effects for a Repeated Measures n-way ANOVA
+    -   Explain the special considerations for simple main effects for a Repeated Measures n-way ANOVA with a factor with >2 levels
+    -   Explain the process to run  main effects for a Repeated Measures n-way ANOVA
+    -   Run main effects for a Repeated Measures n-way ANOVA
+    -   Interpret main effects for a Repeated Measures n-way ANOVA
+    -   Summarize the output of a complete n-way RM ANOVA
+    -   Define the meaning of mixed model
+    -   Define Between Subjects in relation to the mixed model
+    -   Define Within Subjects in relation to the mixed model
+    -   Be familiar with the various names for a mixed model ANOVA
+    -   List the purpose of running a mixed model ANOVA
+    -   Identify Between and Within factors for a mixed model ANOVA
+    -   List the type of data that can be used to define the levels in a mixed model ANOVA
+    -   List the assumptions for a mixed model ANOVA
+    -   Successfully run the statistical analysis tests for the assumptions of a mixed model ANOVA
+    -   Interpret the statistical analysis tests for the assumptions of a mixed model ANOVA
+    -   Explain how normality of the data is assessed
+    -   Explain the rules for violation of the assumption of homogeneity of variances
+    -   Define Homogeneity of Covariances
+    -   Identify Box's Test
+    -   Develop a research question for a mixed model ANOVA
+    -   Write the Null and Alternative for a mixed model ANOVA
+    -   Set up data for a mixed model ANOVA in the SPSS data editor
+    -   Run a two-way mixed model ANOVA analysis using SPSS
+    -   Interpret the output of a two-way mixed model ANOVA analysis
+    -   Understand the process of determining the presence or not of an interaction effect
+    -   Define Simple Main Effects
+    -   Determine when Simple Main Effects would be run
+    -   Define Main Effects
+    -   Determine when  Main Effects would be run
+    -   Run the Simple Main Effects following a decision about the interaction effect
+    -   Interpret the Simple Main Effects
+    -   Run the Main Effects following a decision about the interaction effect
+    -   Interpret the Main Effects
+    -   Interpret Pair-Wise comparisons
+    -   Create a complete write up of a mixed model ANOVA analysis
 :::
 
 <!---

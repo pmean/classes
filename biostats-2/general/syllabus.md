@@ -6,24 +6,11 @@ format:
 editor: source
 ---
 
-## MEDB 5502, Sections 0001, 0002, 0003
+## MEDB 5502, Applied Biostatistics II, 3 credit hours
 
-### Applied Biostatistics II, 3 credit hours
-
-Synchronous zoom: Tu 1:00PM - 3:45PM
-MEDB 5502-0001 (12192) 
-Applied Biostatistics II (Lecture)
-2 students
-
-Asynchronous:
-MEDB 5502-0002 (12961)
-Applied Biostatistics II (Lecture)
-16 students
- 	
-In person attendance: Tu 1:00PM - 3:45PM
-MEDB 5502-0003 (16153)
-Applied Biostatistics II (Lecture)
-0 students
+-   Section 0001 (12192): Synchronous zoom
+-   Section 0002 (12961): Asynchronous
+-   Section 0003 (16153): In person attendance
 
 ## Introduction
 
@@ -284,280 +271,78 @@ While most UMKC employees are required to report any known or suspected violatio
 
 The second in the Applied Biostatistics sequence and is intended for graduate, doctoral, and professional students in the biological, clinical and medical fields, and medical education. Statistical concepts, analysis methods, and research designs commonly used in these fields are included: diagnostic testing, hypothesis testing, power analysis, analysis of variance, analysis of covariance, multivariate analysis of variance, propensity scoring, simple and multiple regression, logistic regression, and survival analysis. Familiarity with basic statistics and the statistical techniques presented in Applied Biostatistics I is required. Statistical analyses involved in this course will be performed primarily using the SPSS statistical analysis package. The course will also cover the interpretation, presentation and the write up of analytical results and graphs.
 
-### (Wk 01) Review, Simple linear regression (Sections 9.1 through 9.7) and One factor analysis of variance (Chapter 12)
+-   Week 01
+    -   Simple linear regression (Sections 9.1 through 9.7)
+    -   One factor analysis of variance (Chapter 12)
 
-<--Originally "Introduction and Information"-->
+<!--Originally "Introduction and Information"-->
 
-### (Wk 02) Multiple linear regression (Sections 9.8 through 9.11) and mediation analysis (Section 11.4)
+-   Week 02
+    -   Multiple linear regression (Sections 9.8 through 9.11)
+    -   Mediation analysis (Section 11.4)
 
-<--Originally "Diagnostic testing"-->
+<!--Originally "Diagnostic testing"-->
 
-### (Wk 03) Analysis of covariance (Chapter 13)
+-   Week 03
+    -   Analysis of covariance (Chapter 13)
 
-<--Originally "Correlation, Regression, Power analysis"-->
+<!--Originally "Correlation, Regression, Power analysis"-->
 
-### (Wk 04) Multifactor analysis of variance (Chapter 14) and moderator analysis (Section 11.3)
+-   Week 04
+    -   Multifactor analysis of variance (Chapter 14)
+    -   Moderator analysis (Section 11.3)
 
-<--Originally "Multiple regression"-->
+<!--Originally "Multiple regression"-->
 
--   Learning objectives for multifactor ANOVA
-    -   Define Factor
-    -   Define Level
-    -   Assess types of ANOVA based on factors and levels
-    -   Calculate the maximum number of groups in a multi-factorial ANOVA
-    -   Define interaction
-    -   Explain how to determine if an interaction between the factors exists
-    -   Explain how to "name" a multi-factorial ANOVA
-    -   Write the Null and Alternative Hypothesis for a multi-factorial ANOVA
-    -   Write the Research Questions for a multi-factorial ANOVA
-    -   Write the Research Interaction Questions for a multi-factorial ANOVA
-    -   Define and explain the order of interpretation for a multi-factorial ANOVA
-    -   Define Main Effects
-    -   Explain the test of the Main Effects
-    -   Define Simple Main Effects
-    -   Explain the test of the Simple Main Effects
-    -   Define Interaction Effect
-    -   Explain the test of the Interaction Effect
-    -   Explain what information the Interaction Effect test provides
-    -   Explain the difference in information obtained between a 2-way ANOVA and 2 one way ANOVA's
-    -   Define the  "Differences Between the Differences"
-    -   Calculate the "Differences Between the Differences"
-    -   Draw conclusions about the "Differences Between the Differences"
-    -   Interpret the Interaction Effect test
-    -   Determine the next steps of interpretation with a significant interaction effect
-    -   Determine the next steps of interpretation with a non-significant interaction effect
-    -   Interpret the Main Effects
-    -   Interpret the Simple Main Effects
-    -   List and define the Assumptions  and tests for a multi-factorial ANOVA
-    -   Define Marginal Means
-    -   Explain the difference between Marginal Means and Means
-    -   Complete a statistical write-up of a multi-factorial ANOVA with all elements included
-    
-### (Wk 05) Factor analysis (Chapter 18)
+-   Week 05
+    -   Factor analysis (Chapter 18)
 
-<--Originally "Logistic regression"-->
+<!--Originally "Logistic regression"-->
 
-### (Wk 06) Logistic regression (Chapter 20)
+-   Week 06
+    -   Logistic regression (Chapter 20)
 
-<--Originally "Survival analysis"-->
+<!--Originally "Survival analysis"-->
 
--   Learning objectives
-    -   Define Logistic Regression analysis
-    -   Compare and Contrast Multiple Regression analysis and Logistic Regression analysis
-    -   List and define the three types of logistic Regression analysis
-    -   Define how predictor variables are selected
-    -   Define Multicollinearity
-    -   List and explain the problems that Multicollinearity causes if present in a Logistic Regression analysis
-    -   List and explain the methods for selecting predictor variables
-    -   List and explain the problems that too many predictors can cause  in a Logistic Regression analysis
-    -   Compare and contrast Logistic Regression analysis with Linear and Multiple Regression analysis
-    -   Explain the model equation for a Logistic Regression analysis
-    -   Explain the problem with the Assumption of Linearity  for a Logistic Regression analysis
-    -   Explain the method that is used to overcome the problem with the Assumption of Linearity
-    -   Define Maximum Likelihood Estimation
-    -   Explain Probability
-    -   Explain Odds
-    -   Explain the conversion of probability to odds
-    -   Define and explain the model equation for a Logistic Regression analysis
-    -   Define reference standard
-    -   Identify the value that represents the fit of the model
-    -   Define Log likelihood
-    -   List and define the 4 different calculations for R squared for an Logistic Regression analysis
-    -   Define and explain the Wald Statistic
-    -   Explain the importance of Odds Ratios in a Logistic Regression analysis
-    -   Identify Exp(B)
-    -   Identify and define the methods for predictor variable input in a Logistic Regression analysis
-    -   Understand which predictor variable input method is best used
-    -   Identify, define and explain the testing for all assumptions
-    -   Identify and explain all "Important Considerations" for a Logistic Regression analysis
-    -   Calculate Sensitivity, Specificity, PPV and NPV using the information found in the SPSS Classification Table
-    -   Explain the meaning of Block 0
-    -   Explain the meaning of all subsequent blocks (following Block 0) in a Logistic Regression analysis
-    -   Interpret an Odds Ratio for a continuous predictor variable
-    -   Interpret an Odds Ratio for a categorical predictor variable
-    -   Calculate the sensitivity and specificity of the model
-    -   Explain what an ROC identifies in a Logistic Regression analysis
-    -   Create a complete write up for a Logistic Regression analysis
-    -   Know the table that must be included in a write up for a Logistic Regression analysis
+-   Week 07
+    -   Diagnostic testing (not in Field)
 
-### (Wk 07) Diagnostic testing (not in Field)
+<!--Originally "Propensity scores"-->
 
-<--Originally "Propensity scores"-->
+-   Week 08
+    -   Propensity scores (not in Field)
 
--   Learning objectives
-    -   Create a 2 x 2 contingency table for a diagnostic Test
-    -   Define Gold Standard
-    -   Define and calculate Sensitivity, Specificity, Positive and Negative Predictive Values and Positive and Negative Likelihood ratios.
-    -   Define True Positive Rate
-    -   Define True Negative Rate
-    -   Define True Positive, True Negative, False Positive and False Negative values
-    -   Identify True Positive, True Negative, False Positive and False Negative values in a contingency table.
-    -   Define Prevalence
-    -   Calculate Disease Prevalence
-    -   Define and Calculate Positive and Negative Likelihood ratios
-    -   Compare and Contrast Likelihood ratios and Predictive Values
-    -   Define and explain Pre-test Probability
-    -   Define and explain Post-test Probability
-    -   Define the Fagan Nomogram
-    -   Demonstrate correct use of a Fagan Nomogram
-    -   Define a Receiver Operator Curve
-    -   Explain the x axis and y axis of a Receiver Operator Curve
-    -   Create a Receiver Operator Curve using SPSS or SAS and by "hand"
-    -   Interpret a Receiver Operator Curve
-    -   Compare two or more diagnostic tests on a Receiver Operator Curve
-    -   Define the "C" statistic
-    -   Define Area under the Curve
+<!--Originally "Evidence Based Medicine"-->
 
-### (Wk 08) Propensity scores (not in Field)
+-   Week 09
+    -   Survival analysis (not in Field)
 
-<--Originally "Evidence Based Medicine"-->
+<!--Originally "Midterm exam"-->
 
--   Learning objectives
-    -   Define Propensity Score
-    -   Define propensity Score Matching
-    -   Explain the main reason for the use of propensity scores
-    -   Explain the use of Propensity Scores for a Treatment-Control Study
-    -   List the 3 relationship between the covariate, the Outcome Variable and the Treatment assignment
-    -   Define the 3 relationship between the covariate, the Outcome Variable and the Treatment assignment
-    -   State the "biggest" challenge of Propensity Score calculation
-    -   Define the most important step in Propensity Score calculation
-    -   Explain the mathematical theory of the Propensity Score
-    -   List and define the Assumptions for Propensity Score calculation
-    -   Explain the problem of a Propensity Score of 0 or 1
-    -   Explain the Area of Common Support
-    -   Explain the need for an ideal  number of covariates for the Propensity Score calculation
-    -   Explain the selection of covariates for Propensity Score Calculation
-    -   List and explain the methods for matching groups using Propensity Scores
-    -   List and explain the limitations/concerns of using Propensity Scores
-    -   Explain the benefits of Propensity Score Matching over using a regression model for covariate control.
-    -   Explain the benefits of using a regression model over Propensity Score Matching for covariate control.
+-   Week 10
+    -   Imputation of missing data (not in Field)
 
-### (Wk 09) Survival analysis (not in Field)
+<!--Originally "ANOVA - Review and new"-->
 
-<--Originally "Midterm exam"-->
+-   Week 11
+    -   Meta-analysis (not in Field)
 
--   Kaplan-Meyer - Survival Analysis
-    -   Define Survival Analysis
-    -   List the scientific applications of Survival Analysis
-    -   Know the general overview of Survival Analysis
-    -   Identify the type of data used in Survival Analysis
-    -   Identify data requirements for Survival Analysis
-    -   Identify the research design for a Survival Analysis
-    -   List the benefits of Survival Analysis
-    -   Define "censoring"
-    -   Define "event observation"
-    -   Outline the history of Survival Analysis
-    -   Define "Life Tables"
-    -   List the characteristics of Kaplan-Meier Survival Analysis
-    -   List and define the assumptions of The Kaplan-Meier method
-    -   Explain how to test Assumption #6 - Censorship equality
-    -   Define "left censoring"
-    -   Define "right censoring"
-    -   Define the 2 goals of the Kaplan-Meier method
-    -   Define the characteristic of the Event Status variable
-    -   Define the characteristic of the Time variable
-    -   Define the Subject Identifier variable
-    -   Define the Between Subjects Factor
-    -   Run a Kaplan-Meier analysis using SPSS
-    -   Define and explain the Log-Rank Test, the Breslow test and the Tarone-Ware test.
-    -   Interpret a Survival Functions Plot
-    -   Identify the median survival values on a Survival Functions Plot
-    -   Interpret the median values of a Kaplan-Meier Survival analysis
-    -   Identify the useful functions of a survival distribution
-    -   Explain the pair wise comparisons generated in a Kaplan-Meier survival analysis
-    -   Create a complete write-up of a Kaplan-Meier survival analysis
--   Cox Regression
-    -   Define Cox Regression
-    -   Explain what a Cox Regression analysis is used for
-    -   Compare and contrast a Cox Regression analysis and a Kaplan-Meier survival analysis
-    -   Identify the benefits of a Cox Regression analysis
-    -   Define Hazard Function
-    -   Explain the Cox Regression Equation
-    -   Define "maximum Likelihood"
-    -   Interpret a positive regression coefficient and a negative regression coefficient
-    -   Compare and contrast the interpretation of a  Cox Regression analysis and a Kaplan-Meier survival analysis
-    -   Identify the assumptions of a Cox Regression analysis
-    -   Define the Proportional Hazards assumption
-    -   Explain how to test the Proportional Hazards assumption
-    -   Explain what will occur if the Proportional Hazards assumption is violated
-    -   Run a Cox Regression analysis in SPSS
-    -   Interpret the Omnibus Tests of Model Coefficients
-    -   Interpret the Beta coefficients of a Cox Regression analysis
-    -   Interpret the Hazard Function Curve
-    -   Create a complete write-up of a Cox Regression analysis
+<!--Originally "Multifactorial analysis"-->
 
-### (Wk 10) Imputation of missing data (not in Field)
+-   Week 12
+    -   Mixed models (Chapters 15, 16, 21)
 
-<--Originally "ANOVA - Review and new"-->
+<!--Originally "2-Way Repeated Measures ANOVA and ANCOVA"-->
 
-### (Wk 11) Meta-analysis (not in Field)
+-   Week 13
+    -   Bayesian analysis (scattered throughout Field)
 
-<--Originally "Multifactorial analysis"-->
+<!--Originally "Mixed model ANOVA"-->
 
-### (Wk 12) Mixed models (Chapters 15, 16, 21)
+-   Week 14
+    -   Cluster analysis
 
-<--Originally "2-Way Repeated Measures ANOVA and ANCOVA"-->
+<!--Originally "MANOVA"-->
 
--   Learning objectives for mixed models
-    -   Set up a data set for a Repeated Measures ANOVA
-    -   Explain when a n-way RM ANOVA would be used to analyze data
-    -   Explain the data requirements for a n-way RM ANOVA
-    -   Write a research question for a n-way RM ANOVA
-    -   Write the Null and Research Hypotheses for a n-way RM ANOVA
-    -   Run a complete n-way RM ANOVA
-    -   List the assumptions for a n-way RM ANOVA
-    -   Explain the tests for the assumptions for a n-way RM ANOVA
-    -   Run the assumptions tests for a n-way RM ANOVA
-    -   Interpret the assumptions tests for a n-way RM ANOVA
-    -   Explain the issue that arises if the assumption of sphericity is violated
-    -   Explain how the Epsilon correction works
-    -   Explain the condition of a significant interaction effect
-    -   Explain the process to run simple main effects for a Repeated Measures n-way ANOVA
-    -   Run simple main effects for a Repeated Measures n-way ANOVA
-    -   Interpret simple main effects for a Repeated Measures n-way ANOVA
-    -   Explain the special considerations for simple main effects for a Repeated Measures n-way ANOVA with a factor with >2 levels
-    -   Explain the process to run  main effects for a Repeated Measures n-way ANOVA
-    -   Run main effects for a Repeated Measures n-way ANOVA
-    -   Interpret main effects for a Repeated Measures n-way ANOVA
-    -   Summarize the output of a complete n-way RM ANOVA
-    -   Define the meaning of mixed model
-    -   Define Between Subjects in relation to the mixed model
-    -   Define Within Subjects in relation to the mixed model
-    -   Be familiar with the various names for a mixed model ANOVA
-    -   List the purpose of running a mixed model ANOVA
-    -   Identify Between and Within factors for a mixed model ANOVA
-    -   List the type of data that can be used to define the levels in a mixed model ANOVA
-    -   List the assumptions for a mixed model ANOVA
-    -   Successfully run the statistical analysis tests for the assumptions of a mixed model ANOVA
-    -   Interpret the statistical analysis tests for the assumptions of a mixed model ANOVA
-    -   Explain how normality of the data is assessed
-    -   Explain the rules for violation of the assumption of homogeneity of variances
-    -   Define Homogeneity of Covariances
-    -   Identify Box's Test
-    -   Develop a research question for a mixed model ANOVA
-    -   Write the Null and Alternative for a mixed model ANOVA
-    -   Set up data for a mixed model ANOVA in the SPSS data editor
-    -   Run a two-way mixed model ANOVA analysis using SPSS
-    -   Interpret the output of a two-way mixed model ANOVA analysis
-    -   Understand the process of determining the presence or not of an interaction effect
-    -   Define Simple Main Effects
-    -   Determine when Simple Main Effects would be run
-    -   Define Main Effects
-    -   Determine when  Main Effects would be run
-    -   Run the Simple Main Effects following a decision about the interaction effect
-    -   Interpret the Simple Main Effects
-    -   Run the Main Effects following a decision about the interaction effect
-    -   Interpret the Main Effects
-    -   Interpret Pair-Wise comparisons
-    -   Create a complete write up of a mixed model ANOVA analysis
-
-### (Wk 13) Bayesian analysis (scattered throughout Field)
-
-<--Originally "Mixed model ANOVA"-->
-
-### (Wk 14) Cluster analysis
-
-<--Originally "MANOVA"-->
-
-<--Module 15, originally "Scenarios"-->
+<!--Module 15, originally "Scenarios"-->
 

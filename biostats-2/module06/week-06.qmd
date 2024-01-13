@@ -126,20 +126,43 @@ editor: source
 
 ::: notes
 -   Learning objectives
-    -   Explain when an ANCOVA would be used to analyze data
-    -   Explain the purpose of including covariates in an ANCOVA
-    -   Identify the impact of controlling for a covariate on variance, power and the F-ratio
-    -   Explain the data requirements for an ANCOVA
-    -   Set up a data set for an ANCOVA
-    -   Write a research question forn ANCOVA
-    -   Write the Null and Research Hypotheses for an ANCOVA
-    -   List the assumptions for an ANCOVA
-    -   Explain the tests for the assumptions for an ANCOVA
-    -   Run the assumptions tests for an ANCOVA
-    -   Interpret the assumptions tests for an ANCOVA
-    -   Run a complete ANCOVA
-    -   Explain, using output, how to note the influence of the covariate
-    -   Summarize the interpretation of an ANCOVA
+    -   Define Logistic Regression analysis
+    -   Compare and Contrast Multiple Regression analysis and Logistic Regression analysis
+    -   List and define the three types of logistic Regression analysis
+    -   Define how predictor variables are selected
+    -   Define Multicollinearity
+    -   List and explain the problems that Multicollinearity causes if present in a Logistic Regression analysis
+    -   List and explain the methods for selecting predictor variables
+    -   List and explain the problems that too many predictors can cause  in a Logistic Regression analysis
+    -   Compare and contrast Logistic Regression analysis with Linear and Multiple Regression analysis
+    -   Explain the model equation for a Logistic Regression analysis
+    -   Explain the problem with the Assumption of Linearity  for a Logistic Regression analysis
+    -   Explain the method that is used to overcome the problem with the Assumption of Linearity
+    -   Define Maximum Likelihood Estimation
+    -   Explain Probability
+    -   Explain Odds
+    -   Explain the conversion of probability to odds
+    -   Define and explain the model equation for a Logistic Regression analysis
+    -   Define reference standard
+    -   Identify the value that represents the fit of the model
+    -   Define Log likelihood
+    -   List and define the 4 different calculations for R squared for an Logistic Regression analysis
+    -   Define and explain the Wald Statistic
+    -   Explain the importance of Odds Ratios in a Logistic Regression analysis
+    -   Identify Exp(B)
+    -   Identify and define the methods for predictor variable input in a Logistic Regression analysis
+    -   Understand which predictor variable input method is best used
+    -   Identify, define and explain the testing for all assumptions
+    -   Identify and explain all "Important Considerations" for a Logistic Regression analysis
+    -   Calculate Sensitivity, Specificity, PPV and NPV using the information found in the SPSS Classification Table
+    -   Explain the meaning of Block 0
+    -   Explain the meaning of all subsequent blocks (following Block 0) in a Logistic Regression analysis
+    -   Interpret an Odds Ratio for a continuous predictor variable
+    -   Interpret an Odds Ratio for a categorical predictor variable
+    -   Calculate the sensitivity and specificity of the model
+    -   Explain what an ROC identifies in a Logistic Regression analysis
+    -   Create a complete write up for a Logistic Regression analysis
+    -   Know the table that must be included in a write up for a Logistic Regression analysis
 :::
 
 <!---

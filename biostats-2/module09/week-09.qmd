@@ -125,21 +125,55 @@ editor: source
 ## Additional topics??
 
 ::: notes
--   Learning objectives
-    -   Explain when an ANCOVA would be used to analyze data
-    -   Explain the purpose of including covariates in an ANCOVA
-    -   Identify the impact of controlling for a covariate on variance, power and the F-ratio
-    -   Explain the data requirements for an ANCOVA
-    -   Set up a data set for an ANCOVA
-    -   Write a research question forn ANCOVA
-    -   Write the Null and Research Hypotheses for an ANCOVA
-    -   List the assumptions for an ANCOVA
-    -   Explain the tests for the assumptions for an ANCOVA
-    -   Run the assumptions tests for an ANCOVA
-    -   Interpret the assumptions tests for an ANCOVA
-    -   Run a complete ANCOVA
-    -   Explain, using output, how to note the influence of the covariate
-    -   Summarize the interpretation of an ANCOVA
+-   Kaplan-Meyer - Survival Analysis
+    -   Define Survival Analysis
+    -   List the scientific applications of Survival Analysis
+    -   Know the general overview of Survival Analysis
+    -   Identify the type of data used in Survival Analysis
+    -   Identify data requirements for Survival Analysis
+    -   Identify the research design for a Survival Analysis
+    -   List the benefits of Survival Analysis
+    -   Define "censoring"
+    -   Define "event observation"
+    -   Outline the history of Survival Analysis
+    -   Define "Life Tables"
+    -   List the characteristics of Kaplan-Meier Survival Analysis
+    -   List and define the assumptions of The Kaplan-Meier method
+    -   Explain how to test Assumption #6 - Censorship equality
+    -   Define "left censoring"
+    -   Define "right censoring"
+    -   Define the 2 goals of the Kaplan-Meier method
+    -   Define the characteristic of the Event Status variable
+    -   Define the characteristic of the Time variable
+    -   Define the Subject Identifier variable
+    -   Define the Between Subjects Factor
+    -   Run a Kaplan-Meier analysis using SPSS
+    -   Define and explain the Log-Rank Test, the Breslow test and the Tarone-Ware test.
+    -   Interpret a Survival Functions Plot
+    -   Identify the median survival values on a Survival Functions Plot
+    -   Interpret the median values of a Kaplan-Meier Survival analysis
+    -   Identify the useful functions of a survival distribution
+    -   Explain the pair wise comparisons generated in a Kaplan-Meier survival analysis
+    -   Create a complete write-up of a Kaplan-Meier survival analysis
+-   Cox Regression
+    -   Define Cox Regression
+    -   Explain what a Cox Regression analysis is used for
+    -   Compare and contrast a Cox Regression analysis and a Kaplan-Meier survival analysis
+    -   Identify the benefits of a Cox Regression analysis
+    -   Define Hazard Function
+    -   Explain the Cox Regression Equation
+    -   Define "maximum Likelihood"
+    -   Interpret a positive regression coefficient and a negative regression coefficient
+    -   Compare and contrast the interpretation of a  Cox Regression analysis and a Kaplan-Meier survival analysis
+    -   Identify the assumptions of a Cox Regression analysis
+    -   Define the Proportional Hazards assumption
+    -   Explain how to test the Proportional Hazards assumption
+    -   Explain what will occur if the Proportional Hazards assumption is violated
+    -   Run a Cox Regression analysis in SPSS
+    -   Interpret the Omnibus Tests of Model Coefficients
+    -   Interpret the Beta coefficients of a Cox Regression analysis
+    -   Interpret the Hazard Function Curve
+    -   Create a complete write-up of a Cox Regression analysis
 :::
 
 <!---

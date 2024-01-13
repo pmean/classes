@@ -126,20 +126,24 @@ editor: source
 
 ::: notes
 -   Learning objectives
-    -   Explain when an ANCOVA would be used to analyze data
-    -   Explain the purpose of including covariates in an ANCOVA
-    -   Identify the impact of controlling for a covariate on variance, power and the F-ratio
-    -   Explain the data requirements for an ANCOVA
-    -   Set up a data set for an ANCOVA
-    -   Write a research question forn ANCOVA
-    -   Write the Null and Research Hypotheses for an ANCOVA
-    -   List the assumptions for an ANCOVA
-    -   Explain the tests for the assumptions for an ANCOVA
-    -   Run the assumptions tests for an ANCOVA
-    -   Interpret the assumptions tests for an ANCOVA
-    -   Run a complete ANCOVA
-    -   Explain, using output, how to note the influence of the covariate
-    -   Summarize the interpretation of an ANCOVA
+    -   Define Propensity Score
+    -   Define propensity Score Matching
+    -   Explain the main reason for the use of propensity scores
+    -   Explain the use of Propensity Scores for a Treatment-Control Study
+    -   List the 3 relationship between the covariate, the Outcome Variable and the Treatment assignment
+    -   Define the 3 relationship between the covariate, the Outcome Variable and the Treatment assignment
+    -   State the "biggest" challenge of Propensity Score calculation
+    -   Define the most important step in Propensity Score calculation
+    -   Explain the mathematical theory of the Propensity Score
+    -   List and define the Assumptions for Propensity Score calculation
+    -   Explain the problem of a Propensity Score of 0 or 1
+    -   Explain the Area of Common Support
+    -   Explain the need for an ideal  number of covariates for the Propensity Score calculation
+    -   Explain the selection of covariates for Propensity Score Calculation
+    -   List and explain the methods for matching groups using Propensity Scores
+    -   List and explain the limitations/concerns of using Propensity Scores
+    -   Explain the benefits of Propensity Score Matching over using a regression model for covariate control.
+    -   Explain the benefits of using a regression model over Propensity Score Matching for covariate control.
 :::
 
 <!---
