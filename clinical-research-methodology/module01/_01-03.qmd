@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Other research dichotomies"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,175 @@ format:
 editor: source
 ---
 
-## Slide 01-03
+##  Research dichotomies
+
+-   Dichotomies are always wrong.
+    -   Trichotomies.
+    -   Monochotomies.
+    -   Spectrum.
+-   But they are still useful.
+    -   Shorthand for others.
+    -   Guidance for statistical analysis.
+    -   Helpful for critical appraisal.
+-   No "best" level in these dichotomies.
+-   Mixed methods.
 
 ::: notes
 
+If you have not read chapter 1 of the book by Gliner et al, pease do so. I disagree with a lot of the things that they say in that chapter, but they provide a framework that is invaluable.
+
+I know a lot about research but trying to take everything I know, and put it in a logical sequence and an overarching framework--that's really hard. Your book succeeds here and that it worth a lot.
+
+But I have to be honest with you. I dislike the dichotomies that this book creates. I believe that dichotomies are always wrong. Every dichotomy is a false dichotomy.
+
+Many times, it's not a dichotomy, it's a trichotomy. There's a third choice that is unmentioned. 
+
+Other times, a dichotomy is actually a monochotomy. Two different things are just two sides of the same coin.
+
+What you might call a dichotomy may actually be a continuum like a spectrum or gradient. It's not A versus B, but A versus Z with B, C, D, etc. in betweeen. You can take a continuum and force it into a dichotomoy, but the choice between what goes on the left side versus what goes on the right is purely arbitrary. So, imagine a sunrise on a cloudy day. It starts out dark but gradually gets a bit brighter until eventually is becomes daylight. Where is the dividing line between day and night when you can't see when, exactly, the sun peeks over the horizon?
+
+But dichotomies, even false dichotomies, are still useful. Classifying research into category A versus category B provides a shorthand that helps others understand your research. It also provides guidance as to what sort of statistical analysis is most appropriate and helps with critical appraisal of the research literature.
+
+There is a tendency for some people to embrace one end of the dichotomy and sneer at anyone who adopts the other end. This is a big big mistake and something that I have very little patience for. A good researcher uses more than one approach to research. To say, for example, that quantitative research is "hard" science and qualitative research is "soft" science is both inaccurate and fails to recognize that both approaches are needed if we want to make any scientific progress.
+
+I want you to have a very broad view of research. I brag a lot of probably shouldn't, but if there's one thing I do better than anyone else it is that I have an extreme breadth of knowledge. I'm not a specialist in what any one area, but I know a lot about a lot of different areas. That's hard to do but I pride myself on that. Part of it is being old, but more of it is because I work really hard to stay current in many different areas of research. I want you to develop that breadth of knowledge so you can choose from a huge buffet of courses.
+
+Let me digress a bit here and talk about some of the narrow-minded thinking that I see in some researchers. 
+
+Later in this class, we'll talk about quasi-experimental designs. The one thing I will say right now is I hate this term "quasi" because it implies a level of inferiority. Briefy, a quasi-experimental design is an approach where the researcher has enough control to use randomization, but decides to forgo randomization because of ethical or practical constraints. 
+
+Forgo randomization? Why would you ever do that? There are times when the benefits that randomization provides (removal of the effects of known and unknown confonding variables, the ability to make rigorous probability statements) are outweighed by the harms produced by randomizaiton. Randomization is expensive and places serious limits on your sample size. Randomization introduces a measure of artificiality into your clinic. Most of the time in the clinic you will tell your patients, "This looks like the best option for you" but not with a randomized trial. In a randomized trial, you have to come up with a bland statement about equipoise. and this can color a patient's outlook. Randomization also requires your patients to consent to a loss of control over their medical treatment. And it's not just that they are ceding this choice to a trusted expert. They are ceding this choice to the random flip of a coin.
+
+Many times, I have to admit, the benefits of randomization outweigh the harms, and by quite a bit. But there are plenty of settings where the reverse is true. When this happens, you need to be bold in how you work this. Don't say you had to SETTLE for an inferior quasi-experimental design because of problems to randomization. Instead, say that the quasi-experimental approach is the best approach because it avoids some of the pitfalls associated with randomization. It turns a negative into a positive.
+
+Here's a more extreme example: historical controls. There is a lot of sneering at historical controls as being a weak form of research. Many times it is, but some research questions almost demand the use of historical controls.
+
+Suppose you are studying a disease that is 100% fatal. In that case, you should dispose of a placebo based control group. No one wants a placebo  when facing a certain death. So you put everyone in the treatment group and compare to a well established historic norm of 100% mortality. If the treatment has any effect at all, it will become rapidly obvious.
+
+This also a new movement afoot within FDA called real-world evidence where you now incorporate historical controls into a randomized trial. Whne you are tesing a new intervention, every interventions is different from every other intervention. But, that control group is run identically across multiple studies. Not always, but a lot of times the control group is the same thing same old same standard treatment. These drug companies might accumulate 10 or 20 control groups there all run pretty much the same except that tehy are run at different times. This is a huge source of information. If you can combine this in a way that allows for the extra variation caused by history temporal trends, you can incorporate that information and greatly reduce the concurrent control that you need for the study. 
+
+So don't think narrowly and always choose one side of any of these dichotomies. In particular, there's nothing wrong with using both ends of a dichotomy in a single research study. This goes by the term "mixed methods."
+
 :::
 
+
+## Theoretical versus applied
+
+-   Theoretical: no benefit to patients now.
+-   Applied: potential for immediate benefit.
+-   "Experience by itself teaches nothing... Without theory, experience has no meaning. Without theory, one has no questions to ask. Hence, without theory, there is no learning."
+    -   W. Edwards Deming, in The New Economics for Industry, Government, Education.
+
+::: notes
+
+The distinction between theoretical and applied research is in when you expect to see something of value to your patients. Theoretical research has no immediate benefit to your patients, and could potentially never offer direct benefits to your patients.
+
+There's a tendency of some applied researchers to sneer at theoretical research. Now remember that I don't want you to sneer. This is terribly wrong as this quote from W. Edwards Deming explains. Theory is what allows us to make sense of our observations of the world.
+
+Without a theoretical framework to support it, applied research is impossible. The other value of theory is that it allows you to generalize to new settings where observations have never been made before. So I'm a big fan of theory, myself.
+
+The other thing I will say is that I got a very theoretical training when I was a graduate student. It was very mathematical and I use almost none of it but I do what I do today. But it still helps a lot because since I understand the theoretical foundations of various statistical methods that I use. I can also learn new methods whole lot faster because I can peek under the hood and see how they work. It helps me understand where they work well and where they don't work well. 
+
+So I'm glad that I got a strong theoretical foundation--a strong mathematical foundation. But let me expand theory a bit. You're probably familiar with the school Stowers Institute. They have this gorgeous building that I try to visit whenever I can. It is really fancy with exotic wood paneling everywhere. Stowers supports really theoretical research studing animal models like zebrafish. Now why in the hell do we care about zebrafish? The reason we care is because zebrafish is an ideal animal model for understanding certain genetic changes that could not be studied in species that are closer to humans like a lab rat or a dog or a monkey. All this theory helps us understand things like regeneration better that doesn't have any immediate application except perhaps to the zebrafish themselves. But the more we know about regeneration, the more ideas that we will develop in areas of direct interest, like how to regenerate pancreas cells in patients with diabetes.
+
+:::
+
+## Translational versus basic
+
+-   Basic research: "without thought of practical ends."
+    -   ![National Science Foundation (1953) "What is Basic Research" published in the Third Annual Report of the National Science Foundation](https://www.nsf.gov/pubs/1953/annualreports/ar_1953_sec6.pdf).
+-   Translational research: transition from "bench to bedside."
+    -   Called T1 research.
+    -   Next step (T2): transition from bedside to community.
+    -   T3, T4, T5???
+
+::: notes
+
+I find the term "translational" to be abused a lot, but it helps to understand the original definition. The translational/basic dichotomy is not too much different from the applied/theoretical dichotomy. Basic research is research done mostly in the laboratory and "without thought of practical ends." Translational research represents a bridge between the laboratory and the real world. You'll see the phrase "from bench to bedside" used in this context. 
+
+Some people subdivide translational research into two types with T1 research representing a bridge from the laboratory to the patient and T2 research representing a bridge from a the carefully controlled clinical trial to actual practice settings in the regular community. 
+
+Some people further divide translational research into even more categories, T3, T4, and even T5. If you have a good resource that explains clearly what T5 research is, I'd encourage you to share it with the rest of the class.
+
+Like every other dichotomy, it is a mistake to view one side of the dichotomy as superior to the other.
+
+:::
+
+## Laboratory versus field.
+
+* Laboratory: controlled setting
+
+  + Unnatural.
+  
+  + Control extraneous variables.
+  
+* Field setting: in the clinic
+
+* Ecologic validity: "the methods, materials and setting of the study must approximate the real-world that is being examined."
+
+  + Source: [Wikipedia](https://en.wikipedia.org/wiki/Ecological_validity).
+
+::: notes
+
+Another closely related dichotomy is laboratory versus field research. Laboratory research is done in a controlled setting and has a greater level of control. The big criticism of laboratory studies is that they are "unnatural" and do not reflect how clinical care is actually provided. In fairness, almost all research has an artificiality associated with it. It's just that the laboratory is a bit more artificial than field research.
+
+Now laboratory research does not have to be animals or petri dishes. You can study humans in the laboratory. Many exercise studies will put human volunteers on a treadmill and have them wear a mask that controls and measures their oxygen consumption. It's great in that you can control things like temperature and humidity. When I run, and I run very slowly, I am outdoors and the temperature could be as high as 90 degrees Fahrenheit or as low as 20 degrees Fahrenheit. I run in anything except the really really cold days. And all the environmental variation is an issue. But the artificiality of running indoors on a treadmill with a maks in your face is also an issue.
+
+Field settings provide what the authors describe as "ecologic validity." This is a term I'd not heard before but the definition is quite simple. The Wikipedia definition is as good as any.
+
+If you're trying to decide whether to do a laboratory study versus a field study, ask yourself how much do you already know about the intervention. How much research has already been done. 
+
+If you have a fairly novel intervention, you might need to study it in a setting where you can control things carefully. Then when you prove it works in a setting with an artificially high level of control, then you can try to see if it also works in a messier, but less artificial setting of a field study.
+
+:::
+
+## Experimental versus observational
+
+-   Experimental
+    -   Researcher chooses the intervention
+    -   Allows for randomization
+-   Observational
+    -   Patient/doctor chooses the intervention
+    -   Groups not under anyone's control
+  
+::: notes
+
+Experimental research is a setting where the research has the ability to contol who gets what intervention. It usually, but not always, involves randomization.
+
+An observational study is one where the patient and/or the health care professional gets to choose the intervention or settings where what happens to you is not under anyone's control.
+
+The process of randomization is artificial because the patient gives up a great deal of autonomy. Be thankful because your patients are sacrificing a huge amount of autonomy and is not just to you who may know more about the disease. They are sacrificing their autonomy to the flip of a coin. 
+
+Now the control that comes with experimental research and randomization is substantial. You get much much greater control of extraneous variables. All right, they ALMOST disappear. There are still a few issues you have to worry about, but the process of randomization very powerful.
+
+One the flip side, though, randomization is very artificial. If you offer multiple treatment options in a clinic, you almost always outline the risks and benefits and let the patient choose. That is so much different than saying two options have equivalent risk/benefit ratios and we will let a coin flip decide which one is chosen.
+
+Another level of artificiality is the need for informed consent. If you as a researcer choose the intervention for a patient or let a random device choose the intervention, you have to get permission first. This process (informed consent) will lead to some patients refusing, and the ones that remain may no longer be a representative sample of the population you are studying. 
+
+The very process of asking for informed consent provides a dispassionate approach that could color how the patient views either intervention.
+
+Finally, asking the research to involve themselves in this complex process of requesting informed consent and then selecting the intervention, often on the basis of a random coin flip takes time and money. Observational studies usually have much lower overhead. This allows you to study a much larger group of patients, sometimes one or two orders of magnitude larger. You have to worry about the influence of uncontrolled variables, but there are ways to adjust for this.
+
+The choice between experimental research versus observational research is a complex one with many trade-offs. But again, be strong and assertive about your choice. Don't say you are settling for an observational study because an experimental approach is too difficult. Say that the observational approach that you have chosen is the best approach that you have at your disposal because it has fewer of the problems that an experimental approach might have.
+
+:::
+
+## Participant report versus researcher observation
+
+-   Participant report.
+    -   Either written or oral.
+    -   Only practical approach for pain, quality of life.
+    -   Also known as Patient Reported Outcomes (PRO).
+-   Researcher observation.
+    -   Also includes instruments like a heart rate monitor.
+    -   Perceived as more objective.
+
+::: notes
+
+Another dichotomy in research involves who is providing the data for the research study. If the patient is providing the data (either through an interview or through their writing), you get something "straight from the horse's mouth." There's always the concern that patients might say things to please the researcher or hide things that they might be embarrassed about. Certain things like pain and quality of life can be measured in no other way. Note that a lot of the resources for patient report appears under the acronym PRO (Patient Reported Outcome). 
+
+In contrast to a patient report, the physician or other care giver could provide the data. The data could also come from a machine like a blood pressure cuff or a heart rate monitor. Researcher observation is perceived by many to be more objective, but I disagree.
+
+The other big one is stress. We can't put a stress meter on someone and it turns bright red when they're having a lot of stress and it turns green when everything's calm. Maybe there are some ways to measure brain waves, heart rates, or biochemical markers, but these are all imperfect. There's no good measure of stress yother than patient reports. You have to ask a series of questions that indicate what they are feeling and experiencing right now. You have to do it carefully and we talk a lot about this in the section of reliability and validity. This is especially important for patient reports, but it is also often needed for researcher observation. So for example of a doctor looks to the patient's skin and tries to assess whether there is some degradation like the scabbing or chafing, you still have to assure that they can be done reliably.
+
+:::
