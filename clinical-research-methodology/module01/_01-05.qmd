@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Still more research dichotomies"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,79 @@ format:
 editor: source
 ---
 
-## Slide 01-05
+## Laboratory versus field.
+
+-   Laboratory: controlled setting
+    -   Unnatural.
+    -   Control extraneous variables.
+    -   Field setting: in the clinic
+-   Ecologic validity:
+    -   "The methods, materials and setting of the study must approximate the real-world that is being examined."
+        -   Source: [Wikipedia][wik1]
+        
+[wik1]: https://en.wikipedia.org/wiki/Ecological_validity
 
 ::: notes
 
+Another closely related dichotomy is laboratory versus field research. Laboratory research is done in a controlled setting and has a greater level of control. The big criticism of laboratory studies is that they are "unnatural" and do not reflect how clinical care is actually provided. In fairness, almost all research has an artificiality associated with it. It's just that the laboratory is a bit more artificial than field research.
+
+Now laboratory research does not have to be animals or petri dishes. You can study humans in the laboratory. Many exercise studies will put human volunteers on a treadmill and have them wear a mask that controls and measures their oxygen consumption. It's great in that you can control things like temperature and humidity. When I run, and I run very slowly, I am outdoors and the temperature could be as high as 90 degrees Fahrenheit or as low as 20 degrees Fahrenheit. I run in anything except the really really cold days. And all the environmental variation is an issue. But the artificiality of running indoors on a treadmill with a maks in your face is also an issue.
+
+Field settings provide what the authors describe as "ecologic validity." This is a term I'd not heard before but the definition is quite simple. The Wikipedia definition is as good as any.
+
+If you're trying to decide whether to do a laboratory study versus a field study, ask yourself how much do you already know about the intervention. How much research has already been done. 
+
+If you have a fairly novel intervention, you might need to study it in a setting where you can control things carefully. Then when you prove it works in a setting with an artificially high level of control, then you can try to see if it also works in a messier, but less artificial setting of a field study.
+
 :::
 
+## Experimental versus observational
+
+-   Experimental
+    -   Researcher chooses the intervention
+    -   Allows for randomization
+-   Observational
+    -   Patient/doctor chooses the intervention
+    -   Groups not under anyone's control
+  
+::: notes
+
+Experimental research is a setting where the research has the ability to contol who gets what intervention. It usually, but not always, involves randomization.
+
+An observational study is one where the patient and/or the health care professional gets to choose the intervention or settings where what happens to you is not under anyone's control.
+
+The process of randomization is artificial because the patient gives up a great deal of autonomy. Be thankful because your patients are sacrificing a huge amount of autonomy and is not just to you who may know more about the disease. They are sacrificing their autonomy to the flip of a coin. 
+
+Now the control that comes with experimental research and randomization is substantial. You get much much greater control of extraneous variables. All right, they ALMOST disappear. There are still a few issues you have to worry about, but the process of randomization very powerful.
+
+One the flip side, though, randomization is very artificial. If you offer multiple treatment options in a clinic, you almost always outline the risks and benefits and let the patient choose. That is so much different than saying two options have equivalent risk/benefit ratios and we will let a coin flip decide which one is chosen.
+
+Another level of artificiality is the need for informed consent. If you as a researcer choose the intervention for a patient or let a random device choose the intervention, you have to get permission first. This process (informed consent) will lead to some patients refusing, and the ones that remain may no longer be a representative sample of the population you are studying. 
+
+The very process of asking for informed consent provides a dispassionate approach that could color how the patient views either intervention.
+
+Finally, asking the research to involve themselves in this complex process of requesting informed consent and then selecting the intervention, often on the basis of a random coin flip takes time and money. Observational studies usually have much lower overhead. This allows you to study a much larger group of patients, sometimes one or two orders of magnitude larger. You have to worry about the influence of uncontrolled variables, but there are ways to adjust for this.
+
+The choice between experimental research versus observational research is a complex one with many trade-offs. But again, be strong and assertive about your choice. Don't say you are settling for an observational study because an experimental approach is too difficult. Say that the observational approach that you have chosen is the best approach that you have at your disposal because it has fewer of the problems that an experimental approach might have.
+
+:::
+
+## Participant report versus researcher observation
+
+-   Participant report.
+    -   Either written or oral.
+    -   Only practical approach for pain, quality of life.
+    -   Also known as Patient Reported Outcomes (PRO).
+-   Researcher observation.
+    -   Also includes instruments like a heart rate monitor.
+    -   Perceived as more objective.
+
+::: notes
+
+Another dichotomy in research involves who is providing the data for the research study. If the patient is providing the data (either through an interview or through their writing), you get something "straight from the horse's mouth." There's always the concern that patients might say things to please the researcher or hide things that they might be embarrassed about. Certain things like pain and quality of life can be measured in no other way. Note that a lot of the resources for patient report appears under the acronym PRO (Patient Reported Outcome). 
+
+In contrast to a patient report, the physician or other care giver could provide the data. The data could also come from a machine like a blood pressure cuff or a heart rate monitor. Researcher observation is perceived by many to be more objective, but I disagree.
+
+The other big one is stress. We can't put a stress meter on someone and it turns bright red when they're having a lot of stress and it turns green when everything's calm. Maybe there are some ways to measure brain waves, heart rates, or biochemical markers, but these are all imperfect. There's no good measure of stress yother than patient reports. You have to ask a series of questions that indicate what they are feeling and experiencing right now. You have to do it carefully and we talk a lot about this in the section of reliability and validity. This is especially important for patient reports, but it is also often needed for researcher observation. So for example of a doctor looks to the patient's skin and tries to assess whether there is some degradation like the scabbing or chafing, you still have to assure that they can be done reliably.
+
+:::

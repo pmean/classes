@@ -6,8 +6,10 @@ format:
     embed-resources: true
 params:
   topic_01: "Defining Clinical Research Methodology"
-  topic_02: "Quantitative versus qualitative research"
-  topic_03: "Other research dichotomies"
+  topic_02: "Where do research ideas come from?"
+  topic_03: "Quantitative versus qualitative research"
+  topic_04: "Other research dichotomies"
+  topic_05: "Still more research dichotomies"
 editor: source
 ---
 
@@ -28,12 +30,12 @@ editor: source
 #   do not seem to work.
 ```
 
-```
-
 -   What you will learn
     -   `r params$topic_01`
     -   `r params$topic_02`
     -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
 
 {{< include _01-01.qmd >}}
 
@@ -55,12 +57,32 @@ editor: source
     
 {{< include _01-03.qmd >}}
 
+## Break #3
+
+-   What you have learned
+    -   `r params$topic_03`
+-   What's coming next
+    -   `r params$topic_04`
+    
+{{< include _01-04.qmd >}}
+
+## Break #4
+
+-   What you have learned
+    -   `r params$topic_04`
+-   What's coming next
+    -   `r params$topic_05`
+    
+{{< include _01-05.qmd >}}
+
 ## Summary
 
 -   What you have learned
     -   `r params$topic_01`
     -   `r params$topic_02`
     -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
 
 <!---
       You have to put the title down 
