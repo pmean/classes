@@ -9,10 +9,10 @@ editor: source
 
 ## Data for multiple linear regression
 
--   Dependent variable: $Y_1, Y_2,...,Y_n$
--   First independent variable: $X_{11}, X_{12}, ..., X_{1n}$
--   Second independent variable: $X_{21}, X_{22}, ..., X_{2n}$
--   kth independent variable: $X_{k1}, X_{k2}, ..., X_{kn}$
+-   Dependent variable: $Y_1, Y_2,\ldots,Y_n$
+-   First independent variable: $X_{11}, X_{12}, \ldots, X_{1n}$
+-   Second independent variable: $X_{21}, X_{22}, \ldots, X_{2n}$
+-   kth independent variable: $X_{k1}, X_{k2}, \ldots, X_{kn}$
 
 ::: notes
 For a multiple linear regression model, you need a dependent or outcome variable, traditionally designated by the letter "Y". The are n values of Y, one for each patient in your research study.
@@ -20,6 +20,56 @@ For a multiple linear regression model, you need a dependent or outcome variable
 Then you have k independent variables. The first one, designated by $X_1$ also has n values. The second independent variable, $X_2$ works similarly. There are k total independent variables.
 
 For now, let's assume that every variable, the one dependent variable and the k independent variables, is continuous.
+:::
+
+## Matrix notation, 1 of 3
+
+\begin{matrix}Y=& \begin{bmatrix}
+Y_1\\
+Y_2\\
+\vdots\\ 
+Y_{j}\\
+\vdots\\ 
+Y_n
+\end{bmatrix}
+\end{matrix}
+
+::: notes
+Often you will see multiple linear regression defined with a single column for the dependent variable Y ...
+:::
+
+## Matrix notation, 2 of 3
+
+\begin{matrix}X=& \begin{bmatrix}
+X_{11} & X_{21} & \ldots & X_{i1} & \ldots & X_{k1}\\
+X_{12} & X_{22} & \ldots & X_{i2} & \ldots & X_{k2}\\
+\vdots & \vdots &        & \vdots &        & \vdots\\ 
+X_{1j} & X_{2j} & \ldots & X_{ij} & \ldots & X_{kj}\\
+\vdots & \vdots &        & \vdots &        & \vdots\\ 
+X_{1n} & X_{2n} & \ldots & X_{in} & \ldots & X_{kn}
+\end{bmatrix}
+\end{matrix}
+
+::: notes
+... and a matrix representing the independent variables. Each column in the matrix represents values of a particular independent variable for every subject and each row represents all of the independent variables for a particular subject.
+:::
+
+## Matrix notation, 3 of 3
+
+\begin{matrix}X=& \begin{bmatrix}
+1      & X_{11} & X_{21} & \ldots & X_{i1} & \ldots & X_{k1}\\
+1      & X_{12} & X_{22} & \ldots & X_{i2} & \ldots & X_{k2}\\
+\vdots & \vdots & \vdots &        & \vdots &        & \vdots\\ 
+1      & X_{1j} & X_{2j} & \ldots & X_{ij} & \ldots & X_{kj}\\
+\vdots & \vdots & \vdots &        & \vdots &        & \vdots\\ 
+1      & X_{1n} & X_{2n} & \ldots & X_{in} & \ldots & X_{kn}
+\end{bmatrix}
+\end{matrix}
+
+::: notes
+You may see a similar matrix, but with an extra column at the beginning with the value of 1 repeated down that column.
+
+There are lots of theoretical reasons why the dependent variable and the independent variables are laid out in this format. I will not talk about this in detail. I just wanted to show you this, so you would not be alarmed if you see it in some of the future readings you might have on multiple linear regression.
 :::
 
 ## Why use multiple linear regression
@@ -41,22 +91,27 @@ Alternatively, you can use a multiple linear regression model to predict the fut
 Predicting the future is a perilous process. Pretty much every investment opportunity carries a warning "Past performance is no guarantee of future results
 :::
 
-## Multiple linear regression model and estimates
+## Multiple linear regression model
 
--   $Y_i=\beta_0+\beta_1 X_{1i}+\beta_2 X_{2i}+...+\beta_k X_{ki}+\epsilon_i$
+-   $Y_i=\beta_0+\beta_1 X_{1i}+\beta_2 X_{2i}+\ldots+\beta_k X_{ki}+\epsilon_i$
     -   Assumptions: $\epsilon_i$ are
         -   independent, 
         -   same variance,
         -   normally distributed.
--   Use least squares to estimate $\hat\beta_0,\ \hat\beta_1,\ \hat\beta_2,\ ...,\ \hat\beta_k$
-    -   $\hat Y_i=\hat\beta_0+\hat\beta_1 X_{1i}+\hat\beta_2 X_{2i}+...+\hat\beta_k X_{ki}$
+        
+::: notes
+The multiple linear regression model says that $Y_i$ is a linear function of $X_{1i},\ X_{2i},\ \ldots,\ X_{ki}$ plus an error term. The error term accounts for the fact that even the best set of independent variables will still fall a bit short.
+
+The $\epsilon_i$ have to meet three assumptions: independence, equal variances, and normally distributed.
+:::
+
+## Estimates for the multiple linear regression model
+
+-   Use least squares to estimate $\hat\beta_0,\ \hat\beta_1,\ \hat\beta_2,\ \ldots,\ \hat\beta_k$
+    -   $\hat Y_i=\hat\beta_0+\hat\beta_1 X_{1i}+\hat\beta_2 X_{2i}+\ldots+\hat\beta_k X_{ki}$
     -   $e_i=Y_i-\hat Y_i$
 
 ::: notes
-The multiple linear regression model says that $Y_i$ is a linear function of $X_{1i},\ X_{2i},\ ...,\ X_{ki}$ plus an error term. The error term accounts for the fact that even the best set of independent variables will still fall a bit short.
-
-The $\epsilon_i$ have to meet three assumptions: independence, equal variances, and normally distributed.
-
 To estimate the $\beta$ values, use the principle of least squares. In other words find the $\beta$ values that make the predicted values, $\hat Y_i$ as close as possible to the original $Y_i$.
 
 The residual, $e_i$, is the deviation between the actual data value and what you predict based on the k independent variables.
@@ -96,7 +151,7 @@ The analysis of variance table helps you identify "good" and "bad" regression mo
 ## Analysis of variance table for multiple linear regression, 1 of 3
 
 -   SSR or $SS_{regression}=\Sigma(\hat Y_i-\bar Y)^2$
--   SSE or $SS_{error}$ or $SS_{residual}=\Sigma(Y_i-\hat Y_i)^2$
+-   SSE or $SS_{error}$ or $SS_{residual}=\Sigma(Y_i-\hat Y_i)^2=\Sigma\ e_i^2$
 -   SST or $SS_{total}=\Sigma(Y_i-\bar Y)^2$
 
 ::: notes
@@ -118,7 +173,7 @@ The degrees of freedom for regression is k, the number of independent variables.
 
 -   $F=MSR/MSE$
 -   This tests the hypotheses
-    -   $H_0:\ \beta_1=\beta_2=...=\beta_k=0$
+    -   $H_0:\ \beta_1=\beta_2=\ldots=\beta_k=0$
     -   $H_1:\ \beta_j \ne 0$ for at least one j
     -   Accept $H_0$ is F is close to 1
     -   Reject $H_0$ is F is much larger than 1

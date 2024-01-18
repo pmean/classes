@@ -94,7 +94,7 @@ An important point to remember here is that k is the number of candidate variabl
     -   Use least squares to estimate $\hat\beta_0,\ \hat\beta_1,\ \hat\beta_2,\ ...,\ \hat\beta_k$
     -   Compute T=\frac{\hat\beta_j}{se(\hat\beta_j)}
     -   Accept $H_0$ if T is close to zero
-    -   Reject $h_0$ if T is large negative or large positive
+    -   Reject $H_0$ if T is large negative or large positive
     
 ::: notes    
 If you want to look at the impact of an individual independent variable in a multiple regression model, compute the full model and compare the coefficient of one of the independent variables to its standard error. If that ratio is close to zero, accept the null hypothesis.
