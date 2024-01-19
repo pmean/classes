@@ -116,6 +116,8 @@ What is the impact of chest circumference in a model that already includes abdom
 
 ![](images/r-squared-02.png)
 
+- $Partial\ R^2=0.700-0.693=0.007$
+
 ::: notes
 The regression model with chest, abdomen, and hip accounts for 70% of the variation, but a model with just abdomen and hip does almost as well, accounting for 69.3% of the variation. The difference, 0.7% is the amount of additional variation accounted for when you add chest to a model that already included abdomen and hip.
 
@@ -146,7 +148,7 @@ You can place abdomen in the first block of variables. Then place hips and chest
 ## Testing the impact of hips and chest, 2 of 2
 
 -   $F=\frac{(SSR_{full}-SSR_{reduced})/m}{SSE_{full}/(n-(k+m+1))}$
--   $F=\frac{(10,548.480-9984.086)/2}{4530.537}/(252-(1+2+1))}$
+-   $F=\frac{(10,548.480-9984.086)/2}{4530.537/(252-(1+2+1))}$
 -   $F=\frac{282.2}{18.26829}=15.4$
 
 ::: notes
