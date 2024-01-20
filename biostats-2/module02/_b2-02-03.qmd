@@ -92,7 +92,7 @@ An important point to remember here is that k is the number of candidate variabl
     -   Test $H_0:\ \beta_j=0$ versus $H_0:\ \beta_j \ne 0$
         -   Remaining $\beta$'s  could be anything
     -   Use least squares to estimate $\hat\beta_0,\ \hat\beta_1,\ \hat\beta_2,\ ...,\ \hat\beta_k$
-    -   Compute T=\frac{\hat\beta_j}{se(\hat\beta_j)}
+    -   Compute $T=\frac{\hat\beta_j}{se(\hat\beta_j)}$
     -   Accept $H_0$ if T is close to zero
     -   Reject $H_0$ if T is large negative or large positive
     

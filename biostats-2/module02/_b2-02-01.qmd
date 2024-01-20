@@ -42,7 +42,7 @@ There are also issues that arise far more often in one model than the other. Mul
 
 -   Single model that unites all three models.
 -   Use of indicator variables for categorical data
--   Not the same as generalIZED linear model
+-   Not the same as general **IZED** linear model
 
 ::: notes
 It didn't take long for researchers to discover a common linkage between multiple linear regression, analysis of covariance, and multifactor analysis of variance. In particular, you can treat categorical variables as if they were continuous through the use of indicator variables. You'll see more discussion about this later. 

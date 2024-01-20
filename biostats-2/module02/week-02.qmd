@@ -11,8 +11,7 @@ params:
   topic_04: "Stepwise regression"
   topic_05: "Regression diagnostics, residuals"
   topic_06: "Multicollinearity (VIF)"
-  topic_07: "To be determined"
-  topic_08: "To be determined"
+  topic_07: "Mediation"
 editor: source
 ---
 
@@ -33,9 +32,8 @@ editor: source
     -   `r params$topic_05`
     -   `r params$topic_06`
     -   `r params$topic_07`
-    -   `r params$topic_08`
 
-{{< include _02-01.qmd >}}
+{{< include _b2-02-01.qmd >}}
 
 ## Break #1
 
@@ -44,7 +42,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_02`
 
-{{< include _02-02.qmd >}}
+{{< include _b2-02-02.qmd >}}
 
 ## Live demo, ANOVA and R-squared
 
@@ -55,7 +53,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_03`
     
-{{< include _02-03.qmd >}}
+{{< include _b2-02-03.qmd >}}
 
 ## Live demo, partial F test
 
@@ -66,7 +64,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_04`
     
-{{< include _02-04.qmd >}}
+{{< include _b2-02-04.qmd >}}
 
 ## Live demo, stepwise regression
 
@@ -77,7 +75,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_05`
 
-{{< include _02-05.qmd >}}
+{{< include _b2-02-05.qmd >}}
 
 ## Live demo, regression diagnostics
 
@@ -88,7 +86,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_06`
 
-{{< include _02-06.qmd >}}
+{{< include _b2-02-06.qmd >}}
 
 ## Live demo, multicollinearity
 
@@ -99,16 +97,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_07`
 
-{{< include _02-07.qmd >}}
-
-## Break #7
-
--   What you have learned
-    -   `r params$topic_07`
--   What's coming next
-    -   `r params$topic_08`
-
-{{< include _02-08.qmd >}}
+{{< include _b2-02-07.qmd >}}
 
 ## Summary
 
@@ -120,8 +109,7 @@ editor: source
     -   `r params$topic_05`
     -   `r params$topic_06`
     -   `r params$topic_07`
-    -   `r params$topic_08`
-    
+
 ## Additional topics??
 
 ::: notes

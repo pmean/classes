@@ -37,7 +37,7 @@ editor: source
     -   `r params$topic_04`
     -   `r params$topic_05`
 
-{{< include _01-01.qmd >}}
+{{< include _crm-01-01.qmd >}}
 
 ## Break #1
 
@@ -46,7 +46,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_02`
 
-{{< include _01-02.qmd >}}
+{{< include _crm-01-02.qmd >}}
 
 ## Break #2
 
@@ -55,7 +55,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_03`
     
-{{< include _01-03.qmd >}}
+{{< include _crm-01-03.qmd >}}
 
 ## Break #3
 
@@ -64,7 +64,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_04`
     
-{{< include _01-04.qmd >}}
+{{< include _crm-01-04.qmd >}}
 
 ## Break #4
 
@@ -73,7 +73,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_05`
     
-{{< include _01-05.qmd >}}
+{{< include _crm-01-05.qmd >}}
 
 ## Summary
 
