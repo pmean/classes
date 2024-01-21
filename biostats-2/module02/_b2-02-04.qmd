@@ -122,16 +122,21 @@ Adjusted R-squared can go down, because it adjusts for the degrees of freedom. I
 -   Knowledge of medicine/science
 -   Superior to "brainless" approaches
     -   “Ginny!" said Mr. Weasley, flabbergasted. "Haven't I taught you anything? What have I always told you? Never trust anything that can think for itself if you can't see where it keeps its brain?” from Harry Potter and the Chamber of Secrets, J.K. Rowling.
--   Use a mixture of science/medicine with automated approaches?
-    -   Story about an industrial process
-    
+
 ::: notes
 There is a tendency to forget that you yourself have a lot to contribute to the process of selecting the right independent variables. You are familiar with previous research and you have insights into the medicine and science that underlies the model you are trying to build.
 
 Relying solely on automated procedures is often a mistake because the automated procedures do not use anything beyond the numbers themselves.
 
 If there is a problem with these approaches and more generally with many machine learning models, it is highlighted by the quote from J.K. Rowling. She was not thinking about machine learning when she crafted this quote, but it certainly applies.
+:::
 
+## Use a mixture
+
+-   Use a mixture of science/medicine with automated approaches?
+    -   Story about an industrial process
+    
+::: notes
 At a minimum, use your knowledge as you evaluate these models. Avoid the tendency to think of a stepwise approach or any other automated approach as the final word. Think of it as an intelligent assistant, who might save you time, but you still have to carefully check everything they produce.
 
 There's an interesting anecdote that I heard many years ago (so long ago that I can't remember the source). A researcher was examining an industrial process and was rating the importance of various factors in controlling the output. The statistician ranked all the variables using some sort of stepwise algorithm. They listed the most important variable, second most important, etc. and conclude with "and the least important variable is the amount of water present."

@@ -1,5 +1,5 @@
 ---
-title: 
+title: "Residual analysis"
 format: 
   revealjs:
     slide-number: true
@@ -7,10 +7,76 @@ format:
 editor: source
 ---
 
-## Slide 02-05
+## Using residuals to check for assumption violations
 
+-   Non-normality
+    -   QQ plot
+-   Lack of independence
+    -   Time sequence plot, Durbin-Watson statistic
+        -   Only for time-ordered data
+-   Unequal variances
+    -   Sactterplot of residuals versus predicted values
+-   Non-linearity
+    -   Scatterplot of residuals versus each independent variable
+    -   Scatterplot of residuals versus predicted values
+    
 ::: notes
+There are three important assumptions in multiple linear regression. You check the normality assumption with a Q-Q plot of the residuals. Nte that it is the residuals and not the dependent variable itself that you use here. 
 
+If your data has a natural ordering over time, then a time sequence plot and the Durbin-Watson statistic can help detect some violations of the independence assumption. You often do not have a time ordering for your data, and there may be other types of problems with independence associated with factors other than time.
+
+The assumption of equal variances is sometimes violated when larger predicted values have greater variation. This occurs in quite a few setting.
+
+Consider a mutliple linear regression model with housing prices as the dependent variable. You go to some older neighborhoods in the Kansas City area and the houses are mostly smaller and packed closely together on tiny lots. These houses might vary in price from 80 to 120 thousand dollars.  Other neighborhoods have houses that are not so old, a bit larger, and a bit more space for your yard. These houses might sell across a broader range, maybe from 200 thousand to 400 thousand dollars. Then you have the neighborhoods with newer houses, lots of room both inside and outside. These houses might sell for 800 thousand dollars to 2 million dollars.
+
+Notice how the variation marches in lock step with the prices. Small average prices have relatively little variation and large average prices have relatively large variation.
+
+This also occurs with many other outcome variables that are bounded below by zero. The bound is quite constraining when you are on the low end, but less constraining on the high end.
+
+The way to look for the pattern is to plot the residuals versus the predicted values. A fanning out pattern, with more variation with residuals associated with larger predicted values, is a violation of the assumption of equal variances.
+
+Linearity is an implicit assumption of multiple linear regression. Sometimes, however, the relationship is nonlinear between one of your independent variables and your dependent or outcome variable variable. You might, for example, see an increasing relationship, but the increase tends to slow down at the high end. This is sort of like diminishing returns. Or perhaps the opposite occurs, when your independent variable is on the high end, the outcome takes off almost exponentially.
+Sometimes you can have too much of a good thing. A moderate value for your independent variable leads to a large outcome, but larger values backfire and bring your outcome back down to earth.
+
+A plot of the residuals versus each independent variable is helpful here. A random scatter of points is a sign that the linearity holds. Any trend indicates that there is a more complex relationship between your independent variable and your outcome.
+
+If you have more than a few independent variables, you can substitute a single plot the plot of residuals versus the predicted value. Think of the predicted value as a composite or linear combination of all your independent variables. If there is no obvious pattern or trend in this plot, then there is a good chance that you wouldn't see any obvious pattern or trend in a plot of any of your independent variables and your residuals.
 :::
 
-## Multicollinearity is not a problem if you are only interested in prediction
+## Q-Q plot of residuals
+
+![](images/qq-plot-01.png)
+
+::: notes
+This is the QQ plot of residuals. It looks like a straight line, indicating that the normality assumption is reasonable.
+:::
+
+## Scatterplot of residuals and chest circumference
+
+![](images/residual-chest-plot.png)
+
+::: notes
+There is no apparent problem with unequal variances or non-linearity with respect to chest circumference ...
+:::
+## Scatterplot of residuals and abdomen circumference
+
+![](images/residual-abdomen-plot.png)
+
+::: notes
+... or abdomen circumference ...
+:::
+
+## Scatterplot of residuals and hip circumference
+
+![](images/residual-hip-plot.png)
+::: notes
+... or hip circumference.
+:::
+
+## Scatterplot of residuals and predicted values
+
+![](images/residual-predicted-plot.png)
+
+::: notes
+While three variables is not too many, here is what the plot of residuals versus predicted values looks like. Notice that it has pretty much the same features as the three individual plots.
+:::

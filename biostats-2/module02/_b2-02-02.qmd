@@ -98,11 +98,15 @@ Predicting the future is a perilous process. Pretty much every investment opport
         -   independent, 
         -   same variance,
         -   normally distributed.
+    -   Independent variables must be on interval or ratio scale     
+        -   Nominal/ordinal scales require some care
         
 ::: notes
 The multiple linear regression model says that $Y_i$ is a linear function of $X_{1i},\ X_{2i},\ \ldots,\ X_{ki}$ plus an error term. The error term accounts for the fact that even the best set of independent variables will still fall a bit short.
 
 The $\epsilon_i$ have to meet three assumptions: independence, equal variances, and normally distributed.
+
+It's often not stated directly, but your independent variables must be on an interval or ratio scale. There are ways accommodate independent variables on an ordinal or interval scale, but these methods require a bit of care. 
 :::
 
 ## Estimates for the multiple linear regression model
