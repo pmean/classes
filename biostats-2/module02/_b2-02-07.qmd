@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Mediation"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,40 @@ format:
 editor: source
 ---
 
-## Slide 02-07
+## What is mediation?
 
+![](images/mediator-01.png)
+
+-   "A situation when the relationship between a predictor variable and an outcome variable can be explained by their relationship to a third variable (the mediator)"
+    -   Andy Field, Section 11.4
+    
+::: notes
+The image and quote from your Andy Field textbook is about as good as anything. A mediator is a third variable which partially or totally explains the relationship between two variables. You'll see more of this next week's module, but I wanted to introduce it here, because it is a very important concept.
+:::
+
+## Why do you need to understand mediation?
+
+-   Mostly irrelevant for prediction
+-   Very important for understanding mechanisms
+    -   Is there a direct relationship?
+    
 ::: notes
 
+:::
+
+## An informal assessment of mediation
+
+![](images/mediator-02.png)
+
+![](images/mediator-03.png)
+
+::: notes
+There's a relationship between age and percentage body fat. It is a bit easier to follow if you convert age in years to age in decades. The relationship between decades of age and body fat is that you add about 1.8% to your body fat every decade on average.
+
+The question is, how does this happen? Does some of the muscle turn directly into fat, or do you add fat through an expanding girth?
+
+When you look at a model with both decade of age and abdomen circumference, the effect of age is cut markedly. Instead of adding 1.8% body fat on average, you add about 0.7% body fat on average. The rest of the body fat comes from the "love handles" that you develop as you age.
+
+So gaining some fat is inevitable, even if you can still fit into those size 32 jeans that you wore as a young man. But much of the gain in percentage body fat comes from moving from size 32 over time to size 42.
 :::
 

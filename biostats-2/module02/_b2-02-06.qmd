@@ -1,5 +1,5 @@
 ---
-title: "Multi-collinearity and the variance inflation factor"
+title: "Collinearity and the variance inflation factor"
 format: 
   revealjs:
     slide-number: true
@@ -7,16 +7,107 @@ format:
 editor: source
 ---
 
-## Slide 02-06
+## What is collinearity?
+
+-   Strong interrelationship among the independent variables
+    -   Also known as
+        -   multi-collinearity
+        -   near collinearity
+        -   ill-conditioning
+-   Interrelationship could be just two variables
+    -   Also could be three or more interrelated variables
+    
+::: notes
+Collinearity is a strong interrelationship among two or more independent variables. There are alternate terms, collinearity, near collinearity, and ill-conditioning. People with a more theoretical background will quibble about these terms but you should consider them more or less interchageable.
+
+The interrelationship could just be between two independent variables. These are relatively easy to spot. Sometimes the interrelationship is among three or more independent variables. These can sometimes be tricky to spot.
+:::
+
+## Examples of collinearity
+
+-   Birthweight and gestational age predicting length of stay
+-   Size of the home and size of the lot predicting sales price
+-   Calories from fat, from protein, and from carbohydrates predicting weight gain
 
 ::: notes
+If you have to predict length of stay in the birth hospital using birthweight and gestational age, there is a relationship between the two variables. Lower birthweights are associated with earlier gestational age and higher birthweights are associated with later gestational ages. 
 
+If you are trying to estimate what a house will sell for, the size of the house itself and the size of lot it sits on are both important. Larger houses tend to be found on larger lots and smaller houses tend to be found on smaller lots. There are some exceptions, of course, but the interrelationship between house size and lot size is strong.
+
+A more complex relationship involves calories consumed from three sources: fat, protein, and carbohydrates. If you get a lot of calories from fat, there is less room in your diet for calories from protein and carbohydrates. You can say a similar thing for calories from protein or calories from carbohydrates. Now some people will just eat a lot of everything, but most people gravitate to one source of calories or another.
+
+Now none of these interrelationships are perfect. Sometimes you will see a slightly underweight baby in a full term birth, for example. But there is a general relationship between the two in spite of a few exceptional babies.
+:::
+
+## What problems are caused by collinearity?
+
+-   Difficulty in variable selection
+-   Loss of precision
+    -   wider confidence intervals
+-   Loss of power
+    -   Need for larger sample sizes
+-   Not a violation of assumptions
+-   Not a problem if you are only interested in prediction
+
+::: notes
+When two or more independent variables are interrelated, it becomes difficult to decide where one variable or the other or both are needed to provide good predictions.
+
+You will see a loss in precision. Your confidence intervals will be wider.
+
+You also have less power. The sample size needed will have to be larger.
+
+Think of a table with four legs. Normally you would put the legs in all four corners. This provides stability. But if the legs go along the diagonal fron one corner to the opposite corner, you don't have good support in the remaining two corners. The table wobbles and is unstable.
+
+Now the presence of multicollinearity does not make a multiple linear regression model invalid. You're not violating any of the assumptions the you need. Instead think of collinearity as a data insufficiency problem. You have data on small babies with early gestational age, large babies with later gestational age, but almost no data on large babies with early gestational age and almost no data on small babies with late gestational age.
+:::
+
+## Fixing collinearity
+
+-   Collect more data
+-   Oversample "rare" corners
+-   Prune your variables
+
+## Measures of collinearity
+
+-   Correlation matrix
+-   Tolerance
+    -   $Tol_i=1-R_i^2$
+        -   $R_i^2$ for predicting $i^{th}$ independent variable from remaining independent variables
+-   Variance inflation factor
+    -   $VIF_i=\frac{1}{Tol_i}$
+    -   Increase in $Var(\hat\beta_i)$ due to collinearity
+
+::: notes
+A simple way to check for multicollinearity is to examine the correlations among the independent variables. This will catch some of the simpler forms of multicollinearity, especially when it is an interrelationship among only two independent variables.
+
+Tolerance is defined as 1 minus the R-squared value in a model predicting the $i^{th}$ independent variable using the remaining independent variables. A small value for at least one tolerance is an indication of trouble with collinearity. If you can account for most of the variation in one independent variable using all the other independent variables, that implies a strong interrelationship. 
+
+How small is small? I would say 0.1 or less, but others have suggested the 0.4 or smaller is an indication of collinearity.
+
+The variance inflation factor is a comparable statistic. It is just the reciprocal of tolerance.
+
+The variance inflation factor is the reciprocal of tolerance. It has a direct interpretation. It represents how much larger the estimated variance is for an estimated slope in multiple linear regression due to collinearity compared to the ideal case where there would be no correlation between any of the independent variables.
+
+I view a variance inflation factor of 10 or greater to be worthy of concern.
 :::
 
 ## Collinearity statistics for the fat dataset
 
 ![](images/collinearity-statistics-01.png)
 
-## Multicollinearity is not a problem if you are only interested in prediction
+## What is perfect collinearity?
 
+-   Exact relationship among independent variables
+-   Impossible to estimate regression coefficients
+-   Examples
+    -   Measuring temperature in both Fahrenheit and Centigrade
+    -   Thee percentages adding up to exactly 100%
+-   Only solution: drop one or more variables 
+    
+::: notes
+Although most collinearities represent only approximate interrelationships, sometimes you might encounter a perfect collinearity. If there is a precise relationship rather than an approximate one, then you cannot estimate the regression coefficients at all.
 
+Some examples of perfect collinearities are when you have the same measurement, just with different units, such as temperature in Fahrenheit and temperature in Centigrade. Or three variables representing percentages of a total might be perfectly collinear if they total up to exactly 100%. This is a perfect collinearity because once you know two of the percentages, you can estimate the third one precisely.
+
+The only solution to a perfect collinearity is to drop one or more independent variables. Keep temperature in Fahrenheit or Centigrade but not both. Drop one of the three percentages that add up to exactly 100%.
+:::
