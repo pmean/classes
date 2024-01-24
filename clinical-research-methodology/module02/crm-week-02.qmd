@@ -1,18 +1,16 @@
 ---
-title: "Comments for MEDB 5502, Week 14"
+title: "Comments for MEDB 5510, Week 02"
 format: 
   revealjs:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "Cluster analysis"
-  topic_02: "To be determined"
-  topic_03: "To be determined"
-  topic_04: "To be determined"
-  topic_05: "To be determined"
-  topic_06: "To be determined"
-  topic_07: "To be determined"
-  topic_08: "To be determined"
+  topic_01: "Steps in research"
+  topic_02: "Identify a research problem"
+  topic_03: "Developing a research hypothesis"
+  topic_04: "Historical overview of research ethics"
+  topic_05: "IRB approval"
+  topic_06: "Ethical issues"
 editor: source
 ---
 
@@ -23,6 +21,14 @@ editor: source
 
 # Keep this chunk, even if no code, so that
 # params is populated from the yaml header.
+
+# To print speaker notes, add
+#   ?print-pdf&showNotes=separate-page 
+#   to the end of the URL. Then open the
+#   print dialog box (ctrl-P) and choose
+#   Save as PDF for the printer. Other 
+#   options, like Microsoft Print to PDF
+#   do not seem to work.
 ```
 
 -   What you will learn
@@ -32,10 +38,16 @@ editor: source
     -   `r params$topic_04`
     -   `r params$topic_05`
     -   `r params$topic_06`
-    -   `r params$topic_07`
-    -   `r params$topic_08`
 
-{{< include _14-01.qmd >}}
+::: notes
+Here are your objectives.
+
+We are going to talk about planning and ethics. We are going talk more about the variety of research that can be conducted. We'll introduce new dichotomies and we're going to describe what's needed to identify research question.
+
+Now, in the short amount of time, we really can't do justice to ethics. We have an entire course, Ethical Conduct of Research that covers all the issues in greater detail. What I hope to do is to review a few basic issues and discuss the historical events associated with the increasing concern and demand for oversight. 
+:::
+
+{{< include _crm-02-01.qmd >}}
 
 ## Break #1
 
@@ -44,9 +56,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_02`
 
-{{< include _14-02.qmd >}}
-
-## Live demo, ANOVA and R-squared
+{{< include _crm-02-02.qmd >}}
 
 ## Break #2
 
@@ -55,9 +65,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_03`
     
-{{< include _14-03.qmd >}}
-
-## Live demo, partial F test
+{{< include _crm-02-03.qmd >}}
 
 ## Break #3
 
@@ -66,9 +74,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_04`
     
-{{< include _14-04.qmd >}}
-
-## Live demo, stepwise regression
+{{< include _crm-02-04.qmd >}}
 
 ## Break #4
 
@@ -77,9 +83,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_05`
 
-{{< include _14-05.qmd >}}
-
-## Live demo, regression diagnostics
+{{< include _crm-02-05.qmd >}}
 
 ## Break #5
 
@@ -88,27 +92,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_06`
 
-{{< include _14-06.qmd >}}
-
-## Live demo, multicollinearity
-
-## Break #6
-
--   What you have learned
-    -   `r params$topic_06`
--   What's coming next
-    -   `r params$topic_07`
-
-{{< include _14-07.qmd >}}
-
-## Break #7
-
--   What you have learned
-    -   `r params$topic_07`
--   What's coming next
-    -   `r params$topic_08`
-
-{{< include _14-08.qmd >}}
+{{< include _crm-02-06.qmd >}}
 
 ## Summary
 
@@ -119,16 +103,6 @@ editor: source
     -   `r params$topic_04`
     -   `r params$topic_05`
     -   `r params$topic_06`
-    -   `r params$topic_07`
-    -   `r params$topic_08`
-    
-## Additional topics??
-
-::: notes
--   Learning objectives
-    -   To be determined
-    
-:::
 
 <!---
       You have to put the title down 
@@ -137,5 +111,5 @@ editor: source
 --->
 
 ---
-title: "Comments for MEDB 5502, Week 03"
+title: "Comments for MEDB 5502, Week 02"
 ---

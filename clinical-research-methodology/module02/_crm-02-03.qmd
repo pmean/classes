@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Developing a research hypothesis"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,142 @@ format:
 editor: source
 ---
 
-## Slide 01-03
+## FINER criteria
+
+-   Feasible
+-   Interesting
+-   Novel
+-   Ethical
+-   Relevant
+    -   Source: Hulley, Cummings, Browner, Grady, Hearst, & Newman. *Designing Clinical Research* . 2001.
 
 ::: notes
+Here's an acronym that gives you one more way to think about things when you are trying to pick a research problem. The acronym is FINER.
 
+F. Is your study feasible? Do you have an adequate number of subjects, the appropriate technical expertise, enough money, and a scope that is manageable?
+
+I. Is the problem interesting, both to you and to others.
+
+N. Novel. Does your research have the potential to support or refute existing findings. Does it allow you to expand upon what is already known or provide totally new knowledge?
+
+E. Ethical. Does the research treat your subjects with respect, offers them the autonomy that they deserve, and does it provides benefits to society?
+
+R. Relevant does your research provide information that other care about. This could be other scientists, if you are developing new theories or it could be your patients if the work is more applied. But somebody has to be interested in what you have found.
 :::
 
+
+## Developing a research hypothesis
+
+-   Identify your research hypothesis early.
+-   Use the PICOTS framework.
+    -   P = patient
+    -   I = intervention
+    -   C = comparison
+    -   O = outcome
+    -   T = time frame
+    -   S = setting
+-   Your hypothesis may change as you delve deeper.
+
+::: notes
+As I mentioned earlier, there are varying terms (research problem, research question, research aim, research goal) that all involve stating in very general terms what you can do.
+
+I find these distinctions annoying, and prefer to talk only about a research hypothesis. A research hypothesis has up to six components, represented by the acronym PICOTS. The first four are the most important, and you may have seen the acronym PICO. It is a criteria used in Evidence Based health Care to ask an answerable question. I have hijacked this acronym because I find it useful in getting beginning researchers to flesh out a research hypothesis. It helps insure that you won't leave an important piece out of your research, such as forgetting to specify a control group or failing to identify the proper outcome measure.
+
+P stand for your patient group. This is mostly for clinical research, so my apologies if you work mostly with animals.
+
+I stands for your intervention, though sometimes there is an "E" instead for exposure. An intervention is something that you do to try to improve things for your patient population. It may not actually improve things, and at times an intervention might make things worse (jumping from the frying pan into the fire). But an intervention has a good intention at its heart. An exposure is something that patients endure. It is usually difficult or impossible to control, and it generally (but not always) is something that is suspected to cause harm.
+
+C stands for your comparison or control group. Not all studies have a direct control group (sometimes you are comparing to historical norms) and some studies fail to have any control group. There was a study that looked at patients who present to a doctor with rectal bleeding. These patients were followed for three years to see how many of them developed colon cancer. It was a great study, but notice that they could not get a control group. Because patients don't rush to their doctors and say "Doctor, doctor, I need help. Give me the scope, run me through the imaging machine. Because I don't have any blood in my stool. The study could not estimate things like sensitivity or specificity, of course, but it still could estimate a positive predicted value, which is the proportion of patients who have a particular sign and end up developing disease.
+
+O stands for your outcome. This is a common omission. You might believe that people who get your intervention do better than people who do not, but if you don't have a way to measure what "better" means, then you have an incomplete research hypothesis.
+
+T stands for time frame. In a retrospective study, it might represent the years that you drew retrospective records from. In a prospective study, it might represent the time frame for your outcome measure. Note that short term outcomes in a prospective research study are easy to get but they may not be indicative of long term outcomes. Weight loss and smoking cessation are two good examples of this. It's easy to drop a few pounds after a few weeks on a diet, but to continue that loss, or even to avoid regaining the lost weight over many months or years is not so easy. Smoking cessation has the same issue. It's easy to stop smoking for a week or a month, but to kick the habit for a full year is really hard.
+
+S stands for setting. Research in an inpatient setting changes a lot when you are looking at an Intensive Care Unit. Treatment of patients who live at home is different than patients who are in a nursing home.
+
+Note every hypothesis will need to specify each of these six things. Some studies do not have an intervention or exposure. As noted earlier, some studies do not have a control group. 
+
+Also sometimes you can combine these letters. A patient population that is defined as asthmatic patients who get an appendectomy, for example, is a combination of the "P" and the "I". Patients with asthma who show up at the emergency room is a combination of "P" and "S".
+
+Don't force fit your hypothesis into the PICOTS framework. But if you deviate from this framework by leaving out one of more of the letters, think carefully and justify why, for example, you don't need a control group.
+
+The value of specifying a hypothesis is that it helps you avoid what is often called a Type III error: collecting data that does not answer your research question.
+:::
+
+
+## Not all research needs a hypothesis.
+
+-   Examples
+    -   Estimation
+    -   Identification
+
+::: notes
+Not every research study needs a hypothesis. Many qualitative studies lack a formal hypothesis, for example. In a study without a research hypothesis, the goal is not comparison to a control group but rather either estimation or identification.
+
+An example of estimation is trying to quantify that costs associated with patients in a hospital who have an intubation failure. You already know that intubation failures are bad news, so showing that intubation failures have significantly worse outcomes than successful intubations. Rather you'd like to quantify how much this costs, in terms of money, time, and suffering, so you would have a better idea of how much effort you should spend trying to avoid intubation failures.
+
+Another example of estimation involves the study of diagnostic tests. You usually don't want to prove or disprove a hypothesis involving diagnostic tests. Instead you want to measure how effective the diagnostic test is in terms of sensitivity and specificity.
+
+An example of identification is documenting, after a child is diagnosed with cancer, what are the experiences, emotions, and problems faced by the healthy siblings of that cancer patient.
+
+Another example of identification is documenting the different treatment paths used for women who are diagnosed with breast cancer.
+:::
+
+## Three types of variables. 
+
+-   Outcome variable(s)
+-   Independent variable(s)
+    -   Active
+    -   Attribute
+-   Covariates
+
+::: notes
+Once you have a research hypothesis, you should start thinking about all the variables that you will collect as part of your research. These variables are typically classified into one of three categories.
+
+The outcome variable, sometimes called the dependent variable or the criterion variable, measures whether your intervention makes things better. You may have more than one outcome variable, and if you do, you need to think about what it means if the different outcome measures tell you different things about whether the intervention is actually making things better.
+
+The independent variable is either the intervention or exposure that you are studying or other variables that are of direct interest. Your book makes an additional distinction that I normally don't mention. They describe an active independent variable as one that can be manipulated and is, therefore, suitable for experimental studies. In contrast, attribute independent variables cannot be manipulated. Most demographic variables, if they are used as independent variables, represent attribute variables. You can't manipulate someone's gender.
+
+Covariates are variables that are not of direct interest but which can influence your outcome. You include these variables because failure to properly account for them might raise questions about the validity of your research.
+
+You also might measure covariates because they help you define characteristics of the patient population that you are using, so others might look at the descriptive statistics on these variables to help answer the question "How similar are my patients".
+:::
+
+
+## Three types of analyses
+
+-   Difference
+    -   A - B > 0
+    -   or ratio A/B > 1
+-   Associational
+    -   A and B are correlated
+-   Descriptive
+    -   Means, standard deviations, or proportions of A and B.
+-   These categories are not mutually exclusive.
+
+::: notes
+Your book makes an interesting distinction between difference analyses and associational analysis. A difference analysis involve a comparison of two group. If A - B is greater than 0 then A is greater than B. Here A might represent the tumor detection rate from contrast-enhanced digital mammography and B might represent the tumor detection rate from a standard mammogram.
+
+For a difference hypothesis, you have a choice of a directional (one-sided) hypothesis or a non-directional (two-sided) hypothesis. An example of a directional hypothesis is that contrast-enhanced mammography can only improve the tumor detection rate. If this more expensive approach actually ended up decreasing the rate, we are not interested in reporting that finding because no one would be interested in hearing about it. Directional hypotheses are VERY controversial and I will try to cover them in more detail later in the class. 
+
+An associational analysis looks for a trend or pattern among two continuous variables. Are large values of A associated with large values of B and are small values of A associated with small values of B. This is a positive correlation. The reverse would be large values of A are associated with small values of B and small values of A are associated with large values of B. This is an example of a negative correlation. Here A and B might represent the tumor detection rate after mammography and B might represent the years of experience of the person reading the mammogram.
+
+Associational implies a relationship but not necessarily that one causes another. There's a story of a statistician who examined fire department records and discovered that the more fire engines that you sent to a fire scene, the more damage that they caused. When you can conclude that an association is causal is also very controversial and I plan to talk more about that later as well.
+
+Descriptive statistics involve simple univariate summary. What is the average value of A or what proportion of your patients have B. A might represent the age of the woman getting the mammogram and B might represent the race/ethnicity of that woman.
+:::
+
+
+## Schematic diagram of research approaches 
+
+![](images/gliner-figure-4-1.png)
+
+::: notes
+I think you've seen this figure already. If it from chapter 4 of your book. With a research hypothesis set, you can start to see what path your research might take. 
+
+If you have an active independent variable (usually an intervention rather than an exposure), you have enough control that you can often used a randomized experimental approach. There are times where logistics or patient preferences force you to implement your intervention without randomization. These are quasi-experimental approaches. Your book tends to disparage these quasi-experimental approaches, but they are used quite often in quality improvement studies and some quasi-experimental approaches can be quite persuasive. We'll talk a lot more about this later.
+
+If you have an attribute independent variable (usually an exposure or a demographic variable rather than an intervention), these fit into the broad category of observational (non-experimental) research. With an observational research study, you can choose among comparative, associational, or descriptive approaches. A comparative approach requires a difference hypothesis. Your books emphasizes that the comparative approach is less persuasive than a quasi-experimental or experimental approach, but again I disagree. We'll talk about the additional evidence and support that you need to make a difference hypothesis persuasive in week 5, I hope, when we tackle observational studies.
+
+I don't want to say much more about the associational and descriptive approaches just yet, but we will cover them in detail.
+:::

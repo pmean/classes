@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "IRB approval"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,53 @@ format:
 editor: source
 ---
 
-## Slide 01-05
+## Does my study need IRB approval
+
+-   Is it research?
+    -   Designed in advance
+    -   Systematic approach
+    -   Generalizable knowledge
+    -   Quality improvement versus research
+-   Does it involve human subjects?
+    -   interaction with a person, or
+    -   use of private information.
+-   Other minor exemption categories
 
 ::: notes
+One of the most important questions you'll face early in your research planning is deciding whether your research requires IRB review. You have to ask two questions: Is it research? and Does it involve human subjects?
 
+The government definition of research as quotes from 45 CFR 46 is "a systematic investigation, including research development, testing, and evaluation, designed to develop or contribute to generalizable knowledge." The key feature is that the work leads to generalizable knowledge. Some studies are intended only to benefit the actual participants of the study or only the small community that they come from. In this case, the work does not need review by the IRB.
+
+I don't like the requirements that research has to be designed in advance using a systematic approach because it implies that if you are sloppy and haphazard in how you collect your data, you are off the hook with regards to IRB review. But several guidances on what constitutes research stress the advance design and the systematic approach.
+
+Quality improvement (QI) studies lie in an uneasy space with respect to research. If the goal is to provide information only for your particular work area, the QI improvement study may not be considered research. You should talk to your local IRB about whether your QI study needs IRB approval.
+
+A Human subject, again as defined by 45 CFR 46, is "a living individual about whom an investigator (whether professional or student) conducting research obtains data through intervention or interaction with the individual, or identifiable private information." Pretty much any prospective study of humans will fall in this category. An exception is watching people in public spaces where no expectation of privacy exists. A retrospective study falls into this category if you are using information that the subject would normally expect to be kept private. A retrospective study where the data being used contains any identifiable private information falls in this category.
+
+Research on cadavers doesn't count because the cadavers aren't alive. At least not until the arrival of the zombie apocalypse. There are still procedures that you should follow with cadavers, but they are not under the purview of the IRB.
+
+I'm working with a group that is making exterior evaluations of housing units because the environment where you live is such an important determinant of health. Houses aren't people, so this work is exempt from IRB review.
+
+Research using publicly available data sources does not involve human subjects, because those data would not have been made public if they contained identifiable private information.
+
+There are a few additional types of research that are exempt: some types of educational evaluations, for example, and observations made in a public setting. These are not as common--the big two reasons why your study is exempt are because it is not research or it does not involve human subjects.
+
+Who decides whether it is research and whether it involves human subject varies from place to place, but if there is any uncertainty on this issue, please talk to your IRB.
 :::
 
+
+## IRB categories of approval
+
+-   Exempt from review
+-   Expedited review
+-   Full review
+
+::: notes
+Even if the work is research and it involves human subjects, the IRB may determine that it is exempt from review. This is generally done if the work is done in educational settings and involves normal educational practices. Research of public benefit or service programs may also be exempt.
+
+Expedited review does not necessarily mean faster review. It means that the review requires less effort by the IRB. The review is done by a smaller group and not the full IRB. Expedited review involves certain minimal risk studies, such as the collection of small blood samples, hair or nail clippings. Collection of certain administrative records or surveys or focus groups might apply.
+
+Some research requires full review which means that the entire board meets to discuss your research.
+
+It is not you, but rather the IRB that determines whether research is exempt, or when it requires expedited or full review.
+:::
