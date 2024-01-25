@@ -5,7 +5,7 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "To be determined"
+  topic_01: "What is covariate imbalance?"
   topic_02: "To be determined"
   topic_03: "To be determined"
   topic_04: "To be determined"
@@ -23,6 +23,14 @@ editor: source
 
 # Keep this chunk, even if no code, so that
 # params is populated from the yaml header.
+
+# To print speaker notes, add
+#   ?print-pdf&showNotes=separate-page 
+#   to the end of the URL. Then open the
+#   print dialog box (ctrl-P) and choose
+#   Save as PDF for the printer. Other 
+#   options, like Microsoft Print to PDF
+#   do not seem to work.
 ```
 
 -   What you will learn

@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "What is covariate imbalance?"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,65 @@ format:
 editor: source
 ---
 
-## Slide 03-01
+## What is a covariate?
+
+-   Variable not of direct interest
+    -   Relationship to outcome is already established
+    -   Still must be accounted for
+-   Examples
+    -   Smoking in a cancer study
+    -   Gestational in a neonatology study
+-   A covariate can be continuous or categorical
+    
+::: notes
+This is a repeat of what I said earlier. A covariate is not of direct interest. Testing the relationship of the covariate with the outcome variable is not of great interest. Often this is because the relationship between the covariate and the outcome has already been established.
+
+Even though it is not of direct interest, you feel an obligation to account for the covariate. It plays an important role and failure to measure and adjust for the covariate makes your research appear naive.
+
+A covariate can be continuous or categorical, but more often the former.
+:::
+
+## What is covariate imbalance?
+
+-   Difference in mean value between treatment and control group
+    -   Often a problem in observational studies
+    -   Sometimes a problem in randomized studies
 
 ::: notes
 
 :::
 
+## Why is covariate imbalance an issue?
+
+-   Biased estimates
+    -   Comparing apples to oranges
+-   Harms study credibility
+
+## Covariate imbalance versus confounding
+
+-   Covariate imbalance is simpler
+-   Confounder 
+
+## Preventing covariate imbalance
+
+-   Randomization
+-   Matching
+-   Stratification
+
+## Adjusting for covariate imbalance
+
+-   Propensity score models
+-   Analysis of covariance
+
+## Variables in the causal pathway
+
+## Examples of covariate imbalance
+
+-   Age in a study of smoking and Down's syndrome
+-   Smoking in a study of artillery assignment and sperm count
+-   http://www.pmean.com/05/CovariateImbalance.html
+
+## Adjusting for baseline measurements
+
+-   Change scores/difference in difference models
+-   https://www.bmj.com/content/323/7321/1123.full
