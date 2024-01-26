@@ -19,7 +19,7 @@ download:
   http://www.pmean.com/15/images/day3fev.txt
 
 format:
-  delimiter: space
+  delimiter: comma
   varnames: not included in the first row of data
   missing-value-code: Not needed
   rows: 654
