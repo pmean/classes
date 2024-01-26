@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Indicator variable coding"
 format: 
   revealjs:
     slide-number: true
@@ -7,7 +7,11 @@ format:
 editor: source
 ---
 
-## Slide 03-02
+## Indicator variable coding
+
+## Mathematical model
+
+-   $Y_i=\beta_0+\beta_1 X_i+\beta_2 T_i+\epsilon_i$
 
 ::: notes
 
