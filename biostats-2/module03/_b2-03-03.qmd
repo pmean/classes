@@ -10,8 +10,35 @@ editor: source
 ## Mathematical model
 
 -   $Y_i=\beta_0+\beta_1 X_i+\beta_2 T_i+\epsilon_i$
+    -   $X_i$ is the covariate
+    -   $T_i$ is an indicator variable for treatment
+-   Estimate $\hat\beta_0,\ \hat\beta_1,\ \hat\beta_2$
 
 ::: notes
 
 :::
 
+## Interpretation, 1 of 4
+
+-   $\hat\beta_0$
+    -   estimated average value of Y
+        -   when X=0, T=0
+
+## Interpretation, 2 of 4
+
+-   $\hat\beta_1$
+    -   estimated average change in Y
+        -   when X increases by one unit and 
+        -   T is held constant
+
+## Interpretation, 3 of 4
+
+-   $\hat\beta_2$
+    -   estimated average change in Y
+    -   when T increases by one unit and 
+    -   X is held constant
+
+## Interpretation, 4 of 4
+
+-   $\hat\beta_0$ is intercept for controls
+-   $\hat\beta_0+\hat\beta_2$ is intercept for treatment

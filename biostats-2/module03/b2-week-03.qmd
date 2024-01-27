@@ -43,9 +43,7 @@ editor: source
     -   `r params$topic_07`
     -   `r params$topic_08`
 
-{{< include_b2-03-01.qmd >}}
-
-## Live demo, `r params$topic_01`
+{{< include _b2-03-01.qmd >}}
 
 ## Break #1
 
@@ -54,7 +52,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_02`
 
-{{< include_b2-03-02.qmd >}}
+{{< include _b2-03-02.qmd >}}
 
 ## Live demo, `r params$topic_02`
 
@@ -65,7 +63,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_03`
     
-{{< include_b2-03-03.qmd >}}
+{{< include _b2-03-03.qmd >}}
 
 ## Live demo, `r params$topic_03`
 
@@ -76,7 +74,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_04`
     
-{{< include_b2-03-04.qmd >}}
+{{< include _b2-03-04.qmd >}}
 
 ## Live demo, `r params$topic_04`
 
@@ -87,7 +85,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_05`
 
-{{< include_b2-03-05.qmd >}}
+{{< include _b2-03-05.qmd >}}
 
 ## Live demo, `r params$topic_05`
 
@@ -98,7 +96,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_06`
 
-{{< include_b2-03-06.qmd >}}
+{{< include _b2-03-06.qmd >}}
 
 ## Live demo, `r params$topic_06`
 
@@ -109,7 +107,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_07`
 
-{{< include_b2-03-07.qmd >}}
+{{< include _b2-03-07.qmd >}}
 
 ## Live demo, `r params$topic_07`
 
@@ -120,7 +118,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_08`
 
-{{< include_b2-03-08.qmd >}}
+{{< include _b2-03-08.qmd >}}
 
 ## Live demo, `r params$topic_08`
 
