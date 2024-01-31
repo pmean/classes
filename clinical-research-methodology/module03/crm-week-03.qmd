@@ -1,14 +1,14 @@
 ---
-title: "See title at the bottom"
+title: "See bottom of file for title"
 format: 
   revealjs:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "What is covariate imbalance?"
-  topic_02: "Indicator variable coding"
-  topic_03: "Mathematical model"
-  topic_04: "Assumptions"
+  topic_01: "What is a literature review?"
+  topic_02: "Finding sources for your literature review"
+  topic_03: "Summarizing and evaluating individual articles"
+  topic_04: "An organizing structure to your literature review"
 editor: source
 ---
 
@@ -19,14 +19,6 @@ editor: source
 
 # Keep this chunk, even if no code, so that
 # params is populated from the yaml header.
-
-# To print speaker notes, add
-#   ?print-pdf&showNotes=separate-page 
-#   to the end of the URL. Then open the
-#   print dialog box (ctrl-P) and choose
-#   Save as PDF for the printer. Other 
-#   options, like Microsoft Print to PDF
-#   do not seem to work.
 ```
 
 -   What you will learn
@@ -35,7 +27,7 @@ editor: source
     -   `r params$topic_03`
     -   `r params$topic_04`
 
-{{< include _b2-03-01.qmd >}}
+{{< include _crm-03-01.qmd >}}
 
 ## Break #1
 
@@ -44,9 +36,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_02`
 
-{{< include _b2-03-02.qmd >}}
-
-## Live demo, `r params$topic_02`
+{{< include _crm-03-02.qmd >}}
 
 ## Break #2
 
@@ -55,9 +45,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_03`
     
-{{< include _b2-03-03.qmd >}}
-
-## Live demo, `r params$topic_03`
+{{< include _crm-03-03.qmd >}}
 
 ## Break #3
 
@@ -66,9 +54,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_04`
     
-{{< include _b2-03-04.qmd >}}
-
-## Live demo, `r params$topic_04`
+{{< include _crm-03-04.qmd >}}
 
 ## Summary
 
@@ -78,7 +64,6 @@ editor: source
     -   `r params$topic_03`
     -   `r params$topic_04`
 
-
 <!---
       You have to put the title down 
       here to override the titles of
@@ -86,5 +71,5 @@ editor: source
 --->
 
 ---
-title: "Comments for MEDB 5502, Week 03"
+title: "Comments for MEDB 5510, Week 03"
 ---

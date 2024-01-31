@@ -1,0 +1,92 @@
+---
+data_dictionary: bf.csv
+
+author:
+  Steve Simon wrote this data dictionary on 2024-01-30.
+  
+copyright:
+  This data is in the public domain and is freely avaiable for anyone
+  to use. Acknowledgement of the source is appreicated but not required.
+
+description:
+  This data comes from a research study done at Children's Mercy Hospital
+  and St. Luke's Medical Center. This was a study of breast feeding in 
+  pre-term infants. Infants were randomized into either a treatment group
+  (NG tube) or a control group (Bottle). Infants in the NG tube group were
+  fed in the hospital via their nasogastral tube when the mother was not
+  available for breast feeding. Infants in the bottle group received
+  bottles when the mothers were not available. Both groups were monitored
+  for six months after discharge from the hospital
+
+format:
+  delimiter: comma
+  varnames: included in the first row of data
+  missing-value-code: A space between two commas
+  rows: 844
+  columns: 31
+
+vars:
+  age:
+    scale: non-negative integer
+    unit: years
+    
+  fev:
+    label: Forced Expiratory Volume
+    scale: non-negative real
+    unit: liters
+    
+  ht:
+    label: Height
+    scale: non-negative integer
+    unit: inches
+
+  sex:
+    value:
+      Female: 0
+      Male: 1
+
+  smoke:
+    value:
+      Nonsmoker: 0
+      Smoker: 1
+
+   feed_typ:
+     value:
+       Control
+       Treatment
+
+   age_stop:
+     label: Age at which infant stopped breast feeding
+     scale: non-negative real
+     unit: weeks
+
+   sepsis:
+     label: Diagnosis of sepsis
+     value:
+       No
+       Yes
+
+   total_ab:
+     label: Total number of apnea and bradycardia incidents
+     scale: non-negative integer
+
+   
+BfDisch Breastfeeding status at hospital discharge (Excl, Part, None)
+BfDay3 Breastfeeding status three days after discharge (Excl, Part, None)
+BfWk6 Breastfeeding status six weeks after discharge (Excl, Part, None)
+BfMo3 Breastfeeding status three months after discharge (Excl, Part, None)
+BfMo6 Breastfeeding status six months after discharge (Excl, Part, None)
+DelType Type of delivery (Vag or C/S)
+MarStat Marital status of mother (Single or Married)
+Race Mother's race (White or Black)
+Smoker Smoking by mother during pregnancy (Yes or No)
+AgeYrs Mother's age in years
+Grav Gravidity or number of pregnancies
+Para Parity or number of live births
+MiHosp Miles from the mother's home to the hospital
+DaysNG Number of days on the NG tube.
+TotBott Total number of bottles of formula given while in the hospital
+BirthWt Birthweight in kg
+GestAge Estimated gestational age in weeks
+Apgar1 Apgar score at one minute
+Apgar5 Apgar score at five minutes---

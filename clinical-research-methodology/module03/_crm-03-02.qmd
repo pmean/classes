@@ -1,0 +1,79 @@
+---
+title: "Finding sources for your literature review"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Finding sources for your literature review
+
+-   Talk to a librarian
+-   Specify your scope
+-   Use primary sources, peer-reviewed
+-   Talk to a librarian
+-   Snowball sampling
+-   Iterate between writing and searching
+-   Talk to a librarian
+
+::: notes
+
+Your first step is to talk to a librarian. They are experts in finding information and they love to help.
+
+You should specify the scope of your literature review. This may change as you find out more information, but you have to start somewhere.
+
+The almost uniform recommendation is that a literature review should only include primary sources and not any secondary source. A secondary source is an analysis of one or more research studies by someone who did not conduct the research. The primary source is written by the researchers themselves. Note that most people would consider a systematic overview to be a primary resource, even though it does not meet this particular definition.
+
+It's hard to pin down why there is such an insistence on primary sources. One possible explanation is that different people can read the same research study and draw markedly different conclusions. So you need to read the study yourself rather than rely on someone else's opinion. A second explanation might be that the primary source is going to have a greater level of detail.
+
+That doesn't mean you can peek at a secondary source. They are great for helping you see possible organizational structures. They also are valuable to help you "prime the pump" meaning that they can help you get a critical mass of references together right from the start.
+
+I know that a lot of people hate Wikipedia. Just for the record, I think that Wikipedia, is a great starting point. The language is pretty accessible and they try to list a few key references.
+
+Snowball sampling is a technical term for asking one research subject to recommend other research subjects to you. Use that same idea in your literature review. If you find an interesting paper, see if that paper's bibliography has other papers worth looking at.
+
+You should alternate between searching and writing, especially if you are using a thematic approach. The process of writing will help you identify what parts of your literature review are well covered and what parts need more references. You may also find that your organizational themes evolve as you write, leading you to search in new areas.
+
+It's worthwhile, as you are writing to go back and talk to a librarian.
+
+:::
+
+## Organization
+
+-   Note cards
+-   Spreadsheets
+-   Bibliographic software
+    -   Endnotes
+    -   Zotero
+    -   Mendeley
+    -   BibTeX
+-   Talk to a librarian
+  
+::: notes
+
+As you are working, keep good notes. It's really easy to misplace a key reference and then waste a lot of time trying to find it again. Be liberal in what you track. The time wasted from tracking too many items does not match the time wasted from trying to refind a single lost reference.
+
+The "low tech" approach, but one that still has many advocates is writing things down on index cards. Index cards are easy to sort and to arrange in different stacks.
+
+Many people advocate using a spreadsheet to organize your results. As for me, I hate spreadsheets, but a lot of people who are a lot smarter than I am use them. This includes the previous instructor for this class, Mary Gerkovich. So go ahead and use a spreadsheet and I promise I won't sneer. There are too many people who are too easy to condemn things because they don't match their view of the perfect world. I hope I never become like them.
+
+There are several excellent bibliographic software programs out there. I used Endnotes for quite a while. It is a commercial product, and I have recently tried to wean myself as much as possible from commercial software. But I will say that I loved Endnotes when I used it.
+
+I've also used Zotero. It scans the metadata for a website and scrapes the information that you need to build a bibliography. It used to be tied very tightly to the Firefox browser, but that has changed. You can also store information from Zotero in the cloud. I used it for quite a while and liked it, but I've stopped using it for reasons I can't explain.
+
+I have not used Mendeley, but it has gotten good reviews, especially from some of the librarians I know. It functions quite similarly to Zotero.
+
+BibTeX (notice the curious capitalization) is an add-on to the TeX document production system. I am using BibTeX on an off these days, but have not done all my work in it just yet. BibTeX is an open source product and it uses plain text files for storage. That's a strong trend in recent years, to store things in a file that humans can read rather than a binary format. The advantage is that you can use BibTeX easily with version control software. It also integrates nicely with R Markdown, a system that I am using more and more, not just for statistical analysis, but for the production of papers, web pages, and presentations. There's a steep learning curve to BibTeX, but if you are already using TeX, it is a natural fit. I've included a reading about BibTeX in the recommended readings section, not because I want you to use it (it is an acquired taste), but rather because I want you to understand how it works. It takes a much different approach than some of the other systems, and I really do think it is the wave of the future.
+
+But I promise not to sneer if you use something other than BibTeX.
+:::
+
+## Scraping information from an article.
+
+![](images/export-citation-01.png)
+
+::: notes
+I spend a fair amount of time with cut-and-paste and plain old retyping of information on the web, but it is becoming easier these days. Most journal web sites have a link that allows you to export the citation information to various formats. It's in a different spot for different journals, unfortunately. Here is an example of getting citation information from an article I co-authored back in 2006.
+:::
+
