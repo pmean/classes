@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Multiple factor analysis of variance"
 format: 
   revealjs:
     slide-number: true
@@ -7,7 +7,12 @@ format:
 editor: source
 ---
 
-## Slide 04-02
+## Mathematical model
+
+-   $Y_{ijk} = \mu + \alpha_i + \beta_j +\epsilon_{ijk}$
+    -   i=1,...,a levels of the first categorical variable
+    -   j=1,...,b levels of the second categorical variable
+    -   k=1,..,n replicates with first and second categories
 
 ::: notes
 

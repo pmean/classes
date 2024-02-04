@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Indicator variables for three or more categories"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,174 @@ format:
 editor: source
 ---
 
-## Slide 04-01
+## Review oneway analysis of variance
+
+-   $H_0:\ \mu_1=\mu_2=...=\mu_k$
+-   $H_1:\ \mu_i \ne \mu_j$ for some i, j
+    -   Reject $H_0$ if F-ratio is large
+-   Note: when k=2, use analysis of variance or t-test
 
 ::: notes
-
+In Biostats-1, we discussed the comparison of three or more means using oneway or single factor analysis of variance. You can actually use analysis of variance when comparing only two means, but an equivalent alternative is the t-test.
 :::
 
+## Full moon data
+
+-   Admission rates to mental health clinic before, during, and after full moon.
+-   One year of data
+
+::: notes
+To illustrate oneway analysis of variance, I found a dataset on mental health clinic admissions.
+:::
+
+## Boxplot of full moon data
+
+![](images/full-moon-analysis-01.png)
+
+::: notes
+Here is a boxplot. It looks like admissions during a full moon are a bit higher than before or after a full moon.
+:::
+
+## Descriptive statistics
+
+![](images/full-moon-analysis-02.png)
+
+::: notes
+Here are the means and standard deviations.
+:::
+
+## Analysis of variance table
+
+![](images/full-moon-analysis-03.png)
+
+::: notes
+The F-ratio is close to 1 and the p-value is large. You would accept the null hypothesis and conclude that the average admission rate during a full moon is the same as at other times.
+:::
+
+## Tukey post hoc
+
+![](images/full-moon-analysis-04.png)
+
+![](images/full-moon-analysis-05.png)
+
+::: notes
+Normally, you would not run a post hoc test after accepting the null hypothesis. If you did, you would see that every confidence interval includes the value of zero.
+
+There are a few times (very, very few) where you accept the null hypothesis and the post hoc test shows differences between two of the groups.
+
+There are also a few times where you reject the null hypothesis, but the post hoc test shows no differences between any of the groups. There is an explanation in both cases, but the cases are so rare that I do not want to delve further into them.
+:::
+
+## Creating indicator variables
+
+![](images/full-moon-analysis-06.png)
+
+::: notes
+This is the data window after asking SPSS to create indicator variables. Note that SPSS created indicator variables alphabetically (after, then before, then during). This is not the order I would have chosen. I would do indicators for before, then during, then after. But I can work with this.
+:::
+
+## Running general linear model with all indicator variables
+
+![](images/full-moon-analysis-07.png)
+
+::: notes
+If you try to put all three indicator variables in, you get a disasterous result. There is a perfect collinearity in this data because the sum of all three indicators is constant.
+
+To fix this, you must remove one of the three indicators.
+:::
+
+## Analysis of variance with first and second indicators
+
+![](images/full-moon-analysis-08.png)
+
+::: notes
+This is the analysis of variance table with just the first two indicators. There are extra rows in this table that just cause confusion.
+:::
+
+## 9
+
+![](images/full-moon-analysis-09.png)
+
+::: notes
+Here are the three rows that you should look at: Corrected Model, Error, and Corrected Total.
+:::
+
+## Parameter estimates, 1 of 3
+
+![](images/full-moon-analysis-10.png)
+
+
+```{r}
+m2 <- 10.917
+m1 <- 11.458
+m3 <- 13.417
+```
+
+-   `r m1` - `r m3` = `r m1-m3`
+-   `r m2` - `r m3` = `r m2-m3`
+
+::: notes
+Here are the parameter estimates. The intercept is the estimated average rate when the first and second indicator both equal zero. This is effectively the average rate for the third group (during a full moon).
+
+The first slope is the estimated average difference in rates when you increase the first indicator by one unit and hold the second indicator constant. This is effectively the the average rate for the first group (after a full moon) minus the average rate for the third group (during a full moon). When the days switch from during a full moon to after a full moon, the estimated average admission rate decreases by almost two patients per day.
+
+The second slope is the estimated average difference in rates when you increase the second indicator by one unit and hold the first indicator constant. This is effectively the the average rate for the second group (before a full moon) minus the average rate for the third group (during a full moon). When the days switch from during a full moon to before a full moon, the estimated average admission rate decreases by 2.5 patients per day.
+:::
+
+## Parameter estimates, 2 of 3
+
+![](images/full-moon-analysis-11.png)
+
+-   `r m1` - `r m2` = `r m1-m2`
+-   `r m3` - `r m2` = `r m3-m2`
+
+::: notes
+You don't have to remove the third indicator variable. Any will work, but the interpretation changes. If you remove the second indicator variable, the intercept represents the estimated average admission rate of the second group (about 11 patients per day). 
+
+The first slope represents the estimated difference between days after a full moon compared to before a full moon. You see about half a patient more per day after a full moon compared to before.The difference is about half a day on average.
+
+The second slope represents the estimated difference between days during a full moon compared to before a full moon. You see about 2.5 more patients on average during a full moon compared to before a full moon.
+:::
+
+## 
+
+![](images/full-moon-analysis-12.png)
+
+-   `r m2` - `r m1` = `r m2-m1`
+-   `r m3` - `r m1` = `r m3-m1`
+- $\ $
+-   Reference category, the category associated with the indicator variable left out of the model.
+
+::: notes
+You have a third choice: leaving out the first indicator. The intercept now represents the estimated average for the first group (before a full moon) which is about 11.5 patients per day. The first slope tells you that you see about half a patient less on average after a full moon compared to before a full moon. The second slope tells you that you see about 2 patients more on average during a full moon compared to before a full moon.
+
+You may see the term "reference category". This represents the category associated with the left out indicator variable. The other categories are compared to the reference category.
+
+Which is the best interpretation? It depends a lot on the context of the problem. I would argue that comparing before and after to during makes the most sense, but you could argue for any of these three interpretations.
+
+Or you could synthesize these. Average admission rates are 11.5 patients per day before a full moon, increase by about 2.5 patients per day on average during a full moon and drop by about 2 patients per day after a full moon. Then admission rates jump back up by about half a patient per day when you switch back to days before a full moon.
+:::
+
+## Using moon as a fixed factor
+
+![](images/full-moon-analysis-13.png)
+
+::: notes
+You don't have to create indicator variables yourself. You can let SPSS do it behind the scenes by adding moon to the fixed factor dialog box. SPSS will create indicator variables for the first two categories in alphabetical order and leave out the indicator variable for the category that appears last in alphabetical order.
+:::
+
+## Removing the unneeded rows
+
+![](images/full-moon-analysis-14.png)
+
+::: notes
+If you run the analysis this way, remove the rows corresponding to Intercept and Total.
+:::
+
+## Parameter estimates using Moon as a fixed factor
+
+![](images/full-moon-analysis-15.png)
+
+::: notes
+The parameter estimates are the ones that I showed earlier with the third indicator variable left out. As a general rule, SPSS assigns the first indicator to the first category in alphabetical order (After in this case) and the last indicator to the last category in alphabetical order (During in this case). Then it leaves out the last indicator variable.
+:::
