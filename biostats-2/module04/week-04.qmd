@@ -11,8 +11,7 @@ params:
   topic_04: "Interactions in analysis of variance"
   topic_05: "Interactions in analysis of covariance"
   topic_06: "Interactions in multiple linear regression"
-  topic_07: "The general linear model"
-  topic_08: "To be determined"
+  topic_07: "Unbalanced data"
 editor: source
 ---
 
@@ -33,7 +32,6 @@ editor: source
     -   `r params$topic_05`
     -   `r params$topic_06`
     -   `r params$topic_07`
-    -   `r params$topic_08`
 
 {{< include _04-01.qmd >}}
 
@@ -106,17 +104,6 @@ editor: source
 
 ## Live demo, `r params$topic_07`
 
-## Break #7
-
--   What you have learned
-    -   `r params$topic_07`
--   What's coming next
-    -   `r params$topic_08`
-
-{{< include _04-08.qmd >}}
-
-## Live demo, `r params$topic_08`
-
 ## Summary
 
 -   What you have learned
@@ -127,8 +114,7 @@ editor: source
     -   `r params$topic_05`
     -   `r params$topic_06`
     -   `r params$topic_07`
-    -   `r params$topic_08`
-    
+
 ## Additional topics??
 
 ::: notes
