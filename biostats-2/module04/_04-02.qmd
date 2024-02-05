@@ -12,7 +12,65 @@ editor: source
 -   $Y_{ijk} = \mu + \alpha_i + \beta_j +\epsilon_{ijk}$
     -   i=1,...,a levels of the first categorical variable
     -   j=1,...,b levels of the second categorical variable
-    -   k=1,..,n replicates with first and second categories
+    -   k=1,...,n replicates with first and second categories
+
+$\ $
+
+-   $H_0:\ \alpha_i=0$ for all i
+
+$\ $
+
+-   $H_0:\ \beta_j=0$ for all j
+
+::: notes
+The mathematical model for two factor analysis of variance is a bit more complex than a single factor analysis of variance. You have an overall mean, mu, and deviations from the overall mean associated with the first factor (alpha), deviations from the overall mean associated with the second factor (beta) and an error term (epsilon).
+
+There are a total of a and b categories for the two categorical independent variables.
+:::
+
+## 16
+
+![](images/full-moon-analysis-16.png)
+
+::: notes
+
+:::
+
+## 17
+
+![](images/full-moon-analysis-17.png)
+
+::: notes
+
+:::
+
+## 18
+
+![](images/full-moon-analysis-18.png)
+
+::: notes
+
+:::
+
+## 19
+
+![](images/full-moon-analysis-19.png)
+
+::: notes
+
+:::
+
+## 20
+
+![](images/full-moon-analysis-20.png)
+
+::: notes
+
+:::
+
+## 21
+
+![](images/full-moon-analysis-21.png)
 
 ::: notes
 
