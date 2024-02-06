@@ -12,25 +12,27 @@ editor: source
 -   Normality
 -   Equal variances
 -   Independence
+-   Note: No linearity assumption
+    -   Only for linear regression and analysis of covariance
 
 ::: notes
-
+The assumptions for multiple factor analysis of variance are no different than single factor analysis of variance. You must use residuals to check the assumptions of normality and equal variances. The assumption of independence is usually assessed qualitatively.
 :::
 
-## 22
+## Q-Q plot of residuals
 
 ![](images/full-moon-analysis-22.png)
 
 ::: notes
-
+The residuals from the full moon analysis of variance model appear to be normally distributed.
 :::
 
-## 23
+## Residual versus predicted value plot
 
 ![](images/full-moon-analysis-23.png)
 
 ::: notes
-
+There is no evidence of unequal variances.
 :::
 
 

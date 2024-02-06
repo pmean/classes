@@ -83,7 +83,7 @@ If you try to put all three indicator variables in, you get a disasterous result
 To fix this, you must remove one of the three indicators.
 :::
 
-## Analysis of variance with first and second indicators
+## Analysis of variance table with first and second indicators
 
 ![](images/full-moon-analysis-08.png)
 
@@ -91,7 +91,7 @@ To fix this, you must remove one of the three indicators.
 This is the analysis of variance table with just the first two indicators. There are extra rows in this table that just cause confusion.
 :::
 
-## 9
+## Irrelevant rows removed
 
 ![](images/full-moon-analysis-09.png)
 
