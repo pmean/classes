@@ -7,7 +7,23 @@ format:
 editor: source
 ---
 
-## 9
+## Test
+
+`r paste(exercise_dictionary[7:19], "  ")`
+
+## Interaction between hours and effort
+
+```{}
+effort: 
+    label: weekly effort scores
+    note: self report
+    scale: 0 through 50
+    direction:
+      0 denoting minimal physical effort and
+      50 denoting maximum effort.
+```
+
+## Analysis of variance table
 
 ![](images/exercise-analysis-09.png)
 

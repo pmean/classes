@@ -28,51 +28,48 @@ The mathematical model for two factor analysis of variance is a bit more complex
 There are a total of a and b categories for the two categorical independent variables.
 :::
 
-## 16
+## Crosstabulation of categorical predictors
 
 ![](images/full-moon-analysis-16.png)
 
 ::: notes
-
+This table shows how there is one observation for each combination of month and moon phase.
 :::
 
-## 17
+## Analysis of variance table for moon data
 
 ![](images/full-moon-analysis-17.png)
 
 ::: notes
+THis is the analysis of variance table. There is one less degree of freedom than the number of categories for each categorical predictor variable. There is a statistically significant difference between the twelve months and a borderline significant difference between the three moon phases.
 
+This differs from the single factor analysis of variance because adding in month as a categorical predictor removed a lot of variation. You are now able to account for almost 80% of the variation in admission rates. Without month in the model, you accounted for less than 7% of the variation.
 :::
 
-## 18
+## Removing irrelevant rows
 
 ![](images/full-moon-analysis-18.png)
 
 ::: notes
-
+The rows corresponding to the intercept and the total (uncorrected total) are not needed.
 :::
 
-## 19
+## Parameter estimates for the full moon model
 
 ![](images/full-moon-analysis-19.png)
 
 ::: notes
-
+The intercept represents the average admission rate during a full moon when the month is September. The two slope terms show how much lower the average admission rates are before and after a full moon, respectively, compared to during a full moon, holding month constant.
 :::
 
-## 20
+## Tukey post hoc test
 
 ![](images/full-moon-analysis-20.png)
-
-::: notes
-
-:::
-
-## 21
 
 ![](images/full-moon-analysis-21.png)
 
 ::: notes
+Use the Tukey posthoc test because the sample sizes are equal across the moon phases. The results are a bit ambiguous because before and after are not statistically different, after and during are not statistically different but before and during are statistically different. This is probably due to a lack of precision and an extra year's worth of data would help quite a bit.
 
+The analogy I use is travel time. My wife and I live in Leawood. Our son lives in Lee's Summit. A repair shop we all use is in Olathe. It is not far from Leawood to Olathe. It is not far from Leawood to Lee's Summit. But it is far from Lee's Summit to Olathe.
 :::
-
