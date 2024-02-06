@@ -32,7 +32,7 @@ vars:
     label: Average weekly weight loss
     note: negative scores denote weight gain
     scale: real
-    unit: unknown
+    unit: unknown, presumably pounds
     
   hours: 
     label: weekly average amount of exercise
