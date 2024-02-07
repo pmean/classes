@@ -1,0 +1,109 @@
+---
+title: "Distinction between experimental, quasi-experimental, and observational studies"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Learning objectives
+
+-   To define what a randomized study is and explain its advantages and disadvantages.
+
+-   To describe how blinding, concealed allocation, and intention to treat analysis can improve the persuasiveness of a randomized trial.
+
+::: notes
+Here are the objectives for this week.
+:::
+
+## Cameron and Pauling study of Vitamin C.
+
+-   Linus Pauling
+    -   Two-time Nobel prize winner (Chemistry, Peace)
+    -   Fervent advocate of mega-doses of Vitamin C
+-   Non-randomized study of cancer
+    -   All patients got Vitamin C
+    -   Ten controls per treated patient
+  
+::: notes
+[Taken from Chapter 1 of my book, Statistical Evidence in Medical Trials]
+
+Paul Rosenbaum, in the first chapter of his book, Observational Studies, gives a fascinating example of an apples to oranges comparison. Ewan Cameron and Linus Pauling published an observational study of Vitamin C as a treatment for advanced cancer (Cameron 1976). For each patient, ten matched controls were selected with the same age, gender, cancer site, and histological tumor type. Patients receiving Vitamin C survived four times longer than the controls (p < 0.0001).
+
+Cameron and Pauling minimize the lack of randomization. "Even though no formal process of randomization was carried out in the selection of our two groups, we believe that they come close to representing random subpopulations of the population of terminal cancer patients in the Vale of Leven Hospital."
+
+Ten years later, the Mayo Clinic (Moertel 1985) conducted a randomized experiment which showed no statistically significant effect of Vitamin C. Why did the Cameron and Pauling study differ from the Mayo study?
+
+The first limitation of the Cameron and Pauling study was that all of their patients received Vitamin C and followed prospectively. The control group represented a retrospective chart review. You should be cautious about any comparison of prospective data to retrospective data.
+
+But there was a more important issue. The treatment group represented patients newly diagnosed with terminal cancer. The control group was selected from death certificate records. So this was clearly an apples versus oranges comparison because the initial prognosis was worse in the control group than in the treatment group. As Paul Rosenbaum says so well: one can say with total confidence, without reservation or caveat, that the prognosis of the patient who is already dead is not good. (page 4)
+
+When the treatment group is apples and the control group is oranges, you can't make a fair comparison.
+
+Cameron E, Pauling L. Supplemental ascorbate in the supportive treatment of cancer: Prolongation of survival times in terminal human cancer. Proc Natl Acad Sci U S A. 1976 Oct;73(10):3685-9. PubMed PMID: 1068480; PubMed Central PMCID: PMC431183.
+:::
+
+## Birth control pills and cervical cancer, 1 of 2
+
+-   Three groups of women
+    -   Oral contraceptives
+    -   Other forms of birth control
+    -   No birth control
+
+::: notes
+[Taken from Chapter 1 of my book, Statistical Evidence in Medical Trials]
+
+Women who take oral contraceptives appear to have a higher risk of cervical cancer. But covariate imbalance might be producing an artificial rise in cancer rates for this group.
+:::
+
+## Birth control pills and cervical cancer
+
+-   Differences in these three groups
+    -   Age at first intercourse
+    -   Number of sexual partners
+    -   Use of tobacco, alcohol, other drugs
+-   Most importantly, number of pap smears
+    -   Oral contraceptives require regular doctor visits
+
+::: notes
+[Taken from Chapter 1 of my book, Statistical Evidence in Medical Trials]
+
+Women who take oral contraceptives behave, as a group, differently than other women. For example, women who take oral contraceptives have a larger number of pap smears. This is probably because these women visit their doctors more regularly in order to get their prescriptions refilled and therefore have more opportunities to be offered a pap smear. This difference could lead to an increase in the number of detected cancer cases. Perhaps, though, the other women have just as much cancer, but it is more likely to remain undetected.
+
+Both of these examples show covariate imbalance. You can largely avoid covariate imbalance through randomization. It's not always easy, though, to use randomization, as you will see.
+:::
+
+## Experimental versus observational
+
+-   Experimental: Active independent variable
+-   Observational: Attribute independent variable
+-   Who does the choosing?
+    -   Patients or doctors = Observational
+    -   Researcher = Experimental
+-   Patients in a randomized trial are giving you a gift.
+  
+::: notes
+Let's review some of the definitions we've seen earlier.
+
+One of the major distinctions in research design is experimental studies versus non-experimental (observational) studies. 
+
+Your book makes the distinction through the independent variable. An active independent variable allows for either a experimental or quasi-experimental study. An attribute independent variable makes your study non-experimental. That's your book's term, but I prefer the term observational. It is fairly common in the medical literature. Think of observational as "look but don't touch." You observe patients without meddling with them.
+
+Another way of looking at it is to ask the question "Who does the choosing?" If the patient and/or the doctor has a part in deciding, then the study is observational. If the researcher is the only one who decides, and uses a coin flip to decide, that is a randomized clinical trial.
+
+We owe a great debt of graditude to the volunteers in a randomized clinical trial. They are sacrificing a lot of autonomy over what drug or therapy to choose. And they are ceding that autonomy, not to an expert clinician but to the flip of a coin. That's a truly amazing.
+:::
+
+## Randomized versus quasi-experimental
+
+-   Quasi-experimental
+    -   Logistics prevent randomization
+    -   Very common in quality improvement
+
+::: notes
+When you have an active independent variable, you don't always have a level of control that allows for randomization. Usually this is caused by logistical issues. Once you go down a certain path, it is impossible to go back. Or the setting that you are studying, like an emergency room is so chaotic that no one can keep track of a randomization table.
+
+It's easy to sneer at quasi-experimental studies and think of them as an inferior form of research. But they are not, and quasi-experimental designs form the backbone of many quality improvement studies. We'll talk more about this in the following week.
+:::
+
