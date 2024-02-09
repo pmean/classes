@@ -1,0 +1,367 @@
+---
+data_dictionary: Health-related Quality of Life of Persons Living with Tuberculosis.sav
+
+source: 
+  Tornu, Eric ; Quarcoopome, Louisa  (2022), 
+  “Health-related Quality of Life of Persons
+  Living with Tuberculosis”, Mendeley Data, 
+  V2, doi: 10.17632/jg4xp7883w.2
+  
+description:  
+  From the original source: "This data is on
+  a study which accessed the health-related 
+  quality of life of persons living with 
+  Tuberculosis"
+  
+note:
+  Also see https://iris.who.int/bitstream/handle/10665/63529/WHOQOL-BREF.pdf
+  
+copyright:  
+  CC By 4.0
+
+format: 
+  proprietary: SPSS
+  rows: 250
+  columns: 53
+
+vars:
+  Respondents:
+    scale: Numerical sequence, 1 through 250
+    
+  StudySite:
+    values:
+      KBTH
+      LEKMA
+      TGH
+      GSMH
+      
+  ID:
+    scale: alphanumeric code
+    
+  CategoryofTuberculosis: 
+    values:
+      Pulmonary
+      Extrapulmonary
+      
+  CategoryofTuberculosisTypeofExtrapulmonaryTB:
+    values:
+      "Potts' disease"
+      Pleural effusion
+      Cervical lymph nodes
+      Right knee
+      Left lung abcess
+      Loculated 2 & lung abscess
+      Milliart TB
+      Lymph node
+      Not applicable 
+      
+  CategoryofCase:
+    values:
+      New case
+      Re-treatment
+ 
+  PhaseofTreatment
+    values:
+      Intensive
+      Continuation
+    
+  AgeYears:
+    scale: Non-negative integer
+
+  Sex:
+    values:
+      Female
+      Male
+      
+  Religion:
+    values:
+      Christian
+      Islam
+      
+  MaritalStatus:
+    values:
+      Single
+      Married
+      Separated
+      Widow
+
+  HighestLevelofEducation:
+    values:
+      No formal education
+      Primary
+      Secondary
+      Tertiary
+      
+  Occupation_Cat:
+    values:
+      Unemployed
+      Student
+      Employes
+
+  AverageMonthlyIncome:
+    values:
+      Below Ghc1,000
+      Between Ghc1,000 and Ghc2,000
+      Between Ghc2,001 and Ghc3,000
+      
+  Howwouldyourateyourqualityoflife_1:
+    values:
+      Poor
+      Neither poor nor good
+      Good
+      Very Good  
+
+  HowSatisareyouwithyourhealth_2:
+    values:
+      Very dissatisfied
+      Dissatisfied
+      Neither satisfied nor satisfied
+      Satisfied
+      Very Satisfied
+
+  Physicalpainprevents_3:
+    values:
+      An extreme amount
+      Very much
+      A moderate amount
+      A little
+      Not at all
+
+  Howmuchmedicaltreatment_4:
+    values:
+      An extreme amount
+      Very much
+      A moderate amount
+      A little
+      Not at all
+      
+  Howmuchdoyouenjoylife_5:
+    values:
+      Not at all
+      A little
+      A moderate amount
+      Very much
+      Extremely
+      
+  Towhatextentdoyoufeelyourlifetobemeaningful_6
+    values:
+      Not at all
+      A little
+      A moderate amount
+      Very much
+      Extremely
+  
+  Howwellareyouabletoconcentrate_7:
+    values: 
+      Not at all
+      A little
+      A moderate amount
+      Very much
+      Extremely
+
+  Howsafedoyoufeelinyourdailylife_8:
+    values: 
+      Not at all
+      A little
+      A moderate amount
+      Very much
+      Extremely
+
+  Howhealthyisyourphysicalenvironment_9:
+    values: 
+      Not at all
+      A little
+      A moderate amount
+      Very much
+      Extremely
+  
+  Doyouhaveenoughenergyforeverydaylife_10:
+    values: 
+      Not at all
+      A little
+      A moderate amount
+      Very much
+      Extremely
+  
+  Areyouabletoacceptyourbodilyappearance_11:
+    values: 
+      Not at all
+      A little
+      A moderate amount
+      Very much
+      Extremely
+
+  Haveyouenoughmoneytomeetyourneeds_12:
+    values: 
+      Not at all
+      A little
+      A moderate amount
+      Very much
+      Extremely
+  
+  AvailableInformation_13:
+    values: 
+      Not at all
+      A little
+      A moderate amount
+      Very much
+      Extremely
+  
+  Opportunityforleisureactivities_14:
+    values: 
+      Not at all
+      A little
+      A moderate amount
+      Very much
+      Extremely
+  
+  Howwellareyouabletogetaround_15:
+    values:
+      Poor
+      Neither poor nor good
+      Good
+      Very Good  
+
+  HowSatisareyouwithyoursleep_16:
+    values:
+      Very dissatisfied
+      Dissatisfied
+      Neither satisfied nor satisfied
+      Satisfied
+      Very Satisfied
+  
+  Satisabilitytoperformyourdailylivingactivities_17:
+    values:
+      Very dissatisfied
+      Dissatisfied
+      Neither satisfied nor satisfied
+      Satisfied
+      Very Satisfied
+  
+  Satisareyouwithyourcapacityforwork_18:
+    values:
+      Very dissatisfied
+      Dissatisfied
+      Neither satisfied nor satisfied
+      Satisfied
+      Very Satisfied
+  
+  HowSatisareyouwithyourself_19:
+    values:
+      Very dissatisfied
+      Dissatisfied
+      Neither satisfied nor satisfied
+      Satisfied
+      Very Satisfied
+
+  HowSatisareyouwithyourpersonalrelationships_20:
+    values:
+      Very dissatisfied
+      Dissatisfied
+      Neither satisfied nor satisfied
+      Satisfied
+      Very Satisfied
+  
+  HowSatisareyouwithyoursexlife_21:
+    values:
+      Very dissatisfied
+      Dissatisfied
+      Neither satisfied nor satisfied
+      Satisfied
+      Very Satisfied
+  
+  SatisSupportyougetfromyourfriends_22:
+    values:
+      Very dissatisfied
+      Dissatisfied
+      Neither satisfied nor satisfied
+      Satisfied
+      Very Satisfied
+  
+  HowSatisareyouwiththeconditionsofyourlivingplace_23:
+    values:
+      Very dissatisfied
+      Dissatisfied
+      Neither satisfied nor satisfied
+      Satisfied
+      Very Satisfied
+  
+  HowSatisareyouwithyouraccesstohealthservices_24:
+    values:
+      Very dissatisfied
+      Dissatisfied
+      Neither satisfied nor satisfied
+      Satisfied
+      Very Satisfied
+
+  HowSatisareyouwithyourtransport_25:
+    values:
+      Very dissatisfied
+      Dissatisfied
+      Neither satisfied nor satisfied
+      Satisfied
+      Very Satisfied
+  
+  Howoftennegativefeelings_26:
+    values:
+      Always
+      Very often
+      Quite often
+      Seldom
+      Never
+      
+  Psychological_Domain_Raw:
+    label: Sum of Q5, Q6, Q11, Q19, Q26
+    range: 6 through 36
+  
+  Social_Relationship_Domain_Raw:
+    label: Sum of Q20, Q21, Q22
+    range: 3 through 12
+  
+  Environment_Domain_Raw:
+    label: Sum of Q8, Q9, Q12, Q13, Q14, Q23, Q24, Q25
+    range: 9 through 38
+  
+  Physical_Domain_Raw:
+    label: Q3, Q4, Q10, Q15, Q16, Q17, Q18
+    range: 7 through 31
+  
+  Physical_4_20:
+    label: Rescaled version of Physical_Domain_Raw
+    range: 4 through 20
+    
+  Psychological_4_20:
+    label: Rescaled version of Psychological_Domain_Raw
+    range: 4 through 20
+  
+  Social_4_20:
+    label: Rescaled version of Social_Relationship_Domain_Raw
+    range: 4 through 20
+  
+  Environmental_4_20:
+    range: 4 through 20
+    label: Rescaled version of Environmental_Domain_Raw
+  
+  PHYSICAL_100:
+    label: Rescaled version of Physical_Domain_Raw
+    range: 0 through 100
+  
+  PSYCHOLOGICAL_100:
+    label: Rescaled version of Psychological_Domain_Raw
+    range: 0 through 100
+  
+  SOCIAL_100:
+    label: Rescaled version of Social_Relationship_Domain_Raw
+    range: 0 through 100
+  
+  ENVIRONMENTAL_100:
+    label: Rescaled version of Environmental_Domain_Raw
+    range: 0 through 100
+  
+  Age_Cat:
+    values:
+      <15 years
+      15 - 34 years
+      35 - 64 years
+      > 65 years
+---
