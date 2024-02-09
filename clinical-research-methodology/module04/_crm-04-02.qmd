@@ -1,0 +1,189 @@
+---
+title: "How to randomize"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## A fishy research story, 1 of 7
+
+![](images/fish-experiment-01.png)
+
+::: notes
+[taken from http://www.pmean.com/12/fishy.html]
+
+I was told this story but have no way of verifying its accuracy. It is one of those stories that if it is not true, it should be. It illustrates why randomization is important. A long, long, time ago, a research group wanted to examine a pollutant to find concentration levels that would kill fish. This research required that 30 fish be separated into five tanks, each of which would get a different level of the pollutant.
+:::
+
+## A fishy research story, 2 of 7
+
+![](images/fish-experiment-02.png)
+
+::: notes
+The first six fish that you catch go in the first tank.
+:::
+
+## A fishy research story, 3 of 7
+
+![](images/fish-experiment-03.png)
+
+::: notes
+The next six fish that you catch go into the second tank.
+:::
+
+## A fishy research story, 4 of 7
+
+![](images/fish-experiment-04.png)
+
+::: notes
+And so on.
+:::
+
+## A fishy research story, 5 of 7
+
+![](images/fish-experiment-05.png)
+
+::: notes
+And so on.
+:::
+
+## A fishy research story, 6 of 7
+
+![](images/fish-experiment-06.png)
+
+::: notes
+The last six fish that you catch go into the final tank.
+:::
+
+## A fishy research story, 7 of 7
+
+![](images/fish-experiment-07.png)
+
+::: notes
+When they were done, they found that mortality was related not to the chemical concentration but to the order in which the tanks were filled. Most of the fishwere floating lifeless at the top of the first tank, but the fifth tank had almost all happy little swimmers.
+
+What happened was that the slow-moving, easy-to-catch fish (the weakest and most sickly) were all allocated to the first tank. The fast-moving, hard-to-catch fish (the strongest and healthiest) ended up in the last tank.
+
+What you should have done was to assign each fish randomly to a tank. That way each tank is a mix of slow-moving easy-to-catch fish and fast-moving hard-to-catch fish.
+:::
+
+## How to randomize
+
+-   Use of a random device
+    -   Physical devices (flip of a coin, balls in an urn)
+    -   Computer generated random numbers
+-   Avoid haphazard approaches
+-   Avoid alternating assignment
+-   Remember the law of large numbers
+
+::: notes
+Randomization is the use of a physical device like the flip of the coin or drawing balls from an urn (think Bingo!), but more frequently, the use of computer generated random numbers to provide an unpredictable sequence.
+
+If you are new to computer generated random numbers, find one that produces random numbers uniformly in the interval 0 to 1. Any value less than 0.5 represents a tail in a coin flip and any value greater than 0.5 represents a head. A value equal to 0.5 represents the coin landing on its side. 
+
+It is better still to sort on the basis of random numbers. Take a list in a systematic order, attach a column of random numbers, then sort both columns by the column of random numbers. Sorting by a column of random numbers places your list in a random order.
+
+There are haphazard ways to randomize. You could assign subjects based on the last digit of their social security number or telephone number, for example. This is never a good idea, and wil pretty much get you kicked out of any systematic overview down the road. It's sometimes a bit more work to use a random list than a haphazard list, but it is always worth the extra effort.
+
+Alternating assignment (ABABAB) is also a bad idea.
+
+[taken from http://www.pmean.com/00/alternate.html]
+
+Consider how cabbages grown in a garden. You will often see a pattern of big cabbage, little cabbage, big cabbage, little cabbage. These plants are competing for resources. One plant gets a tiny head start, and its roots extend over into the other plant's space, grabbing some extra water and nutrients. This leads to more growth and more grabbing of the other plant's resources.
+
+This type of pattern can also occur in factories. Consider a mill that cuts small pieces of wire from a large spool of wire. The machine might cut the first piece a bit large because it waited a fraction of a second too long. When this happens, the next piece is likely to be too small. If a piece is cut a bit small, the bit of extra left over might make the next piece too big.
+
+Suppose you are monitoring the amount of time a doctor spends with each patient. If the first patient goes a bit long, the doctor is likely to rush the next patient. A doctor that can wrap up a patient quickly, will then feel more relaxed and take more time with the next patient. So there might be a tendency for visits to go long, short, long, short. It doesn't always have to happen this way. The days when I visit the doctor it seems like the pattern for the four patients in front of me is long, long, long, long.
+
+If you randomly assign treatments to a small number of patients, the law of large numbers does not kick in. A small randomized study has large risk of covariate imbalance, just by the luck of the draw. As the size of your study increases, the risk becomes really small.
+
+How big a sample do you have to have in order not to worry about this. Your book says 60 patients total, but does not offer any justification for this number. I have seen some simulations that indicate big potential problems for 20 patients total and almost no potential problems for 80 patients total. What I would recommend is that you consider additional measures for small sample sizes like stratification and matching.
+:::
+
+## Simple randomization
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/how-to-randomize-01.png)
+
+-   Place the data in a systematic order
+-   Add a column of random numbers
+:::
+::: {.column width="50%"}
+![](images/how-to-randomize-02.png)
+
+-   Sort the column of random numbers
+:::
+::::
+
+::: notes
+Most of the published sources on how to randomize are difficult to follow. The simplest approach is to lay out your data in a systematic order, attach a column of random numbers and sort by that column. Sorting by a column of random numbers places the list in a random order.
+:::
+
+## Block randomization
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/how-to-randomize-03.png)
+
+-   Place the data in a systematic order
+-   Add a column of random numbers
+:::
+::: {.column width="50%"}
+![](images/how-to-randomize-04.png)
+
+-   Sort by block and then the column of random numbers
+:::
+::::
+
+::: notes
+Block randomization is an effort to keep the randomization from going out of control partway through the study. Random numbers tend to drift; the technical term for this is a random walk. Halfway through the study, you might have a fairly large imbalance, just due to the randomness.
+
+This would tend to correct itself over time, but could be still be a problem if you have to stop the study early, or if there is a strong temporal trend.
+
+Block randomization prevents this from happening. You randomize the order inside blocks of patients. Typically the block size is somewhere between 4 and 12.
+:::
+
+
+## Randomization in a cross-over design
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/how-to-randomize-05.png)
+
+-   Place the data in a systematic order
+-   Add a column of random numbers
+:::
+::: {.column width="50%"}
+![](images/how-to-randomize-06.png)
+
+-   Sort by subject and then the column of random numbers
+:::
+::::
+
+::: notes
+A closely related type of randomization is in a cross-over design. There will be more about cross-over designs later in the class, but the general idea is to give both treatments to the same patient, but in a random order. This only works if the treatment is reversible and you have given enough time for one treatment to wash out before you start the second treatment.
+:::
+
+## Random selection
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/how-to-randomize-07.png)
+
+-   Place the data in a systematic order
+-   Add a column of random numbers
+:::
+::: {.column width="50%"}
+![](images/how-to-randomize-08.png)
+
+-   Sort by the column of random numbers
+-   Select starting from the top
+:::
+::::
+
+::: notes
+The approach of sorting by a column of random numbers also works when you need to randomly select from a list of patients. Put the patients in a systematic order, add a column of random numbers and then sort. Then just pick starting at the top of the list. The first patient is randomly selected from every patient in the pool of subjects. The same goes for the second, third, fourth, etc.
+:::

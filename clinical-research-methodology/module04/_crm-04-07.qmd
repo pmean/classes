@@ -1,0 +1,29 @@
+---
+title: "Baseline measures"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Baseline measurements
+
+-   Not an absolute requirement
+-   Reduces variance
+-   Allows quality checks
+    -   Subversion of randomization
+    -   Differential dropout
+-   Several competing analysis strategies
+
+::: notes
+Your book encourages the use of baseline measurements, but these are not really needed for a randomized experiment. The process of randomization will insure balance across any baseline measurements, so (unlike observational studies) there is no potential for bias.
+
+There are still several important benefits to measuring an outcome at baseline, if you can.
+
+You can incorporate the measurement at baseline into your statistical model and it will almost always improve the precision of your results. There are several competing analysis strategies (analysis of covariance, change scores) that you can choose from, and I will talk about these choices in a future lecture.
+
+A baseline value also allows you to run a couple of quality checks. If, in spite of your randomization, there is a difference in baseline measures, you might want to investiage for the possibility that there is some subversion of the randomization process.
+
+A baseline measurement also provides a nice quality check for drop outs. You should always worry about those patients who drop out of your study. They might have a different prognosis than those who stayed in the study. But if the baseline measures are comparable between those who dropped out and those who completed the study, that provides a limite amount of re-assurance that the drop-outs are not seriously biasing the results of your study.
+:::

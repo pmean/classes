@@ -1,0 +1,94 @@
+---
+title: "Advantages and disadvantages of randomization"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Advantages of randomization
+
+-   Insures covariate balance
+    -   Smoking during pregnancy and Down's syndrome
+-   Difficult or impossible to measure covariates
+    -   Severity of illness
+    -   Co-medications
+    -   Co-morbidities
+    -   Patient's psychological state
+-   Avoids selection bias
+
+::: notes
+A covariate is a variable that is not of direct interest in the research, but which could affect the outcome. If a covariate is imbalanced between the two groups you are comparing, that can interfere with your ability to detect whether there is a difference between the treatment and control group.
+
+There was a study that looked at smoking during pregnancy and found the suprising conclusion that smoking reduced the risk of Down Syndrome. Now smoking does a lot of really bad things to you: cancer, hypertension, stroke, heart attacks, etc. So it would be quite surprising to see cigarettes being protective instead of harmful. The researchers knew, however, that this finding was not real. It turns out that younger women are more likely to smoke during pregnancy than older women. This is a covariate imbalance. The smoking group had a much younger average age than the non-smoking group. Down Syndrome occurs much more often among older women than younger. Once you control for mother's age, the protective effect of smoking pretty much disappears.
+
+Covariate imbalance is a big big problem for observational studies. You have to spend a lot of time and energy worrying about it during the planning phase and controlling for it in the analysis phase. We'll talk more about this in a couple of weeks.
+
+The value of randomization is that an older woman is just as likely to find herself in the treatment group as in the control group. So the law of large numbers assures that you will have good covariate balance.
+
+This applies for both covariates that you can measure, like demographics, and covariates that you might not be able to measure, such as number of co-morbidities, psychological state, and severity of the illness at baseline.
+
+There is a different perspective that is worth mentioning here. Covariate imbalance is sometimes caused by selection bias.
+
+Some of the patients in your research study may prefer one or the other of the two completing therapies being studied. The physicians who are managing the patients in your research study may also have a preference for some of their patients. 
+
+If the patients and/or their physicians pay a role, even indirectly, in choosing between the two competing therapies, then you have to potential for selection bias. Patients might differ on key prognostic variables, leading to an biased comparison that might mask a true effect or produce an artefactual effect.
+
+Randomization removes the patient and physician choice and prevents selection bias.
+:::
+
+## Disadvantages of randomization
+
+-   Expensive
+-   Artificial
+    -   Extra tests, extra attention
+    -   Explicit acknowledgement of uncertainty
+
+::: notes
+There are a fair number of researchers who get very snobbish about randomization. If it's not randomized, it's not real. This is wrong, wrong, wrong.
+
+I wrote a book back in 2006 that talked about critical appraisal. It covered things like blinding, low drop out rates, patient oriented outcome measures, among other things that make a study more persuasive. I wanted to make the point that while all of these things are "nice to have", none of them are "have to have". So at the end of each chapter, I included a counterpoint: blinding is overrated, intention to treat analysis is overrated.
+
+The end of my first chapter was "randomization is overrated." One of the reviewers for my book threw a fit. How dare a statistician criticize randomization! Well, there are lots of criticisms of randomization made by people who are a lot smarter than me. We'll talk about those in a minute. But the belief that we should always fight for randomization is a misguided belief. It sneers at non-randomized studies and claims that these trials are "weak" and should not become part of the evidence base.
+
+Don't get me wrong. I like randomization. I use it whenever I can. I point out when failure to randomize hurts the persuasiveness of a particular research study. But I'd be remiss in my duty if I did not embrace those well designed non-randomized studies and endorse them when they make more sense than a randomized study.
+:::
+
+## Problems with randomized trials
+
+-   Volunteer bias.
+    -   Willingness to endure painful procedures
+-   Professional volunteers
+-   Strong personal preferences
+    -   Birth control methods
+    -   Surgical versus non-surgical trials
+    -   Less invasive surgery
+
+::: notes
+Randomized trials rely on volunteers, and volunteers are not like you and me. I did volunteer when I was 18 for a trial evaluating a flu vaccine. I had to stay in their clinic 24/7 for two full weeks, because they didn’t want me roaming free to potentially infect all of Baltimore City. I got free food and could play Risk all day long, and at the end of the study I got the enormous sum of $700. For a poor college student it was heaven, but I wouldn’t even dream of doing something like that today.
+
+So what sort of person volunteers for a randomized trial. It depends, but for trials involving healthy volunteers, it has to be someone who doesn’t mind all the inconveniences associated with the trial and who views a paltry sum of money as something other than a paltry sum.
+
+There are a couple of empirical studies about research volunteers that are worth mentioning. The first is a study that started out with a series of paper and pencil personality trait surveys (this was long before we had things like REDCap). The second half of the study involved correlating these personality traits with certain biochemical markers in cerebrospinal fluid. You get this with a lumbar puncture, which sounds a whole lot nicer than the other term, spinal tap. A lumbar puncture is quite painful and many of the patients in the first phase of the study did not volunteer for the second phase. Normally when someone doesn’t volunteer, you do not get any data on them, but in this case, they had a full personality profile of refusers and the volunteers. The volunteers differed from the refusers on one personality trait, impulsivity. It makes sense when you think about it. But the fact that the volunteers were skewed to one side of the impulsivity scale was problematic when you are interested in correlates of personality traits and markers in spinal fluid.
+
+A second example of volunteer bias involved the genetic profiling of a group of professional volunteers. These are people who sign up repeatedly at places like Vince and Associates. It’s not a lot of money, but you can get by on the money that these sites pay. The genetic profile fond something quite interesting. A certain genetic variant that was associated with slow metabolism of drugs was almost entirely absent from the professional volunteers. Slow metabolism would be associated with a greater risk of side effects. This was a genetic variant that the volunteers themselves probably did not know that they had, but you can envision how this might happen. A hundred people volunteer for their first study and the seven that have this genetic variant end up with blistering headaches, blotchy purple skin, and a wicked bout of diarrhea. The 93 patients with the normal gene think that the trial went pretty well and seriously consider signing up for another one. The seven with purple skin figure that maybe a career of plasma donation is more up there alley.
+
+Now from a research perspective, if studies involving professional volunteers excludes patients who are more likely to experience side effects, it’s a disaster. That patient population is going to make any drug that they test look a lot safer than it really is.
+
+Certain types of studies are difficult to randomized, people cause people are fussy and don't want to give up control over which therapy they might use.
+
+Birth control methods are an obvious example. There are religious beliefs, for example, that come into play. There are also personal preferences about the use of medications versus barrier methods. And people get really upset when they find out that one of the treatment arms is a placebo.
+
+What sort of person would volunteer for a trial that involves a placebo? These would be people who would say "Oh I don't care if we have children now or children later." That's a very small group of people. Most people are trying really hard to get pregnant or are trying really hard to stay unpregnant.
+
+A trial that compares a surgical intervention to a non-surgical intervention is also troublesome. Some people hate the idea of going under anesthesia, getting cut open, and then all that recovery time and would much prefer a medication regimen. Other people might be the opposite. The surgery is over and done with and that's more appealing than years of medication with all that trouble and all those side effects.
+
+Within surgery trials, there has been difficulty comparing less invasive surgery techniques (e.g., the laproscope) to more traditional methods of surgery. Once they hear that one procedure produces a big scar and the other produces a small scar, they don't want to hear anything else. Give me the small scar.
+
+If you try to run a trial where there are strong personal preferences, you will have a hard time recruiting subjects, making it harder to complete your study in a reasonable amount of time. In addition, the volunteers that you do get are  likely to be much different than the general population, harming the generalizability of your research.
+
+Gustavsson, J. P., Åsberg, M. and Schilling, O. (1997), The healthy control subject in psychiatric research: impulsiveness and volunteer bias. Acta Psychiatrica Scandinavica, 96: 325-328. doi:10.1111/j.1600-0447.1997.tb09924.x
+
+Chen S, Kumar S, Chou WH, Barrett JS, Wdlund PJ (1997). A Genetic Bias in Clinical Trials? Cytochroe P450-2D6 (CYP2D6) Genotype in General vs Selected Healthy Subject Populations [letter], British Journal of Clinical Pharmacology 44(3): 303-4.
+:::

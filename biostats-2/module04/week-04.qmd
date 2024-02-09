@@ -23,9 +23,11 @@ editor: source
 # Keep this chunk, even if no code, so that
 # params is populated from the yaml header.
 
-suppressPackageStartupMessages()
+#| warning: false
+
 library(tidyverse)
-exercise_dictionary <- read_lines("../data/exercise-data-dictionary.yaml")
+fn <- "../data/exercise-data-dictionary.yaml"
+exercise_dictionary <- str_trim(read_lines(fn))
 ```
 
 -   What you will learn

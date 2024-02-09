@@ -7,14 +7,18 @@ format:
 editor: source
 ---
 
-## Test
-
-`r paste(exercise_dictionary[7:19], "  ")`
 
 ## Interaction between hours and effort
 
+```{r}
+i <- str_which(exercise_dictionary, "effort:")[1]
+j <- which(nchar(exercise_dictionary[i:9999])==0)[1]
+# cat(paste0(exercise_dictionary[i:(j-1)], "  \n"))
+```
+
+
 ```{}
-effort: 
+  effort: 
     label: weekly effort scores
     note: self report
     scale: 0 through 50
@@ -31,11 +35,22 @@ effort:
 
 :::
 
-## 10
+## Table of means
+
+![](images/exercise-analysis-13.png)
+
+## Centered analysis
 
 ![](images/exercise-analysis-10.png)
 
 ::: notes
 
 :::
+
+## Weight loss at various conditions
+
+-   hours = 2, effort = 30, predict 10.005
+-   hours = 4, effort = 30, predict 10.005 + 2.291*2
+-   hours = 2, effort = 40, predict 10.005 + 0.707*10
+-   hours = 4, effort = 40, predict 10.005 + 2.291\*2 + 0.707\*10 + 0.393\*2\*20
 

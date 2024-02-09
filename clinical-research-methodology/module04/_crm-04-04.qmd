@@ -1,0 +1,59 @@
+---
+title: "Alternatives to randomization"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## When can't you randomize
+
+-   Unethical
+    -   Lack of equipoise
+    -   Harmful exposures
+-   Impractical
+    -   Too many patients
+    -   Too much time
+    -   Strong patient preferences
+-   Impossible
+    -   Attribute variables
+    -   Retrospective studies
+
+::: notes
+If you already know that one treatment is superior to another (this has to be more than just a hunch), then you cannot ethically use randomization and doom half of your patients to an inferior treatment.
+
+Randomization is also unethical, for the most part, in studies of harmful exposures. I define an intervention as something you do to your patients with the hope that it will make things better. Sometimes it doesn't work out, and sometimes the proposed intervention is actually harmful rather than helpful. But it is your expectation that the intervention will make things better.
+
+An exposure, on the other hand, is something that you are forced to endure and maybe it's okay, but you worry that it might cause real harm. With the exception of short term reversible harms, you can't randomly assign people to an exposure.
+
+You can quibble about these definitions. Is a particular diet an intervention or an exposure? But interventions versus exposures are yet another example of a false dichotomy that is still useful.
+
+Many times, randomization is just impractical. When you are studying large groups of patients (say tens of thousands or more), you may not have the resources to set up a randomization process. Randomization is also difficult for certain diseases like cancer that have a long latency period. That cancerous polyp in your gut? it was from the Twinky you ate as a teenager and it's a ticking time bomb, but the fuse is set to go off three decades from now. You just don't have the time to wait on a study that could last half of your life.
+
+In other settings, randomization is impossible. You can't randomly assign people to a gender, race/ethnicity, or age group. You can't randomly assign someone in a retrospective study without a time machine. Actually, there is one cute example.
+
+[taken from http://www.pmean.com/04/temporality.html]
+
+There was a cute article in the 2001 year end issue of the British Medical Journal titled: "Beyond Science? Effects of remote, retroactive intercessory prayer on outcomes in patients with bloodstream infection: randomized controlled trial." ([Medline]). The author, Leonard Leibovici, found the records of 3,393 adult patients with bloodstream infection at Rabin Medical Center, randomly divided those records into two groups then randomly selected one group to pray over. Note that this is a RETROSPECTIVE study. The outcomes were determined 4 to 10 years prior to the start of the study. After praying over one group, the author evaluated mortality, stay in the hospital, and duration of fever. Although there was no statistically significant difference in mortality (p=0.40), there was a reduction in the length of stay (p=0.01) and in duration of fever (p=0.04).
+
+It is dangerous to speculate on the motives of the author, but this article was published in a year end issue that is traditionally reserved for light hearted articles.
+:::
+
+## Some alternatives
+
+-   Wait list control groups
+-   Add on trials
+-   Intensive versus standard advice
+-   Randomly assign from a different end
+-   Early stopping
+
+::: notes
+In some settings, people will resist participating in a trial where there is a 50% chance of a placebo, but they are willing to be put on a waiting list. Indeed the concept that not everyone can get in the door at the same time make a random allocation to immediate treatment versus delayed treatment may seem like the only "fair" way to handle this.
+
+If you want to measure the effect of smoking cessation during pregnacy, you can randomly assign patients to the normal advice that a doctor might give versus an intervention where you offer special programs for free or provide a more intensive push to stop smoking. If the randomly assigned patients in the second group have less smoking and better birth results, then you have randomized evidence of the benefit of smoking cessation during pregnancy. This sort of intervention has also been done for things that area already known to be beneficial like breast-feeding where you would not want to assign women to a non-breast-feeding group.
+
+There's a lot of concern about how gender and race may play a part in what sort of treatments these patients get. You can't send someone into an office as a male and then send them back dressed up as a female. But what you can do is randomly assign physicians. Set up videotapes of actors playing the role of patients. The first video would be a white male, the next a black female, etc. Each physician sees just one randomly selected video. If you see differences (presumably differences not justified by a patient's race or gender), then this is evidence of differential treatment based on race or gender.
+
+You may find information during the course of your clinical trial, either from your own research or research that has just been published by others, that changes equipoise. A study that seemed to be ethical at the start, becomes unethical to continue. In these settings, you have to plan for an early end to your research. This must be done carefully. I will try to highlight some of the issues associated with early stopping of clinical trials later in this class.
+:::
