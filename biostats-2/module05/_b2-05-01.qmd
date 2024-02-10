@@ -1,0 +1,85 @@
+---
+title: "Principal components"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Health-related Quality of Life, 1 of 6
+
+```{r}
+#| warnings: true 
+library(yaml)
+fn <- "../data/tb-qol-data-dictionary.yaml"
+dd <- read_yaml(fn)
+cat(as.yaml(dd["data_dictionary"]))
+cat(as.yaml(dd["source"]))
+cat(as.yaml(dd["description"]))
+i <- 0
+j <- 15
+```
+
+::: notes
+Here are a few pieces of the data dictionary for a file I will be using. I won't show the entire data dictionary, as it is quite long.
+:::
+
+## Health-related Quality of Life, `r i/3+2` of 6
+
+```{r}
+cat(as.yaml(dd$vars[i+j]))
+cat(as.yaml(dd$vars[i+j+1]))
+cat(as.yaml(dd$vars[i+j+2]))
+i <- i+3
+```
+
+
+## Health-related Quality of Life, `r i/3+2` of 6
+
+```{r}
+cat(as.yaml(dd$vars[i+j]))
+cat(as.yaml(dd$vars[i+j+1]))
+cat(as.yaml(dd$vars[i+j+2]))
+i <- i+3
+```
+
+## Health-related Quality of Life, `r i/3+2` of 6
+
+```{r}
+cat(as.yaml(dd$vars[i+j]))
+cat(as.yaml(dd$vars[i+j+1]))
+cat(as.yaml(dd$vars[i+j+2]))
+i <- i+3
+```
+
+## Health-related Quality of Life, `r i/3+2` of 6
+
+```{r}
+cat(as.yaml(dd$vars[i+j]))
+cat(as.yaml(dd$vars[i+j+1]))
+cat(as.yaml(dd$vars[i+j+2]))
+i <- i+3
+```
+## Health-related Quality of Life, `r i/3+2` of 6
+
+```{r}
+cat(as.yaml(dd$vars[i+j]))
+cat(as.yaml(dd$vars[i+j+1]))
+cat(as.yaml(dd$vars[i+j+2]))
+i <- i+3
+```
+
+## Correlation matrix, 1 of 3
+
+![](images/qol-analysis-01.png)
+
+
+## Correlation matrix, 2 of 3
+
+![](images/qol-analysis-02.png)
+
+## Correlation matrix, 3 of 3
+
+![](images/qol-analysis-03.png)
+

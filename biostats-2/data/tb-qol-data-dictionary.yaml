@@ -1,26 +1,26 @@
 ---
 data_dictionary: Health-related Quality of Life of Persons Living with Tuberculosis.sav
 
-source: 
+source: >
   Tornu, Eric ; Quarcoopome, Louisa  (2022), 
   “Health-related Quality of Life of Persons
   Living with Tuberculosis”, Mendeley Data, 
   V2, doi: 10.17632/jg4xp7883w.2
   
-description:  
-  From the original source: "This data is on
-  a study which accessed the health-related 
-  quality of life of persons living with 
-  Tuberculosis"
+description: >
+  From the original source: This data is on
+  a study which accessed the health-related
+  quality of life of persons living with
+  Tuberculosis.
   
-note:
+note: >
   Also see Quarcoopome L, Tornu E. Health-related
   quality of life of persons living with 
-  tuberculosis: A cross-sectional study. J Clin 
+  tuberculosis, A cross-sectional study. J Clin 
   Tuberc Other Mycobact Dis. 2022 Jun 30;28:100324.
-  doi: 10.1016/j.jctube.2022.100324. PMID: 35813286;
-  PMCID: PMC9260615, and
-  https://iris.who.int/bitstream/handle/10665/63529/WHOQOL-BREF.pdf
+  doi 10.1016/j.jctube.2022.100324. PMID 35813286;
+  PMCID PMC9260615, and
+  https://iris.who.int/bitstream/handle/10665/63529/WHOQOL-BREF.pdf"
   
 copyright:  
   CC By 4.0
@@ -36,286 +36,287 @@ vars:
     
   StudySite:
     values:
-      KBTH
-      LEKMA
-      TGH
-      GSMH
+      1: KBTH
+      2: LEKMA
+      3: TGH
+      4: GSMH
       
   ID:
     scale: alphanumeric code
     
   CategoryofTuberculosis: 
     values:
-      Pulmonary
-      Extrapulmonary
+      1: Pulmonary
+      2: Extrapulmonary
       
   CategoryofTuberculosisTypeofExtrapulmonaryTB:
     values:
-      "Potts' disease"
-      Pleural effusion
-      Cervical lymph nodes
-      Right knee
-      Left lung abcess
-      Loculated 2 & lung abscess
-      Milliart TB
-      Lymph node
-      Not applicable 
+      1: "Potts' disease"
+      2: Pleural effusion
+      3: Cervical lymph nodes
+      4: Right knee
+      5: Left lung abcess
+      6: Loculated 2 & lung abscess
+      7: Milliart TB
+      8: Lymph node
+      9: Not applicable 
       
   CategoryofCase:
     values:
-      New case
-      Re-treatment
+      1: New case
+      2: Re-treatment
  
-  PhaseofTreatment
-    values:
-      Intensive
-      Continuation
+  PhaseofTreatment:
+    values: 
+      1: Intensive
+      2: Continuation
     
   AgeYears:
     scale: Non-negative integer
 
   Sex:
     values:
-      Female
-      Male
+      1: Female
+      2: Male
       
   Religion:
     values:
-      Christian
-      Islam
+      1: Christian
+      2: Islam
       
   MaritalStatus:
     values:
-      Single
-      Married
-      Separated
-      Widow
+      1: Single
+      2: Married
+      3: Separated
+      4: Widow
 
   HighestLevelofEducation:
     values:
-      No formal education
-      Primary
-      Secondary
-      Tertiary
+      1: No formal education
+      2: Primary
+      3: Secondary
+      4: Tertiary
       
   Occupation_Cat:
     values:
-      Unemployed
-      Student
-      Employes
+      1: Unemployed
+      2: Student
+      3: Employes
 
   AverageMonthlyIncome:
     values:
-      Below Ghc1,000
-      Between Ghc1,000 and Ghc2,000
-      Between Ghc2,001 and Ghc3,000
-      
+      1: Below Ghc1,000
+      2: Between Ghc1,000 and Ghc2,000
+      3: Between Ghc2,001 and Ghc3,000
+
   Howwouldyourateyourqualityoflife_1:
     values:
-      Poor
-      Neither poor nor good
-      Good
-      Very Good  
+      1: Poor
+      2: Neither poor nor good
+      3: Good
+      4: Very Good  
 
   HowSatisareyouwithyourhealth_2:
     values:
-      Very dissatisfied
-      Dissatisfied
-      Neither satisfied nor satisfied
-      Satisfied
-      Very Satisfied
+      1: Very dissatisfied
+      2: Dissatisfied
+      3: Neither satisfied nor satisfied
+      4: Satisfied
+      5: Very Satisfied
 
   Physicalpainprevents_3:
     values:
-      An extreme amount
-      Very much
-      A moderate amount
-      A little
-      Not at all
+      1: An extreme amount
+      2: Very much
+      3: A moderate amount
+      4: A little
+      5: Not at all
 
   Howmuchmedicaltreatment_4:
     values:
-      An extreme amount
-      Very much
-      A moderate amount
-      A little
-      Not at all
-      
+      1: An extreme amount
+      2: Very much
+      3: A moderate amount
+      4: A little
+      5: Not at all
+
   Howmuchdoyouenjoylife_5:
     values:
-      Not at all
-      A little
-      A moderate amount
-      Very much
-      Extremely
-      
-  Towhatextentdoyoufeelyourlifetobemeaningful_6
+      1: Not at all
+      2: A little
+      3: A moderate amount
+      4: Very much
+      5: Extremely
+
+  Towhatextentdoyoufeelyourlifetobemeaningful_6:
     values:
-      Not at all
-      A little
-      A moderate amount
-      Very much
-      Extremely
+      1: Not at all
+      2: A little
+      3: A moderate amount
+      4: Very much
+      5: Extremely
   
   Howwellareyouabletoconcentrate_7:
     values: 
-      Not at all
-      A little
-      A moderate amount
-      Very much
-      Extremely
+      1: Not at all
+      2: A little
+      3: A moderate amount
+      4: Very much
+      5: Extremely
 
   Howsafedoyoufeelinyourdailylife_8:
     values: 
-      Not at all
-      A little
-      A moderate amount
-      Very much
-      Extremely
+      1: Not at all
+      2: A little
+      3: A moderate amount
+      4: Very much
+      5: Extremely
 
   Howhealthyisyourphysicalenvironment_9:
     values: 
-      Not at all
-      A little
-      A moderate amount
-      Very much
-      Extremely
+      1: Not at all
+      2: A little
+      3: A moderate amount
+      4: Very much
+      5: Extremely
   
   Doyouhaveenoughenergyforeverydaylife_10:
     values: 
-      Not at all
-      A little
-      A moderate amount
-      Very much
-      Extremely
+      1: Not at all
+      2: A little
+      3: A moderate amount
+      4: Very much
+      5: Extremely
   
   Areyouabletoacceptyourbodilyappearance_11:
     values: 
-      Not at all
-      A little
-      A moderate amount
-      Very much
-      Extremely
+      1: Not at all
+      2: A little
+      3: A moderate amount
+      4: Very much
+      5: Extremely
 
   Haveyouenoughmoneytomeetyourneeds_12:
     values: 
-      Not at all
-      A little
-      A moderate amount
-      Very much
-      Extremely
+      1: Not at all
+      2: A little
+      3: A moderate amount
+      4: Very much
+      5: Extremely
   
   AvailableInformation_13:
     values: 
-      Not at all
-      A little
-      A moderate amount
-      Very much
-      Extremely
+      1: Not at all
+      2: A little
+      3: A moderate amount
+      4: Very much
+      5: Extremely
   
   Opportunityforleisureactivities_14:
     values: 
-      Not at all
-      A little
-      A moderate amount
-      Very much
-      Extremely
+      1: Not at all
+      2: A little
+      3: A moderate amount
+      4: Very much
+      5: Extremely
   
   Howwellareyouabletogetaround_15:
     values:
-      Poor
-      Neither poor nor good
-      Good
-      Very Good  
+      1: Very poor
+      2: Poor
+      3: Neither poor nor good
+      4: Good
+      5: Very Good  
 
   HowSatisareyouwithyoursleep_16:
     values:
-      Very dissatisfied
-      Dissatisfied
-      Neither satisfied nor satisfied
-      Satisfied
-      Very Satisfied
+      1: Very dissatisfied
+      2: Dissatisfied
+      3: Neither satisfied nor satisfied
+      4: Satisfied
+      5: Very Satisfied
   
   Satisabilitytoperformyourdailylivingactivities_17:
     values:
-      Very dissatisfied
-      Dissatisfied
-      Neither satisfied nor satisfied
-      Satisfied
-      Very Satisfied
+      1: Very dissatisfied
+      2: Dissatisfied
+      3: Neither satisfied nor satisfied
+      4: Satisfied
+      5: Very Satisfied
   
   Satisareyouwithyourcapacityforwork_18:
     values:
-      Very dissatisfied
-      Dissatisfied
-      Neither satisfied nor satisfied
-      Satisfied
-      Very Satisfied
+      1: Very dissatisfied
+      2: Dissatisfied
+      3: Neither satisfied nor satisfied
+      4: Satisfied
+      5: Very Satisfied
   
   HowSatisareyouwithyourself_19:
     values:
-      Very dissatisfied
-      Dissatisfied
-      Neither satisfied nor satisfied
-      Satisfied
-      Very Satisfied
+      1: Very dissatisfied
+      2: Dissatisfied
+      3: Neither satisfied nor satisfied
+      4: Satisfied
+      5: Very Satisfied
 
   HowSatisareyouwithyourpersonalrelationships_20:
     values:
-      Very dissatisfied
-      Dissatisfied
-      Neither satisfied nor satisfied
-      Satisfied
-      Very Satisfied
+      1: Very dissatisfied
+      2: Dissatisfied
+      3: Neither satisfied nor satisfied
+      4: Satisfied
+      5: Very Satisfied
   
   HowSatisareyouwithyoursexlife_21:
     values:
-      Very dissatisfied
-      Dissatisfied
-      Neither satisfied nor satisfied
-      Satisfied
-      Very Satisfied
+      1: Very dissatisfied
+      2: Dissatisfied
+      3: Neither satisfied nor satisfied
+      4: Satisfied
+      5: Very Satisfied
   
   SatisSupportyougetfromyourfriends_22:
     values:
-      Very dissatisfied
-      Dissatisfied
-      Neither satisfied nor satisfied
-      Satisfied
-      Very Satisfied
+      1: Very dissatisfied
+      2: Dissatisfied
+      3: Neither satisfied nor satisfied
+      4: Satisfied
+      5: Very Satisfied
   
   HowSatisareyouwiththeconditionsofyourlivingplace_23:
     values:
-      Very dissatisfied
-      Dissatisfied
-      Neither satisfied nor satisfied
-      Satisfied
-      Very Satisfied
+      1: Very dissatisfied
+      2: Dissatisfied
+      3: Neither satisfied nor satisfied
+      4: Satisfied
+      5: Very Satisfied
   
   HowSatisareyouwithyouraccesstohealthservices_24:
     values:
-      Very dissatisfied
-      Dissatisfied
-      Neither satisfied nor satisfied
-      Satisfied
-      Very Satisfied
+      1: Very dissatisfied
+      2: Dissatisfied
+      3: Neither satisfied nor satisfied
+      4: Satisfied
+      5: Very Satisfied
 
   HowSatisareyouwithyourtransport_25:
     values:
-      Very dissatisfied
-      Dissatisfied
-      Neither satisfied nor satisfied
-      Satisfied
-      Very Satisfied
+      1: Very dissatisfied
+      2: Dissatisfied
+      3: Neither satisfied nor satisfied
+      4: Satisfied
+      5: Very Satisfied
   
   Howoftennegativefeelings_26:
     values:
-      Always
-      Very often
-      Quite often
-      Seldom
-      Never
-      
+      1: Always
+      2: Very often
+      3: Quite often
+      4: Seldom
+      5: Never
+
   Psychological_Domain_Raw:
     label: Sum of Q5, Q6, Q11, Q19, Q26
     range: 6 through 36
@@ -366,8 +367,8 @@ vars:
   
   Age_Cat:
     values:
-      <15 years
-      15 - 34 years
-      35 - 64 years
-      > 65 years
+      1: "<15 years"
+      2: "15 - 34 years"
+      3: "35 - 64 years"
+      4: "> 65 years"
 ---
