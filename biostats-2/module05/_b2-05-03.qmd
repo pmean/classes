@@ -13,3 +13,23 @@ editor: source
 -   Covariance equals shared information
 -   Modeling shared information creates latent variables
 
+## Factor rotation
+
+-   Recombine factors
+-   Strive for simple interpretation
+    -   Components close to -1, 0, or 1
+    -   Each variable has one and only one non-zero components
+    -   Not always achievable
+
+## Rotated factor pattern, 1 of 3
+
+![](images/factor-analysis-01.png)
+
+## Rotated factor pattern, 2 of 3
+
+![](images/factor-analysis-03.png)
+
+## Rotated factor pattern, 3 of 3
+
+![](images/factor-analysis-02.png)
+
