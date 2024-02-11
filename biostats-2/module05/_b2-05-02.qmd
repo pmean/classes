@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Applications of principal components"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,22 @@ format:
 editor: source
 ---
 
-## Slide 05-02
+## Applications
 
-::: notes
+-   Visualization
+    -   Reduce high dimensional visualization 
+    -   Fewer graphs
+-   Regression analysis
+    -   Fewer independent variables (rule of 15)
+    -   Removes collinearity
 
-:::
+## Visualization using two principal components
+
+## R-squared using four principal components
+
+![](images/pca-application-01.png)
+
+## R-squared using all 24 variables
+
+![](images/pca-application-02.png)
 

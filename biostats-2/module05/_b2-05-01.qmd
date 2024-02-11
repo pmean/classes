@@ -1,11 +1,42 @@
 ---
-title: "Principal components"
+title: "Principal components analysis"
 format: 
   revealjs:
     slide-number: true
     embed-resources: true
 editor: source
 ---
+
+## Philosophy behind principal components, 1 of 4
+
+
+-   Reduce complexity by modeling inter-relationships
+-   Inter-rleationships are linear
+    -   There is no dependent or outcome variable in principal components analysis
+
+## Philosophy behind principal components, 2 of 4
+
+-   First principal component
+    -   Linear combination that accounts most variation
+    -   This linear combination is the first eigenvector
+    -   The amount of variation accounted for is the first eigenvalue
+
+## Philosophy behind principal components, 3 of 4
+
+-   Need to resolve an ambiguity
+    -   $3X_1+5X_2-4X_3+7X_4-1X_5$ versus $6X_1+10X_2-8X_3+14X_4-2X_5$
+    -   Solution: require sum of squared coefficients to equal 1
+    -   Note: $3^2+5^2+(-4)^2+7^2+(-1)^2=100$
+    -   Use $\frac{3}{10}X_1+\frac{5}{10}X_2-\frac{4}{10}X_3+\frac{7}{10}X_4-\frac{1}{10}X_5$
+
+## Philosophy behind principal components, 4 of 4
+
+-   Second principal component
+    -   Linear combination that accounts second most variation
+    -   Must be uncorrelated with first principal components
+    -   This linear combination is the second eigenvector
+    -   The amount of variation accounted for is the second eigenvalue
+-   Third principal component defined similarly
 
 ## Health-related Quality of Life, 1 of 6
 
@@ -72,14 +103,30 @@ i <- i+3
 
 ## Correlation matrix, 1 of 3
 
-![](images/qol-analysis-01.png)
+![](images/pca-analysis-01.png)
 
 
 ## Correlation matrix, 2 of 3
 
-![](images/qol-analysis-02.png)
+![](images/pca-analysis-02.png)
 
 ## Correlation matrix, 3 of 3
 
-![](images/qol-analysis-03.png)
+![](images/pca-analysis-03.png)
+
+## Communalities
+
+![](images/pca-analysis-04.png)
+
+## Eigenvalues
+
+![](images/pca-analysis-05.png)
+
+## Scree plot
+
+![](images/pca-analysis-06.png)
+
+## Component matrix
+
+![](images/pca-analysis-07.png)
 

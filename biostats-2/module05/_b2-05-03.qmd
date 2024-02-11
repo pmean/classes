@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Factor analysis"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,9 @@ format:
 editor: source
 ---
 
-## Slide 05-03
+## Philosophy behind factor analysis
 
-::: notes
-
-:::
+-   Variance equals information
+-   Covariance equals shared information
+-   Modeling shared information creates latent variables
 
