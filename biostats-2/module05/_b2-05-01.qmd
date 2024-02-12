@@ -74,7 +74,7 @@ editor: source
 ## Health-related quality of life, 1 of 6
 
 ```{r}
-#| warnings: true 
+#| warnings: false
 library(yaml)
 fn <- "../data/tb-qol-data-dictionary.yaml"
 dd <- read_yaml(fn)

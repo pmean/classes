@@ -21,6 +21,211 @@ editor: source
 Interactions are important to look for, but if you find one, don't rejoice. Interactions are a headache. They tell you that a simple interpretation of your research won't work. That's important to know, of course, but it also means that you will have to spend more time explaining your results in a paper or presentation.
 :::
 
+## Interaction plot
+
+-   X axis, first categorical variable
+-   Separate lines for second categorical variable
+-   Y axis, average outcome
+
+## Hypothetical interaction plots, 1 of 4
+
+```{r}
+library(tidyverse)
+
+draw_lines <- function(
+    y,
+    lab1=c("Placebo", "Treatment"),
+    lab2=c("Girl", "Boy"),
+    color_list=c("pink2", "blue")) {
+data.frame(x=0:1, y=c(10, 70), g=0:1) %>%
+  ggplot(aes(x, y, group=g)) +
+    theme(text = element_text(size=30)) +
+    expand_limits(
+      x=c(-0.2, 1.2),
+      y=c(0, 80)) +
+    scale_x_continuous(
+      name=" ",
+      breaks=0:1,
+      labels=lab1) +
+    scale_y_continuous(
+      name="Outcome\n(larger is better)",
+      breaks=10*(0:8)) +
+    geom_segment(
+      x=0, xend=1, 
+      y=y[1], yend=y[2], 
+      linetype="solid",
+      linewidth=3,
+      color=color_list[1]) +
+    geom_segment(
+      x=0, xend=1, 
+      y=y[3], yend=y[4], 
+      linetype="22",
+      linewidth=3,
+      color=color_list[2]) +
+    geom_label(
+      x=1.1, 
+      y=y[2], label=lab2[1],
+      color=color_list[1],
+      size=5) +
+    geom_label(
+      x=1.1, y=y[4], 
+      label=lab2[2],
+      color=color_list[2],
+      size=5)
+}
+```
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+draw_lines(c( 9, 13, 12,  8))
+```
+
+-   No interaction
+-   Ineffective treatment
+-   Boys/girls similar
+:::
+
+::: {.column width="50%"}
+```{r}
+draw_lines(c( 9, 13, 72,  68))
+```
+
+-   No interaction
+-   Ineffective treatment
+-   Boys fare better than girls
+:::
+::::
+
+::: notes
+An interaction plot shows the mean values for each of the two categories. In this example, there is a placebo and a treatment. The outcome is unspecified, but a larger value is presumed to represent a better outcome. This is a pediatric example and the data is subdivided into two populations, boys and girls. 
+
+The flatness or steepness of the lines indicates whether patients given the treatment fare better than patients given the placebo.
+
+The separation (if there is any) between the lines measures whether boys fare better or worse than girls.
+
+If the lines have roughly the same slope (both are flat or both are steep), then there is no interaction.
+
+In the plot on the left, the two lines are flat, indicating that the treatment is ineffective. The outcome is not changed from the placebo.
+
+The two lines lie more or less on top of one another. This indicates that there is no difference in average outcome between boys are girls.
+
+In the plot on the right, the two lines are flat. The treatment is ineffective. There is, however, a difference. The average outcome for boys is a lot better both in the placebo group and the treatment group. The lines are roughly parallel, indicating no interaction.
+:::
+
+
+## Hypothetical interaction plots, 2 of 4
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+draw_lines(c( 9, 73, 12,  68))
+```
+
+-   No interaction
+-   Effective treatment
+-   Boys/girls similar
+:::
+
+::: {.column width="50%"}
+```{r}
+draw_lines(c( 9, 43, 42,  73))
+```
+
+-   No interaction
+-   Effective treatment
+-   Boys fare better than girls
+:::
+::::
+
+::: notes
+In the plot on the left, there is a steep slope for both boys and girls. The treatment is effective. There is no separation in the lines. Boys do not fare any better or worse on average than girls.
+
+In the plot on the left, there is a steep slope and a separation between the lines. Boys fare better than girls on average. Both lines have a steep slope. The treatment. The lines are parallel, so there is no interaction.
+:::
+
+## Hypothetical interaction plots, 3 of 4
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+draw_lines(c( 9, 73, 68,  12))
+```
+
+-   Significant interaction
+-   Harmful treatment in boys
+-   Effective treatment in girls
+:::
+
+::: {.column width="50%"}
+```{r}
+draw_lines(c( 9, 43, 12,  10))
+```
+
+-   Significant interaction
+-   Ineffective treatment in boys
+-   Effective treatment in girls
+:::
+::::
+
+::: notes
+In the plot on the left, the lines are not parallel, so this is evidence of an interaction. In fact, the two lines cross. This is an extreme interaction. Boys fare better on the treatment and girls fare better on the placebo.
+
+In the plot on the right, the lines are not parallel, so this is also evidence of an interaction, but a different sort of interaction. The line for boys is flat and the line for girls is steep. The treatment is worthless for boys, but quite helpful for girls.
+:::
+
+## Hypothetical interaction plots, 4 of 4
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+draw_lines(c( 59, 78, 8,  53))
+```
+
+-   Significant interaction
+-   Girls fare better overall
+-   Effective treatment
+-   Much more effective in boys
+:::
+
+::: {.column width="50%"}
+
+:::
+::::
+
+::: notes
+In this final plot, the lines are not parallel, indicating a third type of interaction. The slope is much steeper for boys. Girls see a moderate improvement on average, but boys see a really large improvement.
+:::
+
+## Data dictionary for exercise data, 1 of 3
+
+```{r}
+#| warnings: true 
+library(yaml)
+fn <- "../data/exercise-data-dictionary.yaml"
+dd <- read_yaml(fn)
+cat(as.yaml(dd["data_dictionary"]))
+cat(as.yaml(dd["description"]))
+i <- 0
+```
+
+## Data dictionary for exercise data, `r i/3+2` of 3
+
+```{r}
+cat(as.yaml(dd$vars[i+1]))
+cat(as.yaml(dd$vars[i+2]))
+cat(as.yaml(dd$vars[i+3]))
+i <- i+3
+```
+
+## Data dictionary for exercise data, `r i/3+2` of 3
+
+```{r}
+cat(as.yaml(dd$vars[i+1]))
+cat(as.yaml(dd$vars[i+2]))
+cat(as.yaml(dd$vars[i+3]))
+```
+
 ## Box plots of exercise data
 
 ![](images/exercise-analysis-01.png)
