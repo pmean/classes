@@ -28,8 +28,12 @@ editor: source
 
 ## Weight loss at various conditions
 
--   hours = 2, effort = 30, predict 10.005 + 
--   hours = 4, effort = 30, predict 10.005 + 2.291\*2
--   hours = 2, effort = 40, predict 10.005 + 2.291\*2 + 0.707\*10
--   hours = 4, effort = 40, predict 10.005 + 2.291\*2 + 0.707\*10 + 0.393\*2\*20
+-   hours = 2 (mean), effort = 30 (mean),
+    -   $\hat Y$ = 10.005
+-   hours = 4 (mean+2), effort = 30 (mean),
+    -   $\hat y$ = `10.005 + 2.291*2` = `r 10.005 + 2.291*2`
+-   hours = 2 (mean), effort = 40 (mean+20)
+    -   $\hat Y$ = `10.005 + 0.707*20` = `r 10.005 + 0.707*20`
+-   hours = 4 (mean+2), effort = 40 (mean+20)
+    -   $\hat Y$ = `10.005 + 2.291*2 + 0.707*20 + 0.393*2*20` = `r 10.005 + 2.291*2 + 0.707*20 + 0.393*2*20`
 

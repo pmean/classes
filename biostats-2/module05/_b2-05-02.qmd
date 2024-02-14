@@ -18,7 +18,26 @@ editor: source
 
 ## Boxplots of first four principal components
 
-## Scatterplot of first two principal components
+:::: {.columns}
+::: {.column width="50%"}
+![](images/pca-application-03.png)
+:::
+::: {.column width="50%"}
+![](images/pca-application-04.png)
+:::
+::::
+
+
+## Scatterplot of first four principal components
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/pca-application-05.png)
+:::
+::: {.column width="50%"}
+![](images/pca-application-06.png)
+:::
+::::
 
 ## R-squared using four principal components
 
