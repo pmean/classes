@@ -1,0 +1,161 @@
+---
+title: "Simple quasi-experimental studies"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## What is a quasi-experimental study?
+
+-   Could but does not use randomization
+-   Never sneer at quasi-experimental studies
+    -   Make a loud mistake
+-   Problems with randomization
+    -   Cost
+    -   Logistical constraints
+    -   Contamination
+    -   Small n
+    -   Difficult to get buy-in
+  
+::: notes
+A quasi-experimental study uses an active independent variable, but does not use a formal process of randomization to control that variable.
+
+The choice to forgo randomization is usually a deliberate choice. Many people, including the authors of your book, dismiss the quasi-experimental design as an inferior alternative to a randomized design, but that are wrong. In some settings, randomization puts you at a disadvantage. If you decide to use a quasi-experimental design, recognize that you are choosing this design because it is superior to a randomized trial. 
+
+I dated a piano major in college and I tried, with very limited success, to learn how to play the piano myself. She told me, "If you're going to make a mistake, make a loud mistake." You don't want to play the piano nervously and hesitantly. The same is true in research. 
+
+If you deviate from a well-established research norm, do so boldly and explicitly. Say something like "Although this quasi-experimental study has some limitations, it avoids many of the well-documented problems with a randomized trial" And then elaborate. Don't apologize for your research design. Brag about how it is the best approach for this particular problem and explain what advantages it offers over a randomized trial.
+
+What are the problems with randomization? First, it is expensive. It takes a lot of money (and a lot of time=remember that time is money). The machinery associated with randomization does not come cheap.
+
+Contamination is the tendency for a particular intervention to "bleed over" into the control group. You may ask a health care provider to use a new approach for patients, but it is sometimes very easy to let some of the new approach slip in when that person is treating a randomly selected control patient.
+
+Certain interventions, such as changes to the physical layout of a work area are one directional and cannot be undone. This is also true of certain training interventions (Uh-oh! A control patient is next on my randomization list. Time to forget everything that I've just learned.)
+
+The sample size available to randomize may be too small to assure that randomization would work. This is especially true when you are looking at an intervention that can be implemented only at a very broad scale, such as with an entire floor or wing of a hospital.
+
+Even when you have enough control to randomize, the people that have to implement your randomization process may rebel. This especially true in a difficult and hectic environment like an emergency room. Randomization is one more distraction that they just don't need. They are more likely to support your research if you implement the intervention without randomization.
+:::
+
+## Notation for research designs
+
+-   O means a measurement is made
+-   X means an intervention is given.
+-   ~X means no intervention or a control intervention
+-   R means randomized assignment
+-   NR means non-randomized assignment
+-   E means the experimental group
+-   C means the control group
+
+::: notes
+There is a fairly standard notation with the letter O representing a measurement and the letter X representing an intervention.
+
+The symbols here mean all subjects were assigned to an exposure group, that two measurements were made, then an intervention was given and then two more measurements were made.
+:::
+
+## Example of a design
+
+$\ $
+
+```{r notation, echo=FALSE, comment=""}
+cat("R E: O1 X O2   O3\nR C: O1   O2 X O3")
+```
+
+::: notes
+This is an example of a waiting list control group. The patients are randomly assigned to E or C. They both get a baseline, O1. Then the E group gets an intervention X that does not happen for the control group just yet. The second measurement is done, and after the second measurement, the same intervention is offered to the control group. Then both groups are measured a third time. The comparison of O2 between the experimental and control groups is the key measure, and you can adjust for baselines using a change score or analysis of covariance. But there are other interesting comparisons. With the experimental group, the comparison of O2 with O3 represents an assessment of whether the effect of X persists over a longer period of time.
+:::
+
+## Single group post-test only design
+
+$\ $
+
+```{r single-group-post-only, echo=FALSE, comment=""}
+cat("NR E: X O")
+```
+
+$\ $
+
+-   Simplest design
+-   Useful for pilot work
+
+::: notes
+The simplest possible design is a single group post-test only design. There is no randomization. The treatment given to everyone and you get a measurement only after the treatment. 
+
+It reminds me of a story, that I have not been able to verify. If you find a link to this story, let me know. The famous philosopher Karl Popper asked his wife "How much do you love me?" She responded "I love you eleven".
+
+Eleven compared to what? Maybe she loves bagels fifteen? Maybe he only loves her eight? There's no comparison to be made at all.
+
+Although no comparisons can be done. It could be useful for pilot or feasibility studies.
+:::
+
+## Single group comparison post-treatment to baseline
+
+$\ $
+
+```{r single-group-pre-post, echo=FALSE, comment=""}
+cat("NR E: O1 X O2")
+```
+
+$\ $
+
+-   Allows a comparison.
+-   Confounded with temporal trends.
+
+::: notes
+One group, pre-test versus post-test. You can look at change before and after the intervention. You still don't know if the change would have occurred even without this intervention.
+
+There are effects such as maturation or carry-over effects that could easily account for any difference seen in this design.
+
+You can improve this design by including extra outcome variables. Half of these outcome variables would be expected to be changed by the intervention and half would be expected to be unchanged, even if the intervention is successful.
+
+If you see that the first half changes from baseline and the second half does not, then you have some assurance that there is no temporal trend, at least no trend that might influence all the outcome variables that you are considering.
+
+So a teaching intervention, for example, might teach lessons in X1 and X2, but not X3 and X4. Test all four areas prior to the intervention and afterwards. If you see a change in just X1 and X2 great! If you see a change in all four, though, you're in trouble.
+:::
+
+## Two group comparison, without a baseline
+
+$\ $
+
+```{r two-group-post-only, echo=FALSE, comment=""}
+cat("NR E: X O\nNR C:   O")
+```
+
+$\ $
+
+-   Non-randomized comparison
+-   Confounded with baseline imbalance
+
+::: notes
+If you have two groups, assigned without randomization, you do have a comparison, but without a baseline measurement, you can't be sure that the difference that you do see is the same as the difference that existed between the two groups prior to the intervention.
+
+Here's where randomization would have helped a lot. Randomization controls for unmeasured covariates and the baseline value in this study is an unmeasured covariate.
+
+The three quasi-experimental studies described so far are called pre-experimental because you cannot draw any conclusions without making some untestable assumptions.
+
+This sounds terrible, but we make untestable assumptions all the time in science. For example, Carbon-14 dating relies on the assumption that the rate of decay of carbon-14 is the same now as it was a thousand years ago. There's no good way to test this assumption, but we accept it as reasonable.
+
+It's okay to make untestable assumptions if there is no way that you could collect the extra data that you would need to turn it into a testable assumption. Just be explicit about what assumptions you are making and your readers can for themselves whether they agree with you that the assumption is reasonable.
+
+One way to indirectly test the assumption that the two groups were comparable at baseline is to compare the two groups by some demographic variables like age or gender that might be associated with your baseline. If the demographic variables are comparable, then you have some assurance that the baselines would have been comparable, if you had an opportunity to measure and test them.
+:::
+
+## Two group comparison with a baseline
+
+$\ $
+
+```{r two-group-pre-post, echo=FALSE, comment=""}
+cat("NR E: O1 X O2\nNR C: O1   O2")
+```
+
+$\ $
+
+-   Best design so far.
+-   Can check for 
+    -   temporal trends in the control group.
+    -   baseline imbalances
+-   Cannot check for unmeasured covariates
+-   Cannot check for treatment interaction
+
