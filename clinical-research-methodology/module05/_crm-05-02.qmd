@@ -1,0 +1,85 @@
+---
+title: "Framework for quality improvement studies"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## The SMART approach
+
+-   SMART
+    -   Specific
+    -   Measurable
+    -   Achievable
+    -   Relevant
+    -   Time Bounded
+-   [Who] will do [what] resulting in [measure] by [when]
+    -   Minnesota Department of Health
+
+::: notes
+
+At a recent graduate research seminar, Felicity Pino talked about the quality improvement studies and introduced an acronym that was new to me, SMART.
+
+Any problem identified by a QI should be written using the five criteria in the acronym SMART (Specific, Measurable, Actionable, Relevant, Time Bounded).
+
+Specific means that you avoid multiple objectives (one verb, not two, according to the CDC) and keep the focus narrow.
+
+Measurable means that you specify a quantitative variable that you will measure, a quantitative value representing where you currently are, and a quantitative value representing where you want to get to.
+
+Achievable means that you have considered both the time and resources and the barriers that you face when setting your objective.
+
+Relevant means that your objective addresses the problem directly.
+
+Time bounded means that you set a calendar date by which you hope to achieve your objective.
+
+As the Minnesota Department of Health puts it, you objective should state "[Who] will [what] resulting in [measure] by [when]"
+:::
+
+## The PDSA cycle
+
+-   Plan
+-   Do
+-   Study
+-   Act
+
+::: notes
+The PDSA cycle is commonly used when describing QI teams. Some use the acronym PDCA with Check substituting for Study, but the intention is the same. It is a cycle, which means that as soon as you act on what you've learned, you starting a second cycle of planning.
+
+The plan, do, study, act cycle is fairly straightforward, but I want to want you that a trap that some QI teams can fall into is to ignore two of the four parts.
+
+A team, for example, might be trapped in a Plan, Do, Plan, Do cycle and never takes the time to learn from the work or to implement changes based on the work.
+
+Or the team might be trapped in a Plan, Act, Plan, Act cycle and never take the time to see if the plans actually have a measurable impact.
+:::
+
+## Process, outcome, and balancing measures
+
+-   Outcome measures
+    -   Direct measure
+    -   Low signal to noise ratio
+-   Process measures
+    -   Delivering what you promised
+    -   Understanding the WHY
+-   Balancing measures
+    -   Unintended consequences
+
+::: notes
+Some of the material for this slide was taken from 
+
+http://www.ihi.org/resources/Pages/HowtoImprove/ScienceofImprovementEstablishingMeasures.aspx
+
+QI studies measure broadly across three areas: outcome measures, process measures, and balancing measures.
+
+An outcome measure is a measurement taken directly on the patients themselves. If you visualize the system as a flow chart, the outcome measures occur downstream (near the bottom of the flow chart). Outcome measures are the reason that QI teams exist. If you make changes that don't have any impact on your patients, why are you bothering?
+
+But you can't focus just on outcome measures. For one thing, they are very noisy. They are influenced by many factors beyond your control. Second, they don't help you so much when they turn up negative. There are many places on a flow chart where things can go wrong, and if your only measurements are at the bottom, you won't know where on the flow chart that your intervention failed. 
+
+A process measure is a measurement on how care is delivered at various stages in the health care process. Process measures involve resources like time or money spent. They can represent the percentage of time that a particular step was followed correctly or that a resource was available. They can measure the degree of consistency, such as a range or standard deviation.
+
+Process measures are typically in top or middle of a flow chart (or upstream). If you intervention failed to influence an outcome on your patients, the process measures can help you understand why. Did the intervention fail or was it not delivered properly?
+
+Balancing measures account for unintended consequences. Did an improvement in one area lead to an offsetting decline in another area? This would be like the famous saying, "jumping from the frying pan into the fire."
+:::
+

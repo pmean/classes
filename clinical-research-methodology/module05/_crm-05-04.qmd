@@ -1,0 +1,48 @@
+---
+title: "Pareto charts"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## The Pareto chart
+
+-   Based on the Pareto 80-20 principle.
+    -   The "frequent few"
+-   Proportion of cases associated with a specific cause.
+    -   Combined with cumulative frequency
+  
+::: notes
+The Pareto chart is an attempt to focus attention on the most common causes of a problem. It is based on the Pareto Principle which talks about the "frequent few". The Pareto Principle states that most of the troubles that you see (around 80%, but this is just a ballpark estimate) are limited to just a few causes (20%, but again just a ballpark).
+
+It is typically displayed as a bar chart of causes with a percentage of cases in each cause displayed. You put the bars in order from largest to smallest and include a line showing the cumulative frequency of causes.
+
+You should focus your QI efforts on the left side of the Pareto chart.
+:::
+
+## Example of a Pareto chart, 1 of 3
+
+![Example of a Pareto chart](images/pareto-example-01.png)
+
+::: notes
+This is an example of a Pareto chart published in the peer-reviewed literature. The problem is side errors in radiology and the first two causes (radiologist, and complex, advanced disease) account for 93% of the problems.
+:::
+
+## Example of a Pareto chart, 2 of 3
+
+![Example of a Pareto chart](images/pareto-example-02.png)
+
+::: notes
+This is second example. The problem is unplanned return visits and the first two causes (cast issues and new symptoms) account for 80% of the problems.
+:::
+
+## Example of a Pareto chart, 3 of 3
+
+![Example of a Pareto chart](images/pareto-example-03.png)
+
+::: notes
+This is third example. The problem is invalid surgical consents, and it does not quite follow the Pareto principle because the causes are quite varied. The top five causes (No initials after amendments, Witness initials incomplete or absent, Consent forms were expired, Dates incomplete or absent, Illegible handwriting, and use of abbreviations) account for 80% of the invalid consents.
+:::
+

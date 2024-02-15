@@ -289,5 +289,34 @@ It is a lack of parallelism that is the hallmark of an interaction.
 ::: notes
 You could draw the interaction plot differently with a line for women (red) and a line for men (blue). The interpretation is about the same, perhaps, but the emphasis is different. The superior weight loss for men in the jogging program and the superior weight loss for women in the swimming program is emphasized by the crossing lines. Both the men's and womens lines almost touching for the reading program emphasizes the equivalent results for the two genders.
 
-Which plot is better? I like the first one, but would not complain if you liked the second one better. It depends on what story you want to emphasize. The first graph emhasizes the difference between the diets a bit more strongly and the second emphasizes the differences between the genders a bit more strongly.
+Which plot is better? I like the first one, but would not complain if you liked the second one better. It depends on what story you want to emphasize. The first graph emphasizes the difference between the diets a bit more strongly and the second emphasizes the differences between the genders a bit more strongly.
+:::
+
+## When you can't estimate an interaction
+
+-   Special case, n=1
+    -   Only one observation for categorical combination
+    
+::: notes
+There is a special case where you have two categorical independent variables and you cannot estimate an interaction. If you have n=1, exactly one observation for each combination of your two categorical variables, then you don't have enough degrees of freedom to estimate an interaction and still be able to test whether that interaction is statistically significant.
+
+It's sort of like that old joke I told about married life (it's okay but you lose a degree of freedom). Interactions cause an even bigger loss of degrees of freedom and in the case with only one observation per combination of categories, you lose enough degrees of freedom that it is not marriage, it being in prison.
+:::
+
+## Example, full moon study, 1 of 2
+
+![](images/full-moon-analysis-16.png)
+
+::: notes
+Here is an example where you only have one observation for each combination of categories. 
+:::
+
+## Example, full moon study, 2 of 2
+
+![](images/full-moon-analysis-24.png)
+
+::: notes
+You lose two degrees of freedom for moon (3 phases: before, during, and after). You lose 11 degrees of freedom for month (12 months -1). The interaction has 2 times 11 or 22 degrees of freedom. You only started with 35 degrees of freedom. Subtract 2, 11, and 22, and you are left with zero degrees of freedom for error.
+
+If you find yourself in this situation, just state that no test for interaction was possible in your methods section and highlight this as a weakness of your study in the discussion section.
 :::
