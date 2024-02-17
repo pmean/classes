@@ -86,18 +86,4 @@ vars:
   Zip:
     label: the zip code of the property
     scale: nominal
-
-  Tree:
-    label: Numeric id for individual tree
-    scale: nominal
-    range: 1 through 3
-  
-  Loading:
-    label: Disk loading
-    scale: ratio
-    range: positive real
-    
-  Velocity
-    label: Fall velocity
-    unit: unknown
 ---
