@@ -1,14 +1,14 @@
 ---
-title: "Comments for MEDB 5502, Week 06"
+title: "See title at bottom of this file"
 format: 
   revealjs:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "To be determined"
-  topic_02: "To be determined"
-  topic_03: "To be determined"
-  topic_04: "To be determined"
+  topic_01: "Test of two proportions"
+  topic_02: "Chi-square test of independence"
+  topic_03: "Odds ratio versus relative risk"
+  topic_04: "Concepts behind the logistic regression model"
   topic_05: "To be determined"
   topic_06: "To be determined"
   topic_07: "To be determined"
@@ -43,7 +43,7 @@ editor: source
     -   `r params$topic_07`
     -   `r params$topic_08`
 
-{{< include _06-01.qmd >}}
+{{< include _b2-06-01.qmd >}}
 
 ## Break #1
 
@@ -52,7 +52,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_02`
 
-{{< include _06-02.qmd >}}
+{{< include _b2-06-02.qmd >}}
 
 ## Live demo, ANOVA and R-squared
 
@@ -63,7 +63,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_03`
     
-{{< include _06-03.qmd >}}
+{{< include _b2-06-03.qmd >}}
 
 ## Live demo, partial F test
 
@@ -74,7 +74,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_04`
     
-{{< include _06-04.qmd >}}
+{{< include _b2-06-04.qmd >}}
 
 ## Live demo, stepwise regression
 
@@ -85,7 +85,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_05`
 
-{{< include _06-05.qmd >}}
+{{< include _b2-06-05.qmd >}}
 
 ## Live demo, regression diagnostics
 
@@ -96,7 +96,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_06`
 
-{{< include _06-06.qmd >}}
+{{< include _b2-06-06.qmd >}}
 
 ## Live demo, multicollinearity
 
@@ -107,7 +107,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_07`
 
-{{< include _06-07.qmd >}}
+{{< include _b2-06-07.qmd >}}
 
 ## Break #7
 
@@ -116,7 +116,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_08`
 
-{{< include _06-08.qmd >}}
+{{< include _b2-06-08.qmd >}}
 
 ## Summary
 
@@ -180,5 +180,5 @@ editor: source
 --->
 
 ---
-title: "Comments for MEDB 5502, Week 03"
+title: "Comments for MEDB 5502, Week 06"
 ---

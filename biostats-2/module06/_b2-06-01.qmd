@@ -1,0 +1,70 @@
+---
+title: "Test of two proportions"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Comparing two binary outcomes
+
+-   Is there a difference in the proportion of deaths between male passengers and female passengers on the Titanic?
+-   Is there difference in the proportion of patients finishing the full three doses of HPV vaccine between Black women and White women?
+-   Does using a ng tube for feeding in pre-term infants increase the probability of successful breast feeding at six months?
+
+::: notes
+Most of the statistics, you have seen so far involve a continuous outcome. You can, however, use a binary outcome. Here are three examples comparing a binary outcome between two groups.
+:::
+
+## Other comparisons involving a binary outcome
+
+-   Is there are difference in the proportion of deaths between first class, second class, and third class passengers?
+-   Does age influence the proportion of women finishing the full three doses of HPV vaccine?
+-   Controlling for the mother's age, does using a ng tube for feeding in pre-term infants increase the probability of successful breast feeding at six months?
+
+::: notes
+Here are some more complex comparisons involving a binary outcome. The first example involves a comparison of three proportions, not two. The next example involves a continuous predictor of a binary outcome. The final example involves a comparison of binary outcomes in two groups, but controlling for a third variable.
+:::
+
+## Hypothesis framework
+
+-   $H_0:\ \pi_1=\pi_2$
+-   $H_1:\ \pi_1=\pi_2$
+-   Compute $\hat p_1$ and $\hat p_2$ from samples
+-   Accept $H_0$ if $\hat p_1-\hat p_2$ is close to zero.
+    -   $T=(\hat p_1-\hat p_2)/s.e.$
+    -   95% CI: $(\hat p_1-\hat p_2) \pm Z_{\alpha/2}s.e.$
+
+::: notes
+The hypothesis to test two proportions uses the symbols $\pi_1$ and $\pi_2$ to represent the proportions in a population.
+:::
+
+## Data layout, 1 of 2
+
+![](images/difference-in-proportions-01.png)
+
+::: notes
+There are two ways to present the data to SPSS. You can have one row per patient for a total of 1,313 rows.
+:::
+
+## Data layout, 2 of 2
+
+![](images/difference-in-proportions-02.png)
+
+::: notes
+Or you could have four rows, one for each combination of sex and survival.
+:::
+
+## Confidence interval and test of hypothesis
+
+![](images/difference-in-proportions-03.png)
+![](images/difference-in-proportions-04.png)
+![](images/difference-in-proportions-05.png)
+
+::: notes
+Here is the output from SPSS. The confidence interval contains only positive values, so you can conclude that the difference in proportions is statistically significant.
+
+You can draw the same conclusion from the p-value, which is less than 0.001.
+:::
+

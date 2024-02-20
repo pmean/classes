@@ -1,0 +1,42 @@
+---
+title: "Chi-square test of independence"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Chi-square test of independence, 1 of 2
+
+-   Equivalent to test of two proportions
+-   Lay out data in two by two table
+
+\begin{matrix}
+          & No\ event & Event \\
+Treatment & O_{11}    & O_{12}\\
+Control   & O_{21}    & O_{22}
+\end{matrix}
+
+::: notes
+
+:::
+
+## Chi-square test of independence, 2 of 2
+
+\begin{matrix}
+          & No\ event                 & Event \\
+Treatment & E_{11} = n_1 (1-\hat p_.) & E_{12}=n_1 \hat p_.\\
+Control   & E_{21} = n_2 (1-\hat p_.) & E_{22}=n_2 \hat p_.
+\end{matrix}
+
+-   $X^2=\Sigma \frac{(O_{ij}-E_{ij})^2}{E_{ij}}$
+
+::: notes
+
+:::
+
+## Example: Titanic survival by sex
+
+![](images/)
+
