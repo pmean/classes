@@ -38,5 +38,19 @@ Control   & E_{21} = n_2 (1-\hat p_.) & E_{22}=n_2 \hat p_.
 
 ## Example: Titanic survival by sex
 
-![](images/)
+![](images/chi-square-01.png)
 
+![](images/chi-square-02.png)
+
+-   Moderate or large sample size: Pearson Chi-Square
+-   Small sample size: Fisher's Exact test
+
+::: notes
+Here is the output from SPSS. Like most other parts of SPSS, the default is to include four different tests. The tests can differ from one another, but in this case, they all tell the same story. To be honest, this is usually the case.
+
+I recommend using the Person Chi-Square if the sample size is moderate or large and Fisher's Exact Test if the sample size is small.
+
+What makes it small is the expected count. If any expected count is less than 5, then you should rely on Fisher's Exact Test.
+
+There is a lot of conflict in the research community about the use of a continuity correction.
+:::
