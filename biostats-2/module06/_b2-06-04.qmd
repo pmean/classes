@@ -7,7 +7,11 @@ format:
 editor: source
 ---
 
-## Slide 06-04
+## What is logistic regression?
+
+-   Binary outcome
+-   Categorical or continuous predictors
+-   Linear on the log odds scale
 
 ::: notes
 The logistic regression model is a model that uses a binary (two possible values) outcome variable. Examples of a binary variable are mortality (live/dead), and morbidity (healthy/diseased). Sometimes you might take a continuous outcome and convert it into a binary outcome. For example, you might be interested in the length of stay in the hospital for mothers during an unremarkable delivery. A binary outcome might compare mothers who were discharged within 48 hours versus mothers discharged more than 48 hours.
@@ -18,6 +22,11 @@ For binary outcomes, you might find it helpful to code the variable using indica
 :::
 
 ## Why log odds?
+
+-   Statistical model of surgery
+    -   Estimates probability of demise
+    -   First prediction: probability=1.2
+-   Log odds prevent out of range predictions    
 
 ::: notes
 A logistic regression model examines the relationship between one or more independent variable and the log odds of your binary outcome variable. Log odds seem like a complex way to describe your data, but when you are dealing with probabilities, this approach leads to the simplest description of your data that is consistent with the rules of probability.
@@ -111,7 +120,7 @@ prob = odds / (1+odds).
 In medicine and epidemiology, when an event is less likely to happen and more likely not to happen, we represent the odds as a value less than one. So odds of four to one against an event would be represented by the fraction 1/5 or 0.2. When an event is more likely to happen than not, we represent the odds as a value greater than one. So odds of three to one in favor of an event would be represented simply as an odds of 3. With this convention, odds are bounded below by zero, but have no upper bound.
 :::
 
-## A log odds model for probability, 1 of 3
+## A log odds model for probability, 1 of 4
 
 ![](images/logistic-concepts-04.gif)
 
@@ -124,7 +133,7 @@ Figure 4. Hypothetical odds from a multiplicative model
 This model implies that each additional week of GA triples the odds of BF. A multiplicative model for odds is nice because it can’t produce any meaningless estimates.
 :::
 
-## A log odds model for probability, 2 of 3
+## A log odds model for probability, 2 of 4
 
 ![](images/logistic-concepts-05.gif)
 
@@ -182,9 +191,9 @@ odds <- exp(log_odds)
 prob <- odds/(1+odds)
 ```
 
--   log odds = `-16.72 + 0.577*30` = `r round(log_odds, 2)`
--   odds = exp(`-16.72 + 0.577*30`) = `r round(odds, 2)`
--   prob = `r round(odds, 2)` / (1+`r round(odds, 2)`) = `r round(prob, 2)`
+-   log odds = -16.72 + 0.577 $\times$ 30 = `r round(log_odds, 2)`
+-   odds = exp(log odds) = `r round(odds, 2)`
+-   prob = odds / (1+odds`) = `r round(prob, 2)`
 
 ::: notes
 Figure 9. Predicted log odds and predicted probabilities from a research study
@@ -216,6 +225,8 @@ This is a general property of the logistic model. The slope term in a logistic r
 
 ![](images/logistic-concepts-10.gif)
 
+-   1st class odds: 129/193 = `r round(129/193,2)` or 193/129 = `r round(193/129,2)`
+
 ::: notes
 You treat categorical variables in much the same way as you would in a linear regression model. Create indicator variables for each level of your categorical variable and then include all but one of them in your model. The category associated with the omitted variable is the reference category.
 
@@ -228,6 +239,7 @@ How would SPSS handle a variable like Passenger Class, which has three levels
 Here’s a crosstabulation of survival versus passenger class.
 
 Notice that the odds of dying are 0.67 to 1 in 1st class, 1.35 to 1 in 2nd class, and 4.15 to 1 in 3rd class. These are odds in favor of dying. The odds against dying are 1.50 to 1, 0.74 to 1, and 0.24 to 1, respectively.
+:::
 
 ## Categorical variables in a logistic regression model, 2 of 3
 
