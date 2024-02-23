@@ -9,8 +9,8 @@ params:
   topic_02: "Chi-square test of independence"
   topic_03: "Odds ratio versus relative risk"
   topic_04: "Concepts behind the logistic regression model"
-  topic_05: "To be determined"
-  topic_06: "To be determined"
+  topic_05: "Logistic regression with categorical variables"
+  topic_06: "Logistic regression with interactions"
   topic_07: "To be determined"
   topic_08: "To be determined"
 editor: source
@@ -45,6 +45,8 @@ editor: source
 
 {{< include _b2-06-01.qmd >}}
 
+## Live demo, `r params$topic_01`
+
 ## Break #1
 
 -   What you have learned
@@ -54,7 +56,7 @@ editor: source
 
 {{< include _b2-06-02.qmd >}}
 
-## Live demo, ANOVA and R-squared
+## Live demo, `r params$topic_02`
 
 ## Break #2
 
@@ -65,8 +67,6 @@ editor: source
     
 {{< include _b2-06-03.qmd >}}
 
-## Live demo, partial F test
-
 ## Break #3
 
 -   What you have learned
@@ -76,7 +76,7 @@ editor: source
     
 {{< include _b2-06-04.qmd >}}
 
-## Live demo, stepwise regression
+## Live demo, `r params$topic_04`
 
 ## Break #4
 
@@ -87,7 +87,7 @@ editor: source
 
 {{< include _b2-06-05.qmd >}}
 
-## Live demo, regression diagnostics
+## Live demo, `r params$topic_05`
 
 ## Break #5
 
@@ -98,7 +98,7 @@ editor: source
 
 {{< include _b2-06-06.qmd >}}
 
-## Live demo, multicollinearity
+## Live demo, `r params$topic_06`
 
 ## Break #6
 
@@ -109,6 +109,8 @@ editor: source
 
 {{< include _b2-06-07.qmd >}}
 
+## Live demo, `r params$topic_07`
+
 ## Break #7
 
 -   What you have learned
@@ -117,6 +119,8 @@ editor: source
     -   `r params$topic_08`
 
 {{< include _b2-06-08.qmd >}}
+
+## Live demo, `r params$topic_08`
 
 ## Summary
 

@@ -144,6 +144,7 @@ Consider a case-control study of prostate cancer risk and male pattern balding. 
 In this type of study, you can estimate the probability of balding for cancer patients, but you can’t calculate the probability of cancer for bald patients. The prevalence of prostate cancer was artificially inflated to almost 50% by the nature of the case-control design.
 
 So you would need additional information or a different type of research design to estimate the relative risk of prostate cancer for patients with different types of male pattern balding.
+:::
 
 ## Designs that rule out the use of the relative risk, 2 of 2
 
@@ -188,7 +189,7 @@ The simple relative risk is 0.55 and the simple odds ratio is 0.25. Clearly the 
 -   One hundred pound sack of potatoes
     -   99% water, 1% potato
     -   Weighs 1 pound after completely drying
-    -   Instead dry until 2%
+    -   Instead dry until 2% potato
         -   How much does it weigh then?
 
 ::: notes
@@ -199,6 +200,7 @@ If you dried out the potatoes completely, they would only weigh one pound. But l
 The counter-intuitive answer is 50 pounds. 98% water means 49 parts water and 1 part potato. An alternative way of thinking about the problem is that in order to double the concentration of potato (from 1% to 2%), you have to remove about half of the water.
 
 Relative risks have the same sort of counter-intuitive behavior. A small relative change in the probability of a common event’s occurrence can be associated with a large relative change in the opposite probability (the probability of the event not occurring).
+:::
 
 ## Example: physician recommendations
 

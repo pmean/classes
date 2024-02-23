@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Logistic regression with interactions"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,30 @@ format:
 editor: source
 ---
 
-## Slide 06-06
+## Interactions in logistic regression
 
-::: notes
+-   Odds ratios vary by a third factor
+-   Interpretation is more tedious
 
-:::
+## Odds ratios for first class
+
+![](images/interaction-05.png)
+
+![](images/interaction-01.png)
+
+## Odds ratio for second class
+
+![](images/interaction-06.png)
+
+![](images/interaction-02.png)
+
+## Odds ratio for third class
+
+![](images/interaction-07.png)
+
+![](images/interaction-03.png)
+
+## Logistic regression with interaction
+
+![](images/interaction-04.png)
 
