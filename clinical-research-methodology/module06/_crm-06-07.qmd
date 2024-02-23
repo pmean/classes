@@ -7,9 +7,53 @@ format:
 editor: source
 ---
 
-## Slide 01-07
+## Break #6
+
+-   What have you learned?
+    -   Advantages and disadvantages of secondary data analysis
+    -   Overview of the Centers for Disease Control and Prevention
+    -   Overview of the Bureau of the Census
+    -   Cohort designs
+    -   Case-control designs
+    -   Cross-sectional designs
+-   What's next?
+    -   Historical control designs
+
+## Historical control designs (1 of 2)
+
+-   Controls separated by time
+    -   Similar to the single group, pre-post measurement
+-   Sometimes separated by space
+    -   Similar to the two group, post measurement only
+-   Often separated by both space and time
 
 ::: notes
+
+In a historical control design, control patients are separated by time. Current patients are compared with earlier patients. This may remind you of the quasi-experimental design where you have a single group and get measurements both at baseline and after the intervention.
+
+Sometimes a historical control group represents a setting where the control patients are separated by distance. All of the exposed patients are at your clinic and the controls come from a different clinic.
+
+More often, though, the historical control group is separated from the exposed group by space AND by time. You compare today's patients are your clinic with yesterday's patients at a different clinic.
+
+:::
+
+## Historical control designs (2 of 2)
+
+-   Disadvantages
+    -   Confounding 
+-   Advantages
+    -   Cheap and easy
+-   Settings with 100% morbidity or mortality
+
+::: notes
+
+Confounding is an issue for any observational study, but with the other three types of studies, you can try to control for this with careful selection of the control group. You can also use matching or statistical adjustments and these often can help a lot.
+
+The historical control study, in most people's minds, is beyond repair. The separation in time and space pretty much guarantees confounding and there really are no remedies that you can apply during the design or during the analysis that will convince anyone that there isn't an alternate explanation that is an equally or more convincing explanation for the results you have found.
+
+The big advantage of the historical control design is time and money. Your historical control group is, by definition, already sitting there waiting for you to use it. In most cases, the historical control group comes cheap or even for free.
+
+Everyone sneers at a historical control group and for once I might be tempted to sneer at it also. There is one exception, though. If an exposure is associated with near 100% morbidity or mortality, then a historical control group works just fine. You would be hard pressed to convince anyone to forgo a treatment in this setting, so why even try. The point, though, is that any improvement will be patently obvious in a disease that, left to its own, kills almost everyone that it touches.
 
 :::
 

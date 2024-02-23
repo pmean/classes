@@ -7,9 +7,122 @@ format:
 editor: source
 ---
 
-## Slide 01-02
+## "The Nation's Health Protection Agency"
+
+![](images/cdc.png)
 
 ::: notes
+
+These are the slides for a talk I gave last year to the graduate research seminar about a pair of articles that I am writing for the Encyclopedia of Big Data. THe two articles cover the CDC (Centers for Disease Control and Prevention) and the U.S Bureau of the Census..
+
+CDC responds to new and emerging health threats and conducts research to track chronic and acute diseases. This talk will focus on CDC efforts in surveillance using nationwide cross sectional surveys to monitor the health of diverse populations.
+
+:::
+
+## Nationwide cross sectional surveys
+
+![](images/frieden17.png)
+
+::: notes
+
+This paper by a former director of CDC is an excellent place to start. This talk will focus on CDC efforts in surveillance using nationwide cross sectional surveys to monitor the health of diverse populations (Frieden 2017).
+
+:::
+
+## National Health Interview Survey
+
+![](images/nhis.png)
+
+::: notes
+
+The National Health Interview Survey (NHIS) conducts in person interviews about the health status and health care access for 35 thousand households per year, with information collected about the household as a whole and for one randomly selected adult and one randomly selected child (if one is available) in that household (Parsons 2014). NHIS has been used to assess health insurance coverage (Martinez 2016), the effect of physical activity on health (Carlson 2016), and the utilization of cancer screening (White 2017).
+
+:::
+
+## National Health and Nutrition Examination Survey
+
+![](images/nhanes.png "Image of NHANES web site main page") 
+
+::: notes
+
+The National Health and Nutrition Examination Survey (NHANES) conducts in person interviews about the diet and health of roughly five thousand participants per year combined with a physical exam for each participant (Johnson 2014). Sera, plasma, and urine are collected during the physical exam. Genetic information is extracted from the sera specimens, though consent rates among various ethnic groups is uneven (Gabriel 2014). NHANES has been used to identify dietary trends in patients with diabetes (Casagrande 2017), the relationship between inadequate hydration and obesity (Chang 2016), and the association of Vitamin D levels and telomere length (Beilfuss 2017).
+
+:::
+
+## Behavioral Risk Factor Surveillance System
+
+![](images/brfss.png "BRFSS web site main page") 
+
+::: notes
+
+The Behavioral Risk Factor Surveillance System (BRFSS) conducts telephone surveys of chronic conditions and health risk behaviors using random digit dialing (including cell phone numbers from 2008 onward) for 400 thousand participants per year. This represents the largest telephone survey in the world (Pierannunzi 2013). This survey has been used to identify time trends in asthma prevalence (Bhan 2015), fall injuries among the elderly (Bergen 2016), and mental health disparities between male and female caregivers (Edwards 2016).
+
+:::
+
+## National Death Index
+
+![](images/ndi.png "NDI web site main page") 
+
+::: notes
+
+The CDC maintains the National Death Index (NDI), a centralized database of death certificate data collected from each of the 50 states and the District of Columbia. The raw data is not available for public use, but researchers can apply for access that lets them submit a file of patients that they are studying to see which ones have died (CDC 2016). Many of the CDC surveys described above are linked automatically to NDI. While privacy concerns restrict direct access to the full information on the death certificate, the CDC does offer geographically and demographically aggregated data sets on deaths (and births) as well as reduced data sets on individual deaths and births with personal identifiers removed.
+
+:::
+
+## Influenza Hospitalization Surveillance Network
+
+![](images/fluservnet.png "FluServ-NET article")
+
+::: notes
+
+The CDC uses big data in its own tracking of infectious diseases. The US Influenza Hospitalization Surveillance Network (FluSurv-Net) monitors influenza hospitalizations in 267 acute care hospitals serving over 27 million people (Chaves 2015).
+
+:::
+
+## FluView
+
+![](images/fluview.png "FluView web site main page") 
+
+::: notes
+
+Real time reporting on influenza is available at the FluView website (https://www.cdc.gov/flu/weekly/). This site reports on a weekly basis the outpatient visits, hospitalizations, and death rates associated with influenza. It also monitors the geographic spread, the strain type, and drug resistance rates for influenza.
+
+:::
+
+## Foodborne Diseases Active Surveillance Network
+
+![](images/foodnet.png "FoodNet web site main page") 
+
+::: notes
+
+FoodNet tracks laboratory confirmed food-borne illnesses in ten geographic areas with a population of 48 million people (Crim 2015). 
+
+:::
+
+## Active Bacterial Core Surveillance
+
+![](images/abcs.png "FoodNet web site main page") 
+
+::: notes
+
+The Active Bacterial Core Surveillance collects data on invasive bacterial infections in ten states representing up to 42 million people (Langley 2015).
+
+:::
+
+## Summary
+
+-   CDC
+    -   NHIS
+    -   NHANES
+    -   BRFSS
+    -   NDI
+    -   FluSurv-NET
+    -   FluView
+    -   FoodNet
+
+::: notes
+
+Here's a quick overview of all the big data produced by CDC.
 
 :::
 
