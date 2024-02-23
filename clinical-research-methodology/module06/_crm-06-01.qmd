@@ -1,0 +1,207 @@
+---
+title: "To be determined"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Learning objectives
+
+1. To distinguish different types of quantitative non-experimental approaches
+
+2. To discuss strengths and weaknesses of qualitative research
+
+::: notes
+
+Here are the objectives for this week.
+
+:::
+
+## What is secondary data analysis?
+
+-   Primary: data that you both collect and analyze.
+-   Secondary: you analyze someone else's data
+    -   "Secondary analysis of existing data" (Cheng 2014)
+-   Private versus government sources
+-   Ancillary studies
+
+::: notes
+
+There's a nice paper on the recommended reading list that discusses secondary data analysis. Primary data is data that you (meaning you and your research team) both collect and analyze. Secondary dta is data that someone else collected and you only provide an analysis.
+
+There's an excellent reference in the recommended readings section and they emphasize that you should use the full phrase "secondary analysis of existing data" to avoid confusion.
+
+Secondary data can come from private sources or from government sources. I'll talk in a bit about two excellent government sources of data: the U.S. Census Bureau and the Centers for Disease Control and Prevention.
+
+When you work with an existing research study and ask them to add a few items to collect for your benefit, you are working on an ancillary study. This is a special treat and requires close work with the team on the existing research study. In most secondary data analyses, you con't have this luxury and have to take the data as is.
+
+An ancillary study requires IRB approval. You need to discuss with the coordinators of the study that you are piggy baking on about who gets to be an author on your study, and what the order of authors should be. Do this before the paper is written, or you will find yourself in the middle of an ugly argument.
+
+:::
+
+## What can you analyze for an already analyzed data set?
+
+-   Secondary data analysis is like eating left-over food.
+-   "Think different"
+	+ Variables that are analyzed
+	+ Relationships that are explored
+	+ Different subsets of cases
+	+ Different analysis techniques
+
+::: notes
+
+If the data set has already been analyzed, is there really anything else you can do? Well, yes, but you have to live with the fact that the researchers have already selected and analyzed the most interesting parts of the data. So you are like the last person in line at a pot-luck buffet. The Swedish meatballs and the apple cobbler are already gone and you're left with the kale salad and the creamed spinach.
+
+Don't fret, though. Many researchers collect more data than what they strictly need for their own purposes. 
+
+You do need, as the Apple slogan says, to "Think different."
+
+You might look at different outcomes or different exposure variables that address the same general hypotheses. You could develop hypotheses involving new and untested relationships. You might be interested in a particular demographic subgroup. Or finally, you might test the same things that original researchers tested using more or less the same variables, but you might apply a new and different analysis approach.
+
+:::
+
+## Combining data sets 
+
+-   Third "V" in volume, velocity, and variety
+-   Not the same as systematic overview, think "mash-up"
+-   Examples
+    -   Black box warnings and prescription use
+    -   Staffing levels and patient complaints
+    -   Pediatric asthma visits and housing survey
+
+::: notes
+
+The combination of disparate data sets is one of the hallmarks of big data (the "variety" V of the three V's of big data). This is not the same as a systematic overvew, which combines several stuides of the same hypothesis. Think of the term "mash-up" which is a combination of seemingly disparite elements to create a new, but coherent product.
+
+Here's a hypothetical example. The FDA provides lists of drugs that get "black box" warnings. This is a fairly serious thing, and you might be interested in seeing whether the prescription rates (as measured through the electronic health record) changed after the black box warning appeared.
+
+Another hypothetical example is looking at staffing levels and the use of unplanned leave, which comes from personnel records, and the number and type of patient complaints, which are tracked in a complaints database.
+
+I've worked with researchers who are looking at pediatric asthma visits at a local hopsital and linking the addresses to a housing survey conducted by the local government. The concern is that substandard housing could be associated with a greater need for asthma care. 
+
+:::
+
+## Disadvantages of secondary analysis 
+
+-   Missing data
+    -   Variables not collected
+    -   Specific details not collected
+-   Wrong data
+    -   Wrong time
+    -   Wrong measures
+-   Stale data
+-   Unable to fix obvious errors
+
+::: notes
+
+One of the big ones is the lack of control over the data collection process. You can't change how the data was collected without access to a time machine.
+
+You may want infroation on certain variables, but the primary researchers chose not to collect this information. Or they did collect the information, but not at a level of detail that you want.
+
+Maybe they collected the data, but collected it at the wrong time, or used a measurement approach that you dislike.
+
+Because secondary analysis is retrospective, the data may lack "currency". It may describe an health care setting that is so different from what is done today that it represents an inappropriate extrapolation.
+
+In a prospective study, if you get an unusual result, you can ask your research team to double check things, and maybe even go back to the patient and get a fresh set of numbers. You need to do this carefully, but it is a nice option that is totally unavailable to you in a secondary data analysis.
+
+:::
+
+## Advantages of secondary analysis
+
+-   Time
+-   Money
+-   Support
+
+::: notes
+
+The advantages of seconday analysis are almost all "comfort" factors.
+
+Secondary data analysis takes less time because the data is already sitting there starting at you. You do, typically, have to spend more time in data management because the data collection was not optimized for your particular needs. Still, the time savings are usually quite substantial.
+
+For the many secondary data sets, there is no cost, whatsoever for acquisition. A few data sets require a fee, but this is usually quite reasonable.
+
+Finally, you will usually find good support for your work. Most people who make their data available for secondary data analyses want you to succeed. Your success makes them look better. This is especially true for government resources.
+
+:::
+
+## Two types of secondary data sets
+
+-   Individual
+    -   More analysis options
+    -   Privacy concerns
+-   Aggregate
+    -   Mixture of apples and oranges
+    -   Problems with the ecologic fallacy
+
+::: notes
+
+Some secondary data sets that have individual level records: there is separate records an indvidual unit (usually a person, but it could be an event like an emergency department visit). This is preferable in most settings, but sometimes important information has to be redacted because of privacy concerns. Other pieces of information have random noise added to them to preserve confidentiality (e.g., data shifting).
+
+Aggregate data avoids many of the privacy issues. Aggregate data is also easier to store and to present. One big problem is that when you aggregate across a category, you end up mixing apples and oranges together and this often destroys signals that might be apparent when you look at individual values. When you mix a bunch of indvidual colors together, the results is always a blah shade of gray.
+
+Even if you do find a signal at the aggregate level, you have to be careful. What you see may be an artefact of the ecologic fallacy. The ecologic fallacy is the belief that an association discovered at an aggregate level will also hold at an individual level.
+
+An example of the ecologic fallacy: Sales of cigarettes are greater in states that have higher suicide rates. You don't know whether an individual who smokes is more likely to commit suicide.
+
+:::
+
+## Getting started with secondary data analysis
+
+-   Start with an existing database
+-   Get familiar with the data
+    -   What variables are there?
+    -   What variables are not there?
+    -   How are the variables coded?
+    -   Identify potential pairs for associational studies
+-   Make sure you are answering an interesting question
+
+::: notes
+
+You can attack a secondary data analysis from one of two ends. In a research driven study, you pose a question and then search for secondary data sources that might answer your question. In a data driven study, you decide on a particular secondary data source and then decide what interesting questions this data set might help you answer.
+
+For the latter, read the documentation obsessively. Learn what variables you have and don't have. Make sure yuo are happy with the detail of the category levels for any categorical variable. Identify pairs of variables that you might want to explore the associations.
+
+If you start with the database, you may end up answering a question that is easy to answer with that database, but it is to a question that no one really cares about. Get a second opinion about the interest and relevance of what you are studying.
+
+There's a joke about someone who is searching along a street for a lost set of keys and a passerby volunteers to help them look. The keep looking for a while and the passerby asks where do you think you dropped your keys. The person responds, over there in that alley. So the passerby asks, so why are you looking for it out here? The person replies, because the light is so much better out here.
+
+Moral: You have to be practical about what you can accomplish, but the easy to run study is not necessarily the study you should run.
+
+:::
+
+## Alternative strategy for secondary analysis 
+
+-   Start with a research hypothesis
+    -   List the inclusion/exclusion criteria
+    -   List the relevant variables
+-   Search databases to see if they are a good fit.
+    -   Do they have the right patients?
+    -   Where is your control group?
+    -   Do they have the right variables?
+    -   Find out if there are special qualifications for working with the database
+
+::: notes
+
+You may instead want to start with your hypothesis. This seems a lot better. Starting with the data set is like putting the cart before the horse. But it is a lot more work and there is no guarantee that you will find the right data.
+
+With your hypothesis, carefully list the inclusion and exclusion criteria. List the important variables: your outcome variable, your independent variables, and any covariates that you need to adjust for.
+
+Then start looking at some candidate databases. Do they have the right patients. Especially make sure that the database provides you with a good control group. Maybe the data set only has sick people, and you want a healthy control group. There's nothing worse than collecting a bunch of data and then finding out that you did not have a control group for comparison.
+
+:::
+
+## Get help from the literature
+
+-   How has database been used previously?
+-   What has already been answered?
+-   What was their analysis plan?
+-   Understand the limitations.
+
+::: notes
+
+Read the literature on papers that have used this data set. This will help you identify if your work has already been done. Probably not, but it is also important because you will get a broader idea of what can be done. You'll also benefit from seeing what statistical models these researchers have chosen. Also look at the limitations mentioned in the discussion section. These limitations will probably apply to your work as well.
+
+:::
+

@@ -1,0 +1,86 @@
+---
+title: "To be determined"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Break #4
+
+-   What have you learned?
+    -   Cohort designs
+-   What's next?
+    -   Case-control designs
+
+## Case control designs (1 of 4)
+
+-   Cases defined by outcome
+-   Comparison to controls without the outcome
+-   Always retrospective
+
+::: notes
+
+In a case control design, the cases are defined by the outcome measure. Did someone have a certain disease or experience a certain bad event? This might represent a diagnosis of cancer, or a heart attack, or suicide attempt.
+
+Look back at the history of that patient and see there is a common history that might identify risk factors that explain the event. You need a comparison group, though, to see if what is common in your cases is or is not common in your controls. A psychologist who was noting the problem with many research studies involving sexual abuse noted with a bit of sarcasm that 95% of all sexual abusers have milk in their refrigerators.
+
+In a case control design, the comparison group is people who did not experience the outcome. You compare the cancer patients to patients who did not have cancer. You compare heart attack patients to patients who did not have heart attacks. You compare suicide attempts to people who did not try to kill themselves.
+
+:::
+
+## Case control designs (2 of 4)
+
+-   Disadvantages
+    -   Counter-intuitive appearance
+    -   Difficulty in identifying good controls
+    -   Confounding
+
+::: notes
+
+The biggest complaint about the case-control design it just doesn't feel right. The case-control design is, to most people (including me), very counter-intuitive nature. You're selecting people on an outcome and then seeing what influences that outcome. There's no sampling going on here, so it almost seems like cheating. It's not cheating, and the theoretical foundation for the case-control design was established in the 1950s.
+
+The other big, big problem for the case control study is finding good controls. You want to find someone just like your lung cancer cases in everything except the lung cancer. Or someone just like a heart attack patient minus the heart attack. Or someone just like the suicide attempt without the attempt.
+
+There is no selection bias in a case-control study. Nobody elects to be a cancer patient, for example. But confounding is a huge issue. Suppose your cases for a cancer patient are people who show up at the same hospital with a broken arm. People with a fracture are almost certainly a different age, have a different set of activities, and so forth. Any of these might be an alternative explanation for why the risk factor is more commonly seen in the cases than in the controls.
+
+:::
+
+## Case control designs (3 of 4)
+
+-   Advantages
+    -   Can examine multiple risk factors
+    -   Efficient for rare diseases
+    -   Great starting point for mysterious outcomes
+  
+::: notes
+
+A lot of people sneer at the case-control design as the weakest type of observational study, and while it does have significant problems, the humble case-control design has significant advantages over many other types of research.
+
+The case-control design is great if you want to examine a broad range of risk factors. You're at a picnic and half of the people come down with food poisoning caused by listeria. Was it the potato salad? The baked beans? The apple streudel? At a big picnic, there might be hundreds of foods that could have caused the listeria outbreak.
+
+That okay, though. Just find out what everyone ate and if there is a food that almost everyone with listeria had and that almost no one in the healthy control group had, there's your culprit.
+
+The case control design is very efficient for studying rare diseases. You put out the word in the community ("Calling all cases. Calling all cases.") and get everyone in for an interview. 
+
+It's also a great starting point. There is something weird happening out there and we don't know what is causing it. The very first studies of AIDS, back when we didn't know a lot about the disease, were case control studies.
+
+:::
+
+## Case control designs (4 of 4)
+
+-   Selecting controls
+    -   Hospital/clinic based
+    -   Community
+    -   Relative/friends
+    -   Within the same cohort
+
+::: notes
+
+Controls commonly come from several places. People who visit the same hospital or clinic, but for a reason other than the cancer, heart attack, or suicide attempt. People who live in the same community as the cancer, heart attack, or suicide attempt. Or friends and relatives of the cancer, heart attack, or suicide attempt. Sometimes you have a cohort of patients who you follow over time, and you notice that some of the cohort experience an outcome and you pull a carefully matched set of control patients out of the same cohort. This is a nested case control study.
+
+Because of the difficulty in finding a good set of controls, researchers will almost always use matching to insure that the demographic profiles line up nicely between the cases and the controls.
+
+:::
+
