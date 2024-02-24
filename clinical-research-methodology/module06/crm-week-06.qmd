@@ -5,15 +5,15 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "Advantages and disadvantages of secondary data analysis"
-  topic_02: "Overview of the Centers for Disease Control and Prevention"
-  topic_03: "Overview of the Bureau of the Census"
+  topic_01: "Secondary data analysis"
+  topic_02: "Centers for Disease Control and Prevention"
+  topic_03: "Bureau of the Census"
   topic_04: "Cohort designs"
   topic_05: "Case-control designs"
   topic_06: "Cross-sectional designs"
   topic_07: "Historical control designs"
   topic_08: "Establishing causation in an observational design"
-  topic_09: "Analysis of qualitative data, phenomenology"
+  topic_09: "Qualitative data, phenomenology"
   topic_10: "Grounded theory"
   topic_11: "Ethnography"
   topic_12: "The case sudy"
@@ -143,7 +143,7 @@ editor: source
 
 {{< include _crm-06-09.qmd >}}
 
-## Break #09
+## Break #9
 
 -   What you have learned
     -   `r params$topic_09`
@@ -188,17 +188,6 @@ editor: source
 
 {{< include _crm-06-14.qmd >}}
 
-
-## Break #14
-
--   What you have learned
-    -   `r params$topic_14`
--   What's coming next
-    -   `r params$topic_15`
-
-{{< include _crm-06-14.qmd >}}
-
-
 ## Summary {.smaller}
 
 :::: {.columns}
@@ -230,8 +219,6 @@ editor: source
 :::
 
 ::::
-
-
 
 <!---
       You have to put the title down 
