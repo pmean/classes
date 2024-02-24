@@ -12,6 +12,8 @@ editor: source
 ![](images/logistic-concepts-10.gif)
 
 -   1st class odds: 129/193 = `r round(129/193,2)` or 193/129 = `r round(193/129,2)`
+-   2nd class odds: 161/119 = `r round(161/119,2)` or 119/161 = `r round(119/161,2)`
+-   3rd class odds: 573/138 = `r round(573/138,2)` or 138/573 = `r round(138/573,2)`
 
 ::: notes
 You treat categorical variables in much the same way as you would in a linear regression model. Create indicator variables for each level of your categorical variable and then include all but one of them in your model. The category associated with the omitted variable is the reference category.
@@ -31,6 +33,9 @@ Notice that the odds of dying are 0.67 to 1 in 1st class, 1.35 to 1 in 2nd class
 
 ![](images/logistic-concepts-11.gif)
 
+-  1.50 / 0.24 = 6.212
+-  0.74 / 0.24 = 3.069
+
 ::: notes
 The odds ratio for the pclass(1) row is 6.212, which is equal to 1.50 / 0.24. You should interpret this as the odds against dying are 6 times better in first class compared to third class. The odds ratio for the pclass(2) row is 3.069, which equals 0.74 / 0.24. This tells you that the odds against dying are about 3 times better in second class compared to third class. The Constant row tells you that the odds are 0.241 to 1 in third class.
 :::
@@ -38,6 +43,10 @@ The odds ratio for the pclass(1) row is 6.212, which is equal to 1.50 / 0.24. Yo
 ## Categorical variables in a logistic regression model, 3 of 3
 
 ![](images/logistic-concepts-12.gif)
+
+-  0.74 / 1.50 = 0.494
+-  0.24 / 1.50 = 0.161
+
 
 ::: notes
 If you prefer to do the analysis with each of the other classes being compared back to first class, then select FIRST for reference category.
