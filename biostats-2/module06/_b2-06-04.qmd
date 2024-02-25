@@ -175,10 +175,10 @@ There are other approaches that also work well for this type of data, such as a 
 
 ![](images/logistic-concepts-09.gif)
 
-::: notes
-I’ve simplified this data set by removing some of the extreme gestational ages. The estimated logistic regression model is
+-   log odds = -16.72 + 0.577 $\times$ GA
 
-**log odds = -16.72 + 0.577*GA**
+::: notes
+I’ve simplified this data set by removing some of the extreme gestational ages.
 
 The table below shows the predicted log odds, and the calculations needed to transform this estimate back into predicted probabilities.
 :::
@@ -196,8 +196,6 @@ prob <- odds/(1+odds)
 -   prob = odds / (1+odds`) = `r round(prob, 2)`
 
 ::: notes
-Figure 9. Predicted log odds and predicted probabilities from a research study
-
 Let’s examine these calculations for GA = 30. The predicted log odds would be the intercept plus the slope times 30.
 
 Convert from log odds to odds by exponentiating.

@@ -59,7 +59,7 @@ There is quite a difference. Both measurements show that men were more likely to
 ## Which is better
 
 -   Relative risk is consistent with how most people think, but
-    -   Relative risk cannot always be computerd
+    -   Relative risk cannot always be computed
     -   Relative risk has an ambiguity
 
 ::: notes
@@ -69,12 +69,12 @@ There are three issues here: The relative risk measures events in a way that is 
 ## Fractions are funny
 
 ```{}
-  ---------------- ----------------
-     0.8 (4/5)        1.25 (5/4)  
-     0.75 (3/4)       1.33 (4/3)  
-     0.67 (2/3)       1.50 (3/2)  
-     0.50 (1/2)       2.00 (2/1)  
-  ---------------- ----------------
+  ----------  ----------
+  0.8  (4/5)  1.25 (5/4)  
+  0.75 (3/4)  1.33 (4/3)  
+  0.67 (2/3)  1.50 (3/2)  
+  0.50 (1/2)  2.00 (2/1)  
+  ----------  ----------
 ```
 
 ::: notes
@@ -87,10 +87,23 @@ It turns out that to counteract a 20% decrease, you need a 25% increase. That is
 
 ## Swapping the numerator and denominator
 
-::: notes
-Sometimes when we are comparing two groups, we’ll put the first group in the numerator and the other in the denominator. Sometimes we will reverse ourselves and put the second group in the numerator. The numbers may look quite different (e.g., 0.67 and 1.5) but as long as you remember what the reciprocal fraction is, you shouldn’t get too confused.
+-   Odds ratio = male odds / female odds
+    -   = 4.993 / 0.5 = 9.986
+-   Odds ratio = female odds / male odds
+    -   = 0.5 / 4.993 = 0.1001
+-   Relative risk = male probability / female probability
+    -   = 0.8331 / 0.3333 = 2.4996
+-   Relative risk = female probability / male probability
+    -   = 0.3333 / 0.8331 = 0.4001
 
-For example, we computed 2.5 as the relative risk in the example above. In this calculation we divided the male probability by the female probability. If we had divided the female probability by the male probability, we would have gotten a relative risk of 0.4. This is fine because 0.4 (2/5) and 2.5 (5/2) are reciprocal fractions.
+::: notes
+Sometimes when we are comparing two groups, we’ll put the first group in the numerator and the other in the denominator. Sometimes we will reverse ourselves and put the second group in the numerator. 
+
+An odds ratio that you compute with males in the numerator and females in the denominator would be 9.986 or about 10. You could, however, just as easily put the females in the numerator and males in the denominator. Then your odds ratio would be 0.1001 or about 1/10. The two fractions are equivalent. Multiplying the odds by a factor of 10 going from females to males is the multiplying the odds by a factor of 1/10 going from males to females.
+
+This ambiguity also appears for relative risks. The probability of death increases by 2.5 if you put males in the numerator, and the probability of death decreases by a factor of 0.4 if you put females in the numerator. Think of these as reciprocals: 2.5 is 5/2 and 0.4 is 2/5.
+
+The numbers may look quite different but as long as you remember what the reciprocal fraction is, you shouldn’t get too confused.
 :::
 
 ## Interpretability, 1 of 3
@@ -128,12 +141,10 @@ A change from 10% to 90% mortality represents a relative risk of 9 but an odds r
 ## Designs that rule out the use of the relative risk, 1 of 2
 
 ```{}
-  ------------- ------------------ -------------- -----------
-                   Cancer cases       Controls       Total  
-     Balding            72               82           154  
-      Hairy             55               57           112  
-      Total            129              139           268  
-  ------------- ------------------ -------------- -----------
+         Cancer cases  Controls  Total  
+Balding       72          82      154  
+ Hairy        55          57      112  
+ Total       129         139      268  
 ```
 
 ::: notes
@@ -149,12 +160,10 @@ So you would need additional information or a different type of research design 
 ## Designs that rule out the use of the relative risk, 2 of 2
 
 ```{}
-  ------------- ------------------- ------------------- -----------
-                   Heart disease          Healthy          Total  
-     Balding        127 (9.4%)         1,224 (90.6%)       1,351  
-      Hairy         548 (6.7%)         7,611 (93.3%)       8,159  
-      Total             675                8,835           9,510  
-  ------------- ------------------- ------------------- -----------
+         Heart disease     Healthy     Total  
+Balding    127 (9.4%)   1,224 (90.6%)  1,351  
+ Hairy     548 (6.7%)   7,611 (93.3%)  8,159  
+ Total     675          8,835          9,510  
 ```
 
 ::: notes
@@ -168,12 +177,10 @@ You can always calculate and interpret the odds ratio in a case control study. I
 ## Covariate adjustments
 
 ```{}
-  -------------- --------------- ----------------- -----------
-                    Children        No children       Total  
-     Epilepsy       232 (40%)        354 (60%)         586  
-     Control        79 (72%)         30 (28%)          109  
-      Total            311              384            695  
-  -------------- --------------- ----------------- -----------
+          Children   No children  Total  
+Epilepsy  232 (40%)   354 (60%)    586  
+Control    79 (72%)    30 (28%)    109  
+Total     311         384          695  
 ```
 
 ::: notes
@@ -205,12 +212,10 @@ Relative risks have the same sort of counter-intuitive behavior. A small relativ
 ## Example: physician recommendations
 
 ```{}
-  -------------------- ---------------- ----------------- -----------
-                           No cath            Cath           Total  
-      Male patient        34 (9.4%)        326 (90.6%)        360  
-     Female patient       55 (15.3%)       305 (84.7%)        360  
-         Total                89               631            720  
-  -------------------- ---------------- ----------------- -----------
+                 No cath      Cath      Total  
+ Male patient   34  (9.4%)  326 (90.6%)  360  
+Female patient  55 (15.3%)  305 (84.7%)  360  
+         Total  89          631          720  
 ```
 
 ::: notes
@@ -227,15 +232,13 @@ This is the same thing that we just saw in the Car Talk puzzler: a small relativ
 Thus, for every problem, there are two possible ways to compute relative risk. Sometimes, it is obvious which relative risk is appropriate. For the Titanic passengers, the appropriate risk is for death rather than survival.
 :::
 
-## Example: breast feeding study
+## Example: Breast feeding study
 
 ```{}
-  --------------- ------------------ ---------------- -----------
-                     Continued bf       Stopped bf       Total  
-     Treatment        19 (37.3%)        32 (62.7%)        51  
-      Control          5 (8.8%)         52 (91.2%)        57  
-       Total              24                84            108  
-  --------------- ------------------ ---------------- -----------
+           Continued bf  Stopped bf  Total  
+Treatment   19 (37.3%)   32 (62.7%)    51  
+ Control     5  (8.8%)   52 (91.2%)    57  
+  Total     24           84           108  
 ```
 
 ::: notes
