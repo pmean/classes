@@ -40,6 +40,27 @@ Here are some more complex comparisons involving a binary outcome. The first exa
 The hypothesis to test two proportions uses the symbols $\pi_1$ and $\pi_2$ to represent the proportions in a population.
 :::
 
+## Titanic data, 1 of 3
+
+```{r}
+library(yaml)
+dd <- read_yaml("../data/titanic.yaml")
+cat(as.yaml(dd["data_dictionary"]))
+cat(as.yaml(dd["description"]))
+```
+
+## Titanic data, 2 of 3
+
+```{r}
+cat(as.yaml(dd$vars[1:3]))
+```
+
+## Titanic data, 3 of 3
+
+```{r}
+cat(as.yaml(dd$vars[4:5]))
+```
+
 ## Data layout, 1 of 2
 
 ![](images/difference-in-proportions-01.png)

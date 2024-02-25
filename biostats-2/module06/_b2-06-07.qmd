@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Risk adjustment in logistic regression"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,63 @@ format:
 editor: source
 ---
 
-## Slide 06-07
+## Description of bf data, 1 of 
 
-::: notes
+```{r}
+library(yaml)
+dd <- read_yaml("../data/bf.yaml")
+cat(as.yaml(dd["data_dictionary"]))
+cat(as.yaml(dd["description"]))
+i <- 0
+j <- 3
+```
 
-:::
+## Description of bf data, `r i+2` of 
+
+```{r}
+cat(as.yaml(dd$vars[j*i+(1:j)]))
+i <- i+1
+```
+
+## Description of bf data, `r i+2` of 
+
+```{r}
+cat(as.yaml(dd$vars[j*i+(1:j)]))
+i <- i+1
+```
+
+## Description of bf data, `r i+2` of 
+
+```{r}
+cat(as.yaml(dd$vars[j*i+(1:j)]))
+i <- i+1
+```
+
+## Description of bf data, `r i+2` of 
+
+```{r}
+cat(as.yaml(dd$vars[j*i+(1:j)]))
+i <- i+1
+```
+
+## Description of bf data, `r i+2` of 
+
+```{r}
+cat(as.yaml(dd$vars[j*i+(1:j)]))
+i <- i+1
+```
+
+## Description of bf data, `r i+2` of 
+
+```{r}
+cat(as.yaml(dd$vars[j*i+(1:j)]))
+i <- i+1
+```
+
+## Description of bf data, `r i+2` of 
+
+```{r}
+cat(as.yaml(dd$vars[j*i+(1:j)]))
+i <- i+1
+```
 
