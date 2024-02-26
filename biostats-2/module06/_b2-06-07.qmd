@@ -7,7 +7,7 @@ format:
 editor: source
 ---
 
-## Description of bf data, 1 of 
+## Description of bf data, 1 of 11
 
 ```{r}
 library(yaml)
@@ -18,52 +18,62 @@ i <- 0
 j <- 3
 ```
 
-## Description of bf data, `r i+2` of 
+## Description of bf data, 2 of 11
 
 ```{r}
-cat(as.yaml(dd$vars[j*i+(1:j)]))
-i <- i+1
+cat(as.yaml(dd$vars[1:4]))
 ```
 
-## Description of bf data, `r i+2` of 
+## Description of bf data, 3 of 11
 
 ```{r}
-cat(as.yaml(dd$vars[j*i+(1:j)]))
-i <- i+1
+cat(as.yaml(dd$vars[5:8]))
 ```
 
-## Description of bf data, `r i+2` of 
+## Description of bf data, 4 of 11
 
 ```{r}
-cat(as.yaml(dd$vars[j*i+(1:j)]))
-i <- i+1
+cat(as.yaml(dd$vars[9:11]))
 ```
 
-## Description of bf data, `r i+2` of 
+## Description of bf data, 5 of 11
 
 ```{r}
-cat(as.yaml(dd$vars[j*i+(1:j)]))
-i <- i+1
+cat(as.yaml(dd$vars[12:14]))
 ```
 
-## Description of bf data, `r i+2` of 
+## Description of bf data, 6 of 11
 
 ```{r}
-cat(as.yaml(dd$vars[j*i+(1:j)]))
-i <- i+1
+cat(as.yaml(dd$vars[15:18]))
 ```
 
-## Description of bf data, `r i+2` of 
+## Description of bf data, 7 of 11
 
 ```{r}
-cat(as.yaml(dd$vars[j*i+(1:j)]))
-i <- i+1
+cat(as.yaml(dd$vars[19:20]))
 ```
 
-## Description of bf data, `r i+2` of 
+## Description of bf data, 8 of 11
 
 ```{r}
-cat(as.yaml(dd$vars[j*i+(1:j)]))
-i <- i+1
+cat(as.yaml(dd$vars[21:22]))
 ```
 
+## Description of bf data, 9 of 11
+
+```{r}
+cat(as.yaml(dd$vars[23:24]))
+```
+
+## Description of bf data, 10 of 11
+
+```{r}
+cat(as.yaml(dd$vars[25:26]))
+```
+
+## Description of bf data, 11 of 11
+
+```{r}
+cat(as.yaml(dd$vars[27:28]))
+```
