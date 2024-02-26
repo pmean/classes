@@ -11,6 +11,7 @@ params:
   topic_04: "Concepts behind the logistic regression model"
   topic_05: "Logistic regression with categorical variables"
   topic_06: "Logistic regression with interactions"
+  topic_07: "Risk adjustment"
 editor: source
 ---
 
@@ -38,6 +39,7 @@ editor: source
     -   `r params$topic_04`
     -   `r params$topic_05`
     -   `r params$topic_06`
+    -   `r params$topic_07`
 
 {{< include _b2-06-01.qmd >}}
 
@@ -96,6 +98,17 @@ editor: source
 
 ## Live demo, `r params$topic_06`
 
+## Break #6
+
+-   What you have learned
+    -   `r params$topic_06`
+-   What's coming next
+    -   `r params$topic_07`
+
+{{< include _b2-06-07.qmd >}}
+
+## Live demo, `r params$topic_07`
+
 ## Summary
 
 -   What you have learned
@@ -105,6 +118,7 @@ editor: source
     -   `r params$topic_04`
     -   `r params$topic_05`
     -   `r params$topic_06`
+    -   `r params$topic_07`
 
 ## Additional topics??
 
