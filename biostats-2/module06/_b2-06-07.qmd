@@ -77,3 +77,19 @@ cat(as.yaml(dd$vars[25:26]))
 ```{r}
 cat(as.yaml(dd$vars[27:28]))
 ```
+
+## Creating a binary outcome
+
+![](images/risk-02.png)
+
+## Crosstabulation of predictor and outcome
+
+![](images/risk-03.png)
+
+## Unadjusted odds ratio
+
+![](images/risk-04.png)
+
+## Adjusted odds ratio
+
+![](images/risk-05.png)
