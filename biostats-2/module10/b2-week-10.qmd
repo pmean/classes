@@ -43,7 +43,7 @@ editor: source
     -   `r params$topic_07`
     -   `r params$topic_08`
 
-{{< include _10-01.qmd >}}
+{{< include _b2-10-01.qmd >}}
 
 ## Break #1
 
@@ -52,7 +52,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_02`
 
-{{< include _10-02.qmd >}}
+{{< include _b2-10-02.qmd >}}
 
 ## Live demo, ANOVA and R-squared
 
@@ -63,7 +63,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_03`
     
-{{< include _10-03.qmd >}}
+{{< include _b2-10-03.qmd >}}
 
 ## Live demo, partial F test
 
@@ -74,7 +74,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_04`
     
-{{< include _10-04.qmd >}}
+{{< include _b2-10-04.qmd >}}
 
 ## Live demo, stepwise regression
 
@@ -85,7 +85,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_05`
 
-{{< include _10-05.qmd >}}
+{{< include _b2-10-05.qmd >}}
 
 ## Live demo, regression diagnostics
 
@@ -96,7 +96,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_06`
 
-{{< include _10-06.qmd >}}
+{{< include _b2-10-06.qmd >}}
 
 ## Live demo, multicollinearity
 
@@ -107,7 +107,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_07`
 
-{{< include _10-07.qmd >}}
+{{< include _b2-10-07.qmd >}}
 
 ## Break #7
 
@@ -116,7 +116,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_08`
 
-{{< include _10-08.qmd >}}
+{{< include _b2-10-08.qmd >}}
 
 ## Summary
 
