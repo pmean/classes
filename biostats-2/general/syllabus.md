@@ -6,6 +6,71 @@ format:
 editor: source
 ---
 
+<!---Begin comment
+
+Create a welcome message
+
+  Address your students’ concerns
+  
+  Committed to their continued success.
+  
+  Share how you intend to support students
+  
+  Include any directions or resources they will need
+  
+  How to best communicate with you
+
+  Do not hesitate to reach out
+  
+Please make sure this syllabus has
+
+  An institutional catalog or bulletin course description
+  
+  Any prerequisites or co-requisites (if there aren't any, state "None")
+  
+  Grading criteria, such as grading scale, grading/weight table, etc.) 
+  
+  An accurate total of the points available
+  
+Also nice, but not required
+
+  Class participation policies and expectations.
+  
+  Guidelines for expected conduct
+  
+  Your institution's academic integrity policy.
+   
+  Student support services, such as 
+    student resources, 
+    technology support, and
+    academic support services
+    
+Participation requirements
+
+  How often to log on to your course site 
+
+  What form participation will take
+  
+  How often discussions or other interactions will occur
+  
+  How participation will be assessed
+  
+Timeliness
+
+  Replies to emails or other general queries
+  
+  Grades and feedback
+  
+Grading
+
+  A summary of assessments
+  
+  A grading scale
+
+ 
+  
+End Comment--->
+
 ## MEDB 5502, Applied Biostatistics II, 3 credit hours
 
 -   Section 0001 (12192): Synchronous zoom
