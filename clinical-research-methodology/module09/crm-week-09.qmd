@@ -5,12 +5,12 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "Cluster analysis"
-  topic_02: "To be determined"
-  topic_03: "To be determined"
-  topic_04: "To be determined"
-  topic_05: "To be determined"
-  topic_06: "To be determined"
+  topic_01: "Internal validity"
+  topic_02: "External validity"
+  topic_03: "Measurement validity"
+  topic_04: "Five case studies"
+  topic_05: "Three dichotomies of measurement"
+  topic_06: "Dichotomy examples"
   topic_07: "To be determined"
   topic_08: "To be determined"
 editor: source
@@ -54,8 +54,6 @@ editor: source
 
 {{< include _crm-09-02.qmd >}}
 
-## Live demo, ANOVA and R-squared
-
 ## Break #2
 
 -   What you have learned
@@ -64,8 +62,6 @@ editor: source
     -   `r params$topic_03`
     
 {{< include _crm-09-03.qmd >}}
-
-## Live demo, partial F test
 
 ## Break #3
 
@@ -76,8 +72,6 @@ editor: source
     
 {{< include _crm-09-04.qmd >}}
 
-## Live demo, stepwise regression
-
 ## Break #4
 
 -   What you have learned
@@ -87,8 +81,6 @@ editor: source
 
 {{< include _crm-09-05.qmd >}}
 
-## Live demo, regression diagnostics
-
 ## Break #5
 
 -   What you have learned
@@ -97,8 +89,6 @@ editor: source
     -   `r params$topic_06`
 
 {{< include _crm-09-06.qmd >}}
-
-## Live demo, multicollinearity
 
 ## Break #6
 

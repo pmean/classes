@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Measurement validity"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,110 @@ format:
 editor: source
 ---
 
-## Slide 01-03
+## Break #2
+
+-   What have you learned
+    -   External validity
+-   What's coming next
+    -   Measurement validity
+
+## Measurement quotes (1 of 2)
+  
+-   "The government is extremely fond of amassing great quantities of statistics. These are raised to the Nth degree, the cube roots are extracted, and the results are arranged into elaborate and impressive displays. What must be kept ever in mind, however, is that in every case, the figures are first put down by a village watchman, and he puts down anything he damn well pleases." 
+    -   Sir Josiah Stamp, as quoted on [Quotetab](https://www.quotetab.com/quotes/by-josiah-stamp).
 
 ::: notes
+
+As much as I love numbers, I have to admit that they are often abused. Just because you can attach a number to something does not mean that the number is useful in any way. I want to talk about some of the problems associated with measurement and some of the great pains that you need to take to be sure that your numbers have meaning.
+
+:::
+
+## Measurement quotes (2 of 2)
+
+-   "only scientists are arrogant enough to think that they always observe with rigorous and objective scrutiny"
+    -   Stephen Jay Gould, The Mismeasure of Man, page 36.
+
+::: notes
+
+I also have to quote Stephen Jay Gould here as well. He wrote an excellent book, The Mismeasure of Man, that addresses many of the points I will talk about today from the perspective of intelligence tests. It is well worth reading because it helps you to resist the temptation to think that writing down a number and giving it a name is enough. You have to think long and hard about whether your measurements are of sufficient quality that you can rely on them to draw firm conclusions about the clinical care that you provide to your patients.
+
+:::
+
+## Measurements that warrant closer scrutiny
+
+-   Patient reported outcomes
+    -   Participant report
+-   Researcher evaluations
+    -   Only when concerned about subjectivity
+-   Psychological constructs
+-   Composite scores
+
+::: notes
+
+For better or for worse, researchers tend to focus greater attention on certain types of measurements. There's no hard and fast rule here, but issues of measurement quality tend to appear most often in certain areas.
+
+Don't think that if your measure is not on this list that it doesn't deserve careful scrutiny. There's really no consensus in the research community on what measurements require this extra level of attention.
+
+I think it is a bit unfair, but there is a lot of distrust of patient reported outcomes among researchers. Why not believe what the patient says about himself or herself? Part of it might be that a patient's answers could potentially be influenced by their mood.
+
+There is also a belief that patient reported outcome measures vary too much from one individual to another. Some people are stoic to a fault and others will complain endlessly at the drop of a hat.
+
+It is worth noting that these factors also influence researcher observation, but researchers don't like it when you point this out to them. It's mostly a good thing that researchers require a high level of scrutiny of patient reported outcomes, but perhaps other measures deserve just as high a level of scrutiny.
+
+There is a fair amount of scrutiny of researcher evaluations when these evaluations are perceived as having a high level of subjectivity. Now, our perceptions as to what is subjective are also subjective, so you need to be careful.
+
+Psychological constructs are tools used to measure aspects of human behavior, such as intelligence, self-esteem, stress, and extraversion. In spite of recent advances in brain imaging, you cannot, for the most part, peek inside someone's mind and understand how they think. 
+
+Finally, many measures in clinical research are composites of one or more items. These individual items are scored and added up to get a total. If the individual items are chosen well, this can be a very effective approach, but you need to be careful.
+
+:::
+
+## Measurement Reliability 
+
+-   Synoynms: consistency, precision, stability
+-   No measurement is perfectly reliable
+-   Dependent on the population
+-   Look for prior efforts in reliability
+
+::: notes
+
+When you measure something, you want that measurement to be consistent, precise, and stable. You don't want something that changes as the phases of the moon change. You don't want a measurement that changes depending on who the attending physician is. You don't want a measurement that changes depending on any environmental factors that are extraneous to what you are measuring.
+
+If your measure is not stable, then you have difficulty in assessing whether a change in that measurement is due to your intervention or due to the phases of the moon.
+
+One thing you need to keep in mind is that the reliability coefficient is dependent on the population it is based on. Your book doesn't mention this, but it is important. Change the population and you change the reliability coefficient. Something with a great reliability coefficient in a population of college students might be terrible in a population with limited literacy skills, for example.
+
+Since no measurement is ever conducted without some Reliability is usually established when a measure is developed. When you go about using a measure, look at what's already been published. Make sure it used in a context similar to yours. It's a whole lot easier to find a measurement that is already proven to be reliable than to develop your own measure and then establish its reliability.
+
+:::
+
+## Measurement Validity 
+
+-   Reliability by itself is not enough.
+    -   Consistent measures of the "wrong thing" is bad
+-   Examples of the wrong thing
+    -   Measuring anxiety instead of stress
+    -   Measuring transient changes in a patient's mood rather than chronic depression
+-   Validity
+    -   "Degree to which a measure ... measures that which it was intended to measure"
+-   Reliability is a pre-requisite for validity
+-   Validity is a journey and not a destination
+
+::: notes
+
+Reliability by itself is not enough. That seems a bit unfair. You had to do a lot of work to establish reliability. But you can't stop there. If you have a reliable measurement, one that is consistent across time and between raters, then you could still have problems because you might be measuring the wrong thing.
+
+This can happen very easily. You might think that you are measuring the stress that a patient is enduring, but it might be a measure of anxiety instead. Now these are often related, but people can experience one without the other very easily. Another example would be measuring transient changes in mood versus chronic depression.
+
+So in addition to establishing that your measurement has good reliability, you also have to establish good validity.
+
+Validity is, to quote from your book, the "degree to which a measure measures that which it was intended to measure."
+
+If you intend to measure A and you measure B instead, you have poor validity.
+
+Now I talked about reliability first because it is a pre-requisite for validity. If a measurement is inconsistent across time or between raters, it can't be measuring what you want it to measure. It needs stability and consistency first.
+
+The other thing to keep in mind is that validity is not something that you establish and then you're done. Validity is a journey and a never-ending journey at that. Each study in a series of studies that uses a particular measurement will contribute information about the validity about a measurement.
 
 :::
 
