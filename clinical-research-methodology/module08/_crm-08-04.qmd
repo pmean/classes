@@ -1,0 +1,68 @@
+---
+title: "Matching and pairing"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Matching and pairing
+
+* Improved precision
+* Logistical issues
+* Works for both randomized and observational studies
+
+::: notes
+
+Matching and pairing can greatly improve the precision of your research study, but it can raise some difficulties as well.
+
+You can use matching for randomized studies. Arrange your patient groups into pairs of patients with similar demographics (same race, same gender, same age plus or minus 3 years). Then randomly assign one of the patients in a pair to the treatment group and the other patient into the control group.
+
+In a case control study, select your case and then find a control with similar demographics. The same idea works for a cohort study.
+
+:::
+
+## The logistics of matching
+
+* Not obvious
+* Simplest solution: greedy matching
+* Unpaired patients are lost to your analysis
+  + Extra precision from pairing
+  + Loss of precision from loss of the unpaired.
+  
+::: notes
+
+The process of matching is trickier than it looks. If you have a single variable to match on, it is pretty easy. But with multiple matching variables, you have to sometimes make trade-offs. How important is it to match to the same gender? Would you rather be sure that the match is very close in age?
+
+If you match, you need to face the fact that some of the precision and/or bias reduction that you get from matching will be reduced by the loss of some patients who you are unable to find a good match for. There's a phrase about jumping from the frying pan into the fire, and with matching, you are not sure if the effort will end up hurting rather than helping.
+
+I tried to work out a simple matching program, but it is messier than I had thought. If I can work out a simple example, I will let you know.
+
+:::
+
+## The cross-over trial
+
+* Only for some randomized trials
+* Each subject serves as own control
+* Randomize treatment order
+* Beware of carry-over
+
+::: notes
+
+A research design that takes matching to its ultimate extent is the cross-over trial. This only works for randomized studies, and then only for some of them, but when it does work, it's great.
+
+In a cross-over trial, each subject is given the treatment and also given the control. You randomize the order: some subjects get the treatment first and then the control. Some subjects get the control first and then the treatment.
+
+You can't use this design for an attribute variable. You can't switch someone from one age group to another, for example.
+
+Even with an independent variable that you can manipulate, the cross-over trial is sometimes problematic. You can't switch from the treatment group to the control group for example, when the control is a masectomy and the treatment is a lumpectomy, because you can't undo the effects of one surgery and try the different surgery.
+
+Training interventions also don't work. You can't train someone one way, get them to unlearn things and then re-train them a different way.
+
+Generally, you have to have a treatment that is short and easily reversible. You gain a lot of precision because all of the factors that are difficult to get perfect balance for in a normal trial disappear in a cross-over trial. Differences in demographics and differences in severity of illness completely disappear.
+
+For drugs that have a carry-over effect, you should probably wait until the first drug is completely washed out of the body before starting the second drug. This can be a problem for certain drugs that have a long half-life.
+
+:::
+

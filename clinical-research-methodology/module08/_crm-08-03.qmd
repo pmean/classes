@@ -1,0 +1,118 @@
+---
+title: "Different types of non-probability samples"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Break #2
+
+* What have we learned so far?
+  + Types of probability samples
+  + How to draw a random sample
+  
+* What is coming up next?
+  + Different types of non-probability samples
+  + How to allocate treatments randomly
+  
+::: notes
+
+Let's take another break. We've talked about some different types of probability samples: simple, systematic, stratified, and cluster. We'll tackle non-probability samples next.
+
+:::
+
+## Sampling 
+
+* Sampling designs – Nonprobability sampling
+	+ Convenience sampling
+	+ Quota sampling
+	+ Purposive sampling
+	+ Purposeful sampling
+  + Snowball sampling
+
+::: notes
+
+In a non-probability sample, the probability of an person being selected is unknown. You use this approach because you have to (it is impossible to obtain a sampling frame) or because it takes too much time or too much money.
+
+A convenience sample is a sample that is collected without any planned attempt to make the sample representative. You choose people for your sample because they are easy to find. When a drug company places an ad in the paper looking for volunteers, the sample that they get is a convenience sample. When a doctor recruits patients who just happen to be coming to his or her clinic that day, that is a convenience sample.
+
+Sometimes researchers will make a feeble attempt to get a representative sample, such as asking physicians in urban, suburban, and rural setting to recruit patients. But it still represents a convenience sample.
+
+A quota sample is like a convenience sample. It gives you flexibility in who to select as long as certain quotas are met. Back when shopping malls were popular, marketing research firms would take samples from the people strolling by the stores. They'd approach people and ask if they wanted to participate in a survey or a taste test or something similar. The people doing the sample had to get a certain number of people in each demographic group, and my demographic group (young male) was always the hardest to get. So these people would walk right past everyone else and pick me out for their sample because they already had enough older people and enough females.
+
+In a purposive sample, you identify characteristics that you feel are important and search for for patients with those characteristics. In some qualitative studies, for example, researchers will try to find a few patients who representative of one extreme and a few who are representative of the opposite extreme and sometimes a few who are in the middle. This insures that you will hear a broad range of comments.
+
+Purposeful sampling is also commonly used with qualitative research. You only have a limited amount of time and money and you want to select patients who are "information rich."
+
+Both purposive and purposeful samples require the use of subjective judgement. This sounds terrible, but there is at least some empirical evidence that a purposive sample can outperform a simple random sample. See the van Hoeven article under recommended readings for an example. 
+
+Snowball sampling is an attempt to get a decent number of patients in a population that is hard to sample from in the more traditional approaches. You ask the first few patients in your sample to recommend others. Then you get recommendations from these people. And so forth. This sampling technology got its name from the analogy of a snowball rolling downhil and getting bigger and bigger.
+
+Snowball sampling has been used to identify drug addicts, for example, because these people are normally resistant to solicitation of information through more traditional channels.
+
+:::
+
+## Example of a purposive sample
+
+![Table describing purposive sampling strategy](../images/08/purposive sampling strategy.png)
+
+::: notes
+
+This table, from the Wheelock artice in recommended readings, shows an example of a purposive sample. If you have trouble reading this table, open up the link to the Wheelock paper in the recommended readings for this week.
+
+In each country, researchers had to select 20 patients and they had to make sure that some of these patients h ad and some did not have the eligible chronic condition. They also had to get a minimum number from particular demographic groups like gender, age, socioeconomic status, and vaccination status.
+
+Now, if this sounds more like a quota sample than a purposive sample, I couldn't disagree with you. There is a subtle distinction between many of these non-probability samples.
+
+:::
+
+## Randomizing treatments within a convenience sample
+
+Many studies use a convenience sample, which may hamper external validity, but they randomly assign treatment or control conditions within the convenience sample, which helps with internal validity. The process works much like the process of drawing a simple random sample.
+
+1. List your treatment groups in a logical order
+
+2. Attach a column of random numbers
+
+3. Sort by the column of random numbers
+
+4. Allocate treatment groups, starting at the top of the list.
+
+::: notes
+
+Much research involves the use of convenience samples, with randomization to two or more treatment groups. The randomization after a convenience sample is not the same as using a random sample, and it does nothing for generalizability (or external validity). It does help with internal validity.
+
+if you've never randomized treatment allocation before, the literature is a bit confusing. The simplest approach is to follow the same logic that you use for selecting a random sample. Please the treatment conditions in a systematic order, attach a column of random numbers and then sort by the random numbers. This places your treatment allocation in a random order. You assign your first patient to the treatment group listed at the top of the list. The second patient giets the next treatment group listed, and so forth.
+
+:::
+
+## Randomizing treatment allocation using Microsoft Excel
+
+![A spreadsheet illustrating random treatment allocation](../images/08/random03.png)
+
+::: notes
+
+This shows the randomized allocation of treatments using Microsoft Excel. If the image is too smallfor you to view here, open up the file random03.xlsx from the Canvas website.
+
+Arrange your treatments systematically (T, C, T, C, etc.)
+
+Attach a column of random numbers. Notice that the smallest random number (0.0258002) is associated with a "T". This "T" goes to the top of the list. The first five patients get allocated to T, C, T, T, and C respectively.
+
+:::
+
+## Randomizing a crossover trial using Microsoft Excel
+
+![A spreadsheet illustrating random allocation of treatment order](../images/08/random03.png)
+
+::: notes
+
+The process of sorting by a column of random numbers extends easily to more complex research designs. This screenshot from a Microsoft Excel spreadsheet shows the randomized allocation of treatment order in a crossover trials using Microsoft Excel.
+
+Arrange the treatment and control values in pairs. Then attach a column of random numbers. When you sort by pair and then by the column of random numbers, you arrange the order of treatments randomly within each pair. The first pair has a smaller random number for C (0.652967) than for T (0.7492683), so the first subject gets a treatment followed by a control. The next three subjects get the control first.
+
+Following this basic idea, you can just as easily randomize with three or more treatment groups, and randomize treatment order within strata.
+
+:::
+
