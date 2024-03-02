@@ -1,0 +1,148 @@
+---
+title: "Comments for MEDB 5502, Week 13"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+params:
+  topic_01: "Bayesian analysis"
+  topic_02: "To be determined"
+  topic_03: "To be determined"
+  topic_04: "To be determined"
+  topic_05: "To be determined"
+  topic_06: "To be determined"
+  topic_07: "To be determined"
+  topic_08: "To be determined"
+editor: source
+---
+
+## Topics to be covered
+
+```{r}
+# Preliminaries, if needed
+
+# Keep this chunk, even if no code, so that
+# params is populated from the yaml header.
+
+# To print speaker notes, add
+#   ?print-pdf&showNotes=separate-page 
+#   to the end of the URL. Then open the
+#   print dialog box (ctrl-P) and choose
+#   Save as PDF for the printer. Other 
+#   options, like Microsoft Print to PDF
+#   do not seem to work.
+```
+
+-   What you will learn
+    -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
+    -   `r params$topic_07`
+    -   `r params$topic_08`
+
+{{< include _b2-13-01.qmd >}}
+
+## Break #1
+
+-   What you have learned
+    -   `r params$topic_01`
+-   What's coming next
+    -   `r params$topic_02`
+
+{{< include _b2-13-02.qmd >}}
+
+## Live demo, ANOVA and R-squared
+
+## Break #2
+
+-   What you have learned
+    -   `r params$topic_02`
+-   What's coming next
+    -   `r params$topic_03`
+    
+{{< include _b2-13-03.qmd >}}
+
+## Live demo, partial F test
+
+## Break #3
+
+-   What you have learned
+    -   `r params$topic_03`
+-   What's coming next
+    -   `r params$topic_04`
+    
+{{< include _b2-13-04.qmd >}}
+
+## Live demo, stepwise regression
+
+## Break #4
+
+-   What you have learned
+    -   `r params$topic_04`
+-   What's coming next
+    -   `r params$topic_05`
+
+{{< include _b2-13-05.qmd >}}
+
+## Live demo, regression diagnostics
+
+## Break #5
+
+-   What you have learned
+    -   `r params$topic_05`
+-   What's coming next
+    -   `r params$topic_06`
+
+{{< include _b2-13-06.qmd >}}
+
+## Live demo, multicollinearity
+
+## Break #6
+
+-   What you have learned
+    -   `r params$topic_06`
+-   What's coming next
+    -   `r params$topic_07`
+
+{{< include _b2-13-07.qmd >}}
+
+## Break #7
+
+-   What you have learned
+    -   `r params$topic_07`
+-   What's coming next
+    -   `r params$topic_08`
+
+{{< include _b2-13-08.qmd >}}
+
+## Summary
+
+-   What you have learned
+    -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
+    -   `r params$topic_07`
+    -   `r params$topic_08`
+    
+## Additional topics??
+
+::: notes
+-   Learning objectives
+    -   To be determined
+:::
+
+<!---
+      You have to put the title down 
+      here to override the titles of
+      all the include files.
+--->
+
+---
+title: "Comments for MEDB 5502, Week 03"
+---

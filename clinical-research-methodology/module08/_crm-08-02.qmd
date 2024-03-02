@@ -1,0 +1,108 @@
+---
+title: "To be determined"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Sampling 
+
+* Sampling designs – Probability sampling
+	+ Simple random sampling
+	+ Systematic sampling
+	+ Stratified sampling
+	+ Cluster sampling
+
+::: notes
+
+In a probability sample, every person in the population has a known non-zero probability of being in the sample. A sampling frame is an absolute requirement for a probability sample. If you do not have a sampling frame, you must rely on a non-probability sample.
+
+In simple random sampling, each patient has an equal and independent probability of being selected.
+
+I do not recommend a systematic sample. It is easy. If you want a sample that is one-tenth the size of the population, select every tenth observation from the sampling frame. Randomly choose whether you start. With ten percent systematic sample, that possible starting points are the first, second, third, ... all the way through the tenth observation in the sampling frame. If you started with the eleventh value or later, you would be selecting less than 10% of the sampling frame.
+
+For a stratified sample, you divide your sampling frame into layers or strata. You might do this by geographic regions, age groups, gender. Then select a simple random sample within each strata.
+
+In some studies, the number of patients sampled from each strata is proportional to the number of patients within each strata. In other studies, certain strata are over sampled to insure a decent sample size for certain minority groups. If you encounter over sampling, you must, must, must use a weighting approach for your data analysis.
+
+A cluster sample involves the division of the sample into discrete clusters. These clusters might represent clinics or hospitals. A specific number of clusters are sampled in their entirety and others are left behind. Within each cluster, you either conduct a simple random sample, or you get the records for every patient in that cluster.
+
+A cluster sample is inefficient from a statistical perspective because two patients from the same clinic or hospital are likely to be positively correlated. This correlation increases your standard error, sometime substantially.
+
+The reason you pick a cluster sample is that it save a lot of time. If you had to visit every single hospital in the United States to get a simple random sample or a stratified random sample, you would die of exhaustion.
+
+Instead, select a small number of hospitals that are representative of all hospitals in the U.S. and then travel only to those locations.
+
+There are variations on cluster sampling where you have a second layer of clusters beneath the first layer. So you might randomly select 50 school districts in the United States and then randomly select 5 elementary schools within each district for further sampling.
+
+:::
+
+## How to draw a simple random sample
+
+1. List the sampling frame in a logical order
+
+2. Attach a column of random numbers
+
+3. Sort by the column of random numbers
+
+4. Select your sample, starting at the top
+
+::: notes
+
+There are a lot of places, including your book, that make the actual process of drawing a random sample more complicated than it needs to be. Ignore what your book says and follow this algorithm.
+
+List your sampling frame in a logical order. Then attach a column of random numbers and sort by that column. Sorting by a column of random numbers places your list in a random order.
+
+Then just select your sample starting from the top of the randomly sorted list.
+
+:::
+
+## Simple random sample using Microsoft Excel
+
+![A spreadsheet illustrating simple random sampling](images/random-01.png)
+
+::: notes
+
+This shows the random sampling process using Microsoft Excel. If the image is too smallfor you to view here, open up the file random01.xlsx from the Canvas website.
+
+
+There are 26 patients in your sampling frame. Arrange them in a systematic order. Then attach a column of random numbers. Notice that the smallest random number (0.0138863) is associated with "T". This letter goes to the top of the list when you sort the data and is the first person in your sample.
+
+If you needed to select five people, your simple random sample would be T, F, P, X, and C.
+
+:::
+
+## How to draw a stratified random sample
+
+1. List the sampling frame and strata in a logical order
+
+2. Attach a column of random numbers
+
+3. Sort by the strata and the column of random numbers
+
+4. Select your sample, starting at the top
+
+::: notes
+
+The process of selecting a stratified random sample is similar. You have two columns. The first column is your sampling frame and the second column is your strata. Add a column of random numbers and sort first by the strata and then by the random numbers. This places the numbers in a random order within each strata.
+
+:::
+
+## Stratified random sample using Microsoft Excel
+
+![A spreadsheet illustrating stratified random sampling](images/random-02.png)
+
+::: notes
+
+This shows the stratified random sampling process using Microsoft Excel. If the image is too smallfor you to view here, open up the file random02.xlsx from the Canvas website.
+
+Split your data into two strata: consonants and vowels. Arrange them systematically.
+
+Attach a column of random numbers. Notice that "P" has the smallest random number among the consonants (0.0207696) and "O" has the smallest random number among the vowels (0.0727503). Then do a two level sort: first by the strata and then by the random numbers.
+
+If you wanted a random sample of three consonants and two vowels, your stratified sample would be P, K, V among the consonants and O and U among the vowels.
+
+:::
+

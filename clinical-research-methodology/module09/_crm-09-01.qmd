@@ -1,0 +1,136 @@
+---
+title: "Internal validity"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Three types of validity
+
+-   Internal validity
+    -   "The extent to which we can infer that the independent variable caused the dependent variable."
+-   External validity
+    -   "The extent to which the findings will generalize to other populations, settings, measures, and treatments."
+-   Measurement validity
+    -   "The quality of accuracy of individual measures or scores. The extent to which a score measures what it was intended to measure."  
+    -   Also measurement reliability
+
+::: notes
+
+Your book specifies three types of validity: internal validity, external validity, and measurement validity. I want to focus just on measurement validity in this lecture. The other types of validity are important, but the explanations are fairly simple to follow. 
+
+Measure validity is much harder to talk about, so I do want to spend a fair amount of time on it and on a closely related concept, measurement reliability.
+
+:::
+
+
+
+## Internal Validity 
+
+-   “The extent to which we can infer that the independent variable *caused* the dependent variable.”
+-   Three criteria for causality
+	+ IV *must precede* the outcome variable
+	+ IV *must be related* to the outcome
+	+ There must be no other variables that could explain why the IV is related to the outcome
+
+::: notes
+
+Many people claim that it's really only randomized trials that can establish causality. But even in quasi-experimental and non-experimental studies, you can still talk about internal validity.
+
+:::
+
+## Establishing internal validity by the research approach
+-   Hierachy
+	+ Randomized Experiments
+	+ Quasi-Experimental studies
+	+ Comparative
+	+ Associational
+	+ Descriptive
+
+::: notes
+
+Your book established a hierarchy and in fairness to the book, this is commonly accepted in most circles. But it is wrong. 
+
+For randomized designs, the cause precedes the effect, the cause is related to the outcome and there are no other variables that could explain the relationship. The major threats to internal validity are removed by randomization. There are still some threats, though, that you should be aware of.
+
+For the other designs, you have to bring additional information into the analysis in order to establish internal validity.
+
+:::
+
+## Internal Validity is equivalence and control 
+
+-   Evaluating the internal validity of a study –
+	+ Equivalence of the groups on participant characteristics
+	+ Control of extraneous experiences and environmental variables
+
+::: notes
+
+There are two aspects of internal validity, equivalence and control.
+
+:::
+
+***
+## Establishing equivalence
+
+-   Are groups equivalent prior to introduction of IV?
+    -   Assured without further work in randomized studies
+    -   Empirical comparisons for non-randomized studies
+    -   Can you use matching or statistical adjustments?
+  
+::: notes
+
+Random assignment assures equivalence of the two groups on average. A rule of thumb in your book is 30 people assigned to each group should give you confidence that random assignment will assure equivalence. A better reference demonstrates empirically that you need 20 to 80 per group.
+
+For other studies, you have to establish equivalence empirically. This can only be done on measured variables, while randomization also assures equivalence on unmeasured variables.
+
+For many non-randomized studies, you may need to rely on statistical adjustment or matching.
+
+:::
+
+## Establishing control
+
+-   Extraneous and environmental variables
+    -   Not of direct interest
+    -   Influence the outcome
+    -   Imbalanced
+-   Example: contamination
+-   Is one group affected more than the other?
+	+ Less of an issue for laboratory studies
+
+::: notes
+
+Your study could be contaminated by other variables. These variables might be out of your control but which can influence the outcome.
+
+Contamination: people in the intervention group are friends with the control group and share information.
+
+The key issue is whether one group is more affected by extraneous variables.
+
+In a controlled setting, there are fewer extraneous variables, but this changes in a field setting.
+
+:::
+
+## Other threats to internal validity 
+
+-   Regression to the mean
+-   Dropouts/attrition
+-   Bias in assignment
+-   Carryover effects
+-   Changes in environment
+-   Instrument or observer inconsistency
+-   Patient expectations
+-   Observer bias
+
+::: notes
+
+Extreme groups have issues with regression to the mean. Even without any intervention, the extremities will tend to lessen.
+
+Dropouts or attrition means that you've designed a setting that is so difficult that no one can stay in. Differential attrition is especially troublesome.
+
+Bias in assignment occurs when patients or their physicians directly or indirectly influence the assignment. Random assignment eliminates this bias, though sometimes physicians will try to subvert the randomization process.
+
+Blinding helps control for expectation effects and observer bias.
+
+:::
+

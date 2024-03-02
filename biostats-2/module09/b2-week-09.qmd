@@ -1,0 +1,195 @@
+---
+title: "Comments for MEDB 5502, Week 09"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+params:
+  topic_01: "To be determined"
+  topic_02: "To be determined"
+  topic_03: "To be determined"
+  topic_04: "To be determined"
+  topic_05: "To be determined"
+  topic_06: "To be determined"
+  topic_07: "To be determined"
+  topic_08: "To be determined"
+editor: source
+---
+
+## Topics to be covered
+
+```{r}
+# Preliminaries, if needed
+
+# Keep this chunk, even if no code, so that
+# params is populated from the yaml header.
+
+# To print speaker notes, add
+#   ?print-pdf&showNotes=separate-page 
+#   to the end of the URL. Then open the
+#   print dialog box (ctrl-P) and choose
+#   Save as PDF for the printer. Other 
+#   options, like Microsoft Print to PDF
+#   do not seem to work.
+```
+
+-   What you will learn
+    -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
+    -   `r params$topic_07`
+    -   `r params$topic_08`
+
+{{< include _b2-09-01.qmd >}}
+
+## Break #1
+
+-   What you have learned
+    -   `r params$topic_01`
+-   What's coming next
+    -   `r params$topic_02`
+
+{{< include _b2-09-02.qmd >}}
+
+## Live demo, ANOVA and R-squared
+
+## Break #2
+
+-   What you have learned
+    -   `r params$topic_02`
+-   What's coming next
+    -   `r params$topic_03`
+    
+{{< include _b2-09-03.qmd >}}
+
+## Live demo, partial F test
+
+## Break #3
+
+-   What you have learned
+    -   `r params$topic_03`
+-   What's coming next
+    -   `r params$topic_04`
+    
+{{< include _b2-09-04.qmd >}}
+
+## Live demo, stepwise regression
+
+## Break #4
+
+-   What you have learned
+    -   `r params$topic_04`
+-   What's coming next
+    -   `r params$topic_05`
+
+{{< include _b2-09-05.qmd >}}
+
+## Live demo, regression diagnostics
+
+## Break #5
+
+-   What you have learned
+    -   `r params$topic_05`
+-   What's coming next
+    -   `r params$topic_06`
+
+{{< include _b2-09-06.qmd >}}
+
+## Live demo, multicollinearity
+
+## Break #6
+
+-   What you have learned
+    -   `r params$topic_06`
+-   What's coming next
+    -   `r params$topic_07`
+
+{{< include _b2-09-07.qmd >}}
+
+## Break #7
+
+-   What you have learned
+    -   `r params$topic_07`
+-   What's coming next
+    -   `r params$topic_08`
+
+{{< include _b2-09-08.qmd >}}
+
+## Summary
+
+-   What you have learned
+    -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
+    -   `r params$topic_07`
+    -   `r params$topic_08`
+    
+## Additional topics??
+
+::: notes
+-   Kaplan-Meyer - Survival Analysis
+    -   Define Survival Analysis
+    -   List the scientific applications of Survival Analysis
+    -   Know the general overview of Survival Analysis
+    -   Identify the type of data used in Survival Analysis
+    -   Identify data requirements for Survival Analysis
+    -   Identify the research design for a Survival Analysis
+    -   List the benefits of Survival Analysis
+    -   Define "censoring"
+    -   Define "event observation"
+    -   Outline the history of Survival Analysis
+    -   Define "Life Tables"
+    -   List the characteristics of Kaplan-Meier Survival Analysis
+    -   List and define the assumptions of The Kaplan-Meier method
+    -   Explain how to test Assumption #6 - Censorship equality
+    -   Define "left censoring"
+    -   Define "right censoring"
+    -   Define the 2 goals of the Kaplan-Meier method
+    -   Define the characteristic of the Event Status variable
+    -   Define the characteristic of the Time variable
+    -   Define the Subject Identifier variable
+    -   Define the Between Subjects Factor
+    -   Run a Kaplan-Meier analysis using SPSS
+    -   Define and explain the Log-Rank Test, the Breslow test and the Tarone-Ware test.
+    -   Interpret a Survival Functions Plot
+    -   Identify the median survival values on a Survival Functions Plot
+    -   Interpret the median values of a Kaplan-Meier Survival analysis
+    -   Identify the useful functions of a survival distribution
+    -   Explain the pair wise comparisons generated in a Kaplan-Meier survival analysis
+    -   Create a complete write-up of a Kaplan-Meier survival analysis
+-   Cox Regression
+    -   Define Cox Regression
+    -   Explain what a Cox Regression analysis is used for
+    -   Compare and contrast a Cox Regression analysis and a Kaplan-Meier survival analysis
+    -   Identify the benefits of a Cox Regression analysis
+    -   Define Hazard Function
+    -   Explain the Cox Regression Equation
+    -   Define "maximum Likelihood"
+    -   Interpret a positive regression coefficient and a negative regression coefficient
+    -   Compare and contrast the interpretation of a  Cox Regression analysis and a Kaplan-Meier survival analysis
+    -   Identify the assumptions of a Cox Regression analysis
+    -   Define the Proportional Hazards assumption
+    -   Explain how to test the Proportional Hazards assumption
+    -   Explain what will occur if the Proportional Hazards assumption is violated
+    -   Run a Cox Regression analysis in SPSS
+    -   Interpret the Omnibus Tests of Model Coefficients
+    -   Interpret the Beta coefficients of a Cox Regression analysis
+    -   Interpret the Hazard Function Curve
+    -   Create a complete write-up of a Cox Regression analysis
+:::
+
+<!---
+      You have to put the title down 
+      here to override the titles of
+      all the include files.
+--->
+
+---
+title: "Comments for MEDB 5502, Week 03"
+---
