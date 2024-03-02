@@ -1,5 +1,5 @@
 ---
-title: "Assumptions and diagnostics"
+title: "Diagnostics"
 format: 
   revealjs:
     slide-number: true
@@ -7,29 +7,133 @@ format:
 editor: source
 ---
 
-## Images
+## Informal sample size calculations, 1 of 2
+
+-   Rule of 50
+    -   Need 25 to 50 events in each group
+    -   Based on approximate power calculation
+-   Example: newborn readmissions for jaundice
+    -   Occurs about 2% (1/50) of the time
+    -   Need 25 $\times$ 50=1,250 or 50 $\times$ 50=2,500 in each group
+    
+## Informal sample size calculations, 2 of 2
+
+-   Rule of 15
+    -   Need 15 events for each independent variable
+    -   Smaller ratio implies poor replicability
+    -   Note: events, not observations
+    
+## Formal power calculation    
+
+## Assumptions of logistic regression
+
+-   Independence
+-   Linearity
+    -   On a log odds scale
+-   No assumptions about normality
+
+## Computing probability estimates, male and 3rd class
+
+![](images/assumptions-05.png)
+
+```{r}
+b0 <- -2.029
+odds <- exp(b0)
+prob <- odds/(1+odds)
+```
+
+-   log odds = `r b0`
+-   odds = exp(log odds) = `r round(odds, 4)`
+-   prob = odds / (1+odds) = `r round(prob, 4)`
+
+## Computing probability estimates, male and first class
+
+![](images/assumptions-05.png)
+
+```{r}
+b1 <-  1.319
+odds <- exp(b0+b1)
+prob <- odds/(1+odds)
+```
+
+-   log odds = `r b0` + `r b1`
+-   odds = exp(log odds) = `r round(odds, 4)`
+-   prob = odds / (1+odds) = `r round(prob, 4)`
+
+## Computing probability estimates, male and second class
+
+![](images/assumptions-05.png)
+
+```{r}
+b2 <-  0.25
+odds <- exp(b0+b2)
+prob <- odds/(1+odds)
+```
+
+-   log odds = `r b0` + `r b2`
+-   odds = exp(log odds) = `r round(odds, 4)`
+-   prob = odds / (1+odds) = `r round(prob, 4)`
+
+## Computing probability estimates, female and third class
+
+![](images/assumptions-05.png)
+
+```{r}
+b3 <-  1.528
+odds <- exp(b0+b3)
+prob <- odds/(1+odds)
+```
+
+-   log odds = `r b0` + `r b3`
+-   odds = exp(log odds) = `r round(odds, 4)`
+-   prob = odds / (1+odds) = `r round(prob, 4)`
+
+## Computing probability estimates, female and first class
+
+![](images/assumptions-05.png)
+
+```{r}
+b4 <- 1.883
+odds <- exp(b0+b1+b3+b4)
+prob <- odds/(1+odds)
+```
+
+-   log odds = `r b0` + `r b1` + `r b3` + `r b4`
+-   odds = exp(log odds) = `r round(odds, 4)`
+-   prob = odds / (1+odds) = `r round(prob, 4)`
+
+## Computing probability estimates, female and second class
+
+![](images/assumptions-05.png)
+
+```{r}
+b5 <- 2.229
+odds <- exp(b0+b2+b3+b5)
+prob <- odds/(1+odds)
+```
+
+-   log odds = `r b0` + `r b2` + `r b3` + `r b5`
+-   odds = exp(log odds) = `r round(odds, 4)`
+-   prob = odds / (1+odds) = `r round(prob, 4)`
+
+## Assessing linearity on a log scale, 1 of 3
 
 ![](images/assumptions-01.png)
 
 ![](images/assumptions-02.png)
 
-## Images
+## Assessing linearity on a log scale, 2 of 3
 
 ![](images/assumptions-03.png)
 
-## Images
+## Assessing linearity on a log scale, 3 of 3
 
 ![](images/assumptions-04.png)
 
-## Images
-
-![](images/assumptions-05.png)
-
-## Images
+## How good are your predictions, 1 of 2
 
 ![](images/assumptions-06.png)
 
-## Images
+## How good are your predictions, 2 of 2
 
 ![](images/assumptions-07.png)
-

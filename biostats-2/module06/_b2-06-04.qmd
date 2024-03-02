@@ -193,7 +193,7 @@ prob <- odds/(1+odds)
 
 -   log odds = -16.72 + 0.577 $\times$ 30 = `r round(log_odds, 2)`
 -   odds = exp(log odds) = `r round(odds, 2)`
--   prob = odds / (1+odds`) = `r round(prob, 2)`
+-   prob = odds / (1+odds) = `r round(prob, 2)`
 
 ::: notes
 Let’s examine these calculations for GA = 30. The predicted log odds would be the intercept plus the slope times 30.
