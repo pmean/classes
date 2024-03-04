@@ -4,12 +4,212 @@ format:
   revealjs:
     slide-number: true
     embed-resources: true
+    fig.width: 6
+    fig.height: 6
 editor: source
 ---
 
-## Slide 07-05
+## What about a diagnostic test with multiple values?
+
+![](images/roc-01.png "Crosstabulation of test results (rows) and disease (columns)")
 
 ::: notes
 
 :::
+
+## Cut-point = 100
+
+![](images/roc-02.png "Crosstabulation with first row as a negative result, second through sixth as a positive result")
+
+::: notes
+Here is the crosstabulation with the first row as a negative result, the second through sixth as a positive result.
+:::
+
+## ROC curve, 1 of 7
+
+```{r}
+#| fig.width: 6
+#| fig.heighth: 6
+library(tidyverse)
+roc_data <- data.frame(
+  Sn=c(0.941), 
+  Sp=1-c(0.710))
+roc_data %>%
+  ggplot(aes(Sp, Sn)) + 
+    expand_limits(x=0:1, y=0:1) +
+      xlab("1-Sp") +
+      geom_point() -> p1
+p1
+```
+
+## Cut-point = 45
+
+![](images/roc-03.png "Crosstabulation with first and second rows as a negative result, third through sixth as a positive result")
+
+::: notes
+Here is a crosstabulation with the first and second rows as a negative result, third through sixth as a positive result.
+:::
+
+## ROC curve, 2 of 7
+
+```{r}
+#| fig.width: 6
+#| fig.heighth: 6
+
+roc_data <- rbind(
+  roc_data,
+  data.frame(
+    Sn=c(0.847), 
+    Sp=1-c(0.924)))
+roc_data %>%
+  ggplot(aes(Sp, Sn)) + 
+    expand_limits(x=0:1, y=0:1) +
+      xlab("1-Sp") +
+      geom_point() -> p1
+p1
+```
+
+## Cut-point = 35
+
+![](images/roc-04.png "Crosstabulation with first through third rows as a negative result, fourth through sixth as a positive result")
+
+::: notes
+Here is a crosstabulation with the first through the third rows as a negative result, and the fourth through sixth rows as a positive result.
+:::
+
+## ROC curve, 3 of 7
+
+```{r}
+#| fig.width: 6
+#| fig.heighth: 6
+
+roc_data <- rbind(
+  roc_data,
+  data.frame(
+    Sn=c(0.802), 
+    Sp=1-c(0.947)))
+roc_data %>%
+  ggplot(aes(Sp, Sn)) + 
+    expand_limits(x=0:1, y=0:1) +
+      xlab("1-Sp") +
+      geom_point() -> p1
+p1
+```
+
+## Cut-point = 25
+
+![](images/roc-05.png "Crosstabulation with first through fourth rows as a negative result, fifth and sixth as a positive result")
+
+::: notes
+Here is a crosstabulation with the first through the fourth rows as a negative result, and the fifth and sixth rows as a positive result.
+:::
+
+## ROC curve, 4 of 7
+
+```{r}
+#| fig.width: 6
+#| fig.heighth: 6
+
+roc_data <- rbind(
+  roc_data,
+  data.frame(
+    Sn=c(0.731), 
+    Sp=1-c(0.974)))
+roc_data %>%
+  ggplot(aes(Sp, Sn)) + 
+    expand_limits(x=0:1, y=0:1) +
+      xlab("1-Sp") +
+      geom_point() -> p1
+p1
+```
+
+## Cut-point = 15
+
+![](images/roc-06.png "Crosstabulation with first through fifth rows as a negative result, sixth row as a positive result")
+
+::: notes
+Here is a crosstabulation with the first through the fifth rows as a negative result, and the sixth row as a positive result.
+:::
+
+## ROC curve, 5 of 7
+
+```{r}
+#| fig.width: 6
+#| fig.heighth: 6
+
+roc_data <- rbind(
+  roc_data,
+  data.frame(
+    Sn=c(0.586), 
+    Sp=1-c(0.989)))
+roc_data %>%
+  ggplot(aes(Sp, Sn)) + 
+    expand_limits(x=0:1, y=0:1) +
+      xlab("1-Sp") +
+      geom_point() -> p1
+p1
+```
+
+## Cut-point = 0
+
+![](images/roc-07.png "Crosstabulation with all rows as a negative result")
+
+::: notes
+Here is a crosstabulation with all rows as a negative result.
+:::
+
+## ROC curve, 6 of 7
+
+```{r}
+#| fig.width: 6
+#| fig.heighth: 6
+
+roc_data <- rbind(
+  roc_data,
+  data.frame(
+    Sn=c(0), 
+    Sp=1-c(1)))
+roc_data %>%
+  ggplot(aes(Sp, Sn)) + 
+    expand_limits(x=0:1, y=0:1) +
+      xlab("1-Sp") +
+      geom_point() -> p1
+p1
+```
+
+## Cut-point = Infinity
+
+![](images/roc-08.png "Crosstabulation with all rows as a positive result")
+
+::: notes
+Here is a crosstabulation with all rows as a negative result.
+:::
+
+## ROC curve, 7 of 7
+
+```{r}
+#| fig.width: 6
+#| fig.heighth: 6
+
+roc_data <- rbind(
+  roc_data,
+  data.frame(
+    Sn=c(1), 
+    Sp=1-c(0)))
+roc_data %>%
+  ggplot(aes(Sp, Sn)) + 
+    expand_limits(x=0:1, y=0:1) +
+      xlab("1-Sp") +
+      geom_point() -> p1
+p1
+```
+
+## Final ROC curve
+
+```{r}
+#| fig.width: 6
+#| fig.heighth: 6
+
+p1 + geom_line()
+```
 
