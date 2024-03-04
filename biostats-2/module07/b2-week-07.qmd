@@ -1,16 +1,16 @@
 ---
-title: "Comments for MEDB 5502, Week 07"
+title: "See bottom of file for title"
 format: 
   revealjs:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "To be determined"
-  topic_02: "To be determined"
-  topic_03: "To be determined"
-  topic_04: "To be determined"
-  topic_05: "To be determined"
-  topic_06: "To be determined"
+  topic_01: "What is a diagnostic test?"
+  topic_02: "Assessing the quality of a diagnostic test"
+  topic_03: "The role of prevalence in diagnostic testing"
+  topic_04: "Likelihood ratio"
+  topic_05: "Receiver Operating Curve"
+  topic_06: "Evidence-based guidelines for diagnostic tests"
   topic_07: "To be determined"
   topic_08: "To be determined"
 editor: source
@@ -54,8 +54,6 @@ editor: source
 
 {{< include _b2-07-02.qmd >}}
 
-## Live demo, ANOVA and R-squared
-
 ## Break #2
 
 -   What you have learned
@@ -64,8 +62,6 @@ editor: source
     -   `r params$topic_03`
     
 {{< include _b2-07-03.qmd >}}
-
-## Live demo, partial F test
 
 ## Break #3
 
@@ -76,8 +72,6 @@ editor: source
     
 {{< include _b2-07-04.qmd >}}
 
-## Live demo, stepwise regression
-
 ## Break #4
 
 -   What you have learned
@@ -87,7 +81,7 @@ editor: source
 
 {{< include _b2-07-05.qmd >}}
 
-## Live demo, regression diagnostics
+## Live demo, `r params$topic_05`
 
 ## Break #5
 
@@ -97,8 +91,6 @@ editor: source
     -   `r params$topic_06`
 
 {{< include _b2-07-06.qmd >}}
-
-## Live demo, multicollinearity
 
 ## Break #6
 
@@ -165,5 +157,5 @@ editor: source
 --->
 
 ---
-title: "Comments for MEDB 5502, Week 03"
+title: "Comments for MEDB 5502, Week 07"
 ---

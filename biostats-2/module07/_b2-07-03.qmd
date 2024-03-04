@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "The role of prevalence in diagnostic testing"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,24 @@ format:
 editor: source
 ---
 
-## Slide 07-03
+## The role of prevalence
+
 
 ::: notes
+Prevalence is the proportion of patients who have the disease in the population you are testing. This can vary quite a bit in real situations. For example, the prevalence of a disease is often much higher in a tertiary care center than at a primary care physician's office. Prevalence can also vary sometimes by seasons of the year. It can also vary sometimes by race or gender.
+
+Prevalence plays a large role in determining how effective a diagnostic test is. Let's look at a hypothetical situation. In the graph below, patients on the left have the disease and patients on the right are healthy. If you have the disease, the test can either be a true positive test (TP) or a false negative (FN). If you are healthy, the test can either be a false positive (FP) or a true negative (TN).
+
+
+
+This situation represents a disease with high prevalence. The test performs reasonably well. Among the patients with disease only a few test negative. Among the healthy patients only a few test positive. A positive test is reasonably definitive because the number of true positives is much larger than the number of false positives.
+
+Let's consider a different hypothetical situation.
+
+
+
+In this situation, the prevalence of the disease is much lower. As before only a few of the patients with disease test negative and only a few of the healthy patients test positive. But since there are so many more healthy patients, their false positive results swamp out the true positive results.
+
+In general, when the prevalence of the disease you are testing is rare, it becomes harder to positively diagnose that disease. It takes a very very good test to find the needle in the haystack.
 
 :::
-

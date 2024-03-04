@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Assessing the quality of a diagnostic test"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,65 @@ format:
 editor: source
 ---
 
-## Slide 07-02
+## Assessing the quality of a diagnostic test
+
+![](images/diagnostic-01.png "Crosstabulation with disease status as the rows and test result as the columns")
 
 ::: notes
+To assess the quality of a diagnostic test, you need to compare it to a gold standard. This is a measurement that is slower, less convenient, or more expensive than the diagnostic test, but which also gives a definitive indication of disease status. The gold standard might involve invasive procedures like a biopsy or could mean waiting for several years until the disease status becomes obvious.
 
+You classify patients as having the disease or being healthy using the gold standard. Then you count the number of times that the diagnostic test agrees and disagrees with the gold standard of disease and the number of times that the diagnostic test agrees and disagrees with the gold standard of being healthy.
+:::
+
+## This leads to four possible categories.
+
+-   TP (true positive) = # test positive and have the disease,
+-   FP (false positive) = # test positive and who are healthy, and
+-   FN (false negative) = # who test negative and who have the disease,
+-   TN (true negative) = # who test negative and who are healthy.
+    -   Try to minimize FN and FP
+
+::: notes    
+A good diagnostic test will minimize the number of false negative and false positive results.
+:::
+
+## Sensitivity
+
+![](images/diagnostic-02.png "Crosstabulation of disease status and test result with the disease present row highlighted")
+
+Sensitivity (Sn) = P[T+|D+] = TP / (TP+FN)
+
+::: notes
+Sensitivity is defined as the probability that you test positive given that you have the disease.
+:::
+
+## Specificity
+
+![](images/diagnostic-03.png "Crosstabulation of disease status and test result with the disease absent row highlighted")
+
+Specificity (Sp) = P[T-|D-] = TN / (FP+TN)
+
+::: notes
+Specificity is defined as the probability that you test negative given that you are healthy.
+:::
+
+## Positive predicted value
+
+![](images/diagnostic-04.png "Crosstabulation of disease status and test result with the test positive column highlighted")
+
+Positive predictive value (PPV) = P[D+|T+] = TP / (TP+FP)
+
+::: notes
+Positive predictive value is defined as the probability that you have the disease given that you test positive.
+:::
+
+## Negative predicted value
+
+![](images/diagnostic-05.png "Crosstabulation of disease status and test result with the test negative column highlighted")
+
+Negative predictive value (NPV) = P[D-|T-] = TN / (FN+TN)
+
+::: notes
+Negative predictive value is defined as the probability that you are healthy given that you test negative.
 :::
 
