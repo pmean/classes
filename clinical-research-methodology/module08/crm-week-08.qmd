@@ -10,9 +10,6 @@ params:
   topic_03: "Different types of non-probability samples"
   topic_04: "Matching and pairing"
   topic_05: "The methods section"
-  topic_06: "To be determined"
-  topic_07: "To be determined"
-  topic_08: "To be determined"
 editor: source
 ---
 
@@ -39,9 +36,6 @@ editor: source
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
-    -   `r params$topic_06`
-    -   `r params$topic_07`
-    -   `r params$topic_08`
 
 {{< include _crm-08-01.qmd >}}
 
@@ -54,8 +48,6 @@ editor: source
 
 {{< include _crm-08-02.qmd >}}
 
-## Live demo, ANOVA and R-squared
-
 ## Break #2
 
 -   What you have learned
@@ -64,8 +56,6 @@ editor: source
     -   `r params$topic_03`
     
 {{< include _crm-08-03.qmd >}}
-
-## Live demo, partial F test
 
 ## Break #3
 
@@ -76,8 +66,6 @@ editor: source
     
 {{< include _crm-08-04.qmd >}}
 
-## Live demo, stepwise regression
-
 ## Break #4
 
 -   What you have learned
@@ -87,37 +75,6 @@ editor: source
 
 {{< include _crm-08-05.qmd >}}
 
-## Live demo, regression diagnostics
-
-## Break #5
-
--   What you have learned
-    -   `r params$topic_05`
--   What's coming next
-    -   `r params$topic_06`
-
-{{< include _crm-08-06.qmd >}}
-
-## Live demo, multicollinearity
-
-## Break #6
-
--   What you have learned
-    -   `r params$topic_06`
--   What's coming next
-    -   `r params$topic_07`
-
-{{< include _crm-08-07.qmd >}}
-
-## Break #7
-
--   What you have learned
-    -   `r params$topic_07`
--   What's coming next
-    -   `r params$topic_08`
-
-{{< include _crm-08-08.qmd >}}
-
 ## Summary
 
 -   What you have learned
@@ -126,17 +83,7 @@ editor: source
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
-    -   `r params$topic_06`
-    -   `r params$topic_07`
-    -   `r params$topic_08`
-    
-## Additional topics??
 
-::: notes
--   Learning objectives
-    -   To be determined
-    
-:::
 
 <!---
       You have to put the title down 
