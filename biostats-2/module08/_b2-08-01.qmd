@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "A simple example of survival data"
 format: 
   revealjs:
     slide-number: true
@@ -46,11 +46,6 @@ dd <- read_yaml("../data/fly1.yaml")
 cat(as.yaml(dd["data_dictionary"]))
 cat(as.yaml(dd["description"]))
 cat(as.yaml(dd["vars"]))
-fly1 <- read_csv(
-  "../data/fly1.txt",
-  col_names=FALSE,
-  col_types="n")
-unlist(fly1)
 ```
 
 ::: notes
@@ -63,15 +58,54 @@ There are 25 flies in the sample, with the first fly dying on day 37 and the las
 ## Mortality among fruit flies, 2 of 2
 
 ```{r}
+fly1 <- read_csv(
+  "../data/fly1.txt",
+  col_names=FALSE,
+  col_types="n")
 cat(paste(unlist(fly1), collapse=", "))
 ```
-
-
 
 ::: notes
 
 
 If you wanted to estimate the survival probability for this data, you would draw a curve that decreases by 4% (1/25) every time a fly dies.
+
+:::
+
+## First fruit fly experiment, 3 of 3
+
+:::: {.columns}
+
+::: {.column width=33%}
+
+```{r}
+names(fly1) <- "day"
+fly1$p <- paste0(100-4*(1:25), "%")
+fly1 <- data.frame(fly1)
+fly1[1:9, ]
+```
+
+:::
+
+::: {.column width=33%}
+
+```{r}
+fly1[10:18, ]
+```
+
+:::
+
+::: {.column width=34%}
+
+```{r}
+fly1[19:25, ]
+```
+
+:::
+
+::::
+
+::: notes
 
 Day Prob
  37 96%
@@ -195,6 +229,223 @@ When you see a survival curve in a research paper, there are two ways to interpr
 You can also estimate probabilities for survival at any given time by projecting up from the time and then moving to the left to estimate the probability. In the example below, you can see that the 80 day survival probability is a little bit less than 25%.
 
 
+
+:::
+
+## Worcester Heart Attack Study, 1 of 9
+
+```{r}
+library(yaml)
+dd <- read_yaml("../data/whas500.yaml")
+cat(as.yaml(dd["data_dictionary"]))
+cat(as.yaml(dd["description"]))
+i <- 0
+```
+
+::: notes
+
+:::
+
+## Worcester Heart Attack Study, 2 of 9
+
+```{r}
+cat(as.yaml(dd$vars[1:3]))
+```
+
+::: notes
+
+:::
+
+## Worcester Heart Attack Study, 3 of 9
+
+```{r}
+cat(as.yaml(dd$vars[4:6]))
+```
+
+::: notes
+
+:::
+
+## Worcester Heart Attack Study, 4 of 9
+
+```{r}
+cat(as.yaml(dd$vars[7:9]))
+```
+
+::: notes
+
+:::
+
+## Worcester Heart Attack Study, 5 of 9
+
+```{r}
+cat(as.yaml(dd$vars[10:12]))
+i <- i+1
+```
+
+::: notes
+
+:::
+
+## Worcester Heart Attack Study, 6 of 9
+
+```{r}
+cat(as.yaml(dd$vars[13:14]))
+```
+
+::: notes
+
+:::
+
+## Worcester Heart Attack Study, 7 of 9
+
+```{r}
+cat(as.yaml(dd$vars[15:17]))
+i <- i+1
+```
+
+::: notes
+
+:::
+
+## Worcester Heart Attack Study, 8 of 9
+
+```{r}
+cat(as.yaml(dd$vars[18:20]))
+i <- i+1
+```
+
+::: notes
+
+:::
+
+## Worcester Heart Attack Study, 9 of 9
+
+```{r}
+cat(as.yaml(dd$vars[21:22]))
+i <- i+1
+```
+
+::: notes
+
+:::
+
+## Event count
+
+![](images/whas-01.png "Frequency counts showing an adequate number of events")
+
+::: notes
+
+:::
+
+## Overall Kaplan-Meier curve
+
+![](images/whas-02.png "Kaplan-Meier curve for all patients")
+
+::: notes
+
+:::
+
+## Event count by gender
+
+![](images/whas-03.png "Crosstabulation showing an adequate number of events in each gender category")
+
+::: notes
+
+:::
+
+## Histogram of ages
+
+![](images/whas-04.png "Histogram showing a broad distribution of ages from about 30 to over 100")
+
+::: notes
+
+:::
+
+## Quality check of age group coding
+
+![](images/whas-05.png "Partial listing of crosstabulation showing how age was recoded into age groups")
+
+::: notes
+
+:::
+
+## Event count by age group, 1 of 2
+
+![](images/whas-06.png "Crosstabulation of age group with event indicator showing an inadequate number of events in the first age group")
+
+::: notes
+
+:::
+
+## Event count by age group, 2 of 2
+
+![](images/whas-07.png "Crosstabulation with a smaller number of groups showing an adequate number of events in each group")
+
+::: notes
+
+:::
+
+## Kaplan-Meier analysis by gender, 1 of 2
+
+![](images/whas-08.png "Event count and percentages showing a good number of events by gender")
+
+![](images/whas-09.png "Means survival times are higher for men than women")
+
+![](images/whas-10.png "Time for 75% survival is longer for men than women")
+
+![](images/whas-11.png "Log rank test shows a statistically significant difference between the survival time of men and women")
+
+::: notes
+
+:::
+
+
+## Kaplan-Meier analysis by gender, 2 of 2
+
+![](images/whas-12.png "Kaplan-Meier curve for men and women showing much better results for the men")
+
+::: notes
+
+:::
+
+## Kaplan-Meier analysis by age group, 1 of 2
+
+![](images/whas-13.png "Event count and percentages showing an adequate number of events in each age group")
+
+![](images/whas-14.png "Median and median survival times show a much better result for the younger patients")
+
+![](images/whas-15.png "Quartiles showing a much better result for younger patients")
+
+![](images/whas-16.png "Log rank test shows a statistically significant difference between the age groups")
+
+::: notes
+
+:::
+
+## Kaplan-Meier analysis by age group, 2 of 2
+
+![](images/whas-17.png "Kaplan-Meier curve for age groups shows a better survival rate for younger patients")
+
+::: notes
+
+:::
+
+## Mean ages for men and women
+
+![](images/whas-18.png "Table of descriptive statistics showing a lower mean age for men versus women")
+
+::: notes
+
+:::
+
+## Unadjusted and adjusted Cox regression models for gender
+
+![](images/whas-19.png "Unadjusted Cox regression model showing a statistically significant difference by gender")
+
+![](images/whas-20.png "Adjusted Cox regression model shows no statistically significant difference between men and women")
+
+::: notes
 
 :::
 
