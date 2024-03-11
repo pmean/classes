@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "The Cox regression model"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,23 @@ format:
 editor: source
 ---
 
-## Slide 08-05
+## Mean ages for men and women
+
+![](images/whas-18.png "Table of descriptive statistics showing a lower mean age for men versus women")
 
 ::: notes
 
 :::
+
+## Unadjusted and adjusted Cox regression models for gender
+
+![](images/whas-19.png "Unadjusted Cox regression model showing a statistically significant difference by gender")
+
+![](images/whas-20.png "Adjusted Cox regression model shows no statistically significant difference between men and women")
+
+::: notes
+
+:::
+
+
 

@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "The log rank test"
 format: 
   revealjs:
     slide-number: true
@@ -7,7 +7,86 @@ format:
 editor: source
 ---
 
-## Slide 08-03
+## Event count by gender
+
+![](images/whas-03.png "Crosstabulation showing an adequate number of events in each gender category")
+
+::: notes
+
+:::
+
+## Histogram of ages
+
+![](images/whas-04.png "Histogram showing a broad distribution of ages from about 30 to over 100")
+
+::: notes
+
+:::
+
+## Quality check of age group coding
+
+![](images/whas-05.png "Partial listing of crosstabulation showing how age was recoded into age groups")
+
+::: notes
+
+:::
+
+## Event count by age group, 1 of 2
+
+![](images/whas-06.png "Crosstabulation of age group with event indicator showing an inadequate number of events in the first age group")
+
+::: notes
+
+:::
+
+## Event count by age group, 2 of 2
+
+![](images/whas-07.png "Crosstabulation with a smaller number of groups showing an adequate number of events in each group")
+
+::: notes
+
+:::
+
+## Kaplan-Meier analysis by gender, 1 of 2
+
+![](images/whas-08.png "Event count and percentages showing a good number of events by gender")
+
+![](images/whas-09.png "Means survival times are higher for men than women")
+
+![](images/whas-10.png "Time for 75% survival is longer for men than women")
+
+![](images/whas-11.png "Log rank test shows a statistically significant difference between the survival time of men and women")
+
+::: notes
+
+:::
+
+
+## Kaplan-Meier analysis by gender, 2 of 2
+
+![](images/whas-12.png "Kaplan-Meier curve for men and women showing much better results for the men")
+
+::: notes
+
+:::
+
+## Kaplan-Meier analysis by age group, 1 of 2
+
+![](images/whas-13.png "Event count and percentages showing an adequate number of events in each age group")
+
+![](images/whas-14.png "Median and median survival times show a much better result for the younger patients")
+
+![](images/whas-15.png "Quartiles showing a much better result for younger patients")
+
+![](images/whas-16.png "Log rank test shows a statistically significant difference between the age groups")
+
+::: notes
+
+:::
+
+## Kaplan-Meier analysis by age group, 2 of 2
+
+![](images/whas-17.png "Kaplan-Meier curve for age groups shows a better survival rate for younger patients")
 
 ::: notes
 
