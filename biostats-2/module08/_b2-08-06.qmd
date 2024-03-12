@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Assumptions and data management"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,119 @@ format:
 editor: source
 ---
 
-## Slide 08-06
+## Assumptions of the log rank test
 
+-   Independence
+    -   From one patient to another
+    -   Of censoring mechanism
+
+::: notes
+There is only one assumption in the log rank test, independence. There are, however, two dimensions of independence. 
+
+First, you have to assume that the chances of an event occurring for one patient is independent of the chances of that event for another patient. There is a famous example where this was not true. Carrie Fisher, an actor and author, died on December 27, 2016. Her mother, Debbie Reynolds, herself a famous actor, died on December 28, 2016. The two events were probably related, the stress of dealing with Carrie Fisher's death contributed to the death of Debbie Reynolds.
+
+Often you can only assess the assumption of independence qualitatively, using your knowledge of the setting. Certain situations might make you concerned about the independence assumption, an infectious disease for example. If your data has clusters (family units, litter mates), then independence within a cluster might be questionable.
+
+You also have to assume that when an event is censored, it is for a reason unrelated to what that event time might have been.
+
+A patient may drop out of a study, for example, and you no longer know if or when the event occurred, except that it had to occur sometime after the date they dropped out. If a cancer patient drops out of a study because they went down to Mexico for an laetrile treatments, that might cause you to question the independence assumption. No one makes the trip to Mexico for an unapproved and unproven treatment if their current therapy was going well. The act of dropping out is informative as it indicates, at least in some cases, that death, relapse, or any other bad event is likely to happen sooner rather than later.
+:::
+
+## Assumptions of the Cox regression model
+
+-   Independence
+-   Proportional hazards assumption
+-   Possible violations of proportional hazards
+    -   Survival curves that cross
+    -   One curve flattening out over time
+    -   Curves diverge only at later times
+    
 ::: notes
 
 :::
 
+## Survival curves that cross
+
+![](images/assumptions-01.png "Survival probabilities where one group is better at early times but the other group is better at later times." )
+
+## One curve flattening out over time
+
+![](images/assumptions-02.png "Survival probabilities where one curve levels off well above 0")
+
+## Curves diverge only at later times
+
+![](images/assumptions-03.png "Survival probabilities that are roughly equal before day 60 but diverge afterwards")
+
+## Sample size issues
+
+-   Rule of 50
+-   Rule of 15
+
+## Use ISO format for dates
+
+![](images/dates-01.png "XKCD cartoon satirizing the many ways that you can designate a particular date")
+
+## Understand the internal storage system for dates
+
+![](images/dates-02.png "Screenshot of IBM SPSS website describing how dates are stored")
+
+## Date management
+
+-   The three dates you need
+    -   the date of origin,
+    -   the date of the event (if it occurred),
+    -   the date of last contact with the patient.
+
+
+## The date of origin
+
+-   Rehospitalization
+    -   use date of first discharge.
+-   Failure of a mechanical device
+    -   use date of implant.
+-   Divorce
+    -   use date of marriage.
+-   Loan default
+    -   use date of loan contract.
+-   Infectious disease
+    -   use date of first exposure.
+
+::: notes
+
+You have various choices for the date of origin. It depends a lot on the context of the research.
+:::
+
+## The data of the event
+
+-   Define your event precisely
+    -   All-cause mortality
+    -   Mortality related to the health condition
+    -   Composite endpoints (e.g., death or relapse)
+        -   Requires comparing the earlier of two dates. 
+-   If the event did NOT happen, leave this field blank/missing. 
+
+## The date of last contact
+
+-   If event did not occur
+    -   Must be specified
+    -   Typically last medical exam or last telephone contact
+-   If event did occur
+    -   Make same as event date, or
+    -   Leave blank
+
+::: notes
+Every patient will have a date of last contact. It will be the last time that you have been able to contact the patient and confirm that the event has not yet occurred.
+
+If the event has occurred, you have several reasonable choices: put the event date in this field also, or leave the field blank/missing.
+
+A date after the event date may represent a data error!
+:::
+
+## Survival calculations, 1 of 2
+
+-   Time = max(Date of event, Date of last contact) - Date of origin
+-   Censoring variable = 0 if Date of event is missing, 1 if not
+
+## Survival calculations, 2 of 2
+
+![](images/dates-03.png "Excel spreadsheet with date calculations")

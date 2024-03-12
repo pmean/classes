@@ -7,9 +7,149 @@ format:
 editor: source
 ---
 
-## Slide 08-04
+## Life insurance example
+
+```{r, echo=FALSE}
+library(readr)
+library(ggplot2)
+df <- read_tsv("../data/life-table.txt", col_names=FALSE)
+names(df) <- c(
+  "age",
+  "h_male",
+  "s_male",
+  "life_expectancy_male",
+  "h_female",
+  "s_female",
+  "life_expectancy_female"
+)
+df$density_male <-
+  c(NA,
+    (df$s_male[-120]-df$s_male[-1]))/100000
+df <- df[1:110, ]
+a1 <- 21
+a2 <- 41
+a3 <- 95
+a4 <- 99
+ga <- df$age >= a1 & df$age <= a2
+gb <- df$age >= a3 & df$age <= a4
+p1 <- sum(df$density_male[ga])
+p2 <- sum(df$density_male[gb])
+df1 <- c(0, df$density_male[ga], 0)
+df2 <- c(0, df$density_male[gb], 0)
+poly1 <- data.frame(x=c(a1, a1:a2, a2), y=df1)
+poly2 <- data.frame(x=c(a3, a3:a4, a4), y=df2)
+```
+
+```{r, echo=FALSE}
+ggplot(df, aes(age, density_male)) +
+  theme_minimal() +
+  geom_line()
+```
 
 ::: notes
+I found some data on mortality from the Social Security website and plotted an approximation to the probability density function. There is an unusual early peak in this function because the first year of your life is one of the most dangerous ones you will have to face.
 
+Imagine yourself working in life insurance sales. You want to price your policies so that you only ask for low payments on the policy when the risk of death is low. So let's calculate some probabilities.
+:::
+
+## Probabilities for ages `r a1` through `r a2`
+
+```{r}
+ggplot(df, aes(age, density_male)) +
+  geom_polygon(data=poly1, aes(x, y), fill="gray") +
+  theme_minimal() +
+  geom_line() +
+  geom_text(
+    aes(
+      x=(a1+a2)/2, 
+      y=0.001, 
+      label=paste(round(100*p1, 1), "%")))
+```
+
+::: notes
+The probability of a potential customer dying between the ages of `r a1` and `r a2` is `r p1`.
+:::
+
+## Probabilities for ages `r a3` through `r a4`
+
+```{r}
+ggplot(df, aes(age, density_male)) +
+  geom_polygon(data=poly2, aes(x, y), fill="gray") +
+  theme_minimal() +
+  geom_line() +
+  geom_text(
+    aes(
+      x=(a3+a4)/2, 
+      y=0.001, 
+      label=paste(round(100*p2, 1), "%")))
+```
+
+::: notes
+The probability of a potential customer dying between the ages of `r a3` and `r a4` is about the same, `r p2`. So should you charge the same amount for an insurance policy for someone `r a1` years old and someone `r a3` years old?
+:::
+
+## Why are these probabilities not comparable?
+
+-   Unequal time intervals
+    -   Fix by computing a rate
+-   Non-uniform probabilities over the interval
+    -   Fix by looking at narrow interval
+-   No adjustment for survivorship
+    -   Fix by dividing by survival probabilty
+
+::: notes
+Obviously not. There are three things you need to fix first.
+
+The most obvious flaw is the unequal time intervals, `r a2-a1` years for the first probability and `r a4-a3` years for the second probability.
+
+You can fix this by computing a rate. You get the rate by dividing the probability by the width of the time interval.
+
+The second flaw is that the probability changes over the interval, increasing in the first case and decreasing in the second case.
+
+You can fix this by shrinking the width of the time interval.
+
+The third flaw is a bit more subtle. The probability of dying between the ages of 95 and 99 are probabilities computed from the perspective of a newborn child. That probability is small not because the chances of dying are small at that age, but because so many have died before their `r a3`th birthday.
+
+If you are in insurance sales, you do not sell policies to newborn infants. You sell to people who have survived to a certain age. No one rises from their grave on their `r a3`th birthday and asks for an insurance policy. First, because zombies aren't real, and second the zombie who died prior to year `r a3` would not be able to collect on an insurance policy that paid off for a death between `r a3` and `r a4`.
+
+You can fix this by dividing by the survivor probability.
+:::
+
+## Hazard function, definition
+
+-   $$h(t)=lim_{\Delta t \rightarrow 0}\frac{P[t \le T \le t+\Delta t]/\Delta t}{P[T \ge t]}$$
+
+-   $$h(t)=\frac{f(t)}{S(t)}$$
+
+    -   where $f$ is the density function, and
+    -   $S$ is the survival function ($S(t)=1-F(t)$)
+
+::: notes
+The hazard function addresses all three of the concerns mentioned above. It computes a rate by dividing by $\Delta t$. It shrinks the interval but using a limit. And it adjusts for survivorship by dividing by the survivor probability.
+:::
+
+## Hazard function, example
+
+```{r}
+ggplot(df, aes(age, h_male)) +
+  theme_minimal() +
+  geom_line()
+```
+
+::: notes
+This is what the hazard function for mortality data looks like.
+:::
+
+## Hazard function on a log scale
+
+```{r}
+ggplot(df, aes(age, h_male)) +
+  theme_minimal() +
+  geom_line() +
+  scale_y_log10()
+```
+
+::: notes
+The pattern becomes a bit clearer when you look at the hazard function on a log scale. The risk of death is high early in your life, but drops. There is a safe period during your pre-teen and early teen years, but then the risk rises because of an increase in deaths associated with things like driving, alcohol, and other drugs. Some of that fades as you mature but other risks increase because of the unavoidable aging of your body.
 :::
 
