@@ -7,9 +7,142 @@ format:
 editor: source
 ---
 
-## Slide 09-06
+## Summary statistics for continuous outcomes
+
+-   Standardized mean difference (SMD)
+    -   $\frac{\bar X_2-\bar X_1}{Estimated\ standard\ deviation}$
+    -   Be consistent with direction
+-   Choices for estimated standard deviation
+    -   Pooled standard deviation (Cohen's d)
+    -   Bias adjustment (Hedges' g)
+    -   Heteroscedascity?
+        -   Use control variance
+        -   Average the two variances
 
 ::: notes
+You need a single number that summarizes what each study found. For continuous outcomes, this take the form of something akin to an effect size. It is not quite the same but close. It is a unitless quantity, which in theory allows you to combine results from a study where on study measures obesity as body mass index and another measures it as waist to hip ratio. You may not be comfortable with this, of course.
 
+The standardized mean difference is the difference in the means divided by some measure of standard deviation. Be consistent in how you define differences. Define it so that if half of the studies use an outcome where a large value is good and half of the studies use an outcome where a small value is good, you flip the difference (group 1 minus group 2) for half of the studies. It doesn't matter which you flip around, just be consistent so a positive value always the same thing across all studies .
+
+There is some debate about what to put for the estimated standard deviation. The simplest choice, the pooled standard deviation is called Cohen's d and is equal to the effect size. There is a bias adjustment that some researchers use called Hedges' g. It is only important for small sample sizes.
+
+If there is substantial differences between the variances of the control and treatment group, you have to choose between using the variance of the control group and the average of the control and treatment variances. Note that this is not quite the same as averaging of the control and treatment standard deviations.
 :::
+
+## Summary statistics for categorical outcomes
+
+-   Odds ratio
+    -   Always on a log scale
+-   Relative risk
+    -   Always on a log scale
+-   Absolute difference
+
+::: notes
+There is no consensus on how best to summarize results from a single study. Recall the debate over the odds ratio and the relative risk that I mentioned earlier. 
+
+Add to that the concern that the relative risk is more likely to have problems with heterogeneity. A relative risk for a fairly common event has a sharp upper bound. You can't expect to see a tripling of risk if the event rate in the control group is 40%.
+
+Nevertheless, many researchers prefer to use the relative risk because it is more interpretable.
+
+Both the odds ratio and the relative risk should be analyzed on the log scale.
+
+The absolute difference involves subtraction rather than division. This measure also has its proponents.
+
+Because of the lack of consensus, seek some guidance first. Talk to your boss and your colleagues. See what is commonly done in your medical discipline.
+:::
+
+## Description of art-malpresentations data, 1 of 3
+
+```{r}
+library(yaml)
+dd <- read_yaml("../../../datasets/art-malpresentations.yaml")
+cat(as.yaml(dd["data_dictionary"]))
+cat(as.yaml(dd["description"]))
+cat(as.yaml(dd["source"]))
+```
+
+## Description of art-malpresentations data, 2 of 3
+
+```{r}
+cat(as.yaml(dd$vars[1:2]))
+```
+
+## Description of art-malpresentations data, 3 of 3
+
+```{r}
+cat(as.yaml(dd$vars[3:6]))
+```
+
+## ART results, 1 of 6
+
+![](images/art-01.png "Effect size estimates show a significant difference both overall and in the cohort subgroup")
+
+## ART results, 2 of 6
+
+![](images/art-02.png "Effect size estimates for individual studies with weight percentages")
+
+## ART results, 3 of 6
+
+![](images/art-03.png "Tests show significant heterogeneity overall and within each subgroups")
+
+![](images/art-04.png "Test shows no significant heterogeneity between subgroups")
+
+## ART results, 4 of 6
+
+![](images/art-05.png "Measures show significant heterogeneity overall and within subgroups")
+
+## ART results, 5 of 6
+
+![](images/art-06.png "Forest plot shows dramatic effects in cohort studies but smaller effects in case-control studies")
+
+## ART results, 6 of 6
+
+![](images/art-07.png "Funnel plot shows no evidence of publication bias")
+
+## Description of vaccine-willingness data, 1 of 3
+
+```{r}
+dd <- read_yaml("../../../datasets/vaccine-willingness.yaml")
+cat(as.yaml(dd["data_dictionary"]))
+cat(as.yaml(dd["description"]))
+cat(as.yaml(dd["source"]))
+```
+
+## Description of vaccine-willingness data, 2 of 3
+
+```{r}
+cat(as.yaml(dd$vars[1:2]))
+```
+
+## Description of vaccine-willingness data, 3 of 3
+
+```{r}
+cat(as.yaml(dd$vars[3:8]))
+```
+
+## Vaccine results, 1 of 6
+
+![](images/vaccine-01.png "Effect size estimates show a significant difference both overall and in the subgroups")
+
+## Vaccine results, 2 of 6
+
+![](images/vaccine-02.png "Effect size estimates for individual studies with weight percentages")
+
+## Vaccine results, 3 of 6
+
+![](images/vaccine-03.png "Tests show significant heterogeneity overall and within the booster subgroups")
+
+![](images/vaccine-04.png "Test shows significant heterogeneity between subgroups")
+
+## Vaccine results, 4 of 6
+
+![](images/vaccine-05.png "Measures show significant heterogeneity overall and within the booster subgroup")
+
+## Vaccine results, 5 of 6
+
+![](images/vaccine-06.png "Forest plot shows dramatic effects in boster subgroup but smaller effects in the primary subgroup")
+
+## Vaccine results, 6 of 6
+
+![](images/vaccine-07.png "Funnel plot shows no evidence of publication bias")
 

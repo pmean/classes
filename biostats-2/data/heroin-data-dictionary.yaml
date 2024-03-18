@@ -1,5 +1,5 @@
 ---
-data-dictionary: heroin.txt
+data_dictionary: heroin.txt
 
 source:
   The data was originally found at 
@@ -23,7 +23,7 @@ copyright:
 format: 
   delimiter: tab
   varnames: first row of data
-  missing-value-code: Not needed
+  missing_value_code: Not needed
   rows: 119
   columns: 5
   special-notes:

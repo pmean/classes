@@ -14,8 +14,6 @@ library(yaml)
 dd <- read_yaml("../data/bf.yaml")
 cat(as.yaml(dd["data_dictionary"]))
 cat(as.yaml(dd["description"]))
-i <- 0
-j <- 3
 ```
 
 ## Description of bf data, 2 of 11
