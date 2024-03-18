@@ -1,17 +1,17 @@
 ---
-title: "Comments for MEDB 5502, Week 09"
+title: "See bottom of file for title"
 format: 
   revealjs:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "To be determined"
-  topic_02: "To be determined"
-  topic_03: "To be determined"
-  topic_04: "To be determined"
-  topic_05: "To be determined"
-  topic_06: "To be determined"
-  topic_07: "To be determined"
+  topic_01: "What is meta-analysis"
+  topic_02: "Heterogeneity"
+  topic_03: "Study quality"
+  topic_04: "Publication bias"
+  topic_05: "Interpretability of results"
+  topic_06: "Numeric summaries"
+  topic_07: "Strengths and weaknesses"
   topic_08: "To be determined"
 editor: source
 ---
@@ -54,8 +54,6 @@ editor: source
 
 {{< include _b2-09-02.qmd >}}
 
-## Live demo, ANOVA and R-squared
-
 ## Break #2
 
 -   What you have learned
@@ -64,8 +62,6 @@ editor: source
     -   `r params$topic_03`
     
 {{< include _b2-09-03.qmd >}}
-
-## Live demo, partial F test
 
 ## Break #3
 
@@ -76,8 +72,6 @@ editor: source
     
 {{< include _b2-09-04.qmd >}}
 
-## Live demo, stepwise regression
-
 ## Break #4
 
 -   What you have learned
@@ -86,8 +80,6 @@ editor: source
     -   `r params$topic_05`
 
 {{< include _b2-09-05.qmd >}}
-
-## Live demo, regression diagnostics
 
 ## Break #5
 
@@ -98,7 +90,7 @@ editor: source
 
 {{< include _b2-09-06.qmd >}}
 
-## Live demo, multicollinearity
+## Live demo, `r params$topic_06`
 
 ## Break #6
 
@@ -191,5 +183,5 @@ editor: source
 --->
 
 ---
-title: "Comments for MEDB 5502, Week 03"
+title: "MEDB 5502, Module09, Meta-analysis"
 ---

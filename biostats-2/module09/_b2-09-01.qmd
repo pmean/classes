@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "What is meta-analysis"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,66 @@ format:
 editor: source
 ---
 
-## Slide 09-01
+## Meta-analysis
+
+-   Quantitative pooling of results from multiple studies
+    -   Multi-center study
+        -   Each center has a different protocol
+        -   Some centers do not share results
+-   Contrast to systematic overview
+    -   Careful review of multiple studies
+    -   May or may not include quantitative pooling
+-   Contrast to scoping review
+    -   "Researchers may conduct scoping reviews instead of systematic reviews where the purpose of the review is to identify knowledge gaps, scope a body of literature, clarify concepts or to investigate research conduct." [Munn 2018][mun1]
+    
+[mun1]: https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-018-0611-x
+    
+::: notes
+Meta-analysis is the quantitative pooling of results from multiple independently published research studies. I joke about how meta-analysis is a multi-center research study but with a couple of qualifications. First, each center gets to use a different protocol. Second, some centers do not share their results with you. This hints at a couple of important issues I will talk about in detail: heterogeneity and publication bias. When I describe it as a chaotic multi-center trial, it sounds terrible. Well, maybe, but we have still learned a lot from meta-analytic studies in a broad range of scientific and medical areas.
+
+A more commonly used term is "systematic overview" which is a superset of meta-analysis. A systematic overview is systematic meaning that it uses a careful and transparently documented approach to identify all research studies associated with a particular issue. It may or may not include a quantitative analysis. Thus all meta-analyses are systematic reviews but not all systematic reviews are meta-analyses.
+
+There's a new term, scoping review which I am less familiar with. Here's a nice quote from a paper by Zachary Munn et al in BMC Medical Research Methodology. It sounds almost like a scoping review is a systematic overview with the pre-specified intent to stop before any serious meta-analytic intents.
+
+I am going to focus only on meta-analysis because I am a statistician and this is a statistics course, so we all love anything quantitative. But never forget that there is more to research than just its quantitative aspects.
+:::
+
+## Case study: Declining sperm counts
+
+-   Meta-analysis published in 1992 in BMJ
+    -   62 studies
+    -   1938 through 1991
+    -   12 million/ml decline per decade
+-   Criticism
+    -   Early studies in North America, later studies more global
+    -   Variations in collection methods, abstinence requirements
+    -   Many competing analyses
+-   Bad news/good news
 
 ::: notes
 
+
+In 1992, the British Medical Journal published a controversial meta-analysis. This study (BMJ 1992: 305(6854); 609-13) reviewed 61 papers published from 1938 and 1991 and showed that there was a significant decrease in sperm count and in seminal volume over this period of time. For example, a linear regression model on the pooled data provided an estimated average count of 113 million per ml in 1940 and 66 million per ml in 1990.
+
+Several researchers (Fertil Steril 1996: 65(5); 1044-6 and Fertil Steril 1995: 63(4); 887-93) noted heterogeneity in this meta-analysis, a mixing of apples and oranges. Studies before 1970 were dominated by studies in the United States and particularly studies in New York. Studies after 1970 included many other locations including third world countries. Thus the early studies were United States apples. The later studies were international oranges. There was also substantial variation in collection methods, especially in the extent to which the subjects adhered to a minimum abstinence period.
+
+The original meta-analysis and the criticisms of it highlight both the greatest weakness and the greatest strength of meta-analysis.
+
+Meta-analysis is the quantitative pooling of data from studies with sometimes small and sometimes large disparities. Think of it as a multi-center trial where each center gets to use its own protocol and where some of the centers are left out.
+
+On the other hand, a meta-analysis lays all the cards on the table. Sitting out in the open are all the methods for selecting studies, abstracting information, and combining the findings. Meta-analysis allows objective criticism of these overt methods and even allows replication of the research.
+
+Contrast this to an invited editorial or commentary that provides a subjective summary of a research area. Even when the subjective summary is done well, you cannot effectively replicate the findings. Since a subjective review is a black box, the only way, it seems, to repudiate a subjective summary is to attack the messenger.
 :::
+
+## Major issues in meta-analysis
+
+-   Heterogeneity
+    -    Were apples combined with oranges?
+-   Publication bias
+    -    Were some apples left on the tree?
+-   Study quality
+    -    Were all the apples rotten?
+-   Interpretability
+    -    Did the pile of apples amount to more than just a hill of beans?
 
