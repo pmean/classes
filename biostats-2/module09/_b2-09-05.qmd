@@ -7,19 +7,33 @@ format:
 editor: source
 ---
 
-## Slide 09-05
+## Did the pile of apples amount to more than just a hill of beans?
+
+-   A significant meta-analysis is not enough
+-   Effect sizes difficult to interpret
 
 ::: notes
-          Did the pile of apples amount to more than just a hill of beans?
-
 It’s not enough to know that the overall effect of a therapy is positive. You have to balance the magnitude of the effect versus the added cost and/or the side effects of the new therapy. Unfortunately, most meta-analyses use an effect size (the improvement due to the therapy divided by the standard deviation). The effect size is unitless, allowing the combination of results from studies where slightly different outcomes with slightly different measurement units might have been used.
+:::
 
-Vote counting
+## Vote counting
 
+-   Categorize individual studies
+    -   Are some/most positive?
+-   Negative, but trending studies
+
+::: notes
 Avoid "vote counting" or the tallying of positive versus negative studies. Vote counts ignore the possibility that some studies are negative solely because of their sample size. Abramson (1990) notes, for example, a meta-analysis of parenteral nutrition in cancer patients undergoing chemotherapy. Although each of the seven randomized control trials in the meta-analysis failed to achieve statistical significance, the pooled results were highly significant.
+:::
 
-Unitless measures
+## Unitless measures
 
+-   Convert back to original units
+-   Example smoking cessation efforts during pregnancy
+    -   Statistically significant
+    -   Only a 28 gram difference in birthweight
+
+::: notes
 When you are examining a continuous outcome measure, you should be sure that the results are presented in interpretable units. A measure of effect size does not help you much because it is unitless and impossible to interpret. Consider a store that is offering a sale and announces boldly
 
 "All prices reduced by 0.8 standard deviations!"
@@ -29,104 +43,5 @@ One meta-analysis shows how important it is to express measurements in interpret
 Keep in mind that this is measuring the effectiveness of the smoking cessation program, and not the effect of smoking cessation directly. Typically, you would have to send about 12 to 16 women to these programs in order to get one extra woman to quit smoking. So the effect seen here reflects, in part, how difficult it is to get people to change their behavior.
 
 Still the small size of the effect is important. If you want to assess the costs and benefits of smoking cessation programs, it helps to know that the impact of the typical smoking cessation program on birth weight is quite small. This provides a useful yardstick for comparison to other prenatal interventions.
-
-          Where does meta-analysis sit on the hierarchy of evidence?
-
-[Meta-analysis] possesses certain flaws and limitations that preclude its use as a broad-based methodologic approach for formulating definitive therapeutic recommendations. -- Boden 1992.
-
-          Bibliography
-
-Meta-Analysis: A Review of Pros and Cons. Abramson J. Public Health Reviews 1990 18(1): 1-47.
-
-Does Blinding of Readers Affect the Results of Meta-Analyses? Jesse A Berlin, on behalf of University of Pennsylvania Meta-analysis Blinding Study Group. Lancet 1997; 350: 185-186.
-
-Evidence for Decreasing Quality of Semen During Past 50 Years. Carlsen E, Giwercman A, Keiding N, Skakkebaek NE. Bmj 1992; 305(6854): 609-13.
-
-The Existence of Publication Bias and Risk Factors for its Occurrence. Dickersin, K. (1990). Jama 263(10): 1385-9.
-
-Egger (1997)
-
-Surgery or Embolisation for Varicocele in Subfertile Men (Cochrane Review). Evers JL, Collins JA, Vandekerckhove P. Cochrane Database Syst Rev 2001; 1: CD000479.
-
-Should Unpublished Data Be Included in Meta-Analyses. Cook DJ, Guyatt GH, Ryan E, Clifton J, Buckingham L, Willan A, WcIlroy W, Oxman AD. Journal of the American Medical Association, 269: 2749-2753 (1993).
-
-Geographic Variations in Sperm Counts: A Potential Cause of Bias in Studies of Semen Quality. Fisch H; Goluboff ET. Fertil Steril (United States), May 1996, 65(5) p1044-6.
-
-Meta-analysis in Social Research. Glass GV, McGaw B, Smith ML. pp.18-20. Newbury Park CA: Sage (1981).
-
-Comparison of Intrauterine and Intracervical Insemination with Frozen Donor Sperm: A Meta-Analysis. Goldberg JM, Mascha E, Falcone T, Attaran M. Fertil Steril 1999 Nov; 72(5): 792-5.
-
-Reference Bias in Reports of Drug Trials. Gotzsche PC. Bmj 1992 295(6599): 654-6.
-
-Combining Results from Independent Investigations: Meta-Analysis in Clinical Research. Halvorsen KT, Burdick E, Colditz GA, Frazier HS, Mosteller F. pp. 413-426, in Medical Uses of Statistics: 2nd Edition, Bailar JC and Mosteller F (editors), Boston MA: NEJM Books (1992).
-
-Systematic Reviews in Health Care: Assessing the Quality of Controlled Clinical Trials. Peter Jüni, Douglas G Altman, and Matthias Egger. BMJ 2001; 323: 42-46. [Full text]
-
-A Quality Assessment of Randomized Control Trials of Primary Treatment for Breast Cancer. Liberati A, Himel HN, Chalmers TC. J Clin Oncol 1986; 4: 942-951.
-
-Interventions for Promoting Smoking Cessation During Pregnancy (Cochrane Review). Lumley J, Oliver S, Waters E. In: The Cochrane Library, 4, 2001. Oxford: Update Software. www.update-software.com/abstracts/ab001055.htm
-
-Review of the Usefulness of Contacting Other Experts When Conducting A Literature Search for Systematic Reviews
-R J McManus, S Wilson, B C Delaney, D A Fitzmaurice, C J Hyde, R S Tobias, S Jowett, and F D R Hobbs
-BMJ 1998; 317: 1562-1563. [Full text]
-
-Sperm Function Assays and Their Predictive Value for Fertilization Outcome in IVF Therapy: A Meta-Analysis. Oehninger S, Franken DR, Sayed E, Barroso G, Kolm P. Hum Reprod Update 2000 Mar-Apr; 6(2): 160-8.
-
-Have Sperm Counts Been Reduced 50 Percent in 50 Years? A Statistical Model Revisited. Olsen GW; Bodner KM; Ramlow JM; Ross CE; Lipshultz LI . Fertil Steril (United States), Apr 1995, 63(4) p887-93
-
-Frequency of Citation and Outcome of Cholesterol Lowering Trials. Ravnskov, U. BMJ 1992 305(6855): 717.
-
-Meta-Analyses of Randomized Control Trials: An Update of the Quality and Methodology. Sacks HS, Berrier J, Reitman D, PAgano D, Chalmers TC. pp. 427-442, in Medical Uses of Statistics: 2nd Edition, Bailar JC and Mosteller F (editors), Boston MA: NEJM Books (1992).
-
-Schulz et al 1995 JAMA
-
-Publication Bias: Evidence of Delayed Publication in a Cohort Study of Clinical Research Projects
-Jerome M Stern and R John Simes
-BMJ 1997; 315: 640-645. [Abstract] [Full text]
-
-Systematic Reviews in Health Care: Investigating and Dealing with Publication and Other Biases in Meta-Analysis
-Jonathan A C Sterne, Matthias Egger, and George Davey Smith
-BMJ 2001; 323: 101-105. [Full text]
-
-Meta-Analysis of Observational Studies in Epidemiology: A Proposal for Reporting. Donna F. Stroup, PhD, MSc; Jesse A. Berlin, ScD; Sally C. Morton, PhD; Ingram Olkin, PhD; G. David Williamson, PhD; Drummond Rennie, MD; David Moher, MSc; Betsy J. Becker, PhD; Theresa Ann Sipe, PhD; Stephen B. Thacker, MD, MSc; for the Meta-analysis Of Observational Studies in Epidemiology (MOOSE) Group April 19, 2000. JAMA. 2000;283:2008-2012. Also available at www.consort-statement.org/MOOSE.pdf
-
-Impact of Covert Duplicate Publication on Meta-Analysis: A Case Sudy. Martin R Tramèr, D John M Reynolds, R Andrew Moore, and Henry J McQuay. BMJ 1997; 315: 635-640. [Abstract] [Full text]
-
-Cigarette Smoking and Sperm Density: A Meta-Analysis. Vine MF, Margolin BH, Morrison HI, Hulka BS. Fertil Steril 1994 Jan; 61(1): 35-43.
-
-Visibility of Research: FUTON Bias. Wentz R. Lancet 2002 (October 19): 360 (9341); 1256.
-
-           Additional Resources and Materials
-
-The Cochrane Library. www.update-software.com/cochrane/cochrane-frame.html
-
-"The Cochrane Library is an electronic publication designed to supply high quality evidence to inform people providing and receiving care, and those responsible for research, teaching, funding and administration at all levels."
-
-Meta-Analysis in Clinical Trials Reporting: Has a Tool Become a Weapon? [Editorial]. Boden, W. E. (1992). Am J Cardiol 69(6): 681-6.
-
-A New System for Grading Recommendations in Evidence -Based Guidelines
-Robin Harbour and Juliet Miller
-BMJ 2001; 323: 334-336. [Full text]
-
-Rating the Quality of Evidence for Clinical Practice Guidelines. Hadorn DC, Baker D, Hodges JS, Hicks N. J Clin Epidemiol 1996 Jul;49(7):749-54.
-
-This article describes the system for rating the quality of medical evidence developed and used during creation of the Agency for Health Care Policy and Research-sponsored heart failure guideline. Previous approaches to rating evidence were not designed for use in the setting of clinical practice guidelines. The present system is based on the tenet that flaws in research design are serious to the extent they threaten the validity of the results of studies. A taxonomy of major and minor flaws based on that tenet was developed for randomized controlled trials and for cohort and medical registry studies. The use of the system is described in the context of two difficult clinical issues considered by the Panel: the role of coronary artery revascularization and the use of metoprolol.
-
-PMID: 8691224 [PubMed - indexed for MEDLINE]
-
-"Is Meta-Analysis a Valid Approach to the Evaluation of Small Effects in Observational Studies?" Shapiro S. Journal of Clinical Epidemiology. 50(3): 223-229 (1997).
-
-Assessment Criteria www.jr2.ox.ac.uk/bandolier/band6/b6-5.html
-
-
-
-Evidence-Based Everything www.jr2.ox.ac.uk/bandolier/band12/b12-1.html
-
-
-
-Ionnidis et al 1998. [comparing meta-analyses to large trials]
-:::
-
-
 :::
 

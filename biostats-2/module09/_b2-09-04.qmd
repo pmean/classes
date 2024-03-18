@@ -7,19 +7,14 @@ format:
 editor: source
 ---
 
-## Slide 09-04
+## Were some apples left on the tree?
+
+-   Publication bias
+    -   Some research studies never get published
+    -   These studies more likely to be negative
+-   Registration of clinical trials has helped
 
 ::: notes
-          Were some apples left on the tree?
-
-One of the greatest concerns in a meta-analysis is whether all the relevant studies have been identified. If some studies are missed, this could lead to serious biases.
-
-Intentional exclusion of studies
-
-In any meta-analysis, you have to draw a line somewhere. Studies that fail to meet your criteria will not be included in the results. But this can lead to serious controversy. In a Cochrane Review of mammography (Cochrane 2001: (4); CD001877), seven studies were identified, but only two were of sufficient quality to be used. The Cochrane Review of these two studies reached a negative conclusion, but would have reached an opposite conclusion if the other five studies were added back in (BMJ. 2001; 323(7319): 956).
-
-Publication bias
-
 Many important studies are never published; these studies are more likely to be negative (Dickersin 1990). This is known as publication bias. The inclusion of unpublished studies, however, is controversial (Cook 1993).
 
 Publication bias is the tendency on the parts of investigators, reviewers, and editors to submit or accept manuscripts for publication based on the direction or strength of the study findings. Much of what has been learned about publication bias comes from the social sciences, less from the field of medicine. In medicine, three studies have provided direct evidence for this bias. Prevention of publication bias is important both from the scientific perspective (complete dissemination of knowledge) and from the perspective of those who combine results from a number of similar studies (meta-analysis). If treatment decisions are based on the published literature, then the literature must include all available data that is of acceptable quality. Currently, obtaining information regarding all studies undertaken in a given field is difficult, even impossible. Registration of clinical trials, and perhaps other types of studies, is the direction in which the scientific community should move.
@@ -27,35 +22,74 @@ Publication bias is the tendency on the parts of investigators, reviewers, and e
 Another aspect of publication bias is that the delay in publication of negative results is likely to be longer than that for positive studies. For example, Stern and Simes 1997 showed that among 130 clinical trials, the median time to publication was 4.7 years among the positive studies and 8.0 years among the negative studies. So a meta-analysis restricted to a certain time window may be more likely to exclude published research that is negative.
 
 Many experts are advocating the registration of trials as a way of avoiding publication bias. If trials are registered prospectively (i.e., prior to data collection and analysis) then they can be included in any appropriate meta-analysis without worry about publication bias.
+:::
 
-Duplicate publication
+## Duplicate publication
 
+-   Some studies pubished twice
+-   Multiple publications more likely to be positive
+        -   Bias from double counting
+-   Hard to track duplicate publications
+
+::: notes
 Duplicate publication is the flip side of the publication bias coin. Studies which are positive are more likely to appear more than once in publication. This is especially problematic for multi-center trials where an individual centers may publish results specific to their site. Tramer et al (1997) found 84 studies of the effect of ondansetron on postoperative emesis. Unfortunately, 14 of these studies (17%) were second or even third time publications of the same data set. The duplicate studies had much larger effects and adding the duplicates to the originals produced an overestimation of treatment efficacy of 23%. Tracking down the duplicate publications was quite difficult. More than 90% of the duplicate publications did not corss-reference the other studies. Four pairs of identical trials were published by completely different authors without any common authorship
+:::
 
-The limitations of a Medline search
+## The limitations of a Pubmed search
 
+-   Pubmed only covers 3,000 of the 13,000 medical journals
+    -   Studies not in Pubmed tend to be negative
+
+::: notes
 While a Medline search is the most convenient way to identify published research, it should not be the only source of publications for a meta-analysis. Medline searches cover only 3,000 of some 13,000 medical journals (Halvorsen 1992). The studies missed by Medline and other databases are more likely to be negative studies.
 
 Furthermore, these databases may fail to index major journals in the third world that can provide important trials. Egger (1997) cites an interesting example of how Medline excludes most Indian journals, even though these journals are published in English and India produces a significant amount of medical research.
+:::
 
-Foreign language publications
+## Foreign language publications
 
+-   Convenient to restrict to English publications
+-   Native language publications more likely to be negative
+
+::: notes
 Some meta-analyses restrict their attention to English language publications only. While this may seem like a convenience, in some situations, researchers might tend to publish in an English language journal for those trials which are positive, and publish in a (presumably less prestigious) native language journal for those trials which are negative. Interestingly, some studies have shown that the quality of studies published in other languages is comparable to the quality of studies published in English.
+:::
 
-Picking the low hanging fruit
+## Picking the low hanging fruit
 
+-   Articles with full free text
+-   Articles with abstracts
+
+::: notes
 In an informal meta-analyis, you should also worry about the tendency for people to preferentially choose articles that are convenient. For example, there is a natural tendency to rely on articles where the full text is available on the Internet or where the abstract is available for review (Wentz 2002).
+:::
 
-How to avoid bias from exclusion of publications
+## How to avoid bias from exclusion of publications
 
+-   Multiple bibliographic databases
+-   Registries
+-   Examination of bibliographies
+-   Call for "gray literature"
+
+::: notes
 Search for studies should involve several bibliographic databases, registries for clinical trials, examination of bibliographies of all articles found, the so-called gray literature (presentation abstracts, dissertations, theses, etc.) and a letter calling for unpublished papers to be sent out to key researchers.
 
 Consider the search strategy adopted in Evers et al 2001.
 
 Relevant trials were identified in the Cochrane Menstrual Disorders and Subfertility Group's specialised register of controlled trials. A MEDLINE search, using the group's search strategy, was performed for the period 1966-2000. Also, hand searching was performed of 22 specialist journals in the field from their first issue till 2000. Cross references and references from review articles were checked.
+:::
 
-Subjectivity
+## Subjectivity in article selection
 
+-   Blinding
+    -   No author list
+    -   No university affiliation
+    -   Methods section only
+-   Duplicate extraction of information
+    -   Look for 90% or better agreement
+-   Detailed protocol
+
+::: notes
 "Blinding," a common tool in other research areas should also be used in meta-analyses. Blinding prevents the differential application of inclusion/exclusion criteria. The people deciding whether a paper meets the inclusion/exclusion criteria should be unaware of the authors of that paper and the journal. They should also include or exclude the paper on the basis of the methods section only; they should not see the results section until later.
 
 There is empirical evidence, however, that blinding does not affect the conclusions of a meta-analysis (Jadad et al 1996, Berlin et al 1997). Furthermore, blinding takes substantial time and energy.
@@ -69,13 +103,15 @@ Authors have been shown to be biased in the articles that they cite in the bibli
 If the authors do not present objective criteria for the selection of articles in their overview or meta-analysis, then you should be concerned about possible conscious or sub-conscious bias in the selection process.
 
 Researchers should also list all of the articles found in the original search, not just the articles used. This allows others to examine whether the inclusion/exclusion criteria were applied appropriately.
+:::
 
-Preventing publication bias
+## Detecting and correcting for publication bias
 
-[Registry]
+-   Compare to the unpublished studies you did find
+-   Stratify by sample sizes
+-   Funnel plot
 
-Detecting and correcting for publication bias
-
+::: notes
 Sensitivity analysis is also useful here. If the results from published studies are comparable to the results from unpublished studies, for example, then publication bias is less of a concern. Along the same lines, the authors can estimate the number of undiscovered negative studies that would be required to overturn the results of this meta-analysis.
 
 Publication bias is also more likely to occur for studies with small sample sizes. If the results of a meta-analysis are stratified by the sample sizes in the studies, a shift away from the null hypothesis in the smaller studies would be a warning flag about the possibility of publication bias. Statistical and graphical methods have been proposed to examine this further but you should be cautious, however, because sometimes there are other explanations. For example, smaller studies may tend to use less rigorous designs and these designs may be associated with exaggerated effects (Sterne et al 2001).
@@ -83,15 +119,4 @@ Publication bias is also more likely to occur for studies with small sample size
 McManus et al (1998) highlight the importance of consulting experts in the area. They we trying to identify all publications associated with near patient testing, tests where the results are available without sending materials to a lab. The authors used a search of electronic databases, a survey of experts in the area, and hand searching of specific journals. The electronic databases yielded the most number of publications, 50, but still missed 52 publications found by the other two methods.
 
 Copas and Shi (2000) present a re-analysis of a meta-analysis on lung cancer that adjusts for publication bias, but this adjustment is controversial (Johnson et al 2000).
-
-Reanalysis of Epidemiological Evidence on Lung Cancer and Passive Smoking
-J B Copas and J Q Shi
-BMJ 2000; 320: 417-418. [Abstract] [Full text] [PDF]
-
-Lung Cancer and Passive Smoking
-Kenneth C Johnson, James Repace, Allan Hackshaw, Malcolm Law, Nicholas Wald, Stanton A Glantz, Christopher Cates, John Copas, and Jain Qing Shi
-BMJ 2000; 321: 1221. [Full text]
-
-
 :::
-

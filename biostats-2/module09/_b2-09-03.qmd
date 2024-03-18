@@ -7,39 +7,77 @@ format:
 editor: source
 ---
 
-## Slide 09-03
+## Were all of the apples rotten?
+
+-   "You can't make a silk purse out of a sow's ear"
+-   Meta-analysis will amplify study flaws
+-   General (but not universal) trend
+    -   Lower quality leads to over-optimism
 
 ::: notes
-          Were all of the apples rotten?
-
 The quality of a meta-analysis is constrained by the quality of articles that are used in a meta-analysis. Meta-analysis cannot correct or compensate for methodologically flawed studies. In fact, meta-analysis may reinforce or amplify the flaws of the original studies.
 
-Observational studies in a meta-analysis
+There is a general trend. It doesn't occur all the time, but it is quite common. That is a trend that lower quality studies tend to lead to over-optimism. Compared to higher quality studies, they tend to overstate the effectiveness of a treatment.
+:::
 
+## Observational studies in a meta-analysis
+
+-   Originally very controversial
+    -   An exercise in "mega-silliness"
+-   Analyze selective subgroups
+    -   Insights into size and direction of biases
+
+::: notes
 The use of meta-analysis on observational studies is very controversial. Some experts have argued that the biases inherent in observational studies make a meta-analysis an exercise in mega-silliness. But even those experts who do not take such an extreme viewpoint warn that the current statistical methods for summarizing the results of observational studies may grossly understate the amount of uncertainty in the final result (BMJ 1998: 316(7125); 140-4).
 
 Sensitivity analysis may be a useful way of highlighting the uncertainties in a meta-analysis of observational studies. Restricting the meta-analysis to selective subgroups of the data can yield insight into the size and direction of biases in observational studies. For example, the researchers could contrast case-control designs with cohort designs, with the latter expected to show less bias, in general. Or the researchers could compare retrospective studies to prospective studies, where again, the latter is expected to show less bias in general. Another possibility for comparison involve comparing studies by the amount to which measurement error is expected to cause problems. In general, researchers should try to stratify the observational studies by known sources of bias.
 
-Meta-analyses of randomized trials
+Etminan et al (BMJ. 2003; 327(7407): 128) examined the risk of Alzheimer's disease in users of non-steroidal anti-inflammatory drugs. They identified six cohort studies which showed a combined relative risk of 0.84 (95% CI 0.54 to 1.05) and three case-control studies which showed a much lower combined relative risk, 0.62 (95% CI 0.45 to 0.82).
+:::
 
+## Meta-analyses of randomized trials
+
+-   Often a primary inclusion factor
+-   Other quality concerns
+    -   Lack of blinding
+    -   High dropout rates
+
+::: notes
 Some meta-analyses restrict their attention to randomized trials because these studies are less likely to have problems with bias. In other words, they wish to avoid mixing bad observational apples with good randomized trial apples. Sometimes further restrictions can be made on the basis of partial or full blinding of results or on the proper accounting of dropouts.
 
 Concato et al (NEJM 2000: 342(25); 1887-1892) evaluated clinical topics where there were publications of both randomized controlled trials and observational studies. In this review, the observational studies produced results quite similar to the randomized studies.
 
-Sensitivity analysis
-
 Even for randomized trials, sensitivity analysis may help. Researchers can use "quality scores" to rate individual studies and then see what happens when studies are restricted to those of highest quality only.
 
 For example, Lucassen et al (BMJ 1998; 316(7144): 1563-9) looked at interventions for infant colic. Although substituting soy milk for cows milk appeared to have an effect, this effect disappeared when only studies of high methodological quality were considered.
+:::
 
-Quality Scores
+## Incomplete report of quality issues
 
+-   Fairly common
+-   Assumption: guilty until proven innocent
+    -  But possibly just an oversight?
+
+::: notes
 Many times, the reporting of a study will be inadequate, and this will make it impossible to assess the quality of a study.  There is indeed empirical evidence that incomplete reporting is associated with poor quality (JAMA 1995: 273(5); 408-12). In such a case, a "guilty until proven innocent" approach may make sense (BMJ 2001: 323(7303); 42-6). For example, if the authors fail to mention whether their study was blinded, assume that it was not. You might expect that authors are quick to report strengths of their study, but may (perhaps unconsciously) forget to mention their weaknesses. On the other hand, Liberati (J Clin Oncol 1986: 4(6); 942-51) rated the quality of 63 randomized trials, and found that the quality scores increased by seven points on average on a 100 point scale after talking to the researchers over the telephone. So some small amount of  ambiguity may relate to carelessness in reporting rather than quality problems.
+:::
 
-Another approach is to look at subgroups of studies of a similar design and see if the results are consistent across subgroups. For example, Etminan et al (BMJ. 2003; 327(7407): 128) examined the risk of Alzheimer's disease in users of non-steroidal anti-inflammatory drugs. They identified six cohort studies which showed a combined relative risk of 0.84 (95% CI 0.54 to 1.05) and three case-control studies which showed a much lower combined relative risk, 0.62 (95% CI 0.45 to 0.82).
+## Meta-analysis of studies with small sample sizes
 
-Meta-analysis of studies with small sample sizes
+-   Be very cautious
+    -   Publication bias is a much bigger threat
 
+::: notes
 Some experts advocate great caution in the assessment of meta-analyses where all of the trials consist of small sample size studies. The effect of publication bias can be far more pronounced here than in situations where some medium and large size trials are included.
 :::
 
+## Intentional exclusion of studies
+
+-   Where to draw the line?
+-   Example: mammography for 40-50 year old women
+    -   Seven studies: positive result
+    -   Two best studies only: negative result
+
+::: notes
+In any meta-analysis, you have to draw a line somewhere. Studies that fail to meet your criteria will not be included in the results. But this can lead to serious controversy. In a Cochrane Review of mammography (Cochrane 2001: (4); CD001877), seven studies were identified, but only two were of sufficient quality to be used. The Cochrane Review of these two studies reached a negative conclusion, but would have reached an opposite conclusion if the other five studies were added back in (BMJ. 2001; 323(7319): 956).
+:::
