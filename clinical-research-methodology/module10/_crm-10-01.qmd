@@ -1,0 +1,124 @@
+---
+title: "Focus groups, interviews"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+params:
+  section: "V10-01"
+editor: source
+---
+
+```{r}
+section <- "10-01"
+```
+
+## `r section`, Running focus groups
+
+-   Two person job
+-   Facilitator
+    -   Asks questions
+    -   Guide discussion, but stays neutral
+-   Recorder
+    -   Runs the tape recorder
+    -   Keeps written notes
+-   Debriefing session
+  
+::: notes
+
+If you decide to collect data in a focus group, you need a second person. You could do it by yourself, but you are asking for trouble. One of you takes the role of the facilitator and one takes the role of the recorder.
+
+The facilitator asks a series of prepared questions. Your role is to guide the discussion while still keeping neutral. This means that you intervene if the group is getting off target or if one person is dominating the discussion. You should prepare some brief prompts to get your participants to elaborate or to draw in other participants.
+
+The recorder doesn't say anything after the introductions, but runs the recording device and take notes. The notes serve several purposes. First, they serve as a backup if your recording fails. Second, they note any significant non-verbal information such as gestures and body language. Third, the notes help to identify who is speaking when. A seating diagram is helpful for this. Note that not all focus groups track who is speaking.
+
+After the session is complete, the two of you sit down and talk about how things went.
+
+:::
+
+## `r section`, Structure of a focus group
+
+-   Six to ten participants
+-   Multiple groups
+    -   Stop when you achieve saturation
+-   Sixty to ninety minutes
+-   Ten questions, semi-structured interview
+
+::: notes
+
+The size of a focus group can vary, but I've seen recommendations of six to ten people.
+
+What the research community does agree on is that you need to plan for more than one group. The consistency of responses from one group to the next will tell you if you have reached saturation. 
+
+Saturation is evidence that no new themes or ideas have emerged from your groups. Almost all assessments of whether saturation has been achieved are qualitative and subjective.
+
+The concept of saturation makes it difficult for you to plan a budget, but keep in mind that you cannot even begin to assess saturation until you've run your second focus group.
+
+Other common recommendations are to keep each session short, 60 to 90 minutes, and to have no more than ten questions. Your questions should follow a semi-structured format, which I'll talk about in the context of interviewing.
+
+Getting information from a group is a double-edged sword. Often in a focus group, one participant will build on the comments of another and provide a perspective that you may have missed in a single person interview. At other times, however, one person may stifle the feedback from another. A good focus group leader will recognize this and work to insure that everyone participates fully. It's easy to say this in theory, but in practice, it can be difficult.
+
+:::
+
+## `r section`, Interview
+
+-   Administration
+    -   Telephone
+    -   Face-to-face
+-   Format
+    -   Unstructured
+    -   Semi-structured
+    -   Structured
+
+::: notes
+
+An interview is direct communication between the researcher and the subject. You can set up the interview on the telephone or conduct a face-to-face interview. The obvious advantage of a telephone interview is that it is fast and does not involve travel of either party. 
+
+A face-to-face interview takes more effort, but can sometimes help with building a sense of rapport and trust.
+
+Interviews have three formats, unstructured, semi-structured, or structured.
+
+In an unstructured interview, you go in with a general idea of what to discuss, but no specific questions. The general direction of the interview will determine what questions to ask next. An unstructured format is rarely used in research because it makes you work impossible to replicate.
+
+A semi-structured interview has a planned structure that includes a list of questions to ask. These questions are typically open ended, to allow the patient to bring up issues that the researcher may not have been aware of. Most semi-structured interviews have a series of probe questions that are intended to prompt the research subject to elaborate further on a topic of interest.
+
+A structured interview has a fixed set of questions that are asked in a consistent order with no major deviations. There are no prompts to get your patients to elaborate, but the interviewer can try to clarify any ambiguous or clearly invalid responses.
+
+:::
+
+## `r section`, Example of structured and unstructured interviews
+
+![](images/interview-questions.png "A table showing sample questions from a structured interview")
+
+::: notes
+
+Here's an example of two interviews. The first is a structured interview with four yes/no questions. 
+
+"Before you were 17 years of age (Each question had answer choices of “Yes” or “No)"
+
+a parent or guardian ever do something to you on purpose (for example, hit or punch or cut you, or push you down) that made you bleed or gave you bruises or scratches.
+ 
+Did, or that broke bones or teeth?”
+ 
+Did either of your parents or guardians get so mad at you that they hurt you physically?
+ 
+Did either of your parents or guardians use physical punishment for discipline?
+
+The second interview is described as unstructured. I would call it semi-structured, but that is a nitpick. The questions were
+
+How do your parents or guardians discipline you?
+
+Do they ever physically hit you?
+
+How do they punish you?
+
+Further probing was done depending on the responses to the questions: having been hit, punched, kicked, or otherwise struck or pushed down; cut, bruised, made to bleed, scratched, having broken bones, broken teeth, or having been hurt physically
+ 
+The questions in this structured interview are close ended. This is quite common, but you can also have a structured interview with open ended questions. For the semi-structured or unstructured interview, however, the questions must be open ended so that you can probe for more information.
+
+The article that these interview questions came from noted that the unstructured interview was far more likely to uncover reports of abuse than the structured interview.
+
+Image source: Diaz 2017 (see the reading list for full details).
+
+:::
+

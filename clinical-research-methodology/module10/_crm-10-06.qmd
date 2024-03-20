@@ -1,0 +1,98 @@
+---
+title: "Advantages of different data collection methods"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+```{r}
+section <- "10-06"
+```
+
+## `r section`, Existing data sources
+
+-   Re-analysis of published data
+    -   Protect confidentiality
+    -   Give appropriate acknowledgement or co-authorship
+-   Curated databases
+    -   Contractual limitations
+    -   Sample weights
+-   Web scraping
+    -   Respect limits on volume and speed of download
+    -   Protect copyrights
+
+::: notes
+
+Our department is big on secondary data analysis. This is the re-use of existing data sets. These come from a variety of sources, but you must always respect the limits that the original researchers place on their data.
+
+If you are taking data from an existing research publication (or, in the case of meta-analysis, from multiple existing research publications), find out what sort of acknowledgement is appropriate. In some circumstances, you may feel obligated to offer co-authorship to the original researchers. If this is the case, get an agreement in writing before you start any work. It is a bit easier if the researchers have included a link to the raw data in their publication, but still be careful to read any restrictions that they may have placed on the original data.
+
+If the data that you are getting includes Protected Health Information (PHI), there are important regulations that you must follow under the Health Insurance Portability and Accountability Act. Because you are working with PHI, you need to get approval from your local IRB even though the original authors got IRB approval at their site.
+
+If the authors have made their data set available for free download, your life is a bit easier. There is no PHI in a publicly available data set, or if there were, the person who would get in trouble for this would be the original authors. You have to promise not to take the disparate pieces of information that by themselves are innocuous enough, but which in aggregate might allow you to figure out the identity of some of the people in the sample.
+
+Various groups will collect data not for their own benefit, but rather to let others publish interesting things. This might be through a government program or through a charitable foundation. These data sets are carefully curated and have excellent documentation. The people behind these data sets are very eager to help. They see your publications as being one of the strongest rationales for what they are doing. They want you to be successful.
+
+Read the documentation carefully, including the limits on how you can use this data. Even though the data has been anonymized, you will be asked to promise that you will not try to use certain cross-tabulations that might identify individual respondents.
+
+Many of these data sets have sample weights associated with them. The sample weights help you properly calibrate your results to nationwide totals, or they help you properly account for oversampling of minority groups. Some of these data sets use clustering and stratification to reduce costs and improve the coverage and quality of their data. If you are using data that requires sample weights, failure to choose the appropriate analysis will produce invalid results.
+
+The one big issue with secondary data analysis is that you don't have the option of getting the variables you need the most and you often have to settle for second-best measures.
+
+A new source of data is stored on the Internet, and getting this data often requires specialized tools, web scrapers. The data that you get from web scraping is free (other than your time and labor) and will almost always be exempt from IRB approval. Some sites will have policies on web scraping, limiting either the amount of data you can take, the speed at which you can take it, or both. These limits are needed to insure that others who need this data for a variety of reasons won't be crowded out by web scraping robots. Some of the information that you get through web scraping may also be protected by copyright law.
+
+:::
+
+## `r section`, Advantages of focus groups
+
+-   Faster than separate interviews
+-   Participants build each others comments
+
+::: notes
+
+Focus groups are great. You get six or ten people in the room and interview all of them in a lot less time than it would take for individual interviews. The participants will often react to what others say, which can get them to elicit thoughts and opinions that you might have missed in a one-on-one interview.
+
+:::
+
+## `r section`, Advantages of interviews
+
+-   On-the-spot fixes
+-   Increased participation rate
+
+::: notes
+
+Interviews are great. You get a rich set of responses, and if someone goes off track and provides a weird answer, the interviewer has an opportunity to fix things.
+
+:::
+
+## `r section`, Advantages of a questionnaire
+
+-   Less labor
+-   No interviewer bias
+
+::: notes
+
+Questionnaires are great. If you have to interview people, you'll be spending half your life on the phone. If that's what's needed for research, fine. But if your patients are capable and willing and can do so accurately, you'll save a lot of time.
+
+You'll also avoid interviewer bias. Interviewer bias is the tendency to get different results depending on the race, gender, age, or other overt feature of the person conducting the interview. It's not the interviewer's fault, necessarily. The person being interviewed might be more open and honest with certain interviewers than others.
+
+:::
+
+## `r section`, Advantages of existing data
+
+-   Fast
+-   Cheap
+-   Naturalistic
+
+::: notes
+
+Existing data sets are great. They are first and foremost, very fast. The data is sitting there staring at you. You still have to do a lot of data management with most existing data sets, because they are not necessarily in the structure that you need for your research. Still, even with a ton of data management, it beats waiting around to get that five year mortality data.
+
+Existing data is also cheap, and free in many cases. Free is never free, of course. You spend a fair amount of labor on existing data, but for the same reasons mentioned earlier, the cost still beats that of other types of research.
+
+A big advantage of many (but not all) existing data sets is that the data is collected outside the context of a clinical trial. Clinical trials, with all the special exams and all the extra attention, have an artificiality about them. Data that you collect from some sources, such as the electronic health record, represent observations that are directly representative of the typical care that your patients receive.
+
+:::
+
