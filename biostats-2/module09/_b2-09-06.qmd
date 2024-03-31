@@ -61,6 +61,11 @@ cat(as.yaml(dd["description"]))
 cat(as.yaml(dd["source"]))
 ```
 
+::: notes
+This is a description of the assisted reproduction technology meta-analysis.
+:::
+
+
 ## Description of art-malpresentations data, 2 of 3
 
 ```{r}
