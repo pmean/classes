@@ -1,0 +1,87 @@
+---
+title: "Nominal scales"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+```{r}
+section <- "10-04"
+```
+
+## `r section`, Nominal responses
+
+-   Pick one of the following
+    -   Assumes mutually exclusive
+-   Pick all that apply
+    -   Allows for overlap
+    -   Code as multiple binaries
+-   Code for "other"
+    -   Partial open ended
+-   Code for "Prefer not to answer"
+  
+::: notes
+
+For nominal categories, you have two approaches. The first approach is to ask your research subjects to choose only one response from the list. This assumes that there is only one obvious choice in the list for anyone and everyone. For the marital status question, it seems obvious enough. The choices are single, married, divorced, or widowed. These seem to be mutually exclusive, but what about someone who was married, widowed, remarried, and then divorced. This isn't all that common, so maybe you don't have to worry about it.
+
+The nominal category that has gotten a lot of attention recently is race. There is a vocal lobby in the community to allow someone to select more than one category. You could include a bi-racial category, perhaps. Or you could let everyone select multiple racial categories.
+
+There's really no correct answer. A lot depends on the context.
+
+The standard way to code multiple response variables is to include an indicator for each category. I will talk about that in more detail later.
+
+You should consider an option for other, with an open ended fill in the blank immediately afterwards. This is better than having someone scrawl something in the margin, check more than one box, or leave the question blank. This turns your close ended question into a partial open ended question.
+
+If you are asking a question that some people might consider sensitive (such as illicit drug use), you should consider a "prefer not to answer" option. Again, this is better than leaving a question blank, and you're not sure if they didn't want to answer or just overlooked this question. The "prefer not to answer" option might also help someone continue with a survey that they might otherwise stop filling out because they didn't like the sort of questions you were asking.
+
+:::
+
+## `r section`, General structure of a questionnaire
+
+-   Sensitive questions last
+-   Broad categories
+    -   Income
+-   Do you really need to ask?
+-   Avoid leading up to a question
+
+::: notes
+
+Many researchers advise that you put sensitive questions at the end. If you ask about age and income at the start, your patients might get nervous or upset. "Why do they need to know this information?" If you place these questions at the end, your patients will have gotten a general sense of what you are interested in and may no longer see the questions as intrusive. Note that this is anecdotal evidence. A lot of people cite this but I have not seen any empirical data to support their viewpoint.
+
+Sometimes, you can avoid concerns about sensitive questions by asking for broad categories rather than specific numbers. For income, as an example, you might only be interested in whether someone is at or near the poverty line. If you stop income at a value close to the median income (say $50,000 per year and higher), you'll have some issues for some people on the low end, but at the high end, you'll ease some concerns about people who don't want to admit exactly how rich they are.
+
+I recall a survey I was asked to fill out. It was on perceptions about web sites or something other quite technical. They asked the standard questions about demographics: age, gender, race/ethnicity. Then there was a question about sexual identity. It listed heterosexual. It listed homosexual. It listed bi-sexual. It listed transsexual. It went on and on and on. Every choice for LGBTQIA and then some. Now I have a fairly open mind when it comes to sexuality, and there are times when you really do need to know this level of detail. A study of sexually transmitted diseases might need to understand sexuality at such a fine level of detail. But a tech questionnaire about web sites? I suspect that the person who wrote this survey had a close friend who was LGBT and wanted to be sure that his survey was sensitive to the variety of sexualities that too often are disparaged or ignored.
+
+Question order in a questionnaire is important in that asking a series of questions might tend to nudge someone towards one extreme or the other. Some unscrupulous pollsters do this to get a result more favorable to their customer. Look at the short clip from the British comedy, Yes Prime Minister, for an example of nudging someone with a series of leading questions.
+
+There isn't a lot of practical advice about how to avoid leading questions, unfortunately. It's easier to point out a problem than to suggest a solution.
+
+:::
+  
+## `r section`, Practical advice
+
+-   Don't ask for what you don't need
+    -   More data than you have time to analyze
+-   Make your questionnaire easy for data entry
+-   Pilot test your questionnaire
+
+::: notes
+
+I make it a habit of asking people, after they are done defending their thesis or dissertation what they would have done differently if they had to do it all over again. A common response is that they would not have collected so much data. They never got around to analyzing even half of it. Now, it may seem like sacrilege for a statistician to agree with this, but I do think it is a bad idea to bite off more than you can chew, so to speak. If nothing else, a shorter questionnaire would have a higher compliance rate and better quality responses.
+
+If you are using a paper questionnaire, lay out the questionnaire in a manner that makes it easy for data entry. This means lining up things nicely so the numbers are consistently in the same location (e.g., flush with the right margin). This sort of design will also minimize problems with people accidentally skipping some items.
+
+You should also run a pilot test on your questionnaire. Last week, I talked about response process validation. Those steps work very well for pre-testing a questionnaire. Give the questionnaire to a small sample of your patients and watch as they fill it out. Get them to talk out loud about what they are thinking.
+
+After the questionnaires are filled out, look for improper or unexpected responses. If people are filling out a response halfway between 3 and 4 on a five point Likert scale, then maybe you would be better off with a seven point Likert scale. If people are circling two or more responses, even though you tell them to select only one, then maybe you should restructure your questionnaire to accommodate multiple responses. If the fill in the blank responses are not providing you the correct data, changing how you ask for that information.
+
+Do the subjects in your pilot study make simple mistakes like failing to check the back side of the survey? Do they refuse to answer certain questions because of their sensitive nature? Do they tend to mindlessly choose the same middle answer throughout a series of Likert scale questions. Do they always choose the rightmost extreme, even on questions that are reverse scaled?
+
+During your pilot, see if you can get some data on how long it takes on average to fill out the questionnaire. This could be placed in the cover letter for the questionnaire or in the consent form.
+
+Also get an estimate on how much labor is needed to distribute and recollect all the questionnaires. See how many people need a reminder notice (or two reminders) to return their questionnaires. This sort of information during a pilot study will help you plan the main study more effectively.
+
+:::
+

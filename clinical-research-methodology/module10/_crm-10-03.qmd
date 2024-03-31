@@ -1,0 +1,121 @@
+---
+title: "Likert scales"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+```{r}
+section <- "10-03"
+```
+
+## `r section`, Visual analog scale
+
+-   Line segment
+    -   Total length 100 millimeters
+-   Labels at two extremes
+    -   Alert/Extremely drowsy
+    -   Energetic/worn out
+    -   completely full/starving
+-   Mark an X along the continuum
+
+::: notes
+
+The visual analog scale is a graphical method for collecting data. You see a line segment with a length of exactly 100 millimeters. At either end are two extremes, Alert/Extremely drowsy, for example. You are asked to place an X anywhere along that line to represent how alert or drowsy you are. Record the distance from the left endpoint to the X. The visual analog scale gives you any possible value between 0 and 100.
+
+It seems like a difficult task, but for many different measurements, the visual analog scale has been shown to have good reliability and validity. It's easiest to do with pencil and paper, but with a small bit of programming, you can adapt this to a computerized data collection system as well.
+
+:::
+
+## `r section`, Example of a visual analog scale
+
+![Visual analog scale for pain](images/visual-analog-scale.png 'A pain assessment scale with "no pain" at one extreme and "pain as bad as it could possibly be" at the other extreme')
+
+::: notes
+
+This is an example of the visual analog scale. You are measuring pain, with the left endpoint representing no pain and the right endpoint representing pain as bad as it could possibly be.
+
+:::
+
+## `r section`, Likert scale
+
+-   Discrete values
+-   Extremes and intermediate points labelled.
+-   Measurements of frequency
+    -   Very frequently, Frequently, Occasionally, Rarely
+    -   Never, Rarely, Sometimes, Often
+    -   Every day, Two or three times a week, Once a week, Less than once a week
+  
+::: notes
+
+The Likert scale is a sequence of discrete values to represent an ordinal concept. Most Likert scales have anchors, single words or short phrases attached to every discrete value.
+
+The Likert scale could measure frequency. The choices could be Very frequently, Frequently, Occasionally, Rarely. Another choice would be Never, Rarely, Sometimes, Often. You could refer to a calendar with responses like Every day, Two or three times a week, Once a week, Less than once a week.
+
+:::
+
+## `r section`, Likert scale  
+-   Satisfaction (Very satisfied, satisfied, dissatisfied, very dissatisfied)
+-   Quality (Very good, Good, Fair, Poor)
+-   Agreement scale (5 points)
+    -   Strongly disagree, disagree, neutral, agree, strongly agree
+-   Agreement scale (6 points)
+    -   Strongly disagree, disagree, slightly disagree, slightly agree, agree, strongly agree
+  
+::: notes
+
+If you are measuring satisfaction, you might choose Very satisfied, Satisfied, Dissatisfied, Very dissatisfied.
+
+If you are measuring quality, you might choose Excellent, Very good, Good, Fair, Poor.
+
+If you are asking how important something is, you might choose Very important, Important, Moderately important, Slightly important, Not at all important.
+
+In the most common form, you are asked to read a statement and choose among five options: strongly disagree, disagree, neutral, agree, and strongly agree. For a six point scale this would be modified to strongly disagree, disagree, slightly disagree, slightly agree, agree, strongly agree.
+
+If the Likert scale and the semantic differentiation scale sound similar, well they are. The difference is, perhaps, that the Likert scale is uses the same anchors for a series of measurements, while the semantic differential scale changes from one pair of polar opposites to a different pair for every measurement. The semantic differential scale does not normally include anchors for the intermediate values, while a Likert scale normally does include anchors.
+
+But if you use these terms interchangeably, I certainly won't complain.
+
+:::
+
+
+## `r section`, Example of a Likert scale
+
+![](images/humorous-likert-scale.png 'Likert scale with smiling and frowning faces with descriptions like "Love Love Love" or "Meh" or "Hate Hate Hate"')
+
+::: notes
+
+This is an example of Likert scale. 
+
+https://www.flickr.com/photos/billsophoto/4175299981
+
+:::
+
+## `r section`, Likert response options
+
+-   Number of points
+    -   Larger is better? worse? than smaller
+    -   Even is better? worse? than odd
+-   Not applicable, Don't know
+-   Reverse scaling
+
+::: notes
+
+There are a large number of ways to present a ordinal scale, and very little consensus in the research community about which approach is best. It, very likely, will depend on the context of your particular research setting. Here are some of the things that people argue about.
+
+You have to have more than two options for an ordinal scale, or it reduces to a binary scale. So you might see three choices, or as many as ten. More than ten is very rare.
+
+The most common number is five and the most common alternatives are four, six, and seven. But the two biggest debates are small versus large and odd versus even.
+
+Is a large number of choices better or worse than a small number of choices? Some people think that too many choices will confuse you. Others think that more choices are better because they allow you the freedom to make subtle, but important distinctions. Others will argue that a larger number of choices will make it easier to analyze, because you can get closer to a bell shaped curve with a larger number of responses. This can backfire, though. With too many choices, people may gravitate towards a few favorite values leading to dips in frequencies at the unpopular values.
+
+Is there a reason to choose even versus odd numbers. An odd number of choices always has a middle value (3 for a five point scale, for example) that represents neutral, or neither agree nor disagree. Some researchers hate this, and think that a neutral response is too easy to select thoughtlessly. An even number of values forces you to commit, even if only slightly, to the agree side or the disagree side.
+
+Sometimes, you might want to leave a response blank because it is not applicable, or you don't know. Both of these responses are different from the neutral option in a five point Likert scale, but if you aren't give a not applicable or don't know option, you might choose the neutral option as the best alternative.
+
+Reverse scaling is the inclusion of questions where a positive result is sometimes scored as a high number and sometimes scored as a low number. This is done sometimes to insure that people read each question carefully and don't just choose the same option thoughtlessly down the list.
+
+:::
+

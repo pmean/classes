@@ -1,0 +1,58 @@
+---
+title: "Case report forms"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+```{r}
+section <- "10-05"
+```
+
+## `r section`, Case report form (CRF)
+
+-   Paper or electronic form
+    -   Prospective studies
+    -   Retrospective chart reviews
+-   Used to collect and store data
+    -   Filled out by researcher
+    -   One form per patient
+  
+::: notes
+
+A case report form is a paper or electronic form used by a member of the research team to collect and store data. There is a separate form for each patient, though sometimes there are multiple forms, especially for a longitudinal study. 
+
+Most of the references on CRFs discuss it from the perspective of a prospective clinical trial. It can also be used to extract information from an existing database where more direct approaches such as a SQL query are not possible. This is often when the information is not structured and requires human judgement to extract the information, which can reside in several different places.
+
+:::
+
+## `r section`, What sort of data 
+
+-   Medical history
+-   Physical
+-   Potentially other types of data
+-   No personal identifiers
+
+::: notes
+
+While the CRF can contain any type of data, it most commonly is used to collect information from a physical exam plus a medical history.
+
+To protect privacy, the CRF will commonly avoid any personal identifiers, but instead use a subject code.
+
+:::
+
+## `r section`, Design issues
+
+-   Clear
+-   Unambiguous
+-   Easy to read
+-   Consistent format
+
+::: notes
+
+A poorly designed CRF can lead to data quality problems. A well-designed CRF is clear, unambiguous, easy to read, and follows a consistent format. There are several articles about CRFs that go into great detail on this, and I want you to discuss a suggestion from one of these articles in a discussion board on Canvas.
+
+:::
+
