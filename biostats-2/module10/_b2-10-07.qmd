@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "What's the cause and what's the cure"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,113 @@ format:
 editor: source
 ---
 
-## Slide 10-07
+## Myths about big data
+
+1. Algorithms are objective
+
+2. If you have enough data, quality is no longer an issue
+
+3. We are getting better at this
 
 ::: notes
 
+If there are any big lessons from this, they are that you should be skeptical about big data. Algorithms are not objective. They are a social construct. Also, don't believe that bigger datasets are always better. A lot of data does not compensate for poor quality. Finally, while I am a big believer in progress, I think that too many of us are making mistakes and those mistakes are a lot worse when the data is big.
+
 :::
 
+## No single cause of these problems
+
+1. Wrong data
+
+2. Wrong objective
+
+3. Wrong deployment
+
+4. Wrong team
+
+::: notes
+
+There is no single cause for these problems. They are built into the system and it takes a lot of effort to work these biases out of the system.
+
+On the next couple of slides, I want to show a classic Venn diagram and my variation on it to illustrate an important point.
+
+Here's a classic Venn diagram that you will see in pretty much any article that talks about big data or data science (I use those words interchangeably).
+
+There are three areas of expertise that you need as a data scientist: knowledge of mathematics and statistics, skill with computer science and coding, and expertise in medical or scientific specialties.
+
+A more accurate picture would show that there is not enough overlap among these disciplines. Not that many people are skilled at both science and statistics. Fewer still know both of those skills well and can program effectively.
+
+That's actually good news from your perspective. You don't have to be a genius in all three areas. Be good in one area and have an appreciation of the the other two and you'll do just fine.
+
+:::
+
+## What they say data science is
+
+```{r setup, echo=FALSE}
+suppressMessages(suppressWarnings(library(dplyr)))
+suppressMessages(suppressWarnings(library(ggplot2)))
+suppressMessages(suppressWarnings(library(magrittr)))
+```
+
+```{r, fig.width=5, fig.height=5, echo=FALSE}
+o <- 0.6
+v <- 0.85
+draw_circles <- function() {
+  dx <- 1
+  dy <- 0.866
+  i <- seq(0, 2*pi, length=100)
+  circle <- data.frame(x=sin(i), y=cos(i))
+  circle %>%
+    mutate(g=1) %>%
+    mutate(x=x-o*dx) %>%
+    mutate(y=y-o*dy) -> circle1
+  circle %>%
+    mutate(g=2) %>%
+    mutate(x=x+o*dx) %>%
+    mutate(y=y-o*dy) -> circle2
+  circle %>%
+    mutate(g=3) %>%
+    mutate(y=y+o*dy) -> circle3
+
+  circle1 %>%
+    bind_rows(circle2) %>%
+    bind_rows(circle3) %>%
+    ggplot(aes(x, y, group=g)) + 
+      geom_path(color=rep(c("red", "darkgreen", "blue"), each=100), size=3) +
+      geom_text(x=v*dx, y=-v*dy, size=5, label="Math,\nStat", color="darkgreen") +
+      geom_text(x=-v*dx, y=-v*dy, size=5, label="Coding,\nComputers", color="red") +
+      geom_text(x=0, y=v*dy, size=5, label="Science,\nMedicine", color="blue") +
+      expand_limits(x=c(-(dx+1),(dx+1))) +
+      expand_limits(y=c(-(dx+1),(dx+1))) +
+      theme_void()
+}
+o <- 0.6
+v <- 0.85
+draw_circles() + geom_text(x=0, y=-0.1, label="Data\nScience", size=5)
+```
+
+## What data science really is
+
+```{r, fig.width=5, fig.height=5, echo=FALSE}
+o <- 0.88
+draw_circles() + geom_text(x=0, y=-0.1, label="Data\nScience", size=10)
+```
+
+## Why you are needed
+
+1. Too many geeks, not enough scientists
+2. More racial, gender diversity is needed
+
+If you are interested, email me: simons@umkc.edu
+
+You can find my talk here:
+
+https://github.com/pmean/papers-and-presentations/blob/master/dark-side/2022-talk.pptx
+
+::: notes
+
+I'd like to end with an exhortation. We need people like you in data science. It's okay to spend most of your time learning the complexities of medicine, but some of you have a bit of talent and aptitude in math/stat and in computers/coding. That's an advantage your generation has that my generation did not. So you have the ability to appreciate the full picture more so than people my age. A few of us knew computers well, but today's generation is saturated in computational experience.
+
+Second, these research teams need a lot more racial and gender diversity. I try really hard to appreciate the viewpoints of people different than me, bit I can't understand it at a level of someone who has seen life from a different perspective. If the only people developing these data science models are white males, then the models will continue to be biased against women and minorities.
+
+:::
