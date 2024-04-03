@@ -1,0 +1,109 @@
+---
+title: "Text files"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Text files
+
+-   Fixed width
+-   Delimited
+    -   Commas
+    -   Spaces
+    -   Tabs
+    -   "Quotes around text"
+  
+::: notes
+
+You may wish to create a text file for others to use. The text format is popular for sharing your data, because others can inspect the data easily without needing any specialized software.
+
+You can used a fixed width format. The individual data values are limited to specific columns and are not allowed to creep over into the wrong columns. It takes a bit of planning to develop a fixed width format, because you need to specify, in advance, how many columns are enough to fit any possible value for your data. You may know this for some data. An Apgar score, for example, would require two columns, while an IQ score would require thee columns. But how many columns would you need for a person's name?
+
+A delimited file uses a special character, called a delimiter, to separate individual data values within a row. The common delimiters are commas, spaces, and tabs. Often delimited files will place quote marks around text, especially for comma delimited files.
+
+I want to show some examples of each of these types of text files.
+
+
+:::
+
+## Data dictionary for aboriginal prison death study
+
+![](images/aboriginal-data-01.png)
+
+::: notes
+
+Here is the data dictionary for a small data set that I will use to illustrate the various text formats. It comes from OzDASL, the Australian Data And Story Library. This data set represents the number of deaths in prison of both aboriginal Australians and others. The variables are
+
+Year (1990 through 1995), 
+
+Indigenous (yes or no), 
+
+Prisoners, the number in prison custody, 
+
+Deaths, the number of deaths, and
+
+Population, the adult population (15 years or older)
+
+:::
+
+## Comma separated values (csv)
+
+![](images/aboriginal-data-03.png)
+
+::: notes
+
+The most popular text format is the comma separated value. These files usually have a .csv extension. Each data point is separated from the other data values by a comma.
+
+:::
+
+## Comma separated values with quotes
+
+![](images/aboriginal-data-03.png)
+
+::: notes
+
+If your text data contains space, punctuation, or other special symbols, then it is a good idea to place quotes around your text. It's not really needed for this data set, but I wanted to show you anyway.
+
+There are elaborate rules for how to handle text data that contains quote marks. Use double quotes to surround text that includes single quotes and use single quotes to surround text that has double quotes. Doubling up a quote mark is another approach that usually works. It's one of those tedious things that only Statisticians worry about.
+
+:::
+
+## Fixed width format
+
+![](images/aboriginal-data-04.png)
+
+::: notes
+
+In this fixed width format, the first variable, year, is listed in columns 1 through 4. Then the text variable, Indigenous, takes the next three columns, columns 5 through 7. The number of prisoners is either a four or five digit number, so it uses columns 8 through 12. The number of deaths is, thankfully small, either one or two digits, so it fits into columns 13 and 14. The population could be in the tens of millions, so it needs to use columns 15 through 22.
+
+You need a fairly detailed data dictionary for fixed with format data, because otherwise you might not be sure where one number stops and another number begins.
+
+:::
+
+## Spaced format
+
+![Data set using a spaced format](images/aboriginal-data-05.png)
+
+::: notes
+
+Usually, you will encounter a fixed width format in data sets with hundreds of variables and thousands or millions of rows. In these files, saving a few characters here or there can make a big difference in download times. But for small data sets, you can insert a few extra blanks so that everything lines up nicely. Here is an example.
+
+:::
+
+## Tab separated values
+
+![](images/aboriginal-data-06.png)
+
+::: notes
+
+In the tab separated format, the tab character is used to separate values. The tab character effectively jumps to a specific fixed location. These locations are usually eight characters apart, starting at column 9, then 17, 25, etc.
+
+The tab character appears to the human eye as multiple blanks but it is actually a non printing character, 09 in hexadecimal.
+
+It's hard sometimes to figure out if a file is using tabs or spaces as delimiters. Most text editors and word processors will let you search for the tab character, often with a code like /t (forward slash t). If you start to insert blanks in a tab delimited file, at first nothing happens, then all of a sudden, you notice a sudden jump in the text to the right of where you are inserting. Finally, look to see if the text seems to line up somewhat but with a few irregularities. This happens when some of the text data for a variable is longer than 8 characters and other text for that variable is shorter than 8 characters. In the example shown here, none of the data is longer than 8 characters, but the variable names are, which is why they don't align perfectly with the data. 
+
+:::
+
