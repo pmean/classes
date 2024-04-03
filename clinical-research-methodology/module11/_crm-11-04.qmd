@@ -51,13 +51,15 @@ One more nitpick. The code for A is ambiguous. Does it mean Asian American or Am
 
 -   Context specific
 -   Sequence of IF THEN ELSE statements
-    -   if (is.na(x)) then y=NA
-    -     else if (x=1) then y=4
-    -     else if (x=2) then y=3
-    -     else if (x=3) then y=2
-    -     else if (x=4) then y=1
-    -     else y=9
 
+```{}
+if (is.na(x)) then y=NA
+  else if (x=1) then y=4
+  else if (x=2) then y=3
+  else if (x=3) then y=2
+  else if (x=4) then y=1
+  else y=9
+```
 ::: notes
 
 Reverse scaling is tedious and always go slowly, because tedium tends to produce simple mistakes. SPSS has a very nice recode dialog box that is hard to mess up. 
@@ -69,9 +71,26 @@ You can also use a series of IF THEN ELSE commands to do the reverse coding. Alw
 ## Reverse coding (2 of 2)
 
 -   Functional transformations
-    -   0,1 to 1,0 is f(x)=1-x
-    -   1,2,3,4 to 4,3,2,1 is f(x)=5-x
-    -   0,1,2,3,4 to 4,3,2,1,0 is f(x)=4-x
+
+```{}
+0,1 to 1,0
+
+ x    y=1-x
+
+ 0      1
+ 1      0
+ 
+ 1,2,3,4 to 4,3,2,1   but  0,1,2,3,4 to 4,3,2,1,0
+ 
+  x          y=5-x          x            y=4-x
+  1            4            0              4
+  2            3            1              3
+  3            2            2              2
+  4            1            3              1
+                            4              0
+
+```
+
 -   Always check your results
 -   Watch out for missing value codes
 
@@ -90,7 +109,7 @@ Always account properly for missing values when reverse scaling. It's a good ide
 
 ## A multiple response example
 
-![](images/multiple-response-01.png "Hypothetical responses to \"What are a few of your favorite things with multiple responses allowed")
+![](images/multiple-response-01.png "Hypothetical responses to What are a few of your favorite things with multiple responses allowed")
 
 ::: notes
 
@@ -104,9 +123,9 @@ The third patient liked the last two things: bright copper kettles, and warm woo
 
 :::
 
-## Coding multiple response with a single column
+## Coding with a single string
 
-![](images/multiple-response-02.png "Coding of multiple responses using a single string: \"bcd\", \"abc\" or \"cd\"")
+![](images/multiple-response-02.png "Coding of multiple responses using a single string: bcd, abc or cd")
 
 ::: notes
 
@@ -116,9 +135,9 @@ This approach makes it difficult to compute even simple statistics, such as the 
 
 :::
 
-## A different way to code multiple response
+## Coding using single letters
 
-![](images/multiple-response-03.png "Coding of multiple responses using single letters (\"a\", \"b\", \"c\", or \"d\") in individual columns")
+![](images/multiple-response-03.png "Coding of multiple responses using single letters, a, b, c, or d, in individual columns")
 
 ::: notes
 

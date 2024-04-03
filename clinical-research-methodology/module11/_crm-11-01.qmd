@@ -46,14 +46,14 @@ I'll describe what belongs in a data dictionary after I describe the various ele
 
 ## Contents of a data dictionary
 
-    -   Variable names
-    -   Variable labels
-    -   Units of measurement
-    -   Permissible/impermissible values
-    -   Value labels
-    -   Missing value codes
-    -   Source
-    -   License
+-   Variable names
+-   Variable labels
+-   Units of measurement
+-   Permissible/impermissible values
+-   Value labels
+-   Missing value codes
+-   Source
+-   License
 
 ::: notes
 
@@ -83,15 +83,11 @@ Sometimes a very brief abbreviation is okay, like bw for birthweight or bmi for 
 ## Good and bad variable names
 
 -   Names to avoid (www.writersexchange.com)
-    -   systolic blood pressure
-    -   systolic-blood-pressure
+    -   systolic blood pressure, systolic-blood-pressure
 -   Names that work
-    -   systolic_blood_pressure
-    -   systolic.blood.pressure
-    -   SystolicBloodPressure
+    -   systolic_blood_pressure, systolic.blood.pressure, SystolicBloodPressure
 -   NEVER USE ALL CAPS FOR VARIABLE NAMES
-    -   Lower case ascenders (e.g., f and l)
-    -   Lower case descenders (e.g., g and y)
+    -   Lower case has ascenders (e.g., f, l) and descenders (e.g., g, y)
   
 ::: notes
 
