@@ -7,16 +7,14 @@ format:
 editor: source
 ---
 
-## Slide 11-01
-
-::: notes
-
-:::
-
 ## Hierarchical data
 
 -   Moving beyond the independence assumption
 -   Correlation within groups
+
+::: notes
+
+:::
 
 ## Examples of hierarchical data, 1 of 2
 
@@ -35,7 +33,7 @@ editor: source
 
 ## Basic notation, 1 of 2
 
--   $Y_{ij}
+-   $Y_{ij}$
     -   i defines cluster
         -   i=1,...,a
     -   j defines individual within cluster
@@ -47,13 +45,27 @@ editor: source
     -   $\mu$ unknown constant
     -   $\alpha_i$ is normally distributed
         -   $SD(\alpha_i)=\sigma_{between}$
-    -   $\epsilon{ij}$ is normally distributed
+    -   $\epsilon_{ij}$ is normally distributed
         -   $SD(\epsilon_i)=\sigma_{within}$
 
 ## Some basic results
 
--   $SD(Y_{ij})=\sigma_{total}$
-    -    $=\sqrt{\sigma^2_{between}+\sigma^2_{within}}$
--   $\bar{Y}_{..}=\sqrt{\frac{\sigma^2_{between}}{a}+\frac{\sigma^2_{within}}{an}}$
+-   $SD(Y_{ij})=\sigma_{total} = \sqrt{\sigma^2_{between}+\sigma^2_{within}}$
+-   $SD(\bar{Y}_{..})=\sqrt{\frac{\sigma^2_{between}}{a}+\frac{\sigma^2_{within}}{an}}$
 -   $Corr(Y_{ij}, Y_{ik})=\frac{\sigma^2_{between}}{\sigma^2_{between}+\sigma^2_{within}}$
     -   Intraclass correlation (ICC)
+
+## Expected mean squares, 1 of 2
+
+-   $MS(between) = \frac{1}{a-1}\Sigma_i n(\bar{Y}_{i.}-\bar{Y}_{..})^2$
+    -   $E[MS(between)] = a\sigma^2_{between}+\sigma^2_{within}$
+
+## Expected mean squares, 2 of 2
+
+-   $MS(within) = \frac{1}{a(n-1)}\Sigma_i\Sigma_j(\bar{Y}_{ij}-\bar{Y}_{i.})^2$
+    -   $E[MS(within)] = \sigma^2_{within}$
+    
+## Variance components estimates
+
+-   $\hat\sigma_{between}=\frac{MS(between)-MS(within)}{a}$
+-   $\hat\sigma_{within}=MS(within)$

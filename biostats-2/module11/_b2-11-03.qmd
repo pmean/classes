@@ -1,5 +1,5 @@
 ---
-title: "First subset of litter weights"
+title: "Two sample t-test on first subset"
 format: 
   revealjs:
     slide-number: true
@@ -7,13 +7,22 @@ format:
 editor: source
 ---
 
-## Subset of litter weights
+## Subset1 of litter weights
 
 -   Consider only groups 1 and 2.
 -   Pick a male (sex=1) randomly from each litter
+-   Example of a between litter comparison
 
 ## Listing of subset
 
+![](images/litter-weights-subset1-01.png "Listing of subset data with 20 rows and four columns")
+
 ## Graph of subset
 
+![](images/litter-weights-subset1-02.png "Graph showing a downward trend in means from group 1 to group 2")
+
 ## Two-sample t-test
+
+![](images/litter-weights-subset1-03.png "Listing of group means and standard deviations")
+
+![](images/litter-weights-subset1-04.png "Listing of group means and standard deviations")

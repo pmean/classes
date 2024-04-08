@@ -1,18 +1,17 @@
 ---
-title: "Comments for MEDB 5502, Week 11"
+title: "See bottom of file for title"
 format: 
   revealjs:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "Meta-analysis"
-  topic_02: "To be determined"
-  topic_03: "To be determined"
-  topic_04: "To be determined"
-  topic_05: "To be determined"
-  topic_06: "To be determined"
-  topic_07: "To be determined"
-  topic_08: "To be determined"
+  topic_01: "Hierarchical models"
+  topic_02: "Hypothetical litter weights"
+  topic_03: "Two sample t-test on first subset"
+  topic_04: "Paired t-test on second subset"
+  topic_05: "Variance components on third subset"
+  topic_06: "Analysis of full dataset"
+  topic_07: "Assumptions and complications"
 editor: source
 ---
 
@@ -41,7 +40,6 @@ editor: source
     -   `r params$topic_05`
     -   `r params$topic_06`
     -   `r params$topic_07`
-    -   `r params$topic_08`
 
 {{< include _b2-11-01.qmd >}}
 
@@ -54,8 +52,6 @@ editor: source
 
 {{< include _b2-11-02.qmd >}}
 
-## Live demo, ANOVA and R-squared
-
 ## Break #2
 
 -   What you have learned
@@ -65,7 +61,7 @@ editor: source
     
 {{< include _b2-11-03.qmd >}}
 
-## Live demo, partial F test
+## Live demo, two sample t-test
 
 ## Break #3
 
@@ -76,7 +72,7 @@ editor: source
     
 {{< include _b2-11-04.qmd >}}
 
-## Live demo, stepwise regression
+## Live demo, paired t-test and restructuring
 
 ## Break #4
 
@@ -87,7 +83,7 @@ editor: source
 
 {{< include _b2-11-05.qmd >}}
 
-## Live demo, regression diagnostics
+## Live demo, Variance components
 
 ## Break #5
 
@@ -98,7 +94,7 @@ editor: source
 
 {{< include _b2-11-06.qmd >}}
 
-## Live demo, multicollinearity
+## Live demo, More variance components
 
 ## Break #6
 
@@ -108,15 +104,6 @@ editor: source
     -   `r params$topic_07`
 
 {{< include _b2-11-07.qmd >}}
-
-## Break #7
-
--   What you have learned
-    -   `r params$topic_07`
--   What's coming next
-    -   `r params$topic_08`
-
-{{< include _b2-11-08.qmd >}}
 
 ## Summary
 
@@ -128,14 +115,6 @@ editor: source
     -   `r params$topic_05`
     -   `r params$topic_06`
     -   `r params$topic_07`
-    -   `r params$topic_08`
-    
-## Additional topics??
-
-::: notes
--   Learning objectives
-    -    To be defined
-:::
 
 <!---
       You have to put the title down 
@@ -144,5 +123,5 @@ editor: source
 --->
 
 ---
-title: "Comments for MEDB 5502, Week 03"
+title: "Comments for MEDB 5502, Week 11, Hierarchical models"
 ---

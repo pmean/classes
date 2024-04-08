@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Paired t-test on second subset"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,37 @@ format:
 editor: source
 ---
 
-## Slide 11-04
+## Subset2 of litter weights
+
+-   Only group 1
+-   Randomly select one male and one female
+-   Example of a within litter comparison
 
 ::: notes
 
 :::
+
+## Listing of subset
+
+![](images/litter-weights-subset2-01.png "Listing of subset with 20 row and 4 columns")
+
+## Graph of data
+
+![](images/litter-weights-subset2-02.png "Line graph showing a variety of upward and downward trends between females and males within each litter")
+
+## Restructuring information
+
+![](images/litter-weights-subset2-03.png "Messages from restructure wizard showing new variable names")
+
+![](images/litter-weights-subset2-04.png "Messages from restructure wizard showing change from 20 rows to 10 rows")
+
+## View of data after restructuring
+
+![](images/litter-weights-subset3-01.png "Resturctured data with an extra column but only 10 rows")
+
+## Paired t-test
+
+![](images/litter-weights-subset2-05.png "Means and standard deviations for each half of the pairing")
+
+![](images/litter-weights-subset2-06.png "Test statistic and p-value for the paired t-test")
 
