@@ -1,0 +1,98 @@
+---
+title: "Database files"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Database systems
+
+-   Terminology
+    -   Tables
+    -   Fields
+    -   Records
+    -   Primary key
+    -   Foreign key
+
+::: notes
+
+Databases use slightly different terminology than what statistical software like R, SAS, and SPSS use, so let's review the basic terminology.
+
+A table is a rectangular grid of numbers. Fields represent the columns of the table, what our statistical packages would call variables. Records represents the rows of the table, or what our statistical pacakges would call observations. The primary key is a identifier that, ideally, is unique for every record. A foreign key is a link between this table and a the primary key of a different table.
+
+:::
+
+## Database table for value labels 
+
+![Database linkage between race code and race labels](images/database-tables-01.png)
+
+::: notes
+
+Earlier, you saw how longitudinal or repeated measures data could be split into two tables. The use of multiple linked tables is a powerful reason to use a database.
+
+Here's another example. Suppose you were tracking race using the following categories:
+
+American Indian or Alaska Native
+
+Asian
+
+Black or African American
+
+Native Hawaiian or Other Pacific Islander
+
+White
+
+You wouldn't want to type the long labels in over and over again. So you would use the numbers 1 through 5 with 1 for American Indian or Alaska Native and 5 for White. But in a separate table you could keep the longer labels and then just join the tables together to get the nice labels for each subject.
+
+:::
+
+## REDCap
+  
+-   Research Electronic Data Capture
+-   Not open source, but freely distributed by Vanderbilt
+-   Software components
+    -   PHP
+    -   JavaScript
+    -   MySQL
+-   Case report forms
+-   Strongly recommended
+
+::: notes
+
+REDCap is a database built on top of open source components, PHP, JavaScript, and MySQL. It has a lot of features that are especially attractive to researchers. For data entry, it allows you to easily define a case report form, a structure for your data entry. It can manage double entry seamlessly. When you are done with data entry, it has nice features to simplify the export of your data into R, SAS, or SPSS.
+
+REDCap also has a survey module that allows you to collect questionnaire data over the Internet.
+
+It has a lot of nice built in security features as well to guard against accidental release of private health information.
+
+You should use REDCap for pretty much any research project. It has a bit less value, perhaps, for secondary data sets, but for any project where you have to enter the data yourself, you'd be crazy not to use REDCap.
+
+:::
+
+## Double entry coding
+
+-   Great quality check
+    -   If you can afford it
+-   Prepare a code book first
+    -   Count the proportion of discrepancies
+-   If too many discrepancies
+    -   Revise the code book and re-do the data entry.
+-   If discrepancies small enough
+    -   Report this number in your publication
+
+::: notes
+
+Double entry coding is using two people to enter the identical data sets. They do this independently, then you compare the results to measure the degree of data entry errors.
+
+Before you start double entry coding, you need a very detailed code book so there is little room for subjective interpretations of what to enter for unusual responses.
+
+Fix the discrepancies, of course. The error rate will be different for the different data entry people, but the product of the two error rates is an estimate of the number of undetected errors. So if one person had an error rate of 5% and the other had an error rate of 2%, the overall error rate would be 0.05*0.02=0.001.
+
+If your undetected error rate is too high, you are at fault for writing an ambiguous code book. Rewrite the code book and repeat the whole process.
+
+Once you get a good undetected error rate, publish this number in your methods or results section of your paper.
+
+:::
+

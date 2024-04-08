@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Hypothetical litter weights"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,25 @@ format:
 editor: source
 ---
 
-## Slide 11-02
+## Description of litter weights data, 1 of 3
 
-::: notes
+```{r}
+library(yaml)
+dd <- read_yaml("../../../datasets/litter-weights.yaml")
+cat(as.yaml(dd["data_dictionary"]))
+cat(as.yaml(dd["description"]))
+cat(as.yaml(dd["source"]))
+```
 
-:::
+## Description of litter weights data, 2 of 3
+
+```{r}
+cat(as.yaml(dd$vars[1:3]))
+```
+
+## Description of litter weights data, 3 of 3
+
+```{r}
+cat(as.yaml(dd$vars[4:5]))
+```
 

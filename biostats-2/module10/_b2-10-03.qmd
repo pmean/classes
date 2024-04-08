@@ -1,5 +1,6 @@
 ---
-title: "First subset of litter weights"
+=======
+title: "Recidivism case study"
 format: 
   revealjs:
     slide-number: true
@@ -7,14 +8,143 @@ format:
 editor: source
 ---
 
-## Subset of litter weights
+## Case study evuations
 
--   Consider only groups 1 and 2.
--   Pick a male (sex=1) randomly from each litter
+-   Answer the following questions
+    -   Who is the villain?
+    -   Who is the victim?
+    -   How was the victim harmed?
+    -   What could have prevented this?
+    -   Did anything surprise you?
+    -   Did you disagree with anything in the article?
+    -   Is there a single quote from the article that summarizes it well?
+  
+::: notes
 
-## Listing of subset
+I want to do a small group exercise where you look at a newspaper article that discusses harm that occurred thanks to computer models. Do this in groups of 4 to 5 people. Read the article quicly. It should not take more than 5 minutes to read. Then designate someone as a note taker and a different individual as the spokesperson for the group. Come up with answers for the questions listed here.
 
-## Graph of subset
+Given the size of the class, we may not have the opportunity to let every group speak, but I will try to spread things around as much as possible.
 
-## Two-sample t-test
+Here are the hyperlinks to the articles:
+
+https://www.nytimes.com/2006/08/09/technology/09aol.html
+
+https://www.wired.com/story/null-license-plate-landed-one-hacker-ticket-hell/
+
+https://www.nytimes.com/2011/07/08/health/research/08genes.html
+
+:::
+>>>>>>> 83da4b13e3f17f339296dacb46e3f6593877ca4f
+
+## Here are the articles for your review
+
+![Figure 8. Excerpts from three articles](http://www.pmean.com/new-images/21/dark-side-08.png)
+
+::: notes
+
+Here are the three articles. "A Face Is Exposed for AOL Searcher No. 4417749," published in 2006 in the New York Times, "How a 'NULL' License Plate Landed One Hacker in Ticket Hell," published in Wired Magazine in 2019, and "How Bright Promise in Cancer Testing Fell Apart," published in the New York Times in 2011.
+
+Each small group will get a different article. If you've read the article already, re-read it with an eye to answer the questions posed on the previous slide. If you've not read the article already, skim through it quickly and contribute a few thoughts to your group.
+
+I want each group to read silently for five minutes and then start discussing the article for the next ten minutes. Then I want to hear from some of the groups about their thoughts. I won't have time to get information from every group, but I'll try to get a variety of thoughts and opinions.
+
+:::
+
+## Weapons of Math Destruction
+
+![Figure 9. Cover of Cathy O'Neill's book](http://www.pmean.com/new-images/21/dark-side-06.png)
+
+::: notes
+
+Before I start the individual groups, let me give an example of how this works.
+
+This is a great book with lots of interesting examples, but I want to discuss one example in detail and answer the questions about it. It comes from chapter 1 of the book, Weapons of Math Destruction, by Cathy O'Neil.
+
+:::
+
+## First villain
+
+-   Walter Quijano
+    -   Provided testimony on recidivism rates at seven trials
+    -   Unfairly included race in his calculations and testimony
+    -   Six of seven convictions later overturned
+  
+::: notes
+The big data example in O'Neil's book starts with the story of a person, Walter Quijano, who provided testimony in seven trials about the risk of recidivism. Recidivism is the unfortunate event where someone who has been released from prison commits a new crime and gets tossed back in jail. Mr. Quijano gave overtly biased recommendations at these trials that incorporated race into his assessment of recidivism. This was noted in the appeals of one of the defendants, and led to six of the seven convictions being overturned.
+:::
+  
+## Second villain  
+  
+-   LSI-R questionnaire
+    -   Given to thousands of inmates
+    -   Classifies risk of recidivism
+    -   Does not explicitly ask about race
+    -   But does have "leading" questions
+  
+::: notes
+
+It contrasts this individual with a big data prediction model based on the LSI-R questionnaire. LSI-R stands for Level of Service Inventory-Revised that asks a bunch of questions like "How many prior convictions have you had?" This questionnaire weights the responses to various questions to provide an estimate of the risk of recidivism. Although the questionnaire does not explicitly ask about race, it can still indirectly identify a person's race by their pattern of responses to a series of leading questions.
+
+:::
+
+## Victims
+
+-   Inmates at parole hearings
+-   Defendants at trial sentencing
+
+::: notes
+
+This questionnaire was used at a large number of parole hearings in multiple states and at sentencing hearings in a few states as well.
+
+:::
+
+## How were the victims harmed
+
+-   Disproportionate recidivism risks by race
+    -   Fewer paroles grants
+    -   Longer sentences
+-   No avenue to appeal
+    -   Model presumed to be unbiased
+    -   Complexity prevents examination of bias
+-   Scale issues
+    -   Walter Quijano harmed 7 defendants
+    -   LSI-R harmed thousands of defendants.
+
+::: notes
+The model was shown to grossly overstate the recidivism risk of black defendants. This led to fewer grants of parole to black prisoners and longer prison sentences for newly convicted black defendants.
+
+There was no avenue of appeal for those harmed by the LSI-R. You can't cross-examine an algorithm at trial, and the company that developed the LSI-R model did not want to disclose details about how the model worked. It was a trade secret and revealing its details would allow other companies to steal their technology. To be honest, the model itself was so complex that the company would have been unable to reveal its inner workings, even if it wanted to.
+
+The other important is issue is the scale of the harm. A biased witness could only influence a handful of defendants. Walter Quijano had only enough time and energy to taint the sentencing of seven defendants. The LSI-R algorithm, however, was applied to many people. , but the impact of the LSI-R questionnaire ended up influencing thousands.
+
+That's a hallmark of big data models. They are expensive to build and very labor intensive, but once they are built, it costs almost nothing to deploy it broadly.
+:::
+  
+## What could have prevented this
+
+-   Insist on transparency
+-   Test the model for bias
+-   Build the model with better objective
+
+## Did anything surprise you?
+
+-   Questionnaire includes questions that would be inadmissable if they were asked during a normal trial
+    -   When was the first time you were ever involved with the police?
+    -   Do any of your friends or relatives have a criminal record?
+
+::: notes
+
+I read about this a couple of years ago, but I think the thing that surprised me was the number of questions on the LSI-R that would not have been allowed in an open trial, because the questions would have been ruled as prejudicial.
+
+But apparently, you can ask prejudicial questions outside of a courtroom in a questionnaire and then use that information to create a recidivism risk score.
+
+:::
+
+## Did you disagree with anything in the article?
+
+-   No
+
+## Is there are single quote that summarizes the article well
+
+"The questionnaire includes circumstances of a criminal's birth and upbringing, including his or her family, neighborhood, and friends. These details should not be relevant to a criminal case or to the sentencing."
 

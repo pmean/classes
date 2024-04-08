@@ -1,0 +1,116 @@
+---
+title: "Longitudinal and repeated measures data"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Longitudinal data, Repeated measures data
+
+-   Tall and thin format
+    -   One line per visit/measurement
+-   Short and fat format
+    -   One line per patient
+  
+::: notes
+
+Longitudinal data are data collected at several different time periods on the same individual. Repeated measurements data are the same measurements collected on an individual under different conditions. Both longitudinal and repeated measurements data are very powerful because each subject can serve as their own control. Data analysis is tricky, but data management is even trickier.
+
+You have two different options for storing longitudinal or repeated measurements data. The tall and thin format has one row for each visit in a longitudinal study or one row for each measurement in a repeated measures study. This means lots of rows, but not so many columns. This makes the data set tall and thin.
+
+The short and fat format has one row per patient and each visit or each repeated measure is spread out across multiple variables. This means fewer rows but many more columns.
+
+Some data analyses, such as plots, work better with the tall and thin format. Other analyses, such as correlations, work better with the short and fat format. It is tedious to switch between the two formats, but you can do this.
+
+:::
+
+## Example of tall/thin, dictionary
+
+![](images/repeated-measures-01.png "Data dictionary for data arranged in tall and thing format. Notice that there are only 8 variables")
+
+::: notes
+
+Here's a data set looking at balance. Patients are asked to balance on one foot either on a normal surface or on a softer surface of foam. I presume that balancing is harder on a soft surface like foam. They do this under three vision conditions: eyes open, eyes closed, and a closed dome which allows a little bit of partial vision. I presume that balancing is easier with eyes open, hardest with eyes colses, and somewhere in the middle for a closed dome. Each combination of surface and vision was repeated twice, leading to 2 by 3 by 2 or 12 different repeated measurements.
+
+The outcome variable is an observer assessment of balance on a four point scale.
+
+This is the data dictionary for the tall and thin formatted data. A single column holds the observer assessment of balance, which means 12 by 40 or 480 rows of data.
+
+:::
+
+## Example of short/fat, dictionary
+
+![Repeated measures example in short and fat format](images/repeated-measures-02.png "Data dictionary for data arranged in short and fat format. Notice that there are 17 variables")
+
+::: notes
+
+Here's the data dictionary for the short and fat format. There's one row per patient, but this means that the twelve repeated measures conditions have to have separate columns. NO1 and NO2 represent the normal surface, open eyes measurements. NC1 and NC2 represent the normal surface, closed eyes measurements. The last two columns, FD1 and FD2 represent a foam surface and domed vision. I'll leave it to you to decode the middle values.
+
+:::
+
+## Example of tall/thin, data
+
+![](images/repeated-measures-03.png "Partial data listing in the tall and thin format. Notice that there are twelve rows per patient.")
+
+::: notes
+
+Here's the data for the tall and thin format. Don't worry about individual values, but do notice the size of the scroll bar on the right hand side is quite small indicating that you are only seeing a small fraction of the available rows.
+
+:::
+
+## Example of short/fat, data
+
+![](images/repeated-measures-04.png "Partial data listing in the short and fat format. Notice only one row per patient.")
+
+::: notes
+
+Here's the data in the short and fat format. Look again at the scroll bar on the right. It is so large because we are seeing almost all of the data (37 out of the 40 rows). Notice also that the short and fat format fills the screen almost completely from left to right. The tall and thin format did not come anywhere close to the right margin.
+
+:::
+
+## A simple alternative to both tall/thin and short/fat
+
+-   Disadvantages of tall/thin
+    -   Too much repetition
+-   Disadvantages of short/fat
+    -   Hard to read
+-   Database format
+    -   Time constant table
+    -   Time varying table
+
+::: notes
+
+There are serious disadvantages to the tall and thin format. For gender, you see male, male, male repeated twelve times because the first subject's gender was male for all twelve of the repeated measures. Repeated data like this is an open invitation for errors to creep in.
+
+There are serious disadvantages to the short and fat format. Listing each visit in a separate set of columns or listing every repeated measurement condition in separate columns means that you have to do a lot of left and right scrolling to see all of the data. Left/right scrolling is painful, compared to up/down scrolling.
+
+I had someone with a longitudinal data set where there were up to 40 separate visits with multiple measurements at each visit. He used the short and fat format and actually ran out of columns in the Excel spreadsheet. This was an earlier version of Excel where the column limit was 255. Now it is much higher. But think about it. A data set with 255 columns. Why I'd get exhausted just trying to name all those columns.
+
+I recommend that you split longitudinal data into two pieces. The first piece represents time constant variables. These are the variables that do not change from visit to visit or across the repeated measurements. Most demographics like sex and race are the same from visit to visit.
+
+The time varying table contains values that change from one visit to another in a longitudinal study or values that change from one repeated measures condition to another
+
+:::
+
+## Time constant data
+
+![](images/repeated-measures-05.png "Partial listing of time constant data: Sex, Age, Height, Weight")
+
+::: notes
+
+There is one row per patient for the time constant variables and notice that there is no repetition.
+
+:::
+
+## Time varying data
+
+![](images/repeated-measures-06.png "Listing of time varying data: Surface, Vision, and CTSIB")
+
+::: notes
+
+There is one row per repeated measurement for the time varying variables. If you split the data this way, make sure that each patient is given a unique identifier. You'll need this when you merge the time constant and time varying variables.
+
+:::
+

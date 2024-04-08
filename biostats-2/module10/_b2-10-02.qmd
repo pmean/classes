@@ -1,5 +1,9 @@
 ---
+<<<<<<< HEAD
 title: "Hypothetical litter weights"
+=======
+title: "Empiricism and its critics"
+>>>>>>> 83da4b13e3f17f339296dacb46e3f6593877ca4f
 format: 
   revealjs:
     slide-number: true
@@ -7,6 +11,7 @@ format:
 editor: source
 ---
 
+<<<<<<< HEAD
 ## Description of litter weights data, 1 of 3
 
 ```{r}
@@ -19,6 +24,166 @@ cat(as.yaml(dd["source"]))
 
 ::: notes
 This is a description of the assisted reproduction technology meta-analysis.
+=======
+## Statistics are a social construct
+
+![Figure 4. Cover from Joel Best's book](http://www.pmean.com/new-images/21/dark-side-04.png)
+
+::: notes
+
+I'm going to share a message that is controversial, but which I believe deeply in. It's a message from a book by Joel Best: Lies, Damned Lies, and Statistics. Untangling Numbers from the Media, Politicians, and Activists. He argues that Statistics are a social construct. I need to define social construct here. A social construct is a method by which people create their perception of reality. 
+
+That's certainly true of Statistics. Statistcs are "selected, shaped, and presented by human beings"
+
+Source of quote: Milo Shield, Teaching the Social Construction of Statistics.  Available at https://www.researchgate.net/publication/277299441_Teaching_the_Social_Construction_of_Statistics
+
+Image taken from https://www.ucpress.edu/book/9780520274709/damned-lies-and-statistics.
+
+:::
+
+## The arrogance of empiricism (1/2)
+
+"I often say that when you can measure what you are speaking about, and express it in numbers, you know something about it; but when you cannot measure it, when you cannot express it in numbers, your knowledge is of a meagre and unsatisfactory kind; it may be the beginning of knowledge, but you have scarcely in your thoughts advanced to the state of Science, whatever the matter may be." Lord Kelvin.
+
+::: notes
+
+The idea that Statistics are a social construction flies in the face of empiricism, the philosophy that experiments can reveal the realities of the world. 
+
+Here is a quote in support of empiricism. I won't read all of the first quote, but notice the sneering phrase that without numbers, "your knowledge is of a meagre and unsatisfactory kind."
+
+:::
+
+## The arrogance of empiricism (2/2)
+
+"No human investigation can be called real science if it cannot be demonstrated mathematically." Leonardo da Vinci
+
+::: notes
+
+Here is a second quote that is just as bad. Science without numbers (math) is not real.
+
+:::
+
+## Why empiricism fails (1/3)
+
+"The government is very keen on amassing statistics. They collect them, add them, raise them to the nth power, take the cube root and prepare wonderful diagrams. But you must never forget that every one of these figures comes in the first instance from the village watchman, who just puts down what he damn well pleases." Sir Josiah Stamp
+
+::: notes
+
+This quote from Josiah Stamp illustrates why Statistics are a social construct. It doesn't matter how fancy we dress up the numbers, nth powers, cube roots. It all comes down to the village watchman who does what he damn well pleases.
+
+The village watchman is part of the social constuction of Statistics. So are the government officials who do all sorts of mathematical manpulations which provide an impression of objectivity.
+
+:::
+
+## Why empricism fails (2/3)
+
+![Figure 5. Cover of Stephen Jay Gould's book](http://www.pmean.com/new-images/21/dark-side-05.png)
+
+::: notes
+
+There's a great book by Stephen Jay Gould that really makes you think hard about numbers. The book, The Mismeasure of Man, talks about IQ testing from a historical perspective and totally destroys the idea that intelligence is a trair that can be easily quantified. He starts with efforts in the 1800s to use the size of a person's skull as a measure of their intelligence. A big skull means a big brain that lives inside there and bigger brains are smarter brains.
+
+:::
+
+## Why empricism fails (3/3)
+
+![Figure 6. Frame from Yes, Prime Minister video clip](http://www.pmean.com/new-images/19/leading-questions01.png)
+
+::: notes
+
+This short video clip is an excellent illustration of how the questions leading up to a particular question on a survey can bias the response to that survey. It comes from a British comedy, Yes Prime Minister, that ran in the 1980s.
+
+YouTube. Leading Questions- Yes Prime Minister. Taken from the 1st Season of Yes Prime Minister – Episode 2, The Ministerial Broadcast. 2:16 running time. Published on Jan 15, 2012. 
+
+https://www.youtube.com/watch?v=G0ZZJXw4MTA
+
+:::
+
+## But numbers still have value. Example: Quality of Life
+
+![Figure 7. First few questions from SF-36 form](http://www.pmean.com/new-images/21/dark-side-07.png)
+
+::: notes
+
+Recognizing that Statistics are a social construction does not mean that Statistics are worthless and that experiments are a waste of time. The best example I can give for this is the measure of quality of life.
+
+Quality of Life is a measure that is reported in many research studies. There is no question that quality of life is a social construction. It is measured by forms like the SF-36 shown here. But it is not an objective reality but something that was constructed by humans.
+
+Now I mentioned earlier that I like to run. It is a pretty strenuous activity, but one that I enjoy. A friend of mine said, though, that she couldn't understand why you would want to run, unless you were being chased. One the other hand, I would not miss a thing if I did not push a vacuum.
+
+There is no objective measure of quality of life. It depends on the values of the people who are developing forms like the SF-36.
+
+Problems occur when these social constructs are developed by research teams with limited diversity (they may have blind spots) or if the social constructs are not evaluated in diverse populations.
+
+But we can still use social constructs like quality of life, as long as we do it carefully.
+
+In fact, we should use these measures because they get at information which is important, and which cannot be measured by a laboratory.
+
+There's a lot of uncertainty about treatments for cancer, for example, which can sometimes extend a person's lifetime, but can also substantially interfere with their ability to do things that they feel are important. You can't discuss this trade-off without first measuring the deterioration of quality of life associated with some of these aggressive therapies.
+
+Image obtained from
+
+https://clinmedjournals.org/articles/jmdt/jmdt-2-023-figure-1.pdf
+
+:::
+
+## Rules for using Statistics as social constructs
+
+1. Understand the context in which the Statistic was generated.
+
+2. Identify possible biases
+
+3. Recognize limitations
+
+4. Beware of confirmation bias
+
+5. Avoid nihilistic thinking
+
+::: notes
+
+Once you recognize that Statistics are a social construct, you can take steps to make sure that these statistics are used properly. You need to think about the process the generates the statistics. Is there a "night watchman" who puts down whatever he pleases?
+
+Just as an example, I do a lot of work with electronic health records. The health care professionals who populate the data in a system like Cerner or Epic are not doing this because they want to make sure that I have something interesting to publish. They have two objectives. First, they want to make sure that the information they put in is helpful to other members of the health care team. Second, they want to make sure they get the maximum possible billing from the insurance companies. Third, they want to wrap this up quickly so they can get home to their families.
+
+Second, identify possible biases. Does the desire to maximize billing skew the results? 
+
+Third, recognize limitations. Am I, as a researcher, asking for information that is not important for documenting the care a patient receives to other members of the treatment team?
+
+Fourth, beware of confirmation bias. Confirmation bias is the tendency to look harder for information that reinforces our preconceived notions, or to overlook or downweight information that contradicts our view of the world.
+
+Fifth, avoid nihilistic thinking. Once you recognize that Statistics are a social construct, you have to work harder, but it is not an impossible task. Our tendency to treat Statistics as hard and objective has led us astray at times, but we've still made a lot of progress in science and medicine, thanks to Statistics.
+
+:::
+
+## Things have gotten worse, thanks to big data
+
+1. Large amounts of data of uneven quality
+
+2. Black box models
+
+3. Lack of accountability
+
+4. Scaling problems
+
+5. Loss of privacy
+
+::: notes
+
+Now everything I've mentioned so far is a problem in Statistics that has been around since before I was born. But we are in a new era, the era of big data. We have data today at a size and a level of detail that was unavailable twenty years ago. This is thanks to the internet, the human genome project, and many other things.
+
+I'm glad we have all these data, because it increases the opportunities for learning. But at the same time, the flaws of empiricism have gotten worse.
+
+Part of the problem is that the massive data sets that we use today have a great unevenness of quality. it is not too hard to identify obvious typos in a data set with a few hundred observations, but you would never been able to spot them in a data set with a few million observations.
+
+Second, big data requires more complex data analysis methods and these methods are often difficult to understand. Not just from a how do these new methods work, but also in what aspects of the data are emphasized and what aspects of the data are ignored. A small model that has ten inputs is easily taken apart and examined, but you can't do that with a model that has ten thousand inputs.
+
+Third, there is a lack of accountability. These complex models are rarely audited, for example, to look for hidden biases.
+
+Fourth, big data provides an opportunity to produce answers not just for a small number of people, but for thousands or millions of them all at once. If the big data model is flawed, the flaws are multiplied across the large number of people who are affected by the big data model.
+
+Fifth, there is so much data out there that you can often infer quite intimate and private details about individuals, often without them being aware of this.
+
+>>>>>>> 83da4b13e3f17f339296dacb46e3f6593877ca4f
 :::
 
 ## Description of litter weights data, 2 of 3

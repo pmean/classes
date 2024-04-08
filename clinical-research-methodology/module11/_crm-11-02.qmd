@@ -1,0 +1,68 @@
+---
+title: "Missing values"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Missing value codes
+
+-   Explain WHY the value is missing
+-   For a survey
+    -   Did not answer
+    -   Not applicable
+-   For a lab result
+    -   Below the limit of detection
+    -   Insufficient volume for testing
+    -   Dropped the test tube and it shattered making a huge mess
+
+::: notes
+
+Sometimes you do not have data for a particular variable for some of your patients. This is perfectly fine. You must explain why the value is missing. 
+
+Sometimes a value is missing because a patient skipped the item on your questionnaire. Sometimes, though, you are the one who told the patient to skip the question. You were asking about the age of the patient's spouse and you thought that would be a difficult question for someone unmarried to answer. You should probably analyze those two different missing values quite differently.
+
+If you are looking at lab results on a serum sample, there are several reasons why the lab result might be missing. Maybe the value was below the limit of detection. Maybe you did not have enough blood to test for this particular value. Maybe you dropped the test tube before you could analyze anything.
+
+If you decided that you would replace the missing values with the average of the values where you did have data, that's not such a bad thing to do to fix things from the dropped test tube. There's no hint that a large or small value on the lab value would make the test tube more slippery. I'd worry a bit more about low sample volume. But the missing value where you absolutely cann ont and should not replace the missing value with the average of the remaining values is the case where the value was missing because it was below the limit of detection. Below low the limit of detection makes this particular lab value smaller than any of the others in the data set. And you're going to replace it by an average? For this case, a simple solution is to replace the missing value with a value halfway between zero and the limit of detection.
+
+That's whay the reason for missingness is so important.
+
+:::
+
+## Example of missing value codes
+
+-   Use extreme number code
+    -   9, 99, 999
+    -   -1
+-   Use symbols
+    -   NA
+    -   (asterisk)
+    -   (dot)
+-   Never use blanks to designate missing
+-   Note missing value code on data dictionary
+
+::: notes
+
+There are several ways you can code missing values. I recommend an extreme number code. 9 works well for values that can't get any larger than 4 or 5. Use 99 or 999 if the values can get larger. You want to choose enough nines so that the value is clearly outside of any reasonable range of legitimate values. So a birthweight of 99 kilograms is obviously a missing value for anyone except for a baby elephant. An IQ score of 999 is outside the range even of Albert Einstein.
+
+Some people use -1 for a missing value code if the variable is clearly not ever going to be a negative value. A baby could not have a birth weight of -1 kilogram, because such a baby would float up to the ceiling after being delivered.
+
+If there are several reasons why a variable could be missing, use a separate code for each reason, such as 997 for lost test tube, 998 for insufficient volume for testing, and 999 for a result below the limit of detection.
+
+You can also use symbols for missing values such as an asterisk or a dot. You can also use the letters NA, which is what R expects. These last three have a disadvantage for numeric variables. They end up confusing some imports and force your numeric column into a character string.
+
+:::
+
+## Missing value example
+
+![](images/forgotten-missing-value-01.png "Price tag for a computer printer with $9999.99 as the list price")
+
+::: notes
+
+Here's a humorous example of failure to account properly for missing values. The printer had a sales price of 299 dollars and 99 cents. The original price was listed as 9,999 dollars and 99 cents, which is an outrageous price for a printer. Clearly, a field of all nines was intended to be a missing value code. But the system that computed the savings did not recognize this as a missing value and calculated that if you bought this printer, you would be saving $9,700 dollars.
+
+:::
+

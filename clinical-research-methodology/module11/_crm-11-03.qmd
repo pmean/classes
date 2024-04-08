@@ -1,0 +1,97 @@
+---
+title: "Dates"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Date formats
+
+![](images/iso-date-format-01.png)
+
+::: notes
+
+As this cartoon shows, there are a variety of ways to code dates. This is Scott Munro, creator of the wonderful xkcd cartoon series. He shows the dates in a variety of formats that get more and more bizarre, including Roman numeral and binary versions of the date. He is trying to emphasize the importance of following a single standard. He recommends, and I heartily agree with his recommendation, that you should always use the ISO 8601 standard.
+
+The ISO 8601 standard for dates starts with the four digit year followed by a dash. Then you have two digits for the month. It is always two digits, so January is 01 rather than 1 and September is 09 rather than 9. This is followed by another dash and then the two digit day. Note that the first day of the month is 01 rather than 1.
+
+One nice side effect of the ISO 8601 standard is that if the date gets converted to a string, that string can be sorted and it will always sort by the year, then the month, and then the date, which is exactly what you want.
+
+Nobody follows this standard. The most common deviation is failing to put a zero in front of single digit months and single digit dates. Leaving out that zero ruins the ability to sort the data as I noted early because the months will be sorted as 1, 10, 11, 12, then 2, 3, 4, etc.
+
+Another deviation is using slashes rather than dashes. This is a minor issue, but a much bigger problem is changing the year, month, date order. In America, we like to put the month, followed by the day, followed by the year. In Europe, they put the day followed by the month, followed by the year. Note only does this ruin the sort order, but dates like 10/12/2019 are ambiguous. Is it October 12 or December 10?
+
+Sometimes you will see the month spelled out or with a three letter abbreviation. This also ruins the sort order, as April is not the first month of the year, even though it appears first alphabetically. It also causes problems internationally, since the names of the months are differnt in different languages.
+
+Does it seem like I'm nitpicking. Well maybe I am. But here is the one thing that I hope you will agree is a major issue and not a nitpick.
+
+Sometimes, people only use two digits for the year. This is a serious problem and it leads to little kids being classified as 101 years old.
+
+Do any of you remember the Y2K crisis? It was a big bust, but let me tell you about my two plans to profit from the Y2K crisis. My first plan was to go to the ATM machine at 11:59pm on December 31 and withdraw the maximum amount in the hopes that the ATM would crash one minute later and lose the record of my transaction. My second plan was to show up late for work on the Monday following Y2K and explain to my boss that I was only late because my alarm clock was not Y2K compliant.
+
+It turns out that the concerns about Y2K did not materialize. Either because they were overblown or because all the programming that we did to fix things actually saved ourselves from a major computer meltdown. But the Y2K crisis still affects data analysis today.
+
+Never, never, never code your data as two digit years. Even if all the dates are year 2000 and later. You are asking for trouble if you don't use four digit years.
+
+:::
+
+## Internal storage formats
+
+-   Excel - number of days since 1899-12-31
+    -   Actually January 0, 1900 (1900-01-00)!
+-   R - number of days since January 1, 1970
+-   SAS - number of days since January 1, 1960
+-   SPSS - number of seconds since October 14, 1582
+
+::: notes
+
+Everything in the computer is stored as a number. That includes dates. Your computer is smart enough to turn that number into a string that you can interpret properly, but the underlying storage has to be a number so that your computer can calculate things like the number of days between when you entered the hospital and when you left.
+
+Every system has a different way of storing dates and you can summarize this best by noting what the index date is, the date that is stored internally as a zero.
+
+Every program has a different index data and this can sometimes lead to problems when you switch from one program to another.
+
+Excel decided to make their index date the start of the 20th century, which seems simple enough, but they made two mistakes. First, they assigned zero to a non-existent date (January 0, 1900). You can fix this by considering the index date to be December 31, 1899. A bigger problem is the geniuses at Microsoft failed to recognize that 1900 was NOT a leap year.
+
+For what it's worth, Microsoft did it this way to make things compatible with another spreadsheet, Lotus 1-2-3. Also, some of the Microsoft Excel versions for the Macintosh used an index date of 1904-01-01. This was also done to maintain compatibility, this time with other Macintosh programs, since earlier versions of Macintosh refused to compute dates earlier than 1904.
+
+That sounds like a nitpick, but having two different index dates and making leap year mistakes can lead to conversion problems. The moral is to always do some spot checking on dates when converting from Excel to a different system. Being off by four years from what you think the date is could really screw things up. Even being off by a single day because of a leap year screw up could mess up an inclusion/exclusion criteria based on the year of birth.
+
+R and SAS choose more current index dates. The choice of an index date for SPSS has a more interesting story behind it.
+
+:::
+
+## Gregorian calendar
+
+![](images/julian-to-gregorian-transition-01.png "October 1582 showing the missing days when the calendar transitioned from Julian to Gregorian")
+
+::: notes
+
+if the date of October 14, 1582 seems strange to you, it represents the start of the Gregorian calendar. The Julian calendar developed in ancient times was quite impressive. Astonomers at the time knew that the earth took 365.25 days to travel one orbit around the sun. So they invented the concept of a leap year.
+
+Unfortunately, the earth actually takes 365.24219 days. That 0.00781 seems small but it means that you are off but a full day every 128 years. The Church was becoming concerned because Easter, a holiday that clearly belong in the Spring was falling earlier and earlier in the season. The astronomers figured out that 3/400 or 0.0075 was pretty close, so if they could find a way to shorten the calendar by 3 days every 400 years, they'd keep things well in sync. So they decided to toss out leap years on three of the four century years. That would make 1700, 1800, and 1900 normal years, but 2000 would still be a leap year.
+
+Now there is even a discrepancy between (3/400) 0.0075 and 0.00781 so the proposed solution is to take back another leap day in the year 4000 and then again in the year 8000. I hope to be alive to see these two events.
+
+And to make up for all the accumulated errors over the past fifteen centuries, they decided to remove ten days from the calendar. October 4, 1582 would be followed by October 15, 1582, putting Easter back to mid-Spring, where it properly belonged for then and for all future generations. So the skipped over date of October 14, 1582 is day 0 of the Gregorian calendar.
+
+Here is an illustration of the transition, thanks to By Asmdemon - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=35391210
+
+:::
+
+## Gregorian calendar
+
+![Painting of Pope Gergory XIII](images/pope-gregory-xiii-portrait-01.png "A painting of Pope Gregory XIII")
+
+::: notes
+
+Here's a picture of Pope Gregory XIII, taken from Wikipedia. He's the Pope responsible for the Gergorian calendar. For what it's worth, it took a lot of time for some countries to convert to the Gregorian calendar. England (and the American colonies) switched in 1752 and because of their delay had to miss eleven days and not ten. They would have switched earlier, but did not like being dictated to by the Pope. Countries where the Orthodox Church predominated were even slower. Russia did not switch until the Communists took over in 1918 and Greece waited until 1923.
+
+Enough of the trivia. Let's get back to real hard data.
+
+So why did SPSS choose the number of seconds since October 14, 1582 rather than the number of days. Perhaps they were concerned about some of the rounding that could occur when you were tracking dates and times and not just dates. if you count by the number of elapsed seconds, you never have to round. Now, in exchange, you have to deal with date values that are on the order of 13 billion, and if you do a length of stay calculation, you are calculating the number of seconds that you were stuck in the hospital and not the number of days you were stuck in the hospital. You have to divide by 86,400 (the number of seconds in a day) to get length of stay in days.
+
+:::
+
