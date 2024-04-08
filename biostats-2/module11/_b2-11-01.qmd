@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Hierarchical models"
 format: 
   revealjs:
     slide-number: true
@@ -13,3 +13,47 @@ editor: source
 
 :::
 
+## Hierarchical data
+
+-   Moving beyond the independence assumption
+-   Correlation within groups
+
+## Examples of hierarchical data, 1 of 2
+
+-   Body parts
+    -   Left eye/right eye
+    -   Teeth
+    -   Skin patches
+-   Human families
+-   Animal litters
+
+## Examples of hierarchical data, 2 of 2
+
+-   Clinics/hospitals
+-   Communities
+-   Repeated measurements
+
+## Basic notation, 1 of 2
+
+-   $Y_{ij}
+    -   i defines cluster
+        -   i=1,...,a
+    -   j defines individual within cluster
+        -   j=1,...,n
+
+## Basic notation, 2 of 2
+
+-   $Y_{ij} = \mu+\alpha_i+\epsilon_{ij}$
+    -   $\mu$ unknown constant
+    -   $\alpha_i$ is normally distributed
+        -   $SD(\alpha_i)=\sigma_{between}$
+    -   $\epsilon{ij}$ is normally distributed
+        -   $SD(\epsilon_i)=\sigma_{within}$
+
+## Some basic results
+
+-   $SD(Y_{ij})=\sigma_{total}$
+    -    $=\sqrt{\sigma^2_{between}+\sigma^2_{within}}$
+-   $\bar{Y}_{..}=\sqrt{\frac{\sigma^2_{between}}{a}+\frac{\sigma^2_{within}}{an}}$
+-   $Corr(Y_{ij}, Y_{ik})=\frac{\sigma^2_{between}}{\sigma^2_{between}+\sigma^2_{within}}$
+    -   Intraclass correlation (ICC)
