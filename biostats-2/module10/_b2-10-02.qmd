@@ -1,9 +1,5 @@
 ---
-<<<<<<< HEAD
-title: "Hypothetical litter weights"
-=======
 title: "Empiricism and its critics"
->>>>>>> 83da4b13e3f17f339296dacb46e3f6593877ca4f
 format: 
   revealjs:
     slide-number: true
@@ -11,20 +7,6 @@ format:
 editor: source
 ---
 
-<<<<<<< HEAD
-## Description of litter weights data, 1 of 3
-
-```{r}
-library(yaml)
-dd <- read_yaml("../../../datasets/litter-weights.yaml")
-cat(as.yaml(dd["data_dictionary"]))
-cat(as.yaml(dd["description"]))
-cat(as.yaml(dd["source"]))
-```
-
-::: notes
-This is a description of the assisted reproduction technology meta-analysis.
-=======
 ## Statistics are a social construct
 
 ![Figure 4. Cover from Joel Best's book](http://www.pmean.com/new-images/21/dark-side-04.png)
@@ -183,18 +165,5 @@ Fourth, big data provides an opportunity to produce answers not just for a small
 
 Fifth, there is so much data out there that you can often infer quite intimate and private details about individuals, often without them being aware of this.
 
->>>>>>> 83da4b13e3f17f339296dacb46e3f6593877ca4f
 :::
-
-## Description of litter weights data, 2 of 3
-
-```{r}
-cat(as.yaml(dd$vars[1:3]))
-```
-
-## Description of litter weights data, 3 of 3
-
-```{r}
-cat(as.yaml(dd$vars[4:5]))
-```
 
