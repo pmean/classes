@@ -10,10 +10,12 @@ editor: source
 ## Hierarchical data
 
 -   Moving beyond the independence assumption
--   Correlation within groups
+-   Correlation within clusters
 
 ::: notes
+Throughout this class, I have discussed the assumptions that you need for the t-test, the chi-square test, the ANOVA test, and so forth. Every single time, I mention the assumption of independence. It's often one that you can only check qualitatively. I mention special cases where you can't assume independence. In this lecture, I want to talk about one of those special cases: hierarchical data. 
 
+Hierarchical data has some additional grouping factor, often called a cluster. Measurements made within a cluster are correlated with one another, violating the assumption of independence.
 :::
 
 ## Examples of hierarchical data, 1 of 2
@@ -25,11 +27,45 @@ editor: source
 -   Human families
 -   Animal litters
 
+::: notes
+A simple example of hierarchical data is when you select a group of patients and then make measurements on two or more parts of their body. You might, for example, put an eye drop medication in the left eye and a placebo drop in the right eye. You might apply different types of sealents on different teeth in a mouth. You might put different food allergens on different parts of a patient's back. 
+
+You might select families from a population and make measurements on two or more members of the same family. Since family members share the same environment and have very similar genetics, any comparison made within a family is likely to be more precise.
+
+Likewise, measurements on the animals from the same litter will be precise because of a shared inter-uterine environment prior to birth and shared feeding from the same mother before weaning.
+:::
+
 ## Examples of hierarchical data, 2 of 2
 
 -   Clinics/hospitals
 -   Communities
 -   Repeated measurements
+
+::: notes
+Patients treated at the same clinic or the same hospital will often have similar outcomes. This might be caused by the location of the clinic, which determines the types of patients that come in. it might also be caused by subtle treatment practices that are agreed upon within a clinic but which might vary from one clinic to another.
+
+You might select entire communities and then sample people within each community. You will see some level of similarity within each community because of demographic similarities or because of common dietary or cultural practices. 
+
+Often, you take measurements repeatedly on an individual under different experimental conditions.
+:::
+
+## Longitudinal data (topic for next module)
+
+-   Measurements taken at different times
+    -   Emphasis in changes over time
+
+::: notes
+A special case that I want to handle separately is longitudinal data. This is similar to repeated measures data. With longitudinal data, often the emphasis is in changes that occur over time. Repeated measurements, in contrast, emphasize different treatments with the hope that the time gaps between the measurements are small enough that you don't see changes over time.
+:::
+
+## Between and within cluster comparisons
+
+-   Positive correlation 
+    -   Improves precision of within cluster comparisons
+    -   Hurts precision of between cluster comparisons
+-   Example with litters
+    -   Medication administered during pregnancy
+    -   Medication administered after birth
 
 ## Basic notation, 1 of 2
 
