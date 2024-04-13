@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Random intercepts model"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,87 @@ format:
 editor: source
 ---
 
-## Slide 12-01
+## Longitudinal data
+
+-   Measurements taken at different times
+    -   Emphasis in changes over time
 
 ::: notes
+In the previous module, I talked about hierarchical models and mentioned a particular case, longitudinal data, that I want to talk more about in this presentation.
 
+Longitudinal data is similar to repeated measures data. With both, you measure the same subject repeatedly. With longitudinal data, often the emphasis is in changes that occur over time. Repeated measurements, in contrast, emphasize different treatments with the hope that the time gaps between the measurements are small enough that you don't see changes over time.
+
+The differences between longitudinal data, repeated measures data, or hierarchical data are subtle. Perhaps these are distinctions without a difference. I decided to separate out longitudinal data for a different module perhaps more out of the desire to split a complex topic into smaller bite-sized pieces.
 :::
 
+## Random intercepts model, 1 of 3
+
+-   Simplest pattern for longitudinal data
+-   $Y_{ij},\ i=1,...,n;\ j=1,...,k$
+    -   n subjects, k time points
+-   $t_j$, time of jth measurement
+    -   First time is often zero
+
+::: notes
+The simplest longitudinal model has n subjects and k time points. The first time point is often set to zero. The times are often evenly spaced, but they don't have to be.
+:::
+
+## Random intercepts model, 2 of 3
+
+-   $Y_{ij}=\beta_0+u_{0i}+\beta_1 t_j + \epsilon_{ij}$
+    -   $\beta_0$ and $\beta_1$ are unknown constants
+    -   $u_{0i}$ and $\epsilon_{ij}$ are normally distributed
+        -   $SD(u_{0i})=\sigma_{intercept}$
+        -   $SD(\epsilon_{ij})=\sigma_{error}$
+
+::: notes
+There are two sources of random variation in the random intercepts model, $u_0j$.
+:::
+
+## Random intercepts model, 3 of 3
+
+-   $SD(Y_{ij})=\sqrt{\sigma^2_{intercept}\ +\ \sigma^2_{error}}$
+-   $Corr(Y_{ij}, Y_{im})=\frac{\sigma^2_{intercept}}{\sigma^2_{intercept}\ +\ \sigma^2_{error}}$
+
+::: notes
+The standard deviation for any individual observation combines the standard deviation for the random intercepts and the standard deviation for the error terms. They combine in a Pythagorean way.
+
+The correlation of two measurements on the same patient is comparable to a measure we defined in the last module, the intraclass correlation.
+:::
+
+## Random intercepts illustrated, 1 of 2
+
+```{r}
+#| fig.width: 2.667
+library(tidyverse)
+t <- 0:3
+e1 <- c( 1, -3,  3, -1)
+e <- c(e1, rev(e1), e1)
+g <- rep(1:3, each=4)
+data.frame(
+	  t=rep(t, 3), 
+	  g=g,
+	  y=30+10*t+10*(g==1)+50*(g==3)+3*e) -> d
+d$lab <- rep(c("- 10", "- 20", "+ 30"), each=4)
+d$lab <- paste0("Intercept = 50 ", d$lab)
+d %>%
+	ggplot(aes(t,y)) +
+	  scale_y_continuous(breaks=(0:11)*10) +
+	  geom_text(label=g) +
+	  geom_smooth(
+	  	method="lm", 
+	  	se=FALSE,
+	  	ltype="dotted",
+	  	color="black") +
+	  expand_limits(y=0) -> g1
+g1
+
+```
+
+## Random intercepts illustrated, 2 of 2
+
+```{r}
+#| fig.width: 7
+g1 + facet_grid(~lab)
+
+```
