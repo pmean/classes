@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Assumptions and complications"
 format: 
   revealjs:
     slide-number: true
@@ -7,7 +7,29 @@ format:
 editor: source
 ---
 
-## Slide 12-05
+## Assumptions
+
+-   Independence
+    -   Only between subjects
+-   Normality
+    -   Residuals
+    -   Random intercepts and/or slopes
+
+::: notes
+
+:::
+
+## Normality check, 1 of 2
+
+![](images/hiv-intervention-normality-check-01.png "Normal probability plot shows close to a straight line indicating normality of the random intercepts")
+
+::: notes
+
+:::
+
+## Normality check, 2 of 2
+
+![](images/hiv-intervention-normality-check-02.png "Normal probability plot shows a slight curvature indicating possible non-normality of the residuals")
 
 ::: notes
 

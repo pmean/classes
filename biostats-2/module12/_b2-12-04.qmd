@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Mathematical formulation of the random slopes model"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,64 @@ format:
 editor: source
 ---
 
-## Slide 12-04
+## Random slopes model, 1 of 2
+
+-   Same notation for the time and outcome variables
+-   $Y_{ij},\ i=1,...,n;\ j=1,...,k$
+    -   n subjects, k time points
+-   $t_j$, time of jth measurement
 
 ::: notes
-
+The random slopes model has the same basic notation for the time and outcome variables. The outcome variable has two subscripts on for the individual patient and one for each time measurement.
 :::
 
+## Random slopes model, 2 of 2
+
+-   $Y_{ij}=\beta_0+u_{0i}+\beta_1 t_j+u_{0i} t_j+\epsilon_{ij}$
+    -   $\beta_0$ and $\beta_1$ are unknown constants
+    -   $u_{0i}$, $u_{0i}$, and $\epsilon_{ij}$ are normally distributed
+        -   $SD(u_{0i})=\sigma_{intercept}$
+        -   $SD(u_{1i})=\sigma_{slope}$
+        -   $SD(\epsilon_{ij})=\sigma_{error}$
+
+::: notes
+There are three sources of random variation in the random slopes model, $u_{0i}$, $u_{1i}$, and $\epsilon_{ij}$.
+:::
+
+## Random slopes illustrated, 1 of 2
+
+```{r}
+#| fig.width: 2.667
+library(tidyverse)
+t <- 0:3
+e1 <- c( 1, -3,  3, -1)
+e <- c(e1, rev(e1), e1)
+g <- rep(1:3, each=4)
+b0 <- rep(c(80, 20, 40), each=4)
+b1 <- rep(c( 0, 25,  5), each=4)
+data.frame(
+	  t=rep(t, 3), 
+	  g=g,
+	  y=b0 + b1*t + e) -> d
+c("-  10", "+ 15", "- 5") %>%
+  rep(each=4) %>%
+  paste0("i = ", d$g, ", Slope = 10 ", .) -> d$h
+d %>%
+	ggplot(aes(t,y)) +
+	  scale_y_continuous(breaks=(0:11)*10) +
+	  geom_text(label=g) +
+	  geom_smooth(
+	  	method="lm", 
+	  	se=FALSE,
+	  	ltype="dotted",
+	  	color="black")-> g1
+g1 + expand_limits(y=c(0, 110))
+
+```
+
+## Random slopes illustrated, 2 of 2
+
+```{r}
+#| fig.width: 7
+g1 + facet_grid(~ h) + expand_limits(y=0)
+```

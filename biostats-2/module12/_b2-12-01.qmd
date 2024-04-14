@@ -41,7 +41,7 @@ The simplest longitudinal model has n subjects and k time points. The first time
         -   $SD(\epsilon_{ij})=\sigma_{error}$
 
 ::: notes
-There are two sources of random variation in the random intercepts model, $u_0j$.
+There are two sources of random variation in the random intercepts model, $u_{0i}$ and $\epsilon_{ij}$.
 :::
 
 ## Random intercepts model, 3 of 3
