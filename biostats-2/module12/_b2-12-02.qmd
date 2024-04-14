@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "HIV intervention study"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,48 @@ format:
 editor: source
 ---
 
-## Slide 12-02
+## Description of hiv-intervention data, 1 of 2
+
+```{r}
+library(yaml)
+dd <- read_yaml("../../../datasets/hiv-intervention.yaml")
+cat(as.yaml(dd["data_dictionary"]))
+cat(as.yaml(dd["source"]))
+cat(as.yaml(dd["description"]))
+```
 
 ::: notes
-
+Here is a dataset I will use to illustrate the random intercepts model. It actually might require a more sophisticated model than the random intercepts, but it is always a good idea to start with the simplest model, even if you know it is an oversimplification. Slowly add layers of complexity, and don't fit the final model too early. You want to wade in from the shallow end of the pool rather than jump right away into the deep end.
 :::
 
+## Description of hiv-intervention data, 2 of 2
+
+```{r}
+cat(as.yaml(dd$vars[1:5]))
+```
+
+::: notes
+Here are the first three variables. The actual times associated with the Pre and Post measurements are unclear. It turns out that it will be best to hold the Pre measurement back for the time being and start the clock at time=0 for the Post measurement. Remember that you are wading in from the shallow end of the pool.
+
+The remaining two variables FU6 and FU12 represent time=6 and time=12, respectively.
+:::
+
+## Wide format
+
+![](images/hiv-intervention-restructure-01.png "Partial listing of original data with measurement times in separate columns")
+
+## Boxplots
+
+![](images/hiv-intervention-restructure-02.png "Boxplots showing the measurement times by treatment group")
+
+## Colors and patterns
+
+![](images/hiv-intervention-restructure-03.png "Dialog box showing color and pattern choices")
+
+## Tall format
+
+![](images/hiv-intervention-restructure-04.png "Partial listing of restructured data with all time measurements in a single column")
+
+## Alternate clustering of boxplots
+
+![](images/hiv-intervention-restructure-05.png "Boxplots with treatment groups side by side")
