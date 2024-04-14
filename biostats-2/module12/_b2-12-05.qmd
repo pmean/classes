@@ -14,6 +14,7 @@ editor: source
 -   Normality
     -   Residuals
     -   Random intercepts and/or slopes
+-   Linearity
 
 ::: notes
 
@@ -24,7 +25,7 @@ editor: source
 ![](images/hiv-intervention-normality-check-01.png "Normal probability plot shows close to a straight line indicating normality of the random intercepts")
 
 ::: notes
-
+The residuals represent the deviations of individual time measurements from the regression line for an individual patient. That means the deviation from a trend line that has been randomly shifted up or down (random intercepts) and/or a randomly steeper or flatter trend line (random slopes). In this dataset, the normal probability plot looks fairly close to a straight line.
 :::
 
 ## Normality check, 2 of 2
@@ -35,3 +36,32 @@ editor: source
 
 :::
 
+## Linearity check
+
+## Complications
+
+-   Not a problem
+    -   Missing values
+    -   Better than Last Observation Carried Forward
+-   Problems (more tedious than difficult)
+    -   Interactions
+    -   Nonlinear trends
+    -   Covariates
+        -   Between patients
+        -   Within patients
+    
+::: notes
+Missing values are normally a big headache, but less so for the random intercepts or slopes models. If a patient missed a visit at a particular time point, you can easily extrapolate from the visits before and after. You are assuming linearity, after all.
+
+In some clinical trials, if a patient came at the intermediate evaluation but did not show up at the final evaluation, the research team would replace the missing final outcome with the intermediate outcome. This technique, called Last Observation Carried Forward (LOCF) was not very popular when it was introduced and has been pretty much discredited. The random intercepts or slopes model would extrapolate the trend from the intermediate value, which works much better.
+
+Interactions are always difficult, and when the interactions involve time, it can get a bit messy. Nonlinear trends over time are also a bit of a problem. In both cases, though, the work is more tedious than difficult. Interactions and nonlinearity mean that your interpretation of the results will require a bit more thought and you can't come up with as simple a story to tell.
+
+A covariate is a variable which is not of direct interest in the research, but one that you must take account of in order to produce a credible analysis. In just about any cancer study, you should track whether the patient is a smoker. It's not something you're interested in testing. The role of smoking in lung cancer and most other types of cancer was established many decades ago. You still have to account for smoking though because it can explain so much of the variation in your outcome. Failure to account for smoking would greatly reduce your power and precision.
+
+There are two types of covariates. The ones that are fixed and do not change over time are called time constant covariates or between subject covariates. Patient demographics are time constant. Measurements done at baseline to assess how ill the patient was at the start of the study are time constant. 
+
+Covariates that change over time are called time varying covariates or within subject covariates. The extent to which a patient complies with taking his/her medication is a time varying covariate. Seasonal changes in temperature, humidity, or pollen counts are time varying covariates.
+
+There is one important distinction between time constant and time varying covariates. The latter are much better at removing variation from your outcome, and can greatly improve your power and precision.
+:::
