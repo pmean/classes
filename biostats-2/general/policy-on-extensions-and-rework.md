@@ -6,7 +6,7 @@ format:
 editor: source
 ---
 
-This policy was written on 2023-12-02 and last revised on 2023-12-21.
+This policy was written on 2023-12-02 and last revised on 2023-04-15.
 
 ## Extensions
 
@@ -32,7 +32,7 @@ Please ask for an extension prior to the due date. This is very important. You c
 
 ## Extensions near the end of the semester
 
-Starting on 15th week of class (April 29, 2024), you can no longer receive automatic extensions. Short extensions may be available for a limited number of students, but you must get permission from one of your instructors first. We have deadlines for reporting grades and are not given an extension on that deadline.
+Starting on April 29, 2024 (for classes in Spring Semester 2024), you can no longer receive automatic extensions. Short extensions may be available for a limited number of students, but you must get permission from one of your instructors first. We have deadlines for reporting grades and are not given an extension on that deadline.
 
 ## If you are falling behind
 
