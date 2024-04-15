@@ -1,0 +1,43 @@
+---
+title: "Restructure demo"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Live demo, Random Intercepts Model
+
+## After menu Analyze | Mixed Models | Linear 
+
+![](images/dialog-box-12.png "Specify Subjects and Repeated dialog box with field Subjects: id")
+
+## After button Continue 
+
+![](images/dialog-box-13.png "Linear Mixed Models dialog box with field Dependent Variable: log_frequency, field Factor(s): BST, and field Covariate(s): time")
+
+## After button Fixed 
+
+![](images/dialog-box-14.png "Fixed Effects dialog box with field Model: BST, time and option Include intercept")
+
+
+## After button Random 
+
+![](images/dialog-box-15.png "Random Effects dialog box with field Combinations: id and option Display parameter predictions")
+
+## After button Statistics 
+
+![](images/dialog-box-16.png "Statistics dialog box with option Parameter estimates for fixed effects")
+
+## After button Save 
+
+![](images/dialog-box-17.png "Save dialog box with second option Predicted Values and option Residuals")
+
+## After button Export  
+
+![](images/dialog-box-18.png "Export dialog box with option Export BLUPS")
+
+
+
+
