@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Likelihood"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,17 @@ format:
 editor: source
 ---
 
-## Slide 13-04
+## Likelihood
+
+![](images/bayes-likelihood.png "Likelihoods for combinations of pi1 and pi2 with large values clustering on the right")
 
 ::: notes
+
+The second step in a Bayesian data analysis is to calculate P(E | H), the probability of the observed data under each hypothesis. If the ECMO survival rate is 90% and the conventional therapy survival rate is 60%, then the probability of observed 28 out of 29 survivors in the ECMO group is 152 out of one thousand, the probability of observing 6 out of 10 survivors in the conventional therapy group is 251 out of one thousand. The product of those two probabilities is 38,152 out of one million which we can round to 38 out of one thousand. If you've forgotten how to calculate probabilities like this, that's okay. It involves the binomial distribution, and there are functions in many programs that will produce this calculation for you. In Microsoft Excel, for example, you can use the following formula.
+
+binomdist(28,29,0.95FALSE)*binomdist(6,10,0.65,FALSE)
+
+The table above shows the binomial probabilities under each of the 100 different hypotheses.  Many of the probabilities are much smaller than one out of one thousand. The likelihood of seeing 28 survivals out of 29 babies in the ECMO survivals is very small when the hypothesized survival rate is 15%, 35%, or even 55%. Very small probabilities are represented by zeros.
 
 :::
 

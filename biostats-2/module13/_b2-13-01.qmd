@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Classical statistics"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,31 @@ format:
 editor: source
 ---
 
-## Slide 13-01
+## Classical statistics, 1 of 3
+
+-   $H_0:\ \pi_1=\pi_2$
+-   $H_1:\ \pi_1 \ne \pi_2$
+    -   $\pi_1$, $pi_2$ are fixed constants
 
 ::: notes
-
+I want to illustrate the classical example of hypothesis testing. Here is the simple case of testing whether the proportion in one population is equal to the proportion in a second population.
 :::
+
+## Classical statistics, 2 of 3
+
+-   $T=\frac{\hat p_1-\hat p_2}{s.e.}$
+-   p-value = $P[Z > T]$
+    -   probability of sample results or more extreme
+    -   p-value is not $P[H_0]$ 
+    
+::: notes
+You can compute a test statistic and a p-value associated with that statistic. Although a p-value is a probability, you cannot say that the p-value equals the probability that the null hypothesis is true.
+:::
+
+## Classical statistics, 3 of 3
+
+-   95% confidence interval
+    -   $\hat p_1-\hat p_2 \pm Z_{\alpha/2}s.e.$
+    -   Range of plausible values
+-   Probability statements not possible.
 

@@ -5,14 +5,12 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "Bayesian analysis"
-  topic_02: "To be determined"
-  topic_03: "To be determined"
-  topic_04: "To be determined"
-  topic_05: "To be determined"
-  topic_06: "To be determined"
-  topic_07: "To be determined"
-  topic_08: "To be determined"
+  topic_01: "Classical statistics"
+  topic_02: "Bayesian statistics"
+  topic_03: "Prior distribution"
+  topic_04: "Likelihood"
+  topic_05: "Posterior distribution"
+  topic_06: "Applications of Bayesian statistics"
 editor: source
 ---
 
@@ -40,8 +38,6 @@ editor: source
     -   `r params$topic_04`
     -   `r params$topic_05`
     -   `r params$topic_06`
-    -   `r params$topic_07`
-    -   `r params$topic_08`
 
 {{< include _b2-13-01.qmd >}}
 
@@ -54,8 +50,6 @@ editor: source
 
 {{< include _b2-13-02.qmd >}}
 
-## Live demo, ANOVA and R-squared
-
 ## Break #2
 
 -   What you have learned
@@ -64,8 +58,6 @@ editor: source
     -   `r params$topic_03`
     
 {{< include _b2-13-03.qmd >}}
-
-## Live demo, partial F test
 
 ## Break #3
 
@@ -76,8 +68,6 @@ editor: source
     
 {{< include _b2-13-04.qmd >}}
 
-## Live demo, stepwise regression
-
 ## Break #4
 
 -   What you have learned
@@ -86,8 +76,6 @@ editor: source
     -   `r params$topic_05`
 
 {{< include _b2-13-05.qmd >}}
-
-## Live demo, regression diagnostics
 
 ## Break #5
 
@@ -98,26 +86,6 @@ editor: source
 
 {{< include _b2-13-06.qmd >}}
 
-## Live demo, multicollinearity
-
-## Break #6
-
--   What you have learned
-    -   `r params$topic_06`
--   What's coming next
-    -   `r params$topic_07`
-
-{{< include _b2-13-07.qmd >}}
-
-## Break #7
-
--   What you have learned
-    -   `r params$topic_07`
--   What's coming next
-    -   `r params$topic_08`
-
-{{< include _b2-13-08.qmd >}}
-
 ## Summary
 
 -   What you have learned
@@ -126,16 +94,8 @@ editor: source
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
+    -   `r params$topic_05`
     -   `r params$topic_06`
-    -   `r params$topic_07`
-    -   `r params$topic_08`
-    
-## Additional topics??
-
-::: notes
--   Learning objectives
-    -   To be determined
-:::
 
 <!---
       You have to put the title down 
@@ -144,5 +104,5 @@ editor: source
 --->
 
 ---
-title: "Comments for MEDB 5502, Week 03"
+title: "MEDB 5502, Module 13, Bayesian Statistics"
 ---

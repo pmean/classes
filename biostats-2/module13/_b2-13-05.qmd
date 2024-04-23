@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Posterior"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,45 @@ format:
 editor: source
 ---
 
-## Slide 13-05
+## Multiply
+
+![](images/bayes-product.png "Product of prior and likelihood showing the need to rescale")
 
 ::: notes
 
+Now multiply the prior probability of each hypothesis by the likelihood of the data under each hypothesis. For ECMO=0.9, conventional therapy=0.6, this product is 5 out of a thousand times 38 out of a thousand, which equals 190 out of a million (actually it is 173 out of a million when you don't round the data so much). For ECMO=conventional=0.8, the product is 45 out of a thousand times 1 out of a thousand, or 45 out of a million.
+
+This table shows the product of the prior probabilities and the likelihoods. We're almost done, but there is one catch. These numbers do not add up to 1 (they add up to 794 out of a million), so we need to rescale them. We divide by P(E) which is defined in the Wikipedia article as
+
+P(E) = P(E|H1) P(H1) + P(E|H2) P(H2) + ...
+
+In the example shown here, this calculation is pretty easy: add up the 121 cells to get 794 out of a million and then divide each cell by that sum. For more complex setting, this calculation requires some calculus, which should put some fear and dread into most of you. It turns out that even experts in Calculus will find it impossible to get an answer for some data analysis settings, so often Bayesian data analysis requires computer simulations at this point.
+
+:::
+
+## Standardize
+
+![](images/bayes-posterior.png "Standardized values (posterior) showing probabilities for each combination of pi1 and pi2")
+
+::: notes
+Here's the table after standardizing all the terms so they add up to 1.
+
+This table is the posterior probabilities, P(H | E). You can calculate the probability that ECMO is exactly 10% better than conventional therapy (0+0+...+1+13+84+0 = 98 out of a thousand), that ECMO is exactly 20% better (0+0+...+13+218+0 = 231 out of a thousand), exactly 30% better (0+0+...+7+178+0 = 185 out of a thousand), and so forth.
+:::
+
+## Main diagonal of posterior probabilities
+
+![](images/posterior-diagonal.png "Posterior probabilities along the diagonal are small, adding up to only 6%")
+
+::: notes
+You can combine and manipulate these posterior probabilities far more easily than classical statistics would allow. For example, how likely are we to believe the hypothesis that ECMO and conventional therapy have the same survival rates? Just add the cells along the diagonal to get 6.0%. Prior to collecting the data, we placed the probability that the two rates were equal at 500 out of a thousand, so the data has greatly (but not completely) dissuaded us from this belief. 
+:::
+
+## Upper triangle of posterior probabilities
+
+![](images/posterior-upper-triangle.png "Posterior probabilites above the diagonal are large, adding up to 94%")
+
+::: notes
+The probability of the upper triangle is 93.9%. That's pretty strong evidence that ECMO is superior. There's a lot more you can do with this data, but I just wanted to give you a small taste of how a Bayesian analysis works. First, you lay out the possible values for the population parameters. Then specify probabilities for these parameters. If you do not have a strong prior belief, or if you do not want to incorporate your prior beliefs into the analysis, spread out the probabilities in a more or less uniform fashion. Then calculate the likelihood of the data for each set of population parameters. In a survival setting, this is just a binomial distribution. Multiply the prior times the likelihood and standardize. The resulting matrix is a set of probabilities that you can sum up or manipulate in other ways. 
 :::
 
