@@ -94,7 +94,7 @@ A special case that I want to handle separately is longitudinal data. This is si
 ## Expected mean squares, 1 of 2
 
 -   $MS(between) = \frac{1}{a-1}\Sigma_i n(\bar{Y}_{i.}-\bar{Y}_{..})^2$
-    -   $E[MS(between)] = a\sigma^2_{between}+\sigma^2_{within}$
+    -   $E[MS(between)] = n\sigma^2_{between}+\sigma^2_{within}$
 
 ## Expected mean squares, 2 of 2
 
