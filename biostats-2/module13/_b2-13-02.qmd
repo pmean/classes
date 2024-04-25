@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Baayesian statistics"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,66 @@ format:
 editor: source
 ---
 
-## Slide 13-02
+## A simple example of Bayesian data analysis.
+
+-   ECMO study
+-   Treatment versus control, mortality endpoint
+    -   Treatment: 28 of 29 babies survived
+    -   Control: 6 of 10 babies survived
+    -   Source: Jim Albert in the Journal of Statistics Education (1995, vol. 3 no. 3).
+
+::: notes
+Bayesian data analysis seems hard, and it is. Even for me, I struggle with understanding Bayesian data analysis. In fairness, I must admit that much of my discomfort is just lack of experience with Bayesian methods. In fact, I've found that in some ways, Bayesian data analysis is simpler than classical data analysis. You, too, can understand Bayesian data analysis, even if you'll never be an expert at it. There's a wonderful example of Bayesian data analysis at work that is simple and fun. It's taken directly from an article by Jim Albert in the Journal of Statistics Education (1995, vol. 3 no. 3) which is available on the web at www.amstat.org/publications/jse/v3n3/albert.html.
+
+I want to use his second example, involving a comparison of ECMO to conventional therapy in the treatment of babies with severe respiratory failure. In this study, 28 of 29 babies assigned to ECMO survived and 6 of 10 babies assigned to conventional therapy survived. Refer to the Albert article for the source of the original data. Before I show how Jim Albert tackled a Bayesian analysis of this data, let me review the general paradigm of Bayesian data analysis.
+
+:::
+
+## Wikipedia introduction
+
+-   P(H|E) = P(E|H) P(H) / P(E)
+    -   H = hypothesis
+    -   E = evidence
+    -   P(H) = prior
+    -   P(E|H) = likelihood
+    -   P(H|E) = posterior
+  
+::: notes
+Wikipedia gives a nice general introduction to the concept of Bayesian data analysis with the following formula:
+
+P(H|E) = P(E|H) P(H) / P(E)
+
+where H represents a particular hypothesis, and E represents evidence (data). P, of course, stands for probability.
+:::
+
+## Prior distribution
+
+-   Degree of belief
+    -   Based on previous studies
+    -   Subjective opinion (!?!)
+-   Examples of subjective opinions
+    -   Simpler is better
+    -   Be cautious about subgroup analysis
+    -   Biological mechanism adds evidence
+-   Flat or non-informative prior
 
 ::: notes
 
+The first step is to specify P(H), which is called the prior probability. Specifying the prior probability is probably the one aspect of Bayesian data analysis that causes the most controversy. The prior probability represents the degree of belief that you have in a particular hypothesis prior to collection of your data. The prior distribution can incorporate data from previous related studies or it can incorporate subjective impressions of the researcher. What!?! you're saying right now. Aren't statistics supposed to remove the need for subjective opinions? There is a lot that can be written about this, but I would just like to note a few things.
+
+First, it is impossible to totally remove subjective opinion from a data analysis. You can't do research without adopting some informal rules. These rules may be reasonable, they may be supported to some extent by empirical data, but they are still applied in a largely subjective fashion. Here are some of the subjective beliefs that I use in my work:
+
+You should always prefer a simple model to a complex model if both predict the data with the same level of precision.
+
+You should be cautious about any subgroup finding that was not pre-specified in the research protocol.
+
+if you can find a plausible biological mechanism, that adds credibility to your results.
+
+Advocates of Bayesian data analysis will point out that use of prior distributions will force you to explicitly state some of the subjective opinions that you bring with you to the data analysis.
+
+Second, the use of a range of prior distributions can help resolve controversies involving conflicting beliefs. For example, an important research question is whether a research finding should "close the book" to further research. If data indicates a negative result, and this result is negative even using an optimistic prior probability, then all researchers, even those with the most optimistic hopes for the therapy, should move on. Similarly, if the data indicates a positive result, and this result is positive even using a pessimistic prior probability, then it's time for everyone to adopt the new therapy. Now, you shouldn't let the research agenda be held hostage by extremely optimistic or pessimistic priors, but if any reasonable prior indicates the same final result, then any reasonable person should close the book on this research area.
+
+Third, while Bayesian data analysis allows you to incorporate subjective opinions into your prior probability, it does not require you to incorporate subjectivity. Many Bayesian data analyses use what it called a diffuse or non-informative prior distribution. This is a prior distribution that is neither optimistic nor pessimistic, but spreads the probability more or less evenly across all hypotheses.
 :::
+
 
