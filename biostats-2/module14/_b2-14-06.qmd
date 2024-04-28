@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Logistic regression"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,16 @@ format:
 editor: source
 ---
 
-## Slide 14-06
+## Module 06, Precursors to logistic regression
 
-::: notes
+-   Test of two proportions
+-   Chi-square test of independence
+-   Odds ratio versus relative risk
 
-:::
+## Module 06, Logistic regression
 
+-   Linear on log odds scale
+-   Assumptions
+    -   Independence
+    -   Linearity
+    

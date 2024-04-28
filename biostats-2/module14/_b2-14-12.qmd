@@ -1,0 +1,23 @@
+---
+title: "Longitudinal data"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Module 12, Longitudinal data
+
+-   Random intercepts model
+-   Random slopes model
+
+##  Module 12, Checking assumptions
+
+-   Independence
+    -   Only between subjects
+-   Normality
+    -   Residuals
+    -   Random intercepts/slopes
+-   Linearity
+    -   Scatterplot of residuals

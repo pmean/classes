@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Survival analysis"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,18 @@ format:
 editor: source
 ---
 
-## Slide 14-08
+## Module 08, Basic survival analysis
 
-::: notes
+-   Censoring
+-   Kaplan-Meier curve
+-   Log rank test
 
-:::
+## Module 08, Cox regression
 
+-   Define hazard function
+    -   Increasing/decreasing/constant hazard
+    -   Hazard ratio
+-   Assumptions
+    -   Independence
+    -   Non-informative censoring
+    

@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Linear regression with multiple independent variables"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,22 @@ format:
 editor: source
 ---
 
-## Slide 14-02
+## Module 02, Linear regression with multiple independent variables
 
-::: notes
+-   Analysis of variance table
+    -   R-squared
+    -   Partial F tests
+-   Stepwise regression
+-   Interpretation
+-   Collinearity
+-   Mediation    
 
-:::
+## Module 02, Checking assumptions
+
+-   Non-normality
+    -   Q-Q plot of residuals
+-   Lack of independence
+    -   Assessed qualitatively
+-   Unequal variances, Non-linearity
+    -   Residual scatterplot
 

@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Analysis of covariance"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,18 @@ format:
 editor: source
 ---
 
-## Slide 14-03
+## Module 03, Analysis of covariance
 
-::: notes
+-   Confounding/covariate imbalance
+-   Interpretation
+-   Interactions
 
-:::
+## Module 03, Checking assumptions
 
+-   Non-normality
+    -   Q-Q plot of residuals
+-   Lack of independence
+    -   Assessed qualitatively
+-   Unequal variances, Non-linearity
+    -   Residual scatterplots
+    

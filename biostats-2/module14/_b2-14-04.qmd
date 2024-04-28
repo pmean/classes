@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Multi-factor analysis of variance"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,17 @@ format:
 editor: source
 ---
 
-## Slide 14-04
+## Module 04, Multi-factor analysis of variance
 
-::: notes
+-   Tukey post hoc test
+-   Interaction
 
-:::
+## Module 04, Checking assumptions
+
+-   Non-normality
+    -   Q-Q plot of residuals
+-   Lack of independence
+    -   Assessed qualitatively
+-   Unequal variances
+    -   Boxplots
 
