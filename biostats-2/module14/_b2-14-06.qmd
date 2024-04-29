@@ -20,3 +20,191 @@ editor: source
     -   Independence
     -   Linearity
     
+## Confidence interval and test of hypothesis
+
+![](../module06/images/difference-in-proportions-03.png)
+![](../module06/images/difference-in-proportions-04.png)
+![](../module06/images/difference-in-proportions-05.png)
+
+::: notes
+Here is the output from SPSS. The confidence interval contains only positive values, so you can conclude that the difference in proportions is statistically significant.
+
+You can draw the same conclusion from the p-value, which is less than 0.001.
+:::
+
+## Example: Titanic survival by sex
+
+![](../module06/images/chi-square-01.png)
+
+![](../module06/images/chi-square-02.png)
+
+-   Moderate or large sample size: Pearson Chi-Square
+-   Small sample size: Fisher's Exact test
+
+::: notes
+Here is the output from SPSS. Like most other parts of SPSS, the default is to include four different tests. The tests can differ from one another, but in this case, they all tell the same story. To be honest, this is usually the case.
+
+I recommend using the Person Chi-Square if the sample size is moderate or large and Fisher's Exact Test if the sample size is small.
+
+What makes it small is the expected count. If any expected count is less than 5, then you should rely on Fisher's Exact Test.
+
+There is a lot of conflict in the research community about the use of a continuity correction.
+:::
+
+## An example of a log odds model with real data, 1 of 3
+
+![](../module06/images/logistic-concepts-08.gif)
+
+::: notes
+There are other approaches that also work well for this type of data, such as a probit model, that I won’t discuss here. But I did want to show you what the data relating GA and BF really looks like.
+:::
+
+## An example of a log odds model with real data, 2 of 3
+
+![](../module06/images/logistic-concepts-09.gif)
+
+-   log odds = -16.72 + 0.577 $\times$ GA
+
+::: notes
+I’ve simplified this data set by removing some of the extreme gestational ages.
+
+The table below shows the predicted log odds, and the calculations needed to transform this estimate back into predicted probabilities.
+:::
+
+## An example of a log odds model with real data, 3 of 3
+
+```{r}
+log_odds <- -16.72 + 0.577*30
+odds <- exp(log_odds)
+prob <- odds/(1+odds)
+```
+
+-   log odds = -16.72 + 0.577 $\times$ 30 = `r round(log_odds, 2)`
+-   odds = exp(log odds) = `r round(odds, 2)`
+-   prob = odds / (1+odds) = `r round(prob, 2)`
+
+::: notes
+Let’s examine these calculations for GA = 30. The predicted log odds would be the intercept plus the slope times 30.
+
+Convert from log odds to odds by exponentiating.
+
+And finally, convert from odds back into probability.
+
+prob = 1.80 / (1+1.80) = 0.643
+
+The predicted probability of 64.3% is reasonably close to the true probability (77.8%).
+
+You might also want to take note of the predicted odds. Notice that the ratio of any odds to the odds in the next row is 1.78. For example,
+
+3.20/1.80 = 1.78
+
+5.70/3.20 = 1.78
+
+It’s not a coincidence that you get the same value when you exponentiate the slope term in the log odds equation.
+
+exp(0.59) = 1.78
+
+This is a general property of the logistic model. The slope term in a logistic regression model represents the log of the odds ratio. This represents the increase (decrease) in risk as the independent variable increases by one unit.
+:::
+
+## Categorical variables in a logistic regression model, 1 of 3
+
+![](../module06/images/logistic-concepts-10.gif)
+
+-   1st class odds: 129/193 = `r round(129/193,2)` or 193/129 = `r round(193/129,2)`
+-   2nd class odds: 161/119 = `r round(161/119,2)` or 119/161 = `r round(119/161,2)`
+-   3rd class odds: 573/138 = `r round(573/138,2)` or 138/573 = `r round(138/573,2)`
+
+::: notes
+You treat categorical variables in much the same way as you would in a linear regression model. Create indicator variables for each level of your categorical variable and then include all but one of them in your model. The category associated with the omitted variable is the reference category.
+
+How would SPSS handle a variable like Passenger Class, which has three levels
+
+1st,
+2nd,
+3rd?
+
+Here’s a crosstabulation of survival versus passenger class.
+
+Notice that the odds of dying are 0.67 to 1 in 1st class, 1.35 to 1 in 2nd class, and 4.15 to 1 in 3rd class. These are odds in favor of dying. The odds against dying are 1.50 to 1, 0.74 to 1, and 0.24 to 1, respectively.
+:::
+
+## Categorical variables in a logistic regression model, 2 of 3
+
+![](../module06/images/logistic-concepts-11.gif)
+
+-  1.50 / 0.24 = 6.212
+-  0.74 / 0.24 = 3.069
+
+::: notes
+The odds ratio for the pclass(1) row is 6.212, which is equal to 1.50 / 0.24. You should interpret this as the odds against dying are 6 times better in first class compared to third class. The odds ratio for the pclass(2) row is 3.069, which equals 0.74 / 0.24. This tells you that the odds against dying are about 3 times better in second class compared to third class. The Constant row tells you that the odds are 0.241 to 1 in third class.
+:::
+
+## Categorical variables in a logistic regression model, 3 of 3
+
+![](../module06/images/logistic-concepts-12.gif)
+
+-  0.74 / 1.50 = 0.494
+-  0.24 / 1.50 = 0.161
+
+
+::: notes
+If you prefer to do the analysis with each of the other classes being compared back to first class, then select FIRST for reference category.
+
+This produces the following output:
+
+Here the pclass(1) row provides an odds ratio of 0.494 which equals 0.74 / 1.50. The odds against dying are about half in second class versus first class. The pclass(2) provides an odds ratio of 0.161 (approximately 1/6) which equals 0.24 / 1.50. The odds against dying are 1/6 in third class compared to first class. The Constant row provides an odds of 1.496 to 1 against dying for first class.
+
+Notice that the numbers in parentheses (pclass(1) and pclass(2)) do not necessarily correspond to first and second classes. It depends on how SPSS chooses the indicator variables. How did I know how to interpret the indicator variables and the odds ratios? I wouldn’t have known how to do this if I hadn’t computed a crosstabulation earlier. It is very important to do a few simple crosstabulations before you run a logistic regression model, because it helps you orient yourself to the data.
+:::
+
+## Odds ratios for first class
+
+![](../module06/images/interaction-05.png)
+
+![](../module06/images/interaction-01.png)
+
+## Odds ratio for second class
+
+![](../module06/images/interaction-06.png)
+
+![](../module06/images/interaction-02.png)
+
+## Odds ratio for third class
+
+![](../module06/images/interaction-07.png)
+
+![](../module06/images/interaction-03.png)
+
+## Logistic regression with interaction
+
+![](../module06/images/interaction-04.png)
+
+-   Odds ratio for 3rd class = 4.608
+-   Odds ratio for 1st class = 4.608 $\times$ 6.572 = 30.2
+-   Odds ratio for 2nd class = 4.608 $\times$ 9.289 = 42.8
+
+## Line plot for interaction, 1 of 2
+
+![](../module06/images/interaction-08.png)
+
+## Line plot for interaction, 2 of 2
+
+![](../module06/images/interaction-09.png)
+
+## Creating a binary outcome
+
+![](../module06/images/risk-02.png)
+
+## Crosstabulation of predictor and outcome
+
+![](../module06/images/risk-03.png)
+
+## Unadjusted odds ratio
+
+![](../module06/images/risk-04.png)
+
+## Adjusted odds ratio
+
+![](../module06/images/risk-05.png)
+

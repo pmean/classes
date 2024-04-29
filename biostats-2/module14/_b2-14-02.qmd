@@ -26,66 +26,120 @@ editor: source
 -   Unequal variances, Non-linearity
     -   Residual scatterplot
 
-## Module 02,
- 
-![](../module02/images/anova-table-01.png)             
- 
-## Module 02, 
- 
-![](../module02/images/anova-table-02.png)            
-
-## Module 02, 
-
-![](../module02/images/collinearity-statistics-01.png)
- 
-## Module 02, 
+## Module 02, SPSS dialog box for the general linear model
 
 ![](../module02/images/glm-dialog-01.png)             
 
-## Module 02, 
-
-![](../module02/images/mediator-01.png)
-
-## Module 02,
-
-![](../module02/images/mediator-02.png)               
-
-## Module 02,
-
-![](../module02/images/mediator-03.png)
-
-## Module 02,
-
-![](../module02/images/qq-plot-01.png)                
-
-## Module 02,
+## Module 02, SPSS computation of R-squared
 
 ![](../module02/images/r-squared-01.png)
 
-## Module 02,
+- 10,548.480/15,079.017 = 0.70
 
-![](../module02/images/r-squared-02.png)              
+::: notes
+You can compute R-squared from the analysis of variance table. The sum of squares for regression is 10,548.480 and the sum of squares total is 15,079.017. When you are calculating, please use the maximum precision for any intermediate calculation, but then round aggressively with the final result.
 
-## Module 02, 
+Often you will see R-squared displayed as a percentage instead of a proportion (e.g., 70% instead of 0.70).
+:::
 
-![](../module02/images/regression-coefficients-01.png) 
+## Module 02, SPSS computation of change in R-squared
 
-## Module 02, 
+![](../module02/images/r-squared-01.png)
+
+![](../module02/images/r-squared-02.png)
+
+- $Partial\ R^2=0.700-0.693=0.007$
+
+::: notes
+The regression model with chest, abdomen, and hip accounts for 70% of the variation, but a model with just abdomen and hip does almost as well, accounting for 69.3% of the variation. The difference, 0.7% is the amount of additional variation accounted for when you add chest to a model that already included abdomen and hip.
+
+That seems to contradict the earlier finding with the large negative test statistic and the small p-value. But actually, what it is saying is that although there is sufficient statistical evidence to conclude that chest circumference has a real impact, that impact is small. You will see this a lot, especially with datasets with very large sample sizes. You can often achieve statistical significance for an individual variable, but the practical impact can still be negligible.  
+:::
+
+## Module 02, SPSS computation of partial F-test
+
+![](../module02/images/anova-table-02.png)
+
+::: notes
+You can place abdomen in the first block of variables. Then place hips and chest in the second block. SPSS will calculate the analysis of variance table for the reduced model (only abdomen) and the full model (abdomen, hips, and chest).
+:::
+
+## Module 02, SPSS computation of full regression model
 
 ![](../module02/images/regression-coefficients-02.png)
 
-## Module 02,
+::: notes
+Here's a model with all the circumference measurements included.
+:::
+
+## Module 02, SPSS computation of collinearity statistics
+
+![](../module02/images/collinearity-statistics-01.png)
+
+## What is mediation?
+
+![](../module02/images/mediator-01.png)
+
+-   "A situation when the relationship between a predictor variable and an outcome variable can be explained by their relationship to a third variable (the mediator)"
+    -   Andy Field, Section 11.4
+    
+::: notes
+The image and quote from your Andy Field textbook is about as good as anything. A mediator is a third variable which partially or totally explains the relationship between two variables. You'll see more of this next week's module, but I wanted to introduce it here, because it is a very important concept.
+:::
+
+## An informal assessment of mediation
+
+![](../module02/images/mediator-02.png)
+
+![](../module02/images/mediator-03.png)
+
+::: notes
+There's a relationship between age and percentage body fat. It is a bit easier to follow if you convert age in years to age in decades. The relationship between decades of age and body fat is that you add about 1.8% to your body fat every decade on average.
+
+The question is, how does this happen? Does some of the muscle turn directly into fat, or do you add fat through an expanding girth?
+
+When you look at a model with both decade of age and abdomen circumference, the effect of age is cut markedly. Instead of adding 1.8% body fat on average, you add about 0.7% body fat on average. The rest of the body fat comes from the "love handles" that you develop as you age.
+
+So gaining some fat is inevitable, even if you can still fit into those size 32 jeans that you wore as a young man. But much of the gain in percentage body fat comes from moving from size 32 over time to size 42.
+:::
+
+## Module 02, SPSS Q-Q plot
+
+![](../module02/images/qq-plot-01.png)
+
+::: notes
+This is the QQ plot of residuals. It looks like a straight line, indicating that the normality assumption is reasonable.
+:::
+
+## Module 02, Scatterplot, 1 of 4
+
+![](../module02/images/residual-chest-plot.png)
+
+::: notes
+There is no apparent problem with unequal variances or non-linearity with respect to chest circumference ...
+:::
+
+## Module 02, Scatterplot, 2 of 4
 
 ![](../module02/images/residual-abdomen-plot.png)
 
-## Module 02,
+::: notes
+... or abdomen circumference ...
+:::
 
-![](../module02/images/residual-chest-plot.png)       
-
-## Module 02,
+## Module 02, Scatterplot, 3 of 4
 
 ![](../module02/images/residual-hip-plot.png)
 
-## Module 02,
+::: notes
+... or hip circumference.
+:::
+
+## Module 02, Scatterplot, 4 of 4
 
 ![](../module02/images/residual-predicted-plot.png)
+
+::: notes
+While three variables is not too many, here is what the plot of residuals versus predicted values looks like. Notice that it has pretty much the same features as the three individual plots.
+:::
+
