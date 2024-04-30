@@ -83,7 +83,7 @@ The residuals from the full moon analysis of variance model appear to be normall
 There is no evidence of unequal variances.
 :::
 
-## Box plots of exercise data
+## Module 04, SPSS, Box plots of exercise data
 
 ![](../module04/images/exercise-analysis-01.png)
 
@@ -91,7 +91,7 @@ There is no evidence of unequal variances.
 Here is a clustered boxplot of weight loss in a study of two exercise interventions: jogging and swimming, and a control intervention, reading. This study shows a clear interaction between gender and exercise. Both jogging and swimming provide greater weight loss than reading (no big surprise). Swimming appears to be better than jogging. But it is a lot better for females and only a little bit better for males.
 :::
 
-## Mean values for the interaction
+## Module 04, SPSS, Mean values for the interaction
 
 ![](../module04/images/exercise-analysis-02.png)
 
@@ -99,7 +99,7 @@ Here is a clustered boxplot of weight loss in a study of two exercise interventi
 In this table of means, notice that men lose about 11 pounds on the jogging program, and 22 pounds on the swimming program. So swimming is better. For women, the losses are about 4 pounds on average with jogging and 30 pounds on swimming. The extra benefits of swimming are so much larger in females than in males.
 :::
 
-## Analysis of variance table for interaction model
+## Module 04, SPSS, Analysis of variance table for interaction model
 
 ![](../module04/images/exercise-analysis-03.png)
 
@@ -107,7 +107,7 @@ In this table of means, notice that men lose about 11 pounds on the jogging prog
 The analysis of variance table shows a large F ratio for the interaction between exercise program and sex.
 :::
 
-## Parameter estimates for the interaction model
+## Module 04, SPSS, Parameter estimates for the interaction model
 
 ![](../module04/images/exercise-analysis-04.png)
 
@@ -129,7 +129,7 @@ Both of the parameters associated with the interaction are statistically signifi
 Bottom line is that the benefits of jogging over reading and the benefits of swimming over reading are not the same for men and women.
 :::
 
-## Interaction plot, 1 of 2
+## Module 04, SPSS, Interaction plot, 1 of 2
 
 ![](../module04/images/exercise-analysis-11.png)
 
@@ -139,7 +139,7 @@ An interaction plot draws a multiple lines connecting means. In this graph the t
 It is a lack of parallelism that is the hallmark of an interaction.
 :::
 
-## Interaction plot, 2 of 2
+## Module 04, SPSS, Interaction plot, 2 of 2
 
 ![](../module04/images/exercise-analysis-12.png)
 
@@ -149,7 +149,7 @@ You could draw the interaction plot differently with a line for women (red) and 
 Which plot is better? I like the first one, but would not complain if you liked the second one better. It depends on what story you want to emphasize. The first graph emphasizes the difference between the diets a bit more strongly and the second emphasizes the differences between the genders a bit more strongly.
 :::
 
-## When you can't estimate an interaction
+## Module 04, When you can't estimate an interaction
 
 -   Special case, n=1
     -   Only one observation for categorical combination
@@ -160,7 +160,7 @@ There is a special case where you have two categorical independent variables and
 It's sort of like that old joke I told about married life (it's okay but you lose a degree of freedom). Interactions cause an even bigger loss of degrees of freedom and in the case with only one observation per combination of categories, you lose enough degrees of freedom that it is not marriage, it being in prison.
 :::
 
-## Example, full moon study, 1 of 2
+## Module 04, SPSS, Example, full moon study, 1 of 2
 
 ![](../module04/images/full-moon-analysis-16.png)
 
@@ -168,7 +168,7 @@ It's sort of like that old joke I told about married life (it's okay but you los
 Here is an example where you only have one observation for each combination of categories. 
 :::
 
-## Example, full moon study, 2 of 2
+## Module 04, SPSS, Example, full moon study, 2 of 2
 
 ![](../module04/images/full-moon-analysis-24.png)
 
@@ -178,7 +178,7 @@ You lose two degrees of freedom for moon (3 phases: before, during, and after). 
 If you find yourself in this situation, just state that no test for interaction was possible in your methods section and highlight this as a weakness of your study in the discussion section.
 :::
 
-## Interaction between exercise program and hours spent exercising
+## Module 04, SPSS, Interaction between exercise program and hours spent exercising
 
 ![](../module04/images/exercise-analysis-05.png)
 
@@ -188,7 +188,7 @@ This plot shows a marked interaction. If you looked just at prog 1 (jogging prog
 The reading program, however, has a different slope. Instead of increasing steadily, the more time you spent reading the less weight that you lost. You might even gain some weight if you followed the reading program religiously.
 :::
 
-## Testing for interaction in analysis of covariance
+## Module 04, SPSS, Testing for interaction in analysis of covariance
 
 ![](../module04/images/exercise-analysis-06.png)
 
@@ -196,7 +196,7 @@ The reading program, however, has a different slope. Instead of increasing stead
 This table shows a statistically significant interaction. The F ratio is large and the p-value is small.
 :::
 
-## Table with irrelevant rows removed
+## Module 04, SPSS, Table with irrelevant rows removed
 
 ![](../module04/images/exercise-analysis-07.png)
 
@@ -204,7 +204,7 @@ This table shows a statistically significant interaction. The F ratio is large a
 Remove the rows associated with the intercept and the (uncorrected) total.
 :::
 
-## Parameter estimates
+## Module 04, SPSS, Parameter estimates
 
 ![](../module04/images/exercise-analysis-08.png)
 
@@ -241,7 +241,7 @@ The coefficient for hours*group=1 shows the change in slope when you switch from
 The interpretation for hours*group=2 is similar It shows the change in slope when you switch from the reading program to the swimming program. Each hour invested is 10 pounds better (a loss of 7 pounds per hour invested instead of a gain of 3 pounds per hour invested) when you switch from the reading program to the swimming program.
 :::
 
-## Analysis of variance table
+## Module 04, SPSS, Analysis of variance table
 
 ![](../module04/images/exercise-analysis-09.png)
 
@@ -249,11 +249,11 @@ The interpretation for hours*group=2 is similar It shows the change in slope whe
 
 :::
 
-## Table of means
+## Module 04, SPSS, Table of means
 
 ![](../module04/images/exercise-analysis-13.png)
 
-## Centered analysis
+## Module 04, SPSS, Centered analysis
 
 ![](../module04/images/exercise-analysis-10.png)
 
@@ -261,7 +261,7 @@ The interpretation for hours*group=2 is similar It shows the change in slope whe
 
 :::
 
-## Weight loss at various conditions
+## Module 04, Weight loss at various conditions
 
 -   hours = 2 (mean), effort = 30 (mean),
     -   $\hat Y$ = 10.005
@@ -272,7 +272,7 @@ The interpretation for hours*group=2 is similar It shows the change in slope whe
 -   hours = 4 (mean+2), effort = 40 (mean+20)
     -   $\hat Y$ = `10.005 + 2.291*2 + 0.707*20 + 0.393*2*20` = `r 10.005 + 2.291*2 + 0.707*20 + 0.393*2*20`
 
-## Line plots of means for unbalanced data
+## Module 04, SPSS, Line plots of means for unbalanced data
 
 ![](../module04/images/unbalanced-analysis-01.png)
 
@@ -280,7 +280,7 @@ The interpretation for hours*group=2 is similar It shows the change in slope whe
 
 :::
 
-## Table of means
+## Module 04, SPSS, Table of means
 
 ![](../module04/images/unbalanced-analysis-02.png)
 
@@ -288,7 +288,7 @@ The interpretation for hours*group=2 is similar It shows the change in slope whe
 
 :::
 
-## Table of frequencies and column percentages
+## Module 04, SPSS, Table of frequencies and column percentages
 
 ![](../module04/images/unbalanced-analysis-03.png)
 
