@@ -1,0 +1,101 @@
+---
+title: "The RGB color cube"
+author: "Steve Simon"
+date: '2024-07-22'
+output: html_document
+---
+
+```{r color-cube-1, fig.width=5, fig.height=5}
+library(ggplot2)
+library(magrittr)
+k <- data.frame(x= 0, y= 0, co="#000000")
+r <- data.frame(x=-5, y=-5, co="#FF0000") 
+g <- data.frame(x= 7, y= 0, co="#00FF00")
+b <- data.frame(x= 0, y= 7, co="#0000FF")
+y <- data.frame(x= 2, y=-5, co="#FFFF00")
+z <- data.frame(x=-5, y= 2, co="#FF00FF")
+m <- data.frame(x= 7, y= 7, co="#00FFFF")
+w <- data.frame(x= 2, y= 2, co="#FFFFFF")
+
+r <- data.frame(x=-4, y=-4, co="#FF0000") 
+y <- data.frame(x= 3, y=-4, co="#FFFF00")
+w <- data.frame(x= 3, y= 3, co="#FFFFFF")
+z <- data.frame(x=-4, y= 3, co="#FF00FF")
+
+
+df <- rbind(k, r, g, b, y, z, w)
+dg <- rbind(k, r, k, g, k, b)
+
+ggplot(dg, aes(x, y)) + 
+  geom_path(col="white") +
+  geom_text(col=dg$co, label=dg$co, angle=-45, hjust=0.5) +
+  expand_limits(x=c(-7, 9)) +
+  expand_limits(y=c(-7, 9)) +
+  theme_void() +
+  theme(
+    panel.background = 
+      element_rect(fill="#808080")
+  )
+```
+
+```{r color-cube-2, fig.width=5, fig.height=5}
+dg <- rbind(k, r, y, g, k, b, m, g, m, w, y, r, z, w, z, b)
+
+ggplot(dg, aes(x, y)) + 
+  geom_path(col="white") +
+  geom_text(col=dg$co, label=dg$co, angle=-45, hjust=0.5) +
+  expand_limits(x=c(-7, 9)) +
+  expand_limits(y=c(-7, 9)) +
+  theme_void() +
+  theme(
+    panel.background =
+    	element_rect(fill="#808080")
+  )
+```
+
+```{r white-yellow-green-magenta-face, fig.width=5, fig.height=5}
+x_seq <- seq(y$x, g$x, length=256)
+y_seq <- seq(y$y, g$y, length=256)
+z_seq <- seq(0, w$y-y$y, length=256)
+c_seq <- rgb(255:0, 255, 0, maxColorValue=255)
+face <- data.frame(
+	x=rep(x_seq, 256), 
+	y=rep(y_seq, each=256)+rep(z_seq, 256),
+	co=rgb(
+		rep(255:0, 256), 
+		rep(255, 256^2),
+	  rep(0:255, each=256),
+	  maxColorValue=255))
+ggplot(face, aes(x, y)) +
+  geom_point(color=face$co, size=1) +
+  expand_limits(x=c(-7, 9)) +
+  expand_limits(y=c(-7, 9)) +
+  theme_void() +
+  theme(
+    panel.background =
+      element_rect(fill="#808080"))
+```
+
+```{r cyan-red-black-blue-face, fig.width=5, fig.height=5}
+x_seq <- seq(r$x, k$x, length=256)
+y_seq <- seq(r$y, k$y, length=256)
+z_seq <- seq(0, z$y-r$y, length=256)
+c_seq <- rgb(255:0, 255, 0, maxColorValue=255)
+face <- data.frame(
+	x=rep(x_seq, 256), 
+	y=rep(y_seq, each=256)+rep(z_seq, 256),
+	co=rgb(
+		rep(255:0, 256), 
+		rep(0, 256^2),
+	  rep(0:255, each=256),
+	  maxColorValue=255))
+ggplot(face, aes(x, y)) +
+  geom_point(color=face$co, size=1) +
+  expand_limits(x=c(-7, 9)) +
+  expand_limits(y=c(-7, 9)) +
+  theme_void() +
+  theme(
+    panel.background =
+      element_rect(fill="#808080"))
+```
+
