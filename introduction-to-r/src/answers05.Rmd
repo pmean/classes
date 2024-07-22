@@ -107,7 +107,7 @@ price_sdev <- by(al$price, al$cust, sd, na.rm=TRUE)
 price_sdev
 ```
 
-Coustom built houses are about $50,000 more expensive on average.
+Custom built houses are about $50,000 more expensive on average.
 
 Questions 6-7 refer to the Diamond dataset.
 
