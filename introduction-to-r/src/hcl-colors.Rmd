@@ -1,0 +1,117 @@
+---
+title: "The HCL color system"
+author: "Steve Simon"
+date: '2024-07-23'
+output: html_document
+---
+
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(magrittr)
+library(stringr)
+sz <- 6
+dg <- NULL
+hcl_plot <- function(lum) {
+  d <- 1.75
+  twist <- 0.03
+  n2 <- 300
+  x2 <- d*(2*rep((0:(n2-1))/n2, each=n2)-1)
+  y2 <- d*(2*rep((0:(n2-1))/n2, n2)-1)
+  r2 <- sqrt(x2^2+y2^2)
+  theta <- (pi + atan2(y2, x2))/(2*pi)
+  c2 <- rep(hsv(h=0, s=0, v=0.5), n2^2)
+  c2 <- hcl(360*theta, 100*r2, 100*lum, fixup=FALSE)
+  dg2 <- data.frame(x=-x2, y=y2, co=c2, theta=theta, r2=r2, lum=lum)
+  dg3 <- rbind(dg2[!is.na(dg2$co), ])
+  dg4 <- dg3[chull(dg3$x, dg3$y), ]
+  print(dg4)
+  dg4 %>%
+    ggplot(aes(x, y)) + 
+      geom_point(col=dg4$co) +
+      expand_limits(y=c(-1.2*d, 1.2*d)) + 
+      expand_limits(x=c(-1.2*d, 1.2*d)) + 
+      geom_text(
+        x=d*cos( 0*pi/3), 
+        y=d*sin( 0*pi/3), 
+        angle= 90, 
+        label=  "0 = Red",
+        color="red",
+        size=sz) + 
+      geom_text(
+        x=d*cos(-1*pi/3), 
+        y=d*sin(-1*pi/3), 
+        angle= 30, 
+        label= "60 = Yellow",
+        color="yellow",
+        size=sz) + 
+      geom_text(
+        x=d*cos(-2*pi/3), 
+        y=d*sin(-2*pi/3), 
+        angle=-30, 
+        label="120 = Green",
+        color="green",
+        size=sz) + 
+      geom_text(
+        x=d*cos(-3*pi/3), 
+        y=d*sin(-3*pi/3), 
+        angle=-90, 
+        label="180 = Cyan",
+        color="cyan",
+        size=sz) + 
+      geom_text(
+        x=d*cos(-4*pi/3), 
+        y=d*sin(-4*pi/3), 
+        angle= 30, 
+        label="240 = Blue",
+        color="blue",
+        size=sz) + 
+      geom_text(
+        x=d*cos(-5*pi/3), 
+        y=d*sin(-5*pi/3), 
+        angle=-30, 
+        label="300 = Magenta",
+        color="magenta",
+        size=sz) + 
+      theme_void() +
+      theme(
+        panel.background =
+          element_rect(
+            fill="#808080")) -> g
+  print(g)
+  return(dg4)
+}
+dg <- NULL
+for (i in 99:1) {
+  dg <- bind_rows(dg, hcl_plot(i/100))
+}
+
+dg %>% 
+  mutate(rr=str_sub(co, 2, 3)) %>%
+  mutate(gg=str_sub(co, 4, 5)) %>%
+  mutate(bb=str_sub(co, 6, 7)) -> dgo
+save(dgo, file="test1.RData")         
+dgo %>% 
+  mutate(theta=round(theta*50)/50) %>%
+  group_by(theta) %>%
+  slice_max(r2) -> dgs
+dgs %>%
+  ggplot(aes(theta, lum)) +
+  geom_path() +
+  geom_point(col=dgs$co, size=5) + 
+  scale_y_continuous(
+    
+  )
+  scale_x_continuous(
+    name="Color",
+    breaks=(0:6)/6,
+    labels=c(
+      "red",
+      "yellow",
+      "green",
+      "cyan",
+      "blue",
+      "magenta",
+      "red"))
+```
