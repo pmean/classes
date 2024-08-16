@@ -10,7 +10,7 @@ title: MEDB 5501, Applied Biostatistics I syllabus
   + Office: UMKC School of Medicine, 5th Floor, M5-117
 
 + Office Hours: By appointment
-  + Appointments will be via Zoom or face-to-face in my office. Email is the method to contact me for the fastest response.
+  + Appointments will be via Zoom or face-to-face in one of our offices. Email is the method to contact us for the fastest response.
 
 ### Prerequisites
 
@@ -71,7 +71,7 @@ There are three sections of this course, Synchronous Zoom presentation, Asynchro
 
 **Asynchronous Online** (section 0002): Students will view recordings from the synchronous Zoom sessions.
 
-**International students** (section 0003): Students will attend Synchronous Zoom sessions scheduled every Tuesday from 1pm to 3:45pm. In addition, students will sign an attendance sheet in the Biomedical and Health Informatics office, held by Ricardo Moniz.
+**International students** (section 0003): Students will attend Synchronous Zoom sessions scheduled every Tuesday from 1pm to 3:45pm. In addition, students will sign an attendance sheet in the Biomedical and Health Informatics office, held by Ricardo Moniz. This is intended to meet the needs of some international students who have to demonstrate that most of their instruction is on-site. Consult with the International Student Affairs Office if you are unsure about your requirements. This section is not limited to only international students, but there is no difference between this section and the synchronous zoom session other than the attendance sheet.
 
 All students will
 
