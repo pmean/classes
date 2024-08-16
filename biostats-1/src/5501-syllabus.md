@@ -2,7 +2,7 @@
 title: MEDB 5501, Applied Biostatistics I syllabus
 ---
 
-### Course instructor
+### Course instructors
 
 -   Suman Sahil
     -   816-235-1812
@@ -11,24 +11,21 @@ title: MEDB 5501, Applied Biostatistics I syllabus
 -   Steve Simon, PhD
     -   Phone: 816-235-6617
     -   E-mail: simons@umkc.edu 
-    -   Office: UMKC School of Medicine, 5th Floor, M5-117
 
 -   Office Hours: By appointment
     -   Appointments will be via Zoom or face-to-face in one of our offices. Email is the method to contact us for the fastest response.
     -   Both of our offices are located in the Department of Biomedical and Health Informatics, School of Medicine, M5-100. 
 
--   Office Hours: By appointment
-    -   Appointments will be via Zoom or face-to-face in my office. Email is the method to contact use for the fastest response.
-
 ### Prerequisites
 
--   Acceptance into the Bioinformatics MS, IPhD Program, or Certificate in Clinical Research Program.
--   Acceptance into a UMKC Post-graduate Professional Program.
--   Acceptance into a UMKC Graduate (Post-Baccalaureate) Program.
--   Acceptance into the UMKC Schools of Medicine, Dentistry, or Nursing.
--   Acceptance into other similar programs but from another institution.
--   Acceptance as a graduate level visiting student (Non-Degree Seeking).
-    -   Undergraduate students or students without a Bachelor’s Degree from an accredited 4 year University are not permitted to register for this course.
+-   Undergraduate students or students without a Bachelor’s Degree from an accredited 4 year University are not permitted to register for this course.
+-   To register for this class, you need to have received acceptance into
+    -   the Bioinformatics MS, IPhD Program, or Certificate in Clinical Research Program.
+    -   a UMKC Post-graduate Professional Program.
+    -   a UMKC Graduate (Post-Baccalaureate) Program.
+    -   the UMKC Schools of Medicine, Dentistry, or Nursing.
+    -   another similar programs but from another institution.
+    -   a graduate level visiting student (Non-Degree Seeking).
 
 ### Required Email
 
@@ -152,17 +149,13 @@ All students (Synchronous Zoom, International Student and Asynchronous Online) w
 
 ### Required Technology
 
-#### SPSS
+#### R and RStudio
 
-This course will use SPSS for assignments, quizzes, exams, and the semester project. SPSS is available local installation, Rremote Labs, or Grad Pack.
+This course will use R for lectures and programming assignments. You should install R and RStudio (an integrated development environment for R) on your local computer. Instructions on installation will be shared in the first week of classes.
 
-**Local installation** You may have access to a computer that is hard-wired into the UMKC network (wifi doesn't count). If you do, you can get Information Services to install SPSS on that computer.  
+Ambitious students may wish to use a different software system for their work. Any reasonable alternative system, such as Python, SAS, SPSS, or Stata is fine. You will not get any guidance in class, but you can ask questions about these programs at the help sessions or individually. 
 
-**Remote Labs**: You can access SPSS (and other software programs) through [UMKC Remote Labs][rem1]. For assistance with remote labs, contact UMKC Information Services at +1-816-235-2000.
-
-[rem1]: http://www.umkc.edu/is/remotelabs/.
-
-**Grad Pack**: Another option to gain access to SPSS is to purchase the SPSS Standard 6-month license. (Biostatistics I) or the Standard or Premium 12-month license (Biostatistics I and II) for your personal computer. For more information about Grad Pack, please consult with the course instructor.  
+If you have never used any statistical software before, we recommend that you use R. It is not as difficult as some claim, and you will not be asked to do any in-depth programming.
 
 #### Other statistical software
 
