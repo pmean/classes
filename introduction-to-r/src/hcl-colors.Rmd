@@ -6,19 +6,50 @@ output: html_document
 ---
 
 
-```{r}
+```{r prelims}
 library(dplyr)
 library(ggplot2)
 library(magrittr)
 library(stringr)
+```
+
+```{r setup-grid}
+nhu <- 361
+nch <- 101
+nlu <- 101
+
+hu0 <- seq(0, 360, length=nhu) # hue
+ch0 <- seq(0, 100, length=nch) # chroma
+lu0 <- seq(0, 100, length=nlu) # luminance
+
+hu1 <- rep(rep(hu0, each=nch), each=nlu)
+ch1 <- rep(rep(ch0, each=nlu), times=nhu)
+lu1 <- rep(rep(lu0, times=nhu), times=nch)  
+
+hcl_values <- data.frame(hu1, ch1, lu1)
+```
+
+```{r compute-hcl}
+hcl_values$co <- hcl(
+  h=hu1,
+  c=ch1,
+  l=lu1,
+  fixup=FALSE)
+hcl_values <- filter(hcl_values, !is.na(hcl_values$co))
+save(hcl_values, file="../data/hcl_values.RData")
+```
+
+
+
+```{r eval=FALSE}
 sz <- 6
 dg <- NULL
 hcl_plot <- function(lum) {
   d <- 1.75
   twist <- 0.03
   n2 <- 300
-  x2 <- d*(2*rep((0:(n2-1))/n2, each=n2)-1)
-  y2 <- d*(2*rep((0:(n2-1))/n2, n2)-1)
+  x2 <- rep(seq(-d, d, length=n2), each=n2)
+  y2 <- rep(seq(-d, d, length=n2), times=n2)
   r2 <- sqrt(x2^2+y2^2)
   theta <- (pi + atan2(y2, x2))/(2*pi)
   c2 <- rep(hsv(h=0, s=0, v=0.5), n2^2)
