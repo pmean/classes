@@ -8,21 +8,39 @@ output: html_document
 ```{r color-cube-1, fig.width=5, fig.height=5}
 library(ggplot2)
 library(magrittr)
-k <- data.frame(x= 0, y= 0, co="#000000")
-r <- data.frame(x=-5, y=-5, co="#FF0000") 
-g <- data.frame(x= 7, y= 0, co="#00FF00")
-b <- data.frame(x= 0, y= 7, co="#0000FF")
-y <- data.frame(x= 2, y=-5, co="#FFFF00")
-z <- data.frame(x=-5, y= 2, co="#FF00FF")
-m <- data.frame(x= 7, y= 7, co="#00FFFF")
-w <- data.frame(x= 2, y= 2, co="#FFFFFF")
+k <- data.frame(x= 0, y= 0, co="#000000", r=  0, g=  0, b=  0)
+r <- data.frame(x=-5, y=-5, co="#FF0000", r=255, g=  0, b=  0) 
+g <- data.frame(x= 7, y= 0, co="#00FF00", r=  0, g=255, b=  0)
+y <- data.frame(x= 2, y=-5, co="#FFFF00", r=255, g=255, b=  0)
+b <- data.frame(x= 0, y= 7, co="#0000FF", r=  0, g=  0, b=255)
+z <- data.frame(x=-5, y= 2, co="#FF00FF", r=255, g=  0, b=255)
+m <- data.frame(x= 7, y= 7, co="#00FFFF", r=  0, g=255, b=255)
+w <- data.frame(x= 2, y= 2, co="#FFFFFF", r=255, g=255, b=255)
 
-r <- data.frame(x=-4, y=-4, co="#FF0000") 
-y <- data.frame(x= 3, y=-4, co="#FFFF00")
-w <- data.frame(x= 3, y= 3, co="#FFFFFF")
-z <- data.frame(x=-4, y= 3, co="#FF00FF")
+r$x <- r$x+1; r$y <- r$y+1
+y$x <- y$x+1; y$y <- y$y+1
+w$x <- w$x+1; w$y <- w$y+1
+z$x <- z$x+1; z$y <- z$y+1
 
+d1 <- rep(0:255, 256)
+d2 <- rep(0:255, each=256)
 
+i1 <- function(u0, u1) {u0+d1/255*(u1-u0)}
+i2 <- function(u0, u2) {u0+d2/255*(u2-u0)}
+i3 <- function(u0, u1, u2) {u0+d1/255*(u1-u0)+d2/255*(u2-u0)}
+cf <- function(c0, c1, c2) {
+  x <- i3(c0$x, c1$x, c2$x)
+  y <- i3(c0$y, c1$y, c2$y)
+  co <- rgb(
+    i3(c0$r, c1$r, c2$r),
+    i3(c0$g, c1$g, c2$g),
+    i3(c0$b, c1$b, c2$b),
+    maxColorValue=255)
+  data.frame(x, y, co)
+}
+```
+
+```{r}
 df <- rbind(k, r, g, b, y, z, w)
 dg <- rbind(k, r, k, g, k, b)
 
@@ -50,52 +68,55 @@ ggplot(dg, aes(x, y)) +
   theme(
     panel.background =
     	element_rect(fill="#808080")
-  )
+  ) -> cube2
 ```
 
-```{r white-yellow-green-magenta-face, fig.width=5, fig.height=5}
-x_seq <- seq(y$x, g$x, length=256)
-y_seq <- seq(y$y, g$y, length=256)
-z_seq <- seq(0, w$y-y$y, length=256)
-c_seq <- rgb(255:0, 255, 0, maxColorValue=255)
-face <- data.frame(
-	x=rep(x_seq, 256), 
-	y=rep(y_seq, each=256)+rep(z_seq, 256),
-	co=rgb(
-		rep(255:0, 256), 
-		rep(255, 256^2),
-	  rep(0:255, each=256),
-	  maxColorValue=255))
-ggplot(face, aes(x, y)) +
-  geom_point(color=face$co, size=1) +
-  expand_limits(x=c(-7, 9)) +
-  expand_limits(y=c(-7, 9)) +
-  theme_void() +
-  theme(
-    panel.background =
-      element_rect(fill="#808080"))
+```{r faces, fig.width=5, fig.height=5}
+kbr <- cf(k, b, r)
+kbg <- cf(k, b, g)
+krg <- cf(k, r, g)
+cube2 +
+  geom_point(data=kbr, aes(x, y), color=kbr$co) +
+  geom_point(data=kbg, aes(x, y), color=kbg$co) +
+  geom_point(data=krg, aes(x, y), color=krg$co)
+wym <- cf(w, y, m)
+wyz <- cf(w, y, z)
+wmz <- cf(w, m, z)
+cube2 +
+  geom_point(data=wym, aes(x, y), color=wym$co) +
+  geom_point(data=wyz, aes(x, y), color=wyz$co) +
+  geom_point(data=wmz, aes(x, y), color=wmz$co)
 ```
 
-```{r cyan-red-black-blue-face, fig.width=5, fig.height=5}
-x_seq <- seq(r$x, k$x, length=256)
-y_seq <- seq(r$y, k$y, length=256)
-z_seq <- seq(0, z$y-r$y, length=256)
-c_seq <- rgb(255:0, 255, 0, maxColorValue=255)
-face <- data.frame(
-	x=rep(x_seq, 256), 
-	y=rep(y_seq, each=256)+rep(z_seq, 256),
-	co=rgb(
-		rep(255:0, 256), 
-		rep(0, 256^2),
-	  rep(0:255, each=256),
-	  maxColorValue=255))
-ggplot(face, aes(x, y)) +
-  geom_point(color=face$co, size=1) +
-  expand_limits(x=c(-7, 9)) +
-  expand_limits(y=c(-7, 9)) +
-  theme_void() +
-  theme(
-    panel.background =
-      element_rect(fill="#808080"))
+```{r}
+sz <- 6
+hcl_plot <- function(lum) {
+  d <- 1.75
+  twist <- 0.03
+  n2 <- 300
+  x2 <- d*(2*rep((0:(n2-1))/n2, each=n2)-1)
+  y2 <- d*(2*rep((0:(n2-1))/n2, n2)-1)
+  r2 <- sqrt(x2^2+y2^2)
+  theta <- (pi + atan2(y2, x2))/(2*pi)
+  c2 <- rep(hsv(h=0, s=0, v=0.5), n2^2)
+  c2 <- hcl(360*theta, 100*r2, 100*lum, fixup=FALSE)
+  dg2 <- data.frame(x=-x2, y=y2, co=c2)
+  dg3 <- rbind(dg2[!is.na(dg2$co), ])
+  g <- ggplot(dg3, aes(x, y)) + 
+    geom_point(col=dg3$co) +
+    expand_limits(y=c(-1.2*d, 1.2*d)) + 
+    expand_limits(x=c(-1.2*d, 1.2*d)) + 
+    geom_text(x=d*cos( 0*pi/3), y=d*sin( 0*pi/3), angle= 90, label=  "0 = Red",     color="red", size=sz) + 
+    geom_text(x=d*cos(-1*pi/3), y=d*sin(-1*pi/3), angle= 30, label= "60 = Yellow",  color="yellow", size=sz) + 
+    geom_text(x=d*cos(-2*pi/3), y=d*sin(-2*pi/3), angle=-30, label="120 = Green",   color="green", size=sz) + 
+    geom_text(x=d*cos(-3*pi/3), y=d*sin(-3*pi/3), angle=-90, label="180 = Cyan",    color="cyan", size=sz) + 
+    geom_text(x=d*cos(-4*pi/3), y=d*sin(-4*pi/3), angle= 30, label="240 = Blue",    color="blue", size=sz) + 
+    geom_text(x=d*cos(-5*pi/3), y=d*sin(-5*pi/3), angle=-30, label="300 = Magenta", color="magenta", size=sz) + 
+    theme_void() +
+    theme(
+      panel.background=element_rect(fill="#808080")
+    )
+  g
+}
+hcl_plot(18/20)
 ```
-
