@@ -4,23 +4,29 @@ title: MEDB 5501, Applied Biostatistics I syllabus
 
 ### Course instructor
 
-+ Steve Simon, PhD
-  + Phone: 816-235-6617
-  + E-mail: simons@umkc.edu 
-  + Office: UMKC School of Medicine, 5th Floor, M5-117
+-   Suman Sahil
+    -   816-235-1812
+    -   sumans@umkc.edu
+    
+-   Steve Simon, PhD
+    -   Phone: 816-235-6617
+    -   E-mail: simons@umkc.edu 
+    -   Office: UMKC School of Medicine, 5th Floor, M5-117
 
-+ Office Hours: By appointment
-  + Appointments will be via Zoom or face-to-face in my office. Email is the method to contact me for the fastest response.
+-   Both of our offices are located in the Department of Biomedical and Health Informatics, School of Medicine, M5-100. 
+
+-   Office Hours: By appointment
+    -   Appointments will be via Zoom or face-to-face in my office. Email is the method to contact use for the fastest response.
 
 ### Prerequisites
 
-+ Acceptance into the Bioinformatics MS, IPhD Program, or Certificate in Clinical Research Program.
-+ Acceptance into a UMKC Post-graduate Professional Program.
-+ Acceptance into a UMKC Graduate (Post-Baccalaureate) Program.
-+ Acceptance into the UMKC Schools of Medicine, Dentistry, or Nursing.
-+ Acceptance into other similar programs but from another institution.
-+ Acceptance as a graduate level visiting student (Non-Degree Seeking).
-  + Undergraduate students or students without a Bachelor’s Degree from an accredited 4 year University are not permitted to register for this course.
+-   Acceptance into the Bioinformatics MS, IPhD Program, or Certificate in Clinical Research Program.
+-   Acceptance into a UMKC Post-graduate Professional Program.
+-   Acceptance into a UMKC Graduate (Post-Baccalaureate) Program.
+-   Acceptance into the UMKC Schools of Medicine, Dentistry, or Nursing.
+-   Acceptance into other similar programs but from another institution.
+-   Acceptance as a graduate level visiting student (Non-Degree Seeking).
+    -   Undergraduate students or students without a Bachelor’s Degree from an accredited 4 year University are not permitted to register for this course.
 
 ### Required Email
 
@@ -28,13 +34,9 @@ All students MUST use their UMKC email or the Canvas email system for all course
 
 ### Required Textbook
 
-+ Discovering Statistics Using IBM SPSS Statistics North American Edition: 5th Edition. Andy Field. Sage Publications. ISBN-13: 9781526436566. I will refer to this throughout the course as "SPSS text"
+-   Discovering Statistics Using IBM SPSS Statistics North American Edition: 5th Edition. Andy Field. Sage Publications. ISBN-13: 9781526436566.
 
-or
-
-+ Discovering Statistics using SAS by Andy Field and Jeremy Miles. Sage Publications. ISBN: 9781849200929. I will refer to this throughout the course as "SAS text"
-
-The two books are largely consistent in Chapter and Section topics, but there are some minor variations.
+Although this book shows examples using IBM SPSS Statistics, you will be able to use whatever statistical software you prefer. Course instructions will be in R and R Studio.
 
 ### Course Description
 
@@ -52,16 +54,16 @@ The Biostatistics sequence will provide students with an understanding of basic 
 
 #### Student Learning Objectives
 
-+ Have knowledge of definitions necessary to understand basic bio-statistical concepts and procedures presented in this course.
-+ Understand basic concepts including, but not limited to, data types, data scales, data distributions, measures of central tendency, measures of variability, hypothesis testing, confidence intervals, p values, effect size, critical values, power, and sample size. 
-+ Understand and implement (using SPSS) graphic representation of data 
-+ Manage and analyze data sets using SPSS in order to test research hypotheses
-+ Estimate and summarize data characteristics in order to determine appropriate statistical analysis methods
-+ Apply statistical methods for analyzing continuous data (parametric statistical methods)
-+ Apply statistical methods for analyzing categorical and ordinal data (nonparametric statistical methods)
-+ Apply the statistical knowledge gained in this course in a practical manner
-+ Use SPSS or SAS to manage and analyze data
-+ Be prepared for MEDB 5502 Biostatistics II or other advanced statistics classes
+-   Have knowledge of definitions necessary to understand basic bio-statistical concepts and procedures presented in this course.
+-   Understand basic concepts including, but not limited to, data types, data scales, data distributions, measures of central tendency, measures of variability, hypothesis testing, confidence intervals, p values, effect size, critical values, power, and sample size. 
+-   Understand and implement graphic representation of data 
+-   Manage and analyze data sets using SPSS in order to test research hypotheses
+-   Estimate and summarize data characteristics in order to determine appropriate statistical analysis methods
+-   Apply statistical methods for analyzing continuous data (parametric statistical methods)
+-   Apply statistical methods for analyzing categorical and ordinal data (nonparametric statistical methods)
+-   Apply the statistical knowledge gained in this course in a practical manner
+-   Use R or other statistical software to manage and analyze data
+-   Be prepared for MEDB 5502 Biostatistics II or other advanced statistics classes
 
 #### Course Framework
 
@@ -69,15 +71,12 @@ There are three sections of this course, Synchronous Zoom presentation, Asynchro
 
 **Synchronous Zoom** (section 0001): Students will attend Synchronous Zoom sessions scheduled every Tuesday from 1pm to 3:45pm.
 
-**Asynchronous Online** (section 0002): Students will view recordings from the synchronous Zoom sessions.
+**Asynchronous Online** (section 0002): Students will view recordings from the synchronous Zoom sessions.The recordings from the synchronous Zoom session will be available every Wednesday at noon.
 
 **International students** (section 0003): Students will attend Synchronous Zoom sessions scheduled every Tuesday from 1pm to 3:45pm. In addition, students will sign an attendance sheet in the Biomedical and Health Informatics office, held by Ricardo Moniz.
 
-All students will
+All sections will have access to the same videos, quizzes, discussion boards, and programming assignments. If you prefer to move to a different section, you can do this formally. You are also welcome to switch in a given week from synchronous to asynchronous or vice versa. You do not need to notify me or anyone else about a temporary shift.
 
-+ View the Panapto Video which covers the weekly topic,
-+ Complete any readings in support of the weekly topic,
-+ Download (from the course site in Canvas), complete, and upload (turn in) the weekly assignment.
 
 All students are responsible for meeting all deadlines, completing all assigned readings and assignments, exams, quizzes and successfully executing the semester project.
 
@@ -173,11 +172,11 @@ You are welcome to use SAS, R, Python, or any other program to run your homework
 
 The number of assignments and the point totals may change, but this should be a reasonable approximation.
 
-+ Approximately thirteen written assignments worth 10 to 20 points each
-+ One semester project worth 75 points
-+ Quizzes/Participation/Extra Credit/Additional Assignments to be determined, but not a major percentage of your total points.
-+ One midterm Exam worth 100 points
-+ One final exam worth 100 points
+-   Approximately thirteen written assignments worth 10 to 20 points each
+-   One semester project worth 75 points
+-   Quizzes/Participation/Extra Credit/Additional Assignments to be determined, but not a major percentage of your total points.
+-   One midterm Exam worth 100 points
+-   One final exam worth 100 points
   
 #### Grading
 
@@ -279,19 +278,19 @@ Under the University of Missouri’s Title IX policy, discrimination, violence a
 
 While most UMKC employees are required to report any known or suspected violation of Title IX, students may seek confidential guidance from the following campus locations:
 
-+ UMKC Counseling Service, Volker Campus
-  + 4825 Troost Ave, Suite 206
-  + Kansas City, MO 64110
-  + Phone: (816) 235-1635
-+ UMKC Counseling Service, Health Sciences Campus
-  + Health Sciences Building 1418
-  + 2464 Charlotte
-  + Kansas City, MO 64108
-  + Phone: (816) 235-1635
-+ Student Health and Wellness
-  + 4825 Troost Ave., Suite 115
-  + Kansas City, MO 64110
-  + Phone: (816) 235-6133
+-   UMKC Counseling Service, Volker Campus
+    -   4825 Troost Ave, Suite 206
+    -   Kansas City, MO 64110
+    -   Phone: (816) 235-1635
+-   UMKC Counseling Service, Health Sciences Campus
+    -   Health Sciences Building 1418
+    -   2464 Charlotte
+    -   Kansas City, MO 64108
+    -   Phone: (816) 235-1635
+-   Student Health and Wellness
+    -   4825 Troost Ave., Suite 115
+    -   Kansas City, MO 64110
+    -   Phone: (816) 235-6133
 
 ### Course Schedule
 
@@ -337,30 +336,30 @@ There will be written assignments on most weeks. Two major projects are a data c
 
 The purpose of this project is to provide the student with an independent learning opportunity to apply the statistical concepts and methodology to a set of their own data. With this project, the student will:
 
-+ Generate a research question of interest to the student.
-+ Write the null hypothesis for this research question.
-+ Write the research hypothesis for this research question.
-+ Use a set of data that was generated by the student to answer this research question.
-+ Select appropriate statistical analysis methods that would be used to answer the research question. The statistical analysis method(s) must include concepts and methods taught in this course (MEDB5501).
-+ Analyze the data using the selected statistical analysis methods.
-+  Interpret the statistical analysis output.
-+ Create a write-up of the “Results and Analysis” of this data set.
+-   Generate a research question of interest to the student.
+-   Write the null hypothesis for this research question.
+-   Write the research hypothesis for this research question.
+-   Use a set of data that was generated by the student to answer this research question.
+-   Select appropriate statistical analysis methods that would be used to answer the research question. The statistical analysis method(s) must include concepts and methods taught in this course (MEDB5501).
+-   Analyze the data using the selected statistical analysis methods.
+-   Interpret the statistical analysis output.
+-   Create a write-up of the “Results and Analysis” of this data set.
 
 This data set should be actual collected data from a research project that the student is or was involved with. Should the student not have data from a research project, the student will be given access to several data sets from which to choose. Please Note: This should be a “last resort”. Try to find data online, through your own research or from research from associates. 
 
 The final paper should include at a minimum:
 
-+ the data set,
-+ all SPSS analysis output,
-+ any appropriate tables and graphs 
-+ the research question/hypothesis
-+ a description and justification of your choice of the analysis methods used,
-+ a results and analysis section including all of your findings and the statistical conclusion(s) obtained written in manuscript form.
+-   the data set,
+-   all SPSS analysis output,
+-   any appropriate tables and graphs 
+-   the research question/hypothesis
+-   a description and justification of your choice of the analysis methods used,
+-   a results and analysis section including all of your findings and the statistical conclusion(s) obtained written in manuscript form.
 
 Important Dates:
 
-+ End of week 11, data set due to instructor via Canvas
-+ End of week 14, final project due to instructor via Canvas
+-   End of week 11, data set due to instructor via Canvas
+-   End of week 14, final project due to instructor via Canvas
 
 A grading rubric will be provided to the student to aid in their development of this project. This is a major project and will show your ability to apply the statistical concepts presented in this course. All students should begin considering their data set for this project early in the semester.
 
