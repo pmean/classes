@@ -1,0 +1,36 @@
+---
+title: "Review module12, Nonparametric test"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Nonparametric = distribution free
+
+-   No need for normality assumption
+-   Most tests involve ranking
+
+## Mann-Whitney-Wilcoxon test, 1 of 2
+
+-   Two independent samples
+    -   $X_1,X_2,...,X_n$
+    -   $Y_1,Y_2,...,Y_m$
+    -   n, m do not have to be equal
+
+::: notes
+Add note.
+:::
+
+## Mann-Whitney-Wilcoxon (MWW) test, 2 of 2
+
+-   $U = \Sigma_i R(X_i)$
+    -   Accept H0 if U is close to $n \times\frac{n+m+1}{2}$
+-   $W = \Sigma_i \Sigma_j H[X_i-Y_j]$
+    -   H is a counting function
+        -   = 1 for zero or positive values
+        -   = 0 for zero or negative values\
+    -   Accept H0 if W is close to $\frac{nm}{2}$
+
+## Demonstrate Mann-Whitney-Wilcoxon test in SPSS

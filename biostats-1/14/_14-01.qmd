@@ -1,0 +1,194 @@
+---
+title: "Interpretation of regression slope and intercept"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Bad joke, 1 of 4
+
+![](../images/airplane-01.png)
+
+::: notes
+I borrowed this image from a movie poster. Does anyone know what movie this is?
+
+https://en.wikipedia.org/wiki/Airplane!
+
+So I am using this as a setting for a bad Statistics joke.
+
+Two statisticians are on an airplane, flying from Miami to Seattle. Fiften minutes into the flight, they hear a loud ...
+:::
+
+## Bad joke, 2 of 4
+
+![](../images/airplane-05.png)
+
+::: notes
+... BANG! The pilot comes on the PA system and says "Excuse me, Ladies and Gentlemen. We've just had an engine explode. We'll be just fine with three engines, but instead of a three hour flight, this will now be a four hour flight."
+
+The statisticians go back to talking, and fifteen minutes later, they hear another loud ...
+:::
+
+## Bad joke, 3 of 4
+
+![](../images/airplane-06.png)
+
+::: notes
+... BANG! The pilot comes back on and says, "I'm sorry to report that we've had another engine explode. We can still make it to Seattle, but it will now be a six hour flight. I apologize for the additional delay."
+
+The statisticians shrug and start talking again when fifteen minutes later, you guessed it, they hear a third loud  ...
+:::
+
+## Bad joke, 4 of 4
+
+![](../images/airplane-07.png)
+
+::: notes
+... BANG! The pilot comes on again and says "I'm sorry to report that a third engine has exploded. Each engine on this jet is very powerful and we can still make it to Seattle, but it is now going to be a nine hour flight."
+
+At this point, one statistician says to the other, "Boy, I hope this last engine doesn't fail ..."
+
+"... or we'll be up here forever!"
+
+This is an example of a dangerous extrapolation. The experience with three, two, and then only one engines may be consistent, but don't expect that trend to continue with zero engines.
+:::
+
+
+## Algebra formula for a straight line
+
+-   $Y=mx+b$
+-   $m = \Delta y / \Delta x$
+-   m = slope
+-   b = y-intercept
+
+::: notes
+One formula in algebra that most people can recall is the formula for a straight line. Actually, there are several different formulas, but the one that most people cite is
+
+Y = m X + b
+
+where m represents the slope, and b represents the y-intercept (we'll call it just the intercept here). They can also sometimes remember the formula for the slope:
+
+$m = \increment y / \increment x$
+
+In English, we would say that this is the change in y divided by the change in x.
+:::
+
+## Linear regression interpretation of a straight line
+
+-   The slope represents the estimated average change in Y when X increases by one unit.
+
+-   The intercept represents the estimated average value of Y when X equals zero.
+
+::: notes
+In linear regression, we use a straight linear to estimate a trend in data. We can't always draw a straight line that passes through every data point, but we can find a line that "comes close" to most of the data. This line is an estimate, and we interpret the slope and the intercept of this line as follows:
+
+Be cautious with your interpretation of the intercept. Sometimes the value X=0 is impossible, implausible, or represents a dangerous extrapolation outside the range of the data.
+:::
+
+## First regression example with interpretation
+
+![](http://www.pmean.com/new-images/02/lin_coef-0201.gif)
+
+::: notes
+The graph shown below represents the relationship between mother's age and the duration of breast feeding in a research study on breast feeding in pre-term infants.
+
+The regression coefficients are shown below. The intercept, 6, is represented the estimated average duration of breast feeding for a mother that is zero years old. This is an impossible value, so the interpretation is not useful. What is useful, is the interpretation of the slope, approximately 0.4. The estimated average duration of breast feeding increases by 0.4 weeks for every extra year in the mother's age.
+:::
+
+## Output from SPSS
+
+![](http://www.pmean.com/new-images/02/lin_coef-0202.gif)
+
+::: notes
+Here is what the output from SPSS looks like.
+:::
+
+## Scatterplot of fat percentage and abdomen circumference
+
+![](../images/fat-regression-01.png)
+
+::: notes
+Here's a second example of linear regression. You've seen this dataset before, relating percentage of body fat to various circumference measures of the human body. Measuring body fat accurately is a difficult task. The best method involves dunking the entire body in a vat of water. Circumferences, on the other hand, are easy to measure. How well can you predict percentage body fat from these circumference measures.
+
+You found out last week that abdomen circumference was the measure most strongly correlated with body fat. Here is a scatterplot showing the linear regression trend line.
+
+Notice that the trend line goes negative for smaller values of body circumference. This represents a dangerous extrapolation, an extrapolation beyond the range of the data.
+:::
+
+## Correlating fat percentage with abdomen circumference, 1 of 3
+
+![](../images/fat-regression-02.png)
+
+::: notes
+Although it is not necessary to compute a correlation before running a linear regression, it does have some value in understanding what is going on.
+
+The bivariate correlation dialog box in SPSS offers an optional table of descriptive statistics.
+:::
+
+## Correlating fat percentage with abdomen circumference, 2 of 3
+
+![](../images/fat-regression-03.png)
+
+::: notes
+The correlation shows a strong positive association between body fat and abdominal circumference.
+:::
+
+## Correlating fat percentage with abdomen circumference, 3 of 3
+
+![](../images/fat-regression-04.png)
+
+::: notes
+You can also get an optional confidence interval. This interval is narrow, mostly because of the large sample size and the strong relationship between the two variables.
+:::
+
+## R Square measure in linear regression
+
+![](../images/fat-regression-05.png)
+
+::: notes
+By default, SPSS gives you a measure of R Square. The other statistics, R and adjusted R Square, are only useful for regression models with more than one independent variable.
+:::
+
+## ANOVA table in linear regression
+
+![](../images/fat-regression-06.png)
+
+::: notes
+Here is the ANOVA table. The total sum of squares is split unevenly with about 2/3 going to regression and only 1/3 going to error (residual). If the F-ratio is close to one, you should accept the null hypothesis that the regression slope is flat (equals zero). This is anything but the case here. The F-ratio is large, so you should definitely reject the null hypothesis. The small p-value also indicates that you should reject the null hypothesis.
+:::
+
+## Regression coefficients
+
+![](../images/fat-regression-07.png)
+
+::: notes
+The slope coefficient is 0.585 (round this to 0.6). This means that the estimated average body fat percentage increases by 0.6% for each one centimeter increase in abdomen circumference. The t-ratio is far from zero, so you should reject the null hypothesis that the population slope parameter equals zero. The small p-value indicates the same conclusion.
+
+Do not try to interpret the intercept. It would be the estimated average body fat percentage in a person with a no abdomen (an abdomen circumference of zero).
+:::
+
+## Predicting fat percentage from abdomen circumference (8/10)
+
+![](../images/fat-regression-08.png)
+
+::: notes
+The SPSS table is very wide, so I cut off and displayed the confidence intervals separately. You are 95% confident that the population slope lies between 0.53 and 0.64.
+:::
+
+## QQ plot of residuals
+
+![](../images/fat-regression-09.png)
+
+::: notes
+The Q-Q plot of the residuals shows strong evidence of normality. There is, perhaps, an outlier on the low end, but this is not a serious issue.
+:::
+
+## Scatterplot of residuals
+
+![](../images/fat-regression-10.png)
+
+::: notes
+The plot of residuals versus abdomen circumference shows no evidence of non-linearity and no evidence of heteroscedasticity.
+:::

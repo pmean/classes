@@ -1,0 +1,72 @@
+---
+title: "Review module08, one factor ANOVA"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Bonferroni adjustment
+
+-   For m hypotheses
+    -   $P[E_1\ \cup\ ...\ \cup E_m]\ \le\ m \alpha$
+-   Test each hypothesis at $\alpha/m$
+    -   Preserves overall Type I error rate
+-   Example, 3 simultaneous hypotheses
+    -   Reject H0 if p-value \< 0.0133
+-   Should you be concerned about overall Type I error rates?
+
+::: notes
+If the probability of a Type I error rate is alpha for a series of m hypotheses, then the chances of making at least one Type I error is m times alpha. If you decrease the Type I error rate for each individual hypothesis to alpha divided by m, then you can safely state that the overall Type I error rate is less than alpha.
+
+Should you try to control the overall Type I error rate? This is controversial, though most researchers agree that you should be concerned. 
+:::
+
+## ANOVA research hypothesis
+
+-   $H_0:\ \mu_1=\mu_2=...=\mu_k$
+-   $H_1:\ \mu_i \ne \mu_j$ for some i, j
+    -   Note: do not use $H_1:\ \mu_1 \ne \mu_2 \ne ... \ne \mu_k$
+
+::: notes
+If you have k groups with k population means, the null hypothesis is that all the population means are equal. Be careful, though. The alternative hypothesis is that there are some means that might not be equal. It is not the same as saying that all the population means are unequal.
+
+If you have three groups, you should reject the null hypothesis if the first two population means were equal, but the third population mean was different than the first two.
+:::
+
+## Important assumptions
+
+-   Same as independent-samples t-test
+    -   Normality
+    -   Equal variances
+    -   Independence
+
+## How to check assumptions
+
+-   Boxplots
+-   Analysis of residuals, $e_{ij}$
+    -   $e_{ij}$= Observed - Predicted
+    -   $e_{ij}= Y_{ij}-\bar{Y}_i$
+-   Do not assess normality using $Y_{ij}$
+
+::: notes
+Boxplots of each group are useful for checking the assumptions of normality and equal variances. You can also compute the residuals. Residuals are defined in the section on linear regression, but they can be computed here. They represent what you observed minus what you would predict based on the model. This is essentially just subtracting off the group means.
+
+If you tried to assess normality using the Y's, you might see a multi-modal distribution, but this is not a violation of the assumptions.
+:::
+
+## Tukey post hoc tests
+
+-   If you reject H0, which values are unequal?
+    -   With k groups, there are k(k-1)/2 comparisons
+-   Studentized range (Tukey test)
+    -   Requires equal sample sizes per group
+    -   Uses harmonic mean approximation for unequal sample sizes.
+        -   Do not use harmonic means if seriously different sample sizes.
+
+::: notes
+If you reject the null hypothesis, you can conclude that there are at least two groups out of k where the population means differ from one another. This is a rather vague and open-ended conclusion. You can use several procedures to identify where the differences lie. The most common is the studentized range test, more commonly called the Tukey post-hoc test.
+:::
+
+## Demonstrate ANOVA in SPSS

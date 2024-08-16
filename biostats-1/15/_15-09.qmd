@@ -1,0 +1,60 @@
+---
+title: "Review module09, one sample confidence intervals and REDCap"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Bad joke
+
+-   Researcher gets 6 year, $10 million grant
+-   Writes in final report
+    -   "This is a new and innovative surgical technique and we are 95% confident that the cure rate is somewhere between 3% and 98%."
+    
+::: notes
+I tell this fictional story and it illustrates why sample size calculations are important. You want to assure the granting agency that if they spend a lot of money, you won't produce a confidence interval so wide as to be meaningless.
+:::
+
+## Review confidence interval for a single mean
+
+-   If n \< 30, 
+    -   $\bar{X}-t(\alpha/2; n-1)se(\bar{X})$ and
+    -   $\bar{X}+t(\alpha/2; n-1)se(\bar{X})$
+-   If n $\ge$ 30, 
+    -   $\bar{X}-z(\alpha/2)se(\bar{X})$ and
+    -   $\bar{X}+z(\alpha/2)se(\bar{X})$
+
+::: notes
+One of the simplest way to justify sample sizes, especially for a descriptive study is to specify a desired width for your confidence interval and show that it can be produced with the sample size you expect to collect.
+
+It is a bit arbitrary because you won't have any data on your standard deviation, but just make a good faith effort by reviewing the existing literature and any previous work you yourself may have done in the area.
+:::
+    
+## Confidence interval for a single proportion
+
+-   Define standard error
+    -   $se(p)=\sqrt{\frac{p(1-p)}{n}}$
+-   $1-\alpha$ confidence interval
+    -   $p-Z(\alpha/2)se(p)$ and
+    -   $p+Z(\alpha/2)se(p)$
+
+::: notes
+If your key statistic is a proportion rather than a mean, you can still look at the confidence interval as a way to justify sample size. You do need a rough estimate of the sample proportion, and again this requires a literature review and possibly any data you may have yourself from previous studies.
+
+The widest confidence interval occurs when the sample proportion equals 0.5. So if you don't have data from the literature review or your earlier studies, plug in 0.5 in this formula for a worst case scenario.
+
+This confidence interval uses z rather than t, regardless of the sample size.
+:::
+
+## REDCap
+
+-   Highly recommended for data entry
+-   Requires careful pre-planning
+
+::: notes
+Dave Walsh provided a nice overview of REDCap. It does require some pre-planning prior to data collection, but this is good. You should think carefully about how you enter data, and REDCap helps you focus on this.
+:::
+
+## Demonstrate one sample confidence intervals in SPSS

@@ -1,0 +1,127 @@
+---
+title: "Review module10, Chi-square tests"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## The two by two table
+
+```         
+               Outcome
+              Yes   No
+Exposure Yes  O_11 O_12
+          No  O_21 O_22
+```
+
+::: notes
+One of the most common statistics you will encounter are counts in a two by two table.
+:::
+
+## Titanic data
+
+```         
+          Alive   Dead  Total  
+  Female    308    154    462  
+  Male      142    709    851  
+  Total     450    863  1,313  
+```
+
+::: notes
+Both the odds ratio and the relative risk compare the likelihood of an event between two groups. Consider the following data on survival of passengers on the Titanic. There were **462 female passengers: 308 survived and 154 died**. There were **851 male passengers: 142 survived and 709 died**.
+
+Clearly, a male passenger on the Titanic was more likely to die than a female passenger. But how much more likely? You can compute the odds ratio or the relative risk to answer this question.
+:::
+
+## Odds ratio calculation
+
+```         
+          Alive   Dead  Total  Odds
+  Female    308    154    462  154/308 = 0.5
+  Male      142    709    851  709/142 = 4.993
+  Total     450    863  1,313  
+
+OR = 4.993 / 0.5 = 9.986
+```
+
+::: notes
+The odds ratio compares the relative odds of death in each group. For females, the odds were exactly **2 to 1 against dying (154/308=0.5)**. For males, the odds were almost **5 to 1 in favor of death (709/142=4.993)**. The odds ratio is **9.986 (4.993/0.5)**. There is a **ten fold greater odds of death for males than for females**.
+:::
+
+## Relative risk calculation
+
+```         
+          Alive   Dead  Total  Probability
+  Female    308    154    462  154/462 = 0.3333
+  Male      142    709    851  709/851 = 0.8331
+  Total     450    863  1,313  
+
+RR = 0.8331 / 0.3333 = 2.499 
+```
+
+::: notes
+The relative risk (sometimes called the risk ratio) compares the probability of death in each group rather than the odds. For females, the probability of death is **33% (154/462=0.3333)**. For males, the probability is **83% (709/851=0.8331)**. The relative risk of death is **2.5 (0.8331/0.3333)**. There is a **2.5 greater probability of death for males than for females**.
+:::
+
+## Expected deaths
+
+
+P[Alive] = 450/1313 = 0.3427
+P[Dead] = 863/1313 = 0.6572
+
+```         
+              Alive       Dead
+  Female    462*0.3427  462*0.6572
+  Male      851*0.3427  851*0.6572
+```
+
+## Observed versus expected
+
+Observed
+
+```         
+            Alive  Dead
+  Female    308    154
+  Male      142    709
+```
+
+Expected
+
+```         
+            Alive  Dead
+  Female    158.3  303.6
+  Male      291.6  559.3
+```
+
+## General form of Chi-squared test
+
+-   $\Sigma \frac{(O-E)^2}{E}$
+    -   O = Observed, E= Expected
+
+
+## Demonstrate Chi-squared test of association in SPSS
+
+## Chi-square test of goodness of fit
+
+-   Categorical variable with k levels
+-   $H_0:\ \pi_1=\pi_2=...=\pi_k=\frac{1}{k}
+
+## Example, clinic recruitment
+
+Observed
+
+```         
+Clinic              A   B   C   D   E Total
+Patients recruited 17  29  37  15  27   125
+```
+
+Expected
+
+```         
+Clinic              A   B   C   D   E Total
+Patients recruited 25  25  25  25  25   125
+```
+
+## Demonstrate Chi-squared test of goodness of fit in SPSS

@@ -1,0 +1,49 @@
+---
+title: "Review module14, linear regression"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Linear regression interpretation of a straight line
+
+-   The slope represents the estimated average change in Y when X increases by one unit.
+
+-   The intercept represents the estimated average value of Y when X equals zero.
+
+::: notes
+In linear regression, we use a straight linear to estimate a trend in data. We can't always draw a straight line that passes through every data point, but we can find a line that "comes close" to most of the data. This line is an estimate, and we interpret the slope and the intercept of this line as follows:
+
+Be cautious with your interpretation of the intercept. Sometimes the value X=0 is impossible, implausible, or represents a dangerous extrapolation outside the range of the data.
+:::
+
+## The population model
+
+-   $Y_i=\beta_0+\beta_1 X_i + \epsilon_i,\ i=1,...,N$
+    -   $\epsilon_i$ is an unknown random variable
+        -    Mean 0, standard deviation, $\sigma$
+        -    Often assumed to be normal
+    -   $\beta_0$ and $\beta_1$ are unknown parameters
+    -   $b_0$ and $b_1$ are estimates from the sample
+
+## Violations of this model
+
+-   Nonlinearity
+-   Heterogeneity
+-   Non-normality
+-   Lack of independence
+
+## ANOVA table for linear regression
+
+```{=tex}
+\begin{matrix}
+            &  SS &  df &                  MS &           F-ratio \\
+ Regression & SSR &   1 &   MSR=\frac{SSR}{1} & F=\frac{MSR}{MSE} \\
+ Error      & SSE & n-2 & MSE=\frac{SSE}{n-2} &                   \\
+ Total      & SST & n-1 &                     &
+\end{matrix}
+```
+
+## Demonstrate linear regression in SPSS

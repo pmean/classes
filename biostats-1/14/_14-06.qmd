@@ -1,0 +1,33 @@
+---
+title: "Definition of residuals"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Predicted values
+
+-   For a new value of X
+    -   $\hat{Y}_{new}=b_0+b_1 X_{new}$
+
+-   For an existing value in the data, $X_i$
+    -   $\hat{Y}_i=b_0+b_1 X_i$
+
+## Why predict for a value you already have seen?
+
+-   Future Y may differ from previous Y
+-   Comparison of $\hat{Y}_i$ to existing $Y_i$.
+
+## Residual
+
+-   $e_i=Y_i-\hat{Y}_i$
+    -   Error in prediction
+    -   $\Sigma e_i=0$
+    -   Estimate of $\epsilon_i$
+    
+::: notes
+The residual is the difference between what you observed ($Y_i$) and what the linear regression model would predict ($\hat{Y}_i$). If the residual is zero, you nailed it. A perfect prediction. That may happen once in a while, but you will almost never see perfect predictions for every patient in your study. The residuals will sum to zero because the linear regression uses the least squares principle to 
+:::
+

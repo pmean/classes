@@ -167,7 +167,7 @@ You are welcome to use SAS, R, Python, or any other program to run your homework
 
 The number of assignments and the point totals may change, but this should be a reasonable approximation.
 
--   Approximately thirteen written assignments worth 10 to 20 points each
+-   Approximately fiftenthirteen written assignments worth 10 to 20 points each
 -   One semester project worth 75 points
 -   Quizzes/Participation/Extra Credit/Additional Assignments to be determined, but not a major percentage of your total points.
 -   One midterm Exam worth 100 points
@@ -291,39 +291,120 @@ While most UMKC employees are required to report any known or suspected violatio
 
 This schedule is tentative and subject to change. Keep your eyes on the Canvas site and the overview page for each module.
 
-Week 1, Introduction to SPSS, read SPSS text, Chapter 4, The IBM SPSS Statistics Environment, or SAS text, Chapter 3, The SAS Environment.
+1.  Foundations
+    -   Foundations of statistics
+        -   Measurement scales
+        -   Null hypothesis significance training
+        -   Sources of bias
+    -   Introduction to R and RStudio
+    -   Read introductory sections and Chapters 1, 2, 3, and 6.
 
-Week 2, Types of data, read SPSS text, Chapter 1 though section 1.6 (Collecting data: measurement) or SAS text, Chapter 1 through section 1.5 (Data collection 1: what to measure).
+2.  Univariate statistics
+    -   Visualization
+        -   Histograms
+        -   Normal probability plots
+    -   Basic univariate statistics
+        -   Proportions
+        -   Means, standard deviations
+        -   Percentiles
+    -   Read Chapter 5.
 
-Week 3 Statistical models, see the module overview for readings.
+3.  Simple inferences
+    -   Confidence intervals
+        -   Mean
+        -   Proportion
+    -   Hypothesis test
+        -   Mean
+        -   Proportion
+    -   Reading assignments from outside your book (to be determined)
 
-Week 4, Null hypothesis significance tests, see the module overview for readings.
+4.  Correlation
+    -   Visualization
+        -   Scatterplots
+    -   Pearson correlation
+        -   Confidence intervals
+        -   Hypothesis tests
+    -   Alternatives
+        -   Point biserial correlation
+        -   Phi coefficient
+    -   Read Chapter 8.
 
-Week 5, Graphs, read SPSS text, Chapter 5 (Exploring Data with Graphs), or SAS text Chapter 4 (Exploring Data with Graphs)
+5.  Linear regression, part 1
+    -   Continuous predictor
+    -   Analysis of variance table
+    -   Indicator variables
+        -   Binary predictor
+        -   Categorical predictor
+    -   Read Sections 9.1 to 9.8
+    
+6.  Linear regression, part 2
+    -   Residuals
+    -   Checking assumptions
+    -   Alternative to linear regression
+        -   Nonparametric correlation
+        -   Transformations
+        -   Splines
+    -   Reading assignments from outside your book (to be determined)
+    
+7.  Linear regression, part 3
+    -   Visualization
+        -   Scatterplot matrix
+    -   Multiple linear regression
+        -   Interpretation
+    -   Variable selection
+    -   Read Sections 9.9 to 9.11
+    
+8.  Categorical outcomes, part 1
+    -   Row versus column percents
+    -   Odds ratio versus relative risk
+    -   Chi-square tests
+    -   Read Chapter 19
 
-Week 6, Parametric statistical analysis, read Chapter 6
+9.  Categorical outcomes, part 2
+    -   Logistic regression
+    -   Read Chapter 20
 
-Week 7, T-tests, read Chapter 10
+10. Two group comparisons, part 1
+    -   Visualization
+        -   Bar/line plots with error bars
+        -   Boxplots
+    -   Two sample t-test
+        -   Assumptions
+        -   Sample size calculation
+        -   Relationship to linear regression
+    -   Read Sections 10.1 to 10.8
+    
+11. Two group comparisons, part 2
+    -   Visualization
+        -   Line plots
+    -   Paired t-test
+        -   Assumptions
+        -   Sample size calculation
+        
+12. Analysis of variance, part 1
+    -   One factor analysis of variance
+        -   Analysis of variance table
+        -   Post hoc comparisons
+    -   Read Sections 12.1 to 12.7
 
-Week 8, One-way ANOVA, read Chapter 12
-
-Week 9, Survey Research, readings are from outside the book
-
-Week 10, Midterm exam
-
-Week 11, Categorical outcomes, read Chapter 19
-
-Week 12, Nonparametric statistical analysis, read Chapter 7
-
-Week 13, More nonparametric statistical analysis, readings are from outside the book
-
-Week 14, Thanksgiving Break, NO CLASS
-
-Week 15, Correlation, read Chapter 8
-
-Week 16, Simple Linear Regression, read Chapter 9
-
-Week 17, Final exam
+13. Analysis of variance, part 2
+    -   Assumptions
+    -   Sample size calculation
+    -   Alternatives
+        -   Kruskal-Wallis test
+        -   Bayesian analysis of variance
+    -   Reading assignments from outside your book (to be determined)
+        
+14. Analysis of variance, part 3
+    -   Visualization
+        -   Bar/line graph with error bars
+        -   Boxplots
+    -   Two factor analysis of variance
+        -   Sequential and partial sums of squares
+        -   Interactions
+    -   Read Sections 14.1 to 14.7
+    
+15. Review
 
 There will be written assignments on most weeks. Two major projects are a data collection involving M&M candies and a data analysis using data that you find on your own.
  
