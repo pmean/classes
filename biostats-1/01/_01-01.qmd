@@ -20,13 +20,13 @@ editor: source
 :::notes
 There are three sections in the class. 
 
-Section 0001 is a synchronous online class with lectures delivered via Zoom on Tuesdays from 1:00pm to 3:45pm. Students in this section are required to attend that class. They should view the Monica Gaddis video link on the webpage prior to Tuesday at 1pm and should read the appropriate Chapter from the either Discovering Statistics Using IBM SPSS Statistics North American Edition: 5th Edition by Andy Field or Discovering Statistics using SAS by Andy Field and Jeremy Miles. I won't require this for today's class, but I will ask you to watch Monica Gaddis video and read the appropriate book chapter for classes on August 29 and later. If you are in this section, you must show up on Tuesday afternoons. Attendance will be taken.
+Section 0001 is a synchronous online class with lectures delivered via Zoom on Tuesdays from 1:00pm to 3:45pm. Students in this section are required to attend that class. If you are in this section, you must show up on Tuesday afternoons. Attendance will be taken. Two or more unexcused absences will require a discussion with the instructor and remedial actions may need to be taken.
 
-Section 0002 is an asynchronous online class where you watch both the Monica Gaddis and Steve Simon videos. The Steve Simon videos will be a recording of the Tuesday Zoom session. Links to the Steve Simon videos will appear by Wednesdays at noon. Students in the asynchronous online class will watch the Monica Gaddis video and do the required Chapter readings from the book prior to watching the Steve Simon video. Some students prefer the convenience of being able to watch everything on their own schedule and others have work commitments that prevent them from attending the class on Tuesday afternoons. Students in this section have the option of attending the Tuesday 1pm Zoom sessions, if their work schedule permits. But you are more than welcome to wait until Wednesday at noon to watch the recorded video if you prefer.
+Section 0002 is an asynchronous online class where you watch videos of the zoom session. Students in this section have the option of attending the Tuesday 1pm Zoom sessions, if their work schedule permits.
 
-Section 0003 is a synchronous online class like 2023FS-MEDB-5501-0001 with the additional requirement of weekly sign-ins. The weekly sign-in meets an important requirement of some international students. Other than the sign-in, the class is identical to the synchronous online class.
+Section 0003 is a synchronous online class like section 0001 with the additional requirement of weekly sign-ins. The weekly sign-in meets an important requirement of some international students. Other than the sign-in, the class is identical to the synchronous online class.
 
-All three sections are combined in Canvas to a single site. This makes it easier for me to make announcements, do grading, etc. Just because the Canvas site says "2023FS-MEDB-5501-0001" does not mean that you are in the wrong Canvas site and it does not mean that you are registered for the wrong class. We're all one big family from the perspective of Canvas, but the attendance requirements differ.
+All three sections are combined in Canvas to a single site. This makes it easier for me to make announcements, do grading, etc. Just because the Canvas site says "2024FS-MEDB-5501-0001" does not mean that you are in the wrong Canvas site and it does not mean that you are registered for the wrong class. We're all one big family from the perspective of Canvas. Only the attendance requirements differ.
 :::
   
 ## Requirements of all students
@@ -50,11 +50,11 @@ The homework assignments, quizzes, and discussion boards are due by 11:59pm on M
 
 -   Synchronous students
     -   MUST attend Tuesday Zoom sessions.
-    -   can also review the Tuesday recordings
+    -   can also review the recordings
 -   Asynchronous students
-    -   watch the Tuesday recordings or
-    -   attend some of the Tuesday Zoom sessions or
-    -   both
+    -   watch the Tuesday recordings
+    -   or attend some of the Tuesday Zoom sessions
+    -   or both
 -   Failure to attend is a problem
 
 :::notes
@@ -62,10 +62,12 @@ Attendance at the Tuesday Zoom sessions is a requirement for all synchronous stu
 
 Asynchronous students have an option that synchronous students do not.
 
-For synchronous students to attend the Tuesday Zoom sessions is a problem. For asynchronous students, failure to either attend or watch the videos is a problem. If you have work commitments, health issues, or personal issues that prevent you from meeting the attendance requirements, you must contact me and CC Xi Wang, preferably beforehand.
+For synchronous students to attend the Tuesday Zoom sessions is a problem. For asynchronous students, failure to either attend or watch the videos is a problem. If you have work commitments, health issues, or personal issues that prevent you from meeting the attendance requirements, you must contact us, preferably beforehand.
 :::
 
 ## Assignments
+
+![](images/github-policy.png)
 
 -   Due Mondays at 11:59pm
 -   Policy on Failure to submit on time is a problem
@@ -77,23 +79,24 @@ Assignments will include homework submissions, quizzes, and discussion boards
 ## This class is in transition
 
 -   Taught for many years by Dr. Monica Gaddis
--   My first time teaching this class
--   Keep most of the content developed by Dr. Gaddis
--   Minor changes
-    -   Allow use of R or other programs for homework
-    -   Weekly feedback on discussion boards
-    -   Maybe other small changes??
+-   My second time teaching this class
+-   Major changes
+    -   Software agnosticism
+        -   In class switch from SPSS to R
+    -   Suman Sahil will co-teach and cover programming in R
+    -   Discussion boards ask for feedback
+    -   Proposed exam questions
   
 :::notes
 I'm excited at the opportunity to teach this class, but I am also a bit scared. The topics in this class are relatively easy, but teaching them well is not so easy.
 
-This class has been taught for many years by Dr. Monica Gaddis. She is an excellent teacher, but she retired this summer. I have a lot of respect for her and will try to keep the general content mostly unchanged.
+This class has been taught for many years by Dr. Monica Gaddis. She is an excellent teacher, but she retired this summer. I have a lot of respect for her and have kept a lot of her material. There are some important differences, however. I am not a wall flower, and I have a few ideas that might supplement an already good class. 
 
-But I am not a wall flower, and I have a few ideas that might supplement an already good class. I don't want to make major changes, but there are a few changes I need to make. 
+I believe in software agnosticism. You should use whatever software you thing is best for you. Use the software that you expect to use in the real world after you graduate. It's more work for me (and for Suman Sahil, who has to grade the various programs). Nevertheless, I want to make that effort because I should not presume to know what program is best for you and your budding career.
 
-First, I believe in software agnosticism. You should use whatever software you thing is best for you. Use the software that you expect to use in the real world after you graduate. It's more work for me (and for Xi Wang, who has to grade the various programs). Nevertheless, I want to make that effort because I should not presume to know what program is best for you and your budding career.
+All the classroom examples will use R. If you use another program, expect to spend some time reading the documentation and figuring out how to convert the R code to code for your system. You can ask for assistance by email, during the help session if all the other questions are already answered, or by special appointment. I take great pride in knowing how to do things in a broad range of statistical software and should be able to help with most issues.
 
-If you've never used any statistical software before, I would certainly encourage you to use SPSS.
+If you've never used any statistical software before, I would certainly encourage you to use R.
 
 A second change is that I will include a brief feedback assignment after every module. I want to feedback on what you thought was most important, what you found most confusing, and what you might have liked to learn that wasn't in the lecture.
 
@@ -104,34 +107,6 @@ You are also welcome to say something like "I agree with" and mention the name o
 I might make some other small changes over time.
 
 There's a risk in making changes. It may create some inconsistencies between what I am asking you to do and what Dr. Gaddis covered in her videos. Use a bit of common sense, but if you are not quite sure about anything, please ask.
-:::
-
-## SPSS
-
--   Multiple options
-    -   Local installation
-    -   Remote labs
-    -   Grad pack
-
-:::notes
-This course will use SPSS for assignments, quizzes, exams, and the semester project. SPSS is available local installation, Rremote Labs, or Grad Pack.
-
-Local installation You may have access to a computer that is hard-wired into the UMKC network (wifi doesn't count). If you do, you can get Information Services to install SPSS on that computer.
-
-Remote Labs: You can access SPSS (and other software programs) through UMKC Remote Labs. For assistance with remote labs, contact UMKC Information Services at +1-816-235-2000.
-
-Grad Pack: Another option to gain access to SPSS is to purchase the SPSS Standard 6-month license. (Biostatistics I) or the Standard or Premium 12-month license (Biostatistics I and II) for your personal computer. For more information about Grad Pack, please consult with the course instructor.
-:::
-
-## Other statistical software
-
--   Python, R, SAS, Stata, others
-    -   Use only if you are confident in your abilities
-
-:::notes
-There are lots of other choices. I am happy to help you get started with Python, R, SAS, Stata, or any other program. I like working with software. I should warn you that the level of support that I can provide does vary. I know less about Python and Stata, for example, than I do about R and SAS. But I'm pretty good with anything.
-
-If you do decide to try one of these programs, make sure that you are confident in your own abilities and that you can figure out some stuff on your own. If you are new or relatively inexperienced, SPSS might be a better choice.
 :::
 
 ## Student learning objectives, 1 of 3
@@ -160,5 +135,5 @@ The second student learning objective is the ability to design a testable resear
     -   The graduate will be able to communicate scientific outcomes. This includes the ability to convey scientific methods and statistical findings, effectively field questions in an oral presentation format as well as in the preparation of thesis or capstone manuscripts.
 
 :::notes
-The third and fourth student learning objectives are developed in other courses. The fifth (and last) learning objective is the ability to convey statistical findings and answer question in an oral presentation. This includes the ability to present your findings in a visual format and in a written format.
+The third and fourth student learning objectives are developed in other courses. The fifth (and last) learning objective is the ability to convey statistical findings and answer question in an oral presentation. This includes the ability to present your findings in a visual format.
 :::

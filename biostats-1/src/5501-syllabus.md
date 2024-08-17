@@ -8,7 +8,7 @@ title: MEDB 5501, Applied Biostatistics I syllabus
     -   816-235-1812
     -   sumans@umkc.edu
     
--   Steve Simon, PhD
+-   Steve Simon
     -   Phone: 816-235-6617
     -   E-mail: simons@umkc.edu 
 
@@ -155,11 +155,7 @@ This course will use R for lectures and programming assignments. You should inst
 
 Ambitious students may wish to use a different software system for their work. Any reasonable alternative system, such as Python, SAS, SPSS, or Stata is fine. You will not get any guidance in class, but you can ask questions about these programs at the help sessions or individually. 
 
-If you have never used any statistical software before, we recommend that you use R. It is not as difficult as some claim, and you will not be asked to do any in-depth programming.
-
-#### Other statistical software
-
-You are welcome to use SAS, R, Python, or any other program to run your homework assignments. You will not get any guidance in class, but you can ask questions about these programs at the help sessions or individually. I'll help as best as I can, and I do know a lot about most of these programs. Nevertheless, I cannot guarantee to have all the answers for every computer program out there. If you have never used any statistical software before, I would encourage you to use SPSS. It is much easier for most students to learn. There is nothing wrong, however, for a more advanced student to use a different program.
+If you have never used any statistical software before, we recommend that you use R. It is not as difficult as some claim, and you will have lots of examples to work from.
 
 ### Course Evaluation
 
@@ -167,10 +163,9 @@ You are welcome to use SAS, R, Python, or any other program to run your homework
 
 The number of assignments and the point totals may change, but this should be a reasonable approximation.
 
--   Approximately fiftenthirteen written assignments worth 10 to 20 points each
+-   Approximately fifteen written assignments worth 10 points each
 -   One semester project worth 75 points
 -   Quizzes/Participation/Extra Credit/Additional Assignments to be determined, but not a major percentage of your total points.
--   One midterm Exam worth 100 points
 -   One final exam worth 100 points
   
 #### Grading
@@ -219,6 +214,8 @@ Students enrolled in this course assume an obligation to behave in a manner comp
 *"The term sabotage includes, but is not limited to, the unauthorized interference with, modification of, or destruction of the work or intellectual property of another member of the University community."*
 
 To ensure academic integrity and prevent plagiarism, UMKC has purchased the Internet-based Turn It In. This site allows faculty and students to submit papers Asynchronous Online to examine a paper’s originality. The site compares submitted papers with several proprietary algorithm databases to check for plagiarism. The course director reserves the right to have student assignments reviewed on Turnitin.com in this course. Submissions will have all identifying information removed from the submission to ensure that each student’s rights are protected. The instructor also reserves the right to use publicly available search engines and information to validate the originality of submitted work.
+
+**Addendum for programming assignments**: You are expected to write your own programs or modify programs that are provided for you in class. You may not ask other students in the class or anyone outside the class to write your programs or post a request on an Internet discussion board. You can search for information on the Internet and/or consult large language models like ChatGPT. If your program has an error and you do not know how to fix it, you can seek advice from the teachers of this class or other students in this class. Please acknowledge any Internet resources that you relied on or anyone who helped you fix an error.
 
 #### Campus Safety
 
