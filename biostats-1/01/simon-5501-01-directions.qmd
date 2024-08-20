@@ -42,34 +42,3 @@ I provided an interpretation for mean price. Provide a similar interpretation fo
 
 If your program has any errors or fails to produce the output that you desire and you can't resolve the problem, upload the program file along with the pdf file to help us figure out what went wrong. You will get a chance to resubmit the assignment if needed.
 
-## Load the tidyverse library
-
-```{r setup}
-#| message: false
-#| warning: false
-library(tidyverse)
-```
-
-## Read the data and view a brief summary
-
-```{r read}
-alb <- read_csv(
-  file="../data/albuquerque-housing.csv",
-  col_names=TRUE,
-  col_types="nnnnccc",
-  na=".")
-glimpse(alb)
-```
-
-## Calculate overall means
-
-```{r means}
-alb |>
-  summarise_if(is.numeric, mean, na.rm = TRUE)
-```
-
-## Interpret the output
-
-The average price of a home in this dataset, 106 thousand dollars, is quite low because the data comes from 1993.
-
-[dd]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.yaml

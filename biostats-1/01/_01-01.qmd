@@ -109,6 +109,33 @@ I might make some other small changes over time.
 There's a risk in making changes. It may create some inconsistencies between what I am asking you to do and what Dr. Gaddis covered in her videos. Use a bit of common sense, but if you are not quite sure about anything, please ask.
 :::
 
+## Why R
+
+-   Faculty consensus
+    -   Prepares you better for capstone/thesis work
+    -   More likely to be used in your future job
+    -   Integrates well with team based tools
+-   R is not as difficult as claimed
+    -   Work from existing templates
+-   Python, SAS, Stata would have also been good choices
+    -   You are welcome to use these if you like
+    
+:::notes
+Last year, I taught the class using SPSS and it was an okay choice. But some of the faculty raised concerns about leaving students ill prepared if they needed to do data analysis for a capstone project or thesis. SPSS is okay for introductory statistics, but falls short for the sort of work needed in a thesis.
+
+While some jobs out in the real world will use SPSS, far more will use R. 
+
+Most important, in my opinion, is that R integrates well with team-based tools like version control, cloud-based computing, distributed databases, and other methdologies that are being used more and more with programming teams.
+
+You may have heard that R is a difficult language. R is not as difficult as some people may claim. It is being used successfully at a large number of universities in their Statistics and Data Science program. It is even used extensively in undergraduate classes.
+
+Having said that, I have to admit that R is still not as easy to use as SPSS. I will try to lighten that burden by providing templates that will guide your coding throughout all of the assignments.
+
+Now there are several good alternatives to R. Each has its advantages but also some disadvantages. It is not worth quibbling here. I've chaired a couple of panel discussion sessions at national Statistics conferences on this topic. My recommendation is to use what your boss uses. 
+
+If you want to use something other than R, go for it! You'll have to do a bit of work on your own, but I will provide support as needed. I take great pride in being able to work with a broad range of statistical software systems.
+:::
+
 ## Student learning objectives, 1 of 3
 
 -   SLO1
