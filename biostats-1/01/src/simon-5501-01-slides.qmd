@@ -1,0 +1,109 @@
+---
+title: "See bottom of file for title"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+params:
+  topic_01: "About this class"
+  topic_02: "R and RStudio"
+  topic_03: "History of R"
+  topic_04: "Scales of measurement"
+  topic_05: "Tests of hypothesis"
+  topic_06: "Confidence intervals"
+  topic_07: "A simple R program"
+editor: source
+---
+
+## Topics to be covered
+
+```{r}
+# A small section of R code to kick start the params.
+```
+
+-   What you will learn
+    -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
+    -   `r params$topic_07`
+
+
+{{< include _01-01.qmd >}}
+
+## Break #1
+
+-   What you have learned
+    -   `r params$topic_01`
+-   What's coming next
+    -   `r params$topic_02`
+
+{{< include _01-02.qmd >}}
+
+## Break #2
+
+-   What you have learned
+    -   `r params$topic_02`
+-   What's coming next
+    -   `r params$topic_03`
+
+{{< include ../../../../build-website/text/14/history-of-r.md >}}
+
+## Break #3
+
+-   What you have learned
+    -   `r params$topic_03`
+-   What's coming next
+    -   `r params$topic_04`
+
+{{< include _01-04.qmd >}}
+
+## Break #4
+
+-   What you have learned
+    -   `r params$topic_04`
+-   What's coming next
+    -   `r params$topic_05`
+
+{{< include _01-05.qmd >}}
+
+## Break #5
+
+-   What you have learned
+    -   `r params$topic_05`
+-   What's coming next
+    -   `r params$topic_06`
+
+{{< include _01-06.qmd >}}
+
+## Break #6
+
+-   What you have learned
+    -   `r params$topic_06`
+-   What's coming next
+    -   `r params$topic_07`
+
+{{< include _01-07.qmd >}}
+
+
+## Summary
+-   What you have learned
+    -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
+    -   `r params$topic_07`
+
+<!---
+      You have to put the title down 
+      here to override the titles of
+      all the include files.
+--->
+
+---
+title: "Comments for MEDB 5501, Module01"
+---

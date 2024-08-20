@@ -1,0 +1,38 @@
+---
+title: "01-02, R and RStudio"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## R
+
+![](../images/cran.png)
+
+:::notes
+This course will use R for all classroom examples and programming assignments. You can download R from CRAN, the Comprehensive R Archive Network.
+:::
+
+## RStudio
+
+![](http://www.pmean.com/new-images/14/history-of-r-rstudio.png)
+
+:::notes
+RStudio is an integrated development environment. This provides a window where you edit your code, a window to show your files, a window to display your text output, a window to display your graphs, and other helpful windows.
+:::
+
+## Other statistical software
+
+-   JMP, Python, R, SAS, SPSS, Stata
+    -   Use only if you are confident in your abilities
+    -   Avoid Microsoft Excel
+
+:::notes
+There are lots of other choices. I am happy to help you get started with any of these programs. I like working with software. I should warn you that the level of support that I can provide does vary. I know less about Python and Stata, for example, than I do about SPSS and SAS. But I'm pretty good with anything.
+
+If you do decide to try one of these programs, make sure that you are confident in your own abilities and that you can figure out some stuff on your own. If you are new or relatively inexperienced, SPSS might be a better choice.
+:::
+
+

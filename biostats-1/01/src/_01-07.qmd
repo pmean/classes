@@ -1,0 +1,67 @@
+---
+title: "01-07, A simple R program"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+execute:
+  echo: false
+  message: false
+  warning: false
+---
+
+## Grading rubric
+
+![](../images/github-rubric.png)
+
+## simon-5501-01-template.qmd, part 1
+
+```{r write1}
+library(tidyverse)
+fn <- "simon-5501-01-template.qmd"
+template <- read_lines(file=fn)
+h <- str_which(template, "##")
+g <- h-1
+template[1:g[1]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+:::notes
+The first few lines are the documentation header
+:::
+
+## simon-5501-01-template.qmd, part 2
+
+```{r write2}
+template[h[1]:g[2]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-01-template.qmd, part 3
+
+```{r write3}
+template[h[2]:g[3]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-01-template.qmd, part 4
+
+```{r write4}
+template[h[3]:g[4]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-01-template.qmd, part 5
+
+```{r write5}
+template[h[4]:length(template)] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+

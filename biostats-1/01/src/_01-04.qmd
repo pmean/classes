@@ -1,0 +1,85 @@
+---
+title: "01-04, Scales of measurement"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Scales of measurement
+
+-   Dichotomy
+    -   Continuous
+    -   Categorical
+-   Stevens scales of measurement (controversial!)
+    -   Nominal
+    -   Ordinal
+    -   Interval
+    -   Ratio
+-   Addition/subtraction not allowed for ordinal data
+    -   Mean of ordinal data is meaningless
+
+::: notes
+There is a basic dichotomy of data types: categorical and continuous. Now I have said many many times before that I hate dichotomies. Nevertheless, they are useful.
+
+A psychologist, Stanley Smith Stevens divided the entire universe of data into four categories: nominal, ordinal, interval, ratio. I won't review the definitions for all of these, but ordinal data is categorical data where there is a natural ordering of categories. An important limitation to ordinal data, but where the spacing between successive units is not consistent.
+
+The belief among many (but not all) researchers, is that certain statistics are inappropriate for certain measurement scales. In particular, these researchers are very fussy about ordinal data.
+:::
+
+## An example of ordinal data.
+
+-   "Do you agree or disagree with the following statements"
+    -   "I believe that knowledge of Statistics is important for my job."
+        -   1 = Strongly disagree,
+        -   2 = Disagree
+        -   3 = Neutral
+        -   4 = Agree
+        -   5 = Strongly agree
+
+::: notes
+*Speaker notes*
+
+An example of ordinal data is the Likert scale. This takes various forms, but often it is used with group of questions on a questionnaire that reads something like
+
+"Do you agree or disagree with the following statements"
+
+You are asked to respond 1=Strongly disagree, 2=Disagree, 3=Neutral, 4=Agree, 5=Strongly agree.
+
+Now I'm sure everyone today is going to choose 5. But assigning numbers 1, 2, 3, 4, and 5 to categories of strongly disagree, disagree, neutral, agree, and strongly agree may falsely imply that a jump from 3 (neutral) to 4 (agree) is about the same amount of improvement as a jump from 4 (agree) to 5 (strongly agree). That's probably not the case.
+
+You can't really average ordinal data, some people say because that implies that two responses of "Agree" are the same as one response of "Neutral" along with a response of "Strongly agree".
+
+Do you want everyone to be at least somewhat on your side or do you want to have a smaller number of very enthusiastic supporters.
+
+If you believe that two 4's are not the same as a 3 and a 5, then you can't average.
+
+Now I beg to disagree here, but I am part of a minority opinion. I think that if at the start of this class, your average rating was 3.2 and after I finish the lecture, your average rating climbs to 4.4, that I have done my job well.
+
+If it only jumps to 3.6, then I have still done well, but not as much as that jump to 4.4.
+:::
+
+## Another example of ordinal data, course grades
+
+-   A = 4
+-   B = 3
+-   C = 2
+-   D = 1
+-   F = 0
+
+::: notes
+*Speaker notes*
+
+Another example of ordinal data is grades assigned to students. Now everyone in this class is getting an A, but in other classes I teach I might assign different grades. You can attach a number to each of these grades, 4 for A, 3 for B, 2 for C, 1 for D, and 0 for F.
+
+These numbers seem to imply that a student with two B's is as smart as a student with an A and a C.
+
+It raises an interesting story. A colleague of mine told me that he would never hire anyone with a single F on their transcript. An F is a red flag, he felt. So he would not want to assign a value of 0 to F, because that implies that the difference between an F and a D is equivalent to the difference between a B and and A. He's want to assign a value like negative one million to an F so that the average would be pulled way down for a single F, no matter what the other grades would be.
+
+Now I would never be so harsh, but there is really nothing wrong with his perspective. And I would certainly treat a student with three A's and one F differently from a student with two A's and two C's even though mathematically, both average out to 3.0.
+
+Now, in spite of all the obvious problems with equivalence between different grades, most of us still accept a grade point average as a meaningful indicator of how well a student did in school.
+:::
+
+

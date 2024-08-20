@@ -77,20 +77,23 @@ Avoid the gratuitous use of color. If you need color to distinguish between grou
 -   Unmodified table acceptable with a detailed text description
 
 :::notes
-If the assignment requires the production of tabular data (other than a listing of the data itself), you must ensure that the table is easily readable. This means rounding values and using comma separators either in the table itself or in your interpretation of the table. Any p-values smaller than 0.001 should be rounded up to "0.001" or replaced with "<0.001". A p-value of "0.000" is not acceptable. Avoid the use of scientific notation.
+If the assignment requires the production of tabular data (other than a listing of the data itself), you must ensure that the table is easily readable. This means rounding values and using comma separators either in the table itself or in your interpretation of the table. Avoid the use of scientific notation.
 
-If you print a table without modification, be sure that the text description of the table follows these rules. 
+ny p-values smaller than 0.001 should be rounded up to "0.001" or replaced with "<0.001". A p-value of "0.000" is not acceptable.
+
+Some programs (SPSS in particular) make it difficult for you to modify the tables. You are allowed to print a table without modification, but only if it is followed by a detailed text description that follows these rules. 
 :::
 
 ## Your code must be easy to read
 
 -   Make liberal use of
-    -  line breaks
     -  blank lines
+    -  line breaks
+    -  indenting
     -  vertical lists
 
 :::notes
-Your code should be easy to read. You should make liberal use of
+Your code should be easy to read. You should include a lot of white space. Put a blank line between sections of your code. Break long lines into several lines with indents. Use vertical lists.
 
 If you are using a system like SPSS that is largely menu driven, please include the syntax in a separate file and modify the syntax to make it more readable.
 :::
