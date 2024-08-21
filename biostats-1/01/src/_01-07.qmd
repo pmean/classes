@@ -11,11 +11,67 @@ execute:
   warning: false
 ---
 
-## Grading rubric
+## albuquerque-housing, 1 of 6
 
-![](../images/github-rubric.png)
+```{r data1}
+library(yaml)
+fn <- "https://raw.githubusercontent.com/pmean/datasets/master/albuquerque-housing.yaml"
+dd <- read_yaml(fn)
+part1 <- c(
+  "data_dictionary",
+  "format",
+  "varnames",
+  "missing_value_code")
+for (i in part1) {
+  cat(as.yaml(dd[i]))
+	cat("\n")
+}
+```
 
-## simon-5501-01-template.qmd, part 1
+## albuquerque-housing, 2 of 6
+
+```{r data2}
+part2 <- c(
+  "description",
+  "download_url")
+for (i in part2) {
+  cat(as.yaml(dd[i]))
+	cat("\n")
+}
+```
+
+## albuquerque-housing, 3 of 6
+
+```{r data3}
+part3 <- c(
+  "source",
+  "copyright",
+  "size")
+for (i in part3) {
+  cat(as.yaml(dd[i]))
+	cat("\n")
+}
+```
+
+## albuquerque-housing, 4 of 6
+
+```{r data4}
+cat(as.yaml(dd[["vars"]][1:3]))
+```
+
+## albuquerque-housing, 5 of 6
+
+```{r data5}
+cat(as.yaml(dd[["vars"]][4:5]))
+```
+
+## albuquerque-housing, 6 of 6
+
+```{r data6}
+cat(as.yaml(dd[["vars"]][6:7]))
+```
+
+## simon-5501-01-template.qmd, 1 of 5
 
 ```{r write1}
 library(tidyverse)
@@ -32,7 +88,7 @@ template[1:g[1]] |>
 The first few lines are the documentation header
 :::
 
-## simon-5501-01-template.qmd, part 2
+## simon-5501-01-template.qmd, 2 of 5
 
 ```{r write2}
 template[h[1]:g[2]] |>
@@ -40,7 +96,7 @@ template[h[1]:g[2]] |>
 	cat()
 ```
 
-## simon-5501-01-template.qmd, part 3
+## simon-5501-01-template.qmd, 3 of 5
 
 ```{r write3}
 template[h[2]:g[3]] |>
@@ -48,7 +104,7 @@ template[h[2]:g[3]] |>
 	cat()
 ```
 
-## simon-5501-01-template.qmd, part 4
+## simon-5501-01-template.qmd, 4 of 5
 
 ```{r write4}
 template[h[3]:g[4]] |>
@@ -56,7 +112,7 @@ template[h[3]:g[4]] |>
 	cat()
 ```
 
-## simon-5501-01-template.qmd, part 5
+## simon-5501-01-template.qmd, 5 of 5
 
 ```{r write5}
 template[h[4]:length(template)] |>

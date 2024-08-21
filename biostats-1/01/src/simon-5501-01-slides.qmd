@@ -11,7 +11,8 @@ params:
   topic_04: "Scales of measurement"
   topic_05: "Tests of hypothesis"
   topic_06: "Confidence intervals"
-  topic_07: "A simple R program"
+  topic_07: "Grading rubric"
+  topic_08: "A simple R program"
 editor: source
 ---
 
@@ -29,6 +30,7 @@ editor: source
     -   `r params$topic_05`
     -   `r params$topic_06`
     -   `r params$topic_07`
+    -   `r params$topic_08`
 
 
 {{< include _01-01.qmd >}}
@@ -85,6 +87,15 @@ editor: source
 -   What's coming next
     -   `r params$topic_07`
 
+{{< include ../../../general/general-grading-rubric.md >}}
+
+## Break #7
+
+-   What you have learned
+    -   `r params$topic_07`
+-   What's coming next
+    -   `r params$topic_08`
+
 {{< include _01-07.qmd >}}
 
 
@@ -97,6 +108,7 @@ editor: source
     -   `r params$topic_05`
     -   `r params$topic_06`
     -   `r params$topic_07`
+    -   `r params$topic_08`
 
 <!---
       You have to put the title down 
@@ -105,5 +117,6 @@ editor: source
 --->
 
 ---
-title: "Comments for MEDB 5501, Module01"
+title: "MEDB 5501, Module01"
+date: 2024-08-20
 ---

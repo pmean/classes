@@ -6,7 +6,7 @@ format:
     embed-resources: true
 ---
 
-## General requirements.
+## Grading rubric: general requirements.
 
 -   Documentation
 -   Graphs
