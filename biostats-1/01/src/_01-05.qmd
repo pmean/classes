@@ -151,7 +151,7 @@ If you have a hypothesis that compares two groups, look for comparative words li
 -   C = control
 -   O = outcome
 
-## Example of text hypotheses (1/2)
+## Example of text hypotheses, 1 of 2
 
 -   "... the objective of this 78-week randomised, placebo-controlled study was to determine whether treatment with nilvadipine sustained-release 8 mg, once a day, was effective and safe in slowing the rate of cognitive decline in patients with mild to moderate Alzheimer disease."
     -   Lawlor B, Segurado R, Kennelly S, et al. Nilvadipine in mild to moderate Alzheimer disease: A randomised controlled trial. PLoS Med. 2018; 15(9): e1002660. DOI: 10.1371/journal.pmed.1002660
@@ -171,7 +171,7 @@ Effectiveness was measured using the Alzheimer's Disease Assessment Scale Cognit
 -   C = placebo
 -   O = cognitive function
 
-## Example of text hypotheses (2/2)
+## Example of text hypotheses, 2 of 2
 
 -   "... we investigated trends in BCC incidence over a span of 20 years and the associations between incident BCC and risk factors in a total population of 140,171 participants from 2 large US-based cohort studies: women in the Nurses' Health Study (NHS; 1986--2006) and men in the Health Professionals' Follow-up Study (HPFS; 1988--2006)."
     -   Wu S, Han J, Li WQ, Li T, Qureshi AA. Basal-cell carcinoma incidence and associated risk factors in U.S. women and men. Am J Epidemiol. 2013; 178(6): 890--897. DOI: 10.1093/aje/kwt073
@@ -218,7 +218,7 @@ Actually, the tobacco companies did complain that the use of a directional alter
 As another aside, I was involved with prayer study. We planned this study using a one-sided hypothesis (remote prayer has a positive effect on health). The Institutional Review Board suggested changing this to a two-sided hypothesis (remote prayer has either a positive or a negative effect on health). Thankfully, we did not observe an outcome in the opposite tail as that would have been very difficult to explain.
 :::
 
-## What is a decision rule? (1/3)
+## What is a decision rule? 1 of 3
 
 -   Example
     -   $H_0:\ \mu_1 - \mu_2 = 0$
@@ -226,7 +226,7 @@ As another aside, I was involved with prayer study. We planned this study using 
     -   t = ($\bar{X}_1-\bar{X}_2$) / se
     -   Accept $H_0$ if t is close to zero.
 
-## What is a decision rule? (2/3)
+## What is a decision rule? 2 of 3
 
 -   Example
     -   $H_0:\ \pi_1 - \pi_2 = 0$
@@ -234,7 +234,7 @@ As another aside, I was involved with prayer study. We planned this study using 
     -   t = ($\hat{p}_1-\hat{p}_2$) / se
     -   Accept $H_0$ if t is close to zero.
 
-## What is a decision rule? (3/3)
+## What is a decision rule? 3 of 3
 
 -   Example
     -   $H_0:\ \rho = 0$
@@ -332,7 +332,7 @@ I have argued that the p-value is a measure of evidence. Some have called it a p
 If the p-value is small, you have lots of evidence against the null hypothesis. If the p-value is large, you have little or no evidence against the null hypothesis.
 :::
 
-## What the p-value is not (1/2)
+## What the p-value is not, 1 of 2
 
 -   A p-value is NOT the probability that the null hypothesis is true.
     -   P\[t or more extreme \| null\] is different than
@@ -352,7 +352,7 @@ A second reason that you can't reverse the order is that you cannot make a proba
 Only numbers computed from a sample (i.e., statistics) have sampling error.
 :::
 
-## What the p-value is not (2/2)
+## What the p-value is not, 2 of 2
 
 -   Not a measure FOR either hypothesis
     -   Little evidence **against** the null $\ne$ lots of evidence **for** the null
@@ -377,8 +377,7 @@ You could also combine a large p-value with a narrow confidence interval to supp
 In general, the p-value is not very helpful for large samples. We're seeing this more and more. Just about everything pops up as statistically significant with these huge data sets, and you can't use the p-value to separate the important stuff from the trivial stuff. You need to look instead at the magnitude of the sample estimates and calculate how much uncertainty you can remove in your future predictions.
 :::
 
-
-
+## A bad test question
 
 A research paper computes a p-value of 0.45. How would you interpret this p-value?
 
