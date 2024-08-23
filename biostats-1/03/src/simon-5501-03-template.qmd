@@ -1,0 +1,57 @@
+---
+title: "Template for 5501-01 programming assignment"
+author: "Steve Simon"
+format: 
+  html:
+    embed-resources: true
+date: 2024-08-18
+---
+
+This program reads data on housing prices in Albuquerque, New Mexico in 1993. Find more information in the [data dictionary][dd].
+
+[dd]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.yaml
+
+This code is placed in the public domain.
+
+## Load the tidyverse library
+
+For most of your programs, you should load the tidyverse library. The messages and warnings are suppressed.
+
+```{r setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+```
+
+## Read the data and view a brief summary
+
+Use the read_csv function to read the data. The glimpse function will produce a brief summary.
+
+```{r read}
+alb <- read_csv(
+  file="../data/albuquerque-housing.csv",
+  col_names=TRUE,
+  col_types="nnnnccc",
+  na=".")
+glimpse(alb)
+```
+
+## Calculate overall means
+
+The summarize_if function produces means, but only for numeric data. You wouldn't want to compute means for data with values "yes" and "no".
+
+```{r means}
+alb |>
+  summarise_if(is.numeric, mean, na.rm = TRUE)
+```
+
+## Summarize price
+
+The average price of a home, 106 thousand dollars, is quite low because the data comes from 1993.
+
+## Summarize sqft
+
+## Summarize age
+
+## Summarize features
+
