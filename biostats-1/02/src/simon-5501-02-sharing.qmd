@@ -1,0 +1,47 @@
+---
+title: "Counts and percentages"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+execute:
+  echo: true
+  message: false
+  warning: false
+---
+
+## Data source
+
+This program uses data from a study of sharing services (like sharing an automobile) and produces counts and percentages for a few demographic variables. There is a [data dictionary][dd] that provides more details about the data. 
+
+[dd]: https://github.com/pmean/datasets/blob/master/sharing.yaml
+
+Here are the libraries you need for this program.
+
+```{r setup}
+library(readxl)
+library(tidyverse)
+library(yaml)
+```
+
+## Reading the data
+
+Here is the code to read the data and show a glimpse. There are 31 columns total, but I am showing just a few of the columns here.
+
+```{r read}
+fn <- "../data/sharing.xlsx"
+sharing <- read_excel(fn)
+glimpse(sharing[ , c(1, 5:7)])
+```
+
+## Calculate counts and percentages for age group
+
+```{r count-age-groups}
+sharing |>
+  count(age) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total)
+```
+
+The survey respondents were younger than the general population. About half of the survey respondents were 18 to 25 years old. Only 3% were over 60. Six ages were missing.
