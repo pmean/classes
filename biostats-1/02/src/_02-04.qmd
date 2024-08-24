@@ -9,7 +9,65 @@ editor: source
 
 ## Standard deviation
 
-:::notes
-The
+$$S = \sqrt{\frac{1}{n-1}\Sigma(X_i-\bar{X})^2}$$
+
+At least one alternative formula.
+
+::: notes
+*Speaker notes*
+
+The standard deviation is a commonly used measure of how spread out the data is. The formula is a bit messy, but if you look carefully at it, you will see that it is a measure of how far each individual value is from the overall mean.
+
+Now, maybe you've seen or used a different formula. Don't worry about it. In a short course like this, I won't ask you to calculate anything as tedious as a standard deviation. Let the computer do all of the work.
 :::
+
+## Why is variation important
+
+-   Variation = Noise
+    -   Too much noise can hide signals
+-   Variation = Heterogeneity
+    -   Too little heterogeneity, hard to generalize
+    -   Too much heterogeneity, mixing apples and oranges
+-   Variation = Unpredictability
+    -   Too much unpredictability, hard to prepare for the future
+-   Variation = Risk
+    -   Too much risk can create a financial burden
+
+::: notes
+*Speaker notes*
+
+I want to discuss measures of variation now. Variation gets at the heart and soul of clinical statistics. A large portion of statistical analysis involves characterizing variation.
+
+Variation can be thought of as a measure of noise. In general, but not always, noise is bad. Consider measuring a patient's glucose level, to see if you have early evidence of diabetes. Your glucose level varies a lot during the day based on whether you skipped breakfast or decided to get a mid-afternoon Snickers bar. Your glucose level is noisy. A high level might or might not mean trouble. A low value might or might not mean you are safe. The large standard deviation of your measures of blood glucose indicates noise.
+
+That's why you are asked to take an overnight fast before testing your blood glucose level. Controlling your diet by not eating anything after midnight provides a more consistent measure of blood glucose. It has a smaller standard deviation and a high or low value is more helpful in diagnosis.
+
+Variation can also be thought of as a measure of heterogeneity. Heterogeneity is also bad sometimes, but there are times when you want a fair amount of heterogeneity. A research study that has a lot of variation is better at providing a complete picture of what a typical patient is. Outcomes that are consistent in the presence of demographic heterogeneity give you more confidence in generalizing the results of a research study. You have some assurance that the therapy is not restricted to helping a small segment of patients.
+
+Too much heterogeneity, though, can mean that any summary measure is a mixture of apples and oranges. You have to find the right balance.
+
+Variation can be equated to unpredictability. The number of beds needed in a hospital does vary, and this makes it difficult to staff properly. The more variation in beds needed, the more headaches you have.
+
+Variation can also be equated to risk. If you invest in a new drug, paying millions or even billions of dollars in testing, you are doing so with the hope that your investment will pay off. Unfortunately, the market for your drug is uncertain, and you might end up with no market at all if your clinical trials fail to convince FDA. There is variation in the return on your investment, and the more variation there is, the more risky your development plans are.
+:::
+
+## Should you try to minimize variation?
+
+-   Yes, for early studies
+    -   Easier to detect signals
+    -   Proof of concept trials
+-   No, for later studies
+    -   Easier to generalize results
+    -   Pragmatic trials
+
+::: notes
+*Speaker notes*
+
+It is a bit of a generalization, but most researchers try to avoid variation in early studies. By early studies, I mean studies of therapies that have not yet been extensively tested in a broad range of settings. Less variation means that there is a greater chance to detect signals. You remove variation by using very strict entry criteria on who can get into the study. You remove variation by tightly controlling what the patient is allowed to do (e.g., no concommitant medications). You remove variation by tightly standardizing the delivery of the intervention and the assessment of the outcome. You reduce variation by removing patients who deviate from the research protocol requirements.
+
+These are known as proof of concept trials. If a new therapy cannot succeed even under the tight controls, there is no point in studying it futher. But success in a tightly controlled environment does not guarantee success in the real world.
+
+If you are planning a trial that comes after many similar trials, you actually may want to encourage variation. Broaden the inclusion criteria so that the patients in the trial look no different than the patients you see every day in your clinic.
+:::
+
   

@@ -7,9 +7,216 @@ format:
 editor: source
 ---
 
-## Percentiles
+## 
 
-:::notes
-The
+```{r}
+data.frame(x=rpois(2000, 20)) %>%
+  mutate(cut=quantile(x, probs=0.75)) %>%
+  mutate(y=1+as.numeric(x<=cut)) %>%
+  ggplot(aes(x, fill=factor(y))) +
+    scale_fill_manual(values=c("white", "gray")) +
+    theme(legend.position="none") +
+    xlab(" ") +
+    ylab(" ") +
+    geom_bar(color="black", width=1) -> bar1
+ggsave("../images/illustrate-percentiles.png")
+```
+
+![Illustration of the 75th percentile](../images/illustrate-percentiles.png)
+
+::: notes
+*Speaker notes*
+
+I want to mention percentiles briefly. A percentile is a value that splits the data so that a certain percentage is smaller and a certain percentage is larger.
+
+The 75th percentile, for example will be above 75% of the data and below 25% of the data. This graph illustrates the 75th percentile for some arbitrary data. The gray bars represent about 75% of the data and the white bars represent about 25% of the data.
+
+I use a few weasel words like "roughly" and "about" because you can't always get a perfect split. But you can usually come close.
 :::
-  
+
+## Computing percentiles
+
+-   Many formulas
+    -   Differences are not worth fighting over
+-   My preference (pth quantile)
+    -   Sort the data
+    -   Calculate p\*(n+1)
+    -   Is it a whole number?
+        -   Yes: Select that value, otherwise
+        -   No: Go halfway between
+        -   Special cases: p(n+1) \< 1 or \> n
+
+::: notes
+*Speaker notes*
+
+There are close to a dozen different ways to compute a percentile, but the differences between the values selected are small and not worth fussing about.
+
+Here is my preference for choosing the pth quantile (remember that for quantiles, you range between 0 and 1, not between 0 and 100).
+
+Calculate the quantity p\*(n+1). If that value is a whole number, great! You just select that value. If it is a fractional value, round up and down and go halfway between.
+
+Once in a while, you'll get an extreme case, where p(n+1) is less than 1 or greater than n. Just use a bit of common sense.
+
+If you have nine values and p(n+1) is 9.2, you can't go halfway between the 9th and 10th observations. There is no 10th observation. So just choose the 9th or largest value.
+
+Likewise if p(n+1) is 0.8, you can't go halfway between the zeroth and first observation. There is no zeroth observation. Just choose the first or smallest value.
+:::
+
+## Some examples of percentile calculations
+
+-   Example for n=39
+    -   For 5th percentile, p(n+1)=2 -\> 2nd smallest value
+    -   For 4th percentile, p(n+1)=1.6 -\> halfway between two smallest values
+    -   For 2nd percentile, p(n+1)=0.8 -\> smallest value
+
+::: notes
+*Speaker notes*
+
+Suppose you have 39 observations. For the 5th percentile or the 0.05 quantile, p(n+1) equals 2. Lucky you. The second smallest observation is the 5th percentile. For the 4th percentile or the 0.04 quantile, you get p(n+1) equal to 1.6. Go halfway between 1, the smallest value, and 2, the second smallest value.
+
+The 2nd percentile represents one of the special cases. You calculate p(n+1) and get 0.8. You can't go halfway between 0 and 1, so just choose the smallest value.
+:::
+
+## Some terminology
+
+-   Percentile: goes from 0% to 100%
+-   Quantile: goes from 0.0 to 1.0
+    -   90th percentile = 0.9 quantile
+-   25th, 50th, and 75th percentiles: quartiles
+    -   25th percentile: $Q_1,\ X_{0.25}$ or lower quartile
+    -   Median/50th percentiles: $Q_2$ or $X_{0.5}$
+    -   75th percentile: $Q_3,\ X_{0.75}$ or upper quartile
+
+::: notes
+*Speaker notes*
+
+A percentile always refers to a percentage. So it has to be between 0% and 100%. Sometimes, you may see references to a quantile. A quantile is a percentile, but is expressed as a proportion rather than a percent. A quantile goes from 0.0 to 1.0. The 90th percentile and the 0.90 quantile are the same thing.
+
+You might see the term "quartiles". These are the 25th, 50th, and 75th percentiles. These three values split the data into quarters.
+
+If you see "lower quartile", it means the 25th percentile. Likewise, "upper quartile" means the 75th percentile.
+
+Let me be try to be careful about terminology here. But, sometimes I will mess up and use "percentile" when I mean "quantile".
+:::
+
+## Before remediation upper quartile (1/4)
+
+```         
+`r sq(step1(bacteria_0))`
+```
+
+::: notes
+*Speaker notes*
+
+Here is the data for bacteria counts before remediation. Let's calculate the upper quartile, also known as the 0.75 quantile or the 75th percentile.
+:::
+
+## Before remediation upper quartile (2/4)
+
+```         
+`r sq(step2(bacteria_0))`
+```
+
+::: notes
+*Speaker notes*
+
+Just like before, you sort the data.
+:::
+
+## Before remediation upper quartile (3/4)
+
+```         
+`r sq(step3(bacteria_0, div=6:7))`
+```
+
+::: notes
+*Speaker notes*
+
+With n=8, you get p(n+1) = 6.75. So pick out the sixth and seventh values.
+:::
+
+## Before remediation upper quartile (4/4)
+
+```         
+`r sq(step4(bacteria_0, div=6:7)) `
+```
+
+::: notes
+*Speaker notes*
+
+Go halfway between these values.
+:::
+
+## After remediation upper quartile (1/4)
+
+```         
+`r sq(step1(bacteria_1))`
+```
+
+::: notes
+*Speaker notes*
+
+Here are the same calculations the upper quartile of bacteria counts after remediation.
+:::
+
+## After remediation upper quartile (2/4)
+
+```         
+`r sq(step2(bacteria_1))`
+```
+
+::: notes
+*Speaker notes*
+
+Just like before, you sort the data.
+:::
+
+## After remediation upper quartile (3/4)
+
+```         
+`r sq(step3(bacteria_1, div=6:7))`
+```
+
+::: notes
+*Speaker notes*
+
+Then pick out the sixth and seventh values.
+:::
+
+## After remediation upper quartile (4/4)
+
+```         
+`r sq(step4(bacteria_1, div=6:7)) `
+```
+
+::: notes
+*Speaker notes*
+
+Go halfway between these values.
+:::
+
+## When you should use percentiles
+
+-   Characterize variation
+    -   Middle 50% of the data
+-   Exposure issues
+    -   Not enough to control median exposure level
+-   Quantify extremes
+    -   What does "upper class" mean?
+-   Quality control
+    -   Almost all products must meet a minimum standard
+
+::: notes
+*Speaker notes*
+
+There are many reasons why you might be interested in percentiles rather than the mean or median. Actually, the median is a percentile, the 50th percentile, but I want to talk about percentiles other than 50%.
+
+One important use of percentiles is looking at the middle 50% of the data. This is the data between the lower quartile (25th percentile) and the upper quartile (75th percentile). Is the middle 50% of the data bunched tightly together or spread widely apart?
+
+Percentiles are also important in the study of exposures. If you work in an environment where the median worker has a safe level of exposure, you could easily end up with 20%, 30% or more of the workers dying from unsafe exposures. It is important to insure that not just the median, but a very high percentile like the 99th percentile of exposure levels is at a safe level.
+
+Percentiles also help to define extreme groups. You can, for example, define the term upper class as anyone earning more than the 90th percentile of income.
+
+Percentiles also can help with quality control. If you make a claim about a product, you want to make sure that that claim is not valid at a median level but at a much higher level. You don't sell 500 mg bottles of liquid Tylenol is your factory is churning out a median fill level of 500 mg. Half of your customers would be cheated. Instead you insure that the 98th percentile coming out of the factory floor is at least 500 mg. You lose a bit of money because most bottles contain more than 500 mg, but the cost of an irate customer is worth more than the cost of 50 overfilled bottles.
+:::
+

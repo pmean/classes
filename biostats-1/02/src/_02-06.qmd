@@ -7,9 +7,100 @@ format:
 editor: source
 ---
 
-## TBA-1
+## Why concern yourself with the bell shaped curve?
 
-:::notes
-The
+-   You can characterize individual observations
+-   You can characterize summary measures
+
+## 
+
+```{r}
+x <- round(x)
+y <- (x<7) + (x > 13)
+data.frame(x=round(x)) %>%
+  ggplot(aes(x, fill=factor(y))) +
+    theme(legend.position="none") +
+    xlab(" ") +
+    ylab(" ") +
+    scale_fill_manual(values=c("gray", "white")) +
+    geom_bar(color="black", width=1) -> one_s_histogram
+ggsave("../images/one-s-histogram.png")
+```
+
+![Percentage within one standard deviation](../images/one-s-histogram.png)
+
+::: notes
+*Speaker notes*
+
+This shows the bell shaped curve with the data within one standard deviation of the mean highlighted in gray. Roughly 68% of the data lies within one standard deviation of the mean. This is only true if the variation follows a bell shaped curve.
 :::
-  
+
+## 
+
+```{r}
+x <- round(x)
+y <- (x<4) + (x > 16)
+data.frame(x=round(x)) %>%
+  ggplot(aes(x, fill=factor(y))) +
+    theme(legend.position="none") +
+    xlab(" ") +
+    ylab(" ") +
+    scale_fill_manual(values=c("gray", "white")) +
+    geom_bar(color="black", width=1) -> two_s_histogram
+ggsave("../images/two-s-histogram.png")
+```
+
+![Percentage within two standard deviations](../images/two-s-histogram.png)
+
+::: notes
+*Speaker notes*
+
+This shows the bell shaped curve with the data within two standard deviations of the mean highlighted in gray. Roughly 95% of the data lies within two standard deviations of the mean. To repeat, this is only true if the variation follows a bell shaped curve.
+:::
+
+## 
+
+```{r}
+x <- round(x)
+y <- (x<1) + (x > 19)
+data.frame(x=round(x)) %>%
+  ggplot(aes(x, fill=factor(y))) +
+    theme(legend.position="none") +
+    xlab(" ") +
+    ylab(" ") +
+    scale_fill_manual(values=c("gray", "white")) +
+    geom_bar(color="black", width=1) -> three_s_histogram
+ggsave("../images/three-s-histogram.png")
+```
+
+![Percentage within three standard deviations](../images/three-s-histogram.png)
+
+::: notes
+*Speaker notes*
+
+This shows the bell shaped curve with the data within three standard deviations of the mean highlighted in gray. Almost all of the data lies within three standard deviations of the mean. Rember, and this is worth repeating. This is only true if the variation follows a bell shaped curve.
+:::
+
+## Behavior of the mean versus an individual
+
+-   Central Limit Theorem
+    -   Sample mean is approximately normal
+    -   Even if individual observations are not
+-   Standard error: $S/\sqrt{n}$
+
+::: notes
+*Speaker notes*
+
+The histograms above show the behavior of individuals in a sample. The mean of a sample behaves differently.
+
+For almost all settings, the sample mean follows a bell shaped curve. The extremes of bimodality, skewness, and other types of non-normality tend to average out across a sample.
+
+The mean is also less variable than an individual observation, by a factor equal to the square root of the sample size.
+
+What does this mean from a practical sense? It means that averages are much more predictable than individuals. The time that you spend getting a colonoscopy done can vary quite a bit. But the doctor who schedules eight colonoscopies in a day doesn't mind if yours takes a bit too long. From the perspective of the physician, the average time will be fairly predictable, even if an individual colonoscopy time varies quite a bit.
+
+Now it is possible to get all eight colonoscopies taking longer than average. It doesn't happen very often, but on those days, the doctor earns every penny that they pay her.
+
+Remember this perspective. Sometimes you care mostly about the individual value and sometimes you care mostly about the average value.
+:::
+
