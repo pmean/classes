@@ -1,5 +1,5 @@
 ---
-title: "Counts and percentages"
+title: "Univariate statistics for Legionnaires disease"
 format: 
   html:
     slide-number: true
@@ -13,9 +13,9 @@ execute:
 
 ## Data source
 
-This program uses data from a study of sharing services (like sharing an automobile) and produces counts and percentages for a few demographic variables. There is a [data dictionary][dd] that provides more details about the data. 
+This program uses data from a fictional study of Legionnaires disease and produces some simple univariate statistics: means, standard deviations, and percentiles. There is a [data dictionary][dd] that provides more details about the data. 
 
-[dd]: https://github.com/pmean/datasets/blob/master/sharing.yaml
+[dd]: https://github.com/pmean/data/blob/main/files/legionnaires-disease.yaml
 
 Here are the libraries you need for this program.
 

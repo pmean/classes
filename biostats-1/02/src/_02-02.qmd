@@ -54,7 +54,7 @@ for (i in part2) {
 }
 ```
 
-## simon-5501-02-legionnaires.qmd, 1 of 5
+## simon-5501-02-legionnaires.qmd, 1
 
 ```{r write1}
 library(tidyverse)
@@ -71,7 +71,7 @@ template[1:g[1]] |>
 The first few lines are the documentation header
 :::
 
-## simon-5501-01-template.qmd, 2 of 5
+## simon-5501-01-template.qmd, 2
 
 ```{r write2}
 template[h[1]:g[2]] |>
@@ -79,7 +79,7 @@ template[h[1]:g[2]] |>
 	cat()
 ```
 
-## simon-5501-01-template.qmd, 3 of 5
+## simon-5501-01-template.qmd, 3
 
 ```{r write3}
 template[h[2]:g[3]] |>
@@ -87,7 +87,7 @@ template[h[2]:g[3]] |>
 	cat()
 ```
 
-## simon-5501-01-template.qmd, 4 of 5
+## simon-5501-01-template.qmd, 4
 
 ```{r write4}
 template[h[3]:g[4]] |>
@@ -95,7 +95,7 @@ template[h[3]:g[4]] |>
 	cat()
 ```
 
-## simon-5501-01-template.qmd, 5 of 5
+## simon-5501-01-template.qmd, 5
 
 ```{r write5}
 template[h[4]:length(template)] |>
