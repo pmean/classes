@@ -15,7 +15,7 @@ execute:
 
 ```{r data1}
 library(yaml)
-fn <- "https://raw.githubusercontent.com/pmean/datasets/master/albuquerque-housing.yaml"
+fn <- "https://raw.githubusercontent.com/pmean/data/main/files/albuquerque-housing.yaml"
 dd <- read_yaml(fn)
 part1 <- c(
   "data_dictionary",

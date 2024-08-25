@@ -1,5 +1,5 @@
 ---
-title: "02-07, Programming template"
+title: "02-06, TBA-1"
 format: 
   revealjs:
     slide-number: true
@@ -7,170 +7,100 @@ format:
 editor: source
 ---
 
-## Diagnosing distributional issues (1/2)
+## Why concern yourself with the bell shaped curve?
 
--   For all data
-    -   $\bar{X} \gg X_{0.5}$
-    -   $\bar{X}$ and/or $X_{0.5}$ not midway between $Q_1$ and $Q_3$
-    -   $\bar{X}$ and/or $X_{0.5}$ not midway between min and max
-
-::: notes
-*Speaker notes*
-
-The best way to decide whether your data follows a bell shaped curve is by looking at a histogram. But this is not always an option. When you are reading a journal article, you probably only get descriptive statistics and not a histogram.
-
-There are certain patterns, however, that you might see in the descriptive statistics that SOMETIMES help you assess when the data does not follow a bell shaped curve.
-
-These don't diagnose every possible deviation from the bell shaped curve, so some types of deviations might be undiagnosed. But if you see any of these patterns, they are definitely indicative of non-normality.
-
-If the mean is a lot larger than the median, it is almost always because of some extreme values, but only on the high end.
-
-If the data is lop-sided, either because the mean/median are not midway between the upper and lower quartiles or because they are not midway between the smallest value and the largest value, this indicates a lack of symmetry and is inconsistent with the bell shaped curve.
-:::
-
-## Diagnosing distributional issues (2/2)
-
--   For non-negative data
-    -   $S > 0.5 \times \bar{X}$
--   For data with an lower and/or upper bound
-    -   $Q_1$ = lower bound
-    -   $Q_3$ = upper bound
--   Don't overdiagnose, especially with small sample sizes!
-
-::: notes
-*Speaker notes*
-
-For non-negative data, data with a lower bound of zero, a large standard deviation, one that is half the size of the mean or greater, you would have the mean minus two standard deviations go negative. That's a pretty good sign that trying to apply the mean plus or minus two standard deviations is not going to make much sense.
-
-If there is another lower bound, or perhaps an upper bound to the data, see if one of the quartiles hits these bounds. If the 75th percentile equals the upper bound, that means that a quarter of your data is piled up at the upper bound. There's no way this could be consistent with a bell shaped curve.
-
-Be careful not to overdiagnose. Don't try to look for subtle patterns. A mean that is just slightly larger than the median or not quite halfway between the lower and upper quartiles is not a cause for concern.
-:::
+-   You can characterize individual observations
+-   You can characterize summary measures
 
 ## 
 
-![Lin et al 2022, PMID: 36126916](../images/lin-2022.png)
-
-::: notes
-*Speaker notes*
-
-Here is a research study looking at US veterans diagnosed with schizophrenia, comparing those who relapsed with those who did not.
-:::
-
-## 
-
-![Excerpt from Table 1 of Lin et al 2022: ages](../images/lin-2022-ages.png)
-
-::: notes
-*Speaker notes*
-
-Here is part of a table for this article that gives a fair amount of detail about the ages of the veterans in this research study.
-
-The data here looks fairl well behaved. The mean and the median are close to one another. Ages are non-negative, so you could look at the standard deviation. A really large standard deviation could be trouble, but here is is around 13, nowhere close to half of the mean. The mean and median both find themselves about midway between the two quartiles and between the minimum and maximum values.
-:::
-
-## 
-
-![Excerpt from Table 1 of Lin et al 2022: CCI](../images/lin-2022-cci.png)
-
-::: notes
-*Speaker notes*
-
-CCI is short for the Charlson Comorbidity Index. It is a weighted sum of nineteen medical conditions.The larger the value of CCI, the sicker the patient.
-
-The CCI has a lower bound of zero, so you can see a problem right away. The standard deviations are about the same size or a bit bigger than the mean. The mean and medians are about midway between the two quartiles, but when you look at the minimum and maximum, there is quite a different story.
-
-This is indeed not normally distributed.
-:::
-
-## 
-
-![Excerpt from Table 1 of Lin et al 2022: PHQ-2](../images/lin-2022-phq.png)
-
-::: notes
-*Speaker notes*
-
-PHQ-2 is a quality of life measure. It ranges from 0 to 6. The very large standard deviations, both quite a bit bigger than the means, indicates strong evidence of non-normality.
-:::
-
-## 
-
-![Tosato et al 2021, PMID: 34352201](../images/tosato-2021.png)
-
-::: notes
-*Speaker notes*
-:::
-
-## Tosato 2021, PMID: 34352201 (continued)
-
-Symptom persistence weeks after laboratory-confirmed severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) clearance is a relatively common long-term complication of Coronavirus disease 2019 (COVID-19). Little is known about this phenomenon in older adults. The present study aimed at determining the prevalence of persistent symptoms among older COVID-19 survivors and identifying symptom patterns.
-
-::: notes
-*Speaker notes*
-
-Here's another article looking at long Covid, the persistence of symptoms long after infection.
-:::
-
-## Tosato 2021, PMID: 34352201 (continued)
-
-The mean age was 73.1 ± 6.2 years (median 72, interquartile range 27), and 63 (38.4%) were women. The average time elapsed from hospital discharge was 76.8 ± 20.3 days (range 25-109 days).
-
-::: notes
-*Speaker notes*
-
-There are fewer statistics presented here. Age and time since discharge are both non-negative, so you can compare the standard deviation to the mean. No problems here. It might be worth calculating the mean plus or minus two standard deviations. Rounding a bit you get 61 to 85 for age and 37 to 117 for time
-:::
-
-## Ielapi 2021, PMID: 34968328
-
-![Ielapi et al 2021, PMID: 34968328](../images/ielapi-2021.png)
-
-## Ielapi 2021, PMID: 34968328 (continued)
-
-Background. Insomnia is one of the major health problems related with a decrease in quality of life (QOL) and also in poor functioning in night-shift nurses, that also may negatively affect patients' care. The aim of this study is to evaluate the prevalence of insomnia in night shift nurses.
-
-::: notes
-*Speaker notes*
-
-Here's an article about insomnia among nurses.
-:::
-
-## Ielapi 2021, PMID: 34968328 (continued)
-
-Excerpt from Table 1. Data reported as mean ± standard deviation or median \[Q1-Q3\]
-
-```         
-Overall (n = 2′355)
-Age, years  40.4 ± 10.3
-Months of work 168 [72–300]
-Night shifts per month, number  6.3 ± 1.4
-Time to reach workplace, minutes    45 [45–65]
+```{r}
+x <- round(x)
+y <- (x<7) + (x > 13)
+data.frame(x=round(x)) %>%
+  ggplot(aes(x, fill=factor(y))) +
+    theme(legend.position="none") +
+    xlab(" ") +
+    ylab(" ") +
+    scale_fill_manual(values=c("gray", "white")) +
+    geom_bar(color="black", width=1) -> one_s_histogram
+ggsave("../images/one-s-histogram.png")
 ```
 
+![Percentage within one standard deviation](../images/one-s-histogram.png)
+
 ::: notes
 *Speaker notes*
 
-Break into small groups. The first group take the first four measures and the second group take the last four measures. Is there evidence that the data is non-normally distributed?
-
-Also, calculate the mean plus of minus two standard deviations for any observations that report the mean and standard deviation.
+This shows the bell shaped curve with the data within one standard deviation of the mean highlighted in gray. Roughly 68% of the data lies within one standard deviation of the mean. This is only true if the variation follows a bell shaped curve.
 :::
 
-## Ielapi 2021, PMID: 34968328 (continued)
+## 
 
-Excerpt from Table 1. Data reported as mean ± standard deviation or median \[Q1-Q3\]
-
-```         
-Rest time, minutes  180 [4–240]
-Rest in the afternoon, minutes  30 [0–120]
-Number of coffees, mean 2.5 ± 1.5
-Number of coffees during night shift, mean  1.4 ± 1.1
+```{r}
+x <- round(x)
+y <- (x<4) + (x > 16)
+data.frame(x=round(x)) %>%
+  ggplot(aes(x, fill=factor(y))) +
+    theme(legend.position="none") +
+    xlab(" ") +
+    ylab(" ") +
+    scale_fill_manual(values=c("gray", "white")) +
+    geom_bar(color="black", width=1) -> two_s_histogram
+ggsave("../images/two-s-histogram.png")
 ```
+
+![Percentage within two standard deviations](../images/two-s-histogram.png)
 
 ::: notes
 *Speaker notes*
 
-Break into small groups. The first group take the first four measures and the second group take the last four measures. Is there evidence that the data is non-normally distributed?
+This shows the bell shaped curve with the data within two standard deviations of the mean highlighted in gray. Roughly 95% of the data lies within two standard deviations of the mean. To repeat, this is only true if the variation follows a bell shaped curve.
+:::
 
-Also, calculate the mean plus of minus two standard deviations for any observations that report the mean and standard deviation.
+## 
+
+```{r}
+x <- round(x)
+y <- (x<1) + (x > 19)
+data.frame(x=round(x)) %>%
+  ggplot(aes(x, fill=factor(y))) +
+    theme(legend.position="none") +
+    xlab(" ") +
+    ylab(" ") +
+    scale_fill_manual(values=c("gray", "white")) +
+    geom_bar(color="black", width=1) -> three_s_histogram
+ggsave("../images/three-s-histogram.png")
+```
+
+![Percentage within three standard deviations](../images/three-s-histogram.png)
+
+::: notes
+*Speaker notes*
+
+This shows the bell shaped curve with the data within three standard deviations of the mean highlighted in gray. Almost all of the data lies within three standard deviations of the mean. Rember, and this is worth repeating. This is only true if the variation follows a bell shaped curve.
+:::
+
+## Behavior of the mean versus an individual
+
+-   Central Limit Theorem
+    -   Sample mean is approximately normal
+    -   Even if individual observations are not
+-   Standard error: $S/\sqrt{n}$
+
+::: notes
+*Speaker notes*
+
+The histograms above show the behavior of individuals in a sample. The mean of a sample behaves differently.
+
+For almost all settings, the sample mean follows a bell shaped curve. The extremes of bimodality, skewness, and other types of non-normality tend to average out across a sample.
+
+The mean is also less variable than an individual observation, by a factor equal to the square root of the sample size.
+
+What does this mean from a practical sense? It means that averages are much more predictable than individuals. The time that you spend getting a colonoscopy done can vary quite a bit. But the doctor who schedules eight colonoscopies in a day doesn't mind if yours takes a bit too long. From the perspective of the physician, the average time will be fairly predictable, even if an individual colonoscopy time varies quite a bit.
+
+Now it is possible to get all eight colonoscopies taking longer than average. It doesn't happen very often, but on those days, the doctor earns every penny that they pay her.
+
+Remember this perspective. Sometimes you care mostly about the individual value and sometimes you care mostly about the average value.
 :::
 

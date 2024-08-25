@@ -171,15 +171,3 @@ You live in a new era, the era of big data, and that lesson is especially critic
 We'll still teach about sampling error, because a huge proportion of the data analyses done even today are on data that are not "big".
 :::
 
-## Reporting counts
-
-```{r}
-library(readxl)
-library(tidyverse)
-library(yaml)
-
-fn <- "../data/sharing.xlsx"
-read_excel(fn) |> 
-  data.frame() -> sharing
-sharing[1:10, 1:7]
-```

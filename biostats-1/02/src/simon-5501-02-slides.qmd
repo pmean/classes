@@ -32,6 +32,13 @@ editor: source
 
 {{< include _02-01.qmd >}}
 
+## Break #0
+
+-   What you have learned
+    -   `r params$topic_01`
+-   What's coming next
+    -   `r params$topic_02`
+
 {{< include 5501-02-sharing.qmd}}
 
 ## Break #1
@@ -88,7 +95,14 @@ editor: source
 
 {{< include _02-07.qmd >}}
 
-{{< include _01-07.qmd >}}
+## Break #6
+
+-   What you have learned
+    -   `r params$topic_07`
+-   What's coming next
+    -   `r params$topic_08`
+
+{{< include _02-08.qmd >}}
 
 
 ## Summary
