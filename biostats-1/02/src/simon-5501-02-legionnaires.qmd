@@ -30,19 +30,80 @@ library(yaml)
 Here is the code to read the data and show a glimpse. There are 31 columns total, but I am showing just a few of the columns here.
 
 ```{r read}
-fn <- "../data/sharing.xlsx"
-sharing <- read_excel(fn)
-glimpse(sharing[ , c(1, 5:7)])
+fn <- "../data/legionnaires-disease.txt"
+ld_raw_data <- read_tsv(fn, col_types="cnn")
+glimpse(ld_raw_data)
 ```
 
-## Calculate counts and percentages for age group
+## Rename
 
-```{r count-age-groups}
-sharing |>
-  group_by(age) |>
-  summarize(n=n()) |>
-  mutate(total=sum(n)) |>
-  mutate(pct=100*n/total)
+Notice how R encloses the first variable name (Room Number) in back-quotes. This is needed when a variable includes an embedded blank. You should rename this variable at your first opportunity.
+
+```{r rename}
+names(ld_raw_data)[1] <- "Room_Number"
+glimpse(ld_raw_data)
 ```
 
-The survey respondents were younger than the general population. About half of the survey respondents were 18 to 25 years old. Only 3% were over 60. Six ages were missing.
+## Calculate means and standard deviations
+
+```{r before-means}
+ld_raw_data |>
+  summarize(
+    before_mn=mean(Before),
+    before_sd=sd(Before)) 
+```
+## Calculate means and standard deviations
+
+```{r after-means}
+ld_raw_data |>
+  summarize(
+    after_mn=mean(After),
+    after_sd=sd(After)) 
+```
+
+## Calculate median and range
+
+```{r before-quantiles}
+ld_raw_data |>
+  summarize(
+    Before_median=quantile(Before, probs=0.5),
+    Before_min=quantile(Before, probs=0), 
+    Before_max=quantile(Before, probs=1)) 
+```
+
+```{r after-quantiles}
+ld_raw_data |>
+  summarize(
+    After_q50=quantile(After, probs=0.5),
+    After_min=quantile(After, probs=0), 
+    After_max=quantile(After, probs=1)) 
+```
+
+## Additional comments
+
+The names that you choose for the left hand side of the equal sign are arbitrary. You should choose a descriptive name, but you have lots of options. A median of the before and after values could be called
+
+-   Before_median, After_median
+-   Median0, Median1
+-   Second_quartile_A, Second_quartile_B
+-   or many other reasonable choices.
+
+## Use of upper and lower case
+
+Capitalization is important. The names
+
+-   before_median,
+-   Before_median, or
+-   Before_Median
+
+Just avoid all caps (BEFORE_MEDIAN) which is hard to read and is perceived by many as an electronic version of SHOUTING.
+
+## Calculate a change score
+
+For data like this with two measurements before and after an intervention, you should compute a change score. The way the computations are done below, a positive value means a reduction in colony counts.
+
+```{r}
+ld_raw_data |>
+  mutate(Change=Before-After) -> ld_change_scores
+glimpse(ld_change_scores)
+```
