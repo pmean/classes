@@ -35,40 +35,53 @@ ld_raw_data <- read_tsv(fn, col_types="cnn")
 glimpse(ld_raw_data)
 ```
 
-## Rename
+## Rename, 1
 
 Notice how R encloses the first variable name (Room Number) in back-quotes. This is needed when a variable includes an embedded blank. You should rename this variable at your first opportunity.
 
-```{r rename}
+```{r rename-1}
 names(ld_raw_data)[1] <- "Room_Number"
 glimpse(ld_raw_data)
 ```
+
+## Rename, 2
+
+I find that many of the mistakes that I make are due to inconsistencies in how I name variables. Capitalization is one of the biggest problems. So I have gotten into the habit of converting variable names to all lower case. That way I don't have to worry about whether it is "Before" or "before". Here is the code to convert every capital letter to a lowercase letter.
+
+```{r rename-2}
+names(ld_raw_data) <- tolower(names(ld_raw_data))
+glimpse(ld_raw_data)
+```
+
+
 
 ## Calculate means and standard deviations
 
 ```{r before-means}
 ld_raw_data |>
   summarize(
-    before_mn=mean(Before),
-    before_sd=sd(Before)) 
+    before_mn=mean(before),
+    before_sd=sd(before)) 
 ```
 ## Calculate means and standard deviations
 
 ```{r after-means}
 ld_raw_data |>
   summarize(
-    after_mn=mean(After),
-    after_sd=sd(After)) 
+    after_mn=mean(after),
+    after_sd=sd(after)) 
 ```
 
 ## Calculate median and range
 
+You can also use "min(before)" and "max(before)" in place of "quantile(before, probs=0)" and "quantile(before, probs=1)".
+
 ```{r before-quantiles}
 ld_raw_data |>
   summarize(
-    Before_median=quantile(Before, probs=0.5),
-    Before_min=quantile(Before, probs=0), 
-    Before_max=quantile(Before, probs=1)) 
+    before_median=quantile(before, probs=0.5),
+    before_min=quantile(before, probs=0), 
+    before_max=quantile(before, probs=1)) 
 ```
 
 ```{r after-quantiles}
@@ -88,22 +101,12 @@ The names that you choose for the left hand side of the equal sign are arbitrary
 -   Second_quartile_A, Second_quartile_B
 -   or many other reasonable choices.
 
-## Use of upper and lower case
-
-Capitalization is important. The names
-
--   before_median,
--   Before_median, or
--   Before_Median
-
-Just avoid all caps (BEFORE_MEDIAN) which is hard to read and is perceived by many as an electronic version of SHOUTING.
-
 ## Calculate a change score
 
-For data like this with two measurements before and after an intervention, you should compute a change score. The way the computations are done below, a positive value means a reduction in colony counts.
+For data like this with two measurements before and after an intervention, you should compute a change score. The way the computations are done below, a positive value means a reduction in colony counts. Note that any time you make a major change in a dataset, you should save it with a different name. That makes it easier for you to back up if you end up going down a blind alley.
 
 ```{r}
 ld_raw_data |>
-  mutate(Change=Before-After) -> ld_change_scores
+  mutate(change=before-after) -> ld_change_scores
 glimpse(ld_change_scores)
 ```

@@ -1,0 +1,81 @@
+---
+title: "02-02, Computing counts and percentages using R"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+execute:
+  echo: false
+  message: false
+  warning: false
+---
+
+## Data dictionary for sharing, 1
+
+```{r data0}
+library(glue)
+library(readr)
+library(stringr)
+library(yaml)
+f1 <- "https://raw.githubusercontent.com/pmean"
+f2 <- "data/main/files/sharing.yaml"
+dd <- read_lines(glue("{f1}/{f2}"))
+# if I am not online use the line below
+# dd <- read_lines("../../../../data/files/sharing.yaml")
+h <- str_which(str_trim(dd), "^$")
+chunk_beg <- c(1, h+1)
+chunk_end <- c(h, length(dd))
+```
+
+```{r data1}
+cat(dd[chunk_beg[1]:chunk_end[2]], sep="\n")
+```
+
+## Data dictionary for sharing, 2
+
+```{r data5}
+cat(dd[chunk_beg[3]:chunk_end[8]], sep="\n")
+```
+
+## Data dictionary for sharing, 3
+
+```{r data9}
+cat(dd[chunk_beg[9]:chunk_end[11]], sep="\n")
+```
+
+## simon-5501-02-sharing.qmd, 1
+
+```{r write0}
+fn <- "simon-5501-02-sharing.qmd"
+template <- read_lines(file=fn)
+h <- str_which(template, "##")
+chunk_beg <- c(1, h)
+chunk_end <- c(h-1, length(template))
+```
+
+```{r write1}
+cat(template[chunk_beg[1]:chunk_end[1]], sep="\n")
+```
+
+:::notes
+The first few lines are the documentation header
+:::
+
+## simon-5501-01-template.qmd, 2
+
+```{r write2}
+cat(template[chunk_beg[2]:chunk_end[2]], sep="\n")
+```
+
+## simon-5501-01-template.qmd, 3
+
+```{r write3}
+cat(template[chunk_beg[3]:chunk_end[3]], sep="\n")
+```
+
+## simon-5501-01-template.qmd, 4
+
+```{r write4}
+cat(template[chunk_beg[4]:chunk_end[4]], sep="\n")
+```
