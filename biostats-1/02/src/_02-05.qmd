@@ -1,5 +1,5 @@
 ---
-title: "02-04, Standard deviation"
+title: "02-03, Percentiles"
 format: 
   revealjs:
     slide-number: true
@@ -7,67 +7,216 @@ format:
 editor: source
 ---
 
-## Standard deviation
+## 
 
-$$S = \sqrt{\frac{1}{n-1}\Sigma(X_i-\bar{X})^2}$$
+```{r}
+data.frame(x=rpois(2000, 20)) %>%
+  mutate(cut=quantile(x, probs=0.75)) %>%
+  mutate(y=1+as.numeric(x<=cut)) %>%
+  ggplot(aes(x, fill=factor(y))) +
+    scale_fill_manual(values=c("white", "gray")) +
+    theme(legend.position="none") +
+    xlab(" ") +
+    ylab(" ") +
+    geom_bar(color="black", width=1) -> bar1
+ggsave("../images/illustrate-percentiles.png")
+```
 
-At least one alternative formula.
-
-::: notes
-*Speaker notes*
-
-The standard deviation is a commonly used measure of how spread out the data is. The formula is a bit messy, but if you look carefully at it, you will see that it is a measure of how far each individual value is from the overall mean.
-
-Now, maybe you've seen or used a different formula. Don't worry about it. In a short course like this, I won't ask you to calculate anything as tedious as a standard deviation. Let the computer do all of the work.
-:::
-
-## Why is variation important
-
--   Variation = Noise
-    -   Too much noise can hide signals
--   Variation = Heterogeneity
-    -   Too little heterogeneity, hard to generalize
-    -   Too much heterogeneity, mixing apples and oranges
--   Variation = Unpredictability
-    -   Too much unpredictability, hard to prepare for the future
--   Variation = Risk
-    -   Too much risk can create a financial burden
+![Illustration of the 75th percentile](../images/illustrate-percentiles.png)
 
 ::: notes
 *Speaker notes*
 
-I want to discuss measures of variation now. Variation gets at the heart and soul of clinical statistics. A large portion of statistical analysis involves characterizing variation.
+I want to mention percentiles briefly. A percentile is a value that splits the data so that a certain percentage is smaller and a certain percentage is larger.
 
-Variation can be thought of as a measure of noise. In general, but not always, noise is bad. Consider measuring a patient's glucose level, to see if you have early evidence of diabetes. Your glucose level varies a lot during the day based on whether you skipped breakfast or decided to get a mid-afternoon Snickers bar. Your glucose level is noisy. A high level might or might not mean trouble. A low value might or might not mean you are safe. The large standard deviation of your measures of blood glucose indicates noise.
+The 75th percentile, for example will be above 75% of the data and below 25% of the data. This graph illustrates the 75th percentile for some arbitrary data. The gray bars represent about 75% of the data and the white bars represent about 25% of the data.
 
-That's why you are asked to take an overnight fast before testing your blood glucose level. Controlling your diet by not eating anything after midnight provides a more consistent measure of blood glucose. It has a smaller standard deviation and a high or low value is more helpful in diagnosis.
-
-Variation can also be thought of as a measure of heterogeneity. Heterogeneity is also bad sometimes, but there are times when you want a fair amount of heterogeneity. A research study that has a lot of variation is better at providing a complete picture of what a typical patient is. Outcomes that are consistent in the presence of demographic heterogeneity give you more confidence in generalizing the results of a research study. You have some assurance that the therapy is not restricted to helping a small segment of patients.
-
-Too much heterogeneity, though, can mean that any summary measure is a mixture of apples and oranges. You have to find the right balance.
-
-Variation can be equated to unpredictability. The number of beds needed in a hospital does vary, and this makes it difficult to staff properly. The more variation in beds needed, the more headaches you have.
-
-Variation can also be equated to risk. If you invest in a new drug, paying millions or even billions of dollars in testing, you are doing so with the hope that your investment will pay off. Unfortunately, the market for your drug is uncertain, and you might end up with no market at all if your clinical trials fail to convince FDA. There is variation in the return on your investment, and the more variation there is, the more risky your development plans are.
+I use a few weasel words like "roughly" and "about" because you can't always get a perfect split. But you can usually come close.
 :::
 
-## Should you try to minimize variation?
+## Computing percentiles
 
--   Yes, for early studies
-    -   Easier to detect signals
-    -   Proof of concept trials
--   No, for later studies
-    -   Easier to generalize results
-    -   Pragmatic trials
+-   Many formulas
+    -   Differences are not worth fighting over
+-   My preference (pth quantile)
+    -   Sort the data
+    -   Calculate p\*(n+1)
+    -   Is it a whole number?
+        -   Yes: Select that value, otherwise
+        -   No: Go halfway between
+        -   Special cases: p(n+1) \< 1 or \> n
 
 ::: notes
 *Speaker notes*
 
-It is a bit of a generalization, but most researchers try to avoid variation in early studies. By early studies, I mean studies of therapies that have not yet been extensively tested in a broad range of settings. Less variation means that there is a greater chance to detect signals. You remove variation by using very strict entry criteria on who can get into the study. You remove variation by tightly controlling what the patient is allowed to do (e.g., no concommitant medications). You remove variation by tightly standardizing the delivery of the intervention and the assessment of the outcome. You reduce variation by removing patients who deviate from the research protocol requirements.
+There are close to a dozen different ways to compute a percentile, but the differences between the values selected are small and not worth fussing about.
 
-These are known as proof of concept trials. If a new therapy cannot succeed even under the tight controls, there is no point in studying it futher. But success in a tightly controlled environment does not guarantee success in the real world.
+Here is my preference for choosing the pth quantile (remember that for quantiles, you range between 0 and 1, not between 0 and 100).
 
-If you are planning a trial that comes after many similar trials, you actually may want to encourage variation. Broaden the inclusion criteria so that the patients in the trial look no different than the patients you see every day in your clinic.
+Calculate the quantity p\*(n+1). If that value is a whole number, great! You just select that value. If it is a fractional value, round up and down and go halfway between.
+
+Once in a while, you'll get an extreme case, where p(n+1) is less than 1 or greater than n. Just use a bit of common sense.
+
+If you have nine values and p(n+1) is 9.2, you can't go halfway between the 9th and 10th observations. There is no 10th observation. So just choose the 9th or largest value.
+
+Likewise if p(n+1) is 0.8, you can't go halfway between the zeroth and first observation. There is no zeroth observation. Just choose the first or smallest value.
 :::
 
-  
+## Some examples of percentile calculations
+
+-   Example for n=39
+    -   For 5th percentile, p(n+1)=2 -\> 2nd smallest value
+    -   For 4th percentile, p(n+1)=1.6 -\> halfway between two smallest values
+    -   For 2nd percentile, p(n+1)=0.8 -\> smallest value
+
+::: notes
+*Speaker notes*
+
+Suppose you have 39 observations. For the 5th percentile or the 0.05 quantile, p(n+1) equals 2. Lucky you. The second smallest observation is the 5th percentile. For the 4th percentile or the 0.04 quantile, you get p(n+1) equal to 1.6. Go halfway between 1, the smallest value, and 2, the second smallest value.
+
+The 2nd percentile represents one of the special cases. You calculate p(n+1) and get 0.8. You can't go halfway between 0 and 1, so just choose the smallest value.
+:::
+
+## Some terminology
+
+-   Percentile: goes from 0% to 100%
+-   Quantile: goes from 0.0 to 1.0
+    -   90th percentile = 0.9 quantile
+-   25th, 50th, and 75th percentiles: quartiles
+    -   25th percentile: $Q_1,\ X_{0.25}$ or lower quartile
+    -   Median/50th percentiles: $Q_2$ or $X_{0.5}$
+    -   75th percentile: $Q_3,\ X_{0.75}$ or upper quartile
+
+::: notes
+*Speaker notes*
+
+A percentile always refers to a percentage. So it has to be between 0% and 100%. Sometimes, you may see references to a quantile. A quantile is a percentile, but is expressed as a proportion rather than a percent. A quantile goes from 0.0 to 1.0. The 90th percentile and the 0.90 quantile are the same thing.
+
+You might see the term "quartiles". These are the 25th, 50th, and 75th percentiles. These three values split the data into quarters.
+
+If you see "lower quartile", it means the 25th percentile. Likewise, "upper quartile" means the 75th percentile.
+
+Let me be try to be careful about terminology here. But, sometimes I will mess up and use "percentile" when I mean "quantile".
+:::
+
+## Before remediation upper quartile (1/4)
+
+```         
+`r sq(step1(bacteria_0))`
+```
+
+::: notes
+*Speaker notes*
+
+Here is the data for bacteria counts before remediation. Let's calculate the upper quartile, also known as the 0.75 quantile or the 75th percentile.
+:::
+
+## Before remediation upper quartile (2/4)
+
+```         
+`r sq(step2(bacteria_0))`
+```
+
+::: notes
+*Speaker notes*
+
+Just like before, you sort the data.
+:::
+
+## Before remediation upper quartile (3/4)
+
+```         
+`r sq(step3(bacteria_0, div=6:7))`
+```
+
+::: notes
+*Speaker notes*
+
+With n=8, you get p(n+1) = 6.75. So pick out the sixth and seventh values.
+:::
+
+## Before remediation upper quartile (4/4)
+
+```         
+`r sq(step4(bacteria_0, div=6:7)) `
+```
+
+::: notes
+*Speaker notes*
+
+Go halfway between these values.
+:::
+
+## After remediation upper quartile (1/4)
+
+```         
+`r sq(step1(bacteria_1))`
+```
+
+::: notes
+*Speaker notes*
+
+Here are the same calculations the upper quartile of bacteria counts after remediation.
+:::
+
+## After remediation upper quartile (2/4)
+
+```         
+`r sq(step2(bacteria_1))`
+```
+
+::: notes
+*Speaker notes*
+
+Just like before, you sort the data.
+:::
+
+## After remediation upper quartile (3/4)
+
+```         
+`r sq(step3(bacteria_1, div=6:7))`
+```
+
+::: notes
+*Speaker notes*
+
+Then pick out the sixth and seventh values.
+:::
+
+## After remediation upper quartile (4/4)
+
+```         
+`r sq(step4(bacteria_1, div=6:7)) `
+```
+
+::: notes
+*Speaker notes*
+
+Go halfway between these values.
+:::
+
+## When you should use percentiles
+
+-   Characterize variation
+    -   Middle 50% of the data
+-   Exposure issues
+    -   Not enough to control median exposure level
+-   Quantify extremes
+    -   What does "upper class" mean?
+-   Quality control
+    -   Almost all products must meet a minimum standard
+
+::: notes
+*Speaker notes*
+
+There are many reasons why you might be interested in percentiles rather than the mean or median. Actually, the median is a percentile, the 50th percentile, but I want to talk about percentiles other than 50%.
+
+One important use of percentiles is looking at the middle 50% of the data. This is the data between the lower quartile (25th percentile) and the upper quartile (75th percentile). Is the middle 50% of the data bunched tightly together or spread widely apart?
+
+Percentiles are also important in the study of exposures. If you work in an environment where the median worker has a safe level of exposure, you could easily end up with 20%, 30% or more of the workers dying from unsafe exposures. It is important to insure that not just the median, but a very high percentile like the 99th percentile of exposure levels is at a safe level.
+
+Percentiles also help to define extreme groups. You can, for example, define the term upper class as anyone earning more than the 90th percentile of income.
+
+Percentiles also can help with quality control. If you make a claim about a product, you want to make sure that that claim is not valid at a median level but at a much higher level. You don't sell 500 mg bottles of liquid Tylenol is your factory is churning out a median fill level of 500 mg. Half of your customers would be cheated. Instead you insure that the 98th percentile coming out of the factory floor is at least 500 mg. You lose a bit of money because most bottles contain more than 500 mg, but the cost of an irate customer is worth more than the cost of 50 overfilled bottles.
+:::
+

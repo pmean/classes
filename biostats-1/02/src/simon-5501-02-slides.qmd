@@ -5,13 +5,14 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "Counting"
-  topic_02: "Mean and median"
-  topic_03: "Percentiles"
-  topic_04: "Standard deviation"
-  topic_05: "Normality"
-  topic_06: "TBA 1"
-  topic_07: "Program template"
+  topic_01: "Counts and percentages"
+  topic_02: "Computing counts and percentages using R"
+  topic_03: "Mean and median"
+  topic_04: "Percentiles"
+  topic_05: "Standard deviation"
+  topic_06: "Normality"
+  topic_07: "TBA 1"
+  topic_08: "Program template"
 editor: source
 ---
 
@@ -32,7 +33,7 @@ editor: source
 
 {{< include _02-01.qmd >}}
 
-## Break #0
+## Break #1
 
 -   What you have learned
     -   `r params$topic_01`
@@ -41,16 +42,16 @@ editor: source
 
 {{< include 5501-02-sharing.qmd}}
 
-## Break #1
+## Break #2
 
 -   What you have learned
-    -   `r params$topic_01`
--   What's coming next
     -   `r params$topic_02`
+-   What's coming next
+    -   `r params$topic_03`
 
-{{< include _02-02.qmd >}}
+{{< include _02-03.qmd >}}
 
-## Break #2
+## Break #3
 
 -   What you have learned
     -   `r params$topic_02`
