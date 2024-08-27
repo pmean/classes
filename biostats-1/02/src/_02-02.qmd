@@ -13,7 +13,7 @@ execute:
 
 ## Data dictionary for sharing, 1
 
-```{r data0}
+```{r data0a}
 library(glue)
 library(readr)
 library(stringr)
@@ -28,25 +28,93 @@ chunk_beg <- c(1, h+1)
 chunk_end <- c(h, length(dd))
 ```
 
-```{r data1}
-cat(dd[chunk_beg[1]:chunk_end[2]], sep="\n")
+```{r data1a}
+cat(dd[chunk_beg[1]:chunk_end[1]], sep="\n")
 ```
+
+```{r data2a}
+cat(dd[chunk_beg[2]:chunk_end[2]], sep="\n")
+```
+
+:::notes
+This data comes from a paper on sharing services: sharing cars, sharing bikes, even sharing housing. It has a large number of variables, but for this module, we are only interested in some basic demographics.
+:::
 
 ## Data dictionary for sharing, 2
 
-```{r data5}
-cat(dd[chunk_beg[3]:chunk_end[8]], sep="\n")
+```{r data3a}
+cat(dd[chunk_beg[3]:chunk_end[3]], sep="\n")
 ```
+
+:::notes
+The bulk of the data is a series of Likert scale items asking the degree of agreement or disagreement to various statements about sharing services.
+:::
 
 ## Data dictionary for sharing, 3
 
-```{r data9}
-cat(dd[chunk_beg[9]:chunk_end[11]], sep="\n")
+```{r data4a}
+cat(dd[chunk_beg[4]:chunk_end[4]], sep="\n")
 ```
+
+:::notes
+This is rare and greatly appreciated. You have information about the conditions under which you can use the data. This is a common open source license that allows you to use the dataset as long as you give appropriate credit.
+:::
+
+## Data dictionary for sharing, 4
+
+```{r data5a}
+cat(dd[chunk_beg[5]:chunk_end[5]], sep="\n")
+```
+
+```{r data6a}
+cat(dd[chunk_beg[6]:chunk_end[6]], sep="\n")
+```
+
+```{r data7a}
+cat(dd[chunk_beg[7]:chunk_end[7]], sep="\n")
+```
+
+```{r data8a}
+cat(dd[chunk_beg[8]:chunk_end[8]], sep="\n")
+```
+
+:::notes
+This is an Excel file with lots of columns. You will not be asked to analyze all 31 columns of data, just 3 related to basic demographics.
+:::
+
+## Data dictionary for sharing, 5
+
+```{r data12a}
+cat(dd[chunk_beg[12]:chunk_end[12]], sep="\n")
+```
+
+:::notes
+This is the first demographic variable.
+:::
+
+## Data dictionary for sharing, 6
+
+```{r data13a}
+cat(dd[chunk_beg[13]:chunk_end[13]], sep="\n")
+```
+
+:::notes
+This is the second demographic variable.
+:::
+
+## Data dictionary for sharing, 7
+
+```{r data14a}
+cat(dd[chunk_beg[14]:chunk_end[14]], sep="\n")
+```
+
+:::notes
+This is the third demographic variable.
+:::
 
 ## simon-5501-02-sharing.qmd, 1
 
-```{r write0}
+```{r write0a}
 fn <- "simon-5501-02-sharing.qmd"
 template <- read_lines(file=fn)
 h <- str_which(template, "##")
@@ -54,28 +122,54 @@ chunk_beg <- c(1, h)
 chunk_end <- c(h-1, length(template))
 ```
 
-```{r write1}
+```{r write1a}
 cat(template[chunk_beg[1]:chunk_end[1]], sep="\n")
 ```
 
 :::notes
-The first few lines are the documentation header
+Here is a program template that illustrates how to calculate counts and percentages in R. You will make minor additions to this program in your programming assignment.
+
+The first few lines are the documentation header.
 :::
 
 ## simon-5501-01-template.qmd, 2
 
-```{r write2}
+```{r write2a}
 cat(template[chunk_beg[2]:chunk_end[2]], sep="\n")
 ```
 
+:::notes
+Here is a bit of additional documentation.
+:::
+
 ## simon-5501-01-template.qmd, 3
 
-```{r write3}
+```{r write3a}
 cat(template[chunk_beg[3]:chunk_end[3]], sep="\n")
 ```
 
+:::notes
+Always load the tidyverse library. You also need the readxl library because the data is stored as an Excel file.
+:::
+
 ## simon-5501-01-template.qmd, 4
 
-```{r write4}
+```{r write4a}
 cat(template[chunk_beg[4]:chunk_end[4]], sep="\n")
 ```
+
+:::notes
+While you might want to see information about all 31 columns of data, I can't display them all on a single slide. Here are the columns you need to work with in your programming assignment.
+:::
+
+## simon-5501-01-template.qmd, 5
+
+```{r write5a}
+cat(template[chunk_beg[5]:chunk_end[5]], sep="\n")
+```
+
+:::notes
+Here are counts and percentages for the first demographic variable. There are several alternative methods to get counts and percentages. The table function and the count function are both good alternatives.
+
+Note the interpretation. You should always provide an interpretation.
+:::

@@ -13,11 +13,11 @@ execute:
 
 ## 
 
-```{r setup}
+```{r setup4}
 library(tidyverse)
 ```
 
-```{r read}
+```{r read4}
 fn <- "../data/legionnaires-disease.txt"
 ld <- read_tsv(fn, col_types="cnn")
 names(ld)[1] <- "room"
@@ -174,7 +174,7 @@ m2
 
 Average the two observations
 
-```{r after-meq3-3}
+```{r after-q3-3}
 m2 |>
   mutate(q3="    ") -> m3
 m3[6, "q3"] <- "12.05"

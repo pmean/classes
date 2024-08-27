@@ -10,7 +10,7 @@ params:
   topic_03: "Mean and median"
   topic_04: "Percentiles"
   topic_05: "Standard deviation"
-  topic_06: "Computing means and standard deviaitons in R"
+  topic_06: "Computing means and standard deviations in R"
 editor: source
 ---
 
@@ -37,18 +37,9 @@ editor: source
 -   What's coming next
     -   `r params$topic_02`
 
-{{< include 5501-02-sharing.qmd}}
+{{< include _02-02.qmd >}}
 
 ## Break #2
-
--   What you have learned
-    -   `r params$topic_02`
--   What's coming next
-    -   `r params$topic_03`
-
-{{< include _02-03.qmd >}}
-
-## Break #3
 
 -   What you have learned
     -   `r params$topic_02`

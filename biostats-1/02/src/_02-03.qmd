@@ -13,7 +13,7 @@ execute:
 
 ## Calculation of the mean and median
 
-```{r setup}
+```{r setup3}
 library(glue)
 library(tidyverse)
 ```
@@ -52,7 +52,7 @@ Here are the mathematical formulas for the mean and median. I know some people h
 
 ## Bacteria before and after A/C upgrade
 
-```{r read}
+```{r read3}
 fn <- "../data/legionnaires-disease.txt"
 ld <- read_tsv(fn, col_types="cnn")
 names(ld)[1] <- "room"

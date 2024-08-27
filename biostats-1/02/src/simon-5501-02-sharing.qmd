@@ -17,12 +17,13 @@ This program uses data from a study of sharing services (like sharing an automob
 
 [dd]: https://github.com/pmean/datasets/blob/master/sharing.yaml
 
+## Libraries
+
 Here are the libraries you need for this program.
 
 ```{r setup}
 library(readxl)
 library(tidyverse)
-library(yaml)
 ```
 
 ## Reading the data

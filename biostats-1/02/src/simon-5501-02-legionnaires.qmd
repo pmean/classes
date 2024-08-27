@@ -17,12 +17,12 @@ This program uses data from a fictional study of Legionnaires disease and produc
 
 [dd]: https://github.com/pmean/data/blob/main/files/legionnaires-disease.yaml
 
+## Libraries
+
 Here are the libraries you need for this program.
 
 ```{r setup}
-library(readxl)
 library(tidyverse)
-library(yaml)
 ```
 
 ## Reading the data
@@ -53,9 +53,7 @@ names(ld_raw_data) <- tolower(names(ld_raw_data))
 glimpse(ld_raw_data)
 ```
 
-
-
-## Calculate means and standard deviations
+## Calculate means and standard deviations before remediation
 
 ```{r before-means}
 ld_raw_data |>
@@ -63,7 +61,10 @@ ld_raw_data |>
     before_mn=mean(before),
     before_sd=sd(before)) 
 ```
-## Calculate means and standard deviations
+
+The average colony count per cubic foot before remediation, 11.3, is quite large. The standard deviation, 2.8, represents a moderate amount of variation in this variable.
+
+## Calculate means and standard deviations after remediation
 
 ```{r after-means}
 ld_raw_data |>
@@ -72,9 +73,11 @@ ld_raw_data |>
     after_sd=sd(after)) 
 ```
 
-## Calculate median and range
+The average colony count per cubic foot after remediation, 9.7, is still quite large. The standard deviation, 3.2, represents a moderate amount of variation in this variable and is roughly comparable to the variation before remediation.
 
-You can also use "min(before)" and "max(before)" in place of "quantile(before, probs=0)" and "quantile(before, probs=1)".
+## Calculate median and range before intervention
+
+You can use "median(before)" in place of "quantile(before, probs=0.5)". You can also use "min(before)" and "max(before)" in place of "quantile(before, probs=0)" and "quantile(before, probs=1)".
 
 ```{r before-quantiles}
 ld_raw_data |>
@@ -84,13 +87,19 @@ ld_raw_data |>
     before_max=quantile(before, probs=1)) 
 ```
 
+The median colony count before remediation, 11.3, is roughly the same as the mean. The data ranges from 7.1 to 14.6 colonies per cubic centimeter, a fairly wide range.
+
+## Calculate median and range after intervention
+
 ```{r after-quantiles}
 ld_raw_data |>
   summarize(
-    After_q50=quantile(After, probs=0.5),
-    After_min=quantile(After, probs=0), 
-    After_max=quantile(After, probs=1)) 
+    after_q50=quantile(after, probs=0.5),
+    after_min=quantile(after, probs=0), 
+    after_max=quantile(after, probs=1)) 
 ```
+
+The median colony count, 10.3, is slightly lower after remediation. The data range from 3.8 to 13.7 colonies per cubic centimeter and is about as wide as the range before remediation.
 
 ## Additional comments
 

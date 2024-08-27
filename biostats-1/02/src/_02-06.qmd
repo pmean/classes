@@ -13,7 +13,7 @@ execute:
 
 ## Data dictionary for legionnaires, 1
 
-```{r data0}
+```{r data0b}
 library(glue)
 library(readr)
 library(stringr)
@@ -28,25 +28,71 @@ chunk_beg <- c(1, h+1)
 chunk_end <- c(h, length(dd))
 ```
 
-```{r data1}
-cat(dd[chunk_beg[1]:chunk_end[2]], sep="\n")
+```{r data1b}
+cat(dd[chunk_beg[1]:chunk_end[1]], sep="\n")
+```
+
+```{r data2b}
+cat(dd[chunk_beg[2]:chunk_end[2]], sep="\n")
+```
+
+```{r data3b}
+cat(dd[chunk_beg[3]:chunk_end[3]], sep="\n")
+```
+
+```{r data4b}
+cat(dd[chunk_beg[4]:chunk_end[4]], sep="\n")
 ```
 
 ## Data dictionary for legionnaires, 2
 
-```{r data5}
-cat(dd[chunk_beg[3]:chunk_end[8]], sep="\n")
+```{r data5b}
+cat(dd[chunk_beg[5]:chunk_end[5]], sep="\n")
+```
+
+```{r data6b}
+cat(dd[chunk_beg[6]:chunk_end[6]], sep="\n")
+```
+
+```{r data7b}
+cat(dd[chunk_beg[7]:chunk_end[7]], sep="\n")
+```
+
+```{r data8b}
+cat(dd[chunk_beg[8]:chunk_end[8]], sep="\n")
 ```
 
 ## Data dictionary for legionnaires, 3
 
-```{r data9}
-cat(dd[chunk_beg[9]:chunk_end[11]], sep="\n")
+```{r data9b}
+cat(dd[chunk_beg[9]:chunk_end[9]], sep="\n")
+```
+
+```{r data10b}
+cat(dd[chunk_beg[10]:chunk_end[10]], sep="\n")
+```
+
+```{r data11b}
+cat(dd[chunk_beg[11]:chunk_end[11]], sep="\n")
+```
+
+## Data dictionary for legionnaires, 4
+
+```{r data12b}
+cat(dd[chunk_beg[12]:chunk_end[12]], sep="\n")
+```
+
+```{r data13b}
+cat(dd[chunk_beg[13]:chunk_end[13]], sep="\n")
+```
+
+```{r data14b}
+cat(dd[chunk_beg[14]:chunk_end[14]], sep="\n")
 ```
 
 ## simon-5501-02-legionnaires.qmd, 1
 
-```{r write0}
+```{r write0b}
 fn <- "simon-5501-02-legionnaires.qmd"
 template <- read_lines(file=fn)
 h <- str_which(template, "##")
@@ -54,7 +100,7 @@ chunk_beg <- c(1, h)
 chunk_end <- c(h-1, length(template))
 ```
 
-```{r write1}
+```{r write1b}
 cat(template[chunk_beg[1]:chunk_end[1]], sep="\n")
 ```
 
@@ -62,20 +108,114 @@ cat(template[chunk_beg[1]:chunk_end[1]], sep="\n")
 The first few lines are the documentation header
 :::
 
-## simon-5501-01-template.qmd, 2
+## simon-5501-02-legionnaires.qmd, 2
 
-```{r write2}
+```{r write2b}
 cat(template[chunk_beg[2]:chunk_end[2]], sep="\n")
 ```
 
-## simon-5501-01-template.qmd, 3
+:::notes
+Here is some additional documentation.
+:::
 
-```{r write3}
+## simon-5501-02-legionnaires.qmd, 3
+
+```{r write3b}
 cat(template[chunk_beg[3]:chunk_end[3]], sep="\n")
 ```
 
-## simon-5501-01-template.qmd, 4
+:::notes
+Loads the tidyverese library. No other libraries are needed.
+:::
 
-```{r write4}
+
+
+## simon-5501-02-legionnaires.qmd, 4
+
+```{r write4b}
 cat(template[chunk_beg[4]:chunk_end[4]], sep="\n")
 ```
+
+:::notes
+Use the read_tsv function when your data uses tab delimiters.
+:::
+
+## simon-5501-02-legionnaires.qmd, 5
+
+```{r write5b}
+cat(template[chunk_beg[5]:chunk_end[5]], sep="\n")
+```
+:::notes
+Try to avoid spaces within a variable name. This code changes the space to an underscore. 
+:::
+
+## simon-5501-02-legionnaires.qmd, 6
+
+```{r write6b}
+cat(template[chunk_beg[6]:chunk_end[6]], sep="\n")
+```
+
+:::notes
+The tolower fuction replaces every uppercase letter with its lowercase equivalent.
+:::
+
+## simon-5501-02-legionnaires.qmd, 7
+
+```{r write7b}
+cat(template[chunk_beg[7]:chunk_end[7]], sep="\n")
+```
+
+:::notes
+This code produces a mean and standard deviation for the colony counts before remediation.
+:::
+
+## simon-5501-02-legionnaires.qmd, 8
+
+```{r write8b}
+cat(template[chunk_beg[8]:chunk_end[8]], sep="\n")
+```
+
+:::notes
+This code produces a mean and standard deviation for the colony counts after remediation.
+:::
+
+
+## simon-5501-02-legionnaires.qmd, 9
+
+```{r write9b}
+cat(template[chunk_beg[9]:chunk_end[9]], sep="\n")
+```
+
+:::notes
+The quantile function calculates the median and other percentiles. Setting probs equal to 0 and 1 produces the minimum and maximum values.
+:::
+
+## simon-5501-02-legionnaires.qmd, 10
+
+```{r write10b}
+cat(template[chunk_beg[10]:chunk_end[10]], sep="\n")
+```
+
+:::notes
+Use similar code to get the median, minimum, and maximum for the after remediation measurements.
+:::
+
+## simon-5501-02-legionnaires.qmd, 11
+
+```{r write11b}
+cat(template[chunk_beg[11]:chunk_end[11]], sep="\n")
+```
+
+:::notes
+It is worth mentioning here that you have lots of options for the choice of names for the various statistics. 
+:::
+
+## simon-5501-02-legionnaires.qmd, 12
+
+```{r write12b}
+cat(template[chunk_beg[12]:chunk_end[12]], sep="\n")
+```
+
+:::notes
+This is the code for calculating a change score. You will use the change score in your programming assignment for this module.
+:::
