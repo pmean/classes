@@ -10,9 +10,7 @@ params:
   topic_03: "Mean and median"
   topic_04: "Percentiles"
   topic_05: "Standard deviation"
-  topic_06: "Normality"
-  topic_07: "TBA 1"
-  topic_08: "Program template"
+  topic_06: "Computing means and standard deviaitons in R"
 editor: source
 ---
 
@@ -29,7 +27,6 @@ editor: source
     -   `r params$topic_04`
     -   `r params$topic_05`
     -   `r params$topic_06`
-    -   `r params$topic_07`
 
 {{< include _02-01.qmd >}}
 
@@ -87,24 +84,6 @@ editor: source
 
 {{< include _02-06.qmd >}}
 
-## Break #6
-
--   What you have learned
-    -   `r params$topic_06`
--   What's coming next
-    -   `r params$topic_07`
-
-{{< include _02-07.qmd >}}
-
-## Break #6
-
--   What you have learned
-    -   `r params$topic_07`
--   What's coming next
-    -   `r params$topic_08`
-
-{{< include _02-08.qmd >}}
-
 
 ## Summary
 -   What you have learned
@@ -114,7 +93,6 @@ editor: source
     -   `r params$topic_04`
     -   `r params$topic_05`
     -   `r params$topic_06`
-    -   `r params$topic_07`
 
 <!---
       You have to put the title down 
