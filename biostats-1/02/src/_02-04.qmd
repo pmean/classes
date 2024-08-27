@@ -131,8 +131,8 @@ Calculate 0.75*(8+1) = 6.75. Select the 6th and 7th observations
 
 ```{r before-q3-2}
 m1 |>
-  mutate(select=as.character(before)) -> m2
-m2[c(1:5, 8), "select"] <- "    "
+  mutate(pick=as.character(before)) -> m2
+m2[c(1:5, 8), "pick"] <- "    "
 m2
 ```
 
@@ -165,8 +165,8 @@ Calculate 0.75*(8+1) = 6.75. Select the 6th and 7th observations
 
 ```{r after-q3-2}
 m1 |>
-  mutate(select=as.character(after)) -> m2
-m2[c(1:5, 8), "select"] <- "    "
+  mutate(pick=as.character(after)) -> m2
+m2[c(1:5, 8), "pick"] <- "    "
 m2
 ```
 

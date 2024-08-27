@@ -85,7 +85,7 @@ This is an Excel file with lots of columns. You will not be asked to analyze all
 ## Data dictionary for sharing, 5
 
 ```{r data12a}
-cat(dd[chunk_beg[12]:chunk_end[12]], sep="\n")
+cat(dd[chunk_beg[13]:chunk_end[13]], sep="\n")
 ```
 
 :::notes
@@ -95,7 +95,7 @@ This is the first demographic variable.
 ## Data dictionary for sharing, 6
 
 ```{r data13a}
-cat(dd[chunk_beg[13]:chunk_end[13]], sep="\n")
+cat(dd[chunk_beg[14]:chunk_end[14]], sep="\n")
 ```
 
 :::notes
@@ -105,7 +105,7 @@ This is the second demographic variable.
 ## Data dictionary for sharing, 7
 
 ```{r data14a}
-cat(dd[chunk_beg[14]:chunk_end[14]], sep="\n")
+cat(dd[chunk_beg[15]:chunk_end[15]], sep="\n")
 ```
 
 :::notes
@@ -159,7 +159,7 @@ cat(template[chunk_beg[4]:chunk_end[4]], sep="\n")
 ```
 
 :::notes
-While you might want to see information about all 31 columns of data, I can't display them all on a single slide. Here are the columns you need to work with in your programming assignment.
+While you might want to see information about all 31 columns of data, I can't display them all on a single slide. Column 1 is the id and columns 5, 6, and 7 are demographic variables.
 :::
 
 ## simon-5501-01-template.qmd, 5
