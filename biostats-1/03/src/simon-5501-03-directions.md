@@ -4,24 +4,16 @@ author: "Steve Simon"
 format: 
   html:
     embed-resources: true
-date: 2024-08-18
 ---
-
-This code is placed in the public domain.
 
 ## Setup
 
--   Download the [template][tem]
-    -   Store it in your src folder
--   Modify the file name
-    -   Use your last name instead of "simon"
--   Modify the documentation header
-    -   Add your name to the author field
-    -   Optional: change the copyright statement
--   Download the [data file][dat]
-    -   Store it in your data folder
+-   Download the following files
+    -   x [tem1]
+    -   y [dat1]
+-   Modify the file name and documentation header appropriately
 
-[tem]: https://github.com/pmean/classes/blob/master/biostats-1/01/src/simon-5501-01-template.qmd
+[tem1]: https://github.com/pmean/classes/blob/master/biostats-1/03/src/simon-5501-03-template.qmd
 [dat]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.csv
     
 ## Interpret the output
@@ -54,3 +46,8 @@ upload the program file along with the
 pdf file to help us figure out what 
 went wrong. You will get a chance to 
 resubmit the assignment if needed.
+
+## File details.
+
+This page was written on 2024-08-28 and is placed in the public domain.
+
