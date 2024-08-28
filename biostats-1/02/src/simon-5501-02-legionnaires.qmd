@@ -77,7 +77,7 @@ The average colony count per cubic foot after remediation, 9.7, is still quite l
 
 ## Calculate median and range before intervention
 
-You can use "median(before)" in place of "quantile(before, probs=0.5)". You can also use "min(before)" and "max(before)" in place of "quantile(before, probs=0)" and "quantile(before, probs=1)".
+You could also use "median(before)" and  "min(before)" and "max(before)" in the code below.
 
 ```{r before-quantiles}
 ld_raw_data |>

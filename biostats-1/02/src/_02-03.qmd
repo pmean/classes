@@ -60,6 +60,10 @@ names(ld) <- tolower(names(ld))
 data.frame(ld)
 ```
 
+:::notes
+Here is the dataset on bacteria counts. Measurements were done in 8 hotel rooms both before and after a rehaul of the air conditioning system.
+:::
+
 ## Calculation of the before mean
 
 ```{r before-mean}
@@ -269,7 +273,7 @@ Now the Elon Musk example is silly, but the issue of outliers having an effect o
 ::: notes
 *Speaker notes*
 
-Here is an article I found on PubMed, one of my favorite websites that compares median and mean improvements in life expectancy in cancer patients.
+Here is an article I found on PubMed that compares median and mean improvements in life expectancy in cancer patients.
 :::
 
 ## Chen 2019, PMID: 31806195 (continued)
