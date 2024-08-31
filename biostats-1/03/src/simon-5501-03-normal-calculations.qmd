@@ -1,0 +1,49 @@
+---
+title: "Calculations involving the normal distribution"
+format: 
+  html:
+    slide-number: true
+    embed-resources: true
+editor: source
+execute:
+  echo: true
+  error: true
+  message: false
+  warning: false
+---
+
+## Overview
+
+The normal distribution is an important component of most statistical analyses. The formula for the normal distribution is quite complex, 
+
+$f(x; \mu, \sigma)=\frac{1}{\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
+
+but the shape is readily recognizable.
+
+
+is program uses data from a study of pulmonary function in children. The key variable is forced expiratory volume (fev) measured in liters There is a [data dictionary][dd] that provides more details about the data. 
+
+[dd]: https://github.com/pmean/datasets/blob/master/fev.yaml
+
+## Libraries
+
+Here are the libraries you need for this program.
+
+```{r setup}
+library(tidyverse)
+```
+
+## The standard normal distribution
+
+```{r standard-normal}
+std_normal <- data.frame(
+  x <- seq(-3.5, 3.5, length=1000),
+  y <-dnorm(x))
+ggplot(data=std_normal, aes(x, y)) +
+  geom_line() + 
+  geom_segment(
+    aes(xend=x, yend=0), 
+    color="white") +
+  geom_line() +
+  geom_segment(x=-3.5, y=0, xend=3.5, yend=0)
+```

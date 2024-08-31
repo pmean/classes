@@ -7,9 +7,322 @@ format:
 editor: source
 ---
 
-## Percentiles
+## Standardization of a statistic
 
-:::notes
-The
+General form of standardization
+
+-   $Z\ or\ t = \frac{statistic-parameter}{se(statistic)}$
+
+Specific standardization for the mean
+
+-   $Z\ or\ t = \frac{\bar{X}-\mu}{se(\bar{X})}$
+
+::: notes
 :::
-  
+
+## Convert this to a confidence interval
+
+-   $P[-t(\alpha/2; n-1) < \frac{\bar{X}-\mu}{se(\bar{X})} < t(\alpha/2; n-1)] = 1-\alpha$
+
+-   $P[-t(\alpha/2; n-1)se(\bar{X}) < \bar{X}-\mu < t(\alpha/2; n-1)se(\bar{X})] = 1-\alpha$
+
+-   $P[\bar{X}-t(\alpha/2; n-1)se(\bar{X}) < \mu < \bar{X} + t(\alpha/2; n-1)se(\bar{X})] = 1-\alpha$
+
+If n \> 30
+
+-   $P[\bar{X}-Z(\alpha/2)se(\bar{X}) < \mu < \bar{X} + Z(\alpha/2)se(\bar{X})] \approx 1-\alpha$
+
+::: notes
+:::
+
+## Intepretation
+
+If n \< 30, we have 1-$\alpha$ level of confidence that the population mean lies between
+
+-   $\bar{X}-t(\alpha/2; n-1)se(\bar{X})$ and
+-   $\bar{X}+t(\alpha/2; n-1)se(\bar{X})$
+
+If n \> 30, we have 1-$\alpha$ level of confidence that the population mean lies between
+
+-   $\bar{X}-Z(\alpha/2)se(\bar{X})$ and
+-   $\bar{X}+Z(\alpha/2)se(\bar{X})$
+
+::: notes
+The formula for the confidence interval for the population mean
+:::
+
+## Other forms of the confidence interval
+
+-   Simpler (too simple?)
+    -   $\bar{X}-2\ se(\bar{X})$ and
+    -   $\bar{X}+2\ se(\bar{X})$ and
+-   Use $t(\alpha/2; n-1)$ even if n \> 30
+-   Do not use these alternate forms for your homework.
+
+## 
+
+![Excerpt from Mondal 2023](../images/chatgpt-01.png){#fig-chat01}
+
+::: notes
+Here is an article from the Indian Dematology Online Journal. You can find it using the Pubmed ID of 37521213.
+:::
+
+## 
+
+![Table 1 from Mondal 2023](../images/chatgpt-02.png){#fig-chat02}
+
+::: notes
+This is Table 1 from the paper.
+:::
+
+## Confidence interval for Ease Score
+
+-   Calculations
+    -   $se(\bar{X})=\frac{8.23}{\sqrt{14}}=2.19956$
+    -   $t(0.025, 13) = 2.16$
+    -   $46.94 - 2.16 \times 2.19956=42.18895$
+    -   $46.94 + 2.16 \times 2.19956=51.69105$
+-   We are 95% confident that the population mean reading age of ChatGPT education guides is between 42 and 52.
+
+::: notes
+The ease score represents ease of reading with larger values representing better readability. AQ value of 30 was cited as representing difficult to read text based on a review of editorials in popular Indian medical journals.
+:::
+
+## Confidence interval for overall similarity
+
+-   Calculations
+    -   $se(\bar{X})=\frac{11.46}{\sqrt{14}}=3.062814$
+    -   $t(0.025, 13) = 2.16$
+    -   $27.07 - 2.16 \times 7.234762=20.45432$
+    -   $27.07 + 2.16 \times 3.062814=33.68568$
+-   We are 95% confident that the population mean similarity is between 20% and 34%.
+
+::: notes
+The similarity score is used for plagiarism checks. A value of 15% or more is taken by some resources as concerning.
+:::
+
+## Effect sizes
+
+-   Cohen's d = $\frac{\bar{X}-C}{se(\bar{X})}$
+-   Useful for
+    -   Systematic overviews
+    -   Intermediate calculation in sample size formulas
+-   Critcisms
+    -   Clinical relevance requires units of measure
+    -   Small, medium, large are arbitrary labels
+
+::: notes
+The effect size for a sample mean is calculated by subtracting the hypothesized mean, C, from the sample mean and dividing by the standard error of the mean.
+
+The use of effect sizes is controversial. Monica Gaddis loves them, other faculty in our department love them. I hate them.
+
+They are okay for systematic overviews and as an intermediate calculation in sample size formulas.
+
+But I do not like to see them reported in journal articles. Using terms like small, medium, or large is very arbitrary and does not translate well from one discipline to another. I also believe that unitless quantities provide no help in deciding whether a result has clinical relevance.
+
+There's a joke I tell about this. A store displays a huge banner at their entrance. The banner reads "Big sale! All prices reduced by half a standard deviation."
+
+Even though I dislike effect sizes, I feel the obligation to teach them because they are used by many researchers.
+:::
+
+## Break
+
+-   What have you just learned?
+    -   Review confidence intervals testing
+-   What is coming next?
+    -   SPSS examples
+
+::: notes
+Let me pause here for a second. Are there any questions?
+:::
+
+## Baseball data dictionary (1/2)
+
+This file was downloaded from the DASL (Data and Story Library) website. There are no details about who created the data set or what permissions are allowed. Educational uses of this data are probably allowed under the Fair Use provisions of U.S. Copyright Law.
+
+This is a tab delimited data file. There are 50 rows and 2 columns of data.
+
+The first variable is the sample number (1 to 50). The second variable is the circumference of the baseball in inches. The variable names are included at the top of the data.
+
+::: notes
+I want to show some SPSS analyses. The first relates to a dataset on baseballs.
+:::
+
+## Baseball data dictionary (2/2)
+
+The first variable is the sample number (1 to 50). The second variable is the circumference of the baseball in inches. The variable names are included at the top of the data.
+
+The standard sized baseball, according to Wikipedia and other sources on the Internet is 9 to 9.25 inches. There are no missing values in this data set.
+
+This data dictionary was written by Steve Simon on 2023-09-10 and is placed in the public domain.
+
+Please be sure to skip past this documentation while importing the data.
+
+::: notes
+I want to show some SPSS analyses. The first relates to a dataset on baseballs.
+:::
+
+## 
+
+![SPSS import dialog box](../images/baseball-analysis-01.png){#fig-ball01}
+
+::: notes
+Add note.
+:::
+
+## 
+
+![SPSS one-sample t-test dialog box](../images/baseball-analysis-02.png){#fig-ball02}
+
+::: notes
+Add note.
+:::
+
+## 
+
+![SPSS one-sample t-test output (1/3)](../images/baseball-analysis-03.png){#fig-ball03}
+
+\$\$
+
+Check that $\frac{0.049415}{\sqrt{50}}=0.006988$.
+
+::: notes
+Ask for some help to check the calculation for the standard error.
+:::
+
+## Approximate confidence interval
+
+-   Note that $se(\bar{X}) \approx 0.007$
+    -   9.118 - 0.014 = 9.104
+    -   9.118 + 0.014 = 9.132
+
+::: notes
+You can get an approximate 95% confidence interval using the plus or minus two standard errors rule. The standard error is roughly 0.007. Two standard errors would be roughly 0.014. Subtracting and adding from the mean provides an approximate confidence interval of 9.104 to 9.132.
+:::
+
+## 
+
+![SPSS one-sample t-test output (2/3)](../images/baseball-analysis-04.png){#fig-ball04}
+
+\$\$
+
+Check that $\frac{9.11754-9.125}{0.006988}=-1.068$.
+
+::: notes
+Add note.
+:::
+
+## Converting the SPSS confidence interval
+
+-   We are 95% confident that $\mu-9.125$ is between -.02150 and 0.00658.
+    -   Add 9.125 to both sides.
+    -   -0.02150 + 9.125 = 9.10350
+    -   0.00658 + 9.125 = 9.13158
+-   Always round at the end.
+    -   We are 95% confidence that the population mean circumference is between 9.10 and 9.13.
+
+## 
+
+![SPSS one-sample t-test output (3/3)](../images/baseball-analysis-05.png){#fig-ball05}
+
+Check that $\frac{9.11754-9.125}{0.049415}=-0.151$.
+
+::: notes
+I am not a big fan of effect sizes, but I am in a minority perspective here. Life is too short to worry about Cohen's d versus the Hedges correction. Both indicate a small effect size (less than 0.2).
+:::
+
+## BMI data dictionary (1/2)
+
+This file is included as part of the base package of R and was converted by Steve Simon to a text file. There are no details about who created the data set. The code for R is published under an open source license, and the datasets included with R are presumably covered by the same license.
+
+This is a tab delimited data file. There are 15 rows and 3 columns of data.
+
+::: notes
+Here is the first half of the data dictionary for the BMI data.
+:::
+
+## BMI data dictionary (1/2)
+
+The first variable is the sample number (1 to 15). The second variable is the height of an adult female (inches). The third variable is the weight (pounds). The variable names are not included at the top of the data.
+
+This data dictionary was written by Steve Simon on 2023-09-10 and is placed in the public domain.
+
+Please be sure to skip past this documentation while importing the data.
+
+::: notes
+Here is the second half of the data dictionary for the BMI data.
+:::
+
+## 
+
+![SPSS data after importing](../images/bmi-analysis-01.png){#fig-bmi01}
+
+::: notes
+Add note.
+:::
+
+## 
+
+![SPSS data after variable name change](../images/bmi-analysis-02.png){#fig-bmi02}
+
+::: notes
+Add note.
+:::
+
+## Converting height to meters
+
+![SPSS dialog box for converting from inches to meters](../images/bmi-analysis-03.png){#fig-bmi03}
+
+::: notes
+Add note.
+:::
+
+## 
+
+![SPSS dialog box for converting from pounds to kilograms](../images/bmi-analysis-04.png){#fig-bmi04}
+
+::: notes
+Add note.
+:::
+
+## 
+
+![SPSS dialog box for BMI](../images/bmi-analysis-05.png){#fig-bmi05}
+
+::: notes
+Add note.
+:::
+
+## 
+
+Select Analyze \| Compare Means and Proportions \| One-sample T Test from the SPSS menu.
+
+![SPSS dialog box for one-sample t-test](../images/bmi-analysis-06.png){#fig-bmi06}
+
+::: notes
+Add note.
+:::
+
+## Output from a one-sample t-test (1/3)
+
+![SPSS output from one-sample t-test (1/3)](../images/bmi-analysis-07.png){#fig-bmi07}
+
+::: notes
+Add note.
+:::
+
+## 
+
+![SPSS output from one-sample t-test (2/3)](../images/bmi-analysis-08.png){#fig-bmi08}
+
+::: notes
+Add note.
+:::
+
+## 
+
+![SPSS output from one-sample t-test (3/3)](../images/bmi-analysis-09.png){#fig-bmi09}
+
+::: notes
+Add note.
+:::
