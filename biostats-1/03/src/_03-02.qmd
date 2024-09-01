@@ -15,15 +15,65 @@ $f(x; \mu, \sigma)=\frac{1}{\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
 
 but the shape is readily recognizable.
 
-
-is program uses data from a study of pulmonary function in children. The key variable is forced expiratory volume (fev) measured in liters There is a [data dictionary][dd] that provides more details about the data. 
-
-[dd]: https://github.com/pmean/datasets/blob/master/fev.yaml
-
 ```{r setup-2}
 #| echo: false
 library(tidyverse)
 ```
+
+```{r normal-bell}
+#| echo: false
+normal_bell <- function(mu=0, sigma=1) {
+  x0 <- seq(-8, 8, length=500)
+  y0 <- dnorm(x0, mu, sigma)
+  normal <- data.frame(
+    x = c(-8, x0, 8),
+    y = c(0, y0, 0))
+  ggplot(data=normal, aes(x, y)) +
+    geom_polygon(
+      fill="white",
+      color="black") +
+    expand_limits(y=c(0, 0.8)) +
+    scale_x_continuous(breaks=2*(-4:4))
+}
+```
+
+## Normal distribution with mu=2, sigma=1
+
+```{r normal_a}
+normal_bell(mu=2, sigma=1)
+```
+
+## Normal distribution with mu=-3, sigma=1
+
+```{r normal_b}
+normal_bell(mu=-3, sigma=1)
+```
+
+## Normal distribution with mu=1, sigma=1
+
+```{r normal_c}
+normal_bell(mu=1, sigma=1)
+```
+
+
+## Normal distribution with mu=1, sigma=2
+
+```{r normal_d}
+normal_bell(mu=1, sigma=2)
+```
+
+## Normal distribution with mu=1, sigma=2
+
+```{r normal_e}
+normal_bell(mu=1, sigma=0.5)
+```
+
+## Standard normal distribution (mu=0, sigma=1)
+
+```{r normal_f}
+normal_bell()
+```
+
 
 ```{r standard-normal}
 #| echo: false
@@ -44,10 +94,10 @@ draw_bell <- function(
       length=100)
   y1 <- dnorm(x1)
   std_normal <- data.frame(
-    x = c(min(x0), x0, max(x0)),
+    x = c(-3.5, x0, 3.5),
     y = c(0, y0, 0))
   shaded_subset <- data.frame(
-    x = c(min(x1), x1, max(x1)),
+    x = c(lo, x1, hi),
     y = c(0, y1, 0))
 
   ggplot(data=std_normal, aes(x, y)) +
@@ -61,20 +111,6 @@ draw_bell <- function(
       fill="gray",
       color="black")
 }
-```
-
-## Normal distribution with mu=2, sigma=1
-
-```{r}
-#| echo: false
-draw_bell(mu=2, range=c(-6, 6))
-```
-
-## The standard normal distribution
-
-```{r}
-#| echo: false
-draw_bell()
 ```
 
 ## P[Z < 1.5]

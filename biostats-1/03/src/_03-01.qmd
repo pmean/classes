@@ -7,6 +7,25 @@ format:
 editor: source
 ---
 
+```{r setup-1}
+library(tidyverse)
+```
+
+```{r histogram}
+draw_histogram <- function(x, w=1) {
+  x1 <- round(x*w)/w
+  data.frame(x=x1) |>
+    ggplot(aes(x)) +
+      theme(legend.position="none") +
+      xlab(" ") +
+      ylab(" ") +
+      geom_bar(
+        color="black", 
+        fill="white",
+        width=w)
+}
+```
+
 ## The bell shaped curve
 
 -   Does your variation follow a bell shaped curve?
@@ -14,7 +33,6 @@ editor: source
     -   Values in the middle are most common
     -   Frequencies taper off away from the center
     -   Symmetry on either side
--   A bell shaped curve = better characterization of variation
 
 ::: notes
 *Speaker notes*
@@ -22,25 +40,25 @@ editor: source
 Much variation in the real world follows a bell shaped curve, alternately called a normal distribution. You can assess whether you have a bell shaped curve using a histogram. Look for values in the middle being most common. The frequencies should taper off slowly as you moved away from the middle. The histogram should have symmetry. The left side of the histogram should be roughly equivalent to the right side of the histogram.
 :::
 
-## 
+## Bell-shaped curve is a limit
 
-```{r setup-1}
-library(tidyverse)
+```{r limit-1}
+x_normal <- pmax(0, rnorm(2000, 10, 3))
+draw_histogram(x_normal[1:10])
 ```
+
+## Bell-shaped curve is a limit
+
+```{r limit-2}
+draw_histogram(x_normal[1:20], w=0.5)
+```
+
+## First example of non-normal data, bimodal
 
 ```{r bimodal}
-x <- c(rnorm(1200, 4, 1.5), rnorm(800, 10, 1.5))
-x <- pmax(0, round(x))
-data.frame(x) |>
-  ggplot(aes(x)) +
-    theme(legend.position="none") +
-    xlab(" ") +
-    ylab(" ") +
-    geom_bar(color="black", fill="white", width=1) -> bimodal_histogram
-ggsave("../images/bimodal-histogram.png")
+x_bimodal <- c(rnorm(1200, 4, 1.5), rnorm(800, 10, 1.5))
+draw_histogram(x_bimodal)
 ```
-
-![Bimodal histogram, not a bell shaped curve](../images/bimodal-histogram.png)
 
 ::: notes
 *Speaker notes*
@@ -48,19 +66,12 @@ ggsave("../images/bimodal-histogram.png")
 Here's a histogram that shows a bimodal distribution. The frequencies are not highest in the center of the data. This is not a bell shaped curve.
 :::
 
-## 
+## Second example of non-normal data, skewed
 
 ```{r skewed}
-data.frame(x=rpois(2000, 5)) |>
-  ggplot(aes(x)) +
-    theme(legend.position="none") +
-    xlab(" ") +
-    ylab(" ") +
-    geom_bar(color="black", fill="white", width=1) -> skewed_histogram
-ggsave("../images/skewed-histogram.png")
+x_skewed <- rgamma(2000, 2, scale=6)
+draw_histogram(x_skewed)
 ```
-
-![Skewed histogram, not a bell shaped curve](../images/skewed-histogram.png)
 
 ::: notes
 *Speaker notes*
@@ -68,19 +79,12 @@ ggsave("../images/skewed-histogram.png")
 Here's a histogram that shows a skewed or asymmetric distribution. This is not a bell shaped curve.
 :::
 
-## 
+## Third example of non-normal data, light-tailed
 
 ```{r light-tailed}
-data.frame(x=round(runif(2000, 0, 15))) |>
-  ggplot(aes(x)) +
-    theme(legend.position="none") +
-    xlab(" ") +
-    ylab(" ") +
-    geom_bar(color="black", fill="white", width=1) -> uniform_histogram
-ggsave("../images/uniform-histogram.png")
+x_light_tailed <- runif(2000, 0, 15)
+draw_histogram(x_light_tailed)
 ```
-
-![Uniform histogram, not a bell shaped curve](../images/uniform-histogram.png)
 
 ::: notes
 *Speaker notes*
@@ -88,23 +92,14 @@ ggsave("../images/uniform-histogram.png")
 Here's a histogram that shows a symmetric distribution, but the frequencies do not taper off as you move away from the center. This is not a bell shaped curve.
 :::
 
-## 
+## Fourth example of skewed distribution, heavy-tailed
 
 ```{r heavy-tailed}
-x <- rt(1000, 2)
-x <- 15 + c(x, -x) + rnorm(1000)
-x <- pmin(pmax(0, x), 30)
-  
-data.frame(x=round(x)) |>
-  ggplot(aes(x)) +
-    theme(legend.position="none") +
-    xlab(" ") +
-    ylab(" ") +
-    geom_bar(color="black", fill="white", width=1) -> heavy_tailed_histogram
-ggsave("../images/heavy-tailed-histogram.png")
+x0 <- rt(1000, 2)
+x1 <- 15 + c(x0, -x0) + rnorm(2000, mean=0, sd=0.2)
+x_heavy_tailed <- pmin(pmax(0, x1), 30)
+draw_histogram(x_heavy_tailed)  
 ```
-
-![Heavy-tailed histogram, not a bell shaped curve](../images/heavy-tailed-histogram.png)
 
 ::: notes
 *Speaker notes*
@@ -115,24 +110,12 @@ Here's a histogram that shows a symmetric distibution, but the frequencies taper
 ## 
 
 ```{r normal}
-x <- rnorm(2000, 10, 3)
-x <- pmax(0, x)
-  
-data.frame(x=round(x)) |>
-  ggplot(aes(x)) +
-    theme(legend.position="none") +
-    xlab(" ") +
-    ylab(" ") +
-    geom_bar(color="black", fill="white", width=1) # -> normal_histogram
-# ggsave("../images/normal-histogram.png")
+draw_histogram(x_normal)
 ```
 
 
 ::: notes
 *Speaker notes*
-
-![Bell-shaped histogram, finally!](../images/normal-histogram.png)
-
 
 Here's a histogram that shows a symmetric distribution, with the most frequent values in the center and frequencies that taper off on either side.
 
