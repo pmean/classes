@@ -4,6 +4,8 @@ format:
   html:
     slide-number: true
     embed-resources: true
+    fig-width: 6
+    fig-height: 3
 editor: source
 execute:
   echo: true
@@ -36,14 +38,56 @@ library(tidyverse)
 ## The standard normal distribution
 
 ```{r standard-normal}
-std_normal <- data.frame(
-  x <- seq(-3.5, 3.5, length=1000),
-  y <-dnorm(x))
-ggplot(data=std_normal, aes(x, y)) +
-  geom_line() + 
-  geom_segment(
-    aes(xend=x, yend=0), 
-    color="white") +
-  geom_line() +
-  geom_segment(x=-3.5, y=0, xend=3.5, yend=0)
+#| echo: false
+draw_bell <- function(lo=-3.5, hi=3.5) {
+  
+  x0 <- seq(-3.5, 3.5, length=100)
+  y0 <- dnorm(x0)
+  x1 <- seq(lo, hi, length=100)
+  y1 <- dnorm(x1)
+  std_normal <- data.frame(
+    x = c(-3.5, x0, 3.5),
+    y = c(0, y0, 0))
+  shaded_subset <- data.frame(
+    x = c(lo, x1, hi),
+    y = c(0, y1, 0))
+
+  ggplot(data=std_normal, aes(x, y)) +
+    geom_polygon(
+      fill="white",
+      color="black") +
+    expand_limits(x=c(-4, 4)) +
+    geom_polygon(
+      data=shaded_subset,
+      aes(x, y),
+      fill="gray",
+      color="black")
+}
+draw_bell()
+```
+
+## P[Z < 1.5]
+
+```{r}
+draw_bell(hi=1.5) +
+  geom_label(x=1.5, y=0, label=" 1.5 ") +
+  geom_label(x=0.25, y=0.5*dnorm(0.25), label=" ? ")
+```
+
+```{r}
+#| echo: true
+pnorm(1.5)
+```
+
+## P[Z < -0.5]
+
+```{r}
+draw_bell(hi=-0.5) +
+  geom_label(x=-0.5, y=0, label=" -0.5 ") +
+  geom_label(x=-1.5, y=0.5*dnorm(-1.5), label=" ? ")
+```
+
+```{r}
+#| echo: true
+pnorm(-0.5)
 ```

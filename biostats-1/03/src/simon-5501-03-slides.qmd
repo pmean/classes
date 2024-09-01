@@ -6,12 +6,13 @@ format:
     embed-resources: true
 params:
   topic_01: "The normal distribution"
-  topic_02: "Standardization"
-  topic_03: "Evaluating normality"
+  topic_02: "Normal probabilities and quantiles"
+  topic_03: "Standardization"
   topic_04: "The Central Limit Theorem"
-  topic_05: "Confidence intervals for the population mean"
-  topic_06: "Confidence intervals for the population proportion"
-  topic_07: "Program template"
+  topic_05: "Evaluating normality"
+  topic_06: "Confidence intervals for the population mean"
+  topic_07: "Confidence intervals for the population proportion"
+  topic_08: "Program template"
 editor: source
 ---
 
@@ -30,7 +31,7 @@ editor: source
     -   `r params$topic_06`
     -   `r params$topic_07`
 
-{{< include _02-01.qmd >}}
+{{< include _03-01.qmd >}}
 
 ## Break #1
 
@@ -39,7 +40,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_02`
 
-{{< include _02-02.qmd >}}
+{{< include _03-02.qmd >}}
 
 ## Break #2
 
@@ -48,7 +49,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_03`
 
-{{< include _02-03.qmd >}}
+{{< include _03-03.qmd >}}
 
 ## Break #3
 
@@ -57,7 +58,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_04`
 
-{{< include _02-04.qmd >}}
+{{< include _03-04.qmd >}}
 
 ## Break #4
 
@@ -66,7 +67,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_05`
 
-{{< include _02-05.qmd >}}
+{{< include _03-05.qmd >}}
 
 ## Break #5
 
@@ -75,7 +76,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_06`
 
-{{< include _02-06.qmd >}}
+{{< include _03-06.qmd >}}
 
 ## Break #6
 
@@ -84,9 +85,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_07`
 
-{{< include _02-07.qmd >}}
-
-{{< include _01-07.qmd >}}
+{{< include _03-07.qmd >}}
 
 
 ## Summary

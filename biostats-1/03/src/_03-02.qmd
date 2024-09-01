@@ -1,5 +1,5 @@
 ---
-title: "02-02, Mean and median"
+title: "03-02, Normal probabilities"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,193 @@ format:
 editor: source
 ---
 
-## Mean and median
+## Overview
 
-:::notes
-The
-:::
-  
+The normal distribution is an important component of most statistical analyses. The formula for the normal distribution is quite complex, 
+
+$f(x; \mu, \sigma)=\frac{1}{\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
+
+but the shape is readily recognizable.
+
+
+is program uses data from a study of pulmonary function in children. The key variable is forced expiratory volume (fev) measured in liters There is a [data dictionary][dd] that provides more details about the data. 
+
+[dd]: https://github.com/pmean/datasets/blob/master/fev.yaml
+
+```{r setup-2}
+#| echo: false
+library(tidyverse)
+```
+
+```{r standard-normal}
+#| echo: false
+draw_bell <- function(
+    lo=-3.5, 
+    hi=3.5, 
+    mu=0,
+    sigma=1,
+    range=c(-4, 4)) {
+  x0 <- seq(
+      (-3.5-mu)/sigma, 
+      ( 3.5-mu)/sigma, 
+      length=100)
+  y0 <- dnorm(x0)
+  x1 <- seq(
+      (lo-mu)/sigma, 
+      (hi-mu)/sigma,
+      length=100)
+  y1 <- dnorm(x1)
+  std_normal <- data.frame(
+    x = c(min(x0), x0, max(x0)),
+    y = c(0, y0, 0))
+  shaded_subset <- data.frame(
+    x = c(min(x1), x1, max(x1)),
+    y = c(0, y1, 0))
+
+  ggplot(data=std_normal, aes(x, y)) +
+    geom_polygon(
+      fill="white",
+      color="black") +
+    expand_limits(x=c(-4, 4)) +
+    geom_polygon(
+      data=shaded_subset,
+      aes(x, y),
+      fill="gray",
+      color="black")
+}
+```
+
+## Normal distribution with mu=2, sigma=1
+
+```{r}
+#| echo: false
+draw_bell(mu=2, range=c(-6, 6))
+```
+
+## The standard normal distribution
+
+```{r}
+#| echo: false
+draw_bell()
+```
+
+## P[Z < 1.5]
+
+```{r}
+a <- 1.5
+draw_bell(hi=a) +
+  geom_label(x=a, y=0, label=a) +
+  geom_label(x=a-1.5, y=0.5*dnorm(a-1.5), label="?")
+```
+
+```{r}
+#| echo: true
+pnorm(1.5)
+```
+
+## P[Z < -0.5]
+
+```{r}
+a <- -0.5
+draw_bell(hi=a) +
+  geom_label(x=a, y=0, label=a) +
+  geom_label(x=a-0.5, y=0.5*dnorm(a-0.5), label="?")
+```
+
+```{r}
+#| echo: true
+pnorm(-0.5)
+```
+
+## P[Z > 1]
+
+```{r}
+a <- 1
+draw_bell(lo=a) +
+  geom_label(x=a, y=0, label=a) +
+  geom_label(x=a+0.5, y=0.5*dnorm(a+0.5), label="?")
+```
+
+```{r}
+#| echo: true
+1- pnorm(1.0)
+```
+
+## P[Z > -2]
+
+```{r}
+a <- -2
+draw_bell(lo=a) +
+  geom_label(x=a, y=0, label=a) +
+  geom_label(x=a+2, y=0.5*dnorm(a+2), label="?")
+```
+
+```{r}
+#| echo: true
+1- pnorm(-2)
+```
+
+## P[-2.5 < Z < 2.5]
+
+```{r}
+a <- -2.5
+b <- 2.5
+draw_bell(lo=a, hi=b) +
+  geom_label(x=a, y=0, label=a) +
+  geom_label(x=b, y=0, label=b) +
+  geom_label(x=0, y=0.5*dnorm(0), label="?")
+```
+
+```{r}
+#| echo: true
+pnorm(2.5)- pnorm(-2.5)
+```
+
+## P[-0.5 < Z < 0.5]
+
+```{r}
+a <- -0.5
+b <- 0.5
+draw_bell(lo=a, hi=b) +
+  geom_label(x=a, y=0, label=a) +
+  geom_label(x=b, y=0, label=b) +
+  geom_label(x=0, y=0.5*dnorm(0), label="?")
+```
+
+```{r}
+#| echo: true
+pnorm(0.5) - pnorm(-0.5)
+```
+
+## 25th percentile of a standard normal
+
+```{r}
+p <- 0.25
+a <- qnorm(p)
+b <- 0.5
+draw_bell(hi=a) +
+  geom_label(x=a, y=0, label="?") +
+  geom_label(x=a-0.5, y=0.5*dnorm(a-0.5), label=p)
+```
+
+```{r}
+#| echo: true
+qnorm(0.25)
+```
+
+## 90th percentile of a standard normal
+
+```{r}
+p <- 0.9
+a <- qnorm(p)
+b <- 0.5
+draw_bell(hi=a) +
+  geom_label(x=a, y=0, label="?") +
+  geom_label(x=0, y=0.5*dnorm(0), label=p)
+```
+
+```{r}
+#| echo: true
+qnorm(0.9)
+```
+
