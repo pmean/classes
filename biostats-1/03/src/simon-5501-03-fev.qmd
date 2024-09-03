@@ -4,6 +4,8 @@ format:
   html:
     embed-resources: true
 editor: source
+execute: 
+  error: true
 ---
 
 This program assesses the normality of variables in a study of pulmonary function in children. There is a [data dictionary][dd] that provides more details about the data. The program was written by Steve Simon on 2024-09-02 and is placed in the public domain.

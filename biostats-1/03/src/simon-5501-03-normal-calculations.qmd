@@ -5,6 +5,8 @@ format:
     slide-number: true
     embed-resources: true
 editor: source
+execute: 
+  error: true
 ---
 
 This program displays the standard normal curve along with various probabilities and quantiles. It was written by Steve Simon on 2024-09-01 and is placed in the public domain.
