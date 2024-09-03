@@ -1,5 +1,5 @@
 ---
-title: "03-03, Standardization"
+title: "03-03, Assessing normality"
 format: 
   revealjs:
     slide-number: true
@@ -7,324 +7,226 @@ format:
 editor: source
 ---
 
-## Standardization of an individual data value
+## Assessing normality
 
-## Standardization of a statistic
+-   No variable follows a perfect normal distribution
+    -   But many are close
+-   How to assess (approximate) normality
+    -   Histogram
+    -   Boxplot
+    -   Normal probability plot
+-   Avoid formal tests of normality
 
-General form of standardization
-
--   $Z\ or\ t = \frac{statistic-parameter}{se(statistic)}$
-
-Specific standardization for the mean
-
--   $Z\ or\ t = \frac{\bar{X}-\mu}{se(\bar{X})}$
-
-::: notes
+:::notes
+While no variables are going to fit the bell shaped curve exactly, many variables come close. Your subjective interpretation of graphs is the best way to assess normality, recognizing that you would be satisfied with a reasonable approximation to normality. Three graphs used commonly for this are the histogram, the boxplot and the normal probability plot.
 :::
 
-## Convert this to a confidence interval
+## Histogram
 
--   $P[-t(\alpha/2; n-1) < \frac{\bar{X}-\mu}{se(\bar{X})} < t(\alpha/2; n-1)] = 1-\alpha$
+-   Peak in the middle
+-   Roughly symmetric
+-   Falls off exponentially
+-   Warning!! Bar width can influence your interpretation
 
--   $P[-t(\alpha/2; n-1)se(\bar{X}) < \bar{X}-\mu < t(\alpha/2; n-1)se(\bar{X})] = 1-\alpha$
+:::notes
 
--   $P[\bar{X}-t(\alpha/2; n-1)se(\bar{X}) < \mu < \bar{X} + t(\alpha/2; n-1)se(\bar{X})] = 1-\alpha$
-
-If n \> 30
-
--   $P[\bar{X}-Z(\alpha/2)se(\bar{X}) < \mu < \bar{X} + Z(\alpha/2)se(\bar{X})] \approx 1-\alpha$
-
-::: notes
 :::
 
-## Intepretation
+## Sample Boxplot
 
-If n \< 30, we have 1-$\alpha$ level of confidence that the population mean lies between
+```{r sample-boxplot}
+#| fig.height=1
+library(tidyverse)
+x <- (1:10)^2
+q <- quantile(x)
+data.frame(x) |>
+  ggplot(aes(x)) +
+    geom_boxplot() +
+    expand_limits(y=c(-0.7, 0.7)) +
+    theme_void() +
+    geom_text(x=q[1], y=0.6, label="Min", size=4) +
+    geom_text(x=q[2], y=0.6, label="25%ile", size=4) +
+    geom_text(x=q[3], y=0.6, label="50%ile", size=4) +
+    geom_text(x=q[4], y=0.6, label="75%ile", size=4) +
+    geom_text(x=q[5], y=0.6, label="Max", size=4)
+```
 
--   $\bar{X}-t(\alpha/2; n-1)se(\bar{X})$ and
--   $\bar{X}+t(\alpha/2; n-1)se(\bar{X})$
+:::notes
 
-If n \> 30, we have 1-$\alpha$ level of confidence that the population mean lies between
-
--   $\bar{X}-Z(\alpha/2)se(\bar{X})$ and
--   $\bar{X}+Z(\alpha/2)se(\bar{X})$
-
-::: notes
-The formula for the confidence interval for the population mean
 :::
 
-## Other forms of the confidence interval
+## What to look for in the boxplot
 
--   Simpler (too simple?)
-    -   $\bar{X}-2\ se(\bar{X})$ and
-    -   $\bar{X}+2\ se(\bar{X})$ and
--   Use $t(\alpha/2; n-1)$ even if n \> 30
--   Do not use these alternate forms for your homework.
+-   Median halfway between 25th and 75th percentile.
+-   Whiskers are same size
+-   Whiskers not too short, not too long
 
-## 
+## Constructing a normal probability plot, 1
 
-![Excerpt from Mondal 2023](../images/chatgpt-01.png){#fig-chat01}
+-   Calculate rank
+-   Divide by (n+1)
+-   Compute corresponding normal percentiles
+-   Compare these on a graph to the original data
+-   Roughly straight line implies normality
 
-::: notes
-Here is an article from the Indian Dematology Online Journal. You can find it using the Pubmed ID of 37521213.
-:::
+## Constructing a normal probability plot, 2
 
-## 
+Use the rank function to assign 1 to the smallest value, 2 to the next smallest value, etc. up to n for the largest value.
 
-![Table 1 from Mondal 2023](../images/chatgpt-02.png){#fig-chat02}
+```{r qqplot-1}
+# Artificial data
+x=c(7, 3, 23, 2, 5, 13, 11, 17, 19)
+n <- length(x)
+d0 <- data.frame(x)
+d1 <- mutate(d0, r=rank(x))
+d1
+```
 
-::: notes
-This is Table 1 from the paper.
-:::
+## Constructing a normal probability plot, 3
 
-## Confidence interval for Ease Score
+Divide the rank by (n+1) to get evenly spaced percentages.
 
--   Calculations
-    -   $se(\bar{X})=\frac{8.23}{\sqrt{14}}=2.19956$
-    -   $t(0.025, 13) = 2.16$
-    -   $46.94 - 2.16 \times 2.19956=42.18895$
-    -   $46.94 + 2.16 \times 2.19956=51.69105$
--   We are 95% confident that the population mean reading age of ChatGPT education guides is between 42 and 52.
+```{r qqplot-2}
+d2 <- mutate(d1, pctile=r/(n+1))
+d2
+```
 
-::: notes
-The ease score represents ease of reading with larger values representing better readability. AQ value of 30 was cited as representing difficult to read text based on a review of editorials in popular Indian medical journals.
-:::
+## Constructing a normal probability plot, 4
 
-## Confidence interval for overall similarity
+Calculate percentiles from a normal distribution using the evenly spaced percentages.
 
--   Calculations
-    -   $se(\bar{X})=\frac{11.46}{\sqrt{14}}=3.062814$
-    -   $t(0.025, 13) = 2.16$
-    -   $27.07 - 2.16 \times 7.234762=20.45432$
-    -   $27.07 + 2.16 \times 3.062814=33.68568$
--   We are 95% confident that the population mean similarity is between 20% and 34%.
+```{r qqplot-3}
+d3 <- mutate(d2, z=qnorm(pctile))
+d3
+```
 
-::: notes
-The similarity score is used for plagiarism checks. A value of 15% or more is taken by some resources as concerning.
-:::
+## Constructing a normal probability plot, 5
 
-## Effect sizes
+Plot the percentiles from the normal distribution to the original data. A reasonably straight line is evidence of normality.
 
--   Cohen's d = $\frac{\bar{X}-C}{se(\bar{X})}$
--   Useful for
-    -   Systematic overviews
-    -   Intermediate calculation in sample size formulas
--   Critcisms
-    -   Clinical relevance requires units of measure
-    -   Small, medium, large are arbitrary labels
+```{r qqplot-4}
+ggplot(d3, aes(z, x)) + 
+  geom_point()
+```
 
-::: notes
-The effect size for a sample mean is calculated by subtracting the hypothesized mean, C, from the sample mean and dividing by the standard error of the mean.
+## Constructing a normal probability plot, 6
 
-The use of effect sizes is controversial. Monica Gaddis loves them, other faculty in our department love them. I hate them.
+The qqnorm function will do all these steps for you automatically.
 
-They are okay for systematic overviews and as an intermediate calculation in sample size formulas.
+```{r qqplot-5}
+qqnorm(x)
+```
 
-But I do not like to see them reported in journal articles. Using terms like small, medium, or large is very arbitrary and does not translate well from one discipline to another. I also believe that unitless quantities provide no help in deciding whether a result has clinical relevance.
+## Bimodal data, histogram
 
-There's a joke I tell about this. A store displays a huge banner at their entrance. The banner reads "Big sale! All prices reduced by half a standard deviation."
-
-Even though I dislike effect sizes, I feel the obligation to teach them because they are used by many researchers.
-:::
-
-## Break
-
--   What have you just learned?
-    -   Review confidence intervals testing
--   What is coming next?
-    -   SPSS examples
+```{r bimodal}
+n <- 200
+x1 <- c(rnorm(0.6*n, 8, 3), rnorm(0.4*n, 20, 3))
+x_bimodal <- 
+  data.frame(x=x1)
+x_bimodal |>
+  ggplot(aes(x)) +
+    geom_histogram(
+      binwidth=1,
+      color="black",
+      fill="white")
+```
 
 ::: notes
-Let me pause here for a second. Are there any questions?
+Here's a histogram that shows a bimodal distribution. The frequencies are not highest in the center of the data. This is not a bell shaped curve.
 :::
 
-## Baseball data dictionary (1/2)
+## Bimodal data, boxplot
 
-This file was downloaded from the DASL (Data and Story Library) website. There are no details about who created the data set or what permissions are allowed. Educational uses of this data are probably allowed under the Fair Use provisions of U.S. Copyright Law.
+```{r bimodal-2}
+#| fig.height=1
+x_bimodal |>
+  ggplot(aes(x)) +
+    geom_boxplot()
+```
 
-This is a tab delimited data file. There are 50 rows and 2 columns of data.
+:::notes
+The boxplot is not as useful as the histogram for detecting bimodal distributions.
+:::
 
-The first variable is the sample number (1 to 50). The second variable is the circumference of the baseball in inches. The variable names are included at the top of the data.
+
+
+## Bimodal data, qq plot
+
+```{r bimodal-3}
+qqnorm(x_bimodal$x)
+```
+
+:::notes
+On the qq plot, a 
+:::
+
+## Skewed data, histogram
+
+```{r skewed}
+x1 <- rgamma(n, 2, scale=3)
+x_skewed <- data.frame(x=x1)
+x_skewed |>
+  ggplot(aes(x)) +
+    geom_histogram(
+      binwidth=1,
+      color="black",
+      fill="white")
+```
 
 ::: notes
-I want to show some SPSS analyses. The first relates to a dataset on baseballs.
+*Speaker notes*
+
+Here's a histogram that shows a skewed or asymmetric distribution. This is not a bell shaped curve.
 :::
 
-## Baseball data dictionary (2/2)
+## Light-tailed data, histogram
 
-The first variable is the sample number (1 to 50). The second variable is the circumference of the baseball in inches. The variable names are included at the top of the data.
-
-The standard sized baseball, according to Wikipedia and other sources on the Internet is 9 to 9.25 inches. There are no missing values in this data set.
-
-This data dictionary was written by Steve Simon on 2023-09-10 and is placed in the public domain.
-
-Please be sure to skip past this documentation while importing the data.
+```{r light-tailed}
+x1 <- runif(n, 0, 30)
+x_light_tailed <- data.frame(x=x1)
+x_light_tailed |>
+  ggplot(aes(x)) +
+    geom_histogram(
+      binwidth=1,
+      color="black",
+      fill="white")
+```
 
 ::: notes
-I want to show some SPSS analyses. The first relates to a dataset on baseballs.
+*Speaker notes*
+
+Here's a histogram that shows a symmetric distribution, but the frequencies do not taper off as you move away from the center. This is not a bell shaped curve.
 :::
 
-## 
+## Fourth example of skewed distribution, heavy-tailed
 
-![SPSS import dialog box](../images/baseball-analysis-01.png){#fig-ball01}
+```{r heavy-tailed}
+x0 <- rt(0.5*n, 2)
+x1 <- 15 + c(x0, -x0) + rnorm(n, mean=0, sd=1)
+x1[x1 <  0] <- rnorm(15, 5)  
+x1[x1 > 30] <- rnorm(15, 5)  
+x_heavy_tailed <- pmin(pmax(0, x1), 30)
+```
 
 ::: notes
-Add note.
+*Speaker notes*
+
+Here's a histogram that shows a symmetric distibution, but the frequencies taper off at first, but then flatten out. This is called a heavy tailed distribution and it tends to produce outliers, extreme values, on both sides. This is not a bell shaped curve.
 :::
 
-## 
+## Finally! A normal distribution
 
-![SPSS one-sample t-test dialog box](../images/baseball-analysis-02.png){#fig-ball02}
+```{r normal}
+x_normal <- rnorm(n, mean=15, sd=5)
+```
+
 
 ::: notes
-Add note.
+*Speaker notes*
+
+Here's a histogram that shows a symmetric distribution, with the most frequent values in the center and frequencies that taper off on either side.
+
+This is a bell shaped curve.
 :::
 
-## 
-
-![SPSS one-sample t-test output (1/3)](../images/baseball-analysis-03.png){#fig-ball03}
-
-\$\$
-
-Check that $\frac{0.049415}{\sqrt{50}}=0.006988$.
-
-::: notes
-Ask for some help to check the calculation for the standard error.
-:::
-
-## Approximate confidence interval
-
--   Note that $se(\bar{X}) \approx 0.007$
-    -   9.118 - 0.014 = 9.104
-    -   9.118 + 0.014 = 9.132
-
-::: notes
-You can get an approximate 95% confidence interval using the plus or minus two standard errors rule. The standard error is roughly 0.007. Two standard errors would be roughly 0.014. Subtracting and adding from the mean provides an approximate confidence interval of 9.104 to 9.132.
-:::
-
-## 
-
-![SPSS one-sample t-test output (2/3)](../images/baseball-analysis-04.png){#fig-ball04}
-
-\$\$
-
-Check that $\frac{9.11754-9.125}{0.006988}=-1.068$.
-
-::: notes
-Add note.
-:::
-
-## Converting the SPSS confidence interval
-
--   We are 95% confident that $\mu-9.125$ is between -.02150 and 0.00658.
-    -   Add 9.125 to both sides.
-    -   -0.02150 + 9.125 = 9.10350
-    -   0.00658 + 9.125 = 9.13158
--   Always round at the end.
-    -   We are 95% confidence that the population mean circumference is between 9.10 and 9.13.
-
-## 
-
-![SPSS one-sample t-test output (3/3)](../images/baseball-analysis-05.png){#fig-ball05}
-
-Check that $\frac{9.11754-9.125}{0.049415}=-0.151$.
-
-::: notes
-I am not a big fan of effect sizes, but I am in a minority perspective here. Life is too short to worry about Cohen's d versus the Hedges correction. Both indicate a small effect size (less than 0.2).
-:::
-
-## BMI data dictionary (1/2)
-
-This file is included as part of the base package of R and was converted by Steve Simon to a text file. There are no details about who created the data set. The code for R is published under an open source license, and the datasets included with R are presumably covered by the same license.
-
-This is a tab delimited data file. There are 15 rows and 3 columns of data.
-
-::: notes
-Here is the first half of the data dictionary for the BMI data.
-:::
-
-## BMI data dictionary (1/2)
-
-The first variable is the sample number (1 to 15). The second variable is the height of an adult female (inches). The third variable is the weight (pounds). The variable names are not included at the top of the data.
-
-This data dictionary was written by Steve Simon on 2023-09-10 and is placed in the public domain.
-
-Please be sure to skip past this documentation while importing the data.
-
-::: notes
-Here is the second half of the data dictionary for the BMI data.
-:::
-
-## 
-
-![SPSS data after importing](../images/bmi-analysis-01.png){#fig-bmi01}
-
-::: notes
-Add note.
-:::
-
-## 
-
-![SPSS data after variable name change](../images/bmi-analysis-02.png){#fig-bmi02}
-
-::: notes
-Add note.
-:::
-
-## Converting height to meters
-
-![SPSS dialog box for converting from inches to meters](../images/bmi-analysis-03.png){#fig-bmi03}
-
-::: notes
-Add note.
-:::
-
-## 
-
-![SPSS dialog box for converting from pounds to kilograms](../images/bmi-analysis-04.png){#fig-bmi04}
-
-::: notes
-Add note.
-:::
-
-## 
-
-![SPSS dialog box for BMI](../images/bmi-analysis-05.png){#fig-bmi05}
-
-::: notes
-Add note.
-:::
-
-## 
-
-Select Analyze \| Compare Means and Proportions \| One-sample T Test from the SPSS menu.
-
-![SPSS dialog box for one-sample t-test](../images/bmi-analysis-06.png){#fig-bmi06}
-
-::: notes
-Add note.
-:::
-
-## Output from a one-sample t-test (1/3)
-
-![SPSS output from one-sample t-test (1/3)](../images/bmi-analysis-07.png){#fig-bmi07}
-
-::: notes
-Add note.
-:::
-
-## 
-
-![SPSS output from one-sample t-test (2/3)](../images/bmi-analysis-08.png){#fig-bmi08}
-
-::: notes
-Add note.
-:::
-
-## 
-
-![SPSS output from one-sample t-test (3/3)](../images/bmi-analysis-09.png){#fig-bmi09}
-
-::: notes
-Add note.
-:::

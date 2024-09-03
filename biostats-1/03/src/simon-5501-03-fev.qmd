@@ -2,27 +2,21 @@
 title: "Normality"
 format: 
   html:
-    slide-number: true
     embed-resources: true
 editor: source
-execute:
-  echo: true
-  error: true
-  message: false
-  warning: false
 ---
 
-## Data source
-
-This program uses data from a study of pulmonary function in children. The key variable is forced expiratory volume (fev) measured in liters There is a [data dictionary][dd] that provides more details about the data. 
+This program uses data from a study of pulmonary function in children. The key variable is forced expiratory volume (fev) measured in liters There is a [data dictionary][dd] that provides more details about the data. The program was written by Steve Simon on 2024-09-02 and is placed in the public domain.
 
 [dd]: https://github.com/pmean/datasets/blob/master/fev.yaml
 
 ## Libraries
 
-Here are the libraries you need for this program.
+The tidyverse library is the only one you need for  this program.
 
 ```{r setup}
+#| message: false
+#| warning: false
 library(tidyverse)
 ```
 
@@ -74,5 +68,15 @@ ggplot(
     binwidth=0.1,
     color="black",
     fill="white")
+```
+
+## Normal probability plot for fev
+
+```{r qqplot-fev}
+qqnorm(fev$fev)
+```
+
+```{r qqplot-log-fev}
+qqnorm(log(fev$fev))
 ```
 

@@ -7,12 +7,10 @@ format:
 params:
   topic_01: "The normal distribution"
   topic_02: "Normal probabilities and quantiles"
-  topic_03: "Standardization"
-  topic_04: "The Central Limit Theorem"
-  topic_05: "Evaluating normality"
-  topic_06: "Confidence intervals for the population mean"
-  topic_07: "Confidence intervals for the population proportion"
-  topic_08: "Program template"
+  topic_03: "Assessing normality"
+  topic_04: "Using R to assess normality"
+  topic_05: "Transformations"
+  topic_06: "TBA"
 editor: source
 ---
 
@@ -29,7 +27,6 @@ editor: source
     -   `r params$topic_04`
     -   `r params$topic_05`
     -   `r params$topic_06`
-    -   `r params$topic_07`
 
 {{< include _03-01.qmd >}}
 
@@ -78,16 +75,6 @@ editor: source
 
 {{< include _03-06.qmd >}}
 
-## Break #6
-
--   What you have learned
-    -   `r params$topic_06`
--   What's coming next
-    -   `r params$topic_07`
-
-{{< include _03-07.qmd >}}
-
-
 ## Summary
 -   What you have learned
     -   `r params$topic_01`
@@ -96,7 +83,6 @@ editor: source
     -   `r params$topic_04`
     -   `r params$topic_05`
     -   `r params$topic_06`
-    -   `r params$topic_07`
 
 <!---
       You have to put the title down 

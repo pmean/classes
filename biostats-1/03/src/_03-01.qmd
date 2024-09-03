@@ -13,9 +13,9 @@ library(tidyverse)
 
 ```{r histogram}
 draw_histogram <- function(x, w=1) {
-  x1 <- round(x*w)/w
-  data.frame(x=x1) |>
-    ggplot(aes(x)) +
+  x1 <- round(x/w)*w
+  data.frame(x=x1, wt=w/length(x1)) |>
+    ggplot(aes(x, weight=wt)) +
       theme(legend.position="none") +
       xlab(" ") +
       ylab(" ") +
@@ -23,6 +23,25 @@ draw_histogram <- function(x, w=1) {
         color="black", 
         fill="white",
         width=w)
+}
+```
+
+```{r boxplot}
+draw_boxplot <- function(x) {
+  data.frame(x) |>
+    ggplot(aes(x)) +
+      geom_boxplot()
+}
+```
+
+```{r q-q-plot}
+draw_qqplot <- function(y) {
+  data.frame(x=y) |>
+    mutate(z=(x-mean(y))/sd(y)) |>
+    mutate(r=percent_rank(z)) |>
+    mutate(q=qnorm(r)) |>
+    ggplot(aes(x=x, y=q)) +
+      geom_point()
 }
 ```
 
@@ -43,84 +62,102 @@ Much variation in the real world follows a bell shaped curve, alternately called
 ## Bell-shaped curve is a limit
 
 ```{r limit-1}
-x_normal <- pmax(0, rnorm(2000, 10, 3))
-draw_histogram(x_normal[1:10])
+n <- 100; w <- 1
+x_bell <- qnorm((1:n)/(n+1), mean=15, sd=5)
+draw_histogram(x_bell, w)
 ```
 
 ## Bell-shaped curve is a limit
 
 ```{r limit-2}
-draw_histogram(x_normal[1:20], w=0.5)
+n <- n*4; w <- w/2
+x_bell <- qnorm((1:n)/(n+1), mean=15, sd=5)
+draw_histogram(x_bell, w)
 ```
 
-## First example of non-normal data, bimodal
+## Bell-shaped curve is a limit
 
-```{r bimodal}
-x_bimodal <- c(rnorm(1200, 4, 1.5), rnorm(800, 10, 1.5))
-draw_histogram(x_bimodal)
+```{r limit-3}
+n <- n*4; w <- w/2
+x_bell <- qnorm((1:n)/(n+1), mean=15, sd=5)
+draw_histogram(x_bell, w)
 ```
 
-::: notes
-*Speaker notes*
+## Bell-shaped curve is a limit
 
-Here's a histogram that shows a bimodal distribution. The frequencies are not highest in the center of the data. This is not a bell shaped curve.
-:::
-
-## Second example of non-normal data, skewed
-
-```{r skewed}
-x_skewed <- rgamma(2000, 2, scale=6)
-draw_histogram(x_skewed)
-```
-
-::: notes
-*Speaker notes*
-
-Here's a histogram that shows a skewed or asymmetric distribution. This is not a bell shaped curve.
-:::
-
-## Third example of non-normal data, light-tailed
-
-```{r light-tailed}
-x_light_tailed <- runif(2000, 0, 15)
-draw_histogram(x_light_tailed)
-```
-
-::: notes
-*Speaker notes*
-
-Here's a histogram that shows a symmetric distribution, but the frequencies do not taper off as you move away from the center. This is not a bell shaped curve.
-:::
-
-## Fourth example of skewed distribution, heavy-tailed
-
-```{r heavy-tailed}
-x0 <- rt(1000, 2)
-x1 <- 15 + c(x0, -x0) + rnorm(2000, mean=0, sd=0.2)
-x_heavy_tailed <- pmin(pmax(0, x1), 30)
-draw_histogram(x_heavy_tailed)  
-```
-
-::: notes
-*Speaker notes*
-
-Here's a histogram that shows a symmetric distibution, but the frequencies taper off at first, but then flatten out. This is called a heavy tailed distribution and it tends to produce outliers, extreme values, on both sides. This is not a bell shaped curve.
-:::
-
-## 
-
-```{r normal}
-draw_histogram(x_normal)
+```{r limit-4}
+n <- n*4; w <- w/2
+x_bell <- qnorm((1:n)/(n+1), mean=15, sd=5)
+draw_histogram(x_bell, w)
 ```
 
 
-::: notes
-*Speaker notes*
+## Overview
 
-Here's a histogram that shows a symmetric distribution, with the most frequent values in the center and frequencies that taper off on either side.
+The normal distribution is an important component of most statistical analyses. The formula for the normal distribution is quite complex, 
 
-This is a bell shaped curve.
-:::
+$f(x; \mu, \sigma)=\frac{1}{\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
+
+but the shape is readily recognizable.
+
+```{r setup-2}
+#| echo: false
+library(tidyverse)
+```
+
+```{r normal-bell}
+#| echo: false
+normal_bell <- function(mu=0, sigma=1) {
+  x0 <- seq(-8, 8, length=500)
+  y0 <- dnorm(x0, mu, sigma)
+  normal <- data.frame(
+    x = c(-8, x0, 8),
+    y = c(0, y0, 0))
+  ggplot(data=normal, aes(x, y)) +
+    geom_polygon(
+      fill="white",
+      color="black") +
+    expand_limits(y=c(0, 0.8)) +
+    scale_x_continuous(breaks=2*(-4:4))
+}
+```
+
+## Normal distribution with mu=2, sigma=1
+
+```{r normal_a}
+normal_bell(mu=2, sigma=1)
+```
+
+## Normal distribution with mu=-3, sigma=1
+
+```{r normal_b}
+normal_bell(mu=-3, sigma=1)
+```
+
+## Normal distribution with mu=1, sigma=1
+
+```{r normal_c}
+normal_bell(mu=1, sigma=1)
+```
+
+
+## Normal distribution with mu=1, sigma=2
+
+```{r normal_d}
+normal_bell(mu=1, sigma=2)
+```
+
+## Normal distribution with mu=1, sigma=0.5
+
+```{r normal_e}
+normal_bell(mu=1, sigma=0.5)
+```
+
+## Standard normal distribution (mu=0, sigma=1)
+
+```{r normal_f}
+normal_bell()
+```
 
 ## Why concern yourself with the bell shaped curve?
 

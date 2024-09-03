@@ -1,5 +1,5 @@
 ---
-title: "03-02, Normal probabilities"
+title: "03-02, Normal probabilities and quantiles"
 format: 
   revealjs:
     slide-number: true
@@ -7,229 +7,124 @@ format:
 editor: source
 ---
 
-## Overview
+## simon-5501-03-normal-calculations.qmd, 1
 
-The normal distribution is an important component of most statistical analyses. The formula for the normal distribution is quite complex, 
-
-$f(x; \mu, \sigma)=\frac{1}{\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
-
-but the shape is readily recognizable.
-
-```{r setup-2}
-#| echo: false
+```{r write0a}
 library(tidyverse)
+fn <- "simon-5501-03-normal-calculations.qmd"
+template <- read_lines(file=fn)
+h <- str_which(template, "##")
+chunk_beg <- c(1, h)
+chunk_end <- c(h-1, length(template))
 ```
 
-```{r normal-bell}
-#| echo: false
-normal_bell <- function(mu=0, sigma=1) {
-  x0 <- seq(-8, 8, length=500)
-  y0 <- dnorm(x0, mu, sigma)
-  normal <- data.frame(
-    x = c(-8, x0, 8),
-    y = c(0, y0, 0))
-  ggplot(data=normal, aes(x, y)) +
-    geom_polygon(
-      fill="white",
-      color="black") +
-    expand_limits(y=c(0, 0.8)) +
-    scale_x_continuous(breaks=2*(-4:4))
-}
+```{r write1a}
+cat(template[chunk_beg[1]:chunk_end[1]], sep="\n")
 ```
 
-## Normal distribution with mu=2, sigma=1
+:::notes
+Here is a program template that illustrates how to calculate probabilities and quantiles for the standard normal distribution
 
-```{r normal_a}
-normal_bell(mu=2, sigma=1)
+The first few lines are the documentation header.
+:::
+
+## simon-5501-03-normal-calculations.qmd, 2
+
+```{r write3a}
+cat(template[chunk_beg[2]:chunk_end[2]], sep="\n")
 ```
 
-## Normal distribution with mu=-3, sigma=1
+:::notes
+You only need the tidyverse libraries for this program.
+:::
 
-```{r normal_b}
-normal_bell(mu=-3, sigma=1)
+## simon-5501-03-normal-calculations.qmd, 3
+
+```{r write2a}
+cat(template[chunk_beg[3]:chunk_end[3]], sep="\n")
 ```
 
-## Normal distribution with mu=1, sigma=1
+:::notes
+This code draws the bell shaped curve for a standard normal distribution. The graph is saved as normal_curve to allow for future modifications.
+:::
 
-```{r normal_c}
-normal_bell(mu=1, sigma=1)
+## simon-5501-03-normal-calculations.qmd, 4
+
+```{r write4a}
+cat(template[chunk_beg[4]:chunk_end[4]], sep="\n")
 ```
 
+:::notes
+This code computes the probability that a standard normal variable is less than a particular number and displays the area associated with this probability.
+:::
 
-## Normal distribution with mu=1, sigma=2
+## simon-5501-03-normal-calculations.qmd, 5
 
-```{r normal_d}
-normal_bell(mu=1, sigma=2)
+```{r write5a}
+cat(template[chunk_beg[5]:chunk_end[5]], sep="\n")
 ```
 
-## Normal distribution with mu=1, sigma=2
+:::notes
+Here's a similar calculation.
+:::
 
-```{r normal_e}
-normal_bell(mu=1, sigma=0.5)
+## simon-5501-03-normal-calculations.qmd, 6
+
+```{r write6a}
+cat(template[chunk_beg[6]:chunk_end[6]], sep="\n")
 ```
 
-## Standard normal distribution (mu=0, sigma=1)
+:::notes
+For greater than probabilities (probabilities corresponding to area to the right), subtract the pnorm result from 1.
+:::
 
-```{r normal_f}
-normal_bell()
+## simon-5501-03-normal-calculations.qmd, 7
+
+```{r write7a}
+cat(template[chunk_beg[7]:chunk_end[7]], sep="\n")
 ```
 
+:::notes
+Here's another greater than probability calculation.
+:::
 
-```{r standard-normal}
-#| echo: false
-draw_bell <- function(
-    lo=-3.5, 
-    hi=3.5, 
-    mu=0,
-    sigma=1,
-    range=c(-4, 4)) {
-  x0 <- seq(
-      (-3.5-mu)/sigma, 
-      ( 3.5-mu)/sigma, 
-      length=100)
-  y0 <- dnorm(x0)
-  x1 <- seq(
-      (lo-mu)/sigma, 
-      (hi-mu)/sigma,
-      length=100)
-  y1 <- dnorm(x1)
-  std_normal <- data.frame(
-    x = c(-3.5, x0, 3.5),
-    y = c(0, y0, 0))
-  shaded_subset <- data.frame(
-    x = c(lo, x1, hi),
-    y = c(0, y1, 0))
+## simon-5501-03-normal-calculations.qmd, 8
 
-  ggplot(data=std_normal, aes(x, y)) +
-    geom_polygon(
-      fill="white",
-      color="black") +
-    expand_limits(x=c(-4, 4)) +
-    geom_polygon(
-      data=shaded_subset,
-      aes(x, y),
-      fill="gray",
-      color="black")
-}
+```{r write8a}
+cat(template[chunk_beg[8]:chunk_end[8]], sep="\n")
 ```
 
-## P[Z < 1.5]
+:::notes
+For probabilities between two values, calculate the difference.
+:::
 
-```{r}
-a <- 1.5
-draw_bell(hi=a) +
-  geom_label(x=a, y=0, label=a) +
-  geom_label(x=a-1.5, y=0.5*dnorm(a-1.5), label="?")
+## simon-5501-03-normal-calculations.qmd, 9
+
+```{r write9a}
+cat(template[chunk_beg[9]:chunk_end[9]], sep="\n")
 ```
 
-```{r}
-#| echo: true
-pnorm(1.5)
+:::notes
+Here's a similar probability calculation.
+:::
+
+## simon-5501-03-normal-calculations.qmd, 10
+
+```{r write10a}
+cat(template[chunk_beg[10]:chunk_end[10]], sep="\n")
 ```
 
-## P[Z < -0.5]
+:::notes
+The normal quantile is the value associated with a specified probability. Use the qnorm function for quantile calculations.
+:::
 
-```{r}
-a <- -0.5
-draw_bell(hi=a) +
-  geom_label(x=a, y=0, label=a) +
-  geom_label(x=a-0.5, y=0.5*dnorm(a-0.5), label="?")
+## simon-5501-03-normal-calculations.qmd, 11
+
+```{r write11a}
+cat(template[chunk_beg[11]:chunk_end[11]], sep="\n")
 ```
 
-```{r}
-#| echo: true
-pnorm(-0.5)
-```
-
-## P[Z > 1]
-
-```{r}
-a <- 1
-draw_bell(lo=a) +
-  geom_label(x=a, y=0, label=a) +
-  geom_label(x=a+0.5, y=0.5*dnorm(a+0.5), label="?")
-```
-
-```{r}
-#| echo: true
-1- pnorm(1.0)
-```
-
-## P[Z > -2]
-
-```{r}
-a <- -2
-draw_bell(lo=a) +
-  geom_label(x=a, y=0, label=a) +
-  geom_label(x=a+2, y=0.5*dnorm(a+2), label="?")
-```
-
-```{r}
-#| echo: true
-1- pnorm(-2)
-```
-
-## P[-2.5 < Z < 2.5]
-
-```{r}
-a <- -2.5
-b <- 2.5
-draw_bell(lo=a, hi=b) +
-  geom_label(x=a, y=0, label=a) +
-  geom_label(x=b, y=0, label=b) +
-  geom_label(x=0, y=0.5*dnorm(0), label="?")
-```
-
-```{r}
-#| echo: true
-pnorm(2.5)- pnorm(-2.5)
-```
-
-## P[-0.5 < Z < 0.5]
-
-```{r}
-a <- -0.5
-b <- 0.5
-draw_bell(lo=a, hi=b) +
-  geom_label(x=a, y=0, label=a) +
-  geom_label(x=b, y=0, label=b) +
-  geom_label(x=0, y=0.5*dnorm(0), label="?")
-```
-
-```{r}
-#| echo: true
-pnorm(0.5) - pnorm(-0.5)
-```
-
-## 25th percentile of a standard normal
-
-```{r}
-p <- 0.25
-a <- qnorm(p)
-b <- 0.5
-draw_bell(hi=a) +
-  geom_label(x=a, y=0, label="?") +
-  geom_label(x=a-0.5, y=0.5*dnorm(a-0.5), label=p)
-```
-
-```{r}
-#| echo: true
-qnorm(0.25)
-```
-
-## 90th percentile of a standard normal
-
-```{r}
-p <- 0.9
-a <- qnorm(p)
-b <- 0.5
-draw_bell(hi=a) +
-  geom_label(x=a, y=0, label="?") +
-  geom_label(x=0, y=0.5*dnorm(0), label=p)
-```
-
-```{r}
-#| echo: true
-qnorm(0.9)
-```
+:::notes
+Here is another quantile calculation.
+:::
 

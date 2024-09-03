@@ -1,5 +1,5 @@
 ---
-title: "03-04, The Central Limit Theorem"
+title: "03-04, Using R to assess normality"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,184 @@ format:
 editor: source
 ---
 
-## CLT
+```{r data0b}
+library(glue)
+library(readr)
+library(stringr)
+library(yaml)
+f1 <- "https://raw.githubusercontent.com/pmean"
+f2 <- "data/main/files/fev.yaml"
+dd <- read_lines(glue("{f1}/{f2}"))
+# if I am not online use the line below
+# dd <- read_lines("../../../../data/files/legionnaires.yaml")
+h <- str_which(str_trim(dd), "^$")
+chunk_beg <- c(1, h+1)
+chunk_end <- c(h, length(dd))
+```
+
+## Data dictionary for fev, 1
+
+```{r data1b}
+cat(dd[chunk_beg[1]:chunk_end[1]], sep="\n")
+```
+
+```{r data2b}
+cat(dd[chunk_beg[2]:chunk_end[2]], sep="\n")
+```
+
+```{r data3b}
+cat(dd[chunk_beg[3]:chunk_end[3]], sep="\n")
+```
+
+```{r data4b}
+cat(dd[chunk_beg[4]:chunk_end[4]], sep="\n")
+```
 
 :::notes
-The
+Here is a dataset you will need for your programming assignment. It is a study of pulmonary function in children.
 :::
-  
+
+## Data dictionary for fev, 2
+
+```{r data5b}
+cat(dd[chunk_beg[5]:chunk_end[5]], sep="\n")
+```
+
+```{r data6b}
+cat(dd[chunk_beg[6]:chunk_end[6]], sep="\n")
+```
+
+```{r data7b}
+cat(dd[chunk_beg[7]:chunk_end[7]], sep="\n")
+```
+
+```{r data8b}
+cat(dd[chunk_beg[8]:chunk_end[8]], sep="\n")
+```
+
+```{r data9b}
+cat(dd[chunk_beg[9]:chunk_end[9]], sep="\n")
+```
+
+:::notes
+
+:::
+
+## Data dictionary for fev, 3
+
+```{r data10b}
+cat(dd[chunk_beg[10]:chunk_end[10]], sep="\n")
+```
+
+```{r data11b}
+cat(dd[chunk_beg[11]:chunk_end[11]], sep="\n")
+```
+
+:::notes
+This is a small dataset with eight rows and three columns.
+:::
+
+## Data dictionary for fev, 4
+
+```{r data12b}
+cat(dd[chunk_beg[12]:chunk_end[12]], sep="\n")
+```
+
+```{r data13b}
+cat(dd[chunk_beg[13]:chunk_end[13]], sep="\n")
+```
+
+```{r data14b}
+cat(dd[chunk_beg[14]:chunk_end[14]], sep="\n")
+```
+
+:::notes
+The variables are measurements before and after a major overhaul of the air conditioning system. The units are colonies per cubic foot of air. A pump pushes a certain volume of air through a filter and then bacterial colonies are allowed to grow on that filter.
+:::
+
+## simon-5501-03-fev.qmd, 1
+
+```{r write0b}
+fn <- "simon-5501-03-fev.qmd"
+template <- read_lines(file=fn)
+h <- str_which(template, "##")
+chunk_beg <- c(1, h)
+chunk_end <- c(h-1, length(template))
+```
+
+```{r write1b}
+cat(template[chunk_beg[1]:chunk_end[1]], sep="\n")
+```
+
+:::notes
+The first few lines are the documentation header
+:::
+
+## simon-5501-03-fev.qmd, 2
+
+```{r write2b}
+cat(template[chunk_beg[2]:chunk_end[2]], sep="\n")
+```
+
+:::notes
+Here is some additional documentation.
+:::
+
+## simon-5501-03-fev.qmd, 3
+
+```{r write3b}
+cat(template[chunk_beg[3]:chunk_end[3]], sep="\n")
+```
+
+:::notes
+Loads the tidyverese library. No other libraries are needed.
+:::
+
+## simon-5501-03-fev.qmd, 4
+
+```{r write4b}
+cat(template[chunk_beg[4]:chunk_end[4]], sep="\n")
+```
+
+:::notes
+Use the read_tsv function when your data uses tab delimiters.
+:::
+
+## simon-5501-03-fev.qmd, 5
+
+```{r write5b}
+cat(template[chunk_beg[5]:chunk_end[5]], sep="\n")
+```
+:::notes
+Try to avoid spaces within a variable name. This code changes the space to an underscore. 
+:::
+
+## simon-5501-03-fev.qmd, 6
+
+```{r write6b}
+cat(template[chunk_beg[6]:chunk_end[6]], sep="\n")
+```
+
+:::notes
+The tolower fuction replaces every uppercase letter with its lowercase equivalent.
+:::
+
+## simon-5501-03-fev.qmd, 7
+
+```{r write7b}
+cat(template[chunk_beg[7]:chunk_end[7]], sep="\n")
+```
+
+:::notes
+This code produces a mean and standard deviation for the colony counts before remediation.
+:::
+
+## simon-5501-03-fev.qmd, 8
+
+```{r write8b}
+cat(template[chunk_beg[8]:chunk_end[8]], sep="\n")
+```
+
+:::notes
+This code produces a mean and standard deviation for the colony counts after remediation.
+:::
