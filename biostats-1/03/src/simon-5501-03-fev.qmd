@@ -1,0 +1,97 @@
+---
+title: "Analysis of fev data"
+format: 
+  html:
+    embed-resources: true
+editor: source
+---
+
+This program assesses the normality of variables in a study of pulmonary function in children. There is a [data dictionary][dd] that provides more details about the data. The program was written by Steve Simon on 2024-09-02 and is placed in the public domain.
+
+[dd]: https://github.com/pmean/datasets/blob/master/fev.yaml
+
+## Libraries
+
+The tidyverse library is the only one you need for  this program.
+
+```{r setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+```
+
+## List variable names
+
+Since the variable names are not listed in the data file itself, you need to list them here.
+
+```{r names}
+fev_names <- c(
+    "age",
+    "fev",
+    "ht",
+    "sex",
+    "smoke")
+```
+
+## Reading the data
+
+Here is the code to read the data and show a glimpse. 
+
+```{r read}
+fev <- read_csv(
+  file="../data/fev.csv",
+  col_names=fev_names,
+  col_types="nnncc")
+glimpse(fev)
+```
+
+## Calculate mean and standard deviation for fev
+
+To orient yourself to the data, calculate a few descriptive statistics.
+
+```{r descriptive-fev}
+fev |>
+  summarize(
+    fev_mean=mean(fev),
+    fev_stdv=sd(fev))
+```
+
+The mean fev is 2.6 liters and the standard deviation is 0.84 liters. I am not an expert on pulmonary function, but these values do not appear to be unusually large or small.
+
+## Histogram for fev, wide bars
+
+The geom_histogram function draws a histogram. You should specify values for color (which is the outline of individual bars) and fill (which is what is inside the bars). Also be careful with your choice of binwidth. Don't rely on the default choice.
+
+```{r histogram-fev-wide}
+ggplot(data=fev, aes(x=fev)) +
+  geom_histogram(
+    binwidth=0.5,
+    color="black",
+    fill="white")
+```
+
+See below for interpretation
+
+## Histogram for fev, narrow bars
+
+```{r histogram-fev-narrow}
+ggplot(data=fev, aes(x=fev)) +
+  geom_histogram(
+    binwidth=0.1,
+    color="black",
+    fill="white")
+```
+
+Although some may interpret these histograms as showing a slight skewness, I would interpret them as being approximately normal.
+
+## Normal probability plot for fev
+
+The qqnorm function produces a normal probability plot. The default option for most plots is landscape orientation (the width is larger than the height). The q-q plot, however, looks best if figure width and height are equal.
+
+```{r qqplot-fev}
+#| fig-width: 5
+#| fig.height: 5
+qqnorm(fev$fev)
+```
+
+The normal probability plot is reasonably close to a straight line, indicating that the data comes reasonably close to following a normal distribution.

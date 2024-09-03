@@ -1,5 +1,5 @@
 ---
-title: "02-03, Percentiles"
+title: "03-03, Assessing normality"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,339 @@ format:
 editor: source
 ---
 
-## Percentiles
+## Assessing normality
+
+-   No variable follows a perfect normal distribution
+    -   But many are close
+-   How to assess (approximate) normality
+    -   Histogram
+    -   Boxplot
+    -   Normal probability plot
+-   Avoid formal tests of normality
 
 :::notes
-The
+While no variables are going to fit the bell shaped curve exactly, many variables come close. Your subjective interpretation of graphs is the best way to assess normality, recognizing that you would be satisfied with a reasonable approximation to normality. Three graphs used commonly for this are the histogram, the boxplot and the normal probability plot.
 :::
+
+## Histogram
+
+-   Peak in the middle
+-   Roughly symmetric
+-   Falls off exponentially
+-   Warning!! Bar width can influence your interpretation
+    -   Try two or more bar widths
+
+:::notes
+Look for a peak in the middle of the histogram. If you see two separate peaks, the data is not normally distributed. The histogram should be roughly symmetric, but don't expect perfect symmetry. The bars should fall off more or less exponentially from either side of the peak.
+
+Be careful, because the number of bars that you draw can influence your interpretation. Something that looks normal with a small number of wide bars might look not so normal with a large number of narrow bars.
+:::
+
+## Sample Boxplot
+
+```{r sample-boxplot}
+#| fig.height=1
+library(tidyverse)
+x <- (1:10)^2
+q <- quantile(x)
+data.frame(x) |>
+  ggplot(aes(x)) +
+    geom_boxplot() +
+    expand_limits(y=c(-0.7, 0.7)) +
+    theme_void() +
+    geom_text(x=q[1], y=0.6, label="Min", size=4) +
+    geom_text(x=q[2], y=0.6, label="25%ile", size=4) +
+    geom_text(x=q[3], y=0.6, label="50%ile", size=4) +
+    geom_text(x=q[4], y=0.6, label="75%ile", size=4) +
+    geom_text(x=q[5], y=0.6, label="Max", size=4)
+```
+
+:::notes
+
+:::
+
+## What to look for in the boxplot
+
+-   Median halfway between 25th and 75th percentile.
+-   Whiskers are same size
+-   Whiskers not too short, not too long
+
+## Constructing a normal probability plot, 1
+
+-   Calculate rank
+-   Divide by (n+1)
+-   Compute corresponding normal percentiles
+-   Compare these on a graph to the original data
+-   Roughly straight line implies normality
+
+## Constructing a normal probability plot, 2
+
+Use the rank function to assign 1 to the smallest value, 2 to the next smallest value, etc. up to n for the largest value.
+
+```{r qqplot-1}
+# Artificial data
+x=c(7, 3, 23, 2, 5, 13, 11, 17, 19)
+n <- length(x)
+d0 <- data.frame(x)
+d1 <- mutate(d0, r=rank(x))
+d1
+```
+
+## Constructing a normal probability plot, 3
+
+Divide the rank by (n+1) to get evenly spaced percentages.
+
+```{r qqplot-2}
+d2 <- mutate(d1, pctile=r/(n+1))
+d2
+```
+
+## Constructing a normal probability plot, 4
+
+Calculate percentiles from a normal distribution using the evenly spaced percentages.
+
+```{r qqplot-3}
+d3 <- mutate(d2, z=qnorm(pctile))
+d3
+```
+
+## Constructing a normal probability plot, 5
+
+Plot the percentiles from the normal distribution to the original data. A reasonably straight line is evidence of normality.
+
+```{r qqplot-4}
+#| fig-width: 5
+#| fig.height: 5
   
+ggplot(d3, aes(z, x)) + 
+  geom_point()
+```
+
+## Constructing a normal probability plot, 6
+
+The qqnorm function will do all these steps for you automatically.
+
+```{r qqplot-5}
+#| fig-width: 5
+#| fig.height: 5
+  
+qqnorm(x)
+```
+
+## Bimodal data, histogram
+
+```{r bimodal-1}
+n <- 200
+x1 <- c(rnorm(0.6*n, 8, 3), rnorm(0.4*n, 20, 3))
+x_bimodal <- 
+  data.frame(x=x1)
+x_bimodal |>
+  ggplot(aes(x)) +
+    geom_histogram(
+      binwidth=1,
+      color="black",
+      fill="white")
+```
+
+::: notes
+Here's a histogram that shows a bimodal distribution. The frequencies are not highest in the center of the data. This is not a bell shaped curve.
+:::
+
+## Bimodal data, boxplot
+
+```{r bimodal-2}
+#| fig.height=1
+x_bimodal |>
+  ggplot(aes(x)) +
+    geom_boxplot()
+```
+
+:::notes
+The boxplot is not as useful as the histogram for detecting bimodal distributions.
+:::
+
+## Bimodal data, qq plot
+
+```{r bimodal-3}
+#| fig-width: 5
+#| fig.height: 5
+  
+qqnorm(x_bimodal$x)
+```
+
+:::notes
+On the qq plot, a bimodal pattern is often represented as two lines with a sharp jump between them.
+:::
+
+## Skewed data, histogram
+
+```{r skewed-1}
+x1 <- rgamma(n, 2, scale=3)
+x_skewed <- data.frame(x=x1)
+x_skewed |>
+  ggplot(aes(x)) +
+    geom_histogram(
+      binwidth=1,
+      color="black",
+      fill="white")
+```
+
+::: notes
+*Speaker notes*
+
+Here's a histogram that shows a skewed or asymmetric distribution. This is not a bell shaped curve.
+:::
+
+## Skewed distribution, boxplot
+
+```{r skewed-2}
+#| fig.height=1
+x_skewed |>
+  ggplot(aes(x)) +
+    geom_boxplot()
+```
+
+:::notes
+An asymmetry in the box and/or the whiskers is an indication of a skewed distribution.
+:::
+
+## Skewed distribution, qq plot
+
+```{r skewed-3}
+#| fig-width: 5
+#| fig.height: 5
+  
+qqnorm(x_skewed$x)
+```
+
+:::notes
+A curved pattern for the normal probability plot indicates skewness.
+:::
+
+## Light-tailed data, histogram
+
+```{r light-tailed-1}
+x1 <- runif(n, 0, 30)
+x_light_tailed <- data.frame(x=x1)
+x_light_tailed |>
+  ggplot(aes(x)) +
+    geom_histogram(
+      binwidth=1,
+      color="black",
+      fill="white")
+```
+
+::: notes
+Here's a histogram that shows a symmetric distribution, but the frequencies do not taper off as you move away from the center. This is not a bell shaped curve.
+:::
+
+## Light-tailed distribution, boxplot
+
+```{r light-tailed-2}
+#| fig.height=1
+x_light_tailed |>
+  ggplot(aes(x)) +
+    geom_boxplot()
+```
+
+:::notes
+A boxplot with very short whiskers is evidence of a light tailed distibution.
+:::
+
+## Light-tailed distribution, qq plot
+
+```{r light-tailed-3}
+#| fig-width: 5
+#| fig.height: 5
+  
+qqnorm(x_light_tailed$x)
+```
+
+## Heavy-tailed distribution, histogram
+
+```{r heavy-tailed-1}
+x0 <- rt(0.5*n, 2)
+x1 <- 15 + c(x0, -x0) + rnorm(n, mean=0, sd=1)
+x_heavy_tailed <- data.frame(x=pmin(pmax(0, x1), 30))
+x_heavy_tailed |>
+  ggplot(aes(x)) +
+    geom_histogram(
+      binwidth=1,
+      color="black",
+      fill="white")
+```
+
+::: notes
+Here's a histogram that shows a symmetric distibution, but the frequencies taper off at first, but then flatten out. This is called a heavy tailed distribution and it tends to produce outliers, extreme values, on both sides. This is not a bell shaped curve.
+:::
+
+## Heavy-tailed distribution, boxplot
+
+```{r heavy-tailed-2}
+#| fig.height=1
+x_heavy_tailed |>
+  ggplot(aes(x)) +
+    geom_boxplot()
+```
+
+:::notes
+The boxplot is not as useful as the histogram for detecting bimodal distributions.
+:::
+
+## Heavy tailed data, qq plot
+
+```{r heavy-tailed-3}
+#| fig-width: 5
+#| fig.height: 5
+  
+qqnorm(x_heavy_tailed$x)
+```
+
+## A normal distribution, histogram
+
+```{r normal-1}
+x_normal <- data.frame(x=rnorm(n, mean=15, sd=5))
+x_normal |>
+  ggplot(aes(x)) +
+    geom_histogram(
+      binwidth=1,
+      color="black",
+      fill="white")
+```
+
+::: notes
+*Speaker notes*
+
+Here's a histogram that shows a symmetric distribution, with the most frequent values in the center and frequencies that taper off on either side.
+
+This is a bell shaped curve.
+:::
+
+## A normal distribution, boxplot
+
+```{r normal-2}
+#| fig.height=1
+x_normal |>
+  ggplot(aes(x)) +
+    geom_boxplot()
+```
+
+:::notes
+The boxplot has a roughly symmetric box and roughly symmetric whiskers. The whiskers are a bit longer than the box itself, but not a lot longer.
+:::
+
+## A normal distribution, qq plot
+
+```{r normal-3}
+#| fig-width: 5
+#| fig.height: 5
+  
+qqnorm(x_normal$x)
+```
+
+::: notes
+*Speaker notes*
+
+A roughly straight line indicates a normal distribution.
+:::
+

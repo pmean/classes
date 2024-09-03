@@ -1,0 +1,133 @@
+---
+title: "Normal probabilities and quantiles"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+This program displays the standard normal curve along with various probabilities and quantiles. It was written by Steve Simon on 2024-09-01 and is placed in the public domain.
+
+## Load the tidyverse library
+
+```{r setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+```
+
+## Using R to draw the standard normal curve
+
+use seq to calculate 100 evenly spaced values between -4 and +4 and dnorm to compute the bell curve at each point. Use geom_polygon to paint the area surrounded by the bell curve.
+
+```{r standard-normal}
+x <- seq(-4, 4, length=100)
+y <- dnorm(x)
+data.frame(x, y) |>
+  ggplot(aes(x, y)) + 
+    geom_polygon(fill="white", color="black") -> normal_curve
+normal_curve
+```
+
+## P[Z < 1.5]
+
+Use geom_vline and geom_label to draw a vertical reference line and add text to the normal curve. The pnorm function computes the standard normal probability.
+
+```{r prob-1}
+a <- 1.5
+normal_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label=a) +
+  geom_label(x=a-0.5, y=0, label="Area = ?")
+pnorm(1.5)
+```
+
+## P[Z < -0.5]
+
+```{r prob-2}
+a <- -0.5
+normal_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label=a) +
+  geom_label(x=a-0.5, y=0, label="Area = ?")
+pnorm(-0.5)
+```
+
+## P[Z > 1]
+
+When you are calculating the probability on the right (probability greater than some number), use 1-pnorm.
+
+```{r prob-3}
+a <- 1
+normal_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label=a) +
+  geom_label(x=a+0.5, y=0, label="Area = ?")
+1- pnorm(1)
+```
+
+## P[Z > -2]
+
+```{r prob-4}
+a <- -2
+normal_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label=a) +
+  geom_label(x=a+0.5, y=0, label="Area = ?")
+1- pnorm(-2)
+```
+
+## P[-2.5 < Z < 2.5]
+
+When you are calculating the probability between two values, compute pnorm of the larger value minus pnorm of the smaller value.
+
+```{r prob-5a}
+a <- 2.5
+normal_curve +
+  geom_vline(xintercept=-a) +
+  geom_vline(xintercept= a) +
+  geom_label(x=-a, y=0.4, label=-a) +
+  geom_label(x= a, y=0.4, label= a) +
+  geom_label(x=0, y=0, label="Area = ?")
+pnorm(2.5)- pnorm(-2.5)
+```
+
+## P[-0.5 < Z < 0.5]
+
+```{r prob-6}
+a <- 0.5
+normal_curve +
+  geom_vline(xintercept=-a) +
+  geom_vline(xintercept= a) +
+  geom_label(x=-a, y=0.4, label=-a) +
+  geom_label(x= a, y=0.4, label= a) +
+  geom_label(x=0, y=0, label="Area = ?")
+pnorm(0.5) - pnorm(-0.5)
+```
+
+## 25th percentile of a standard normal
+
+Use qnorm to calculate quantiles of the standard normal distribution.
+
+```{r quantile-1}
+p <- 0.25
+a <- qnorm(p)
+normal_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label="Quantile = ?") +
+  geom_label(x=a-0.5, y=0, label=p)
+qnorm(0.25)
+```
+
+## 90th percentile of a standard normal
+
+```{r quantile-2}
+p <- 0.9
+a <- qnorm(p)
+normal_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label="Quantile = ?") +
+  geom_label(x=a-0.5, y=0, label=p)
+qnorm(0.9)
+```

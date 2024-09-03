@@ -1,5 +1,5 @@
 ---
-title: "02-01, Counting"
+title: "03-01, The normal distribution"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,160 @@ format:
 editor: source
 ---
 
-## W
+```{r setup-1}
+library(tidyverse)
+```
 
-:::notes
-The
+```{r histogram}
+draw_histogram <- function(x, w=1) {
+  x1 <- round(x/w)*w
+  data.frame(x=x1, wt=w/length(x1)) |>
+    ggplot(aes(x, weight=wt)) +
+      theme(legend.position="none") +
+      xlab(" ") +
+      ylab(" ") +
+      geom_bar(
+        color="black", 
+        fill="white",
+        width=w)
+}
+```
+
+```{r boxplot}
+draw_boxplot <- function(x) {
+  data.frame(x) |>
+    ggplot(aes(x)) +
+      geom_boxplot()
+}
+```
+
+```{r q-q-plot}
+draw_qqplot <- function(y) {
+  data.frame(x=y) |>
+    mutate(z=(x-mean(y))/sd(y)) |>
+    mutate(r=percent_rank(z)) |>
+    mutate(q=qnorm(r)) |>
+    ggplot(aes(x=x, y=q)) +
+      geom_point()
+}
+```
+
+## The bell shaped curve
+
+-   Does your variation follow a bell shaped curve?
+-   Synonyms: normality, normal distribution
+    -   Values in the middle are most common
+    -   Frequencies taper off away from the center
+    -   Symmetry on either side
+
+::: notes
+*Speaker notes*
+
+Much variation in the real world follows a bell shaped curve, alternately called a normal distribution. You can assess whether you have a bell shaped curve using a histogram. Look for values in the middle being most common. The frequencies should taper off slowly as you moved away from the middle. The histogram should have symmetry. The left side of the histogram should be roughly equivalent to the right side of the histogram.
 :::
-  
+
+## Bell-shaped curve is a limit
+
+```{r limit-1}
+n <- 100; w <- 1
+x_bell <- qnorm((1:n)/(n+1), mean=15, sd=5)
+draw_histogram(x_bell, w)
+```
+
+## Bell-shaped curve is a limit
+
+```{r limit-2}
+n <- n*4; w <- w/2
+x_bell <- qnorm((1:n)/(n+1), mean=15, sd=5)
+draw_histogram(x_bell, w)
+```
+
+## Bell-shaped curve is a limit
+
+```{r limit-3}
+n <- n*4; w <- w/2
+x_bell <- qnorm((1:n)/(n+1), mean=15, sd=5)
+draw_histogram(x_bell, w)
+```
+
+## Bell-shaped curve is a limit
+
+```{r limit-4}
+n <- n*4; w <- w/2
+x_bell <- qnorm((1:n)/(n+1), mean=15, sd=5)
+draw_histogram(x_bell, w)
+```
+
+
+## Overview
+
+The normal distribution is an important component of most statistical analyses. The formula for the normal distribution is quite complex, 
+
+$f(x; \mu, \sigma)=\frac{1}{\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
+
+but the shape is readily recognizable.
+
+```{r setup-2}
+#| echo: false
+library(tidyverse)
+```
+
+```{r normal-bell}
+#| echo: false
+normal_bell <- function(mu=0, sigma=1) {
+  x0 <- seq(-8, 8, length=500)
+  y0 <- dnorm(x0, mu, sigma)
+  normal <- data.frame(
+    x = c(-8, x0, 8),
+    y = c(0, y0, 0))
+  ggplot(data=normal, aes(x, y)) +
+    geom_polygon(
+      fill="white",
+      color="black") +
+    expand_limits(y=c(0, 0.8)) +
+    scale_x_continuous(breaks=2*(-4:4))
+}
+```
+
+## Normal distribution with mu=2, sigma=1
+
+```{r normal_a}
+normal_bell(mu=2, sigma=1)
+```
+
+## Normal distribution with mu=-3, sigma=1
+
+```{r normal_b}
+normal_bell(mu=-3, sigma=1)
+```
+
+## Normal distribution with mu=1, sigma=1
+
+```{r normal_c}
+normal_bell(mu=1, sigma=1)
+```
+
+
+## Normal distribution with mu=1, sigma=2
+
+```{r normal_d}
+normal_bell(mu=1, sigma=2)
+```
+
+## Normal distribution with mu=1, sigma=0.5
+
+```{r normal_e}
+normal_bell(mu=1, sigma=0.5)
+```
+
+## Standard normal distribution (mu=0, sigma=1)
+
+```{r normal_f}
+normal_bell()
+```
+
+## Why concern yourself with the bell shaped curve?
+
+-   You can characterize individual observations
+-   You can characterize summary measures
+

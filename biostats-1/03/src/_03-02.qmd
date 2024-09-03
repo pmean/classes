@@ -1,5 +1,5 @@
 ---
-title: "02-02, Mean and median"
+title: "03-02, Normal probabilities and quantiles"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,124 @@ format:
 editor: source
 ---
 
-## Mean and median
+## simon-5501-03-normal-calculations.qmd, 1
+
+```{r write0a}
+library(tidyverse)
+fn <- "simon-5501-03-normal-calculations.qmd"
+template <- read_lines(file=fn)
+h <- str_which(template, "##")
+chunk_beg <- c(1, h)
+chunk_end <- c(h-1, length(template))
+```
+
+```{r write1a}
+cat(template[chunk_beg[1]:chunk_end[1]], sep="\n")
+```
 
 :::notes
-The
+Here is a program template that illustrates how to calculate probabilities and quantiles for the standard normal distribution
+
+The first few lines are the documentation header.
 :::
-  
+
+## simon-5501-03-normal-calculations.qmd, 2
+
+```{r write3a}
+cat(template[chunk_beg[2]:chunk_end[2]], sep="\n")
+```
+
+:::notes
+You only need the tidyverse libraries for this program.
+:::
+
+## simon-5501-03-normal-calculations.qmd, 3
+
+```{r write2a}
+cat(template[chunk_beg[3]:chunk_end[3]], sep="\n")
+```
+
+:::notes
+This code draws the bell shaped curve for a standard normal distribution. The graph is saved as normal_curve to allow for future modifications.
+:::
+
+## simon-5501-03-normal-calculations.qmd, 4
+
+```{r write4a}
+cat(template[chunk_beg[4]:chunk_end[4]], sep="\n")
+```
+
+:::notes
+This code computes the probability that a standard normal variable is less than a particular number and displays the area associated with this probability.
+:::
+
+## simon-5501-03-normal-calculations.qmd, 5
+
+```{r write5a}
+cat(template[chunk_beg[5]:chunk_end[5]], sep="\n")
+```
+
+:::notes
+Here's a similar calculation.
+:::
+
+## simon-5501-03-normal-calculations.qmd, 6
+
+```{r write6a}
+cat(template[chunk_beg[6]:chunk_end[6]], sep="\n")
+```
+
+:::notes
+For greater than probabilities (probabilities corresponding to area to the right), subtract the pnorm result from 1.
+:::
+
+## simon-5501-03-normal-calculations.qmd, 7
+
+```{r write7a}
+cat(template[chunk_beg[7]:chunk_end[7]], sep="\n")
+```
+
+:::notes
+Here's another greater than probability calculation.
+:::
+
+## simon-5501-03-normal-calculations.qmd, 8
+
+```{r write8a}
+cat(template[chunk_beg[8]:chunk_end[8]], sep="\n")
+```
+
+:::notes
+For probabilities between two values, calculate the difference.
+:::
+
+## simon-5501-03-normal-calculations.qmd, 9
+
+```{r write9a}
+cat(template[chunk_beg[9]:chunk_end[9]], sep="\n")
+```
+
+:::notes
+Here's a similar probability calculation.
+:::
+
+## simon-5501-03-normal-calculations.qmd, 10
+
+```{r write10a}
+cat(template[chunk_beg[10]:chunk_end[10]], sep="\n")
+```
+
+:::notes
+The normal quantile is the value associated with a specified probability. Use the qnorm function for quantile calculations.
+:::
+
+## simon-5501-03-normal-calculations.qmd, 11
+
+```{r write11a}
+cat(template[chunk_beg[11]:chunk_end[11]], sep="\n")
+```
+
+:::notes
+Here is another quantile calculation.
+:::
+
