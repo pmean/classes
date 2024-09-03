@@ -56,7 +56,11 @@ fev |>
     fev_stdv=sd(fev))
 ```
 
+The mean fev is 2.6 liters and the standard deviation is 0.84 liters. I am not an expert on pulmonary function, but these values do not appear to be unusually large or small.
+
 ## Histogram for fev, wide bars
+
+The geom_histogram function draws a histogram. You should specify values for color (which is the outline of individual bars) and fill (which is what is inside the bars). Also be careful with your choice of binwidth. Don't rely on the default choice.
 
 ```{r histogram-fev-wide}
 ggplot(data=fev, aes(x=fev)) +
@@ -65,6 +69,8 @@ ggplot(data=fev, aes(x=fev)) +
     color="black",
     fill="white")
 ```
+
+See below for interpretation
 
 ## Histogram for fev, narrow bars
 

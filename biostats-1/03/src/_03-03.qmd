@@ -108,6 +108,9 @@ d3
 Plot the percentiles from the normal distribution to the original data. A reasonably straight line is evidence of normality.
 
 ```{r qqplot-4}
+#| fig-width: 5
+#| fig.height: 5
+  
 ggplot(d3, aes(z, x)) + 
   geom_point()
 ```
@@ -117,6 +120,9 @@ ggplot(d3, aes(z, x)) +
 The qqnorm function will do all these steps for you automatically.
 
 ```{r qqplot-5}
+#| fig-width: 5
+#| fig.height: 5
+  
 qqnorm(x)
 ```
 
@@ -254,8 +260,6 @@ qqnorm(x_light_tailed$x)
 ```{r heavy-tailed-1}
 x0 <- rt(0.5*n, 2)
 x1 <- 15 + c(x0, -x0) + rnorm(n, mean=0, sd=1)
-x1[x1 <  0] <- rnorm(15, 5)  
-x1[x1 > 30] <- rnorm(15, 5)  
 x_heavy_tailed <- data.frame(x=pmin(pmax(0, x1), 30))
 x_heavy_tailed |>
   ggplot(aes(x)) +
