@@ -4,6 +4,21 @@ title: "Directions for 5501-03 programming assignment"
 
 Before you start this assignment, download all the files listed on the Canvas page for this programming assignment.
 
+Download two program templates:
+
+-   [simon-5501-03-normal-calculations.qmd][sim1]
+-   [simon-5501-03-fev.qmd][sim2]
+
+[sim1]: https://github.com/pmean/classes/blob/master/biostats-1/03/src/simon-5501-03-normal-calculations.qmd
+[sim2]: https://github.com/pmean/classes/blob/master/biostats-1/03/src/simon-5501-03-fev.qmd
+
+and store them in your src folder. Also download the data files:
+
+fev.csv
+and store it in your data folder. You may wish to review the data dictionaries
+
+fev.yaml
+
 ## Question #1
 
 Use the  simon-5501-03-normal-calculations.qmd file. Update the program to calculate P[-1 < Z < 1]. Interpret this probability.
