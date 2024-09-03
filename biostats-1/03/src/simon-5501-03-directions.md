@@ -1,14 +1,8 @@
 ---
 title: "Directions for 5501-03 programming assignment"
-author: "Steve Simon"
-format: 
-  html:
-    embed-resources: true
-date: 2024-08-18
 ---
 
-Before you start this assignment, download all the files listed on the
-Canvas page for this programming assignment.
+Before you start this assignment, download all the files listed on the Canvas page for this programming assignment.
 
 ## Question #1
 
@@ -38,11 +32,8 @@ Draw a normal probability plot for ht. Interpret this plot.
 
 ## If it doesn't work
 
-If your program has any errors or fails to produce the output that you
-desire and you can't resolve the problem,  upload the program file 
-along with the pdf file to help us figure out what went wrong. You 
-will get a chance to resubmit the assignment if needed.
+If your program has any errors or fails to produce the output that you desire and you can't resolve the problem,  upload the program file along with the pdf file to help us figure out what went wrong. You will get a chance to resubmit the assignment if needed.
 
 ## File details
 
-This file was created on 2024-09-02 and is placed in the public domain.
+This file was written by Steve Simon on 2024-09-02 and is placed in the public domain.
