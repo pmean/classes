@@ -14,10 +14,15 @@ Download two program templates:
 
 and store them in your src folder. Also download the data files:
 
-fev.csv
-and store it in your data folder. You may wish to review the data dictionaries
+-   [fev.csv][sim3]
 
-fev.yaml
+[sim3]: https://github.com/pmean/data/blob/main/files/fev.csv
+
+and store it in your data folder. You may wish to review the data dictionary
+
+-   [fev.yaml][sim4]
+
+[sim4]: https://github.com/pmean/data/blob/main/files/fev.yaml
 
 ## Question #1
 
