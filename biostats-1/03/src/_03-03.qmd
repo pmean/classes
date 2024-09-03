@@ -27,9 +27,12 @@ While no variables are going to fit the bell shaped curve exactly, many variable
 -   Roughly symmetric
 -   Falls off exponentially
 -   Warning!! Bar width can influence your interpretation
+    -   Try two or more bar widths
 
 :::notes
+Look for a peak in the middle of the histogram. If you see two separate peaks, the data is not normally distributed. The histogram should be roughly symmetric, but don't expect perfect symmetry. The bars should fall off more or less exponentially from either side of the peak.
 
+Be careful, because the number of bars that you draw can influence your interpretation. Something that looks normal with a small number of wide bars might look not so normal with a large number of narrow bars.
 :::
 
 ## Sample Boxplot
@@ -119,7 +122,7 @@ qqnorm(x)
 
 ## Bimodal data, histogram
 
-```{r bimodal}
+```{r bimodal-1}
 n <- 200
 x1 <- c(rnorm(0.6*n, 8, 3), rnorm(0.4*n, 20, 3))
 x_bimodal <- 
@@ -149,21 +152,22 @@ x_bimodal |>
 The boxplot is not as useful as the histogram for detecting bimodal distributions.
 :::
 
-
-
 ## Bimodal data, qq plot
 
 ```{r bimodal-3}
+#| fig-width: 5
+#| fig.height: 5
+  
 qqnorm(x_bimodal$x)
 ```
 
 :::notes
-On the qq plot, a 
+On the qq plot, a bimodal pattern is often represented as two lines with a sharp jump between them.
 :::
 
 ## Skewed data, histogram
 
-```{r skewed}
+```{r skewed-1}
 x1 <- rgamma(n, 2, scale=3)
 x_skewed <- data.frame(x=x1)
 x_skewed |>
@@ -180,9 +184,35 @@ x_skewed |>
 Here's a histogram that shows a skewed or asymmetric distribution. This is not a bell shaped curve.
 :::
 
+## Skewed distribution, boxplot
+
+```{r skewed-2}
+#| fig.height=1
+x_skewed |>
+  ggplot(aes(x)) +
+    geom_boxplot()
+```
+
+:::notes
+An asymmetry in the box and/or the whiskers is an indication of a skewed distribution.
+:::
+
+## Skewed distribution, qq plot
+
+```{r skewed-3}
+#| fig-width: 5
+#| fig.height: 5
+  
+qqnorm(x_skewed$x)
+```
+
+:::notes
+A curved pattern for the normal probability plot indicates skewness.
+:::
+
 ## Light-tailed data, histogram
 
-```{r light-tailed}
+```{r light-tailed-1}
 x1 <- runif(n, 0, 30)
 x_light_tailed <- data.frame(x=x1)
 x_light_tailed |>
@@ -194,33 +224,84 @@ x_light_tailed |>
 ```
 
 ::: notes
-*Speaker notes*
-
 Here's a histogram that shows a symmetric distribution, but the frequencies do not taper off as you move away from the center. This is not a bell shaped curve.
 :::
 
-## Fourth example of skewed distribution, heavy-tailed
+## Light-tailed distribution, boxplot
 
-```{r heavy-tailed}
+```{r light-tailed-2}
+#| fig.height=1
+x_light_tailed |>
+  ggplot(aes(x)) +
+    geom_boxplot()
+```
+
+:::notes
+A boxplot with very short whiskers is evidence of a light tailed distibution.
+:::
+
+## Light-tailed distribution, qq plot
+
+```{r light-tailed-3}
+#| fig-width: 5
+#| fig.height: 5
+  
+qqnorm(x_light_tailed$x)
+```
+
+## Heavy-tailed distribution, histogram
+
+```{r heavy-tailed-1}
 x0 <- rt(0.5*n, 2)
 x1 <- 15 + c(x0, -x0) + rnorm(n, mean=0, sd=1)
 x1[x1 <  0] <- rnorm(15, 5)  
 x1[x1 > 30] <- rnorm(15, 5)  
-x_heavy_tailed <- pmin(pmax(0, x1), 30)
+x_heavy_tailed <- data.frame(x=pmin(pmax(0, x1), 30))
+x_heavy_tailed |>
+  ggplot(aes(x)) +
+    geom_histogram(
+      binwidth=1,
+      color="black",
+      fill="white")
 ```
 
 ::: notes
-*Speaker notes*
-
 Here's a histogram that shows a symmetric distibution, but the frequencies taper off at first, but then flatten out. This is called a heavy tailed distribution and it tends to produce outliers, extreme values, on both sides. This is not a bell shaped curve.
 :::
 
-## Finally! A normal distribution
+## Heavy-tailed distribution, boxplot
 
-```{r normal}
-x_normal <- rnorm(n, mean=15, sd=5)
+```{r heavy-tailed-2}
+#| fig.height=1
+x_heavy_tailed |>
+  ggplot(aes(x)) +
+    geom_boxplot()
 ```
 
+:::notes
+The boxplot is not as useful as the histogram for detecting bimodal distributions.
+:::
+
+## Heavy tailed data, qq plot
+
+```{r heavy-tailed-3}
+#| fig-width: 5
+#| fig.height: 5
+  
+qqnorm(x_heavy_tailed$x)
+```
+
+## A normal distribution, histogram
+
+```{r normal-1}
+x_normal <- data.frame(x=rnorm(n, mean=15, sd=5))
+x_normal |>
+  ggplot(aes(x)) +
+    geom_histogram(
+      binwidth=1,
+      color="black",
+      fill="white")
+```
 
 ::: notes
 *Speaker notes*
@@ -228,5 +309,33 @@ x_normal <- rnorm(n, mean=15, sd=5)
 Here's a histogram that shows a symmetric distribution, with the most frequent values in the center and frequencies that taper off on either side.
 
 This is a bell shaped curve.
+:::
+
+## A normal distribution, boxplot
+
+```{r normal-2}
+#| fig.height=1
+x_normal |>
+  ggplot(aes(x)) +
+    geom_boxplot()
+```
+
+:::notes
+The boxplot has a roughly symmetric box and roughly symmetric whiskers. The whiskers are a bit longer than the box itself, but not a lot longer.
+:::
+
+## A normal distribution, qq plot
+
+```{r normal-3}
+#| fig-width: 5
+#| fig.height: 5
+  
+qqnorm(x_normal$x)
+```
+
+::: notes
+*Speaker notes*
+
+A roughly straight line indicates a normal distribution.
 :::
 

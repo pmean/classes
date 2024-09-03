@@ -9,8 +9,7 @@ params:
   topic_02: "Normal probabilities and quantiles"
   topic_03: "Assessing normality"
   topic_04: "Using R to assess normality"
-  topic_05: "Transformations"
-  topic_06: "TBA"
+  topic_05: "Your homework"
 editor: source
 ---
 
@@ -26,7 +25,6 @@ editor: source
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
-    -   `r params$topic_06`
 
 {{< include _03-01.qmd >}}
 
@@ -64,17 +62,6 @@ editor: source
 -   What's coming next
     -   `r params$topic_05`
 
-{{< include _03-05.qmd >}}
-
-## Break #5
-
--   What you have learned
-    -   `r params$topic_05`
--   What's coming next
-    -   `r params$topic_06`
-
-{{< include _03-06.qmd >}}
-
 ## Summary
 -   What you have learned
     -   `r params$topic_01`
@@ -82,7 +69,6 @@ editor: source
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
-    -   `r params$topic_06`
 
 <!---
       You have to put the title down 
