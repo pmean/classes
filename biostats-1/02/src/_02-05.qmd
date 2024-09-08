@@ -21,6 +21,70 @@ The standard deviation is a commonly used measure of how spread out the data is.
 Now, maybe you've seen or used a different formula. Don't worry about it. In a short course like this, I won't ask you to calculate anything as tedious as a standard deviation. Let the computer do all of the work.
 :::
 
+## The two standard deviation rule of thumb
+
+-   Approximately 95% of the data lies within two standard deviations of the mean.
+    -   Except for highly skewed datasets
+
+:::notes
+There is an empirical observation that for many datasets, most of the data (about 95%), lies within two standard deviations of the mean.
+:::
+
+## Here is some artificial data to illustrate this rule
+    
+```{r two-sd}
+x <- sort(round(rnorm(100, 300, 50)))
+for (i in 0:9) {
+  cat(x[10*i +(1:10)], sep= " ")
+  cat("\n")
+}
+mn <- mean(x)
+s <- sd(x)
+lo <- mn-2*s
+hi <- mn+2*s
+```
+
+The mean is `r round(mn, 1)` and the standard deviation is `r round(s, 1)`.  Plus or minus two standard deviations is `r round(lo, 1)` to `r round(hi, 1)`.
+
+## Tosato et al 2021, PMID: 34352201, part 1
+
+Here is a practical example of the plus or minus two standard deviation rule.
+
+![Tosato et al 2021, PMID: 34352201](../images/tosato-2021.png){#fig-tosato-2021 fig-align="left"}
+
+::: notes
+*Speaker notes*
+
+Here's an article looking at long Covid, the persistence of symptoms long after infection.
+:::
+
+## Tosato 2021, PMID: 34352201, part 2
+
+Symptom persistence weeks after laboratory-confirmed severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) clearance is a relatively common long-term complication of Coronavirus disease 2019 (COVID-19). Little is known about this phenomenon in older adults. The present study aimed at determining the prevalence of persistent symptoms among older COVID-19 survivors and identifying symptom patterns.
+
+::: notes
+*Speaker notes*
+
+Here is the first half of the abstract.
+:::
+
+## Tosato 2021, PMID: 34352201, part 3
+
+-   The mean age was 73.1 ± 6.2 years
+    -   73 - 2 * 6 = 61
+    -   73 + 2 * 6 = 85
+-   The average time elapsed from hospital discharge was 76.8 ± 20.3 days
+    -   77 - 2 * 20 = 37
+    -   77 + 2 * 20 = 117
+
+::: notes
+*Speaker notes*
+
+There are fewer statistics presented here. Age and time since discharge are both non-negative, so you can compare the standard deviation to the mean. No problems here. It might be worth calculating the mean plus or minus two standard deviations. Rounding a bit you get 61 to 85 for age and 37 to 117 for time
+:::
+
+
+
 ## Why is variation important
 
 -   Variation = Noise
