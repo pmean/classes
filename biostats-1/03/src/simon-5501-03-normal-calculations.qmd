@@ -1,8 +1,7 @@
 ---
 title: "Normal probabilities and quantiles"
 format: 
-  revealjs:
-    slide-number: true
+  html:
     embed-resources: true
 editor: source
 execute: 
@@ -45,6 +44,8 @@ normal_curve +
 pnorm(1.5)
 ```
 
+The probability that a standard normal variable is less than 1.5 is about 93%.
+
 ## P[Z < -0.5]
 
 ```{r prob-2}
@@ -55,6 +56,8 @@ normal_curve +
   geom_label(x=a-0.5, y=0, label="Area = ?")
 pnorm(-0.5)
 ```
+
+The probability that a standard normal variable is less than -0.5 is about 31%.
 
 ## P[Z > 1]
 
@@ -69,6 +72,8 @@ normal_curve +
 1- pnorm(1)
 ```
 
+The probability that a standard normal variable is larger than 1 is about 16%.
+
 ## P[Z > -2]
 
 ```{r prob-4}
@@ -80,11 +85,13 @@ normal_curve +
 1- pnorm(-2)
 ```
 
+The probability that a standard normal variable is larger than -2 is about 98%.
+
 ## P[-2.5 < Z < 2.5]
 
 When you are calculating the probability between two values, compute pnorm of the larger value minus pnorm of the smaller value.
 
-```{r prob-5a}
+```{r prob-5}
 a <- 2.5
 normal_curve +
   geom_vline(xintercept=-a) +
@@ -108,6 +115,8 @@ normal_curve +
 pnorm(0.5) - pnorm(-0.5)
 ```
 
+The probability that a standard normal variable is between -0.5 and 0.5 is about 38%.
+
 ## 25th percentile of a standard normal
 
 Use qnorm to calculate quantiles of the standard normal distribution.
@@ -122,6 +131,8 @@ normal_curve +
 qnorm(0.25)
 ```
 
+The 25th percentile of a standard normal distribution is -0.67.
+
 ## 90th percentile of a standard normal
 
 ```{r quantile-2}
@@ -133,3 +144,5 @@ normal_curve +
   geom_label(x=a-0.5, y=0, label=p)
 qnorm(0.9)
 ```
+
+The 90th percentile of a standard normal distribution is 1.28.
