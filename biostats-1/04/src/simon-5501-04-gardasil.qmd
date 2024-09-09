@@ -1,0 +1,108 @@
+---
+title: "Analysis of gardasil shots by demographic factors"
+format: 
+  html:
+    embed-resources: true
+---
+
+This program reads data on Gardasil vaccinations in young women. Find more information in the [data dictionary][dd].
+
+[dd]: https://raw.githubusercontent.com/pmean/datasets/master/gardasil.yaml
+
+The program was written by Steve Simon on 2024-09-07 and is placed in the public domain.
+
+## Load the tidyverse library
+
+For most of your programs, you should load the tidyverse library. The messages and warnings are suppressed.
+
+```{r setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+```
+
+## Read the data and view a brief summary
+
+Use the read_csv function to read the data. The glimpse function will produce a brief summary. Use tolower to convert uppercase to lowercase.
+
+```{r read}
+gard <- read_csv(
+  file="../data/gardasil.csv",
+  col_names=TRUE,
+  col_types="nnnnnnnnnn")
+names(gard) <- tolower(names(gard))
+glimpse(gard)
+```
+
+## Create factors for agegroup
+
+The factor function identifies a variable as categorical and assigns labels to number codes. You don't necessarily need to use factor if the data you read in is character strings, as R automatically treats those variable as categorical.
+
+```{r agegroup-1}
+gard$agegroup <- factor(
+  gard$agegroup,
+  levels=0:1,
+  labels=c(
+    "11 to 17 years",
+    "18 to 26 years"))
+```
+
+## Counts and percentages for agegroup
+
+```{r agegroup-2}
+gard |> 
+  count(agegroup) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total))
+```
+
+There are roughly the same number of patients 11 to 17 years as there are patients 18 to 26 years.
+
+## Create factors for shots
+
+It is a bit silly to replace 1, 2, 3 with One, Two, Three. The main reason is to clearly identify shots as categorical rather than continuous.
+
+```{r shots-1}
+gard$shots <- factor(
+  gard$shots,
+  levels=1:3,
+  labels=c(
+    "One", 
+    "Two", 
+    "Three"))
+```
+
+## Counts and percentages for shots
+
+```{r shots-2}
+gard |> 
+  count(shots) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total))
+```
+
+Slightly more patients got three shots than one or two shots, but this is still less than half of the patients overall.
+
+## Compare number of shots by age group
+
+```{r shots-by-age-1}
+gard |>
+  count(agegroup, shots) |>
+  group_by(agegroup) |>
+  mutate(row_total=sum(n)) |>
+  mutate(pct=round(100*n/row_total))
+```
+
+## Bar chart of shots by age group
+
+```{r shots-by-age-2}
+gard |>
+  ggplot(aes(x=agegroup, fill=shots)) +
+    geom_bar(position="fill") +
+    xlab("Age group") +
+    ylab("Proportion") +
+    ggtitle("Plot drawn by Steve Simon on 2024-09-07")
+```
+
+The probability of getting all three shots was higher in the 11 to 17 year old group compared to the 18 to 26 year old group.
+

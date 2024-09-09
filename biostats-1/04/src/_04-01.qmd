@@ -1,5 +1,5 @@
 ---
-title: "02-01, Counting"
+title: "04-01, Scatterplots and correlations"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,80 @@ format:
 editor: source
 ---
 
-## W
+## Assessing relationships (bivariate statistics)
 
+-   Between two continuous variables
+    -   Scatterplot
+    -   Correlation
+-   Between a categorical and a continuous variable
+    -   Boxplot
+    -   Effect size
+-   Between two categorical variables
+    -   Bar plots
+    -   Many numeric measures (covered later)
+    
 :::notes
-The
+The previous modules talked about how to examine individual variables. I used the term univariate statistics. After you understand how each individual variable behaves, you need to start examining how variables relate to one another. I will focus on graphical approaches, but also some numeric measures.
+
+Recall that continuous variables have a large number of possible values, potentially any value in some interval. Categorical variables have a small number of possible values with each value corresponding to a particular label.
+
+If you are visualizing the relationship between two continuous variable, use a scatterplot. The best numeric summary is a correlation coefficient.
+
+If you are visualizing the relationship between a categorical and a continuous variable, use a boxplot. A common numeric summary is the effect size. I do not like effect sizes, but they are used so commonly that I have to teach them.
+
+If you are visualizing the relationship between two categorical variables, use a bar plot of the probabilities. There are many numeric measures, and I will defer discussion of these until a later module.
+:::
+
+## Scatterplot
+
+-   Assess relationship between two continuous variables
+    -   Outcome on y-axis
+    -   Exposure/intervention on x-axis
+    
+:::notes
+The scatterplot is a simple and easy way to examine the relationship between two independent variables. By tradition (and for no other good reason), the outcome variable is plotted on the y-axis (the vertical axis) and the exposure or treatment variable is plotted on the x-axis (the horizontal axis). If you conceive of the relationship as cause and effect, the cause variable goes on the x-axis Sometimes it is not clear which is which. You have to use your best judgement. I will usually provide some guidance in the programming assignments.
 :::
   
+## Patterns on a scatterplot
+
+-   Strong, weak, or no relationship
+-   Direction of relationship
+-   Nonlinear patterns
+    -   Diminishing returns
+    -   Exponential acceleration
+    -   Hormesis
+    
+:::notes
+Scatterplots require you to make a subjective interpretation. Is the relationship strong or weak? Is there any relationship at all?
+
+What is the direction of the relationship? Does an increase in exposure lead to an increase in the outcome? That's a positive relationship. If an increase in exposure leads to a decrease in the outcome, that's a negative relationship.
+
+Look for nonlinear patterns. These can take many forms, but three common ones are diminishing returns, exponential acceleration, or hormesis. I'll show examples of these in a few minutes.
+:::
+
+## Covariance
+
+-   $Cov(X, Y) = \frac{\Sigma (X_i-\bar{X})(Y_i-\bar{Y})}{n-1}
+    -   $X_i > \bar{X}$ and $Y_i > \bar{Y}$ (+) \times (+) = +
+    -   $X_i < \bar{X}$ and $Y_i < \bar{Y}$ (-) \times (-) = +
+    -   $X_i > \bar{X}$ and $Y_i < \bar{Y}$ (+) \times (-) = -
+    -   $X_i < \bar{X}$ and $Y_i > \bar{Y}$ (-) \times (+) = -
+    
+:::notes
+Your book introduces the term covariance first before defining correlation. The covariance is a product involving the individual X and Y values compared to their respective means.
+
+There are four possibilities. An individual X_i and Y_i values could both be above average. This makes the terms (X_i-Xbar) and (Y_i - Ybar) both positive. When you multiply two positive numbers together, you get a positive result.
+
+A second possibility is that both individual values are below average. This makes the terms (X_i-Xbar) and (Y_i - Ybar) both negative. When you multiply two negative numbers you get a positive result.
+
+If most of the data follows this pattern, above average values of X associated with above average values of Y and below average values of X associated with below average values of Y, then the covariance will be positive.
+
+You might have the opposite pattern occur. Above average values of X are mostly associated with below average values of Y and vice versa. In this case, the covariance will be negative.
+:::
+    
+## The correlation coefficient
+
+-   $r = Corr(X, Y) = \frac{Cov(X, Y)}{(n-1) S_X S_y}$
+    -   r is always between -1 and +1.
+        -   r > +0.7 is a strong positive relationship
+        -   r < -0.7 is a strong negative relationship

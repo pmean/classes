@@ -16,7 +16,7 @@ f1 <- "https://raw.githubusercontent.com/pmean"
 f2 <- "data/main/files/fev.yaml"
 dd <- read_lines(glue("{f1}/{f2}"))
 # if I am not online use the line below
-# dd <- read_lines("../../../../data/files/legionnaires.yaml")
+# dd <- read_lines("../../../../data/files/fev.yaml")
 h <- str_which(str_trim(dd), "^$")
 chunk_beg <- c(1, h+1)
 chunk_end <- c(h, length(dd))

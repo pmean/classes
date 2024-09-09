@@ -1,0 +1,118 @@
+---
+title: "Analysis of relationships in pulmonary data"
+format: 
+  html:
+    embed-resources: true
+editor: source
+---
+
+This program assesses the relationships among variables in a study of pulmonary function in children. There is a [data dictionary][dd] that provides more details about the data. The program was written by Steve Simon on 2024-09-07 and is placed in the public domain.
+
+[dd]: https://github.com/pmean/datasets/blob/master/fev.yaml
+
+## Libraries
+
+The tidyverse library is the only one you need for  this program.
+
+```{r setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+```
+
+## List variable names
+
+Since the variable names are not listed in the data file itself, you need to list them here.
+
+```{r names}
+pulmonary_names <- c(
+    "age",
+    "fev",
+    "ht",
+    "sex",
+    "smoke")
+```
+
+## Reading the data
+
+Here is the code to read the data and show a glimpse. 
+
+```{r read}
+pulmonary <- read_csv(
+  file="../data/fev.csv",
+  col_names=pulmonary_names,
+  col_types="nnncc")
+glimpse(pulmonary)
+```
+
+## Calculate mean, quartiles, range for fev
+
+```{r descriptive-fev}
+summary(pulmonary$fev)
+```
+
+The mean fev is 2.6 liters and the standard deviation is 0.84 liters. The fev values range from xx to xx. I am not an expert on pulmonary function, but these values appear to be reasonable.
+
+## Calculate mean, quartiles, range for age
+
+```{r descriptive-age}
+summary(pulmonary$age)
+```
+
+The mean age is 9.9 years. The youngest subject is 3 years old and the oldest is 19. This is consistent with a pediatric population.
+
+## Calculate counts for smoke
+
+```{r descriptive-smoke}
+pulmonary |>
+  count(smoke) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total))
+```
+
+Almost all of the subjects (90% or 589 out of 654) were non-smokers.
+
+## Plot age versus fev
+
+```{r plot-age-fev}
+pulmonary |>
+  ggplot(aes(age, fev)) +
+    geom_point() +
+    geom_smooth() +
+    xlab("Age (years)") +
+    ylab("Forced Expiratory Volume (Liters)") +
+    ggtitle("Plot drawn by Steve Simon on 2024-09-07")
+```
+
+## Correlation between age and fev
+
+```{r correlation}
+cor(pulmonary$age, pulmonary$fev)
+```
+
+The correlation, 0.75, and the plot both show a strong positive association between age and fev.
+
+## Plot smoke versus fev
+
+```{r plot-smoke-fev}
+pulmonary |>
+  ggplot(aes(smoke, fev)) +
+    geom_boxplot() +
+    xlab("Smoker (Yes/No)") +
+    ylab("Forced Expiratory Volume (Liters)") +
+    ggtitle("Plot drawn by Steve Simon on 2024-09-07")
+```
+
+The fev values are larger for smokers versus non-smokers. This is the opposite direction from what we expected.
+
+## Means and standard deviations for smokers and non-smokers.
+
+```{r mean-fev-by-smoke}
+pulmonary |>
+  group_by(smoke) |>
+  summarize(
+    mean_fev=mean(fev),
+    sd_fev=sd(fev))
+```
+
+The average fev values is 3.1 for smokers and much smaller, 2.6, for non-smokers. This is also opposite from what we expected. The standard deviations, 0.82 and 0.86, are roughly equal.
