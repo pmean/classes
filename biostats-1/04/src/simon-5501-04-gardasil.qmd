@@ -60,7 +60,7 @@ There are roughly the same number of patients 11 to 17 years as there are patien
 
 ## Create factors for shots
 
-It is a bit silly to replace 1, 2, 3 with One, Two, Three. The main reason to use the factor function is to identify the variable shots as categorical rather than continuous.
+It is a bit silly to replace 1, 2, 3 with One, Two, Three. The main reason is to clearly identify shots as categorical rather than continuous.
 
 ```{r shots-1}
 gard$shots <- factor(
@@ -69,8 +69,7 @@ gard$shots <- factor(
   labels=c(
     "One", 
     "Two", 
-    "Three")
-)
+    "Three"))
 ```
 
 ## Counts and percentages for shots
