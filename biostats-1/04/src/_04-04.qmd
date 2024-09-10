@@ -19,22 +19,20 @@ editor: source
 
 ## Example of a rectangular grid of counts
 
-![](../images/busy-crosstabs.png)
-
-## Example of column percents
-
-## Example of row percents
-
-## Example of cell percents
+![](../images/rectangular-grid.png)
 
 ## Rule #1: Never display more than one type of percent.
 
 ![](../images/busy-crosstabs.png)
 
 :::notes
-Statistical software like SPSS can produce counts, row percents, column percents, cell percents, expected counts, residuals, and/or cell contribution to chi-squared values. At one time or another you might want to use each of these statistics, but never all at one time. Two or more numbers in a table causes confusion and makes your tables harder to interpret.
+Statistical software like SAS can produce counts, row percents, column percents, cell percents, expected counts, residuals, and/or cell contribution to chi-squared values. At one time or another you might want to use each of these statistics, but never all at one time. Two or more numbers in a table causes confusion and makes your tables harder to interpret.
 
 Present a single summary statistic in the table if at all possible. If you need to display two summary statistics (for example, both counts and row percentages), then place the counts in one table and the row percentages in a different table. If you have to fit them in the same table, place the two numbers side by side with the less important number appearing second and in parentheses For example, 54% (257).
+
+This table, an example of how bad the default option is for SAS, is taken from 
+
+Joseph J. Guido. Guido’s Guide to PROC FREQ – A Tutorial for Beginners Using the SAS® System. Northeast SAS Users Group Conference, 2007. Available at https://www.lexjansen.com/nesug/nesug07/ff/ff07.pdf
 :::
 
 ## Rule #2: Row percentages are usually best. 
@@ -48,7 +46,7 @@ Row percentages are the percentages you compute by dividing each count by the ro
 If you find that cell percentages make the most sense, consider creating composite categories that combine the row and column categories. Cell percentages are the percentages that you get when you divide each cell count by the overall total. When cell percents are interesting, it usually means that you are interested in the four distinct categories in your two by two table. For example, you are interested in seeing what fraction of job candidates are white males, rather than seeing how the probability of being male influences the probability of being white. For this type of data, treat it as a single categorical variable with four levels (white males, white females, black males, black females) rather than two categorical variables with each having two levels (black/white, male/female).
 :::
 
-## Rule #3: Place the treatment/exposure variable as rows and outcome variable as columns.**
+## Rule #3: Place the treatment/exposure variable as rows and outcome variable as columns.
 
 -   Treatment/exposure = causes
 -   Outcome = effects
@@ -61,11 +59,11 @@ This relates to the above item. You usually are interested in the probability of
 
 ## Rule #4: If one variable has a lot more levels than the other variable, place that variable in rows.
 
--   Scrolling left/right is usually difficult
--   Analogy: newspaper columns
-
+![](../images/nytimes-front-page.png)
 :::notes
 A table that is tall and thin is usually easier to read than a table that is short and wide. It is easier to scroll up and down rather than left and right. For a really large number of levels, you might have to print your table on two or more pages. Usually it is a lot easier to align these pages if the table is tall and thin. A short wide table that is split on two or more pages is often a disaster.
+
+Image is taken from The New York Times Learning Network, available at https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/990814onthisday_big.html
 :::
 
 ## Rule #5: Whenever you report percentages - always round.
@@ -81,8 +79,9 @@ A table that is tall and thin is usually easier to read than a table that is sho
 A change on the order of tenths of a percent are almost never interesting or important. Displaying that tenth of a percent makes it harder to manipulate the numbers to see the big picture.
 
 Adding up to something other than 100% is not a problem. First of all, it can't happen with a two by two table unless you round incorrectly. For a larger table, it can happen, but your audience is sophisticated enough to understand why this is the case. No one, for example, is going to be upset when 33% plus 33% plus 33% adds up to less than 100%.
+:::
 
-## Rule #6 When in doubt, write out your table several different ways.**
+## Rule #6 When in doubt, write out your table several different ways.
 
 -   The fault of default principle
 -   Revise your tables as often as you rewrite your text
@@ -156,5 +155,4 @@ Notice that this table would not require any sideways scrolling.
 3.  Place the treatment/exposure variable as rows and outcome variable as columns.
 4.  If one variable has a lot more levels than the other variable, place that variable in rows.
 5.  Whenever you report percentages, always round.
-6.  Don't worry about whether your percentages add up to 99% or 101%.
-7.  When in doubt, write out your table several different ways.
+6.  When in doubt, write out your table several different ways.

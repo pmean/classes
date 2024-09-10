@@ -7,26 +7,40 @@ format:
 editor: source
 ---
 
-## Assessing relationships (bivariate statistics)
+## Assessing relationships (bivariate statistics), 1
 
 -   Between two continuous variables
     -   Scatterplot
     -   Correlation
--   Between a categorical and a continuous variable
-    -   Boxplot
-    -   Effect size
--   Between two categorical variables
-    -   Bar plots
-    -   Many numeric measures (covered later)
-    
+
 :::notes
 The previous modules talked about how to examine individual variables. I used the term univariate statistics. After you understand how each individual variable behaves, you need to start examining how variables relate to one another. I will focus on graphical approaches, but also some numeric measures.
 
 Recall that continuous variables have a large number of possible values, potentially any value in some interval. Categorical variables have a small number of possible values with each value corresponding to a particular label.
 
 If you are visualizing the relationship between two continuous variable, use a scatterplot. The best numeric summary is a correlation coefficient.
+:::
 
+## Assessing relationships (bivariate statistics), 2
+
+
+-   Between a categorical and a continuous variable
+    -   Boxplot
+    -   Effect size
+
+    
+:::notes
 If you are visualizing the relationship between a categorical and a continuous variable, use a boxplot. A common numeric summary is the effect size. I do not like effect sizes, but they are used so commonly that I have to teach them.
+
+:::
+
+## Assessing relationships (bivariate statistics), 3
+
+-   Between two categorical variables
+    -   Bar plots
+    -   Many numeric measures (covered later)
+    
+:::notes
 
 If you are visualizing the relationship between two categorical variables, use a bar plot of the probabilities. There are many numeric measures, and I will defer discussion of these until a later module.
 :::
@@ -60,11 +74,11 @@ Look for nonlinear patterns. These can take many forms, but three common ones ar
 
 ## Covariance
 
--   $Cov(X, Y) = \frac{\Sigma (X_i-\bar{X})(Y_i-\bar{Y})}{n-1}
-    -   $X_i > \bar{X}$ and $Y_i > \bar{Y}$ (+) \times (+) = +
-    -   $X_i < \bar{X}$ and $Y_i < \bar{Y}$ (-) \times (-) = +
-    -   $X_i > \bar{X}$ and $Y_i < \bar{Y}$ (+) \times (-) = -
-    -   $X_i < \bar{X}$ and $Y_i > \bar{Y}$ (-) \times (+) = -
+-   $Cov(X, Y) = \frac{\Sigma (X_i-\bar{X})(Y_i-\bar{Y})}{n-1}$
+    -   $X_i > \bar{X}$ and $Y_i > \bar{Y};\ \ \ $ (+) $\times$ (+) = +
+    -   $X_i < \bar{X}$ and $Y_i < \bar{Y};\ \ \ $ (-) $\times$ (-) = +
+    -   $X_i > \bar{X}$ and $Y_i < \bar{Y};\ \ \ $ (+) $\times$ (-) = -
+    -   $X_i < \bar{X}$ and $Y_i > \bar{Y};\ \ \ $ (-) $\times$ (+) = -
     
 :::notes
 Your book introduces the term covariance first before defining correlation. The covariance is a product involving the individual X and Y values compared to their respective means.
@@ -80,7 +94,7 @@ You might have the opposite pattern occur. Above average values of X are mostly 
     
 ## The correlation coefficient, 1
 
--   $r = Corr(X, Y) = \frac{Cov(X, Y)}{(n-1) S_X S_y}$
+-   $r = Corr(X, Y) = \frac{Cov(X, Y)}{S_X S_y}$
     -   r is always between -1 and +1.
     -   r is a unitless quantity
 
@@ -99,7 +113,7 @@ In general, I am not in favor of unitless quantities. They may allow you to comp
     -  +0.3 < r < +0.7 is a weak positive relationship
     -  -0.3 < r < +0.3 is little or no relationship
     -  -0.7 < r < -0.3 is a weak negative relationship
-    -  -0.7 < r < -1.0 is a strong negative relationship
+    -  -1.0 < r < -0.7 is a strong negative relationship
 
 :::notes
 The closer the correlation is to +1, the stronger the positive relationship. The closer the correlation is to -1, the stronger the negative relationship. A correlation close to 0 implies little or no relationship.

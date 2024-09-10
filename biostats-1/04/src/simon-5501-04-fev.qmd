@@ -49,14 +49,16 @@ glimpse(pulmonary)
 
 ```{r descriptive-fev}
 summary(pulmonary$fev)
+sd(pulmonary$fev)
 ```
 
-The mean fev is 2.6 liters and the standard deviation is 0.84 liters. The fev values range from xx to xx. I am not an expert on pulmonary function, but these values appear to be reasonable.
+The mean fev is 2.6 liters and the standard deviation is 0.84 liters. The fev values range from 0.8 to 5.8. I am not an expert on pulmonary function, but these values appear to be reasonable.
 
 ## Calculate mean, quartiles, range for age
 
 ```{r descriptive-age}
 summary(pulmonary$age)
+sd(pulmonary$age)
 ```
 
 The mean age is 9.9 years. The youngest subject is 3 years old and the oldest is 19. This is consistent with a pediatric population.
