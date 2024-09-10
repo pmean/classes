@@ -9,7 +9,39 @@ editor: source
 
 ## Boxplots
 
+-   Five number summary
+    -   Min, 25%, 50%, 75%, Max
+-   Assess relationship between categorical and continuous outcome.
+    -   One boxplot for each category
+-   Look for shift from one boxplot to another
+    -   Also changes in variation
+
 :::notes
-The
+Earlier, I described the boxplot as a method for assessing whether a variable was roughly normally distributed. You can also use them to see how a continuous variable changes for different levels of a categorical variable.
+
+Look for a shift from one boxplot to another. Do you see larger values for all five numbers in one category compared to those numbers in the other category?
 :::
   
+## Effect size
+
+-   $ES = \frac{\bar{X}_1-\bar{X}_2}{S}$
+    -   Different choices for S
+    -   $S_1$, $S_2$, or $S_p$
+-   Interpretation (controversial!)
+    -   Small: ES = 0.2
+    -   Medium: ES = 0.5
+    -   Large: ES = 0.8
+    
+:::notes
+The effect size is a measure of how much difference there is between the average value for one category compared to the average value for a second category. It is divided by the standard deviation to make it a unitless quantity.
+
+There are different choices for which standard deviation to use. If the two groups have roughly the same amount of variation, it does not matter. Sometimes, though, one group is more variable than the other. In this case, you have to choose the standard deviation of the first group, the standard deviation of the second group, or a compromise, the pooled standard deviation, which will be partway between the two different standard deviations. I will talk about the pooled standard deviation in a later lecture. If one of the two categories could be considered a comparison or control group, you might use the standard deviation for that category. 
+
+The interpretation of the effect size was developed by Jacob Cohen in his famous book of 1988, Statistical Power Analysis for the Behavioral Sciences.
+:::
+
+## Criticisms of the effect size for determining sample size
+
+-   Unitless quantities are not interpretable
+-   Small, medium, large vary across disciplines
+-   Provide cover for arbitrary sample size choices
