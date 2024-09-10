@@ -22,26 +22,112 @@ Earlier, I described the boxplot as a method for assessing whether a variable wa
 Look for a shift from one boxplot to another. Do you see larger values for all five numbers in one category compared to those numbers in the other category?
 :::
   
-## Effect size
+## Effect size, 1
 
 -   $ES = \frac{\bar{X}_1-\bar{X}_2}{S}$
     -   Different choices for S
     -   $S_1$, $S_2$, or $S_p$
--   Interpretation (controversial!)
-    -   Small: ES = 0.2
-    -   Medium: ES = 0.5
-    -   Large: ES = 0.8
-    
+-   Also known as standardized mean difference (SMD)
+
 :::notes
 The effect size is a measure of how much difference there is between the average value for one category compared to the average value for a second category. It is divided by the standard deviation to make it a unitless quantity.
 
 There are different choices for which standard deviation to use. If the two groups have roughly the same amount of variation, it does not matter. Sometimes, though, one group is more variable than the other. In this case, you have to choose the standard deviation of the first group, the standard deviation of the second group, or a compromise, the pooled standard deviation, which will be partway between the two different standard deviations. I will talk about the pooled standard deviation in a later lecture. If one of the two categories could be considered a comparison or control group, you might use the standard deviation for that category. 
-
-The interpretation of the effect size was developed by Jacob Cohen in his famous book of 1988, Statistical Power Analysis for the Behavioral Sciences.
 :::
 
-## Criticisms of the effect size for determining sample size
+## Effect size, 1
 
--   Unitless quantities are not interpretable
+-   Interpretation (controversial!)
+    -   Small: ES = 0.2
+        -   Height difference between 15 and 16 year old girls
+    -   Medium: ES = 0.5
+        -   Height difference between 14 and 18 year old girls
+    -   Large: ES = 0.8
+        -   Height difference between 13 and 18 year old girls
+    
+:::notes
+The interpretation of the effect size was developed by Jacob Cohen in his famous book of 1988, Statistical Power Analysis for the Behavioral Sciences.
+
+To try to visualize this, Jacob Cohen talked about height differences between girls of different ages.
+:::
+
+## Uses of the effect size
+
+-   Input statistic for systematic overviews/meta-analyses
+-   Intermediate endpoint in power and sample size calculations
+-   Direct estimate of power and sample size (NO!!)
+-   Gauging the practical significance of a research study (NO!!)
+
+:::notes
+The effect size provides a useful way to compare results from individual studies in a systematic overview or meta-analysis. The effect size allows you to compare apples and oranges, so to speak, though you still need to be careful. I've said many times that combining apples and oranges is often okay, but you shouldn't be combining apples and onions.
+
+The effect size is an important intermediate endpoint in estimates of power and sample size. You will see a lot about power and sample size in later weeks, but I wanted to address this point now.
+
+Some researchers will use the effect size as a direct estimate of power and sample size and this is not a good idea. I will try to explain why in the next slide.
+
+Another practice that I do not like is when research will use an effect size to gauge whether the results of a completed research study have practical significance.
+
+Some researchers will also use the effect size to gauge the practical significance of a research study.
+:::
+
+## Criticisms of the effect size
+
+-   Sample size calculations need three things
+    -   Research hypothesis
+    -   Variation of the outcome measure
+    -   Minimum clinically important difference (MCID)
+        -   Unitless quantities have no clinical meaning
 -   Small, medium, large vary across disciplines
 -   Provide cover for arbitrary sample size choices
+    -   You must consider variation and MCID separately
+
+:::notes
+A proper assessment of sample size requires three things (sometimes four, but most of the time, just three). The third item that you need is the minimum clinically important difference. What is clinically important? It is something that requires clinical judgement. I am not a clinician, but I have seen examples where this is completely overlooked. A researcher will say that any difference is clinically important. This is never true, and you need to think carefully about this.
+
+The effect size has no clinical meaning. I tell a joke about a large store that puts up a banner saying "Big weekend sale! All prices reduced by half a standard deviation."
+
+The concept of small, medium, and large effect sizes is also controversial. These were developed by Jacob Cohen after reviewing a bunch of psychology studies. The review is now several decades old, and it didn't really consider studies in other fields like business, education, or health care.
+
+The effect size also combines the variation and the MCID into a single number. But when you are planning a research study, there are things that you can do that influence the variation, such as better equipment and training. There are things that you can do to influence the MCID, such as using a measure that is more responsive to real changes in health.
+
+If you combine the variation and MCID into a single number and use that number to drive your power and sample size calculations, you lose the opportunity to explore important aspects of the research study.
+
+I am teaching the effect size because a majority of researchers like it. I find myself in the minority here. I am not alone and there are a lot of very smart people who have sharply criticized the use of effect sizes, except as an intermediate calculation or as the unit of analysis for systematic overviews.
+:::
+
+## Example of a large effect size
+
+```{r large-es}
+g <- rep(0:1, each=100)
+z1 <- scale(rnorm(100))
+z2 <- scale(rnorm(100))
+y <- c(z1, z2)*10 + 64 + 8*g
+data.frame(y, g=factor(g)) |>
+  ggplot(aes(g, y)) +
+	  geom_boxplot() + 
+	  expand_limits(y=20:90) +
+	  coord_flip()
+```
+
+## Example of a medium effect size
+
+```{r medium-es}
+y <- c(z1, z2)*10 + 64 + 5*g
+data.frame(y, g=factor(g)) |>
+  ggplot(aes(g, y)) +
+	  geom_boxplot() + 
+	  expand_limits(y=20:90) +
+	  coord_flip()
+```
+
+## Example of a small effect size
+
+```{r small-es}
+y <- c(z1, z2)*10 + 64 + 2*g
+data.frame(y, g=factor(g)) |>
+  ggplot(aes(g, y)) +
+	  geom_boxplot() + 
+	  expand_limits(y=20:90) +
+	  coord_flip()
+```
+

@@ -10,8 +10,6 @@ params:
   topic_03: "R code for scatterplots and boxplots"
   topic_04: "Bar plots for categorical outcomes"
   topic_05: "R code for bar plots"
-  topic_06: "Tips for visualization"
-  topic_07: "Your homework"
 editor: source
 execute: 
   fig-width: 5
@@ -22,6 +20,11 @@ execute:
 
 ```{r}
 # A small section of R code to kick start the params.
+# Also load the important libraries.
+
+#| messsage: false
+#| warning: false
+library(tidyverse)
 ```
 
 -   What you will learn
@@ -30,8 +33,6 @@ execute:
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
-    -   `r params$topic_06`
-    -   `r params$topic_07`
 
 {{< include _04-01.qmd >}}
 
@@ -71,24 +72,6 @@ execute:
 
 {{< include _04-05.qmd >}}
 
-## Break #5
-
--   What you have learned
-    -   `r params$topic_05`
--   What's coming next
-    -   `r params$topic_06`
-
-{{< include _04-06.qmd >}}
-
-## Break #6
-
--   What you have learned
-    -   `r params$topic_06`
--   What's coming next
-    -   `r params$topic_07`
-
-{{< include _04-07.qmd >}}
-
 ## Summary
 
 -   What you have learned
@@ -97,8 +80,6 @@ execute:
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
-    -   `r params$topic_06`
-    -   `r params$topic_07`
 
 <!---
       You have to put the title down 
