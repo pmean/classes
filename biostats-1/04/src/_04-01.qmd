@@ -78,9 +78,84 @@ If most of the data follows this pattern, above average values of X associated w
 You might have the opposite pattern occur. Above average values of X are mostly associated with below average values of Y and vice versa. In this case, the covariance will be negative.
 :::
     
-## The correlation coefficient
+## The correlation coefficient, 1
 
 -   $r = Corr(X, Y) = \frac{Cov(X, Y)}{(n-1) S_X S_y}$
     -   r is always between -1 and +1.
-        -   r > +0.7 is a strong positive relationship
-        -   r < -0.7 is a strong negative relationship
+    -   r is a unitless quantity
+
+:::notes
+The correlation coefficient between X and Y is computed as the covariance between X and Y divided by the standard deviation of X and the standard deviation of Y. 
+
+This creates a unitless quantity. While the covariance will change when you convert measurements from grams to kilograms, the correlation will not.
+
+In general, I am not in favor of unitless quantities. They may allow you to compare different outcomes, but to understand the practical implications, you need to use a measure with units. I'll address this a bit later with the discussion about effect sizes. 
+:::
+        
+## The correlation coefficient, 2
+
+-   Informal interpretation
+    -  +0.7 < r < +1.0 is a strong positive relationship
+    -  +0.3 < r < +0.7 is a weak positive relationship
+    -  -0.3 < r < +0.3 is little or no relationship
+    -  -0.7 < r < -0.3 is a weak negative relationship
+    -  -0.7 < r < -1.0 is a strong negative relationship
+
+:::notes
+The closer the correlation is to +1, the stronger the positive relationship. The closer the correlation is to -1, the stronger the negative relationship. A correlation close to 0 implies little or no relationship.
+
+There is some debate about the dividing lines between strong and weak relationships, but a dividing line around +/-0.6 or 0.7 is common. Anything closer to zero than +/-0.2 or 0.3 is considered evidence of little or no relationship.
+:::
+
+## An example of a strong positive relationship
+
+```{r strong-positive}
+#| echo: false
+
+library(MASS)
+library(tidyverse)
+# set.seed(123) # Set a seed for reproducibility
+illustrate_correlation <- function(rho) {
+  bvn <- mvrnorm(
+    n = 100, 
+    mu = c(0, 0), 
+    Sigma = matrix(
+  	  c(1.0, rho, rho, 1.0), 
+      ncol = 2))
+  x <- bvn[, 1]*10+50
+  y <- bvn[, 2]*3+20
+  r <- cor(bvn)
+  data.frame(x, y) |>
+	  ggplot(aes(x, y)) + 
+	    geom_point() +
+	    ggtitle(paste0("r = ", round(cor(x, y), 2))) +
+  	  expand_limits(
+  	  	x=c(20, 80),
+  	  	y=c(10, 30))
+}
+illustrate_correlation(0.8)
+```
+
+## An example of a weak positive relationship
+
+```{r weak-positive}
+illustrate_correlation(0.5)
+```
+
+## An example of a little or no relationship
+
+```{r no-relationship}
+illustrate_correlation(0.1)
+```
+
+## An example of a weak negative relationship
+
+```{r weak-negative}
+illustrate_correlation(-0.5)
+```
+
+## An example of a strong negative relationship
+
+```{r strong-negative}
+illustrate_correlation(-0.8)
+```

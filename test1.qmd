@@ -1,0 +1,48 @@
+---
+title: "Loan calculations"
+format: html
+---
+
+Code borrowed from [blog post][lee1] by Sang-Heon Lee.
+
+[lee1]: https://www.r-bloggers.com/2022/06/loan-amortization-schedule-using-r-code/
+
+## Set initial values
+
+```{r interest-and-principal}
+r <- 0.065/12
+P <- 384000
+t <- 360
+```
+ 
+## Calculate the monthly payment
+
+$PMT=P\frac{r}{1-(1+r)^{-t})}$
+
+from [Inigo et al, Chapter 8.5][ini1]
+
+[ini1]: https://math.libretexts.org/Courses/Las_Positas_College/Math_for_Liberal_Arts/08%3A_Consumer_Mathematics/8.05%3A_Amortized_Loans
+
+```{r calculate}
+PMT <- round(P*r/(1-(1+r)^(-t)), 2) + 0.01
+PMT
+```
+
+## Show the amortization table
+
+```{r}
+amor <- data.frame(
+	principal=c(P, rep(NA, t)),
+	payment=rep(PMT, t+1),
+	interest_paid=c(0, rep(NA, t)),
+	principal_paid=c(0, rep(NA, t)))
+for (i in 2:(t+1)) {
+	amor$interest_paid[i] <- round(amor$principal[i-1]*r, 2)
+	amor$principal_paid[i] <- amor$payment[i] - amor$interest_paid[i]
+  amor$principal[i] <- 
+  	amor$principal[i-1] -
+  	amor$principal_paid[i]
+}
+amor$principal <- round(amor$principal, 2)
+amor
+```
