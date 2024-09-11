@@ -3172,17 +3172,38 @@ $ bf4       &lt;dbl&gt; 1, 4, 4, 1, 2, 2, 1, 4, 1, 4, 2, 4, 4, 4, 4, 4, 4, 4, 1,
 <section id="calculate-statistics-for-gest_age" class="level2">
 <h2 class="anchored" data-anchor-id="calculate-statistics-for-gest_age">Calculate statistics for gest_age</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bf <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean_ga=</span><span class="fu">mean</span>(gest_age),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">sd_ga=</span><span class="fu">sd</span>(gest_age),</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">n=</span><span class="fu">n</span>(),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">n_missing=</span><span class="fu">sum</span>(<span class="fu">is.na</span>(gest_age)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nmiss <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {<span class="fu">sum</span>(<span class="fu">is.na</span>(x))}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>bf <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize_if</span>(is.numeric, nmiss) <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 4
-  mean_ga sd_ga     n n_missing
-    &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;     &lt;int&gt;
-1    31.8  2.03    84         0</code></pre>
+<pre><code>  age_stop sepsis total_ab del_type mom_age gravida para mar_st smoker mi_hosp
+1        2      0        0        0       0       0    0      0      2       2
+  ng_tube tot_bott bw gest_age apgar1 apgar5 bf1_wt bf1_age dc_wt dc_age dc3_wt
+1       1        0  0        0      0      0      4       4     1      0     14
+  bf0 bf1 bf2 bf3 bf4
+1   0   0   2   1   1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bf <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean_age_stop=</span><span class="fu">mean</span>(age_stop, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">sd_age_stop=</span><span class="fu">sd</span>(age_stop, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">n_missing=</span><span class="fu">sum</span>(<span class="fu">is.na</span>(age_stop))) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mean_age_stop sd_age_stop n_missing
+1      16.58537    10.24147         2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>bf <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean_ga=</span><span class="fu">mean</span>(gest_age),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">sd_ga=</span><span class="fu">sd</span>(gest_age),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">n_missing=</span><span class="fu">sum</span>(<span class="fu">is.na</span>(gest_age))) <span class="sc">|&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   mean_ga    sd_ga n_missing
+1 31.84524 2.026892         0</code></pre>
 </div>
 </div>
 </section>
