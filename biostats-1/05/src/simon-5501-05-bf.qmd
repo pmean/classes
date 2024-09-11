@@ -1,0 +1,62 @@
+---
+title: "Analysis of breast feeding study"
+author: "Steve Simon"
+format: 
+  html:
+    embed-resources: true
+date: 2024-09-11
+---
+
+This program reads data and fits various linear regression models on a breast feeding study in pre-term infants.  Find more information in the [data dictionary][dd].
+
+[dd]: https://raw.githubusercontent.com/pmean/datasets/master/breast-feeding-preterm.yaml
+
+This code is placed in the public domain.
+
+## Load the tidyverse library
+
+For most of your programs, you should load the tidyverse library. The messages and warnings are suppressed.
+
+```{r setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+```
+
+## Read the data and view a brief summary
+
+Use the read_csv function to read the data. With a large number of variables, you may choose to leave the col_types out.R will usually figure out which variables are numeric and which are strings.
+
+Replace all the numeric codes of -1 with the missing value code (NA).
+
+```{r read}
+bf <- read_csv(
+  file="../data/breast-feeding-preterm.csv",
+  col_names=TRUE)
+bf[bf==-1] <- NA
+glimpse(bf)
+```
+
+
+
+## Calculate statistics for gest_age
+
+```{r gest-age}
+nmiss <- function(x) {sum(is.na(x))}
+
+bf |>
+	summarize_if(is.numeric, nmiss)
+
+bf |>
+	summarize(
+		mean_age_stop=mean(age_stop, na.rm=TRUE),
+		sd_age_stop=sd(age_stop, na.rm=TRUE),
+		n_missing=sum(is.na(age_stop)))
+
+
+bf |>
+	summarize(
+		mean_ga=mean(gest_age),
+		sd_ga=sd(gest_age),
+		n_missing=sum(is.na(gest_age)))
+```
