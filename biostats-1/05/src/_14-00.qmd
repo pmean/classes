@@ -9,7 +9,7 @@ editor: source
 
 ```{r}
 library(tidyverse)
-fn <- "../data/data-13-correlation.csv"
+fn <- "../data/hypothetical-correlation.csv"
 read_csv(file=fn) %>% 
   data.frame() %>%
   set_names(c("y", "x")) -> simple
