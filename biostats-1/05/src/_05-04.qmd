@@ -7,9 +7,98 @@ format:
 editor: source
 ---
 
-## Standard deviation
+## Confidence interval
 
-:::notes
-The
+-   $b_1 \pm t(\alpha/2, n-2) s.e.(b_1)$
+    -   $s.e.(b_1)=\sqrt{\frac{MSE}{\Sigma (X_i-\bar{X})^2}}$
+-   How to get a narrower confidence interval
+    -   Decrease the noise (MSE)
+    -   Increase the sample size
+    -   Increase the spread of the X's
+
+::: notes
+The slope, $\beta_1$, in the entire population is an unknown parameter. You take a sample and estimate the slope from the sample. Any estimate based on a sample has sampling error.
+
+If you can find a way to decrease the noise (as measured by MSE), that will produce a narrower confidence interval. A larger sample size will also work, because you will be computing a summation of $(X_i-\bar{X})^2)$ with more values, all of which are non-negative. Finally, you can increase the spread of the X's. Think of a table where all the legs are close to the center of the table. It would be very unstable. In contrast, if you spread the legs of a table out, you will produce much more stability. The same is true in regression. A wide spread of the independent variable improves precision.
 :::
-  
+
+## Hypothesis test
+
+-   $H_0:\ \beta_1=0$ vs. $H_1:\ \beta_1 \ne 0$
+-   Compare $T=\frac{b_1}{s.e.(b_1)}$ to $t(1-\alpha/2; n-2)$
+    -   Accept $H_0$ if T is close to zero
+    -   Reject $H_0$ if T is large negative or large positive
+
+::: notes
+The hypotheses involve the population parameter, $\beta_1$. To test this hypothesis, compare the sample statistic, $b_1$, to its standard error. If that ratio is close to zero, then you would accept the null hypothesis. If you see extreme values, very large negative or very large positive values, then you should reject the null hypothesis.
+:::
+
+## Equivalent hypothesis test
+
+-   Compare $F=\frac{MSR}{MSE}$ to $F(1-\alpha; 1, n-2)$
+    -   Accept $H_0$ if F is close to one
+    -   Reject $H_0$ if T is large positive
+-   Note: $F=T^2$
+ 
+::: notes
+You get an identical result if you compute the F-ratio, MSR divided by MSE. If this value is close to 1, you would accept the null hypothesis. The signal (MSR) is comparable to the noise (MSE). If you see a large positive ratio, that implies that the signal is much stronger than the noise. A large positive ratio would cause you to reject the null hypothesis.
+:::
+
+## Two more equivalent tests
+
+-   Compute the p-value from T or F
+    -   Accept $H_0$ if $p-value > \alpha$
+    -   Reject $H_0$ if $p-value \le \alpha$
+-   Compute the confidence interval (CI) for $\beta_1$
+    -   Accept $H_0$ if CI includes 0
+    -   Reject $H_0$ if CI does not include 0
+    
+::: notes
+Recall that the p-value is the probability of observing the sample result or a result more extreme. If the p-value is large (greater than $\alpha$), then you have little or no evidence against the null hypothesis. If the p-value is small (less than or equal to $\alpha$), then you have lots of evidence against the null hypothesis.
+:::
+
+## Calculation of the regression slope and intercept
+
+-   $b_1=\frac{\Sigma (X_i-\bar{X})(Y_i-\bar{Y})}{\Sigma (X_i-\bar{X})^2}$
+-   $b_0=\bar{Y}-b_1\bar{X}$
+
+## Relationship to the correlation coefficient
+
+-   Recall from the previous module
+    -   $Cov(X,Y)=\frac{1}{n-1}\Sigma(X_i-\bar{X})(Y_i-\bar{Y})$
+    -   $r_{XY}=\frac{Cov(X,Y)}{S_X S_Y}$
+-   This implies that
+    -   $b_1=r_{XY}\frac{S_Y}{S_X}$
+
+## Important implications
+
+-   $r_{XY}$ is unitless, $b_1$ is Y units per X units
+-   $r_{XY}>0$ implies $b_1>0$
+-   $r_{XY}=0$ implies $b_1=0$
+-   $r_{XY}<0$ implies $b_1<0$
+    -   and vice versa
+
+## Predicted values
+
+-   For a new value of X
+    -   $\hat{Y}_{new}=b_0+b_1 X_{new}$
+
+-   For an existing value in the data, $X_i$
+    -   $\hat{Y}_i=b_0+b_1 X_i$
+
+## Why predict for a value you already have seen?
+
+-   Future Y may differ from previous Y
+-   Comparison of $\hat{Y}_i$ to existing $Y_i$.
+
+## Residual
+
+-   $e_i=Y_i-\hat{Y}_i$
+    -   Error in prediction
+    -   $\Sigma e_i=0$
+    -   Estimate of $\epsilon_i$
+    
+::: notes
+The residual is the difference between what you observed ($Y_i$) and what the linear regression model would predict ($\hat{Y}_i$). If the residual is zero, you nailed it. A perfect prediction. That may happen once in a while, but you will almost never see perfect predictions for every patient in your study. The residuals will sum to zero because the linear regression uses the least squares principle to 
+:::
+
