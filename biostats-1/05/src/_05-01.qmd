@@ -119,6 +119,8 @@ library(tidyverse)
 ```
 
 ```{r read-bf}
+#| message: false
+#| warning: false
 bf <- read_csv(
   file="../data/breast-feeding-preterm.csv",
   col_names=TRUE)
