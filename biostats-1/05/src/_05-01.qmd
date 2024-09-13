@@ -55,6 +55,29 @@ At this point, one statistician says to the other, "Boy, I hope this last engine
 This is an example of a dangerous extrapolation. The experience with three, two, and then only one engines may be consistent, but don't expect that trend to continue with zero engines.
 :::
 
+## Quote from "Peggy Sue Got Married"
+
+![](http://www.pmean.com/new-images/21/dark-side-01.png)
+
+:::notes
+I want to get a quick feel for your background and interests. Here's a quote from a romantic comedy starring Kathleen Turner from 1986. A forty year old woman, played by Kathleen Turner, travels back in time to her high school senior year, 1960. She has an amusing interchange with her high school math teacher.
+
+"I happend to know that in the future, I will not have the slightest use for algebra, and I speak from experience."
+
+Think back to your high school algebra class.
+
+1. Do you remember any important formulas from that class?
+
+2. Did you hate, hate, hate high school algebra?
+
+3. Did you love high school algebra?
+
+Big question: Will you use high school algebra in your future?
+
+Source: https://www.moviequotes.com/s-movie/peggy-sue-got-married/
+:::
+
+http://www.pmean.com/new-images/21/dark-side-01.png
 
 ## Algebra formula for a straight line
 
@@ -87,9 +110,41 @@ In linear regression, we use a straight linear to estimate a trend in data. We c
 Be cautious with your interpretation of the intercept. Sometimes the value X=0 is impossible, implausible, or represents a dangerous extrapolation outside the range of the data.
 :::
 
-## First regression example with interpretation
+## Simple regression example with interpretation, 1
+
+```{r setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+```
+
+```{r read-bf}
+bf <- read_csv(
+  file="../data/breast-feeding-preterm.csv",
+  col_names=TRUE)
+bf[bf==-1] <- NA
+```
+
+```{r plot-bf}
+bf |>
+  ggplot(aes(mom_age, age_stop)) +
+    geom_point() +
+    geom_smooth(method="lm", se=FALSE) + 
+    expand_limits(x=0)
+```
 
 ![](http://www.pmean.com/new-images/02/lin_coef-0201.gif)
+
+## Simple regression example with interpretation, 1
+
+```{r}
+mod1 <- lm(age_stop~mom_age, data=bf)
+mod1
+coef(mod1)
+glance(mod1)
+tidy(mod1)
+augment(mod1)
+```
 
 ::: notes
 The graph shown below represents the relationship between mother's age and the duration of breast feeding in a research study on breast feeding in pre-term infants.
@@ -97,98 +152,15 @@ The graph shown below represents the relationship between mother's age and the d
 The regression coefficients are shown below. The intercept, 6, is represented the estimated average duration of breast feeding for a mother that is zero years old. This is an impossible value, so the interpretation is not useful. What is useful, is the interpretation of the slope, approximately 0.4. The estimated average duration of breast feeding increases by 0.4 weeks for every extra year in the mother's age.
 :::
 
-## Output from SPSS
-
-![](http://www.pmean.com/new-images/02/lin_coef-0202.gif)
-
-::: notes
-Here is what the output from SPSS looks like.
-:::
-
-## Scatterplot of fat percentage and abdomen circumference
-
-![](../images/fat-regression-01.png)
-
-::: notes
-Here's a second example of linear regression. You've seen this dataset before, relating percentage of body fat to various circumference measures of the human body. Measuring body fat accurately is a difficult task. The best method involves dunking the entire body in a vat of water. Circumferences, on the other hand, are easy to measure. How well can you predict percentage body fat from these circumference measures.
-
-You found out last week that abdomen circumference was the measure most strongly correlated with body fat. Here is a scatterplot showing the linear regression trend line.
-
-Notice that the trend line goes negative for smaller values of body circumference. This represents a dangerous extrapolation, an extrapolation beyond the range of the data.
-:::
-
-## Correlating fat percentage with abdomen circumference, 1 of 3
-
-![](../images/fat-regression-02.png)
-
-::: notes
-Although it is not necessary to compute a correlation before running a linear regression, it does have some value in understanding what is going on.
-
-The bivariate correlation dialog box in SPSS offers an optional table of descriptive statistics.
-:::
-
-## Correlating fat percentage with abdomen circumference, 2 of 3
-
-![](../images/fat-regression-03.png)
-
-::: notes
-The correlation shows a strong positive association between body fat and abdominal circumference.
-:::
-
-## Correlating fat percentage with abdomen circumference, 3 of 3
-
-![](../images/fat-regression-04.png)
-
-::: notes
-You can also get an optional confidence interval. This interval is narrow, mostly because of the large sample size and the strong relationship between the two variables.
-:::
-
 ## R Square measure in linear regression
-
-![](../images/fat-regression-05.png)
-
-::: notes
-By default, SPSS gives you a measure of R Square. The other statistics, R and adjusted R Square, are only useful for regression models with more than one independent variable.
-:::
 
 ## ANOVA table in linear regression
 
-![](../images/fat-regression-06.png)
-
-::: notes
-Here is the ANOVA table. The total sum of squares is split unevenly with about 2/3 going to regression and only 1/3 going to error (residual). If the F-ratio is close to one, you should accept the null hypothesis that the regression slope is flat (equals zero). This is anything but the case here. The F-ratio is large, so you should definitely reject the null hypothesis. The small p-value also indicates that you should reject the null hypothesis.
-:::
-
 ## Regression coefficients
 
-![](../images/fat-regression-07.png)
-
-::: notes
-The slope coefficient is 0.585 (round this to 0.6). This means that the estimated average body fat percentage increases by 0.6% for each one centimeter increase in abdomen circumference. The t-ratio is far from zero, so you should reject the null hypothesis that the population slope parameter equals zero. The small p-value indicates the same conclusion.
-
-Do not try to interpret the intercept. It would be the estimated average body fat percentage in a person with a no abdomen (an abdomen circumference of zero).
-:::
-
-## Predicting fat percentage from abdomen circumference (8/10)
-
-![](../images/fat-regression-08.png)
-
-::: notes
-The SPSS table is very wide, so I cut off and displayed the confidence intervals separately. You are 95% confident that the population slope lies between 0.53 and 0.64.
-:::
+## Predicting fat percentage from abdomen circumference
 
 ## QQ plot of residuals
 
-![](../images/fat-regression-09.png)
-
-::: notes
-The Q-Q plot of the residuals shows strong evidence of normality. There is, perhaps, an outlier on the low end, but this is not a serious issue.
-:::
-
 ## Scatterplot of residuals
 
-![](../images/fat-regression-10.png)
-
-::: notes
-The plot of residuals versus abdomen circumference shows no evidence of non-linearity and no evidence of heteroscedasticity.
-:::
