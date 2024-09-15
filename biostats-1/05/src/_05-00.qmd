@@ -1,0 +1,83 @@
+---
+title: "05-00, Create and store datasets and functions for module05 slides"
+format: 
+  html:
+    embed-resources: true
+editor: source
+---
+
+## Setup
+
+```{r setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+```
+
+## Read breast-feeding-preterm data
+
+```{r read-bf}
+#| message: false
+#| warning: false
+bf <- read_csv(
+  file="../data/breast-feeding-preterm.csv",
+  col_names=TRUE)
+bf[bf==-1] <- NA
+```
+
+## Create regression model and coefficients
+
+```{r plot-bf-1}
+m1 <- lm(age_stop~mom_age, data=bf)
+b <- coef(m1)
+```
+
+## Create simple dataset
+
+```{r read-simple}
+fn <- "../data/hypothetical-correlation.csv"
+read_csv(file=fn) %>% 
+  data.frame() %>%
+  set_names(c("y", "x")) -> simple
+```
+
+## Create draw_line function
+
+```{r draw-line}
+draw_line <- function(a, b, d=simple, pts=simple$y) {
+  d$pts <- pts
+  d$pred <- a+b*d$x
+  d$res <- d$pts-d$pred
+  sse <- sum(d$res^2)
+  d %>%
+    ggplot(aes(x, y)) +
+      expand_limits(x=c(0, 20), y=c(-5, 40)) +
+      geom_point(aes(x=x, y=pts)) +
+      geom_segment(aes(
+        x=x, 
+        y=pts, 
+        xend=x, 
+        yend=pred)) +
+      geom_segment(aes(
+        x=0,
+        y=a,
+        xend=20,
+        yend=a+b*20)) +
+      geom_label(aes(
+        x=x,
+        y=-3,
+        label=res))
+}
+```
+
+## Save everything
+
+```{r save}
+save(
+  bf, 
+  m1, 
+  b, 
+  simple, 
+  draw_line, 
+  file="../data/module05.RData")
+```

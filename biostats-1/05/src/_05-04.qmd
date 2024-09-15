@@ -7,7 +7,24 @@ format:
 editor: source
 ---
 
-## Confidence interval
+## R Square measure in linear regression
+
+## ANOVA table in linear regression
+
+## Regression coefficients
+
+## Predicting fat percentage from abdomen circumference
+
+## QQ plot of residuals
+
+## Scatterplot of residuals
+
+## Violations of this model
+
+-   Nonlinearity
+-   Heterogeneity
+-   Non-normality
+-   Lack of independence## Confidence interval
 
 -   $b_1 \pm t(\alpha/2, n-2) s.e.(b_1)$
     -   $s.e.(b_1)=\sqrt{\frac{MSE}{\Sigma (X_i-\bar{X})^2}}$

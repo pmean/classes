@@ -1,5 +1,5 @@
 ---
-title: "02-01, Counting"
+title: "05-01, Interpretation of linear regression coefficients"
 format: 
   revealjs:
     slide-number: true
@@ -112,57 +112,87 @@ Be cautious with your interpretation of the intercept. Sometimes the value X=0 i
 
 ## Simple regression example with interpretation, 1
 
-```{r setup}
+```{r setup-1}
 #| message: false
 #| warning: false
 library(tidyverse)
+load("../data/module05.RData")
 ```
 
-```{r read-bf}
-#| message: false
-#| warning: false
-bf <- read_csv(
-  file="../data/breast-feeding-preterm.csv",
-  col_names=TRUE)
-bf[bf==-1] <- NA
-```
-
-```{r plot-bf}
+```{r plot-bf-1}
 bf |>
   ggplot(aes(mom_age, age_stop)) +
-    geom_point() +
-    geom_smooth(method="lm", se=FALSE) + 
-    expand_limits(x=0)
+    geom_point() -> plot1
+plot1
 ```
 
-![](http://www.pmean.com/new-images/02/lin_coef-0201.gif)
+:::notes
+Here is an illustration of a linear regression model. This data is from a study of breast feeding in pre-term infants. Successful breast feeding is more difficult for a pre-term infant because the mother goes home from the birth hospital before the infant. The independent variable, X, is the mother's age. The dependent variable is the age at which the infant stopped breast feeding. The goal is to reach at least six months of breast feeding.
 
-## Simple regression example with interpretation, 1
+Notice a weak trend here. Older mother's seem to do a bit better than younger mothers, but there are some 20 year old moms who breast feed for quite a long time and some 40 year old moms who stop breast feeding early. Still, there is a tendency for older moms to breast feed longer than younger moms.
+:::
 
-```{r}
-mod1 <- lm(age_stop~mom_age, data=bf)
-mod1
-coef(mod1)
-glance(mod1)
-tidy(mod1)
-augment(mod1)
+## Simple regression example with interpretation, 2
+
+```{r plot-bf-2}
+plot1 +
+  geom_smooth(
+    method="lm",
+    se=FALSE) -> plot2
+plot2
+```
+
+:::notes
+If you ask R to add a regression line, it stops at the range of the data. No dangerous extrapolations here!
+:::
+
+## Simple regression example with interpretation, 3
+
+```{r plot-bf-3}
+plot2 +
+  expand_limits(x=0) +
+  geom_segment(
+    x=0, 
+    y=b[1],
+    xend=16,
+    yend=b[1]+16*b[2],
+    linetype="dotted")
 ```
 
 ::: notes
+Here is a modification of the graph that expands the limits of the X axis to include X=0. This graph also extends the line beyond the range of the data all the way down to X=0. I used a dotted line and a different color to emphasize that this is an extrapolation beyond the range of the data.
+
 The graph shown below represents the relationship between mother's age and the duration of breast feeding in a research study on breast feeding in pre-term infants.
 
 The regression coefficients are shown below. The intercept, 6, is represented the estimated average duration of breast feeding for a mother that is zero years old. This is an impossible value, so the interpretation is not useful. What is useful, is the interpretation of the slope, approximately 0.4. The estimated average duration of breast feeding increases by 0.4 weeks for every extra year in the mother's age.
 :::
 
-## R Square measure in linear regression
+## Predicted values, 1
 
-## ANOVA table in linear regression
+-   How long would you expect a 20 year old mom to breast feed?
 
-## Regression coefficients
+```{r predict-20}
+bf |>
+  filter(mom_age==20) |>
+  select(mom_age, age_stop)
+```
 
-## Predicting fat percentage from abdomen circumference
+:::notes
+Easy way out is to find a 20 year old mother in the data. That is actually not such a good idea. But there are five of them, four if you are only counting non-missing values. 
 
-## QQ plot of residuals
+In a different dataset maybe you have data on 19 and 21 year olds but no 20 year olds.
 
-## Scatterplot of residuals
+If you predict using a linear regression model, you are incorporating information from all mothers into your prediction, not just 20 year old mothers. Unless there are some major problems with the regression model, this is a much better choice.
+:::
 
+## Predicted values, 2
+
+-   $\hat{Y}_i = b_0+b_1 X_i$
+-   $\hat{Y}_{new} = b_0+b_1 X_{new}$
+    -   Do not predict outside the range of X values
+    
+## Predicted values, 3
+
+```{r predict}
+augment(m1, newdata=data.frame(mom_age=20))
+```
