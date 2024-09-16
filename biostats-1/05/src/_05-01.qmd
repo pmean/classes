@@ -190,9 +190,20 @@ If you predict using a linear regression model, you are incorporating informatio
 -   $\hat{Y}_i = b_0+b_1 X_i$
 -   $\hat{Y}_{new} = b_0+b_1 X_{new}$
     -   Do not predict outside the range of X values
+
+:::notes
+To make a prediction at an existing value in the dataset, use the first formula. If you want to make a prediction at a value that is not in your dataset, use the same formula, but notice that the subscript is "new" to emphasize that this is a new value not seen before in the data. Be careful here. It is okay to make predictions inside the range of the X values. In the breast feeding example that I have been talking about, it is okay to make predictions for a mother between the ages of 16 and 44, but making predictions for a 14 year old mother or a 50 year old mother is risky. You could be making a dangerous extrapolation.
+:::
     
 ## Predicted values, 3
 
 ```{r predict}
-augment(m1, newdata=data.frame(mom_age=20))
+augment(m1, 
+  newdata =
+    data.frame(
+      mom_age=20))
 ```
+
+:::notes
+Here is the predicted value from R.
+:::
