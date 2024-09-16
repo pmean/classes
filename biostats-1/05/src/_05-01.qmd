@@ -115,6 +115,7 @@ Be cautious with your interpretation of the intercept. Sometimes the value X=0 i
 ```{r setup}
 #| message: false
 #| warning: false
+library(glue)
 library(tidyverse)
 ```
 
@@ -128,11 +129,21 @@ bf[bf==-1] <- NA
 ```
 
 ```{r plot-bf}
+mod1 <- lm(age_stop~mom_age, data=bf)
+ti <- glue("age_stop = {b[1]} + {b[2]} * mom_age")
+b <- coef(mod1)
 bf |>
   ggplot(aes(mom_age, age_stop)) +
     geom_point() +
+	  geom_segment(
+	  	x=0, 
+	  	y=b[1],
+	  	xend=16, 
+	  	yend=b[1]+16*b[2],
+	  	linetype="dotted") +
     geom_smooth(method="lm", se=FALSE) + 
-    expand_limits(x=0)
+    expand_limits(x=0) +
+    ggtitle(ti)
 ```
 
 ![](http://www.pmean.com/new-images/02/lin_coef-0201.gif)

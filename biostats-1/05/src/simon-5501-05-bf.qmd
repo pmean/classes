@@ -34,7 +34,6 @@ Replace all the numeric codes of -1 with the missing value code (NA).
 bf <- read_csv(
   file="../data/breast-feeding-preterm.csv",
   col_names=TRUE)
-bf[bf==-1] <- NA
 glimpse(bf)
 ```
 

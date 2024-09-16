@@ -11,7 +11,7 @@ This code is placed in the public domain.
 
 ## Program template
 
--   Download [simon-5501-05-df.qmd][tem]
+-   Download [simon-5501-05-bBf.qmd][tem]
     -   Store it in your src folder
 -   Modify the file name
     -   Use your last name instead of "simon"
@@ -30,7 +30,7 @@ This code is placed in the public domain.
     
 ## Question 1
 
-Calculate descriptive statistics for gestational age (mean, standard deviation, minimum, and maximum) and count the number of missing values. Interpet these results.
+Calculate descriptive statistics for gestational age (mean, standard deviation, minimum, and maximum) and count the number of missing values. Interpret these results.
 
 ## Question 2
 
