@@ -1,5 +1,5 @@
 ---
-title: "02-03, Percentiles"
+title: "05-03, The analysis of variance table"
 format: 
   revealjs:
     slide-number: true
@@ -7,22 +7,13 @@ format:
 editor: source
 ---
 
-## Artificial data
-
-```{r}
-xbar <- mean(simple$x)
-ybar <- mean(simple$y)
-sx <- round(sd(simple$x), 1)
-sy <- round(sd(simple$y), 1)
-print(simple, row.names=FALSE)
+```{r setup-3}
+#| message: false
+#| warning: false
+library(broom)
+library(tidyverse)
+load("../data/module05.RData")
 ```
-
--   $\bar{X}$
-
--   X-bar = `r xbar`
--   Y-bar = `r ybar`
--   SD(X) = `r sx`
--   SD(Y) = `r sy`
 
 
 ## Sum of squares regression
@@ -61,16 +52,16 @@ draw_line(0, 0, pts=simple$y)
  Total      & SST & n-1 &                     &
 \end{matrix}
 ```
-## Review: ANOVA table for oneway ANOVA
 
-```{=tex}
-\begin{matrix}
-         &  SS &  df &                    MS &           F-ratio \\
- Between & SSB & k-1 &   MSB=\frac{SSB}{k-1} & F=\frac{MSB}{MSW} \\
- Within  & SSW & n-k & MSW=\frac{SSW}{n-k-1} &                   \\
- Total   & SST & n-1 &                       &
-\end{matrix}
+## Analysis of variance table in R
+
+```{r anova}
+anova(m1)
 ```
+
+:::notes
+The analysis of variance table looks different in different software programs and it differs from publication to publication. Notice for example that R does not include a row for total. SPSS, in contrast includes both a corrected total and an uncorrected total.
+:::
 
 ## R-squared
 
@@ -80,30 +71,59 @@ draw_line(0, 0, pts=simple$y)
 -   $R^2=\frac{SSR}{SST}=1-\frac{SSE}{SST}$
     -    $0 < R^2 < 1$
     -    Proportion of explained variation
+         -   $R^2 > 0.5$ strong
+         -   $0.1 < R^2 < 0.5$ weak
+-   $R^2 = r^2$
 
-## SPSS linear regression
 
-![](../images/simple-regression-02.png)
+:::notes
+You can compare the three sources of variation. SSR is explained variation, variation in the predicted values. SSE is unexplained variation. These add up to total variation. Either explained variation divided by total variation or 1 minus unexplained variation divided by total variation is a measure of the strength of the relationship. If you can explain half of the variation (R2=0.5), that's evidence of a strong relationship. Anything between 10% and 50% is evidence of a weak relationship.
 
--   Row 1: SSR, df, MSR, F-ratio, p-value
--   Row 2: SSE, df, MSE
--   Row 3: SST, df
-
-## SPSS General Linear Model
-
-![](../images/simple-regression-01.png)
-
--   Row 1: SSR, df, MSR, F-ratio, p-value
--   Row 3: same as Row 1
--   Row 4: SSE, df, MSE
--   Row 6: SST, df
-
-::: notes
-Ignore Row 2 completely. 
-
-Row 3 is the same as Row 1 when you have a single independent variable. With multiple independent variables, SPSS will divide the variation in row 1 across multiple rows, one for each independent variable.
-
-Row 5 is often referred to as the uncorrected total. SPSS does it differently and refers to the uncorrected total as just plain "total" and then uses "Corrected total" where most researchers would use just plain "total".
-
-You may prefer the previous output as being less confusing and that's fine. The big advantage of the general linear model lies in its ability to model a variety of different analyses.
+There is a simple mathematical relationship. Square the correlation between X and Y to get R-squared.
 :::
+
+
+## R-squared calculation in R
+
+```{r r-squared}
+glance(m1)$r.squared
+```
+
+:::notes
+Here is the value of R-squared for the breast feeding example. This is a very weak relationship.
+:::
+
+## Confidence intervals, 1
+
+-   Population model
+    -   $Y_i=\beta_0+\beta_1 X_i + \epsilon_i,\ i=1,...,N$
+-   Sample estimates
+    -   $b_1=\frac{\Sigma(X_i-\bar{X})(Y_i-]bar{Y)}{\Sigma(X_i-\bar{X})^2}$
+    -   $b_0=\bar{Y}-b_1\bar{X}$
+   
+## Confidence intervals, 2
+
+-   Standard error (se)
+    -   $se(b_1)=\sqrt{\frac{MSE}{(n-1)*S_x^2}}$
+-   Confidence interval for $\beta_1$
+    -   $b_1 \pm t se(b_1)$
+    
+## Confidence intervals, 3
+
+```{r confidence-interval}
+confint(m1)
+```
+
+## Hypothesis test, 1
+
+-   $H_0:\ \beta_1=0$
+-   $H_1:\ \beta_1 \ne 0$
+    -   Accept $H_0$ if $T=\frac{b_1}{se(b_1)}$ is close to zero
+    -   $\ $ or Accept $H_0$ if the confidence interval includes zero
+    -   $\ $ or Accept $H_0$ if the p-value is large
+    
+## Hypothesis test, 2
+
+```{r hypothesis-test}
+tidy(m1)
+```

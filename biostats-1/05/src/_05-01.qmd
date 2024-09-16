@@ -1,5 +1,5 @@
 ---
-title: "02-01, Counting"
+title: "05-01, Interpretation of linear regression coefficients"
 format: 
   revealjs:
     slide-number: true
@@ -112,68 +112,182 @@ Be cautious with your interpretation of the intercept. Sometimes the value X=0 i
 
 ## Simple regression example with interpretation, 1
 
-```{r setup}
+```{r setup-1}
 #| message: false
 #| warning: false
+library(broom)
 library(glue)
 library(tidyverse)
+load("../data/module05.RData")
 ```
 
-```{r read-bf}
-#| message: false
-#| warning: false
-bf <- read_csv(
-  file="../data/breast-feeding-preterm.csv",
-  col_names=TRUE)
-bf[bf==-1] <- NA
-```
-
-```{r plot-bf}
-mod1 <- lm(age_stop~mom_age, data=bf)
-ti <- glue("age_stop = {b[1]} + {b[2]} * mom_age")
-b <- coef(mod1)
+```{r plot-bf-1}
 bf |>
   ggplot(aes(mom_age, age_stop)) +
-    geom_point() +
-	  geom_segment(
-	  	x=0, 
-	  	y=b[1],
-	  	xend=16, 
-	  	yend=b[1]+16*b[2],
-	  	linetype="dotted") +
-    geom_smooth(method="lm", se=FALSE) + 
-    expand_limits(x=0) +
-    ggtitle(ti)
+    geom_point() -> plot1
+plot1
 ```
 
-![](http://www.pmean.com/new-images/02/lin_coef-0201.gif)
+:::notes
+Here is an illustration of a linear regression model. This data is from a study of breast feeding in pre-term infants. Successful breast feeding is more difficult for a pre-term infant because the mother goes home from the birth hospital before the infant. The independent variable, X, is the mother's age. The dependent variable is the age at which the infant stopped breast feeding. The goal is to reach at least six months of breast feeding.
 
-## Simple regression example with interpretation, 1
+Notice a weak trend here. Older mother's seem to do a bit better than younger mothers, but there are some 20 year old moms who breast feed for quite a long time and some 40 year old moms who stop breast feeding early. Still, there is a tendency for older moms to breast feed longer than younger moms.
+:::
 
-```{r}
-mod1 <- lm(age_stop~mom_age, data=bf)
-mod1
-coef(mod1)
-glance(mod1)
-tidy(mod1)
-augment(mod1)
+## Simple regression example with interpretation, 2
+
+```{r plot-bf-2}
+plot1 +
+  geom_smooth(
+    method="lm",
+    se=FALSE) -> plot2
+plot2
+```
+
+:::notes
+If you ask R to add a regression line, it stops at the range of the data. No dangerous extrapolations here!
+:::
+
+## Simple regression example with interpretation, 3
+
+```{r plot-bf-3}
+plot2 +
+  expand_limits(x=0) +
+  geom_segment(
+    x=0, 
+    y=b[1],
+    xend=16,
+    yend=b[1]+16*b[2],
+    linetype="dotted")
 ```
 
 ::: notes
+Here is a modification of the graph that expands the limits of the X axis to include X=0. This graph also extends the line beyond the range of the data all the way down to X=0. I used a dotted line and a different color to emphasize that this is an extrapolation beyond the range of the data.
+
 The graph shown below represents the relationship between mother's age and the duration of breast feeding in a research study on breast feeding in pre-term infants.
 
 The regression coefficients are shown below. The intercept, 6, is represented the estimated average duration of breast feeding for a mother that is zero years old. This is an impossible value, so the interpretation is not useful. What is useful, is the interpretation of the slope, approximately 0.4. The estimated average duration of breast feeding increases by 0.4 weeks for every extra year in the mother's age.
 :::
 
-## R Square measure in linear regression
+## Predicted values, 1
 
-## ANOVA table in linear regression
+-   How long would you expect a 20 year old mom to breast feed?
 
-## Regression coefficients
+```{r predict-20}
+bf |>
+  filter(mom_age==20) |>
+  select(mom_age, age_stop)
+```
 
-## Predicting fat percentage from abdomen circumference
+:::notes
+Easy way out is to find a 20 year old mother in the data. That is actually not such a good idea. But there are five of them, four if you are only counting non-missing values. 
 
-## QQ plot of residuals
+In a different dataset maybe you have data on 19 and 21 year olds but no 20 year olds.
 
-## Scatterplot of residuals
+If you predict using a linear regression model, you are incorporating information from all mothers into your prediction, not just 20 year old mothers. Unless there are some major problems with the regression model, this is a much better choice.
+:::
 
+## Predicted values, 2
+
+-   $\hat{Y}_i = b_0 + b_1 X_i$
+-   $\hat{Y}_{new} = b_0 + b_1 X_{new}$
+    -   Do not predict outside the range of X values
+
+:::notes
+To make a prediction at an existing value in the dataset, use the first formula. If you want to make a prediction at a value that is not in your dataset, use the same formula, but notice that the subscript is "new" to emphasize that this is a new value not seen before in the data. Be careful here. It is okay to make predictions inside the range of the X values. In the breast feeding example that I have been talking about, it is okay to make predictions for a mother between the ages of 16 and 44, but making predictions for a 14 year old mother or a 50 year old mother is risky. You could be making a dangerous extrapolation.
+:::
+    
+## Predicted values, 3
+
+```{r predict}
+augment(m1, 
+  newdata =
+    data.frame(
+      mom_age=20))
+```
+
+:::notes
+Here is the predicted value from R.
+:::
+
+## Residuals, 1
+
+-   $e_i=Y_i-\hat{Y}_i$
+    -   Residual = Observed - Predicted
+-   Very helpful in assessing assumptions
+    
+:::notes
+The residual is also important. It represents the deviation between what was actually observed and what was predicted.
+
+The residual is very helpful in assessing the assumptions needed for linear regression. This is a topic I will reserve for a later module.
+:::
+
+## Residuals, 2
+
+![](http://pmean.com/news/images/201011/02a.jpg)
+
+:::notes
+One interesting (and controversial) application of residuals is in an analysis of election results in Florida during the presidential race of 2000.
+
+Image taken from: http://en.wikipedia.org/wiki/File:Butterfly_large.jpg.
+:::
+
+## Residuals, 3
+
+![](http://pmean.com/news/images/201011/04a.gif)
+
+:::notes
+There are several ways to look at the data, and they all show that the vote for Buchanna in Palm Beach County was unusual. Here is a graph looking at the votes for Bush in each county of Florida on the X-axis and the votes for Buchanan in that same county.
+
+Notice that there is a strong positive trend. Counties with lots of votes for Bush tended to produce lots of votes for Buchanan. Not one to one of course, because votes for Bush were in the hunderds of thousands, while votes for Buchanan were two orders of magnitude smaller.
+
+The relationship occurs in part because both Bush and Buchanan were candidates that appealed to the same type of voter, someone on the conservative side of the voting spectrum. More importantly, though, is that bigger counties would tend to produce more votes for both candidates.
+
+Notice the one point very hight in the middle of the graph. This is Palm Beach County. Buchanan got over 3,000 votes there and 
+:::
+
+## Residuals, 4
+
+-   Votes (Buchanan) = 45.3 +0.0049 * Votes (Bush)
+    -   The estimated average number of votes for Buchanan increase by 1/200 for every increase of one vote for Bush.
+    
+## Residuals, 5
+-   In Palm Beach County
+    -   Votes (Bush) = 152,846
+    -   Predicted Votes (Buchanan) = 797
+        -   45 + 0.0049 * 152,846
+    -   Actual Votes (Buchanan) = 3,407
+-   Residual = 3,407 - 797 = 2,610
+
+:::notes
+We can compute a predicted number of votes for Buchanan for each county by using the above equation. Palm Beach County had 152,846 votes for Bush. So the regression model would predict that Buchanan should get:
+
+45 + 0.0049 * 152,846 =  797.
+
+Thus, if the relationship observed across the entire state held exactly in Palm Beach County, then we would estimate the vote count for Buchanan to be 797.
+
+There were actually 3,407 votes recorded for Buchanan, which is quite a discrepancy from what we predicted. The residual, the difference between what we observed and what would be predicted by the regression model is:
+
+3,407 - 797 = 2,610.
+
+One possible interpretation is that this discrepancy represents an estimate of the number of people who voted incorrectly for Buchanan. Such an interpretation would have to consider other possibilities, though. Is there something unique about Palm Beach County that would cause that county to vote in disproportionate numbers for Buchanan? Buchanan does indeed have some relatives in the area, and although they do not number in the thousands, perhaps they exerted some influence on their community.
+
+Other information might tend to corroborate that a large number of votes were cast erroneously for Buchanan. Some of the highest vote counts for Buchanan were in precincts that were most heavily Democratic. There were also a large number of complaints received by the election board prior to anyone knowing how close the vote count in Florida would be.
+
+There are other models that have been considered for the Palm Beach County vote, and most of them show a similar size discrepancy between the observed vote and the vote that would be predicted the regression model. It would set a dangerous precedent, of course, to use a statistical model to adjust vote counts, so this example is more for understanding what might have gone wrong and the magnitude of the error made.
+
+The general lesson here is that the residual represents the discrepancy between what the actual data value and what a linear regression model predicts. When the residual is large, there is reason to investigate. Please, please, please don't toss out a data value, though, just because it has an extreme residual.
+:::
+
+## Residuals, 6
+
+```{r residual}
+augment(m1) |>
+	filter(mom_age==20) |>
+	select(
+		.rownames,
+		mom_age,
+		age_stop,
+		.fitted,
+		.resid)
+```
