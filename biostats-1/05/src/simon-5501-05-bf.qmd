@@ -7,11 +7,9 @@ format:
 date: 2024-09-11
 ---
 
-This program reads data and fits various linear regression models on a breast feeding study in pre-term infants.  Find more information in the [data dictionary][dd].
+This program reads data and fits various linear regression models on a breast feeding study in pre-term infants.  Find more information in the [data dictionary][dd]. This code is placed in the public domain.
 
 [dd]: https://raw.githubusercontent.com/pmean/datasets/master/breast-feeding-preterm.yaml
-
-This code is placed in the public domain.
 
 ## Load the tidyverse library
 
@@ -20,7 +18,7 @@ For most of your programs, you should load the tidyverse library. The messages a
 ```{r setup}
 #| message: false
 #| warning: false
-library(knitr)
+library(broom)
 library(tidyverse)
 ```
 
@@ -45,29 +43,35 @@ The code below only works because every single variable in the dataset is non-ne
 bf[bf==-1] <- NA
 ```
 
-The dc3_wt variable has 14 missing values. The are several other variables with from 1 to 4 missing values.
-
 ## Calculate statistics for mother's age
 
 ```{r gest-age}
 bf |>
 	summarize(
-		mean_mom_age=mean(mom_age),
-		sd_mom_age=sd(mom_age),
+		mean_mom_age=mean(mom_age, na.rm=TRUE),
+		sd_mom_age=sd(mom_age, na.rm=TRUE),
+		min_mom_age=min(mom_age, na.rm=TRUE),
+		max_mom_age=max(mom_age, na.rm=TRUE),
 		n_missing=sum(is.na(mom_age))) |>
 	data.frame()
 ```
 
-## Calculate statistics for dc_age
+This is a reasonable distribution of ages. If you saw mothers much younger than 16 years or much older than 44 years, that might raise some concerns about the data.
+
+## Calculate statistics for age_stop
 
 ```{r dc-age}
 bf |>
 	summarize(
 		mean_age_stop=mean(age_stop, na.rm=TRUE),
 		sd_age_stop=sd(age_stop, na.rm=TRUE),
+		min_age_stop=min(age_stop, na.rm=TRUE),
+		max_age_stop=max(age_stop, na.rm=TRUE),
 		n_missing=sum(is.na(age_stop))) |>
 	data.frame()
 ```
+
+The maximum value, 34 weeks, was a bit of concern for me, because the study was a six month study, which would imply the largest value would be 24 or 26. But I was told that breast feeding duration included time in the hospital, which could easily be as long as 8 or 10 weeks for a pre-term infant.
 
 ## Plot mother's age and age when breast feeding stopped
 
@@ -76,5 +80,50 @@ bf |>
 	ggplot(aes(mom_age, age_stop)) +
 	  geom_point() +
 	  xlab("Mother's age (years)") +
-	  ylab("When breast feeding ended (weeks)")
+	  ylab("When breast feeding ended (weeks)") +
+    geom_smooth(method="lm", se=FALSE) +
+    ggtitle("Plot produced by Steve Simon on 2024-09-17")
 ```
+
+There is a weak relationship between mother's age and age when she stopped breast feeding.
+
+## Linear regression estimates for predicting age_stop
+
+```{r linear-regression}
+m1 <- lm(age_stop~mom_age, data=bf)
+m1
+```
+
+The estimated average duration of breast feeding increases by 0.39 weeks for each increase of one year in the mother's age. The estimated average duration of breast feeding is 5.9 weeks for a mother of age zero. This is an extrapolation well beyond the range of the data. 
+
+## Analysis of variance table for age_stop
+
+```{r anova}
+anova(m1)
+```
+
+The F-ratio is large and the p-value is small, so you would reject the null hypothesis and conclude that there is a linear relationship between mother's age and duration of breast feeding.
+
+## R-squared for age_stop
+
+```{r r-squared}
+glance(m1)$r.squared
+```
+
+Although there is a statistically significant relationship between mother's age and duration of breast feeding, as shown above, this relationship is very weak.
+
+## Confidence interval for the slope
+
+```{r ci-age-stop}
+confint(m1)
+```
+
+The confidence interval includes only positive values, so we are 95% confident that the duration of breast feeding increases as the mother's age increases. The slope could be as small as  0.067 weeks per year of mother's age or as large as 0.71 weeks per year of mother's age. This is a very wide interval indicating a large degree of uncertainty about the true value of the slope parameter.
+
+## Alternate test for the slope parameter
+
+```{r t-test-for-age-stop}
+tidy(m1)
+```
+
+The T statistic is testing the slope parameter is large and the p-value is small, both indicating that you should reject the null hyothesis and conclude that there is a positive relationship between mother's age and duration of breast feeding.

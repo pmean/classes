@@ -95,7 +95,7 @@ Here is the value of R-squared for the breast feeding example. This is a very we
 
 ## F-ratio, 1
 
--   $F = \frac{MSR}{MSE}
+-   $F = \frac{MSR}{MSE}$
 
 :::notes
 The F-ratio, MSR divided by MSE. If this value is close to 1, you would accept the null hypothesis. The signal (MSR) is comparable to the noise (MSE). If you see a large positive ratio, that implies that the signal is much stronger than the noise. A large positive ratio would cause you to reject the null hypothesis.

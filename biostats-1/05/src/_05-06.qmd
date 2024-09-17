@@ -21,15 +21,15 @@ load("../data/module05.RData")
 -   Population model
     -   $Y_i=\beta_0+\beta_1 X_i + \epsilon_i,\ i=1,...,N$
 -   Sample estimates
-    -   $b_1=\frac{\Sigma(X_i-\bar{X})(Y_i-]bar{Y)}{\Sigma(X_i-\bar{X})^2}$
+    -   $b_1=\frac{\Sigma(X_i-\bar{X})(Y_i-\bar{Y})}{\Sigma(X_i-\bar{X})^2}$
     -   $b_0=\bar{Y}-b_1\bar{X}$
    
 ## Confidence intervals, 2
 
 -   Standard error (se)
-    -   $se(b_1)=\sqrt{\frac{MSE}{(n-1)*S_x^2}}$
+    -   $se(b_1)=\sqrt{\frac{MSE}{(n-1) S_x^2}}$
 -   Confidence interval for $\beta_1$
-    -   $b_1 \pm t se(b_1)$
+    -   $b_1 \pm t\ se(b_1)$
     
 ## Confidence intervals, 3
 
@@ -71,77 +71,6 @@ Here is the output for the t-test in R.
     -   T is series of separate tests of individual variables
     
 :::notes
-
-:::
-
-:::
-
-## Equivalent hypothesis test
-
--   Compare $F=\frac{MSR}{MSE}$ to $F(1-\alpha; 1, n-2)$
-    -   Accept $H_0$ if F is close to one
-    -   Reject $H_0$ if T is large positive
--   Note: $F=T^2$
- 
-::: notes
-You get an identical result if you compute the F-ratio, MSR divided by MSE. If this value is close to 1, you would accept the null hypothesis. The signal (MSR) is comparable to the noise (MSE). If you see a large positive ratio, that implies that the signal is much stronger than the noise. A large positive ratio would cause you to reject the null hypothesis.
-:::
-
-## Two more equivalent tests
-
--   Compute the p-value from T or F
-    -   Accept $H_0$ if $p-value > \alpha$
-    -   Reject $H_0$ if $p-value \le \alpha$
--   Compute the confidence interval (CI) for $\beta_1$
-    -   Accept $H_0$ if CI includes 0
-    -   Reject $H_0$ if CI does not include 0
-    
-::: notes
-Recall that the p-value is the probability of observing the sample result or a result more extreme. If the p-value is large (greater than $\alpha$), then you have little or no evidence against the null hypothesis. If the p-value is small (less than or equal to $\alpha$), then you have lots of evidence against the null hypothesis.
-:::
-
-## Calculation of the regression slope and intercept
-
--   $b_1=\frac{\Sigma (X_i-\bar{X})(Y_i-\bar{Y})}{\Sigma (X_i-\bar{X})^2}$
--   $b_0=\bar{Y}-b_1\bar{X}$
-
-## Relationship to the correlation coefficient
-
--   Recall from the previous module
-    -   $Cov(X,Y)=\frac{1}{n-1}\Sigma(X_i-\bar{X})(Y_i-\bar{Y})$
-    -   $r_{XY}=\frac{Cov(X,Y)}{S_X S_Y}$
--   This implies that
-    -   $b_1=r_{XY}\frac{S_Y}{S_X}$
-
-## Important implications
-
--   $r_{XY}$ is unitless, $b_1$ is Y units per X units
--   $r_{XY}>0$ implies $b_1>0$
--   $r_{XY}=0$ implies $b_1=0$
--   $r_{XY}<0$ implies $b_1<0$
-    -   and vice versa
-
-## Predicted values
-
--   For a new value of X
-    -   $\hat{Y}_{new}=b_0+b_1 X_{new}$
-
--   For an existing value in the data, $X_i$
-    -   $\hat{Y}_i=b_0+b_1 X_i$
-
-## Why predict for a value you already have seen?
-
--   Future Y may differ from previous Y
--   Comparison of $\hat{Y}_i$ to existing $Y_i$.
-
-## Residual
-
--   $e_i=Y_i-\hat{Y}_i$
-    -   Error in prediction
-    -   $\Sigma e_i=0$
-    -   Estimate of $\epsilon_i$
-    
-::: notes
-The residual is the difference between what you observed ($Y_i$) and what the linear regression model would predict ($\hat{Y}_i$). If the residual is zero, you nailed it. A perfect prediction. That may happen once in a while, but you will almost never see perfect predictions for every patient in your study. The residuals will sum to zero because the linear regression uses the least squares principle to 
+Although it seems redundant to have two different ways to test the same hypothesis, it actually becomes important for more complex settings where you are trying to predict an outcome using two or more independent variables.
 :::
 

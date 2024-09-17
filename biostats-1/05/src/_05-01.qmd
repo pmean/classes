@@ -101,8 +101,10 @@ In English, we would say that this is the change in y divided by the change in x
 ## Linear regression interpretation of a straight line
 
 -   The slope represents the estimated average change in Y when X increases by one unit.
-
 -   The intercept represents the estimated average value of Y when X equals zero.
+-   Terminology
+    -   X is the independent or predictor variable
+    -   Y is the dependent or outcome variable
 
 ::: notes
 In linear regression, we use a straight linear to estimate a trend in data. We can't always draw a straight line that passes through every data point, but we can find a line that "comes close" to most of the data. This line is an estimate, and we interpret the slope and the intercept of this line as follows:
@@ -199,14 +201,22 @@ If you predict using a linear regression model, you are incorporating informatio
 
 ## Predicted values, 2
 
--   $\hat{Y}_i = b_0 + b_1 X_i$
--   $\hat{Y}_{new} = b_0 + b_1 X_{new}$
+-   For an existing value in the data, $X_i$
+    -   $\hat{Y}_i=b_0+b_1 X_i$
+-   For a new value of X
+    -   $\hat{Y}_{new}=b_0+b_1 X_{new}$
     -   Do not predict outside the range of X values
 
 :::notes
 To make a prediction at an existing value in the dataset, use the first formula. If you want to make a prediction at a value that is not in your dataset, use the same formula, but notice that the subscript is "new" to emphasize that this is a new value not seen before in the data. Be careful here. It is okay to make predictions inside the range of the X values. In the breast feeding example that I have been talking about, it is okay to make predictions for a mother between the ages of 16 and 44, but making predictions for a 14 year old mother or a 50 year old mother is risky. You could be making a dangerous extrapolation.
 :::
     
+## Why predict for a value you already have seen?
+
+-   Future Y may differ from previous Y
+-   $\hat{Y}_i$ is more precise
+-   Comparison of $\hat{Y}_i$ to existing $Y_i$.
+
 ## Predicted values, 3
 
 Predicted age_stop = 5.92 + 0.389*20 = 13.7
