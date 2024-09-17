@@ -1,5 +1,5 @@
 ---
-title: "02-06, TBA-1"
+title: "05-04, Confidence interval for the slope parameter"
 format: 
   revealjs:
     slide-number: true
@@ -7,252 +7,141 @@ format:
 editor: source
 ---
 
-## Model
 
--   $Y_i=\beta_0+\beta_1 X_{1i}+\beta_2 X_{2i}+\epsilon_i$
--   Least squares estimates: $b_0,\ b_1,\ b_2$
-
-::: notes
-Add note.
-:::
-
-## Interpretations
-
--   $b_0$ is the estimated average value of Y when X1 and X2 both equal zero.
--   $b_1$ is the estimated average change in Y
-    -   when $X_1$ increases by one unit, and
-    -   $X_2$ is held constant
--   $b_2$ is the estimated average change in Y
-    -   when $X_2$ increases by one unit, and
-    -   $X_1$ is held constant
-    
-## Unadjusted relationship between height and FEV
-
-```{r}
+```{r setup-4}
+#| message: false
+#| warning: false
 library(broom)
 library(tidyverse)
-fn <- "../data/data-05-fev.csv"
-read_csv(fn, col_names=FALSE) %>%
-  data.frame -> init
-names(init) <- c(
-  "age",
-  "fev",
-  "height",
-  "sex",
-  "smoker")
-lm(fev~height, data=init) %>%
-  tidy %>%
-  pull(estimate) -> bu
-ggplot(init, aes(height, fev, label=age)) +
-  geom_text() +
-  geom_abline(slope=bu[2], intercept=bu[1])
+load("../data/module05.RData")
 ```
 
-## Relationship between height and FEV controlling at Age=3
+## Confidence intervals, 1
 
-```{r}
-lm(fev~height+age, data=init) %>%
-  tidy %>%
-  pull(estimate) -> b
-control_age <- function(a) {
-  co=ifelse(init$age==a, "black", "gray")
-  o <- order(co)
-  init[o, ] %>%
-    ggplot(aes(height, fev, label=age)) +
-      geom_text(color=co[o]) +
-      geom_abline(slope=b[2], intercept=b[1]+b[3]*a) +
-      geom_abline(slope=bu[2], intercept=bu[1], color="gray")
-}
-a <- 3
+-   Population model
+    -   $Y_i=\beta_0+\beta_1 X_i + \epsilon_i,\ i=1,...,N$
+-   Sample estimates
+    -   $b_1=\frac{\Sigma(X_i-\bar{X})(Y_i-]bar{Y)}{\Sigma(X_i-\bar{X})^2}$
+    -   $b_0=\bar{Y}-b_1\bar{X}$
+   
+## Confidence intervals, 2
+
+-   Standard error (se)
+    -   $se(b_1)=\sqrt{\frac{MSE}{(n-1)*S_x^2}}$
+-   Confidence interval for $\beta_1$
+    -   $b_1 \pm t se(b_1)$
+    
+## Confidence intervals, 3
+
+```{r confidence-interval}
+confint(m1)
 ```
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Hypothesis test, 1
 
-```{r}
-control_age(a)
-a <- a+1
+-   $H_0:\ \beta_1=0$
+-   $H_1:\ \beta_1 \ne 0$
+    -   Accept $H_0$ if $T=\frac{b_1}{se(b_1)}$ is close to zero
+    -   $\ $ or Accept $H_0$ if the confidence interval includes zero
+    -   $\ $ or Accept $H_0$ if the p-value is large
+
+:::notes
+The hypotheses involve the population parameter, $\beta_1$. To test this hypothesis, compare the sample statistic, $b_1$, to its standard error. If that ratio is close to zero, then you would accept the null hypothesis. If you see extreme values, very large negative or very large positive values, then you should reject the null hypothesis.
+:::
+    
+## Hypothesis test, 2
+
+```{r hypothesis-test}
+tidy(m1)
 ```
 
-## Relationship between height and FEV controlling at Age=`r a`
+:::notes
+Here is the output for the t-test in R.
+:::
 
-```{r}
-control_age(a)
-a <- a+1
-```
+## Why two different ways to test?
 
-## Relationship between height and FEV controlling at Age=`r a`
+-   $F=T^2$
+    -   Accept $H_0$ if F is close to one
+    -   Accept $H_0$ if T is close to zero
+-   For both tests
+    -   Accept $H_0$ if p-value is large
+-   F and T differ in more complex settings
+    -   F is a global test of all variables
+    -   T is series of separate tests of individual variables
+    
+:::notes
 
-```{r}
-control_age(a)
-a <- a+1
-```
+:::
 
-## Relationship between height and FEV controlling at Age=`r a`
+:::
 
-```{r}
-control_age(a)
-a <- a+1
-```
+## Equivalent hypothesis test
 
-## Relationship between height and FEV controlling at Age=`r a`
+-   Compare $F=\frac{MSR}{MSE}$ to $F(1-\alpha; 1, n-2)$
+    -   Accept $H_0$ if F is close to one
+    -   Reject $H_0$ if T is large positive
+-   Note: $F=T^2$
+ 
+::: notes
+You get an identical result if you compute the F-ratio, MSR divided by MSE. If this value is close to 1, you would accept the null hypothesis. The signal (MSR) is comparable to the noise (MSE). If you see a large positive ratio, that implies that the signal is much stronger than the noise. A large positive ratio would cause you to reject the null hypothesis.
+:::
 
-```{r}
-control_age(a)
-a <- a+1
-```
+## Two more equivalent tests
 
-## Relationship between height and FEV controlling at Age=`r a`
+-   Compute the p-value from T or F
+    -   Accept $H_0$ if $p-value > \alpha$
+    -   Reject $H_0$ if $p-value \le \alpha$
+-   Compute the confidence interval (CI) for $\beta_1$
+    -   Accept $H_0$ if CI includes 0
+    -   Reject $H_0$ if CI does not include 0
+    
+::: notes
+Recall that the p-value is the probability of observing the sample result or a result more extreme. If the p-value is large (greater than $\alpha$), then you have little or no evidence against the null hypothesis. If the p-value is small (less than or equal to $\alpha$), then you have lots of evidence against the null hypothesis.
+:::
 
-```{r}
-control_age(a)
-a <- a+1
-```
+## Calculation of the regression slope and intercept
 
-## Relationship between height and FEV controlling at Age=`r a`
+-   $b_1=\frac{\Sigma (X_i-\bar{X})(Y_i-\bar{Y})}{\Sigma (X_i-\bar{X})^2}$
+-   $b_0=\bar{Y}-b_1\bar{X}$
 
-```{r}
-control_age(a)
-a <- a+1
-```
+## Relationship to the correlation coefficient
 
-## Relationship between height and FEV controlling at Age=`r a`
+-   Recall from the previous module
+    -   $Cov(X,Y)=\frac{1}{n-1}\Sigma(X_i-\bar{X})(Y_i-\bar{Y})$
+    -   $r_{XY}=\frac{Cov(X,Y)}{S_X S_Y}$
+-   This implies that
+    -   $b_1=r_{XY}\frac{S_Y}{S_X}$
 
-```{r}
-control_age(a)
-a <- a+1
-```
+## Important implications
 
-## Relationship between height and FEV controlling at Age=`r a`
+-   $r_{XY}$ is unitless, $b_1$ is Y units per X units
+-   $r_{XY}>0$ implies $b_1>0$
+-   $r_{XY}=0$ implies $b_1=0$
+-   $r_{XY}<0$ implies $b_1<0$
+    -   and vice versa
 
-```{r}
-control_age(a)
-a <- a+1
-```
+## Predicted values
 
-## Relationship between height and FEV controlling at Age=`r a`
+-   For a new value of X
+    -   $\hat{Y}_{new}=b_0+b_1 X_{new}$
 
-```{r}
-control_age(a)
-a <- a+1
-```
+-   For an existing value in the data, $X_i$
+    -   $\hat{Y}_i=b_0+b_1 X_i$
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Why predict for a value you already have seen?
 
-```{r}
-control_age(a)
-a <- a+1
-```
+-   Future Y may differ from previous Y
+-   Comparison of $\hat{Y}_i$ to existing $Y_i$.
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Residual
 
-```{r}
-control_age(a)
-a <- a+1
-```
+-   $e_i=Y_i-\hat{Y}_i$
+    -   Error in prediction
+    -   $\Sigma e_i=0$
+    -   Estimate of $\epsilon_i$
+    
+::: notes
+The residual is the difference between what you observed ($Y_i$) and what the linear regression model would predict ($\hat{Y}_i$). If the residual is zero, you nailed it. A perfect prediction. That may happen once in a while, but you will almost never see perfect predictions for every patient in your study. The residuals will sum to zero because the linear regression uses the least squares principle to 
+:::
 
-## Relationship between height and FEV controlling at Age=`r a`
-
-```{r}
-control_age(a)
-a <- a+1
-```
-
-## Relationship between height and FEV controlling at Age=`r a`
-
-```{r}
-control_age(a)
-a <- a+1
-```
-
-## Relationship between height and FEV controlling at Age=`r a`
-
-```{r}
-control_age(a)
-a <- a+1
-```
-
-## Relationship between height and FEV controlling at Age=`r a`
-
-```{r}
-control_age(a)
-a <- a+1
-```
-
-## Relationship between height and FEV controlling at Age=`r a`
-
-```{r}
-control_age(a)
-a <- a+1
-```
-
-## Unadjusted relationship between age and fev
-
-```{r}
-lm(fev~age, data=init) %>%
-  tidy %>%
-  pull(estimate) -> bu
-ggplot(init, aes(age, fev, label=height)) +
-  geom_text() +
-  geom_abline(slope=bu[2], intercept=bu[1])
-h <- 48
-```
-
-## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
-
-```{r}
-g <- 4*floor((init$height-2)/4)+4
-control_height <- function(a) {
-  co=ifelse(g==h, "black", "gray")
-  o <- order(co)
-  init[o, ] %>%
-    ggplot(aes(age, fev, label=height)) +
-      geom_text(color=co[o]) +
-      geom_abline(slope=b[3], intercept=b[1]+b[2]*h) +
-      geom_abline(slope=bu[2], intercept=bu[1], color="gray")
-}
-h <- 48
-control_height(h)
-h <- h+4
-```
-
-## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
-
-```{r}
-control_height(h)
-h <- h+4
-```
-
-## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
-
-```{r}
-control_height(h)
-h <- h+4
-```
-
-## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
-
-```{r}
-control_height(h)
-h <- h+4
-```
-
-## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
-
-```{r}
-control_height(h)
-h <- h+4
-```
-
-## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
-
-```{r}
-control_height(h)
-h <- h+4
-```
-
-## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
-
-```{r}
-control_height(h)
-h <- h+4
-```

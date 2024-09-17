@@ -169,6 +169,16 @@ The graph shown below represents the relationship between mother's age and the d
 The regression coefficients are shown below. The intercept, 6, is represented the estimated average duration of breast feeding for a mother that is zero years old. This is an impossible value, so the interpretation is not useful. What is useful, is the interpretation of the slope, approximately 0.4. The estimated average duration of breast feeding increases by 0.4 weeks for every extra year in the mother's age.
 :::
 
+## Simple regression example with interpretation
+
+```{r regression}
+m1
+```
+
+:::notes
+The actual values are pretty close to the rough estimates that we got from the graph.
+:::
+
 ## Predicted values, 1
 
 -   How long would you expect a 20 year old mom to breast feed?
@@ -198,6 +208,8 @@ To make a prediction at an existing value in the dataset, use the first formula.
 :::
     
 ## Predicted values, 3
+
+Predicted age_stop = 5.92 + 0.389*20 = 13.7
 
 ```{r predict}
 augment(m1, 

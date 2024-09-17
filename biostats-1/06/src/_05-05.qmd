@@ -1,0 +1,24 @@
+---
+title: "02-05, Normality"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Testing the various assumptions
+
+-   Nonlinearity
+    -   Scatterplot of residuals vs. independent variable
+-   Heterogeneity
+    -   Scatterplot of residuals vs. independent variable
+-   Non-normality
+    -   Q-Q plot of residuals
+-   Lack of independence
+    -   Usually assessed qualitatively
+    -   Durbin-Watson test for serial correlation
+    
+::: notes
+Add note.
+:::

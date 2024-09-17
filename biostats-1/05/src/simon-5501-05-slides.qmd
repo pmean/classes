@@ -5,13 +5,14 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "Counting"
-  topic_02: "Mean and median"
-  topic_03: "Percentiles"
-  topic_04: "Standard deviation"
-  topic_05: "Normality"
-  topic_06: "TBA 1"
-  topic_07: "Program template"
+  topic_01: "Interpretation of linear regression coefficients"
+  topic_02: "Computing linear regression in R"
+  topic_03: "The least squares principle"
+  topic_04: "The analysis of variance table"
+  topic_05: "Computing the analysis of variance table in R"
+  topic_06: "Confidence interval for the slope parameter"
+  topic_07: "Computing confidence intervals in R"
+  topic_08: "Your homework"
 editor: source
 ---
 

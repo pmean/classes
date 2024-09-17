@@ -1,5 +1,5 @@
 ---
-title: "02-07, Programming template"
+title: "04-05, R code for bar plots"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,230 @@ format:
 editor: source
 ---
 
-## Programming template
+```{r data0b}
+library(glue)
+library(readr)
+library(stringr)
+library(yaml)
+f1 <- "https://raw.githubusercontent.com/pmean"
+f2 <- "data/main/files/gardasil.yaml"
+dd <- read_lines(glue("{f1}/{f2}"))
+# if I am not online use the line below
+# dd <- read_lines("../../../../data/files/gardasil.yaml")
+h <- str_which(str_trim(dd), "^$")
+chunk_beg <- c(1, h+1)
+chunk_end <- c(h, length(dd))
+```
+
+## Data dictionary for gardasil, 1
+
+```{r data1b}
+cat(dd[chunk_beg[1]:chunk_end[1]], sep="\n")
+```
+
+```{r data2b}
+cat(dd[chunk_beg[2]:chunk_end[2]], sep="\n")
+```
+
+```{r data3b}
+cat(dd[chunk_beg[3]:chunk_end[3]], sep="\n")
+```
+
+```{r data4b}
+cat(dd[chunk_beg[4]:chunk_end[4]], sep="\n")
+```
 
 :::notes
-The
+Here is a dataset you will need for your programming assignment. It is a study of pulmonary function in children.
 :::
-  
+
+## Data dictionary for gardasil, 2
+
+```{r data5b}
+cat(dd[chunk_beg[5]:chunk_end[5]], sep="\n")
+```
+
+```{r data6b}
+cat(dd[chunk_beg[6]:chunk_end[6]], sep="\n")
+```
+
+```{r data7b}
+cat(dd[chunk_beg[7]:chunk_end[7]], sep="\n")
+```
+
+```{r data8b}
+cat(dd[chunk_beg[8]:chunk_end[8]], sep="\n")
+```
+
+```{r data9b}
+cat(dd[chunk_beg[9]:chunk_end[9]], sep="\n")
+```
+
+:::notes
+
+:::
+
+## Data dictionary for gardasil, 3
+
+```{r data10b}
+cat(dd[chunk_beg[10]:chunk_end[10]], sep="\n")
+```
+
+```{r data11b}
+cat(dd[chunk_beg[11]:chunk_end[11]], sep="\n")
+```
+
+:::notes
+T.
+:::
+
+## Data dictionary for gardasil, 4
+
+```{r data12b}
+cat(dd[chunk_beg[12]:chunk_end[12]], sep="\n")
+```
+
+```{r data13b}
+cat(dd[chunk_beg[13]:chunk_end[13]], sep="\n")
+```
+
+```{r data14b}
+cat(dd[chunk_beg[14]:chunk_end[14]], sep="\n")
+```
+
+:::notes
+T.
+:::
+
+## Data dictionary for gardasil, 5
+
+```{r data15b}
+cat(dd[chunk_beg[15]:chunk_end[15]], sep="\n")
+```
+
+```{r data16b}
+cat(dd[chunk_beg[16]:chunk_end[16]], sep="\n")
+```
+
+```{r data17b}
+cat(dd[chunk_beg[17]:chunk_end[17]], sep="\n")
+```
+
+```{r data18b}
+cat(dd[chunk_beg[18]:chunk_end[18]], sep="\n")
+```
+
+## Data dictionary for gardasil, 6
+
+```{r data19b}
+cat(dd[chunk_beg[19]:chunk_end[19]], sep="\n")
+```
+
+```{r data20b}
+cat(dd[chunk_beg[20]:chunk_end[20]], sep="\n")
+```
+
+```{r data21b}
+cat(dd[chunk_beg[21]:chunk_end[21]], sep="\n")
+```
+
+```{r data22b}
+cat(dd[chunk_beg[22]:chunk_end[22]], sep="\n")
+```
+
+## simon-5501-04-gardasil.qmd, 1
+
+```{r write0b}
+fn <- "simon-5501-04-gardasil.qmd"
+template <- read_lines(file=fn)
+h <- str_which(template, "##")
+chunk_beg <- c(1, h)
+chunk_end <- c(h-1, length(template))
+```
+
+```{r write1b}
+cat(template[chunk_beg[1]:chunk_end[1]], sep="\n")
+```
+
+:::notes
+The first few lines are the documentation header.
+:::
+
+## simon-5501-04-gardasil.qmd, 2
+
+```{r write2b}
+cat(template[chunk_beg[2]:chunk_end[2]], sep="\n")
+```
+
+:::notes
+H.
+:::
+
+## simon-5501-04-gardasil.qmd, 3
+
+```{r write3b}
+cat(template[chunk_beg[3]:chunk_end[3]], sep="\n")
+```
+
+:::notes
+L.
+:::
+
+## simon-5501-04-gardasil.qmd, 4
+
+```{r write4b}
+cat(template[chunk_beg[4]:chunk_end[4]], sep="\n")
+```
+
+:::notes
+Use the read_tsv function when your data uses tab delimiters.
+:::
+
+## simon-5501-04-gardasil.qmd, 5
+
+```{r write5b}
+cat(template[chunk_beg[5]:chunk_end[5]], sep="\n")
+```
+:::notes
+T. 
+:::
+
+## simon-5501-04-gardasil.qmd, 6
+
+```{r write6b}
+cat(template[chunk_beg[6]:chunk_end[6]], sep="\n")
+```
+
+:::notes
+T.
+:::
+
+## simon-5501-04-gardasil.qmd, 7
+
+```{r write7b}
+cat(template[chunk_beg[7]:chunk_end[7]], sep="\n")
+```
+
+:::notes
+T.
+:::
+
+## simon-5501-04-gardasil.qmd, 8
+
+```{r write8b}
+cat(template[chunk_beg[8]:chunk_end[8]], sep="\n")
+```
+
+:::notes
+T.
+:::
+
+## simon-5501-04-gardasil.qmd, 9
+
+```{r write9b}
+cat(template[chunk_beg[9]:chunk_end[9]], sep="\n")
+```
+
+:::notes
+T.
+:::
