@@ -6,13 +6,15 @@ format:
 editor: source
 ---
 
-This policy was written on 2023-12-02 and last revised on 2024-06-03.
+This policy was written on 2023-12-02 and last revised on 2024-09-18.
 
 ## Extensions
 
 Please try your best to finish all your programming assignments on time. If you need a short extension of the deadline (up to seven days), just submit a file briefly explaining the circumstances that require an extension and submit it on Canvas in PDF format in the same location where you would submit your homework. Include the proposed date that you will turn in your work. A sample document might read.
 
 *Please grant me an extension on programming assignment 03. I have been on travel at a research conference. I will turn in the programming assignment on February 3, 2024.* 
+
+Include the words "extension request" in your submission, along with your last name, the number of the class, and the number of the module.
 
 The same policy on extensions applies for any special projects.
 
@@ -22,9 +24,13 @@ There are no automatic extensions for the final exam. Your instructors have a ha
 
 You do not need to request extensions for discussion boards, quizzes, proposed final exam questions. Please do not abuse this and try your best to turn in your work without excessive delays.
 
+## Repeated requests for extensions
+
+If you need extensions in three or more consecutive weeks, we should discuss this. Send us an email explaining the circumstances surrounding your need for multiple extensions. We may need to set up a Zoom session to better understand your situation.
+
 ## Longer extensions
 
-It is important to keep the class concurrent. If some students are several weeks behind the rest of the class, the concurrent comments on the discussion board lose their value and the review sessions tend to lose focus. If you really need an extension of more than seven days, please send a request by email to both instructors. If you find yourself repeatedly needing lengthy extensions for your work, a video conference with your instructor may be helpful.
+It is important to keep the class concurrent. If some students are several weeks behind the rest of the class, the concurrent comments on the discussion board lose their value and the review sessions tend to lose focus. If you really need an extension of more than seven days, please send a request by email to both instructors.
 
 ## Ask for extensions prior to the due date
 
