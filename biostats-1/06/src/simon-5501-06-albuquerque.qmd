@@ -1,0 +1,193 @@
+---
+title: "Regression analysis and diagnostics for Albuquerque housing prices"
+author: "Steve Simon"
+format: 
+  html:
+    embed-resources: true
+date: 2024-08-18
+---
+
+This program reads data on housing prices in Albuquerque, New Mexico in 1993. Find more information in the [data dictionary][dd].
+
+[dd]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.yaml
+
+This code is placed in the public domain.
+
+## Load the tidyverse library
+
+For most of your programs, you should load the tidyverse library. The broom package provides a nice way to compute residuals and predicted values. The messages and warnings are suppressed.
+
+```{r setup}
+#| message: false
+#| warning: false
+library(broom)
+library(tidyverse)
+```
+
+## Read the data and view a brief summary
+
+Use the read_csv function to read the data. The glimpse function will produce a brief summary.
+
+```{r read}
+alb <- read_csv(
+  file="../data/albuquerque-housing.csv",
+  col_names=TRUE,
+  col_types="nnnnccc",
+  na=".")
+glimpse(alb)
+```
+
+## m1: regression analysis using features to predict price
+
+You might expect that a house with more features would have a higher sales price. This code produces some simple descriptive statistics
+
+## m1: Calculate descriptive statistics for number of features
+
+```{r features-means}
+alb |>
+  summarise(
+    features_mn=mean(features, na.rm=TRUE),
+    features_sd=sd(features, na.rm=TRUE),
+    features_min=min(features, na.rm=TRUE),
+    features_max=max(features, na.rm=TRUE),
+    n_missing=sum(is.na(features)))
+```
+
+## m1: Calculate descriptive statistics for price
+
+```{r price-means}
+alb |>
+  summarize(
+    price_mn=mean(price, na.rm=TRUE),
+    price_sd=sd(price, na.rm=TRUE),
+    price_min=min(price, na.rm=TRUE),
+    price_max=max(price, na.rm=TRUE),
+    n_missing=sum(is.na(price)))
+```
+
+## m1: Plot features versus price
+
+```{r scatterplot-1}
+alb |>
+  ggplot(aes(features, price)) +
+    geom_point() +
+    geom_smooth(method="lm", se=FALSE)
+```
+
+## m1: Use features to predict price
+
+```{r regression-1}
+m1 <- lm(price~features, data=alb)
+m1
+```
+
+Normally, you would follow this up with various functions like anova(), confint(), or tidy(). This program skips those steps to focus on the diagnostic plots of the residuals.
+
+## m1: Calculate residuals and predicted values
+
+```{r residuals-1}
+r1 <- augment(m1)
+glimpse(r1)
+```
+
+You could have also used the resid() and predict() functions.
+
+## m1: Normal probability plot for residuals
+
+```{r qqplot-1}
+qqnorm(r1$.resid)
+```
+
+## m1: Histogram for residuals
+
+```{r histogram-1}
+r1 |>
+  ggplot(aes(.resid)) +
+    geom_histogram(
+      binwidth=10000,
+      color="black",
+      fill="white")
+```
+
+## m1: Plot residuals versus features
+
+```{r residual-scatterplot-1}
+r1 |>
+  ggplot(aes(features, .resid)) + 
+    geom_point()
+```
+
+## m1: Leverage values
+
+```{r leverage-1}
+n <- nrow(r1)
+r1 |> filter(.hat > 3*2/n)
+```
+
+## m1: Studentized deleted residual
+
+```{r studentized-1}
+r1 |>
+  filter(abs(.std.resid) > 3)
+```
+
+## m1: Cook's distance
+
+```{r cook-1}
+r1 |>
+  filter(.cooksd > 1)
+```
+
+## m2: Using features to predict log(price)
+
+You might expect that a house with more features would have a higher sales price. This code produces some simple descriptive statistics
+
+## m2: scatterplot
+
+```{r scatterplot-2}
+alb$log_price <- log10(alb$price)
+alb |>
+  ggplot(aes(features, log_price)) +
+    geom_point() +
+    geom_smooth(method="lm", se=FALSE)
+```
+
+## m2: linear regression on log transformed price
+
+```{r regression-2}
+m2 <- lm(log_price~features, data=alb)
+m2
+```
+
+## m2: Coefficients back transformed to original scale
+
+```{r back-transform-2}
+10^(coef(m2))
+```
+
+## m2: Normal probability plot
+
+```{r qqplot-2}
+r2 <- augment(m2)
+qqnorm(r2$.resid)
+```
+
+## m2: Histogram of residuals
+
+```{r histogram-2}
+r2 |>
+  ggplot(aes(.resid)) +
+    geom_histogram(
+      binwidth=0.05,
+      color="black",
+      fill="white")
+```
+
+## m2: Plot residuals versus features
+
+```{r residual-scatterplot-2}
+r2 |>
+  ggplot(aes(features, .resid)) + 
+    geom_point()
+```
+
