@@ -1,5 +1,5 @@
 ---
-title: "06-03, Influential data points in regression"
+title: "06-03, R code for diagnostic plots"
 format: 
   revealjs:
     slide-number: true
@@ -7,28 +7,113 @@ format:
 editor: source
 ---
 
-## Deleted Predicted value
+## albuquerque-housing, 1 of 6
 
--   $\hat{Y}_{i}$ 
+```{r data1}
+library(yaml)
+fn <- "https://raw.githubusercontent.com/pmean/data/main/files/albuquerque-housing.yaml"
+dd <- read_yaml(fn)
+part1 <- c(
+  "data_dictionary",
+  "format",
+  "varnames",
+  "missing_value_code")
+for (i in part1) {
+  cat(as.yaml(dd[i]))
+	cat("\n")
+}
+```
 
-## Leverage
+## albuquerque-housing, 2 of 6
 
--   $h_{ii}=\frac{1}{n}+\frac{(X_i-\bar{X})^2}{\Sigma(X_j-\bar{X})^2}$
+```{r data2}
+part2 <- c(
+  "description",
+  "download_url")
+for (i in part2) {
+  cat(as.yaml(dd[i]))
+	cat("\n")
+}
+```
+
+## albuquerque-housing, 3 of 6
+
+```{r data3}
+part3 <- c(
+  "source",
+  "copyright",
+  "size")
+for (i in part3) {
+  cat(as.yaml(dd[i]))
+	cat("\n")
+}
+```
+
+## albuquerque-housing, 4 of 6
+
+```{r data4}
+cat(as.yaml(dd[["vars"]][1:3]))
+```
+
+## albuquerque-housing, 5 of 6
+
+```{r data5}
+cat(as.yaml(dd[["vars"]][4:5]))
+```
+
+## albuquerque-housing, 6 of 6
+
+```{r data6}
+cat(as.yaml(dd[["vars"]][6:7]))
+```
+
+## simon-5501-01-template.qmd, 1 of 5
+
+```{r write1}
+library(tidyverse)
+fn <- "simon-5501-01-template.qmd"
+template <- read_lines(file=fn)
+h <- str_which(template, "##")
+g <- h-1
+template[1:g[1]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
 
 :::notes
-(Add notes)
+The first few lines are the documentation header
 :::
 
-## Studentized residual
+## simon-5501-01-template.qmd, 2 of 5
 
--   $z_i=\frac{e_i}{\sqrt{(1-h_{ii})MSE}}$
+```{r write2}
+template[h[1]:g[2]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
 
-:::notes
-(Add notes)
-:::
+## simon-5501-01-template.qmd, 3 of 5
 
-## Cook's distance
+```{r write3}
+template[h[2]:g[3]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
 
--   $D_i=\frac{\Sigma(\hat{Y}_j-\hat{Y}_{(j)})^2}{(k+1)\sqrt{MSE}}$
-    -   where k is the number of independent variables
-  
+## simon-5501-01-template.qmd, 4 of 5
+
+```{r write4}
+template[h[3]:g[4]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-01-template.qmd, 5 of 5
+
+```{r write5}
+template[h[4]:length(template)] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+

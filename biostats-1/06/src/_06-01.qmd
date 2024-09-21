@@ -1,5 +1,5 @@
 ---
-title: "02-01, Counting"
+title: "06-01, Assumptions in linear regression"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,22 @@ format:
 editor: source
 ---
 
-## W
+## The population model
 
-:::notes
-The
+-   $Y_i=\beta_0+\beta_1 X_i + \epsilon_i,\ i=1,...,N$
+    -   $\epsilon_i$ is an unknown random variable
+        -    Mean 0, standard deviation, $\sigma$
+        -    Often assumed to be normal
+    -   $\beta_0$ and $\beta_1$ are unknown parameters
+    -   $b_0$ and $b_1$ are estimates from the sample
+    
+::: notes
+Add note.
 :::
-  
+
+## Violations of this model
+
+-   Nonlinearity
+-   Heterogeneity
+-   Non-normality
+-   Lack of independence

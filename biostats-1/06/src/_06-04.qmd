@@ -1,5 +1,5 @@
 ---
-title: "02-04, Standard deviation"
+title: "06-03, Influential data points in regression"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,28 @@ format:
 editor: source
 ---
 
-## Standard deviation
+## Deleted Predicted value
+
+-   $\hat{Y}_{i}$ is the predicted value of Y at X = $X_i$ using all the data except $(X_i,Y_i)$
+
+## Leverage
+
+-   $h_{ii}=\frac{1}{n}+\frac{(X_i-\bar{X})^2}{\Sigma(X_j-\bar{X})^2}$
 
 :::notes
-The
+(Add notes)
 :::
+
+## Studentized residual
+
+-   $Z_i=\frac{e_i}{\sqrt{(1-h_{ii})MSE}}$
+
+:::notes
+(Add notes)
+:::
+
+## Cook's distance
+
+-   $D_i=\frac{\Sigma(\hat{Y}_j-\hat{Y}_{(j)})^2}{(k+1)\sqrt{MSE}}$
+    -   where k is the number of independent variables
   
