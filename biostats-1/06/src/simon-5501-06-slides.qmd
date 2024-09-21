@@ -7,11 +7,10 @@ format:
 params:
   topic_01: "Assumptions in linear regression"
   topic_02: "Diagnostic plots"
-  topic_03: "Influence measures"
-  topic_04: "R code for diagnostic plots"
+  topic_03: "R code for diagnostic plots"
+  topic_04: "Influence measures"
   topic_05: "R code for influence measures"
-  topic_06: "TBA 1"
-  topic_07: "Program template"
+  topic_06: "Your homework"
 editor: source
 ---
 
@@ -28,9 +27,8 @@ editor: source
     -   `r params$topic_04`
     -   `r params$topic_05`
     -   `r params$topic_06`
-    -   `r params$topic_07`
 
-{{< include _02-01.qmd >}}
+{{< include _06-01.qmd >}}
 
 ## Break #1
 
@@ -39,7 +37,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_02`
 
-{{< include _02-02.qmd >}}
+{{< include _06-02.qmd >}}
 
 ## Break #2
 
@@ -48,7 +46,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_03`
 
-{{< include _02-03.qmd >}}
+{{< include _06-03.qmd >}}
 
 ## Break #3
 
@@ -57,7 +55,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_04`
 
-{{< include _02-04.qmd >}}
+{{< include _06-04.qmd >}}
 
 ## Break #4
 
@@ -66,7 +64,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_05`
 
-{{< include _02-05.qmd >}}
+{{< include _06-05.qmd >}}
 
 ## Break #5
 
@@ -75,21 +73,10 @@ editor: source
 -   What's coming next
     -   `r params$topic_06`
 
-{{< include _02-06.qmd >}}
-
-## Break #6
-
--   What you have learned
-    -   `r params$topic_06`
--   What's coming next
-    -   `r params$topic_07`
-
-{{< include _02-07.qmd >}}
-
-{{< include _01-07.qmd >}}
-
+{{< include _06-06.qmd >}}
 
 ## Summary
+
 -   What you have learned
     -   `r params$topic_01`
     -   `r params$topic_02`
@@ -97,7 +84,6 @@ editor: source
     -   `r params$topic_04`
     -   `r params$topic_05`
     -   `r params$topic_06`
-    -   `r params$topic_07`
 
 <!---
       You have to put the title down 
