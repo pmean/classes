@@ -1,5 +1,5 @@
 ---
-title: "06-03, R code for diagnostic plots"
+title: "06-04, Influence measures"
 format: 
   revealjs:
     slide-number: true
@@ -7,240 +7,28 @@ format:
 editor: source
 ---
 
-## albuquerque-housing, 1 of 6
+## Deleted Predicted value
 
-```{r data1}
-library(yaml)
-fn <- "https://raw.githubusercontent.com/pmean/data/main/files/albuquerque-housing.yaml"
-dd <- read_yaml(fn)
-part1 <- c(
-  "data_dictionary",
-  "format",
-  "varnames",
-  "missing_value_code")
-for (i in part1) {
-  cat(as.yaml(dd[i]))
-	cat("\n")
-}
-```
+-   $\hat{Y}_{i}$ is the predicted value of Y at X = $X_i$ using all the data except $(X_i,Y_i)$
 
-## albuquerque-housing, 2 of 6
+## Leverage
 
-```{r data2}
-part2 <- c(
-  "description",
-  "download_url")
-for (i in part2) {
-  cat(as.yaml(dd[i]))
-	cat("\n")
-}
-```
-
-## albuquerque-housing, 3 of 6
-
-```{r data3}
-part3 <- c(
-  "source",
-  "copyright",
-  "size")
-for (i in part3) {
-  cat(as.yaml(dd[i]))
-	cat("\n")
-}
-```
-
-## albuquerque-housing, 4 of 6
-
-```{r data4}
-cat(as.yaml(dd[["vars"]][1:3]))
-```
-
-## albuquerque-housing, 5 of 6
-
-```{r data5}
-cat(as.yaml(dd[["vars"]][4:5]))
-```
-
-## albuquerque-housing, 6 of 6
-
-```{r data6}
-cat(as.yaml(dd[["vars"]][6:7]))
-```
-
-## simon-5501-06-albuquerque.qmd, 1
-
-```{r write1}
-library(tidyverse)
-fn <- "simon-5501-06-albuquerque.qmd"
-template <- read_lines(file=fn)
-h <- str_which(template, "##")
-g <- h-1
-template[1:g[1]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
+-   $h_{ii}=\frac{1}{n}+\frac{(X_i-\bar{X})^2}{\Sigma(X_j-\bar{X})^2}$
 
 :::notes
-The first few lines are the documentation header
+(Add notes)
 :::
 
-## simon-5501-06-albuquerque.qmd, 2
+## Studentized residual
 
-```{r write2}
-template[h[1]:g[2]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
+-   $Z_i=\frac{e_i}{\sqrt{(1-h_{ii})MSE}}$
 
-## simon-5501-06-albuquerque.qmd, 3
+:::notes
+(Add notes)
+:::
 
-```{r write3}
-template[h[2]:g[3]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
+## Cook's distance
 
-## simon-5501-06-albuquerque.qmd, 4
-
-```{r write4}
-template[h[3]:g[4]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 5
-
-```{r write5}
-template[h[4]:g[5]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 6
-
-```{r write6}
-template[h[5]:g[6]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 7
-
-```{r write7}
-template[h[6]:g[7]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 8
-
-```{r write8}
-template[h[7]:g[8]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 9
-
-```{r write9}
-template[h[8]:g[9]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 10
-
-```{r write10}
-template[h[9]:g[10]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 11
-
-```{r write11}
-template[h[10]:g[11]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 12
-
-```{r write12}
-template[h[11]:g[12]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 13
-
-```{r write13}
-template[h[12]:g[13]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 14
-
-```{r write14}
-template[h[13]:g[14]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 15
-
-```{r write15}
-template[h[14]:g[15]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 16
-
-```{r write16}
-template[h[15]:g[16]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 17
-
-```{r write17}
-template[h[16]:g[17]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 18
-
-```{r write18}
-template[h[10]:g[11]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 19
-
-```{r write19}
-template[h[18]:g[19]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 20
-
-```{r write20}
-template[h[19]:g[20]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 21
-
-```{r write21}
-template[h[20]:length(template)] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
+-   $D_i=\frac{\Sigma(\hat{Y}_j-\hat{Y}_{(j)})^2}{(k+1)\sqrt{MSE}}$
+    -   where k is the number of independent variables
+  

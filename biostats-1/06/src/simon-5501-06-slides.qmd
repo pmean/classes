@@ -5,12 +5,13 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "Assumptions in linear regression"
-  topic_02: "Diagnostic plots"
-  topic_03: "R code for diagnostic plots"
-  topic_04: "Influence measures"
-  topic_05: "R code for influence measures"
-  topic_06: "Your homework"
+  topic_01: "Diagnostic plots"
+  topic_02: "R code for diagnostic plots"
+  topic_03: "Influence measures"
+  topic_04: "R code for influence measures"
+  topic_05: "Log transformations"
+  topic_06: "R code for log transformations"
+  topic_07: "Your homework"
 editor: source
 ---
 

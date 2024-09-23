@@ -1,5 +1,5 @@
 ---
-title: "06-01, Assumptions in linear regression"
+title: "06-01, Diagnostic plots"
 format: 
   revealjs:
     slide-number: true
@@ -48,76 +48,147 @@ The fourth is lack of independence. The epsilons might be related to one another
     -   $e_i=Y_i-(b_0+b_1 X_i)$
     -   Are there problems with the $e_i$ 
         -   Indirect evidence of problems with the $\epsilon_i$
+-   Residuals show patterns more clearly than the original data
     
 :::notes
 You can not get a direct assessment of whether the epsilons have problems with non-linearity, heterogeneity, non-normality, or lack of independence. The epsilons are unknown, unless you have access to the entire population. You can compute the residuals from the sample using the estimated regression coefficients. It's not perfect, but if you notice problems in how the residuals behave, that is indirect evidence of problems with the epsilons.
+
+A key point that you will see if that patterns in the dependent variable are often subtle and easy to overlook. This can often occur when there is a strong linear trend. The patterns that indicate problems with the assumptions are often far more apparent when you examine the residuals.
 :::
 
 ## Diagnosing non-linearity, 1
 
-```{r non-linear-1}
+```{r setup-1}
 library(tidyverse)
 library(magrittr)
-n <- 500
-epsilon1 <- 50*rnorm(n)
-b0 <- 20
-b1 <- 0.5
-b2 <- 5
-x1 <- runif(n, 10, 30)
-y1 <- b0 + b1*x1 + b2*x1^2 + epsilon1
-artificial_data <- data.frame(x1, y1)
-artificial_data |>
-  ggplot(aes(x1, y1)) + 
-   geom_point()
+load("../data/module06.RData")
 ```
+
+```{r non-linear-1}
+artificial_1 |>
+  ggplot(aes(x1, y1)) + 
+    geom_point() + 
+	  ggtitle("Graph drawn by Steve Simon on 2024-09-23") +
+	  xlab("Independent variable") +
+	  ylab("Dependent variable")
+```
+
+:::notes
+Here is some artificial data. It shows a strong relationship, and if you look closely, you might detect a slight bend in the data.
+:::
 
 ## Diagnosing non-linearity, 2
 
 ```{r non-linear-2}
-e1 <- resid(lm(y1~x1))
-artificial_data %<>% bind_cols(e1)
-artificial_data |>
+artificial_1 |>
   ggplot(aes(x1, e1)) + 
-   geom_point()
+   geom_point() + 
+	  ggtitle("Graph drawn by Steve Simon on 2024-09-23") +
+	  xlab("Independent variable") +
+	  ylab("Residual")
 ```
+
+:::notes
+Here is the same data with the residuals on the Y-axis. A slight and very subtle bend becomes hard-to-miss evidence of non-linearity.
+:::
+
+## Remedies for non-linearity
+
+-   Largely beyond the scope of this class
+    -   Ignore the non-linearity
+    -   Add a quadratic term
+    -   Consider a non-linear model
+    -   Use a spline model
+    
+:::notes
+If you see problems with non-linearity, you have several options. Some of these are beyond the scope of this class.
+
+First, it your linear trend is very strong, maybe you can ignore the non-linearity. It means a less than perfect fit, but maybe it would be close enough in a real-world setting.
+
+Second, you might find that a linear term plus a quadratic term does a good job. I will show how to add a quadratic term in the next module.
+
+Third, you might have some information based on your knowledge of research context that would allow you to specify a non-linear function. This is a topic that I might cover in MEDB 5502, Applied Biostatistics II.
+
+Fourth, you might consider a spline model. This is also a topic that I might cover in MEDB 5502.
+:::
 
 ## Diagnosing heterogeneity, 1
 
 ```{r heterogeneity-1}
-b0 <- 20
-b1 <- 50
-x2 <- x1
-epsilon2 <- 2*(x2-9)*runif(n,-1, 1)
-y2 <- b0 + b1*x2 + epsilon2
-artificial_data %<>% bind_cols(x2, y2)
-artificial_data |>
+artificial_2 |>
   ggplot(aes(x2, y2)) + 
-   geom_point()
+   geom_point() + 
+	  ggtitle("Graph drawn by Steve Simon on 2024-09-23") +
+	  xlab("Independent variable") +
+	  ylab("Dependent variable")
 ```
+
+:::notes
+Here's another example of some artificial data. You can see a bit more variation on the high end of the X axis.
+:::
 
 ## Diagnosing heterogeneity, 2
 
 ```{r heterogeneity-2}
-e2 <- resid(lm(y2~x2))
-artificial_data %<>% bind_cols(e2) 
-artificial_data |>
+artificial_2 |>
   ggplot(aes(x2, e2)) + 
-   geom_point()
+   geom_point() + 
+	  ggtitle("Graph drawn by Steve Simon on 2024-09-23") +
+	  xlab("Independent variable") +
+	  ylab("Residual")
 ```
+
+:::notes
+The change in variation is much more apparent when you look at the residuals. This fanning out pattern is quite common in residual diagnostics.
+:::
+
+## Remedies for heterogeneity
+
+-   Ignore the heterogeneity
+-   Log transformation
+    -   Especially useful if larger values have more variation
+-   Weighted regression
+
+:::notes
+There are several choices facing you if you observe heterogeneity in your data.
+
+First, a small amount of heterogeneity can be safely ignored. If the variation differs by a factor of two or less, then it may not be worth addressing.
+
+Second, the log transformation can sometimes help. It stretches the small values and squeezes the large values. This can help quite a bit when larger values in your data exhibit larger amounts of variation. I'll show how the log transformation works later in this lecture.
+
+Third, you can assign weights giving greater emphasis to data points with more precision (smaller variation) and lesser emphasis to data points with less precision (larger variation). This is not done too often in practice, but it can sometimes greatly improve the overall stability of your estimates.
+:::
 
 ## Diagnosing non-normality, 1
 
+-   Independent variable (X), non-normality is okay
+-   Dependent variable (Y), non-normality is okay
+-   Population residual ($\epsilon$), non-normality is not okay
+    -   Confidence intervals, hypothesis tests not valid
+    -   Less of a concern with large sample sizes
+    
+:::notes
+When you think about non-normality, you must be careful. A non-normal independent variable is okay. It could be bimodal, skewed, or have outliers. None of this matters.
+
+A non-normal dependent variable is also okay. This occurs often when the independent variable has some strange non-normal pattern.
+
+The only thing that needs to be normal is your epsilons. And you diagnose that assumption of normality with the residuals.
+:::
+
+## Diagnosing non-normality, 2
+
 ```{r non-normality-1}
-x3 <- 10 + 15*rbeta(n, 10, 10) + 10*(runif(n) > 0.5)
-epsilon3 <- runif(n, -100, 100)
-b0 <- 20
-b1 <- 50
-y3 <- b0+b1*x3+epsilon3
-artificial_data %<>% bind_cols(x3, y3)
-data.frame(x3, y3) |>
+artificial_3 |>
   ggplot(aes(x3, y3)) +
-    geom_point()
+    geom_point() + 
+	  ggtitle("Graph drawn by Steve Simon on 2024-09-23") +
+	  xlab("Independent variable") +
+	  ylab("Dependent variable")
 ```
+
+:::notes
+Here is some more artificial data to illustrate where normality is an issue. Notice a gap near the middle. This can happen for a variety of reasons.
+:::
 
 ## Diagnosing non-normality, 2
 
@@ -127,8 +198,14 @@ artificial_data |>
     geom_histogram(
       binwidth=3,
       color="black",
-      fill="white")
+      fill="white") + 
+	  ggtitle("Graph drawn by Steve Simon on 2024-09-23") +
+	  xlab("Independent variable")
 ```
+
+:::notes
+The histogram of the independent variable shows a strong bimodal pattern. This is not a violation of assumptions.
+:::
 
 ## Diagnosing non-normality, 3
 
@@ -138,5 +215,63 @@ artificial_data |>
     geom_histogram(
       binwidth=100,
       color="black",
-      fill="white")
+      fill="white") + 
+	  ggtitle("Graph drawn by Steve Simon on 2024-09-23") +
+	  xlab("Dependent variable")
 ```
+
+:::notes
+The histogram of the dependent variable also shows a strong bimodal pattern. This is not a violation of assumptions.
+:::
+
+## Diagnosing non-normality, 4
+
+```{r non-normality-4}
+e3 <- resid(lm(y1~x1))
+artificial_data %<>% bind_cols(e3)
+artificial_data |>
+  ggplot(aes(e3)) +
+    geom_histogram(
+      binwidth=100,
+      color="black",
+      fill="white") + 
+	  ggtitle("Graph drawn by Steve Simon on 2024-09-23") +
+	  xlab("Residual")
+```
+
+:::notes
+It is only a plot of the residuals that is important. In this example, the residual histogram is fairly close to a bell shaped curve, indicating that non-normality is not a concern.
+:::
+
+## Remedies for non-normality
+
+-   Ignore the non-normality
+    -   Large sample sizes
+    -   Certain types of non-normality 
+-   Log transformation
+    -   Especially useful for right-skewed data
+-   Generalized linear models
+
+:::notes
+If you see non-normality in the residuals, you have several options. 
+
+First, you can sometimes ignore the non-normality. Non-normality is less of a concern for large sample sizes because of the Central Limit Theorem. How large is large? it depends on the type of non-normality. With certain types of non-normality, especially light tailed distributions, you're fine with a few dozen data points. For highly skewed data, or data with many outliers, you may need hundreds of data points before you can safely ignore non-normality.
+
+Second, the log transformation may help here. It works best with fixing problems associated with right-skewed data. Recall that right skewed data has a greater tendency to produce outliers on the high end. This can be fixed by the tendency of the log function to square large values and stretch small values.
+:::
+
+## General thoughts on assumption tests
+
+-   Don't over-interpret small departures from assumptions
+-   Normality is not an important assumption with large sample sizes
+-   A violation of assumptions is actually an opportunity
+    -   A more complex model could greatly improve things
+-   Linear regression is always okay as a descriptive tool
+    
+:::notes
+In general, you should take remedial action only for large departures from the underlying assumptions. The main reason for this is that sampling error might produce a false warning.
+
+In particular, the normality assumption is not really as important as the others. Do worry about highly skewed data and extreme outliers. Other types of non-normality are less concerning. Even large deviations from normality are not a serious concern for large sample sizes (several hundred might be sufficient).
+
+Don't think of a violation of assumptions as a death warrant or an insurmountable barrier. Think of it as an opportunity. The relationship between the independent variable and the dependent variable needs a more complex model. This is more work but it is also an opportunity to produce interesting and valid results.
+:::
