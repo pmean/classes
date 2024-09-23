@@ -17,7 +17,11 @@ editor: source
     -   $b_0$ and $b_1$ are estimates from the sample
     
 ::: notes
-Add note.
+You only have access to data from a sample, but it is important to recognize that the linear regression estimates from the sample are actually estimates of parameters from the population. In the population model, the subscript i goes from 1 to N. We capitalize N to emphasize that it is much larger than lower case n, the size of your sample.
+
+The term beta0 represents the intercept, the population average value of Y when X=0. It is not an estimate because the population is fixed (no sampling error). The term beta1 represents the slope, the change in the population average of Y when X increases by one unit. Again, this is a fixed value because the population has no sampling error. The term epsilon represents how much an individual Y value in the population deviates from beta0+beta1 times the corresponding X value in the population.
+
+If you want to compute confidence intervals and test hypotheses involving beta0 and beta1, you need to make some assumptions about the epsilons. You have to assume that the epsilons are normally distributed, with a mean of zero and a common standard deviation, sigma. You also have to assume that the epsilons are independent of one another.
 :::
 
 ## Violations of this model
@@ -26,3 +30,113 @@ Add note.
 -   Heterogeneity
 -   Non-normality
 -   Lack of independence
+
+:::notes
+There are four things that you need to check. The first is non-linearity. Maybe the relationship between X and Y is more complex than a straight line. 
+
+The second is heterogeneity. Each epsilon has to have the same standard deviation.
+
+The third is non-normality. The distribution of the epsilons might not follow a bell shaped curve.
+
+The fourth is lack of independence. The epsilons might be related to one another.
+:::
+
+## Using residuals for diagnostic plots
+
+-   $\epsilon_i$ is unknown, but $e_i$ is known
+    -   $\epsilon_i=Y_i-(\beta_0+\beta_1 X_i)$
+    -   $e_i=Y_i-(b_0+b_1 X_i)$
+    -   Are there problems with the $e_i$ 
+        -   Indirect evidence of problems with the $\epsilon_i$
+    
+:::notes
+You can not get a direct assessment of whether the epsilons have problems with non-linearity, heterogeneity, non-normality, or lack of independence. The epsilons are unknown, unless you have access to the entire population. You can compute the residuals from the sample using the estimated regression coefficients. It's not perfect, but if you notice problems in how the residuals behave, that is indirect evidence of problems with the epsilons.
+:::
+
+## Diagnosing non-linearity, 1
+
+```{r non-linear-1}
+library(tidyverse)
+library(magrittr)
+n <- 500
+epsilon1 <- 50*rnorm(n)
+b0 <- 20
+b1 <- 0.5
+b2 <- 5
+x1 <- runif(n, 10, 30)
+y1 <- b0 + b1*x1 + b2*x1^2 + epsilon1
+artificial_data <- data.frame(x1, y1)
+artificial_data |>
+  ggplot(aes(x1, y1)) + 
+   geom_point()
+```
+
+## Diagnosing non-linearity, 2
+
+```{r non-linear-2}
+e1 <- resid(lm(y1~x1))
+artificial_data %<>% bind_cols(e1)
+artificial_data |>
+  ggplot(aes(x1, e1)) + 
+   geom_point()
+```
+
+## Diagnosing heterogeneity, 1
+
+```{r heterogeneity-1}
+b0 <- 20
+b1 <- 50
+x2 <- x1
+epsilon2 <- 2*(x2-9)*runif(n,-1, 1)
+y2 <- b0 + b1*x2 + epsilon2
+artificial_data %<>% bind_cols(x2, y2)
+artificial_data |>
+  ggplot(aes(x2, y2)) + 
+   geom_point()
+```
+
+## Diagnosing heterogeneity, 2
+
+```{r heterogeneity-2}
+e2 <- resid(lm(y2~x2))
+artificial_data %<>% bind_cols(e2) 
+artificial_data |>
+  ggplot(aes(x2, e2)) + 
+   geom_point()
+```
+
+## Diagnosing non-normality, 1
+
+```{r non-normality-1}
+x3 <- 10 + 15*rbeta(n, 10, 10) + 10*(runif(n) > 0.5)
+epsilon3 <- runif(n, -100, 100)
+b0 <- 20
+b1 <- 50
+y3 <- b0+b1*x3+epsilon3
+artificial_data %<>% bind_cols(x3, y3)
+data.frame(x3, y3) |>
+  ggplot(aes(x3, y3)) +
+    geom_point()
+```
+
+## Diagnosing non-normality, 2
+
+```{r non-normality-2}
+artificial_data |>
+  ggplot(aes(x3)) +
+    geom_histogram(
+      binwidth=3,
+      color="black",
+      fill="white")
+```
+
+## Diagnosing non-normality, 3
+
+```{r non-normality-3}
+artificial_data |>
+  ggplot(aes(y3)) +
+    geom_histogram(
+      binwidth=100,
+      color="black",
+      fill="white")
+```
