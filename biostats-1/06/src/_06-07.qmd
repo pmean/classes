@@ -7,124 +7,48 @@ format:
 editor: source
 ---
 
-## simon-5501-06-directions.qmd, `r (i <- 1)`
+## simon-5501-06-directions.qmd, 1
 
-```{r read}
-library(tidyverse)
-fn <- "simon-5501-06-directions.md"
-template <- read_lines(file=fn)
-h <- str_which(template, "##")
-chunk_beg <- c(1, h)
-chunk_end <- c(h-1, length(template))
+```{r prog1}
+load("../data/module06.RData")
+cat(progc[1])
 ```
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+## simon-5501-06-directions.qmd, 2
+
+```{r prog2}
+cat(progc[2])
 ```
 
-## simon-5501-06-directions.qmd, `r (i <- i+1)`
+## simon-5501-06-directions.qmd, 3
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r prog3}
+cat(progc[3])
 ```
 
-## simon-5501-06-directions.qmd, `r (i <- i+1)`
+## simon-5501-06-directions.qmd, 4
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r prog4}
+cat(progc[4])
+cat(progc[5])
+cat(progc[6])
+cat(progc[7])
 ```
 
-## simon-5501-06-directions.qmd, `r (i <- i+1)`
+## simon-5501-06-directions.qmd, 5
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r prog5}
+cat(progc[8])
+cat(progc[9])
+cat(progc[10])
+cat(progc[11])
 ```
 
-## simon-5501-06-directions.qmd, `r (i <- i+1)`
+## simon-5501-06-directions.qmd, 6
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r prog6}
+cat(progc[12])
+cat(progc[13])
+cat(progc[14])
+cat(progc[15])
 ```
-
-## simon-5501-06-directions.qmd, `r (i <- i+1)`
-
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-directions.qmd, `r (i <- i+1)`
-
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-directions.qmd, `r (i <- i+1)`
-
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-directions.qmd, `r (i <- i+1)`
-
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-directions.qmd, `r (i <- i+1)`
-
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-directions.qmd, `r (i <- i+1)`
-
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-directions.qmd, `r (i <- i+1)`
-
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-directions.qmd, `r (i <- i+1)`
-
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-directions.qmd, `r (i <- i+1)`
-
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-

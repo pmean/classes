@@ -9,7 +9,7 @@ editor: source
 
 ## Deleted Predicted value
 
--   $\hat{Y}_{i}$ is the predicted value of Y at X = $X_i$ using all the data except $(X_i,Y_i)$
+-   $\hat{Y}_{j(i)}$ is the predicted value of Y at $X = X_j$ using all the data except $(X_i,Y_i)$
 
 ## Leverage
 
@@ -29,6 +29,5 @@ editor: source
 
 ## Cook's distance
 
--   $D_i=\frac{\Sigma(\hat{Y}_j-\hat{Y}_{(j)})^2}{(k+1)\sqrt{MSE}}$
+-   $D_i=\frac{\Sigma(\hat{Y}_j-\hat{Y}_{j(i)})^2}{(k+1)\sqrt{MSE}}$
     -   where k is the number of independent variables
-  

@@ -7,205 +7,132 @@ format:
 editor: source
 ---
 
-## albuquerque-housing, 1 of 6
+## albuquerque-housing, 1
 
 ```{r data1}
-library(yaml)
-fn <- "https://raw.githubusercontent.com/pmean/data/main/files/albuquerque-housing.yaml"
-dd <- read_yaml(fn)
-part1 <- c(
-  "data_dictionary",
-  "format",
-  "varnames",
-  "missing_value_code")
-for (i in part1) {
-  cat(as.yaml(dd[i]))
-	cat("\n")
-}
+load("../data/module06.RData")
+
+cat(datac$chunk[datac$lab=="data_dictionary"])
+cat(datac$chunk[datac$lab=="format"])
+cat(datac$chunk[datac$lab=="varnames"])
+cat(datac$chunk[datac$lab=="missing_value_code"])
 ```
 
-## albuquerque-housing, 2 of 6
+## albuquerque-housing, 2
 
 ```{r data2}
-part2 <- c(
-  "description",
-  "download_url")
-for (i in part2) {
-  cat(as.yaml(dd[i]))
-	cat("\n")
-}
+cat(datac$chunk[datac$lab=="description"])
+cat(datac$chunk[datac$lab=="download_url"])
 ```
 
-## albuquerque-housing, 3 of 6
+## albuquerque-housing, 3
 
 ```{r data3}
-part3 <- c(
-  "source",
-  "copyright",
-  "size")
-for (i in part3) {
-  cat(as.yaml(dd[i]))
-	cat("\n")
-}
+cat(datac$chunk[datac$lab=="source"])
+cat(datac$chunk[datac$lab=="copyright"])
+cat(datac$chunk[datac$lab=="size"])
 ```
 
-## albuquerque-housing, 4 of 6
+## albuquerque-housing, 4
 
 ```{r data4}
-cat(as.yaml(dd[["vars"]][1:3]))
+cat(datav$chunk[1])
+cat(datav$chunk[2])
+cat(datav$chunk[3])
 ```
 
-## albuquerque-housing, 5 of 6
+## albuquerque-housing, 5
 
 ```{r data5}
-cat(as.yaml(dd[["vars"]][4:5]))
+cat(datav$chunk[4])
+cat(datav$chunk[5])
 ```
 
-## albuquerque-housing, 6 of 6
+## albuquerque-housing, 6
 
 ```{r data6}
-cat(as.yaml(dd[["vars"]][6:7]))
+cat(datav$chunk[6])
+cat(datav$chunk[7])
 ```
 
-## simon-5501-06-albuquerque.qmd, `r (i <- 1)`
+## simon-5501-06-albuquerque.qmd, 1
 
 ```{r write1}
-library(tidyverse)
-fn <- "simon-5501-06-albuquerque.qmd"
-template <- read_lines(file=fn)
-h <- str_which(template, "##")
-chunk_beg <- c(1, h)
-chunk_end <- c(h-1, length(template))
-```
-
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+cat(codec[1])
 ```
 
 :::notes
 The first few lines are the documentation header
 :::
 
-## simon-5501-06-albuquerque.qmd, `r (i <- 2)`
+## simon-5501-06-albuquerque.qmd, 2
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r write2}
+cat(codec[2])
 ```
 
+## simon-5501-06-albuquerque.qmd, 3
 
-## simon-5501-06-albuquerque.qmd, `r (i <- 3)`
-
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r write3}
+cat(codec[3])
 ```
 
-## simon-5501-06-albuquerque.qmd, `r (i <- 4)`
+## simon-5501-06-albuquerque.qmd, 4
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r write4}
+cat(codec[4])
 ```
 
-## simon-5501-06-albuquerque.qmd, `r (i <- 5)`
+## simon-5501-06-albuquerque.qmd, 5
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r write5}
+cat(codec[5])
 ```
 
-## simon-5501-06-albuquerque.qmd, `r (i <- 6)`
+## simon-5501-06-albuquerque.qmd, 6
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r write6}
+cat(codec[6])
 ```
 
-## simon-5501-06-albuquerque.qmd, `r (i <- 7)`
+## simon-5501-06-albuquerque.qmd, 7
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r write7}
+cat(codec[7])
 ```
 
-## simon-5501-06-albuquerque.qmd, `r (i <- 8)`
+## simon-5501-06-albuquerque.qmd, 8
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r write8}
+cat(codec[8])
 ```
 
-## simon-5501-06-albuquerque.qmd, `r (i <- 9)`
+## simon-5501-06-albuquerque.qmd, 9
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r write9}
+cat(codec[9])
 ```
 
-## simon-5501-06-albuquerque.qmd, `r (i <- 10)`
+## simon-5501-06-albuquerque.qmd, 10
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r write10}
+cat(codec[10])
 ```
 
-## simon-5501-06-albuquerque.qmd, `r (i <- 11)`
+## simon-5501-06-albuquerque.qmd, 11
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r write11}
+cat(codec[11])
 ```
 
-## simon-5501-06-albuquerque.qmd, `r (i <- 12)`
+## simon-5501-06-albuquerque.qmd, 12
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r write12}
+cat(codec[12])
 ```
 
-## simon-5501-06-albuquerque.qmd, `r (i <- 13)`
+## simon-5501-06-albuquerque.qmd, 13
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r write13}
+cat(codec[13])
 ```
-
-## simon-5501-06-albuquerque.qmd, `r (i <- 14)`
-
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, `r (i <- 15)`
-
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, `r (i <- 16)`
-
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-

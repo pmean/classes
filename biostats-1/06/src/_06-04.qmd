@@ -7,34 +7,22 @@ format:
 editor: source
 ---
 
-## simon-5501-06-albuquerque.qmd, `r (i <- 17)`
+## simon-5501-06-albuquerque.qmd, 14
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r write14}
+load("../data/module06.RData")
+cat(codec[14])
 ```
 
-## simon-5501-06-albuquerque.qmd, `r (i <- 18)`
+## simon-5501-06-albuquerque.qmd, 15
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r write15}
+cat(codec[15])
 ```
 
-## simon-5501-06-albuquerque.qmd, `r (i <- 19)`
+## simon-5501-06-albuquerque.qmd, 16
 
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
+```{r write16}
+cat(codec[16])
 ```
 
-## simon-5501-06-albuquerque.qmd, `r (i <- 20)`
-
-```{r}
-template[chunk_beg[i]:chunk_end[i]] |>
-	paste0(collapse="\n") |>
-	cat()
-```

@@ -67,9 +67,7 @@ alb |>
     n_missing=sum(is.na(price)))
 ```
 
-The average price is low (\$106,000), but the standard deviation (\$38,000) shows that there is a fair amount of variation. The cheapest house (\$54,000) is a bargain by today's standards.
-
-Note that a dollar sign in R has special meaning, so to get it to print normally, you have to put a backslash in front of it.
+The average price is low (\$106,000), but the standard deviation (\$38,000) shows a fair amount of variation. Note that a dollar sign in R has special meaning. To get it to print normally, you have to put a backslash in front of it.
 
 ## m1: Plot features versus price
 
