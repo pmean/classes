@@ -1,5 +1,5 @@
 ---
-title: "06-06, Your homework"
+title: "06-07, Your homework"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,124 @@ format:
 editor: source
 ---
 
-## TBA-1
+## simon-5501-06-directions.qmd, `r (i <- 1)`
 
-:::notes
-The
-:::
-  
+```{r read}
+library(tidyverse)
+fn <- "simon-5501-06-directions.md"
+template <- read_lines(file=fn)
+h <- str_which(template, "##")
+chunk_beg <- c(1, h)
+chunk_end <- c(h-1, length(template))
+```
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-directions.qmd, `r (i <- i+1)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-directions.qmd, `r (i <- i+1)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-directions.qmd, `r (i <- i+1)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-directions.qmd, `r (i <- i+1)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-directions.qmd, `r (i <- i+1)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-directions.qmd, `r (i <- i+1)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-directions.qmd, `r (i <- i+1)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-directions.qmd, `r (i <- i+1)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-directions.qmd, `r (i <- i+1)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-directions.qmd, `r (i <- i+1)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-directions.qmd, `r (i <- i+1)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-directions.qmd, `r (i <- i+1)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-directions.qmd, `r (i <- i+1)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+

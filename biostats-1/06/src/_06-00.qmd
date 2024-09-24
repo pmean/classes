@@ -29,7 +29,7 @@ head(artificial_1)
 
 ## Artificial data, 2
 
-```{r}
+```{r artificial-2}
 b0 <- 20
 b1 <- 50
 x2 <- x1
@@ -37,7 +37,9 @@ epsilon2 <- 2*(x2-9)*runif(n,-1, 1)
 y2 <- b0 + b1*x2 + epsilon2
 e2 <- resid(lm(y2~x2))
 artificial_2 <- data.frame(x2, y2, e2)
+```
 
+```{r artificial-3}
 b0 <- 20
 b1 <- 50
 x3 <- 10 + 15*rbeta(n, 10, 10) + 10*(runif(n) > 0.5)

@@ -68,24 +68,6 @@ Calculate the regression equation predicting log10 of price using sqft. Transfor
 
 Calculate diagnostic plots (normal probability plot, histogram, and sqft versus residuals). Do these plots show that a model using log10 price better meets the assumptions for linear regression?
 
-
-
-
-
-
-
-
-## Interpret the output
-
-I provided an interpretation for mean
-price. Provide a similar interpretation 
-for the other three means. Be sure to
-
--   use a descriptive name
--   include the units of measurement, if appropriate
--   round to two or three significant digits
--   use comma separators for numbers 1,000 or larger
-
 ## Your submission
 
 -   Save the output in html format

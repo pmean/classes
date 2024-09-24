@@ -1,5 +1,5 @@
 ---
-title: "06-06, Your homework"
+title: "06-05, The log transformation"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,46 @@ format:
 editor: source
 ---
 
-## TBA-1
+## The log transformation
 
-:::notes
-The
-:::
-  
+-   Useful for correcting non-normality
+    -   Only if skewed right
+-   Useful for correcting heterogeneity
+    -   Only when larger values have larger variation
+
+##   Which logarithm?
+
+    -   Natural logarithm, $ln$, or $log_e$
+        -   R function is just log()
+        -   Difficult to interptet
+        -   Simple from a mathematics perspective
+    -   Base 10 logarithm, $log_{10}$
+        -   R function is log10()
+        -   Easiest to interpret, powers of 10
+    -   Base 2 logarithm, $log_2$
+        -   R function is log2()
+        -   Powers of 2, common in genomics
+
+##  Back transformation, 1
+
+-   Puts regression coefficients back on original scale
+-   Antilog inverts log
+    -   exp() inverts log()
+    -   10^ inverts log10()
+    -   2^ inverts log2()
+
+## Back transformation, 2
+
+-   $Y_i^*=log_{10}(Y_i)$ or $log_2{Y_i}$ or $ln(Y_i)$
+-   $\hat{Y}_i^* = b_0^* + b_1^* X_i$
+-   $b_0 = antilog(b_0^*)$
+    -   Estimated average value of Y when X=0
+    -   Actually a geometric mean
+    
+## Back transformation, 3
+
+-   $b_1 = antilog(b_1^*)$
+    -   Estimated average relative change in Y when X increases by one unit
+    -   1.1 represents a 10% increase
+    -   0.9 represents a 10% decrease
+    

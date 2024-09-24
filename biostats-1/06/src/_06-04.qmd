@@ -1,5 +1,5 @@
 ---
-title: "06-05, R code for influence measures"
+title: "06-04, R code for influence measures"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,34 @@ format:
 editor: source
 ---
 
-## Normality
+## simon-5501-06-albuquerque.qmd, `r (i <- 17)`
 
-:::notes
-The
-:::
-  
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-albuquerque.qmd, `r (i <- 18)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-albuquerque.qmd, `r (i <- 19)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-albuquerque.qmd, `r (i <- 20)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```

@@ -67,15 +67,19 @@ cat(as.yaml(dd[["vars"]][4:5]))
 cat(as.yaml(dd[["vars"]][6:7]))
 ```
 
-## simon-5501-06-albuquerque.qmd, 1
+## simon-5501-06-albuquerque.qmd, `r (i <- 1)`
 
 ```{r write1}
 library(tidyverse)
 fn <- "simon-5501-06-albuquerque.qmd"
 template <- read_lines(file=fn)
 h <- str_which(template, "##")
-g <- h-1
-template[1:g[1]] |>
+chunk_beg <- c(1, h)
+chunk_end <- c(h-1, length(template))
+```
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
 	paste0(collapse="\n") |>
 	cat()
 ```
@@ -84,162 +88,123 @@ template[1:g[1]] |>
 The first few lines are the documentation header
 :::
 
-## simon-5501-06-albuquerque.qmd, 2
+## simon-5501-06-albuquerque.qmd, `r (i <- 2)`
 
-```{r write2}
-template[h[1]:g[2]] |>
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
 	paste0(collapse="\n") |>
 	cat()
 ```
 
-## simon-5501-06-albuquerque.qmd, 3
 
-```{r write3}
-template[h[2]:g[3]] |>
+## simon-5501-06-albuquerque.qmd, `r (i <- 3)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
 	paste0(collapse="\n") |>
 	cat()
 ```
 
-## simon-5501-06-albuquerque.qmd, 4
+## simon-5501-06-albuquerque.qmd, `r (i <- 4)`
 
-```{r write4}
-template[h[3]:g[4]] |>
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
 	paste0(collapse="\n") |>
 	cat()
 ```
 
-## simon-5501-06-albuquerque.qmd, 5
+## simon-5501-06-albuquerque.qmd, `r (i <- 5)`
 
-```{r write5}
-template[h[4]:g[5]] |>
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
 	paste0(collapse="\n") |>
 	cat()
 ```
 
-## simon-5501-06-albuquerque.qmd, 6
+## simon-5501-06-albuquerque.qmd, `r (i <- 6)`
 
-```{r write6}
-template[h[5]:g[6]] |>
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
 	paste0(collapse="\n") |>
 	cat()
 ```
 
-## simon-5501-06-albuquerque.qmd, 7
+## simon-5501-06-albuquerque.qmd, `r (i <- 7)`
 
-```{r write7}
-template[h[6]:g[7]] |>
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
 	paste0(collapse="\n") |>
 	cat()
 ```
 
-## simon-5501-06-albuquerque.qmd, 8
+## simon-5501-06-albuquerque.qmd, `r (i <- 8)`
 
-```{r write8}
-template[h[7]:g[8]] |>
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
 	paste0(collapse="\n") |>
 	cat()
 ```
 
-## simon-5501-06-albuquerque.qmd, 9
+## simon-5501-06-albuquerque.qmd, `r (i <- 9)`
 
-```{r write9}
-template[h[8]:g[9]] |>
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
 	paste0(collapse="\n") |>
 	cat()
 ```
 
-## simon-5501-06-albuquerque.qmd, 10
+## simon-5501-06-albuquerque.qmd, `r (i <- 10)`
 
-```{r write10}
-template[h[9]:g[10]] |>
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
 	paste0(collapse="\n") |>
 	cat()
 ```
 
-## simon-5501-06-albuquerque.qmd, 11
+## simon-5501-06-albuquerque.qmd, `r (i <- 11)`
 
-```{r write11}
-template[h[10]:g[11]] |>
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
 	paste0(collapse="\n") |>
 	cat()
 ```
 
-## simon-5501-06-albuquerque.qmd, 12
+## simon-5501-06-albuquerque.qmd, `r (i <- 12)`
 
-```{r write12}
-template[h[11]:g[12]] |>
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
 	paste0(collapse="\n") |>
 	cat()
 ```
 
-## simon-5501-06-albuquerque.qmd, 13
+## simon-5501-06-albuquerque.qmd, `r (i <- 13)`
 
-```{r write13}
-template[h[12]:g[13]] |>
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
 	paste0(collapse="\n") |>
 	cat()
 ```
 
-## simon-5501-06-albuquerque.qmd, 14
+## simon-5501-06-albuquerque.qmd, `r (i <- 14)`
 
-```{r write14}
-template[h[13]:g[14]] |>
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
 	paste0(collapse="\n") |>
 	cat()
 ```
 
-## simon-5501-06-albuquerque.qmd, 15
+## simon-5501-06-albuquerque.qmd, `r (i <- 15)`
 
-```{r write15}
-template[h[14]:g[15]] |>
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
 	paste0(collapse="\n") |>
 	cat()
 ```
 
-## simon-5501-06-albuquerque.qmd, 16
+## simon-5501-06-albuquerque.qmd, `r (i <- 16)`
 
-```{r write16}
-template[h[15]:g[16]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 17
-
-```{r write17}
-template[h[16]:g[17]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 18
-
-```{r write18}
-template[h[10]:g[11]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 19
-
-```{r write19}
-template[h[18]:g[19]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 20
-
-```{r write20}
-template[h[19]:g[20]] |>
-	paste0(collapse="\n") |>
-	cat()
-```
-
-## simon-5501-06-albuquerque.qmd, 21
-
-```{r write21}
-template[h[20]:length(template)] |>
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
 	paste0(collapse="\n") |>
 	cat()
 ```

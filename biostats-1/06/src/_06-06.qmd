@@ -1,5 +1,5 @@
 ---
-title: "06-06, Your homework"
+title: "06-06, R code for the log transformation"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,27 @@ format:
 editor: source
 ---
 
-## TBA-1
+## simon-5501-06-albuquerque.qmd, `r (i <- 21)`
 
-:::notes
-The
-:::
-  
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-albuquerque.qmd, `r (i <- 22)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
+## simon-5501-06-albuquerque.qmd, `r (i <- 23)`
+
+```{r}
+template[chunk_beg[i]:chunk_end[i]] |>
+	paste0(collapse="\n") |>
+	cat()
+```
+
