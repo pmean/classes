@@ -185,3 +185,10 @@ r3 |>
 r3 |> 
   filter(.cooksd > 1)
 ```
+
+## m3: Variance inflation factor
+
+```{r vif}
+library(car)
+vif(m3)
+```
