@@ -1,5 +1,5 @@
 ---
-title: "06-00, Programs needed for module 06 slides"
+title: "07-00, Resources needed for module 07 slides"
 format: 
   html:
     embed-resources: true
@@ -18,7 +18,7 @@ library(yaml)
 ```{r yaml-text}
 f1 <- "https://raw.githubusercontent.com/"
 f2 <- "pmean/data/main/files/"
-f3 <- "albuquerque-housing.yaml"
+f3 <- "fev.yaml"
 yaml_text <- read_yaml(paste0(f1, f2, f3))
 
 yaml_text_names <- 
@@ -36,6 +36,7 @@ for (i in 1:n) {
 }
 datac$chunk <- paste0(datac$chunk, "\n")
 datac[ , 1]
+dim(datac)
 
 var_names <- names(yaml_text$vars)
 m <- length(yaml_text$vars)
@@ -51,12 +52,13 @@ for (i in 1:m) {
 }
 datav$chunk <- paste0(datav$chunk, "\n")
 datav[ , 1]
+dim(datav)
 ```
 
 ## Code
 
 ```{r code-text}
-fn <- "simon-5501-06-albuquerque.qmd"
+fn <- "simon-5501-07-template.qmd"
 code_text <- read_lines(file=fn)
 chunk <- 
 	cumsum(
@@ -73,12 +75,13 @@ data.frame(code_text, chunk) |>
 	pull(chunk_text) -> codec
 codec <- paste0(codec, "\n")
 cat(codec[1])
+length(codec)
 ```
 
 ## Programming assignment
 
 ```{r prog-text}
-fn <- "simon-5501-06-directions.md"
+fn <- "simon-5501-07-directions.md"
 prog_text <- read_lines(file=fn)
 chunk <- 
 	cumsum(
@@ -95,49 +98,27 @@ data.frame(prog_text, chunk) |>
 	pull(chunk_text) -> progc
 progc <- paste0(progc, "\n")
 cat(progc[1])
+length(progc)
 ```
 
-## Artificial data, 1
+## FEV data
 
-```{r artificial-1}
-n <- 500
-
-b0 <- 20
-b1 <- 0.5
-b2 <- 5
-x1 <- runif(n, 10, 30)
-epsilon1 <- 50*rnorm(n)
-y1 <- b0 + b1*x1 + b2*x1^2 + epsilon1
-e1 <- resid(lm(y1~x1))
-artificial_1 <- data.frame(x1, y1, e1)
-head(artificial_1)
+```{r read-fev}
+fn <- "../data/fev.csv"
+read_csv(
+  fn, 
+  col_names=FALSE,
+  col_types="nnncc") %>%
+  data.frame -> pulmonary
+names(pulmonary) <- c(
+  "age",
+  "fev",
+  "height",
+  "sex",
+  "smoker")
+glimpse(pulmonary)
 ```
 
-## Artificial data, 2
-
-```{r artificial-2}
-b0 <- 20
-b1 <- 50
-x2 <- x1
-epsilon2 <- 2*(x2-9)*runif(n,-1, 1)
-y2 <- b0 + b1*x2 + epsilon2
-e2 <- resid(lm(y2~x2))
-artificial_2 <- data.frame(x2, y2, e2)
-head(artificial_2)
-```
-
-## Artificial data, 3
-
-```{r artificial-3}
-b0 <- 20
-b1 <- 50
-x3 <- 10 + 15*rbeta(n, 10, 10) + 10*(runif(n) > 0.5)
-epsilon3 <- rnorm(n, 0, 50)
-y3 <- b0 + b1*x3 + epsilon3
-e3 <- resid(lm(y3~x3))
-artificial_3 <- data.frame(x3, y3, e3)
-head(artificial_3)
-```
 
 ```{r save}
 save(
@@ -145,8 +126,6 @@ save(
 	datav,
 	codec,
 	progc,
-	artificial_1, 
-	artificial_2, 
-	artificial_3, 
-	file="../data/module06.RData")
+	pulmonary,
+	file="../data/module07.RData")
 ```

@@ -1,5 +1,5 @@
 ---
-title: "02-06, TBA-1"
+title: "07-06, R code for diagnostic plots and multicollinearity"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,14 @@ format:
 editor: source
 ---
 
-## TBA-1
+## simon-5501-07-template.qmd, 4
+
+```{r write4}
+load("../data/module07.RData")
+cat(codec[4])
+```
 
 :::notes
-The
+(Add notes)
 :::
-  
+

@@ -1,5 +1,5 @@
 ---
-title: "07-01, Linear regression with two independent variables"
+title: "07-01, Multiple linear regression"
 format: 
   revealjs:
     slide-number: true
@@ -31,19 +31,11 @@ Add note.
 ```{r}
 library(broom)
 library(tidyverse)
-fn <- "../data/data-05-fev.csv"
-read_csv(fn, col_names=FALSE) %>%
-  data.frame -> init
-names(init) <- c(
-  "age",
-  "fev",
-  "height",
-  "sex",
-  "smoker")
-lm(fev~height, data=init) %>%
+load("../data/module07.RData")
+lm(fev~height, data=pulmonary) %>%
   tidy %>%
   pull(estimate) -> bu
-ggplot(init, aes(height, fev, label=age)) +
+ggplot(pulmonary, aes(height, fev, label=age)) +
   geom_text() +
   geom_abline(slope=bu[2], intercept=bu[1])
 ```
@@ -51,13 +43,13 @@ ggplot(init, aes(height, fev, label=age)) +
 ## Relationship between height and FEV controlling at Age=3
 
 ```{r}
-lm(fev~height+age, data=init) %>%
+lm(fev~height+age, data=pulmonary) %>%
   tidy %>%
   pull(estimate) -> b
 control_age <- function(a) {
-  co=ifelse(init$age==a, "black", "gray")
+  co=ifelse(pulmonary$age==a, "black", "gray")
   o <- order(co)
-  init[o, ] %>%
+  pulmonary[o, ] %>%
     ggplot(aes(height, fev, label=age)) +
       geom_text(color=co[o]) +
       geom_abline(slope=b[2], intercept=b[1]+b[3]*a) +
@@ -188,10 +180,10 @@ a <- a+1
 ## Unadjusted relationship between age and fev
 
 ```{r}
-lm(fev~age, data=init) %>%
+lm(fev~age, data=pulmonary) %>%
   tidy %>%
   pull(estimate) -> bu
-ggplot(init, aes(age, fev, label=height)) +
+ggplot(pulmonary, aes(age, fev, label=height)) +
   geom_text() +
   geom_abline(slope=bu[2], intercept=bu[1])
 h <- 48
@@ -200,11 +192,11 @@ h <- 48
 ## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
 
 ```{r}
-g <- 4*floor((init$height-2)/4)+4
+g <- 4*floor((pulmonary$height-2)/4)+4
 control_height <- function(a) {
   co=ifelse(g==h, "black", "gray")
   o <- order(co)
-  init[o, ] %>%
+  pulmonary[o, ] %>%
     ggplot(aes(age, fev, label=height)) +
       geom_text(color=co[o]) +
       geom_abline(slope=b[3], intercept=b[1]+b[2]*h) +

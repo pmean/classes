@@ -30,7 +30,7 @@ editor: source
     -   `r params$topic_06`
     -   `r params$topic_07`
 
-{{< include _02-01.qmd >}}
+{{< include _07-01.qmd >}}
 
 ## Break #1
 
@@ -39,7 +39,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_02`
 
-{{< include _02-02.qmd >}}
+{{< include _07-02.qmd >}}
 
 ## Break #2
 
@@ -48,7 +48,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_03`
 
-{{< include _02-03.qmd >}}
+{{< include _07-03.qmd >}}
 
 ## Break #3
 
@@ -57,7 +57,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_04`
 
-{{< include _02-04.qmd >}}
+{{< include _07-04.qmd >}}
 
 ## Break #4
 
@@ -66,7 +66,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_05`
 
-{{< include _02-05.qmd >}}
+{{< include _07-05.qmd >}}
 
 ## Break #5
 
@@ -75,7 +75,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_06`
 
-{{< include _02-06.qmd >}}
+{{< include _07-06.qmd >}}
 
 ## Break #6
 
@@ -84,10 +84,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_07`
 
-{{< include _02-07.qmd >}}
-
-{{< include _01-07.qmd >}}
-
+{{< include _07-07.qmd >}}
 
 ## Summary
 -   What you have learned

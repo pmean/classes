@@ -1,5 +1,5 @@
 ---
-title: "02-02, Mean and median"
+title: "07-02, R code for multiple linear regression"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,55 @@ format:
 editor: source
 ---
 
-## Mean and median
+## fev data dictionary, 1
+
+```{r data1}
+load("../data/module07.RData")
+
+cat(datac$chunk[datac$lab=="data_dictionary"])
+cat(datac$chunk[datac$lab=="copyright"])
+cat(datac$chunk[datac$lab=="description"])
+cat(datac$chunk[datac$lab=="additional_description"])
+```
+
+## fev data dictionary, 2
+
+```{r data2}
+cat(datac$chunk[datac$lab=="download_url"])
+cat(datac$chunk[datac$lab=="format"])
+cat(datac$chunk[datac$lab=="varnames"])
+cat(datac$chunk[datac$lab=="missing_value_code"])
+cat(datac$chunk[datac$lab=="size"])
+```
+
+## fev data dictionary, 3
+
+```{r data3}
+cat(datav$chunk[1])
+cat(datav$chunk[2])
+cat(datav$chunk[3])
+```
+
+## fev data dictionary, 4
+
+```{r data4}
+cat(datav$chunk[4])
+cat(datav$chunk[5])
+```
+
+## simon-5501-07-template.qmd, 1
+
+```{r write1}
+cat(codec[1])
+```
 
 :::notes
-The
+The first few lines are the documentation header
 :::
-  
+
+## simon-5501-07-template.qmd, 2
+
+```{r write2}
+cat(codec[2])
+```
+

@@ -7,9 +7,14 @@ format:
 editor: source
 ---
 
-## Standard deviation
+## simon-5501-07-template.qmd, 3
+
+```{r write3}
+load("../data/module07.RData")
+cat(codec[1])
+```
 
 :::notes
-The
+(Add notes)
 :::
-  
+

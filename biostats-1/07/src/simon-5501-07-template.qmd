@@ -1,0 +1,47 @@
+---
+title: "Template for 5501-07 programming assignment"
+author: "Steve Simon"
+format: 
+  html:
+    embed-resources: true
+date: 2024-09-25
+---
+
+There is a [data dictionary][dd] that provides more details about the data. The program was written by Steve Simon on 2024-09-02 and is placed in the public domain.
+
+[dd]: https://github.com/pmean/datasets/blob/master/fev.yaml
+
+## Libraries
+
+The tidyverse library is the only one you need for  this program.
+
+```{r setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+```
+
+## List variable names
+
+Since the variable names are not listed in the data file itself, you need to list them here.
+
+```{r names}
+fev_names <- c(
+    "age",
+    "fev",
+    "ht",
+    "sex",
+    "smoke")
+```
+
+## Reading the data
+
+Here is the code to read the data and show a glimpse. 
+
+```{r read}
+fev <- read_csv(
+  file="../data/fev.csv",
+  col_names=fev_names,
+  col_types="nnncc")
+glimpse(fev)
+```
