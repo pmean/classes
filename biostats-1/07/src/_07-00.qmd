@@ -1,0 +1,152 @@
+---
+title: "06-00, Programs needed for module 06 slides"
+format: 
+  html:
+    embed-resources: true
+editor: source
+---
+
+```{r setup-0}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(yaml)
+```
+
+## Data dictionary
+
+```{r yaml-text}
+f1 <- "https://raw.githubusercontent.com/"
+f2 <- "pmean/data/main/files/"
+f3 <- "albuquerque-housing.yaml"
+yaml_text <- read_yaml(paste0(f1, f2, f3))
+
+yaml_text_names <- 
+	setdiff(names(yaml_text), "vars")
+n <- length(yaml_text_names)
+
+datac <- 
+	data.frame(
+		lab=yaml_text_names, 
+		chunk=" ")
+for (i in 1:n) {
+	datac$chunk[i] <- 
+		as.yaml(
+			yaml_text[datac$lab[i]])
+}
+datac$chunk <- paste0(datac$chunk, "\n")
+datac[ , 1]
+
+var_names <- names(yaml_text$vars)
+m <- length(yaml_text$vars)
+
+datav <- 
+	data.frame(
+		lab=var_names, 
+		chunk=" ")
+for (i in 1:m) {
+	datav$chunk[i] <- 
+		as.yaml(
+			yaml_text$vars[datav$lab[i]])
+}
+datav$chunk <- paste0(datav$chunk, "\n")
+datav[ , 1]
+```
+
+## Code
+
+```{r code-text}
+fn <- "simon-5501-06-albuquerque.qmd"
+code_text <- read_lines(file=fn)
+chunk <- 
+	cumsum(
+	  str_detect(
+	  	code_text, "## "))
+data.frame(code_text, chunk) |>
+	group_by(chunk) |>
+	summarize(
+		chunk_text =
+			paste0(
+				code_text, 
+				sep="\n", 
+				collapse="")) |>
+	pull(chunk_text) -> codec
+codec <- paste0(codec, "\n")
+cat(codec[1])
+```
+
+## Programming assignment
+
+```{r prog-text}
+fn <- "simon-5501-06-directions.md"
+prog_text <- read_lines(file=fn)
+chunk <- 
+	cumsum(
+	  str_detect(
+	  	prog_text, "## "))
+data.frame(prog_text, chunk) |>
+	group_by(chunk) |>
+	summarize(
+		chunk_text =
+			paste0(
+				prog_text, 
+				sep="\n", 
+				collapse="")) |>
+	pull(chunk_text) -> progc
+progc <- paste0(progc, "\n")
+cat(progc[1])
+```
+
+## Artificial data, 1
+
+```{r artificial-1}
+n <- 500
+
+b0 <- 20
+b1 <- 0.5
+b2 <- 5
+x1 <- runif(n, 10, 30)
+epsilon1 <- 50*rnorm(n)
+y1 <- b0 + b1*x1 + b2*x1^2 + epsilon1
+e1 <- resid(lm(y1~x1))
+artificial_1 <- data.frame(x1, y1, e1)
+head(artificial_1)
+```
+
+## Artificial data, 2
+
+```{r artificial-2}
+b0 <- 20
+b1 <- 50
+x2 <- x1
+epsilon2 <- 2*(x2-9)*runif(n,-1, 1)
+y2 <- b0 + b1*x2 + epsilon2
+e2 <- resid(lm(y2~x2))
+artificial_2 <- data.frame(x2, y2, e2)
+head(artificial_2)
+```
+
+## Artificial data, 3
+
+```{r artificial-3}
+b0 <- 20
+b1 <- 50
+x3 <- 10 + 15*rbeta(n, 10, 10) + 10*(runif(n) > 0.5)
+epsilon3 <- rnorm(n, 0, 50)
+y3 <- b0 + b1*x3 + epsilon3
+e3 <- resid(lm(y3~x3))
+artificial_3 <- data.frame(x3, y3, e3)
+head(artificial_3)
+```
+
+```{r save}
+save(
+	datac,
+	datav,
+	codec,
+	progc,
+	artificial_1, 
+	artificial_2, 
+	artificial_3, 
+	file="../data/module06.RData")
+```
