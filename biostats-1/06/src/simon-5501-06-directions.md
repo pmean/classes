@@ -19,7 +19,7 @@ This code is placed in the public domain.
     -   Add your name to the author field
     -   Optional: change the copyright statement
 
-[tem]: https://github.com/pmean/classes/blob/master/biostats-1/01/src/simon-5501-06-albuquerque.qmd
+[tem]: https://github.com/pmean/classes/blob/master/biostats-1/06/src/simon-5501-06-albuquerque.qmd
 
 ## Data
 
