@@ -13,12 +13,13 @@ There is a [data dictionary][dd] that provides more details about the data. The 
 
 ## Libraries
 
-The tidyverse library is the only one you need for  this program.
+You should always load the tidyverse library. The broom library provides the glance, tidy, and augment functions that help you with computations of linear regression models. The car library provides the vif function for measuing collinearity.
 
 ```{r setup}
 #| message: false
 #| warning: false
 library(broom)
+library(car)
 library(tidyverse)
 ```
 
@@ -47,33 +48,24 @@ pulmonary <- read_csv(
 glimpse(pulmonary)
 ```
 
-## Descriptive statistics for age
+## m1: Linear regression model using sex to predict fev
 
-You do not need to specify na.rm=TRUE because there are no missing values.
+Is there a relationship between sex and fev? Do males tend to have larger fev values than females. This section (labelled m1) shows some simple descriptive and graphical summaries followed by a linear regression model.
 
-```{r age}
+## m1: Descriptive stastics for sex
+
+```{r sex}
 pulmonary |>
-  summarize(
-    age_mn=mean(age),
-    age_sd=sd(age),
-    age_min=min(age),
-    age_max=max(age))
+	count(sex) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=100*n/total)
 ```
 
-Interpretations for the descriptive statistics should be provided here.
+There are slightly more males (51%) than females in this sample.
 
-## Descriptive statistics for ht
+## m1: Descriptive statistics for fev
 
-```{r ht}
-pulmonary |>
-  summarize(
-    ht_mn=mean(ht),
-    ht_sd=sd(ht),
-    ht_min=min(ht),
-    ht_max=max(ht))
-```
-
-## Descriptive statistics for fev
+You do not need to specify na.rm=TRUE for any of the descriptive statistics because there are no missing values.
 
 ```{r fev}
 pulmonary |>
@@ -84,7 +76,118 @@ pulmonary |>
     fev_max=max(fev))
 ```
 
-## Correlations
+The average fev value, 2.6, seems reasonable. The standard deviation, 0.87, indicates a fair amount of variation. The minimum and maximum values both appear to be reasonable.
+
+## m1: Tabular summary of the relationship between sex and fev, 1
+
+```{r sex-and-fev-1}
+pulmonary |>
+  group_by(sex) |>
+	summarize(
+		fev_mn=mean(fev),
+		fev_sd=sd(fev))
+```
+
+The average fev is 0.36 liters higher for males than females. There is very slightly more variation in the males (the standard deviation is 1.00 versus 0.65).
+
+## m1: Graphical summary of the relationship between sex and fev, 2
+
+```{r sex-and-fev-2}
+pulmonary |>
+  ggplot(aes(sex, fev)) +
+    geom_boxplot() + 
+    coord_flip() +
+    ggtitle("Graph drawn by Steve Simon on 2024-09-26") +
+	  xlab("Sex") +
+	  ylab("Forced Expiratory Volume (liters)")
+```
+
+The boxplot shows the same pattern slightly larger fev values for males compared to females and slightly more variation. 
+
+## m1: Fit the linear regression model
+
+```{r m1-model}
+m1 <- lm(fev ~ sex, data=pulmonary)
+m1
+```
+
+The estimated average fev is 2.45 for females and 0.36 inches higher for males.
+
+## m2: Linear regression model using smoke to predict fev
+
+Is there a relationship between smoke and fev? This section (labeled m2) shows some simple descriptive and graphical summaries followed by a linear regression model.
+
+## m2: Descriptive statistics for smoke
+
+```{r smoke}
+pulmonary |>
+	count(smoke) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=100*n/total)
+```
+
+There are very few smokers (65 or 10%) in this sample. Descriptive statistics for fev were shown earlier.
+
+## m2: Relationship between smoke and fev, 1
+
+```{r smoke-and-fev-1}
+pulmonary |>
+  group_by(smoke) |>
+	summarize(
+		fev_mn=mean(fev),
+		fev_sd=sd(fev))
+```
+
+Smokers have an average fev value that is 0.7 units higher than non-smokers. The standard deviations (0.85 and 0.75) demonstrate roughly the same amount of variation in the two groups.
+
+## m2: Relationship between smoke and fev, 2
+
+```{r smoke-and-fev-2}
+pulmonary |>
+  ggplot(aes(smoke, fev)) +
+    geom_boxplot() + 
+    coord_flip() +
+    ggtitle("Graph drawn by Steve Simon on 2024-09-26") +
+	  xlab("Did the patient smokee?") +
+	  ylab("Forced Expiratory Volume (liters)")
+```
+
+The boxplot shows the same pattern as noted above.
+
+
+## m3: Linear regression model using age and ht to predict fev
+
+Previous analysis has shown that age by itself is a strong predictor of fev and height by itself is a strong predictor of fev. A multiple linear regression model including both age and height should do an even better job in predicting fev. This model will also allow you to compare the relative importance of the two variables. Is fev most strongly associated with how big a child is or how old that child is?
+
+You should always start with descriptive statistics and graphs. With two or more independent variables, you should also examine the correlations between the independent variables and their correlations with the dependent variable.
+
+## m3: Descriptive statistics for age
+
+```{r age}
+pulmonary |>
+  summarize(
+    age_mn=mean(age),
+    age_sd=sd(age),
+    age_min=min(age),
+    age_max=max(age))
+```
+
+The descriptive statistics are consistent with a pediatric study. The average age is 9.9 years. The standard deviation, 3.0, shows a large amount of variation in age (large at least for a pediatric study). The range, 3 years to 19 years, also demonstrates a large amount of variation.
+
+## m3: Descriptive statistics for ht
+
+```{r ht}
+pulmonary |>
+  summarize(
+    ht_mn=mean(ht),
+    ht_sd=sd(ht),
+    ht_min=min(ht),
+    ht_max=max(ht))
+```
+
+The average height, 61 inches, is reasonable for a group of children with an average age of around 10 years. The standard deviation, 5.7 inches, and the range, 46 inches to 74 inches, show a moderate amount of variation.
+
+## m3: Correlations
 
 Using [ , 1:3] reduces the pulmonary data frame to just the first three columns.
 
@@ -93,20 +196,6 @@ cor(pulmonary[ , 1:3])
 ```
 
 The two independent variables, age and ht, are both strongly correlated with fev (r=0.76 and 0.87). They are also strongly correlated with one another (r=0.79).
-
-## m1: Predicting fev using age
-
-```{r m1}
-m1 <- lm(fev ~ age, data=pulmonary)
-m1
-```
-
-## m2: Predicting fev using ht
-
-```{r m2}
-m2 <- lm(fev ~ ht, data=pulmonary)
-m2
-```
 
 ## m3: Predicting fev using age and ht
 
