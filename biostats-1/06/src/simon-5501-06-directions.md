@@ -1,13 +1,11 @@
 ---
 title: "Directions for 5501-06 programming assignment"
-author: "Steve Simon"
 format: 
   html:
     embed-resources: true
-date: 2024-08-18
 ---
 
-This code is placed in the public domain.
+This file was written by Steve Simon on 2024-08-18 and is placed in the public domain.
 
 ## Program
 

@@ -113,6 +113,73 @@ m1
 
 The estimated average fev is 2.45 for females and 0.36 inches higher for males.
 
+## m1: Analysis of variance table
+
+```{r m1-anova}
+anova(m1)
+```
+
+The F-statistic, 29.6, is large, and the p-value is very small (< 0.001). Reject the null hypothesis and conclude that the average fev values are different between males and females.
+
+## m1: R-squared
+
+```{r m1-r-squared}
+glance(m1)$r.squared
+```
+
+Sex is a very weak predictor of fev. Only 4% of the variation in fev values can be accounted for by a patient's sex.
+
+## m1: Confidence intervals
+
+```{r m1-ci}
+confint(m1)
+```
+
+We are 95% confident that the difference in fev values is between 0.23 and 0.49. This is a positive difference for all values in the confidence interval, demonstrating that the average fev values are larger for males than for females. This interval is narrow indicating that there is very little sampling error. Hardly a surprise with such a large dataset (n=654).
+
+## m1: T-tests
+
+```{r m1-t-tests}
+tidy(m1)
+```
+
+The t-statistic, 5.4, is not close to zero. Conclude that there is a difference in average fev values between males and females. Since the t-statistic is positive, conclude also that the average fev value is larger for males.
+
+## m1: Normal probability plot of residuals
+
+```{r m1-qq-plot}
+r1 <- augment(m1)
+qqnorm(r1$.resid)
+```
+
+The straight lines indicates that the residuals are normally distributed.
+
+## m1: Histogram of residuals
+
+```{r m1-histogram}
+r1 |>
+	ggplot(aes(.resid)) +
+	  geom_histogram(
+	  	binwidth=0.2,
+	  	color="black",
+	  	fill="white") +
+    ggtitle("Graph drawn by Steve Simon on 2024-09-26") +
+	  xlab("Residuals from m1 regression model")
+```
+
+The histogram also indicates that the residuals are normally distributed.
+
+## m1: Influential data points
+
+Both leverage and Cook's distance make little sense for a regression model using a categorical independent variable. The studentized deleted residual is still useful.
+
+```{r m1-studentized-deleted-residual}
+r1 |>
+	filter(abs(.std.resid) > 3)
+```
+
+There are three outliers on the high end, corresponding to fev values of 5.6, 5.6, and 5.8 liters in males. There are no outliers among the female patients.
+
 ## m2: Linear regression model using smoke to predict fev
 
 Is there a relationship between smoke and fev? This section (labeled m2) shows some simple descriptive and graphical summaries followed by a linear regression model.
@@ -148,12 +215,22 @@ pulmonary |>
     geom_boxplot() + 
     coord_flip() +
     ggtitle("Graph drawn by Steve Simon on 2024-09-26") +
-	  xlab("Did the patient smokee?") +
+	  xlab("Did the patient smoke?") +
 	  ylab("Forced Expiratory Volume (liters)")
 ```
 
 The boxplot shows the same pattern as noted above.
 
+## m2: Fit the linear regression model
+
+```{r m2-model}
+m2 <- lm(fev ~ smoke, data=pulmonary)
+m2
+```
+
+The estimated average fev is 2.57 liters for non-smokers and 0.71 liters higher on average for smokers.
+
+Normally, you would follow this up with various functions (anova, confint, tidy), assess various diagnostic plots using the residuals, and identify influential data points.
 
 ## m3: Linear regression model using age and ht to predict fev
 
@@ -204,18 +281,43 @@ m3 <- lm(fev ~ age + ht, data=pulmonary)
 m3
 ```
 
-## m3: Confidence intervals
+The estimated average fev value increases by 0.05 liters for each increase of one year in age, holding height constant. The estimated average fev value increases by 0.11 liters for every increase of one inch in height. The estimated average fev is -4.6 for a patient of age zero with a height of zero inches. This is clearly and extrapolation beyond the range of the data.
 
-```{r ci}
-confint(m3)
+## m3: Confidence intervals, 1
+
+The use of [2, ] (and of [3, ]) isolates the individual rows of the data frame produced by confint. This is not really necessary, but is done to fit the information easily on separate slides.
+
+```{r m3-ci-1}
+confint(m3)[2, ]
 ```
+
+We are 95% confident that the estimated average fev value increases between 0.036 and 0.072 liters for each increase of one year of age holding height constant. Conclude that there is a positive relationship between fev and age.
+
+## m3: Confidence intervals, 2
+
+```{r m3-ci-2}
+confint(m3)[3, ]
+```
+
+We are 95% confident that the estimated average fev value increases between 0.10 and 0.12 liters for each increase of one inch in patient's height holding age constant. Conclude that there is a positive relationship between height and fev.
+
+Do not interpret the confidence interval for the intercept.
 
 ## m3: Analysis of variance table
 
-```{r anova}
+```{r m3-anova}
 anova(m3)
+```
+
+The sum of squares total (SST) is 280.9 + 95.3 + 114.7 = 490.9. Only a small portion of the variation (114.7) is unexplained variation. The F-ratio is much larger than 1, and the p-value is less than 0.001. You can conclude that the combination of age and height helps significantly in predicting fev.
+
+## m3: R-squared
+
+```{r m3-r-squared}
 glance(m3)$r.squared
 ```
+
+Roughly 77% of the variation in fev can be explained by the combination of the age and height of the patients.
 
 ## m3: t-tests
 
@@ -236,7 +338,7 @@ qqnorm(r3$.resid)
 r3 |>
   ggplot(aes(.resid)) +
     geom_histogram(
-      binwidth=1,
+      binwidth=0.2,
       color="black",
       fill="white") +
     xlab("Residuals from m3 regression") +
@@ -260,6 +362,8 @@ r3 |>
 n <- nrow(r3)
 r3 |> filter(.hat > 3*3/n)
 ```
+
+
 
 ## m3: Influential data points, 2
 
