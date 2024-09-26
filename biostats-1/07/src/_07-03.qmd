@@ -1,5 +1,5 @@
 ---
-title: "07-03, Categorical independent variables"
+title: "07-01, Multiple linear regression"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,244 @@ format:
 editor: source
 ---
 
-## Categorical independent variables
+## Model
 
-:::notes
-The
+-   $Y_i=\beta_0+\beta_1 X_{1i}+\beta_2 X_{2i}+\epsilon_i$
+-   Least squares estimates: $b_0,\ b_1,\ b_2$
+
+::: notes
+Add note.
 :::
-  
+
+## Interpretations
+
+-   $b_0$ is the estimated average value of Y when X1 and X2 both equal zero.
+-   $b_1$ is the estimated average change in Y
+    -   when $X_1$ increases by one unit, and
+    -   $X_2$ is held constant
+-   $b_2$ is the estimated average change in Y
+    -   when $X_2$ increases by one unit, and
+    -   $X_1$ is held constant
+    
+## Unadjusted relationship between height and FEV
+
+```{r}
+library(broom)
+library(tidyverse)
+load("../data/module07.RData")
+lm(fev~height, data=pulmonary) %>%
+  tidy %>%
+  pull(estimate) -> bu
+ggplot(pulmonary, aes(height, fev, label=age)) +
+  geom_text() +
+  geom_abline(slope=bu[2], intercept=bu[1])
+```
+
+## Relationship between height and FEV controlling at Age=3
+
+```{r}
+lm(fev~height+age, data=pulmonary) %>%
+  tidy %>%
+  pull(estimate) -> b
+control_age <- function(a) {
+  co=ifelse(pulmonary$age==a, "black", "gray")
+  o <- order(co)
+  pulmonary[o, ] %>%
+    ggplot(aes(height, fev, label=age)) +
+      geom_text(color=co[o]) +
+      geom_abline(slope=b[2], intercept=b[1]+b[3]*a) +
+      geom_abline(slope=bu[2], intercept=bu[1], color="gray")
+}
+a <- 3
+```
+
+## Relationship between height and FEV controlling at Age=`r a`
+
+```{r}
+control_age(a)
+a <- a+1
+```
+
+## Relationship between height and FEV controlling at Age=`r a`
+
+```{r}
+control_age(a)
+a <- a+1
+```
+
+## Relationship between height and FEV controlling at Age=`r a`
+
+```{r}
+control_age(a)
+a <- a+1
+```
+
+## Relationship between height and FEV controlling at Age=`r a`
+
+```{r}
+control_age(a)
+a <- a+1
+```
+
+## Relationship between height and FEV controlling at Age=`r a`
+
+```{r}
+control_age(a)
+a <- a+1
+```
+
+## Relationship between height and FEV controlling at Age=`r a`
+
+```{r}
+control_age(a)
+a <- a+1
+```
+
+## Relationship between height and FEV controlling at Age=`r a`
+
+```{r}
+control_age(a)
+a <- a+1
+```
+
+## Relationship between height and FEV controlling at Age=`r a`
+
+```{r}
+control_age(a)
+a <- a+1
+```
+
+## Relationship between height and FEV controlling at Age=`r a`
+
+```{r}
+control_age(a)
+a <- a+1
+```
+
+## Relationship between height and FEV controlling at Age=`r a`
+
+```{r}
+control_age(a)
+a <- a+1
+```
+
+## Relationship between height and FEV controlling at Age=`r a`
+
+```{r}
+control_age(a)
+a <- a+1
+```
+
+## Relationship between height and FEV controlling at Age=`r a`
+
+```{r}
+control_age(a)
+a <- a+1
+```
+
+## Relationship between height and FEV controlling at Age=`r a`
+
+```{r}
+control_age(a)
+a <- a+1
+```
+
+## Relationship between height and FEV controlling at Age=`r a`
+
+```{r}
+control_age(a)
+a <- a+1
+```
+
+## Relationship between height and FEV controlling at Age=`r a`
+
+```{r}
+control_age(a)
+a <- a+1
+```
+
+## Relationship between height and FEV controlling at Age=`r a`
+
+```{r}
+control_age(a)
+a <- a+1
+```
+
+## Relationship between height and FEV controlling at Age=`r a`
+
+```{r}
+control_age(a)
+a <- a+1
+```
+
+## Unadjusted relationship between age and fev
+
+```{r}
+lm(fev~age, data=pulmonary) %>%
+  tidy %>%
+  pull(estimate) -> bu
+ggplot(pulmonary, aes(age, fev, label=height)) +
+  geom_text() +
+  geom_abline(slope=bu[2], intercept=bu[1])
+h <- 48
+```
+
+## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
+
+```{r}
+g <- 4*floor((pulmonary$height-2)/4)+4
+control_height <- function(a) {
+  co=ifelse(g==h, "black", "gray")
+  o <- order(co)
+  pulmonary[o, ] %>%
+    ggplot(aes(age, fev, label=height)) +
+      geom_text(color=co[o]) +
+      geom_abline(slope=b[3], intercept=b[1]+b[2]*h) +
+      geom_abline(slope=bu[2], intercept=bu[1], color="gray")
+}
+h <- 48
+control_height(h)
+h <- h+4
+```
+
+## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
+
+```{r}
+control_height(h)
+h <- h+4
+```
+
+## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
+
+```{r}
+control_height(h)
+h <- h+4
+```
+
+## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
+
+```{r}
+control_height(h)
+h <- h+4
+```
+
+## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
+
+```{r}
+control_height(h)
+h <- h+4
+```
+
+## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
+
+```{r}
+control_height(h)
+h <- h+4
+```
+
+## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
+
+```{r}
+control_height(h)
+h <- h+4
+```
