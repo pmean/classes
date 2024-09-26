@@ -1,5 +1,5 @@
 ---
-title: "Directions for 5501-01 programming assignment"
+title: "Directions for 5501-06 programming assignment"
 author: "Steve Simon"
 format: 
   html:
