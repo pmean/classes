@@ -58,7 +58,7 @@ dim(datav)
 ## Code
 
 ```{r code-text}
-fn <- "simon-5501-07-template.qmd"
+fn <- "simon-5501-07-fev.qmd"
 code_text <- read_lines(file=fn)
 chunk <- 
 	cumsum(

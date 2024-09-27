@@ -7,14 +7,67 @@ format:
 editor: source
 ---
 
-## simon-5501-07-template.qmd, 3
+## simon-5501-07-fev.qmd, 21
 
-```{r write3}
-load("../data/module07.RData")
-cat(codec[1])
+```{r write21}
+cat(codec[21])
 ```
 
 :::notes
-(Add notes)
+The first few lines are the documentation header
 :::
+
+## simon-5501-07-fev.qmd, 22
+
+```{r write22}
+cat(codec[22])
+```
+
+## simon-5501-07-fev.qmd, 23
+
+```{r write23}
+cat(codec[23])
+```
+
+## simon-5501-07-fev.qmd, 24
+
+```{r write24}
+cat(codec[24])
+```
+
+## simon-5501-07-fev.qmd, 25
+
+```{r write25}
+cat(codec[25])
+```
+
+## simon-5501-07-fev.qmd, 26
+
+```{r write26}
+cat(codec[26])
+```
+
+## simon-5501-07-fev.qmd, 27
+
+```{r write27}
+cat(codec[27])
+```
+
+## simon-5501-07-fev.qmd, 28
+
+```{r write28}
+cat(codec[28])
+```
+
+## simon-5501-07-fev.qmd, 29
+
+```{r write29}
+cat(codec[29])
+```
+
+## simon-5501-07-fev.qmd, 30
+
+```{r write30}
+cat(codec[30])
+```
 
