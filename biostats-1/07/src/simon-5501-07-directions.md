@@ -1,39 +1,38 @@
 ---
-title: "Directions for 5501-01 programming assignment"
-author: "Steve Simon"
+title: "Directions for 5501-07 programming assignment"
 format: 
   html:
     embed-resources: true
-date: 2024-08-18
+date: 2024-09-27
 ---
 
-This code is placed in the public domain.
+This file was written by Steve Simon on 2024-09-27 and is placed in the public domain.
 
-## Setup
+## Program
 
--   Download the [template][tem]
+-   Download [simon-5501-07-fev.qmd][tem]
     -   Store it in your src folder
 -   Modify the file name
     -   Use your last name instead of "simon"
 -   Modify the documentation header
     -   Add your name to the author field
     -   Optional: change the copyright statement
--   Download the [data file][dat]
+
+[tem]: https://github.com/pmean/classes/blob/master/biostats-1/07/src/simon-5501-06-fev.qmd
+
+## Data
+
+-   Download [fev.csv][dat]
     -   Store it in your data folder
+    -   Refer to the [data dictionary][dic] if needed
 
-[tem]: https://github.com/pmean/classes/blob/master/biostats-1/01/src/simon-5501-01-template.qmd
-[dat]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.csv
+[dat]: https://github.com/pmean/datasets/blob/master/fev.csv
+[dic]: https://github.com/pmean/datasets/blob/master/fev.csv
     
-## Interpret the output
+## Question 1
 
-I provided an interpretation for mean
-price. Provide a similar interpretation 
-for the other three means. Be sure to
+Change the program so that it reads in the breast-feeding-preterm.csv file. Show a glimpse of the data and verify that you have properly read in all 82 rows and 31 columns.
 
--   use a descriptive name
--   include the units of measurement, if appropriate
--   round to two or three significant digits
--   use comma separators for numbers 1,000 or larger
 
 ## Your submission
 
