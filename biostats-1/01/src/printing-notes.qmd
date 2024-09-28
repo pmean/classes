@@ -6,10 +6,10 @@ format:
     slide-number: true
     embed-resources: true
     show-notes: true
+editor: visual
 knitr:
   opts_chunk: 
     fig-align: "left"
-editor: source
 ---
 
 ```{=html}
