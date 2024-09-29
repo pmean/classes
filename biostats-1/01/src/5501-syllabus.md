@@ -327,41 +327,36 @@ This schedule is tentative and subject to change. Keep your eyes on the Canvas s
     -   Read Chapter 8.
 
 5.  Linear regression, part 1
-    -   Continuous predictor
-    -   Analysis of variance table
-    -   Indicator variables
-        -   Binary predictor
-        -   Categorical predictor
+    -   Visualization
+        -   Scatterplots
+    -   Regression with a continuous predictor
+        -   Residuals
+        -   Analysis of variance table
+        -   R-squared
     -   Read Sections 9.1 to 9.8
     
 6.  Linear regression, part 2
-    -   Residuals
-    -   Checking assumptions
-    -   Alternative to linear regression
-        -   Nonparametric correlation
-        -   Transformations
-        -   Splines
-    -   Reading assignments from outside your book (to be determined)
-    
+    -   Visualization
+        -   Histogram
+        -   Normal probability plot
+    -   Checking the regression assumptions
+        -   Normality
+        -   Heterogeneity
+        -   Independence
+    -   Identifying influential data points
+    -   Read Sections 9.1 to 9.8 again
+
 7.  Linear regression, part 3
     -   Visualization
-        -   Scatterplot matrix
-    -   Multiple linear regression
+        -   Boxplots
+    -   Categorical predictors
+        -   Indicator variables
+    -   Multiple predictors
         -   Interpretation
-    -   Variable selection
-    -   Read Sections 9.9 to 9.11
+        -   Collinearity
+    -   Read Sections 9.9 to 9.11, 9.14 to 9.17
     
-8.  Categorical outcomes, part 1
-    -   Row versus column percents
-    -   Odds ratio versus relative risk
-    -   Chi-square tests
-    -   Read Chapter 19
-
-9.  Categorical outcomes, part 2
-    -   Logistic regression
-    -   Read Chapter 20
-
-10. Two group comparisons, part 1
+8. Two group comparisons, part 1
     -   Visualization
         -   Bar/line plots with error bars
         -   Boxplots
@@ -371,20 +366,20 @@ This schedule is tentative and subject to change. Keep your eyes on the Canvas s
         -   Relationship to linear regression
     -   Read Sections 10.1 to 10.8
     
-11. Two group comparisons, part 2
+9. Two group comparisons, part 2
     -   Visualization
         -   Line plots
     -   Paired t-test
         -   Assumptions
         -   Sample size calculation
         
-12. Analysis of variance, part 1
+10. Analysis of variance, part 1
     -   One factor analysis of variance
         -   Analysis of variance table
         -   Post hoc comparisons
     -   Read Sections 12.1 to 12.7
 
-13. Analysis of variance, part 2
+11. Analysis of variance, part 2
     -   Assumptions
     -   Sample size calculation
     -   Alternatives
@@ -392,7 +387,7 @@ This schedule is tentative and subject to change. Keep your eyes on the Canvas s
         -   Bayesian analysis of variance
     -   Reading assignments from outside your book (to be determined)
         
-14. Analysis of variance, part 3
+12. Analysis of variance, part 3
     -   Visualization
         -   Bar/line graph with error bars
         -   Boxplots
@@ -401,11 +396,25 @@ This schedule is tentative and subject to change. Keep your eyes on the Canvas s
         -   Interactions
     -   Read Sections 14.1 to 14.7
     
+13.  Categorical outcomes, part 1
+    -   Row versus column percents
+    -   Odds ratio versus relative risk
+    -   Chi-square tests
+    -   Read Chapter 19
+
+14.  Categorical outcomes, part 2
+    -   Logistic regression
+    -   Read Chapter 20
+
 15. Review
 
 There will be written assignments on most weeks. Two major projects are a data collection involving M&M candies and a data analysis using data that you find on your own.
  
-#### Semester Statistical Analysis Project
+### Midterm project
+
+You will find a dataset that has not been used in this class and prepare a data analysis involving a linear regression model. This includes a data dictionary and a five minute oral presentation.
+
+### Final project
 
 The purpose of this project is to provide the student with an independent learning opportunity to apply the statistical concepts and methodology to a set of their own data. With this project, the student will:
 
