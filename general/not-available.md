@@ -1,5 +1,5 @@
 ---
-title: This file is not available yet
+title: Generic message
 ---
 
 ## This file is not available yet.

@@ -1,5 +1,5 @@
 ---
-title: "Directions for 5501-01 programming assignment"
+title: "Directions for 5501-14 programming assignment"
 author: "Steve Simon"
 format: 
   html:
@@ -9,31 +9,30 @@ date: 2024-08-18
 
 This code is placed in the public domain.
 
-## Setup
+## Program
 
--   Download the [template][tem]
+-   Download the [program][tem]
     -   Store it in your src folder
 -   Modify the file name
     -   Use your last name instead of "simon"
 -   Modify the documentation header
     -   Add your name to the author field
     -   Optional: change the copyright statement
--   Download the [data file][dat]
-    -   Store it in your data folder
-
-[tem]: https://github.com/pmean/classes/blob/master/biostats-1/01/src/simon-5501-01-template.qmd
-[dat]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.csv
     
-## Interpret the output
+[tem]: https://github.com/pmean/classes/blob/master/general/not-available.md
 
-I provided an interpretation for mean
-price. Provide a similar interpretation 
-for the other three means. Be sure to
+## Data
 
--   use a descriptive name
--   include the units of measurement, if appropriate
--   round to two or three significant digits
--   use comma separators for numbers 1,000 or larger
+-   Download the [data][dat] file
+    -   Store it in your data folder
+-   Refer to the [data dictionary][dic], if needed.
+
+[dat]: https://github.com/pmean/classes/blob/master/general/not-available.md
+[dic]: https://github.com/pmean/classes/blob/master/general/not-available.md
+    
+## Question 1
+
+[To be added]
 
 ## Your submission
 
