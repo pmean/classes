@@ -147,9 +147,14 @@ The t-statistic, 5.4, is not close to zero. Conclude that there is a difference 
 
 ## m1: Normal probability plot of residuals
 
+Note: I learn something new everyday. You do not have to use qqnorm to create a normal probability plot. You can do it using the ggplot and stat_qq functions. This looks nicer, is consistent with other visualizations in R, and allows you to put in a title using ggtitle. You are welcome to use this approach or qqnorm in your homework.
+
 ```{r m1-qq-plot}
 r1 <- augment(m1)
-qqnorm(r1$.resid)
+r1 |>
+	ggplot(aes(sample=.resid)) +
+	  stat_qq() +
+    ggtitle("Graph drawn by Steve Simon on 2024-09-30") +
 ```
 
 The straight lines indicates that the residuals are normally distributed.
@@ -331,7 +336,10 @@ tidy(m3)
 
 ```{r diagnostic-1}
 r3 <- augment(m3)
-qqnorm(r3$.resid)
+r3 |>
+	ggplot(aes(sample=.resid)) +
+	  stat_qq() +
+    ggtitle("Graph drawn by Steve Simon on 2024-09-30") +
 ```
 
 ## m3: Diagnostic plots, 2
