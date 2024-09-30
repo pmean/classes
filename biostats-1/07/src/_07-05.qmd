@@ -7,9 +7,215 @@ format:
 editor: source
 ---
 
-## Diagnostic plots and multicollinearity
+## Assumptions
+
+-   Population model
+    -   $Y_i=\beta_0+\beta_1 X_{1i}+\beta_2 X_{2i}+\epsilon_i,\ i=1,...,N$
+-   Assumptions about $\epsilon_i$
+    -   Normal distribution
+    -   Mean 0
+    -   Standard deviation sigma
+    -   Independent
 
 :::notes
-(Add notes)
+The population model requires that you have access to the entire population. The size of the population, N, is almost always a large number. It is a number so large that you have to rely on a much smaller subset of the population, a sample.
+
+Because N is so large, $\beta_0$ and $\beta_1$ are unknown constants and $\epsilon_i$ is also unknown.
 :::
+
+## Residuals
+
+-   $\hat{Y}_i = b0 + b1 X_i + b_2 X_i$
+-   $e_i = Y_i - \hat{Y}_i$
+    -   Behavior of $e_i$ helps evaluate assumptions about $\epsilon_i$
+    
+:::notes
+The residuals from the sample help you assess assumptions about the epsilons.
+:::
+
+## Assessing normality assumption
+
+-   Normal probability plot
+-   Histogram
+
+:::notes
+The assessment of normality is exactly the same.
+:::
+
+## Assessing heterogeneity, nonlinearity
+
+-   Plot $e_i$ versus $\hat{Y}_i$
+    -   Composite of $X_1$ and $X_2$
+    -   Look for differences in variation
+    -   Look for curved pattern
   
+:::notes
+To assess heterogeneity and nonlinearity, you could look at the residuals versus each independent variable. That may be fine with just 2 independent variables, but is not tenable when you have 20 independent variables. The fitted value is a composite of the 2 or 20 independent variables. If you see nonlinearity or heterogeneity with any of the independent variables, it would be very likely to also show up in the plot using fitted values.  
+:::
+
+## Independence is always assessed qualitatively
+
+-   Look at how your data was collected
+    -   Are there clusters?
+        -   Observations within a cluster are sometimes correlated
+    -   Is the outcome affected by proximity?
+        -   Results for infectious diseases may be correlated
+-   Avoid tests of independence
+    -   Durbin-Watson or runs tests are bad
+    -   More about this in Biostats-2
+
+:::notes
+Independence is assessed qualitatively. Look at the conditions under which the data were collected. Do the individual data values group into clusters. Measurements within a family or within a clinic could be correlated. Also, does proximity influence the outcome. An infectious disease, for example, might produce correlated results for people who are geographically close to one another.
+:::
+
+## Influential values
+
+-   Leverage
+    -   Extreme values in $X_1$ and/or $X_2$
+    -   Compare to 3*(k+1)/n
+        -   k is number of independent variables
+-   Studentized deleted residual
+    -   Extreme in Y
+    -   Compare to $\pm 3$
+-   Cook's distance
+    -   Composite of leverage and studentized deleted residual
+    -   Compare to 1
+    
+:::notes
+Influential data values are extreme values which can have an undue influence on the location of the regression equation. Leverage is a measure of how extreme a data value is with respect to the two independent variables. It can be extreme with respect to the first, with respect to the second, or with respect to both. Odd combinations, such as a small birthweight associated with a large gestational age could be influential.
+
+The studentized deleted residual is a measure of how far the dependent variable is from the predicted value. It is standardized and unitless and any value larger than plus or minus 3 is considered extreme.
+
+Cook's distance is a composite measure and it largest when a high leverage value is associated with an extreme residual.
+:::
+
+## Leverage, 1
+
+```{r leverage-1}
+library(broom)
+library(tidyverse)
+load("../data/module07.RData")
+n <- nrow(pulmonary)
+m4 <- lm(fev ~ age + height, data=pulmonary) |>
+  augment() -> r4
+r4 |>
+  filter(.hat > 3*3/n)
+```
+
+:::notes
+Here are the leverage values for a regression model using both hieght and age to predict fev. There are quite a few values and they are a bit tricky to interpret. This is typical for two independent variables. Finding out why a data point has high leverage gets even harder when there are three or more independent variables.
+:::
+
+## Leverage, 2
+
+```{r leverage-2}
+r4 |>
+  mutate(leverage=ifelse(.hat > 3*3/n, "high", "normal")) |>
+	ggplot(aes(age, height, color=leverage)) +
+	  geom_point() + 
+    scale_x_continuous(breaks=3:19, minor=NULL) + 
+	  scale_y_continuous(breaks=2*(22:38))
+```
+
+:::notes
+
+Here a graph can help a bit. In this graph, the two independent variables, age and height are displayed and high leverage points are highlighted in a different color.
+
+One of the leverage points is a 7 year old with a height of ony 47 inches, close to the smallest height but not at all close to the youngest age.
+
+Other high leverage points are the handful of patients aged 18 and 19 years, plus a few 15 and 16 year olds who are very short for their ages.
+
+These values should be investigated, but they do not seem so extreme as to warrant their possible exclusion from the regression model.
+:::
+
+## Studentized residuals, 1
+
+```{r studentized-1}
+r4 |>
+  filter(abs(.std.resid) > 3)
+```
+
+:::notes
+Again, the interpretation is a bit tricky.
+:::
+
+## Studentized residuals, 2
+
+```{r studentized-2}
+r4 |>
+  mutate(res=ifelse(abs(.std.resid) > 3, "extreme", "normal")) |>
+	ggplot(aes(age, fev, height, color=res)) +
+	  geom_point() 
+```
+
+:::notes
+The large studentized residuals are associated with older patients, but the pattern is not consistent.
+
+:::
+
+## Studentized residuals, 3
+
+```{r studentized-3}
+r4 |>
+  mutate(res=ifelse(abs(.std.resid) > 3, "extreme", "normal")) |>
+	ggplot(aes(height, fev, height, color=res)) +
+	  geom_point() 
+```
+
+:::notes
+Here the pattern is a bit more consistent. Taller patients with very low or with very high fev values are flagged as exteme based on the studentized residuals.
+:::
+
+## Cook's distance
+
+In the pulmonary database, no combination of high leverage and extreme studentized residuals is going to cause concern.
+
+Note: interpreting influential values gets tricky with two independent variables.
+
+:::notes
+Assessing influential data points is not easy. 
+
+You can't always just look at the values to see what is causing the extreme values. In this example, a graph helps. Sometimes even a graph doesn't help. It gets even harder with three or more independent variables.
+
+Don't get too anxious about this. It's not easy, but if everything in Statistics was easy, you'd be getting the minimum wage for your work when you graduate.
+
+You will see more discussions about the complexities associated with multiple independent variables in MEDB 5502, Applied Biostatistics, II.
+:::
+
+## Multicollinearity
+
+-   Synonyms:
+    -   Collinearity
+    -   Ill-conditioning
+    -   Near collinearity
+-   When two variables are correlated
+-   When three or more variables add up to nearly a constant
+
+:::notes
+In a regression model with more than one independent variable, you need to assess whether the data exhibits multicollinearity.
+
+Multicollinearity occurs when the two independent variables are highly correlated. It can also occur in more complex models when three or more variables add up to a value that is nearly constant.
+:::
+
+## Problems caused by multicollinearity
+
+-   Intepretation
+    -   What does "holding one variable constant" mean?
+    -   Difficult to disentangle the individual impacts
+-   Inflated standard errors
+    -   Very wide confidence intervals
+    -   Loss of statistical power
+-   Note: multicollinearity is NOT a violation of assumptions
+
+:::notes
+Multicollinearity makes interpretation difficult. It also leads to a loss of precision and power.
+:::
+
+## Variance inflation factor (VIF)
+
+-   How much precision is lost due to multicollinearity
+-   Values larger than 10 are cause for concern
+
+:::notes
+The variance inflation factor is a measure of how much precision is lost due to multicollinearity. 
+:::

@@ -29,5 +29,40 @@ cat(progc[3])
 ## simon-5501-07-directions.qmd, 4
 
 ```{r prog4}
-cat(progc[4])
+cat(progc[4:6], sep="")
+```
+## simon-5501-07-directions.qmd, 5
+
+```{r prog5}
+cat(progc[7:9], sep="")
+```
+
+## simon-5501-07-directions.qmd, 6
+
+```{r prog6}
+cat(progc[10:12], sep="")
+```
+
+## simon-5501-07-directions.qmd, 7
+
+```{r prog7}
+cat(progc[13:15], sep="")
+```
+
+## simon-5501-07-directions.qmd, 8
+
+```{r prog8}
+cat(progc[16:18], sep="")
+```
+
+## simon-5501-07-directions.qmd, 9
+
+```{r prog9}
+cat(progc[19:20], sep="")
+```
+
+## simon-5501-07-directions.qmd, 10
+
+```{r prog10}
+cat(progc[21])
 ```

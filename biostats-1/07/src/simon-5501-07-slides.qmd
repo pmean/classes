@@ -6,9 +6,9 @@ format:
     embed-resources: true
 params:
   topic_01: "Categorical independent variables"
-  topic_02: "R code for multiple linear regression"
+  topic_02: "R code for categorical independent variables"
   topic_03: "Multiple linear regression"
-  topic_04: "R code for categorical independent variables"
+  topic_04: "R code for multiple linear regression"
   topic_05: "Diagnostic plots and multicollinearity"
   topic_06: "R code for diagnostic plots and multicollinearity"
   topic_07: "Your homework"
@@ -104,5 +104,5 @@ editor: source
 
 ---
 title: "MEDB 5501, Module07"
-date: 2024-08-27
+date: 2024-10-01
 ---

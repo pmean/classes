@@ -11,7 +11,7 @@ editor: source
 
 -   Regression equation
     -   $Y_i=\beta_0+\beta_1 X_i+\epsilon_i$
--   How do you modify this if X_i is categorical?
+-   How do you modify this if $X_i$ is categorical?
     -   Indicator variables
 -   Examples
     -   Treatment: active drug=1, placebo=0
@@ -24,7 +24,7 @@ The regression equation expects a numerical value for both X_i and Y_i. What if 
 
 The trick is to convert your categorical variable into an indicator variable. An indicator variable is equal to 1 for a particular category and 0 for the other category.
 
-It is a bit artibrary which category gets the 1 and which gets the 0. I like to visualize the choice as 0 representing the absence of a quality and 1 representing the presence of a quality. So I always choose 0 for the placebo group and 1 for the active drug. I choose 0 for the unexposed group and 1 for the group with exposure.
+It is a bit arbitrary which category gets the 1 and which gets the 0. I like to visualize the choice as 0 representing the absence of a quality and 1 representing the presence of a quality. So I always choose 0 for the placebo group and 1 for the active drug. I choose 0 for the unexposed group and 1 for the group with exposure.
 
 So for gender, I always use 0 for females and 1 for males. This represents absence or presence of the y-chromosome.
 :::
@@ -43,7 +43,7 @@ When X is equal to either zero or one, the equation simplifies. For the "zero ca
 ## Categorical independent variables, 3
 
 -   Intperetation
-    -    $b_0$ is the estimated average value of Y when X equals the "zero cateogory"
+    -    $b_0$ is the estimated average value of Y when X equals the "zero category"
     -    $b_1$ is the estimated average change in Y when X changes from the "zero category" to the "one category."
     
 :::notes

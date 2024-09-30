@@ -31,7 +31,7 @@ Since the variable names are not listed in the data file itself, you need to lis
 pulmonary_names <- c(
     "age",
     "fev",
-    "ht",
+    "height",
     "sex",
     "smoke")
 ```
@@ -64,8 +64,6 @@ pulmonary |>
 There are slightly more males (51%) than females in this sample.
 
 ## m1: Descriptive statistics for fev
-
-You do not need to specify na.rm=TRUE for any of the descriptive statistics because there are no missing values.
 
 ```{r fev}
 pulmonary |>
@@ -145,9 +143,11 @@ tidy(m1)
 
 The t-statistic, 5.4, is not close to zero. Conclude that there is a difference in average fev values between males and females. Since the t-statistic is positive, conclude also that the average fev value is larger for males.
 
-## m1: Normal probability plot of residuals
+## m1: Normal probability plot of residuals, 1
 
-Note: I learn something new everyday. You do not have to use qqnorm to create a normal probability plot. You can do it using the ggplot and stat_qq functions. This looks nicer, is consistent with other visualizations in R, and allows you to put in a title using ggtitle. You are welcome to use this approach or qqnorm in your homework.
+Note: I learn something new everyday. You do not have to use qqnorm to create a normal probability plot. You can do it using the ggplot and stat_qq functions. This looks nicer, is consistent with other visualizations in R, and allows you to put in a title using ggtitle. In your homework, you are welcome to use this approach (ggplot and stat_qq) or you can use qqnorm.
+
+## m1: Normal probability plot of residuals, 2
 
 ```{r m1-qq-plot}
 r1 <- augment(m1)
@@ -237,7 +237,7 @@ The estimated average fev is 2.57 liters for non-smokers and 0.71 liters higher 
 
 Normally, you would follow this up with various functions (anova, confint, tidy), assess various diagnostic plots using the residuals, and identify influential data points.
 
-## m3: Linear regression model using age and ht to predict fev
+## m3: Linear regression model using age and height to predict fev
 
 Previous analysis has shown that age by itself is a strong predictor of fev and height by itself is a strong predictor of fev. A multiple linear regression model including both age and height should do an even better job in predicting fev. This model will also allow you to compare the relative importance of the two variables. Is fev most strongly associated with how big a child is or how old that child is?
 
@@ -256,15 +256,15 @@ pulmonary |>
 
 The descriptive statistics are consistent with a pediatric study. The average age is 9.9 years. The standard deviation, 3.0, shows a large amount of variation in age (large at least for a pediatric study). The range, 3 years to 19 years, also demonstrates a large amount of variation.
 
-## m3: Descriptive statistics for ht
+## m3: Descriptive statistics for height
 
-```{r ht}
+```{r height}
 pulmonary |>
   summarize(
-    ht_mn=mean(ht),
-    ht_sd=sd(ht),
-    ht_min=min(ht),
-    ht_max=max(ht))
+    ht_mn=mean(height),
+    ht_sd=sd(height),
+    ht_min=min(height),
+    ht_max=max(height))
 ```
 
 The average height, 61 inches, is reasonable for a group of children with an average age of around 10 years. The standard deviation, 5.7 inches, and the range, 46 inches to 74 inches, show a moderate amount of variation.
@@ -275,7 +275,7 @@ Reduce the pulmonary data frame to just the first three columns before computing
 
 ```{r corr}
 pulmonary |>
-  select(ht, age, fev) |> 
+  select(height, age, fev) |> 
   cor()
 ```
 
@@ -284,7 +284,7 @@ The two independent variables, age and ht, are both strongly correlated with fev
 ## m3: Predicting fev using age and ht
 
 ```{r m3}
-m3 <- lm(fev ~ age + ht, data=pulmonary)
+m3 <- lm(fev ~ age + height, data=pulmonary)
 m3
 ```
 
@@ -295,6 +295,7 @@ The estimated average fev value increases by 0.05 liters for each increase of on
 The use of [2, ] (and of [3, ]) isolates the individual rows of the data frame produced by confint. This is not really necessary, but is done to fit the information easily on separate slides.
 
 ```{r m3-ci-1}
+m3
 confint(m3)[2, ]
 ```
 

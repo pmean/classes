@@ -96,8 +96,8 @@ data.frame(prog_text, chunk) |>
 				sep="\n", 
 				collapse="")) |>
 	pull(chunk_text) -> progc
-progc <- paste0(progc, "\n")
-cat(progc[1])
+# progc <- paste0(progc, "\n")
+cat(progc[length(progc)])
 length(progc)
 ```
 

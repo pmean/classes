@@ -40,19 +40,25 @@ ggplot(pulmonary, aes(height, fev, label=age)) +
   geom_abline(slope=bu[2], intercept=bu[1])
 ```
 
-## Relationship between height and FEV controlling at Age=3
-
 ```{r}
 lm(fev~height+age, data=pulmonary) %>%
   tidy %>%
   pull(estimate) -> b
 control_age <- function(a) {
   co=ifelse(pulmonary$age==a, "black", "gray")
+  ht_min <- min(pulmonary$height[co=="black"])
+  ht_max <- max(pulmonary$height[co=="black"])
+  fev_min <- b[1] + b[2]*ht_min + b[3]*a
+  fev_max <- b[1] + b[2]*ht_max + b[3]*a
   o <- order(co)
   pulmonary[o, ] %>%
     ggplot(aes(height, fev, label=age)) +
       geom_text(color=co[o]) +
-      geom_abline(slope=b[2], intercept=b[1]+b[3]*a) +
+  	  geom_segment(
+  	  	x=ht_min,
+  	  	y=fev_min,
+  	  	xend=ht_max,
+  	  	yend=fev_max) +
       geom_abline(slope=bu[2], intercept=bu[1], color="gray")
 }
 a <- 3
@@ -195,11 +201,20 @@ h <- 48
 g <- 4*floor((pulmonary$height-2)/4)+4
 control_height <- function(a) {
   co=ifelse(g==h, "black", "gray")
+  age_min <- min(pulmonary$age[co=="black"])
+  age_max <- max(pulmonary$age[co=="black"])
+  fev_min <- b[1] + b[2]*a + b[3]*age_min
+  fev_max <- b[1] + b[2]*a + b[3]*age_max
   o <- order(co)
   pulmonary[o, ] %>%
     ggplot(aes(age, fev, label=height)) +
       geom_text(color=co[o]) +
-      geom_abline(slope=b[3], intercept=b[1]+b[2]*h) +
+  	  geom_segment(
+  	  	x=age_min,
+  	  	y=fev_min,
+  	  	xend=age_max,
+  	  	yend=fev_max) +
+      # geom_abline(slope=b[3], intercept=b[1]+b[2]*h) +
       geom_abline(slope=bu[2], intercept=bu[1], color="gray")
 }
 h <- 48

@@ -7,28 +7,6 @@ format:
 editor: source
 ---
 
-## simon-5501-07-fev.qmd, 21
-
-```{r write21}
-cat(codec[21])
-```
-
-:::notes
-The first few lines are the documentation header
-:::
-
-## simon-5501-07-fev.qmd, 22
-
-```{r write22}
-cat(codec[22])
-```
-
-## simon-5501-07-fev.qmd, 23
-
-```{r write23}
-cat(codec[23])
-```
-
 ## simon-5501-07-fev.qmd, 24
 
 ```{r write24}
@@ -69,5 +47,27 @@ cat(codec[29])
 
 ```{r write30}
 cat(codec[30])
+```
+
+## simon-5501-07-fev.qmd, 31
+
+```{r write31}
+cat(codec[31])
+```
+
+:::notes
+The first few lines are the documentation header
+:::
+
+## simon-5501-07-fev.qmd, 32
+
+```{r write32}
+cat(codec[32])
+```
+
+## simon-5501-07-fev.qmd, 33
+
+```{r write33}
+cat(codec[33])
 ```
 
