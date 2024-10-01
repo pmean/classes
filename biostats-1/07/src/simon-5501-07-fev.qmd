@@ -154,7 +154,7 @@ r1 <- augment(m1)
 r1 |>
 	ggplot(aes(sample=.resid)) +
 	  stat_qq() +
-    ggtitle("Graph drawn by Steve Simon on 2024-09-30") +
+    ggtitle("Graph drawn by Steve Simon on 2024-09-30")
 ```
 
 The straight lines indicates that the residuals are normally distributed.
@@ -340,7 +340,7 @@ r3 <- augment(m3)
 r3 |>
 	ggplot(aes(sample=.resid)) +
 	  stat_qq() +
-    ggtitle("Graph drawn by Steve Simon on 2024-09-30") +
+    ggtitle("Graph drawn by Steve Simon on 2024-09-30")
 ```
 
 ## m3: Diagnostic plots, 2

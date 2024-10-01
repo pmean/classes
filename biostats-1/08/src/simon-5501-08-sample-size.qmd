@@ -1,0 +1,28 @@
+---
+title: "Sample size justification for infant pain study"
+format: 
+  html:
+    embed-resources: true
+---
+
+The code for this program was written by Steve Simon on 2024-10-01 and is placed in the public domain.
+
+This program examines power for comparing pain in two groups of infants. The outcome variable, the Neonatal Pain, Agitation and Sedation Scale (N-PASS), is a summary of five elements: crying/irritability, behaviour/state, facial expression,
+extremities/tone and vital signs. The total score is 0 to 10 for infants 30 weeks and above in gestational age. One point is added for infants below 30 weeks, making the score 1 to 11 for those infants. This scale is graded as non pain (0-3), mild pain (4-7) or severe pain (8-11).
+
+There are two groups in the study and 40 patients total. What is the minimum difference in average pain scores between the two groups that can be detected with at least 80% power.
+
+A review of the literature found an article, Badr et al 2016, with information on the N-PASS scale in a similar study of preterm infants. This study had three groups, with standard deviations of 1.28, 1.64, and 2.27
+
+```{r}
+library(pwr)
+p1 <- pwr.t.test(
+	power=0.8, 
+	sig.level=0.05,
+	n=20,
+	type="two.sample",
+	alternative="two.sided")
+p1
+```
+
+A sample of 20 in each group would provide 80% power for detecting an effect size of `r round(p1$d, 2)` standard deviations. If the observed standard deviation in this study matched the middle standard deviation in Badr et al 2016 study, then we could detect a difference of `r round(p1$d*1.64, 2)` units on the N-PASS scale.
