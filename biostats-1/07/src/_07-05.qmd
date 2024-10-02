@@ -25,7 +25,7 @@ Because N is so large, $\beta_0$ and $\beta_1$ are unknown constants and $\epsil
 
 ## Residuals
 
--   $\hat{Y}_i = b0 + b1 X_{1i} + b_2 X_{2i}$
+-   $\hat{Y}_i = b_0 + b_1 X_{1i} + b_2 X_{2i}$
 -   $e_i = Y_i - \hat{Y}_i$
     -   Behavior of $e_i$ helps evaluate assumptions about $\epsilon_i$
     
