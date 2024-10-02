@@ -9,7 +9,7 @@ editor: source
 
 ## Model
 
--   $Y_i=\beta_0+\beta_1 X_{1i}+\beta_2 X_{2i}+\epsilon_i$
+-   $Y_i=\beta_0+\beta_1 X_{1i}+\beta_2 X_{2i}+\epsilon_i,\ i=1,...,N$
 -   Least squares estimates: $b_0,\ b_1,\ b_2$
 
 ::: notes

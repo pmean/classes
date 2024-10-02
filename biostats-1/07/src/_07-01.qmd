@@ -31,10 +31,12 @@ So for gender, I always use 0 for females and 1 for males. This represents absen
   
 ## Categorical independent variables, 2
 
--   Regression equation
-    -   $Y_i=\beta_0+\beta_1 X_i+\epsilon_i$
-    -   $Y_i=\beta_0+\epsilon_i$ if $X_i=0$
-    -   $Y_i=\beta_0+\beta_1+\epsilon_i$  if $X_i=1$
+-   If $X_i$ = 0
+    -   $Y_i=\beta_0 + \beta_1 (0) + \epsilon_i$
+    -   $Y_i=\beta_0 + \epsilon_i$
+-   If $X_i$ = 1
+    -   $Y_i=\beta_0 + \beta_1 (1) + \epsilon_i$
+    -   $Y_i=\beta_0 + \beta_1 + \epsilon_i$
 
 :::notes
 When X is equal to either zero or one, the equation simplifies. For the "zero category", Y is just equal to beta0 plus epsilon. For the "one category", Y is equal to beta0 plus beta1 plus epsilon.

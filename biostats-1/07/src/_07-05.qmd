@@ -25,7 +25,7 @@ Because N is so large, $\beta_0$ and $\beta_1$ are unknown constants and $\epsil
 
 ## Residuals
 
--   $\hat{Y}_i = b0 + b1 X_i + b_2 X_i$
+-   $\hat{Y}_i = b0 + b1 X_{1i} + b_2 X_{2i}$
 -   $e_i = Y_i - \hat{Y}_i$
     -   Behavior of $e_i$ helps evaluate assumptions about $\epsilon_i$
     
@@ -71,14 +71,11 @@ Independence is assessed qualitatively. Look at the conditions under which the d
 ## Influential values
 
 -   Leverage
-    -   Extreme values in $X_1$ and/or $X_2$
     -   Compare to 3*(k+1)/n
         -   k is number of independent variables
 -   Studentized deleted residual
-    -   Extreme in Y
     -   Compare to $\pm 3$
 -   Cook's distance
-    -   Composite of leverage and studentized deleted residual
     -   Compare to 1
     
 :::notes
