@@ -34,4 +34,92 @@ The two sample t-test is based on a population model where there are $N_1$ obser
 Because the populations are so large, you need to take a sample (hopefully a representative sample) from each population. With the sample, you can calculate sample statistics.
 :::
 
-## Hypothesis
+## Hypothesis and test statistic
+
+-   $H_0:\ \mu_1 - \mu_2 = 0$
+-   $H_1:\ \mu_1 - \mu_2 \ne 0$
+    -   Accept $H_0$ if $\bar{X}_1-\bar{X}_2$ is close to zero
+    
+:::notes
+The null hypothesis for the two-sample t-test is that the population means, $\mu_1$ and $\mu_2$ are equal, which is the same as saying that the difference between the two population means is equal to zero.
+
+The population means are unknown, but you can use the sample means, 
+:::
+
+## How close is close?
+
+-   standard error
+    -  $se = S_p \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$
+    -  Pooled standard deviation
+       -   $S_p=\sqrt{\frac{n_1\ S_1^2\ +\ n_2\ S_2^2}{n_1\ +\ n_2}}$
+-   Not valid with heterogeneity
+    -   That is, $\sigma_1 \ne \sigma_2$
+
+:::notes
+You measure how close $\bar{X}_1 - \bar{X}_2$ is to zero by using the standard error. The standard error is a measure of how much sampling error you have when using $\bar{X}_1 - \bar{X}_2$ to estimate $\mu_1-\mu_2$.
+
+This standard error relies on equal variation in both groups. You'll hear more discussion of this issue later in the presentation.
+:::
+
+## The t distribution
+
+-   $T=\frac{\bar{X}_1-\bar{X}_2}{se}$
+    -   Variation in the numerator AND the denominator
+    -   Use a t-distribution, not a normal distribution
+        -   $df=n_1+n_2-2$
+    
+:::notes
+The test statistic, T, is the ratio of the difference in sample means to the standard error. This statistic has variation both in the numerator and the denominator. This produces a statistic that is not normally distributed, but close to normal. It is the t-distribution.
+
+The t-distribution has degrees of freedom. A large degrees of freedom means very little sampling error in the denominator. It is the total sample size ($n_1+n_2$) minus two degrees of freedom associated with the two estimated means used in the standard deviation calculation.
+:::
+
+## Comparing the t and normal distributions
+
+```{r compare-t-and-z}
+#| message: false
+#| warning: false
+library(tidyverse)
+
+x <- seq(-4, 4, length=100)
+y1 <- dnorm(x)
+y2 <- dt(x, 10)
+y3 <- dt(x, 4)
+
+data.frame(x, y1, y2, y3) |>
+  ggplot(aes(x, y1)) + 
+    xlab(" ") +
+    ylab(" ") +
+    geom_line(
+      color="black",
+      size=1) +
+    geom_line(
+      aes(y=y2), 
+      color="darkgreen",
+      size=1,
+      linetype="51") +
+    geom_line(
+      aes(y=y3), 
+      color="darkred",
+      size=1,
+      linetype="11") +
+    geom_text(
+      x=1.5, y=0.38, hjust=0, 
+      label=
+        "Black solid line is the normal distribution") +
+    geom_text(
+      x=1.5, y=0.36, hjust=0,
+      color="darkgreen",
+      label=
+        "Dark green dashed line is the t with df=10") +
+    geom_text(
+      x=1.5, y=0.34, hjust=0,  
+      color="darkred",
+      label=
+        "Dark red dotted line is the t with df=4") +
+    ggtitle("Graph drawn by Steve Simon on 2024-10-06")
+```
+
+:::notes
+This graph compares the normal distribution to a t distribution with 10 degrees of freedom and a t distribution with 4 degrees of freedom. Both the normal and the t-distributions are symmetric. The t-distributions have a little bit less probability near zero and a bit more probability at the extremes.
+:::
