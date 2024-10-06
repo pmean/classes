@@ -1,5 +1,5 @@
 ---
-title: "02-01, Counting"
+title: "08-01, Two-sample t-test"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,31 @@ format:
 editor: source
 ---
 
-## W
+## Population model
+
+-   Population 1
+    -   $X_{11},X_{12},...,X_{1N_1}$
+    -   $X_{1i}$ are independent $N(\mu_1,\sigma_1)$
+-   Population 2
+    -   $X_{21},X_{22},...,X_{2N_2}$
+    -   $X_{2i}$ are independent $N(\mu_2,\sigma_2)$
+
 
 :::notes
-The
+The two sample t-test is based on a population model where there are $N_1$ observations in the first population and $N_2$ observations in the second population. In general, the size of the two populations, $N_1$ and $N_2$ are assumed to be very large.
 :::
   
+## Sample values
+
+-   Sample 1
+    -   $X_{11},X_{12},...,X_{1n_1}$
+    -   Calculate $\bar{X}_1$ and $S_1$
+-   Sample 2
+    -   $X_{21},X_{22},...,X_{2n_2}$
+    -   Calculate $\bar{X}_2$ and $S_2$
+    
+:::notes
+Because the populations are so large, you need to take a sample (hopefully a representative sample) from each population. With the sample, you can calculate sample statistics.
+:::
+
+## Hypothesis
