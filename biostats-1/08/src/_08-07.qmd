@@ -1,5 +1,5 @@
 ---
-title: "02-07, Programming template"
+title: "08-07, Your homework"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,22 @@ format:
 editor: source
 ---
 
-## Programming template
+## simon-5501-08-directions.qmd, 1
 
-:::notes
-The
-:::
-  
+```{r prog1}
+load("../data/module07.RData")
+cat(progc[1])
+```
+
+## simon-5501-08-directions.qmd, 2
+
+```{r prog2}
+cat(progc[2])
+```
+
+## simon-5501-08-directions.qmd, 3
+
+```{r prog3}
+cat(progc[3])
+```
+

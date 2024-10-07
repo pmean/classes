@@ -5,13 +5,13 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "Counting"
-  topic_02: "Mean and median"
-  topic_03: "Percentiles"
-  topic_04: "Standard deviation"
-  topic_05: "Normality"
-  topic_06: "TBA 1"
-  topic_07: "Program template"
+  topic_01: "The two-sample t-test"
+  topic_02: "The t-distribution"
+  topic_03: "Critical values and p-values"
+  topic_04: "R code for the t-test"
+  topic_05: "Confidence intervals"
+  topic_06: "Sample size justification"
+  topic_07: "Your homework"
 editor: source
 ---
 
@@ -86,10 +86,8 @@ editor: source
 
 {{< include _08-07.qmd >}}
 
-{{< include _01-07.qmd >}}
-
-
 ## Summary
+
 -   What you have learned
     -   `r params$topic_01`
     -   `r params$topic_02`
@@ -106,6 +104,6 @@ editor: source
 --->
 
 ---
-title: "MEDB 5501, Module02"
-date: 2024-08-27
+title: "MEDB 5501, Module08"
+date: 2024-10-09
 ---

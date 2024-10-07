@@ -1,0 +1,78 @@
+---
+title: "Analysis of postural sway data"
+author: "Steve Simon"
+format: 
+  html:
+    embed-resources: true
+date: 2024-10-07
+---
+
+This program reads data and runs a two-sample t-test. Consult the [data dictionary][dic] for information about the data itself.
+
+[dic]: https://github.com/pmean/data/blob/main/files/postural-sway.yaml
+
+## Libraries
+
+```{r setup}
+#| message: false
+#| warning: false
+library(broom)
+library(tidyverse)
+```
+
+## Read data
+
+```{r read-memory}
+sway <- read_tsv(
+  file="../data/postural-sway.txt",
+  col_types="cnn")
+names(sway) <- tolower(names(sway))
+glimpse(sway)
+```
+
+## Boxplot of fbsway by age
+
+```{r}
+#| fig.height: 1.5
+sway |>
+  ggplot(aes(age, fbsway)) +
+    geom_boxplot() +
+    ggtitle("Graph drawn by Steve Simon on 2024-10-05") +
+    xlab("Treatment group") +
+    ylab("Front to back sway") +
+    coord_flip()
+```
+
+The elderly patients have generally higher sway values. Both groups have similar variation except for an extreme outlier in the elderly patients.
+
+## Descriptive statistics for memory by treatment
+
+```{r group-means}
+sway |>
+  group_by(age) |>
+  summarize(
+    fb_mn=mean(fbsway),
+    fb_sd=sd(fbsway),
+    n=n())
+```
+
+The average front-to-back sway is higher in the elderly patients. There is more variation in the elderly group, possibly caused by the extreme outlier.
+
+## Two-sample t-test
+
+```{r t-test}
+m1 <- t.test(
+  fbsway ~ age, 
+  data=sway,
+  alternative="two.sided",
+  var.equal=TRUE)
+m1
+```
+
+## Equivalent analysis using linear regression
+
+```{r lm}
+m2 <- lm(fbsway ~ age, data=sway)
+tidy(m2)
+confint(m2)
+```

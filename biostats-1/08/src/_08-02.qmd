@@ -1,5 +1,5 @@
 ---
-title: "02-02, Mean and median"
+title: "08-02, The t-distribution"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,193 @@ format:
 editor: source
 ---
 
-## Mean and median
+## The t distribution
+
+-   $T=\frac{\bar{X}_1-\bar{X}_2}{se}$
+    -   Variation in the numerator AND the denominator
+    -   Use a t-distribution, not a normal distribution
+        -   $df=n_1+n_2-2$
+    
+:::notes
+The test statistic, T, is the ratio of the difference in sample means to the standard error. This statistic has variation both in the numerator and the denominator. This produces a statistic that is not normally distributed, but close to normal. It is the t-distribution.
+
+The t-distribution has degrees of freedom. A large degrees of freedom means very little sampling error in the denominator. It is the total sample size ($n_1+n_2$) minus two degrees of freedom associated with the two estimated means used in the standard deviation calculation.
+:::
+
+## Comparing the t and normal distributions
+
+```{r compare-t-and-z}
+#| message: false
+#| warning: false
+library(tidyverse)
+
+x <- seq(-4, 4, length=100)
+y1 <- dnorm(x)
+y2 <- dt(x, 10)
+y3 <- dt(x, 4)
+
+data.frame(x, y1, y2, y3) |>
+  ggplot(aes(x, y1)) + 
+    geom_line(
+      color="black",
+      size=1) +
+    geom_line(
+      aes(y=y2), 
+      color="darkgreen",
+      size=1,
+      linetype="51") +
+    geom_line(
+      aes(y=y3), 
+      color="darkred",
+      size=1,
+      linetype="11") +
+    geom_text(
+      x=1.5, y=0.38, hjust=0, 
+      label=
+        "Black solid line is the normal distribution") +
+    geom_text(
+      x=1.5, y=0.36, hjust=0,
+      color="darkgreen",
+      label=
+        "Dark green dashed line is the t with df=10") +
+    geom_text(
+      x=1.5, y=0.34, hjust=0,  
+      color="darkred",
+      label=
+        "Dark red dotted line is the t with df=4") +
+    ggtitle("Graph drawn by Steve Simon on 2024-10-06")
+```
 
 :::notes
-The
+This graph compares the normal distribution to a t distribution with 10 degrees of freedom and a t distribution with 4 degrees of freedom. Both the normal and the t-distributions are symmetric. The t-distributions have a little bit less probability near zero and a bit more probability at the extremes.
 :::
-  
+
+```{r setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+```
+
+```{r t-with-4-df}
+x <- seq(-4, 4, length=100)
+y <- y3
+data.frame(x, y) |>
+  ggplot(aes(x, y)) + 
+    geom_polygon(fill="white", color="black") -> t_4_curve
+```
+
+## P[t(4) < 1.5]
+
+Use geom_vline and geom_label to draw a vertical reference line and add text to the normal curve. The qt function computes the t probability.
+
+```{r prob-1}
+a <- 1.5
+t_4_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label=a) +
+  geom_label(x=a-0.5, y=0, label="Area = ?")
+pt(1.5, 4)
+```
+
+The probability that a standard normal variable is less than 1.5 is about 93%.
+
+## P[Z < -0.5]
+
+```{r prob-2}
+a <- -0.5
+t_4_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label=a) +
+  geom_label(x=a-0.5, y=0, label="Area = ?")
+pt(-0.5, 4)
+```
+
+The probability that a standard normal variable is less than -0.5 is about 31%.
+
+## P[Z > 1]
+
+When you are calculating the probability on the right (probability greater than some number), use 1-pnorm.
+
+```{r prob-3}
+a <- 1
+t_4_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label=a) +
+  geom_label(x=a+0.5, y=0, label="Area = ?")
+1- pt(1, 4)
+```
+
+The probability that a standard normal variable is larger than 1 is about 16%.
+
+## P[Z > -2]
+
+```{r prob-4}
+a <- -2
+t_4_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label=a) +
+  geom_label(x=a+0.5, y=0, label="Area = ?")
+1- pt(-2, 4)
+```
+
+The probability that a standard normal variable is larger than -2 is about 98%.
+
+## P[-2.5 < Z < 2.5]
+
+When you are calculating the probability between two values, compute pnorm of the larger value minus pnorm of the smaller value.
+
+```{r prob-5}
+a <- 2.5
+t_4_curve +
+  geom_vline(xintercept=-a) +
+  geom_vline(xintercept= a) +
+  geom_label(x=-a, y=0.4, label=-a) +
+  geom_label(x= a, y=0.4, label= a) +
+  geom_label(x=0, y=0, label="Area = ?")
+pt(2.5, 4)- pt(-2.5, 4)
+```
+
+## P[-0.5 < Z < 0.5]
+
+```{r prob-6}
+a <- 0.5
+t_4_curve +
+  geom_vline(xintercept=-a) +
+  geom_vline(xintercept= a) +
+  geom_label(x=-a, y=0.4, label=-a) +
+  geom_label(x= a, y=0.4, label= a) +
+  geom_label(x=0, y=0, label="Area = ?")
+pt(0.5, 4) - pt(-0.5, 4)
+```
+
+The probability that a standard normal variable is between -0.5 and 0.5 is about 38%.
+
+## 25th percentile of a standard normal
+
+Use qnorm to calculate quantiles of the standard normal distribution.
+
+```{r quantile-1}
+p <- 0.25
+a <- qt(p, 4)
+t_4_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label="Quantile = ?") +
+  geom_label(x=a-0.5, y=0, label=p)
+qt(0.25, 4)
+```
+
+The 25th percentile of a standard normal distribution is -0.67.
+
+## 90th percentile of a standard normal
+
+```{r quantile-2}
+p <- 0.9
+a <- qnorm(p, 4)
+t_4_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label="Quantile = ?") +
+  geom_label(x=a-0.5, y=0, label=p)
+qt(0.9, 4)
+```
+
+The 90th percentile of a standard normal distribution is 1.28.

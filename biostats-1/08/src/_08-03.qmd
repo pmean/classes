@@ -1,5 +1,5 @@
 ---
-title: "02-03, Percentiles"
+title: "08-03, Critical values and p-values"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,192 @@ format:
 editor: source
 ---
 
-## Percentiles
+## Type I and Type II errors
+
+-   Type I error, Rejecting the null hypothesis when the null hypothesis is true
+    -   $\alpha$ is the probability of a Type I error
+-   Type II error, Accepting the null hypothesis when the null hypothesis is false
+    -   $\beta$ is the probability of a Type II error
+    -   Power = 1 - $\beta$
+
+## Critical values, 1
+
+-   $H_0:\ \mu_1 - \mu_2 = 0$
+-   $H_1:\ \mu_1 - \mu_2 \ne 0$
+    -   $T=\frac{\bar{X}_1-\bar{X}_2}{se}$
+    -   Accept $H_0$ if $t(\alpha/2, n_1+n_2-2) < T < t(1-\alpha/2, n_1+n_2-2)$
 
 :::notes
-The
+The formal test of hypothesis looks at whether the test statistic T is close to zero. Close means that it falls between the $\alpha/2$ and $1-\alpha/2$ percentiles of a t distribution with n~1~ + n~2~ -2 degrees of freedom.
 :::
   
+## Critical values, 2
+
+```{r critical-values-2}
+#| message: false
+#| warning: false
+library(tidyverse)
+load("../data/module08.RData")
+x <- seq(-6, 6, length=100)
+y <- dt(x, 4)
+
+data.frame(x, y) |>
+  ggplot(aes(x, y)) + 
+    geom_line(
+      color="black",
+      size=1) +
+    expand_limits(y=0.4) +
+    ggtitle("Graph drawn by Steve Simon on 2024-10-06") -> t_curve
+a <- qt(0.98, 4)
+eq0 <- expression(paste("Area = 1 - ", alpha))
+eq1 <- expression(paste("t(", alpha, "/2, df)"))
+eq2 <- expression(paste("t(1-", alpha, "/2, df)"))
+eq3 <- expression(paste("Area = ", alpha, "/2"))
+t_curve +
+  geom_segment(x=-a, y=0, xend=-a, yend=0.38) +
+  geom_segment(x= a, y=0, xend= a, yend=0.38) +
+  geom_label(x=0, y=0, label=eq0) +
+  geom_label(x=-a, y=0.4, label=eq1) +
+  geom_label(x= a, y=0.4, label=eq2) +
+  geom_label(x=-a-0.9, y=0, label=eq3) +
+  geom_label(x= a+0.9, y=0, label=eq3)
+```
+
+## Critical values, 3
+
+```{r critical-values-3}
+a <- qt(0.95, 4)
+eq0 <- "Area = 0.90"
+eq1 <- "t(0.05, df)"
+eq2 <- "t(0.95, df)"
+eq3 <- "Area = 0.05"
+t_curve +
+  geom_segment(x=-a, y=0, xend=-a, yend=0.38) +
+  geom_segment(x= a, y=0, xend= a, yend=0.38) +
+  geom_label(x=0, y=0, label=eq0) +
+  geom_label(x=-a, y=0.4, label=eq1) +
+  geom_label(x= a, y=0.4, label=eq2) +
+  geom_label(x=-a-0.9, y=0, label=eq3) +
+  geom_label(x= a+0.9, y=0, label=eq3)
+```
+
+## Critical values, 4
+
+```{r critical-values-4}
+a <- qt(0.995, 4)
+eq0 <- "Area = 0.99"
+eq1 <- "t(0.005, df)"
+eq2 <- "t(0.995, df)"
+eq3 <- "Area = 0.005"
+t_curve +
+  geom_segment(x=-a, y=0, xend=-a, yend=0.38) +
+  geom_segment(x= a, y=0, xend= a, yend=0.38) +
+  geom_label(x=0, y=0, label=eq0) +
+  geom_label(x=-a, y=0.4, label=eq1) +
+  geom_label(x= a, y=0.4, label=eq2) +
+  geom_label(x=-a-0.9, y=0, label=eq3) +
+  geom_label(x= a+0.9, y=0, label=eq3)
+```
+
+## Critical values, 5
+
+```{r critical-values-5}
+a <- qt(0.975, 4)
+eq0 <- "Area = 0.95"
+eq1 <- "t(0.025, df)"
+eq2 <- "t(0.975, df)"
+eq3 <- "Area = 0.025"
+t_curve +
+  geom_segment(x=-a, y=0, xend=-a, yend=0.38) +
+  geom_segment(x= a, y=0, xend= a, yend=0.38) +
+  geom_label(x=0, y=0, label=eq0) +
+  geom_label(x=-a, y=0.4, label=eq1) +
+  geom_label(x= a, y=0.4, label=eq2) +
+  geom_label(x=-a-0.9, y=0, label=eq3) +
+  geom_label(x= a+0.9, y=0, label=eq3)
+```
+
+## P-value
+
+-   p-value = $2 P[t(n_1+n_2-2) > |T|]$
+    -   Probability of sample results or results more extreme
+    -   Accept $H_0$ if p-value > $\alpha$
+    
+## Postural sway data, 1
+
+```{r sway-summary}
+sway |>
+  group_by(age) |>
+  summarize(
+    fb_mn=mean(fbsway),
+    fb_sd=sd(fbsway),
+    n=n())
+m1 <- t.test(
+  fbsway ~ age, 
+  data=sway,
+  alternative="two.sided",
+  var.equal=TRUE)
+```
+
+## Postural sway data, 2
+
+```{r sp}
+sp <- sqrt((9*9.77^2+8*4.09^2)/(9+8))
+```
+
+-   Calculate pooled standard deviation
+    -   $S_p$ = $\sqrt{\frac{n_1\ S_1^2\ +\ n_2\ S_2^2}{n_1\ +\ n_2}}$
+    -   $S_p$ =$\sqrt{\frac{9\ (9.77)^2\ +\ 8\ (4.09)^2}{9\ +\ 8}}$
+    -   $S_p$ = `r round(sp, 2)`
+
+
+## Postural sway data, 3
+
+```{r se}
+se <- sp*sqrt(1/9+1/8)
+```
+
+-   Calculate standard error
+    -   se = $S_p \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$
+    -   se = $7.64 \sqrt{\frac{1}{9}+\frac{1}{8}}$
+    -   se = `r round(se, 2)`
+    -   `r m1$stderr`
+
+## Postural sway data, 4
+
+```{r t}
+t <- (26.3-18.1)/3.72
+```
+
+-   Calculate T
+    -   T = $\frac{\bar{X}_1-\bar{X}_2}{se}$
+    -   T = $\frac{26.3-18.1}{3.72}$
+    -   T = `r round(t, 2)`
+
+## Postural sway data, 5
+
+-   Calculate critical values
+    -    t(0.025, 15) = qt(0.025, 15) = `r round(qt(0.025, 15), 2)`
+    -    t(0.975, 15) = qt(0.975, 15) = `r round(qt(0.975, 15), 2)`    
+    -    Since T is outside the two critical values, reject $H_0$
+    
+## Postural sway data, 6
+
+```{r p-v}
+p_value <- 2*(1-pt(2.2, 15))
+```
+
+-   Calculate p-value
+    -    p.value = $P[t(n_1+n_2-2) > |T|]$
+    -    p.value = $P[t(15) > |2.2|]$ = 2*(1-pt(2.2, 15)) = `r round(p_value, 3)`
+    
+## Postural sway data, 7
+
+```{r t-test-sway}
+m1 <- t.test(
+  fbsway ~ age, 
+  data=sway,
+  alternative="two.sided",
+  var.equal=TRUE)
+m1
+```

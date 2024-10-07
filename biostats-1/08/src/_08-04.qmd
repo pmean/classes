@@ -1,5 +1,5 @@
 ---
-title: "02-04, Standard deviation"
+title: "08-04, R code for the two-sample t-test"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,74 @@ format:
 editor: source
 ---
 
-## Standard deviation
+## postural-sway data dictionary, 1
 
-:::notes
-The
-:::
-  
+```{r data1}
+load("../data/module08.RData")
+
+cat(datac$chunk[datac$lab=="data_dictionary"])
+cat(datac$chunk[datac$lab=="copyright"])
+cat(datac$chunk[datac$lab=="description"])
+cat(datac$chunk[datac$lab=="additional_description"])
+```
+
+## postural-sway data dictionary, 2
+
+```{r data2}
+cat(datac$chunk[datac$lab=="download_url"])
+cat(datac$chunk[datac$lab=="format"])
+cat(datac$chunk[datac$lab=="varnames"])
+cat(datac$chunk[datac$lab=="missing_value_code"])
+cat(datac$chunk[datac$lab=="size"])
+```
+
+## postural-sway data dictionary, 3
+
+```{r data3}
+cat(datav$chunk[1])
+cat(datav$chunk[2])
+cat(datav$chunk[3])
+```
+
+## simon-5501-08-sway.qmd, 1
+
+```{r write1}
+cat(codec[1])
+```
+
+## simon-5501-08-sway.qmd, 2
+
+```{r write2}
+cat(codec[2])
+```
+
+## simon-5501-08-sway.qmd, 3
+
+```{r write3}
+cat(codec[3])
+```
+
+## simon-5501-08-sway.qmd, 4
+
+```{r write4}
+cat(codec[4])
+```
+
+## simon-5501-08-sway.qmd, 5
+
+```{r write5}
+cat(codec[5])
+```
+
+## simon-5501-08-sway.qmd, 6
+
+```{r write6}
+cat(codec[6])
+```
+
+## simon-5501-08-sway.qmd, 7
+
+```{r write7}
+cat(codec[7])
+```
+
