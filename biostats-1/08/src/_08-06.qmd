@@ -1,5 +1,5 @@
 ---
-title: "08-06, TBA"
+title: "08-06, Sample size justification"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,37 @@ format:
 editor: source
 ---
 
-## TBA 6
+## Three things you need to justify your sample size
 
-:::notes
-The
-:::
-  
+1.  Research hypothesis
+2.  Measure of variability
+3.  Minimum clinically important difference (MCID)
+
+## Scenario, 1
+
+-   Replicate postural sway study
+    -   Different populations
+    -   Same outcome measure
+-   Research hypothesis, $H_0\ \mu_1 - \mu_2 = 0$
+-   Standard deviations: 9.77, 4.09
+-   MCID = 4
+
+## Scenario, 2
+
+```{r power-1}
+#| echo: true
+sample_size_estimate <- power.t.test(
+  n=NULL,
+  delta=4,
+  sd=9.8,
+  sig.level=0.05,
+  power=0.9,
+  type="two.sample",
+  alternative="two.sided")
+```
+    
+## Scenario, 3
+
+```{r power-2}
+sample_size_estimate
+```

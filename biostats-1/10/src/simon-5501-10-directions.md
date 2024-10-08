@@ -1,13 +1,11 @@
 ---
-title: "Directions for 5501-10 programming assignment"
-author: "Steve Simon"
+title: "Directions for 5501-08 programming assignment"
 format: 
   html:
     embed-resources: true
-date: 2024-08-18
 ---
 
-This code is placed in the public domain.
+This programming assignment was written by Steve Simon on 2024-10-08 and is placed in the public domain.
 
 ## Program
 
@@ -19,7 +17,7 @@ This code is placed in the public domain.
     -   Add your name to the author field
     -   Optional: change the copyright statement
     
-[tem]: https://github.com/pmean/classes/blob/master/general/not-available.md
+[tem]: https://github.com/pmean/classes/blob/master/general/simon-5501-08-sway.md
 
 ## Data
 
@@ -27,8 +25,8 @@ This code is placed in the public domain.
     -   Store it in your data folder
 -   Refer to the [data dictionary][dic], if needed.
 
-[dat]: https://github.com/pmean/classes/blob/master/general/not-available.md
-[dic]: https://github.com/pmean/classes/blob/master/general/not-available.md
+[dat]: https://github.com/pmean/data/blob/main/files/postural-sway.txt
+[dic]: https://github.com/pmean/data/blob/main/files/postural-sway.yaml
     
 ## Question 1
 

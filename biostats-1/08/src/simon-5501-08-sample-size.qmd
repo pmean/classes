@@ -1,28 +1,60 @@
 ---
-title: "Sample size justification for infant pain study"
+title: "Sample size justification for postural sway study"
 format: 
   html:
     embed-resources: true
+editor: source
 ---
 
-The code for this program was written by Steve Simon on 2024-10-01 and is placed in the public domain.
+This program evaluates various sample size calculations for a proposed replication of the postural-sway study in a different population. It was written by Steve Simon on 2024-10-08 and is placed in the public domain.
 
-This program examines power for comparing pain in two groups of infants. The outcome variable, the Neonatal Pain, Agitation and Sedation Scale (N-PASS), is a summary of five elements: crying/irritability, behaviour/state, facial expression,
-extremities/tone and vital signs. The total score is 0 to 10 for infants 30 weeks and above in gestational age. One point is added for infants below 30 weeks, making the score 1 to 11 for those infants. This scale is graded as non pain (0-3), mild pain (4-7) or severe pain (8-11).
+## Scenario 1
 
-There are two groups in the study and 40 patients total. What is the minimum difference in average pain scores between the two groups that can be detected with at least 80% power.
+-   Replicate postural sway study
+    -   Different populations
+    -   Same outcome measure
+-   Research hypothesis, $H_0\ \mu_1 - \mu_2 = 0$
+-   Standard deviations: 9.77, 4.09
+-   MCID = 4
 
-A review of the literature found an article, Badr et al 2016, with information on the N-PASS scale in a similar study of preterm infants. This study had three groups, with standard deviations of 1.28, 1.64, and 2.27
-
-```{r}
-library(pwr)
-p1 <- pwr.t.test(
-	power=0.8, 
-	sig.level=0.05,
-	n=20,
-	type="two.sample",
-	alternative="two.sided")
-p1
+```{r power-1}
+power.t.test(
+  n=NULL,
+  delta=4,
+  sd=9.8,
+  sig.level=0.05,
+  power=0.9,
+  type="two.sample",
+  alternative="two.sided")
 ```
 
-A sample of 20 in each group would provide 80% power for detecting an effect size of `r round(p1$d, 2)` standard deviations. If the observed standard deviation in this study matched the middle standard deviation in Badr et al 2016 study, then we could detect a difference of `r round(p1$d*1.64, 2)` units on the N-PASS scale.
+With a sample of 128 patients, we would have 90% power for detecting a 4 unit difference in postural sway, using a two-sided test at an alpha level of 0.05.
+
+## Scenario 2, MCID = 2
+
+```{r power-2}
+power.t.test(
+  n=NULL,
+  delta=2,
+  sd=9.8,
+  sig.level=0.05,
+  power=0.9,
+  type="two.sample",
+  alternative="two.sided")
+```
+
+If we wanted to be able to detect a 2 unit difference, we would need a sample size that is about four times as large.
+    
+## Scenario 3, MCID=8
+
+## Scenario 4, sd=4.9
+
+## Scenario 5, sd=19.6
+
+## Scenario 6, alpha=0.01
+
+## Scenario 7, alpha=0.10
+
+## Scenario 8, power=0.8
+
+## Scenario 9, power=0.95

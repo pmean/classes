@@ -1,25 +1,24 @@
 ---
 title: "Directions for 5501-08 programming assignment"
-author: "Steve Simon"
 format: 
   html:
     embed-resources: true
-date: 2024-08-18
 ---
 
-This code is placed in the public domain.
+This programming assignment was written by Steve Simon on 2024-10-08 and is placed in the public domain.
 
 ## Program
 
--   Download the [program][tem]
+-   Download the [sway program][sway] and the [sample size program][sample]
     -   Store it in your src folder
--   Modify the file name
+-   Modify the file names
     -   Use your last name instead of "simon"
--   Modify the documentation header
-    -   Add your name to the author field
+-   Modify the documentation headers
+    -   Add your name
     -   Optional: change the copyright statement
     
-[tem]: https://github.com/pmean/classes/blob/master/general/not-available.md
+[sway]: https://github.com/pmean/classes/blob/master/general/simon-5501-08-sway.qmd
+[sample]: https://github.com/pmean/classes/blob/master/general/simon-5501-08-sample-size.qmd
 
 ## Data
 
@@ -27,12 +26,16 @@ This code is placed in the public domain.
     -   Store it in your data folder
 -   Refer to the [data dictionary][dic], if needed.
 
-[dat]: https://github.com/pmean/classes/blob/master/general/not-available.md
-[dic]: https://github.com/pmean/classes/blob/master/general/not-available.md
+[dat]: https://github.com/pmean/data/blob/main/files/postural-sway.txt
+[dic]: https://github.com/pmean/data/blob/main/files/postural-sway.yaml
     
 ## Question 1
 
-[To be added]
+Replicate the analysis shown in the program, using side-to-side sway. Modify all the interpretations appropriately.
+
+## Question 2
+
+Evaluate the sample size calculations for all the scenarios listed
 
 ## Your submission
 
@@ -46,10 +49,4 @@ This code is placed in the public domain.
 
 ## If it doesn't work
 
-If your program has any errors or fails
-to produce the output that you desire 
-and you can't resolve the problem, 
-upload the program file along with the
-pdf file to help us figure out what 
-went wrong. You will get a chance to 
-resubmit the assignment if needed.
+If your program has any errors or fails to produce the output that you desire and you can't resolve the problem, upload the program file along with the pdf file to help us figure out what went wrong. You will get a chance to resubmit the assignment if needed.

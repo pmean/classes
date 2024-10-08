@@ -14,7 +14,6 @@ editor: source
 
 ```{r ci}
 m1
-# 64064
 ```
 
 :::notes
@@ -23,3 +22,9 @@ The formula for a confidence interval for the difference between two means is sh
   
 ## Interpretation
 
+-   Statement about population mean difference ($\mu_1-\mu_2$)
+-   Range of plausible values 
+-   Not a probability statement
+    -   95% confidence does not mean 95% probability
+-   If you collected 100 independent samples,
+    -   Roughly 95 would contain $\mu_1-\mu_2$

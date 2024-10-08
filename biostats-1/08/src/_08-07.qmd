@@ -10,7 +10,7 @@ editor: source
 ## simon-5501-08-directions.qmd, 1
 
 ```{r prog1}
-load("../data/module07.RData")
+load("../data/module08.RData")
 cat(progc[1])
 ```
 
@@ -24,5 +24,29 @@ cat(progc[2])
 
 ```{r prog3}
 cat(progc[3])
+```
+
+## simon-5501-08-directions.qmd, 4
+
+```{r prog4}
+cat(progc[4])
+```
+
+## simon-5501-08-directions.qmd, 5
+
+```{r prog5}
+cat(progc[5])
+```
+
+## simon-5501-08-directions.qmd, 6
+
+```{r prog6}
+cat(progc[6])
+```
+
+## simon-5501-08-directions.qmd, 7
+
+```{r prog7}
+cat(progc[7])
 ```
 
