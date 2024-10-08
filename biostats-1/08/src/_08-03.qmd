@@ -20,7 +20,7 @@ editor: source
 -   $H_0:\ \mu_1 - \mu_2 = 0$
 -   $H_1:\ \mu_1 - \mu_2 \ne 0$
     -   $T=\frac{\bar{X}_1-\bar{X}_2}{se}$
-    -   Accept $H_0$ if $t(\alpha/2, n_1+n_2-2) < T < t(1-\alpha/2, n_1+n_2-2)$
+    -   Accept $H_0$ if $t(\alpha/2, df) < T < t(1-\alpha/2, df)$
 
 :::notes
 The formal test of hypothesis looks at whether the test statistic T is close to zero. Close means that it falls between the $\alpha/2$ and $1-\alpha/2$ percentiles of a t distribution with n~1~ + n~2~ -2 degrees of freedom.
@@ -117,6 +117,8 @@ t_curve +
 -   p-value = $2 P[t(n_1+n_2-2) > |T|]$
     -   Probability of sample results or results more extreme
     -   Accept $H_0$ if p-value > $\alpha$
+-   Why the 2?
+    -   Measuring extremity in either direction
     
 ## Postural sway data, 1
 
@@ -156,7 +158,6 @@ se <- sp*sqrt(1/9+1/8)
     -   se = $S_p \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$
     -   se = $7.64 \sqrt{\frac{1}{9}+\frac{1}{8}}$
     -   se = `r round(se, 2)`
-    -   `r m1$stderr`
 
 ## Postural sway data, 4
 
@@ -184,7 +185,7 @@ p_value <- 2*(1-pt(2.2, 15))
 
 -   Calculate p-value
     -    p.value = $P[t(n_1+n_2-2) > |T|]$
-    -    p.value = $P[t(15) > |2.2|]$ = 2*(1-pt(2.2, 15)) = `r round(p_value, 3)`
+    -    p.value = $2\ P[t(15) > |2.2|]$ = 2*(1-pt(2.2, 15)) = `r round(p_value, 3)`
     
 ## Postural sway data, 7
 

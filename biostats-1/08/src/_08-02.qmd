@@ -22,12 +22,15 @@ The t-distribution has degrees of freedom. A large degrees of freedom means very
 
 ## Comparing the t and normal distributions
 
-```{r compare-t-and-z}
+```{r setup-2}
 #| message: false
 #| warning: false
 library(tidyverse)
+```
 
-x <- seq(-4, 4, length=100)
+```{r compare-t-and-z}
+yl <- 0.38
+x <- seq(-6, 6, length=100)
 y1 <- dnorm(x)
 y2 <- dt(x, 10)
 y3 <- dt(x, 4)
@@ -75,125 +78,134 @@ library(tidyverse)
 ```
 
 ```{r t-with-4-df}
-x <- seq(-4, 4, length=100)
-y <- y3
-data.frame(x, y) |>
-  ggplot(aes(x, y)) + 
+data.frame(x, y3) |>
+  ggplot(aes(x, y3)) + 
     geom_polygon(fill="white", color="black") -> t_4_curve
 ```
 
 ## P[t(4) < 1.5]
 
-Use geom_vline and geom_label to draw a vertical reference line and add text to the normal curve. The qt function computes the t probability.
-
 ```{r prob-1}
 a <- 1.5
 t_4_curve +
   geom_vline(xintercept=a) +
-  geom_label(x=a, y=0.4, label=a) +
+  geom_label(x=a, y=yl, label=a) +
   geom_label(x=a-0.5, y=0, label="Area = ?")
+```
+
+```{r}
+#| echo: true
 pt(1.5, 4)
 ```
 
-The probability that a standard normal variable is less than 1.5 is about 93%.
-
-## P[Z < -0.5]
+## P[t(4) < -0.5]
 
 ```{r prob-2}
 a <- -0.5
 t_4_curve +
   geom_vline(xintercept=a) +
-  geom_label(x=a, y=0.4, label=a) +
+  geom_label(x=a, y=yl, label=a) +
   geom_label(x=a-0.5, y=0, label="Area = ?")
+```
+
+```{r}
+#| echo: true
 pt(-0.5, 4)
 ```
 
-The probability that a standard normal variable is less than -0.5 is about 31%.
-
-## P[Z > 1]
-
-When you are calculating the probability on the right (probability greater than some number), use 1-pnorm.
+## P[t(4) > 1]
 
 ```{r prob-3}
 a <- 1
 t_4_curve +
   geom_vline(xintercept=a) +
-  geom_label(x=a, y=0.4, label=a) +
+  geom_label(x=a, y=yl, label=a) +
   geom_label(x=a+0.5, y=0, label="Area = ?")
-1- pt(1, 4)
 ```
 
-The probability that a standard normal variable is larger than 1 is about 16%.
+```{r}
+#| echo: true
+1 - pt(1, 4)
+```
 
-## P[Z > -2]
+## P[t(4) > -2]
 
 ```{r prob-4}
 a <- -2
 t_4_curve +
   geom_vline(xintercept=a) +
-  geom_label(x=a, y=0.4, label=a) +
+  geom_label(x=a, y=yl, label=a) +
   geom_label(x=a+0.5, y=0, label="Area = ?")
-1- pt(-2, 4)
 ```
 
-The probability that a standard normal variable is larger than -2 is about 98%.
+```{r}
+#| echo: true
+1 - pt(-2, 4)
+```
 
-## P[-2.5 < Z < 2.5]
-
-When you are calculating the probability between two values, compute pnorm of the larger value minus pnorm of the smaller value.
+## P[-2.5 < t(4) < 2.5]
 
 ```{r prob-5}
 a <- 2.5
 t_4_curve +
   geom_vline(xintercept=-a) +
   geom_vline(xintercept= a) +
-  geom_label(x=-a, y=0.4, label=-a) +
-  geom_label(x= a, y=0.4, label= a) +
+  geom_label(x=-a, y=yl, label=-a) +
+  geom_label(x= a, y=yl, label= a) +
   geom_label(x=0, y=0, label="Area = ?")
-pt(2.5, 4)- pt(-2.5, 4)
 ```
 
-## P[-0.5 < Z < 0.5]
+```{r}
+#| echo: true
+pt(2.5, 4) - pt(-2.5, 4)
+```
+
+## P[-0.5 < t(4) < 0.5]
 
 ```{r prob-6}
 a <- 0.5
 t_4_curve +
   geom_vline(xintercept=-a) +
   geom_vline(xintercept= a) +
-  geom_label(x=-a, y=0.4, label=-a) +
-  geom_label(x= a, y=0.4, label= a) +
+  geom_label(x=-a, y=yl, label=-a) +
+  geom_label(x= a, y=yl, label= a) +
   geom_label(x=0, y=0, label="Area = ?")
+```
+
+```{r}
+#| echo: true
 pt(0.5, 4) - pt(-0.5, 4)
 ```
 
-The probability that a standard normal variable is between -0.5 and 0.5 is about 38%.
-
-## 25th percentile of a standard normal
-
-Use qnorm to calculate quantiles of the standard normal distribution.
+## 25th percentile of t(4)
 
 ```{r quantile-1}
 p <- 0.25
 a <- qt(p, 4)
 t_4_curve +
   geom_vline(xintercept=a) +
-  geom_label(x=a, y=0.4, label="Quantile = ?") +
+  geom_label(x=a, y=yl, label="Quantile = ?") +
   geom_label(x=a-0.5, y=0, label=p)
+```
+
+```{r}
+#| echo: true
 qt(0.25, 4)
 ```
 
-The 25th percentile of a standard normal distribution is -0.67.
-
-## 90th percentile of a standard normal
+## 90th percentile of t(4)
 
 ```{r quantile-2}
 p <- 0.9
-a <- qnorm(p, 4)
+a <- qt(p, 4)
 t_4_curve +
   geom_vline(xintercept=a) +
-  geom_label(x=a, y=0.4, label="Quantile = ?") +
+  geom_label(x=a, y=yl, label="Quantile = ?") +
   geom_label(x=a-0.5, y=0, label=p)
+```
+
+```{r}
+#| echo: true
 qt(0.9, 4)
 ```
 
-The 90th percentile of a standard normal distribution is 1.28.

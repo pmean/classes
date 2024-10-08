@@ -1,8 +1,5 @@
 ---
 title: "Directions for 5501-08 programming assignment"
-format: 
-  html:
-    embed-resources: true
 ---
 
 This programming assignment was written by Steve Simon on 2024-10-08 and is placed in the public domain.
