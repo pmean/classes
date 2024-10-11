@@ -6,7 +6,9 @@ format:
 editor: source
 ---
 
-This policy was written on 2023-12-02 and last revised on 2024-09-18.
+This policy was written on 2023-12-02 and last revised on 2024-10-10.
+
+If you are missing a deadline because your program has an error that you can't fix, try reviewing the [suggestions if you encounter an error][sim3] page.
 
 ## Extensions
 
@@ -69,3 +71,5 @@ Your instructors will hold review sessions throughout the semester. Many student
 You can also schedule appointments with either instructor if you have questions.
 
 We love talking with students. It's one of the best parts of our job. Don't be shy in asking for help.
+
+[sim3]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
