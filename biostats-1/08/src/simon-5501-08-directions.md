@@ -14,8 +14,8 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
     -   Add your name
     -   Optional: change the copyright statement
     
-[sway]: https://github.com/pmean/classes/blob/master/general/simon-5501-08-sway.qmd
-[sample]: https://github.com/pmean/classes/blob/master/general/simon-5501-08-sample-size.qmd
+[sway]: https://github.com/pmean/classes/blob/master/biostats-1/08/src/simon-5501-08-sway.qmd
+[sample]: https://github.com/pmean/classes/blob/master/biostats-1/08/src/simon-5501-08-sample-size.qmd
 
 ## Data
 
