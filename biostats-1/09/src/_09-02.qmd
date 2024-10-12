@@ -9,7 +9,74 @@ editor: source
 
 ## One-tailed tests
 
+-   $H_0:\ \mu_1 - \mu_2 = 0$
+-   $H_1:\ \mu_1 - \mu_2 > 0$
+    -   Accept $H_0$ if $\bar{X}_1-\bar{X}_2$ is large negative
+    -   Accept $H_0$ if $\bar{X}_1-\bar{X}_2$ is close to zero
+    -   Reject $H_0$ if $\bar{X}_1-\bar{X}_2$ is large positive
+-   More precisely,
+    -   Accept $H_0$ if $T \le t(1-\alpha, df)$
+    -   Reject $H_0$ if $T \gt t(1-\alpha, df)$
+
+## Critical value
+    
+```{r critical-values-1}
+#| message: false
+#| warning: false
+library(tidyverse)
+x <- seq(-6, 6, length=100)
+y <- dt(x, 4)
+
+data.frame(x, y) |>
+  ggplot(aes(x, y)) + 
+    geom_line(
+      color="black",
+      size=1) +
+    expand_limits(y=0.4) +
+    ggtitle("Graph drawn by Steve Simon on 2024-10-06") -> t_curve
+a <- qt(0.95, 4)
+eq0 <- expression(paste("Area = 1 - ", alpha))
+eq1 <- expression(paste("t(", alpha, ", df)"))
+eq2 <- expression(paste("t(1-", alpha, ", df)"))
+eq3 <- expression(paste("Area = ", alpha))
+t_curve +
+  geom_segment(x= a, y=0, xend= a, yend=0.38) +
+  geom_label(x=0, y=0, label=eq0) +
+  geom_label(x= a, y=0.4, label=eq2) +
+  geom_label(x= a+0.9, y=0, label=eq3)
+```
+
+
 :::notes
 The
 :::
+
+## One-tailed tests
+
+-   $H_0:\ \mu_1 - \mu_2 = 0$
+-   $H_1:\ \mu_1 - \mu_2 < 0$
+    -   Reject $H_0$ if $\bar{X}_1-\bar{X}_2$ is large negative
+    -   Accept $H_0$ if $\bar{X}_1-\bar{X}_2$ is close to zero
+    -   Accept $H_0$ if $\bar{X}_1-\bar{X}_2$ is large positive
+-   More precisely,
+    -   Accept $H_0$ if $T \ge t(\alpha, df)$
+    -   Reject $H_0$ if $T \lt t(\alpha, df)$
+
+## Critical value
   
+```{r critical-values-2}
+data.frame(x, y) |>
+  ggplot(aes(x, y)) + 
+    geom_line(
+      color="black",
+      size=1) +
+    expand_limits(y=0.4) +
+    ggtitle("Graph drawn by Steve Simon on 2024-10-06") -> t_curve
+a <- qt(0.05, 4)
+t_curve +
+  geom_segment(x=a, y=0, xend=a, yend=0.38) +
+  geom_label(x=0, y=0, label=eq0) +
+  geom_label(x=a, y=0.4, label=eq1) +
+  geom_label(x=a-0.9, y=0, label=eq3)
+```
+

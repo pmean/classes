@@ -1,0 +1,122 @@
+---
+title: "09-00, Resources needed for module 09 slides"
+format: 
+  html:
+    embed-resources: true
+editor: source
+---
+
+```{r 09-00-setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(yaml)
+```
+
+## Data dictionary
+
+```{r 09-00-yaml-text}
+f1 <- "https://raw.githubusercontent.com/"
+f2 <- "pmean/data/main/files/"
+f3 <- "gingko-memory.yaml"
+yaml_text <- read_yaml(paste0(f1, f2, f3))
+
+yaml_text_names <- 
+	setdiff(names(yaml_text), "vars")
+n <- length(yaml_text_names)
+
+datac <- 
+	data.frame(
+		lab=yaml_text_names, 
+		chunk=" ")
+for (i in 1:n) {
+	datac$chunk[i] <- 
+		as.yaml(
+			yaml_text[datac$lab[i]])
+}
+datac$chunk <- paste0(datac$chunk, "\n")
+datac[ , 1]
+dim(datac)
+
+var_names <- names(yaml_text$vars)
+m <- length(yaml_text$vars)
+
+datav <- 
+	data.frame(
+		lab=var_names, 
+		chunk=" ")
+for (i in 1:m) {
+	datav$chunk[i] <- 
+		as.yaml(
+			yaml_text$vars[datav$lab[i]])
+}
+datav$chunk <- paste0(datav$chunk, "\n")
+datav[ , 1]
+dim(datav)
+```
+
+## Code
+
+```{r 09-00-code-text}
+fn <- "simon-5501-09-template.qmd"
+code_text <- read_lines(file=fn)
+chunk <- 
+	cumsum(
+	  str_detect(
+	  	code_text, "## "))
+data.frame(code_text, chunk) |>
+	group_by(chunk) |>
+	summarize(
+		chunk_text =
+			paste0(
+				code_text, 
+				sep="\n", 
+				collapse="")) |>
+	pull(chunk_text) -> codec
+codec <- paste0(codec, "\n")
+cat(codec[1])
+length(codec)
+```
+
+## Programming assignment
+
+```{r 09-00-prog-text}
+fn <- "simon-5501-09-directions.md"
+prog_text <- read_lines(file=fn)
+chunk <- 
+	cumsum(
+	  str_detect(
+	  	prog_text, "## "))
+data.frame(prog_text, chunk) |>
+	group_by(chunk) |>
+	summarize(
+		chunk_text =
+			paste0(
+				prog_text, 
+				sep="\n", 
+				collapse="")) |>
+	pull(chunk_text) -> progc
+cat(progc[length(progc)])
+length(progc)
+```
+
+## gingko-memory data
+
+```{r 09-00-read-gingko}
+gingko <- read_tsv(
+  file="../data/gingko-memory.txt",
+  col_types="cnn")
+names(gingko) <- tolower(names(gingko))
+glimpse(gingko)
+```
+
+
+```{r 09-00-save}
+save(
+	datac,
+	datav,
+	codec,
+	progc,
+	gingko,
+	file="../data/module09.RData")
+```
