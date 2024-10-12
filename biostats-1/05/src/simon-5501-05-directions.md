@@ -1,13 +1,8 @@
 ---
 title: "Directions for 5501-01 programming assignment"
-author: "Steve Simon"
-format: 
-  html:
-    embed-resources: true
-date: 2024-08-18
 ---
 
-This code is placed in the public domain.
+This programming assignment was written by Steve Simon on 2024-08-18 and is placed in the public domain.
 
 ## Program template
 
@@ -76,10 +71,6 @@ Compute a confidence interval for the slope parameter. Interpret this interval. 
 
 ## If it doesn't work
 
-If your program has any errors or fails
-to produce the output that you desire 
-and you can't resolve the problem, 
-upload the program file along with the
-pdf file to help us figure out what 
-went wrong. You will get a chance to 
-resubmit the assignment if needed.
+Please review the [suggestions if you encounter an error page][sim3].
+
+[sim3]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md

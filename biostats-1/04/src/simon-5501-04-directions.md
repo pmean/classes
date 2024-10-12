@@ -2,7 +2,7 @@
 title: "Directions for 5501-04 programming assignment"
 ---
 
-Here are the directions for the programming assignment in module04 of MEDB 5501.
+This programming assignment was written by Steve Simon on 2024-09-02 and is placed in the public domain.
 
 ## Download program
 
@@ -78,8 +78,6 @@ Draw a bar chart showing the percentages for number of shots received by whether
 
 ## If it doesn't work
 
-If your program has any errors or fails to produce the output that you desire and you can't resolve the problem,  upload the program file along with the pdf file to help us figure out what went wrong. You will get a chance to resubmit the assignment if needed.
+Please review the [suggestions if you encounter an error page][sim3].
 
-## File details
-
-This file was written by Steve Simon on 2024-09-02 and is placed in the public domain.
+[sim3]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md

@@ -44,6 +44,10 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
 
 ## If it doesn't work
 
+Please review the [suggestions if you encounter an error page][sim3].
+
+[sim3]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
+
 If your program has any errors or fails
 to produce the output that you desire 
 and you can't resolve the problem, 

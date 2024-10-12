@@ -2,7 +2,9 @@
 title: "Directions for 5501-03 programming assignment"
 ---
 
-Before you start this assignment, download all the files listed on the Canvas page for this programming assignment.
+This programming assignment was written by Steve Simon on 2024-09-02 and is placed in the public domain.
+
+## Download programs
 
 Download two program templates:
 
@@ -12,7 +14,11 @@ Download two program templates:
 [sim1]: https://github.com/pmean/classes/blob/master/biostats-1/03/src/simon-5501-03-normal-calculations.qmd
 [sim2]: https://github.com/pmean/classes/blob/master/biostats-1/03/src/simon-5501-03-fev.qmd
 
-and store them in your src folder. Also download the data files:
+and store them in your src folder.
+
+## Download data
+
+Also download the data file:
 
 -   [fev.csv][sim3]
 
@@ -52,8 +58,7 @@ Draw a normal probability plot for ht. Interpret this plot.
 
 ## If it doesn't work
 
-If your program has any errors or fails to produce the output that you desire and you can't resolve the problem,  upload the program file along with the pdf file to help us figure out what went wrong. You will get a chance to resubmit the assignment if needed.
+Please review the [suggestions if you encounter an error page][sim3].
 
-## File details
+[sim3]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
 
-This file was written by Steve Simon on 2024-09-02 and is placed in the public domain.

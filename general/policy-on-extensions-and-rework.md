@@ -1,12 +1,8 @@
 ---
 title: "Policy on extensions and rework"
-format:
-  html: 
-    embed-resources: true
-editor: source
 ---
 
-This policy was written on 2023-12-02 and last revised on 2024-10-10.
+This policy was written by Steve Simon on 2023-12-02 and last revised on 2024-10-10.
 
 If you are missing a deadline because your program has an error that you can't fix, try reviewing the [suggestions if you encounter an error][sim3] page.
 
