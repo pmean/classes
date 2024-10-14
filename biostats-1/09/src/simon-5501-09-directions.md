@@ -30,7 +30,11 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
     
 ## Question 1
 
-[To be added]
+The side-to-side sway data appears to have a pair of outliers and some evidence of heterogenity. Use a log transformation to see if this makes things better. Analyze the data on a log scale using a two-sample t-test and report the confidence interval after transforming back to the original scale of measurement.
+
+## Question 2
+
+You want to replicate these findings in a new population, using the log transformation on the new data. Select a standard deviation from side-to-side sway values in the current study (go halfway between the two standard deviations). You want to have 90% power for detecting a 1.5 fold change (which is 0.176 units on a log base 10 scale). If you use a two-sided hypothesis with alpha = 0.05, what sample size would you need?
 
 ## Your submission
 
