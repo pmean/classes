@@ -9,7 +9,101 @@ editor: source
 
 ## Alternative tests
 
+-   If you have heterogeneity
+    -   Welch's test
+-   If you have non-normality
+    -   Wilcoxon-Mann-Whitney test
+-   If you have both:
+    -   Heterogeneity (larger standard deviation associated larger mean)
+    -   Non-normality (skewed right)
+        -   Log transformation
+-   If you have lack of independence
+    -   Random effects models
+        -   Beyond the scope of this class
+
 :::notes
-The
+There are several approaches that you should consider if you have trouble with the assumptions of the two-sample t-test.
+
+Welch's test is a simple modification to the test if you have unequal variances. The Wilcoxon-Mann-Whitney test is a non-parametric test that does not require the assumption of normality.
+
+If you have both heterogeneity and non-normality, and it has to be specific type of heterogeneity and non-normality, then a log transformation is good. It stretches the small values and squeezes the large values.
+
+Lack of independence typically requires a fairly complex approach like a random effects model that is well beyond the scope of this class. This model is covered in quite a bit of detail by Anlin Cheng in MEDB 5503, Applied Biostatistics III.
 :::
   
+## Welch's test
+
+-   $T = \frac{\bar{X}_1-\bar{X}_2}{se}$
+-   se = standard error changes slightly
+    -   $se = \sqrt{\frac{S_1^2}{n_1} + \frac{S_2^2}{n_2}}$
+-   df = degrees of freedom changes slightly   
+    -   $df=\frac{\big(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}\big)^2}{\frac{s_1^4}{(n_1-1)n_1^2}+\frac{s_2^4}{(n_2-1)n_2^2}}$
+        -   Also known as Satterthwaite's approximation
+-   R code
+    -   `var.equal=FALSE`
+
+:::notes
+Welch's test makes minor modification to the standard error and the degrees of freedom. The formula for the degrees of freedom looks difficult, but it is just involves addition, division and raising to power. It is one of those formulas that has very little intuition and it is also something that makes us glad that the computer does all the work.
+:::
+
+## Mann-Whitney-Wilcoxon test
+
+:::: {.columns}
+
+::: {.column width="33%"}
+![](../images/mann.jpg "Picture of Henry Mann")
+Henry Mann, PhD in Mathematics in 1935
+:::
+
+::: {.column width="33%"}
+![](../images/whitney.png)
+Donald Ransom Whitney, PhD in Mathematics in 1946
+:::
+
+::: {.column width="33%"}
+![](../images/wilcoxon.png "Picture of Frank Wilcoxon")
+Frank Wilcoxon, PhD in Chemistry, 1924
+:::
+
+::::
+
+:::notes
+
+Here are images behind the three researchers who developed the Mann-Whitney-Wilcoxon test. The websites listed below also provide nice biographies of these three people.
+
+Henry Mann: https://math.osu.edu/about-us/history/henry-berthold-mann
+Donald Ransom Whitney: http://sections.maa.org/ohio/ohio_masters/whitney.pdf
+Frank Wilcoxon: https://en.wikipedia.org/wiki/Frank_Wilcoxon
+:::
+
+## Other names
+
+-   Wilcoxon-Mann-Whitney
+-   Mann-Whitney U test
+-   Wilcoxon rank sum test
+    -   Not to be confused with Wilcoxon signed rank test
+    
+:::notes
+There are alternate names for this test. Most people actually give Frank Wilcoxon first billing. It turns out that Frank Wilcoxon published a paper in 1945 that outlined both the rank sum test and the signed rank test. The rank sum test was derived under a limited assumption of equal sample sizes in the two groups. Mann and Whitney extended this test in 1947 to make it work with unequal sample sizes.
+:::
+
+## Theory behind the Mann-hitney-Wilcoxon test
+
+-   Combine the two groups
+-   Assign ranks $R(X_{ij})$
+    -   1 to smallest value, 2 to second smallest, etc.
+-   Compute average rank, $\bar{R}$
+-   Compute the sum of the ranks in first group, $\Sigma R(X_{1j})$
+-   T = $\frac{\Sigma R(X_{1j})- n_1 \bar{R}}{se}
+    -   se = $\sqrt{\frac{n_1 n_2(n_1+n_2+1)}{12}}$
+    
+## Alternate theory
+
+-   Count the times that $X_{1j}$ "wins" compared to all the $X_2$'s
+    -   $X_{1j}$ wins if it is larger than $X_{2k}$
+    -   Count ties as 0.5 (half of a "win")
+    -   There are $n_1 n_2$ contests
+    -   U = number of wins
+    -   T = $\frac{U-\frac{n_1 n_2}{2}}{se}$
+    -   Same se as earlier slide
+    

@@ -11,6 +11,8 @@ This program reads data and runs a two-sample t-test. Consult the [data dictiona
 
 [dic]: https://github.com/pmean/data/blob/main/files/postural-sway.yaml
 
+This program was written by Steve Simon on 2024-10-07 with a minor fix to the documentation on 2024-10-13. It is placed in the public domain.
+
 ## Libraries
 
 ```{r setup}
@@ -30,7 +32,7 @@ names(sway) <- tolower(names(sway))
 glimpse(sway)
 ```
 
-## Boxplot of fbsway by age
+## Boxplot of front-to-back sway by age
 
 ```{r}
 #| fig.height: 1.5
@@ -45,7 +47,7 @@ sway |>
 
 The elderly patients have generally higher sway values. Both groups have similar variation except for an extreme outlier in the elderly patients.
 
-## Descriptive statistics for memory by treatment
+## Descriptive statistics for front-to-back sway by age
 
 ```{r group-means}
 sway |>

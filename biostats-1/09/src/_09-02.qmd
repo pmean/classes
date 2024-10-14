@@ -18,9 +18,13 @@ editor: source
     -   Accept $H_0$ if $T \le t(1-\alpha, df)$
     -   Reject $H_0$ if $T \gt t(1-\alpha, df)$
 
-## Critical value
+:::notes
+Sometimes you are only interested in changes in a positive direction. This means the first population mean is larger than the second population mean.
+:::
+
+## Critical value for a one tailed test
     
-```{r critical-values-1}
+```{r 09-02-critical-values-1}
 #| message: false
 #| warning: false
 library(tidyverse)
@@ -48,7 +52,7 @@ t_curve +
 
 
 :::notes
-The
+The area to the right of the critical value is $\alpha$ and the area to the left is 1-$\alpha$.
 :::
 
 ## One-tailed tests
@@ -62,9 +66,13 @@ The
     -   Accept $H_0$ if $T \ge t(\alpha, df)$
     -   Reject $H_0$ if $T \lt t(\alpha, df)$
 
+:::notes
+There is a second one-sided hypothesis. This tests the hypothesis that the difference is negative, or equivalently that the first population mean is smaller than the second population mean.
+:::
+
 ## Critical value
   
-```{r critical-values-2}
+```{r 09-02-critical-values-2}
 data.frame(x, y) |>
   ggplot(aes(x, y)) + 
     geom_line(
@@ -80,3 +88,34 @@ t_curve +
   geom_label(x=a-0.9, y=0, label=eq3)
 ```
 
+:::notes
+The area to the left is $\alpha$ and the area to the right is 1-$\alpha$.
+:::
+
+## Calculation of the p-value
+
+-   For testing $H_1:\ \mu_1=\mu_2 \ne 0$
+    -   p-value = $2 P[t(n_1+n_2-2) > |T|]$
+-   For testing $H_1:\ \mu_1=\mu_2 > 0$
+    -   p-value = $P[t(n_1+n_2-2) > T]$    
+-   For testing $H_1:\ \mu_1=\mu_2 < 0$
+    -   p-value = $P[t(n_1+n_2-2) < T]$        
+-   For any of these hypothesis,
+    -   Accept $H_0$ if p-value > $\alpha$
+    
+:::notes
+The calculation of the p-value changes slightly if you have a one-sided hypothesis. But the decision rule is always the same, accept the null hypothesis if the p-value is large, larger than alpha.
+:::
+
+## R code for one-sided hypotheses
+
+-   For testing $H_1:\ \mu_1=\mu_2 \ne 0$
+     -   `alternative="two-sided"`
+-   For testing $H_1:\ \mu_1=\mu_2 > 0$
+    -   `alternative="greater"`
+-   For testing $H_1:\ \mu_1=\mu_2 < 0$
+    -   `alternative="less"`
+
+:::notes
+The t.test function in R has an argument, alternative. The default is "two-sided". Change this to "greater" or "less" to produce the appropriate one-sided hypothesis.
+:::

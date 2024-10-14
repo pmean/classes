@@ -7,9 +7,88 @@ format:
 editor: source
 ---
 
-## Percentiles
+## Population model for the two-sample t-test
+
+-   Population 1
+    -   $X_{11},X_{12},...,X_{1N_1}$
+    -   $X_{1i}$ are independent $N(\mu_1,\sigma_1)$
+-   Population 2
+    -   $X_{21},X_{22},...,X_{2N_2}$
+    -   $X_{2i}$ are independent $N(\mu_2,\sigma_2)$
+-   Both populations independent from each other
+-   Both populations have the same standard deviation
 
 :::notes
-The
+Here is the population model for the two-sample t-test. 
+:::
+
+## Violations of these population model
+
+-   Non-normality
+-   Heterogeneity
+-   Lack of independence
+    -   Within each group
+    -   Between groups
+    
+:::notes
+There are several possible violations of the population model
+:::
+    
+## Checking for non-normality
+
+-   Boxplot
+    -   Might be sufficient by itself
+-   Non-normality is less concerning with large sample sizes
+-   Residual analysis
+    -   Normal probability plot
+    -   Histogram
+    -   Always residuals, never the original data
+
+:::notes
+The boxplot is a great way to check for non-normality. Look for skewness and/or outliers. Other types of non-normality, such as a bimodal distribution or a light-tailed distribution are not a serious problem. Also, non-normality is less of a concern for large sample sizes.
+
+You really don't need to look at residuals, but if you do, compute them the same way as in linear regression. Always examine the residuals and not the original data. If the two groups have different means (which is something that you actually hypothesize might happen), then any analysis of the original data will show a bimodal pattern.
+:::
+
+## Checking for heterogeneity
+
+-   Boxplot
+-   Compare group standard deviations
+    -   3 to 1 or higher ratio
+    
+:::notes
+The boxplot is also a simple way to check for heterogeneity. Is one box a lot bigger than the other?
+
+You should also compute means and standard deviations for each group. This is a routine that I always recommend. Wade in from the shallow end of the pool. 
+
+If one standard deviation is a lot larger than another, you may have problems with heterogeneity. Don't worry about small disparities. Look for a three fold change or greater between the larger standard deviation and the smaller standard deviation.
+:::
+    
+## Checking for independence
+
+-   Qualitative assessments only
+    -   Clustering
+    -   Geographic proximity
+
+
+:::notes
+The independence needs to be evaluated qualitatively. Look for features of the data such as clustering or geographic proximity, especially for infectious diseases.
 :::
   
+## Consequences of violations
+
+-   Loss of control of Type I error rate
+    -   Two possibilities
+        -   Liberal, actual alpha much larger than 0.05
+        -   Conservative, actual alpha much smaller than 0.05
+-   Possible increase of Type II error rate = loss of power
+    -   Especially if there are outliers
+-   Confidence intervals too wide or too narrow
+
+:::notes
+What does a violation of assumptions mean from a practical perspective? First, it means that you lose control of the Type I error rate. It can change liberally, meaning that a test you intended to have a Type I error rate of 0.05 actually has a much larger Type I error rate. It can change conservatively, meaning that a test that you intended to have a Type I error rate of 0.05 actually might have a much smaller Type I error rate. 
+
+Now you might think that being conservative sounds pretty good. Why wouldn't you mind having a smaller Type I error rate? It turns out that you are robbing Peter to pay Paul. What you gain in a reduction of the Type I error rate gets taken away by an increase in the Type II error rate. This is equivalent to a loss in power.
+
+The problem with increased Type II error rate and a loss of power is especially likely if your data has serious outliers.
+:::

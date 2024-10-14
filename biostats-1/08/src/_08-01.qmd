@@ -48,10 +48,11 @@ The population means are unknown, but you can use the sample means,
 
 ## How close is close?
 
--   standard error
+-   $T = \frac{\bar{X}_1-\bar{X}_2}{se}
+-   se = standard error
     -  $se = S_p \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$
-    -  Pooled standard deviation
-       -   $S_p=\sqrt{\frac{n_1\ S_1^2\ +\ n_2\ S_2^2}{n_1\ +\ n_2}}$
+-  $S_p$ = Pooled standard deviation
+       -   $S_p = \sqrt{\frac{n_1\ S_1^2\ +\ n_2\ S_2^2}{n_1\ +\ n_2}}$
 -   Not valid with heterogeneity
     -   That is, $\sigma_1 \ne \sigma_2$
 
