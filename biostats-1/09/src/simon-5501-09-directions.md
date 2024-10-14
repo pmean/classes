@@ -34,7 +34,7 @@ The side-to-side sway data appears to have a pair of outliers and some evidence 
 
 ## Question 2
 
-You want to replicate these findings in a new population, using the log transformation on the new data. Select a standard deviation from side-to-side sway values in the current study (go halfway between the two standard deviations). You want to have 90% power for detecting a 1.5 fold change (which is 0.176 units on a log base 10 scale). If you use a two-sided hypothesis with alpha = 0.05, what sample size would you need?
+You want to replicate these findings in a new population, using the log transformation on the new data. Select a standard deviation from log transformed side-to-side sway values in the current study (go halfway between the two standard deviations). You want to have 90% power for detecting a 1.5 fold change (which is 0.176 units on a log base 10 scale). If you use a two-sided hypothesis with alpha = 0.05, what sample size would you need?
 
 ## Your submission
 
@@ -51,11 +51,3 @@ You want to replicate these findings in a new population, using the log transfor
 Please review the [suggestions if you encounter an error page][sim3].
 
 [sim3]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
-
-If your program has any errors or fails
-to produce the output that you desire 
-and you can't resolve the problem, 
-upload the program file along with the
-pdf file to help us figure out what 
-went wrong. You will get a chance to 
-resubmit the assignment if needed.
