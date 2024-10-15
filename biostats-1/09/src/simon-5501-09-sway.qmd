@@ -17,13 +17,12 @@ This program was written by Steve Simon on 2024-10-13. It is placed in the publi
 ```{r setup}
 #| message: false
 #| warning: false
-library(broom)
 library(tidyverse)
 ```
 
 ## Read data
 
-```{r read-memory}
+```{r read-sway}
 sway <- read_tsv(
   file="../data/postural-sway.txt",
   col_types="cnn")
@@ -45,7 +44,7 @@ sway |>
     coord_flip()
 ```
 
-There is some concern about the validity of the two-sample t-test in the presence of a fairly extreme outlier.
+The outlier causes some concern about the validity of the two-sample t-test.
 
 ## Descriptive statistics for front-to-back sway by age
 
@@ -63,10 +62,15 @@ In addition to the outlier, notice that the group with the larger mean (elderly)
 ## Log transformation, 1
 
 ```{r log-transform-1}
-#| fig.height: 2
-#| fig.width: 6
 sway |>
   mutate(log_fbsway=log10(fbsway)) -> log_sway
+```
+
+## Log transformation, 2
+
+```{r log-transform-2}
+#| fig.height: 2
+#| fig.width: 6
 log_sway |>
   ggplot(aes(age, log_fbsway)) +
     geom_boxplot() +
@@ -76,9 +80,9 @@ log_sway |>
     coord_flip()
 ```
 
-Notice that the highest sway value in the elderly patients is much closer to the rest of the data.
+There are no outliers after a log transformation.
 
-## Log transformation, 2
+## Log transformation, 3
 
 ```{r compare-means-on-log-scale}
 log_sway |>
@@ -91,7 +95,7 @@ log_sway |>
 
 The standard deviations on the log scale are quite a bit more similar than they were on the original scale.
 
-## Two-sample t-test
+## Two-sample t-test using the log transformation
 
 ```{r t-test}
 m2 <- t.test(
@@ -119,37 +123,3 @@ wilcox.test(fbsway ~ age, data=sway)
 ```
 
 Since the p-value is small, you would reject the null hypothesis and conclude that there is a statistically significant difference in front-to-back sway values between elderly and young patients.
-
-## Paired t-test
-
-The research team is also interested in whether the front-to-back sway is larger than the side-to-side sway, combining both the elderly and young patients into one group.
-
-```{r compute-difference}
-#| fig.height: 1.5
-#| fig.width: 6
-sway |>
-  mutate(diff_sway=fbsway-sidesway) |>
-    ggplot(aes(diff_sway, "Combined")) +
-      geom_boxplot() +
-      ggtitle("Graph drawn by Steve Simon on 2024-10-13") +
-      xlab("Front-to-back sway minus side-to-side sway") +
-      ylab(" ")
-```
-
-```{r compute-difference-2}
-sway |>
-  mutate(diff_sway=fbsway-sidesway) |>
-    summarize(
-      fb_mn=mean(fbsway),
-      fb_sd=sd(fbsway),
-      ss_mn=mean(sidesway),
-      ss_sd=sd(sidesway))
-```
-
-```{r paired-t-test}
-t.test(
-  sway$fbsway, 
-  sway$sidesway,
-  paired=TRUE,
-  alternative="two.sided")
-```

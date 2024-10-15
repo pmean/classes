@@ -1,0 +1,73 @@
+---
+title: "Alternative analysis of postural sway data"
+format: 
+  html:
+    embed-resources: true
+---
+
+This program runs a paired t-test. Consult the [data dictionary][dic] for information about the data itself.
+
+[dic]: https://github.com/pmean/data/blob/main/files/postural-sway.yaml
+
+This program was written by Steve Simon on 2024-10-15. It is placed in the public domain.
+
+## Libraries
+
+```{r setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+```
+
+## Read data
+
+```{r read-sway}
+sway <- read_tsv(
+  file="../data/postural-sway.txt",
+  col_types="cnn")
+names(sway) <- tolower(names(sway))
+glimpse(sway)
+```
+
+## Paired t-test
+
+The research team is also interested in whether the front-to-back sway is larger than the side-to-side sway, combining both the elderly and young patients into one group.
+
+## Compute and graph differences
+
+```{r compute-difference-1}
+sway |>
+  mutate(diff_sway=fbsway-sidesway) -> paired_differences
+paired_differences |>
+    summarize(
+      diff_mn=mean(diff_sway),
+      diff_sd=sd(diff_sway))
+```
+
+The average difference is positive, indicating that front-to-back-sways are larger on average. The standard deviation of the differences is large. 
+
+## Boxplot of differences
+
+```{r compute-difference-2}
+#| fig.height: 1.5
+#| fig.width: 6
+paired_differences |>
+  ggplot(aes(diff_sway, "Combined")) +
+    geom_boxplot() +
+    ggtitle("Graph drawn by Steve Simon on 2024-10-13") +
+    xlab("Front-to-back sway minus side-to-side sway") +
+    ylab(" ")
+```
+
+More than 75% of the differences are positive, also indicating that front-to-back sways tend to be larger.
+
+## Paired t-test
+
+```{r paired-t-test}
+t.test(
+  sway$fbsway, 
+  sway$sidesway,
+  paired=TRUE,
+  alternative="two.sided")
+```
+The p-value is small, indicating that front-to-back sways are significantly larger than side-to-side sways. The 95% confidence intervals shows that the mean difference is at least 0.21 units larger for front-to-back sway and possibly as large as 7.0 units.

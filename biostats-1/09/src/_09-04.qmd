@@ -12,7 +12,7 @@ editor: source
 -   If you have heterogeneity
     -   Welch's test
 -   If you have non-normality
-    -   Wilcoxon-Mann-Whitney test
+    -   Mann-Whitney-Wilcoxon test
 -   If you have both:
     -   Log transformation
 -   If you have lack of independence
@@ -29,7 +29,7 @@ If you have both heterogeneity and non-normality, and it has to be specific type
 Lack of independence typically requires a fairly complex approach like a random effects model that is well beyond the scope of this class. This model is covered in quite a bit of detail by Anlin Cheng in MEDB 5503, Applied Biostatistics III.
 :::
   
-## Welch's test
+## Welch's test, 1
 
 -   $T = \frac{\bar{X}_1-\bar{X}_2}{se}$
 -   se = standard error changes slightly
@@ -37,11 +37,40 @@ Lack of independence typically requires a fairly complex approach like a random 
 -   df = degrees of freedom changes slightly   
     -   $df=\frac{\big(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}\big)^2}{\frac{s_1^4}{(n_1-1)n_1^2}+\frac{s_2^4}{(n_2-1)n_2^2}}$
         -   Also known as Satterthwaite's approximation
+
+:::notes
+Welch's test makes minor modification to the standard error and the degrees of freedom. The formula for the degrees of freedom looks difficult, but it is just involves addition, division and raising to power. It is one of those formulas that has very little intuition and it is also something that makes us glad that the computer does all the work.
+:::
+
+## Welch's test, 2
+
 -   R code
     -   `var.equal=FALSE`
 
 :::notes
-Welch's test makes minor modification to the standard error and the degrees of freedom. The formula for the degrees of freedom looks difficult, but it is just involves addition, division and raising to power. It is one of those formulas that has very little intuition and it is also something that makes us glad that the computer does all the work.
+The R code is fairly easy. Change the argument var.equal from TRUE to FALSE.
+:::
+
+## Controversy over the use of Welch's test, 1
+
+-   Some advocate using it all the time.
+    -   Welch's test is valid for homogeneity OR heterogeneity
+-   Some advocate using a preliminary hypothesis
+    -   $H_0:\ \sigma_1=\sigma_2
+        -   Levene's test
+        -   Bartlett's test
+        -   Brown-Forsythe test
+        
+## Controversy over the use of Welch's test, 2
+
+-   My opinion:
+    -   Avoid ANY test of heterogeneity
+    -   Make decision based on prior experience
+    
+:::notes
+Tests of heterogeneity are worthless. All are excessively sensitive to the normality assumption (some more than others). Worse, for very large sample sizes, these tests tend to conclude that you have heterogeneity even for trivial changes in variation from one group to another.
+
+I do not use Welch's test, unless there are strong a priori reasons to believe that there is heterogeneity.
 :::
 
 ## Mann-Whitney-Wilcoxon test
@@ -209,6 +238,15 @@ for (i in 15:24) {
   cat("\n")
 }
 ```
+
+## Controversy over the use of nonparametric tests
+
+-   Unclear what your hypothesis is
+    -   Inequality in population means
+    -   Inequality in population medians
+    -   $P[X > Y] \ne \frac{1}{2}$
+-   Loss of power
+    -   Multiply t-test sample size by pi/3.
 
 ## Log transformation
 

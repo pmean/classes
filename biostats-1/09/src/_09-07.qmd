@@ -7,9 +7,31 @@ format:
 editor: source
 ---
 
-## Programming template
+```{r 09-07-load}
+load("../data/module09.RData")
+```
 
-:::notes
-The
-:::
-  
+## simon-5501-09-sway.qmd, 12
+
+```{r write12}
+cat(codec[12])
+```
+
+## simon-5501-09-sway.qmd, 13
+
+```{r write13}
+cat(codec[13])
+```
+
+## simon-5501-09-sway.qmd, 14
+
+```{r write14}
+cat(codec[14])
+```
+
+## simon-5501-09-sway.qmd, 15
+
+```{r write15}
+cat(codec[15])
+```
+

@@ -55,6 +55,7 @@ You really don't need to look at residuals, but if you do, compute them the same
 -   Boxplot
 -   Compare group standard deviations
     -   3 to 1 or higher ratio
+-   Is the data unbalanced ($n_1 \ne n_2$)
     
 :::notes
 The boxplot is also a simple way to check for heterogeneity. Is one box a lot bigger than the other?
@@ -62,6 +63,8 @@ The boxplot is also a simple way to check for heterogeneity. Is one box a lot bi
 You should also compute means and standard deviations for each group. This is a routine that I always recommend. Wade in from the shallow end of the pool. 
 
 If one standard deviation is a lot larger than another, you may have problems with heterogeneity. Don't worry about small disparities. Look for a three fold change or greater between the larger standard deviation and the smaller standard deviation.
+
+Unbalanced data, where you have more observations in one group than the other is not a violation of assumptions, but it does tend to exacerbate problems with heterogeneity if it exists.
 :::
     
 ## Checking for independence

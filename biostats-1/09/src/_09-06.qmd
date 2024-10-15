@@ -9,7 +9,21 @@ editor: source
 
 ## Paired data
 
+-   Sometimes you collect data in pairs
+    -   Drug for left arm, placebo for right arm
+    -   Measure patient before intervention and after
+    -   Each exposed patient matched on age/sex with control
+    
 :::notes
-The
+There are lots of situations where the two groups in a research study are paired together. In this case, the test changes
 :::
-  
+
+## Calculate differences
+
+-   $D_i = X_{1i}-X_{2i}$
+    -   $\bar{D}=\frac{1}{n} \Sigma D_i$
+    -   $S_D=\sqrt{\frac{1}{n-1} \Sigma (D_i=\bar{D})^2}$
+
+## Test of hypothesis
+
+-   $H_0:\ \mu_D

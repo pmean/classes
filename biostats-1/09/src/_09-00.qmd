@@ -18,7 +18,7 @@ library(yaml)
 ```{r 09-00-yaml-text}
 f1 <- "https://raw.githubusercontent.com/"
 f2 <- "pmean/data/main/files/"
-f3 <- "gingko-memory.yaml"
+f3 <- "postural-sway.yaml"
 yaml_text <- read_yaml(paste0(f1, f2, f3))
 
 yaml_text_names <- 
@@ -58,7 +58,7 @@ dim(datav)
 ## Code
 
 ```{r 09-00-code-text}
-fn <- "simon-5501-09-template.qmd"
+fn <- "simon-5501-09-sway.qmd"
 code_text <- read_lines(file=fn)
 chunk <- 
 	cumsum(
@@ -110,6 +110,16 @@ names(gingko) <- tolower(names(gingko))
 glimpse(gingko)
 ```
 
+## postural-sway data
+
+```{r 09-00-read-sway}
+sway <- read_tsv(
+  file="../data/postural-sway.txt",
+  col_types="cnn")
+names(sway) <- tolower(names(sway))
+glimpse(sway)
+```
+
 
 ```{r 09-00-save}
 save(
@@ -118,5 +128,6 @@ save(
 	codec,
 	progc,
 	gingko,
+	sway,
 	file="../data/module09.RData")
 ```
