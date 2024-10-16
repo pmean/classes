@@ -52,9 +52,11 @@ If you can't attend the regularly scheduled help sessions (or if the class does 
 
 **If you are running an R program**, include the following two lines in the yaml header
 
+```
 execute:
   error: true
-  
+```
+
 This will produce an output even if you have errors. It will display output where it can and will place error messages next to any program chunk that has problems. Send both the .qmd and .html files.
 
 **If you are running a SAS program**, in addition to the program (.sas), include the log window. You can cut and paste the log window into a text editor and save it as a .txt file. The log window will show what data steps and what proc steps have errors. If SAS was able to produce a pdf file of the output send that along with the program and the log. If SAS was unable to produce a pdf file of the output, just send the program and the log.
