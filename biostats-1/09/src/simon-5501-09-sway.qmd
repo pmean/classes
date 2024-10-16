@@ -3,6 +3,8 @@ title: "Alternative analysis of postural sway data"
 format: 
   html:
     embed-resources: true
+execute: 
+  error: true
 ---
 
 This program runs some alternatives to the two-sample t-test. Consult the [data dictionary][dic] for information about the data itself.

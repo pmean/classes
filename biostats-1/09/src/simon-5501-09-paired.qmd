@@ -3,6 +3,8 @@ title: "Paired t-test for postural sway data"
 format: 
   html:
     embed-resources: true
+execute: 
+  error: true
 ---
 
 This program runs a paired t-test. Consult the [data dictionary][dic] for information about the data itself.
@@ -39,9 +41,9 @@ The research team is also interested in whether the front-to-back sway is larger
 sway |>
   mutate(diff_sway=fbsway-sidesway) -> paired_differences
 paired_differences |>
-    summarize(
-      diff_mn=mean(diff_sway),
-      diff_sd=sd(diff_sway))
+  summarize(
+    diff_mn=mean(diff_sway),
+    diff_sd=sd(diff_sway))
 ```
 
 The average difference is positive, indicating that front-to-back-sways are larger on average. The standard deviation of the differences is large. 
