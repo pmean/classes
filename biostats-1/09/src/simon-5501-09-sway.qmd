@@ -116,9 +116,9 @@ There is a statistically significant difference between the log front-to-back sw
 
 We are 95% confident that the geometric mean front-to-back sway in elderly patients is somewhere between 1.24 times higher and 8 times higher than the geometric mean for young patients. This indicates a statistically significantly higher mean for elderly patients. The confidence interval is still very wide, indicating a lot of sampling error in these two small samples.
 
-## Wilcoxon-Mann-Whitney
+## Mann-Whitney-Wilcoxon
 
-```{r wmw-test}
+```{r nonparametric-test}
 wilcox.test(fbsway ~ age, data=sway)
 ```
 

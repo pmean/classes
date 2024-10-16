@@ -22,8 +22,17 @@ There are lots of situations where the two groups in a research study are paired
 
 -   $D_i = X_{1i}-X_{2i}$
     -   $\bar{D}=\frac{1}{n} \Sigma D_i$
-    -   $S_D=\sqrt{\frac{1}{n-1} \Sigma (D_i=\bar{D})^2}$
+    -   $S_D=\sqrt{\frac{1}{n-1} \Sigma (D_i-\bar{D})^2}$
 
 ## Test of hypothesis
 
--   $H_0:\ \mu_D
+-   $H_0:\ \mu_D = 0$
+-   $H_1:\ \mu_D \ne 0$
+    -    T = $\frac{\bar{D}}{se}$
+    -    se = $\frac{S_D}{\sqrt{n}}$
+-   Accept $H_0$ if T is close to zero
+
+## Confidence interval
+
+-   $\bar{D} \pm t(1-\alpha/2, n-1) se$
+    -   Range of plausible values for $\mu_D$

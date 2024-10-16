@@ -38,16 +38,6 @@ wide_form <- tibble(
 wide_form
 ```
 
-## Hypothetical data in the long format
-
-```{r 09-01-long}
-long_form <- tibble(
-  id=c(1:4, 1:4),
-  result=c(45, 43, 48, 49, 64, 61, 66, 62),
-  exposed=c("n", "n", "n", "n", "y", "y", "y", "y"))
-long_form
-```
-
 ## Pivoting from wide form to long form
 
 ```{r 09-01-pivot-long}
@@ -57,7 +47,18 @@ wide_form |>
   pivot_longer( 
     cols=c("trt", "pbo"), 
     names_to="intervention",
-    values_to="outcome")
+    values_to="outcome") |>
+  filter(!is.na(outcome))
+```
+
+## Hypothetical data in the long format
+
+```{r 09-01-long}
+long_form <- tibble(
+  id=c(1:4, 1:4),
+  result=c(45, 43, 48, 49, 64, 61, 66, 62),
+  exposed=c("n", "n", "n", "n", "y", "y", "y", "y"))
+long_form
 ```
 
 ## Pivoting from long form to wide form
@@ -70,4 +71,3 @@ long_form |>
     names_from=exposed,
     values_from=result)
 ```
-

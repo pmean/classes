@@ -7,9 +7,46 @@ format:
 editor: source
 ---
 
-## Your homework
+## simon-5501-09-directions.md, 1
 
-:::notes
-The
-:::
-  
+```{r prog1}
+load("../data/module09.RData")
+cat(progc[1])
+```
+
+## simon-5501-09-directions.md, 2
+
+```{r prog2}
+cat(progc[2])
+```
+
+## simon-5501-09-directions.md, 3
+
+```{r prog3}
+cat(progc[3])
+```
+
+## simon-5501-09-directions.md, 4
+
+```{r prog4}
+cat(progc[4])
+```
+
+## simon-5501-09-directions.md, 5
+
+```{r prog5}
+cat(progc[5])
+```
+
+## simon-5501-09-directions.md, 6
+
+```{r prog6}
+cat(progc[6])
+```
+
+## simon-5501-09-directions.md, 7
+
+```{r prog7}
+cat(progc[7])
+```
+

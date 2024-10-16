@@ -35,7 +35,7 @@ Lack of independence typically requires a fairly complex approach like a random 
 -   se = standard error changes slightly
     -   $se = \sqrt{\frac{S_1^2}{n_1} + \frac{S_2^2}{n_2}}$
 -   df = degrees of freedom changes slightly   
-    -   $df=\frac{\big(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}\big)^2}{\frac{s_1^4}{(n_1-1)n_1^2}+\frac{s_2^4}{(n_2-1)n_2^2}}$
+    -   $df=\frac{\left(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}\right)^2}{\frac{s_1^4}{(n_1-1)n_1^2}+\frac{s_2^4}{(n_2-1)n_2^2}}$
         -   Also known as Satterthwaite's approximation
 
 :::notes
@@ -56,7 +56,7 @@ The R code is fairly easy. Change the argument var.equal from TRUE to FALSE.
 -   Some advocate using it all the time.
     -   Welch's test is valid for homogeneity OR heterogeneity
 -   Some advocate using a preliminary hypothesis
-    -   $H_0:\ \sigma_1=\sigma_2
+    -   $H_0:\ \sigma_1=\sigma_2$
         -   Levene's test
         -   Bartlett's test
         -   Brown-Forsythe test
