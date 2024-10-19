@@ -1,5 +1,5 @@
 ---
-title: "02-03, Percentiles"
+title: "10-03, Assumptions"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,17 @@ format:
 editor: source
 ---
 
-## Percentiles
+## Important assumptions
 
-:::notes
-The
-:::
-  
+-   Same as independent-samples t-test
+    -   Normality
+    -   Equal variances
+    -   Independence
+
+## How to check assumptions
+
+-   Boxplots
+-   Analysis of residuals, $e_{ij}$
+    -   $e_{ij}$= Observed - Predicted
+    -   $e_{ij}= Y_{ij}-\bar{Y}_i$
+

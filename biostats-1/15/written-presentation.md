@@ -30,7 +30,7 @@ Key elements in a data dictionary include
 -   Labels for any variable where the variable name itself is not sufficient
 -   Units of measurement (or "unknown")
 
-Include anything else you think is helpful, but again, please don't go overboard! I have to grade a large number of these and do not wish to wade through reports that are dozens of pages long.
+Include anything else you think is helpful, but again, please don't go overboard!
 
 ## Grading rubric
 
