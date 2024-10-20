@@ -1,17 +1,15 @@
 ---
-title: "Template for 5501-01 programming assignment"
-author: "Steve Simon"
+title: "Analysis of eye color and flicker rate"
 format: 
   html:
     embed-resources: true
-date: 2024-08-18
 ---
 
-This program reads data on housing prices in Albuquerque, New Mexico in 1993. Find more information in the [data dictionary][dd].
+This program reads data on tbe realtionship between eye color and flicker rate. Find more information in the [data dictionary][dd].
 
 [dd]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.yaml
 
-This code is placed in the public domain.
+This program was written by Steve Simon on 2024-10-20 and is placed in the public domain.
 
 ## Load the tidyverse library
 
@@ -20,6 +18,7 @@ For most of your programs, you should load the tidyverse library. The messages a
 ```{r setup}
 #| message: false
 #| warning: false
+library(broom)
 library(tidyverse)
 ```
 
@@ -28,30 +27,91 @@ library(tidyverse)
 Use the read_csv function to read the data. The glimpse function will produce a brief summary.
 
 ```{r read}
-alb <- read_csv(
-  file="../data/albuquerque-housing.csv",
+eye <- read_tsv(
+  file="../data/flicker.txt",
   col_names=TRUE,
-  col_types="nnnnccc",
-  na=".")
-glimpse(alb)
+  col_types="cn")
+names(eye) <- tolower(names(eye))
+glimpse(eye)
 ```
 
-## Calculate overall means
+## Draw boxplots
 
-The summarize_if function produces means, but only for numeric data. You wouldn't want to compute means for data with values "yes" and "no".
-
-```{r means}
-alb |>
-  summarise_if(is.numeric, mean, na.rm = TRUE)
+```{r box}
+#| fig.width: 6
+#| fig.height: 2.5
+eye |>
+  ggplot(aes(colour, flicker)) +
+    geom_boxplot() +
+    xlab("Eye color") +
+    ylab("Flicker rate") +
+    ggtitle("Graph drawn by Steve Simon on 2024-10-20") +
+    coord_flip()
 ```
 
-## Summarize price
+```{r descriptives}
+eye |>
+  group_by(colour) |>
+  summarize(
+    flicker_mn=mean(flicker),
+    flicker_sd=sd(flicker),
+    n=n())
+```
 
-The average price of a home, 106 thousand dollars, is quite low because the data comes from 1993.
 
-## Summarize sqft
+```{r aov}
+m1 <- aov(flicker ~ colour, data=eye)
+m1
+glance(m1)
+tidy(m1)
+augment(m1)
+confint(m1)
+pairwise.t.test(eye$flicker, eye$colour, p.adjust.method="bonferroni")
+TukeyHSD(m1)
+qtukey(p=0.95, nmeans=3, df=16)
+```
 
-## Summarize age
+```{r read-2}
+river <- read_tsv(
+  file="../data/wolf-river-pollution.txt",
+  col_names=TRUE,
+  col_types="cnn")
+names(river) <- tolower(names(river))
+glimpse(river)
+```
 
-## Summarize features
+## Draw boxplots
+
+```{r box-2}
+#| fig.width: 6
+#| fig.height: 2.5
+river |>
+  ggplot(aes(depth, aldrin)) +
+    geom_boxplot() +
+    xlab("River depth") +
+    ylab("Aldrin concentration") +
+    ggtitle("Graph drawn by Steve Simon on 2024-10-20") +
+    coord_flip()
+```
+
+```{r descriptives-2}
+river |>
+  group_by(depth) |>
+  summarize(
+    aldrin_mn=mean(aldrin),
+    aldrin_sd=sd(aldrin),
+    n=n())
+```
+
+```{r aov-2}
+m2 <- aov(aldrin ~ depth, data=river)
+m2
+glance(m2)
+tidy(m2)
+augment(m2)
+confint(m2)
+pairwise.t.test(river$aldrin, river$depth, p.adjust.method="bonferroni")
+TukeyHSD(m2)
+qtukey(p=0.95, nmeans=3, df=27)
+```
 
