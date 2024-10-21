@@ -1,14 +1,12 @@
 ---
-title: "09-00, Resources needed for module 09 slides"
+title: "10-00, Resources needed for module 10 slides"
 format: 
   html:
     embed-resources: true
 editor: source
 ---
 
-This program was written by Steve Simon on 2024-10-15 and is placed in the public domain.
-
-```{r 09-00-setup}
+```{r 10-00-setup}
 #| message: false
 #| warning: false
 library(tidyverse)
@@ -17,10 +15,10 @@ library(yaml)
 
 ## Data dictionary
 
-```{r 09-00-yaml-text}
+```{r 10-00-yaml-text}
 f1 <- "https://raw.githubusercontent.com/"
 f2 <- "pmean/data/main/files/"
-f3 <- "postural-sway.yaml"
+f3 <- "wolf-river-pollution.yaml"
 yaml_text <- read_yaml(paste0(f1, f2, f3))
 
 yaml_text_names <- 
@@ -59,8 +57,8 @@ dim(datav)
 
 ## Code
 
-```{r 09-00-code-sway}
-fn <- "simon-5501-09-sway.qmd"
+```{r 10-00-code-sway}
+fn <- "simon-5501-10-river.qmd"
 code_text <- read_lines(file=fn)
 chunk <- 
 	cumsum(
@@ -82,7 +80,7 @@ length(codec)
 
 ## Programming assignment
 
-```{r 09-00-prog-text}
+```{r 10-00-prog-text}
 fn <- "simon-5501-09-directions.md"
 prog_text <- read_lines(file=fn)
 chunk <- 
@@ -104,7 +102,7 @@ length(progc)
 
 ## gingko-memory data
 
-```{r 09-00-read-gingko}
+```{r 10-00-read-gingko}
 gingko <- read_tsv(
   file="../data/gingko-memory.txt",
   col_types="cnn")
@@ -114,7 +112,7 @@ glimpse(gingko)
 
 ## postural-sway data
 
-```{r 09-00-read-sway}
+```{r 10-00-read-sway}
 sway <- read_tsv(
   file="../data/postural-sway.txt",
   col_types="cnn")
@@ -124,7 +122,7 @@ glimpse(sway)
 
 ## Code
 
-```{r 09-00-code-paired}
+```{r 10-00-code-paired}
 fn <- "simon-5501-09-paired.qmd"
 code_text <- read_lines(file=fn)
 chunk <- 
@@ -145,7 +143,7 @@ cat(coded[1])
 length(coded)
 ```
 
-```{r 09-00-save}
+```{r 10-00-save}
 save(
 	datac,
 	datav,
