@@ -7,9 +7,18 @@ format:
 editor: source
 ---
 
-## Programming template
+```{r 10-08-display-directions}
+#| output: asis
+load("../data/module10.RData")
+for (j in 1:length(directions_1)) {
+  cat("\n\n")
+  cat("## simon-5501-10-directions.md, ", j)
+  cat("\n\n")
+  cat("````")
+  cat("\n")
+  cat(directions_1[j])
+  cat("\n")
+  cat("````")
+}
+```
 
-:::notes
-The
-:::
-  

@@ -17,6 +17,26 @@ editor: source
     -   $P[E_1\ \cup\ E_2]\ \le\ P[E_1]+P[E_2]$
     -   $P[E_1\ \cup\ E_2]\ \le\ 2 \alpha$
 
+## Tukey post hoc tests
+
+-   If you reject H0, which values are unequal
+    -   With k groups, there are k(k-1)/2 comparisons
+-   Studentized range (Tukey test)
+    -   Requires equal sample sizes per group
+    -   Uses harmonic mean approximation for unequal sample sizes.
+        -   Do not use harmonic means if seriously different sample sizes.
+
+## Alternatives to Tukey post hoc tests
+
+-   Bonferroni adjustment
+    -   Works for unequal sample sizes per group
+    -   Works for unequal variances
+-   Dunnett's test
+    -   Treatment versus multiple controls
+-   Scheffe's test
+    -   Works for complex comparison
+        -   Example $\mu_1\ vs.\ \frac{\mu_2+\mu_3+\mu_4}{3}$
+
 ## Bonferroni adjustment
 
 -   For m hypotheses
@@ -26,14 +46,14 @@ editor: source
 -   Example, 3 simultaneous hypotheses
     -   Reject H0 if p-value \< 0.0133
 
-## Controversies over Bonferroni adjustment
+## Controversies over Tukey/Bonferroni adjustment
 
 -   Increases Type II errors
 -   Impractical for large values of m
 -   Works poorly for highly correlated tests
 -   Ambiguity in definition of "simultaneous" hypotheses
 
-## Alternatives to Bonferroni adjustment
+## Special case alternatives to Bonferroni/Tukey adjustment
 
 -   False discovery rate
 -   Designation of primary and secondary outcomes

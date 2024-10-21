@@ -7,7 +7,17 @@ format:
 editor: source
 ---
 
-## TBA-1
+## Using the power.anova.test function to estimate sample size
+
+-   *power.anova.test*
+    -   *groups* is the number of groups
+    -   *n* is the number of observations per group
+    -   *between.var* is the estimate of MSTR
+    -   *within.var* is the estimate of MSE
+    -   *sig.level* is the alpha level
+    -   *power* is the power
+-   Set *n=NULL* to estimate sample size
+    
 
 :::notes
 The
