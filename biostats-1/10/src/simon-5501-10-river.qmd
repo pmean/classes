@@ -1,0 +1,75 @@
+---
+title: "Analysis of wolf river pollution"
+format: 
+  html:
+    embed-resources: true
+---
+
+This program reads data on the relationship sampling depth and two pollutant concentrations. Find more information in the [data dictionary][dd].
+
+[dd]: https://github.com/pmean/datasets/blob/master/wolf-river-pollution.yaml
+
+This program was written by Steve Simon on 2024-10-20 and is placed in the public domain.
+
+## Load the tidyverse library
+
+For most of your programs, you should load the tidyverse library. The messages and warnings are suppressed.
+
+```{r setup}
+#| message: false
+#| warning: false
+library(broom)
+library(tidyverse)
+```
+
+## Read the data
+
+```{r read-1}
+river <- read_tsv(
+  file="../data/wolf-river-pollution.txt",
+  col_names=TRUE,
+  col_types="cnn")
+names(river) <- tolower(names(river))
+glimpse(river)
+```
+
+## Draw boxplots
+
+```{r box-1}
+#| fig.width: 6
+#| fig.height: 2.5
+river |>
+  ggplot(aes(depth, aldrin)) +
+    geom_boxplot() +
+    xlab("River depth") +
+    ylab("Aldrin concentration") +
+    ggtitle("Graph drawn by Steve Simon on 2024-10-20") +
+    coord_flip()
+```
+
+## Descriptive statistics
+
+```{r descriptives-1}
+river |>
+  group_by(depth) |>
+  summarize(
+    aldrin_mn=mean(aldrin),
+    aldrin_sd=sd(aldrin),
+    n=n())
+```
+
+## Analysis of variance table
+
+```{r aov-1}
+m2 <- aov(aldrin ~ depth, data=river)
+tidy(m2)
+augment(m2)
+```
+
+## Pairwise tests
+
+```{r pairwise-1}
+pairwise.t.test(river$aldrin, river$depth, p.adjust.method="bonferroni")
+TukeyHSD(m2)
+qtukey(p=0.95, nmeans=3, df=27)
+```

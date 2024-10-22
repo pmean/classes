@@ -1,5 +1,5 @@
 ---
-title: "02-04, Standard deviation"
+title: "10-04, Confidence intervals"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,55 @@ format:
 editor: source
 ---
 
-## Standard deviation
+## Review multiple comparisons issue
 
-:::notes
-The
-:::
-  
+-   Type I error: rejecting the null hypothesis when the null hypothesis is true.
+    -   Multiple simultaneous hypotheses increase the Type I error rate.
+-   $E_1$ = Type I error for Hypothesis 1
+-   $E_2$ = Type I error for Hypothesis 2
+    -   $P[E_1\ \cup\ E_2]=P[E_1]+P[E_2]-P[E_1\ \cap\ E_2]$
+    -   $P[E_1\ \cup\ E_2]\ \le\ P[E_1]+P[E_2]$
+    -   $P[E_1\ \cup\ E_2]\ \le\ 2 \alpha$
+
+## Tukey post hoc tests
+
+-   If you reject H0, which values are unequal
+    -   With k groups, there are k(k-1)/2 comparisons
+-   Studentized range (Tukey test)
+    -   Requires equal sample sizes per group
+    -   Uses harmonic mean approximation for unequal sample sizes.
+        -   Do not use harmonic means if seriously different sample sizes.
+
+## Alternatives to Tukey post hoc tests
+
+-   Bonferroni adjustment
+    -   Works for unequal sample sizes per group
+    -   Works for unequal variances
+-   Dunnett's test
+    -   Treatment versus multiple controls
+-   Scheffe's test
+    -   Works for complex comparison
+        -   Example $\mu_1\ vs.\ \frac{\mu_2+\mu_3+\mu_4}{3}$
+
+## Bonferroni adjustment
+
+-   For m hypotheses
+    -   $P[E_1\ \cup\ ...\ \cup E_m]\ \le\ m \alpha$
+-   Test each hypothesis at $\alpha/m$
+    -   Preserves overall Type I error rate
+-   Example, 3 simultaneous hypotheses
+    -   Reject H0 if p-value \< 0.0133
+
+## Controversies over Tukey/Bonferroni adjustment
+
+-   Increases Type II errors
+-   Impractical for large values of m
+-   Works poorly for highly correlated tests
+-   Ambiguity in definition of "simultaneous" hypotheses
+
+## Special case alternatives to Bonferroni/Tukey adjustment
+
+-   False discovery rate
+-   Designation of primary and secondary outcomes
+-   Subjective assessment of simultaneous hypotheses
+

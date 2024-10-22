@@ -94,11 +94,11 @@ The area to the left is $\alpha$ and the area to the right is 1-$\alpha$.
 
 ## Calculation of the p-value
 
--   For testing $H_1:\ \mu_1=\mu_2 \ne 0$
+-   For testing $H_1:\ \mu_1 - \mu_2 \ne 0$
     -   p-value = $2 P[t(n_1+n_2-2) > |T|]$
--   For testing $H_1:\ \mu_1=\mu_2 > 0$
+-   For testing $H_1:\ \mu_1 - \mu_2 > 0$
     -   p-value = $P[t(n_1+n_2-2) > T]$    
--   For testing $H_1:\ \mu_1=\mu_2 < 0$
+-   For testing $H_1:\ \mu_1 - \mu_2 < 0$
     -   p-value = $P[t(n_1+n_2-2) < T]$        
 -   For any of these hypothesis,
     -   Accept $H_0$ if p-value > $\alpha$
@@ -109,11 +109,11 @@ The calculation of the p-value changes slightly if you have a one-sided hypothes
 
 ## R code for one-sided hypotheses
 
--   For testing $H_1:\ \mu_1=\mu_2 \ne 0$
+-   For testing $H_1:\ \mu_1 - \mu_2 \ne 0$
      -   `alternative="two-sided"`
--   For testing $H_1:\ \mu_1=\mu_2 > 0$
+-   For testing $H_1:\ \mu_1 - \mu_2 > 0$
     -   `alternative="greater"`
--   For testing $H_1:\ \mu_1=\mu_2 < 0$
+-   For testing $H_1:\ \mu_1 - \mu_2 < 0$
     -   `alternative="less"`
 
 :::notes

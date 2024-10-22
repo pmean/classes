@@ -9,7 +9,7 @@ editor: source
 
 ## postural-sway data dictionary, 1
 
-```{r data1}
+```{r 09-05-data1}
 load("../data/module09.RData")
 
 cat(datac$chunk[datac$lab=="data_dictionary"])
@@ -20,7 +20,7 @@ cat(datac$chunk[datac$lab=="additional_description"])
 
 ## postural-sway data dictionary, 2
 
-```{r data2}
+```{r 09-05-data2}
 cat(datac$chunk[datac$lab=="download_url"])
 cat(datac$chunk[datac$lab=="format"])
 cat(datac$chunk[datac$lab=="varnames"])
@@ -30,7 +30,7 @@ cat(datac$chunk[datac$lab=="size"])
 
 ## postural-sway data dictionary, 3
 
-```{r data3}
+```{r 09-05-data3}
 cat(datav$chunk[1])
 cat(datav$chunk[2])
 cat(datav$chunk[3])
@@ -38,67 +38,66 @@ cat(datav$chunk[3])
 
 ## simon-5501-09-sway.qmd, 1
 
-```{r write1}
+```{r 09-05-write1}
 cat(codec[1])
 ```
 
 ## simon-5501-09-sway.qmd, 2
 
-```{r write2}
+```{r 09-05-write2}
 cat(codec[2])
 ```
 
 ## simon-5501-09-sway.qmd, 3
 
-```{r write3}
+```{r 09-05-write3}
 cat(codec[3])
 ```
 
 ## simon-5501-09-sway.qmd, 4
 
-```{r write4}
+```{r 09-05-write4}
 cat(codec[4])
 ```
 
 ## simon-5501-09-sway.qmd, 5
 
-```{r write5}
+```{r 09-05-write5}
 cat(codec[5])
 ```
 
 ## simon-5501-09-sway.qmd, 6
 
-```{r write6}
+```{r 09-05-write6}
 cat(codec[6])
 ```
 
 ## simon-5501-09-sway.qmd, 7
 
-```{r write7}
+```{r 09-05-write7}
 cat(codec[7])
 ```
 
 ## simon-5501-09-sway.qmd, 8
 
-```{r write8}
+```{r 09-05-write8}
 cat(codec[8])
 ```
 
 ## simon-5501-09-sway.qmd, 9
 
-```{r write9}
+```{r 09-05-write9}
 cat(codec[9])
 ```
 
 ## simon-5501-09-sway.qmd, 10
 
-```{r write10}
+```{r 09-05-write10}
 cat(codec[10])
 ```
 
 ## simon-5501-09-sway.qmd, 11
 
-```{r write11}
+```{r 09-05-write11}
 cat(codec[11])
 ```
-

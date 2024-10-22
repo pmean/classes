@@ -1,5 +1,5 @@
 ---
-title: "02-05, Normality"
+title: "10-05, R code"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,50 @@ format:
 editor: source
 ---
 
-## Normality
+## wolf-river-pollution data dictionary, 1
 
-:::notes
-The
-:::
-  
+```{r 10-05-dictionary-1}
+load("../data/module10.RData")
+test1 <- "$\\alpha$"
+n <- length(dictionary_1b)
+cat(dictionary_1b[1:5])
+```
+
+`r test1`
+
+## wolf-river-pollution data dictionary, 2
+
+```{r 10-05-dictionary-2}
+cat(dictionary_1b[6:n])
+```
+
+## wolf-river-pollution data dictionary, 3
+
+```{r 10-05-dictionary-3}
+m <- length(dictionary_1d)
+cat(dictionary_1d[1])
+```
+
+## wolf-river-pollution data dictionary, 4
+
+```{r 10-05-dictionary-4}
+m <- length(dictionary_1d)
+cat(dictionary_1d[2:m])
+```
+
+
+
+```{r 10-05-display-code-1}
+#| output: asis
+for (j in 1:length(code_1)) {
+  cat("\n\n")
+  cat("## simon-5501-10-river.qmd, ", j)
+  cat("\n\n")
+  cat("````")
+  cat("\n")
+  cat(code_1[j])
+  cat("\n")
+  cat("````")
+}
+```
+
