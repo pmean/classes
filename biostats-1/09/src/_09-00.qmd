@@ -55,7 +55,7 @@ datav[ , 1]
 dim(datav)
 ```
 
-## Code
+## Code for sway
 
 ```{r 09-00-code-text}
 fn <- "simon-5501-09-sway.qmd"
@@ -76,6 +76,29 @@ data.frame(code_text, chunk) |>
 codec <- paste0(codec, "\n")
 cat(codec[1])
 length(codec)
+```
+
+## Code for paired
+
+```{r 09-00-code-text-paired}
+fn <- "simon-5501-09-paired.qmd"
+code_text <- read_lines(file=fn)
+chunk <- 
+	cumsum(
+	  str_detect(
+	  	code_text, "## "))
+data.frame(code_text, chunk) |>
+	group_by(chunk) |>
+	summarize(
+		chunk_text =
+			paste0(
+				code_text, 
+				sep="\n", 
+				collapse="")) |>
+	pull(chunk_text) -> coded
+coded <- paste0(codec, "\n")
+cat(coded[1])
+length(coded)
 ```
 
 ## Programming assignment
@@ -126,6 +149,7 @@ save(
 	datac,
 	datav,
 	codec,
+	coded,
 	progc,
 	gingko,
 	sway,

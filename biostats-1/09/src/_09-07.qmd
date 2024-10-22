@@ -11,27 +11,69 @@ editor: source
 load("../data/module09.RData")
 ```
 
-## simon-5501-09-sway.qmd, 12
+## simon-5501-09-paired.qmd, 1
 
-```{r write12}
-cat(codec[12])
+```{r write21}
+cat(coded[1])
 ```
 
-## simon-5501-09-sway.qmd, 13
+## simon-5501-09-paired.qmd, 2
 
-```{r write13}
-cat(codec[13])
+```{r write22}
+cat(coded[2])
 ```
 
-## simon-5501-09-sway.qmd, 14
+## simon-5501-09-paired.qmd, 3
 
-```{r write14}
-cat(codec[14])
+```{r write23}
+cat(coded[3])
 ```
 
-## simon-5501-09-sway.qmd, 15
+## simon-5501-09-paired.qmd, 4
 
-```{r write15}
-cat(codec[15])
+```{r write24}
+cat(coded[4])
+```
+
+## simon-5501-09-paired.qmd, 5
+
+```{r write25}
+cat(coded[5])
+```
+
+## simon-5501-09-paired.qmd, 6
+
+```{r write26}
+cat(coded[6])
+```
+
+## simon-5501-09-paired.qmd, 7
+
+```{r write27}
+cat(coded[7])
+```
+
+## simon-5501-09-paired.qmd, 8
+
+```{r write28}
+cat(coded[8])
+```
+
+## simon-5501-09-paired.qmd, 9
+
+```{r write29}
+cat(coded[9])
+```
+
+## simon-5501-09-paired.qmd, 10
+
+```{r write30}
+cat(coded[10])
+```
+
+## simon-5501-09-paired.qmd, 11
+
+```{r write31}
+cat(coded[11])
 ```
 
