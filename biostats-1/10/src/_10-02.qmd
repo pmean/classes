@@ -7,11 +7,56 @@ format:
 editor: source
 ---
 
-## Predicted values and residuals
+## The F-distribution
+
+-   Ratio of two measures of variation
+-   Two measures are comparable if F is close to 1
+-   F distribution is skewed and can never be negative
+-   Two measures of degrees of freedom
+    -   $df_1$ = degrees of freedom for numerator
+    -   $df_2$ = degrees of freedom for denominator
 
 :::notes
-The
+The F distribution appears many times in Statistics when you are comparing two different measures of variation.
 :::
 
-## Sum of squares
+## Graph of the F distribution
   
+```{r 10-02-f-plot}
+#| message: false
+#| warning: false
+
+library(tidyverse)
+load("../data/module10.RData")
+x <- seq(0, 6, length=99)
+y <- df(x, 5, 28)
+data.frame(x, y) |>
+	ggplot(aes(x, y)) + 
+	geom_line() +
+	ggtitle("Graph drawn by Steve Simon on 2024-10-22")
+```
+
+:::notes
+Here is a picture of the F distribution. 
+:::
+
+## The F-test
+
+-   $H_0:\ \mu_1=\mu_2=...=\mu_k$
+-   $H_1:\ \mu_i \ne \mu_j$ for some i, j
+    -   Compute F = MS(Between) / MS(Within)
+    -   Accept H0 if the F < $F(1-\alpha, k-1, N-k)$
+-   Only reject $H_0$ for large values
+
+:::notes
+You only reject the null hypothesis for large values of F. If the variation between groups is about equal to the variation within groups or if it is much smaller than the variation within groups, you should accept the null hypothesis.
+:::
+
+## The p-value for the F test
+
+-   p-value = P[F > F(k-1, N-k)]
+-   Accept $H_0$ if p-value > $\alpha$.
+
+:::notes
+R will compute a p-value for you and you compare the p-value to alpha. With a large p-value (greater than alpha), you should accept the null hypothesis. With a small p-value (less than or equal to alpha), you should reject the null hypothesis.
+:::

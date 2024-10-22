@@ -124,7 +124,7 @@ Between SS is the squared deviation between the group means and the overall mean
 -   For SS(Within), df = 8
 -   For SS(Between), df = 2
 -   In general,
-    -   N = number of observations
+    -   N = number of observations total
     -   k = number of groups
         -   Total df = N-1
         -   Within df = N-k
@@ -152,5 +152,5 @@ tidy(m2) |>
 ```
 
 :::notes
-
+Here is the analysis of variance table as computed by R. I have left out the p-value and F-ratio, which you will hear about in the next video.
 :::

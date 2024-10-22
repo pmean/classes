@@ -22,12 +22,16 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
     -   Store it in your data folder
 -   Refer to the [data dictionary][dic], if needed.
 
-[dat]: https://github.com/pmean/data/blob/main/files/postural-sway.txt
-[dic]: https://github.com/pmean/data/blob/main/files/postural-sway.yaml
+[dat]: https://github.com/pmean/data/blob/main/files/wolf-river-pollution.txt
+[dic]: https://github.com/pmean/data/blob/main/files/wolf-river-pollution.yaml
     
 ## Question 1
 
-[To be added]
+Compare the average hcb concentrations between the surface, middepth and bottom sampling locations using analysis of variance. Be sure to include appropriate descriptive statistics and graphs. If there is a statistically significant difference among the three means, use the Tukey post-hoc comparison to identify where the differences lie.
+
+## Question 2
+
+You want to run a sample size calculation for a replication of this experiment. Assume that the sample means are similar at surface and middepth, but higher at the bottom (4.8 for the surface, 4.8 for middepth, and 5.2 for the bottom). What sample size would you need to achieve 90% power at an alpha level of 0.05.
 
 ## Your submission
 
