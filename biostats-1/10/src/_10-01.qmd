@@ -32,9 +32,10 @@ You saw how to compare two means last week. Here is the general framework.
 To motivate some of the calculations in Analysis of Variance, I created an artificial data set with numbers that are easy to work with.
 :::
 
-```{r}
+```{r 10-01-create-artificial}
 library(ggplot2)
 library(readr)
+load("../data/module10.RData")
 g <- rep(1:3, c(3, 5, 3))
 y <- c(
   23, 30, 25, 
@@ -58,13 +59,14 @@ To motivate some of the calculations in Analysis of Variance, I created an artif
 
 ## Scatterplot
 
-```{r}
+```{r 10-01-plot-artificial}
 ggplot(d, aes(xpos, y, col=factor(g))) +
   expand_limits(y=c(15,50), breaks=5**(3:10)) +
   scale_x_continuous(
       breaks=c(2, 8, 14), 
       minor=NULL,
       labels=1:3) +
+  ggtitle("Graph drawn by Steve Simon on 2024-10-22") +
   xlab(" ") +
   ylab(" ") +
   theme(legend.position="none") -> g1
@@ -78,7 +80,7 @@ Here is a plot of the data.
 
 ## Total SS = `r sum(sst)`
 
-```{r}
+```{r 10-01-total-ss}
 g2 +
   geom_segment(xend=xpos, yend=ybarbar) +
   geom_text(y=ybarbar, label=ybarbar) +
@@ -91,7 +93,7 @@ Total sums of squares is the squared deviation between each individual value and
 
 ## Within SS = `r sum(ssw)`
 
-```{r}
+```{r 10-01-within-ss}
 g2 +
   geom_segment(xend=xpos, yend=ybar) +
   geom_text(y=ybar, label=ybar) +
@@ -104,7 +106,7 @@ Within sums of squares is the squared deviation between each individual value an
 
 ## Between SS = `r sum(ssb)`
 
-```{r}
+```{r 10-01-between-ss}
 g1 +
   geom_text(y=ybar, label=ybar) +
   geom_segment(x=xpos, y=ybar, xend=xpos, yend=ybarbar) +
@@ -140,3 +142,9 @@ For Between SS, you only have three observations, the three group means. There i
 In general, if you let N represent the total number of observations across all groups and let k represent the number of groups, then the degrees of freedom are N-1, N-k, and k-1.
 :::
 
+## R calculations of sums of squares
+
+```{r 10-01-r-calculation}
+m2 <- aov(y ~ factor(g), data=aa)
+anova(m2)
+```

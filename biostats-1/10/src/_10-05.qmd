@@ -26,14 +26,14 @@ cat(dictionary_1b[6:n])
 
 ## wolf-river-pollution data dictionary, 3
 
-```{r 10-05-data3}
+```{r 10-05-dictionary-3}
 m <- length(dictionary_1d)
 cat(dictionary_1d[1])
 ```
 
 ## wolf-river-pollution data dictionary, 4
 
-```{r 10-05-data3}
+```{r 10-05-dictionary-4}
 m <- length(dictionary_1d)
 cat(dictionary_1d[2:m])
 ```

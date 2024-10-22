@@ -112,6 +112,16 @@ cat(directions_1[length(directions_1)])
 length(directions_1)
 ```
 
+## Read the artificial-anova data
+
+```{r 10-00-artificial}
+aa <- read_csv(
+  file="../data/artificial-anova.csv",
+  col_names=TRUE,
+  col_type="nn")
+glimpse(aa)
+```
+
 ## Read the flicker data
 
 ```{r 10-00-flicker}
@@ -122,6 +132,8 @@ eye <- read_tsv(
 names(eye) <- tolower(names(eye))
 glimpse(eye)
 ```
+
+## Read the wolf-river-pollution data
 
 ```{r 10-00-read-river}
 river <- read_tsv(
@@ -146,6 +158,7 @@ save(
 	dictionary_1d,
 	code_1,
 	directions_1,
+	aa,
 	eye,
 	river,
 	file="../data/module10.RData")
