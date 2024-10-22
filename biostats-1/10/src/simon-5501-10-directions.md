@@ -14,7 +14,7 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
     -   Add your name to the author field
     -   Optional: change the copyright statement
     
-[tem]: https://github.com/pmean/classes/blob/master/general/simon-5501-08-sway.md
+[tem]: https://github.com/pmean/classes/blob/master/biostats-1/10/src/simon-5501-10-river.qmd
 
 ## Data
 
