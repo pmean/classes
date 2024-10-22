@@ -12,7 +12,7 @@ editor: source
 -   $H_0:\ \mu_1=\mu_2$
 -   $H_1:\ \mu_1 \ne \mu_2$
     -   Or a one tailed alternative
--   $T=\frac{\bar X_1-\bar X_2}{SE(\bar X_1-\bar X_2)}$
+-   $T=\frac{\bar X_1-\bar X_2}{se}$
     -   Accept H0 if T is close to zero.
 
 ::: notes

@@ -11,12 +11,9 @@ editor: source
 
 ```{r 10-05-dictionary-1}
 load("../data/module10.RData")
-test1 <- "$\\alpha$"
 n <- length(dictionary_1b)
 cat(dictionary_1b[1:5])
 ```
-
-`r test1`
 
 ## wolf-river-pollution data dictionary, 2
 

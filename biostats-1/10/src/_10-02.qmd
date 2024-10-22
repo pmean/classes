@@ -60,3 +60,24 @@ You only reject the null hypothesis for large values of F. If the variation betw
 :::notes
 R will compute a p-value for you and you compare the p-value to alpha. With a large p-value (greater than alpha), you should accept the null hypothesis. With a small p-value (less than or equal to alpha), you should reject the null hypothesis.
 :::
+
+## R code for the F test
+
+```{r 10-02-f-test}
+m1 <- aov(y ~ factor(g), data=aa)
+tidy(m1)
+```
+
+Because the F-ratio is large and the p-value is less than 0.05, you should reject $H_0$ and conclude that there is a difference among the means.
+
+## R-squared
+
+-   $R^2 = \frac{SS(Between)}{SS(Total)}$
+    -   Proportion of variation explained by groups
+    
+```{r 10-02-r-squared}
+#| echo: true
+glance(m1)$r.squared
+```
+
+Approximately 74% of the variation in measurements can be accounted for by the grouping.
