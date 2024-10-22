@@ -33,8 +33,8 @@ To motivate some of the calculations in Analysis of Variance, I created an artif
 :::
 
 ```{r 10-01-create-artificial}
-library(ggplot2)
-library(readr)
+library(broom)
+library(tidyverse)
 load("../data/module10.RData")
 g <- rep(1:3, c(3, 5, 3))
 y <- c(
@@ -78,7 +78,7 @@ g2
 Here is a plot of the data.
 :::
 
-## Total SS = `r sum(sst)`
+##  SS(Total) = `r sum(sst)`
 
 ```{r 10-01-total-ss}
 g2 +
@@ -91,7 +91,7 @@ g2 +
 Total sums of squares is the squared deviation between each individual value and the overall mean.
 :::
 
-## Within SS = `r sum(ssw)`
+## SS(Within) = `r sum(ssw)`
 
 ```{r 10-01-within-ss}
 g2 +
@@ -104,7 +104,7 @@ g2 +
 Within sums of squares is the squared deviation between each individual value and the group means.
 :::
 
-## Between SS = `r sum(ssb)`
+## SS(Between) = `r sum(ssb)`
 
 ```{r 10-01-between-ss}
 g1 +
@@ -120,9 +120,9 @@ Between SS is the squared deviation between the group means and the overall mean
 
 ## Degrees of freedom
 
--   For Total SS, df = 10
--   For Within SS, df = 8
--   For Between SS, df = 2
+-   For SS(Total), df = 10
+-   For SS(Within), df = 8
+-   For SS(Between), df = 2
 -   In general,
     -   N = number of observations
     -   k = number of groups
@@ -145,6 +145,12 @@ In general, if you let N represent the total number of observations across all g
 ## R calculations of sums of squares
 
 ```{r 10-01-r-calculation}
+#| echo: true
 m2 <- aov(y ~ factor(g), data=aa)
-anova(m2)
+tidy(m2) |>
+  select(term, df, sumsq, meansq)
 ```
+
+:::notes
+
+:::
