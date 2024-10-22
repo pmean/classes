@@ -1234,10 +1234,7 @@ margin-right: 0; }
 <h2>Review two-sample t-test</h2>
 <ul>
 <li><span class="math inline">\(H_0:\ \mu_1=\mu_2\)</span></li>
-<li><span class="math inline">\(H_1:\ \mu_1 \ne \mu_2\)</span>
-<ul>
-<li>Or a one tailed alternative</li>
-</ul></li>
+<li><span class="math inline">\(H_1:\ \mu_1 \ne \mu_2\)</span></li>
 <li><span class="math inline">\(T=\frac{\bar X_1-\bar X_2}{se}\)</span>
 <ul>
 <li>Accept H0 if T is close to zero.</li>
@@ -1261,10 +1258,7 @@ display:block!important;
 <h2>What to do with three or more groups?</h2>
 <ul>
 <li><span class="math inline">\(H_0:\ \mu_1=\mu_2=...=\mu_k\)</span></li>
-<li><span class="math inline">\(H_1:\ \mu_i \ne \mu_j\)</span> for some i, j
-<ul>
-<li>Note: one-tailed test is tricky.</li>
-</ul></li>
+<li><span class="math inline">\(H_1:\ \mu_i \ne \mu_j\)</span> for some i, j</li>
 <li>Accept H0 if the F ratio (defined below) is close to 1.</li>
 </ul>
 </section>
@@ -1528,7 +1522,7 @@ display:block!important;
 <section id="the-p-value-for-the-f-test" class="slide level2">
 <h2>The p-value for the F test</h2>
 <ul>
-<li>p-value = P[F &gt; F(k-1, N-k)]</li>
+<li>p-value = P[F(k-1, N-k) &gt; F]</li>
 <li>Accept <span class="math inline">\(H_0\)</span> if p-value &gt; <span class="math inline">\(\alpha\)</span>.</li>
 </ul>
 <aside class="notes">
@@ -1614,18 +1608,18 @@ display:block!important;
 <section id="how-to-check-for-heterogeneity" class="slide level2">
 <h2>How to check for heterogeneity</h2>
 <ul>
-<li>Boxplots
-<ul>
-<li>Look for one box that is much wider than another</li>
-</ul></li>
 <li>Descriptive statistics
 <ul>
 <li>Look for one standard deviation much larger than another</li>
 </ul></li>
+<li>Boxplots
+<ul>
+<li>Look for one box that is much wider than another</li>
+</ul></li>
 </ul>
 </section>
-<section id="how-to-check-for-indepence" class="slide level2">
-<h2>How to check for indepence</h2>
+<section id="how-to-check-for-independence" class="slide level2">
+<h2>How to check for independence</h2>
 <ul>
 <li>Qualitative assessment of how data was collected</li>
 </ul>
@@ -1695,7 +1689,7 @@ display:block!important;
 </ul></li>
 <li>Example, 3 simultaneous hypotheses
 <ul>
-<li>Reject H0 if p-value &lt; 0.0133</li>
+<li>Reject H0 if p-value &lt; 0.05/3 or 0.0167</li>
 </ul></li>
 </ul>
 </section>

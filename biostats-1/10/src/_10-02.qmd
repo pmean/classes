@@ -54,7 +54,7 @@ You only reject the null hypothesis for large values of F. If the variation betw
 
 ## The p-value for the F test
 
--   p-value = P[F > F(k-1, N-k)]
+-   p-value = P[F(k-1, N-k) > F]
 -   Accept $H_0$ if p-value > $\alpha$.
 
 :::notes

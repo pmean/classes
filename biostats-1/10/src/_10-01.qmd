@@ -11,7 +11,6 @@ editor: source
 
 -   $H_0:\ \mu_1=\mu_2$
 -   $H_1:\ \mu_1 \ne \mu_2$
-    -   Or a one tailed alternative
 -   $T=\frac{\bar X_1-\bar X_2}{se}$
     -   Accept H0 if T is close to zero.
 
@@ -23,7 +22,6 @@ You saw how to compare two means last week. Here is the general framework.
 
 -   $H_0:\ \mu_1=\mu_2=...=\mu_k$
 -   $H_1:\ \mu_i \ne \mu_j$ for some i, j
-    -   Note: one-tailed test is tricky.
 -   Accept H0 if the F ratio (defined below) is close to 1.
 
 ## Artificial data

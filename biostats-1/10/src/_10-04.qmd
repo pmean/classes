@@ -24,7 +24,7 @@ editor: source
 -   Test each hypothesis at $\alpha/m$
     -   Preserves overall Type I error rate
 -   Example, 3 simultaneous hypotheses
-    -   Reject H0 if p-value \< 0.0133
+    -   Reject H0 if p-value \< 0.05/3 or 0.0167
 
 ## Tukey post hoc tests
 
