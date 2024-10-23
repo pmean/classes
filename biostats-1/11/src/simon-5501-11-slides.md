@@ -5,13 +5,13 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "Counting"
-  topic_02: "Mean and median"
-  topic_03: "Percentiles"
-  topic_04: "Standard deviation"
-  topic_05: "Normality"
-  topic_06: "TBA 1"
-  topic_07: "Program template"
+  topic_01: "Linear regression/contrasts/Dunnett's test"
+  topic_02: "Log transformation"
+  topic_03: "Kruskal-Wallis test"
+  topic_04: "R code"
+  topic_05: "Two factor analysis of variance"
+  topic_06: "Interactions"
+  topic_07: "R code"
 editor: source
 ---
 
@@ -30,7 +30,7 @@ editor: source
     -   `r params$topic_06`
     -   `r params$topic_07`
 
-{{< include _02-01.qmd >}}
+{{< include _11-01.qmd >}}
 
 ## Break #1
 
@@ -39,7 +39,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_02`
 
-{{< include _02-02.qmd >}}
+{{< include _11-02.qmd >}}
 
 ## Break #2
 
@@ -48,7 +48,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_03`
 
-{{< include _02-03.qmd >}}
+{{< include _11-03.qmd >}}
 
 ## Break #3
 
@@ -57,7 +57,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_04`
 
-{{< include _02-04.qmd >}}
+{{< include _11-04.qmd >}}
 
 ## Break #4
 
@@ -66,7 +66,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_05`
 
-{{< include _02-05.qmd >}}
+{{< include _11-05.qmd >}}
 
 ## Break #5
 
@@ -75,7 +75,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_06`
 
-{{< include _02-06.qmd >}}
+{{< include _11-06.qmd >}}
 
 ## Break #6
 
@@ -84,10 +84,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_07`
 
-{{< include _02-07.qmd >}}
-
-{{< include _01-07.qmd >}}
-
+{{< include _11-07.qmd >}}
 
 ## Summary
 -   What you have learned
@@ -106,6 +103,6 @@ editor: source
 --->
 
 ---
-title: "MEDB 5501, Module02"
-date: 2024-08-27
+title: "MEDB 5501, Module11"
+date: 2024-10-30
 ---
