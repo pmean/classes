@@ -11,8 +11,7 @@ editor: source
 
 -   $H_0:\ \mu_1=\mu_2$
 -   $H_1:\ \mu_1 \ne \mu_2$
-    -   Or a one tailed alternative
--   $T=\frac{\bar X_1-\bar X_2}{SE(\bar X_1-\bar X_2)}$
+-   $T=\frac{\bar X_1-\bar X_2}{se}$
     -   Accept H0 if T is close to zero.
 
 ::: notes
@@ -23,7 +22,6 @@ You saw how to compare two means last week. Here is the general framework.
 
 -   $H_0:\ \mu_1=\mu_2=...=\mu_k$
 -   $H_1:\ \mu_i \ne \mu_j$ for some i, j
-    -   Note: one-tailed test is tricky.
 -   Accept H0 if the F ratio (defined below) is close to 1.
 
 ## Artificial data
@@ -124,7 +122,7 @@ Between SS is the squared deviation between the group means and the overall mean
 -   For SS(Within), df = 8
 -   For SS(Between), df = 2
 -   In general,
-    -   N = number of observations
+    -   N = number of observations total
     -   k = number of groups
         -   Total df = N-1
         -   Within df = N-k
@@ -152,5 +150,5 @@ tidy(m2) |>
 ```
 
 :::notes
-
+Here is the analysis of variance table as computed by R. I have left out the p-value and F-ratio, which you will hear about in the next video.
 :::

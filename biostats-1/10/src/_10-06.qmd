@@ -18,8 +18,9 @@ editor: source
     -   *power* is the power
 -   Set *n=NULL* to estimate sample size
     
+## What if n is outside your budget?
 
-:::notes
-The
-:::
-  
+-   Increase between.var
+-   Increase Type I error rate (sig.level)
+-   Increase Type II error rate (decrease power)
+-   Decrease number of groups

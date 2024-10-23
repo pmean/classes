@@ -13,11 +13,36 @@ editor: source
     -   Normality
     -   Equal variances
     -   Independence
+-   Note: unequal sample sizes is not a violation of assumptions
+    -   But does lead to some tedious complications
 
-## How to check assumptions
+## How to check for non-normality
 
 -   Boxplots
--   Analysis of residuals, $e_{ij}$
+    -   Look for evidence of skewness or outliers
+    
+## How to check for heterogeneity
+
+-   Descriptive statistics
+    -   Look for one standard deviation much larger than another
+-   Boxplots
+    -   Look for one box that is much wider than another
+    
+##  How to check for independence 
+
+-   Qualitative assessment of how data was collected
+
+## Optional: analysis of residuals, 1
+
+-   Predicted value, $\hat{Y}_{ij}$
+    -   $\hat{Y}_{ij} = \bar{Y}_i$
+-   Residual, $e_{ij}$
     -   $e_{ij}$= Observed - Predicted
+    -   $e_{ij}= Y_{ij}-\hat{Y}_{ij}$
     -   $e_{ij}= Y_{ij}-\bar{Y}_i$
 
+## Optional: analysis of residuals, 2
+
+-   Normal probability plot (QQ plot) of residuals
+-   Histogram of residuals
+-   Plot predicted values versus residuals.

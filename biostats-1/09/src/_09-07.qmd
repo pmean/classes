@@ -13,43 +13,43 @@ load("../data/module09.RData")
 
 ## simon-5501-09-paired.qmd, 1
 
-```{r 09-07-09-07-write1}
+```{r 09-07-write1}
 cat(coded[1])
 ```
 
 ## simon-5501-09-paired.qmd, 2
 
-```{r 09-07-09-07-write2}
+```{r 09-07-write2}
 cat(coded[2])
 ```
 
 ## simon-5501-09-paired.qmd, 3
 
-```{r 09-07-09-07-write3}
+```{r 09-07-write3}
 cat(coded[3])
 ```
 
 ## simon-5501-09-paired.qmd, 4
 
-```{r 09-07-09-07-write4}
+```{r 09-07-write4}
 cat(coded[4])
 ```
 
 ## simon-5501-09-paired.qmd, 5
 
-```{r 09-07-09-07-write5}
+```{r 09-07-write5}
 cat(coded[5])
 ```
 
 ## simon-5501-09-paired.qmd, 6
 
-```{r 09-07-09-07-write6}
+```{r 09-07-write6}
 cat(coded[6])
 ```
 
 ## simon-5501-09-paired.qmd, 7
 
-```{r 09-07-09-07-write7}
+```{r 09-07-write7}
 cat(coded[7])
 ```
 

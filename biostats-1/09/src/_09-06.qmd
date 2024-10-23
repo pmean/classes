@@ -28,11 +28,17 @@ There are lots of situations where the two groups in a research study are paired
 
 -   $H_0:\ \mu_D = 0$
 -   $H_1:\ \mu_D \ne 0$
-    -    T = $\frac{\bar{D}}{se}$
-    -    se = $\frac{S_D}{\sqrt{n}}$
--   Accept $H_0$ if T is close to zero
+    -   T = $\frac{\bar{D}}{se}
+        -   se = \frac{S_D}{\sqrt{n}}
+-   Accept $H_0$ if T is close to zero.
 
 ## Confidence interval
 
--   $\bar{D} \pm t(1-\alpha/2, n-1) se$
+-   $\bar{D} \pm t(1-\alpha/2) se$
     -   Range of plausible values for $\mu_D$
+    
+## Assumptions of paired t-test
+
+-   Normality
+-   Independence
+-   Heterogeneity is not an issue

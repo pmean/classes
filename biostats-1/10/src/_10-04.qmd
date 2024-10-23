@@ -17,16 +17,49 @@ editor: source
     -   $P[E_1\ \cup\ E_2]\ \le\ P[E_1]+P[E_2]$
     -   $P[E_1\ \cup\ E_2]\ \le\ 2 \alpha$
 
+## Bonferroni adjustment
+
+-   For m hypotheses
+    -   $P[E_1\ \cup\ ...\ \cup E_m]\ \le\ m \alpha$
+-   Test each hypothesis at $\alpha/m$
+    -   Preserves overall Type I error rate
+-   Example, 3 simultaneous hypotheses
+    -   Reject H0 if p-value \< 0.05/3 or 0.0167
+
 ## Tukey post hoc tests
 
 -   If you reject H0, which values are unequal
     -   With k groups, there are k(k-1)/2 comparisons
 -   Studentized range (Tukey test)
     -   Requires equal sample sizes per group
-    -   Uses harmonic mean approximation for unequal sample sizes.
+    -   Uses harmonic mean approximation for slightly unequal sample sizes.
         -   Do not use harmonic means if seriously different sample sizes.
+-   `TukeyHSD`
 
-## Alternatives to Tukey post hoc tests
+## Example of Tukey post hoc test with artificial data
+
+```{r 10-04-tukey}
+load("../data/module10.RData")
+aa |>
+	group_by(g) |>
+	summarize(y_mean=mean(y))
+m1 <- aov(y ~ factor(g), data=aa)
+TukeyHSD(m1)
+```
+
+## Interpretation, 1
+
+-   Group 2 (mean=38) is larger than Group 1 (mean=26)
+-   Group 3 (mean=28) and Group 1 (mean=26) are not different
+-   Group 3 (mean=28) is smaller than Group 2 (mean=38)
+
+## Interpretation, 2
+
+-   Group 2 (mean=38) is larger than Group 1 (mean=26)
+-   Group 2 (mean=38) is larger than Group 3 (mean=28)
+-   Group 1 (mean=28) and Group 3 (mean=26) are not different
+
+## Alternatives to Tukey post hoc tests, 1
 
 -   Bonferroni adjustment
     -   Works for unequal sample sizes per group
@@ -37,25 +70,8 @@ editor: source
     -   Works for complex comparison
         -   Example $\mu_1\ vs.\ \frac{\mu_2+\mu_3+\mu_4}{3}$
 
-## Bonferroni adjustment
-
--   For m hypotheses
-    -   $P[E_1\ \cup\ ...\ \cup E_m]\ \le\ m \alpha$
--   Test each hypothesis at $\alpha/m$
-    -   Preserves overall Type I error rate
--   Example, 3 simultaneous hypotheses
-    -   Reject H0 if p-value \< 0.0133
-
 ## Controversies over Tukey/Bonferroni adjustment
 
 -   Increases Type II errors
 -   Impractical for large values of m
--   Works poorly for highly correlated tests
--   Ambiguity in definition of "simultaneous" hypotheses
-
-## Special case alternatives to Bonferroni/Tukey adjustment
-
--   False discovery rate
--   Designation of primary and secondary outcomes
--   Subjective assessment of simultaneous hypotheses
 
