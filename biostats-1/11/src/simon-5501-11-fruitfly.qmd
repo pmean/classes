@@ -1,0 +1,140 @@
+---
+title: "Analysis of fruitfly data"
+author: "Steve Simon"
+format: 
+  html:
+    embed-resources: true
+date: 2024-10-23
+---
+
+This program reads data on fruit fly longevity. Find more information in the [data dictionary][dd].
+
+[dd]: https://github.com/pmean/data/blob/master/files/fruitfly.yaml
+
+This code is placed in the public domain.
+
+## Load the tidyverse library
+
+For most of your programs, you should load the tidyverse library. The messages and warnings are suppressed.
+
+```{r setup}
+#| message: false
+#| warning: false
+library(broom)
+library(tidyverse)
+```
+
+## Read the data and view a brief summary
+
+```{r read}
+fn <- "https://jse.amstat.org/datasets/fruitfly.dat.txt"
+vlist <- c(
+  "id",
+  "partners",
+  "type",
+  "longevity",
+  "thorax",
+  "sleep")
+fly <- read.fwf(
+  "https://jse.amstat.org/datasets/fruitfly.dat.txt",
+  widths=c(2, 2, 2, 3, 5, 3),
+  col.names=vlist)
+glimpse(fly)
+```
+
+## Create cage groups
+
+```{r cage}
+fly$cage <- 
+  case_when(
+    fly$partners==0 & fly$type==9 ~ "No females",
+    fly$partners==1 & fly$type==0 ~ "One pregnant female",
+    fly$partners==1 & fly$type==1 ~ "One virgin female",
+    fly$partners==8 & fly$type==0 ~ "Eight pregnant females",
+    fly$partners==8 & fly$type==1 ~ "Eight virgin females")
+```
+
+## Calculate descriptive statistics
+
+```{r longevity-means}
+fly |>
+  group_by(cage) |>
+  summarize(
+    longevity_mn=mean(longevity),
+    longevity_sd=sd(longevity),
+    n=n())
+```
+
+## Draw boxplot
+
+```{r longevity-boxplot}
+#| fig.width: 6
+#| fig.height: 2.5
+fly |>
+  ggplot(aes(cage, longevity)) +
+    geom_boxplot() +
+    ggtitle("Graph drawn by Steve Simon on 2024-10-23") +
+    xlab("Cage residents") +
+    ylab("Lifespan (days)") +
+    coord_flip()
+```
+
+## Analysis of variance for longevity
+
+```{r longevity-anova}
+m1 <- aov(longevity ~ cage, data=fly)
+tidy(m1)
+```
+
+## Linear model for longevity
+
+```{r longevity-lm-1}
+m2 <- lm(longevity ~ cage, data=fly)
+anova(m2)
+```
+
+## Tukey post hoc comparisons
+
+```{r longevity-tukey}
+t1 <- TukeyHSD(m1, ordered=TRUE)
+```
+
+## Log transformation, 1
+
+```{r log-longevity-anova-1}
+fly |>
+  mutate(log_longevity=log10(longevity)) -> log_fly
+m3 <- aov(log_longevity ~ cage, data=log_fly)
+tidy(m3)
+```
+
+## Log transformation, 2
+
+```{r log-longevity-anova-2}
+t3 <- TukeyHSD(m3, ordered=TRUE)
+t3
+```
+
+## Log transformation, 3
+
+```{r log-longevity-anova-3}
+t3$cage |>
+  data.frame() |>
+  select(diff, lwr, upr) |> 
+  mutate(
+    diff=10^diff,
+    lwr=10^lwr,
+    upr=10^upr)
+```
+
+## Log transformation, 4
+
+```{r log-longevity-anova-4}
+t3$cage |>
+  data.frame() |>
+  select(diff, lwr, upr) |> 
+  mutate(
+    diff=10^(-diff),
+    upr=10^(-lwr),
+    lwr=10^(-upr))
+```

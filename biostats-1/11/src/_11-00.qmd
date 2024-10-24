@@ -127,6 +127,14 @@ fly <- read.fwf(
   "https://jse.amstat.org/datasets/fruitfly.dat.txt",
   widths=c(2, 2, 2, 3, 5, 3),
   col.names=vlist)
+fly$cage <- 
+  case_when(
+    fly$partners==0 & fly$type==9 ~ "No females",
+    fly$partners==1 & fly$type==0 ~ "One pregnant female",
+    fly$partners==1 & fly$type==1 ~ "One virgin female",
+    fly$partners==8 & fly$type==0 ~ "Eight pregnant females",
+    fly$partners==8 & fly$type==0 ~ "Eight virgin females")
+glimpse(fly)
 ```
 
 ## Read the bacterial soap data
@@ -139,17 +147,6 @@ wash <- read_tsv(
 glimpse(wash)
 names(wash) <- c("count", "method")
 glimpse(wash)
-```
-
-## Read the wolf-river-pollution data
-
-```{r 11-00-read-river}
-river <- read_tsv(
-  file="../data/wolf-river-pollution.txt",
-  col_names=TRUE,
-  col_types="cnn")
-names(river) <- tolower(names(river))
-glimpse(river)
 ```
 
 ## Condense
@@ -166,8 +163,7 @@ save(
 	dictionary_1d,
 	code_1,
 	directions_1,
-	aa,
-	eye,
-	river,
-	file="../data/module10.RData")
+	fly,
+	wash,
+	file="../data/module11.RData")
 ```

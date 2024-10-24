@@ -1,11 +1,43 @@
 ---
-title: "02-01, Counting"
+title: "11-01, Kruskal-Wallis test, Log transformations"
 format: 
   revealjs:
     slide-number: true
     embed-resources: true
 editor: source
 ---
+
+## Analysis strategy 01
+
+-   Kruskal-Wallis
+    -   fruitfly data
+-   Log transformation
+    -   fruitfly data
+
+```{r 11-01-setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+kruskal.test(longevity ~ neighbors, data=fly)
+## Analysis strategy 02
+
+-   Contrasts
+    -   Helmert?
+    -   Custom
+    -   bacterial-soap?
+    
+## Analysis strategy 03
+
+-   Two factor ANOVA
+    -   moon data
+
+## Analysis strategy 04
+
+-   Interactions
+    -   exercise (remove reading arm)
+    -   fruitfly (remove 0 partners)
+-   Show how no interaction is possible at times
+    -   moon
 
 ## W
 
@@ -18,74 +50,3 @@ https://jse.amstat.org/datasets/fruitfly.dat.txt
 https://jse.amstat.org/datasets/fruitfly.txt
 
 https://jse.amstat.org/v2n1/datasets.hanley.html
-
-Quiz 08
-
- This is a preview of the published version of the quiz
-Started: Oct 23 at 7:38am
-Quiz Instructions
-You are welcome to peek at this page early, but it may be subject to change. It will be finalized by noon on the eighth Wednesday of the semester. Do not start work on this page any earlier than that.
-
-Select the appropriate answer for each question. Read the questions carefully because you only get one chance for this quiz.
-
- 
-Flag question: Question 1
-Question 11 pts
-The null hypothesis in the two-sample t-test states that the two sample means are equal.
-
-Group of answer choices
-
-True
-
-False
- 
-Flag question: Question 2
-Question 21 pts
-The t distribution is like the normal distribution except that the t-distribution 
-
-Group of answer choices
-
-has a degrees of freedom parameter
-
-is more spread out
-
-is skewed
- 
-Flag question: Question 3
-Question 31 pts
-A Type I error is rejecting the null hypothesis when the null hypothesis is true
-
-Group of answer choices
-
-True
-
-False
- 
-Flag question: Question 4
-Question 41 pts
-Beta is the probability of a Type I error
-
-Group of answer choices
-
-True
-
-False
- 
-Flag question: Question 5
-Question 51 pts
-You should reject the null hypothesis if the p-value is large
-
-Group of answer choices
-
-True
-
-False
-
-
-
-
-
-:::notes
-The
-:::
-  
