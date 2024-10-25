@@ -48,6 +48,8 @@ backtick_hunt <- function(qmd_text) {
 qmd_text <- backtick_hunt(qmd_text)
 ```
 
+## Listing of simon-5501-11-fruitfly.qmd
+
 ```{r}
 #| output: asis
 cat(qmd_text, sep="\n")
@@ -74,17 +76,32 @@ condense_chunks <- function(file_text, separator, max_lines) {
 }
 # condense_chunks(qmd_text, "## ", 15)
 b <- condense_chunks(str_trim(yaml_text), "^$", 15)
-yaml_text[b] <- 
+prefix_text <- rep("", length(yaml_text))
+prefix_text[b[1]] <- 
+    "\n\n## fruitfly.yaml, 1\n\n"
+prefix_text[b[-1]] <- 
   paste0(
-    "\n\nfruitfly.yaml ", 
-    1:length(b), 
-    "\n\n",
-    yaml_text[b])
+    "_split_",
+    "\n\n## fruitfly.yaml ", 
+    2:length(b), 
+    "\n\n")
+
+prefix_text |>
+  paste0(yaml_text) |>
+  paste0(collapse="\n") |>
+  str_replace_all("\n\n\n", "\n\n") |>
+  str_split("_split_") |>
+  unlist() -> yaml_chunks
 ```
 
 ```{r}
 #| output: asis
-cat(yaml_text, sep="\n")
+cat(yaml_chunks[1], sep="\n")
+```
+
+```{r}
+#| output: asis
+cat(yaml_chunks[2], sep="\n")
 ```
 
 ## Add header text
