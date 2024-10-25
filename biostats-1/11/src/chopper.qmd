@@ -15,7 +15,7 @@ library(tidyverse)
 library(yaml)
 ```
 
-## Get a couple of sample files
+## Get a yaml file for testing
 
 ```{r yaml-text}
 f1 <- "https://raw.githubusercontent.com/"
@@ -32,6 +32,29 @@ yaml_text <- yaml_text[-a]
 fn <- "simon-5501-11-fruitfly.qmd"
 qmd_text <- read_lines(file=fn)
 ```
+
+## Step 1
+
+-   Surround any program chunk with four backticks
+
+## Step 2
+
+-   Surround the yaml header with four backticks
+
+## Step 3
+
+-   Find logical breaks in text
+    -   blank line for yaml
+    -   ## for qmd
+    
+## Step 4
+
+-   Consolidate small chunks into bigger chunks
+
+## Step 5
+
+-   Put headers at the front of every chunk
+    -   ## Listing of _filename_, sequence number
 
 ## Surround three backtick sections with four backticks
 
