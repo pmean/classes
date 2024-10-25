@@ -7,6 +7,8 @@ format:
 date: 2024-10-23
 ---
 
+## About this file
+
 This program reads data on fruit fly longevity. Find more information in the [data dictionary][dd].
 
 [dd]: https://github.com/pmean/data/blob/master/files/fruitfly.yaml
@@ -137,4 +139,17 @@ t3$cage |>
     diff=10^(-diff),
     upr=10^(-lwr),
     lwr=10^(-upr))
+```
+
+## Save important files for later use
+
+```{r save}
+save(
+  fly,
+  log_fly,
+  m1,
+  m2,
+  m3,
+  t3,
+  file="../data/firefly.RData")
 ```

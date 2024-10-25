@@ -1,5 +1,5 @@
 ---
-title: "02-04, Standard deviation"
+title: "11-04, TBA"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,49 @@ format:
 editor: source
 ---
 
-## Standard deviation
+## Testing 1
 
-:::notes
-The
-:::
-  
+```{r}
+# message: false
+# warning: false
+library(tidyverse)
+yaml_text <- read_lines("../../../../data/files/fruitfly.yaml")
+yaml_text |>
+  str_trim() |>
+  str_which("^$") -> breaks
+```
+
+```{r}
+cat(yaml_text[1:(breaks[2]-1)], sep="\n")
+```
+
+## Testing 2
+
+```{r}
+cat(yaml_text[(breaks[2]+1):(breaks[3]-1)], sep="\n")
+```
+
+## Testing 3
+
+```{r}
+cat(yaml_text[(breaks[3]+1):(breaks[5]-1)], sep="\n")
+```
+
+## Testing 4
+
+```{r}
+cat(yaml_text[(breaks[5]+1):(breaks[10]-1)], sep="\n")
+```
+
+## Testing 5
+
+```{r}
+cat(yaml_text[(breaks[11]+1):(breaks[14]-1)], sep="\n")
+```
+
+## Testing 6
+
+```{r}
+cat(yaml_text[(breaks[14]+1):length(yaml_text)], sep="\n")
+```
+

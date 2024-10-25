@@ -18,7 +18,9 @@ editor: source
 #| message: false
 #| warning: false
 library(tidyverse)
-kruskal.test(longevity ~ neighbors, data=fly)
+# kruskal.test(longevity ~ neighbors, data=fly)
+```
+
 ## Analysis strategy 02
 
 -   Contrasts
@@ -39,7 +41,7 @@ kruskal.test(longevity ~ neighbors, data=fly)
 -   Show how no interaction is possible at times
     -   moon
 
-## W
+## Websites
 
 https://dasl.datadescription.com/datafile/baterial-soap
 

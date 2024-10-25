@@ -1,0 +1,108 @@
+---
+title: "Chopper"
+format: 
+  html:
+    embed-resources: true
+editor: source
+---
+
+This programmer reads in data dictionaries and/or program code and spits it back out in small chunks that can fit on individual reveal.js slides. It should work fine with Powerpoint or other slide show software as well. This program was written by Steve Simon on 2024-10-24 and it placed in the public domain.
+
+```{r chopper-setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(yaml)
+```
+
+## Get a couple of sample files
+
+```{r yaml-text}
+f1 <- "https://raw.githubusercontent.com/"
+f2 <- "pmean/data/main/files/"
+f3 <- "wolf-river-pollution.yaml"
+yaml_text <- read_lines(paste0(f1, f2, f3))
+a <- str_which(yaml_text, "---")
+yaml_text <- yaml_text[-a]
+```
+
+## Get a qmd file
+
+```{r qmd-text}
+fn <- "simon-5501-11-fruitfly.qmd"
+qmd_text <- read_lines(file=fn)
+```
+
+## Surround three backtick sections with four backticks
+
+```{r}
+backtick_hunt <- function(qmd_text) {
+  find1 <- "^```\\{"
+  replace1 <- "````\n```{"
+  find2 <- "^```$"
+  replace2 <- "```\n````\n"
+  qmd_text |>
+    str_replace(find1, replace1) |>
+    str_replace(find2, replace2)
+}
+qmd_text <- backtick_hunt(qmd_text)
+```
+
+```{r}
+#| output: asis
+cat(qmd_text, sep="\n")
+```
+
+## Divide in manageable chunks
+
+```{r}
+condense_chunks <- function(file_text, separator, max_lines) {
+  boundaries <- c(1, str_which(file_text, separator))
+  n_chunks <- length(boundaries)
+  j <- 2
+  print(boundaries)
+  for (i in 2:n_chunks) {
+    if (j > (length(boundaries)-1)) break
+    if (boundaries[j+1]-boundaries[j-1] > max_lines) {
+      j <- j+1
+      next
+    }  
+    boundaries <- boundaries[-j]
+    print(boundaries)
+  }
+  boundaries
+}
+# condense_chunks(qmd_text, "## ", 15)
+b <- condense_chunks(str_trim(yaml_text), "^$", 15)
+yaml_text[b] <- 
+  paste0(
+    "\n\nfruitfly.yaml ", 
+    1:length(b), 
+    "\n\n",
+    yaml_text[b])
+```
+
+```{r}
+#| output: asis
+cat(yaml_text, sep="\n")
+```
+
+## Add header text
+
+## Move comments into fence
+
+## Save everything important
+
+```{r 11-00-save}
+#| eval: false
+save(
+	dictionary_1a,
+	dictionary_1b,
+	dictionary_1c,
+	dictionary_1d,
+	code_1,
+	directions_1,
+	fly,
+	wash,
+	file="../data/module11.RData")
+```

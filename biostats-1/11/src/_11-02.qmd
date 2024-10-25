@@ -1,5 +1,5 @@
 ---
-title: "02-02, Mean and median"
+title: "11-02, R code"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,13 @@ format:
 editor: source
 ---
 
-## Mean and median
+## Testing 1
 
-:::notes
-The
-:::
-  
+## yaml header
+
+```{r}
+#| output: asis
+library(readr)
+qmd_text <- read_lines("simon-5501-11-fruitfly.qmd")
+cat(qmd_text, sep="\n")
+```

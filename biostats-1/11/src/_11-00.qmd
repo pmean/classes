@@ -70,7 +70,7 @@ length(dictionary_1d)
 ## Code-1
 
 ```{r 11-00-code-template}
-fn <- "simon-5501-11-template.qmd"
+fn <- "simon-5501-11-fruitfly.qmd"
 code_text <- read_lines(file=fn)
 chunk <- 
 	cumsum(
@@ -89,6 +89,27 @@ code_1 <- paste0(code_1, "\n")
 cat(code_1[1])
 length(code_1)
 ```
+
+```{r}
+condense_chunks <- function(file_text, separator, max_lines) {
+  boundaries <- c(0, str_which(file_text, separator))
+  n_chunks <- length(boundaries)
+  j <- 2
+  print(boundaries)
+  for (i in 2:n_chunks) {
+    if (j > (length(boundaries)-1)) break
+    if (boundaries[j+1]-boundaries[j-1] > max_lines) {
+      j <- j+1
+      next
+    }  
+    boundaries <- boundaries[-j]
+    print(boundaries)
+  }
+  boundaries
+}
+condense_chunks(code_text, "## ", 40)
+```
+
 
 ## Programming assignment
 
