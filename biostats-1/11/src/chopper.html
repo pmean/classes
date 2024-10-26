@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Steve Simon">
-<meta name="dcterms.date" content="2024-10-23">
 
-<title>Analysis of fruitfly data</title>
+<title>Chopper</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3025,7 +3023,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Analysis of fruitfly data</h1>
+<h1 class="title">Chopper</h1>
 </div>
 
 
@@ -3033,12 +3031,6 @@ vertical-align: -.125em;
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">2024-10-23</p>
-    </div>
-  </div>
   
     
   </div>
@@ -3047,54 +3039,226 @@ vertical-align: -.125em;
 </header>
 
 <p>This programmer reads in data dictionaries and/or program code and spits it back out in small chunks that can fit on individual reveal.js slides. It should work fine with Powerpoint or other slide show software as well. This program was written by Steve Simon on 2024-10-24 and it placed in the public domain.</p>
+<section id="program-outline" class="level2">
+<h2 class="anchored" data-anchor-id="program-outline">Program outline</h2>
+<ul>
+<li>Step 0 Write utility functions
+<ul>
+<li>add_front</li>
+<li>add_rear</li>
+</ul></li>
+<li>Step 1 Surround parts of qmd code with four backticks
+<ul>
+<li>surround_sections</li>
+<li>surround_lines</li>
+</ul></li>
+<li>Step 2, Find logical breaks in text
+<ul>
+<li>blank line for yaml</li>
+<li><h2 id="for-qmd" class="anchored">for qmd</h2></li>
+<li>compute_boundaries</li>
+</ul></li>
+<li>Step 3, Identify and combine smaller sections
+<ul>
+<li>condense_boundaries</li>
+</ul></li>
+<li>Step 3 split at remaining boundaries
+<ul>
+<li>split_at_boundaries</li>
+<li>create_sections</li>
+</ul></li>
+<li>Step 4, Put headers at the front of every section</li>
+<li>Step 5, Put it all together
+<ul>
+<li>section_qmd</li>
+<li>section_yaml</li>
+</ul></li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(yaml)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="get-a-couple-of-sample-files" class="level2">
-<h2 class="anchored" data-anchor-id="get-a-couple-of-sample-files">Get a couple of sample files</h2>
+</section>
+<section id="step-0-utility-functions" class="level2">
+<h2 class="anchored" data-anchor-id="step-0-utility-functions">Step 0, utility functions</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/&quot;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="st">&quot;pmean/data/main/files/&quot;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>f3 <span class="ot">&lt;-</span> <span class="st">&quot;wolf-river-pollution.yaml&quot;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>yaml_text <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="fu">paste0</span>(f1, f2, f3))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">str_which</span>(yaml_text, <span class="st">&quot;---&quot;</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>yaml_text <span class="ot">&lt;-</span> yaml_text[<span class="sc">-</span>a]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>add_front <span class="ot">&lt;-</span> <span class="cf">function</span>(file_text, add_text, <span class="at">indices=</span><span class="cn">TRUE</span>) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add text to the front of a string</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  file_text[indices] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(add_text,file_text[indices])</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(file_text)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>add_rear <span class="ot">&lt;-</span> <span class="cf">function</span>(file_text, add_text, <span class="at">indices=</span><span class="cn">TRUE</span>) {</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add text to the end of a string</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  file_text[indices] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(file_text[indices], add_text)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(file_text)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="get-a-qmd-file" class="level2">
-<h2 class="anchored" data-anchor-id="get-a-qmd-file">Get a qmd file</h2>
+<section id="step-1-surround-code" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-surround-code">Step 1, Surround code</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fn <span class="ot">&lt;-</span> <span class="st">&quot;simon-5501-11-fruitfly.qmd&quot;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>qmd_text <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="at">file=</span>fn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>surround_sections <span class="ot">&lt;-</span> <span class="cf">function</span>(file_text, markers) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  marked_lines <span class="ot">&lt;-</span> <span class="fu">str_which</span>(file_text, markers)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(marked_lines)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (n <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">return</span>(file_text)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> ((n <span class="sc">%%</span> <span class="dv">2</span>) <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Unmatched backticks&quot;</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    file_text <span class="sc">|&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">add_front</span>(<span class="st">&quot;````</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">indices=</span>marked_lines) <span class="sc">|&gt;</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">add_rear</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">````&quot;</span>, <span class="at">indices=</span>marked_lines) <span class="ot">-&gt;</span> file_mod</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(file_mod)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  even_lines <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">:</span>(n<span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  odd_lines <span class="ot">&lt;-</span> even_lines <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  file_text <span class="sc">|&gt;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_front</span>(<span class="st">&quot;````</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">indices=</span>marked_lines[odd_lines]) <span class="sc">|&gt;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_rear</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">````&quot;</span>, <span class="at">indices=</span>marked_lines[even_lines]) <span class="ot">-&gt;</span> file_mod</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(file_mod)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>surround_lines <span class="ot">&lt;-</span> <span class="cf">function</span>(file_text, markers) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  marked_lines <span class="ot">&lt;-</span> <span class="fu">str_which</span>(file_text, markers)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(marked_lines)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (n <span class="sc">==</span> <span class="dv">0</span>) <span class="fu">return</span>(file_text)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  file_text <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_front</span>(<span class="st">&quot;````</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">indices=</span>marked_lines) <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_rear</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">````&quot;</span>, <span class="at">indices=</span>marked_lines) <span class="ot">-&gt;</span> file_mod</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(file_mod)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="surround-three-backtick-sections-with-four-backticks" class="level2">
-<h2 class="anchored" data-anchor-id="surround-three-backtick-sections-with-four-backticks">Surround three backtick sections with four backticks</h2>
+<section id="step-2-find-logical-breaks" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-find-logical-breaks">Step 2, find logical breaks</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>backtick_hunt <span class="ot">&lt;-</span> <span class="cf">function</span>(qmd_text) {</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  find1 <span class="ot">&lt;-</span> <span class="st">&quot;^```</span><span class="sc">\\</span><span class="st">{&quot;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  replace1 <span class="ot">&lt;-</span> <span class="st">&quot;````</span><span class="sc">\n</span><span class="st">```{&quot;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  find2 <span class="ot">&lt;-</span> <span class="st">&quot;^```$&quot;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  replace2 <span class="ot">&lt;-</span> <span class="st">&quot;```</span><span class="sc">\n</span><span class="st">````</span><span class="sc">\n</span><span class="st">&quot;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  qmd_text <span class="sc">|&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_replace</span>(find1, replace1) <span class="sc">|&gt;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_replace</span>(find2, replace2)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>qmd_text <span class="ot">&lt;-</span> <span class="fu">backtick_hunt</span>(qmd_text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>compute_boundaries <span class="ot">&lt;-</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    file_text, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    separator) {</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  boundaries <span class="ot">&lt;-</span> <span class="fu">str_which</span>(file_text, separator)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(<span class="dv">1</span>, boundaries, <span class="fu">length</span>(file_text)))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="step-3-combine-smaller-sections" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-combine-smaller-sections">Step 3, Combine smaller sections</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>condense_boundaries <span class="ot">&lt;-</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    boundaries,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    max_lines) {</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  n_sections <span class="ot">&lt;-</span> <span class="fu">length</span>(boundaries)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  j <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (j <span class="sc">&lt;</span> <span class="fu">length</span>(boundaries)) {</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (boundaries[j<span class="sc">+</span><span class="dv">1</span>]<span class="sc">-</span>boundaries[j<span class="dv">-1</span>] <span class="sc">&gt;</span> max_lines) {</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>      j <span class="ot">&lt;-</span> j<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>      <span class="cf">next</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    }  </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    boundaries <span class="ot">&lt;-</span> boundaries[<span class="sc">-</span>j]</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(boundaries[<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span>(<span class="fu">length</span>(boundaries)<span class="sc">-</span><span class="dv">1</span>))])</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-4-split-at-remaining-boundaries" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-split-at-remaining-boundaries">Step 4, Split at remaining boundaries</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>split_at_boundaries <span class="ot">&lt;-</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    boundaries,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    file_text) {</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  file_text <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_front</span>(<span class="st">&quot;_split_&quot;</span>, <span class="at">indices=</span>boundaries) <span class="sc">|&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="at">collapse=</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_split</span>(<span class="st">&quot;_split_&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unlist</span>()</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>create_sections <span class="ot">&lt;-</span> </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    file_text, </span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    separator, </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_lines=</span><span class="dv">15</span>) {</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  file_text <span class="sc">|&gt;</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">compute_boundaries</span>(separator) <span class="sc">|&gt;</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">condense_boundaries</span>(max_lines) <span class="sc">|&gt;</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">split_at_boundaries</span>(file_text)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-5-add-headers" class="level2">
+<h2 class="anchored" data-anchor-id="step-5-add-headers">Step 5, Add headers</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>add_headers <span class="ot">&lt;-</span> <span class="cf">function</span>(file_sections, file_name) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  h <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;## Listing of &quot;</span>, file_name, <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  file_sections <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_front</span>(h)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-6-put-it-all-together" class="level2">
+<h2 class="anchored" data-anchor-id="step-6-put-it-all-together">Step 6, Put it all together</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>partition_qmd <span class="ot">&lt;-</span> <span class="cf">function</span>(qmd_name) {</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_lines</span>(<span class="at">file=</span>qmd_name) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">surround_sections</span>(<span class="st">&quot;```&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">surround_sections</span>(<span class="st">&quot;---&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">surround_lines</span>(<span class="st">&quot;^## &quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">create_sections</span>(<span class="st">&quot;## &quot;</span>, <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_headers</span>(qmd_name)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>partition_yaml <span class="ot">&lt;-</span> <span class="cf">function</span>(yaml_name) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  f1 <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/&quot;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  f2 <span class="ot">&lt;-</span> <span class="st">&quot;pmean/data/main/files/&quot;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(f1, f2, yaml_name) <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">read_lines</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">create_sections</span>(<span class="st">&quot;^</span><span class="sc">\\</span><span class="st">s$&quot;</span>, <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_front</span>(<span class="st">&quot;````</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_rear</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">````&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_headers</span>(yaml_name)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="testing-a-qmd-file" class="level2">
+<h2 class="anchored" data-anchor-id="testing-a-qmd-file">Testing a qmd file</h2>
+<p>Let’s hope that this works!</p>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;simon-5501-11-fruitfly.qmd&quot;</span> <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">partition_qmd</span>() <span class="ot">-&gt;</span> test1</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>test1 <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="listing-of-simon-5501-11-fruitfly.qmd" class="level2">
 <h2 class="anchored" data-anchor-id="listing-of-simon-5501-11-fruitfly.qmd">Listing of simon-5501-11-fruitfly.qmd</h2>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(qmd_text, <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>---
+title: &quot;Analysis of fruitfly data&quot;
+author: &quot;Steve Simon&quot;
+format: 
+  html:
+    embed-resources: true
+date: 2024-10-23
+---</code></pre>
 </section>
-<section id="about-this-file" class="level2">
-<h2 class="anchored" data-anchor-id="about-this-file">About this file</h2>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-1" class="level2">
+<h2 class="anchored" data-anchor-id="listing-of-simon-5501-11-fruitfly.qmd-1">Listing of simon-5501-11-fruitfly.qmd</h2>
+<pre><code>## About this file</code></pre>
 <p>This program reads data on fruit fly longevity. Find more information in the <a href="https://github.com/pmean/data/blob/master/files/fruitfly.yaml">data dictionary</a>.</p>
 <p>This code is placed in the public domain.</p>
 </section>
-<section id="load-the-tidyverse-library" class="level2">
-<h2 class="anchored" data-anchor-id="load-the-tidyverse-library">Load the tidyverse library</h2>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-2" class="level2">
+<h2 class="anchored" data-anchor-id="listing-of-simon-5501-11-fruitfly.qmd-2">Listing of simon-5501-11-fruitfly.qmd</h2>
+<pre><code>## Load the tidyverse library</code></pre>
 <p>For most of your programs, you should load the tidyverse library. The messages and warnings are suppressed.</p>
 <pre><code>```{r setup}
 #| message: false
@@ -3103,8 +3267,9 @@ library(broom)
 library(tidyverse)
 ```</code></pre>
 </section>
-<section id="read-the-data-and-view-a-brief-summary" class="level2">
-<h2 class="anchored" data-anchor-id="read-the-data-and-view-a-brief-summary">Read the data and view a brief summary</h2>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-3" class="level2">
+<h2 class="anchored" data-anchor-id="listing-of-simon-5501-11-fruitfly.qmd-3">Listing of simon-5501-11-fruitfly.qmd</h2>
+<pre><code>## Read the data and view a brief summary</code></pre>
 <pre><code>```{r read}
 fn &lt;- &quot;https://jse.amstat.org/datasets/fruitfly.dat.txt&quot;
 vlist &lt;- c(
@@ -3121,8 +3286,9 @@ fly &lt;- read.fwf(
 glimpse(fly)
 ```</code></pre>
 </section>
-<section id="create-cage-groups" class="level2">
-<h2 class="anchored" data-anchor-id="create-cage-groups">Create cage groups</h2>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-4" class="level2">
+<h2 class="anchored" data-anchor-id="listing-of-simon-5501-11-fruitfly.qmd-4">Listing of simon-5501-11-fruitfly.qmd</h2>
+<pre><code>## Create cage groups</code></pre>
 <pre><code>```{r cage}
 fly$cage &lt;- 
   case_when(
@@ -3133,8 +3299,9 @@ fly$cage &lt;-
     fly$partners==8 &amp; fly$type==1 ~ &quot;Eight virgin females&quot;)
 ```</code></pre>
 </section>
-<section id="calculate-descriptive-statistics" class="level2">
-<h2 class="anchored" data-anchor-id="calculate-descriptive-statistics">Calculate descriptive statistics</h2>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-5" class="level2">
+<h2 class="anchored" data-anchor-id="listing-of-simon-5501-11-fruitfly.qmd-5">Listing of simon-5501-11-fruitfly.qmd</h2>
+<pre><code>## Calculate descriptive statistics</code></pre>
 <pre><code>```{r longevity-means}
 fly |&gt;
   group_by(cage) |&gt;
@@ -3144,8 +3311,9 @@ fly |&gt;
     n=n())
 ```</code></pre>
 </section>
-<section id="draw-boxplot" class="level2">
-<h2 class="anchored" data-anchor-id="draw-boxplot">Draw boxplot</h2>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-6" class="level2">
+<h2 class="anchored" data-anchor-id="listing-of-simon-5501-11-fruitfly.qmd-6">Listing of simon-5501-11-fruitfly.qmd</h2>
+<pre><code>## Draw boxplot</code></pre>
 <pre><code>```{r longevity-boxplot}
 #| fig.width: 6
 #| fig.height: 2.5
@@ -3158,28 +3326,26 @@ fly |&gt;
     coord_flip()
 ```</code></pre>
 </section>
-<section id="analysis-of-variance-for-longevity" class="level2">
-<h2 class="anchored" data-anchor-id="analysis-of-variance-for-longevity">Analysis of variance for longevity</h2>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-7" class="level2">
+<h2 class="anchored" data-anchor-id="listing-of-simon-5501-11-fruitfly.qmd-7">Listing of simon-5501-11-fruitfly.qmd</h2>
+<pre><code>## Analysis of variance for longevity</code></pre>
 <pre><code>```{r longevity-anova}
 m1 &lt;- aov(longevity ~ cage, data=fly)
 tidy(m1)
 ```</code></pre>
-</section>
-<section id="linear-model-for-longevity" class="level2">
-<h2 class="anchored" data-anchor-id="linear-model-for-longevity">Linear model for longevity</h2>
+<pre><code>## Linear model for longevity</code></pre>
 <pre><code>```{r longevity-lm-1}
 m2 &lt;- lm(longevity ~ cage, data=fly)
 anova(m2)
 ```</code></pre>
 </section>
-<section id="tukey-post-hoc-comparisons" class="level2">
-<h2 class="anchored" data-anchor-id="tukey-post-hoc-comparisons">Tukey post hoc comparisons</h2>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-8" class="level2">
+<h2 class="anchored" data-anchor-id="listing-of-simon-5501-11-fruitfly.qmd-8">Listing of simon-5501-11-fruitfly.qmd</h2>
+<pre><code>## Tukey post hoc comparisons</code></pre>
 <pre><code>```{r longevity-tukey}
 t1 &lt;- TukeyHSD(m1, ordered=TRUE)
 ```</code></pre>
-</section>
-<section id="log-transformation-1" class="level2">
-<h2 class="anchored" data-anchor-id="log-transformation-1">Log transformation, 1</h2>
+<pre><code>## Log transformation, 1</code></pre>
 <pre><code>```{r log-longevity-anova-1}
 fly |&gt;
   mutate(log_longevity=log10(longevity)) -&gt; log_fly
@@ -3187,15 +3353,17 @@ m3 &lt;- aov(log_longevity ~ cage, data=log_fly)
 tidy(m3)
 ```</code></pre>
 </section>
-<section id="log-transformation-2" class="level2">
-<h2 class="anchored" data-anchor-id="log-transformation-2">Log transformation, 2</h2>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-9" class="level2">
+<h2 class="anchored" data-anchor-id="listing-of-simon-5501-11-fruitfly.qmd-9">Listing of simon-5501-11-fruitfly.qmd</h2>
+<pre><code>## Log transformation, 2</code></pre>
 <pre><code>```{r log-longevity-anova-2}
 t3 &lt;- TukeyHSD(m3, ordered=TRUE)
 t3
 ```</code></pre>
 </section>
-<section id="log-transformation-3" class="level2">
-<h2 class="anchored" data-anchor-id="log-transformation-3">Log transformation, 3</h2>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-10" class="level2">
+<h2 class="anchored" data-anchor-id="listing-of-simon-5501-11-fruitfly.qmd-10">Listing of simon-5501-11-fruitfly.qmd</h2>
+<pre><code>## Log transformation, 3</code></pre>
 <pre><code>```{r log-longevity-anova-3}
 t3$cage |&gt;
   data.frame() |&gt;
@@ -3206,8 +3374,9 @@ t3$cage |&gt;
     upr=10^upr)
 ```</code></pre>
 </section>
-<section id="log-transformation-4" class="level2">
-<h2 class="anchored" data-anchor-id="log-transformation-4">Log transformation, 4</h2>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-11" class="level2">
+<h2 class="anchored" data-anchor-id="listing-of-simon-5501-11-fruitfly.qmd-11">Listing of simon-5501-11-fruitfly.qmd</h2>
+<pre><code>## Log transformation, 4</code></pre>
 <pre><code>```{r log-longevity-anova-4}
 t3$cage |&gt;
   data.frame() |&gt;
@@ -3218,8 +3387,9 @@ t3$cage |&gt;
     lwr=10^(-upr))
 ```</code></pre>
 </section>
-<section id="save-important-files-for-later-use" class="level2">
-<h2 class="anchored" data-anchor-id="save-important-files-for-later-use">Save important files for later use</h2>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-12" class="level2">
+<h2 class="anchored" data-anchor-id="listing-of-simon-5501-11-fruitfly.qmd-12">Listing of simon-5501-11-fruitfly.qmd</h2>
+<pre><code>## Save important files for later use</code></pre>
 <pre><code>```{r save}
 save(
   fly,
@@ -3231,93 +3401,13 @@ save(
   file=&quot;../data/firefly.RData&quot;)
 ```</code></pre>
 </section>
-<section id="divide-in-manageable-chunks" class="level2">
-<h2 class="anchored" data-anchor-id="divide-in-manageable-chunks">Divide in manageable chunks</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>condense_chunks <span class="ot">&lt;-</span> <span class="cf">function</span>(file_text, separator, max_lines) {</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  boundaries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fu">str_which</span>(file_text, separator))</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  n_chunks <span class="ot">&lt;-</span> <span class="fu">length</span>(boundaries)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  j <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(boundaries)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>n_chunks) {</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (j <span class="sc">&gt;</span> (<span class="fu">length</span>(boundaries)<span class="sc">-</span><span class="dv">1</span>)) <span class="cf">break</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (boundaries[j<span class="sc">+</span><span class="dv">1</span>]<span class="sc">-</span>boundaries[j<span class="dv">-1</span>] <span class="sc">&gt;</span> max_lines) {</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>      j <span class="ot">&lt;-</span> j<span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>      <span class="cf">next</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    }  </span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    boundaries <span class="ot">&lt;-</span> boundaries[<span class="sc">-</span>j]</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(boundaries)</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  boundaries</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co"># condense_chunks(qmd_text, &quot;## &quot;, 15)</span></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">condense_chunks</span>(<span class="fu">str_trim</span>(yaml_text), <span class="st">&quot;^$&quot;</span>, <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1]  1  2  5  8 11 15 18 21 25 30 34 43 48
- [1]  1  5  8 11 15 18 21 25 30 34 43 48
- [1]  1  8 11 15 18 21 25 30 34 43 48
- [1]  1 11 15 18 21 25 30 34 43 48
-[1]  1 15 18 21 25 30 34 43 48
-[1]  1 15 21 25 30 34 43 48
-[1]  1 15 25 30 34 43 48
-[1]  1 15 30 34 43 48
-[1]  1 15 30 43 48</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>prefix_text <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">&quot;&quot;</span>, <span class="fu">length</span>(yaml_text))</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>prefix_text[b[<span class="dv">1</span>]] <span class="ot">&lt;-</span> </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">## fruitfly.yaml, 1</span><span class="sc">\n\n</span><span class="st">&quot;</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>prefix_text[b[<span class="sc">-</span><span class="dv">1</span>]] <span class="ot">&lt;-</span> </span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;_split_&quot;</span>,</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">## fruitfly.yaml &quot;</span>, </span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(b), </span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>prefix_text <span class="sc">|&gt;</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(yaml_text) <span class="sc">|&gt;</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="at">collapse=</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace_all</span>(<span class="st">&quot;</span><span class="sc">\n\n\n</span><span class="st">&quot;</span>, <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_split</span>(<span class="st">&quot;_split_&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unlist</span>() <span class="ot">-&gt;</span> yaml_chunks</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(yaml_chunks[<span class="dv">1</span>], <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="fruitfly.yaml-1" class="level2">
-<h2 class="anchored" data-anchor-id="fruitfly.yaml-1">fruitfly.yaml, 1</h2>
-<p>data_dictionary: wolf-river-pollution</p>
-<p>format: txt: tab-delimited</p>
-<p>varnames: first row of data</p>
-<p>missing_value_code: not needed</p>
-<p>description: &gt; Ten water samples were taken at three different depths in Wolf River. Two pollutants, Aldrin and HCB, were measured in each sample.</p>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(yaml_chunks[<span class="dv">2</span>], <span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="fruitfly.yaml-2" class="level2">
-<h2 class="anchored" data-anchor-id="fruitfly.yaml-2">fruitfly.yaml 2</h2>
-<p>additional_description: https://gksmyth.github.io/ozdasl/general/wolfrive.html</p>
-<p>download_url: https://gksmyth.github.io/ozdasl/general/wolfrive.txt</p>
-<p>source: &gt; OzDASL (Australian Data and Story Library), a repository for various data sets useful for teaching.</p>
-<p>copyright: &gt; Unknown. You should be able to use this data for individual educational purposes under the Fair Use guidelines of U.S. copyright law.</p>
-</section>
-<section id="add-header-text" class="level2">
-<h2 class="anchored" data-anchor-id="add-header-text">Add header text</h2>
-</section>
-<section id="move-comments-into-fence" class="level2">
-<h2 class="anchored" data-anchor-id="move-comments-into-fence">Move comments into fence</h2>
-</section>
-<section id="save-everything-important" class="level2">
-<h2 class="anchored" data-anchor-id="save-everything-important">Save everything important</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    dictionary_1a,</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    dictionary_1b,</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    dictionary_1c,</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    dictionary_1d,</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    code_1,</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    directions_1,</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    fly,</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    wash,</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">file=</span><span class="st">&quot;../data/module11.RData&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="testing-a-yaml-file" class="level2">
+<h2 class="anchored" data-anchor-id="testing-a-yaml-file">Testing a yaml file</h2>
+<p>And let’s hope that this works also.</p>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;wolf-river-pollution.yaml&quot;</span> <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">partition_yaml</span>() <span class="ot">-&gt;</span> test2</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>test2 <span class="sc">|&gt;</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 
 </main>
