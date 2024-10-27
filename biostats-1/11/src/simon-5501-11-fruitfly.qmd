@@ -1,23 +1,17 @@
 ---
 title: "Analysis of fruitfly data"
-author: "Steve Simon"
 format: 
   html:
     embed-resources: true
-date: 2024-10-23
 ---
-
-## About this file
 
 This program reads data on fruit fly longevity. Find more information in the [data dictionary][dd].
 
 [dd]: https://github.com/pmean/data/blob/master/files/fruitfly.yaml
 
-This code is placed in the public domain.
+This code was written by Steve Simon on 2024-10-23 and is placed in the public domain.
 
 ## Load the tidyverse library
-
-For most of your programs, you should load the tidyverse library. The messages and warnings are suppressed.
 
 ```{r setup}
 #| message: false
@@ -26,9 +20,11 @@ library(broom)
 library(tidyverse)
 ```
 
-## Read the data and view a brief summary
+For most of your programs, you should load the tidyverse library. The broom library converts your output to a nicely arranged dataframe. The messages and warnings are suppressed.
 
-```{r read}
+## List the variable names
+
+```{r variable-list}
 fn <- "https://jse.amstat.org/datasets/fruitfly.dat.txt"
 vlist <- c(
   "id",
@@ -37,12 +33,23 @@ vlist <- c(
   "longevity",
   "thorax",
   "sleep")
-fly <- read.fwf(
-  "https://jse.amstat.org/datasets/fruitfly.dat.txt",
-  widths=c(2, 2, 2, 3, 5, 3),
-  col.names=vlist)
+```
+
+When a dataset does not have variables on the first line, you need to specify them in the code.
+
+## Read the data and view a brief summary
+
+```{r read}
+fly <- read_fwf(
+  "../data/fruitfly.txt",
+  col_types="nnnnnn",
+  fwf_widths(
+    widths=c(2, 2, 2, 3, 5, 3),
+    col_names=vlist))
 glimpse(fly)
 ```
+
+The fruitfly dataset has a fixed width format (fwf). You need to specify the columns that each variable uses.
 
 ## Create cage groups
 
@@ -56,6 +63,8 @@ fly$cage <-
     fly$partners==8 & fly$type==1 ~ "Eight virgin females")
 ```
 
+The five categories represent different combinations of partners and type.
+
 ## Calculate descriptive statistics
 
 ```{r longevity-means}
@@ -66,6 +75,8 @@ fly |>
     longevity_sd=sd(longevity),
     n=n())
 ```
+
+The mean lifespan is much lower for the eight virgin females group. The standard deviations are reasonably small and somewhat consistent across all groups.
 
 ## Draw boxplot
 
@@ -80,6 +91,8 @@ fly |>
     ylab("Lifespan (days)") +
     coord_flip()
 ```
+
+The boxplot also shows that the eight virgin females group has lower lifespans. The variation is roughly comparable across all groups. The distributions are reasonably symmetric with no outliers.
 
 ## Analysis of variance for longevity
 
