@@ -6,7 +6,7 @@ format:
 editor: source
 ---
 
-This programmer reads in data dictionaries and/or program code and spits it back out in small chunks that can fit on individual reveal.js slides. It should work fine with Powerpoint or other slide show software as well. This program was written by Steve Simon on 2024-10-24 and it placed in the public domain.
+This programmer reads in data dictionaries and/or program code and spits it back out in small chunks that can fit on individual reveal.js slides. It should work fine with Powerpoint or other slide show software as well. This program was written by Steve Simon on 2024-10-24 and is placed in the public domain.
 
 ## Program outline
 
@@ -17,15 +17,16 @@ This programmer reads in data dictionaries and/or program code and spits it back
     -   surround_sections
     -   surround_lines
 -   Step 2, Find logical breaks in text
-    -   blank line for yaml
-    -   ## for qmd
     -   compute_boundaries
+        -   Look for blank line for yaml
+        -   Look for ## for qmd
 -   Step 3, Identify and combine smaller sections
     -   condense_boundaries
 -   Step 3 split at remaining boundaries
     -   split_at_boundaries
     -   create_sections
 -   Step 4, Put headers at the front of every section
+    -   add_headers
 -   Step 5, Put it all together
     -   section_qmd
     -   section_yaml
@@ -159,7 +160,13 @@ create_sections <-
 
 ```{r add-headers}
 add_headers <- function(file_sections, file_name) {
-  h <- paste0("## Listing of ", file_name, "\n\n")
+  h <- 
+    paste0(
+      "## Listing of ", 
+      file_name, 
+      ", ",
+      1:length(file_sections), 
+      "\n\n")
   file_sections |>
     add_front(h)
 }
@@ -170,10 +177,12 @@ add_headers <- function(file_sections, file_name) {
 ```{r partition-qmd}
 partition_qmd <- function(qmd_name) {
   read_lines(file=qmd_name) |>
-  surround_sections("```") |>
-  surround_sections("---") |>
-  surround_lines("^## ") |>
+  # surround_sections("```") |>
+  # surround_sections("---") |>
+  # surround_lines("^## ") |>
   create_sections("## ", 15) |>
+  add_front("````\n") |>
+  add_rear("\n````") |>
   add_headers(qmd_name)
 }
 ```
@@ -184,7 +193,7 @@ partition_yaml <- function(yaml_name) {
   f2 <- "pmean/data/main/files/"
   paste0(f1, f2, yaml_name) |>
     read_lines() |>
-    create_sections("^\\s$", 15) |>
+    create_sections("^\\s*$", 15) |>
     add_front("````\n") |>
     add_rear("\n````") |>
     add_headers(yaml_name)
@@ -208,10 +217,27 @@ test1 |>
 And let's hope that this works also.
 
 ```{r apply-to-yaml}
-#| eval: false
 #| output: asis
 "wolf-river-pollution.yaml" |>
   partition_yaml() -> test2
 test2 |>
   cat(sep="\n")
+```
+
+## Save everything
+
+```{r save}
+save(
+  add_front,
+  add_rear,
+  surround_sections,
+  surround_lines,
+  compute_boundaries,
+  condense_boundaries,
+  split_at_boundaries,
+  create_sections,
+  add_headers,
+  partition_qmd,
+  partition_yaml,
+  file="../data/chopper.RData")
 ```

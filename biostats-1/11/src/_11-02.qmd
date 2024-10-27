@@ -9,11 +9,3 @@ editor: source
 
 ## Testing 1
 
-## yaml header
-
-```{r}
-#| output: asis
-library(readr)
-qmd_text <- read_lines("simon-5501-11-fruitfly.qmd")
-cat(qmd_text, sep="\n")
-```
