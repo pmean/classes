@@ -1164,60 +1164,159 @@ margin-right: 0; }
 </ul></li>
 </ul>
 </section>
-<section id="analysis-strategy-01" class="slide level2">
-<h2>Analysis strategy 01</h2>
+<section id="indicator-variables-1" class="slide level2">
+<h2>Indicator variables, 1</h2>
 <ul>
-<li>Kruskal-Wallis
+<li>Two levels is less complex with three or more levels
 <ul>
-<li>fruitfly data</li>
+<li>R assigns 0 to first category (alphabetically)</li>
+<li>R assigns 1 to second category</li>
 </ul></li>
-<li>Log transformation
+<li>Interpretation
 <ul>
-<li>fruitfly data</li>
+<li>Intercept is estimated average outcome for first category</li>
+<li>Slope is the estimated average change
+<ul>
+<li>Second category average minus first category average of variance and linear regression</li>
 </ul></li>
-</ul>
-</section>
-<section id="analysis-strategy-02" class="slide level2">
-<h2>Analysis strategy 02</h2>
-<ul>
-<li>Contrasts
-<ul>
-<li>Helmert?</li>
-<li>Custom</li>
-<li>bacterial-soap?</li>
 </ul></li>
 </ul>
 </section>
-<section id="analysis-strategy-03" class="slide level2">
-<h2>Analysis strategy 03</h2>
+<section id="indicator-variables-2" class="slide level2">
+<h2>Indicator variables, 2</h2>
 <ul>
-<li>Two factor ANOVA
+<li>With k levels, you need k-1 indicators
 <ul>
-<li>moon data</li>
+<li>First indicator
+<ul>
+<li>R assigns 1 to second category (alphabetically)</li>
+<li>R assigns 0 to all other categories</li>
+</ul></li>
+<li>Second indicator
+<ul>
+<li>R assigns 1 to third category (alphabetically)</li>
+<li>R assigns 0 to all other categories</li>
+</ul></li>
+<li>Last indicator
+<ul>
+<li>R assigns 1 to last category (alphabetically)</li>
+<li>R assigns 0 to all other categories</li>
+</ul></li>
 </ul></li>
 </ul>
 </section>
-<section id="analysis-strategy-04" class="slide level2">
-<h2>Analysis strategy 04</h2>
+<section id="indicator-variables-3" class="slide level2">
+<h2>Indicator variables, 3</h2>
 <ul>
-<li>Interactions
+<li>Interpretation
 <ul>
-<li>exercise (remove reading arm)</li>
-<li>fruitfly (remove 0 partners)</li>
+<li>Intercept is estimated average outcome for first category</li>
+<li>First slope is the estimated average change
+<ul>
+<li>Second category average minus first category average</li>
 </ul></li>
-<li>Show how no interaction is possible at times
+<li>Second slope is the estimated average change
 <ul>
-<li>moon</li>
+<li>Third category average minus first category average</li>
+</ul></li>
+<li>Last slope is the estimated average change
+<ul>
+<li>Last category average minus first category average</li>
+</ul></li>
 </ul></li>
 </ul>
 </section>
-<section id="websites" class="slide level2">
-<h2>Websites</h2>
-<p>https://dasl.datadescription.com/datafile/baterial-soap</p>
-<p>https://dasl.datadescription.com/download/data/3561</p>
-<p>https://jse.amstat.org/datasets/fruitfly.dat.txt</p>
-<p>https://jse.amstat.org/datasets/fruitfly.txt</p>
-<p>https://jse.amstat.org/v2n1/datasets.hanley.html</p>
+<section id="example-using-fruitfly-lifespans-1" class="slide level2">
+<h2>Example using fruitfly lifespans, 1</h2>
+<ul>
+<li>Experiment with 125 cages
+<ul>
+<li>Does fruitfly mating affect average lifespan?</li>
+</ul></li>
+<li>Cages 1-25 have one male fruitfly, no female fruit flies
+<ul>
+<li>Set partners=0, type=9</li>
+<li>Measure lifespan of male fruitflies</li>
+</ul></li>
+</ul>
+</section>
+<section id="example-using-fruitfly-lifespans-2" class="slide level2">
+<h2>Example using fruitfly lifespans, 2</h2>
+<ul>
+<li>Cages 26-50 have one male fruitfly, one pregnant female
+<ul>
+<li>Set partners=1, type=0</li>
+<li>Males will not mate with pregnant females</li>
+</ul></li>
+<li>Cages 51-75 have one male fruitfly, one virgin female
+<ul>
+<li>Set partners=1, type=1</li>
+</ul></li>
+<li>Cages 76-100 have one male fruitfly, eight pregnant females
+<ul>
+<li>Set partners=8, type=0</li>
+</ul></li>
+<li>Cages 101-125 have one male fruitfly, eight virgin females
+<ul>
+<li>Set partners=8, type=1</li>
+</ul></li>
+</ul>
+</section>
+<section id="fruitfly-lifespan-boxplots" class="slide level2">
+<h2>Fruitfly lifespan boxplots</h2>
+
+<img data-src="data:image/png;base64,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" width="576" class="r-stretch"></section>
+<section id="fruitfly-lifespan-group-means" class="slide level2">
+<h2>Fruitfly lifespan group means</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  cage                   longevity_mn longevity_sd     n
+  &lt;chr&gt;                         &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;
+1 Eight pregnant females         63.4         14.5    25
+2 Eight virgin females           38.7         12.1    25
+3 No females                     63.6         16.5    25
+4 One pregnant female            64.8         15.7    25
+5 One virgin female              56.8         14.9    25</code></pre>
+</div>
+</div>
+</section>
+<section id="fruitfly-lifespan-analysis-using-aov" class="slide level2">
+<h2>Fruitfly lifespan analysis using aov</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  term         df  sumsq meansq statistic  p.value
+  &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 cage          4 11939.  2985.      13.6  3.52e-9
+2 Residuals   120 26314.   219.      NA   NA      </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: longevity
+           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+cage        4  11939 2984.82  13.612 3.516e-09 ***
+Residuals 120  26314  219.28                      
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+</section>
+<section id="fruitfly-lifespan-analysis-using-lm" class="slide level2">
+<h2>Fruitfly lifespan analysis using lm</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: longevity
+           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+cage        4  11939 2984.82  13.612 3.516e-09 ***
+Residuals 120  26314  219.28                      
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
 </section>
 <section id="break-1" class="slide level2">
 <h2>Break #1</h2>
@@ -1252,8 +1351,8 @@ margin-right: 0; }
 <h2>Percentiles</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  0.6858529  0.0766701  1.1032684 -1.2477931  1.1166347  0.5347053
- [7]  0.4102430 -0.1905187  0.7437425  1.4126908</code></pre>
+<pre><code> [1] -1.71893746  0.80901698 -0.45259346  0.30921964 -1.27258893 -0.43349011
+ [7]  0.15972809  0.09376271  1.59848203  1.02697099</code></pre>
 </div>
 </div>
 <aside class="notes">
@@ -1402,30 +1501,21 @@ vars:
 <h2>Listing of simon-5501-11-fruitfly.qmd, 1</h2>
 <pre><code>---
 title: &quot;Analysis of fruitfly data&quot;
-author: &quot;Steve Simon&quot;
 format: 
   html:
     embed-resources: true
-date: 2024-10-23
 ---
-</code></pre>
-</section>
-<section id="listing-of-simon-5501-11-fruitfly.qmd-2" class="slide level2">
-<h2>Listing of simon-5501-11-fruitfly.qmd, 2</h2>
-<pre><code>## About this file
 
 This program reads data on fruit fly longevity. Find more information in the [data dictionary][dd].
 
 [dd]: https://github.com/pmean/data/blob/master/files/fruitfly.yaml
 
-This code is placed in the public domain.
+This code was written by Steve Simon on 2024-10-23 and is placed in the public domain.
 </code></pre>
 </section>
-<section id="listing-of-simon-5501-11-fruitfly.qmd-3" class="slide level2">
-<h2>Listing of simon-5501-11-fruitfly.qmd, 3</h2>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-2" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 2</h2>
 <pre><code>## Load the tidyverse library
-
-For most of your programs, you should load the tidyverse library. The messages and warnings are suppressed.
 
 ```{r setup}
 #| message: false
@@ -1433,13 +1523,15 @@ For most of your programs, you should load the tidyverse library. The messages a
 library(broom)
 library(tidyverse)
 ```
+
+For most of your programs, you should load the tidyverse library. The broom library converts your output to a nicely arranged dataframe. The messages and warnings are suppressed.
 </code></pre>
 </section>
-<section id="listing-of-simon-5501-11-fruitfly.qmd-4" class="slide level2">
-<h2>Listing of simon-5501-11-fruitfly.qmd, 4</h2>
-<pre><code>## Read the data and view a brief summary
+<section id="listing-of-simon-5501-11-fruitfly.qmd-3" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 3</h2>
+<pre><code>## List the variable names
 
-```{r read}
+```{r variable-list}
 fn &lt;- &quot;https://jse.amstat.org/datasets/fruitfly.dat.txt&quot;
 vlist &lt;- c(
   &quot;id&quot;,
@@ -1448,12 +1540,26 @@ vlist &lt;- c(
   &quot;longevity&quot;,
   &quot;thorax&quot;,
   &quot;sleep&quot;)
-fly &lt;- read.fwf(
-  &quot;https://jse.amstat.org/datasets/fruitfly.dat.txt&quot;,
-  widths=c(2, 2, 2, 3, 5, 3),
-  col.names=vlist)
+```
+
+When a dataset does not have variables on the first line, you need to specify them in the code.
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-4" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 4</h2>
+<pre><code>## Read the data and view a brief summary
+
+```{r read}
+fly &lt;- read_fwf(
+  &quot;../data/fruitfly.txt&quot;,
+  col_types=&quot;nnnnnn&quot;,
+  fwf_widths(
+    widths=c(2, 2, 2, 3, 5, 3),
+    col_names=vlist))
 glimpse(fly)
 ```
+
+The fruitfly dataset has a fixed width format (fwf). You need to specify the columns that each variable uses.
 </code></pre>
 </section>
 <section id="listing-of-simon-5501-11-fruitfly.qmd-5" class="slide level2">
@@ -1469,6 +1575,8 @@ fly$cage &lt;-
     fly$partners==8 &amp; fly$type==0 ~ &quot;Eight pregnant females&quot;,
     fly$partners==8 &amp; fly$type==1 ~ &quot;Eight virgin females&quot;)
 ```
+
+The five categories represent different combinations of partners and type.
 </code></pre>
 </section>
 <section id="listing-of-simon-5501-11-fruitfly.qmd-6" class="slide level2">
@@ -1483,6 +1591,8 @@ fly |&gt;
     longevity_sd=sd(longevity),
     n=n())
 ```
+
+The mean lifespan is much lower for the eight virgin females group. The standard deviations are reasonably small and somewhat consistent across all groups.
 </code></pre>
 </section>
 <section id="listing-of-simon-5501-11-fruitfly.qmd-7" class="slide level2">
@@ -1500,34 +1610,105 @@ fly |&gt;
     ylab(&quot;Lifespan (days)&quot;) +
     coord_flip()
 ```
+
+The boxplot also shows that the eight virgin females group has lower lifespans.
+The variation is roughly comparable across all groups. The distributions are
+reasonably symmetric with no outliers.
 </code></pre>
 </section>
 <section id="listing-of-simon-5501-11-fruitfly.qmd-8" class="slide level2">
 <h2>Listing of simon-5501-11-fruitfly.qmd, 8</h2>
-<pre><code>## Analysis of variance for longevity
+<pre><code>## One factor analysis of variance for longevity
 
-```{r longevity-anova}
+```{r longevity-one-factor-anova}
 m1 &lt;- aov(longevity ~ cage, data=fly)
 tidy(m1)
 ```
 
-## Linear model for longevity
+The F-ratio is large and the p-value is small. Conclude that there is a 
+difference among some or all of the population mean lifespans.
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-9" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 9</h2>
+<pre><code>## Linear model for longevity, 1
 
 ```{r longevity-lm-1}
 m2 &lt;- lm(longevity ~ cage, data=fly)
 anova(m2)
 ```
+
+You can use linear regression to reach the same conclusion. The sums of squares,
+degrees of freedom, F-ratio, and p-value all match.
 </code></pre>
 </section>
-<section id="listing-of-simon-5501-11-fruitfly.qmd-9" class="slide level2">
-<h2>Listing of simon-5501-11-fruitfly.qmd, 9</h2>
-<pre><code>## Tukey post hoc comparisons
+<section id="listing-of-simon-5501-11-fruitfly.qmd-10" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 10</h2>
+<pre><code>## Linear model for longevity, 2
 
-```{r longevity-tukey}
-t1 &lt;- TukeyHSD(m1, ordered=TRUE)
+```{r longevity-lm-2}
+tidy(m2)
 ```
 
-## Log transformation, 1
+The linear model creates indicator variable for four out of the five category
+levels. The regression slopes represent the estimated average difference in 
+means between each category and the reference category.
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-11" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 11</h2>
+<pre><code>## Linear model for longevity, 3
+
+```{r longevity-lm-3}
+fly |&gt;
+  group_by(cage) |&gt;
+  summarize(longevity_mn=mean(longevity)) |&gt;
+  mutate(reference_mn=first(longevity_mn)) |&gt;
+  mutate(mean_difference=longevity_mn-reference_mn)
+```
+
+This table shows how to interpret the intercept and the five slope terms. The
+intercept is the estimated average lifespan for the first level of the
+categorical variable. The slope terms are the estimated average changes from the
+other levels of the categorical variable and the first level.
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-12" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 12</h2>
+<pre><code>## Re-order cage groups, 1
+
+```{r re-order-1}
+fly$cage_1 &lt;- 
+  factor(
+    fly$cage,
+    levels = c(
+      &quot;No females&quot;,
+      &quot;One pregnant female&quot;,
+      &quot;Eight pregnant females&quot;,
+      &quot;One virgin female&quot;,
+      &quot;Eight virgin females&quot;))
+```
+
+It makes more sense to compare every other category to the No females category
+because No females represents a control condition.
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-13" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 13</h2>
+<pre><code>## Re-order cage groups, 2
+
+```{r re-order-2}
+m3 &lt;- lm(longevity ~ cage_1, data=fly)
+tidy(m3)
+```
+
+Use the factor function to re-order the categories so that the No females
+level is listed as the first level.
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-14" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 14</h2>
+<pre><code>## Log transformation, 1
 
 ```{r log-longevity-anova-1}
 fly |&gt;
@@ -1535,10 +1716,12 @@ fly |&gt;
 m3 &lt;- aov(log_longevity ~ cage, data=log_fly)
 tidy(m3)
 ```
+
+Although there are no problems with heterogeneity or non-normality, here is an illustration of how to use a log transformation with analysis of variance.
 </code></pre>
 </section>
-<section id="listing-of-simon-5501-11-fruitfly.qmd-10" class="slide level2">
-<h2>Listing of simon-5501-11-fruitfly.qmd, 10</h2>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-15" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 15</h2>
 <pre><code>## Log transformation, 2
 
 ```{r log-longevity-anova-2}
@@ -1547,8 +1730,8 @@ t3
 ```
 </code></pre>
 </section>
-<section id="listing-of-simon-5501-11-fruitfly.qmd-11" class="slide level2">
-<h2>Listing of simon-5501-11-fruitfly.qmd, 11</h2>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-16" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 16</h2>
 <pre><code>## Log transformation, 3
 
 ```{r log-longevity-anova-3}
@@ -1562,8 +1745,8 @@ t3$cage |&gt;
 ```
 </code></pre>
 </section>
-<section id="listing-of-simon-5501-11-fruitfly.qmd-12" class="slide level2">
-<h2>Listing of simon-5501-11-fruitfly.qmd, 12</h2>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-17" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 17</h2>
 <pre><code>## Log transformation, 4
 
 ```{r log-longevity-anova-4}
@@ -1577,19 +1760,119 @@ t3$cage |&gt;
 ```
 </code></pre>
 </section>
-<section id="listing-of-simon-5501-11-fruitfly.qmd-13" class="slide level2">
-<h2>Listing of simon-5501-11-fruitfly.qmd, 13</h2>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-18" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 18</h2>
+<pre><code>## Kruskal-Wallis test
+
+```{r kw}
+kruskal.test(longevity ~ cage, data=fly)
+```
+
+It may not be needed with this particular dataset, but this is an illustration
+of how to use the Kruskal-Wallis test. 
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-19" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 19</h2>
+<pre><code>## Create a subset of fruitfly dataset
+
+```{r subset}
+fly |&gt;
+  filter(type != 9) -&gt; fly_subset
+```
+
+If you exclude the pure control group (No females), you can analyze the two
+factors, partners and type individually. Partners has two category levels, 1 for
+when one female was included in the cage and 8 for when eight females were 
+included in the cage. Type also has two category levels, 0 for pregnant female
+fly/flies and 1 for virgin fly/flies. A male fly will not mate with a pregnant
+females, so you can think of this as a second level of controls. The two factors
+are crossed, meaning that every possible combination of partners and type has 
+outcomes measured.
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-20" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 20</h2>
+<pre><code>## Draw boxplot of longevity by partners and type
+
+```{r boxplots-partners-type}
+#| fig.width: 6
+#| fig.height: 2.5
+fly_subset |&gt;
+  ggplot(aes(factor(partners), longevity, fill=factor(type))) +
+    geom_boxplot() +
+    xlab(&quot;Number of partners&quot;) +
+    ylab(&quot;Lifespan in days&quot;) +
+    ggtitle(&quot;Graphs drawn by Steve Simon on 2024-10-28&quot;) +
+    labs(fill=&quot;Female fly type&quot;) +
+    scale_fill_discrete(labels=c(&quot;Pregnant&quot;, &quot;Virgin&quot;)) +
+    coord_flip()
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-21" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 21</h2>
+<pre><code>## Calculate average longevity by partners and type
+
+```{r by-partners-and-type}
+#| message: false
+fly_subset |&gt;
+  group_by(partners, type) |&gt;
+  summarize(
+    longevity_mn=mean(longevity),
+    longevity_sd=sd(longevity),
+    n=n()) -&gt; fly_means
+fly_means
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-22" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 22</h2>
+<pre><code>## Draw line graph
+
+```{r line-graph}
+fly_means |&gt;
+  ggplot(aes(
+    factor(partners), 
+    longevity_mn, 
+    group=factor(type),
+    color=factor(type))) +
+    geom_line() +
+  xlab(&quot;Number of partners&quot;) +
+  ylab(&quot;Lifespan in days&quot;) +
+  labs(color=&quot;Female fly type&quot;) +
+  scale_color_discrete(labels=c(&quot;Pregnant&quot;, &quot;Virgin&quot;))
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-23" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 23</h2>
+<pre><code>## Interpretation of the interaction
+
+Male fruitflies sharing a cage with pregnant females have longer average lifespans than sharing a cage with virgin females. The difference in lifespans is much more extreme when sharing with eight female fruitflies compared to one female fruitfly.
+
+The line for pregnant (sharing a cage with pregnant females) is close to flat, indicating that there is little of the number of pregnant females on average longevity.
+
+## Analysis of variance including the interaction
+
+```{r anova-with-interaction}
+m4 &lt;- aov(longevity ~ factor(type)*factor(partners), data=fly_subset)
+anova(m4)
+```
+
+There is a statistically significant interaction between the number of female partners and the type of partners (pregnant or virgin).
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-11-fruitfly.qmd-24" class="slide level2">
+<h2>Listing of simon-5501-11-fruitfly.qmd, 24</h2>
 <pre><code>## Save important files for later use
 
 ```{r save}
 save(
   fly,
   log_fly,
-  m1,
-  m2,
-  m3,
-  t3,
-  file=&quot;../data/firefly.RData&quot;)
+  fly_subset,
+  file=&quot;../data/fruitfly.RData&quot;)
 ```</code></pre>
 </section>
 <section id="test-md" class="slide level2">

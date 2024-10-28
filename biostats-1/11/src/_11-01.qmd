@@ -1,5 +1,5 @@
 ---
-title: "11-01, Kruskal-Wallis test, Log transformations"
+title: "11-01, Relationship between analysis of variance and linear regression"
 format: 
   revealjs:
     slide-number: true
@@ -7,48 +7,102 @@ format:
 editor: source
 ---
 
-## Analysis strategy 01
+## Indicator variables, 1
 
--   Kruskal-Wallis
-    -   fruitfly data
--   Log transformation
-    -   fruitfly data
+-  Two levels is less complex with three or more levels
+   -   R assigns 0 to first category (alphabetically)
+   -   R assigns 1 to second category
+-  Interpretation
+   -   Intercept is estimated average outcome for first category
+   -   Slope is the estimated average change
+       -   Second category average minus first category average
+   of variance and linear regression
 
-```{r 11-01-setup}
+## Indicator variables, 2
+
+-  With k levels, you need k-1 indicators
+   -   First indicator
+        -   R assigns 1 to second category (alphabetically)
+        -   R assigns 0 to all other categories
+   -   Second indicator
+        -   R assigns 1 to third category (alphabetically)
+        -   R assigns 0 to all other categories
+   -   And so on
+
+## Indicator variables, 3
+
+-  Interpretation
+   -   Intercept is estimated average outcome for first category
+   -   First slope is the estimated average change
+       -   Second category average minus first category average
+   -   Second slope is the estimated average change
+       -   Third category average minus first category average
+   -   And so on
+
+## Example using fruitfly lifespans, 1
+
+-   Experiment with 125 cages
+    -   Does fruitfly mating affect average lifespan?
+-   Cages 1-25 have one male fruitfly, no female fruit flies
+    -   Set partners=0, type=9
+    -   Measure lifespan of male fruitflies
+
+## Example using fruitfly lifespans, 2
+
+-   Cages 26-50 have one male fruitfly, one pregnant female
+    -   Set partners=1, type=0
+    -   Males will not mate with pregnant females
+-   Cages 51-75 have one male fruitfly, one virgin female
+    -   Set partners=1, type=1
+-   Cages 76-100 have one male fruitfly, eight pregnant females
+    -   Set partners=8, type=0
+-   Cages 101-125 have one male fruitfly, eight virgin females
+    -   Set partners=8, type=1
+
+## Fruitfly lifespan boxplots
+
+```{r 11-01-read-fruitfly-data}
 #| message: false
 #| warning: false
+library(broom)
 library(tidyverse)
-# kruskal.test(longevity ~ neighbors, data=fly)
+load("../data/fruitfly.RData")
 ```
 
-## Analysis strategy 02
+```{r 11-01-boxplots}
+#| fig.width: 6
+#| fig.height: 2.5
+fly |>
+  ggplot(aes(cage, longevity)) +
+    geom_boxplot() +
+    ggtitle("Graph drawn by Steve Simon on 2024-10-23") +
+    xlab("Cage residents") +
+    ylab("Lifespan (days)") +
+    coord_flip()
+```
 
--   Contrasts
-    -   Helmert?
-    -   Custom
-    -   bacterial-soap?
-    
-## Analysis strategy 03
+## Fruitfly lifespan group means
 
--   Two factor ANOVA
-    -   moon data
+```{r 11-01-group-means}
+fly |>
+  group_by(cage) |>
+  summarize(
+    longevity_mn=mean(longevity),
+    longevity_sd=sd(longevity),
+    n=n())
+```
 
-## Analysis strategy 04
+## Fruitfly lifespan analysis using aov
 
--   Interactions
-    -   exercise (remove reading arm)
-    -   fruitfly (remove 0 partners)
--   Show how no interaction is possible at times
-    -   moon
+```{r 11-01-aov}
+m1 <- aov(longevity ~ cage, data=fly)
+tidy(m1)
+anova(m1)
+```
 
-## Websites
+## Fruitfly lifespan analysis using lm
 
-https://dasl.datadescription.com/datafile/baterial-soap
-
-https://dasl.datadescription.com/download/data/3561
-
-https://jse.amstat.org/datasets/fruitfly.dat.txt
-
-https://jse.amstat.org/datasets/fruitfly.txt
-
-https://jse.amstat.org/v2n1/datasets.hanley.html
+```{r 11-01-lm}
+m1 <- lm(longevity ~ cage, data=fly)
+anova(m1)
+```
