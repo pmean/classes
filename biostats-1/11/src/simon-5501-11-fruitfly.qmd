@@ -101,11 +101,54 @@ m1 <- aov(longevity ~ cage, data=fly)
 tidy(m1)
 ```
 
-## Linear model for longevity
+The F-ratio is large and the p-value is small. Conclude that there is a difference among some or all of the population mean lifespans.
+
+## Linear model for longevity, 1
 
 ```{r longevity-lm-1}
 m2 <- lm(longevity ~ cage, data=fly)
 anova(m2)
+```
+
+You can use linear regression to reach the same conclusion. The sums of squares, degrees of freedom, F-ratio, and p-value all match.
+
+## Linear model for longevity, 2
+
+```{r longevity-lm-2}
+tidy(m2)
+```
+
+The linear model creates indicator variable for four out of the five category levels. The regression slopes represent the estimated average difference in means between each category and the reference category.
+
+## Linear model for longevity, 3
+
+```{r longevity-lm-3}
+fly |>
+  group_by(cage) |>
+  summarize(longevity_mn=mean(longevity)) |>
+  mutate(reference_mn=first(longevity_mn)) |>
+  mutate(mean_difference=longevity_mn-reference_mn)
+```
+
+## Re-order cage groups, 1
+
+```{r re-order-1}
+fly$cage_1 <- 
+  factor(
+    fly$cage,
+    levels = c(
+      "No females",
+      "One pregnant female",
+      "Eight pregnant females",
+      "One virgin female",
+      "Eight virgin females"))
+```
+
+## Re-order cage groups, 2
+
+```{r re-order-2}
+m3 <- lm(longevity ~ cage_1, data=fly)
+tidy(m3)
 ```
 
 ## Tukey post hoc comparisons
@@ -152,6 +195,12 @@ t3$cage |>
     diff=10^(-diff),
     upr=10^(-lwr),
     lwr=10^(-upr))
+```
+
+## Kruskal-Wallis test
+
+```{r kw}
+kruskal.test(longevity ~ cage, data=fly)
 ```
 
 ## Save important files for later use
