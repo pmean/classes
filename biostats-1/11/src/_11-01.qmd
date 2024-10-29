@@ -95,14 +95,35 @@ fly |>
 ## Fruitfly lifespan analysis using aov
 
 ```{r 11-01-aov}
+#| echo: true
 m1 <- aov(longevity ~ cage, data=fly)
-tidy(m1)
 anova(m1)
 ```
 
-## Fruitfly lifespan analysis using lm
+## Fruitfly lifespan analysis using lm, 1
 
-```{r 11-01-lm}
-m1 <- lm(longevity ~ cage, data=fly)
-anova(m1)
+```{r 11-01-lm-anova}
+#| echo: true
+m2 <- lm(longevity ~ cage, data=fly)
+anova(m2)
 ```
+
+
+## Fruitfly lifespan analysis using lm, 2
+
+```{r 11-01-lm-tidy}
+#| echo: true
+m2 <- lm(longevity ~ cage, data=fly)
+tidy(m2)
+```
+
+## Fruitfly lifespan analysis using lm, 3
+
+```{r 11-01-lm-means}
+fly |>
+  group_by(cage) |>
+  summarize(longevity_mn=mean(longevity)) |>
+  mutate(reference_mn=first(longevity_mn)) |>
+  mutate(mean_difference=longevity_mn-reference_mn)
+```
+
