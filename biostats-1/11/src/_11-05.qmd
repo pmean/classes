@@ -1,5 +1,5 @@
 ---
-title: "02-05, Normality"
+title: "11-05, Your homework"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,15 @@ format:
 editor: source
 ---
 
-## Normality
+```{r 11-05-setup}
+# message: false
+# warning: false
+library(tidyverse)
+load("../data/chopper.RData")
+```
 
-:::notes
-The
-:::
-  
+```{r 11-05-display-md}
+#| output: asis
+partition_qmd("simon-5501-11-directions.md") |>
+  cat(sep="\n")
+```

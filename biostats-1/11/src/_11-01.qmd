@@ -38,11 +38,15 @@ editor: source
    -   Second slope is the estimated average change
        -   Third category average minus first category average
    -   And so on
-
+   
 ## Example using fruitfly lifespans, 1
 
 -   Experiment with 125 cages
-    -   Does fruitfly mating affect average lifespan?
+    -   Does fruitfly mating affect average male lifespan?
+    -   Isolate a male fruitfly with 
+        -   virgin females, 
+        -   pregnant females, or
+        -   no females
 -   Cages 1-25 have one male fruitfly, no female fruit flies
     -   Set partners=0, type=9
     -   Measure lifespan of male fruitflies
@@ -58,6 +62,19 @@ editor: source
     -   Set partners=8, type=0
 -   Cages 101-125 have one male fruitfly, eight virgin females
     -   Set partners=8, type=1
+
+```{r 11-01-setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+load("../data/chopper.RData")
+```
+
+```{r 11-01-dictionary}
+#| output: asis
+partition_yaml("fruitfly.yaml") |>
+	cat(sep="\n")
+```
 
 ## Fruitfly lifespan boxplots
 

@@ -1,16 +1,11 @@
 ---
-title: "11-04, TBA"
+title: "11-04, R code for analysis of variance"
 format: 
   revealjs:
     slide-number: true
     embed-resources: true
 editor: source
 ---
-
-## R code
-
--   Dictionary for fruitfly data
--   Code for fruitfly analysis
 
 ```{r 11-04-setup}
 # message: false
@@ -19,32 +14,9 @@ library(tidyverse)
 load("../data/chopper.RData")
 ```
 
-## Test yaml
-
-Let's hope this works.
-
-```{r 11-04-display-yaml}
-#| output: asis
-partition_yaml("fruitfly.yaml") |>
-  cat(sep="\n")
-```
-
-## Test qmd
-
-Let's hope this works.
 
 ```{r 11-04-display-qmd}
 #| output: asis
 partition_qmd("simon-5501-11-fruitfly.qmd") |>
-  cat(sep="\n")
-```
-
-## Test md
-
-Let's hope this works.
-
-```{r 11-04-display-md}
-#| output: asis
-partition_qmd("simon-5501-11-directions.md") |>
   cat(sep="\n")
 ```

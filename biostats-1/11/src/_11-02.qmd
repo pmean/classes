@@ -37,7 +37,7 @@ $\ $
 fly |>
   mutate(log_longevity=log10(longevity)) -> log_fly
 m3 <- aov(log_longevity ~ cage, data=log_fly)
-tidy(m3)
+anova(m3)
 ```
 
 :::notes

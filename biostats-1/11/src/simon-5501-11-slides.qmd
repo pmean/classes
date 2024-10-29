@@ -8,10 +8,8 @@ params:
   topic_01: "Analysis of variance is linear regression"
   topic_02: "Log transformation"
   topic_03: "Kruskal-Wallis test"
-  topic_04: "R code"
-  topic_05: "Two factor analysis of variance"
-  topic_06: "Interactions"
-  topic_07: "R code"
+  topic_04: "R code for analysis of variance"
+  topic_05: "Your homework"
 editor: source
 ---
 
@@ -27,8 +25,6 @@ editor: source
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
-    -   `r params$topic_06`
-    -   `r params$topic_07`
 
 {{< include _11-01.qmd >}}
 
@@ -68,24 +64,6 @@ editor: source
 
 {{< include _11-05.qmd >}}
 
-## Break #5
-
--   What you have learned
-    -   `r params$topic_05`
--   What's coming next
-    -   `r params$topic_06`
-
-{{< include _11-06.qmd >}}
-
-## Break #6
-
--   What you have learned
-    -   `r params$topic_06`
--   What's coming next
-    -   `r params$topic_07`
-
-{{< include _11-07.qmd >}}
-
 ## Summary
 -   What you have learned
     -   `r params$topic_01`
@@ -93,8 +71,6 @@ editor: source
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
-    -   `r params$topic_06`
-    -   `r params$topic_07`
 
 <!---
       You have to put the title down 

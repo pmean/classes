@@ -136,7 +136,7 @@ fly |>
   mutate(mean_difference=longevity_mn-reference_mn)
 ```
 
-This table shows how to interpret the intercept and the five slope terms. The
+This table shows how to interpret the intercept and the four slope terms. The
 intercept is the estimated average lifespan for the first level of the
 categorical variable. The slope terms are the estimated average changes from the
 other levels of the categorical variable and the first level.
@@ -155,8 +155,7 @@ fly$cage_1 <-
       "Eight virgin females"))
 ```
 
-It makes more sense to compare every other category to the No females category
-because No females represents a control condition.
+Compare every category to the No females category (the control condition).
 
 ## Re-order cage groups, 2
 
@@ -165,8 +164,7 @@ m3 <- lm(longevity ~ cage_1, data=fly)
 tidy(m3)
 ```
 
-Use the factor function to re-order the categories so that the No females
-level is listed as the first level.
+There is one group, eight virgin females, that is statistically significantly different from the no female control group.
 
 ## Log transformation, 1
 
@@ -219,88 +217,11 @@ kruskal.test(longevity ~ cage, data=fly)
 It may not be needed with this particular dataset, but this is an illustration
 of how to use the Kruskal-Wallis test. 
 
-## Create a subset of fruitfly dataset
-
-```{r subset}
-fly |>
-  filter(type != 9) -> fly_subset
-```
-
-If you exclude the pure control group (No females), you can analyze the two
-factors, partners and type individually. Partners has two category levels, 1 for
-when one female was included in the cage and 8 for when eight females were 
-included in the cage. Type also has two category levels, 0 for pregnant female
-fly/flies and 1 for virgin fly/flies. A male fly will not mate with a pregnant
-females, so you can think of this as a second level of controls. The two factors
-are crossed, meaning that every possible combination of partners and type has 
-outcomes measured.
-
-## Draw boxplot of longevity by partners and type
-
-```{r boxplots-partners-type}
-#| fig.width: 6
-#| fig.height: 2.5
-fly_subset |>
-  ggplot(aes(factor(partners), longevity, fill=factor(type))) +
-    geom_boxplot() +
-    xlab("Number of partners") +
-    ylab("Lifespan in days") +
-    ggtitle("Graphs drawn by Steve Simon on 2024-10-28") +
-    labs(fill="Female fly type") +
-    scale_fill_discrete(labels=c("Pregnant", "Virgin")) +
-    coord_flip()
-```
-
-## Calculate average longevity by partners and type
-
-```{r by-partners-and-type}
-#| message: false
-fly_subset |>
-  group_by(partners, type) |>
-  summarize(
-    longevity_mn=mean(longevity),
-    longevity_sd=sd(longevity),
-    n=n()) -> fly_means
-fly_means
-```
-
-## Draw line graph
-
-```{r line-graph}
-fly_means |>
-  ggplot(aes(
-    factor(partners), 
-    longevity_mn, 
-    group=factor(type),
-    color=factor(type))) +
-    geom_line() +
-  xlab("Number of partners") +
-  ylab("Lifespan in days") +
-  labs(color="Female fly type") +
-  scale_color_discrete(labels=c("Pregnant", "Virgin"))
-```
-
-## Interpretation of the interaction
-
-Male fruitflies sharing a cage with pregnant females have longer average lifespans than sharing a cage with virgin females. The difference in lifespans is much more extreme when sharing with eight female fruitflies compared to one female fruitfly.
-
-The line for pregnant (sharing a cage with pregnant females) is close to flat, indicating that there is little of the number of pregnant females on average longevity.
-
-## Analysis of variance including the interaction
-
-```{r anova-with-interaction}
-m4 <- aov(longevity ~ factor(type)*factor(partners), data=fly_subset)
-anova(m4)
-```
-
-There is a statistically significant interaction between the number of female partners and the type of partners (pregnant or virgin).
-
 ## Save important files for later use
 
 ```{r save}
 save(
   fly,
   log_fly,
-  fly_subset,
   file="../data/fruitfly.RData")
 ```
