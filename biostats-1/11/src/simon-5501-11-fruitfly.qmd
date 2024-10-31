@@ -49,7 +49,8 @@ fly <- read_fwf(
 glimpse(fly)
 ```
 
-The fruitfly dataset has a fixed width format (fwf). You need to specify the columns that each variable uses.
+The fruitfly dataset has a fixed width format (fwf). You need to specify the 
+columns that each variable uses.
 
 ## Create cage groups
 
@@ -76,7 +77,8 @@ fly |>
     n=n())
 ```
 
-The mean lifespan is much lower for the eight virgin females group. The standard deviations are reasonably small and somewhat consistent across all groups.
+The mean lifespan is much lower for the eight virgin females group. The standard
+deviations are reasonably small and more or less consistent across all groups.
 
 ## Draw boxplot
 
@@ -92,9 +94,7 @@ fly |>
     coord_flip()
 ```
 
-The boxplot also shows that the eight virgin females group has lower lifespans.
-The variation is roughly comparable across all groups. The distributions are
-reasonably symmetric with no outliers.
+The boxplot shows a roughly normal distribution with no outliers.
 
 ## One factor analysis of variance for longevity
 
@@ -137,7 +137,7 @@ fly |>
 ```
 
 This table shows how to interpret the intercept and the four slope terms. The
-intercept is the estimated average lifespan for the first level of the
+intercept is the estimated average lifespan for the first level of the 
 categorical variable. The slope terms are the estimated average changes from the
 other levels of the categorical variable and the first level.
 
@@ -164,7 +164,8 @@ m3 <- lm(longevity ~ cage_1, data=fly)
 tidy(m3)
 ```
 
-There is one group, eight virgin females, that is statistically significantly different from the no female control group.
+There is one group, eight virgin females, that is statistically significantly
+different from the no female control group.
 
 ## Log transformation, 1
 
@@ -175,7 +176,8 @@ m3 <- aov(log_longevity ~ cage, data=log_fly)
 tidy(m3)
 ```
 
-Although there are no problems with heterogeneity or non-normality, here is an illustration of how to use a log transformation with analysis of variance.
+Although there are no problems with heterogeneity or non-normality, here is an 
+illustration of how to use a log transformation with analysis of variance.
 
 ## Log transformation, 2
 

@@ -16,7 +16,6 @@ editor: source
    -   Intercept is estimated average outcome for first category
    -   Slope is the estimated average change
        -   Second category average minus first category average
-   of variance and linear regression
 
 ## Indicator variables, 2
 
@@ -49,7 +48,6 @@ editor: source
         -   no females
 -   Cages 1-25 have one male fruitfly, no female fruit flies
     -   Set partners=0, type=9
-    -   Measure lifespan of male fruitflies
 
 ## Example using fruitfly lifespans, 2
 

@@ -75,4 +75,3 @@ Conduct a Kruskal-Wallis test. Interpret your results.
 Please review the [suggestions if you encounter an error page][sim3].
 
 [sim3]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
-

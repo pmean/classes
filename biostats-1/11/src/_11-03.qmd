@@ -16,7 +16,7 @@ editor: source
     -   Mean equals degrees of freedom
 -   Calculations in R
     -   pchisq(x, df) = $P[\chi^2_{df} < x]$
-    -   qchisq(p, df) = $p^{th}$ quanitle, $\chi^2_{df, p}
+    -   qchisq(p, df) = $p^{th}$ quantile, $\chi^2_{df, p}$
     
 ## The Chi-squared distribution
 
@@ -51,12 +51,15 @@ This is a graph of the Chi-squared distribution with 5 degrees of freedom.
 The Kruskal-Wallis test is similar to the Mann-Whitney-Wilcoxon test. You rank the data from low to high, calculate an average rank in each group. Look at how much deviation the group rank averages are from the overall rank averages.
 :::
   
-## Decision rule for Kruskal-Wallis test
+## Decision rule for Kruskal-Wallis test, 1
 
 -   Accept $H_0$ if T <- $\chi^2_{df, 1-\alpha}$
     -   df = k-1
--   Accept $H_0$ if p-value > \alpha
+-   Accept $H_0$ if p-value > $\alpha$
     -   p-value = $P[\chi^2_{df} > T]$
+
+## Decision rule for Kruskal-Wallis test, 1
+
 -   Null hypothesis is difficult to define
     -   Does not involve population means
     -   Some claim involvement of population medians
