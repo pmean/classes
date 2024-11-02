@@ -1,0 +1,143 @@
+---
+title: "Analysis of full-moon-er-admissions data"
+format: 
+  html:
+    embed-resources: true
+---
+
+This program reads data on admissions to an emergency room before, during, and after a full moon. Find more information in the [data dictionary][dd].
+
+[dd]: https://github.com/pmean/data/blob/master/files/full-moon-er-admissions.yaml
+
+This code was written by Steve Simon on 2024-11-02 and is placed in the public domain.
+
+## Load the tidyverse library
+
+```{r setup}
+#| message: false
+#| warning: false
+library(broom)
+library(tidyverse)
+```
+
+For most of your programs, you should load the tidyverse library. The broom library converts your output to a nicely arranged dataframe. The messages and warnings are suppressed.
+
+## Read the data and view a brief summary
+
+```{r read}
+er <- read_tsv(
+  "../data/full-moon-er-admissions.txt",
+  col_types="ccn",
+  col_names=TRUE)
+names(er) <- tolower(names(er))
+glimpse(er)
+```
+
+## Reorder the category levels, 1
+
+```{r reorder-moon}
+er$moon1 <- factor(
+  er$moon,
+  levels=c(
+    "Before",
+    "During",
+    "After"))
+```
+
+## Reorder the category levels, 2
+
+```{r reorder-month}
+er$month1 <- factor(
+  er$month,
+  levels=c(
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul"))
+```
+
+## Draw boxplot of admission versus moon
+
+```{r boxplots-admission-vs-moon}
+#| fig.width: 6
+#| fig.height: 2.0
+er |>
+  ggplot(aes(moon1, admission)) +
+    geom_boxplot() +
+    xlab("Moon phase") +
+    ylab("ER admissions per day") +
+    ggtitle("Graphs drawn by Steve Simon on 2024-11-02") +
+    coord_flip()
+```
+
+## Draw boxplot of admission versus month
+
+```{r boxplots-admission-vs-month}
+#| fig.width: 6
+#| fig.height: 6.0
+er |>
+  ggplot(aes(month1, admission)) +
+    geom_boxplot() +
+    xlab("Month") +
+    ylab("ER admissions per day") +
+    ggtitle("Graphs drawn by Steve Simon on 2024-11-02") +
+    coord_flip()
+```
+
+## Calculate average ER admissions versus moon
+
+```{r by-moon}
+er |>
+  group_by(moon1) |>
+  summarize(
+    admission_mn=mean(admission),
+    admission_sd=sd(admission),
+    n=n())
+```
+
+## Calculate average ER admissions versus month
+
+```{r by-month}
+er |>
+  group_by(month1) |>
+  summarize(
+    admission_mn=mean(admission),
+    admission_sd=sd(admission),
+    n=n())
+```
+
+## Analysis of variance
+
+```{r anova}
+m1 <- aov(admission ~ moon1 + month1, data=er)
+anova(m1)
+```
+
+## Using lm, 1
+
+```{r lm-1}
+m2 <- lm(admission ~ moon1 + month1, data=er)
+anova(m2)
+```
+
+## Using lm, 2
+
+```{r lm-2}
+tidy(m2)
+```
+
+## Save important files for later use
+
+```{r save}
+save(
+  er,
+  file="../data/full-moon-er-admissions.RData")
+```

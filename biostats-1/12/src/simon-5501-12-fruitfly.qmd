@@ -25,7 +25,6 @@ For most of your programs, you should load the tidyverse library. The broom libr
 ## List the variable names
 
 ```{r variable-list}
-fn <- "https://jse.amstat.org/datasets/fruitfly.dat.txt"
 vlist <- c(
   "id",
   "partners",
@@ -105,7 +104,7 @@ fly_means |>
     longevity_mn, 
     group=factor(type),
     color=factor(type))) +
-    geom_line() +
+    geom_line(size=2) +
   xlab("Number of partners") +
   ylab("Lifespan in days") +
   labs(color="Female fly type") +
@@ -121,18 +120,30 @@ The line for pregnant (sharing a cage with pregnant females) is close to flat, i
 ## Analysis of variance including the interaction
 
 ```{r anova-with-interaction}
-m4 <- aov(longevity ~ factor(type)*factor(partners), data=fly_subset)
-anova(m4)
+m1 <- aov(longevity ~ factor(type)*factor(partners), data=fly_subset)
+anova(m1)
 ```
 
 There is a statistically significant interaction between the number of female partners and the type of partners (pregnant or virgin).
+
+## Using lm, 1
+
+```{r lm-with-interactions-1}
+m2 <- lm(longevity ~ factor(type)*factor(partners), data=fly_subset)
+anova(m2)
+```
+
+## Using lm, 2
+
+```{r lm-with-interactions-2}
+tidy(m2)
+```
 
 ## Save important files for later use
 
 ```{r save}
 save(
   fly,
-  log_fly,
   fly_subset,
   file="../data/fruitfly.RData")
 ```
