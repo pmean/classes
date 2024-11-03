@@ -9,7 +9,28 @@ editor: source
 
 ## Checking assumptions
 
+-   Normality (Non-normality)
+-   Homogeneity (Heterogeneity)
+-   Independence (Lack of independence)
+
 :::notes
-The
+The assumptions for two factor analysis of variance is no different than for one factor analysis of variance or the two-sample t-test.
+
+I'm a bit inconsistent in how I present this material. The assumptions are satisfied if you have normality, homogeneity, and independence. Equivalently, you could state that the assumptions are violated if you have non-normality or heterogeneity or lack of independence.
 :::
   
+## Use the boxplot to check assumptions
+
+-   Non-normality if boxplot shows skewness and/or outliers
+-   Heterogeneity if boxplot shows large change in variation
+-   Draw clustered boxplot to examine every combination of categories
+    -   Use a$\times$b boxplots
+-   Independence is checked qualitatively
+
+## Alternatives if assumptions violated
+
+-   There is no analog to Kruskal-Wallis or Mann-Whitney-Wilcoxon
+-   Consider a log transformation
+    -   All values greater than 0
+    -   Groups with larger means have larger variation
+    -   Data is skewed right and outliers only on the high end
