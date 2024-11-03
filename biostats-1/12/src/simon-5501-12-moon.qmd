@@ -134,6 +134,26 @@ anova(m2)
 tidy(m2)
 ```
 
+## Using lm, 3
+
+```{r lm-3}
+er |>
+  group_by(moon1) |>
+  summarize(admission_mn=mean(admission)) |>
+  mutate(admission_before=first(admission_mn)) |>
+  mutate(difference=admission_mn-admission_before)
+```
+
+## Using lm, 4
+
+```{r lm-4}
+er |>
+  group_by(month1) |>
+  summarize(admission_mn=mean(admission)) |>
+  mutate(admission_aug=first(admission_mn)) |>
+  mutate(difference=admission_mn-admission_aug)
+```
+
 ## Save important files for later use
 
 ```{r save}

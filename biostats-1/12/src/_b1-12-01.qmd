@@ -1,0 +1,224 @@
+---
+title: "b1-12-01, Two factor analysis of variance"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Two factor analysis of variance
+
+-   Continuous outcome
+-   Two categorical predictors
+-   Example 
+    -   Hearing test (decibels at high frequency)
+    -   Age group (Old or Young)
+    -   Gender (Female or Male)
+    
+:::notes
+Two factor analysis of variance uses two categorical variables to predict a continuous outcome. We will focus today on the balanced case. In the balanced case, each combination of category levels has the same number of observations.
+:::
+  
+## Balanced data    
+
+-   Proportional number in each category level combination group
+    -   3 old females, 3 old males, 3 young females, 3 young males
+    -   6 old females, 6 old males, 2 young females, 2 young males
+
+:::notes
+Two factor analysis of variance uses two categorical variables to predict a continuous outcome. We will focus today on the balanced case. In the balanced case, each combination of category levels has the same number of observations.
+:::
+  
+## Unbalanced data    
+
+-   Unequal numbers in some category combinations
+    -   3 old females, 3 old males, 3 young females, 2 young males
+-   Extreme case: empty category combinations
+    -   3 old females, 3 old males, 3 young females, 0 young males
+
+:::notes
+In the unbalanced case the observations are not equal or proportional. These cases are quite complex from several perspectives.
+:::
+  
+## Mathematical model, 1
+
+-   $Y_{ijk}$
+    -   i = which level of first category
+    -   j = which level of second category
+    -   k = which patient within a category combination
+    
+:::notes
+With two levels, you need three subscripts (i, j, k) to keep track of the observations.
+:::
+
+## Mathematical model, 2
+
+$\begin{smallmatrix} Age & Gender & Outcome \\ Old   & Female & Y_{111} \\ Old   & Female & Y_{112} \\ Old   & Female & Y_{113} \\ Old   & Male   & Y_{121} \\ Old   & Male   & Y_{122} \\ Old   & Male   & Y_{123} \\ Young & Female & Y_{211} \\ Young & Female & Y_{212} \\ Young & Female & Y_{213} \\ Young & Male   & Y_{221} \\ Young & Male   & Y_{222} \\ Young & Male   & Y_{223}\end{smallmatrix}$
+
+:::notes
+Here's a simple example where the first categorical predictor and the second categorical predictor have two levels and there are three observation in each combination.
+:::
+
+## Mathematical model, 3
+
+-   $Y_{ijk} = \mu + \alpha_i + \beta_j +\epsilon_{ijk}$
+    -   $i=1,...,a,\ j=1,...,b$
+    -   $\Sigma \alpha_i=0,\ \Sigma \beta_j=0$
+    -   $\epsilon_{ijk}$ is $N(0,\sigma)$
+-   $\bar{Y}_{i.} is the average for the ith level of first factor
+-   $\bar{Y}_{.j} is the average for the jth level of second factor
+-   $\bar{Y}_{..} is the average for all of the data
+
+:::note
+The mathematical model includes an overall mean ($\mu$), a deviation from the overall mean associated with the different levels of the first factor ($\alpha_i$), a deviation from the overall mean associated with the different levels of the second factor ($\beta_j$) and an error term ($\epsilon_{ijk}$).
+
+Because the alphas and betas are deviations, they have to sum to zero. The error term is assumed to be normally distributed and the standard deviation is the same for all the data.
+
+You will need to compute averages for the first factor, $\bar{Y}_{i.}$, the second factor, $\bar{Y}_{.j}$, and an overall mean, $\bar{Y}_{..}$ which is an average across all of the data.
+:::
+
+## Mathematical model, 4
+
+-   $SS(Total)=\Sigma \Sigma \Sigma (Y_{ijk}-\bar{Y}_{..})^2$, df=abn-1
+-   $SS(A)=\Sigma bn(\bar{Y}_{i.}-\bar{Y}_{..})^2$, df=a-1
+-   $SS(B)=\Sigma an(\bar{Y}_{.j}-\bar{Y}_{..})^2$, df=b-1
+-   $SS(Error)=SS(Total)-SS(A)-SS(B)$, df=(abn-1)-(a-1)-(b-1)
+
+:::notes
+To assess the impact of the two categorical predictors, you compute sums of squares. 
+SS(Total) represents the deviation of the individual values from the overall mean. SS(A) represents deviations of the first category means from the overall mean. SS(B) reprsents deviations of the second category means from the overall mean. Whatever is left over is SS(Error).
+:::
+
+## Artificial data
+
+```{r b1-12-01-setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+db <- c(
+  45, 60, 60,
+  65, 60, 70,
+  20, 20,  5,
+  25, 20, 30)
+age <- rep(c("old", "young"), c(6, 6))
+gender <- rep(c("female", "male", "female", "male"), c(3, 3, 3, 3))
+code <- rep(c("of", "om", "yf", "ym"), each=3)
+id <- c(1:12)
+
+hearing <- tibble(id, age, gender, code, db)
+hearing
+```
+## Artificial data with means
+
+```{r b1-12-01-means}
+hearing |>
+  group_by(age) |>
+  mutate(age_mean=mean(db)) |>
+  ungroup() |>
+  group_by(gender) |>
+  mutate(gender_mean=mean(db)) |>
+  ungroup() |>
+  mutate(overall_mean=mean(db)) -> hearing_means
+hearing_means
+```
+
+## SS(Total)
+
+```{r b1-12-01-ss-total}
+hearing_means |>
+  ggplot(
+    aes(
+      x=id, 
+      xend=id,
+      y=db,
+      yend=overall_mean,
+      label=code, 
+      color=code)) +
+    geom_segment(size=1.5) +
+    geom_label(size=4) +
+    xlab(" ") + 
+    ylab("Decibels") +
+    scale_color_manual(
+      values=c("#FFC0CB", "lightblue", "#FE828C", "blue")) +
+    scale_x_continuous(
+      breaks=c(2, 5, 8, 11),
+      minor_breaks=NULL,
+      labels=c(
+        "Old Female",
+        "Old Male",
+        "Young Female",
+        "Young Male")) +
+     theme(legend.position="none") +
+     expand_limits(y=c(0, 80)) +
+     ggtitle("Graph drawn by Steve Simon on 2024-11-03")
+```
+
+## SS(Age)
+
+```{r b1-12-01-ss-a}
+hearing_means |>
+  ggplot(
+    aes(
+      x=id, 
+      xend=id,
+      y=age_mean,
+      yend=overall_mean,
+      label=age, 
+      color=code)) +
+    geom_segment(size=1.5) +
+    geom_label(size=4) +
+    xlab(" ") + 
+    ylab("Decibels") +
+    scale_color_manual(
+      values=c("#FFC0CB", "lightblue", "#FE828C", "blue")) +
+    scale_x_continuous(
+      breaks=c(2, 5, 8, 11),
+      minor_breaks=NULL,
+      labels=c(
+        "Old Female",
+        "Old Male",
+        "Young Female",
+        "Young Male")) +
+     theme(legend.position="none") +
+     expand_limits(y=c(0, 80)) +
+     ggtitle("Graph drawn by Steve Simon on 2024-11-03")
+```
+
+## SS(Gender)
+
+```{r b1-12-01-ss-b}
+hearing_means |>
+  ggplot(
+    aes(
+      x=id, 
+      xend=id,
+      y=gender_mean,
+      yend=overall_mean,
+      label=gender, 
+      color=code)) +
+    geom_segment(size=1.5) +
+    geom_label(size=4) +
+    xlab(" ") + 
+    ylab("Decibels") +
+    scale_color_manual(
+      values=c("#FFC0CB", "lightblue", "#FE828C", "blue")) +
+    scale_x_continuous(
+      breaks=c(2, 5, 8, 11),
+      minor_breaks=NULL,
+      labels=c(
+        "Old Female",
+        "Old Male",
+        "Young Female",
+        "Young Male")) +
+     theme(legend.position="none") +
+     expand_limits(y=c(0, 80)) +
+     ggtitle("Graph drawn by Steve Simon on 2024-11-03")
+```
+
+## Analysis of variance table
+
+```{r b1-12-01-anova}
+m1 <- aov(db ~ age + gender, data=hearing)
+anova(m1)
+```
