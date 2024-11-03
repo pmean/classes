@@ -1,0 +1,219 @@
+---
+title: "Chopper"
+format: 
+  html:
+    embed-resources: true
+editor: source
+---
+
+This programmer reads in data dictionaries and/or program code and spits it back out in small chunks that can fit on individual reveal.js slides. It should work fine with Powerpoint or other slide show software as well. This program was written by Steve Simon on 2024-10-24 and is placed in the public domain.
+
+## Program outline
+
+-   Step 0 Write utility functions
+    -    add_front
+    -    add_rear
+-   Step 1 Surround parts of qmd code with four backticks
+    -   surround_sections
+    -   surround_lines
+-   Step 2, Find logical breaks in text
+    -   compute_boundaries
+        -   Look for blank line for yaml
+        -   Look for ## for qmd
+-   Step 3, Identify and combine smaller sections
+    -   condense_boundaries
+-   Step 3 split at remaining boundaries
+    -   split_at_boundaries
+    -   create_sections
+-   Step 4, Put headers at the front of every section
+    -   add_headers
+-   Step 5, Put it all together
+    -   section_qmd
+    -   section_yaml
+
+```{r chopper-setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(yaml)
+```
+
+## Step 0, utility functions
+
+```{r add-text}
+add_front <- function(file_text, add_text, indices=TRUE) {
+  # add text to the front of a string
+  file_text[indices] <- paste0(add_text,file_text[indices])
+  return(file_text)
+}
+
+add_rear <- function(file_text, add_text, indices=TRUE) {
+  # add text to the end of a string
+  file_text[indices] <- paste0(file_text[indices], add_text)
+  return(file_text)
+}
+```
+
+## Step 1, Surround code
+
+```{r surround-sections}
+surround_sections <- function(file_text, markers) {
+  marked_lines <- str_which(file_text, markers)
+  n <- length(marked_lines)
+
+  if (n == 0) return(file_text)
+
+  if ((n %% 2) == 1) {
+    print("Unmatched backticks")
+    file_text |>
+      add_front("````\n", indices=marked_lines) |> 
+      add_rear("\n````", indices=marked_lines) -> file_mod
+    return(file_mod)
+  }
+  
+  even_lines <- 2*(1:(n/2))
+  odd_lines <- even_lines - 1
+  file_text |>
+    add_front("````\n", indices=marked_lines[odd_lines]) |>
+    add_rear("\n````", indices=marked_lines[even_lines]) -> file_mod
+  return(file_mod)
+}
+```
+
+```{r surround-lines}
+surround_lines <- function(file_text, markers) {
+  marked_lines <- str_which(file_text, markers)
+  n <- length(marked_lines)
+
+  if (n == 0) return(file_text)
+
+  file_text |>
+    add_front("````\n", indices=marked_lines) |>
+    add_rear("\n````", indices=marked_lines) -> file_mod
+  return(file_mod)
+}
+```
+
+## Step 2, find logical breaks
+
+```{r compute-boundaries}
+compute_boundaries <- 
+  function(
+    file_text, 
+    separator) {
+  boundaries <- str_which(file_text, separator)
+  return(c(1, boundaries, length(file_text)))
+  }
+```
+
+## Step 3, Combine smaller sections
+
+```{r}
+condense_boundaries <- 
+  function(
+    boundaries,
+    max_lines) {
+
+  n_sections <- length(boundaries)
+  j <- 2
+
+  while (j < length(boundaries)) {
+    if (boundaries[j+1]-boundaries[j-1] > max_lines) {
+      j <- j+1
+      next
+    }  
+
+    boundaries <- boundaries[-j]
+  }
+  return(boundaries[c(2:(length(boundaries)-1))])
+}
+```
+
+## Step 4, Split at remaining boundaries
+
+```{r}
+split_at_boundaries <- 
+  function(
+    boundaries,
+    file_text) {
+
+  file_text |>
+    add_front("_split_", indices=boundaries) |>
+    paste0(collapse="\n") |>
+    str_split("_split_") |>
+    unlist()
+}
+
+create_sections <- 
+  function(
+    file_text, 
+    separator, 
+    max_lines=15) {
+  file_text |>
+    compute_boundaries(separator) |>
+    condense_boundaries(max_lines) |>
+    split_at_boundaries(file_text)
+}
+```
+
+## Step 5, Add headers
+
+```{r add-headers}
+add_headers <- function(file_sections, file_name) {
+  h <- 
+    paste0(
+      "## Listing of ", 
+      file_name, 
+      ", ",
+      1:length(file_sections), 
+      "\n\n")
+  file_sections |>
+    add_front(h)
+}
+```
+
+## Step 6, Put it all together
+
+```{r partition-qmd}
+partition_qmd <- function(qmd_name) {
+  read_lines(file=qmd_name) |>
+  # surround_sections("```") |>
+  # surround_sections("---") |>
+  # surround_lines("^## ") |>
+  create_sections("## ", 15) |>
+  add_front("````\n") |>
+  add_rear("\n````") |>
+  add_headers(qmd_name)
+}
+```
+
+```{r partition-yaml}
+partition_yaml <- function(yaml_name) {
+  f1 <- "https://raw.githubusercontent.com/"
+  f2 <- "pmean/data/main/files/"
+  paste0(f1, f2, yaml_name) |>
+    read_lines() |>
+    create_sections("^\\s*$", 15) |>
+    add_front("````\n") |>
+    add_rear("\n````") |>
+    add_headers(yaml_name)
+}
+```
+
+## Save everything
+
+```{r save}
+save(
+  add_front,
+  add_rear,
+  surround_sections,
+  surround_lines,
+  compute_boundaries,
+  condense_boundaries,
+  split_at_boundaries,
+  create_sections,
+  add_headers,
+  partition_qmd,
+  partition_yaml,
+  file="chopper.RData")
+```
