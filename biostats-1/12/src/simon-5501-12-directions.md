@@ -38,9 +38,12 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
     -   The number of this course
     -   The number of this module
 -   Upload the file
+-   Please note the [policy on late submissions and rework][sim3].
+
+[sim3]: https://github.com/pmean/classes/blob/master/general/policy-on-extensions-and-rework.md
 
 ## If it doesn't work
 
-Please review the [suggestions if you encounter an error page][sim3].
+Please review the [suggestions if you encounter an error page][sim4].
 
-[sim3]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
+[sim4]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md

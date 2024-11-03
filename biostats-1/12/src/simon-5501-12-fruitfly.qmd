@@ -20,7 +20,9 @@ library(broom)
 library(tidyverse)
 ```
 
-For most of your programs, you should load the tidyverse library. The broom library converts your output to a nicely arranged dataframe. The messages and warnings are suppressed.
+For most of your programs, you should load the tidyverse library. The broom 
+library converts your output to a nicely arranged dataframe. The messages and
+warnings are suppressed.
 
 ## List the variable names
 
@@ -34,7 +36,8 @@ vlist <- c(
   "sleep")
 ```
 
-When a dataset does not have variables on the first line, you need to specify them in the code.
+When a dataset does not have variables on the first line, you need to specify 
+them in the code.
 
 ## Read the data and view a brief summary
 
@@ -113,9 +116,14 @@ fly_means |>
 
 ## Interpretation of the interaction
 
-Male fruitflies sharing a cage with pregnant females have longer average lifespans than sharing a cage with virgin females. The difference in lifespans is much more extreme when sharing with eight female fruitflies compared to one female fruitfly.
+Male fruitflies sharing a cage with pregnant females have longer average 
+lifespans than sharing a cage with virgin females. The difference in lifespans
+is much more extreme when sharing with eight female fruitflies compared to one
+female fruitfly.
 
-The line for pregnant (sharing a cage with pregnant females) is close to flat, indicating that there is little of the number of pregnant females on average longevity.
+The line for pregnant (sharing a cage with pregnant females) is close to flat,
+indicating that there is little of the number of pregnant females on average
+longevity.
 
 ## Analysis of variance including the interaction
 
@@ -124,7 +132,8 @@ m1 <- aov(longevity ~ factor(type)*factor(partners), data=fly_subset)
 anova(m1)
 ```
 
-There is a statistically significant interaction between the number of female partners and the type of partners (pregnant or virgin).
+There is a statistically significant interaction between the number of female
+partners and the type of partners (pregnant or virgin).
 
 ## Using lm, 1
 

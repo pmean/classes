@@ -1302,10 +1302,22 @@ display:block!important;
 <section id="mathematical-model-4" class="slide level2">
 <h2>Mathematical model, 4</h2>
 <ul>
-<li><span class="math inline">\(SS(Total)=\Sigma \Sigma \Sigma (Y_{ijk}-\bar{Y}_{..})^2\)</span>, df=abn-1</li>
-<li><span class="math inline">\(SS(A)=\Sigma bn(\bar{Y}_{i.}-\bar{Y}_{..})^2\)</span>, df=a-1</li>
-<li><span class="math inline">\(SS(B)=\Sigma an(\bar{Y}_{.j}-\bar{Y}_{..})^2\)</span>, df=b-1</li>
-<li><span class="math inline">\(SS(Error)=SS(Total)-SS(A)-SS(B)\)</span>, df=(abn-1)-(a-1)-(b-1)</li>
+<li><span class="math inline">\(SS(Total)=\Sigma_i \Sigma_j \Sigma_k\ (Y_{ijk}-\bar{Y}_{..})^2\)</span>
+<ul>
+<li>df=abn-1</li>
+</ul></li>
+<li><span class="math inline">\(SS(A)=\Sigma_i\ bn(\bar{Y}_{i.}-\bar{Y}_{..})^2\)</span>
+<ul>
+<li>df=a-1</li>
+</ul></li>
+<li><span class="math inline">\(SS(B)=\Sigma_j\ an(\bar{Y}_{.j}-\bar{Y}_{..})^2\)</span>
+<ul>
+<li>df=b-1</li>
+</ul></li>
+<li><span class="math inline">\(SS(Error)=SS(Total)-SS(A)-SS(B)\)</span>
+<ul>
+<li>df=(abn-1)-(a-1)-(b-1)</li>
+</ul></li>
 </ul>
 <aside class="notes">
 <p>To assess the impact of the two categorical predictors, you compute sums of squares. SS(Total) represents the deviation of the individual values from the overall mean. SS(A) represents deviations of the first category means from the overall mean. SS(B) reprsents deviations of the second category means from the overall mean. Whatever is left over is SS(Error).</p>
@@ -1464,21 +1476,273 @@ display:block!important;
 </ul></li>
 </ul>
 </section>
-<section id="r-code" class="slide level2">
-<h2>R code</h2>
-<aside class="notes">
-<p>The</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+<section id="listing-of-full-moon-er-admissions.yaml-1" class="slide level2">
+<h2>Listing of full-moon-er-admissions.yaml, 1</h2>
+<pre><code>---
+data_dictionary: full-moon.txt
+
+description: &gt;
+  The data give the admission rates to the
+  emergency room of a Virginia mental health
+  clinic before, during and after the 12 
+  full moons from August 1971 to July 1972.
+  
+additional_description:  
+  https://gksmyth.github.io/ozdasl/general/fullmoon.html
+
+source: &gt;
+  Blackman, S., and Catalina, D. (1973). The moon and the emergency room. Perceptual and Motor Skills 37, 624-626.
+</code></pre>
+</section>
+<section id="listing-of-full-moon-er-admissions.yaml-2" class="slide level2">
+<h2>Listing of full-moon-er-admissions.yaml, 2</h2>
+<pre><code>  
+  Ovlin, J. F. (1943). Moonlight and nervous disorders. American Journal of Psychiatry 99, 578-584.
+  
+  Larsen, R.J., and Marx, M.L., (1986). An Introduction to Mathematical Statistics and Its Applications 2nd Edition. Prentice-Hall, Englewood Cliffs, New Jersey. Case Study 1.2.3.
+
+copyright: 
+  unknown
+
+format:
+  tab-delimited
+  
+varnames:
+  first row of data
+</code></pre>
+</section>
+<section id="listing-of-full-moon-er-admissions.yaml-3" class="slide level2">
+<h2>Listing of full-moon-er-admissions.yaml, 3</h2>
+<pre><code>
+size:
+  rows: 36
+  columns: 3  
+
+vars:
+  Month:
+    label: Month of year
+    scale: Aug, Sep, ..., Jul
+</code></pre>
+</section>
+<section id="listing-of-full-moon-er-admissions.yaml-4" class="slide level2">
+<h2>Listing of full-moon-er-admissions.yaml, 4</h2>
+<pre><code>
+  Moon:
+    label: time relative to full moon
+    values: 
+      - Before
+      - During
+      - After
+      
+  Admission:
+    label: Admission rate
+    Unit: patients/day
+    </code></pre>
+</section>
+<section id="listing-of-simon-5501-12-moon.qmd-1" class="slide level2">
+<h2>Listing of simon-5501-12-moon.qmd, 1</h2>
+<pre><code>---
+title: &quot;Analysis of full-moon-er-admissions data&quot;
+format: 
+  html:
+    embed-resources: true
+---
+
+This program reads data on admissions to an emergency room before, during, and after a full moon. Find more information in the [data dictionary][dd].
+
+[dd]: https://github.com/pmean/data/blob/master/files/full-moon-er-admissions.yaml
+
+This code was written by Steve Simon on 2024-11-02 and is placed in the public domain.
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-moon.qmd-2" class="slide level2">
+<h2>Listing of simon-5501-12-moon.qmd, 2</h2>
+<pre><code>## Load the tidyverse library
+
+```{r setup}
+#| message: false
+#| warning: false
+library(broom)
+library(tidyverse)
+```
+
+For most of your programs, you should load the tidyverse library. The broom library converts your output to a nicely arranged dataframe. The messages and warnings are suppressed.
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-moon.qmd-3" class="slide level2">
+<h2>Listing of simon-5501-12-moon.qmd, 3</h2>
+<pre><code>## Read the data and view a brief summary
+
+```{r read}
+er &lt;- read_tsv(
+  &quot;../data/full-moon-er-admissions.txt&quot;,
+  col_types=&quot;ccn&quot;,
+  col_names=TRUE)
+names(er) &lt;- tolower(names(er))
+glimpse(er)
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-moon.qmd-4" class="slide level2">
+<h2>Listing of simon-5501-12-moon.qmd, 4</h2>
+<pre><code>## Reorder the category levels, 1
+
+```{r reorder-moon}
+er$moon1 &lt;- factor(
+  er$moon,
+  levels=c(
+    &quot;Before&quot;,
+    &quot;During&quot;,
+    &quot;After&quot;))
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-moon.qmd-5" class="slide level2">
+<h2>Listing of simon-5501-12-moon.qmd, 5</h2>
+<pre><code>## Reorder the category levels, 2
+
+```{r reorder-month}
+er$month1 &lt;- factor(
+  er$month,
+  levels=c(
+    &quot;Aug&quot;,
+    &quot;Sep&quot;,
+    &quot;Oct&quot;,
+    &quot;Nov&quot;,
+    &quot;Dec&quot;,
+    &quot;Jan&quot;,
+    &quot;Feb&quot;,
+    &quot;Mar&quot;,
+    &quot;Apr&quot;,
+    &quot;May&quot;,
+    &quot;Jun&quot;,
+    &quot;Jul&quot;))
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-moon.qmd-6" class="slide level2">
+<h2>Listing of simon-5501-12-moon.qmd, 6</h2>
+<pre><code>## Draw boxplot of admission versus moon
+
+```{r boxplots-admission-vs-moon}
+#| fig.width: 6
+#| fig.height: 2.0
+er |&gt;
+  ggplot(aes(moon1, admission)) +
+    geom_boxplot() +
+    xlab(&quot;Moon phase&quot;) +
+    ylab(&quot;ER admissions per day&quot;) +
+    ggtitle(&quot;Graphs drawn by Steve Simon on 2024-11-02&quot;) +
+    coord_flip()
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-moon.qmd-7" class="slide level2">
+<h2>Listing of simon-5501-12-moon.qmd, 7</h2>
+<pre><code>## Draw boxplot of admission versus month
+
+```{r boxplots-admission-vs-month}
+#| fig.width: 6
+#| fig.height: 6.0
+er |&gt;
+  ggplot(aes(month1, admission)) +
+    geom_boxplot() +
+    xlab(&quot;Month&quot;) +
+    ylab(&quot;ER admissions per day&quot;) +
+    ggtitle(&quot;Graphs drawn by Steve Simon on 2024-11-02&quot;) +
+    coord_flip()
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-moon.qmd-8" class="slide level2">
+<h2>Listing of simon-5501-12-moon.qmd, 8</h2>
+<pre><code>## Calculate average ER admissions versus moon
+
+```{r by-moon}
+er |&gt;
+  group_by(moon1) |&gt;
+  summarize(
+    admission_mn=mean(admission),
+    admission_sd=sd(admission),
+    n=n())
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-moon.qmd-9" class="slide level2">
+<h2>Listing of simon-5501-12-moon.qmd, 9</h2>
+<pre><code>## Calculate average ER admissions versus month
+
+```{r by-month}
+er |&gt;
+  group_by(month1) |&gt;
+  summarize(
+    admission_mn=mean(admission),
+    admission_sd=sd(admission),
+    n=n())
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-moon.qmd-10" class="slide level2">
+<h2>Listing of simon-5501-12-moon.qmd, 10</h2>
+<pre><code>## Analysis of variance
+
+```{r anova}
+m1 &lt;- aov(admission ~ moon1 + month1, data=er)
+anova(m1)
+```
+
+## Using lm, 1
+
+```{r lm-1}
+m2 &lt;- lm(admission ~ moon1 + month1, data=er)
+anova(m2)
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-moon.qmd-11" class="slide level2">
+<h2>Listing of simon-5501-12-moon.qmd, 11</h2>
+<pre><code>## Using lm, 2
+
+```{r lm-2}
+tidy(m2)
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-moon.qmd-12" class="slide level2">
+<h2>Listing of simon-5501-12-moon.qmd, 12</h2>
+<pre><code>## Using lm, 3
+
+```{r lm-3}
+er |&gt;
+  group_by(moon1) |&gt;
+  summarize(admission_mn=mean(admission)) |&gt;
+  mutate(admission_before=first(admission_mn)) |&gt;
+  mutate(difference=admission_mn-admission_before)
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-moon.qmd-13" class="slide level2">
+<h2>Listing of simon-5501-12-moon.qmd, 13</h2>
+<pre><code>## Using lm, 4
+
+```{r lm-4}
+er |&gt;
+  group_by(month1) |&gt;
+  summarize(admission_mn=mean(admission)) |&gt;
+  mutate(admission_aug=first(admission_mn)) |&gt;
+  mutate(difference=admission_mn-admission_aug)
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-moon.qmd-14" class="slide level2">
+<h2>Listing of simon-5501-12-moon.qmd, 14</h2>
+<pre><code>## Save important files for later use
+
+```{r save}
+save(
+  er,
+  file=&quot;../data/full-moon-er-admissions.RData&quot;)
+```</code></pre>
 </section>
 <section id="break-4" class="slide level2">
 <h2>Break #4</h2>
@@ -1522,21 +1786,287 @@ display:block!important;
 </ul></li>
 </ul>
 </section>
-<section id="r-code-1" class="slide level2">
-<h2>R code</h2>
-<aside class="notes">
-<p>The</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+<section id="listing-of-fruitfly.yaml-1" class="slide level2">
+<h2>Listing of fruitfly.yaml, 1</h2>
+<pre><code>---
+data_dictionary: fruitfly.dat.txt
+
+copyright: &gt;
+  This dataset is copyrighted by the authors of the Journal of Statistics 
+  Education article, but should be available for individual educational uses
+  under the Fair Use provisions of copyright law.
+
+description: &gt;
+  Does access to mating affect the lifespan of fruitflies? This data shows the
+  longevity of male fruitflies in the presence or absence of female fruitflies
+  to mate with. Male fruitflies were housed with 0, 1, or 8 females. In some
+  groups, the females were pregnant and thus not available for mating. There are
+  two covariates, length of the thorax and percentage of time sleeping, that
+  might also influence longevity.
+</code></pre>
+</section>
+<section id="listing-of-fruitfly.yaml-2" class="slide level2">
+<h2>Listing of fruitfly.yaml, 2</h2>
+<pre><code>
+source: &gt;
+  Partridge, L., and Farquhar, M. (1981), &quot;Sexual Activity and the Lifespan of 
+  Male Fruitflies,&quot; Nature, 294, 580-581.
+  
+  James A. Hanley &amp; Stanley H. Shapiro. Sexual Activity and the Lifespan of Male
+  Fruitflies: A Dataset That Gets Attention. Journal of Statistics Education
+  v.2, n.1 (1994)
+
+additional_description:
+  https://jse.amstat.org/datasets/fruitfly.txt
+
+download_url:
+  https://jse.amstat.org/datasets/fruitfly.dat.txt
+</code></pre>
+</section>
+<section id="listing-of-fruitfly.yaml-3" class="slide level2">
+<h2>Listing of fruitfly.yaml, 3</h2>
+<pre><code>
+format:
+  fixed width
+
+varnames: 
+  not included
+  
+missing_value_code:
+  not needed
+  
+size:   
+  rows: 125
+  columns: 6
+</code></pre>
+</section>
+<section id="listing-of-fruitfly.yaml-4" class="slide level2">
+<h2>Listing of fruitfly.yaml, 4</h2>
+<pre><code>
+vars:
+  id:
+    columns: 1-2
+    
+  partners:
+    columns: 4
+    label: Number of female partners
+    values: 0, 1, or 8
+</code></pre>
+</section>
+<section id="listing-of-fruitfly.yaml-5" class="slide level2">
+<h2>Listing of fruitfly.yaml, 5</h2>
+<pre><code>    
+  type:
+    columns: 6
+    label: Type of female fruitfly
+    values: 
+      0: newly pregnant female
+      1: virgin female
+      9: not applicable (when partners=0)
+
+  longevity:
+    columns: 8-9
+    label: Lifespan
+    unit: days
+    range: positive
+</code></pre>
+</section>
+<section id="listing-of-fruitfly.yaml-6" class="slide level2">
+<h2>Listing of fruitfly.yaml, 6</h2>
+<pre><code>    
+  thorax:
+    columns: 11-14
+    label: Length of thorax
+    unit: mm
+    range: positive
+  
+  sleep:
+    columns: 16-17
+    label: Percentage of each day sleeping
+    range: 0 to 100
+---</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-fruitfly.qmd-1" class="slide level2">
+<h2>Listing of simon-5501-12-fruitfly.qmd, 1</h2>
+<pre><code>---
+title: &quot;Analysis of fruitfly data&quot;
+format: 
+  html:
+    embed-resources: true
+---
+
+This program reads data on fruit fly longevity. Find more information in the [data dictionary][dd].
+
+[dd]: https://github.com/pmean/data/blob/master/files/fruitfly.yaml
+
+This code was written by Steve Simon on 2024-10-29 and is placed in the public domain.
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-fruitfly.qmd-2" class="slide level2">
+<h2>Listing of simon-5501-12-fruitfly.qmd, 2</h2>
+<pre><code>## Load the tidyverse library
+
+```{r setup}
+#| message: false
+#| warning: false
+library(broom)
+library(tidyverse)
+```
+
+For most of your programs, you should load the tidyverse library. The broom library converts your output to a nicely arranged dataframe. The messages and warnings are suppressed.
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-fruitfly.qmd-3" class="slide level2">
+<h2>Listing of simon-5501-12-fruitfly.qmd, 3</h2>
+<pre><code>## List the variable names
+
+```{r variable-list}
+vlist &lt;- c(
+  &quot;id&quot;,
+  &quot;partners&quot;,
+  &quot;type&quot;,
+  &quot;longevity&quot;,
+  &quot;thorax&quot;,
+  &quot;sleep&quot;)
+```
+
+When a dataset does not have variables on the first line, you need to specify them in the code.
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-fruitfly.qmd-4" class="slide level2">
+<h2>Listing of simon-5501-12-fruitfly.qmd, 4</h2>
+<pre><code>## Read the data and view a brief summary
+
+```{r read}
+fly &lt;- read_fwf(
+  &quot;../data/fruitfly.txt&quot;,
+  col_types=&quot;nnnnnn&quot;,
+  fwf_widths(
+    widths=c(2, 2, 2, 3, 5, 3),
+    col_names=vlist))
+glimpse(fly)
+```
+
+The fruitfly dataset has a fixed width format (fwf). You need to specify the columns that each variable uses.
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-fruitfly.qmd-5" class="slide level2">
+<h2>Listing of simon-5501-12-fruitfly.qmd, 5</h2>
+<pre><code>## Create a subset of fruitfly dataset
+
+```{r subset}
+fly |&gt;
+  filter(type != 9) -&gt; fly_subset
+```
+
+If you exclude the pure control group (No females), you can analyze the two
+factors, partners and type individually. Partners has two category levels, 1 for
+when one female was included in the cage and 8 for when eight females were 
+included in the cage. Type also has two category levels, 0 for pregnant female
+fly/flies and 1 for virgin fly/flies. A male fly will not mate with a pregnant
+females, so you can think of this as a second level of controls. The two factors
+are crossed, meaning that every possible combination of partners and type has 
+outcomes measured.
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-fruitfly.qmd-6" class="slide level2">
+<h2>Listing of simon-5501-12-fruitfly.qmd, 6</h2>
+<pre><code>## Draw boxplot of longevity by partners and type
+
+```{r boxplots-partners-type}
+#| fig.width: 6
+#| fig.height: 2.5
+fly_subset |&gt;
+  ggplot(aes(factor(partners), longevity, fill=factor(type))) +
+    geom_boxplot() +
+    xlab(&quot;Number of partners&quot;) +
+    ylab(&quot;Lifespan in days&quot;) +
+    ggtitle(&quot;Graphs drawn by Steve Simon on 2024-10-28&quot;) +
+    labs(fill=&quot;Female fly type&quot;) +
+    scale_fill_discrete(labels=c(&quot;Pregnant&quot;, &quot;Virgin&quot;)) +
+    coord_flip()
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-fruitfly.qmd-7" class="slide level2">
+<h2>Listing of simon-5501-12-fruitfly.qmd, 7</h2>
+<pre><code>## Calculate average longevity by partners and type
+
+```{r by-partners-and-type}
+#| message: false
+fly_subset |&gt;
+  group_by(partners, type) |&gt;
+  summarize(
+    longevity_mn=mean(longevity),
+    longevity_sd=sd(longevity),
+    n=n()) -&gt; fly_means
+fly_means
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-fruitfly.qmd-8" class="slide level2">
+<h2>Listing of simon-5501-12-fruitfly.qmd, 8</h2>
+<pre><code>## Draw line graph
+
+```{r line-graph}
+fly_means |&gt;
+  ggplot(aes(
+    factor(partners), 
+    longevity_mn, 
+    group=factor(type),
+    color=factor(type))) +
+    geom_line(size=2) +
+  xlab(&quot;Number of partners&quot;) +
+  ylab(&quot;Lifespan in days&quot;) +
+  labs(color=&quot;Female fly type&quot;) +
+  scale_color_discrete(labels=c(&quot;Pregnant&quot;, &quot;Virgin&quot;))
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-fruitfly.qmd-9" class="slide level2">
+<h2>Listing of simon-5501-12-fruitfly.qmd, 9</h2>
+<pre><code>## Interpretation of the interaction
+
+Male fruitflies sharing a cage with pregnant females have longer average lifespans than sharing a cage with virgin females. The difference in lifespans is much more extreme when sharing with eight female fruitflies compared to one female fruitfly.
+
+The line for pregnant (sharing a cage with pregnant females) is close to flat, indicating that there is little of the number of pregnant females on average longevity.
+
+## Analysis of variance including the interaction
+
+```{r anova-with-interaction}
+m1 &lt;- aov(longevity ~ factor(type)*factor(partners), data=fly_subset)
+anova(m1)
+```
+
+There is a statistically significant interaction between the number of female partners and the type of partners (pregnant or virgin).
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-fruitfly.qmd-10" class="slide level2">
+<h2>Listing of simon-5501-12-fruitfly.qmd, 10</h2>
+<pre><code>## Using lm, 1
+
+```{r lm-with-interactions-1}
+m2 &lt;- lm(longevity ~ factor(type)*factor(partners), data=fly_subset)
+anova(m2)
+```
+
+## Using lm, 2
+
+```{r lm-with-interactions-2}
+tidy(m2)
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-fruitfly.qmd-11" class="slide level2">
+<h2>Listing of simon-5501-12-fruitfly.qmd, 11</h2>
+<pre><code>## Save important files for later use
+
+```{r save}
+save(
+  fly,
+  fly_subset,
+  file=&quot;../data/fruitfly.RData&quot;)
+```</code></pre>
 </section>
 <section id="break-6" class="slide level2">
 <h2>Break #6</h2>
@@ -1551,21 +2081,63 @@ display:block!important;
 </ul></li>
 </ul>
 </section>
-<section id="programming-template" class="slide level2">
-<h2>Programming template</h2>
-<aside class="notes">
-<p>The</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+<section id="listing-of-simon-5501-12-directions.md-1" class="slide level2">
+<h2>Listing of simon-5501-12-directions.md, 1</h2>
+<pre><code>---
+title: &quot;Directions for 5501-12 programming assignment&quot;
+---
+
+This programming assignment was written by Steve Simon on 2024-10-08 and is placed in the public domain.
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-directions.md-2" class="slide level2">
+<h2>Listing of simon-5501-12-directions.md, 2</h2>
+<pre><code>## Program
+
+-   Download the [program][tem]
+    -   Store it in your src folder
+-   Modify the file name
+    -   Use your last name instead of &quot;simon&quot;
+-   Modify the documentation header
+    -   Add your name to the author field
+    -   Optional: change the copyright statement
+    
+[tem]: https://github.com/pmean/classes/blob/master/general/simon-5501-08-sway.md
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-directions.md-3" class="slide level2">
+<h2>Listing of simon-5501-12-directions.md, 3</h2>
+<pre><code>## Data
+
+-   Download the [data][dat] file
+    -   Store it in your data folder
+-   Refer to the [data dictionary][dic], if needed.
+
+[dat]: https://github.com/pmean/data/blob/main/files/postural-sway.txt
+[dic]: https://github.com/pmean/data/blob/main/files/postural-sway.yaml
+    
+## Question 1
+
+[To be added]
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-12-directions.md-4" class="slide level2">
+<h2>Listing of simon-5501-12-directions.md, 4</h2>
+<pre><code>## Your submission
+
+-   Save the output in html format
+-   Convert it to pdf format.
+-   Make sure that the pdf file includes
+    -   Your last name
+    -   The number of this course
+    -   The number of this module
+-   Upload the file
+
+## If it doesn&#39;t work
+
+Please review the [suggestions if you encounter an error page][sim3].
+
+[sim3]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md</code></pre>
 </section>
 <section id="summary" class="slide level2">
 <h2>Summary</h2>

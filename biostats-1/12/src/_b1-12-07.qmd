@@ -7,9 +7,15 @@ format:
 editor: source
 ---
 
-## Programming template
+```{r b1-12-07-setup}
+# message: false
+# warning: false
+library(tidyverse)
+load("../../../general/chopper.RData")
+```
 
-:::notes
-The
-:::
-  
+```{r b1-12-07-display-md}
+#| output: asis
+partition_qmd("simon-5501-12-directions.md") |>
+  cat(sep="\n")
+```

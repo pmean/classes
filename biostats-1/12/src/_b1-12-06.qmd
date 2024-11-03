@@ -7,9 +7,23 @@ format:
 editor: source
 ---
 
-## R code
+```{r 12-06-setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+load("../../../general/chopper.RData")
+```
 
-:::notes
-The
-:::
-  
+```{r 12-06-dictionary}
+#| output: asis
+partition_yaml("fruitfly.yaml") |>
+	cat(sep="\n")
+```
+
+```{r 12-06-display-qmd}
+#| output: asis
+partition_qmd("simon-5501-12-fruitfly.qmd") |>
+  cat(sep="\n")
+```
+
+

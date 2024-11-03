@@ -66,24 +66,28 @@ Here's a simple example where the first categorical predictor and the second cat
     -   $i=1,...,a,\ j=1,...,b$
     -   $\Sigma \alpha_i=0,\ \Sigma \beta_j=0$
     -   $\epsilon_{ijk}$ is $N(0,\sigma)$
--   $\bar{Y}_{i.} is the average for the ith level of first factor
--   $\bar{Y}_{.j} is the average for the jth level of second factor
--   $\bar{Y}_{..} is the average for all of the data
+-   $\bar{Y}_{i.}$ is the average for the ith level of first factor
+-   $\bar{Y}_{.j}$ is the average for the jth level of second factor
+-   $\bar{Y}_{..}$ is the average for all of the data
 
-:::note
+:::notes
 The mathematical model includes an overall mean ($\mu$), a deviation from the overall mean associated with the different levels of the first factor ($\alpha_i$), a deviation from the overall mean associated with the different levels of the second factor ($\beta_j$) and an error term ($\epsilon_{ijk}$).
 
 Because the alphas and betas are deviations, they have to sum to zero. The error term is assumed to be normally distributed and the standard deviation is the same for all the data.
 
-You will need to compute averages for the first factor, $\bar{Y}_{i.}$, the second factor, $\bar{Y}_{.j}$, and an overall mean, $\bar{Y}_{..}$ which is an average across all of the data.
+You will need to compute averages for the first factor, $\bar{Y}_{i..}$, the second factor, $\bar{Y}_{.j.}$, and an overall mean, $\bar{Y}_{...}$ which is an average across all of the data.
 :::
 
 ## Mathematical model, 4
 
--   $SS(Total)=\Sigma \Sigma \Sigma (Y_{ijk}-\bar{Y}_{..})^2$, df=abn-1
--   $SS(A)=\Sigma bn(\bar{Y}_{i.}-\bar{Y}_{..})^2$, df=a-1
--   $SS(B)=\Sigma an(\bar{Y}_{.j}-\bar{Y}_{..})^2$, df=b-1
--   $SS(Error)=SS(Total)-SS(A)-SS(B)$, df=(abn-1)-(a-1)-(b-1)
+-   $SS(Total)=\Sigma_i \Sigma_j \Sigma_k\ (Y_{ijk}-\bar{Y}_{...})^2$
+    -   df=abn-1
+-   $SS(A)=\Sigma_i\ bn(\bar{Y}_{i..}-\bar{Y}_{...})^2$
+    -   df=a-1
+-   $SS(B)=\Sigma_j\ an(\bar{Y}_{.j.}-\bar{Y}_{...})^2$
+    -   df=b-1
+-   $SS(Error)=SS(Total)-SS(A)-SS(B)$
+    -   df=(abn-1)-(a-1)-(b-1)
 
 :::notes
 To assess the impact of the two categorical predictors, you compute sums of squares. 
@@ -108,7 +112,9 @@ id <- c(1:12)
 
 hearing <- tibble(id, age, gender, code, db)
 hearing
+write_csv(hearing, file="../data/hearing.csv")
 ```
+
 ## Artificial data with means
 
 ```{r b1-12-01-means}
@@ -138,7 +144,7 @@ hearing_means |>
     geom_segment(size=1.5) +
     geom_label(size=4) +
     xlab(" ") + 
-    ylab("Decibels") +
+    ylab("Decibels perceived at 8000 Hz") +
     scale_color_manual(
       values=c("#FFC0CB", "lightblue", "#FE828C", "blue")) +
     scale_x_continuous(
@@ -169,7 +175,7 @@ hearing_means |>
     geom_segment(size=1.5) +
     geom_label(size=4) +
     xlab(" ") + 
-    ylab("Decibels") +
+    ylab("Decibels perceived at 8000 Hz") +
     scale_color_manual(
       values=c("#FFC0CB", "lightblue", "#FE828C", "blue")) +
     scale_x_continuous(
@@ -200,7 +206,7 @@ hearing_means |>
     geom_segment(size=1.5) +
     geom_label(size=4) +
     xlab(" ") + 
-    ylab("Decibels") +
+    ylab("Decibels perceived at 8000 Hz") +
     scale_color_manual(
       values=c("#FFC0CB", "lightblue", "#FE828C", "blue")) +
     scale_x_continuous(

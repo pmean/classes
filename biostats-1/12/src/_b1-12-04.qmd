@@ -7,9 +7,23 @@ format:
 editor: source
 ---
 
-## R code
+```{r 12-04-setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+load("../../../general/chopper.RData")
+```
 
-:::notes
-The
-:::
-  
+```{r 12-04-dictionary}
+#| output: asis
+partition_yaml("full-moon-er-admissions.yaml") |>
+	cat(sep="\n")
+```
+
+```{r 11-04-display-qmd}
+#| output: asis
+partition_qmd("simon-5501-12-moon.qmd") |>
+  cat(sep="\n")
+```
+
+
