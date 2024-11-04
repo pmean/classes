@@ -50,18 +50,10 @@ er$moon1 <- factor(
 er$month1 <- factor(
   er$month,
   levels=c(
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul"))
+    "Aug", "Sep", "Oct",
+    "Nov", "Dec", "Jan",
+    "Feb", "Mar", "Apr",
+    "May", "Jun", "Jul"))
 ```
 
 ## Draw boxplot of admission versus moon

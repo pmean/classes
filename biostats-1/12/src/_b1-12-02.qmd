@@ -12,6 +12,7 @@ editor: source
 ```{r b1-12-02-setup}
 #| message: false
 #| warning: false
+library(broom)
 library(tidyverse)
 hearing <- read_csv(
   "../data/hearing.csv",
@@ -36,7 +37,7 @@ You need k-1 indicators for a categorical predictor that has k levels. In this s
   
 ## Two factor analysis of variance using aov
 
-```{r b1-12-02-lm-1}
+```{r b1-12-02-aov}
 #| echo: true
 m1 <- aov(db ~ age + gender, data=hearing)
 anova(m1)
@@ -60,11 +61,11 @@ The analysis of variance table is identical when you use lm in place of aov.
 
 ## Two factor analysis of variance using linear regression, 2
 
-```{r b1-12-02-lm-1}
+```{r b1-12-02-lm-2}
 #| echo: true
 tidy(m2)
 ```
 
-:::note
+:::notes
 The intercept is the estimated db when both indicator variables equal zero. The first indicator, i_age, is the estimated average change in db when moving from female to male. The second indicator, i_gender, is the estimated average change in db when moving from old to young.
 :::
