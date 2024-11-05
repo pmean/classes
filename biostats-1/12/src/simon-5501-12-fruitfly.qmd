@@ -51,7 +51,12 @@ fly <- read_fwf(
 glimpse(fly)
 ```
 
-The fruitfly dataset has a fixed width format (fwf). You need to specify the columns that each variable uses.
+The fruitfly dataset has a fixed width format (fwf). You need to specify the
+columns that each variable uses.
+
+Notice that the two categorical variables, partners and type, are actually
+numbers rather than strings. To avoid having R treat these variables as if
+they were continuous, use the factor function in some of the code below.
 
 ## Create a subset of fruitfly dataset
 
@@ -85,18 +90,24 @@ fly_subset |>
     coord_flip()
 ```
 
+The lifespans tend to be quite a bit shorter in cages with 8 virgin females.
+There are no problems with the homogeneity and normality assumptions.
+
 ## Calculate average longevity by partners and type
 
 ```{r by-partners-and-type}
 #| message: false
 fly_subset |>
-  group_by(partners, type) |>
+  group_by(type, partners) |>
   summarize(
     longevity_mn=mean(longevity),
     longevity_sd=sd(longevity),
     n=n()) -> fly_means
 fly_means
 ```
+
+The means show the same pattern as noted above. The standard deviations are all
+roughly the same.
 
 ## Draw line graph
 
@@ -107,7 +118,8 @@ fly_means |>
     longevity_mn, 
     group=factor(type),
     color=factor(type))) +
-    geom_line(size=2) +
+    geom_line(linewidth=2) +
+	expand_limits(y=range(fly_subset$longevity)) +
   xlab("Number of partners") +
   ylab("Lifespan in days") +
   labs(color="Female fly type") +
@@ -116,37 +128,72 @@ fly_means |>
 
 ## Interpretation of the interaction
 
-Male fruitflies sharing a cage with pregnant females have longer average 
-lifespans than sharing a cage with virgin females. The difference in lifespans
-is much more extreme when sharing with eight female fruitflies compared to one
-female fruitfly.
+This plot shows strong evidence of an interaction.
+
+Male fruitflies do appear to have shorter average lifespans when sharing a cage with virgin females compared to pregnant females, but this effect is far stronger when the number of female fruitflies is eight rather than one.
 
 The line for pregnant (sharing a cage with pregnant females) is close to flat,
-indicating that there is little of the number of pregnant females on average
-longevity.
+indicating that there is little impact of the number of pregnant females on
+average longevity.
 
 ## Analysis of variance including the interaction
 
 ```{r anova-with-interaction}
-m1 <- aov(longevity ~ factor(type)*factor(partners), data=fly_subset)
+m1 <- aov(longevity ~ factor(partners)*factor(type), data=fly_subset)
 anova(m1)
 ```
 
 There is a statistically significant interaction between the number of female
-partners and the type of partners (pregnant or virgin).
+partners and the type of partners (pregnant or virgin). When you have an
+interaction, you do not normally interpret the individual categorical 
+predictors.
 
 ## Using lm, 1
 
 ```{r lm-with-interactions-1}
-m2 <- lm(longevity ~ factor(type)*factor(partners), data=fly_subset)
+m2 <- lm(longevity ~ factor(partners)*factor(type), data=fly_subset)
 anova(m2)
 ```
+
+The analysis of variance table is identical.
 
 ## Using lm, 2
 
 ```{r lm-with-interactions-2}
 tidy(m2)
 ```
+
+The lifespan of fruitflies in cages with 8 virgin females is 17 days shorter than what you would expect. If the effect of type and partners were independent, you'd expect to see a 9.4 (= 8.0 + 1.4) day decline on average. The interaction shows that this cage is actually 16.6 days worse than that on average.
+
+## Using lm, 3
+
+```{r add-coefficients}
+b <- coef(m2) 
+fly_means |>
+  mutate(b0=b[1]) |>
+  mutate(b1=b[2]) |>
+  mutate(b2=b[3]) |>
+  mutate(b3=b[4]) |>
+	select(-longevity_sd, -n) -> fly_coefficients
+fly_coefficients[1, 5:7] <- 0
+fly_coefficients[2, 6:7] <- 0
+fly_coefficients[3, c(5,7)] <- 0
+fly_coefficients
+```
+
+## Interpretation of this table
+
+This table is not needed for the data analysis, but is included to illustrate 
+how the regression coefficients are computed in a two factor analysis of 
+variance with an interaction.
+
+The intercept is the estimated average with both categories each to the "zero" level. In this case, the average lifespan of flies in a cage with one pregnant female.
+
+The first slope coefficient (b1) represents the estimated average difference in lifespan between eight pregnant females and one pregnant females.
+
+The second slope coefficient (b2) represents the estimated average difference in lifespan between one pregnant females and one virgin female.
+
+The third slope coefficient (b3) represents the interaction. It is a measure of how much shorter the average lifespan is with eight virgin females above and beyond the individual impact of eight versus one and virgin versus pregnant.
 
 ## Save important files for later use
 

@@ -14,7 +14,7 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
     -   Add your name to the author field
     -   Optional: change the copyright statement
     
-[tem]: https://github.com/pmean/classes/blob/master/general/simon-5501-08-sway.md
+[tem]: https://github.com/pmean/classes/blob/master/general/simon-5501-12-fruitfly.md
 
 ## Data
 
@@ -22,12 +22,37 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
     -   Store it in your data folder
 -   Refer to the [data dictionary][dic], if needed.
 
-[dat]: https://github.com/pmean/data/blob/main/files/postural-sway.txt
-[dic]: https://github.com/pmean/data/blob/main/files/postural-sway.yaml
+[dat]: https://github.com/pmean/data/blob/main/files/fruitfly.txt
+[dic]: https://github.com/pmean/data/blob/main/files/fruitfly.yaml
     
 ## Question 1
 
-[To be added]
+Create a subset of the fruitfly data by removing the age where type equals 9. 
+Draw a clustered boxplot with sleep as the outcome and partners and type as the
+categorical predictors. Interpret this graph. Is there evidence of 
+non-normality?
+
+## Question 2
+
+Calculate descriptive statistics for sleep (mean, standard deviation, and 
+sample size) by the combination of the two categorical predictors, partners and
+type. Is there evidence of heterogeneity?
+
+## Question 3
+
+Draw a line graph for the mean sleep levels compared by type and partners. Is
+there evidence of an interaction?
+
+## Question 4
+
+Analyze the sleep variable using a two factor analysis of variance with an 
+interaction. Present and interpret the analysis of variance table.
+
+## Question 5
+
+What factors might make you consider using a log transformation for the sleep 
+variable? Do not run such an analysis but tell us whether you think the data
+would warrant such a transformation?
 
 ## Your submission
 
