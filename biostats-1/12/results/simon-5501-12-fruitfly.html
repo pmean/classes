@@ -3109,7 +3109,10 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="comments-on-the-code" class="level4">
+<h4 class="anchored" data-anchor-id="comments-on-the-code">Comments on the code</h4>
 <p>For most of your programs, you should load the tidyverse library. The broom library converts your output to a nicely arranged dataframe. The messages and warnings are suppressed.</p>
+</section>
 </section>
 <section id="list-the-variable-names" class="level2">
 <h2 class="anchored" data-anchor-id="list-the-variable-names">List the variable names</h2>
@@ -3122,7 +3125,10 @@ vertical-align: -.125em;
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;thorax&quot;</span>,</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;sleep&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="comments-on-the-code-1" class="level4">
+<h4 class="anchored" data-anchor-id="comments-on-the-code-1">Comments on the code</h4>
 <p>When a dataset does not have variables on the first line, you need to specify them in the code.</p>
+</section>
 </section>
 <section id="read-the-data-and-view-a-brief-summary" class="level2">
 <h2 class="anchored" data-anchor-id="read-the-data-and-view-a-brief-summary">Read the data and view a brief summary</h2>
@@ -3145,8 +3151,11 @@ $ thorax    &lt;dbl&gt; 0.64, 0.68, 0.68, 0.72, 0.72, 0.76, 0.76, 0.76, 0.76, 0.
 $ sleep     &lt;dbl&gt; 22, 9, 49, 1, 23, 83, 23, 15, 9, 81, 12, 15, 37, 24, 26, 17,…</code></pre>
 </div>
 </div>
+<section id="comments-on-the-code-2" class="level4">
+<h4 class="anchored" data-anchor-id="comments-on-the-code-2">Comments on the code</h4>
 <p>The fruitfly dataset has a fixed width format (fwf). You need to specify the columns that each variable uses.</p>
 <p>Notice that the two categorical variables, partners and type, are actually numbers rather than strings. To avoid having R treat these variables as if they were continuous, use the factor function in some of the code below.</p>
+</section>
 </section>
 <section id="create-a-subset-of-fruitfly-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-subset-of-fruitfly-dataset">Create a subset of fruitfly dataset</h2>
@@ -3154,7 +3163,10 @@ $ sleep     &lt;dbl&gt; 22, 9, 49, 1, 23, 83, 23, 15, 9, 81, 12, 15, 37, 24, 26,
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fly <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">!=</span> <span class="dv">9</span>) <span class="ot">-&gt;</span> fly_subset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="comments-on-the-code-3" class="level4">
+<h4 class="anchored" data-anchor-id="comments-on-the-code-3">Comments on the code</h4>
 <p>If you exclude the pure control group (No females), you can analyze the two factors, partners and type individually. Partners has two category levels, 1 for when one female was included in the cage and 8 for when eight females were included in the cage. Type also has two category levels, 0 for pregnant female fly/flies and 1 for virgin fly/flies. A male fly will not mate with a pregnant females, so you can think of this as a second level of controls. The two factors are crossed, meaning that every possible combination of partners and type has outcomes measured.</p>
+</section>
 </section>
 <section id="draw-boxplot-of-longevity-by-partners-and-type" class="level2">
 <h2 class="anchored" data-anchor-id="draw-boxplot-of-longevity-by-partners-and-type">Draw boxplot of longevity by partners and type</h2>
@@ -3176,7 +3188,10 @@ $ sleep     &lt;dbl&gt; 22, 9, 49, 1, 23, 83, 23, 15, 9, 81, 12, 15, 37, 24, 26,
 </div>
 </div>
 </div>
+<section id="interpretation-of-the-output" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output">Interpretation of the output</h4>
 <p>The lifespans tend to be quite a bit shorter in cages with 8 virgin females. There are no problems with the homogeneity and normality assumptions.</p>
+</section>
 </section>
 <section id="calculate-average-longevity-by-partners-and-type" class="level2">
 <h2 class="anchored" data-anchor-id="calculate-average-longevity-by-partners-and-type">Calculate average longevity by partners and type</h2>
@@ -3199,7 +3214,10 @@ $ sleep     &lt;dbl&gt; 22, 9, 49, 1, 23, 83, 23, 15, 9, 81, 12, 15, 37, 24, 26,
 4     1        8         38.7         12.1    25</code></pre>
 </div>
 </div>
+<section id="interpretation-of-the-output-1" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-1">Interpretation of the output</h4>
 <p>The means show the same pattern as noted above. The standard deviations are all roughly the same.</p>
+</section>
 </section>
 <section id="draw-line-graph" class="level2">
 <h2 class="anchored" data-anchor-id="draw-line-graph">Draw line graph</h2>
@@ -3224,12 +3242,12 @@ $ sleep     &lt;dbl&gt; 22, 9, 49, 1, 23, 83, 23, 15, 9, 81, 12, 15, 37, 24, 26,
 </div>
 </div>
 </div>
-</section>
-<section id="interpretation-of-the-interaction" class="level2">
-<h2 class="anchored" data-anchor-id="interpretation-of-the-interaction">Interpretation of the interaction</h2>
+<section id="interpretation-of-the-output-2" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-2">Interpretation of the output</h4>
 <p>This plot shows strong evidence of an interaction.</p>
 <p>Male fruitflies do appear to have shorter average lifespans when sharing a cage with virgin females compared to pregnant females, but this effect is far stronger when the number of female fruitflies is eight rather than one.</p>
 <p>The line for pregnant (sharing a cage with pregnant females) is close to flat, indicating that there is little impact of the number of pregnant females on average longevity.</p>
+</section>
 </section>
 <section id="analysis-of-variance-including-the-interaction" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-of-variance-including-the-interaction">Analysis of variance including the interaction</h2>
@@ -3249,7 +3267,10 @@ Residuals                     96 19817.4   206.4
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
 </div>
+<section id="interpretation-of-the-output-3" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-3">Interpretation of the output</h4>
 <p>There is a statistically significant interaction between the number of female partners and the type of partners (pregnant or virgin). When you have an interaction, you do not normally interpret the individual categorical predictors.</p>
+</section>
 </section>
 <section id="using-lm-1" class="level2">
 <h2 class="anchored" data-anchor-id="using-lm-1">Using lm, 1</h2>
@@ -3269,7 +3290,10 @@ Residuals                     96 19817.4   206.4
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
 </div>
-<p>The analysis of variance table is identical.</p>
+<section id="interpretation-of-the-output-4" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-4">Interpretation of the output</h4>
+<p>The analysis of variance table is identical when using lm instead of aov.</p>
+</section>
 </section>
 <section id="using-lm-2" class="level2">
 <h2 class="anchored" data-anchor-id="using-lm-2">Using lm, 2</h2>
@@ -3285,7 +3309,10 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 4 factor(partners)8:factor(type)1   -16.6       5.75    -2.89  4.79e- 3</code></pre>
 </div>
 </div>
+<section id="interpretation-of-the-output-5" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-5">Interpretation of the output</h4>
 <p>The lifespan of fruitflies in cages with 8 virgin females is 17 days shorter than what you would expect. If the effect of type and partners were independent, you’d expect to see a 9.4 (= 8.0 + 1.4) day decline on average. The interaction shows that this cage is actually 16.6 days worse than that on average.</p>
+</section>
 </section>
 <section id="using-lm-3" class="level2">
 <h2 class="anchored" data-anchor-id="using-lm-3">Using lm, 3</h2>
@@ -3312,11 +3339,15 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 4     1        8         38.7  64.8 -1.44 -8.04 -16.6</code></pre>
 </div>
 </div>
+<section id="comments-on-the-code-4" class="level4">
+<h4 class="anchored" data-anchor-id="comments-on-the-code-4">Comments on the code</h4>
+<p>The coef function takes the intercept and slopes from a linear regression model and stores them in a vector. The mutate command adds the individual intercept and slopes to separate columns. Finally, place zeros in places where the various slopes are not needed.</p>
 </section>
-<section id="interpretation-of-this-table" class="level2">
-<h2 class="anchored" data-anchor-id="interpretation-of-this-table">Interpretation of this table</h2>
+</section>
+<section id="interpretation-of-the-output-6" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation-of-the-output-6">Interpretation of the output</h2>
 <p>This table is not needed for the data analysis, but is included to illustrate how the regression coefficients are computed in a two factor analysis of variance with an interaction.</p>
-<p>The intercept is the estimated average with both categories each to the “zero” level. In this case, the average lifespan of flies in a cage with one pregnant female.</p>
+<p>The intercept is the estimated average with both categories each to the “zero” or reference level. In this case, the average lifespan of flies in a cage with one pregnant female.</p>
 <p>The first slope coefficient (b1) represents the estimated average difference in lifespan between eight pregnant females and one pregnant females.</p>
 <p>The second slope coefficient (b2) represents the estimated average difference in lifespan between one pregnant females and one virgin female.</p>
 <p>The third slope coefficient (b3) represents the interaction. It is a measure of how much shorter the average lifespan is with eight virgin females above and beyond the individual impact of eight versus one and virgin versus pregnant.</p>
@@ -3329,6 +3360,10 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  fly_subset,</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">&quot;../data/fruitfly.RData&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="comments-on-the-code-5" class="level4">
+<h4 class="anchored" data-anchor-id="comments-on-the-code-5">Comments on the code</h4>
+<p>It is always good form to save the important pieces of your data analysis that might be re-used sometime later.</p>
+</section>
 </section>
 
 </main>

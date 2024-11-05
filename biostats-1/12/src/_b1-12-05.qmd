@@ -7,6 +7,8 @@ format:
 editor: source
 ---
 
+
+
 ## What is an interaction
 
 -   Impact of one variable is influenced by a second variable
@@ -27,7 +29,7 @@ Interactions are important to look for, but if you find one, don't rejoice. Inte
 -   Separate lines for second categorical variable
 -   Y axis, average outcome
 
-```{r b1-12-05-setup}
+```{r b1-12-05-setup-1}
 library(tidyverse)
 
 draw_lines <- function(y,
@@ -196,7 +198,32 @@ draw_lines(c( 59, 78, 8,  53))
 In this final plot, the lines are not parallel, indicating a third type of interaction. The slope is much steeper for boys. Girls see a moderate improvement on average, but boys see a really large improvement.
 :::
 
-## Test
+## Indicator variable for an interaction
+
+```{r b1-12-05-setup-2}
+#| message: false
+#| warning: false
+library(broom)
+library(tidyverse)
+hearing <- read_csv(
+  "../data/hearing.csv",
+  col_types="ncccn",
+  col_names=TRUE)
+hearing |>
+  mutate(i_young=as.numeric(age=="young")) |>
+  mutate(i_male=as.numeric(gender=="male")) |>
+  mutate(i_m_by_y=i_young*i_male) |>
+  select(
+    age,
+    gender,
+    code,
+    i_young,
+    i_male,
+    i_m_by_y,
+    db)
+```
+
+## Interpretation of intercept and slopes
 
 ```{r b1-12-05-lines-8}
 a <- arrow(length=unit(0.2, 'cm'), ends="both")
@@ -222,60 +249,6 @@ draw_lines(c(b0+b2, b0+b1+b2+b3, b0, b0+b1)) +
 ```
 
 
-## Box plots of exercise data
-
-::: notes
-Here is a clustered boxplot of weight loss in a study of two exercise interventions: jogging and swimming, and a control intervention, reading. This study shows a clear interaction between gender and exercise. Both jogging and swimming provide greater weight loss than reading (no big surprise). Swimming appears to be better than jogging. But it is a lot better for females and only a little bit better for males.
-:::
-
-## Mean values for the interaction
-
-::: notes
-In this table of means, notice that men lose about 11 pounds on the jogging program, and 22 pounds on the swimming program. So swimming is better. For women, the losses are about 4 pounds on average with jogging and 30 pounds on swimming. The extra benefits of swimming are so much larger in females than in males.
-:::
-
-## Analysis of variance table for interaction model
-
-::: notes
-The analysis of variance table shows a large F ratio for the interaction between exercise program and sex.
-:::
-
-## Parameter estimates for the interaction model
-
-::: notes
-The intercept is the estimated average weight loss when all the indicator variables are equal to zero. That means the two reference categories: females for gender and reading for the exercise group. If you join a book club expect to gain more than three pounds.
-
-The estimate for female=0 is the how much different the weight loss is in the reading group when you change gender from female to male. It's a small change and not statistically significant. 
-
-The estimate for group=1 measures how much difference you see in the average weight loss in the jogging program compared to the reading program in the reference category (female). There is almost an 8 pound difference and this is statistically significant.
-
-The estimate for group=2 measures how much difference you see in the average weight loss in the swimming program compared to the reading program in the reference category (female). There is an astounding 32 plus pound difference between swimming and reading, but again for the reference category of females.
-
-The estimate for female=0*prog=1 shows how much different the benefit of jogging over reading is for men compared to women. Men did pretty well on the jogging program, losing 11 pounds instead of gaining more than 3 pounds. This is more impressive than for women who lost 4 pounds instead of gaining 3. 
-
-The estimate for female=0*prog=2 shows how much different the benefit of swimming is for men than for women. Both groups are better off swimming than reading, men losing 22 pounds versus a 3 pound gain. But the falls short of the benefit of swimming over reading for women a 29 pound loss versus a 3 pound gain.
-
-Both of the parameters associated with the interaction are statistically significant.
-
-Bottom line is that the benefits of jogging over reading and the benefits of swimming over reading are not the same for men and women.
-:::
-
-## Interaction plot, 1 of 2
-
-::: notes
-An interaction plot draws a multiple lines connecting means. In this graph the top line shows the mean weight loss in the swimming program with the men's mean on the left and the women's mean on the right. The middle line shows the mean weight loss in the jogging program, again with the men's mean on the left and the women's on the right. The bottom line shows the mean weight loss (actually a weight gain!) in the reading program. Clearly the swimming program is the best, a bit better for women than men because the line slopes upward. The jogging program is second best, a bit worse for women than for men. The reading program is worst and the benefit, if you could call it that being about the same for men and women (the lines are flat).
-
-It is a lack of parallelism that is the hallmark of an interaction.
-:::
-
-## Interaction plot, 2 of 2
-
-::: notes
-You could draw the interaction plot differently with a line for women (red) and a line for men (blue). The interpretation is about the same, perhaps, but the emphasis is different. The superior weight loss for men in the jogging program and the superior weight loss for women in the swimming program is emphasized by the crossing lines. Both the men's and womens lines almost touching for the reading program emphasizes the equivalent results for the two genders.
-
-Which plot is better? I like the first one, but would not complain if you liked the second one better. It depends on what story you want to emphasize. The first graph emphasizes the difference between the diets a bit more strongly and the second emphasizes the differences between the genders a bit more strongly.
-:::
-
 ## When you can't estimate an interaction
 
 -   Special case, n=1
@@ -289,11 +262,22 @@ It's sort of like that old joke I told about married life (it's okay but you los
 
 ## Example, full moon study, 1 of 2
 
+```{r}
+load("../data/full-moon-er-admissions.RData")
+count(er, month1, moon1)
+```
+
 ::: notes
 Here is an example where you only have one observation for each combination of categories. 
 :::
 
 ## Example, full moon study, 2 of 2
+
+```{r}
+#| echo: true
+m1 <- aov(admission ~ month*moon, data=er)
+anova(m1)
+```
 
 ::: notes
 You lose two degrees of freedom for moon (3 phases: before, during, and after). You lose 11 degrees of freedom for month (12 months -1). The interaction has 2 times 11 or 22 degrees of freedom. You only started with 35 degrees of freedom. Subtract 2, 11, and 22, and you are left with zero degrees of freedom for error.
