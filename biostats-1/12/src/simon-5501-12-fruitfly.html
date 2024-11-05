@@ -3251,13 +3251,83 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <p>There is a statistically significant interaction between the number of female partners and the type of partners (pregnant or virgin). When you have an interaction, you do not normally interpret the individual categorical predictors.</p>
 </section>
+<section id="using-lm-1" class="level2">
+<h2 class="anchored" data-anchor-id="using-lm-1">Using lm, 1</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(longevity <span class="sc">~</span> <span class="fu">factor</span>(partners)<span class="sc">*</span><span class="fu">factor</span>(type), <span class="at">data=</span>fly_subset)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: longevity
+                              Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+factor(partners)               1  2371.7  2371.7  11.489  0.001017 ** 
+factor(type)                   1  6674.9  6674.9  32.335 1.397e-07 ***
+factor(partners):factor(type)  1  1722.3  1722.3   8.343  0.004785 ** 
+Residuals                     96 19817.4   206.4                      
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+</div>
+<p>The analysis of variance table is identical.</p>
+</section>
+<section id="using-lm-2" class="level2">
+<h2 class="anchored" data-anchor-id="using-lm-2">Using lm, 2</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  term                            estimate std.error statistic  p.value
+  &lt;chr&gt;                              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)                        64.8       2.87    22.6   3.87e-40
+2 factor(partners)8                  -1.44      4.06    -0.354 7.24e- 1
+3 factor(type)1                      -8.04      4.06    -1.98  5.07e- 2
+4 factor(partners)8:factor(type)1   -16.6       5.75    -2.89  4.79e- 3</code></pre>
+</div>
+</div>
+<p>The lifespan of fruitflies in cages with 8 virgin females is 17 days shorter than what you would expect. If the effect of type and partners were independent, you’d expect to see a 9.4 (= 8.0 + 1.4) day decline on average. The interaction shows that this cage is actually 16.6 days worse than that on average.</p>
+</section>
+<section id="using-lm-3" class="level2">
+<h2 class="anchored" data-anchor-id="using-lm-3">Using lm, 3</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">coef</span>(m2) </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>fly_means <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">b0=</span>b[<span class="dv">1</span>]) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">b1=</span>b[<span class="dv">2</span>]) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">b2=</span>b[<span class="dv">3</span>]) <span class="sc">|&gt;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">b3=</span>b[<span class="dv">4</span>]) <span class="sc">|&gt;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>longevity_sd, <span class="sc">-</span>n) <span class="ot">-&gt;</span> fly_coefficients</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>fly_coefficients[<span class="dv">1</span>, <span class="dv">5</span><span class="sc">:</span><span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>fly_coefficients[<span class="dv">2</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">7</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>fly_coefficients[<span class="dv">3</span>, <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">7</span>)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>fly_coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 7
+# Groups:   type [2]
+   type partners longevity_mn    b0    b1    b2    b3
+  &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     0        1         64.8  64.8  0     0      0  
+2     0        8         63.4  64.8 -1.44  0      0  
+3     1        1         56.8  64.8  0    -8.04   0  
+4     1        8         38.7  64.8 -1.44 -8.04 -16.6</code></pre>
+</div>
+</div>
+</section>
+<section id="interpretation-of-this-table" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation-of-this-table">Interpretation of this table</h2>
+<p>This table is not needed for the data analysis, but is included to illustrate how the regression coefficients are computed in a two factor analysis of variance with an interaction.</p>
+<p>The intercept is the estimated average with both categories each to the “zero” level. In this case, the average lifespan of flies in a cage with one pregnant female.</p>
+<p>The first slope coefficient (b1) represents the estimated average difference in lifespan between eight pregnant females and one pregnant females.</p>
+<p>The second slope coefficient (b2) represents the estimated average difference in lifespan between one pregnant females and one virgin female.</p>
+<p>The third slope coefficient (b3) represents the interaction. It is a measure of how much shorter the average lifespan is with eight virgin females above and beyond the individual impact of eight versus one and virgin versus pregnant.</p>
+</section>
 <section id="save-important-files-for-later-use" class="level2">
 <h2 class="anchored" data-anchor-id="save-important-files-for-later-use">Save important files for later use</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  fly,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  fly_subset,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">&quot;../data/fruitfly.RData&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  fly,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  fly_subset,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">&quot;../data/fruitfly.RData&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 
