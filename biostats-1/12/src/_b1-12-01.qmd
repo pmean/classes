@@ -66,9 +66,9 @@ Here's a simple example where the first categorical predictor and the second cat
     -   $i=1,...,a,\ j=1,...,b$
     -   $\Sigma \alpha_i=0,\ \Sigma \beta_j=0$
     -   $\epsilon_{ijk}$ is $N(0,\sigma)$
--   $\bar{Y}_{i.}$ is the average for the ith level of first factor
--   $\bar{Y}_{.j}$ is the average for the jth level of second factor
--   $\bar{Y}_{..}$ is the average for all of the data
+-   $\bar{Y}_{i..}$ is the average for the ith level of first factor
+-   $\bar{Y}_{.j.}$ is the average for the jth level of second factor
+-   $\bar{Y}_{...}$ is the average for all of the data
 
 :::notes
 The mathematical model includes an overall mean ($\mu$), a deviation from the overall mean associated with the different levels of the first factor ($\alpha_i$), a deviation from the overall mean associated with the different levels of the second factor ($\beta_j$) and an error term ($\epsilon_{ijk}$).

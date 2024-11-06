@@ -5,13 +5,13 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "Counting"
-  topic_02: "Mean and median"
-  topic_03: "Percentiles"
-  topic_04: "Standard deviation"
-  topic_05: "Normality"
-  topic_06: "TBA 1"
-  topic_07: "Program template"
+  topic_01: "The two by two crosstabulaton"
+  topic_02: "Test of equality of two proportions"
+  topic_03: "R code"
+  topic_04: "Odds ratio and relative risk"
+  topic_05: "Chi-square test of independence"
+  topic_06: "R code"
+  topic_07: "Your homework"
 editor: source
 ---
 
@@ -30,7 +30,7 @@ editor: source
     -   `r params$topic_06`
     -   `r params$topic_07`
 
-{{< include _02-01.qmd >}}
+{{< include_b1-13-01.qmd >}}
 
 ## Break #1
 
@@ -39,7 +39,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_02`
 
-{{< include _02-02.qmd >}}
+{{< include_b1-13-02.qmd >}}
 
 ## Break #2
 
@@ -48,7 +48,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_03`
 
-{{< include _02-03.qmd >}}
+{{< include_b1-13-03.qmd >}}
 
 ## Break #3
 
@@ -57,7 +57,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_04`
 
-{{< include _02-04.qmd >}}
+{{< include_b1-13-04.qmd >}}
 
 ## Break #4
 
@@ -66,7 +66,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_05`
 
-{{< include _02-05.qmd >}}
+{{< include_b1-13-05.qmd >}}
 
 ## Break #5
 
@@ -75,7 +75,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_06`
 
-{{< include _02-06.qmd >}}
+{{< include_b1-13-06.qmd >}}
 
 ## Break #6
 
@@ -84,10 +84,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_07`
 
-{{< include _02-07.qmd >}}
-
-{{< include _01-07.qmd >}}
-
+{{< include_b1-13-07.qmd >}}
 
 ## Summary
 -   What you have learned
