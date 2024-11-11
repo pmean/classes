@@ -1,0 +1,57 @@
+---
+title: "Analysis of Titanic dataset"
+format: 
+  html:
+    embed-resources: true
+---
+
+This program reads data on survival of passengers on the Titanic. Find more information in the [data dictionary][dd].
+
+[dd]: https://github.com/pmean/data/blob/main/files/titanic.yaml
+
+This code was written by Steve Simon on 2024-11-09 and is placed in the public domain.
+
+## Load the tidyverse library
+
+For most of your programs, you should load the tidyverse library. The messages and warnings are suppressed.
+
+```{r setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+```
+
+## Read the data and view a brief summary
+
+Use the read_csv function to read the data. The glimpse function will produce a brief summary.
+
+```{r read}
+ti <- read_tsv(
+  file="../data/titanic.txt",
+  col_names=TRUE,
+  col_types="ccncn",
+  na="NA")
+names(ti) <- tolower(names(ti))
+glimpse(ti)
+```
+
+## Get counts of sex by survival
+
+```{r counts}
+ti |>
+  count(sex, survived) |>
+  pivot_wider(
+    names_from="survived",
+    names_prefix="survived_",
+    values_from="n")
+```
+
+
+## Save data for later use
+
+```{r save}
+write_csv(ti, file="../data/titanic.csv")
+save(ti, file="../data/titanic.RData")
+```
+
+
