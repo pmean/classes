@@ -5,27 +5,40 @@ format:
     embed-resources: true
 ---
 
-This program reads data on survival of passengers on the Titanic. Find more information in the [data dictionary][dd].
+This program reads data on survival of passengers on the Titanic. Find more
+information in the [data dictionary][dd].
 
 [dd]: https://github.com/pmean/data/blob/main/files/titanic.yaml
 
-This code was written by Steve Simon on 2024-11-09 and is placed in the public domain.
+This code was written by Steve Simon on 2024-11-09 and is placed in the public
+domain.
 
 ## Load the tidyverse library
 
-For most of your programs, you should load the tidyverse library. The messages and warnings are suppressed.
-
-```{r setup}
+```{r}
+#| label: setup
 #| message: false
 #| warning: false
+library(broom)
+library(epitools)
 library(tidyverse)
 ```
 
+#### Comments on the code
+
+For most of your programs, you should load the [tidyverse library][tid1]. The messages and warnings are suppressed.
+
+[tid1]: https://www.tidyverse.org/
+
+In previous programs, I put a label for each chunk inside the curly braces ({}).
+It is recommended instead to put the label on a separate line inside the program
+chunk. It is a bit more work to provide a unique label for each chunk, but it
+helps quite a bit to isolate where to look when your code produces an error.
+
 ## Read the data and view a brief summary
 
-Use the read_csv function to read the data. The glimpse function will produce a brief summary.
-
-```{r read}
+```{r}
+#| label: read
 ti <- read_tsv(
   file="../data/titanic.txt",
   col_names=TRUE,
@@ -35,23 +48,145 @@ names(ti) <- tolower(names(ti))
 glimpse(ti)
 ```
 
-## Get counts of sex by survival
+#### Comments on the code
 
-```{r counts}
-ti |>
-  count(sex, survived) |>
-  pivot_wider(
-    names_from="survived",
-    names_prefix="survived_",
-    values_from="n")
+Use read_tsv from the [readr package][rea1] to  read this file. Use 
+col_names=TRUE because the column names are included as the first row of the 
+file. The col_types="ccncn" specifies the first second and fourth columns as
+strings and the third and fifth as numeric. There are missing values in this
+dataset, designated by the letters "NA".
+
+[rea1]: https://readr.tidyverse.org/
+
+## Replace numeric codes for survived
+
+```{r}
+#| label: replace-numbers
+ti$survived <-
+	factor(
+		ti$survived,
+		level=1:0,
+		labels=c("yes", "no"))
 ```
 
+## Get counts of sex by survival
+
+```{r}
+#| label: counts
+table1 <-xtabs(~sex+survived, data=ti)
+table1
+```
+
+#### Comments on the code
+
+The [table function][tab1] or the [xtabs function][xta1] creates a matrix with the number of observations in each combination of sex and survived. These values are placed in a single column. The [xtabs function][xta1] or the [count function][cou1] provide slightly different approaches.
+
+[cou1]: https://dplyr.tidyverse.org/reference/count.html
+[tab1]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/table.html
+[xta1]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/xtabs.html
+
+#### Interpretation of the output
+
+There are 154 female passengers who died and 308 who survived. There are 709 male passengers who died and 142 who survived.
+
+## Get proportions for died/survived by sex
+
+```{r}
+#| label: proportions
+table1 |>
+  proportions("sex")
+```
+
+#### Comments on the code
+
+The [proportions function][pro1] calculate proportions for a matrix, either by row (margin=1), by column (margin=2) or across all cells (margin=NULL).
+
+[pro1]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/proportions.html
+
+#### Interpretation of the output
+
+The proportion of women who died is 33%. The proportion of men who died is much higher at 83%.
+
+## Bar chart
+
+```{r}
+#| label: bar
+ti |>
+  ggplot() +
+    aes(x = sex, fill = survived) +
+    geom_bar(position = "fill") +
+	  xlab("Sex") +
+	  ylab("Proportion") +
+	  ggtitle("Graph drawn by Steve Simon on 2024-11-11")
+```
+
+## Hypothesis test for two proportions
+
+```{r}
+#| label: equality-of-proportions
+prop.test(table1, correct=FALSE)
+```
+
+#### Comments on the code
+
+The [prop.test function][pro2] does not work on raw data. You need to get summary counts, either from the table function or the xtabs function.
+
+[pro2]: https://search.r-project.org/R/refmans/stats/html/prop.test.html
+
+#### Interpretation of the output. 
+
+The Chi-squared statistic is much larger than the degrees of freedom and the
+p-value is small. So you would reject the null hypothesis and conclude that 
+there is a statistically significant difference in the mortality rates between
+men and women on the Titanic. The 95% confidence interval for the difference
+in proportions is -0.55 to -0.45. This interval excludes the value of zero and
+indicates that the mortality rate is at least 45% lower and possibly as much as
+55% lower for men.
+
+## Power calculation
+
+```{r}
+#| label: power
+power.prop.test(p1=0.33, p2=0.83, power=0.9)
+```
+
+## Chi-squared test
+
+```{r}
+#| label: chi-square-test
+chisq.test(table1)
+```
+
+## Fisher's Exact test
+
+```{r}
+#| label: fishers-exact
+fisher.test(table1)
+```
+
+## Odds ratio calculation
+
+```{r}
+#| label: odds-ratio
+oddsratio(table1)
+```
+
+## Risk ratio calculation
+
+```{r}
+#| label: risk-ratio
+riskratio(table1)
+```
 
 ## Save data for later use
 
 ```{r save}
-write_csv(ti, file="../data/titanic.csv")
 save(ti, file="../data/titanic.RData")
 ```
 
+#### Comments on the code
+
+It is usually a good idea to save your data in an RData file to make it easier to retrieve this data later (with the load function).
+
+#### Interpretation of the output
 
