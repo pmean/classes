@@ -1239,6 +1239,208 @@ vars:
       0: no
 ---</code></pre>
 </section>
+<section id="the-crosstabulation-of-two-binary-variables" class="slide level2">
+<h2>The crosstabulation of two binary variables</h2>
+<pre><code>            Variable2 
+             0   1
+Variable1 0 n00 n10
+          1 n01 n11</code></pre>
+<aside class="notes">
+<p>One of the most common tables you will see in Statistics is the 2 by 2 crosstabulation. This table shows the counts associated with the combination of the levels of the two binary variables. There are only four numbers in this table, but there are numerous statistics that you can use to summarize what’s going on in this table.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</section>
+<section id="example-titanic-data" class="slide level2">
+<h2>Example: Titanic data</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>        survived
+sex      yes  no
+  female 308 154
+  male   142 709</code></pre>
+</div>
+</div>
+<aside class="notes">
+<p>This is an example of a crosstabulation.The number in the upper left corner, 308, represents the number of female passengers who survived (did not die). This includes Kate Winslet. The number in the lower right corner, 709, represents then number of male passengers who did not survive. This includes, sad to say, Leonardo diCaprio.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</section>
+<section id="multiple-ways-to-display-1" class="slide level2">
+<h2>Multiple ways to display, 1</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Original table</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>        survived
+sex      yes  no
+  female 308 154
+  male   142 709</code></pre>
+</div>
+</div>
+<ul>
+<li>Swap rows</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>        survived
+sex      yes  no
+  male   142 709
+  female 308 154</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Swap columns</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>        survived
+sex       no yes
+  female 154 308
+  male   709 142</code></pre>
+</div>
+</div>
+<ul>
+<li>Swab both</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>        survived
+sex       no yes
+  male   709 142
+  female 154 308</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="multiple-ways-to-display-2" class="slide level2">
+<h2>Multiple ways to display, 2</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Transposed</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>        sex
+survived female male
+     yes    308  142
+     no     154  709</code></pre>
+</div>
+</div>
+<ul>
+<li>Transposed, swap rows</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>        sex
+survived female male
+     no     154  709
+     yes    308  142</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Transposed, swap columns</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>        sex
+survived male female
+     yes  142    308
+     no   709    154</code></pre>
+</div>
+</div>
+<ul>
+<li>Transposed, swab both</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>        sex
+survived male female
+     no   709    154
+     yes  142    308</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="row-column-and-cell-percents" class="slide level2">
+<h2>Row, column, and cell percents</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Original table with totals</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>        survived
+sex      yes  no Sum
+  female 308 154 462
+  male   142 709 851</code></pre>
+</div>
+</div>
+<ul>
+<li>Column percents</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>        survived
+sex            yes        no
+  female 0.6844444 0.1784473
+  male   0.3155556 0.8215527
+  Sum    1.0000000 1.0000000</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Row percents</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>        survived
+sex            yes        no       Sum
+  female 0.6666667 0.3333333 1.0000000
+  male   0.1668625 0.8331375 1.0000000</code></pre>
+</div>
+</div>
+<ul>
+<li>Cell percents</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>        survived
+sex            yes        no       Sum
+  female 0.2345773 0.1172887 0.3518660
+  male   0.1081493 0.5399848 0.6481340
+  Sum    0.3427266 0.6572734 1.0000000</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="break-1" class="slide level2">
 <h2>Break #1</h2>
 <ul>
@@ -1430,11 +1632,7 @@ display:block!important;
 <li>Your homework</li>
 </ul></li>
 </ul>
-<!---
-      You have to put the title down 
-      here to override the titles of
-      all the include files.
---->
+<!---Put the title down here to override the include files.--->
 <div class="footer footer-default">
 
 </div>
