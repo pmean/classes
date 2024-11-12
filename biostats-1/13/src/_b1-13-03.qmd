@@ -39,6 +39,30 @@ The elements that you need when you have a categorical outcome change a bit. Ins
     -   Treatment adds experimental weight loss drug
     -   Binary event, losing at least 5 pounds after 6 months
 -   Hypothesis proportion is higher in treatment group than control
--   Proportion in control group is 15%
--   Need to see at least 10% more events in treatment group
+-   Proportion in control group is 10%
+-   Need to see at least 5% more events in treatment group
 
+## Hypothetical scenario, 2
+
+-   Set power to 90%
+-   Set Type I error rate (alpha) to 5%
+
+```{r}
+#| label: power
+#| echo: true
+power.prop.test(
+	p1=0.10, 
+	p2=0.15, 
+	power=0.9,
+	sig.level=0.05)
+```
+
+## Rule of 50 
+
+-   Want to detect a doubling or halving
+-   Need 25 to 50 events in each group
+-   Example
+    -   Control probability is 0.1
+    -   Want to see 20% in treatment group
+    -   25/0.1 = 250; 50/0.1 = 500
+    

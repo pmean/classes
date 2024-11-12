@@ -51,11 +51,6 @@ Test the hypothesis that the survival probability is different for third class
 passengers and the other passengers. Interpret the p-value and confidence 
 interval.
 
-## Question 4
-
-Calculate the odds ratio and confidence interval for this comparison. Interpret
-the interval.
-
 ## Your submission
 
 -   Save the output in html format
