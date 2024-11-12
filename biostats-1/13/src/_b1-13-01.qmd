@@ -7,9 +7,39 @@ format:
 editor: source
 ---
 
-## Titanic data
+```{r}
+#| label: 13-01-dictionary
+#| output: asis
+#| message: false
+#| warning: false
+library(tidyverse)
+load("../../../general/chopper.RData")
+partition_yaml("titanic.yaml") |>
+	cat(sep="\n")
+```
+
+## The crosstabulation of two binary variables
+
+```{}
+            Variable2 
+             0   1
+Variable1 0 n00 n10
+          1 n01 n11
+```
 
 :::notes
-The
+One of the most common tables you will see in Statistics is the 2 by 2 crosstabulation. This table shows the counts associated with the combination of the levels of the two binary variables. There are only four numbers in this table, but there are numerous statistics that you can use to summarize what's going on in this table.
 :::
-  
+
+## Example: Titanic data
+
+```{r}
+load("../data/titanic.RData")
+table1 <- xtabs(~sex+survived, data=ti)
+table1
+```
+
+:::notes
+This is an example of a crosstabulation.The number in the upper left corner, 308, represents the number of female passengers who survived (did not die). This includes Kate Winslet. The number in the lower right corner, 709, represents then number of male passengers who did not survive. This includes, sad to say, Leonardo diCaprio.
+:::
+
