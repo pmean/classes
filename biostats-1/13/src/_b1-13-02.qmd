@@ -7,17 +7,168 @@ format:
 editor: source
 ---
 
-## Two proportions model
+## The binomial distribution
 
--   $H_0:\ \pi_1 = \pi_2$
--   $H_1:\ \pi_1 \ne \pi_2$
--   $T = \frac{p_1-p_2}{se}
-    -   $se=\sqrt()
+-   You have n trials of an "experiment"
+-   Two outcomes, "success" or "failure"
+-   $\pi$ is probability of success
+-   Each trial is independent
+
+## Example, creating a family of three children, 1
+
+-   You have 3 trials (pregnancies)
+-   Two outcomes, girl (success) or boy (failure)
+-   $\pi$ = 0.5 is probability of success
+-   Each child is independent
+
+## Example, creating a family of three children, 2
+
+-   Eight possible outcomes
+    -   X=0, BBB
+    -   X=1, BBG, BGB, GBB
+    -   X=2, BGG, GBG, GGB
+    -   X=3, GGG
+    
+## Example, creating a family of three children, 3
+
+```{r}
+#| label: 13-02-setup
+#| message: false
+#| warning: false
+library(tidyverse)
+```
+
+```{r}
+#| label: 13-02-binomial-graph-1
+x <- 0:3
+y <- dbinom(0:3, 3, 0.5)
+data.frame(x, y) |>
+  ggplot() +
+    aes(x, y) +
+    geom_col(
+      color="black",
+      fill="white") +
+  scale_y_continuous(breaks=(1:3)/8) +
+  xlab("Binomial(n=3, pi=0.5)") +
+  ylab("Probability") +
+  ggtitle("Graph drawn by Steve Simon on 2024-11-12")
+```
+
+## Example, Binomial(n=10, pi=0.2)
+
+```{r}
+#| label: 13-02-binomial-graph-2
+x <- 0:10
+y <- dbinom(0:10, 10, 0.2)
+data.frame(x, y) |>
+  ggplot() +
+    aes(x, y) +
+    geom_col(
+      color="black",
+      fill="white") +
+  xlab("Binomial(n=10, pi=0.2)") +
+  ylab("Probability") +
+  scale_x_continuous(
+    breaks=0:10, 
+    minor_breaks=NULL) +
+  ggtitle("Graph drawn by Steve Simon on 2024-11-12")
+```
+
+
+## Two proportions model, 1
+
+-   Scenario 1
+    -   $X_1$ is a random binomial($n_1$, $pi_1$)
+    -   $X_2$ is a random binomial($n_2$, $pi_2$)
+    -   $X_1$ and $X_2$ are independent
+
+## Two proportions model, 2
+
+-   Scenario 2
+    -   Sample $X_{11}, X_{12}, ..., X_{1n_1}$
+    -   Sample $X_{21}, X_{22}, ..., X_{2n_2}$
+    -   Only possible values are 0, 1
+    -   $P[X_{1i}=1]=\pi_1$, $P[X_{2i}=1]=\pi_2$
+
+## Two proportions model, 3
+
+-   $H_0:\ \pi_1 - \pi_2 = 0$
+-   $H_1:\ \pi_1 - \pi_2 \ne 0$
+
+## Two proportions model, 4
+
+-   $T = \frac{p_1-p_2}{se}$
+    -   $se=\sqrt{\bar{p}(1-\bar{p}(\frac{1}{n_1}+\frac{1}{n_2})}$
+    -   $\bar{p}=\frac{n_1p_1+n_2p_2}{n_1+n_2}
 -   Accept $H_0$ if T is close to zero.
     -   $if z(\alpha/2) < T < z(1-\alpha/2)$
 
+## Two proportions model, 5
+
+-   p-value = $2P[Z >|T|]
+-   Accept $H_0$ if p-value > $\alpha$
+
 :::notes
-The
+You can also compute a p-value which is the probability of observing the test statistic, T, or a value more extreme.
 :::
+
+## Some variations of the test statistic, 1
+
+-   Yates continuity correction
+    -   $T = \frac{p_1-p_2 + c}{se}$
+    -   Formula for c is messy
+    -   Net effect is to pull T closer to zero
+    -   Better to meet the normal approximation
+
+## Some variations of the test statistic, 2
+
+-   Chi-squared test
+    -   $T = \Big(\frac{p_1-p_2}{se}\Big)^2$
+    -   Accept $H_0$ if T < $\chi^2(1-\alpha, df=1)$
+    -   p-value = $P[\chi^2(df=1) > T]$
+    -   Does not allow for easy test of one-sided hypothesis
+-   Chi-squared test with Yates continuity correction
+    -   $T = \Big(\frac{p_1-p_2 + c}{se}\Big)^2$
+
+## One-sided test, 1
+
+-   $H_0:\ \pi_1 - \pi_2 = 0$
+-   $H_1:\ \pi_1 - \pi_2 > 0$
+    -   Accept $H_0$ if T < $z(1-\alpha)$
+    -   p-value = $P[Z > T]$
+    -   Accept $H_0$ if p-value > $\alpha$
+
+## One-sided test, 2
+
+-   $H_0:\ \pi_1 - \pi_2 = 0$
+-   $H_1:\ \pi_1 - \pi_2 < 0$
+    -   Accept $H_0$ if T > $z(\alpha)$
+    -   p-value = $P[Z < T]$
+    -   Accept $H_0$ if p-value > $\alpha$
+
+## Two sample test of proportions with Titanic data, 1
+
+```{r}
+#| label: 13-02-titanic-1
+load("../data/titanic.RData")
+table1 <- xtabs(~sex+survived, data=ti)
+table1
+```
+
+## Two sample test of proportions with Titanic data, 2
+
+```{r}
+#| label: 13-02-titanic-2
+prop.table(table1, margin=1)
+```
+
+## Two sample test of proportions with Titanic data, 3
+
+```{r}
+#| label: 13-02-titanic-3
+prop.test(
+  table1, 
+  correct=FALSE)
+```
   
 ## Don't forget to do a sample size calculaton!!!

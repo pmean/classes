@@ -124,14 +124,17 @@ ti |>
 
 ```{r}
 #| label: equality-of-proportions
-prop.test(table1, correct=FALSE)
+prop.test(
+  table1, 
+  correct=FALSE)
 ```
 
 #### Comments on the code
 
-The [prop.test function][pro2] does not work on raw data. You need to get summary counts, either from the table function or the xtabs function.
+The [prop.test function][pro2] does not work on raw data. You need to get summary counts, either from the table function or the xtabs function. The option correct=FALSE informs R to not use the [Yates continuity correction][yat1].
 
 [pro2]: https://search.r-project.org/R/refmans/stats/html/prop.test.html
+[yat1]: https://www.statskingdom.com/121proportion_normal2.html
 
 #### Interpretation of the output. 
 

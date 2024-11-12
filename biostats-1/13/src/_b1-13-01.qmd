@@ -36,6 +36,7 @@ One of the most common tables you will see in Statistics is the 2 by 2 crosstabu
 -   Crosstabulation
 
 ```{r}
+#| label: 13-01-crosstabulaton-1
 load("../data/titanic.RData")
 table1 <- xtabs(~sex+survived, data=ti)
 table1
@@ -52,12 +53,14 @@ This is an example of a crosstabulation.The number in the upper left corner, 308
 -   Crosstabulation
 
 ```{r}
+#| label: 13-01-crosstabulation-2
 table1
 ```
 
 -   Swap rows
 
 ```{r}
+#| label: 13-01-crosstabulation-3
 table1[2:1, ]
 ```
 :::
@@ -65,12 +68,14 @@ table1[2:1, ]
 -   Swap columns
 
 ```{r}
+#| label: 13-01-crosstabulation-4
 table1[ , 2:1]
 ```
 
 -   Swab both
 
 ```{r}
+#| label: 13-01-crosstabulation-5
 table1[2:1, 2:1]
 ```
 :::
@@ -87,6 +92,7 @@ The cross tabulation changes when you swap the rows, the columns, or both.
 -   Transposed
 
 ```{r}
+#| label: 13-01-crosstabulation-6
 table2 <- t(table1)
 table2
 ```
@@ -94,6 +100,7 @@ table2
 -   Transposed, swap rows
 
 ```{r}
+#| label: 13-01-crosstabulation-7
 table2[2:1, ]
 ```
 
@@ -102,12 +109,14 @@ table2[2:1, ]
 -   Transposed, swap columns
 
 ```{r}
+#| label: 13-01-crosstabulation-8
 table2[ , 2:1]
 ```
 
 -   Transposed, swab both
 
 ```{r}
+#| label: 13-01-crosstabulation-9
 table2[2:1, 2:1]
 ```
 :::
@@ -124,12 +133,14 @@ You can get four more tables by transposing the matrix. What was the rows become
 -   Crosstabulation with row totals
 
 ```{r}
+#| label: 13-01-add-row-margins
 addmargins(table1, margin=2)
 ```
 
 -  Row percents
 
 ```{r}
+#| label: 13-01-row-percents
 table1 |>
   prop.table(margin=1) |>
   addmargins(margin=2)
@@ -141,12 +152,14 @@ table1 |>
 -   Cross tabulation with column totals
 
 ```{r}
+#| label: 13-01-add-column-margins
 addmargins(table1, margin=1)
 ```
 
 -  Column percents
 
 ```{r}
+#| label: 13-01-column-percents
 table1 |>
   prop.table(margin=2) |>
   addmargins(margin=1)
@@ -163,6 +176,7 @@ The column percents are computed by dividing by the column totals. They add up t
 -   Cell totals
 
 ```{r}
+#| label: 13-01-add-both-margins
 table1 |>
   addmargins()
 ```
@@ -170,6 +184,7 @@ table1 |>
 -   Cell percents
 
 ```{r}
+#| label: 13-01-cell-percents
 table1 |>
   prop.table() |>
   addmargins()
@@ -183,6 +198,7 @@ table1 |>
 -   Calculate row percentages
 
 ```{r}
+#| label: 13-01-recommendation
 table1 |>
   prop.table(margin=1)
 ```
