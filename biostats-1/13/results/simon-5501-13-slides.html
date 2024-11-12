@@ -1330,10 +1330,10 @@ display:block!important;
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   survived
-sex yes  no
-  0 312 290
-  1 138 573</code></pre>
+<pre><code>        survived
+sex      yes  no
+  female 308 154
+  male   142 709</code></pre>
 </div>
 </div>
 <aside class="notes">
@@ -1359,10 +1359,10 @@ display:block!important;
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   survived
-sex yes  no
-  0 312 290
-  1 138 573</code></pre>
+<pre><code>        survived
+sex      yes  no
+  female 308 154
+  male   142 709</code></pre>
 </div>
 </div>
 <ul>
@@ -1370,10 +1370,10 @@ sex yes  no
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   survived
-sex yes  no
-  1 138 573
-  0 312 290</code></pre>
+<pre><code>        survived
+sex      yes  no
+  male   142 709
+  female 308 154</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -1382,10 +1382,10 @@ sex yes  no
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   survived
-sex  no yes
-  0 290 312
-  1 573 138</code></pre>
+<pre><code>        survived
+sex       no yes
+  female 154 308
+  male   709 142</code></pre>
 </div>
 </div>
 <ul>
@@ -1393,10 +1393,10 @@ sex  no yes
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   survived
-sex  no yes
-  1 573 138
-  0 290 312</code></pre>
+<pre><code>        survived
+sex       no yes
+  male   709 142
+  female 154 308</code></pre>
 </div>
 </div>
 </div></div>
@@ -1424,9 +1424,9 @@ display:block!important;
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>        sex
-survived   0   1
-     yes 312 138
-     no  290 573</code></pre>
+survived female male
+     yes    308  142
+     no     154  709</code></pre>
 </div>
 </div>
 <ul>
@@ -1435,9 +1435,9 @@ survived   0   1
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>        sex
-survived   0   1
-     no  290 573
-     yes 312 138</code></pre>
+survived female male
+     no     154  709
+     yes    308  142</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -1447,9 +1447,9 @@ survived   0   1
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>        sex
-survived   1   0
-     yes 138 312
-     no  573 290</code></pre>
+survived male female
+     yes  142    308
+     no   709    154</code></pre>
 </div>
 </div>
 <ul>
@@ -1458,9 +1458,9 @@ survived   1   0
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>        sex
-survived   1   0
-     no  573 290
-     yes 138 312</code></pre>
+survived male female
+     no   709    154
+     yes  142    308</code></pre>
 </div>
 </div>
 </div></div>
@@ -1487,10 +1487,10 @@ display:block!important;
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   survived
-sex yes  no Sum
-  0 312 290 602
-  1 138 573 711</code></pre>
+<pre><code>        survived
+sex      yes  no Sum
+  female 308 154 462
+  male   142 709 851</code></pre>
 </div>
 </div>
 <ul>
@@ -1498,10 +1498,10 @@ sex yes  no Sum
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   survived
-sex       yes        no       Sum
-  0 0.5182724 0.4817276 1.0000000
-  1 0.1940928 0.8059072 1.0000000</code></pre>
+<pre><code>        survived
+sex            yes        no       Sum
+  female 0.6666667 0.3333333 1.0000000
+  male   0.1668625 0.8331375 1.0000000</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -1510,11 +1510,11 @@ sex       yes        no       Sum
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>     survived
-sex   yes  no
-  0   312 290
-  1   138 573
-  Sum 450 863</code></pre>
+<pre><code>        survived
+sex      yes  no
+  female 308 154
+  male   142 709
+  Sum    450 863</code></pre>
 </div>
 </div>
 <ul>
@@ -1522,11 +1522,11 @@ sex   yes  no
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>     survived
-sex         yes        no
-  0   0.6933333 0.3360371
-  1   0.3066667 0.6639629
-  Sum 1.0000000 1.0000000</code></pre>
+<pre><code>        survived
+sex            yes        no
+  female 0.6844444 0.1784473
+  male   0.3155556 0.8215527
+  Sum    1.0000000 1.0000000</code></pre>
 </div>
 </div>
 </div></div>
@@ -1551,11 +1551,11 @@ display:block!important;
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>     survived
-sex    yes   no  Sum
-  0    312  290  602
-  1    138  573  711
-  Sum  450  863 1313</code></pre>
+<pre><code>        survived
+sex       yes   no  Sum
+  female  308  154  462
+  male    142  709  851
+  Sum     450  863 1313</code></pre>
 </div>
 </div>
 <ul>
@@ -1563,11 +1563,11 @@ sex    yes   no  Sum
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>     survived
-sex         yes        no       Sum
-  0   0.2376238 0.2208682 0.4584920
-  1   0.1051028 0.4364052 0.5415080
-  Sum 0.3427266 0.6572734 1.0000000</code></pre>
+<pre><code>        survived
+sex            yes        no       Sum
+  female 0.2345773 0.1172887 0.3518660
+  male   0.1081493 0.5399848 0.6481340
+  Sum    0.3427266 0.6572734 1.0000000</code></pre>
 </div>
 </div>
 </section>
@@ -1580,10 +1580,10 @@ sex         yes        no       Sum
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   survived
-sex       yes        no
-  0 0.5182724 0.4817276
-  1 0.1940928 0.8059072</code></pre>
+<pre><code>        survived
+sex            yes        no
+  female 0.6666667 0.3333333
+  male   0.1668625 0.8331375</code></pre>
 </div>
 </div>
 <aside class="notes">
@@ -1816,10 +1816,10 @@ display:block!important;
 <h2>Two sample test of proportions with Titanic data, 1</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   survived
-sex yes  no
-  0 312 290
-  1 138 573</code></pre>
+<pre><code>        survived
+sex      yes  no
+  female 308 154
+  male   142 709</code></pre>
 </div>
 </div>
 </section>
@@ -1827,10 +1827,10 @@ sex yes  no
 <h2>Two sample test of proportions with Titanic data, 2</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>   survived
-sex       yes        no
-  0 0.5182724 0.4817276
-  1 0.1940928 0.8059072</code></pre>
+<pre><code>        survived
+sex            yes        no
+  female 0.6666667 0.3333333
+  male   0.1668625 0.8331375</code></pre>
 </div>
 </div>
 </section>
@@ -1842,13 +1842,13 @@ sex       yes        no
     2-sample test for equality of proportions without continuity correction
 
 data:  table1
-X-squared = 152.08, df = 1, p-value &lt; 2.2e-16
+X-squared = 332.06, df = 1, p-value &lt; 2.2e-16
 alternative hypothesis: two.sided
 95 percent confidence interval:
- 0.2748006 0.3735586
+ 0.4500519 0.5495564
 sample estimates:
    prop 1    prop 2 
-0.5182724 0.1940928 </code></pre>
+0.6666667 0.1668625 </code></pre>
 </div>
 </div>
 </section>
