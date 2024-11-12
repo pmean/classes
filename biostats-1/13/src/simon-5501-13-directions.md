@@ -32,7 +32,7 @@ third class or not. The code would look like this.
 
 ```{}
 ti$third_class <- 
-  case-when(
+  case_when(
     ti$pclass == "1st" ~ "no",
     ti$pclass == "2nd" ~ "no",
     ti$pclass == "3rd" ~ "yes")
