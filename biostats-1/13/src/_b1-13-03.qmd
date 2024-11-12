@@ -1,5 +1,5 @@
 ---
-title: "13-03, R code"
+title: "13-03, Sample size calculations"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,38 @@ format:
 editor: source
 ---
 
-## R code
+## What you need for a continuous outcome
+
+-   Research hypothesis
+-   Standard deviation of your outcome measure
+-   Minimum clinically important difference
+-   Other details
+    -   Type I error rate (usually 0.05)
+    -   Power (usually 0.90)
 
 :::notes
-The
+In an earlier lecture, you saw that a sample size calculation needed three major elements, a research hypothesis, a standard deviation, and the minimum clinically important difference.
+
+That's not all, but the Type I error rate or alpha is usually fixed at 0.05. Power is usually fixed at 0.9. You might go a bit lower, but don't go much lower than 0.8 for power. It might be okay from your perspective, but power around 0.75 or less is considered a red flag by those who might examine your research (IRB members, granting agencies, journal peer reviewers).
 :::
   
+## What you need for a categorical outcome
+
+-   Research hypothesis
+-   Expected proportion in the control group
+-   Minimum clinically important difference
+
+:::notes
+The elements that you need when you have a categorical outcome change a bit. Instead of a standard deviation, you need to specify the expected proportion of events in the control group.
+:::
+
+## Hypothetical scenario, 1
+
+-   Weight loss study
+    -   Control is recommended diet and exercise routine
+    -   Treatment adds experimental weight loss drug
+    -   Binary event, losing at least 5 pounds after 6 months
+-   Hypothesis proportion is higher in treatment group than control
+-   Proportion in control group is 15%
+-   Need to see at least 10% more events in treatment group
+

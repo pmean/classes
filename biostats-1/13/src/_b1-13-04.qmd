@@ -7,9 +7,10 @@ format:
 editor: source
 ---
 
-## Titanic revisited
+```{r 13-04-display-qmd}
+#| output: asis
+partition_qmd("simon-5501-13-titanic.qmd") |>
+  cat(sep="\n")
+```
 
-:::notes
-The
-:::
-  
+

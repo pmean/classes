@@ -124,9 +124,7 @@ ti |>
 
 ```{r}
 #| label: equality-of-proportions
-prop.test(
-  table1, 
-  correct=FALSE)
+prop.test(table1, correct=FALSE)
 ```
 
 #### Comments on the code
@@ -150,15 +148,50 @@ indicates that the mortality rate is at least 45% lower and possibly as much as
 
 ```{r}
 #| label: power
-power.prop.test(p1=0.33, p2=0.83, power=0.9)
+power.prop.test(p1=0.17, p2=0.67, power=0.9)
 ```
+
+#### Comments on the code
+
+The [power.prop.test][pow1] function will compute a sample size if you specify 
+the two group probabilities, the significance level, and the power. It will also
+do other calculations, such as the minimum difference in probabilities that you
+could detect for a specific sample size and a specific power.
+
+[pow1]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/power.prop.test.html
+
+#### Interpretation of the output
+
+Clearly, a sample size of 1,313 passengers provided more than enough power and
+precision, especially considering that the difference in survival rates was so
+large. Out of curiosity, what sample size would still be adequate for testing a
+shift of 50% from a survival rate of 17% to a survival rate of 67%? If you 
+wanted power to be at least 90%, then a sample size of only 19 passengers of 
+each sex would be needed.
 
 ## Chi-squared test
 
 ```{r}
 #| label: chi-square-test
-chisq.test(table1)
+chisq.test(table1, correct=FALSE)
 ```
+
+#### Comments on the code
+
+The [chisq.test function][chi1] calculates a chi-square test of independence. It
+takes input in a variety of forms. In this example, it uses a crosstabulation
+computed by the xtabs command as input.
+
+This function also will run a goodness-of-fit test, which is not discussed in 
+this lecture.
+
+[chi1]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/chisq.test.html
+
+#### Interpretation of the output
+
+The chi-squared statistic is much larger than the degrees of freedom and the
+p-value is small. You should reject the null hypothesis and conclude that sex
+and survival are related (not independent)
 
 ## Fisher's Exact test
 
@@ -167,6 +200,23 @@ chisq.test(table1)
 fisher.test(table1)
 ```
 
+#### Comments on the code
+
+The [fisher.test function][fis1] calculates the Fisher's exact test, which is
+helpful for small sample sizes. The 1,313 passengers on the Titanic do not
+constitute a small sample size by any means. This test is just shown as an 
+example of how to calculate this test. 
+
+[fis1]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/fisher.test.html
+
+#### Interpretation of the output
+
+The p-value is small. You should reject the null hypothesis and conclude that 
+sex and survival are related (not independent). The estimated odds ratio is 
+9.97. The confidence interval for the odds ratio excludes the value of 1 
+leading to the same conclusion. In fact, even after allowing for sampling error
+that odds of survival are at least 7.6 times greater for women than for me.
+
 ## Odds ratio calculation
 
 ```{r}
@@ -174,12 +224,57 @@ fisher.test(table1)
 oddsratio(table1)
 ```
 
-## Risk ratio calculation
+#### Comments on the code
+
+The oddsratio function and riskratio function (see below) are part of the 
+[epitools library][epi1]. It produces an odds ratio and confidence interval 
+and p-values associated with the Fisher's Exact test and the Chi-squared test of
+independence.
+
+[epi1]: https://cran.r-project.org/web/packages/epitools/epitools.pdf
+
+#### Interpretation of the output
+
+We are 95% confident that the odds ratio of survival for women versus men is at
+least 7.7 and possibly as large as 13, after accounting for sampling error. 
+This interval excludes the value of 1, so you can conclude that the risk of 
+death is much higher for men than for women. Equivalently you could conclude 
+that the odds of survival are much higher for women than for men.
+
+## Risk ratio calculation, 1
 
 ```{r}
-#| label: risk-ratio
+#| label: risk-ratio-1
+table1 |>
+  proportions("sex")
+```
+
+#### Interpretation of the output
+
+Before calculating the risk ratio, let's look at the row percentages one more 
+time. The probability of survival is around 2/3 for women and about 1/6 for men. This means that the risk ratio from a survival perspective is around 4 (2/3 divided by 1/6). The probability of death is 1/3 for females and about 5/6 for males. The risk ratio from a mortality perspective is 0.4 (1/3 divided by 5/6)
+
+## Risk ratio calculation, 2
+
+```{r}
+#| label: risk-ratio-2
 riskratio(table1)
 ```
+
+#### Interpretation of the output
+
+The risk ratio is comparing the probability of death between men and women. Men have 2.5 times higher probability of death compared to women. The confidence interval excludes the value of 1, indicating a statistically significant increase.
+
+## Risk ratio calculation, 3
+
+```{r}
+#| label: risk-ratio-3
+riskratio(table1, rev="columns")
+```
+
+#### Interpretation of the output
+
+The risk ratio is comparing the probability of survival between men and women. Men has one-fourth the probability of survival compared to women. The confidence interval excludes the value of 1, indicating that men have a statistically significantly lower probability of survival compared to women. 
 
 ## Save data for later use
 
@@ -189,7 +284,8 @@ save(ti, file="../data/titanic.RData")
 
 #### Comments on the code
 
-It is usually a good idea to save your data in an RData file to make it easier to retrieve this data later (with the load function).
+It is usually a good idea to [save][sav1] your data in an RData file to make it
+easier to retrieve this data later (with the [load function][loa1]).
 
-#### Interpretation of the output
-
+[sav1]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html
+[loa1]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html
