@@ -28,7 +28,7 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
 ## Question 1
 
 Create a new variable, third_class that indicates whether a passenger is in 
-third class or not. The code would look like this.
+third class or not. The code would look something like this.
 
 ```{}
 ti$third_class <- 
