@@ -1,0 +1,32 @@
+---
+title: "14-02, Chi-squared test of independence"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Conditional probability
+
+-   $P[A|B] = P[A \cap B]$
+
+## What does independence mean?
+
+-   P[Bad outcome | Treated] = P[Bad outcome] or
+-   P[Bad outcome | Placebo] = P[Bad outcome] or
+-   P[Good outcome | Treated] = P[Good outcome] or
+-   P[Good outcome | Placebo] = P[Good outcome]
+
+## Expected counts
+
+## Test statistic
+
+## Decision rule
+
+## Fisher's Exact Test
+
+## Calculations behind Fisher's Exact Test
+
+## Criticism of Fisher's Exact Test
+

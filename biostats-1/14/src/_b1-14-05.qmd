@@ -1,5 +1,5 @@
 ---
-title: "13-05, Chi-squared test"
+title: "14-05, R code"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,9 @@ format:
 editor: source
 ---
 
-```{r 13-05-display-md}
+```{r 14-05-display-qmd}
 #| output: asis
-partition_qmd("simon-5501-13-directions.qmd") |>
+partition_qmd("simon-5501-13-titanic.qmd") |>
   cat(sep="\n")
 ```
 
