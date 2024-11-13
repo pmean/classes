@@ -9,6 +9,6 @@ editor: source
 
 ```{r 14-03-display-qmd}
 #| output: asis
-partition_qmd("simon-5501-13-titanic.qmd") |>
+partition_qmd("simon-5501-14-titanic.qmd") |>
   cat(sep="\n")
 ```

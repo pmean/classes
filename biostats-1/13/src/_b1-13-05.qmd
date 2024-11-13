@@ -9,7 +9,7 @@ editor: source
 
 ```{r 13-05-display-md}
 #| output: asis
-partition_qmd("simon-5501-13-directions.qmd") |>
+partition_qmd("simon-5501-13-directions.md") |>
   cat(sep="\n")
 ```
 
