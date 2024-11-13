@@ -113,8 +113,8 @@ data.frame(x, y) |>
 ## Two proportions model, 1
 
 -   Scenario 1
-    -   $X_1$ is a random binomial($n_1$, $pi_1$)
-    -   $X_2$ is a random binomial($n_2$, $pi_2$)
+    -   $X_1$ is a random binomial($n_1, \pi_1$)
+    -   $X_2$ is a random binomial($n_2, \pi_2$)
     -   $X_1$ and $X_2$ are independent
 
 ## Two proportions model, 2
@@ -133,7 +133,7 @@ data.frame(x, y) |>
 ## Two proportions model, 4
 
 -   $T = \frac{p_1-p_2}{se}$
-    -   $se=\sqrt{\bar{p}(1-\bar{p}(\frac{1}{n_1}+\frac{1}{n_2})}$
+    -   $se=\sqrt{\bar{p}(1-\bar{p})(\frac{1}{n_1}+\frac{1}{n_2})}$
     -   $\bar{p}=\frac{n_1p_1+n_2p_2}{n_1+n_2}$
 -   Accept $H_0$ if T is close to zero.
     -   If $Z(\alpha/2) < T < Z(1-\alpha/2)$

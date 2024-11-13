@@ -6,9 +6,9 @@ format:
 ---
 
 This program reads data on survival of passengers on the Titanic. Find more
-information in the [data dictionary][web00].
+information in the [data dictionary][dd].
 
-[web00]: https://github.com/pmean/data/blob/main/files/titanic.yaml
+[dd]: https://github.com/pmean/data/blob/main/files/titanic.yaml
 
 This code was written by Steve Simon on 2024-11-09 and is placed in the public
 domain.
@@ -26,9 +26,9 @@ library(tidyverse)
 
 #### Comments on the code
 
-For most of your programs, you should load the [tidyverse library][web01]. The messages and warnings are suppressed.
+For most of your programs, you should load the [tidyverse library][tid1]. The messages and warnings are suppressed.
 
-[web01]: https://www.tidyverse.org/
+[tid1]: https://www.tidyverse.org/
 
 In previous programs, I put a label for each chunk inside the curly braces ({}).
 It is recommended instead to put the label on a separate line inside the program
@@ -50,13 +50,13 @@ glimpse(ti)
 
 #### Comments on the code
 
-Use read_tsv from the [readr package][web02] to  read this file. Use 
+Use read_tsv from the [readr package][rea1] to  read this file. Use 
 col_names=TRUE because the column names are included as the first row of the 
 file. The col_types="ccncn" specifies the first second and fourth columns as
 strings and the third and fifth as numeric. There are missing values in this
 dataset, designated by the letters "NA".
 
-[web02]: https://readr.tidyverse.org/
+[rea1]: https://readr.tidyverse.org/
 
 ## Replace numeric codes for survived
 
@@ -69,13 +69,6 @@ ti$survived <-
 		labels=c("yes", "no"))
 ```
 
-#### Comments on the code
-
-The [factor function][web03] places the levels of a categorical variable in a specific order and (optionally) attaches labels to each level. In this code, the
-number codes are reordered so that 1 appears first followed by 0. The labels "yes" and "no" are attached to these two codes.
-
-[web03]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/factor.html
-
 ## Get counts of sex by survival
 
 ```{r}
@@ -86,11 +79,11 @@ table1
 
 #### Comments on the code
 
-The [table function][web04] or the [xtabs function][web05] creates a matrix with the number of observations in each combination of sex and survived. The [count function][web06] provides an alternative where these values are placed in a single column. 
+The [table function][tab1] or the [xtabs function][xta1] creates a matrix with the number of observations in each combination of sex and survived. These values are placed in a single column. The [xtabs function][xta1] or the [count function][cou1] provide slightly different approaches.
 
-[web04]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/table.html
-[web05]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/xtabs.html
-[web06]: https://dplyr.tidyverse.org/reference/count.html
+[cou1]: https://dplyr.tidyverse.org/reference/count.html
+[tab1]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/table.html
+[xta1]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/xtabs.html
 
 #### Interpretation of the output
 
@@ -106,7 +99,7 @@ table1 |>
 
 #### Comments on the code
 
-The [proportions function][pro1] calculate proportions for a matrix, either by row (margin=1), by column (margin=2) or across all cells (margin=NULL). This code shows an alternative where you specify which variable to summarize across. The line proportions("sex") tells R to compute totals for each level of sex and divide by those totals. In this case, since sex represents the rows of table1, R produces row percentages. This syntax is easier to remember than margin=1 and margin=2.
+The [proportions function][pro1] calculate proportions for a matrix, either by row (margin=1), by column (margin=2) or across all cells (margin=NULL).
 
 [pro1]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/proportions.html
 
@@ -126,12 +119,6 @@ ti |>
 	  ylab("Proportion") +
 	  ggtitle("Graph drawn by Steve Simon on 2024-11-11")
 ```
-
-#### Comments on the code
-
-#### Interpretation of the output
-
-I am not a big fan of bar charts, but they are quite popular. This bar chart shows a large disparity in the proportion who survived in each sex (the upper portion of the bar in peach). Equivalently, you can say that there is a large disparity in the proportion who died in each sex (the lower portion of the bar in green-blue). 
 
 ## Hypothesis test for two proportions
 
