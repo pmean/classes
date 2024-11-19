@@ -93,6 +93,7 @@ There are 154 female passengers who died and 308 who survived. There are 709 mal
 ```{r}
 #| label: chi-squared-test-1
 m1 <- chisq.test(table1, correct=FALSE)
+m1
 ```
 
 #### Comments on the code
@@ -116,7 +117,7 @@ and survival are related (not independent)
 
 ```{r}
 #| label: chi-squared-test-2
-m1$oberved
+m1$observed
 ```
 
 ## Chi-squared test, 3
