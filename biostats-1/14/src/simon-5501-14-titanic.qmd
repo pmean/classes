@@ -25,7 +25,8 @@ library(tidyverse)
 
 #### Comments on the code
 
-For most of your programs, you should load the [tidyverse library][tid1]. The messages and warnings are suppressed.
+For most of your programs, you should load the [tidyverse library][tid1]. The 
+messages and warnings are suppressed.
 
 [tid1]: https://www.tidyverse.org/
 
@@ -78,7 +79,10 @@ table1
 
 #### Comments on the code
 
-The [table function][tab1] or the [xtabs function][xta1] creates a matrix with the number of observations in each combination of sex and survived. These values are placed in a single column. The [xtabs function][xta1] or the [count function][cou1] provide slightly different approaches.
+The [table function][tab1] or the [xtabs function][xta1] creates a matrix with 
+the number of observations in each combination of sex and survived. These 
+values are placed in a single column. The [xtabs function][xta1] or the
+[count function][cou1] provide slightly different approaches.
 
 [cou1]: https://dplyr.tidyverse.org/reference/count.html
 [tab1]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/table.html
@@ -86,7 +90,8 @@ The [table function][tab1] or the [xtabs function][xta1] creates a matrix with t
 
 #### Interpretation of the output
 
-There are 154 female passengers who died and 308 who survived. There are 709 male passengers who died and 142 who survived.
+There are 154 female passengers who died and 308 who survived. There are 709 
+male passengers who died and 142 who survived.
 
 ## Chi-squared test, 1
 
@@ -186,7 +191,10 @@ table1 |>
 #### Interpretation of the output
 
 Before calculating the risk ratio, let's look at the row percentages one more 
-time. The probability of survival is around 2/3 for women and about 1/6 for men. This means that the risk ratio from a survival perspective is around 4 (2/3 divided by 1/6). The probability of death is 1/3 for females and about 5/6 for males. The risk ratio from a mortality perspective is 0.4 (1/3 divided by 5/6)
+time. The probability of survival is around 2/3 for women and about 1/6 for men.
+This means that the risk ratio from a survival perspective is around 4 (2/3 
+divided by 1/6). The probability of death is 1/3 for females and about 5/6 for
+males. The risk ratio from a mortality perspective is 0.4 (1/3 divided by 5/6).
 
 ## Risk ratio calculation, 2
 
@@ -197,7 +205,10 @@ riskratio(table1)
 
 #### Interpretation of the output
 
-The risk ratio is comparing the probability of death between men and women. Men have 2.5 times higher probability of death compared to women. The confidence interval excludes the value of 1, indicating a statistically significant increase.
+The risk ratio is comparing the probability of death between men and women. Men 
+have 2.5 times higher probability of death compared to women. The confidence 
+interval excludes the value of 1, indicating a statistically significant 
+increase.
 
 ## Risk ratio calculation, 3
 
@@ -208,7 +219,10 @@ riskratio(table1, rev="columns")
 
 #### Interpretation of the output
 
-The risk ratio is comparing the probability of survival between men and women. Men has one-fourth the probability of survival compared to women. The confidence interval excludes the value of 1, indicating that men have a statistically significantly lower probability of survival compared to women. 
+The risk ratio is comparing the probability of survival between men and women. 
+Men has one-fourth the probability of survival compared to women. The confidence 
+interval excludes the value of 1, indicating that men have a statistically 
+significantly lower probability of survival compared to women. 
 
 ## Save data for later use
 
