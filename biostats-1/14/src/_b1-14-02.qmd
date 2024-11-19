@@ -1,5 +1,5 @@
 ---
-title: "14-02, Chi-squared test of independence"
+title: "14-02, The two by two crosstabulation"
 format: 
   revealjs:
     slide-number: true
@@ -7,26 +7,237 @@ format:
 editor: source
 ---
 
-## Conditional probability
+```{r}
+#| label: 14-02-dictionary
+#| message: false
+#| warning: false
+library(tidyverse)
+```
 
--   $P[A|B] = P[A \cap B]$
+## The crosstabulation of two binary variables, 1
 
-## What does independence mean?
+```{}
+             Good      Bad
+			Outcome  Outcome
+Placebo        a        b
+Treated        c        d
+```
 
--   P[Bad outcome | Treated] = P[Bad outcome] or
--   P[Bad outcome | Placebo] = P[Bad outcome] or
--   P[Good outcome | Treated] = P[Good outcome] or
--   P[Good outcome | Placebo] = P[Good outcome]
+-   a, number of placebo patients with good outcome
+-   b, number of placebo patients with bad outcome
+-   c, number of treated patients with good outcome
+-   d, number of treated patients with bad outcome
 
-## Expected counts
+:::notes
+One of the most common tables you will see in Statistics is the 2 by 2 crosstabulation. This table shows the counts associated with the combination of the outcome and the treatment group. Is the risk of a bad outcome different between the two treatment groups?
+:::
 
-## Test statistic
+## The crosstabulation of two binary variables, 2
 
-## Decision rule
+-   Note: rows could be
+    -   Exposed/Unexposed
+	-   Female/Male
+	-   Old/Young
+	-   Many other possibilities
+	
+:::notes
+This table appears in many other contexts. You might want to compare people exposed to an environmental hazard to unexposed people. You might want to compare demographic groups: females to males, old to young, etc. There are many other possibilities.
+:::
 
-## Fisher's Exact Test
+## Example: Titanic data
 
-## Calculations behind Fisher's Exact Test
+-   Crosstabulation
 
-## Criticism of Fisher's Exact Test
+```{r}
+#| label: 14-02-crosstabulaton-1
+load("../data/titanic.RData")
+table1 <- xtabs(~sex+survived, data=ti)
+table1
+```
 
+:::notes
+This is an example of a crosstabulation. The number in the upper left corner, 308, represents the number of female passengers who survived (did not die). This includes Kate Winslet. The number in the lower right corner, 709, represents then number of male passengers who did not survive. This includes, sad to say, Leonardo diCaprio.
+:::
+
+## Odds ratio
+
+```{}
+             Good      Bad
+            Outcome  Outcome  Odds
+Placebo        a        b     b/a
+Treated        c        d     d/c
+
+```
+
+-   Odds ratio = $\frac{d/c}{b/a} = \frac{ad}{bc}$
+
+:::notes
+The odds are the number of bad outcomes divided by the number of good outcomes. The ratio of these odds is the odds ratio.
+
+You may sometimes see the odds ratio computed as the product of the diagonal entries divided by the product of the off-diagonal entries.
+:::
+
+## Relative risk (Risk ratio)
+
+```{}
+             Good      Bad
+            Outcome  Outcome  Probabililty
+Placebo        a        b     b/(a+b)
+Treated        c        d     d/(c+d)
+
+```
+
+-   Relative risk = $\frac{\frac{b}{a+b}}{\frac{d}{c+d}}$
+
+:::notes
+The odds are the number of bad outcomes divided by the number of good outcomes. The ratio of these odds is the odds ratio.
+
+You may sometimes see the odds ratio computed as the product of the diagonal entries divided by the product of the off-diagonal entries.
+:::
+
+## Using odds
+
+-   Three to one in favor of victory
+    -   Expect three wins for every loss
+-   Four to one odds against victory
+    -   Expect four losses for every win
+-   Odds = Prob / (1- Prob)
+-   Prob = Odds / (Odds + 1)
+
+::: notes
+*Speaker notes*
+
+The relationship between odds and probability Another approach is to try to model the odds rather than the probability of BF. You see odds mentioned quite frequently in gambling contexts. If the odds are three to one in favor of your favorite football team, that means you would expect a win to occur about three times as often as a loss. If the odds are four to one against your team, you would expect a loss to occur about four times as often as a win.
+
+You need to be careful with odds. Sometimes the odds represent the odds in favor of winning and sometimes they represent the odds against winning. Usually it is pretty clear from the context. When you are told that your odds of winning the lottery are a million to one, you know that this means that you would expect to having a losing ticket about a million times more often than you would expect to hit the jackpot.
+
+It's easy to convert odds into probabilities and vice versa. With odds of three to one in favor, you would expect to see roughly three wins and only one loss out of every four attempts. In other words, your probability for winning is 0.75.
+
+If you expect the probability of winning to be 20%, you would expect to see roughly one win and four losses out of every five attempts. In other words, your odds are 4 to 1 against.
+
+The formulas for conversion are
+
+odds = prob / (1-prob)
+
+and
+
+prob = odds / (1+odds).
+
+In medicine and epidemiology, when an event is less likely to happen and more likely not to happen, we represent the odds as a value less than one. So odds of four to one against an event would be represented by the fraction 1/5 or 0.2. When an event is more likely to happen than not, we represent the odds as a value greater than one. So odds of three to one in favor of an event would be represented simply as an odds of 3. With this convention, odds are bounded below by zero, but have no upper bound.
+:::
+
+## Ambiguity in odds
+
+-   "In favor" versus "Against"
+-   "Good" outcome versus "Bad" outcome
+-   Get clues from the context
+    -   Example: chances of winning the lottery (million to one)
+        -   One million winners for every loser?
+        -   One million losers for every winner?
+
+## Example of odds and probability
+
+![Odds for winning election to U.S. president in 2024](../images/presidential-odds.png){fig-align="left"}
+
+-   Biden: $\frac{8/13}{1 + 8/13} = \frac{8}{21} = 0.381$
+-   Trump: $\frac{1/3}{1 + 1/3} = \frac{1}{4} = 0.25$
+-   DeSantis: $\frac{1/16}{1+1/16} = \frac{1}{17} = 0.059$
+
+::: notes
+*Speaker notes*
+
+To convert from odds to probability, use the formula odds/(1+odds). You have to flip these around because 40 to 1 odds does not mean that Michelle Obama has 40 chances to win for every one chance of a loss.
+
+Table downloaded from oddschecker.com
+:::
+
+## Probability of winning 2022 World Cup
+
+::: columns
+::: {.column width="50%"}
+```         
+Brazil: 30.8%
+Argentina: 18.2%
+France: 16.7%
+Spain: 13.3%
+England: `10%
+Portugal: 7.7%
+Netherlands: 5.3%
+Croatia: 2.8%
+```
+
+Argentina: $\frac{0.182}{1-0.182} = 0.2225 \approx 2/9$
+
+France: $\frac{0.167}{1-0.167} = 0.2004 \approx 1/5$
+:::
+
+::: {.column width="50%"}
+```         
+Switzerland: 1.5%
+Japan: 1.5%
+Morocco: 1.2%
+USA: 1.1%
+Senegal: 1%
+South Korea: 0.67%
+Poland: 0.55%
+Australia: 0.5%
+```
+:::
+:::
+
+::: notes
+*Speaker notes*
+
+These probabilities were computed from a table of odds posted at the beginning of the round of 16 for the football world cup. Convert these back to odds.
+
+These odds were taken from a December 2, 2022 blog post on the DraftKings website.
+:::
+
+## Odds against winning 2022 football World Cup
+
+::: columns
+::: {.column width="50%"}
+```         
+Brazil: 9 to 4
+Argentina: 9 to 2
+France: 5 to 1
+Spain: 13 to 2
+England: 9 to 1
+Portugal: 12 to 1
+Netherlands: 18 to 1
+Croatia: 35 to 1
+```
+:::
+
+::: {.column width="50%"}
+```         
+Switzerland: 65 to 1
+Japan: 65 to 1
+Morocco: 80 to 1
+USA: 90 to 1
+Senegal: 100 to 1
+South Korea: 150 to 1
+Poland: 180 to 1
+Australia: 200 to 1
+```
+:::
+:::
+
+::: notes
+*Speaker notes*
+
+Here are all the odds. Notice that the United States was rightfully given almost no chance of winning. But wait until the women's football World Cup.
+:::
+
+## Odds for Titanic
+
+```{}
+        survived
+sex       yes   no  odds
+  female  308  154  154/308 = 0.5
+  male    142  709  709/142 = 4.993
+  
+Odds ratio = 4.993 / 0.5 = 9.986
+
+Odds ratio = 308*709 / 154*142 = 9.986
+```

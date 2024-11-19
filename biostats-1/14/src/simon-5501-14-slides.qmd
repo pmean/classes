@@ -5,14 +5,10 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "Odds ratio and relative risk"
-  topic_02: "Chi-squared test of independence"
+  topic_01: "Chi-squared test of independence"
+  topic_02: "Odds ratio and relative risk"
   topic_03: "R code"
-  topic_04: "Logistic regression"
-  topic_05: "R code"
-  topic_06: "Your homework"
-  topic_07: "TBA"
-  topic_08: "TBA"
+  topic_04: "Your homework"
 editor: source
 ---
 
@@ -27,10 +23,6 @@ editor: source
     -   `r params$topic_02`
     -   `r params$topic_03`
     -   `r params$topic_04`
-    -   `r params$topic_05`
-    -   `r params$topic_06`
-    -   `r params$topic_07`
-    -   `r params$topic_08`
 
 {{< include _b1-14-01.qmd >}}
 
@@ -61,52 +53,12 @@ editor: source
 
 {{< include _b1-14-04.qmd >}}
 
-## Break #4
-
--   What you have learned
-    -   `r params$topic_04`
--   What's coming next
-    -   `r params$topic_05`
-
-{{< include _b1-14-05.qmd >}}
-
-## Break #5
-
--   What you have learned
-    -   `r params$topic_05`
--   What's coming next
-    -   `r params$topic_06`
-
-{{< include _b1-14-06.qmd >}}
-
-## Break #6
-
--   What you have learned
-    -   `r params$topic_06`
--   What's coming next
-    -   `r params$topic_07`
-
-{{< include _b1-14-07.qmd >}}
-
-## Break #7
-
--   What you have learned
-    -   `r params$topic_07`
--   What's coming next
-    -   `r params$topic_08`
-
-{{< include _b1-14-07.qmd >}}
-
 ## Summary
 -   What you have learned
     -   `r params$topic_01`
     -   `r params$topic_02`
     -   `r params$topic_03`
     -   `r params$topic_04`
-    -   `r params$topic_05`
-    -   `r params$topic_06`
-    -   `r params$topic_07`
-    -   `r params$topic_08`
 
 <!---Put the title down here to override the include files.--->
 

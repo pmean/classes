@@ -1,5 +1,5 @@
 ---
-title: "14-01, The two by two crosstabulation"
+title: "14-01, Chi-squared test of independence"
 format: 
   revealjs:
     slide-number: true
@@ -8,66 +8,142 @@ editor: source
 ---
 
 ```{r}
-#| label: 14-01-dictionary
-#| output: asis
+#| label: 14-01-setup
 #| message: false
 #| warning: false
 library(tidyverse)
+```
+
+```{r}
+#| label: 14-01-titanic-yaml
+#| output: asis
 load("../../../general/chopper.RData")
 partition_yaml("titanic.yaml") |>
 	cat(sep="\n")
 ```
 
-## The crosstabulation of two binary variables, 1
-
-```{}
-             Good      Bad
-			Outcome  Outcome
-Placebo        a        b
-Treated        c        d
-```
-
--   a, number of placebo patients with good outcome
--   b, number of placebo patients with bad outcome
--   c, number of treated patients with good outcome
--   d, number of treated patients with bad outcome
-
-:::notes
-One of the most common tables you will see in Statistics is the 2 by 2 crosstabulation. This table shows the counts associated with the combination of the outcome and the treatment group. Is the risk of a bad outcome different between the two treatment groups?
-:::
-
-## The crosstabulation of two binary variables, 2
-
--   Note: rows could be
-    -   Exposed/Unexposed
-	-   Female/Male
-	-   Old/Young
-	-   Many other possibilities
-	
-:::notes
-This table appears in many other contexts. You might want to compare people exposed to an environmental hazard to unexposed people. You might want to compare demographic groups: females to males, old to young, etc. There are many other possibilities.
-:::
-
-## Example: Titanic data
-
--   Crosstabulation
+## Crosstabulation with row and column totals
 
 ```{r}
 #| label: 14-01-crosstabulaton-1
 load("../data/titanic.RData")
 table1 <- xtabs(~sex+survived, data=ti)
-table1
+addmargins(table1)
 ```
 
-:::notes
-This is an example of a crosstabulation.The number in the upper left corner, 308, represents the number of female passengers who survived (did not die). This includes Kate Winslet. The number in the lower right corner, 709, represents then number of male passengers who did not survive. This includes, sad to say, Leonardo diCaprio.
-:::
 
-## Odds ratio
+## Conditional probability
+
+-   $P[A|B] = \frac{P[A \cap B]}{P[B]}$
+    -   Note: $P[A|B] \ne P[B|A]$
+
+## What does independence mean?
+
+-   $P[A|B] = P[A]$
+-   Equivalent definition of independence
+    -   $P[A \cap B] = P[A] \times P[B]$
+
+## Positive association
+
+-   $P[A|B] > P[A]$
+
+-   Equivalent definition of independence
+    -   $P[A \cap B] > P[A] \times P[B]$
+
+
+## Expected counts
 
 ```{}
              Good      Bad
-			Outcome  Outcome  Odds
-Placebo        a        b     a/b
-Treated        c        d     c/d
+            Outcome  Outcome     Total
+Placebo        ?        ?       (a+b)/n
+Treated        ?        ?       (c+d)/n
+Total       (a+c)/n  (b+d)/n       1
+
+where n=a+b+c+d
+
 ```
+
+-   $E_{11}=n\times\frac{a+b}{n}\times\frac{a+c}{n}$
+    -   $E_{12},\ E_{21},\ E_{22}$ are defined similarly
+
+## Expected counts for Titanic data
+
+```{}
+        survived
+sex            yes        no       Sum
+  female                     0.3518660
+  male                       0.6481340
+  Sum    0.3427266 0.6572734 1.0000000
+```
+
+-   $E_{11}$ = 1313 $\times$ 0.3518660 $\times$ 0.3427266 = `r 1313*0.3518660*0.3427266`
+-   $E_{12}$ = `r 1313*0.3518660*0.6572734`  
+-   $E_{21}$ = `r 1313*0.6481340*0.3427266`
+-   $E_{22}$ = `r 1313*0.6481340*0.6572734`  
+
+##  Expected counts for Titanic data
+
+-   Observed counts
+
+```{r}
+#| label: 14-01-observed
+m1 <- chisq.test(table1, correct=FALSE)
+m1$observed
+```
+
+-   Expected counts
+
+```{r}
+#| label: 14-01-expected
+m1$expected
+```
+
+## Test statistic
+
+-   $H_0:\ Independence$
+-   $H_1:\ Dependence$
+    -   $T=\Sigma_i \Sigma_j \frac{(O_{ij}-E_{ij})^2}{E_{ij}}$
+    -   p-value = $P[T > \chi^2(df=1)]$
+        -   Accept $H_0$ if T < $\chi^2(1-\alpha, df=1)$
+        -   Accept $H_0$ if p-value > $\alpha$
+    
+## Example with Titanic data
+
+-   $H_0:$ Mortality is independent of sex
+-   $H_1:$ Mortality is related to sex
+    
+```{r}
+#| label: 14-02-chi-squared
+#| echo: true
+m1 <- chisq.test(table1, correct=FALSE)
+m1
+```
+
+:::notes
+Since the test statistic is a lot larger than the degrees of freedom and since the p-value is small, reject the null hypothesis and conclude that there is a relationship between sex and survival.
+:::
+
+## Chi-squared test is an approximation
+
+-   Reasonable if all expected counts > 5
+-   Use Fisher's Exact test otherwise
+
+## Fisher's exact test for the Titanic data
+
+```{r}
+#| label: 14-02-fisher
+#| echo: true
+m2 <- fisher.test(table1)
+m2
+```
+
+:::notes
+Although the expected counts are much larger than 5, here is the code for running Fisher's Exact test.
+:::
+
+## Calculations behind Fisher's Exact Test
+
+
+## Criticism of Fisher's Exact Test
+

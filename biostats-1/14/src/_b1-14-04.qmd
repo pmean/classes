@@ -1,5 +1,5 @@
 ---
-title: "14-04, Logistic regression"
+title: "14-04, Your homework"
 format: 
   revealjs:
     slide-number: true
@@ -7,5 +7,10 @@ format:
 editor: source
 ---
 
-## Logistic regression
 
+```{r}
+#| label: 14-04-directions
+#| output: asis
+partition_qmd("simon-5501-14-directions.md") |>
+  cat(sep="\n")
+```

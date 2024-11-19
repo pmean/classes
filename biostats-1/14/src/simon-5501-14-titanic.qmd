@@ -19,7 +19,6 @@ domain.
 #| label: setup
 #| message: false
 #| warning: false
-library(broom)
 library(epitools)
 library(tidyverse)
 ```
@@ -89,91 +88,11 @@ The [table function][tab1] or the [xtabs function][xta1] creates a matrix with t
 
 There are 154 female passengers who died and 308 who survived. There are 709 male passengers who died and 142 who survived.
 
-## Get proportions for died/survived by sex
+## Chi-squared test, 1
 
 ```{r}
-#| label: proportions
-table1 |>
-  proportions("sex")
-```
-
-#### Comments on the code
-
-The [proportions function][pro1] calculate proportions for a matrix, either by row (margin=1), by column (margin=2) or across all cells (margin=NULL).
-
-[pro1]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/proportions.html
-
-#### Interpretation of the output
-
-The proportion of women who died is 33%. The proportion of men who died is much higher at 83%.
-
-## Bar chart
-
-```{r}
-#| label: bar
-ti |>
-  ggplot() +
-    aes(x = sex, fill = survived) +
-    geom_bar(position = "fill") +
-	  xlab("Sex") +
-	  ylab("Proportion") +
-	  ggtitle("Graph drawn by Steve Simon on 2024-11-11")
-```
-
-## Hypothesis test for two proportions
-
-```{r}
-#| label: equality-of-proportions
-prop.test(table1, correct=FALSE)
-```
-
-#### Comments on the code
-
-The [prop.test function][pro2] does not work on raw data. You need to get summary counts, either from the table function or the xtabs function. The option correct=FALSE informs R to not use the [Yates continuity correction][yat1].
-
-[pro2]: https://search.r-project.org/R/refmans/stats/html/prop.test.html
-[yat1]: https://www.statskingdom.com/121proportion_normal2.html
-
-#### Interpretation of the output. 
-
-The Chi-squared statistic is much larger than the degrees of freedom and the
-p-value is small. So you would reject the null hypothesis and conclude that 
-there is a statistically significant difference in the mortality rates between
-men and women on the Titanic. The 95% confidence interval for the difference
-in proportions is -0.55 to -0.45. This interval excludes the value of zero and
-indicates that the mortality rate is at least 45% lower and possibly as much as
-55% lower for men.
-
-## Power calculation
-
-```{r}
-#| label: power
-power.prop.test(p1=0.17, p2=0.67, power=0.9)
-```
-
-#### Comments on the code
-
-The [power.prop.test][pow1] function will compute a sample size if you specify 
-the two group probabilities, the significance level, and the power. It will also
-do other calculations, such as the minimum difference in probabilities that you
-could detect for a specific sample size and a specific power.
-
-[pow1]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/power.prop.test.html
-
-#### Interpretation of the output
-
-Clearly, a sample size of 1,313 passengers provided more than enough power and
-precision, especially considering that the difference in survival rates was so
-large. Out of curiosity, what sample size would still be adequate for testing a
-shift of 50% from a survival rate of 17% to a survival rate of 67%? If you 
-wanted power to be at least 90%, then a sample size of only 19 passengers of 
-each sex would be needed.
-
-## Chi-squared test
-
-```{r}
-#| label: chi-square-test
-chisq.test(table1, correct=FALSE)
+#| label: chi-squared-test-1
+m1 <- chisq.test(table1, correct=FALSE)
 ```
 
 #### Comments on the code
@@ -192,6 +111,20 @@ this lecture.
 The chi-squared statistic is much larger than the degrees of freedom and the
 p-value is small. You should reject the null hypothesis and conclude that sex
 and survival are related (not independent)
+
+## Chi-squared test, 2
+
+```{r}
+#| label: chi-squared-test-2
+m1$oberved
+```
+
+## Chi-squared test, 3
+
+```{r}
+#| label: chi-squared-test-3
+m1$expected
+```
 
 ## Fisher's Exact test
 
