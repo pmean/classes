@@ -1304,6 +1304,9 @@ vars:
 </section>
 <section id="crosstabulation-with-row-and-column-totals" class="slide level2">
 <h2>Crosstabulation with row and column totals</h2>
+<ul>
+<li>Counts</li>
+</ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>        survived
@@ -1311,6 +1314,18 @@ sex       yes   no  Sum
   female  308  154  462
   male    142  709  851
   Sum     450  863 1313</code></pre>
+</div>
+</div>
+<ul>
+<li>Cell percents</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>        survived
+sex            yes        no       Sum
+  female 0.2345773 0.1172887 0.3518660
+  male   0.1081493 0.5399848 0.6481340
+  Sum    0.3427266 0.6572734 1.0000000</code></pre>
 </div>
 </div>
 </section>
@@ -1336,10 +1351,10 @@ sex       yes   no  Sum
 <section id="positive-association" class="slide level2">
 <h2>Positive association</h2>
 <ul>
-<li><p><span class="math inline">\(P[A|B] &gt; P[A]\)</span></p></li>
-<li><p>Equivalent definition of independence</p>
+<li><span class="math inline">\(P[A|B] &gt; P[A]\)</span></li>
+<li><span class="math inline">\(P[A \cap B] &gt; P[A] \times P[B]\)</span>
 <ul>
-<li><span class="math inline">\(P[A \cap B] &gt; P[A] \times P[B]\)</span></li>
+<li>Change direction for negative association</li>
 </ul></li>
 </ul>
 </section>
@@ -1368,7 +1383,7 @@ sex            yes        no       Sum
   male                       0.6481340
   Sum    0.3427266 0.6572734 1.0000000</code></pre>
 <ul>
-<li><span class="math inline">\(E_{11}\)</span> = 1311 <span class="math inline">\(\times\)</span> 0.3518660 <span class="math inline">\(\times\)</span> 0.3427266 = 158.3397091</li>
+<li><span class="math inline">\(E_{11}\)</span> = 1313 <span class="math inline">\(\times\)</span> 0.3518660 <span class="math inline">\(\times\)</span> 0.3427266 = 158.3397091</li>
 <li><span class="math inline">\(E_{12}\)</span> = 303.6603489<br>
 </li>
 <li><span class="math inline">\(E_{21}\)</span> = 291.6603167</li>
@@ -1409,7 +1424,7 @@ sex           yes       no
 <li><span class="math inline">\(T=\Sigma_i \Sigma_j \frac{(O_{ij}-E_{ij})^2}{E_{ij}}\)</span></li>
 <li>p-value = <span class="math inline">\(P[T &gt; \chi^2(df=1)]\)</span>
 <ul>
-<li>Accept <span class="math inline">\(H_0\)</span> if T &lt; <span class="math inline">\(\Chi^2(1-\alpha, df=1)\)</span></li>
+<li>Accept <span class="math inline">\(H_0\)</span> if T &lt; <span class="math inline">\(\chi^2(1-\alpha, df=1)\)</span></li>
 <li>Accept <span class="math inline">\(H_0\)</span> if p-value &gt; <span class="math inline">\(\alpha\)</span></li>
 </ul></li>
 </ul></li>
@@ -1422,8 +1437,8 @@ sex           yes       no
 <li><span class="math inline">\(H_1:\)</span> Mortality is related to sex</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href></a>m1 <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(table1, <span class="at">correct=</span><span class="cn">FALSE</span>)</span>
-<span id="cb11-2"><a href></a>m1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href></a>m1 <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(table1, <span class="at">correct=</span><span class="cn">FALSE</span>)</span>
+<span id="cb12-2"><a href></a>m1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson&#39;s Chi-squared test
@@ -1456,8 +1471,8 @@ display:block!important;
 <section id="fishers-exact-test-for-the-titanic-data" class="slide level2">
 <h2>Fisher’s exact test for the Titanic data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href></a>m2 <span class="ot">&lt;-</span> <span class="fu">fisher.test</span>(table1)</span>
-<span id="cb13-2"><a href></a>m2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href></a>m2 <span class="ot">&lt;-</span> <span class="fu">fisher.test</span>(table1)</span>
+<span id="cb14-2"><a href></a>m2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Fisher&#39;s Exact Test for Count Data
@@ -1485,9 +1500,6 @@ width: 1px!important;
 overflow: hidden!important;
 display:block!important;
 }</style></aside>
-</section>
-<section id="fishers-exact-test" class="slide level2">
-<h2>Fisher’s Exact Test</h2>
 </section>
 <section id="calculations-behind-fishers-exact-test" class="slide level2">
 <h2>Calculations behind Fisher’s Exact Test</h2>
@@ -1839,7 +1851,6 @@ domain.
 #| label: setup
 #| message: false
 #| warning: false
-library(broom)
 library(epitools)
 library(tidyverse)
 ```
@@ -1849,7 +1860,8 @@ library(tidyverse)
 <h2>Listing of simon-5501-14-titanic.qmd, 3</h2>
 <pre><code>#### Comments on the code
 
-For most of your programs, you should load the [tidyverse library][tid1]. The messages and warnings are suppressed.
+For most of your programs, you should load the [tidyverse library][tid1]. The 
+messages and warnings are suppressed.
 
 [tid1]: https://www.tidyverse.org/
 
@@ -1917,133 +1929,34 @@ table1
 <h2>Listing of simon-5501-14-titanic.qmd, 8</h2>
 <pre><code>#### Comments on the code
 
-The [table function][tab1] or the [xtabs function][xta1] creates a matrix with the number of observations in each combination of sex and survived. These values are placed in a single column. The [xtabs function][xta1] or the [count function][cou1] provide slightly different approaches.
+The [table function][tab1] or the [xtabs function][xta1] creates a matrix with 
+the number of observations in each combination of sex and survived. These 
+values are placed in a single column. The [xtabs function][xta1] or the
+[count function][cou1] provide slightly different approaches.
 
 [cou1]: https://dplyr.tidyverse.org/reference/count.html
 [tab1]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/table.html
 [xta1]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/xtabs.html
-
-#### Interpretation of the output
-
-There are 154 female passengers who died and 308 who survived. There are 709 male passengers who died and 142 who survived.
 </code></pre>
 </section>
 <section id="listing-of-simon-5501-14-titanic.qmd-9" class="slide level2">
 <h2>Listing of simon-5501-14-titanic.qmd, 9</h2>
-<pre><code>## Get proportions for died/survived by sex
+<pre><code>#### Interpretation of the output
+
+There are 154 female passengers who died and 308 who survived. There are 709 
+male passengers who died and 142 who survived.
+
+## Chi-squared test, 1
 
 ```{r}
-#| label: proportions
-table1 |&gt;
-  proportions(&quot;sex&quot;)
+#| label: chi-squared-test-1
+m1 &lt;- chisq.test(table1, correct=FALSE)
+m1
 ```
-
-#### Comments on the code
-
-The [proportions function][pro1] calculate proportions for a matrix, either by row (margin=1), by column (margin=2) or across all cells (margin=NULL).
-
-[pro1]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/proportions.html
 </code></pre>
 </section>
 <section id="listing-of-simon-5501-14-titanic.qmd-10" class="slide level2">
 <h2>Listing of simon-5501-14-titanic.qmd, 10</h2>
-<pre><code>#### Interpretation of the output
-
-The proportion of women who died is 33%. The proportion of men who died is much higher at 83%.
-</code></pre>
-</section>
-<section id="listing-of-simon-5501-14-titanic.qmd-11" class="slide level2">
-<h2>Listing of simon-5501-14-titanic.qmd, 11</h2>
-<pre><code>## Bar chart
-
-```{r}
-#| label: bar
-ti |&gt;
-  ggplot() +
-    aes(x = sex, fill = survived) +
-    geom_bar(position = &quot;fill&quot;) +
-      xlab(&quot;Sex&quot;) +
-      ylab(&quot;Proportion&quot;) +
-      ggtitle(&quot;Graph drawn by Steve Simon on 2024-11-11&quot;)
-```
-</code></pre>
-</section>
-<section id="listing-of-simon-5501-14-titanic.qmd-12" class="slide level2">
-<h2>Listing of simon-5501-14-titanic.qmd, 12</h2>
-<pre><code>## Hypothesis test for two proportions
-
-```{r}
-#| label: equality-of-proportions
-prop.test(table1, correct=FALSE)
-```
-
-#### Comments on the code
-
-The [prop.test function][pro2] does not work on raw data. You need to get summary counts, either from the table function or the xtabs function. The option correct=FALSE informs R to not use the [Yates continuity correction][yat1].
-
-[pro2]: https://search.r-project.org/R/refmans/stats/html/prop.test.html
-[yat1]: https://www.statskingdom.com/121proportion_normal2.html
-</code></pre>
-</section>
-<section id="listing-of-simon-5501-14-titanic.qmd-13" class="slide level2">
-<h2>Listing of simon-5501-14-titanic.qmd, 13</h2>
-<pre><code>#### Interpretation of the output. 
-
-The Chi-squared statistic is much larger than the degrees of freedom and the
-p-value is small. So you would reject the null hypothesis and conclude that 
-there is a statistically significant difference in the mortality rates between
-men and women on the Titanic. The 95% confidence interval for the difference
-in proportions is -0.55 to -0.45. This interval excludes the value of zero and
-indicates that the mortality rate is at least 45% lower and possibly as much as
-55% lower for men.
-</code></pre>
-</section>
-<section id="listing-of-simon-5501-14-titanic.qmd-14" class="slide level2">
-<h2>Listing of simon-5501-14-titanic.qmd, 14</h2>
-<pre><code>## Power calculation
-
-```{r}
-#| label: power
-power.prop.test(p1=0.17, p2=0.67, power=0.9)
-```
-</code></pre>
-</section>
-<section id="listing-of-simon-5501-14-titanic.qmd-15" class="slide level2">
-<h2>Listing of simon-5501-14-titanic.qmd, 15</h2>
-<pre><code>#### Comments on the code
-
-The [power.prop.test][pow1] function will compute a sample size if you specify 
-the two group probabilities, the significance level, and the power. It will also
-do other calculations, such as the minimum difference in probabilities that you
-could detect for a specific sample size and a specific power.
-
-[pow1]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/power.prop.test.html
-</code></pre>
-</section>
-<section id="listing-of-simon-5501-14-titanic.qmd-16" class="slide level2">
-<h2>Listing of simon-5501-14-titanic.qmd, 16</h2>
-<pre><code>#### Interpretation of the output
-
-Clearly, a sample size of 1,313 passengers provided more than enough power and
-precision, especially considering that the difference in survival rates was so
-large. Out of curiosity, what sample size would still be adequate for testing a
-shift of 50% from a survival rate of 17% to a survival rate of 67%? If you 
-wanted power to be at least 90%, then a sample size of only 19 passengers of 
-each sex would be needed.
-</code></pre>
-</section>
-<section id="listing-of-simon-5501-14-titanic.qmd-17" class="slide level2">
-<h2>Listing of simon-5501-14-titanic.qmd, 17</h2>
-<pre><code>## Chi-squared test
-
-```{r}
-#| label: chi-square-test
-chisq.test(table1, correct=FALSE)
-```
-</code></pre>
-</section>
-<section id="listing-of-simon-5501-14-titanic.qmd-18" class="slide level2">
-<h2>Listing of simon-5501-14-titanic.qmd, 18</h2>
 <pre><code>#### Comments on the code
 
 The [chisq.test function][chi1] calculates a chi-square test of independence. It
@@ -2056,13 +1969,30 @@ this lecture.
 [chi1]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/chisq.test.html
 </code></pre>
 </section>
-<section id="listing-of-simon-5501-14-titanic.qmd-19" class="slide level2">
-<h2>Listing of simon-5501-14-titanic.qmd, 19</h2>
+<section id="listing-of-simon-5501-14-titanic.qmd-11" class="slide level2">
+<h2>Listing of simon-5501-14-titanic.qmd, 11</h2>
 <pre><code>#### Interpretation of the output
 
 The chi-squared statistic is much larger than the degrees of freedom and the
 p-value is small. You should reject the null hypothesis and conclude that sex
 and survival are related (not independent)
+
+## Chi-squared test, 2
+
+```{r}
+#| label: chi-squared-test-2
+m1$observed
+```
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-14-titanic.qmd-12" class="slide level2">
+<h2>Listing of simon-5501-14-titanic.qmd, 12</h2>
+<pre><code>## Chi-squared test, 3
+
+```{r}
+#| label: chi-squared-test-3
+m1$expected
+```
 
 ## Fisher&#39;s Exact test
 
@@ -2072,8 +2002,8 @@ fisher.test(table1)
 ```
 </code></pre>
 </section>
-<section id="listing-of-simon-5501-14-titanic.qmd-20" class="slide level2">
-<h2>Listing of simon-5501-14-titanic.qmd, 20</h2>
+<section id="listing-of-simon-5501-14-titanic.qmd-13" class="slide level2">
+<h2>Listing of simon-5501-14-titanic.qmd, 13</h2>
 <pre><code>#### Comments on the code
 
 The [fisher.test function][fis1] calculates the Fisher&#39;s exact test, which is
@@ -2084,8 +2014,8 @@ example of how to calculate this test.
 [fis1]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/fisher.test.html
 </code></pre>
 </section>
-<section id="listing-of-simon-5501-14-titanic.qmd-21" class="slide level2">
-<h2>Listing of simon-5501-14-titanic.qmd, 21</h2>
+<section id="listing-of-simon-5501-14-titanic.qmd-14" class="slide level2">
+<h2>Listing of simon-5501-14-titanic.qmd, 14</h2>
 <pre><code>#### Interpretation of the output
 
 The p-value is small. You should reject the null hypothesis and conclude that 
@@ -2102,8 +2032,8 @@ oddsratio(table1)
 ```
 </code></pre>
 </section>
-<section id="listing-of-simon-5501-14-titanic.qmd-22" class="slide level2">
-<h2>Listing of simon-5501-14-titanic.qmd, 22</h2>
+<section id="listing-of-simon-5501-14-titanic.qmd-15" class="slide level2">
+<h2>Listing of simon-5501-14-titanic.qmd, 15</h2>
 <pre><code>#### Comments on the code
 
 The oddsratio function and riskratio function (see below) are part of the 
@@ -2114,8 +2044,8 @@ independence.
 [epi1]: https://cran.r-project.org/web/packages/epitools/epitools.pdf
 </code></pre>
 </section>
-<section id="listing-of-simon-5501-14-titanic.qmd-23" class="slide level2">
-<h2>Listing of simon-5501-14-titanic.qmd, 23</h2>
+<section id="listing-of-simon-5501-14-titanic.qmd-16" class="slide level2">
+<h2>Listing of simon-5501-14-titanic.qmd, 16</h2>
 <pre><code>#### Interpretation of the output
 
 We are 95% confident that the odds ratio of survival for women versus men is at
@@ -2125,8 +2055,8 @@ death is much higher for men than for women. Equivalently you could conclude
 that the odds of survival are much higher for women than for men.
 </code></pre>
 </section>
-<section id="listing-of-simon-5501-14-titanic.qmd-24" class="slide level2">
-<h2>Listing of simon-5501-14-titanic.qmd, 24</h2>
+<section id="listing-of-simon-5501-14-titanic.qmd-17" class="slide level2">
+<h2>Listing of simon-5501-14-titanic.qmd, 17</h2>
 <pre><code>## Risk ratio calculation, 1
 
 ```{r}
@@ -2134,50 +2064,62 @@ that the odds of survival are much higher for women than for men.
 table1 |&gt;
   proportions(&quot;sex&quot;)
 ```
-
-#### Interpretation of the output
-
-Before calculating the risk ratio, let&#39;s look at the row percentages one more 
-time. The probability of survival is around 2/3 for women and about 1/6 for men. This means that the risk ratio from a survival perspective is around 4 (2/3 divided by 1/6). The probability of death is 1/3 for females and about 5/6 for males. The risk ratio from a mortality perspective is 0.4 (1/3 divided by 5/6)
 </code></pre>
 </section>
-<section id="listing-of-simon-5501-14-titanic.qmd-25" class="slide level2">
-<h2>Listing of simon-5501-14-titanic.qmd, 25</h2>
-<pre><code>## Risk ratio calculation, 2
+<section id="listing-of-simon-5501-14-titanic.qmd-18" class="slide level2">
+<h2>Listing of simon-5501-14-titanic.qmd, 18</h2>
+<pre><code>#### Interpretation of the output
+
+Before calculating the risk ratio, let&#39;s look at the row percentages one more 
+time. The probability of survival is around 2/3 for women and about 1/6 for men.
+This means that the risk ratio from a survival perspective is around 4 (2/3 
+divided by 1/6). The probability of death is 1/3 for females and about 5/6 for
+males. The risk ratio from a mortality perspective is 0.4 (1/3 divided by 5/6).
+
+## Risk ratio calculation, 2
 
 ```{r}
 #| label: risk-ratio-2
 riskratio(table1)
 ```
-
-#### Interpretation of the output
-
-The risk ratio is comparing the probability of death between men and women. Men have 2.5 times higher probability of death compared to women. The confidence interval excludes the value of 1, indicating a statistically significant increase.
 </code></pre>
 </section>
-<section id="listing-of-simon-5501-14-titanic.qmd-26" class="slide level2">
-<h2>Listing of simon-5501-14-titanic.qmd, 26</h2>
-<pre><code>## Risk ratio calculation, 3
+<section id="listing-of-simon-5501-14-titanic.qmd-19" class="slide level2">
+<h2>Listing of simon-5501-14-titanic.qmd, 19</h2>
+<pre><code>#### Interpretation of the output
+
+The risk ratio is comparing the probability of death between men and women. Men 
+have 2.5 times higher probability of death compared to women. The confidence 
+interval excludes the value of 1, indicating a statistically significant 
+increase.
+
+## Risk ratio calculation, 3
 
 ```{r}
 #| label: risk-ratio-3
 riskratio(table1, rev=&quot;columns&quot;)
 ```
-
-#### Interpretation of the output
-
-The risk ratio is comparing the probability of survival between men and women. Men has one-fourth the probability of survival compared to women. The confidence interval excludes the value of 1, indicating that men have a statistically significantly lower probability of survival compared to women. 
 </code></pre>
 </section>
-<section id="listing-of-simon-5501-14-titanic.qmd-27" class="slide level2">
-<h2>Listing of simon-5501-14-titanic.qmd, 27</h2>
-<pre><code>## Save data for later use
+<section id="listing-of-simon-5501-14-titanic.qmd-20" class="slide level2">
+<h2>Listing of simon-5501-14-titanic.qmd, 20</h2>
+<pre><code>#### Interpretation of the output
+
+The risk ratio is comparing the probability of survival between men and women. 
+Men has one-fourth the probability of survival compared to women. The confidence 
+interval excludes the value of 1, indicating that men have a statistically 
+significantly lower probability of survival compared to women. 
+
+## Save data for later use
 
 ```{r save}
 save(ti, file=&quot;../data/titanic.RData&quot;)
 ```
-
-#### Comments on the code
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-14-titanic.qmd-21" class="slide level2">
+<h2>Listing of simon-5501-14-titanic.qmd, 21</h2>
+<pre><code>#### Comments on the code
 
 It is usually a good idea to [save][sav1] your data in an RData file to make it
 easier to retrieve this data later (with the [load function][loa1]).
@@ -2204,7 +2146,8 @@ easier to retrieve this data later (with the [load function][loa1]).
 title: &quot;Directions for 5501-14 programming assignment&quot;
 ---
 
-This programming assignment was written by Steve Simon on 2024-10-08 and is placed in the public domain.
+This programming assignment was written by Steve Simon on 2024-11-19 and is 
+placed in the public domain.
 </code></pre>
 </section>
 <section id="listing-of-simon-5501-14-directions.md-2" class="slide level2">
@@ -2219,7 +2162,7 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
     -   Add your name to the author field
     -   Optional: change the copyright statement
     
-[tem]: https://github.com/pmean/classes/blob/master/general/simon-5501-08-sway.md
+[tem]: https://github.com/pmean/classes/blob/master/biostats-1/14/src/simon-5501-14-titanic.qmd
 </code></pre>
 </section>
 <section id="listing-of-simon-5501-14-directions.md-3" class="slide level2">
@@ -2230,16 +2173,29 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
     -   Store it in your data folder
 -   Refer to the [data dictionary][dic], if needed.
 
-[dat]: https://github.com/pmean/data/blob/main/files/postural-sway.txt
-[dic]: https://github.com/pmean/data/blob/main/files/postural-sway.yaml
+[dat]: https://github.com/pmean/data/blob/main/files/titanic.txt
+[dic]: https://github.com/pmean/data/blob/main/files/titanic.yaml
     
-## Question 1
-
-[To be added]
 </code></pre>
 </section>
 <section id="listing-of-simon-5501-14-directions.md-4" class="slide level2">
 <h2>Listing of simon-5501-14-directions.md, 4</h2>
+<pre><code>## Question 1
+
+Create a new variable, third_class that indicates whether a passenger is in 
+third class or not. What is the odds ratio comparing survival between third 
+class passengers and first/second class passengers? Interpret this odds ratio
+and the associated confidence interval.
+
+## Question 2
+
+Calculate a chi-squared test of independence that examines the association 
+between passenger class (third versus first/second) and mortality. Interpret
+the test result.
+</code></pre>
+</section>
+<section id="listing-of-simon-5501-14-directions.md-5" class="slide level2">
+<h2>Listing of simon-5501-14-directions.md, 5</h2>
 <pre><code>## Your submission
 
 -   Save the output in html format

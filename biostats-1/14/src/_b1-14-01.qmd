@@ -24,13 +24,24 @@ partition_yaml("titanic.yaml") |>
 
 ## Crosstabulation with row and column totals
 
+-   Counts
+
 ```{r}
 #| label: 14-01-crosstabulaton-1
 load("../data/titanic.RData")
 table1 <- xtabs(~sex+survived, data=ti)
-addmargins(table1)
+table2 <- addmargins(table1)
+table2
 ```
 
+-   Cell percents
+
+```{r}
+#| label: 14-01-crosstabulaton-2
+table3 <- table2/1313
+table3
+
+```
 
 ## Conditional probability
 
@@ -46,10 +57,8 @@ addmargins(table1)
 ## Positive association
 
 -   $P[A|B] > P[A]$
-
--   Equivalent definition of independence
-    -   $P[A \cap B] > P[A] \times P[B]$
-
+-   $P[A \cap B] > P[A] \times P[B]$
+    -   Change direction for negative association
 
 ## Expected counts
 
