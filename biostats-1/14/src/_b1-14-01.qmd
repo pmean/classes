@@ -150,3 +150,44 @@ m2
 :::notes
 Although the expected counts are much larger than 5, here is the code for running Fisher's Exact test.
 :::
+
+## Calculations behind Fisher's Exact Test, 1
+
+-   Fix column and row totals
+    -   Let the interior cells vary
+
+```{}
+        survived
+sex       yes   no  Sum
+  female            462
+  male              851
+  Sum     450  863 1313
+```
+
+## Calculations behind Fisher's Exact Test, 2
+
+-   Order the tables from most extreme
+
+```{}
+        survived                    survived            
+sex       yes   no  Sum     sex       yes   no  Sum
+  female  450       462       female    0       462
+  male              851       male              851
+  Sum     450  863 1313       Sum     450  863 1313
+
+        survived                    survived            
+sex       yes   no  Sum     sex       yes   no  Sum
+  female  449       462       female    1       462
+  male              851       male              851
+  Sum     450  863 1313       Sum     450  863 1313
+
+        survived                    survived            
+sex       yes   no  Sum     sex       yes   no  Sum
+  female  448       462       female    2       462
+  male              851       male              851
+  Sum     450  863 1313       Sum     450  863 1313
+```
+
+## Criticism of Fisher's Exact Test
+
+>>>>>>> 4ae9c64ed3b8e260d13c6a26724e6f35c30ca960
