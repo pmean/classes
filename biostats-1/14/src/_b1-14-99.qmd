@@ -1,0 +1,513 @@
+---
+title: "14-01, Fsiher's Exact Test"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+```{r}
+#| label: 14-01-setup
+#| message: false
+#| warning: false
+library(tidyverse)
+```
+
+```{r}
+#| label: 14-01-titanic-yaml
+#| output: asis
+load("../../../general/chopper.RData")
+partition_yaml("titanic.yaml") |>
+	cat(sep="\n")
+```
+
+## Crosstabulation with row and column totals
+
+-   Counts
+
+```{r}
+#| label: 14-01-crosstabulaton-1
+load("../data/titanic.RData")
+table1 <- xtabs(~sex+survived, data=ti)
+table2 <- addmargins(table1)
+table2
+```
+## Fisher's exact test for the Titanic data
+
+```{r}
+#| label: 14-02-fisher
+#| echo: true
+m2 <- fisher.test(table1)
+m2
+```
+
+:::notes
+Although the expected counts are much larger than 5, here is the code for running Fisher's Exact test.
+:::
+
+## Calculations behind Fisher's Exact Test, 1
+
+-   Fix column and row totals
+    -   Let the interior cells vary
+
+```{}
+        survived
+sex       yes   no  Sum
+  female            462
+  male              851
+  Sum     450  863 1313
+```
+
+## Calculations behind Fisher's Exact Test, 2
+
+-   Order the tables from most extreme
+
+```{}
+                    Most extreme
+
+        survived                    survived            
+sex       yes   no  Sum     sex       yes   no  Sum
+  female  450       462       female    0       462
+  male              851       male              851
+  Sum     450  863 1313       Sum     450  863 1313
+
+
+                 Second most extreme
+
+        survived                    survived            
+sex       yes   no  Sum     sex       yes   no  Sum
+  female  449       462       female    1       462
+  male              851       male              851
+  Sum     450  863 1313       Sum     450  863 1313
+
+```
+
+## Calculations behind Fisher's Exact Test, 3
+
+```{}
+                  Third most extreme
+
+        survived                    survived            
+sex       yes   no  Sum     sex       yes   no  Sum
+  female  448       462       female    2       462
+  male              851       male              851
+  Sum     450  863 1313       Sum     450  863 1313
+
+                  Fourth most extreme
+
+        survived                    survived            
+sex       yes   no  Sum     sex       yes   no  Sum
+  female  447       462       female    3       462
+  male              851       male              851
+  Sum     450  863 1313       Sum     450  863 1313
+```
+
+
+## Calculations behind Fisher's Exact Test, 4
+
+```{r}
+#| label: 14-01-urn-draw-1
+p <- 0.3427266
+a <- 1:50
+b <- 51:1
+y <- rep(c(a,b), 13)
+x <- 1:1313
+y <- sin(pi*x/75)
+z <- sample(rep(c("F", "M"), c(462, 851)))
+u <- ifelse(z=="F","pink2","lightblue")
+data.frame(x, y, z, u) |>
+	ggplot() +
+	  aes(x, y, label=z) +
+	  geom_text(color=u) +
+	  theme_void() -> urn_plot
+urn_plot
+```
+
+## Calculations behind Fisher's Exact Test, 4
+
+```{r}
+#| label: 14-01-urn-draw-2
+urn_plot +
+	geom_segment(
+	 	x=450, xend=450, 
+	  y=-1.1, yend=1.1)
+```
+
+## Calculations behind Fisher's Exact Test, 6
+
+-   Hypergeometric distribution
+    -   Similar to binomial, but trials not independent
+    -   Relates to sampling without replacement/combinatorics
+
+```{r}
+#| label: 14-01-hypergeometric
+p <- dhyper(0:450, 462, 863, 450)
+data.frame(x=0:450, p=p) |>
+	ggplot() +
+	  aes(x, p) +
+	  geom_col(color="black", fill="black") +
+	  scale_x_continuous(breaks=(0:9)*50)
+```
+
+## Calculations behind Fisher's Exact Test, 5
+
+```{r}
+#| label: 14-01-urn-draw
+n <- c(308, 142, 154, 709)
+x1 <- runif(450, 0, p)
+x2 <- runif(863, p, 1)
+y <- runif(1313)
+z <- rep(c("F", "M", "F", "M"), n)
+u <- rep(c("pink2", "lightblue", "pink2", "lightblue"), n)
+v <- rep(c(1, 5, 1), c(154, 450, 709))
+data.frame(x, y, z) |>
+	ggplot() +
+	  aes(x, y, label=z) +
+	  geom_text(size=v, color=u) + 
+	  geom_segment(
+	  	x=0.3427266, 
+	  	xend=0.3427266, 
+	  	y=0, 
+	  	yend=1) +
+	  theme_void()
+```
+
+        survived
+sex       yes   no  Sum
+  female  308  154  462
+  male    142  709  851
+  Sum     450  863 1313
+
+## Criticism of Fisher's Exact Test
+### Historical origins of Fisher's Exact Test
+
+![Figure 1. Ronald A. Fisher](../images/Ronald_Aylmer_Fisher_1952.jpg)
+
+<div class="notes">
+
+Let's start with a historical overview. Ronald Fisher was a pioneer in the field of statistics. He developed many foundational methodologies, such as the use of  designed experiments and p-values.
+
+He does have a checkered past, unfortunately. He was a sharp critic of efforts in the 1950s and 60s to draw a link between cigarette smoking and cancer. He felt, quite wrongly as it turned out, that you could only show a link between smoking and cancer through randomized trials.
+
+Even worse were his blatantly racist views and his support for eugenics. This is the topic for another talk. But I did want to highlight a simple experiment he proposed in his 1935 book, The Design of Experiments, known as "The lady testing tea."
+
+This was a simple example of the use of randomization and blinding to test a simple hypothesis.
+
+</div>
+
+### The lady tasting tea, tea plus milk
+
+![Figure 2. Tea with milk added](../images/tea-plus-milk.png)
+
+<div class="notes">
+
+In England, there is an interesting practice of pouring hot tea into a cup and then adding milk. It's not something that I like. Just give me the tea straight. No milk, no sugar, no lemon slices. But tea served with milk is quite popular in England and elsewhere.
+
+</div>
+
+### Milk plus tea, can you tell the difference?
+
+![Figure 3. Milk with tea added](../images/milk-plus-tea.png)
+
+<div class="notes">
+
+You could change the order, though, putting milk in the cup first and then adding the tea.
+
+A colleague of Fisher's, Muriel Bristol, claimed that she could tell, just by tasting, whether a cup had the tea first with milk added or milk first with tea added. She preferred the latter. When she told Fisher this, he scoffed and said that no one could tell the difference between tea with milk added and milk with tea added. Along with another colleague, William Roach, they designed an experiment to prove her wrong.
+
+</div>
+
+### The experiment to test the claim
+
+![Figure 4. A randomized experiment](../images/tea-experiment.png)
+
+<div class="notes">
+
+Fisher and Roach prepared eight cups of tea, four with the tea added first and four with the milk added first. They presented the eight cups to Bristol in a random order and had her taste each cup and identify which of the four had milk added first.
+
+</div>
+
+### The result of the experiment
+
+![Figure 5. Result of the randomized experiment](../images/tea-result.png)
+
+<div class="notes">
+
+To their surprise, after tasting all eight cups, she correctly identified the four cups that had the milk added first. This is indeed a surprising results, but how surprising?
+
+</div>
+
+### How likely is this result?
+
++ $\frac{4}{8} \times \frac{3}{7}  \times \frac{2}{6} \times \frac{1}{5} = \frac{1}{70}$
+  + Note: the probability is NOT $\left(\frac{1}{2}\right)^4$
+
+<div class="notes">
+
+If Bristol had no ability to tell whether the milk was added first and was effectively picking at random, for the first choice, the probability would be 50-50 or four out of eight, since there were the same number of cups with tea added first and milk added first.
+
+If she picked this correctly, the chances that her second selection would be correct, assuming that she was choosing randomly would be 3/7 since only three of the remaining seven cups had the mill added first. It gets even harder for the third choice, assuming that she got the first two correct. There are only two cups now with milk added first. The last choice is the hardest of all. The probability is one out of five, assuming she got the first three correct. Multiply these four probabilities to get 1/70. 
+
+So this is quite surprising indeed. If she had no clue which cups had the milk added first, it would take quite a streak of good luck for her to correctly identify four in a row.
+
+Now notice that the probability is not 1/2 raised to the fourth power. The probabilities change because once a cup is identified correctly, it is taken out of the pool. This is analogous to the concept sampling without replacement.
+
+</div>
+
+### Break #1
+
+What have you learned?
+
++ Simple application of Fisher's Exact Test
+
+What is coming next?
+
++ The hypergeometric distribution
+
+Any questions?
+
+### An alternate result
+
+![Figure 6. An alternate result with one miss](../images/tea-result-2.png)
+
+<div class="notes">
+
+To make things interesting, let's propose a different result. Suppose Bristol missed on one cup but identified three others correctly.
+
+In this example, she incorrectly picked the first cup as adding the milk frist. She should have chosen the sixth cup. The other three cups (third, seventh, and eighth) she did get correctly.
+
+</div>
+
+### How likely is three correct results?
+
+$\frac{4}{8} \times \frac{4}{7}  \times \frac{3}{6} \times \frac{2}{5} \ \ + \ \ \frac{4}{8} \times \frac{4}{7}  \times \frac{3}{6} \times \frac{2}{5} \ \ +$
+
+$\frac{4}{8} \times \frac{3}{7}  \times \frac{4}{6} \times \frac{2}{5} \ \ + \ \ \frac{4}{8} \times \frac{3}{7}  \times \frac{2}{6} \times \frac{4}{5} \ \ \ \ $
+
+Too messy! Use the hypergeometric distribution. Note: this is NOT a binomial distribution.
+
+<div class="notes">
+
+The calculations get quite a bit messier in this case. There are four probabilities you have to compute here. The probability that the first cup is identified incorrectly and the remaining three are identified incorrectly starts with the same 4/8 because if you are choosing at random there are four cups that you could choose incorrectly. Once this is done, your chances get a little bit better, because there are four cups that would represent a correct choice and only three left that represent an incorrect choice. The other probabilities are computed similarly.
+
+But you have to account for another case, one where the first cup is choosen correctly, the second incorrectly, and the remaining two correctly. This is getting a bit tedious, but you can calculate the probability with a bit of work.
+
+You are still not done. There are two more cases to consider: one where the third cup chosen is the one that is mistaken and one where the mistake happens on the last cup.
+
+Now I don't mind tedious. Tedious is part of being a statistician. But there is a simpler way. You can rely on a well known distribution, the hypergeometric distribution, to calculate the probabilities for you.
+
+</div>
+
+### Balls in an urn analogy
+
+```{}
+
+ |    W           |
+ |       B        |
+ |  B        B    |
+ |          W     |
+ |     W       B  |
+ |        W       |
+ __________________
+
+```
+
+<div class="notes">
+
+To understand the hypergeometric distribution, you need to visualize an abstract problem of probability known as drawing balls from an urn.
+
+Think of the eight cups of tea as an urn with eight balls, four white and four black. The white balls represent correctly identifying the cup of tea as having the milk added first. The black balls represent mistakes in identification. So what is the probability of getting 3 white balls after drawing 4 balls without replacement?
+
+</div>
+
+### Combinatorics
+
+Combinatorics = mathematics of defining how many ays you can combine things.
+
+$${a \choose b} = \frac{a!}{b!(a-b)!}$$
+
+Example:
+
+$${4 \choose 3} = \frac{4!}{3!(4-3)!}=\frac{24}{6 \times 1}=4$$
+
+<div class="notes">
+
+Before you see the formula for hypergeometric probabilities, I need to introduce some notation used in combinatorics.
+
+If you see a pair of large parentheses with one number above another, that is a combination. It is read as "a choose b".
+
+It represents the number of ways you can select "b" items from a population of size "a".
+
+For example, 4 choose 3 is the number of ways you can select 3 items from a population of 4. It is computed as 4 factorial divided by 3 factorial times 1 factorial. This is 4. If there are four members of a population, you can pick
+
+the first, second, and third, 
+
+the first, second, and fourth
+
+the first, third, and fourth, or
+
+the second, third, and fourth.
+
+It's worth noting here that for combinations, order does not matter.
+
+</div>
+
+### Formula for hypergeometric probabilities
+
+$$\frac{{w_1 \choose w_0} {b_1 \choose b_0}}{n_1 \choose n_0}$$
+
++ $w_1$ = # of white balls in the urn
++ $b_1$ = # of black balls in the urn
++ $n_1 = w_1 + b_1$ = total # of balls in the urn
++ $w_0$ = # white balls drawn from the urn
++ $b_0$ = # black balls drawn from the urn
++ $n_0 = w_0 + b_0$ = total # of balls drawn
+
+<div class="notes">
+
+The formula for hypergeometric probabilities uses combinatorics. Say that you want to get the probability of drawing w0 white balls and b0 black balls with n0 draws from an urn containing w1 white balls and b1 black balls (n1 balls total). Then it is w1 choose w0 times b1 choose b0 divided by n1 choose n0. Figure out how many ways you can select w0 balls from w1, multiply it by the number of ways you can ch where "choose" is the number of combinations. So the denominator, n1 choose n0, is n1 factorial divided by n0 factorial times (n1-n0) factorial.
+
+</div>
+
+### Calculation for 3 correct guesses
+
+$$\frac{{4 \choose 3} {4 \choose 1}}{8 \choose 4}=\frac{\frac{4!}{3!1!} \times \frac{4!}{1!3!}}{\frac{8!}{4!4!}}=$$
+
+$$\ $$
+
+$$\frac{\frac{24}{6\times1} \times \frac{24}{1\times6}}{\frac{40320}{24\times24}} = \frac{16}{70}$$
+
+<div class="notes">
+
+The calculations are not too difficult. 4 choose 3 is 4 factorial divided by 1 factorial and 3 factorial. 4 choose 1 is 4 factorial divided by 3 factorial and 1 factorial. The denominator, 8 choose 4 is 8 factorial divided by 4 factorial times 4 factorial. Work these out to get a numerator of 16 and a denominator of 70.
+
+</div>
+  
+
+### Functions for computing hypergeometric probabilities
+
++ SAS: PDF('HYPER', w0, n1, w1, n0)
++ R: dhyper(w0, w1, b1, n0)
++ Stata: dis hypergeometricp(n1, w1, n0, w0)
++ SPSS: PDF.HYPER(w0, n1, w1, n0)
+  
+<div class="notes">
+
+The functions to calculate hypergeometric probabilities vary from package to package. SAS uses a PDF function (short for Probability Density Function) with the 'HYPER' argument. R uses the dhyper function. Stata uses dis hypergeometricp. SPSS uses the PDF.HYPER function.
+
+All of these packages arrange the numeric arguments differently.
+
+Notice that R asks you to specify the number of white balls and the number of black balls. The other packages ask you to specify the number of white balls and the total number of balls, The order that you specify these values in is also inconsistent from package to package.
+
+I show this to emphasize that if you plan to calculate hypergeometric probabilities, read the manual closely. 
+
+Fortunately, while it helps to understand that Fisher's Exact Test relies on  hypergeometric probabilities, you don't have to calculate those probabilities yourself. You'll see this in a minute.
+
+</div>
+
+### Break #2
+
+What have you learned?
+
++ The hypergeometric distribution
+
+What is coming next?
+
++ Using SPSS and Stata
+
+Any questions?
+
+### SPSS data for Fisher's Exact Test
+
+![Figure 7. SPSS Dialog box](../images/spss-data.png)
+
+<div class="notes">
+
+Here is the data layout in SPSS for the lady tasting tea example. I am showing the case where there are three and not four correct guesses.
+
+</div>
+
+### SPSS dialog boxes for Fisher's Exact Test (1/2)
+
+![Figure 8. SPSS Dialog box](../images/spss-dialog-box-1.png)
+
+<div class="notes">
+
+There are two dialog boxes you need to look at for the crosstabs in SPSS (selected by choosing Analyze, Descriptive Statistics, Crosstabs from the menu).
+
+First you have to ask for the Chi-square test, even though you don't want it.
+
+</div>
+
+### SPSS dialog boxes for Fisher's Exact Test (2/2)
+
+![Figure 9. SPSS Dialog box](../images/spss-dialog-box-2.png)
+
+<div class="notes">
+
+Then you have to click on the Exact button and ask for an exact test. Note that the Monte Carlo option, will produce a randomization test for this table. We'll discuss randomization tests a bit later. 
+
+As I understand it, not every implementation of SPSS has the Exact button as an option. You need to purchase an extra add-on module.
+
+</div>
+
+### SPSS output for Fisher's Exact Test
+
+![Figure 10. SPSS output box](../images/spss-output.png)
+
+<div class="notes">
+
+It may be a bit hard to read, but SPSS (bless those programmers) decided to throw in a bunch of different p-values. It's one of the irritating things about SPSS. In a concern not to leave anything out (a noble concern, I must admit), they err on the side of presenting too much information. It doesn't bother me, because I am used to looking through a whole page of output to find the one number I am interested in. But SPSS does not allow you to prevent display of the extra p-values.
+
+The one p-value you are looking for is the Exact (1-sided) column and the Fisher's Exact Test row. The p-value is 0.243. So if Muriel Bristol only got three cups correctly identified as milk first, you'd have to accept the null hypothesis and admit that getting three out of four correct is a fairly common event for someone who is just guessing randomly.
+
+</div>
+
+### Stata data for Fisher's Exact Test
+
+![Figure 11. Stata data](../images/stata-data.png)
+
+<div class="notes">
+
+Here's the layout for Stata, similar to how you lay out the data in SPSS.
+
+</div>
+
+### Stata code and output for Fisher's Exact Test
+
+```{}
+. tabulate guess truth, exact
+
+        Fisher's exact = 0.486
+1-sided Fisher's exact = 0.243
+```
+
+<div class="notes">
+
+The Stata command for Fisher's Exact Test uses tabulate with an exact option. The output is much simpler, though I did edit away a few details to make this fit easily on a single slide.
+
+</div>
+
+### SAS and R code for Fisher's Exact Test
+
+In SAS,
+
+```{}
+proc freq;
+  tables guess*truth / fisher;
+run;
+```
+
+In R,
+
+```{}
+fisher.test(guess, truth)
+```
+
+<div class="notes">
+
+I won't show the output, but Fisher's Exact Test is just as easy in SAS and R.
+
+</div>
+
