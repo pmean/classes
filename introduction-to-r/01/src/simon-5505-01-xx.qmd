@@ -26,8 +26,6 @@ library(tidyverse)
 
 ```{r}
 #| label: read-rdata
-load("../data/two-small-dataframes.RData")
-ls()
 fat <- read_csv(
   "../data/fat.csv",
   col_types="n")
@@ -38,11 +36,11 @@ glimpse(fat)
 
 When you use unusual or novel R code, include a brief description.
 
-The [load][ref1] function places objects from an R binary file into your 
-environment. The [ls][ref2] function displays all the objects in your environment.
+I will defer discussion of the read_csv function until a later module.
 
-[ref1]: https://bookdown.org/rwnahhas/IntroToR/loading-an-r-dataset.html
-[ref2]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/ls.html
+The [glimpse][ref3] function provides a listing of each variable in a data frame
+along with the first few values of that variable. It is useful for orienting 
+yourself to the way that your data is organized.
 
 #### Interpretation of the output
 
@@ -50,19 +48,6 @@ For all except the most basic output, include a brief interpretation.
 
 In this program, none of the output from any of the program chunks needs an
 interpretation.
-
-## Peek at the fat data
-
-```{r}
-#| label: glimpse-fat
-glimpse(fat)
-```
-
-#### Comments on the code
-
-The [glimpse][ref3] function provides a listing of each variable in a data frame along
-with the first few values of that variable. It is useful for orienting yourself
-to the way that your data is organized.
 
 [ref3]: https://dplyr.tidyverse.org/reference/glimpse.html
 
