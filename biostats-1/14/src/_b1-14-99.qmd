@@ -1,5 +1,5 @@
 ---
-title: "14-01, Fsiher's Exact Test"
+title: "14-99, Fisher's Exact Test"
 format: 
   revealjs:
     slide-number: true
@@ -8,14 +8,14 @@ editor: source
 ---
 
 ```{r}
-#| label: 14-01-setup
+#| label: 14-99-setup
 #| message: false
 #| warning: false
 library(tidyverse)
 ```
 
 ```{r}
-#| label: 14-01-titanic-yaml
+#| label: 14-99-titanic-yaml
 #| output: asis
 load("../../../general/chopper.RData")
 partition_yaml("titanic.yaml") |>
@@ -27,7 +27,7 @@ partition_yaml("titanic.yaml") |>
 -   Counts
 
 ```{r}
-#| label: 14-01-crosstabulaton-1
+#| label: 14-99-crosstabulaton-1
 load("../data/titanic.RData")
 table1 <- xtabs(~sex+survived, data=ti)
 table2 <- addmargins(table1)
@@ -107,7 +107,7 @@ sex       yes   no  Sum     sex       yes   no  Sum
 ## Calculations behind Fisher's Exact Test, 4
 
 ```{r}
-#| label: 14-01-urn-draw-1
+#| label: 14-99-urn-draw-1
 p <- 0.3427266
 a <- 1:50
 b <- 51:1
@@ -127,7 +127,7 @@ urn_plot
 ## Calculations behind Fisher's Exact Test, 4
 
 ```{r}
-#| label: 14-01-urn-draw-2
+#| label: 14-99-urn-draw-2
 urn_plot +
 	geom_segment(
 	 	x=450, xend=450, 
@@ -141,7 +141,7 @@ urn_plot +
     -   Relates to sampling without replacement/combinatorics
 
 ```{r}
-#| label: 14-01-hypergeometric
+#| label: 14-99-hypergeometric
 p <- dhyper(0:450, 462, 863, 450)
 data.frame(x=0:450, p=p) |>
 	ggplot() +
@@ -153,7 +153,7 @@ data.frame(x=0:450, p=p) |>
 ## Calculations behind Fisher's Exact Test, 5
 
 ```{r}
-#| label: 14-01-urn-draw
+#| label: 14-99-urn-draw
 n <- c(308, 142, 154, 709)
 x1 <- runif(450, 0, p)
 x2 <- runif(863, p, 1)
@@ -405,6 +405,50 @@ I show this to emphasize that if you plan to calculate hypergeometric probabilit
 Fortunately, while it helps to understand that Fisher's Exact Test relies on  hypergeometric probabilities, you don't have to calculate those probabilities yourself. You'll see this in a minute.
 
 </div>
+
+## Formula for hypergeometric probabilities
+
+-   $x! = x \times (x-1) \times \cdots \times 2 \times 1$
+
+```{r}
+data.frame(x=c(100, 900), y=c(100, 900)) |>
+  ggplot() +
+    aes(x, y) +
+    geom_text(label=" ") +
+    geom_text(x=100, y=200, label="d") +
+    geom_text(x=100, y=400, label="c") +
+    geom_text(x=100, y=600, label="b") +
+    geom_text(x=100, y=800, label="a") +
+    geom_text(x=200, y=160, label="b") +
+    geom_text(x=200, y=240, label="a") +
+    geom_text(x=200, y=360, label="b") +
+    geom_text(x=200, y=440, label="a") +
+    geom_text(x=300, y=120, label="a") +
+    geom_text(x=300, y=280, label="b") +
+    geom_text(x=300, y=320, label="a") +
+    geom_text(x=300, y=480, label="b") +
+    theme_void()
+```
+
+```{}
+    c d
+  b
+    d c
+    
+    b d
+    
+a c
+    d b 
+
+  d
+  
+  
+b
+c
+d
+```
+
+-   $a \choose (a+b) = \frac{a!b!}{(a+b)!}
 
 ### Break #2
 

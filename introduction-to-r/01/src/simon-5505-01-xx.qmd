@@ -1,0 +1,77 @@
+---
+title: "Examples from the video"
+format: 
+  html:
+    embed-resources: true
+execute: 
+  error: true
+---
+
+#### Program details
+
+This program will read in data from an RData file. It will then list all the objects that you just read in, and list the first few lines for one of those objects.
+
+This program was written by Steve Simon on 2024-12-18 and is placed in the public domain. You can use it any way that you please.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+R.version.string
+Sys.Date()
+library(tidyverse)
+```
+
+## Read a small RData file
+
+```{r}
+#| label: read-rdata
+load("../data/two-small-dataframes.RData")
+ls()
+fat <- read_csv(
+  "../data/fat.csv",
+  col_types="n")
+glimpse(fat)
+```
+
+#### Comments on the code
+
+When you use unusual or novel R code, include a brief description.
+
+The [load][ref1] function places objects from an R binary file into your 
+environment. The [ls][ref2] function displays all the objects in your environment.
+
+[ref1]: https://bookdown.org/rwnahhas/IntroToR/loading-an-r-dataset.html
+[ref2]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/ls.html
+
+#### Interpretation of the output
+
+For all except the most basic output, include a brief interpretation.
+
+In this program, none of the output from any of the program chunks needs an
+interpretation.
+
+## Peek at the fat data
+
+```{r}
+#| label: glimpse-fat
+glimpse(fat)
+```
+
+#### Comments on the code
+
+The [glimpse][ref3] function provides a listing of each variable in a data frame along
+with the first few values of that variable. It is useful for orienting yourself
+to the way that your data is organized.
+
+[ref3]: https://dplyr.tidyverse.org/reference/glimpse.html
+
+## Save important files for later use
+
+```{r}
+#| eval: false
+save(
+  fat,
+  log_fly,
+  file="../data/fruitfly.RData")
+```
