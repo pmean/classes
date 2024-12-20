@@ -56,9 +56,9 @@ Documentation should include
     -    Public domain (no restrictions)
     -    Specific restrictions on how others can use your program
 
-## Graphs cannot rely on default choices
+## Graphs cannot rely on default choices, 1
 
-Alway modify your graphs. Do not settle for the default options
+Always modify your graphs. Do not settle for the default options
 
 -   Include your name and date on the title of any graph
     -   "Steve Simon produced this graph on 2023-09-19."
@@ -66,28 +66,13 @@ Alway modify your graphs. Do not settle for the default options
 -   Use comma separators for large numbers
 -   Replace category codes with descriptive labels
 
-:::notes
-If the assignment requires graphs, you must modify the graphs to publication quality. This means you change how numbers and categories are displayed on the graph.
+## Grpahs cannot rely on default choices, 2
 
-First, please be sure to include your name and the date the graph was first created on the title.
-
-Look at what appears on the graph axes. Avoid axes that go 10.00, 20.00, 30.00, etc. If the numbers are large, use comma separators (anything 1,000 or larger). Use descriptive labels rather than gender=1 and 2.
-:::
-
-## 
-
--   More modifications
-    -   Replace short variable names with longer descriptors
-        -   Include units of measurement, if needed
-    -   Avoiding the gratuitous use of color
-        -   Unless needed to distinguish between groups
-        -   Fill boxes and points with white/transparent colors
-
-:::notes
-Don't use the default variable names if they are short and use abbreviations (change "bw" to "Birth weight"). Make sure that the units of measure (meters, kilograms, etc.) are listed. Some variable, of course, may not have a measurement unit.
-
-Avoid the gratuitous use of color. If you need color to distinguish between groups, that's fine. Otherwise, fill boxes and points with either white or transparent colors.
-:::
+-   Replace short variable names with longer descriptors
+    -   Include units of measurement, if needed
+-   Avoid the gratuitous use of color
+    -   Unless needed to distinguish between groups
+    -   Fill boxes and points with white/transparent colors
 
 ## Tables also need modification
 
@@ -100,14 +85,6 @@ Avoid the gratuitous use of color. If you need color to distinguish between grou
     -   Sometimes difficult
 -   Unmodified table acceptable with a detailed text description
 
-:::notes
-If the assignment requires the production of tabular data (other than a listing of the data itself), you must ensure that the table is easily readable. This means rounding values and using comma separators either in the table itself or in your interpretation of the table. Avoid the use of scientific notation.
-
-ny p-values smaller than 0.001 should be rounded up to "0.001" or replaced with "<0.001". A p-value of "0.000" is not acceptable.
-
-Some programs (SPSS in particular) make it difficult for you to modify the tables. You are allowed to print a table without modification, but only if it is followed by a detailed text description that follows these rules. 
-:::
-
 ## Your code must be easy to read
 
 -   Make liberal use of
@@ -115,12 +92,6 @@ Some programs (SPSS in particular) make it difficult for you to modify the table
     -  line breaks
     -  indenting
     -  vertical lists
-
-:::notes
-Your code should be easy to read. You should include a lot of white space. Put a blank line between sections of your code. Break long lines into several lines with indents. Use vertical lists.
-
-If you are using a system like SPSS that is largely menu driven, please include the syntax in a separate file and modify the syntax to make it more readable.
-:::
 
 ## Always include an interpretation
 
@@ -130,7 +101,7 @@ If you are using a system like SPSS that is largely menu driven, please include 
     -   Almost all/almost none
     -   Substantial improvement/roughly comparable
 -   Depends on context
-    -   No penalty for subjective judgements
+    -   No penalty for subjective judgments
 
 :::notes
 For anything more complicated than a simple listing of the data, you should provide an interpretation. If you report an average age of 70.2 and a range of 65 to 85, it would be reasonable to use the word "elderly" in your description. A proportion of 0.45 could be described as "less than half" and a proportion of 0.89 as "almost all". A difference between two groups might include evaluative words like "substantial improvement" or "roughly comparable". Characterize a confidence interval as either wide or narrow and note whether it includes the null value. State the practical implications if you accept the null hypothesis.
