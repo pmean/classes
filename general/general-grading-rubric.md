@@ -6,7 +6,36 @@ format:
     embed-resources: true
 ---
 
+## You must write your own program
+
+You are expected to write your programs by yourself. You cannot ask someone else to write the program for you. You can search for and find program code on the Internet that you can modify to meet the needs of the assignment. Also acceptable, if you know how to do it: using a large language model like ChatGPT to generate code.
+
+## If your program doesn't run
+
+Most programs do not run properly the first time. You may see a warning or error message, or you may find that your code does not produce the output that you wanted. You have two options.
+
+-   Fix the error yourself
+-   Seek help from others
+
+## Fix the error yourself
+
+If you can, try to fix the problem yourself. Review the class material and compare any sample programs you have received with the code you have written. Look closely and carefully because even very small inconsistencies can create big problems. [Additional help on fixing things yourself][ref01] is available on my gihub site.
+
+[ref01]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
+
+There is value in struggling through and trying different things. If your program fails the first nine times, and gets good results the tenth time, that's good. Repeated failures followed by a success helps you learn better than if you get the program working right on the very first time.
+
+There will be times, though, where you find yourself banging your head against the wall in frustration. If it takes more than an hour to fix a problem and you feel like you are not making any progress, don't torture yourself. Proceed to the next step.
+
+## Seek help from others
+
+Your teachers are always available to assist with any programming problem. In fact, we love students who ask for help. The interactions that we get are a big part of what we enjoy about teaching.
+
+You can also get help from others. Ask your fellow students, your co-workers, your colleagues. While they can't write the program for you, they can help you fix a program that doesn't work. It's not cheating, from our perspective, because in the real world, you are allowed to seek help from others to get your job done.
+
 ## Grading rubric: general requirements.
+
+There are standards in five general areas
 
 -   Documentation
 -   Graphs
@@ -14,33 +43,28 @@ format:
 -   Readability
 -   Interpretation
 
-:::notes
-Some of the general requirements listed below are not easy to meet. You cannot always rely on the default options that your program produces. Pay attention in class because you will see examples of how to meet these general requirements.
-:::
+There may be times when one or two of these standards do not apply. Which standards apply should be obvious from the nature of the programming assignment.
 
 ## Documentation is required!
 
--   Documentation should include
-    -   the name of the author (you!),
-    -   the creation date, 
-    -   the purpose of your program, and 
-    -   any restrictions on use.
+Documentation should include
 
-:::notes
-You must include a documentation header at or near the top of every programming assignment. Your documentation header must include
-
-
-You can choose to place your program in the public domain (no restrictions) or you can specify restrictions on how others can use your program (e.g., no commercial use). This is entirely your discretion.
-:::
+-   the name of the author (you!),
+-   the creation date, 
+-   the purpose of your program, and 
+-   any restrictions on use (your choice).
+    -    Public domain (no restrictions)
+    -    Specific restrictions on how others can use your program
 
 ## Graphs cannot rely on default choices
 
--   Modify your graphs
-    -   Include your name and date on the title of any graph
-        -   "Steve Simon produced this graph on 2023-09-19."
-    -   Avoid the display of unnecessary decimal places on the axes
-    -   Use comma separators for large numbers
-    -   Replace category codes with descriptive labels
+Alway modify your graphs. Do not settle for the default options
+
+-   Include your name and date on the title of any graph
+    -   "Steve Simon produced this graph on 2023-09-19."
+-   Avoid the display of unnecessary decimal places on the axes
+-   Use comma separators for large numbers
+-   Replace category codes with descriptive labels
 
 :::notes
 If the assignment requires graphs, you must modify the graphs to publication quality. This means you change how numbers and categories are displayed on the graph.
