@@ -1,0 +1,108 @@
+---
+title: "Video examples from module05"
+author: "Steve Simon"
+date: "Created 2022-05-02"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute:
+  error: true
+---
+
+## Program details
+
+This is a small program written in Rmarkdown to show how to work with a dataset with a mix of categorical and continuous variables.
+
+This program was written by Steve Simon on 2022-05-02 with a major modification on 2024-12-23. This program is in the public domain. You can use it any way that you please.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+R.version.string
+Sys.Date()
+library(tidyverse)
+```
+
+## Read the pulmonary dataset
+
+Put in some comments about where you found the pulmonary dataset.
+
+```{r read-pulmonary}
+#| label: read-pulmonary
+pulmonary <- read_csv(
+  file="../data/fev.csv",
+  col_types="nnnnn",
+  col_names=TRUE)
+glimpse(pulmonary)
+```
+
+## Modify names
+
+```{r}
+names(csv) <- c(
+  "age",
+  "fev",
+  "ht",
+  "sex",
+  "smoke")
+```
+
+### Create factors
+
+```{r factors}
+pulmonary$smoke_factor <-
+  factor(
+    pulmonary$smoke,
+    levels=0:1,
+    labels=c("Non-smoker", "Smoker"))
+pulmonary$sex_factor <- 
+  factor(
+    pulmonary$sex,
+    levels=0:1,
+    labels=c("Female", "Male"))
+table(pulmonary$smoke_factor, useNA="always")
+table(pulmonary$sex_factor, useNA="always")
+```
+
+## Draw boxplots
+
+```{r pulmonary-boxplot}
+pulmonary_box <-
+  ggplot(
+    pulmonary,
+    aes(x=smoke_factor, y=fev)) +
+      geom_boxplot()
+pulmonary_box
+```      
+
+#### Comments on the code
+
+The base R package has a nice function, [boxplot][ref01], that will draw 
+boxplots. This function produces nice boxplots, but I prefer to use the 
+[geom_boxplot][ref02] function in R.
+
+[ref01]: https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/boxplot.html
+[ref02]: https://ggplot2.tidyverse.org/reference/geom_boxplot.html
+
+#### Interpretation of the output
+
+```{r age-boxplot}
+age_box <-
+  ggplot(
+    pulmonary,
+    aes(x=smoke_factor, y=age)) +
+      geom_boxplot()
+age_box
+```      
+      
+### Calculate group means and standard deviations
+
+```{r group-summaries}
+age_stats <- by(
+  pulmonary$age,
+  pulmonary$smoke_factor,
+  mean)
+round(age_stats, 1)
+```

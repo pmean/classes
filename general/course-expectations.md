@@ -8,7 +8,7 @@ Some classes have written reports and/or oral presentations.
 
 You must **prepare the report/presentation yourself**. Do not ask someone else to write your paper or develop your presentation slides. **Do not plagiarize** any other works. You can **reuse work** that you have done in another class or in your job, but be sure to acknowledge this appropriately. You can **use Internet resources** like large language models to help develop your report/presentation, but you alone are responsible for the accuracy of your work.
 
-Once the first draft of the report/presentation is written, you can get ask fellow students and/or colleagues for **help from  on grammar, style, and organization**. In fact, this is encouraged. Please be sure to **acknowledge any assistance** you have received. It won't affect your grade, but it is a nice habit to develop. **Cite any Internet resources** that you rely on, including the use of large language models.
+Once the first draft of the report/presentation is written, you can get ask fellow students and/or colleagues for **help on grammar, style, and organization**. In fact, this is encouraged. Please be sure to **acknowledge any assistance** you have received. It won't affect your grade, but it is a nice habit to develop. **Cite any Internet resources** that you rely on, including the use of large language models.
 
 ## Quizzes and final exams
 
