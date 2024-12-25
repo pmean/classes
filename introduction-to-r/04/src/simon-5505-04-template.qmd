@@ -1,0 +1,162 @@
+---
+title: "Programming template for module04"
+author: "Steve Simon"
+date: "Created 2019-04-20"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute:
+  error: true
+---
+
+## Program details
+
+This is a small program written in Rmarkdown to show how to work with a dataset with categorical variables.
+
+This program was written by Steve Simon on 2019-04-20 with a major modification on 2024-12-24. This program is in the public domain. You can use it any way that you please.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+R.version.string
+Sys.Date()
+library(tidyverse)
+```
+
+## Titanic data set
+
+```{r}
+#| label: read-titanic
+fn <- "../data/titanic.csv"
+ti <- read_csv(fn,
+  col_names=TRUE,
+  col_types="ccncn")
+names(ti) <- tolower(names(ti))
+glimpse(ti)
+```
+
+## Any missing values
+
+```{r}
+#| label: check-missing
+ti |>
+  mutate(across(everything(), is.na)) |>
+  summarize(across(everything(), sum))
+```
+
+#### Comments about the code
+
+The across function allows 
+
+[ref01]: 
+
+## Create a factor for survived
+
+```{r create-factor}
+#| label: survived-factor
+ti |>
+  mutate(
+    survived=
+      factor(
+        survived,
+        levels=0:1,
+        labels=c("No", "Yes"))) -> ti
+```
+
+
+## Who is the youngest passenger?
+
+```{r age-min}
+ti |>
+  slice_min(age) |>
+  select(name, age)
+```
+
+## Who is the oldest passenger?
+
+```{r age-max}
+ti |>
+  slice_max(age) |>
+  select(name, age)
+```
+
+## Counts and percentages for pclass
+
+```{r counts}
+#| label: pclass-counts
+ti |>
+  count(pclass) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total) |>
+  mutate(pct=round(pct)) |>
+  mutate(pct=paste0(pct,"%"))
+```
+
+## Counts and percentages for sex
+
+```{r counts}
+#| label: sex-counts
+ti |>
+  count(sex) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total) |>
+  mutate(pct=round(pct)) |>
+  mutate(pct=paste0(pct,"%"))
+```
+
+## Counts and percentages for survived
+
+```{r counts}
+#| label: survived-counts
+ti |>
+  count(survived) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total) |>
+  mutate(pct=round(pct)) |>
+  mutate(pct=paste0(pct,"%"))
+```
+
+### Bar chart
+
+This plot shows the number of people in each passenger class.
+
+```{r draw-bar-chart}
+ti |>
+  ggplot() +
+    aes(x=pclass) +
+    geom_bar(
+      color="black",
+      fill="white") +
+    xlab("Passenger class") +
+    ylab("Count") +
+    ggtitle("Plot created by Steve Simon on 2024-12-24")
+
+```
+
+### New categorical variables
+
+Child is defined as less than 18 years.
+
+```{r new-age-categories}
+#| label: age-categories
+ti |>
+  mutate(
+    child=case_when(
+      is.na(age) ~ "Unknown",
+      ti$age <=  0 ~ "Invalid",
+      ti$age <  18 ~ "Yes",
+      ti$age >= 18 ~ "No")) -> ti
+```
+
+## Quality check. Does the new variable have sensible age limits.
+
+```{r}
+#| label: quality-check-age
+ti |>
+  group_by(child) |>
+  summarize(
+    age_min=min(age),
+    age_max=max(age))
+```

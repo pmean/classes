@@ -1,5 +1,5 @@
 ---
-title: "Video examples from module05"
+title: "Programming template for module05"
 author: "Steve Simon"
 date: "Created 2022-05-02"
 format: 
@@ -41,68 +41,127 @@ glimpse(pulmonary)
 ## Modify names
 
 ```{r}
-names(csv) <- c(
-  "age",
-  "fev",
-  "ht",
-  "sex",
-  "smoke")
+#| label: modify-names
+pulmonary |>
+  rename(
+    age=V1,
+    fev=V2,
+    ht=V3,
+    sex=V4,
+    smoke=V5) -> pulmonary
 ```
 
-### Create factors
+#### Comments about the code
 
-```{r factors}
-pulmonary$smoke_factor <-
-  factor(
-    pulmonary$smoke,
-    levels=0:1,
-    labels=c("Non-smoker", "Smoker"))
-pulmonary$sex_factor <- 
-  factor(
-    pulmonary$sex,
-    levels=0:1,
-    labels=c("Female", "Male"))
-table(pulmonary$smoke_factor, useNA="always")
-table(pulmonary$sex_factor, useNA="always")
+The [rename function][ref01] changes the names of variables in your dataset. I can never remember, but the rule is that you list the new name on the left side of the equal sign and the old name on the right.
+
+[ref01]: https://dplyr.tidyverse.org/reference/rename.html
+
+## Create factor for sex
+
+```{r}
+#| label: create-sex-factor
+pulmonary |>
+  mutate(
+    sex_factor=
+      factor(
+        sex,
+        levels=0:1,
+        labels=c("Female", "Male"))) -> pulmonary
 ```
 
-## Draw boxplots
+## Create factor for smoke
+
+```{r}
+#| label: create-smoke-factor
+pulmonary |>
+  mutate(
+    smoke_factor=
+      factor(
+        smoke,
+        levels=0:1,
+        labels=c("Non-smoker", "Smoker"))) -> pulmonary
+```
+
+## Get counts for sex and smoke
+
+```{r}
+#| label: sex-and-smoke-counts
+pulmonary |>
+  count(sex_factor)
+pulmonary |>
+  count(smoke_factor)
+```
+
+#### Interpretation of the output
+
+Slightly more than half of the patients are male. Almost all patients are non-smokers.
+
+## Draw boxplot of fev by smoke_factor
 
 ```{r pulmonary-boxplot}
-pulmonary_box <-
-  ggplot(
-    pulmonary,
-    aes(x=smoke_factor, y=fev)) +
-      geom_boxplot()
-pulmonary_box
+#| fig.height: 1.5
+#| fig.width: 6
+pulmonary |>
+  ggplot() +
+    aes(x=smoke_factor, y=fev) +
+    geom_boxplot() +
+    xlab(" ") +
+    ylab("Forced Expiratory Volume (liters)") +
+    coord_flip() +
+    ggtitle("Plot created by Steve Simon on 2024-12-24")
 ```      
 
 #### Comments on the code
 
-The base R package has a nice function, [boxplot][ref01], that will draw 
+The base R package has a nice function, [boxplot][ref02], that will draw 
 boxplots. This function produces nice boxplots, but I prefer to use the 
-[geom_boxplot][ref02] function in R.
+[geom_boxplot][ref03] function in R.
 
-[ref01]: https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/boxplot.html
-[ref02]: https://ggplot2.tidyverse.org/reference/geom_boxplot.html
+Normally, I prefer to put descriptive labels on the plot axes, but the values (smoker, non-smoker) on the x-axis are self-explanatory.
+
+The [coord_flip][ref04] function produces horizontal boxplots, which I generally  prefer.
+
+[ref02]: https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/boxplot.html
+[ref03]: https://ggplot2.tidyverse.org/reference/geom_boxplot.html
+[ref04]: https://ggplot2.tidyverse.org/reference/coord_flip.html
+
+## Draw boxplot of fev by smoke_factor
+
+```{r pulmonary-boxplot}
+#| fig.height: 1.5
+#| fig.width: 6
+pulmonary |>
+  ggplot() +
+    aes(x=smoke_factor, y=fev) +
+    geom_boxplot() +
+    xlab(" ") +
+    ylab("Forced Expiratory Volume (liters)") +
+    coord_flip() +
+    ggtitle("Plot created by Steve Simon on 2024-12-24")
+```      
 
 #### Interpretation of the output
 
+The fev values tend to be larger for the smokers than the non-smokers.
+
 ```{r age-boxplot}
-age_box <-
-  ggplot(
-    pulmonary,
-    aes(x=smoke_factor, y=age)) +
-      geom_boxplot()
-age_box
+pulmonary |>
+  ggplot() +
+    aes(x=smoke_factor, y=age) +
+    geom_boxplot() + 
+    ggtitle("Plot created by Steve Simon on 2024-12-24")
 ```      
       
 ### Calculate group means and standard deviations
 
-```{r group-summaries}
-age_stats <- by(
-  pulmonary$age,
-  pulmonary$smoke_factor,
-  mean)
-round(age_stats, 1)
+```{r age-by-smoke}
+pulmonary |>
+  group_by(smoke_factor) |>
+  summarize(
+    age_mean=mean(age),
+    age_sd=sd(age),
+    age_min=min(age),
+    age_max=max(age)) |>
+  round(digits=1)
 ```

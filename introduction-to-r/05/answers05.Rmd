@@ -125,7 +125,7 @@ ggplot(di, aes(x=carat, y=price)) +
   geom_point()
 ```
 
-7. Show the relationship between color and price and the relatonship between clarity and price using boxplots.
+7. Show the relationship between color and price and the relationship between clarity and price using boxplots.
 
 ```{r color}
 ggplot(di, aes(x=factor(color), y=price)) +
