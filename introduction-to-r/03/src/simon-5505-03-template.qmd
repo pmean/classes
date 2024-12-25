@@ -1,0 +1,121 @@
+---
+title: "Examples from module03"
+author: "Steve Simon"
+date: "Created 2022-03-09"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute:
+  error: true
+---
+
+## Program details
+
+This program is written in R with quarto formatting. It shows how to read a variety of text files.
+
+This program was written by Steve Simon on 2022-03-09 with a major modification on 2024-12-24. This program is in the public domain. You can use it any way that you please.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+R.version.string
+Sys.Date()
+library(tidyverse)
+```
+
+## Read a comma delimited file
+
+```{r read-csv}
+fn <- "../data/simple.csv"
+raw_data <- read_csv(file=fn, col_types="nn")
+glimpse(raw_data)
+```
+
+#### Comments about the code
+
+The [read_csv][ref01] function reads in a text file with comma delimiters. It is a relatively new addition to R, part of the readr and tidyverse packages. An earlier function, [read.csv][ref02] is also available, but it is a slow for very large text files and has fewer features.
+
+[ref01]: https://readr.tidyverse.org/reference/read_delim.html
+[ref02]: https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html
+
+## Read a tab delimited file
+
+```{r read-tab}
+fn <- "../data/simple.tsv"
+raw_data <- read_tsv(file=fn, col_types="nn")
+glimpse(raw_data)
+```
+
+#### Comments about the code
+
+The read_tsv function reads data from a text file with tab delimiters. It is also a relatively new function found in the readr and tidyverse packages. You can also read in tab delimited text files using the read.delim function. As above, the read.delim function is slow for very large text files and has fewer features. Details about both functions appear in the links shown above. 
+
+## Read a file with arbitrary delimiters
+
+```{r read-tilde}
+fn <- "../data/tilde.txt"
+raw_data <- read_delim(
+  file=fn, 
+  delim="~",
+  col_types="nn")
+glimpse(raw_data)
+```
+
+#### Comments about the code
+
+## Read a fixed-with file
+
+This shows how to read in a fixed-width file.
+
+```{r read-fixed-width}
+fn <- "../data/fixed.txt"
+raw_data <- read_fwf(fn, 
+  fwf_cols(1, 2),
+  col_types="nn")
+glimpse(raw_data)
+```
+
+## Read a text file with strings
+
+This shows how to read in string data.
+
+```{r string-data}
+fn <- "../data/string.csv"
+raw_data <- read_csv(fn,
+  col_types="ccn")
+raw_data
+```
+
+## Storing data as a text file.
+
+This shows how to store a data frame as a text file.
+
+```{r store-data}
+raw_data <- data.frame(
+  x=c(1, 2, 3, 4),
+  y=c(4, 8, 12, 16))
+fn <- "../results/output_data.txt"
+write_csv(raw_data, fn)
+```
+
+## Read airport data
+
+This shows how to read the airport data.
+
+```{r read-airport}
+fn <- "../data/airport.txt"
+raw_data <- read_fwf(fn,
+  fwf_cols(21, 22, 6, 7, 9, 10, 10),
+  col_types="ccnnnnn")
+names(raw_data) <- c(
+  "airport", 
+  "city", 
+  "scheduled_departures", 
+  "performed_departures", 
+  "enplaned_passengers", 
+  "enplaned_freight",
+  "enplaned_mail")
+glimpse(raw_data)
+```
