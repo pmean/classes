@@ -1,5 +1,5 @@
 ---
-title: "r-01-06, TBA-6"
+title: "r-01-06, Good programming practices"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,38 @@ format:
 editor: source
 ---
 
-## TBA-6
 
-:::notes
+## Data dictionary (1/3)
 
-:::
+![Data dictionary for two-small-dateframes](../images/data-dictionary-01.png)
+
+<div class="notes">
+
+Let me take a break here and mention the data dictionaries that you can consult for this program. There are three, actually, that are relevant here. I have links to all three data dictionaries on the Canvas site.
+
+The first is a data dictionary for two-small-data-frames.RData. It notes that this file contains information documented in airline-data-dictionary.yaml and fat-data-dictionary.yaml.
+
+</div>
+
+## Data dictionary (2/3)
+
+![Partial listing of airline-data-dictionary](../images/data-dictionary-02.png)
+
+<div class="notes">
+
+Here is just a partial listing of the data dictionary for bump.
+
+</div>
+
+## Data dictionary (3/3)
+
+![Data dictionary for two-small-dateframes](../images/data-dictionary-01.png)
+
+<div class="notes">
+
+Here is a partial listing of the data dictionary for fat. It is probably a bit of overkill to provide this much documentation, but I want to set a good example throughout this class. If you cannot find a data dictionary for any dataset used in this class, or if the data dictionary is missing important information, please let me know right away.
+
+By the way, even though it is a lot of extra work, I have found that I get fewer questions from students when I include data dictionaries as part of any class that I teach.
+
+</div>
+

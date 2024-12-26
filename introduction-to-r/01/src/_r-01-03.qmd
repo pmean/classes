@@ -1,5 +1,5 @@
 ---
-title: "r-01-03, TBA-3"
+title: "r-01-03, Objects in R"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,148 @@ format:
 editor: source
 ---
 
-## TBA-3
+### Introduction
 
-:::notes
+This is a very brief introduction to the basic obejcts in R.
 
-:::
+```{r version-and-current-date}
+R.version.string
+Sys.Date()
+```
+
+### Scalars
+
+```{r scalars}
+scalar_example_1 <- 3
+scalar_example_1
+scalar_example_2 <- "R"
+scalar_example_2
+scalar_example_3 <- "3"
+scalar_example_3
+```
+
+<div class="notes">
+
+Single values in R are called scalars. The most common scalars are numbers and strings. Strings are always surrounded by quote marks.
+
+There are other scalars that are important, such as dates
+
+</div>
+
+### Vectors
+
+```{r vectors}
+vector_example_1 <- c(1, 2, 3)
+vector_example_1
+vector_example_2 <- c("a", "b", "c")
+vector_example_2
+vector_example_3 <- c("a", 2)
+vector_example_3
+```
+
+<div class="notes">
+
+A combination of number or string scalars is called a vector. Use the c function to create vectors.
+
+If you try to mix different scalar types, R will convert them to a common format.
+
+</div>
+
+### Naming vectors
+
+```{r naming}
+my_degrees <- c(BA=1977, MS=1978, PhD=1982)
+my_degrees
+my_name <- c(first_name="Stephen", middle_initial="D", last_name="Simon")
+my_name
+```
+
+<div class="notes">
+
+You can name the individual elements of a vector. This is not done that often, but the same naming concept will be very important for more complex objects.
+
+</div>
+
+### Matrices
+
+```{r matrices-1}
+matrix_example_1 <- cbind(c(1, 2, 3), c(4, 5, 6))
+matrix_example_1
+matrix_example_2 <- rbind(c(1, 2, 3), c(4, 5, 6))
+matrix_example_2
+```
+
+<div class="notes">
+
+A matrix is a combination of vectors, with the important restriction that all the vectors have to be the same type. You can't mix strings and numbers for example.
+
+You can create a matrix using the cbind or rbind functions.
+
+</div>
+
+### Matrices
+
+```{r matrices-2}
+matrix_example_3 <- matrix(c(1, 2, 3, 4, 5, 6), nrow=2, ncol=3, byrow=TRUE)
+matrix_example_3
+```
+
+<div class="notes">
+
+The matrix function will reshape a vector into a matrix. There are lots of options in the matrix function that control the shape of the matrix and the order in which it is filled.
+
+</div>
+
+### Lists
+
+```{r lists}
+list_example_1 <- list(scalar_example_1, vector_example_2, matrix_example_3)
+list_example_1
+```
+
+<div class="notes">
+
+A list is a combination of objects of different types. It can include scalars, vectors, matrices, or other types of R objects that we have not seen yet. You can also include one list inside another list.
+
+</div>
+
+### List names
+
+```{r list-names}
+list_example_2 <- list(name=my_name, degrees=my_degrees, age=64)
+list_example_2
+```
+
+<div class="notes">
+
+A list can contain virtually anything, so using names is almost always recommended.
+
+</div>
+
+### Data frames
+
+```{r data-frames}
+data_frame_example_1 <- data.frame(vector_example_1, vector_example_2)
+data_frame_example_1
+```
+
+<div class="notes">
+
+A data frame is a combination of vectors. The vectors have to have the same length, but they can be different types.
+
+</div>
+
+### Naming data frame columns
+
+```{r data-frames-naming}
+data_frame_example_2 <- data.frame(c(1, 2, 3), c("a", "b", "c"))
+data_frame_example_2
+data_frame_example_3 <- data.frame(small_numbers=c(1, 2, 3), early_letters =c("a", "b", "c"))
+data_frame_example_3
+```
+
+<div class="notes">
+
+R will always name the columns in a data frame using common sense rules. Sometimes this leads to poor choices (common sense isn't always common sense). So it is strongly recommended that you specify names explicitly.
+
+</div>
