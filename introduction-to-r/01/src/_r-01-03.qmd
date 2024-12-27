@@ -20,6 +20,59 @@ R.version.string
 Sys.Date()
 ```
 
+## Functions
+
+```{r}
+sqrt(3)
+sqrt(1:5)
+barplot(height=5:1, names=1:5)
+```
+
+::: notes
+Functions receive input from one or more objects and produce an object in return. It could be as simple as computing a square root. Many functions are vectorized, meaning that they will compute a function for every element in a vector.
+:::
+
+## Nested functions and pipes
+
+```{r}
+x <- 0.9
+y <- asin(sqrt(x))
+y
+x |>
+  sqrt() |>
+  asin() -> y
+y
+```
+
+::: notes
+You can nest one function inside another. So asin(sqrt(x)) feeds the variable x into the square root function and then takes the output of the square root function and feeds it into the arcsin function. This result is stored in y.
+
+You can accomplish the same thing using the pipe symbol. Take the variable x and pipe it into the square root function. Then take the output from the square root function and pipe it into the arcsin function. Store the result in y.
+
+While the pipe symbol seems a bit odd in this simple example, you will see examples fairly soon, where you might nest a half dozen functions. The vertical format that pipes produce make the code easier to read. Pipes also make it easier to fix errors.
+:::
+
+## Named arguments in functions
+
+```{r}
+#| label: named-functions
+qnorm(p=0.99, mean=100, sd=15)
+qnorm(0.99, 100, 15)
+qnorm(0.99)
+```
+
+::: notes
+
+Many functions include names for the inputs. The first example shows how to compute the 0.99 quantile of a normal distribution with a mean of 100 and a standard deviation of 15. 
+
+Does anyone know what famous measurement has a mean of 100 and a standard deviation of 15? Answer: IQ scores. The 0.99 quantile represents the IQ of a person who is smarter than 99% of the population.
+
+The use of these names is optional in most cases, but it requires you to memorize the proper order.
+
+Many functions will have default values. If you do not specify the mean and sd arguments in the qnorm function, it will use mean=0 and sd=1.
+
+:::
+
 ## Scalars
 
 ```{r}

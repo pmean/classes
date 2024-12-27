@@ -8,9 +8,9 @@ execute:
   error: true
 ---
 
-This program was written by Steve Simon created on 2019-01-28 with a major
-revision on 2024-12-27 to illustrate the structure of an R program. This program
-is in the public domain. You can use it any way that you please.
+This program was written by Steve Simon  and created on 2019-01-28 with a major
+revision on 2024-12-27. It is used to illustrate the structure of an R program. 
+This program is in the public domain. You can use it any way that you please.
 
 ```{r}
 #| label: setup
@@ -35,7 +35,7 @@ aids_cases <- read_csv(
 glimpse(aids_cases)
 ```
 
-This is a small dataset with only three variables.
+This is a small dataset with only three variables. Now let's draw a line graph.
 
 ```{r}
 #| label: line-graph

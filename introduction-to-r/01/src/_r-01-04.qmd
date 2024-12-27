@@ -17,7 +17,7 @@ This is a full listing of a small program written in Rmarkdown. The font is too 
 
 :::
 
-## Anatomy of a small R program, header
+## YAML header
 
 ```{r}
 #| label: overview
@@ -44,15 +44,15 @@ All right, The first thing we have is the header. The header uses a structure ca
 
 I find the word "date" by itself ambiguous, so I add the word "Created" to distinguish the creation date from the last modified date. It is not easy to track the last modified date in RStudio.
 
-R Markdown has options for creating web pages (html documents). You can also produce Word documents and PDF documents. I should warn you that creating PDF documents directly is a bit tricky. You need to have a program called LaTeX (pronounced lay-tech) installed first.
+Quarto has options for creating web pages (html documents). You can also produce Word documents and PDF documents. I should warn you that creating PDF documents directly is a bit tricky. You need to have a program called LaTeX (pronounced lay-tech) installed first.
 
 You can also produce Powerpoint files, which this is an example of.
 
-The default is HTML and that's a pretty good format. Quite honestly, I've got a lot of mileage out of HTML
+The default is HTML and that's a pretty good format. Quite honestly, I've got a lot of mileage out of HTML. It has some limitations compared to other formats, but it is so much simpler to create and maintain the code that produces HTML files.
 
 :::
 
-## Anatomy of a small program, free text comments
+## First comment
 
 ```{r}
 #| label: free-text-1
@@ -70,7 +70,7 @@ Here's a brief sentence written as open text. You will be required to provide op
 
 :::
 
-## Anatomy of a small program, code chunk
+## First code chunk
 
 ```{r}
 #| label: chunk-1
@@ -84,7 +84,7 @@ cat(paste0(tx[beg_line:end_line], collapse="\n"))
 
 ::: notes
 
-in R Markdown, sections of R code are delineated with three backticks. The backtick is a leftward slanting single quote mark. For most keyboards, you will find the backtick key on the top row, just to the left of the "1" key.
+In quarto, sections of R code are delineated with three backticks. The backtick is a leftward slanting single quote mark. For most keyboards, you will find the backtick key on the top row, just to the left of the "1" key.
 
 The beginning of a chunk of R code has three backticks, followed by a left curly bracket, the letter "r" and then an optional name. End with a right curly bracket.
 
@@ -100,7 +100,7 @@ I recommend that you try to avoid long stretches of R code. Break it up into seg
 
 :::
 
-## Anatomy of a small program, second set of free text comments
+## Second comment
 
 ```{r}
 #| label: free-text-2
@@ -120,7 +120,7 @@ In R Markdown, the comments are not delimited. The code is delimited by three co
 
 :::
 
-## Anatomy of a small program, second code chunk
+## Second code chunk
 
 ```{r}
 #| label: chunk-2
@@ -146,7 +146,7 @@ The head function lists the first few lines of ant object in R. In this case, it
 
 :::
 
-## Anatomy of a small program, third set of free text comments
+## Third comment
 
 ```{r}
 #| label: free-text-3
@@ -154,7 +154,7 @@ The head function lists the first few lines of ant object in R. In this case, it
 #| comment: ""
  
 beg_line <- end_line+1
-end_line <- eof_line
+end_line <- backtick_lines[5]-1
 cat(paste0(tx[beg_line:end_line], collapse="\n"))
 ```
 
@@ -170,6 +170,42 @@ I need to emphasize here very strongly if you're having problems. Come and see m
 
 :::
 
+## Third code chunk
+
+```{r}
+#| label: chunk-3
+#| echo: false
+#| comment: ""
+ 
+beg_line <- end_line+1
+end_line <- backtick_lines[6]
+cat(paste0(tx[beg_line:end_line], collapse="\n"))
+```
+
+::: notes
+
+This chunk of code produces a simple line graph.
+
+:::
+
+## Fourth comment
+
+```{r}
+#| label: free-text-4
+#| echo: false
+#| comment: ""
+ 
+beg_line <- end_line+1
+end_line <- eof_line
+cat(paste0(tx[beg_line:end_line], collapse="\n"))
+```
+
+::: notes
+
+The last comment provides a brief interpretation of the graph. You must provide interpretations for every graph and for almost all tables.
+
+:::
+
 ## Anatomy of a small program, review
 
 ![](../images/structure-of-r-program-01.png "Program with components labelled")
@@ -179,6 +215,46 @@ I need to emphasize here very strongly if you're having problems. Come and see m
 Here is the full program again. You can see that it starts with a header, and alternates between free text and R code.
 
 I like this structure a lot because it allows you to liberally comment your code. Comments are easy. I'm not the best at using good programming practices, but the one thing I am rabid about is I try to put in a lot of documentation. It takes time, but usually pays off.
+
+:::
+
+## Output, overview
+
+![](../images/structure-of-r-program-04.png "Output with components labelled")
+
+::: notes
+
+Here is an overview of the output. The font is too small to read, but I wanted you to see the big picture. The result of all this work is a document that includes information from the YAML header, with comments, code, and output interpresed.
+
+:::
+
+## Output, part 1
+
+![](../images/structure-of-r-program-05.png "First part of output, header and information about this file")
+
+::: notes
+
+The output starts with the title that you specified in the YAML header. Next follows the first comment that you placed at top of the first program chunk. Then the pieces of the program chunk appear with output from each part of the chunk interspersed. 
+
+:::
+
+## Output, part 2
+
+![](../images/structure-of-r-program-06.png "Second part of output, reading in the data")
+
+::: notes
+
+Next is another comment, followed by code, output, and a third comment.
+
+:::
+
+## Output, part 3
+
+![](../images/structure-of-r-program-07.png "Third part of output, line graph")
+
+::: notes
+
+Finally, some more code, a graph, and a final comment.
 
 :::
 
