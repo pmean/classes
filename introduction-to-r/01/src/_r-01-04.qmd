@@ -9,19 +9,26 @@ editor: source
 
 ## Anatomy of a small R program, overview
 
-![Full listing of small_program.Rmd](../images/small_program.png)
+![](../images/structure-of-r-program-01.png "Program with components labelled")
 
-<div class="notes">
+::: notes
 
 This is a full listing of a small program written in Rmarkdown. The font is too small to read. Don't worry, I just wanted you to see the full picture. I'll look at small pieces of this program using a readable font size.
 
-</div>
+:::
 
 ## Anatomy of a small R program, header
 
-```{r echo=FALSE, comment=""}
-suppressMessages(suppressWarnings(library(stringr)))
-tx <- readLines("p01-small-program.Rmd", warn=FALSE)
+```{r}
+#| label: overview
+#| echo: false
+#| comment: ""
+#| message: false
+#| warning: false
+
+library(stringr)
+
+tx <- readLines("simon-5505-01-small-program.qmd")
 header_lines <- str_which(tx, "---")
 backtick_lines <- str_which(tx, "``")
 eof_line <- length(tx)
@@ -31,7 +38,7 @@ end_line <- header_lines[2]
 cat(paste0(tx[beg_line:end_line], collapse="\n"))
 ```
 
-<div class="notes">
+::: notes
 
 All right, The first thing we have is the header. The header uses a structure called YAML (Y-A-M-L). YAML is a special type of up format that is used by lots of programmers. The header provides a bit of information about the about the program. The default option when you start up a new R Markdown file is to list, the title, author, date, and output format.
 
@@ -43,31 +50,39 @@ You can also produce Powerpoint files, which this is an example of.
 
 The default is HTML and that's a pretty good format. Quite honestly, I've got a lot of mileage out of HTML
 
-</div>
+:::
 
 ## Anatomy of a small program, free text comments
 
-```{r echo=FALSE, comment=""}
+```{r}
+#| label: free-text-1
+#| echo: false
+#| comment: ""
+#| 
 beg_line <- end_line+1
 end_line <- backtick_lines[1]-1
 cat(paste0(tx[beg_line:end_line], collapse="\n"))
 ```
 
-<div class="notes">
+::: notes
 
 Here's a brief sentence written as open text. You will be required to provide open text comments on all your homework assignments. Often just a single sentence will do, but do get in the practice of interspersing open text comments throughout your code.
 
-</div>
+:::
 
 ## Anatomy of a small program, code chunk
 
-```{r echo=FALSE, comment=""}
+```{r}
+#| label: chunk-1
+#| echo: false
+#| comment: ""
+
 beg_line <- end_line+1
 end_line <- backtick_lines[2]
 cat(paste0(tx[beg_line:end_line], collapse="\n"))
 ```
 
-<div class="notes">
+::: notes
 
 in R Markdown, sections of R code are delineated with three backticks. The backtick is a leftward slanting single quote mark. For most keyboards, you will find the backtick key on the top row, just to the left of the "1" key.
 
@@ -83,37 +98,41 @@ After this you see three more backticks, which tells R Markdown that the chunk o
 
 I recommend that you try to avoid long stretches of R code. Break it up into segments of no more than 20 lines of code, and often less than this is better. Working with your program in chunks and interspersing free text comments liberally makes it easier to maintain your code.
 
-</div>
+:::
 
 ## Anatomy of a small program, second set of free text comments
 
-+ Rmarkdown code
-
-```{r echo=FALSE, comment=""}
+```{r}
+#| label: free-text-2
+#| echo: false
+#| comment: ""
+ 
 beg_line <- end_line+1
 end_line <- backtick_lines[3]-1
 cat(paste0(tx[beg_line:end_line], collapse="\n"))
 ```
 
-<div class="notes">
+::: notes
 
 Here's another brief comment. Note that you write an R Markdown a bit differently than most other programs. Most other programs place the comments inside of special delimiters. In SAS, for example, you start a comment with a slash and an asterisk and end it with an asterisk and a slash.
 
 In R Markdown, the comments are not delimited. The code is delimited by three consecutive backticks.
 
-</div>
+:::
 
 ## Anatomy of a small program, second code chunk
 
-+ Rmarkdown code
-
-```{r echo=FALSE, comment=""}
+```{r}
+#| label: chunk-2
+#| echo: false
+#| comment: ""
+ 
 beg_line <- end_line+1
 end_line <- backtick_lines[4]
 cat(paste0(tx[beg_line:end_line], collapse="\n"))
 ```
 
-<div class="notes">
+::: notes
 
 Here's some more R code. I named the chunk "read-rdata-file". The load function reads information from a file named ../data.two-small-dataframes.RData.
 
@@ -125,19 +144,21 @@ There are two objects, bump and fat. These are actually dataframes, the standard
 
 The head function lists the first few lines of ant object in R. In this case, it will show the first six lines of the dataframe bump.
 
-</div>
+:::
 
 ## Anatomy of a small program, third set of free text comments
 
-+ Rmarkdown code
-
-```{r echo=FALSE, comment=""}
+```{r}
+#| label: free-text-3
+#| echo: false
+#| comment: ""
+ 
 beg_line <- end_line+1
 end_line <- eof_line
 cat(paste0(tx[beg_line:end_line], collapse="\n"))
 ```
 
-<div class="notes">
+::: notes
 
 After the second chunk of R code, I add a couple of extra comments.
 
@@ -147,17 +168,17 @@ The problem is getting the first program will run. Once you get one program that
 
 I need to emphasize here very strongly if you're having problems. Come and see me right away. Drop me an email. Try to visit. I do not have official office hours, but I will make appointments at any reasonable time for people to come and talk. 
 
-</div>
+:::
 
 ## Anatomy of a small program, review
 
-![Full listing of small_program.Rmd with annotations](../images/small_program_annotated.png)
+![](../images/structure-of-r-program-01.png "Program with components labelled")
 
-<div class="notes">
+::: notes
 
 Here is the full program again. You can see that it starts with a header, and alternates between free text and R code.
 
 I like this structure a lot because it allows you to liberally comment your code. Comments are easy. I'm not the best at using good programming practices, but the one thing I am rabid about is I try to put in a lot of documentation. It takes time, but usually pays off.
 
-</div>
+:::
 

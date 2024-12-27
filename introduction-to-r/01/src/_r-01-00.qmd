@@ -1,24 +1,28 @@
 ---
-title: "08-00, Resources needed for module 08 slides"
+title: "01-00, Resources needed for module 01 slides"
 format: 
   html:
     embed-resources: true
 editor: source
 ---
 
-```{r setup-0}
+```{r}
+#| label: setup-0
 #| message: false
 #| warning: false
+
 library(tidyverse)
 library(yaml)
 ```
 
 ## Data dictionary
 
-```{r yaml-text}
+```{r}
+#| label: yaml-text
+
 f1 <- "https://raw.githubusercontent.com/"
 f2 <- "pmean/data/main/files/"
-f3 <- "postural-sway.yaml"
+f3 <- "aids-cases.yaml"
 yaml_text <- read_yaml(paste0(f1, f2, f3))
 
 yaml_text_names <- 
@@ -29,11 +33,13 @@ datac <-
 	data.frame(
 		lab=yaml_text_names, 
 		chunk=" ")
+
 for (i in 1:n) {
 	datac$chunk[i] <- 
 		as.yaml(
 			yaml_text[datac$lab[i]])
 }
+
 datac$chunk <- paste0(datac$chunk, "\n")
 datac[ , 1]
 dim(datac)
@@ -45,11 +51,13 @@ datav <-
 	data.frame(
 		lab=var_names, 
 		chunk=" ")
+
 for (i in 1:m) {
 	datav$chunk[i] <- 
 		as.yaml(
 			yaml_text$vars[datav$lab[i]])
 }
+
 datav$chunk <- paste0(datav$chunk, "\n")
 datav[ , 1]
 dim(datav)
@@ -57,13 +65,17 @@ dim(datav)
 
 ## Code
 
-```{r code-text}
-fn <- "simon-5501-08-sway.qmd"
+```{r}
+#| label: code-text
+
+fn <- "simon-5505-01-template.qmd"
 code_text <- read_lines(file=fn)
+
 chunk <- 
 	cumsum(
 	  str_detect(
 	  	code_text, "## "))
+
 data.frame(code_text, chunk) |>
 	group_by(chunk) |>
 	summarize(
@@ -73,6 +85,7 @@ data.frame(code_text, chunk) |>
 				sep="\n", 
 				collapse="")) |>
 	pull(chunk_text) -> codec
+
 codec <- paste0(codec, "\n")
 cat(codec[1])
 length(codec)
@@ -80,13 +93,16 @@ length(codec)
 
 ## Programming assignment
 
-```{r prog-text}
-fn <- "simon-5501-08-directions.md"
+```{r}
+#| label: prog-text
+
+fn <- "simon-5505-01-directions.md"
 prog_text <- read_lines(file=fn)
 chunk <- 
 	cumsum(
 	  str_detect(
 	  	prog_text, "## "))
+
 data.frame(prog_text, chunk) |>
 	group_by(chunk) |>
 	summarize(
@@ -96,19 +112,21 @@ data.frame(prog_text, chunk) |>
 				sep="\n", 
 				collapse="")) |>
 	pull(chunk_text) -> progc
-# progc <- paste0(progc, "\n")
+
 cat(progc[length(progc)])
 length(progc)
 ```
 
-## postural-sway data
+## read data
 
-```{r read-fev}
-sway <- read_tsv(
-  file="../data/postural-sway.txt",
-  col_types="cnn")
-names(sway) <- tolower(names(sway))
-glimpse(sway)
+```{r}
+|# label" read-data
+  
+aids_cases <- read_csv(
+  file="../data/aids-cases.csv",
+  col_types="nnn")
+names(aids_cases) <- tolower(names(aids_cases))
+glimpse(aids_cases)
 ```
 
 
@@ -118,6 +136,6 @@ save(
 	datav,
 	codec,
 	progc,
-	sway,
-	file="../data/module08.RData")
+	aids_cases,
+	file="../data/module01.RData")
 ```
