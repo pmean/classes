@@ -2,9 +2,6 @@
 title: "Directions for 5505-01 programming assignment"
 ---
 
-This programming assignment was written by Steve Simon on 2024-12-18 and is 
-placed in the public domain.
-
 ## Program
 
 -   Download the [program template][ref01]
@@ -59,3 +56,9 @@ You will be evaluated using the [general grading rubric for programming assignme
 Please review the [suggestions if you encounter an error page][ref05].
 
 [ref05]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
+
+## File details
+
+This programming assignment was written by Steve Simon on 2024-12-18 and is 
+placed in the public domain.
+

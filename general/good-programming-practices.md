@@ -124,13 +124,13 @@ might take several forms:
     -   Do not use without permission
 -   Open source license
     -   Use the data with just a few restrictions
-        -   Cite the original source, [CC-By][ref01]
-        -   No commercial re-use [CC-By-NC][ref02]
-        -   Do not modify [CC-By-ND][ref03]
+        -   Cite the original source, [CC-By][refg1]
+        -   No commercial re-use [CC-By-NC][refg2]
+        -   Do not modify [CC-By-ND][refg3]
         
-[ref01]: https://creativecommons.org/licenses/by/4.0/
-[ref02]: https://creativecommons.org/licenses/by-nc/4.0/
-[ref03]: https://creativecommons.org/licenses/by-nd/4.0/
+[refg1]: https://creativecommons.org/licenses/by/4.0/
+[refg2]: https://creativecommons.org/licenses/by-nc/4.0/
+[refg3]: https://creativecommons.org/licenses/by-nd/4.0/
 
 ## Data dictionary: Size
 
