@@ -258,3 +258,83 @@ Finally, some more code, a graph, and a final comment.
 
 :::
 
+## Suggestions for nice looking comments
+
+-   Quarto (and Rmarkdown) use tagged text files
+    -   Based on [Markdown][ref41]
+    -   Easy to remember
+    -   Easy read in its raw form
+    -   Use any program that edits text files
+-   Interface with [Pandoc][ref42] to convert to (and from)
+    -   Microsoft Word, Powerpoint
+    -   Html files
+    -   PDF files
+
+::: notes
+
+Comments in Quarto and its predecessor, Rmarkdown, use a simple format, a tagged text file. These are based on two industry standards, Pandoc and Markdown. 
+
+There are lots of tagged text formats. One of the most common is html, the format used to display web pages. Markdown and Pandoc were developed as a simpler alternative to html. It has fewer features, but is simpler and thus easier to remember. 
+
+One of the nicest features of Markdown is that it is easy to read in its raw form. If you have ever looked at the raw html code of a web page, it is quite daunting. The tags are big and get in the way of reading the actual content. Markdown, in contrast, adds only a little bit of bulk to your content.
+
+Another big advantage of Markdown is that the files can be edited by a wide range of programs. You are not tied to a specific software system.
+
+Pandoc lives up to the "pan" in its name, which is code for "everything". Using Markdown syntax, Pandoc can convert markdown files into dozens of different formats. In particular, it can create Word documents, Powerpoint presentations, web pages (html format), and PDF files. I should not that PDF files are a bit tricky because you need some version of Latex (or a new alternative typst) on your system. Instead of going straight to PDF, I recommend that you produce html files and then print that file to a pdf printer.
+
+There are lots of little enhancements to your comments. Some that I use quite often are the double pound (##) symbols at the start of the line to make a headline in a larger font.
+
+::::
+    
+## Suggestions for nice looking comments
+
+-   Start line with ## for headlines
+-   Start lines with -, +, or * for bulleted lists
+    -   Indent for sub bullets
+-   Surround text with ** for **bold**
+-   Surround text with $ for Greek letters ($\mu$) and math symbols ($\sqrt{2}$) 
+-   Use [] for hyperlinks
+
+Many more in [quarto guide][ref43]
+
+[ref43]: https://quarto.org/docs/authoring/markdown-basics.html
+
+::: notes
+
+There are lots of little enhancements to your comments. Some that I use quite often are the double pound (##) symbols at the start of the line to make a headline in a larger font. You can make even larger headlines with a single pound, smaller headlines with three or more pounds.
+
+I use bulleted lists a lot and you just have to start each line with a dash, plus, or asterisk to get the lines in a bulleted list. If you need sub bullets, just indent.
+
+Surround one or more words with a double asterisk to get bold text and surround text with single or double dollar signs to get Greek letters like mu or math symbols like the square root sign.
+
+::::
+    
+[ref41]: https://www.markdownguide.org/
+[ref42]: https://pandoc.org/
+
+## An example of raw Markdown codes
+
+```
+## Suggestions for nice looking comments
+
+-   Start line with ## for headlines
+-   Start lines with -, +, or * for bulleted lists
+    -   Indent for sub bullets
+-   Surround text with ** for **bold**
+-   Surround text with $ for Greek letters ($\mu$) and math symbols ($\sqrt{2}$) 
+-   Use [] for hyperlinks
+
+Many more in [quarto guide][ref43]
+
+[ref43]: https://quarto.org/docs/authoring/markdown-basics.html
+```
+
+::: notes
+
+Here is an example of what some of these Markdown tags look like. The double pound provides the slide title, the dashes provide bullets. Note the indented bullet. 
+
+You don't have to use a lot of these features to make your comments look nice. Just a few headlines here and an occasional bolded phrase will work wonders for you.
+
+You will see how I use these features in various template programs in each module.
+
+:::

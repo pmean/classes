@@ -4,7 +4,7 @@ title: "Directions for 5505-01 programming assignment"
 
 ## Program
 
--   Download the [program template][ref01]
+-   Download the [program template][refp1]
     -   Store it in your src folder
 -   Modify the file name
     -   Use your last name instead of "simon"
@@ -13,16 +13,16 @@ title: "Directions for 5505-01 programming assignment"
     -   Add your name
     -   Optional: change the copyright statement
     
-[ref01]: https://github.com/pmean/classes/blob/master/introduction-to-r/01/src/simon-5505-01-template.qmd
+[refp1]: https://github.com/pmean/classes/blob/master/introduction-to-r/01/src/simon-5505-01-template.qmd
 
 ## Data
 
--   Download the [data][ref02] file
+-   Download the [data][refp2] file
     -   Store it in your data folder
--   Refer to the [data dictionary][ref03], if needed.
+-   Refer to the [data dictionary][refp3], if needed.
 
-[ref02]: https://github.com/pmean/data/blob/main/files/aids-cases.csv
-[ref03]: https://github.com/pmean/data/blob/main/files/aids-cases.yaml
+[refp2]: https://github.com/pmean/data/blob/main/files/aids-cases.csv
+[refp3]: https://github.com/pmean/data/blob/main/files/aids-cases.yaml
     
 ## Question 1
 
@@ -37,9 +37,9 @@ and provide a brief interpretation.
 
 ## Grading rubric
 
-You will be evaluated using the [general grading rubric for programming assignments][ref04].
+You will be evaluated using the [general grading rubric for programming assignments][refp4].
 
-[ref04]: https://github.com/pmean/classes/blob/master/general/general-grading-rubric.md
+[refp4]: https://github.com/pmean/classes/blob/master/general/general-grading-rubric.md
 
 ## Your submission
 
@@ -53,9 +53,9 @@ You will be evaluated using the [general grading rubric for programming assignme
 
 ## If it doesn't work
 
-Please review the [suggestions if you encounter an error page][ref05].
+Please review the [suggestions if you encounter an error page][refp5].
 
-[ref05]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
+[refp5]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
 
 ## File details
 

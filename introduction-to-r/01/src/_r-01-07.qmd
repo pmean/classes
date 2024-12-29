@@ -1,5 +1,5 @@
 ---
-title: "r-01-07, Your programming assignment"
+title: "r-01-07, The tidyverse library"
 format: 
   revealjs:
     slide-number: true
@@ -7,4 +7,115 @@ format:
 editor: source
 ---
 
-{{< include simon-5505-01-directions.md >}}
+## tidyverse
+
+![Hex sticker for tidyverse](https://github.com/rstudio/hex-stickers/blob/main/PNG/tidyverse.png?raw=true)
+
+::: notes
+
+The tidyverse package is a collection of several different packages which provide enhancements to the R programming language. These libraries share a common programming philosophy. There are several dozen libraries in  total, but only a core set of libraries are loaded with the library(tidyverse) function. Other tidyverse packages must be loaded separately.
+
+I recommend that you use the tidyverse library for all your programs in this class. Here are some of the libraries in core set of libraries.
+
+:::
+
+## dplyr
+
+![Hex sticker for dplyr](https://github.com/rstudio/hex-stickers/blob/main/PNG/dplyr.png?raw=true)
+
+::: notes
+
+dplyr provides a set of functions for data manipulation.
+
+:::
+
+## ggplot2
+
+![Hex sticker for ggplot2](https://github.com/rstudio/hex-stickers/blob/main/PNG/ggplot2.png?raw=true)
+
+::: notes
+
+While R has some excellent graphics capabilities built in, they are somewhat difficult to use. The ggplot2 library simplifies the process of graphing by separating the parts of a graph into different layers. It is based on a conceptual framework developed by Leland Wilkinson in his book, The Grammar of Graphics.
+
+:::
+
+## magrittr
+
+![Hex sticker for magrittr](https://github.com/rstudio/hex-stickers/raw/master/PNG/pipe.png)
+
+::: notes
+
+magrittr provides a pipe operator. The concept of the pipe was developed first in Unix systems almost 50 years ago. The pipe operator (percent-greater than-percent) takes input from the left side of the operator and feeds it to a function listed on the right side of the operator. Pipes can be chained together. They make your code simpler and more readable.
+
+We may or may not cover pipes in this class.
+
+:::
+
+## readr
+
+![Hex sticker for readr](https://github.com/rstudio/hex-stickers/blob/main/PNG/readr.png?raw=true)
+
+::: notes
+
+While R has many functions for reading text data, they are slow for very large files. The readr library reads text files much faster, offers some enhancements, and provides a simpler syntax.
+
+:::
+
+## stringr
+
+![Hex sticker for stingr](https://github.com/rstudio/hex-stickers/blob/main/PNG/stringr.png?raw=true)
+
+::: notes
+
+stringr simplifies the manipulation of string or text data.
+
+:::
+
+
+## tibble
+
+![Hex sticker for tibble](https://github.com/rstudio/hex-stickers/blob/main/PNG/tibble.png?raw=true)
+
+::: notes
+
+R has a variety of internal storage formats: arrays, lists, matrices, and data frames. We will focus mostly on data frames in this class. The tibble package offers an internal storage format, a tibble, that is very similar to a data frame, but it offers some extra features for convenience and simplicity.
+
+:::
+
+## tidyr
+
+![Hex sticker for tidyr](https://github.com/rstudio/hex-stickers/blob/main/PNG/tidyr.png?raw=true)
+
+::: notes
+
+tidyr provides a series of functions that help with data manipulation, especially for longitudinal data.
+
+:::
+
+## Other packages in the tidyverse
+
++ In the core package
+  + forcats
+  + purr
++ Outside the core package
+  + broom
+  + lubridate
+  + readxl
+  + many others
+  
+::: notes
+
+Two other packages in the tidyverse core, forcats and purr, are for advanced applications.
+
+Outside of the core package, some of the packages that I like are broom (which simplifies and standardizes the output from different data analysis functions)  lubridate (which simplifies the manipulaton of dates), and readxl (which reads Microsoft Excel files). There are quite a few others.
+
+:::
+
+## Load tidyverse quietly
+
+::: notes
+
+Because tidyverse provides so many diagnostic messages and warnings, I have used the suppressMessages and suppressWarnings functions to avoid this in my programs. For this program, I need two more things. I need the yaml package to simplify the presentation of information from the data dictionary. I also cut the line width down to 45 characters. This is rather extreme, but it is necessary when you are producing PowerPoint documents.
+
+:::
+

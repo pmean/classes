@@ -1,5 +1,5 @@
 ---
-title: "r-01-01, TBA-1"
+title: "r-01-01, Subsetting a tibble/dataframe"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,156 @@ format:
 editor: source
 ---
 
-## TBA-1
+## Read burger-calories
+
+```{r}
+#| label: read-yaml
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(yaml)
+b <- read_yaml("https://raw.githubusercontent.com/pmean/data/refs/heads/main/files/burger-calories.yaml")
+```
+
+
+```{r}
+#| label: read-tsv
+#| echo: true
+
+burgers <- read_tsv(
+  file="../data/burger-calories.txt", 
+  col_types="nnn")
+burgers
+```
+
 
 :::notes
 
 :::
+
+## Select, 1
+
+```{r}
+#| label: select
+#| echo: true
+
+burgers |>
+  select(Calories)
+```
+
+::: notes
+
+The [select][ref01] function will include or exclude variables from a tibble/dataframe.
+
+[ref01]: https://dplyr.tidyverse.org/reference/select.html
+
+:::
+
+## Select, 2
+
+```{r}
+#| label: select-2
+#| echo: true
+
+burgers |>
+  select(-Fat)
+```
+
+
+## Alternatives to select, 1
+
+```{r}
+#| label: select-alternative-1
+#| echo: true
+
+burgers$Calories
+```
+
+::: notes
+
+There are some "old school" ways to select a single column of data. These will produce a vector rather than a tibble/dataframe.
+
+:::
+
+## Alternatives to select, 2
+
+```{r}
+#| label: select-alternative-2
+#| echo: true
+
+burgers[ , 1]
+```
+
+## Alternatives to select, 3
+
+```{r}
+#| label: select-alternative-3
+#| echo: true
+
+burgers[ , 3]
+```
+
+## Slice, 1
+
+```{r}
+#| label: slice-1
+#| echo: true
+
+burgers |>
+  slice(1)
+```
+
+::: notes
+
+The [slice][ref01] function selects rows based on their position.
+
+[ref01]: https://dplyr.tidyverse.org/reference/slice.html
+
+:::
+
+## Slice, 2
+
+```{r}
+#| label: slice-2
+#| echo: true
+
+burgers |>
+  slice_max(Calories)
+```
+
+::: notes
+
+The slice_max function, described in the previous link, selects rows based on the size of one of the variables.
+
+:::
+
+## Filter, 1
+
+```{r}
+#| label: filter-1
+#| echo: true
+
+burgers |>
+  filter(Sodium == 1500)
+```
+
+::: notes
+
+The [filter][ref02] function selects rows of a tibble or dataframe based on a logical condition (an R expression that produces true/false values).
+
+[ref02]: https://dplyr.tidyverse.org/reference/filter.html
+
+:::
+
+## Filter, 2
+
+```{r}
+#| label: filter-2
+#| echo: true
+
+burgers |>
+  filter(Calories >= 600)
+```
+
+## Alternatives to slice/filter
