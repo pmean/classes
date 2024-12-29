@@ -1,11 +1,68 @@
 ---
-title: "r-01-01, Subsetting a tibble/dataframe"
+title: "r-02-01, Using select, slice, filter"
 format: 
   revealjs:
     slide-number: true
     embed-resources: true
 editor: source
 ---
+
+### Some definitions, 1
+
++ Categorical = small number of possible values
++ Examples
+  + Sex (Male or Female),
+  + Race/ethnicity (Caucasian, African American, Hispanic, etc.),
+  + Cancer stage (I, II, III, or IV),
+  + Birth delivery type (Vaginal, C-section). 
+
+::: notes
+
+A **categorical variable** is a variable that can only take on a small number of values. Each value is usually associated with a particular category.
+
+:::
+
+### Some definitions, 2
+
++ Continuous variable = large number of possible values
++ Examples of continuous variables are
+  + Birth weight in grams,
+  + Gestational age,
+  + Fasting LDL level.
+
+::: notes
+
+A **continuous variable** is a variable that can take on a large number of possible values, potentially any value in some interval.
+
+There are some variables that are on the boundary between categorical and continuous, but it is not worth quibbling about here. 
+
+The point to remember is that the types of graphs that you use and the types of statistics that you compute are dependent on many things, but first and foremost on whether the variables are categorical, continuous, or a mixture.
+
+Today, you will see examples involving mostly continuous variables.
+
+:::
+
+### Variable names
++ Short but descriptive
++ Mix of letters and numbers
+  + Must start with a letter
+  + Avoid most symbols
++ No blanks
+  + CamelCase
+  + dot.delimited.names
+  + underscore_delimited_names
+
+::: notes
+
+This data set did not have a header, a line at the very top of the file that lists variable names. R uses the default names V1, V2, etc. As a general rule, you should use brief (but descriptive) names for every variable in your data set. The names should be around 8 characters long. Longer variable names make your typing tedious and much shorter variable names makes your code terse and cryptic.
+
+You should avoid special symbols in your variable names especially symbols that are likely to cause confusion (the dash symbol, for example, which is also the symbol for subtraction). You should also avoid blanks. These rules are pretty much universal across most statistical software packages. If you violate these rules, you will find out that, at a minimum, you will always have to surround your variable name by quotes to avoid problems.
+
+There are times when you'd like to have a blank in your variable name and you can use two special symbols that you can use in R (and most other statistical pacakges), the underscore symbol (above the minus key on most keyboards) and the dot (period). These symbols create some artificial spacing that mimics the blanks. Another approach is "CamelCase" which is the mixture of upper and lower case within a variable name with each uppercase designating the beginning of a new "word".
+
+:::
+
+
 
 ## Read burger-calories
 
@@ -47,9 +104,9 @@ burgers |>
 
 ::: notes
 
-The [select][ref01] function will include or exclude variables from a tibble/dataframe.
+The [select][ref11] function will include or exclude variables from a tibble/dataframe.
 
-[ref01]: https://dplyr.tidyverse.org/reference/select.html
+[ref11]: https://dplyr.tidyverse.org/reference/select.html
 
 :::
 
@@ -109,9 +166,9 @@ burgers |>
 
 ::: notes
 
-The [slice][ref01] function selects rows based on their position.
+The [slice][ref12] function selects rows based on their position.
 
-[ref01]: https://dplyr.tidyverse.org/reference/slice.html
+[ref12]: https://dplyr.tidyverse.org/reference/slice.html
 
 :::
 
@@ -143,9 +200,9 @@ burgers |>
 
 ::: notes
 
-The [filter][ref02] function selects rows of a tibble or dataframe based on a logical condition (an R expression that produces true/false values).
+The [filter][ref13] function selects rows of a tibble or dataframe based on a logical condition (an R expression that produces true/false values).
 
-[ref02]: https://dplyr.tidyverse.org/reference/filter.html
+[ref13]: https://dplyr.tidyverse.org/reference/filter.html
 
 :::
 
@@ -159,4 +216,20 @@ burgers |>
   filter(Calories >= 600)
 ```
 
-## Alternatives to slice/filter
+## Alternatives to slice/filter, 1
+
+```{r}
+#| label: slice-filter-alternatives-1
+#| echo: true
+
+burgers[1, ]
+```
+
+## Alternatives to slice/filter, 2
+
+```{r}
+#| label: slice-filter-alternatives-2
+#| echo: true
+
+burgers[burgers$Sodium == 1500, ]
+```

@@ -1,5 +1,5 @@
 ---
-title: "r-01-02, TBA-2"
+title: "r-02-02, Using mutate, summarize"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,68 @@ format:
 editor: source
 ---
 
-## TBA-1
+```{r}
+#| label: setup2
+#| message: false
+#| warning: false
+
+library(tidyverse)
+```
+
+## Read text file
+
+```{r}
+#| label: read-sleep
+#| echo: true
+
+sleep <- read_tsv(
+  file="../data/sleep.txt",
+  col_types="cnnnnnnnnnn")
+glimpse(sleep)
+```
+
 
 :::notes
 
 :::
+
+## Convert brain weight from grams to kilograms
+
+```{r}
+#| label: convert-units
+#| echo: true
+
+sleep |>
+  mutate(brain_wt_kg=BrainWt/1000) -> sleep
+sleep |>
+  slice(1:10) |>
+  select(Species, BrainWt, brain_wt_kg)
+```
+
+## Calculate brain to body weight ratio
+
+```{r}
+#| label: calculate-percent
+#| echo: true
+
+sleep |>
+  mutate(brain_pct=100*brain_wt_kg/BodyWt) |>
+  mutate(brain_pct=round(brain_pct, 2)) |>
+  mutate(brain_pct=paste0(brain_pct, "%")) -> sleep
+
+sleep |>
+  slice(1:10) |>
+  select(Species, brain_wt_kg, BodyWt, brain_pct)
+```
+
+## Summarize
+
+```{r}
+#| label: summarize
+#| echo: true
+
+sleep |>
+  summarize(
+    body_wt_mean=mean(BodyWt),
+    body_wt_sd=sd(BodyWt))
+```

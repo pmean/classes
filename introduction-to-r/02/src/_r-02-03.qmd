@@ -1,5 +1,5 @@
 ---
-title: "r-01-03, TBA-3"
+title: "r-02-03, Missing values"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,120 @@ format:
 editor: source
 ---
 
-## TBA-3
+```{r}
+#| label: setup2
+#| message: false
+#| warning: false
 
-:::notes
+library(tidyverse)
+```
 
-:::
+## Read text file
+
+```{r}
+#| label: read-sleep
+#| echo: false
+
+sleep <- read_tsv(
+  file="../data/sleep.txt",
+  col_types="cnnnnnnnnnn")
+```
+
+## Computations with missing values
+
+```{r}
+#| label: summarize
+#| echo: true
+
+sleep$TotalSleep
+```
+
+## Statistics involving missing values, 1
+
+```{r}
+sleep |>
+  summarize(
+    sleep_mean=mean(TotalSleep),
+    sleep_sd=sd(TotalSleep))
+```
+
+## Statistics involving missing values, 2
+
+```{r}
+sleep |>
+  summarize(
+    sleep_mean=mean(TotalSleep, na.rm=TRUE),
+    sleep_sd=sd(TotalSleep, na.rm=TRUE))
+```
+
+## You cannot test missingness directly
+
+```{r tracking-missing-1}
+sleep |>
+  filter(TotalSleep == NA) |>
+  select(Species, TotalSleep)
+```
+
+<div class="notes">
+
+Logic involving missing values is tricky. If you checking for equality and one of the things in the comparison is missing, then the result is neither TRUE, not FALSE, but rather missing.
+
+Fair enough, but R takes it a bit further, and if both sides when you are checking for equality are missing, then they might both be 5 is they weren't missing or maybe one might be 5 and the other one 10. So it might be TRUE or it might be FALSE, so we're better off calling the logical result as missing.
+
+This is called a three valued logic system and it has advantages and disadvantages. I won't get into any technical details, except to say that you should never make assumptions. Check what you do when you are working with missing values to make sure that the three valued logic system doesn't produce results that you didn't expect.
+
+</div>
+
+## What is happening
+
+```{r}
+sleep$TotalSleep == NA
+```
+
+### Use is.na to test missingness
+
+```{r tracking-missing-1}
+sleep |>
+  filter(is.na(TotalSleep)) |>
+  select(Species, TotalSleep)
+```
+
+
+<div class="notes">
+
+The short term solution to the above problem is to use a special function, is.na.
+
+The summary function will trap and remove missing values, but most other functions in R will, by default, report a result as missing if any values going into that function are missing. The philosophy in R, I suppose, is that you need to actively select an approach for handling missing values rather than relying on a lazy default.
+
+R is also erring on the side of caution most of the time. You may not be aware that there are missing values lurking in your data, and R is going to go out of its way to remind you, unless you tell it otherwise.
+
+This is different from SAS and SPSS, where the default options choose perfectly reasonable approaches, but approaches that don't raise concern about missingness to the degree that R does.
+
+</div>
+
+```{r mean-sd-1}
+mean(fat2$ht)
+sd(fat2$ht)
+```
+
+<div class="notes">
+
+Read the help file for these functions (enter ?mean or ?sd at the command prompt).
+
+Look carefully and note that the na.rm option allows you to compute the statistic after missing values are removed.
+
+</div>
+
+### Using the na.rm argument
+
+```{r mean-sd-na.rm}
+mean(fat2$ht,na.rm=TRUE)
+sd(fat2$ht,na.rm=TRUE)
+```
+
+<div class="notes">
+
+For univariate functions, there are only two realistic ways to handle missing values, but for bivariate and multivariate function, there are a multitude of approaches, such as pairwise deletion, listwise deletion, last observation carried forward, single imputation, and multiple imputation. There is a lot of controversy over various methods for handling missing values.
+
+</div>
+
