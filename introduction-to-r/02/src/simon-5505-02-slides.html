@@ -1700,10 +1700,271 @@ display:block!important;
 </ul></li>
 </ul>
 </section>
-<section id="missing-values" class="slide level2">
-<h2>Missing values</h2>
+<section id="variable-with-missing-values" class="slide level2">
+<h2>Variable with missing values</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>sleep<span class="sc">$</span>TotalSleep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  3.3  8.3 12.5 16.5  3.9  9.8 19.7  6.2 14.5  9.7 12.5  3.9 10.3  3.1  8.4
+[16]  8.6 10.7 10.7  6.1 18.1   NA  3.8 14.4 12.0  6.2 13.0 13.8  8.2  2.9 10.8
+[31]   NA  9.1 19.9  8.0 10.6 11.2 13.2 12.8 19.4 17.4   NA 17.0 10.9 13.7  8.4
+[46]  8.4 12.5 13.2  9.8  9.6  6.6  5.4  2.6  3.8 11.0 10.3 13.3  5.4 15.8 10.3
+[61] 19.4   NA</code></pre>
+</div>
+</div>
 <aside class="notes">
-
+<p>Several variables in the sleep file have missing values. There are many reasons why a variable might be missing. Maybe someone dropped a test tube in a lab. Maybe someone dropped out of a study. Maybe they skipped a question on your questionnaire.</p>
+<p>Always find out why a variable is missing. How you handle the missing value during data analysis depends on the reason it is missing. This is well beyond the scope of the class, but you do need to work with missing values during the data management phase.</p>
+<p>R uses the code NA for missing values. Other programs (SAS, SPSS) use a single dot. Other possibilities exist. Use the na argument inside of the read function if the missing value code is anything other than NA.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</section>
+<section id="statistics-involving-missing-values-1" class="slide level2">
+<h2>Statistics involving missing values, 1</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>sleep <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb35-3"><a href="#cb35-3"></a>    <span class="at">sleep_mean=</span><span class="fu">mean</span>(TotalSleep),</span>
+<span id="cb35-4"><a href="#cb35-4"></a>    <span class="at">sleep_sd=</span><span class="fu">sd</span>(TotalSleep))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  sleep_mean sleep_sd
+       &lt;dbl&gt;    &lt;dbl&gt;
+1         NA       NA</code></pre>
+</div>
+</div>
+<aside class="notes">
+<p>If you try to compute a summary statistic on a variable with missing data, the result will be missing. This is different than SAS or SPSS, which by default will ignore missing values when computing most statistics.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</section>
+<section id="statistics-involving-missing-values-2" class="slide level2">
+<h2>Statistics involving missing values, 2</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  sleep_mean sleep_sd
+       &lt;dbl&gt;    &lt;dbl&gt;
+1       10.5     4.61</code></pre>
+</div>
+</div>
+<aside class="notes">
+<p>Think carefully about this and if you want R to ignore missing values when computing statistics, use the na.rm=TRUE argument.</p>
+<p>You may wish to use some sort of imputation model instead of ignoring missing values. Imputation is beyond the scope of this class.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</section>
+<section id="statistics-involving-missing-values-3" class="slide level2">
+<h2>Statistics involving missing values, 3</h2>
+<ul>
+<li>More options for complex settings
+<ul>
+<li>na.action or use arguments</li>
+<li>Example, cor function
+<ul>
+<li>use=“everything” produces NA</li>
+<li>use=“complete.obs” produces casewise deletion</li>
+<li>use=“pairwise.complete.obs” produces pairwise deletion</li>
+</ul></li>
+</ul></li>
+</ul>
+<aside class="notes">
+<p>For methods that involve more than one variable, it gets trickier. Maybe you have data missing for just the first variable, just the second, or both.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</section>
+<section id="statistics-involving-missing-values-4" class="slide level2">
+<h2>Statistics involving missing values, 4</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                BodyWt    BrainWt NonDreaming Dreaming TotalSleep LifeSpan
+BodyWt      1.00000000 0.93416384          NA       NA         NA       NA
+BrainWt     0.93416384 1.00000000          NA       NA         NA       NA
+NonDreaming         NA         NA           1       NA         NA       NA
+Dreaming            NA         NA          NA        1         NA       NA
+TotalSleep          NA         NA          NA       NA          1       NA
+LifeSpan            NA         NA          NA       NA         NA        1
+Gestation           NA         NA          NA       NA         NA       NA
+Predation   0.05949472 0.03385548          NA       NA         NA       NA
+Exposure    0.33827367 0.36780037          NA       NA         NA       NA
+Danger      0.13358123 0.14587888          NA       NA         NA       NA
+            Gestation  Predation  Exposure    Danger
+BodyWt             NA 0.05949472 0.3382737 0.1335812
+BrainWt            NA 0.03385548 0.3678004 0.1458789
+NonDreaming        NA         NA        NA        NA
+Dreaming           NA         NA        NA        NA
+TotalSleep         NA         NA        NA        NA
+LifeSpan           NA         NA        NA        NA
+Gestation           1         NA        NA        NA
+Predation          NA 1.00000000 0.6182460 0.9160424
+Exposure           NA 0.61824597 1.0000000 0.7872031
+Danger             NA 0.91604245 0.7872031 1.0000000</code></pre>
+</div>
+</div>
+</section>
+<section id="statistics-involving-missing-values-5" class="slide level2">
+<h2>Statistics involving missing values, 5</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                 BodyWt     BrainWt NonDreaming    Dreaming TotalSleep
+BodyWt       1.00000000  0.95584875  -0.3936373 -0.07488845 -0.3428373
+BrainWt      0.95584875  1.00000000  -0.3867947 -0.07427740 -0.3370815
+NonDreaming -0.39363729 -0.38679474   1.0000000  0.51824287  0.9676730
+Dreaming    -0.07488845 -0.07427740   0.5182429  1.00000000  0.7171864
+TotalSleep  -0.34283732 -0.33708151   0.9676730  0.71718643  1.0000000
+LifeSpan     0.46982146  0.62938940  -0.3722345 -0.26834006 -0.3824462
+Gestation    0.71434413  0.73353206  -0.6061048 -0.40893177 -0.6144743
+Predation    0.09588524 -0.01538017  -0.3526558 -0.39795310 -0.4047155
+Exposure     0.40563880  0.32318968  -0.5802789 -0.50363338 -0.6213578
+Danger       0.25932512  0.15093686  -0.5346247 -0.57194862 -0.6043029
+               LifeSpan   Gestation   Predation   Exposure      Danger
+BodyWt       0.46982146  0.71434413  0.09588524  0.4056388  0.25932512
+BrainWt      0.62938940  0.73353206 -0.01538017  0.3231897  0.15093686
+NonDreaming -0.37223446 -0.60610477 -0.35265576 -0.5802789 -0.53462471
+Dreaming    -0.26834006 -0.40893177 -0.39795310 -0.5036334 -0.57194862
+TotalSleep  -0.38244618 -0.61447431 -0.40471545 -0.6213578 -0.60430286
+LifeSpan     1.00000000  0.64638866 -0.16973575  0.3157456  0.01468596
+Gestation    0.64638866  1.00000000  0.09079823  0.5734727  0.30623551
+Predation   -0.16973575  0.09079823  1.00000000  0.6256876  0.92731729
+Exposure     0.31574564  0.57347265  0.62568764  1.0000000  0.78980702
+Danger       0.01468596  0.30623551  0.92731729  0.7898070  1.00000000</code></pre>
+</div>
+</div>
+</section>
+<section id="you-cannot-test-missingness-directly" class="slide level2">
+<h2>You cannot test missingness directly</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 0 × 2
+# ℹ 2 variables: Species &lt;chr&gt;, TotalSleep &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<aside class="notes">
+<p>Logic involving missing values is tricky. If you checking for equality and one of the things in the comparison is missing, then the result is neither TRUE, not FALSE, but rather missing.</p>
+<p>Fair enough, but R takes it a bit further, and if both sides when you are checking for equality are missing, then they might both be 5 is they weren’t missing or maybe one might be 5 and the other one 10. So it might be TRUE or it might be FALSE, so we’re better off calling the logical result as missing.</p>
+<p>This is called a three valued logic system and it has advantages and disadvantages. I won’t get into any technical details, except to say that you should never make assumptions. Check what you do when you are working with missing values to make sure that the three valued logic system doesn’t produce results that you didn’t expect.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</section>
+<section id="what-is-happening" class="slide level2">
+<h2>What is happening</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+[26] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+[51] NA NA NA NA NA NA NA NA NA NA NA NA</code></pre>
+</div>
+</div>
+</section>
+<section id="counting-missing-values" class="slide level2">
+<h2>Counting missing values</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   variable    missing_count
+   &lt;chr&gt;               &lt;int&gt;
+ 1 BodyWt                  0
+ 2 BrainWt                 0
+ 3 NonDreaming            14
+ 4 Dreaming               12
+ 5 TotalSleep              4
+ 6 LifeSpan                4
+ 7 Gestation               4
+ 8 Predation               0
+ 9 Exposure                0
+10 Danger                  0</code></pre>
+</div>
+</div>
+<h3 id="use-is.na-to-test-missingness">Use is.na to test missingness</h3>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 2
+  Species               TotalSleep
+  &lt;chr&gt;                      &lt;dbl&gt;
+1 Giraffe                       NA
+2 Kangaroo                      NA
+3 Okapi                         NA
+4 Yellow-bellied_marmot         NA</code></pre>
+</div>
+</div>
+<aside class="notes">
+<p>The short term solution to the above problem is to use a special function, is.na.</p>
+<p>The summary function will trap and remove missing values, but most other functions in R will, by default, report a result as missing if any values going into that function are missing. The philosophy in R, I suppose, is that you need to actively select an approach for handling missing values rather than relying on a lazy default.</p>
+<p>R is also erring on the side of caution most of the time. You may not be aware that there are missing values lurking in your data, and R is going to go out of its way to remind you, unless you tell it otherwise.</p>
+<p>This is different from SAS and SPSS, where the default options choose perfectly reasonable approaches, but approaches that don’t raise concern about missingness to the degree that R does.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+<aside class="notes">
+<p>Read the help file for these functions (enter ?mean or ?sd at the command prompt).</p>
+<p>Look carefully and note that the na.rm option allows you to compute the statistic after missing values are removed.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+<h3 id="using-the-na.rm-argument">Using the na.rm argument</h3>
+<aside class="notes">
+<p>For univariate functions, there are only two realistic ways to handle missing values, but for bivariate and multivariate function, there are a multitude of approaches, such as pairwise deletion, listwise deletion, last observation carried forward, single imputation, and multiple imputation. There is a lot of controversy over various methods for handling missing values.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;

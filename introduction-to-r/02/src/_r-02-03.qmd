@@ -7,18 +7,19 @@ format:
 editor: source
 ---
 
+## Variable with missing values
+
 ```{r}
-#| label: setup2
+#| label: setup3
+#| echo: false
 #| message: false
 #| warning: false
 
 library(tidyverse)
 ```
 
-## Read text file
-
 ```{r}
-#| label: read-sleep
+#| label: read-sleep-3
 #| echo: false
 
 sleep <- read_tsv(
@@ -26,36 +27,104 @@ sleep <- read_tsv(
   col_types="cnnnnnnnnnn")
 ```
 
-## Computations with missing values
-
 ```{r}
-#| label: summarize
+#| label: total-sleep-listing
 #| echo: true
 
 sleep$TotalSleep
 ```
 
+::: notes
+
+Several variables in the sleep file have missing values. There are many reasons why a variable might be missing. Maybe someone dropped a test tube in a lab. Maybe someone dropped out of a study. Maybe they skipped a question on your questionnaire.
+
+Always find out why a variable is missing. How you handle the missing value during data analysis depends on the reason it is missing. This is well beyond the scope of the class, but you do need to work with missing values during the data management phase.
+
+R uses the code NA for missing values. Other programs (SAS, SPSS) use a single dot. Other possibilities exist. Use the na argument inside of the read function if the missing value code is anything other than NA.
+
+:::
+
 ## Statistics involving missing values, 1
 
 ```{r}
+#| label: summarize-1
+#| echo: true
+
 sleep |>
   summarize(
     sleep_mean=mean(TotalSleep),
     sleep_sd=sd(TotalSleep))
 ```
 
+::: notes
+
+If you try to compute a summary statistic on a variable with missing data, the result will be missing. This is different than SAS or SPSS, which by default will ignore missing values when computing most statistics.
+
+:::
+
 ## Statistics involving missing values, 2
 
 ```{r}
+#| label: summarize-2
+#| echo: true
+
 sleep |>
   summarize(
     sleep_mean=mean(TotalSleep, na.rm=TRUE),
     sleep_sd=sd(TotalSleep, na.rm=TRUE))
 ```
 
+::: notes
+
+Think carefully about this and if you want R to ignore missing values when computing statistics, use the na.rm=TRUE argument.
+
+You may wish to use some sort of imputation model instead of ignoring missing values. Imputation is beyond the scope of this class.
+
+:::
+
+## Statistics involving missing values, 3
+
+-  More options for complex settings
+   -   na.action or use arguments
+   -   Example, cor function
+       -   use="everything" produces NA
+       -   use="complete.obs" produces casewise deletion
+       -   use="pairwise.complete.obs" produces pairwise deletion
+
+::: notes
+
+For methods that involve more than one variable, it gets trickier. Maybe you have data missing for just the first variable, just the second, or both.
+
+:::
+
+## Statistics involving missing values, 4
+
+```{r}
+#| label: correlation-1
+#| echo: true
+
+sleep |> 
+  select(-1) |>
+  cor(use="everything")
+```
+
+## Statistics involving missing values, 5
+
+```{r}
+#| label: correlation-2
+#| echo: true
+
+sleep |> 
+  select(-1) |>
+  cor(use="complete.obs")
+```
+
 ## You cannot test missingness directly
 
-```{r tracking-missing-1}
+```{r}
+#| label: tracking-missing-1
+#| echo: true
+
 sleep |>
   filter(TotalSleep == NA) |>
   select(Species, TotalSleep)
@@ -74,12 +143,33 @@ This is called a three valued logic system and it has advantages and disadvantag
 ## What is happening
 
 ```{r}
+#| label: what-is-happening
+#| echo: true
+
 sleep$TotalSleep == NA
+```
+
+## Counting missing values
+
+```{r}
+#| label: count-missing
+#| echo: true
+
+sleep |>
+  select(-1) |>
+  mutate(across(everything(), is.na)) |>
+  summarize(across(everything(), sum)) |>
+  pivot_longer(
+    everything(),
+    names_to="variable",
+    values_to="missing_count")
 ```
 
 ### Use is.na to test missingness
 
-```{r tracking-missing-1}
+```{r}
+#| label: tracking-missing-2
+
 sleep |>
   filter(is.na(TotalSleep)) |>
   select(Species, TotalSleep)
@@ -99,8 +189,8 @@ This is different from SAS and SPSS, where the default options choose perfectly 
 </div>
 
 ```{r mean-sd-1}
-mean(fat2$ht)
-sd(fat2$ht)
+# mean(fat2$ht)
+# sd(fat2$ht)
 ```
 
 <div class="notes">
@@ -114,8 +204,8 @@ Look carefully and note that the na.rm option allows you to compute the statisti
 ### Using the na.rm argument
 
 ```{r mean-sd-na.rm}
-mean(fat2$ht,na.rm=TRUE)
-sd(fat2$ht,na.rm=TRUE)
+# mean(fat2$ht,na.rm=TRUE)
+# sd(fat2$ht,na.rm=TRUE)
 ```
 
 <div class="notes">

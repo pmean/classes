@@ -12,11 +12,96 @@ editor: source
 This is a very brief introduction to the basic objects in R.
 
 ```{r}
-#| label:  version-and-current-date
+#| label: version-and-current-date
 
 R.version.string
 Sys.Date()
 ```
+
+::: notes
+
+I want to talk about some of the technical underpinnings in R. This is way too technical and way too early to present. I decided to give this lecture here anyway because if you want to become a seasoned R programmer who can write programs from scratch, you need to understand these technical details. For now, if this portion of the lecture seems a bit overwhelming, focus just on the two big things: functions and tibbles. The rest will gradually become more obvious as you see more examples in this class.
+
+:::
+
+## Assignment and naming conventions
+
+-  Use <- and -> to assign objects to a name
+   -   Avoid using = for an assignment
+-  Rules for names
+   -   Combination of letters and numbers
+   -   No spaces
+   -   No symbols other than underscore (_) and dot (.)
+   -   Cannot start with a number
+       -   a1 is okay, but 1a is not
+
+::: notes
+
+I use the term "object" as a generic name for a variety of things that you need in R, functions, scalars, vectors, etc. You can assign or store objects using the <- or -> symbols. Now R does allow you to use the equal sign to assign objects and this is the common way to assign in other languages, this is discouraged in R. I'm not sure why, but you will see the equal sign used only inside functions.
+
+When you assign an object, you specify a name. That name has to be combination of letters and numbers. 
+
+You can't put spaces in the middle of a name. R will get confused and think of it as two names rather than one.
+
+You can't use most symbols. A dash inside a variable name for example will cause confusion because R will think that you want to perform a subtraction.
+
+The two symbols that you can use are the underscore and the dot. In fact, you will see these two symbols a lot both in your code and in the various functions that you will use in R. Both the underscore and the dot represent ways to mimic 
+
+:::
+
+## Recommendations for names, 1
+
+-  Avoid generic names (x,y or v1, v2, v3)
+-  Don't run two words together (writersexchange)
+-  Use short words separated by underscores (writers_exchange)
+   -   All lower case
+   -   No abbreviations
+   -   Avoid names identical with common functions
+
+::: notes
+
+Although you have great latitude in names, I have a few recommendations that will help make your code easier to read and maintain.
+
+First, avoid short generic names. When you assign names of x and y early in the program, you will get confused halfway through and think of x as y or y as x.
+
+Instead use one or two words to describe what you are storing under that name. You can't put spaces between two words, but don't just run the two words together.
+
+There's a story about a group, The Writer's Exchange, that wanted to start a website. So they called it www.writersexchange.com. Then someone notices that you could read it not as writers exchange, but as writer sex change. Not exactly what they wanted.
+
+You should use the underscore to separate two words. So it would be writers underscore exchange.
+
+Use all lower case. Upper case is harder to read. It seems contradictory because DON'T ALL WARNINGS COME IN UPPER CASE? It turns out that upper case is harder to read because all the letters are the same height. With lower case, you have some letters that rise above (such as f and t) and some that stretch out below (such as j and y). These ascenders and descenders provide an extra visual cue.
+
+Now many programmers will avoid all uppercase, but will use an initial capital letter. That's okay, but I find using all lower case makes things easier to remember. Now for headings in tables and titles on graphs, I will still use initial capitals, but only then.
+
+I've also learned to avoid abbreviations. I can never remember whether the abbreviation for height is hgt or ht or even just the single letter h. There's nothing worse than having half of your calculations using hgt and the other half using ht.  It's a bit more typing, I'll admit, but I've taken to spelling it out as h-e-i-g-h-t. RStudio and many other integrated programming environments have an autocomplete function that can save you time.
+
+Now avoid using common function names like list and matrix. R will allow this, but your code will be easily misinterpreted by others.
+
+:::
+   
+## Recommendation for names, 2   
+   
+-  Common alternatives to the underscore separator
+   -   short words separated by dots
+   -   Start each word with capital (WritersExchange)
+-  Separate naming recommendation
+   -   Use dash instead of underscore for file names, chunk names
+-  What should YOU use
+   -   Now: Anything is fine, just be consistent
+   -   Later: See if there is an official or unofficial company standard
+
+::: notes
+
+You will see many programmers who use the dot instead of the underscore to separate two or more words in a variable name. To use the earlier example, it would be writers dot exchange. This is fine, but will probably confuse programmers who have first learned how to program in Python, where the dot has a special meaning.
+
+Another common approach is to start each word with a capital letter. Capital W writers capital E exchange.
+
+Now I really like the look of a dash. I know I can't use it for variable names, but I still use it for file names and chunk names. I know this is inconsistent, but it's evolved into a habit that I can't break.
+
+You need to make a choice. For now, any standard is fine. Just be consistent. Later, when you graduate and find yourself in your first job, see if there is a written standard. If not a written standard, then maybe an unofficial standard, which you can infer by looking at what other programmers do.
+
+:::
 
 ## Functions
 
@@ -29,7 +114,12 @@ barplot(height=5:1, names=1:5)
 ```
 
 ::: notes
-Functions receive input from one or more objects and produce an object in return. It could be as simple as computing a square root. Many functions are vectorized, meaning that they will compute a function for every element in a vector.
+
+Functions receive input from one or more objects and produce an object in return. The input values found inside the parentheses of a function are called its arguments.
+
+
+Functions can be as simple as computing a square root. Many functions are vectorized, meaning that they will compute a function for every element in a vector. Sometimes a function may produce more than just a single object as output. Here's an example of a function that produces a graph.
+
 :::
 
 ## Nested functions and pipes
@@ -47,6 +137,7 @@ y
 ```
 
 ::: notes
+
 You can nest one function inside another. So asin(sqrt(x)) feeds the variable x into the square root function and then takes the output of the square root function and feeds it into the arcsin function. This result is stored in y.
 
 You can accomplish the same thing using the pipe symbol. Take the variable x and pipe it into the square root function. Then take the output from the square root function and pipe it into the arcsin function. Store the result in y.
@@ -289,5 +380,23 @@ tibble_example_1
 ::: notes
 
 A tibble is a slightly modified data frame designed by the tidyverse team. It behaves almost exactly like a data frame. There are other subtle differences in behavior, however, that reduce the risk of unexpected errors. There are a few times when these modifications do not work well with some of the older functions in R. But tibbles work very effectively with the functions of the tidyverse.
+
+:::
+
+## Vector or tibble?
+
+```{r}
+#| label: vector-tibble
+#| echo: true
+
+sample_vector <- 1:5
+sample_vector
+sample_tibble <- tibble(sample_vector)
+sample_tibble
+```
+
+::: notes
+
+One of the potential sources for confusion in R is when a single column of data is a vector and when it is a tibble. Note that a vector prints out horizontally and a tibble prints out vertically. Some functions need to see a single column of data as a vector, some need to see a single column of data as a tibble, and some can accept either. It is an unavoidable source of problems.
 
 :::
