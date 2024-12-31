@@ -13,46 +13,37 @@ library(tidyverse)
 library(yaml)
 ```
 
-## Data dictionary
+## burger-calories data dictionary
 
 ```{r yaml-text}
 f1 <- "https://raw.githubusercontent.com/"
 f2 <- "pmean/data/main/files/"
-f3 <- "postural-sway.yaml"
-yaml_text <- read_yaml(paste0(f1, f2, f3))
+f3 <- "burger-calories.yaml"
+yaml_text <- read_lines(paste0(f1, f2, f3))
 
-yaml_text_names <- 
-	setdiff(names(yaml_text), "vars")
-n <- length(yaml_text_names)
+yaml_text |>
+  str_trim() |>
+  str_detect("^$") |>
+  which() -> potential_breaks
 
-datac <- 
-	data.frame(
-		lab=yaml_text_names, 
-		chunk=" ")
-for (i in 1:n) {
-	datac$chunk[i] <- 
-		as.yaml(
-			yaml_text[datac$lab[i]])
+break_limit <- 15
+breaks <- 1
+for (i in 1:length(potential_breaks)) {
+  if (potential_breaks[i] - max(breaks) < break_limit) next
+  breaks <- c(breaks, potential_breaks[i-1])
 }
-datac$chunk <- paste0(datac$chunk, "\n")
-datac[ , 1]
-dim(datac)
+n_breaks <- length(breaks)
 
-var_names <- names(yaml_text$vars)
-m <- length(yaml_text$vars)
+yaml_text[breaks] <- 
+  paste0(
+    "\n## ",
+    f3,
+    ", ",
+    1:n_breaks,
+    "\n\n",
+    yaml_text[breaks])
 
-datav <- 
-	data.frame(
-		lab=var_names, 
-		chunk=" ")
-for (i in 1:m) {
-	datav$chunk[i] <- 
-		as.yaml(
-			yaml_text$vars[datav$lab[i]])
-}
-datav$chunk <- paste0(datav$chunk, "\n")
-datav[ , 1]
-dim(datav)
+write_lines(yaml_text[-1], file=paste0("../data/", f3))
 ```
 
 ## Code

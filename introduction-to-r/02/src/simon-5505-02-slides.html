@@ -1224,11 +1224,13 @@ margin-right: 0; }
 <li>Missing values</li>
 <li>Histograms, scatterplots</li>
 <li>Live demonstation</li>
-<li>TBA-6</li>
+<li>Your homework</li>
 <li>TBA-7</li>
 </ul></li>
 </ul>
-<h3 id="some-definitions-1">Some definitions, 1</h3>
+</section>
+<section id="some-definitions-1" class="slide level2">
+<h2>Some definitions, 1</h2>
 <ul>
 <li>Categorical = small number of possible values</li>
 <li>Examples
@@ -1252,7 +1254,9 @@ width: 1px!important;
 overflow: hidden!important;
 display:block!important;
 }</style></aside>
-<h3 id="some-definitions-2">Some definitions, 2</h3>
+</section>
+<section id="some-definitions-2" class="slide level2">
+<h2>Some definitions, 2</h2>
 <ul>
 <li>Continuous variable = large number of possible values</li>
 <li>Examples of continuous variables are
@@ -1278,7 +1282,9 @@ width: 1px!important;
 overflow: hidden!important;
 display:block!important;
 }</style></aside>
-<h3 id="variable-names">Variable names</h3>
+</section>
+<section id="variable-names" class="slide level2">
+<h2>Variable names</h2>
 <ul>
 <li>Short but descriptive</li>
 <li>Mix of letters and numbers
@@ -1728,8 +1734,8 @@ overflow: hidden!important;
 display:block!important;
 }</style></aside>
 </section>
-<section id="statistics-involving-missing-values-1" class="slide level2">
-<h2>Statistics involving missing values, 1</h2>
+<section id="statistics-involving-missing-values" class="slide level2">
+<h2>Statistics involving missing values</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>sleep <span class="sc">|&gt;</span></span>
 <span id="cb35-2"><a href="#cb35-2"></a>  <span class="fu">summarize</span>(</span>
@@ -1756,9 +1762,13 @@ overflow: hidden!important;
 display:block!important;
 }</style></aside>
 </section>
-<section id="statistics-involving-missing-values-2" class="slide level2">
-<h2>Statistics involving missing values, 2</h2>
+<section id="the-na.rm-argument" class="slide level2">
+<h2>The na.rm argument</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>sleep <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb37-3"><a href="#cb37-3"></a>    <span class="at">sleep_mean=</span><span class="fu">mean</span>(TotalSleep, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb37-4"><a href="#cb37-4"></a>    <span class="at">sleep_sd=</span><span class="fu">sd</span>(TotalSleep, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   sleep_mean sleep_sd
@@ -1781,8 +1791,8 @@ overflow: hidden!important;
 display:block!important;
 }</style></aside>
 </section>
-<section id="statistics-involving-missing-values-3" class="slide level2">
-<h2>Statistics involving missing values, 3</h2>
+<section id="the-na.action-and-use-arguments-1" class="slide level2">
+<h2>The na.action and use arguments, 1</h2>
 <ul>
 <li>More options for complex settings
 <ul>
@@ -1796,7 +1806,7 @@ display:block!important;
 </ul></li>
 </ul>
 <aside class="notes">
-<p>For methods that involve more than one variable, it gets trickier. Maybe you have data missing for just the first variable, just the second, or both.</p>
+<p>For univariate functions, there are only two realistic ways to handle missing values, but for bivariate and multivariate function, there are a multitude of approaches, such as pairwise deletion, listwise deletion, last observation carried forward, single imputation, and multiple imputation. There is a lot of controversy over various methods for handling missing values.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1809,67 +1819,70 @@ overflow: hidden!important;
 display:block!important;
 }</style></aside>
 </section>
-<section id="statistics-involving-missing-values-4" class="slide level2">
-<h2>Statistics involving missing values, 4</h2>
+<section id="the-na.action-and-use-arguments-2" class="slide level2 smaller">
+<h2>The na.action and use arguments, 2</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">options</span>(<span class="at">width=</span><span class="dv">120</span>)</span>
+<span id="cb39-2"><a href="#cb39-2"></a>sleep <span class="sc">|&gt;</span> </span>
+<span id="cb39-3"><a href="#cb39-3"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb39-4"><a href="#cb39-4"></a>  <span class="fu">cor</span>(<span class="at">use=</span><span class="st">&quot;everything&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb39-5"><a href="#cb39-5"></a>  <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                BodyWt    BrainWt NonDreaming Dreaming TotalSleep LifeSpan
-BodyWt      1.00000000 0.93416384          NA       NA         NA       NA
-BrainWt     0.93416384 1.00000000          NA       NA         NA       NA
-NonDreaming         NA         NA           1       NA         NA       NA
-Dreaming            NA         NA          NA        1         NA       NA
-TotalSleep          NA         NA          NA       NA          1       NA
-LifeSpan            NA         NA          NA       NA         NA        1
-Gestation           NA         NA          NA       NA         NA       NA
-Predation   0.05949472 0.03385548          NA       NA         NA       NA
-Exposure    0.33827367 0.36780037          NA       NA         NA       NA
-Danger      0.13358123 0.14587888          NA       NA         NA       NA
-            Gestation  Predation  Exposure    Danger
-BodyWt             NA 0.05949472 0.3382737 0.1335812
-BrainWt            NA 0.03385548 0.3678004 0.1458789
-NonDreaming        NA         NA        NA        NA
-Dreaming           NA         NA        NA        NA
-TotalSleep         NA         NA        NA        NA
-LifeSpan           NA         NA        NA        NA
-Gestation           1         NA        NA        NA
-Predation          NA 1.00000000 0.6182460 0.9160424
-Exposure           NA 0.61824597 1.0000000 0.7872031
-Danger             NA 0.91604245 0.7872031 1.0000000</code></pre>
+<pre><code>            BodyWt BrainWt NonDreaming Dreaming TotalSleep LifeSpan Gestation Predation Exposure Danger
+BodyWt        1.00    0.93          NA       NA         NA       NA        NA      0.06     0.34   0.13
+BrainWt       0.93    1.00          NA       NA         NA       NA        NA      0.03     0.37   0.15
+NonDreaming     NA      NA           1       NA         NA       NA        NA        NA       NA     NA
+Dreaming        NA      NA          NA        1         NA       NA        NA        NA       NA     NA
+TotalSleep      NA      NA          NA       NA          1       NA        NA        NA       NA     NA
+LifeSpan        NA      NA          NA       NA         NA        1        NA        NA       NA     NA
+Gestation       NA      NA          NA       NA         NA       NA         1        NA       NA     NA
+Predation     0.06    0.03          NA       NA         NA       NA        NA      1.00     0.62   0.92
+Exposure      0.34    0.37          NA       NA         NA       NA        NA      0.62     1.00   0.79
+Danger        0.13    0.15          NA       NA         NA       NA        NA      0.92     0.79   1.00</code></pre>
 </div>
 </div>
 </section>
-<section id="statistics-involving-missing-values-5" class="slide level2">
-<h2>Statistics involving missing values, 5</h2>
+<section id="the-na.action-and-use-arguments-3" class="slide level2 smaller">
+<h2>The na.action and use arguments, 3</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">options</span>(<span class="at">width=</span><span class="dv">100</span>)</span>
+<span id="cb41-2"><a href="#cb41-2"></a>sleep <span class="sc">|&gt;</span> </span>
+<span id="cb41-3"><a href="#cb41-3"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb41-4"><a href="#cb41-4"></a>  <span class="fu">cor</span>(<span class="at">use=</span><span class="st">&quot;complete.obs&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb41-5"><a href="#cb41-5"></a>  <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                 BodyWt     BrainWt NonDreaming    Dreaming TotalSleep
-BodyWt       1.00000000  0.95584875  -0.3936373 -0.07488845 -0.3428373
-BrainWt      0.95584875  1.00000000  -0.3867947 -0.07427740 -0.3370815
-NonDreaming -0.39363729 -0.38679474   1.0000000  0.51824287  0.9676730
-Dreaming    -0.07488845 -0.07427740   0.5182429  1.00000000  0.7171864
-TotalSleep  -0.34283732 -0.33708151   0.9676730  0.71718643  1.0000000
-LifeSpan     0.46982146  0.62938940  -0.3722345 -0.26834006 -0.3824462
-Gestation    0.71434413  0.73353206  -0.6061048 -0.40893177 -0.6144743
-Predation    0.09588524 -0.01538017  -0.3526558 -0.39795310 -0.4047155
-Exposure     0.40563880  0.32318968  -0.5802789 -0.50363338 -0.6213578
-Danger       0.25932512  0.15093686  -0.5346247 -0.57194862 -0.6043029
-               LifeSpan   Gestation   Predation   Exposure      Danger
-BodyWt       0.46982146  0.71434413  0.09588524  0.4056388  0.25932512
-BrainWt      0.62938940  0.73353206 -0.01538017  0.3231897  0.15093686
-NonDreaming -0.37223446 -0.60610477 -0.35265576 -0.5802789 -0.53462471
-Dreaming    -0.26834006 -0.40893177 -0.39795310 -0.5036334 -0.57194862
-TotalSleep  -0.38244618 -0.61447431 -0.40471545 -0.6213578 -0.60430286
-LifeSpan     1.00000000  0.64638866 -0.16973575  0.3157456  0.01468596
-Gestation    0.64638866  1.00000000  0.09079823  0.5734727  0.30623551
-Predation   -0.16973575  0.09079823  1.00000000  0.6256876  0.92731729
-Exposure     0.31574564  0.57347265  0.62568764  1.0000000  0.78980702
-Danger       0.01468596  0.30623551  0.92731729  0.7898070  1.00000000</code></pre>
+<pre><code>            BodyWt BrainWt NonDreaming Dreaming TotalSleep LifeSpan Gestation Predation Exposure
+BodyWt        1.00    0.96       -0.39    -0.07      -0.34     0.47      0.71      0.10     0.41
+BrainWt       0.96    1.00       -0.39    -0.07      -0.34     0.63      0.73     -0.02     0.32
+NonDreaming  -0.39   -0.39        1.00     0.52       0.97    -0.37     -0.61     -0.35    -0.58
+Dreaming     -0.07   -0.07        0.52     1.00       0.72    -0.27     -0.41     -0.40    -0.50
+TotalSleep   -0.34   -0.34        0.97     0.72       1.00    -0.38     -0.61     -0.40    -0.62
+LifeSpan      0.47    0.63       -0.37    -0.27      -0.38     1.00      0.65     -0.17     0.32
+Gestation     0.71    0.73       -0.61    -0.41      -0.61     0.65      1.00      0.09     0.57
+Predation     0.10   -0.02       -0.35    -0.40      -0.40    -0.17      0.09      1.00     0.63
+Exposure      0.41    0.32       -0.58    -0.50      -0.62     0.32      0.57      0.63     1.00
+Danger        0.26    0.15       -0.53    -0.57      -0.60     0.01      0.31      0.93     0.79
+            Danger
+BodyWt        0.26
+BrainWt       0.15
+NonDreaming  -0.53
+Dreaming     -0.57
+TotalSleep   -0.60
+LifeSpan      0.01
+Gestation     0.31
+Predation     0.93
+Exposure      0.79
+Danger        1.00</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">options</span>(<span class="at">width=</span><span class="dv">80</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="you-cannot-test-missingness-directly" class="slide level2">
 <h2>You cannot test missingness directly</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a>sleep <span class="sc">|&gt;</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a>  <span class="fu">filter</span>(TotalSleep <span class="sc">==</span> <span class="cn">NA</span>) <span class="sc">|&gt;</span></span>
+<span id="cb44-3"><a href="#cb44-3"></a>  <span class="fu">select</span>(Species, TotalSleep)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 0 × 2
 # ℹ 2 variables: Species &lt;chr&gt;, TotalSleep &lt;dbl&gt;</code></pre>
@@ -1894,6 +1907,7 @@ display:block!important;
 <section id="what-is-happening" class="slide level2">
 <h2>What is happening</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>sleep<span class="sc">$</span>TotalSleep <span class="sc">==</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
 [26] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
@@ -1901,27 +1915,12 @@ display:block!important;
 </div>
 </div>
 </section>
-<section id="counting-missing-values" class="slide level2">
-<h2>Counting missing values</h2>
+<section id="the-is.na-function" class="slide level2">
+<h2>The is.na function</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 2
-   variable    missing_count
-   &lt;chr&gt;               &lt;int&gt;
- 1 BodyWt                  0
- 2 BrainWt                 0
- 3 NonDreaming            14
- 4 Dreaming               12
- 5 TotalSleep              4
- 6 LifeSpan                4
- 7 Gestation               4
- 8 Predation               0
- 9 Exposure                0
-10 Danger                  0</code></pre>
-</div>
-</div>
-<h3 id="use-is.na-to-test-missingness">Use is.na to test missingness</h3>
-<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>sleep <span class="sc">|&gt;</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(TotalSleep)) <span class="sc">|&gt;</span></span>
+<span id="cb48-3"><a href="#cb48-3"></a>  <span class="fu">select</span>(Species, TotalSleep)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
   Species               TotalSleep
@@ -1948,34 +1947,34 @@ width: 1px!important;
 overflow: hidden!important;
 display:block!important;
 }</style></aside>
-<aside class="notes">
-<p>Read the help file for these functions (enter ?mean or ?sd at the command prompt).</p>
-<p>Look carefully and note that the na.rm option allows you to compute the statistic after missing values are removed.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
-<h3 id="using-the-na.rm-argument">Using the na.rm argument</h3>
-<aside class="notes">
-<p>For univariate functions, there are only two realistic ways to handle missing values, but for bivariate and multivariate function, there are a multitude of approaches, such as pairwise deletion, listwise deletion, last observation carried forward, single imputation, and multiple imputation. There is a lot of controversy over various methods for handling missing values.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+</section>
+<section id="counting-missing-values" class="slide level2">
+<h2>Counting missing values</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>sleep <span class="sc">|&gt;</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb50-3"><a href="#cb50-3"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), is.na)) <span class="sc">|&gt;</span></span>
+<span id="cb50-4"><a href="#cb50-4"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), sum)) <span class="sc">|&gt;</span></span>
+<span id="cb50-5"><a href="#cb50-5"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb50-6"><a href="#cb50-6"></a>    <span class="fu">everything</span>(),</span>
+<span id="cb50-7"><a href="#cb50-7"></a>    <span class="at">names_to=</span><span class="st">&quot;variable&quot;</span>,</span>
+<span id="cb50-8"><a href="#cb50-8"></a>    <span class="at">values_to=</span><span class="st">&quot;missing_count&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 2
+   variable    missing_count
+   &lt;chr&gt;               &lt;int&gt;
+ 1 BodyWt                  0
+ 2 BrainWt                 0
+ 3 NonDreaming            14
+ 4 Dreaming               12
+ 5 TotalSleep              4
+ 6 LifeSpan                4
+ 7 Gestation               4
+ 8 Predation               0
+ 9 Exposure                0
+10 Danger                  0</code></pre>
+</div>
+</div>
 </section>
 <section id="break-3" class="slide level2">
 <h2>Break #3</h2>
@@ -2044,7 +2043,7 @@ display:block!important;
 </ul></li>
 <li>What’s coming next
 <ul>
-<li>TBA-6</li>
+<li>Your homework</li>
 </ul></li>
 </ul>
 </section>
@@ -2115,7 +2114,7 @@ display:block!important;
 <ul>
 <li>What you have learned
 <ul>
-<li>TBA-6</li>
+<li>Your homework</li>
 </ul></li>
 <li>What’s coming next
 <ul>
@@ -2149,7 +2148,7 @@ display:block!important;
 <li>Missing values</li>
 <li>Histograms, scatterplots</li>
 <li>Live demonstation</li>
-<li>TBA-6</li>
+<li>Your homework</li>
 <li>TBA-7</li>
 </ul></li>
 </ul>

@@ -7,7 +7,7 @@ format:
 editor: source
 ---
 
-### Some definitions, 1
+## Some definitions, 1
 
 + Categorical = small number of possible values
 + Examples
@@ -22,7 +22,7 @@ A **categorical variable** is a variable that can only take on a small number of
 
 :::
 
-### Some definitions, 2
+## Some definitions, 2
 
 + Continuous variable = large number of possible values
 + Examples of continuous variables are
@@ -42,7 +42,8 @@ Today, you will see examples involving mostly continuous variables.
 
 :::
 
-### Variable names
+## Variable names
+
 + Short but descriptive
 + Mix of letters and numbers
   + Must start with a letter
@@ -62,7 +63,7 @@ There are times when you'd like to have a blank in your variable name and you ca
 
 :::
 
-
+{{< include ../data/burger-calories.yaml >}}
 
 ## Read burger-calories
 

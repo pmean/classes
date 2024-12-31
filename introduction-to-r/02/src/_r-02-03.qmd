@@ -44,7 +44,7 @@ R uses the code NA for missing values. Other programs (SAS, SPSS) use a single d
 
 :::
 
-## Statistics involving missing values, 1
+## Statistics involving missing values
 
 ```{r}
 #| label: summarize-1
@@ -62,7 +62,7 @@ If you try to compute a summary statistic on a variable with missing data, the r
 
 :::
 
-## Statistics involving missing values, 2
+## The na.rm argument
 
 ```{r}
 #| label: summarize-2
@@ -82,7 +82,7 @@ You may wish to use some sort of imputation model instead of ignoring missing va
 
 :::
 
-## Statistics involving missing values, 3
+## The na.action and use arguments, 1
 
 -  More options for complex settings
    -   na.action or use arguments
@@ -93,22 +93,25 @@ You may wish to use some sort of imputation model instead of ignoring missing va
 
 ::: notes
 
-For methods that involve more than one variable, it gets trickier. Maybe you have data missing for just the first variable, just the second, or both.
+For univariate functions, there are only two realistic ways to handle missing values, but for bivariate and multivariate function, there are a multitude of approaches, such as pairwise deletion, listwise deletion, last observation carried forward, single imputation, and multiple imputation. There is a lot of controversy over various methods for handling missing values.
 
 :::
 
-## Statistics involving missing values, 4
+## Correlations with use="everything" {.smaller}
 
 ```{r}
 #| label: correlation-1
 #| echo: true
 
+options(width=120)
+# The greater output length allows the correlation matrix to fit on one slide.
 sleep |> 
   select(-1) |>
-  cor(use="everything")
+  cor(use="everything") |>
+  round(2)
 ```
 
-## Statistics involving missing values, 5
+## Correlations with use="complete.obs" {.smaller}
 
 ```{r}
 #| label: correlation-2
@@ -116,7 +119,10 @@ sleep |>
 
 sleep |> 
   select(-1) |>
-  cor(use="complete.obs")
+  cor(use="complete.obs") |>
+  round(2)
+options(width=80)
+# Reset the width to the default value of 80
 ```
 
 ## You cannot test missingness directly
@@ -149,6 +155,29 @@ This is called a three valued logic system and it has advantages and disadvantag
 sleep$TotalSleep == NA
 ```
 
+## The is.na function
+
+```{r}
+#| label: is.na.example
+#| echo: true
+
+sleep |>
+  filter(is.na(TotalSleep)) |>
+  select(Species, TotalSleep)
+```
+
+::: notes
+
+The short term solution to the above problem is to use a special function, is.na.
+
+The summary function will trap and remove missing values, but most other functions in R will, by default, report a result as missing if any values going into that function are missing. The philosophy in R, I suppose, is that you need to actively select an approach for handling missing values rather than relying on a lazy default.
+
+R is also erring on the side of caution most of the time. You may not be aware that there are missing values lurking in your data, and R is going to go out of its way to remind you, unless you tell it otherwise.
+
+This is different from SAS and SPSS, where the default options choose perfectly reasonable approaches, but approaches that don't raise concern about missingness to the degree that R does.
+
+:::
+
 ## Counting missing values
 
 ```{r}
@@ -164,53 +193,4 @@ sleep |>
     names_to="variable",
     values_to="missing_count")
 ```
-
-### Use is.na to test missingness
-
-```{r}
-#| label: tracking-missing-2
-
-sleep |>
-  filter(is.na(TotalSleep)) |>
-  select(Species, TotalSleep)
-```
-
-
-<div class="notes">
-
-The short term solution to the above problem is to use a special function, is.na.
-
-The summary function will trap and remove missing values, but most other functions in R will, by default, report a result as missing if any values going into that function are missing. The philosophy in R, I suppose, is that you need to actively select an approach for handling missing values rather than relying on a lazy default.
-
-R is also erring on the side of caution most of the time. You may not be aware that there are missing values lurking in your data, and R is going to go out of its way to remind you, unless you tell it otherwise.
-
-This is different from SAS and SPSS, where the default options choose perfectly reasonable approaches, but approaches that don't raise concern about missingness to the degree that R does.
-
-</div>
-
-```{r mean-sd-1}
-# mean(fat2$ht)
-# sd(fat2$ht)
-```
-
-<div class="notes">
-
-Read the help file for these functions (enter ?mean or ?sd at the command prompt).
-
-Look carefully and note that the na.rm option allows you to compute the statistic after missing values are removed.
-
-</div>
-
-### Using the na.rm argument
-
-```{r mean-sd-na.rm}
-# mean(fat2$ht,na.rm=TRUE)
-# sd(fat2$ht,na.rm=TRUE)
-```
-
-<div class="notes">
-
-For univariate functions, there are only two realistic ways to handle missing values, but for bivariate and multivariate function, there are a multitude of approaches, such as pairwise deletion, listwise deletion, last observation carried forward, single imputation, and multiple imputation. There is a lot of controversy over various methods for handling missing values.
-
-</div>
 
