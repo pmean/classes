@@ -59,28 +59,25 @@ This data set did not have a header, a line at the very top of the file that lis
 
 You should avoid special symbols in your variable names especially symbols that are likely to cause confusion (the dash symbol, for example, which is also the symbol for subtraction). You should also avoid blanks. These rules are pretty much universal across most statistical software packages. If you violate these rules, you will find out that, at a minimum, you will always have to surround your variable name by quotes to avoid problems.
 
-There are times when you'd like to have a blank in your variable name and you can use two special symbols that you can use in R (and most other statistical pacakges), the underscore symbol (above the minus key on most keyboards) and the dot (period). These symbols create some artificial spacing that mimics the blanks. Another approach is "CamelCase" which is the mixture of upper and lower case within a variable name with each uppercase designating the beginning of a new "word".
+There are times when you'd like to have a blank in your variable name and you can use two special symbols that you can use in R (and most other statistical packages), the underscore symbol (above the minus key on most keyboards) and the dot (period). These symbols create some artificial spacing that mimics the blanks. Another approach is "CamelCase" which is the mixture of upper and lower case within a variable name with each uppercase designating the beginning of a new "word".
 
 :::
 
-{{< include ../data/burger-calories.yaml >}}
+## Data dictionary for burger-calories
+
+The next few examples will use a data file, burger-calories. Refer to the [data dictionary][ref11] for details about this file.
+
+[ref11]: https://github.com/pmean/data/blob/main/files/burger-calories.yaml
 
 ## Read burger-calories
 
 ```{r}
-#| label: read-yaml
+#| label: read-tsv
+#| echo: true
 #| message: false
 #| warning: false
 
 library(tidyverse)
-library(yaml)
-b <- read_yaml("https://raw.githubusercontent.com/pmean/data/refs/heads/main/files/burger-calories.yaml")
-```
-
-
-```{r}
-#| label: read-tsv
-#| echo: true
 
 burgers <- read_tsv(
   file="../data/burger-calories.txt", 
@@ -88,8 +85,9 @@ burgers <- read_tsv(
 burgers
 ```
 
+::: notes
 
-:::notes
+We will talk more about the read_tsv function later. For now, just note that it reads data from a text file and stores it in a tibble named burgers.
 
 :::
 
@@ -105,9 +103,9 @@ burgers |>
 
 ::: notes
 
-The [select][ref11] function will include or exclude variables from a tibble/dataframe.
+The [select][ref12] function will include or exclude variables from a tibble/dataframe.
 
-[ref11]: https://dplyr.tidyverse.org/reference/select.html
+[ref12]: https://dplyr.tidyverse.org/reference/select.html
 
 :::
 
@@ -133,7 +131,7 @@ burgers$Calories
 
 ::: notes
 
-There are some "old school" ways to select a single column of data. These will produce a vector rather than a tibble/dataframe.
+There are some "old school" ways to select a single column of data. Specify the name of the tibble, followed by a dollar sign, followed by the name of the variable. This produces a vector rather than a tibble.
 
 :::
 
@@ -146,14 +144,26 @@ There are some "old school" ways to select a single column of data. These will p
 burgers[ , 1]
 ```
 
+::: notes
+
+You can also use square brackets to select a variable. This code seems a bit strange at first. Think of the comma as a separator between the first index (which indicates rows) and the second index (which indicates columns). Leaving the first index blank is equivalent of saying select all rows and just the first column.
+
+:::
+
 ## Alternatives to select, 3
 
 ```{r}
 #| label: select-alternative-3
 #| echo: true
 
-burgers[ , 3]
+burgers[ , "Calories"]
 ```
+
+::: notes
+
+You can also specify a column by its name. Be sure to put the name inside quote marks.
+
+:::
 
 ## Slice, 1
 
@@ -167,9 +177,9 @@ burgers |>
 
 ::: notes
 
-The [slice][ref12] function selects rows based on their position.
+The [slice][ref13] function selects rows based on their position.
 
-[ref12]: https://dplyr.tidyverse.org/reference/slice.html
+[ref13]: https://dplyr.tidyverse.org/reference/slice.html
 
 :::
 
@@ -201,9 +211,9 @@ burgers |>
 
 ::: notes
 
-The [filter][ref13] function selects rows of a tibble or dataframe based on a logical condition (an R expression that produces true/false values).
+The [filter][ref14] function selects rows of a tibble or dataframe based on a logical condition (an R expression that produces true/false values).
 
-[ref13]: https://dplyr.tidyverse.org/reference/filter.html
+[ref14]: https://dplyr.tidyverse.org/reference/filter.html
 
 :::
 
@@ -217,6 +227,12 @@ burgers |>
   filter(Calories >= 600)
 ```
 
+::: notes
+
+With certain logical conditions, you can produce a tibble with more than one row.
+
+:::
+
 ## Alternatives to slice/filter, 1
 
 ```{r}
@@ -226,6 +242,13 @@ burgers |>
 burgers[1, ]
 ```
 
+::: notes
+
+Using the same square bracket approach, you can select one or more rows. This code selects the first row and every column.
+
+:::
+
+
 ## Alternatives to slice/filter, 2
 
 ```{r}
@@ -234,3 +257,9 @@ burgers[1, ]
 
 burgers[burgers$Sodium == 1500, ]
 ```
+
+::: notes
+
+You can also place a logical condition inside the square brackets. The syntax is a bit awkward because you have to specify the name of the tibble twice.
+
+:::

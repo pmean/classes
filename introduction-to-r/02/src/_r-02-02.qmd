@@ -7,6 +7,14 @@ format:
 editor: source
 ---
 
+## Data dictionary for burger-calories
+
+The next few examples will use a different data file, sleep. Refer to the [data dictionary][ref21] for details about this file.
+
+[ref21]: https://github.com/pmean/data/blob/main/files/sleep.yaml
+
+## Read text file
+
 ```{r}
 #| label: setup2
 #| message: false
@@ -14,8 +22,6 @@ editor: source
 
 library(tidyverse)
 ```
-
-## Read text file
 
 ```{r}
 #| label: read-sleep
@@ -27,8 +33,11 @@ sleep <- read_tsv(
 glimpse(sleep)
 ```
 
+::: notes
 
-:::notes
+The sleep data is too big to display on a single slide. The [glimpse][ref22] function provides a brief overview. It lists the number of rows and columns. This is followed with the name for each variable, its type, and the first few values.
+
+[ref22]: https://dplyr.tidyverse.org/reference/glimpse.html
 
 :::
 
@@ -44,6 +53,13 @@ sleep |>
   slice(1:10) |>
   select(Species, BrainWt, brain_wt_kg)
 ```
+
+::: notes
+
+
+
+:::
+
 
 ## Calculate brain to body weight ratio
 
