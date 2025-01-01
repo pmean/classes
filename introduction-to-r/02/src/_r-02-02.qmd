@@ -56,7 +56,9 @@ sleep |>
 
 ::: notes
 
+The [mutate][ref23] function creates a new variable or changes an existing variable. In this simple case, it is performing a unit conversion from grams to kilograms. This is needed for the next step.
 
+[ref23]: https://dplyr.tidyverse.org/reference/mutate.html
 
 :::
 
@@ -77,6 +79,15 @@ sleep |>
   select(Species, brain_wt_kg, BodyWt, brain_pct)
 ```
 
+::: notes
+
+This is a more elaborate set of mutations. The [round][ref24] function is strongly recommended. It makes the data more readable. The [paste0][ref25] is icing on top of the cake. It takes the numeric calculation and adds a percent sign at the end. 
+
+[ref24]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/Round.html
+[ref25]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/paste.html
+
+:::
+
 ## Summarize
 
 ```{r}
@@ -86,5 +97,16 @@ sleep |>
 sleep |>
   summarize(
     body_wt_mean=mean(BodyWt),
-    body_wt_sd=sd(BodyWt))
+    body_wt_sd=sd(BodyWt),
+    body_wt_min=min(BodyWt),
+    body_wt_max=max(BodyWt)) |>
+  round(1)
 ```
+
+::: notes
+
+The [summarize][ref26] function calculates simple statistics like the mean and standard deviation.
+
+[ref26]: https://dplyr.tidyverse.org/reference/summarise.html
+
+:::
