@@ -7,8 +7,123 @@ format:
 editor: source
 ---
 
-## Histograms, scatterplots
+## Default histogram for body weight, 1
 
-:::notes
+```{r}
+#| label: setup-4
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+```
+
+```{r}
+#| label: read-sleep-4
+#| echo: false
+
+sleep <- read_tsv(
+  file="../data/sleep.txt",
+  col_types="cnnnnnnnnnn")
+```
+
+```{r}
+#| label: default-histogram-1
+#| echo: true
+sleep |>
+  ggplot() +
+  aes(x=BodyWt) +
+  geom_histogram(
+    color="black",
+    fill="white") -> basic_histogram
+```
+
+## Default histogram for body weight, 2
+
+
+```{r}
+#| label: default-histogram-2
+#| echo: true
+basic_histogram
+```
+
+::: notes
 
 :::
+
+## Labeled histogram, 1
+
+```{r}
+#| label: histogram-with-labels-1
+#| echo: true
+
+basic_histogram +
+  xlab("Body weight (kg)") +
+  ggtitle("Graph drawn by Steve Simon on 2025-01-02") -> labeled_histogram
+```
+
+## Labeled histogram, 2
+
+```{r}
+#| label: histogram-with-labels-2
+#| echo: true
+
+labeled_histogram
+```
+
+::: notes
+
+:::
+
+## Log transformed histogram, 1
+
+```{r}
+#| label: histogram-with-log-scale-1
+#| echo: true
+
+ticks <- 10^(-2:3)
+labeled_histogram +
+  scale_x_log10(
+    breaks=ticks,
+    minor_breaks=NULL,
+    labels=ticks) -> histogram_with_log10
+```
+
+
+## Log transformed histogram, 2
+
+```{r}
+#| label: histogram-with-log-scale-2
+#| echo: true
+
+histogram_with_log10
+```
+
+## Different scales
+
+```{r}
+#| echo: false
+i <- 10^(-3:3)
+j <- c(1, 3)
+ticks <- kronecker(i, j)
+```
+
+## Labeled scatterplot, 1
+
+```{r}
+#| label: scatterplot-1
+#| echo: true
+sleep |>
+  ggplot() +
+  aes(x=BodyWt, y=BrainWt) +
+  geom_point() -> basic_scatterplot
+```
+
+## Labeled scatterplot, 2
+
+```{r}
+#| label: scatterplot-2
+#| echo: true
+
+basic_scatterplot
+```
