@@ -113,10 +113,14 @@ ticks <- kronecker(i, j)
 ```{r}
 #| label: scatterplot-1
 #| echo: true
+
 sleep |>
   ggplot() +
   aes(x=BodyWt, y=BrainWt) +
-  geom_point() -> basic_scatterplot
+  geom_point() + 
+  xlab("Body weight (kg)") +
+  ylab("Brain weight (g)") +
+  ggtitle("This graph was drawn by Steve Simon on 2025-01-02") -> labeled_scatterplot
 ```
 
 ## Labeled scatterplot, 2
@@ -125,5 +129,52 @@ sleep |>
 #| label: scatterplot-2
 #| echo: true
 
-basic_scatterplot
+labeled_scatterplot
+```
+
+## Log transformed scatterplot, 1
+
+```{r}
+#| label: log-transformed-scatterplot-1
+#| echo: true
+
+xticks <- 10^(-2:3)
+yticks <- 10^(-2:3)
+labeled_scatterplot +
+  scale_x_log10(
+    breaks=xticks,
+    minor_breaks=NULL,
+    labels=xticks) +
+  scale_y_log10(
+    breaks=yticks,
+    minor_breaks=NULL,
+    labels=yticks)-> log_scatterplot
+```
+
+## Log transformed scatterplot, 1
+
+```{r}
+#| label: log-transformed-scatterplot-2
+#| echo: true
+
+log_scatterplot
+```
+
+## Add a trend line, 1
+
+```{r}
+#| label: trend-line-1
+#| echo: true
+
+log_scatterplot +
+  geom_smooth() -> trend_line_graph
+```
+
+## Add a trend line, 2
+
+```{r}
+#| label: trend-line-2
+#| echo: true
+
+trend_line_graph
 ```

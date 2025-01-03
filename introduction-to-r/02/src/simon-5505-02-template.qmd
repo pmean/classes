@@ -9,7 +9,22 @@ execute:
 
 ## File details
 
+This program reads a dataset on fat measurements and produces a few simple descriptive statistics. Review the [data dictionary][refp1] for this dataset before working with this program.
+
+[refp1]: https://github.com/pmean/data/blob/main/files/fat.yaml
+
 This program was written by Steve Simon on 2020-02-08 with a major revision on 2024-12-29. It is placed in the public domain and you can use this any way you wish.
+
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+R.version.string
+Sys.Date()
+library(tidyverse)
+```
 
 ## Read text file
 
@@ -22,17 +37,3 @@ fat <- read_csv(
   col_types="nnnnnnnnnnnnnnnnnnn")
 glimpse(fat)
 ```
-
-```{r input-fd}
-fd <- read.table("../data/fat.txt")
-names(fd) <- c(
-  "case",     "fat_b",  "fat_s", 
-  "density",  "age",    "wt", 
-  "ht",       "bmi",    "ffw", 
-  "neck",     "chest",  "abdomen", 
-  "hip",      "thigh",  "knee", 
-  "ankle",    "biceps", "forearm", 
-  "wrist"
-)
-```
-
