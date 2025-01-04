@@ -133,6 +133,8 @@ There is an increasing trend in AIDS cases in New South Wales over time.
 ## Save important files for later use
 
 ```{r}
+#| label: save-data
+
 save(
   aids_cases,
   file="../data/aids-cases.RData")
@@ -140,7 +142,7 @@ save(
 
 #### Comments on the code
 
-The [save] function is optional, but produces a binary file that you can use
+The [save][ref09] function is optional, but produces a binary file that you can use
 later. The binary format takes less space and loads substantially faster than
 re-reading the data from a text file. It also preserves changes that you made,
 if any, to the data. 

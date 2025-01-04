@@ -4,7 +4,7 @@ title: "Directions for 5505-02 programming assignment"
 
 ## Program
 
--   Download the [xx program][refp1]
+-   Download the [template program][refp1]
     -   Store it in your src folder
 -   Modify the file names
     -   Use your last name instead of "simon"
@@ -12,7 +12,7 @@ title: "Directions for 5505-02 programming assignment"
     -   Add your name
     -   Optional: change the copyright statement
     
-[refp1]: https://github.com/pmean/classes/blob/master/introduction-to-r/01/src/simon-5505-01-xx.qmd
+[refp1]: https://github.com/pmean/classes/blob/master/introduction-to-r/01/src/simon-5505-02-template.qmd
 
 ## Data
 
@@ -20,16 +20,20 @@ title: "Directions for 5505-02 programming assignment"
     -   Store it in your data folder
 -   Refer to the [data dictionary][refp3], if needed.
 
-[refp2]: https://github.com/pmean/data/blob/main/files/aids-cases.csv
-[refp3]: https://github.com/pmean/data/blob/main/files/aids-cases.yaml
+[refp2]: https://github.com/pmean/data/blob/main/files/fat.csv
+[refp3]: https://github.com/pmean/data/blob/main/files/fat.yaml
     
 ## Question 1
 
-xx
+There is an unusually low value for ht, 29.5 inches. Display information about the case, age, wt, ht, and bmi for this person (but no other variables). Do you think this is a legitimate value?
 
 ## Question 2
 
-xx
+Calculate the mean, standard deviation, minimum, and maximum values for age and bmi. Round the values appropriately. Interpret these numbers.
+
+## Question 3
+
+The data dictionary implies that there are no missing values in the dataset. Write some code that checks whether this is true or not. Display the missing value counts in a vertical format.
 
 ## Grading rubric
 
