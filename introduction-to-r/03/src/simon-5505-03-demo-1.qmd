@@ -1,0 +1,46 @@
+---
+title: "Reading comma delimited files"
+format: 
+  html:
+    embed-resources: true
+execute: 
+  error: true
+editor: source
+---
+
+## File details
+
+This program reads data from a text file with comma delimiters. It was written by Steve Simon on 2025-01-06 and is placed in the public domain. You can use this program any way you please.
+
+The data itself is small and artificial, so there is no need for a data dictionary.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+R.version.string
+Sys.Date()
+library(tidyverse)
+```
+
+## Read in data
+
+```{r}
+#| label: read-csv
+
+raw_data <- read_csv(
+  file="../data/simple.csv",
+  col_names=TRUE,
+  col_types="nn")
+glimpse(raw_data)
+```
+
+#### Comments on the code
+
+The [read_csv][ref01] function opens a text file. If it is structured properly, it will create a tibble from the data in the text file. The col_names=TRUE argument tells R that the first row of the file contains the variable names. The col_types="nn" tells R that there are two columns of data, both numeric.
+
+The base R program has a similar function, read.csv, that also works. This function is a bit slower, which can be a problem for very large files. It also has fewer features.
+
+[ref01]: https://readr.tidyverse.org/reference/read_delim.html
+[ref02]: https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html

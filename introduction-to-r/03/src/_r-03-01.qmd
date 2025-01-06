@@ -7,14 +7,14 @@ format:
 editor: source
 ---
 
-## Text files (1/2)
+## Text files, 1
 
-+ Advantages
-  + Easy import into many programs
-  + Review using notepad
-+ Disadvantages
-  + Bigger size
-  + Slower to import
+-   Advantages
+    -    Easy import into many programs
+    -    Review using notepad
+-   Disadvantages
+    -    Bigger size
+    -    Slower to import
 
 ::: notes
 
@@ -26,14 +26,14 @@ Text files do usually take more room than other formats. As cheap as storage is 
 
 :::
 
-## Text files (2/2)
+## Text files, 2
 
-+ Wide range of formats
-  + Delimited
-  + Fixed width
-+ First row for variable names
-  + Optional but recommended
-+ Always look for a data dictionary
+-   Wide range of formats
+    -   Delimited
+    -   Fixed width
+-   First row for variable names
+    -   Optional but recommended
+-   Always look for a data dictionary
 
 ::: notes
 
@@ -46,13 +46,14 @@ Not every data set that you find is going to have a data dictionary but always l
 :::
 
 ## Should I download before reading?
-+ Read directly from website
-  + Convenient
-  + Updates incorporated at each run
-+ Download then read
-  + Downloaded file doesn't disappear
-  + Avoid repeated long downloads
-  + Work even when Internet connection is down
+
+-   Read directly from website
+    -   Convenient
+    -   Updates incorporated at each run
+-   Download then read
+    -   Downloaded file doesn't disappear
+    -   Avoid repeated long downloads
+    -   Work even when Internet connection is down
   
 ::: notes
 
@@ -65,13 +66,11 @@ If you download the file and then read it, you provide yourself with some insura
 :::
 
 ## No data dictionary?
-+ Peek at file
-  + Same number of delimiters on each line
-+ Tabs versus multiple blanks are hard to distinguish
-  + Tab delimited?
-  + Space delimited?
-  + Fixed width format?
-  + http://www.pmean.com/12/pesky.html
+
+-   Peek at file
+    -   Same number of delimiters on each line
+    -   Tabs versus multiple blanks are hard to distinguish
+-   http://www.pmean.com/12/pesky.html
 
 ::: notes
 
@@ -84,13 +83,14 @@ Tabs versus multiple blanks are hard to distinguish. This sometimes means that y
 :::
 
 ## No data dictionary?
-+ Experiment
-  + Read warnings carefully
-+ If needed, edit the file manually
-  + Simple edits of one or two offending lines
-  + Global search and replace
-    + Change tabs to blanks
-    + Change multiple blanks to single blank
+
+-   Experiment
+    -   Read warnings carefully
+-   If needed, edit the file manually
+    -   Simple edits of one or two offending lines
+    -   Global search and replace
+    -   Change tabs to blanks
+    -   Change multiple blanks to single blank
 
 ::: notes
 
@@ -102,24 +102,5 @@ If all else fails, go in and edit the file manually. This helps if there are jus
 
 ## Troubleshooting
 
-+ Multiple data read in as single variable.
-+ Lots of missing values
-
-## Summary
-+ read.csv for comma delimited files
-+ read.table for other delimiters
-  + Beware the tab
-+ read.fwf for fixed width files
-+ write with write.csv, write.table
-
-::: notes
-
-Read data from text files is an important survival skill in R. Use the read.csv function for comma-delimited files. This is the most common format for text files.
-
-Use read.table for other delimiters. Watch out for tab delimited files.
-
-Use read.fwf for fixed width files.
-
-If you need to write text files, the write.csv and write.table functions provide options similar to the two read functions.
-
-:::
+-   Multiple data read in as single variable.
+-   Lots of missing values

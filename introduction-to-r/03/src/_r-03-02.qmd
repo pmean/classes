@@ -26,45 +26,30 @@ The version and date should be part of any R program.
 
 :::
 
-## Read in comma separated values
+## An example of a comma delimited file
 
-+ Type the following into notepad.
+```{r}
+#| label: setup
+#| echo: false
+#| message: false
+#| warning: false
 
-```{r csv, echo=FALSE, comment=""}
+library(tidyverse)
 tx <- read_lines("../data/simple.csv")
 cat(tx, sep="\n")
 ```
 
-+ Save it
-  + in the data directory
-  + filename: simple.csv
-
-::: notes
-
-In notepad or another text editor, type in the following
-values.
-
-x,y
-
-1,4
-
-2,8
-
-3,12
-
-4,16
-
-and save the file using the name simple.csv. Note the directory that you are saving it in. Ideally, it should be in a folder named "data".
-
-
-:::
-
 ## the read_csv function 
 
-```{r read-csv}
-fn <- "../data/simple.csv"
-raw_data <- read_csv(fn,
+```{r}
+#| label: read-csv
+#| eval: false
+
+raw_data <- read_csv(
+  file="../data/simple.csv",
+  col_names=TRUE,
   col_types="nn")
+glimpse(raw_data)
 ```
 
 ::: notes
