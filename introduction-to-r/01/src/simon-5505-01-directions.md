@@ -23,10 +23,10 @@ title: "Directions for 5505-01 programming assignment"
 
 [refp2]: https://github.com/pmean/data/blob/main/files/aids-cases.csv
 [refp3]: https://github.com/pmean/data/blob/main/files/aids-cases.yaml
-    
+
 ## Question 1
 
-Calculate the minimum and maximun number of AIDS cases in Victoria from 1982 to
+Calculate the minimum and maximum number of AIDS cases in Victoria from 1982 to
 1987. The default format for this table is acceptable. Provide a brief 
 interpretation.
 
@@ -34,6 +34,10 @@ interpretation.
 
 Graph the trend in AIDS cases in Victoria from 1982 to 1987. Use a nice format
 and provide a brief interpretation.
+
+## Important reminder
+
+Keep your output brief. After you have gotten your program to work, remove any code that does not address the questions above. Also, please remove any "Comments on the code" sections. But do provide interpretations when asked.
 
 ## Grading rubric
 

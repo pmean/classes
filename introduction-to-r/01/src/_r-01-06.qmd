@@ -9,3 +9,17 @@ editor: source
 
 {{< include ../../../general/good-programming-practices.md >}}
 
+## The format function
+
+```{r}
+x <- factorial(1:10)
+x
+format(x, big.mark=",")
+```
+
+## The round function for large numbers
+
+```{r}
+round(x, -2)
+y <- 
+```

@@ -1,5 +1,5 @@
 ---
-title: "r-01-04, TBA-4"
+title: "r-03-04, Fixed width files"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,127 @@ format:
 editor: source
 ---
 
-## TBA-4
+## Reading fixed width format files
 
-:::notes
++ Type the following into notepad
+  + Space between the 1 and 4
+  + Space between the 2 and 8
+  + No space between the 3 and 12
+  + No space between the 4 and 16
+
+```{r fixed, echo=FALSE, comment=""}
+tx <- read_lines("../data/fixed.txt")
+cat(tx, sep="\n")
+```
+
++ Save as fixed.txt
+
+
+::: notes
+
+Here's another variation.
+
+Sometimes you will get a file with no delimiters to save space. This requires that each variable takes up a fixed number of columns and that information is often specified in a separate file.
+
+Create a fixed width file in notepad with the following lines.
+
+1 4
+
+2 8
+
+312
+
+416
+
+and store it as fixed.txt.
+
+Okay, I deliberately did not put the variable names as the first line.
+
+Fixed width files often do not include the variable names in the file itself.
 
 :::
+
+## The read_fwf function 
+
+```{r read_fwf}
+fn <- "../data/fixed.txt"
+raw_data <- read_fwf(fn, 
+  fwf_cols(1, 2),
+  col_types="nn")
+```
+
+::: notes
+
+Use the read.fwf (fwf stands for fixed width format) function to read this data.
+
+:::
+
+## Display the fixed-width data
+
+```{r disaply-fwf}
+raw_data
+```
+
+::: notes
+
+R does know what to name the variables so it decides to use the default name V1 for the first variable in V2 for the second variable. I do not recommend that you do this if you're creating a file, and if someone else did this, shame, shame on them.
+
+:::
+
+## Changing names from the default
+
+```{r names}
+names(raw_data) <- c("x", "y")
+raw_data
+```
+
+::: notes
+
+When this happens, add more descriptive names than X1 and x2 as quickly as possible.
+
+Now I have to confess that x and y are not any more descriptive than x1 and x2, but you get the idea.
+
+:::
+
+## Disadvantages of fixed width formatting?
++ Confusing
+  + What is 312? 
+    + 3, 1, and 2?
+    + 31 and 2?
+    + 3 and 12?
+    + 312?
++ More work
++ Prone to errors
+
+::: notes
+
+When you have no delimiters, it is easy to get confused. The third line, for example, of our simple data file is "312". That could be three numbers: 3, 1, and 2. It could be two numbers: 31 and 2? Or maybe 3 and 12? Or it could be a single number: 312. In a small dataset, you won't get confused, but you might with a larger dataset.
+
+It's also more work because you have to specify the number of columns that each variable uses. That's not trivial for a large file.
+
+The fixed width format is also more prone to errors. If you get the columns wrong, you might truncate some of your data.
+
+:::
+
+## Example where fixed width formatting is needed.
+
+![](../images/ed2017.png)
+
+::: notes
+
+Here's practical example where you really might need fixed width formatting. This is data from Emergency Department visits in a CDC survey. There are over 16,000 rows, which is bad enough. But each row (except the last one) has over 2,400 columns. These columns contain information for over 900 variables.
+
+If you were to use delimiters in this file, you'd have to add 900 commas or 900 tabs or 900 spaces or 900 tildes to each and every line. That works out to be 1.4 million commas across the entire file. That's a substantial increase to the size of an already very large and unwieldy file.
+
+:::
+
+
+
+## Break #5
+
++ What have you learned
+  + Reading fixed width files
++ What's next?
+  + Multiple blanks in a text file
+  + Reading character data
+

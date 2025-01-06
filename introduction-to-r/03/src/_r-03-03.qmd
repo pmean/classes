@@ -1,5 +1,5 @@
 ---
-title: "r-01-03, TBA-3"
+title: "r-03-03, Tab delimited files"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,110 @@ format:
 editor: source
 ---
 
-## TBA-3
+## Tab delimited files
 
-:::notes
++ Use the tab key instead of the space bar.
+
+```{r tab, echo=FALSE, comment=""}
+tx <- read_lines("../data/simple.tsv")
+cat(tx, sep="\n")
+```
+
++ Save as simple.tsv
+
+::: notes
+
+Tabs are little bit different and you might want to listen to the live video where I show how the tab key works.
+
+Type the following into notepad and what appears to be multiple blanks, I want you to press the tab key, but only once.
 
 :::
+
+## Using the read_tsv function
+
+```{r tsv}
+fn <- "../data/simple.tsv"
+raw_data <- read_tsv(fn, 
+  col_types="nn")
+```
+
+::: notes
+
+The read_tsv function works when you have a tab character as the delimiter. It uses the same arguments as the read_csv function.
+
+:::
+
+## Display tab-delimited data
+
+```{r display-tab}
+raw_data
+```
+
+::: notes
+
+The data has been read in correctly.
+
+:::
+
+## Break #3
+
++ What have you learned
+  + Reading tab delimited files  
++ What's next?
+  + Anything can be a delimiter
+
+## Anything can be a delimiter
+
++ Type the following into notepad
+
+```{r anything, echo=FALSE, comment=""}
+tx <- read_lines("../data/tilde.txt")
+cat(tx, sep="\n")
+```
+
++ Save as tilde.txt
+
+::: notes
+
+Type in the same data, but using the tilde (~) as a separator (e.g., 1~4). Save the file as tilde.txt.
+
+Here is how you would use read_delim to read this file.
+
+:::
+
+## Using the read_delim function with delim="~"
+
+```{r tilde}
+fn <- "../data/tilde.txt"
+raw_data <- read_delim(fn,
+  delim="~",
+  col_types="nn")
+```
+
+::: notes
+
+The data reads in just fine. Why would you use a tilde as a delimiter? Sometimes your data itself includes delimiters like spaces and commas, and then you might want to choose an obscure out of the way symbol to serve as a delimiter.
+
+Another obscure character that is sometimes used as a delimiter is the veritical bar (|).
+
+:::
+
+## Display tilde-delimted data
+
+```{r display-tilde}
+raw_data
+```
+
+::: notes
+
+The data has been read in correctly.
+
+:::
+
+## Break #4
+
++ What have you learned
+  + Anything can be a delimiter
++ What's next?
+  + Reading fixed width files
+

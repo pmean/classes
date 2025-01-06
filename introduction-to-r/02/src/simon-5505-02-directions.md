@@ -33,7 +33,11 @@ Calculate the mean, standard deviation, minimum, and maximum values for age and 
 
 ## Question 3
 
-The data dictionary implies that there are no missing values in the dataset. Write some code that checks whether this is true or not. Display the missing value counts in a vertical format.
+The data dictionary implies that there are no missing values in the dataset. Write some code that checks whether this is true or not. Display the missing value counts in a vertical format. Hint: you do not need the select(-1) for this dataset.
+
+## Question 4
+
+Display a scatterplot with age on the x-axis and bmi on the y-axis. Be sure to include units of measurement on each axis. Include a smooth trend line. Interpret this graph.
 
 ## Grading rubric
 

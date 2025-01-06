@@ -111,6 +111,11 @@ sleep |>
   round(2)
 ```
 
+
+## Interpretation of correlations, 1
+
+Any correlation involving NonDreaming, Dreaming, TotalSleep, LifeSpan, and Gestation are missing because these variables have at least one missing value.
+
 ## Correlations with use="complete.obs" {.smaller}
 
 ```{r}
@@ -124,6 +129,16 @@ sleep |>
 options(width=80)
 # Reset the width to the default value of 80
 ```
+
+## Interpretation of correlations, 2
+
+There is a very strong positive association between body weight and brain weight, body weight and gestation, brain weight and gestation, non-dreaming sleep and total sleep, dreaming sleep and total sleep, predation and danger, and exposure and danger. There are no strong negative associations. There are many other weak positive and weak negative associations.
+
+::: notes
+
+It is tricky to interpret a large matrix of correlations. A first step is to highlight any strong positive (greater than 0.7) or strong negative (less than -0.7) correlations.
+
+:::
 
 ## You cannot test missingness directly
 
@@ -191,6 +206,10 @@ sleep |>
   pivot_longer(
     everything(),
     names_to="variable",
-    values_to="missing_count")
+    values_to="missing_count") |>
+  filter(missing_count > 0)
 ```
 
+## Interpretation of missing value counts
+
+There are five variables with missing data. Non-dreaming and dreaming sleep have 14 and 12 missing values, respectively. Total sleep, life span, and gestation all have 4 missing values. 
