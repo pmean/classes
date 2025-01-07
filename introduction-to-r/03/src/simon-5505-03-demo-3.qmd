@@ -27,13 +27,14 @@ library(tidyverse)
 ## Read in data
 
 ```{r}
-#| label: read-delim
+#| label: read-tilde
 
 raw_data <- read_delim(
   file="../data/tilde.txt",
   delim="~",
   col_names=TRUE,
   col_types="nn")
+
 glimpse(raw_data)
 ```
 

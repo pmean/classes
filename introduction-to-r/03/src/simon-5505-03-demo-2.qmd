@@ -27,12 +27,13 @@ library(tidyverse)
 ## Read in data
 
 ```{r}
-#| label: read-tsv
+#| label: read-tab
 
 raw_data <- read_tsv(
   file="../data/simple.tsv",
   col_names=TRUE,
   col_types="nn")
+
 glimpse(raw_data)
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: "r-03-04, Fixed width files"
+title: "r-03-04, Other delimiters"
 format: 
   revealjs:
     slide-number: true
@@ -7,93 +7,40 @@ format:
 editor: source
 ---
 
-## Reading fixed width format files
+## Anything can be a delimiter
 
-```{r fixed, echo=FALSE, comment=""}
-tx <- read_lines("../data/fixed.txt")
-cat(tx, sep="\n")
+```{r}
+#| label: setup-04
+#| echo: false
+
+load("../data/module03.RData")
 ```
 
-::: notes
-
-Here's another variation.
-
-Sometimes you will get a file with no delimiters to save space. This requires that each variable takes up a fixed number of columns and that information is often specified in a separate file.
-
-Okay, I deliberately did not put the variable names as the first line. Fixed width files often do not include the variable names in the file itself.
-
-:::
-
-## The read_fwf function 
-
-```{r read_fwf}
-fn <- "../data/fixed.txt"
-raw_data <- read_fwf(fn, 
-  fwf_cols(1, 2),
-  col_types="nn")
-```
+`r simple_tilde`
 
 ::: notes
 
-Use the read.fwf (fwf stands for fixed width format) function to read this data.
+Type in the same data, but using the tilde (~) as a separator (e.g., 1~4). Save the file as tilde.txt.
+
+Here is how you would use read_delim to read this file.
 
 :::
 
-## Display the fixed-width data
+## Using the read_delim function with delim="~"
 
-```{r disaply-fwf}
-raw_data
-```
+`r read_tilde`
 
 ::: notes
 
-R does know what to name the variables so it decides to use the default name V1 for the first variable in V2 for the second variable. I do not recommend that you do this if you're creating a file, and if someone else did this, shame, shame on them.
+The data reads in just fine. Why would you use a tilde as a delimiter? Sometimes your data itself includes delimiters like spaces and commas, and then you might want to choose an obscure out of the way symbol to serve as a delimiter.
+
+Another obscure character that is sometimes used as a delimiter is the vertical bar (|).
 
 :::
 
-## Changing names from the default
+## Live demonstration, 3
 
-```{r names}
-names(raw_data) <- c("x", "y")
-raw_data
-```
+Now, you will see a live demonstration of the program [simon-5505-03-demo-3][ref41].
 
-::: notes
+[ref41]: https://github.com/pmean/classes/blob/master/introduction-to-r/03/src/simon-5505-03-demo-3.qmd
 
-When this happens, add more descriptive names than X1 and x2 as quickly as possible.
-
-Now I have to confess that x and y are not any more descriptive than x1 and x2, but you get the idea.
-
-:::
-
-## Disadvantages of fixed width formatting?
-+ Confusing
-  + What is 312? 
-    + 3, 1, and 2?
-    + 31 and 2?
-    + 3 and 12?
-    + 312?
-+ More work
-+ Prone to errors
-
-::: notes
-
-When you have no delimiters, it is easy to get confused. The third line, for example, of our simple data file is "312". That could be three numbers: 3, 1, and 2. It could be two numbers: 31 and 2? Or maybe 3 and 12? Or it could be a single number: 312. In a small dataset, you won't get confused, but you might with a larger dataset.
-
-It's also more work because you have to specify the number of columns that each variable uses. That's not trivial for a large file.
-
-The fixed width format is also more prone to errors. If you get the columns wrong, you might truncate some of your data.
-
-:::
-
-## Example where fixed width formatting is needed.
-
-![](../images/ed2017.png)
-
-::: notes
-
-Here's practical example where you really might need fixed width formatting. This is data from Emergency Department visits in a CDC survey. There are over 16,000 rows, which is bad enough. But each row (except the last one) has over 2,400 characters. These columns contain information for over 900 variables.
-
-If you were to use delimiters in this file, you'd have to add 900 commas or 900 tabs or 900 spaces or 900 tildes to each and every line. That works out to be 1.4 million commas across the entire file. That's a substantial increase to the size of an already very large and unwieldy file.
-
-:::

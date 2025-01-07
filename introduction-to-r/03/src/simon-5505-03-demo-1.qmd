@@ -27,12 +27,13 @@ library(tidyverse)
 ## Read in data
 
 ```{r}
-#| label: read-csv
+#| label: read-comma
 
 raw_data <- read_csv(
   file="../data/simple.csv",
   col_names=TRUE,
   col_types="nn")
+
 glimpse(raw_data)
 ```
 
