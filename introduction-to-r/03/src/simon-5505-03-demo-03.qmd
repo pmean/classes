@@ -39,6 +39,6 @@ glimpse(raw_data)
 
 #### Comments on the code
 
-The [read_tsv][ref01] function is described in the same page that describes the read_csv function.opens a text file.
+The [read_tsv][ref01] function is described in the same page that describes the read_csv function.
 
 [ref01]: https://readr.tidyverse.org/reference/read_delim.html
