@@ -9,12 +9,8 @@ editor: source
 
 ## Reading fixed width format files
 
-```{r}
-#| eval: false
+`r simple_fixed`
 
-tx <- read_lines("../data/fixed.txt")
-cat(tx, sep="\n")
-```
 
 ::: notes
 
@@ -28,61 +24,43 @@ Okay, I deliberately did not put the variable names as the first line. Fixed wid
 
 ## The read_fwf function 
 
-```{r read_fwf}
-#| eval: false
-
-fn <- "../data/fixed.txt"
-raw_data <- read_fwf(fn, 
-  fwf_cols(1, 2),
-  col_types="nn")
-```
+`r read_fixed`
 
 ::: notes
 
 Use the read.fwf (fwf stands for fixed width format) function to read this data.
 
-:::
+Another function that you can use when the data is clearly separated by one or more whitespace characters (blanks or tabs) is read_table.
 
-## Display the fixed-width data
-
-```{r disaply-fwf}
-#| eval: false
-
-raw_data
-```
-
-::: notes
-
-R does know what to name the variables so it decides to use the default name V1 for the first variable in V2 for the second variable. I do not recommend that you do this if you're creating a file, and if someone else did this, shame, shame on them.
+https://readr.tidyverse.org/reference/read_table.html
 
 :::
 
-## Changing names from the default
+## Helpful functions with read_fwf
 
-```{r names}
-#| eval: false
-
-names(raw_data) <- c("x", "y")
-raw_data
-```
-
+-    fwf_empty()
+     -   Uses spacing to guess at column positions
+-    fwf_widths()
+     -   Specifies column widths
+-    fwf_positions()
+     -   Specifies start and end locations for each column
+     
 ::: notes
 
-When this happens, add more descriptive names than X1 and x2 as quickly as possible.
-
-Now I have to confess that x and y are not any more descriptive than x1 and x2, but you get the idea.
+There are several ways to identify the column positions for a fixed width file. The fwf_empty function will make a reasonable guess as long as there is whitespace (one or more blanks/tabs) between each variable. You could also specify the column widths or the start and end location for each column.
 
 :::
 
 ## Disadvantages of fixed width formatting?
-+ Confusing
-  + What is 312? 
-    + 3, 1, and 2?
-    + 31 and 2?
-    + 3 and 12?
-    + 312?
-+ More work
-+ Prone to errors
+
+-   Confusing
+    -   What is 312? 
+        -   3, 1, and 2?
+        -   31 and 2?
+        -   3 and 12?
+        -   312?
+-   More work
+-   Prone to errors
 
 ::: notes
 
@@ -105,3 +83,10 @@ Here's practical example where you really might need fixed width formatting. Thi
 If you were to use delimiters in this file, you'd have to add 900 commas or 900 tabs or 900 spaces or 900 tildes to each and every line. That works out to be 1.4 million commas across the entire file. That's a substantial increase to the size of an already very large and unwieldy file.
 
 :::
+
+## Live demonstration, 4
+
+Now, you will see a live demonstration of the program [simon-5505-03-demo-05][ref51].
+
+[ref51]: https://github.com/pmean/classes/blob/master/introduction-to-r/03/src/simon-5505-03-demo-05.qmd
+

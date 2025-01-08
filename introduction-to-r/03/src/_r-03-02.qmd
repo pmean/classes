@@ -44,48 +44,7 @@ Okay, not too exciting. It's a small data set. You will likely work with some mo
 
 ## Live demonstration, 1
 
-Now, you will see a live demonstration of the program [simon-5505-02-demo-1][ref21].
+Now, you will see a live demonstration of the program [simon-5505-03-demo-02][ref21].
 
-[ref21]: https://github.com/pmean/classes/blob/master/introduction-to-r/03/src/simon-5505-03-demo-1.qmd
-
-## Space delimited files
-
-::: notes
-
-Comma separated values are one of the most common formats you will encounter, but it is not the only format out there.
-
-Now try something different. Type in the same data, but use a spaces between each number rather than a comma. Notice that there are sometimes a single blank between two numbers and sometimes two blanks. This is commonly done with some text files so that the data is easier to read.
-
-We're going to give the file we create a different name. Instead of simple.CSV, we are going to call it simple.txt.
-
-:::
-
-## Using the read_delim function
-
-```{r txt}
-#| eval: false
-fn <- "../data/simple.txt"
-raw_data <- read_delim(fn, 
-  delim=" ",
-  col_types="nn")
-```
-
-::: notes
-
-Here is how you would use read_delim to read this file. The argument delim=" " tells R to look for exactly one blank between two numbers.
-
-:::
-
-## Display space-delimted data
-
-```{r display-space}
-#| eval: false
-raw_data
-```
-
-::: notes
-
-The data has been read in correctly.
-
-:::
+[ref21]: https://github.com/pmean/classes/blob/master/introduction-to-r/03/src/simon-5505-03-demo-02.qmd
 

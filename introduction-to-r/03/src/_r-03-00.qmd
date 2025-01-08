@@ -48,7 +48,7 @@ simple_comma <- grab_entire_file("../data/simple.csv")
 cat(simple_comma)
 
 read_comma <- grab_code_segment(
-  "simon-5505-03-demo-1.qmd", 
+  "simon-5505-03-demo-02.qmd", 
   "#| label: read-comma")
 cat(read_comma)
 
@@ -56,7 +56,7 @@ simple_tab <- grab_entire_file("../data/simple.tsv")
 cat(simple_tab)
 
 read_tab <- grab_code_segment(
-  "simon-5505-03-demo-2.qmd", 
+  "simon-5505-03-demo-03.qmd", 
   "#| label: read-tab")
 cat(read_tab)
 
@@ -64,7 +64,7 @@ simple_tilde <- grab_entire_file("../data/tilde.txt")
 cat(simple_tilde)
 
 read_tilde <- grab_code_segment(
-  "simon-5505-03-demo-3.qmd", 
+  "simon-5505-03-demo-04.qmd", 
   "#| label: read-tilde")
 cat(read_tilde)
 
@@ -72,10 +72,9 @@ simple_fixed <- grab_entire_file("../data/fixed.txt")
 cat(simple_fixed)
 
 read_fixed <- grab_code_segment(
-  "simon-5505-03-demo-3.qmd", 
-  "#| label: read-tilde")
-cat(read_tilde)
-
+  "simon-5505-03-demo-05.qmd", 
+  "# label: read-fixed")
+cat(read_fixed)
 ```
 
 ## Save everything important
@@ -88,5 +87,7 @@ save(
   read_tab,
   simple_tilde,
   read_tilde,
+  simple_fixed,
+  read_fixed,
 	file="../data/module03.RData")
 ```

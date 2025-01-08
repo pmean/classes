@@ -1,5 +1,5 @@
 ---
-title: "r-03-06, Special cases"
+title: "r-03-06, Real world examples"
 format: 
   revealjs:
     slide-number: true
@@ -7,181 +7,12 @@ format:
 editor: source
 ---
 
-## A special case
-
-+ Type the following into notepad
-  + Three spaces between the 1 and 4
-  + Three spaces between the 2 and 8
-  + Two spaces between the 3 and 12
-  + Two spaces between the 4 and 16
-
-```{r white-space, echo=FALSE, comment=""}
-#| eval: false
-
-tx <- read_lines("../data/white-space.txt")
-cat(tx, sep="\n")
-```
-
-+ Save as white-space.txt
-
-
-::: notes
-
-Here's a special case of fixed width format.
-
-Sometimes a fixed width file will include enough blanks so that each data value is separated from any other data value. This requires more room, but it makes the data file easier to read.
-Create a fixed width file in notepad with the following lines.
-
-1   4
-
-2   8
-
-3  12
-
-4  16
-
-and store it as white-space.txt.
-
-:::
-
-## White-space delimited files
-
-```{r read_table}
-#| eval: false
-
-fn <- "../data/white-space.txt"
-raw_data <- read_table(fn,
-  col_names=c("x", "y"),                     
-  col_types="nn")
-```
-
-::: notes
-
-The read_table function will use "white space" as a delimiter. White space is defined as one or more blanks or tabs or even a mix of spaces and tabs.
-
-Note you can also use col_names=FALSE here.
-
-Now, you could also use read_fwf for this dataset.
-
-:::
-
-## Display the white-space data
-
-```{r disaply-white-space}
-#| eval: false
-
-raw_data
-```
-
-::: notes
-
-The data has been read in properly.
-
-:::
-
-## Reading character data
-
-+ Also know as
-  + string data, or
-  + alphanumeric data
-+ Character data is data composed of 
-  + letters, or
-  + a mix of letters, symbols, and numbers
-+ Easier in R than in SAS
-
-::: notes
-
-Character data is data that is composed entirely of the letters A-Z upper case and a-z lower case. So a person's name (Steve) is character data. You can also mix in numbers. So a person's address (1600 Pennsylvania Avenue) is character data. A phone number is character data because it might include parentheses or dashes.
-
-R can handle character data more easily than SAS. Often you do not have to do anything and R will figure things out for you. In SAS you ALWAYS have to designate character data. When the lengths of the character data vary, you have to be careful. When the length of the characters is greater than 8, you have to be especially careful.
-
-R can handle varying lengths easily and characters of length greater than 8 easily.
-
-:::
-
-## Potential problems
-
-+ Values=1, 2, 3 or more
-+ Embedded blanks (Steve Simon)
-+ Delimiters (Simon, Steve)
-+ Recommendation, use quotes
-  + "1", "2", "3 or more"
-  + "Steve Simon"
-  + "Simon, Steve"
-
-::: notes
-
-There still are some issues, such as when the data is mostly numeric, and only sometimes character. An example would be data that has the values 1 (a number), 2 (also a number), and 3 or more (character data).
-
-Embedded blanks are sometimes a problem (Steve space Simon) as are character data that include commonly used delimiters like a comma (simon, comma Steve).
-
-The best thing to do, if there is any potential problems is to enclose your data in quotes.
-
-:::
-
-## String data
-
-+ Type the following into notepad.
-
-```{r string-data, echo=FALSE, comment=""}
-#| eval: false
-
-tx <- read_lines("../data/string.csv")
-cat(tx, sep="\n")
-```
-
-+ Save it
-  + in the data directory
-  + filename: string.csv
-
-::: notes
-
-:::
-
-## Using string data
-
-```{r string}
-#| eval: false
-
-fn <- "../data/string.csv"
-raw_data <- 
-  read_csv(fn, 
-  col_types="ccn")
-```
-
-::: notes
-
-:::
-
-## Display string data
-
-```{r display-string-data}
-#| eval: false
-
-raw_data
-```
-
-::: notes
-
-The data has been read in correctly.
-
-:::
-
-## Break #6
-
-+ What have you learned
-  + Multiple blanks in a text file
-  + Reading character data
-+ What's next?
-  + Advanced options when reading
-  + Writing text files
-
-## Advanced options when reading
-
-+ col_select=
-+ na=
-+ name_repair=
-+ skip=
+## Function arguments for advanced options
+
+-   col_select=
+-   na=
+-   name_repair=
+-   skip=
 
 ::: notes
 
@@ -197,61 +28,6 @@ You can use the skip argument to ignore a certain number of rows before reading 
 
 :::
 
-## Writing text files
-
-+ Similar structure to read functions
-  + write_csv
-  + write_delim
-  + write_tsv
-
-::: notes
-
-If you want to write a text file, you can use the write_csv, write_delim, or write_tsv functions. Look up the help files on these functions. We'll create a small data frame and store it in a comma delimited and tab delimited format.
-
-:::
-
-## Writing text files 
-
-```{r write-text}
-#| eval: false
-
-raw_data <- data.frame(
-  x=c(1, 2, 3, 4), 
-  y=c(4, 8, 12, 16))
-fn <- "../results/output_data.txt"
-write_csv(raw_data, fn)
-```
-
-::: notes
-
-Open these files in notepad to see what they look like.
-
-:::
-
-## Writing text files
-
-```{r output1, echo=FALSE}
-#| eval: false
-
-tx <- read_lines(fn)
-cat(tx, sep="\n")
-```
-
-::: notes
-
-If you opened up the data in notepad or some other program, you would see a space delimited file. You can change the delimiter, among other things
-
-:::
-
-## Break #7
-
-+ What have you learned
-  + Advanced options when reading
-  + Writing text files
-+ What's next?
-  + Some real world examples
-
-
 ## Example #1, binary.csv
 
 ![Figure 1. Excerpt from website](../images/binary-01.png)
@@ -265,7 +41,9 @@ Let's look at some real world examples. The first one comes from one of the page
 ## Example #1, the data
 
 ```{r ex1, echo=FALSE}
-#| eval: false
+#| eval: true
+
+library(tidyverse)
 
 fn <- "../data/binary.csv"
 tx <- read_lines(fn)
@@ -281,8 +59,8 @@ Peeking at the first six lines of data, you can see clearly that it is uses comm
 
 ## Example #1, the data dictionary
 
-+ No formal data dictionary, but here is a description
-  + "This dataset has a binary response (outcome, dependent) variable called admit. There are three predictor variables: gre, gpa and rank. We will treat the variables gre and gpa as continuous. The variable rank takes on the values 1 through 4. Institutions with a rank of 1 have the highest prestige, while those with a rank of 4 have the lowest."
+-   No formal data dictionary, but here is a description
+    -   "This dataset has a binary response (outcome, dependent) variable called admit. There are three predictor variables: gre, gpa and rank. We will treat the variables gre and gpa as continuous. The variable rank takes on the values 1 through 4. Institutions with a rank of 1 have the highest prestige, while those with a rank of 4 have the lowest."
 
 ::: notes
 
@@ -293,7 +71,7 @@ There is no formal data dictionary, which is a shame, but you can find a brief d
 ## Example #1, the code
 
 ```{r read-binary}
-#| eval: false
+#| eval: true
 
 fn <- "../data/binary.csv"
 raw_data <- read_csv(fn,
@@ -310,7 +88,7 @@ Choose the read_csv function and specify four numeric variables.
 ## Example #1, the output
 
 ```{r display-binary}
-#| eval: false
+#| eval: true
 
 raw_data
 ```
@@ -359,7 +137,7 @@ There is no formal data dictionary, but the website does offer a brief descripti
 ## Example #2, the code
 
 ```{r read-tsa-3}
-#| eval: false
+#| eval: true
 
 fn <- "../data/barbershop-music.txt"
 raw_data <- read_tsv(fn,
@@ -375,7 +153,7 @@ The read_tsv function works well here.
 ## Example #2, the output
 
 ```{r display-example-2}
-#| eval: false
+#| eval: true
 
 raw_data
 ```
@@ -426,7 +204,7 @@ This dataset has a very nice data dictionary. From the description, you can tell
 ## Example #3, the code
 
 ```{r airport}
-#| eval: false
+#| eval: true
 
 fn <- "../data/airport.txt"
 raw_data <- read_fwf(fn, 
@@ -443,7 +221,7 @@ You have to do a bit of math here. If the first variable ends in column 21 and t
 ## Example #3, the output
 
 ```{r airport-print}
-#| eval: false
+#| eval: true
 
 raw_data
 ```
