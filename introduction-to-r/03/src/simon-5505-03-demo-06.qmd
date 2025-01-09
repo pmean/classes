@@ -46,11 +46,11 @@ This program will read in three very different text data files. Here are some li
 ## Example 1, quick peek
 
 ```{r}
-#| label: peek-1
+#| label: peek-binary
 
-url_1 <- "https://stats.idre.ucla.edu/stat/data/binary.csv"
+url_binary <- "https://stats.idre.ucla.edu/stat/data/binary.csv"
 read_lines(
-  file=url_1, 
+  file=url_binary, 
   n_max=10)
 ```
 
@@ -67,14 +67,14 @@ Peeking at the first ten lines of data, you can see that this file uses commas a
 ## Example 1, read_csv
 
 ```{r}
-#| label: read-1
+#| label: read-binary
 
-example_1 <- read_csv(
+example_binary <- read_csv(
   file=fn,
   col_names=TRUE,
   col_types="nnnn")
 
-glimpse(example_1)
+glimpse(example_binary)
 ```
 
 #### Interpretation of the output
@@ -85,11 +85,11 @@ The data shown here appears to match the description of the file on the web.
 ## Example 2, quick peek
 
 ```{r}
-#| label: peek-2
+#| label: peek-barbershop
 
-url_2 <- "https://dasl.datadescription.com/download/data/3061"
+url_barbershop <- "https://dasl.datadescription.com/download/data/3061"
 read_lines(
-  file=url_2,
+  file=url_barbershop,
   n_max=10)
 ```
 
@@ -100,10 +100,10 @@ It looks like it is a tab delimited file. The read_lines file replaces the tab w
 ## Example 2, read_tsv
 
 ```{r}
-#| label: read-2
+#| label: read-barbershop
 
 raw_data <- read_tsv(
-  file=url_2,
+  file=url_barbershop,
   col_names=TRUE,
   col_types="nnn")
 
@@ -119,11 +119,11 @@ The read_tsv function works well here.
 ## Example 3, peek
 
 ```{r}
-#| label: peek-3
+#| label: peek-airport
 
-url_3 <- "http://jse.amstat.org/datasets/airport.dat.txt"
+url_airport <- "http://jse.amstat.org/datasets/airport.dat.txt"
 read_lines(
-  file=url_3,
+  file=url_airport,
   n_max=10)
 ```
 
@@ -134,7 +134,7 @@ This could be a tab delimited file, but the numbers are right justified. In a ta
 ## Example 3, define data columns and names
 
 ```{r}
-#| label: define-3
+#| label: define-airport
 
 start_column <- c( 1, 22, 44, 51, 58, 67, 77)
 end_column <-   c(21, 43, 49, 56, 65, 75, 85)
@@ -151,7 +151,7 @@ variable_names <- c(
 ## Example 3, read_fwf
 
 ```{r}
-#| label: read-3
+#| label: read-airport
 
 example_3 <- read_fwf(
   file=url_3, 
@@ -163,15 +163,6 @@ example_3 <- read_fwf(
 
 glimpse(example_3)
 ```
-
-Airport                               Columns 1-21
-City                                  Columns 22-43 
-Scheduled departures                  Columns 44-49 
-Performed departures                  Columns 51-56
-Enplaned passengers                   Columns 58-65
-Enplaned revenue tons of freight      Columns 67-75
-Enplaned revenue tons of mail         Columns 77-85
-
 
 #### Interpretation of the output
 

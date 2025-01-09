@@ -75,6 +75,42 @@ read_fixed <- grab_code_segment(
   "simon-5505-03-demo-05.qmd", 
   "# label: read-fixed")
 cat(read_fixed)
+
+peek_binary <- grab_code_segment(
+  "simon-5505-03-demo-06.qmd", 
+  "# label: peek-binary")
+cat(peek_binary)
+
+read_binary <- grab_code_segment(
+  "simon-5505-03-demo-06.qmd", 
+  "# label: read-binary")
+cat(read_binary)
+
+peek_barbershop <- grab_code_segment(
+  "simon-5505-03-demo-06.qmd", 
+  "# label: peek-barbershop")
+cat(peek_barbershop)
+
+read_barbershop <- grab_code_segment(
+  "simon-5505-03-demo-06.qmd", 
+  "# label: read-barbershop")
+cat(read_barbershop)
+
+peek_airport <- grab_code_segment(
+  "simon-5505-03-demo-06.qmd", 
+  "# label: peek-airport")
+cat(peek_binary)
+
+define_airport <- grab_code_segment(
+  "simon-5505-03-demo-06.qmd", 
+  "# label: define-airport")
+cat(define_binary)
+
+read_airport <- grab_code_segment(
+  "simon-5505-03-demo-06.qmd", 
+  "# label: read-airport")
+cat(read_binary)
+
 ```
 
 ## Save everything important
