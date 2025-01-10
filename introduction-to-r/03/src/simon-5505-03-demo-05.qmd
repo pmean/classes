@@ -27,7 +27,7 @@ library(tidyverse)
 ## Read in data
 
 ```{r}
-# label: read-fixed
+#| label: read-fixed
 
 raw_data <- read_fwf(
   file="../data/fixed.txt", 
