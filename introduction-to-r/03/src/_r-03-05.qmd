@@ -9,6 +9,12 @@ editor: source
 
 ## Reading fixed width format files
 
+```{r}
+#| label: setup-05
+
+load("../data/module03.RData")
+```
+
 `r simple_fixed`
 
 

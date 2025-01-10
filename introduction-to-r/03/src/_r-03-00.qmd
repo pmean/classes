@@ -104,7 +104,7 @@ cat(peek_binary)
 define_airport <- grab_code_segment(
   "simon-5505-03-demo-06.qmd", 
   "# label: define-airport")
-cat(define_binary)
+cat(define_airport)
 
 read_airport <- grab_code_segment(
   "simon-5505-03-demo-06.qmd", 
@@ -125,5 +125,12 @@ save(
   read_tilde,
   simple_fixed,
   read_fixed,
+  peek_binary,
+  read_binary,
+  peek_barbershop,
+  read_barbershop,
+  peek_airport,
+  define_airport,
+  read_airport,
 	file="../data/module03.RData")
 ```

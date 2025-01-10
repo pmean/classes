@@ -28,9 +28,9 @@ You can use the skip argument to ignore a certain number of rows before reading 
 
 :::
 
-## Example #1, binary.csv
+## Example 1, binary.csv
 
-![Figure 1. Excerpt from website](../images/binary-01.png)
+![](../images/binary-01.png "UCLA website onlogit regression")
 
 ::: notes
 
@@ -38,45 +38,54 @@ Let's look at some real world examples. The first one comes from one of the page
 
 :::
 
-## Example #1, the data
+## Example 1, a brief description
 
-```{r ex1, echo=FALSE}
-#| eval: true
-
-library(tidyverse)
-
-fn <- "../data/binary.csv"
-tx <- read_lines(fn)
-cat(tx[1:6], sep="\n")
-```
+![](../images/binary-02.png "UCLA website with description of the data")
 
 ::: notes
 
-Peeking at the first six lines of data, you can see clearly that it is uses comma delimiter and the first row of data contains the variable names.
+This data set does not have a formal data dictionary, but there is pretty good description at their website
+
+"This dataset has a binary response (outcome, dependent) variable called admit. There are three predictor variables: gre, gpa and rank. We will treat the variables gre and gpa as continuous. The variable rank takes on the values 1 through 4. Institutions with a rank of 1 have the highest prestige, while those with a rank of 4 have the lowest."
+
+Most people would describe the variable rank as ordinal. How you handle ordinal data in a formal data analysis is beyond the scope of this class, but let me just say that it is controversial. There is no consensus in the research community on how to handle ordinal data.
 
 :::
 
+## Example 1, viewing the file in Notepad
 
-## Example #1, the data dictionary
-
--   No formal data dictionary, but here is a description
-    -   "This dataset has a binary response (outcome, dependent) variable called admit. There are three predictor variables: gre, gpa and rank. We will treat the variables gre and gpa as continuous. The variable rank takes on the values 1 through 4. Institutions with a rank of 1 have the highest prestige, while those with a rank of 4 have the lowest."
+![](../images/binary-03.png "The file binary.csv, as viewed in Notepad")
 
 ::: notes
 
-There is no formal data dictionary, which is a shame, but you can find a brief description on a second page where this data set is used.
+I downloaded the file and peeked at it using the Notepad program in Microsoft Windows. If you are using a Mac, you might use TextEdit instead. For really big files or files that you need to make complex changes to, you might want to use a more advanced text editing program. I am partial to Notepad++ but there are many other programs that are just as good.
+
+As a quick note, while I like to look at a file in Notepad or Notepad++, but I prefer to do any modifications inside of the R program itself. If you modify a text file outside of R, you should leave detailed notes about what changes you made so that others can reproduce your work.
 
 :::
 
-## Example #1, the code
+## Example 1, the code to peek at the data
 
-```{r read-binary}
-#| eval: true
+```{r}
+#| label: setup-06
 
-fn <- "../data/binary.csv"
-raw_data <- read_csv(fn,
-  col_types="nnnn")
+load("../data/module03.RData")
 ```
+
+`r peek_binary`
+
+::: notes
+
+It is not needed for this small file, but I have also found that peeking at a dataset using the read_lines function can be helpful. Notice that I deliberately limit the number of lines read in because no one wants to look at hundreds of lines of data.
+
+Always, always, always limit the amount of data that you display. The first time I taught the Introduction to SAS class, I had a student that submitted a pdf file of SAS output that was over a hundred pages long. I don't mind looking at a hundred pages of output. I am very good at skimming and jumping around. But this is not something you should do to your colleagues. Many of them will get really annoyed at you.
+
+
+:::
+
+## Example 1, the code to read the data
+
+`r read_binary`
 
 ::: notes
 
@@ -84,89 +93,63 @@ Choose the read_csv function and specify four numeric variables.
 
 :::
 
+## Example 2, barbershop-music.txt
 
-## Example #1, the output
-
-```{r display-binary}
-#| eval: true
-
-raw_data
-```
+![](../images/barbershop-01.png "DASL website for barbership-music.txt")
 
 ::: notes
 
-The read.csv file does a fine job here.
+Here is a second dataset, barbershop-music.txt, from the DASL (Data and Story Library) repository. There is no formal data dictionary, but the description on the website is somewhat helpful.
+
+"At a barbershop music singing competition, choruses are judged on three scales: Music (quality of the arrangement, etc.), Performance, and Singing. The scales are supposed to be independent of each other, and each is scored by a different judge, but a friend claims that he can predict a chorus’s singing score from the other two scores. Are the scores really independent?"
 
 :::
 
-## Example #2, barbershop-music.txt
-
-![Figure 2. Excerpt from website](../images/barbershop-00.png)
-
-## Example #2, the data file
-
-![](../images/barbershop-01.png)
-
-::: notes
-
-This is a second dataset. Looking at it in notepad, it looks like it is a tab delimited file. But you need to fix the file. The first two lines accidentally got stuck together.
-
-:::
-
-## Example #2, the data file, fixed
+## Example 2, viewing the file in Notepad
 
 ![](../images/barbershop-02.png)
 
 ::: notes
 
-This is what the fixed file looks like. Normally, I discouraging modifying the data before you input it into R, but here a quick fix makes sense.
+Looking at it in notepad, it looks like it is a tab delimited file. It might be a fixed width file, but it takes a careful eye to spot clues to why this is not a fixed width file. A few carefully chosen test edits to the file will confirm that this is indeed a tab delimited file.
 
 :::
 
-## Example #2, the data dictionary
+## Example 2, the code to peek at the data
 
-+ No data dictionary
-  + Brief description: "At a barbershop music singing competition, choruses are judged on three scales: Music (quality of the arrangement, etc.), Performance, and Singing."
+`r peek_barbershop`
 
-::: notes
-
-There is no formal data dictionary, but the website does offer a brief description.
-
-:::
-
-## Example #2, the code
-
-```{r read-tsa-3}
-#| eval: true
-
-fn <- "../data/barbershop-music.txt"
-raw_data <- read_tsv(fn,
-  col_types="nnn")
 ```
-
-::: notes
-
-The read_tsv function works well here.
-
-:::
-
-## Example #2, the output
-
-```{r display-example-2}
-#| eval: true
-
-raw_data
+ [1] "Singing\tPerformance\tMusic"
+ [2] "151\t143\t138"              
+ [3] "152\t146\t136"              
+ [4] "146\t143\t140"              
+ [5] "146\t147\t142"              
+ [6] "145\t141\t134"              
+ [7] "144\t139\t140"              
+ [8] "133\t138\t132"              
+ [9] "129\t135\t128"              
+[10] "134\t125\t132"
 ```
-
 ::: notes
 
-The data appears to have been read in nicely.
+When you use the read_lines function to peek at the data, notice how R displays the tabs using a special code (\t). This is a common shorthand used by many programs. Other programs use ^t.
 
 :::
 
-## Example #3, airport.txt
+## Example 2, the code to read the data
 
-![Figure 3. Excerpt from website](../images/airport-01.png)
+`r read_barbershop`
+
+::: notes
+
+Choose the read_csv function and specify four numeric variables.
+
+:::
+
+## Example 3, airport.txt
+
+![](../images/airport-01.png "Journal of Statistics Education site for the airport.txt dataset")
 
 ::: notes
 
@@ -174,7 +157,7 @@ The third example comes from the Journal of Statistics Education website.
 
 :::
 
-## Example #3, the data file
+## Example 3, peeking at the file on the web
 
 ![](../images/airport-in-browser.png)
 
@@ -184,66 +167,54 @@ This is a third data set. Notice that there are no variable names at the top of 
 
 :::
 
-## Example #3, the data dictionary
+## Example 3, a description of the data
 
 + Here is an excerpt from the data dictionary.
 
 ```{}
+
 VARIABLE DESCRIPTIONS:
-Airport                          Columns 1-21
-City                             Columns 22-43 
-Scheduled departures             Columns 44-49 
+Airport                               Columns 1-21
+City                                  Columns 22-43 
+Scheduled departures                  Columns 44-49 
+Performed departures                  Columns 51-56
+Enplaned passengers                   Columns 58-65
+Enplaned revenue tons of freight      Columns 67-75
+Enplaned revenue tons of mail         Columns 77-85
 ```
 
 ::: notes
 
-This dataset has a very nice data dictionary. From the description, you can tell that it is a fixed width format.
+From the description on the website, you can tell that it is a fixed width format.
 
 :::
 
-## Example #3, the code
+## Example 3, the code to peek at the data
 
-```{r airport}
-#| eval: true
-
-fn <- "../data/airport.txt"
-raw_data <- read_fwf(fn, 
-  fwf_cols(21, 22, 6, 7, 9, 10, 10),
-  col_types="ccnnnnn")
-```
+`r peek_airport`
 
 ::: notes
 
-You have to do a bit of math here. If the first variable ends in column 21 and the second variable ends in column 43, then the number of columns for the second variable is 43-21.
+You could also infer that this is a fixed width file using the read_lines function.
 
 :::
 
-## Example #3, the output
+## Example 3, Defining variable names and column locations
 
-```{r airport-print}
-#| eval: true
+`r define_airport`
 
-raw_data
-```
+::: notes
 
-## Links for examples 1-3
+You have to specify a bit of information before using the read_fwf function.
 
-Data file links
+:::
 
-1. https://stats.idre.ucla.edu/stat/data/binary.csv
-2. https://dasl.datadescription.com/download/data/3061
-3. http://jse.amstat.org/datasets/airport.dat.txt
+## Example 3, the code to read the data
 
-Data dictionary links
+`r read_airport`
 
-1. https://stats.idre.ucla.edu/r/dae/logit-regression/
-2. https://dasl.datadescription.com/datafile/barbershop-music/
-3. http://jse.amstat.org/datasets/airport.txt
+::: notes
 
-## Break #8
+You could use the fwf_widths in R. Just do a bit of arithmetic. The first variable goes from columns 1 to 21, it has a width of 21. The second variable goes from columns 22 to 43, so it has a width of 22. And so forth. The fwf_positions function is a bit more verbose, but less error prone because R does the basic math for you.
 
-+ What have you learned
-  + Some real world examples
-+ What's next?
-  + Some general advice
-
+:::
