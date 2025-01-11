@@ -1,0 +1,30 @@
+---
+title: "Reading the Titanic dataset"
+format: 
+  html:
+    embed-resources: true
+execute: 
+  error: true
+editor: source
+---
+
+## File details
+
+This program was written by Steve Simon on 2025-01-06 and is placed in the public domain. You can use this program any way you please.
+
+This program reads data on mortality of passengers on the Titanic. Refer to the [data dictionary][ref01] for a more detailed description.
+
+[ref01]: https://github.com/pmean/data/blob/main/files/titanic.yaml
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+R.version.string
+Sys.Date()
+library(tidyverse)
+```
+
+## Read in data
+
