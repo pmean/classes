@@ -23,13 +23,21 @@ This program reads data on mortality of passengers on the Titanic. Refer to the 
 
 R.version.string
 Sys.Date()
+library(glue)
 library(tidyverse)
 ```
+
+#### Documentation of the intermediate datasets
+
+-   ti: Data as originally read in from the text file
+-   ti_1: Convert survived to a factor
+-   ti_2: Created new variable, third_class
+-   ti_3: Created new variable, child
 
 ## Reading in the Titanic data set
 
 ```{r}
-#| label: titanic-read
+#| label: read
 
 fn <- "../data/titanic.csv"
 ti <- read_csv(fn,
@@ -40,15 +48,15 @@ glimpse(ti)
 ## Peek at the bottom of the data
 
 ```{r}
-#| label: titanic-tail
+#| label: tail
 
 ti |>
-  slice_tail(10)
+  slice_tail(n=10)
 ```
 
 #### Comments on the code
 
-The [slice_tail][ref02] function displays one or more rows of data at the bottom of a data set. This is similar to the [tail][ref03] function in base R. 
+The [slice_tail][ref02] function (part of the dplyr/tidyverse libraries) displays one or more rows of data at the bottom of a data set. This is similar to the [tail][ref03] function in base R. 
 
 For large files, it is often worthwhile to look at the bottom of dataset after you read it in. Often the first few rows of data look fine. but problems crop up in the middle of the file which distort the data from that point onward. Other times, you might find stray comments or extra blank lines at the end of a text file. You won't notice these problems if you don't look at the bottom of the file.
 
@@ -58,7 +66,7 @@ For large files, it is often worthwhile to look at the bottom of dataset after y
 ## Descriptive statistics on age
 
 ```{r}
-#| label: titanic-age
+#| label: age
 
 ti |>
   summarize(
@@ -68,3 +76,158 @@ ti |>
     age_max=max(age, na.rm=TRUE),
     age_missing=sum(is.na(age)))
 ```
+
+#### Interpretation of the output
+
+The average passenger on the Titanic was 30 years old. There is a wide variation in ages, with a standard deviation of 14 and a range of ages from 0.17 years (2 months) to 70 years.
+
+## Counts and percentages
+
+```{r}
+#| label: pclass
+
+ti |>
+  count(pclass) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{n}/{total} ({pct}%)")) |>
+  select(-n, -total)
+```
+
+#### Comments on the code
+
+The [count][ref04] function (part of the dplyr/tidyverse libraries) counts the number of observations in each level of a categorical variable. You can also use the [table][ref05] function in base R, which produces results in a slightly different format.
+
+The [sum][ref06] function adds up all the values. When placed inside the mutate function, it creates a new column with the same sum beside each row. This allows us to compute a percentage later.
+
+The [glue][ref07] function (part of the glue library) allows you to insert numbers into nicely formatted strings. You can also use the [paste and paste0][ref08] functions to do the same thing. If you are familiar with how C and C++ produces nicely formatted output, you might consider using the [sprintf][ref09] function.
+
+[ref04]: https://dplyr.tidyverse.org/reference/count.html
+[ref05]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/table.html
+[ref06]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/sum.html
+[ref07]: https://glue.tidyverse.org/
+[ref08]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/paste.html
+[ref09]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/sprintf.html
+
+#### Interpretation of the output
+
+More than half of the passengers were in third class. Among the remaining passengers, there were slightly more first class than second class passengers.
+
+## Creating factors, 1
+
+```{r}
+#| label: factors
+
+ti |>
+  mutate(
+    survived=
+      factor(
+        survived, 
+        levels=c(0, 1), 
+        labels=c("Dead", "Alive"))) -> ti_1
+```
+
+#### Comments on the code
+
+The [factor][ref10] function (part of base R), attaches descriptive labels to categorical data that otherwise might use cryptic number or letter codes.
+
+## Creating factors, 2
+
+```{r}
+#| label: survived
+
+ti_1 |>
+  count(survived) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{n}/{total} ({pct}%)")) |>
+  select(-n, -total)
+```
+
+#### Interpretation of the output
+
+Things did not go well for the passengers of the Titanic. Only about a third of the passengers survived.
+
+## Re-ordering categories
+
+```{r}
+#| label: re-order
+
+ti_1 |>
+  mutate(pclass=factor(pclass, levels=c("3rd", "2nd", "1st"))) |>
+  count(pclass) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{n}/{total} ({pct}%)")) |>
+  select(-n, -total)
+```
+
+## Recoding categorical data, 1
+
+```{r}
+#| label: recode-pclass
+
+ti_1 |>
+  mutate(
+    third_class=
+      case_when(
+        is.na(pclass) ~ "unknown",
+        pclass=="1st" ~ "no",
+        pclass=="2nd" ~ "no",
+        pclass=="3rd" ~ "yes")) -> ti_2
+```
+
+## Recoding categorical data, 2
+
+```{r}
+#| label: count-third-class
+
+ti_2 |>
+  count(third_class) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{n}/{total} ({pct}%)")) |>
+  select(-n, -total)
+```
+
+#### Comments on the code
+
+The [case_when][ref11] function (part of the dplyr/tidyverse libraries) creates a new variable or modifies an old variable based on a sequence of logical conditions.
+
+[ref11]: https://dplyr.tidyverse.org/reference/case_when.html
+
+## Converting continuous data to categorical data, 1
+
+```{r}
+#| label: recode-age
+
+ti_2 |>
+  mutate(
+    child=
+      case_when(
+        is.na(age) ~ "Unknown",
+        age <= 0 ~ "Invalid",
+        age < 18 ~ "Yes",
+        TRUE ~ "No")) -> ti_3
+```
+
+## Converting continuous data to categorical data, 2
+
+```{r}
+#| label: count-child
+
+ti_3 |>
+  count(child) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{n}/{total} ({pct}%)")) |>
+  select(-n, -total)
+```
+
+## Two way crosstabulation
+
+## Row proportions
+
+## Odds ratio
+
+## Relative risk
