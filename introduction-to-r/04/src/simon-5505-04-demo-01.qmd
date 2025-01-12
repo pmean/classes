@@ -26,5 +26,45 @@ Sys.Date()
 library(tidyverse)
 ```
 
-## Read in data
+## Reading in the Titanic data set
 
+```{r}
+#| label: titanic-read
+
+fn <- "../data/titanic.csv"
+ti <- read_csv(fn,
+  col_types="ccncn")
+glimpse(ti)
+```
+
+## Peek at the bottom of the data
+
+```{r}
+#| label: titanic-tail
+
+ti |>
+  slice_tail(10)
+```
+
+#### Comments on the code
+
+The [slice_tail][ref02] function displays one or more rows of data at the bottom of a data set. This is similar to the [tail][ref03] function in base R. 
+
+For large files, it is often worthwhile to look at the bottom of dataset after you read it in. Often the first few rows of data look fine. but problems crop up in the middle of the file which distort the data from that point onward. Other times, you might find stray comments or extra blank lines at the end of a text file. You won't notice these problems if you don't look at the bottom of the file.
+
+[ref02]: https://dplyr.tidyverse.org/reference/slice.html
+[ref03]: https://stat.ethz.ch/R-manual/R-devel/library/utils/html/head.html
+
+## Descriptive statistics on age
+
+```{r}
+#| label: titanic-age
+
+ti |>
+  summarize(
+    age_mean=round(mean(age, na.rm=TRUE), 1),
+    age_sd=round(sd(age, na.rm=TRUE), 1),
+    age_min=min(age, na.rm=TRUE),
+    age_max=max(age, na.rm=TRUE),
+    age_missing=sum(is.na(age)))
+```

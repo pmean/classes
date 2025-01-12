@@ -7,15 +7,13 @@ format:
 editor: source
 ---
 
-## The Titanic dataset
+## The Titanic dataset, 1
 
 ```{r}
-#| label: dictionary
+#| label: r-04-01-setup
 #| echo: false
 
-library(yaml)
-
-titanic_dictionary <- read_yaml("https://github.com/pmean/data/blob/main/files/titanic.yaml")
+load("../data/module04.RData")
 ```
 
 `r titanic_dictionary$description`
@@ -26,89 +24,31 @@ Here is the description of the Titanic dataset, found in the data dictionary tha
 
 :::
 
-## Titanic data dictionary
+## The Titanic dataset, 2
 
-![Screenshot from Titanic data dictionary](../images/titanic-data-dictionary.png)
-
-::: notes
-
-There are five variables in this data set, the name of the passenger, the passenger class, the passenger age, sex, and whether they survived.
-
-:::
-
-## What the file looks like
-
-![Image of original dataset](../images/titanic-view.png)
+`r titanic_data`
 
 ::: notes
 
-There are several hints that you may notice as you look at this file. Pssengers with longer name seem to be misaligned. Everything is left justified. It looks like when things do line up it is columns eight characters apart.
-
-So let's try reading it in as a tab delimited file.
+Here is a peek at the first few rows. This is clearly a comma-delimited file.
 
 :::
 
-## Reading in the Titanic data set
+## Reading in the Titanic dataset
 
-```{r read}
-fn <- "../data/titanic_v00.txt"
-ti <- read_tsv(fn,
-  col_types="ccncn")
-```
+`r titanic_read`
 
-::: notes
+## Peek at the bottom of the file
 
-The name, passenger class, and gender are strings. The age and survival variables are numeric.
-
-:::
-
-## Glimpse of the Titanic data set
-
-```{r titanic-glimpse}
-glimpse(ti)
-```
-
-::: notes
-
-It reads in fairly well, it seems. 
-
-:::
-
-## Viewing the Titanic data set
-
-```{r view}
-ti
-```
-
-::: notes
-
-The first few lines of data are hard to read because the passenger names are so long.
-
-:::
-
-## Displaying without the passenger names
-
-```{r display}
-ti[1:4, -1]
-```
-
-::: notes
-
-Notice how much nicer things look when you take out the column of names.
-
-:::
-
-## Peek at the bottom also
-
-```{r tail}
-ti[1310:1313, -1]
-```
+`r titanic_tail`
 
 ::: notes
 
 It's also a good idea to peek at the bottom of a data set right after you read it in. Sometimes a line in the middle gets out of sync and it throws the rest of the data off. If that happens then you will see weird things at the bottom of the data.
 
 :::
+
+
 
 ## Descriptive statistics on age
 
