@@ -23,6 +23,7 @@ This program reads data on mortality of passengers on the Titanic. Refer to the 
 
 R.version.string
 Sys.Date()
+library(epitools)
 library(glue)
 library(tidyverse)
 ```
@@ -124,7 +125,7 @@ ti |>
       factor(
         survived, 
         levels=c(0, 1), 
-        labels=c("Dead", "Alive"))) -> ti_1
+        labels=c("dead", "alive"))) -> ti_1
 ```
 
 #### Comments on the code
@@ -226,8 +227,105 @@ ti_3 |>
 
 ## Two way crosstabulation
 
+```{r}
+#| label: two-way
+
+ti_3 |>
+	count(sex, survived) -> basic_counts
+basic_counts
+```
+
+## Arranged in a table
+
+```{r}
+#| label: table
+
+basic_counts |>
+	pivot_wider(
+		names_from="survived",
+		values_from="n") -> basic_table
+basic_table
+```
+
+## Add sex totals and percents
+
+```{r}
+#| label: sex-totals
+
+basic_counts |>
+	group_by(sex) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) -> sex_totals
+sex_totals
+```
+
+## Arranged in a table
+
+```{r}
+#| label: table-1
+
+sex_totals |>
+	filter(survived != "alive") |> 
+	pivot_wider(
+		names_from="survived",
+		values_from="pct") -> table_1
+table_1
+```
+
+## Add survived totals and percents
+
+```{r}
+#| label: survived-totals
+
+basic_counts |>
+	group_by(survived) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) -> survived_totals
+survived_totals
+```
+
+## Add column totals
+
+```{r}
+
+#| label: column-totals
+
+basic_table |>
+	bind_rows(
+	  summarize(
+	  	basic_table, 
+	  	dead=sum(dead), 
+	  	alive=sum(alive)))
+
+```
+
+## clustered bar chart
+
+```{r}
+#label: clustered-1
+
+ti_3 |>
+	count(sex, survived) |>
+	ggplot() +
+	  aes(x=sex, y=n) +
+	  geom_col()
+```
+
 ## Row proportions
 
 ## Odds ratio
 
+```{r}
+#| label: or
+
+oddsratio(x=ti_3$sex, y=ti_3$survived)
+```
+
 ## Relative risk
+
+```{r}
+#| label: rr
+
+riskratio(x=ti_3$sex, y=ti_3$survived)
+```
+
