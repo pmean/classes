@@ -42,6 +42,7 @@ There are standards in five general areas
 -   Tables
 -   Readability
 -   Interpretation
+-   Conciseness
 
 There may be times when one or two of these standards do not apply. Which standards apply should be obvious from the nature of the programming assignment.
 
@@ -62,17 +63,20 @@ Always modify your graphs. Do not settle for the default options
 
 -   Include your name and date on the title of any graph
     -   "Steve Simon produced this graph on 2023-09-19."
--   Avoid the display of unnecessary decimal places on the axes
+-   Avoid unnecessary decimal places
+    -   Use 10, 20, 30 and not 10.00, 20.00, 30.00
 -   Use comma separators for large numbers
+    -   Anything larger than 999 needs a comma.
 -   Replace category codes with descriptive labels
 
-## Grpahs cannot rely on default choices, 2
+## Graphs cannot rely on default choices, 2
 
 -   Replace short variable names with longer descriptors
     -   Include units of measurement, if needed
 -   Avoid the gratuitous use of color
     -   Unless needed to distinguish between groups
-    -   Fill boxes and points with white/transparent colors
+-   Fill boxes and points with white/transparent colors
+    -  Use ○ and not ⬤
 
 ## Tables also need modification
 
@@ -103,42 +107,33 @@ Always modify your graphs. Do not settle for the default options
 -   Depends on context
     -   No penalty for subjective judgments
 
-:::notes
-For anything more complicated than a simple listing of the data, you should provide an interpretation. If you report an average age of 70.2 and a range of 65 to 85, it would be reasonable to use the word "elderly" in your description. A proportion of 0.45 could be described as "less than half" and a proportion of 0.89 as "almost all". A difference between two groups might include evaluative words like "substantial improvement" or "roughly comparable". Characterize a confidence interval as either wide or narrow and note whether it includes the null value. State the practical implications if you accept the null hypothesis.
+## Be concise
 
-The actual interpretation depends largely on the context of the problem and you will not be penalized for subjective assessments. You can call a small difference as large or a large difference as small. You will lose points, however, if you fail to include any description.
 
-Depending on the software you use and the question you are addressing, you might present your interpretation as comments in your code, as a title on your graph or table, or as a separate block of text.
-:::
+-   Things to leave out
+    -   Lengthy printouts of raw data
+    -   Descriptive statistics on unused variables
+    -   Analyses beyond what was asked for
+-   Variables worth describing
+    -   Dependent/outcome variable
+    -   Independent variables
+    -   Demographic profile
 
 ## Grading rubric for a ten point assignment
 
 -  Four points for general requirements
-   -   Documentation
-   -   Graphs
-   -   Tables
-   -   Readability
-   -   Interpretation)
 -  Six points for Accuracy
+-  Adjust proportionately for different point totals
 
-:::notes
-This grading rubric is for an assignment worth 10 points. Change these numbers proportionately for an assignment worth a different number of points (e.g, triple all the point values for an assignment worth 30 points).
-:::
 
-##
+## General requirements
 
--   How well did you follow the general requirements specified above?
-    -   Poor (0 points) Two or more major problems with documentation, graphs, tables, readability, or interpretation.
-    -   Fair (2 points) One major or two minor problems with documentation, graphs, tables, readability, or interpretation.
-    -   Good (4 points) Includes all required elements
+-   How well did you follow the general requirements?
+    -   Poor (0 points) Two or more major problems with general requirements.
+    -   Fair (2 points) One major or two minor problems with general requirements.
+    -   Good (4 points) Includes all required elements, ignoring elements that are not applicable for this particular assignment.
 
-:::notes
-Try as best you can to meet all of the general requirements shown above. For some assignments you cannot be evaluated on every element. For example, your assignment may not include any graphs.
-
-It is the number of problems and whether the problems are major or minor that determine your score on this element.
-:::
-
-## 
+## Accuracy
 
 -   How accurate was your work?    
     -   Poor (0 points): Three or more major errors or omissions
@@ -146,11 +141,7 @@ It is the number of problems and whether the problems are major or minor that de
     -   Good (4 points): One major or two minor errors or omissions
     -   Excellent (6 points): Complete and accurate answers to all questions
 
-:::notes
-Accuracy means providing a complete and correct answer to each question. it is the number of errors and whether they are major or minor that will determine your points.
-:::
-
 ## File history
 
-This file was written by Steve Simon on 2023-08-15 with the last major revision on 2024-08-20. It is in the public domain and you can use it any way you please.
+This file was written by Steve Simon on 2023-08-15 with the last major revision on 2024-12-20. It is in the public domain and you can use it any way you please.
 
