@@ -1,0 +1,206 @@
+---
+title: "Programming template for module04"
+author: "Steve Simon"
+date: "Created 2019-04-20"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute:
+  error: true
+---
+
+## Program details
+
+This program is written in R with quarto formatting. It shows how to work with a dataset having mostly categorical variables.
+
+This program was written by Steve Simon on 2019-04-20 with a major modification on 2024-12-24. This program is in the public domain. You can use it any way that you please.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+R.version.string
+Sys.Date()
+library(tidyverse)
+```
+
+## Titanic data set
+
+```{r}
+#| label: read-titanic
+fn <- "../data/titanic.csv"
+ti <- read_csv(fn,
+  col_names=TRUE,
+  col_types="ccncn")
+names(ti) <- tolower(names(ti))
+glimpse(ti)
+```
+
+## Any missing values
+
+```{r}
+#| label: check-missing
+ti |>
+  mutate(across(everything(), is.na)) |>
+  summarize(across(everything(), sum)) |>
+  pivot_longer(
+    everything(),
+    names_to="variable",
+    values_to="missing_count")
+```
+
+#### Comments about the code
+
+The [across][ref01] function allows you to mutate or summarize across a range of variables. The [everything][ref02] function specifies the use of all columns. Pivot_longer places all the missing value counts in a single column.
+
+[ref01]: https://dplyr.tidyverse.org/reference/across.html
+[ref02]: https://tidyselect.r-lib.org/reference/everything.html
+[ref03]: https://tidyr.tidyverse.org/reference/pivot_longer.html
+
+#### Interpretation of the output
+
+The only variable with missing data is age, but there are quite a few missing values.
+
+## Create a factor for survived
+
+```{r create-factor}
+#| label: survived-factor
+ti |>
+  mutate(
+    survived=
+      factor(
+        survived,
+        levels=0:1,
+        labels=c("No", "Yes"))) -> ti
+```
+
+#### Comments about the code
+
+The [factor][ref04] function takes a variable with numeric codes and attaches labels to each level of the numeric code.
+
+[ref04]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/factor.html
+
+## Who is the youngest passenger?
+
+```{r age-min}
+ti |>
+  slice_min(age) |>
+  select(name, age)
+```
+
+## Who is the oldest passenger?
+
+```{r age-max}
+ti |>
+  slice_max(age) |>
+  select(name, age)
+```
+
+## Counts and percentages for pclass
+
+```{r counts}
+#| label: pclass-counts
+ti |>
+  count(pclass) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total) |>
+  mutate(pct=round(pct)) |>
+  mutate(pct=paste0(pct,"%"))
+```
+
+#### Interpretation of the output
+
+More than half of the passengers were in third class.
+
+## Counts and percentages for sex
+
+```{r counts}
+#| label: sex-counts
+ti |>
+  count(sex) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total) |>
+  mutate(pct=round(pct)) |>
+  mutate(pct=paste0(pct,"%"))
+```
+
+#### Interpretation of the output
+
+There were many more male passengers than female passengers.
+
+## Counts and percentages for survived
+
+```{r counts}
+#| label: survived-counts
+ti |>
+  count(survived) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total) |>
+  mutate(pct=round(pct)) |>
+  mutate(pct=paste0(pct,"%"))
+```
+
+#### Interpretation of the output
+
+There were, sad to say, quite a few more deaths than survivors.
+
+## Bar chart
+
+```{r draw-bar-chart}
+ti |>
+  ggplot() +
+    aes(x=pclass) +
+    geom_bar(
+      color="black",
+      fill="white") +
+    xlab("Passenger class") +
+    ylab("Count") +
+    ggtitle("Plot created by Steve Simon on 2024-12-24")
+
+```
+
+#### Intepretation of the output
+
+This plot shows the number of people in each passenger class. As noted earlier there are many more passengers in third class than in first or second class.
+
+
+## New categorical variables
+
+Child is defined as less than 18 years.
+
+```{r new-age-categories}
+#| label: age-categories
+ti |>
+  mutate(
+    child=case_when(
+      is.na(age) ~ "Unknown",
+      ti$age <  18 ~ "Yes",
+      ti$age >= 18 ~ "No"),
+      TRUE ~ "Invalid") -> ti
+```
+
+#### Comments about the code
+
+The [case_when][ref05] function creates a new categorical variable based on certain logical conditions. As a general rule, always account for missing first and include a catch-all category like "Invalid" for anything that does not match earlier conditions.
+
+There are several other ways to create new categorical variables, such as the [if_else][ref06] and [if][ref07] functions.
+
+[ref05]: https://dplyr.tidyverse.org/reference/case_when.html
+[ref06]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/ifelse.html
+[ref07]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/Control.html
+
+## Quality check. Does the new variable have sensible age limits.
+
+```{r}
+#| label: quality-check-age
+ti |>
+  group_by(child) |>
+  summarize(
+    age_min=min(age),
+    age_max=max(age))
+```
+
+#### Interpretation of the output
+
+This quality check provides assurance that child="yes" represents ages 0 to 17, child="no" represents ages 18 to 71, and child="Unknown" represents missing ages.

@@ -1,5 +1,5 @@
 ---
-title: "08-00, Resources needed for module 08 slides"
+title: "04-00, Resources needed for module 04 slides"
 format: 
   html:
     embed-resources: true
@@ -9,115 +9,77 @@ editor: source
 ```{r setup-0}
 #| message: false
 #| warning: false
+
 library(tidyverse)
 library(yaml)
 ```
 
 ## Data dictionary
 
-```{r yaml-text}
+```{r}
+#| label: yaml
+#| message: false
+#| warning: false
+
+library(yaml)
+
 f1 <- "https://raw.githubusercontent.com/"
-f2 <- "pmean/data/main/files/"
-f3 <- "postural-sway.yaml"
-yaml_text <- read_yaml(paste0(f1, f2, f3))
+f2 <- "pmean/data/refs/heads/main/files/"
+f3 <- "titanic.yaml"
+titanic_dictionary <- read_yaml(paste0(f1, f2, f3))
+```
 
-yaml_text_names <- 
-	setdiff(names(yaml_text), "vars")
-n <- length(yaml_text_names)
+`r titanic_dictionary$description`
 
-datac <- 
-	data.frame(
-		lab=yaml_text_names, 
-		chunk=" ")
-for (i in 1:n) {
-	datac$chunk[i] <- 
-		as.yaml(
-			yaml_text[datac$lab[i]])
+## Create grab functions
+
+```{r}
+#| label: grab
+
+grab_entire_file <- function(fn, max_lines=10) {
+  tx <- read_lines(fn)
+  if (length(tx) > max_lines) tx <- tx[1:max_lines]
+  paste0(c("```", tx, "```"), collapse="\n")
 }
-datac$chunk <- paste0(datac$chunk, "\n")
-datac[ , 1]
-dim(datac)
 
-var_names <- names(yaml_text$vars)
-m <- length(yaml_text$vars)
-
-datav <- 
-	data.frame(
-		lab=var_names, 
-		chunk=" ")
-for (i in 1:m) {
-	datav$chunk[i] <- 
-		as.yaml(
-			yaml_text$vars[datav$lab[i]])
+grab_code_segment <- function(fn, lab) {
+  tx <- read_lines(fn)
+  n_lines <- length(tx)
+  start <- which(str_detect(tx, fixed(lab)))
+  if (length(start) == 0) return("String not found")
+  for (i in start:n_lines) {
+    if (str_detect(tx[i], "```")) break
+  }
+  stop <- i
+  paste0(c("```", tx[(start+2):stop]), collapse="\n")
 }
-datav$chunk <- paste0(datav$chunk, "\n")
-datav[ , 1]
-dim(datav)
 ```
 
-## Code
+## Create segments
 
-```{r code-text}
-fn <- "simon-5501-08-sway.qmd"
-code_text <- read_lines(file=fn)
-chunk <- 
-	cumsum(
-	  str_detect(
-	  	code_text, "## "))
-data.frame(code_text, chunk) |>
-	group_by(chunk) |>
-	summarize(
-		chunk_text =
-			paste0(
-				code_text, 
-				sep="\n", 
-				collapse="")) |>
-	pull(chunk_text) -> codec
-codec <- paste0(codec, "\n")
-cat(codec[1])
-length(codec)
+```{r}
+#| label: create-segments
+
+titanic_data <- grab_entire_file("../data/titanic.csv")
+cat(titanic_data)
+
+titanic_read <- grab_code_segment(
+  "simon-5505-04-demo-01.qmd", 
+  "#| label: titanic-read")
+cat(titanic_read)
+
+titanic_tail <- grab_code_segment(
+  "simon-5505-04-demo-01.qmd", 
+  "#| label: titanic-tail")
+cat(titanic_tail)
+
 ```
-
-## Programming assignment
-
-```{r prog-text}
-fn <- "simon-5501-08-directions.md"
-prog_text <- read_lines(file=fn)
-chunk <- 
-	cumsum(
-	  str_detect(
-	  	prog_text, "## "))
-data.frame(prog_text, chunk) |>
-	group_by(chunk) |>
-	summarize(
-		chunk_text =
-			paste0(
-				prog_text, 
-				sep="\n", 
-				collapse="")) |>
-	pull(chunk_text) -> progc
-# progc <- paste0(progc, "\n")
-cat(progc[length(progc)])
-length(progc)
-```
-
-## postural-sway data
-
-```{r read-fev}
-sway <- read_tsv(
-  file="../data/postural-sway.txt",
-  col_types="cnn")
-names(sway) <- tolower(names(sway))
-glimpse(sway)
-```
-
 
 ```{r save}
 save(
-	datac,
-	datav,
-	codec,
-	progc,
-	sway,
-	file="../data/module08.RData")
+	titanic_dictionary,
+	titanic_data,
+	titanic_read,
+	titanic_tail,
+	file="../data/module04.RData")
 ```

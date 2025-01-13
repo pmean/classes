@@ -1,41 +1,10 @@
 ---
 title: General grading rubric
-format: 
-  revealjs:
-    slide-number: true
-    embed-resources: true
 ---
-
-## You must write your own program
-
-You are expected to write your programs by yourself. You cannot ask someone else to write the program for you. You can search for and find program code on the Internet that you can modify to meet the needs of the assignment. Also acceptable, if you know how to do it: using a large language model like ChatGPT to generate code.
-
-## If your program doesn't run
-
-Most programs do not run properly the first time. You may see a warning or error message, or you may find that your code does not produce the output that you wanted. You have two options.
-
--   Fix the error yourself
--   Seek help from others
-
-## Fix the error yourself
-
-If you can, try to fix the problem yourself. Review the class material and compare any sample programs you have received with the code you have written. Look closely and carefully because even very small inconsistencies can create big problems. [Additional help on fixing things yourself][ref01] is available on my gihub site.
-
-[ref01]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
-
-There is value in struggling through and trying different things. If your program fails the first nine times, and gets good results the tenth time, that's good. Repeated failures followed by a success helps you learn better than if you get the program working right on the very first time.
-
-There will be times, though, where you find yourself banging your head against the wall in frustration. If it takes more than an hour to fix a problem and you feel like you are not making any progress, don't torture yourself. Proceed to the next step.
-
-## Seek help from others
-
-Your teachers are always available to assist with any programming problem. In fact, we love students who ask for help. The interactions that we get are a big part of what we enjoy about teaching.
-
-You can also get help from others. Ask your fellow students, your co-workers, your colleagues. While they can't write the program for you, they can help you fix a program that doesn't work. It's not cheating, from our perspective, because in the real world, you are allowed to seek help from others to get your job done.
 
 ## Grading rubric: general requirements.
 
-There are standards in five general areas
+There are **standards in six areas**:
 
 -   Documentation
 -   Graphs
@@ -44,7 +13,9 @@ There are standards in five general areas
 -   Interpretation
 -   Conciseness
 
-There may be times when one or two of these standards do not apply. Which standards apply should be obvious from the nature of the programming assignment.
+There **may be times when one or two of these standards do not apply**. Which
+standards apply and which don't should be obvious from the nature of the 
+programming assignment.
 
 ## Documentation is required!
 
@@ -59,7 +30,7 @@ Documentation should include
 
 ## Graphs cannot rely on default choices, 1
 
-Always modify your graphs. Do not settle for the default options
+Always modify your graphs. **Do not settle for the default options**.
 
 -   Include your name and date on the title of any graph
     -   "Steve Simon produced this graph on 2023-09-19."
@@ -87,7 +58,11 @@ Always modify your graphs. Do not settle for the default options
     -   Change to p<0.001
 -   Suppress the printing of unneeded tables
     -   Sometimes difficult
--   Unmodified table acceptable with a detailed text description
+
+## Sometimes default tables/graphs acceptable
+
+-   Early assignments may ask for defaults
+-   Always round and specify units in your interpretations
 
 ## Your code must be easy to read
 
@@ -119,19 +94,34 @@ Always modify your graphs. Do not settle for the default options
     -   Independent variables
     -   Demographic profile
 
+## Conciseness
+
+-   Do not include analyses that were not asked for
+-   Avoid displaying excessively large tables
+    -   This may be difficult for SAS and SPSS
+
 ## Grading rubric for a ten point assignment
 
 -  Four points for general requirements
+   -   Documentation
+   -   Graphs
+   -   Tables
+   -   Readability
+   -   Interpretation
+   -   Conciseness
 -  Six points for Accuracy
 -  Adjust proportionately for different point totals
 
 
-## General requirements
+## How well did you follow the general requirements?
 
--   How well did you follow the general requirements?
-    -   Poor (0 points) Two or more major problems with general requirements.
-    -   Fair (2 points) One major or two minor problems with general requirements.
-    -   Good (4 points) Includes all required elements, ignoring elements that are not applicable for this particular assignment.
+-   Poor (0 points) Two or more major problems with documentation, graphs, tables, readability, interpretation, or conciseness.
+-   Fair (2 points) One major or two minor problems
+-   Good (4 points) No major or minor problems
+
+Note: **some general requirements may not be applicable** for a particular 
+assignment (e.g., the assignment does not require any graphs). This should be 
+obvious from the context of the assignment.
 
 ## Accuracy
 

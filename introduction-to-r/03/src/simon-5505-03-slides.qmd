@@ -5,13 +5,13 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "TBA-1"
-  topic_02: "TBA-2"
-  topic_03: "TBA-3"
-  topic_04: "TBA-4"
-  topic_05: "TBA-5"
-  topic_06: "TBA-6"
-  topic_07: "TBA-7"
+  topic_01: "Reading text files"
+  topic_02: "Comma delimited files"
+  topic_03: "Tab delimited files"
+  topic_04: "Other delimiters"
+  topic_05: "Fixed width files"
+  topic_06: "Real world examples"
+  topic_07: "Your programming assignment"
 editor: source
 ---
 
@@ -30,7 +30,7 @@ editor: source
     -   `r params$topic_06`
     -   `r params$topic_07`
 
-{{< include _r-01-01.qmd >}}
+{{< include _r-03-01.qmd >}}
 
 ## Break #1
 
@@ -39,7 +39,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_02`
 
-{{< include _r-01-02.qmd >}}
+{{< include _r-03-02.qmd >}}
 
 ## Break #2
 
@@ -48,7 +48,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_03`
 
-{{< include _r-01-03.qmd >}}
+{{< include _r-03-03.qmd >}}
 
 ## Break #3
 
@@ -57,7 +57,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_04`
 
-{{< include _r-01-04.qmd >}}
+{{< include _r-03-04.qmd >}}
 
 ## Break #4
 
@@ -66,7 +66,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_05`
 
-{{< include _r-01-05.qmd >}}
+{{< include _r-03-05.qmd >}}
 
 ## Break #5
 
@@ -75,7 +75,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_06`
 
-{{< include _r-01-06.qmd >}}
+{{< include _r-03-06.qmd >}}
 
 ## Break #6
 
@@ -84,7 +84,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_07`
 
-{{< include _r-01-07.qmd >}}
+{{< include _r-03-07.qmd >}}
 
 ## Summary
 
@@ -104,6 +104,6 @@ editor: source
 --->
 
 ---
-title: "MEDB 5501, Module08"
-date: 2024-10-09
+title: "MEDB 5505, Module03"
+date: 2025-02-01
 ---

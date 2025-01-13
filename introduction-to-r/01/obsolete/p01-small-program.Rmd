@@ -1,0 +1,28 @@
+---
+title: "Examples from the video"
+author: "Steve Simon"
+date: "Created 2019-01-28"
+output: html_document
+---
+
+This is a small program written in Rmarkdown to show how to work with a dataset with mostly continuous variables.
+
+This program is in the public domain. You can use it any way that you please.
+
+```{r version-and-current-date}
+R.version.string
+Sys.Date()
+suppressMessages(
+  suppressWarnings(
+    library(tidyverse)
+  )
+)
+```
+
+This program will read in data from an RData file. It will then list all the objects that you just read in, and list the first few lines for one of those objects.
+
+```{r read-rdata-file}
+load("../data/two-small-dataframes.RData")
+ls()
+fat[1:10, 1:5]
+```

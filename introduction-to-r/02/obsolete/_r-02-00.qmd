@@ -1,0 +1,124 @@
+---
+title: "08-00, Resources needed for module 08 slides"
+format: 
+  html:
+    embed-resources: true
+editor: source
+---
+
+```{r setup-0}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(yaml)
+```
+
+## burger-calories data dictionary
+
+```{r yaml-text}
+split_yaml <- function(yaml_text, break_limit=15) {
+  yaml_text <- c(" ", yaml_text)
+
+  yaml_text |>
+    str_trim() |>
+    str_detect("^$") |>
+    which() -> potential_breaks
+
+  yaml_text[potential_breaks] <- " "
+  yaml_text <- paste0(
+    "`",
+    yaml_text,
+    "`")
+
+  breaks <- 1
+  for (i in 1:length(potential_breaks)) {
+    if (potential_breaks[i] - max(breaks) < break_limit) next
+    breaks <- c(breaks, potential_breaks[i-1])
+  }
+  n_breaks <- length(breaks)
+
+  yaml_text[breaks] <- 
+    paste0(
+      "## ",
+      f3,
+      ", ",
+      1:n_breaks,
+      "\n",
+      yaml_text[breaks])
+  return(yaml_text)
+}
+
+f1 <- "https://raw.githubusercontent.com/"
+f2 <- "pmean/data/main/files/"
+f3 <- "burger-calories.yaml"
+read_lines(paste0(f1, f2, f3)) |>
+  split_yaml() |>
+  write_lines(file=paste0("../data/", f3))
+```
+
+## Code
+
+```{r code-text}
+fn <- "simon-5501-08-sway.qmd"
+code_text <- read_lines(file=fn)
+chunk <- 
+	cumsum(
+	  str_detect(
+	  	code_text, "## "))
+data.frame(code_text, chunk) |>
+	group_by(chunk) |>
+	summarize(
+		chunk_text =
+			paste0(
+				code_text, 
+				sep="\n", 
+				collapse="")) |>
+	pull(chunk_text) -> codec
+codec <- paste0(codec, "\n")
+cat(codec[1])
+length(codec)
+```
+
+## Programming assignment
+
+```{r prog-text}
+fn <- "simon-5501-08-directions.md"
+prog_text <- read_lines(file=fn)
+chunk <- 
+	cumsum(
+	  str_detect(
+	  	prog_text, "## "))
+data.frame(prog_text, chunk) |>
+	group_by(chunk) |>
+	summarize(
+		chunk_text =
+			paste0(
+				prog_text, 
+				sep="\n", 
+				collapse="")) |>
+	pull(chunk_text) -> progc
+# progc <- paste0(progc, "\n")
+cat(progc[length(progc)])
+length(progc)
+```
+
+## postural-sway data
+
+```{r read-fev}
+sway <- read_tsv(
+  file="../data/postural-sway.txt",
+  col_types="cnn")
+names(sway) <- tolower(names(sway))
+glimpse(sway)
+```
+
+
+```{r save}
+save(
+	datac,
+	datav,
+	codec,
+	progc,
+	sway,
+	file="../data/module08.RData")
+```

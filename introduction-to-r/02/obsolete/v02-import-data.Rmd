@@ -1,0 +1,93 @@
+---
+title: "Module02: Import data into module02-datasets"
+author: "Steve Simon"
+date: "Created 2022-02-19"
+output: html_document
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding,
+  output_dir = "../results", output_format = "all") })  
+---
+
+### Setup
+
+This program is placed in the public domain. You can use it any way you wish. I do appreciate an acknowledgment if you use this code, but it is not required.
+
+This program reads several text files and stores them in modules02-datasets.RData.
+
+```{r setup}
+R.version.string
+Sys.Date()
+suppressMessages(
+  suppressWarnings(
+    library(tidyverse)))
+```
+
+### Bump data
+
+```{r bump}
+fn <- "../data/airline-bumping-2017.txt"
+raw_data <- read_table(fn, col_types="cnnnn")
+bump <- data.frame(raw_data)
+glimpse(bump)
+```
+
+### Burgers data
+
+```{r burgers}
+fn <- "../data/burgers.txt"
+raw_data <- read_tsv(fn, col_types="nnn")
+burgers <- data.frame(raw_data)
+glimpse(burgers)
+```
+
+### Fat data
+
+```{r fat}
+fn <- "../data/fat.txt"
+raw_data <- 
+  read_table(fn, 
+    col_names=FALSE)
+fat <- data.frame(raw_data)
+names(fat) <- c(
+  "case",
+  "fat_b",
+  "fat_s",
+  "density",
+  "age",
+  "wt",
+  "ht",
+  "bmi",
+  "ffw",
+  "neck",
+  "chest",
+  "abdomen",
+  "hip",
+  "thigh",
+  "knee",
+  "ankle",
+  "biceps",
+  "forearm",
+  "wrist")
+glimpse(fat)
+```
+
+### Sleep data
+
+```{r sleep}
+fn <- "../data/sleep.txt"
+raw_data <- read_tsv(fn,col_types="?")
+sleep <- data.frame(raw_data)
+glimpse(sleep)
+```
+
+### Save everything
+
+```{r save-everything}
+fn <- "../data/module02-datasets.RData"
+save(
+  bump, 
+  burgers, 
+  fat, 
+  sleep, 
+  file=fn)
+```

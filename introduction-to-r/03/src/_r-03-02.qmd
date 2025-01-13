@@ -1,5 +1,5 @@
 ---
-title: "r-01-02, TBA-2"
+title: "r-03-02, Comma delimited files"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,44 @@ format:
 editor: source
 ---
 
-## TBA-1
+## An example of a comma delimited file
 
-:::notes
+```{r}
+#| label: setup-02
+#| echo: false
+
+load("../data/module03.RData")
+```
+
+`r simple_comma`
+
+::: notes
+
+Here is a simple text file. It is just a file I made up to illustrate how to read text files. The first row provides the names of the two variables, x and y. Normally I do not recommend that you use such generic names as x and y.
 
 :::
+
+## the read_csv function 
+
+`r read_comma`
+
+::: notes
+
+I want to show you how to read data using the readr library. The readr library is part of the tidyverse, and effort by Hadley Wickham and others to modernize the R language. 
+
+Comma separated files are so common that R has several dedicated functions for reading them. There is read.csv, which is part of the base R package, and read_csv, which is part of the readr library.
+
+The readr package has several arguments that make your life easier, but the most important, when you are beginning is the col_types argument. if you specify col_types="nn", that tells R to expect numbers (rather than strings or dates) for all of the columns that you input. You'll see in just a bit how to change this if some of your data is strings.
+
+This program reads in the data and displays it. You see the X values one, two, three, four. The Y values: four eight, twelve, and sixteen.
+
+Okay, not too exciting. It's a small data set. You will likely work with some more interesting data sets, but I wanted to show you how this works from a very basic purpose perspective. 
+
+:::
+
+## Live demonstration, 1
+
+Now, you will see a live demonstration of the program [simon-5505-03-demo-02][ref21].
+
+[ref21]: https://github.com/pmean/classes/blob/master/introduction-to-r/03/src/simon-5505-03-demo-02.qmd
+

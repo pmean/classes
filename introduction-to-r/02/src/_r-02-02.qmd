@@ -1,5 +1,5 @@
 ---
-title: "r-01-02, TBA-2"
+title: "r-02-02, Using mutate, summarize"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,116 @@ format:
 editor: source
 ---
 
-## TBA-1
+## Data dictionary for burger-calories
 
-:::notes
+The next few examples will use a different data file, sleep. Refer to the [data dictionary][ref21] for details about this file.
+
+[ref21]: https://github.com/pmean/data/blob/main/files/sleep.yaml
+
+## Read text file
+
+```{r}
+#| label: setup2
+#| message: false
+#| warning: false
+#| echo: true
+
+library(tidyverse)
+```
+
+```{r}
+#| label: read-sleep
+#| echo: true
+
+sleep <- read_tsv(
+  file="../data/sleep.txt",
+  col_types="cnnnnnnnnnn")
+glimpse(sleep)
+```
+
+::: notes
+
+The sleep data is too big to display on a single slide. The [glimpse][ref22] function provides a brief overview. It lists the number of rows and columns. This is followed with the name for each variable, its type, and the first few values.
+
+[ref22]: https://dplyr.tidyverse.org/reference/glimpse.html
+
+:::
+
+## Convert brain weight from grams to kilograms
+
+```{r}
+#| label: convert-units
+#| echo: true
+
+sleep |>
+  mutate(brain_wt_kg=BrainWt/1000) -> sleep
+sleep |>
+  slice(1:10) |>
+  select(Species, BrainWt, brain_wt_kg)
+```
+
+::: notes
+
+The [mutate][ref23] function creates a new variable or changes an existing variable. In this simple case, it is performing a unit conversion from grams to kilograms. This is needed for the next step.
+
+[ref23]: https://dplyr.tidyverse.org/reference/mutate.html
+
+:::
+
+
+## Calculate brain to body weight ratio
+
+```{r}
+#| label: calculate-percent
+#| echo: true
+
+sleep |>
+  mutate(brain_pct=100*brain_wt_kg/BodyWt) |>
+  mutate(brain_pct=round(brain_pct, 2)) |>
+  mutate(brain_pct=paste0(brain_pct, "%")) -> sleep
+
+sleep |>
+  slice(1:10) |>
+  select(Species, brain_wt_kg, BodyWt, brain_pct)
+```
+
+::: notes
+
+This is a more elaborate set of mutations. The [round][ref24] function is strongly recommended. It makes the data more readable. The [paste0][ref25] is icing on top of the cake. It takes the numeric calculation and adds a percent sign at the end. 
+
+[ref24]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/Round.html
+[ref25]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/paste.html
+
+:::
+
+## Summarize body weight
+
+```{r}
+#| label: summarize
+#| echo: true
+
+sleep |>
+  summarize(
+    body_wt_mean=round(mean(BodyWt), 0),
+    body_wt_sd=round(sd(BodyWt), 0),
+    body_wt_min=min(BodyWt),
+    body_wt_max=max(BodyWt))
+```
+
+::: notes
+
+The [summarize][ref26] function calculates simple statistics like the mean and standard deviation.
+
+[ref26]: https://dplyr.tidyverse.org/reference/summarise.html
+
+:::
+
+## Interpretation of body weight statistics
+
+The mean body weight is just a bit below 200 kilograms with a standard devation of about 900. The range of weights is extremely broad. The smallest animal is 0.005 kilograms (or 5 grams) and the largest is over 6,600 kilograms.
+
+::: notes
+
+I did not include any interpretations up to now because the computations were simple and self-explanatory. You should, however, always include a brief interpretation for any statistical summary like this one, as well as any graphs.
 
 :::

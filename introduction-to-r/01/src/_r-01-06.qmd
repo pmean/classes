@@ -1,5 +1,5 @@
 ---
-title: "r-01-06, TBA-6"
+title: "r-01-06, Good programming practices"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,19 @@ format:
 editor: source
 ---
 
-## TBA-6
+{{< include ../../../general/good-programming-practices.md >}}
 
-:::notes
+## The format function
 
-:::
+```{r}
+x <- factorial(1:10)
+x
+format(x, big.mark=",")
+```
+
+## The round function for large numbers
+
+```{r}
+round(x, -2)
+y <- 
+```

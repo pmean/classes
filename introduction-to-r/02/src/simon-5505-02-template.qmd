@@ -1,0 +1,43 @@
+---
+title: "Programming template for module02"
+format: 
+  html:
+    embed-resources: true
+execute: 
+  error: true
+---
+
+## File details
+
+This program reads a dataset on fat measurements and produces a few simple descriptive statistics. Review the [data dictionary][refp1] for this dataset before working with this program.
+
+[refp1]: https://github.com/pmean/data/blob/main/files/fat.yaml
+
+This program was written by Steve Simon on 2020-02-08 with a major revision on 2024-12-29. It is placed in the public domain and you can use this any way you wish.
+
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+R.version.string
+Sys.Date()
+library(tidyverse)
+```
+
+## Read text file
+
+```{r}
+#| label: read-fat
+#| echo: true
+
+fat <- read_csv(
+  file="../data/fat.csv",
+  col_types="nnnnnnnnnnnnnnnnnnn")
+glimpse(fat)
+```
+
+## Question 1
+
+(Include the full text of each question, your code, and an interpretation for this and every other question)

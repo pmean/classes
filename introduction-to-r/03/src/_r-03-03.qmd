@@ -1,5 +1,5 @@
 ---
-title: "r-01-03, TBA-3"
+title: "r-03-03, Tab delimited files"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,38 @@ format:
 editor: source
 ---
 
-## TBA-3
+## Tab delimited files
 
-:::notes
+```{r}
+#| label: setup-03
+#| echo: false
+
+load("../data/module03.RData")
+```
+
+`r simple_tab`
+
+::: notes
+
+Tabs are little bit different and you might want to listen to the live video where I show how the tab key works.
+
+Type the following into notepad and what appears to be multiple blanks, I want you to press the tab key, but only once.
 
 :::
+
+## Using the read_tsv function
+
+`r read_tab`
+
+::: notes
+
+The read_tsv function works when you have a tab character as the delimiter. It uses the same arguments as the read_csv function.
+
+:::
+
+## Live demonstration, 2
+
+Now, you will see a live demonstration of the program [simon-5505-03-demo-03][ref31].
+
+[ref31]: https://github.com/pmean/classes/blob/master/introduction-to-r/03/src/simon-5505-03-demo-03.qmd
+

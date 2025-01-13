@@ -1,5 +1,5 @@
 ---
-title: "r-01-01, TBA-1"
+title: "r-02-01, Using select, slice, filter"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,259 @@ format:
 editor: source
 ---
 
-## TBA-1
+## Some definitions, 1
 
-:::notes
++ Categorical = small number of possible values
++ Examples
+  + Sex (Male or Female),
+  + Race/ethnicity (Caucasian, African American, Hispanic, etc.),
+  + Cancer stage (I, II, III, or IV),
+  + Birth delivery type (Vaginal, C-section). 
+
+::: notes
+
+A **categorical variable** is a variable that can only take on a small number of values. Each value is usually associated with a particular category.
+
+:::
+
+## Some definitions, 2
+
++ Continuous variable = large number of possible values
++ Examples of continuous variables are
+  + Birth weight in grams,
+  + Gestational age,
+  + Fasting LDL level.
+
+::: notes
+
+A **continuous variable** is a variable that can take on a large number of possible values, potentially any value in some interval.
+
+There are some variables that are on the boundary between categorical and continuous, but it is not worth quibbling about here. 
+
+The point to remember is that the types of graphs that you use and the types of statistics that you compute are dependent on many things, but first and foremost on whether the variables are categorical, continuous, or a mixture.
+
+Today, you will see examples involving mostly continuous variables.
+
+:::
+
+## Variable names
+
++ Short but descriptive
++ Mix of letters and numbers
+  + Must start with a letter
+  + Avoid most symbols
++ No blanks
+  + CamelCase
+  + dot.delimited.names
+  + underscore_delimited_names
+
+::: notes
+
+This data set did not have a header, a line at the very top of the file that lists variable names. R uses the default names V1, V2, etc. As a general rule, you should use brief (but descriptive) names for every variable in your data set. The names should be around 8 characters long. Longer variable names make your typing tedious and much shorter variable names makes your code terse and cryptic.
+
+You should avoid special symbols in your variable names especially symbols that are likely to cause confusion (the dash symbol, for example, which is also the symbol for subtraction). You should also avoid blanks. These rules are pretty much universal across most statistical software packages. If you violate these rules, you will find out that, at a minimum, you will always have to surround your variable name by quotes to avoid problems.
+
+There are times when you'd like to have a blank in your variable name and you can use two special symbols that you can use in R (and most other statistical packages), the underscore symbol (above the minus key on most keyboards) and the dot (period). These symbols create some artificial spacing that mimics the blanks. Another approach is "CamelCase" which is the mixture of upper and lower case within a variable name with each uppercase designating the beginning of a new "word".
+
+:::
+
+## Data dictionary for burger-calories
+
+The next few examples will use a data file, burger-calories. Refer to the [data dictionary][ref11] for details about this file.
+
+[ref11]: https://github.com/pmean/data/blob/main/files/burger-calories.yaml
+
+## Read burger-calories
+
+```{r}
+#| label: read-tsv
+#| echo: true
+#| message: false
+#| warning: false
+
+library(tidyverse)
+
+burgers <- read_tsv(
+  file="../data/burger-calories.txt", 
+  col_types="nnn")
+burgers
+```
+
+::: notes
+
+We will talk more about the read_tsv function later. For now, just note that it reads data from a text file and stores it in a tibble named burgers.
+
+:::
+
+## Select, 1
+
+```{r}
+#| label: select
+#| echo: true
+
+burgers |>
+  select(Calories)
+```
+
+::: notes
+
+The [select][ref12] function will include or exclude variables from a tibble/dataframe.
+
+[ref12]: https://dplyr.tidyverse.org/reference/select.html
+
+:::
+
+## Select, 2
+
+```{r}
+#| label: select-2
+#| echo: true
+
+burgers |>
+  select(-Fat)
+```
+
+
+## Alternatives to select, 1
+
+```{r}
+#| label: select-alternative-1
+#| echo: true
+
+burgers$Calories
+```
+
+::: notes
+
+There are some "old school" ways to select a single column of data. Specify the name of the tibble, followed by a dollar sign, followed by the name of the variable. This produces a vector rather than a tibble.
+
+:::
+
+## Alternatives to select, 2
+
+```{r}
+#| label: select-alternative-2
+#| echo: true
+
+burgers[ , 1]
+```
+
+::: notes
+
+You can also use square brackets to select a variable. This code seems a bit strange at first. Think of the comma as a separator between the first index (which indicates rows) and the second index (which indicates columns). Leaving the first index blank is equivalent of saying select all rows and just the first column.
+
+:::
+
+## Alternatives to select, 3
+
+```{r}
+#| label: select-alternative-3
+#| echo: true
+
+burgers[ , "Calories"]
+```
+
+::: notes
+
+You can also specify a column by its name. Be sure to put the name inside quote marks.
+
+:::
+
+## Slice, 1
+
+```{r}
+#| label: slice-1
+#| echo: true
+
+burgers |>
+  slice(1)
+```
+
+::: notes
+
+The [slice][ref13] function selects rows based on their position.
+
+[ref13]: https://dplyr.tidyverse.org/reference/slice.html
+
+:::
+
+## Slice, 2
+
+```{r}
+#| label: slice-2
+#| echo: true
+
+burgers |>
+  slice_max(Calories)
+```
+
+::: notes
+
+The slice_max function, described in the previous link, selects rows based on the size of one of the variables.
+
+:::
+
+## Filter, 1
+
+```{r}
+#| label: filter-1
+#| echo: true
+
+burgers |>
+  filter(Sodium == 1500)
+```
+
+::: notes
+
+The [filter][ref14] function selects rows of a tibble or dataframe based on a logical condition (an R expression that produces true/false values).
+
+[ref14]: https://dplyr.tidyverse.org/reference/filter.html
+
+:::
+
+## Filter, 2
+
+```{r}
+#| label: filter-2
+#| echo: true
+
+burgers |>
+  filter(Calories >= 600)
+```
+
+::: notes
+
+With certain logical conditions, you can produce a tibble with more than one row.
+
+:::
+
+## Alternatives to slice/filter, 1
+
+```{r}
+#| label: slice-filter-alternatives-1
+#| echo: true
+
+burgers[1, ]
+```
+
+::: notes
+
+Using the same square bracket approach, you can select one or more rows. This code selects the first row and every column.
+
+:::
+
+
+## Alternatives to slice/filter, 2
+
+```{r}
+#| label: slice-filter-alternatives-2
+#| echo: true
+
+burgers[burgers$Sodium == 1500, ]
+```
+
+::: notes
+
+You can also place a logical condition inside the square brackets. The syntax is a bit awkward because you have to specify the name of the tibble twice.
 
 :::

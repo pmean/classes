@@ -1,5 +1,5 @@
 ---
-title: "r-01-02, TBA-2"
+title: "r-01-02, Installing R and RStudio"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,91 @@ format:
 editor: source
 ---
 
-## TBA-1
+## Installing R (https://cran.r-project.org/)
 
-:::notes
+![Screenshot of webpage for installation of R](../images/cran-main-page.png)
+
+::: notes
+
+Here is the main page for CRAN. CRAN stands for the Comprehensive R Archive Network. This is where you can download a Linux, Mac, or Windows version of R. Ignore the source code. That is only needed for very advanced applications.
 
 :::
+
+## Installing RStudio (https://rstudio.com/)
+
+![Screenshot of main page for RStudio](../images/rstudio-main-page.png)
+
+::: notes
+
+The other thing, a very strong recommendation, is that you should install a package called R Studio. I'll probably talk more about R Studio in a separate handout or video.
+
+Basically it's an integrated development environment that makes it very easy to work with the R programming language. Click on the products link.
+
+:::
+
+## Installing RStudio (https://rstudio.com/)
+
+![Screenshot of products of RStudio](../images/rstudio-menu.png)
+
+::: notes
+
+The product you're looking for is called RStudio. Not RStudio Server or any of the other products. These other products cost a fair amount of money. For a professional organization, they offer a wide range of advanced features. But we don't need any of those advanced features for this class. So don't bother with those other products.
+
+:::
+
+## Installing R and R Studio
+
++ R is required
++ RStudio is strongly recommended
++ Do not delay in getting this software installed
++ Find me if you have ANY problems
+
+::: notes
+
+It should be very easy to install R and RStudio on your computer, but don't wait. Sometimes installations can get hung up and you won't be able to make any progress in this class without first getting the software installed.
+
+If you have any problems at all with installation, see me right away. Computers are either our best friend or our worst enemy. It seems like the latter is especially true when you are installing new software.
+
+:::
+
+## Recommended directory structure
+
+![Screenshot of the directory structure I use](../images/directory-structure.png)
+
+::: notes
+
+Here is the directory structure that I use. You do not have to follow this structure, but it is recommended, not by me, but by the expert programmers at a group known as Software Carpentry. I'll elaborate in greater detail about this later, but wanted to mention it now. If you are relatively new to programming, you want to start off using good programming practices. A standardized directory structure helps a lot with this especially if you are working with others.
+
+:::
+
+## "A place for everything, everything in its place"
+
+-   data, for raw/intermediate data files
+-   doc, for documentation
+-   images for graphs/illustrations
+-   results, for program output
+-   src, for program code
+-   Other folders as needed
+
+::: notes
+
+The quote at the top of the slide is an organizational principle espoused by Benjamin Franklin. If you've seen my office, you'll know that I am probably the last person to lecture you on organization. But I have found that a standardized directory structure has made my life a lot easier.
+
+The data folder contains any raw data files. It's also where I put intermediate files, files that I create and save for later re-use. Some people put intermediate files in the results folder, and that's a fine alternative. Just be sure to be consistent about it.
+
+The doc folder contains any documentation associated with the work. The IRB approved protocol, if I have one, will go here. If I am working with someone and they send me a paper that helps describe the type of data analysis they want, I put it in this folder. I also print key emails from the other team members to pdf format and store them here as well.
+
+If my programs produce any graphs, I will store them in the images folder. I use screenshots of various web pages a lot in my work and I put those here as well.
+
+I usually store program output in the results folder, but not always, for reasons I don't want to get into.
+
+The program code goes in the src folder.
+
+This directory structure has an extra folder, and that's always okay. This folder, modules, contains some of the information on homework assignments, quizzes, and so forth.
+
+I adopted the structure about four years ago. I do not do a lot of collaborative research but I do find myself frequently revisiting a project six months or a year down the road. Having a common directory structure means that I can very quickly and rapidly identify the stuff that was done before and the stuff that needs to change for the new work.
+
+I would strongly encourage you to set up a directory structure like this one.
+
+:::
+

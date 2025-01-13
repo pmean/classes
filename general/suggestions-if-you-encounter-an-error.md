@@ -69,7 +69,7 @@ If you think the problem is unlikely to be resolved by email, go ahead and ask f
 
 It's a good idea to try to work things out on your own, but if you are spending an excessive amount of time on a single error, stop and ask for help.
 
-What's an excessive amount of time varies from assignment to assigment and from person to person, but I would suggest that more than hour of fruitless effort is a sign that you should talk to us.
+What's an excessive amount of time varies from assignment to assignment and from person to person, but I would suggest that more than hour of fruitless effort is a sign that you should talk to us.
 
 ## Don't worry about late submissions
 

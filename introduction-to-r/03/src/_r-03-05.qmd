@@ -1,5 +1,5 @@
 ---
-title: "r-01-05, TBA-5"
+title: "r-03-05, Fixed width files"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,92 @@ format:
 editor: source
 ---
 
-## TBA-5
+## Reading fixed width format files
 
-:::notes
+```{r}
+#| label: setup-05
+
+load("../data/module03.RData")
+```
+
+`r simple_fixed`
+
+
+::: notes
+
+Here's another variation.
+
+Sometimes you will get a file with no delimiters to save space. This requires that each variable takes up a fixed number of columns and that information is often specified in a separate file.
+
+Okay, I deliberately did not put the variable names as the first line. Fixed width files often do not include the variable names in the file itself.
 
 :::
+
+## The read_fwf function 
+
+`r read_fixed`
+
+::: notes
+
+Use the read.fwf (fwf stands for fixed width format) function to read this data.
+
+Another function that you can use when the data is clearly separated by one or more whitespace characters (blanks or tabs) is read_table.
+
+https://readr.tidyverse.org/reference/read_table.html
+
+:::
+
+## Helpful functions with read_fwf
+
+-    fwf_empty()
+     -   Uses spacing to guess at column positions
+-    fwf_widths()
+     -   Specifies column widths
+-    fwf_positions()
+     -   Specifies start and end locations for each column
+     
+::: notes
+
+There are several ways to identify the column positions for a fixed width file. The fwf_empty function will make a reasonable guess as long as there is whitespace (one or more blanks/tabs) between each variable. You could also specify the column widths or the start and end location for each column.
+
+:::
+
+## Disadvantages of fixed width formatting?
+
+-   Confusing
+    -   What is 312? 
+        -   3, 1, and 2?
+        -   31 and 2?
+        -   3 and 12?
+        -   312?
+-   More work
+-   Prone to errors
+
+::: notes
+
+When you have no delimiters, it is easy to get confused. The third line, for example, of our simple data file is "312". That could be three numbers: 3, 1, and 2. It could be two numbers: 31 and 2? Or maybe 3 and 12? Or it could be a single number: 312. In a small dataset, you won't get confused, but you might with a larger dataset.
+
+It's also more work because you have to specify the number of columns that each variable uses. That's not trivial for a large file.
+
+The fixed width format is also more prone to errors. If you get the columns wrong, you might truncate some of your data.
+
+:::
+
+## Example where fixed width formatting is needed.
+
+![](../images/ed2017.png)
+
+::: notes
+
+Here's practical example where you really might need fixed width formatting. This is data from Emergency Department visits in a CDC survey. There are over 16,000 rows, which is bad enough. But each row (except the last one) has over 2,400 characters. These columns contain information for over 900 variables.
+
+If you were to use delimiters in this file, you'd have to add 900 commas or 900 tabs or 900 spaces or 900 tildes to each and every line. That works out to be 1.4 million commas across the entire file. That's a substantial increase to the size of an already very large and unwieldy file.
+
+:::
+
+## Live demonstration, 4
+
+Now, you will see a live demonstration of the program [simon-5505-03-demo-05][ref51].
+
+[ref51]: https://github.com/pmean/classes/blob/master/introduction-to-r/03/src/simon-5505-03-demo-05.qmd
+

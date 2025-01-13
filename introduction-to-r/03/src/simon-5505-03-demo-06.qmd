@@ -1,0 +1,169 @@
+---
+title: "Real world text file examples"
+format: 
+  html:
+    embed-resources: true
+execute: 
+  error: true
+editor: source
+---
+
+## File details
+
+This program reads data from a variety of text files. It was written by Steve Simon on 2025-01-09 and is placed in the public domain. You can use this program any way you please.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+R.version.string
+Sys.Date()
+library(tidyverse)
+```
+
+## Program outline
+
+This program will read in three very different text data files. Here are some links.
+
+-   Example 1: binary.csv
+    -   [Description][ref01]
+    -   [Download][ref02]
+-   Example 2: barbershop-music.txt
+    -   [Description][ref03]
+    -   [Download][ref04]
+-   Example 3: airport.txt
+    -   [Description][ref05]
+    -   [Download][ref06]
+
+[ref01]: https://stats.idre.ucla.edu/r/dae/logit-regression/
+[ref02]: https://stats.idre.ucla.edu/stat/data/binary.csv
+[ref03]: https://dasl.datadescription.com/datafile/barbershop-music/
+[ref04]: https://dasl.datadescription.com/download/data/3061
+[ref05]: http://jse.amstat.org/datasets/airport.txt
+[ref06]: http://jse.amstat.org/datasets/airport.dat.txt
+
+## Example 1, quick peek
+
+```{r}
+#| label: peek-binary
+
+url_binary <- "https://stats.idre.ucla.edu/stat/data/binary.csv"
+read_lines(
+  file=url_binary, 
+  n_max=10)
+```
+
+#### Comments on the code
+
+The [read_lines][ref07] function will read each line of the text file into a single string vector. This doesn't allow you to separate out the individual data values. It is, however, a quick way to review the contents of a file to better understand how it is structured. 
+
+[ref07]: https://readr.tidyverse.org/reference/read_lines.html
+
+#### Interpretation of the output
+
+Peeking at the first ten lines of data, you can see that this file uses commas as delimiters and the first line contains variable names. six lines of data, you can see clearly that it is uses comma delimiter and the first row of data contains the variable names.
+
+## Example 1, read_csv
+
+```{r}
+#| label: read-binary
+
+example_binary <- read_csv(
+  file=fn,
+  col_names=TRUE,
+  col_types="nnnn")
+
+glimpse(example_binary)
+```
+
+#### Interpretation of the output
+
+The data shown here appears to match the description of the file on the web.
+
+
+## Example 2, quick peek
+
+```{r}
+#| label: peek-barbershop
+
+url_barbershop <- "https://dasl.datadescription.com/download/data/3061"
+read_lines(
+  file=url_barbershop,
+  n_max=10)
+```
+
+#### Interpretation of the output
+
+It looks like it is a tab delimited file. The read_lines file replaces the tab with a key code (backslash-t). The first row lists the variable names.
+
+## Example 2, read_tsv
+
+```{r}
+#| label: read-barbershop
+
+raw_data <- read_tsv(
+  file=url_barbershop,
+  col_names=TRUE,
+  col_types="nnn")
+
+glimpse(raw_data)
+```
+
+#### Interpretation of the output
+
+The data appears to match the description.
+
+The read_tsv function works well here.
+
+## Example 3, peek
+
+```{r}
+#| label: peek-airport
+
+url_airport <- "http://jse.amstat.org/datasets/airport.dat.txt"
+read_lines(
+  file=url_airport,
+  n_max=10)
+```
+
+#### Interpretation of the output
+
+This could be a tab delimited file, but the numbers are right justified. In a tab delimited file, the numbers would be left justified. There are no variable names in the first row of data.
+
+## Example 3, define data columns and names
+
+```{r}
+#| label: define-airport
+
+start_column <- c( 1, 22, 44, 51, 58, 67, 77)
+end_column <-   c(21, 43, 49, 56, 65, 75, 85)
+variable_names <- c(
+  "airport",
+  "city",
+  "scheduled_departures",
+  "performed_departures",
+  "enplaned_passengers",
+  "enplaned_freight",
+  "enplaned_mail")
+```
+
+## Example 3, read_fwf
+
+```{r}
+#| label: read-airport
+
+example_3 <- read_fwf(
+  file=url_3, 
+  fwf_positions(
+    start=start_column, 
+    end=end_column),
+  col_names=variable_names,
+  col_types="ccnnnnn")
+
+glimpse(example_3)
+```
+
+#### Interpretation of the output
+
+The data appears to match the description.

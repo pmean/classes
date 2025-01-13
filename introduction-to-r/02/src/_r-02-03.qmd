@@ -1,5 +1,5 @@
 ---
-title: "r-01-03, TBA-3"
+title: "r-02-03, Missing values"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,209 @@ format:
 editor: source
 ---
 
-## TBA-3
+## Variable with missing values
 
-:::notes
+```{r}
+#| label: setup-3
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+```
+
+```{r}
+#| label: read-sleep-3
+#| echo: false
+
+sleep <- read_tsv(
+  file="../data/sleep.txt",
+  col_types="cnnnnnnnnnn")
+```
+
+```{r}
+#| label: total-sleep-listing
+#| echo: true
+
+sleep$TotalSleep
+```
+
+::: notes
+
+Several variables in the sleep file have missing values. There are many reasons why a variable might be missing. Maybe someone dropped a test tube in a lab. Maybe someone dropped out of a study. Maybe they skipped a question on your questionnaire.
+
+Always find out why a variable is missing. How you handle the missing value during data analysis depends on the reason it is missing. This is well beyond the scope of the class, but you do need to work with missing values during the data management phase.
+
+R uses the code NA for missing values. Other programs (SAS, SPSS) use a single dot. Other possibilities exist. Use the na argument inside of the read function if the missing value code is anything other than NA.
 
 :::
+
+## Statistics involving missing values
+
+```{r}
+#| label: summarize-1
+#| echo: true
+
+sleep |>
+  summarize(
+    sleep_mean=mean(TotalSleep),
+    sleep_sd=sd(TotalSleep))
+```
+
+::: notes
+
+If you try to compute a summary statistic on a variable with missing data, the result will be missing. This is different than SAS or SPSS, which by default will ignore missing values when computing most statistics.
+
+:::
+
+## The na.rm argument
+
+```{r}
+#| label: summarize-2
+#| echo: true
+
+sleep |>
+  summarize(
+    sleep_mean=mean(TotalSleep, na.rm=TRUE),
+    sleep_sd=sd(TotalSleep, na.rm=TRUE))
+```
+
+::: notes
+
+Think carefully about this and if you want R to ignore missing values when computing statistics, use the na.rm=TRUE argument.
+
+You may wish to use some sort of imputation model instead of ignoring missing values. Imputation is beyond the scope of this class.
+
+:::
+
+## The na.action and use arguments, 1
+
+-  More options for complex settings
+   -   na.action or use arguments
+   -   Example, cor function
+       -   use="everything" produces NA
+       -   use="complete.obs" produces casewise deletion
+       -   use="pairwise.complete.obs" produces pairwise deletion
+
+::: notes
+
+For univariate functions, there are only two realistic ways to handle missing values, but for bivariate and multivariate function, there are a multitude of approaches, such as pairwise deletion, listwise deletion, last observation carried forward, single imputation, and multiple imputation. There is a lot of controversy over various methods for handling missing values.
+
+:::
+
+## Correlations with use="everything" {.smaller}
+
+```{r}
+#| label: correlation-1
+#| echo: true
+
+options(width=120)
+# The greater output length allows the correlation matrix to fit on one slide.
+sleep |> 
+  select(-1) |>
+  cor(use="everything") |>
+  round(2)
+```
+
+
+## Interpretation of correlations, 1
+
+Any correlation involving NonDreaming, Dreaming, TotalSleep, LifeSpan, and Gestation are missing because these variables have at least one missing value.
+
+## Correlations with use="complete.obs" {.smaller}
+
+```{r}
+#| label: correlation-2
+#| echo: true
+
+sleep |> 
+  select(-1) |>
+  cor(use="complete.obs") |>
+  round(2)
+options(width=80)
+# Reset the width to the default value of 80
+```
+
+## Interpretation of correlations, 2
+
+There is a very strong positive association between body weight and brain weight, body weight and gestation, brain weight and gestation, non-dreaming sleep and total sleep, dreaming sleep and total sleep, predation and danger, and exposure and danger. There are no strong negative associations. There are many other weak positive and weak negative associations.
+
+::: notes
+
+It is tricky to interpret a large matrix of correlations. A first step is to highlight any strong positive (greater than 0.7) or strong negative (less than -0.7) correlations.
+
+:::
+
+## You cannot test missingness directly
+
+```{r}
+#| label: tracking-missing-1
+#| echo: true
+
+sleep |>
+  filter(TotalSleep == NA) |>
+  select(Species, TotalSleep)
+```
+
+<div class="notes">
+
+Logic involving missing values is tricky. If you checking for equality and one of the things in the comparison is missing, then the result is neither TRUE, not FALSE, but rather missing.
+
+Fair enough, but R takes it a bit further, and if both sides when you are checking for equality are missing, then they might both be 5 is they weren't missing or maybe one might be 5 and the other one 10. So it might be TRUE or it might be FALSE, so we're better off calling the logical result as missing.
+
+This is called a three valued logic system and it has advantages and disadvantages. I won't get into any technical details, except to say that you should never make assumptions. Check what you do when you are working with missing values to make sure that the three valued logic system doesn't produce results that you didn't expect.
+
+</div>
+
+## What is happening
+
+```{r}
+#| label: what-is-happening
+#| echo: true
+
+sleep$TotalSleep == NA
+```
+
+## The is.na function
+
+```{r}
+#| label: is.na.example
+#| echo: true
+
+sleep |>
+  filter(is.na(TotalSleep)) |>
+  select(Species, TotalSleep)
+```
+
+::: notes
+
+The short term solution to the above problem is to use a special function, is.na.
+
+The summary function will trap and remove missing values, but most other functions in R will, by default, report a result as missing if any values going into that function are missing. The philosophy in R, I suppose, is that you need to actively select an approach for handling missing values rather than relying on a lazy default.
+
+R is also erring on the side of caution most of the time. You may not be aware that there are missing values lurking in your data, and R is going to go out of its way to remind you, unless you tell it otherwise.
+
+This is different from SAS and SPSS, where the default options choose perfectly reasonable approaches, but approaches that don't raise concern about missingness to the degree that R does.
+
+:::
+
+## Counting missing values
+
+```{r}
+#| label: count-missing
+#| echo: true
+
+sleep |>
+  select(-1) |>
+  mutate(across(everything(), is.na)) |>
+  summarize(across(everything(), sum)) |>
+  pivot_longer(
+    everything(),
+    names_to="variable",
+    values_to="missing_count") |>
+  filter(missing_count > 0)
+```
+
+## Interpretation of missing value counts
+
+There are five variables with missing data. Non-dreaming and dreaming sleep have 14 and 12 missing values, respectively. Total sleep, life span, and gestation all have 4 missing values. 

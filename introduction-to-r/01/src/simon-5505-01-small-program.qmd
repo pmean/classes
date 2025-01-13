@@ -1,0 +1,49 @@
+---
+title: "Illustrating the structure of an R program"
+editor: source
+format: 
+  html:
+    embed-resources: true
+execute: 
+  error: true
+---
+
+This program was written by Steve Simon  and created on 2019-01-28 with a major
+revision on 2024-12-27. It is used to illustrate the structure of an R program. 
+This program is in the public domain. You can use it any way that you please.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+R.version.string
+Sys.Date()
+library(tidyverse)
+```
+
+Read data from the aids-cases text file. This file is described at
+
+https://github.com/pmean/data/blob/main/files/aids-cases.yaml
+
+```{r}
+#| label: read-text-file
+
+aids_cases <- read_csv(
+  file="../data/aids-cases.csv",
+  col_types="nnn")
+glimpse(aids_cases)
+```
+
+This is a small dataset with only three variables. Now let's draw a line graph.
+
+```{r}
+#| label: line-graph
+
+aids_cases |>
+  ggplot() +
+    aes(yr, nsw) +
+    geom_line()
+```
+
+There is an increasing trend in aids cases in New South Wales over time.

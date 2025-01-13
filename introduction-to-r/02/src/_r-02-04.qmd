@@ -1,5 +1,5 @@
 ---
-title: "r-01-04, TBA-4"
+title: "r-01-04, Histograms, scatterplots"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,232 @@ format:
 editor: source
 ---
 
-## TBA-4
+## Default histogram for body weight, 1
 
-:::notes
+```{r}
+#| label: setup-4
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+```
+
+```{r}
+#| label: read-sleep-4
+#| echo: false
+
+sleep <- read_tsv(
+  file="../data/sleep.txt",
+  col_types="cnnnnnnnnnn")
+```
+
+```{r}
+#| label: default-histogram-1
+#| echo: true
+sleep |>
+  ggplot() +
+  aes(x=BodyWt) +
+  geom_histogram() -> basic_histogram
+```
+
+::: notes
+
+R has at least three different approaches for graphs: base graphs, lattice, and ggplot2. All are excellent. I will rely almost entirely on ggplot2 for graphs that I use. 
 
 :::
+
+## Default histogram for body weight, 2
+
+
+```{r}
+#| label: default-histogram-2
+#| echo: true
+basic_histogram
+```
+
+::: notes
+
+Never settle for the default. I did change one default right off the bat. The default in ggplot for a histogram or bar chart is a dark gray bar with a dark gray border. There are a few times that this is a reasonable choice, but more often than not choosing the same color value for the border and the interior is confusing.
+
+:::
+
+## Better colors for the histogram, 1
+
+```{r}
+#| label: better-histogram-1
+#| echo: true
+sleep |>
+  ggplot() +
+  aes(x=BodyWt) +
+  geom_histogram(
+    color="black",
+    fill="white") -> better_histogram
+```
+
+::: notes
+
+I usually try a black border. The color argument specifies the color of the border and the fill argument specifies the color or the interior.
+
+:::
+
+## Better colors for the histogram, 2
+
+```{r}
+#| label: better-histogram-2
+#| echo: true
+
+better_histogram
+```
+
+::: notes
+
+It may not be so obvious with this graph, but I do think that black borders with white interiors improve the appearace of most bar charts and histograms.
+
+::::
+
+## Labeled histogram, 1
+
+```{r}
+#| label: histogram-with-labels-1
+#| echo: true
+
+better_histogram +
+  xlab("Body weight (kg)") +
+  ggtitle("Graph drawn by Steve Simon on 2025-01-02") -> labeled_histogram
+```
+
+::: notes
+
+You should always use the [xlab, ylab, and ggtitle][ref41] functions to make your graphs more interpretable. The xlab function changes the label on the x-axis from the default (just the variable name itself) to a more descriptive label. There is a ylab function as well, but I did not need it for the histogram because the word "count" that ggplot uses on the y-axis for its histograms is sufficiently descriptive. The ggtitle function places a title at the top of the graph. For this class, I require you to put your name and the date as the title. If you are preparing a graph for a publication, you will probably need a different title.
+
+[ref41]: https://ggplot2.tidyverse.org/reference/labs.html
+
+:::
+
+## Labeled histogram, 2
+
+```{r}
+#| label: histogram-with-labels-2
+#| echo: true
+
+labeled_histogram
+```
+
+::: notes
+
+This is what the labeled histogram looks like.
+
+:::
+
+## Log transformed histogram, 1
+
+```{r}
+#| label: histogram-with-log-scale-1
+#| echo: true
+
+ticks <- 10^(-2:3)
+labeled_histogram +
+  scale_x_log10(
+    breaks=ticks,
+    minor_breaks=NULL,
+    labels=ticks) -> histogram_with_log10
+```
+
+::: notes
+
+The [scale_x_log10][ref42] function is one of a series of functions that controls how the scale of the x axis appears.
+
+[ref42]: https://ggplot2.tidyverse.org/reference/scale_continuous.html
+
+:::
+
+
+## Log transformed histogram, 2
+
+```{r}
+#| label: histogram-with-log-scale-2
+#| echo: true
+
+histogram_with_log10
+```
+
+## Different scales
+
+```{r}
+#| echo: false
+i <- 10^(-3:3)
+j <- c(1, 3)
+ticks <- kronecker(i, j)
+```
+
+## Labeled scatterplot, 1
+
+```{r}
+#| label: scatterplot-1
+#| echo: true
+
+sleep |>
+  ggplot() +
+  aes(x=BodyWt, y=BrainWt) +
+  geom_point() + 
+  xlab("Body weight (kg)") +
+  ylab("Brain weight (g)") +
+  ggtitle("This graph was drawn by Steve Simon on 2025-01-02") -> labeled_scatterplot
+```
+
+## Labeled scatterplot, 2
+
+```{r}
+#| label: scatterplot-2
+#| echo: true
+
+labeled_scatterplot
+```
+
+## Log transformed scatterplot, 1
+
+```{r}
+#| label: log-transformed-scatterplot-1
+#| echo: true
+
+xticks <- 10^(-2:3)
+yticks <- 10^(-2:3)
+labeled_scatterplot +
+  scale_x_log10(
+    breaks=xticks,
+    minor_breaks=NULL,
+    labels=xticks) +
+  scale_y_log10(
+    breaks=yticks,
+    minor_breaks=NULL,
+    labels=yticks)-> log_scatterplot
+```
+
+## Log transformed scatterplot, 1
+
+```{r}
+#| label: log-transformed-scatterplot-2
+#| echo: true
+
+log_scatterplot
+```
+
+## Add a trend line, 1
+
+```{r}
+#| label: trend-line-1
+#| echo: true
+
+log_scatterplot +
+  geom_smooth() -> trend_line_graph
+```
+
+## Add a trend line, 2
+
+```{r}
+#| label: trend-line-2
+#| echo: true
+
+trend_line_graph
+```
