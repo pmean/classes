@@ -84,7 +84,6 @@ Always modify your graphs. **Do not settle for the default options**.
 
 ## Be concise
 
-
 -   Things to leave out
     -   Lengthy printouts of raw data
     -   Descriptive statistics on unused variables
