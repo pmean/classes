@@ -90,8 +90,9 @@ The average passenger on the Titanic was 30 years old. There is a wide variation
 ti |>
   count(pclass) |>
   mutate(total=sum(n)) |>
-  mutate(pct=round(100*n/total)) |>
-  mutate(pct=glue("{n}/{total} ({pct}%)")) |>
+  mutate(pct=100*n/total) -> pclass_counts
+pclass_counts |>
+  mutate(pct=glue("{n}/{total} ({round(pct)}%)")) |>
   select(-n, -total)
 ```
 
