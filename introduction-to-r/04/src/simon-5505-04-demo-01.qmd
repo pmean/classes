@@ -196,6 +196,10 @@ The [case_when][ref11] function (part of the dplyr/tidyverse libraries) creates 
 
 [ref11]: https://dplyr.tidyverse.org/reference/case_when.html
 
+#### Interpretation of the output
+
+As noted earlier, a bit more than half of the passengers were in third class.
+
 ## Converting continuous data to categorical data, 1
 
 ```{r}
@@ -224,7 +228,13 @@ ti_3 |>
   select(-n, -total)
 ```
 
+#### Interpretation of the output
+
+A large fraction (almost half) of the ages are missing. Of the non-missing ages, there were more than 7 times as many adults as children.
+
 ## Two way crosstabulation
+
+
 
 ## Row proportions
 
