@@ -23,6 +23,7 @@ This program reads data on mortality of passengers on the Titanic. Refer to the 
 
 R.version.string
 Sys.Date()
+library(epitools)
 library(glue)
 library(tidyverse)
 ```
@@ -113,6 +114,43 @@ The [glue][ref07] function (part of the glue library) allows you to insert numbe
 
 More than half of the passengers were in third class. Among the remaining passengers, there were slightly more first class than second class passengers.
 
+## Bar chart with counts
+
+```{r}
+#| label: bar-counts
+#| fig.width: 6
+#| fig.height: 2
+
+ti |>
+  ggplot() +
+    aes(x=pclass) +
+    coord_flip() +
+    geom_bar(
+      color="black",
+      fill="white"
+    )
+```
+
+## Bar chart with percents
+
+```{r}
+#| label: bar-percents
+#| fig.width: 6
+#| fig.height: 2
+
+ti |>
+  count(pclass) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total) |>
+  ggplot() +
+    aes(x=pclass, y=pct) +
+    coord_flip() +
+    geom_col(
+      color="black",
+      fill="white")
+```
+
+
 ## Creating factors, 1
 
 ```{r}
@@ -124,7 +162,7 @@ ti |>
       factor(
         survived, 
         levels=c(0, 1), 
-        labels=c("Dead", "Alive"))) -> ti_1
+        labels=c("dead", "alive"))) -> ti_1
 ```
 
 #### Comments on the code
@@ -234,10 +272,60 @@ A large fraction (almost half) of the ages are missing. Of the non-missing ages,
 
 ## Two way crosstabulation
 
+```{r}
+#| label: two-way
 
+ti_3 |>
+	count(sex, survived) -> basic_counts
+basic_counts
+```
+
+## Overall percents
+
+## Percents by sex
+
+## Percents by survived
+
+## Arranged in a table
+
+```{r}
+#| label: table
+
+basic_counts |>
+	pivot_wider(
+		names_from="survived",
+		values_from="n") -> basic_table
+basic_table
+```
+
+
+## clustered bar chart
+
+```{r}
+#label: clustered-1
+
+ti_3 |>
+	count(sex, survived) |>
+	ggplot() +
+	  aes(x=sex, y=n) +
+	  geom_col()
+```
 
 ## Row proportions
 
 ## Odds ratio
 
+```{r}
+#| label: or
+
+oddsratio(x=ti_3$sex, y=ti_3$survived)
+```
+
 ## Relative risk
+
+```{r}
+#| label: rr
+
+riskratio(x=ti_3$sex, y=ti_3$survived)
+```
+

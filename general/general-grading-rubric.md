@@ -34,8 +34,10 @@ Always modify your graphs. **Do not settle for the default options**.
 
 -   Include your name and date on the title of any graph
     -   "Steve Simon produced this graph on 2023-09-19."
--   Avoid the display of unnecessary decimal places on the axes
+-   Avoid unnecessary decimal places
+    -   Use 10, 20, 30 and not 10.00, 20.00, 30.00
 -   Use comma separators for large numbers
+    -   Anything larger than 999 needs a comma.
 -   Replace category codes with descriptive labels
 
 ## Graphs cannot rely on default choices, 2
@@ -44,7 +46,8 @@ Always modify your graphs. **Do not settle for the default options**.
     -   Include units of measurement, if needed
 -   Avoid the gratuitous use of color
     -   Unless needed to distinguish between groups
-    -   Fill boxes and points with white/transparent colors
+-   Fill boxes and points with white/transparent colors
+    -  Use ○ and not ⬤
 
 ## Tables also need modification
 
@@ -79,6 +82,17 @@ Always modify your graphs. **Do not settle for the default options**.
 -   Depends on context
     -   No penalty for subjective judgments
 
+## Be concise
+
+-   Things to leave out
+    -   Lengthy printouts of raw data
+    -   Descriptive statistics on unused variables
+    -   Analyses beyond what was asked for
+-   Variables worth describing
+    -   Dependent/outcome variable
+    -   Independent variables
+    -   Demographic profile
+
 ## Conciseness
 
 -   Do not include analyses that were not asked for
@@ -95,10 +109,8 @@ Always modify your graphs. **Do not settle for the default options**.
    -   Interpretation
    -   Conciseness
 -  Six points for Accuracy
+-  Adjust proportionately for different point totals
 
-:::notes
-This grading rubric is for an assignment worth 10 points. Change these numbers proportionately for an assignment worth a different number of points (e.g, triple all the point values for an assignment worth 30 points).
-:::
 
 ## How well did you follow the general requirements?
 
@@ -110,14 +122,15 @@ Note: **some general requirements may not be applicable** for a particular
 assignment (e.g., the assignment does not require any graphs). This should be 
 obvious from the context of the assignment.
 
-## How accurate was your work?    
-    
--   Poor (0 points): Three or more major errors or omissions
--   Fair (2 points): Two major or four minor errors or omissions
--   Good (4 points): One major or two minor errors or omissions
--   Excellent (6 points): Complete and accurate answers to all questions
+## Accuracy
+
+-   How accurate was your work?    
+    -   Poor (0 points): Three or more major errors or omissions
+    -   Fair (2 points): Two major or four minor errors or omissions
+    -   Good (4 points): One major or two minor errors or omissions
+    -   Excellent (6 points): Complete and accurate answers to all questions
 
 ## File history
 
-This file was written by Steve Simon on 2023-08-15 with the last major revision on 2024-08-20. It is in the public domain and you can use it any way you please.
+This file was written by Steve Simon on 2023-08-15 with the last major revision on 2024-12-20. It is in the public domain and you can use it any way you please.
 
