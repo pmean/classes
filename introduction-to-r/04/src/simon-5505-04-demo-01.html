@@ -3201,9 +3201,10 @@ $ survived &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ti <span class="sc">|&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(pclass) <span class="sc">|&gt;</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{n}/{total} ({pct}%)&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total) <span class="ot">-&gt;</span> pclass_counts</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>pclass_counts <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{n}/{total} ({round(pct)}%)&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   pclass pct           
@@ -3224,16 +3225,58 @@ $ survived &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 
 <p>More than half of the passengers were in third class. Among the remaining passengers, there were slightly more first class than second class passengers.</p>
 </section>
 </section>
+<section id="bar-chart-with-counts" class="level2">
+<h2 class="anchored" data-anchor-id="bar-chart-with-counts">Bar chart with counts</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ti <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>pclass) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">color=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill=</span><span class="st">&quot;white&quot;</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img role="img" src="data:image/png;base64,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" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bar-chart-with-percents" class="level2">
+<h2 class="anchored" data-anchor-id="bar-chart-with-percents">Bar chart with percents</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ti <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(pclass) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total) <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>pclass, <span class="at">y=</span>pct) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">color=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill=</span><span class="st">&quot;white&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img role="img" src="data:image/png;base64,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" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
 <section id="creating-factors-1" class="level2">
 <h2 class="anchored" data-anchor-id="creating-factors-1">Creating factors, 1</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ti <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">survived=</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">factor</span>(</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        survived, </span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), </span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;dead&quot;</span>, <span class="st">&quot;alive&quot;</span>))) <span class="ot">-&gt;</span> ti_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ti <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">survived=</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">factor</span>(</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        survived, </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;dead&quot;</span>, <span class="st">&quot;alive&quot;</span>))) <span class="ot">-&gt;</span> ti_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="comments-on-the-code-2" class="level4">
 <h4 class="anchored" data-anchor-id="comments-on-the-code-2">Comments on the code</h4>
@@ -3243,12 +3286,12 @@ $ survived &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 
 <section id="creating-factors-2" class="level2">
 <h2 class="anchored" data-anchor-id="creating-factors-2">Creating factors, 2</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ti_1 <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(survived) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{n}/{total} ({pct}%)&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ti_1 <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(survived) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{n}/{total} ({pct}%)&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   survived pct           
@@ -3265,13 +3308,13 @@ $ survived &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 
 <section id="re-ordering-categories" class="level2">
 <h2 class="anchored" data-anchor-id="re-ordering-categories">Re-ordering categories</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ti_1 <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pclass=</span><span class="fu">factor</span>(pclass, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;3rd&quot;</span>, <span class="st">&quot;2nd&quot;</span>, <span class="st">&quot;1st&quot;</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(pclass) <span class="sc">|&gt;</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{n}/{total} ({pct}%)&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ti_1 <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pclass=</span><span class="fu">factor</span>(pclass, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;3rd&quot;</span>, <span class="st">&quot;2nd&quot;</span>, <span class="st">&quot;1st&quot;</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(pclass) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{n}/{total} ({pct}%)&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   pclass pct           
@@ -3285,25 +3328,25 @@ $ survived &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 
 <section id="recoding-categorical-data-1" class="level2">
 <h2 class="anchored" data-anchor-id="recoding-categorical-data-1">Recoding categorical data, 1</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ti_1 <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">third_class=</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">case_when</span>(</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">is.na</span>(pclass) <span class="sc">~</span> <span class="st">&quot;unknown&quot;</span>,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        pclass<span class="sc">==</span><span class="st">&quot;1st&quot;</span> <span class="sc">~</span> <span class="st">&quot;no&quot;</span>,</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        pclass<span class="sc">==</span><span class="st">&quot;2nd&quot;</span> <span class="sc">~</span> <span class="st">&quot;no&quot;</span>,</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>        pclass<span class="sc">==</span><span class="st">&quot;3rd&quot;</span> <span class="sc">~</span> <span class="st">&quot;yes&quot;</span>)) <span class="ot">-&gt;</span> ti_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ti_1 <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">third_class=</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">case_when</span>(</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">is.na</span>(pclass) <span class="sc">~</span> <span class="st">&quot;unknown&quot;</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        pclass<span class="sc">==</span><span class="st">&quot;1st&quot;</span> <span class="sc">~</span> <span class="st">&quot;no&quot;</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        pclass<span class="sc">==</span><span class="st">&quot;2nd&quot;</span> <span class="sc">~</span> <span class="st">&quot;no&quot;</span>,</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        pclass<span class="sc">==</span><span class="st">&quot;3rd&quot;</span> <span class="sc">~</span> <span class="st">&quot;yes&quot;</span>)) <span class="ot">-&gt;</span> ti_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="recoding-categorical-data-2" class="level2">
 <h2 class="anchored" data-anchor-id="recoding-categorical-data-2">Recoding categorical data, 2</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ti_2 <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(third_class) <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{n}/{total} ({pct}%)&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ti_2 <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(third_class) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{n}/{total} ({pct}%)&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   third_class pct           
@@ -3316,29 +3359,33 @@ $ survived &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 
 <h4 class="anchored" data-anchor-id="comments-on-the-code-3">Comments on the code</h4>
 <p>The <a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a> function (part of the dplyr/tidyverse libraries) creates a new variable or modifies an old variable based on a sequence of logical conditions.</p>
 </section>
+<section id="interpretation-of-the-output-3" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-3">Interpretation of the output</h4>
+<p>As noted earlier, a bit more than half of the passengers were in third class.</p>
+</section>
 </section>
 <section id="converting-continuous-data-to-categorical-data-1" class="level2">
 <h2 class="anchored" data-anchor-id="converting-continuous-data-to-categorical-data-1">Converting continuous data to categorical data, 1</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ti_2 <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">child=</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">case_when</span>(</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">is.na</span>(age) <span class="sc">~</span> <span class="st">&quot;Unknown&quot;</span>,</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>        age <span class="sc">&lt;=</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">&quot;Invalid&quot;</span>,</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>        age <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">&quot;Yes&quot;</span>,</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;No&quot;</span>)) <span class="ot">-&gt;</span> ti_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ti_2 <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">child=</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">case_when</span>(</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">is.na</span>(age) <span class="sc">~</span> <span class="st">&quot;Unknown&quot;</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        age <span class="sc">&lt;=</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">&quot;Invalid&quot;</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>        age <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">&quot;Yes&quot;</span>,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;No&quot;</span>)) <span class="ot">-&gt;</span> ti_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="converting-continuous-data-to-categorical-data-2" class="level2">
 <h2 class="anchored" data-anchor-id="converting-continuous-data-to-categorical-data-2">Converting continuous data to categorical data, 2</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ti_3 <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(child) <span class="sc">|&gt;</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{n}/{total} ({pct}%)&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ti_3 <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(child) <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{n}/{total} ({pct}%)&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   child   pct           
@@ -3348,13 +3395,17 @@ $ survived &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 
 3 Yes     96/1313 (7%)  </code></pre>
 </div>
 </div>
+<section id="interpretation-of-the-output-4" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-4">Interpretation of the output</h4>
+<p>A large fraction (almost half) of the ages are missing. Of the non-missing ages, there were more than 7 times as many adults as children.</p>
+</section>
 </section>
 <section id="two-way-crosstabulation" class="level2">
 <h2 class="anchored" data-anchor-id="two-way-crosstabulation">Two way crosstabulation</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ti_3 <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(sex, survived) <span class="ot">-&gt;</span> basic_counts</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>basic_counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ti_3 <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(sex, survived) <span class="ot">-&gt;</span> basic_counts</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>basic_counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   sex    survived     n
@@ -3366,14 +3417,23 @@ $ survived &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 
 </div>
 </div>
 </section>
+<section id="overall-percents" class="level2">
+<h2 class="anchored" data-anchor-id="overall-percents">Overall percents</h2>
+</section>
+<section id="percents-by-sex" class="level2">
+<h2 class="anchored" data-anchor-id="percents-by-sex">Percents by sex</h2>
+</section>
+<section id="percents-by-survived" class="level2">
+<h2 class="anchored" data-anchor-id="percents-by-survived">Percents by survived</h2>
+</section>
 <section id="arranged-in-a-table" class="level2">
 <h2 class="anchored" data-anchor-id="arranged-in-a-table">Arranged in a table</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>basic_counts <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_from=</span><span class="st">&quot;survived&quot;</span>,</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">values_from=</span><span class="st">&quot;n&quot;</span>) <span class="ot">-&gt;</span> basic_table</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>basic_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>basic_counts <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_from=</span><span class="st">&quot;survived&quot;</span>,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">values_from=</span><span class="st">&quot;n&quot;</span>) <span class="ot">-&gt;</span> basic_table</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>basic_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
   sex     dead alive
@@ -3383,96 +3443,16 @@ $ survived &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 
 </div>
 </div>
 </section>
-<section id="add-sex-totals-and-percents" class="level2">
-<h2 class="anchored" data-anchor-id="add-sex-totals-and-percents">Add sex totals and percents</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>basic_counts <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="ot">-&gt;</span> sex_totals</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>sex_totals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 5
-# Groups:   sex [2]
-  sex    survived     n total   pct
-  &lt;chr&gt;  &lt;fct&gt;    &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
-1 female dead       154   462    33
-2 female alive      308   462    67
-3 male   dead       709   851    83
-4 male   alive      142   851    17</code></pre>
-</div>
-</div>
-</section>
-<section id="arranged-in-a-table-1" class="level2">
-<h2 class="anchored" data-anchor-id="arranged-in-a-table-1">Arranged in a table</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>sex_totals <span class="sc">|&gt;</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(survived <span class="sc">!=</span> <span class="st">&quot;alive&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_from=</span><span class="st">&quot;survived&quot;</span>,</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">values_from=</span><span class="st">&quot;pct&quot;</span>) <span class="ot">-&gt;</span> table_1</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>table_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 4
-# Groups:   sex [2]
-  sex        n total  dead
-  &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
-1 female   154   462    33
-2 male     709   851    83</code></pre>
-</div>
-</div>
-</section>
-<section id="add-survived-totals-and-percents" class="level2">
-<h2 class="anchored" data-anchor-id="add-survived-totals-and-percents">Add survived totals and percents</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>basic_counts <span class="sc">|&gt;</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(survived) <span class="sc">|&gt;</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="ot">-&gt;</span> survived_totals</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>survived_totals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 5
-# Groups:   survived [2]
-  sex    survived     n total   pct
-  &lt;chr&gt;  &lt;fct&gt;    &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
-1 female dead       154   863    18
-2 female alive      308   450    68
-3 male   dead       709   863    82
-4 male   alive      142   450    32</code></pre>
-</div>
-</div>
-</section>
-<section id="add-column-totals" class="level2">
-<h2 class="anchored" data-anchor-id="add-column-totals">Add column totals</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: column-totals</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>basic_table <span class="sc">|&gt;</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bind_rows</span>(</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarize</span>(</span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>        basic_table, </span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">dead=</span><span class="fu">sum</span>(dead), </span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">alive=</span><span class="fu">sum</span>(alive)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 3
-  sex     dead alive
-  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;
-1 female   154   308
-2 male     709   142
-3 &lt;NA&gt;     863   450</code></pre>
-</div>
-</div>
-</section>
 <section id="clustered-bar-chart" class="level2">
 <h2 class="anchored" data-anchor-id="clustered-bar-chart">clustered bar chart</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#label: clustered-1</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>ti_3 <span class="sc">|&gt;</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(sex, survived) <span class="sc">|&gt;</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(<span class="at">x=</span>sex, <span class="at">y=</span>n) <span class="sc">+</span></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#label: clustered-1</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>ti_3 <span class="sc">|&gt;</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(sex, survived) <span class="sc">|&gt;</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(<span class="at">x=</span>sex, <span class="at">y=</span>n) <span class="sc">+</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3488,7 +3468,7 @@ $ survived &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 
 <section id="odds-ratio" class="level2">
 <h2 class="anchored" data-anchor-id="odds-ratio">Odds ratio</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oddsratio</span>(<span class="at">x=</span>ti_3<span class="sc">$</span>sex, <span class="at">y=</span>ti_3<span class="sc">$</span>survived)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oddsratio</span>(<span class="at">x=</span>ti_3<span class="sc">$</span>sex, <span class="at">y=</span>ti_3<span class="sc">$</span>survived)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$data
          Outcome
@@ -3520,7 +3500,7 @@ attr(,&quot;method&quot;)
 <section id="relative-risk" class="level2">
 <h2 class="anchored" data-anchor-id="relative-risk">Relative risk</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">riskratio</span>(<span class="at">x=</span>ti_3<span class="sc">$</span>sex, <span class="at">y=</span>ti_3<span class="sc">$</span>survived)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">riskratio</span>(<span class="at">x=</span>ti_3<span class="sc">$</span>sex, <span class="at">y=</span>ti_3<span class="sc">$</span>survived)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$data
          Outcome

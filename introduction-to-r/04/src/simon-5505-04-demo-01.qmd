@@ -90,8 +90,9 @@ The average passenger on the Titanic was 30 years old. There is a wide variation
 ti |>
   count(pclass) |>
   mutate(total=sum(n)) |>
-  mutate(pct=round(100*n/total)) |>
-  mutate(pct=glue("{n}/{total} ({pct}%)")) |>
+  mutate(pct=100*n/total) -> pclass_counts
+pclass_counts |>
+  mutate(pct=glue("{n}/{total} ({round(pct)}%)")) |>
   select(-n, -total)
 ```
 
@@ -113,6 +114,43 @@ The [glue][ref07] function (part of the glue library) allows you to insert numbe
 #### Interpretation of the output
 
 More than half of the passengers were in third class. Among the remaining passengers, there were slightly more first class than second class passengers.
+
+## Bar chart with counts
+
+```{r}
+#| label: bar-counts
+#| fig.width: 6
+#| fig.height: 2
+
+ti |>
+  ggplot() +
+    aes(x=pclass) +
+    coord_flip() +
+    geom_bar(
+      color="black",
+      fill="white"
+    )
+```
+
+## Bar chart with percents
+
+```{r}
+#| label: bar-percents
+#| fig.width: 6
+#| fig.height: 2
+
+ti |>
+  count(pclass) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total) |>
+  ggplot() +
+    aes(x=pclass, y=pct) +
+    coord_flip() +
+    geom_col(
+      color="black",
+      fill="white")
+```
+
 
 ## Creating factors, 1
 
@@ -197,6 +235,10 @@ The [case_when][ref11] function (part of the dplyr/tidyverse libraries) creates 
 
 [ref11]: https://dplyr.tidyverse.org/reference/case_when.html
 
+#### Interpretation of the output
+
+As noted earlier, a bit more than half of the passengers were in third class.
+
 ## Converting continuous data to categorical data, 1
 
 ```{r}
@@ -225,6 +267,10 @@ ti_3 |>
   select(-n, -total)
 ```
 
+#### Interpretation of the output
+
+A large fraction (almost half) of the ages are missing. Of the non-missing ages, there were more than 7 times as many adults as children.
+
 ## Two way crosstabulation
 
 ```{r}
@@ -234,6 +280,12 @@ ti_3 |>
 	count(sex, survived) -> basic_counts
 basic_counts
 ```
+
+## Overall percents
+
+## Percents by sex
+
+## Percents by survived
 
 ## Arranged in a table
 
@@ -247,57 +299,6 @@ basic_counts |>
 basic_table
 ```
 
-## Add sex totals and percents
-
-```{r}
-#| label: sex-totals
-
-basic_counts |>
-	group_by(sex) |>
-	mutate(total=sum(n)) |>
-	mutate(pct=round(100*n/total)) -> sex_totals
-sex_totals
-```
-
-## Arranged in a table
-
-```{r}
-#| label: table-1
-
-sex_totals |>
-	filter(survived != "alive") |> 
-	pivot_wider(
-		names_from="survived",
-		values_from="pct") -> table_1
-table_1
-```
-
-## Add survived totals and percents
-
-```{r}
-#| label: survived-totals
-
-basic_counts |>
-	group_by(survived) |>
-	mutate(total=sum(n)) |>
-	mutate(pct=round(100*n/total)) -> survived_totals
-survived_totals
-```
-
-## Add column totals
-
-```{r}
-
-#| label: column-totals
-
-basic_table |>
-	bind_rows(
-	  summarize(
-	  	basic_table, 
-	  	dead=sum(dead), 
-	  	alive=sum(alive)))
-
-```
 
 ## clustered bar chart
 
