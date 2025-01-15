@@ -3112,7 +3112,7 @@ vertical-align: -.125em;
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] &quot;2025-01-13&quot;</code></pre>
+<pre><code>[1] &quot;2025-01-15&quot;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epitools)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
@@ -3233,7 +3233,7 @@ $ survived &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">factor</span>(</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        survived, </span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), </span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;Dead&quot;</span>, <span class="st">&quot;Alive&quot;</span>))) <span class="ot">-&gt;</span> ti_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;dead&quot;</span>, <span class="st">&quot;alive&quot;</span>))) <span class="ot">-&gt;</span> ti_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="comments-on-the-code-2" class="level4">
 <h4 class="anchored" data-anchor-id="comments-on-the-code-2">Comments on the code</h4>
@@ -3253,8 +3253,8 @@ $ survived &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 
 <pre><code># A tibble: 2 × 2
   survived pct           
   &lt;fct&gt;    &lt;glue&gt;        
-1 Dead     863/1313 (66%)
-2 Alive    450/1313 (34%)</code></pre>
+1 dead     863/1313 (66%)
+2 alive    450/1313 (34%)</code></pre>
 </div>
 </div>
 <section id="interpretation-of-the-output-2" class="level4">
@@ -3353,64 +3353,126 @@ $ survived &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 
 <h2 class="anchored" data-anchor-id="two-way-crosstabulation">Two way crosstabulation</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ti_3 <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(sex, survived) <span class="ot">-&gt;</span> basic_counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(sex, survived) <span class="ot">-&gt;</span> basic_counts</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>basic_counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  sex    survived     n
+  &lt;chr&gt;  &lt;fct&gt;    &lt;int&gt;
+1 female dead       154
+2 female alive      308
+3 male   dead       709
+4 male   alive      142</code></pre>
+</div>
 </div>
 </section>
 <section id="arranged-in-a-table" class="level2">
 <h2 class="anchored" data-anchor-id="arranged-in-a-table">Arranged in a table</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>basic_counts <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_from=</span><span class="st">&quot;survived&quot;</span>,</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">values_from=</span><span class="st">&quot;n&quot;</span>) <span class="ot">-&gt;</span> basic_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>basic_counts <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_from=</span><span class="st">&quot;survived&quot;</span>,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">values_from=</span><span class="st">&quot;n&quot;</span>) <span class="ot">-&gt;</span> basic_table</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>basic_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  sex     dead alive
+  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;
+1 female   154   308
+2 male     709   142</code></pre>
+</div>
 </div>
 </section>
-<section id="add-row-totals" class="level2">
-<h2 class="anchored" data-anchor-id="add-row-totals">Add row totals</h2>
+<section id="add-sex-totals-and-percents" class="level2">
+<h2 class="anchored" data-anchor-id="add-sex-totals-and-percents">Add sex totals and percents</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>basic_table <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total=</span>Alive<span class="sc">+</span>Dead) <span class="ot">-&gt;</span> row_totals</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>row_totals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>basic_counts <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="ot">-&gt;</span> sex_totals</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>sex_totals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+# Groups:   sex [2]
+  sex    survived     n total   pct
+  &lt;chr&gt;  &lt;fct&gt;    &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
+1 female dead       154   462    33
+2 female alive      308   462    67
+3 male   dead       709   851    83
+4 male   alive      142   851    17</code></pre>
+</div>
+</div>
+</section>
+<section id="arranged-in-a-table-1" class="level2">
+<h2 class="anchored" data-anchor-id="arranged-in-a-table-1">Arranged in a table</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>sex_totals <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(survived <span class="sc">!=</span> <span class="st">&quot;alive&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">names_from=</span><span class="st">&quot;survived&quot;</span>,</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">values_from=</span><span class="st">&quot;pct&quot;</span>) <span class="ot">-&gt;</span> table_1</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>table_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
-  sex     Dead Alive total
-  &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt;
-1 female   154   308   462
-2 male     709   142   851</code></pre>
+# Groups:   sex [2]
+  sex        n total  dead
+  &lt;chr&gt;  &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
+1 female   154   462    33
+2 male     709   851    83</code></pre>
+</div>
+</div>
+</section>
+<section id="add-survived-totals-and-percents" class="level2">
+<h2 class="anchored" data-anchor-id="add-survived-totals-and-percents">Add survived totals and percents</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>basic_counts <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(survived) <span class="sc">|&gt;</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="ot">-&gt;</span> survived_totals</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>survived_totals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+# Groups:   survived [2]
+  sex    survived     n total   pct
+  &lt;chr&gt;  &lt;fct&gt;    &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
+1 female dead       154   863    18
+2 female alive      308   450    68
+3 male   dead       709   863    82
+4 male   alive      142   450    32</code></pre>
 </div>
 </div>
 </section>
 <section id="add-column-totals" class="level2">
 <h2 class="anchored" data-anchor-id="add-column-totals">Add column totals</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>basic_table <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>        basic_table,</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> sum))) <span class="ot">-&gt;</span> col_totals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in `summarise()`:
-ℹ In argument: `across(where(is.numeric), ~sum)`.
-Caused by error in `across()`:
-! Can&#39;t compute column `Dead`.
-Caused by error in `dplyr_internal_error()`:</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>col_totals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object &#39;col_totals&#39; not found</code></pre>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: column-totals</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>basic_table <span class="sc">|&gt;</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bind_rows</span>(</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarize</span>(</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>        basic_table, </span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">dead=</span><span class="fu">sum</span>(dead), </span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">alive=</span><span class="fu">sum</span>(alive)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  sex     dead alive
+  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;
+1 female   154   308
+2 male     709   142
+3 &lt;NA&gt;     863   450</code></pre>
 </div>
 </div>
 </section>
 <section id="clustered-bar-chart" class="level2">
 <h2 class="anchored" data-anchor-id="clustered-bar-chart">clustered bar chart</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#label: clustered-1</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>ti_3 <span class="sc">|&gt;</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(sex, survived) <span class="sc">|&gt;</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(<span class="at">x=</span>sex, <span class="at">y=</span>n) <span class="sc">+</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#label: clustered-1</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>ti_3 <span class="sc">|&gt;</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(sex, survived) <span class="sc">|&gt;</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(<span class="at">x=</span>sex, <span class="at">y=</span>n) <span class="sc">+</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3426,11 +3488,11 @@ Caused by error in `dplyr_internal_error()`:</code></pre>
 <section id="odds-ratio" class="level2">
 <h2 class="anchored" data-anchor-id="odds-ratio">Odds ratio</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oddsratio</span>(<span class="at">x=</span>ti_3<span class="sc">$</span>sex, <span class="at">y=</span>ti_3<span class="sc">$</span>survived)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oddsratio</span>(<span class="at">x=</span>ti_3<span class="sc">$</span>sex, <span class="at">y=</span>ti_3<span class="sc">$</span>survived)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$data
          Outcome
-Predictor Dead Alive Total
+Predictor dead alive Total
    female  154   308   462
    male    709   142   851
    Total   863   450  1313
@@ -3458,11 +3520,11 @@ attr(,&quot;method&quot;)
 <section id="relative-risk" class="level2">
 <h2 class="anchored" data-anchor-id="relative-risk">Relative risk</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">riskratio</span>(<span class="at">x=</span>ti_3<span class="sc">$</span>sex, <span class="at">y=</span>ti_3<span class="sc">$</span>survived)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">riskratio</span>(<span class="at">x=</span>ti_3<span class="sc">$</span>sex, <span class="at">y=</span>ti_3<span class="sc">$</span>survived)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$data
          Outcome
-Predictor Dead Alive Total
+Predictor dead alive Total
    female  154   308   462
    male    709   142   851
    Total   863   450  1313
