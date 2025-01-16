@@ -20,7 +20,6 @@ This program reads data on mortality of passengers on the Titanic. Refer to the 
 #| label: setup
 #| message: false
 #| warning: false
-
 R.version.string
 Sys.Date()
 library(epitools)
@@ -34,12 +33,13 @@ library(tidyverse)
 -   ti_1: Convert survived to a factor
 -   ti_2: Created new variable, third_class
 -   ti_3: Created new variable, child
+-   pclass_counts: counts and percentages for each passenger class
+-   sex_survived_crosstab: counts for survived by sex
 
 ## Reading in the Titanic data set
 
 ```{r}
 #| label: read
-
 fn <- "../data/titanic.csv"
 ti <- read_csv(fn,
   col_types="ccncn")
@@ -50,7 +50,6 @@ glimpse(ti)
 
 ```{r}
 #| label: tail
-
 ti |>
   slice_tail(n=10)
 ```
@@ -68,7 +67,6 @@ For large files, it is often worthwhile to look at the bottom of dataset after y
 
 ```{r}
 #| label: age
-
 ti |>
   summarize(
     age_mean=round(mean(age, na.rm=TRUE), 1),
@@ -86,14 +84,11 @@ The average passenger on the Titanic was 30 years old. There is a wide variation
 
 ```{r}
 #| label: pclass
-
 ti |>
   count(pclass) |>
   mutate(total=sum(n)) |>
   mutate(pct=100*n/total) -> pclass_counts
-pclass_counts |>
-  mutate(pct=glue("{n}/{total} ({round(pct)}%)")) |>
-  select(-n, -total)
+pclass_counts
 ```
 
 #### Comments on the code
@@ -102,11 +97,23 @@ The [count][ref04] function (part of the dplyr/tidyverse libraries) counts the n
 
 The [sum][ref06] function adds up all the values. When placed inside the mutate function, it creates a new column with the same sum beside each row. This allows us to compute a percentage later.
 
-The [glue][ref07] function (part of the glue library) allows you to insert numbers into nicely formatted strings. You can also use the [paste and paste0][ref08] functions to do the same thing. If you are familiar with how C and C++ produces nicely formatted output, you might consider using the [sprintf][ref09] function.
-
 [ref04]: https://dplyr.tidyverse.org/reference/count.html
 [ref05]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/table.html
 [ref06]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/sum.html
+
+## Nice looking percentages
+
+```{r}
+#| label: nice
+pclass_counts |>
+  mutate(pct=glue("{n}/{total} ({round(pct)}%)")) |>
+  select(-n, -total)
+```
+
+#### Comments on the code
+
+The [glue][ref07] function (part of the glue library) allows you to insert numbers into nicely formatted strings. You can also use the [paste and paste0][ref08] functions to do the same thing. If you are familiar with how C and C++ produces nicely formatted output, you might consider using the [sprintf][ref09] function.
+
 [ref07]: https://glue.tidyverse.org/
 [ref08]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/paste.html
 [ref09]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/sprintf.html
@@ -120,17 +127,20 @@ More than half of the passengers were in third class. Among the remaining passen
 ```{r}
 #| label: bar-counts
 #| fig.width: 6
-#| fig.height: 2
-
-ti |>
+#| fig.height: 2.5
+pclass_counts |>
   ggplot() +
-    aes(x=pclass) +
+    aes(x=pclass, y=n) +
+    geom_col(color="black", fill="white")
+    ggtitle("Graph drawn by Steve Simon on 2025-01-16") +
+    xlab("Passenger class") +
+    ylab("Count") +
     coord_flip() +
-    geom_bar(
-      color="black",
-      fill="white"
-    )
 ```
+
+#### Comments on the code
+
+The [geom_col] function (parts of the ggplot2/tidyverse libraries) draws a bar chart with a bar for each level of the "x" variable and where the height of each bar is defined by the "y" variable.
 
 ## Bar chart with percents
 
@@ -138,17 +148,17 @@ ti |>
 #| label: bar-percents
 #| fig.width: 6
 #| fig.height: 2
-
-ti |>
-  count(pclass) |>
-  mutate(total=sum(n)) |>
+ticks <- c(10, 20, 30, 40, 50)
+pclass_counts |>
   mutate(pct=100*n/total) |>
   ggplot() +
     aes(x=pclass, y=pct) +
-    coord_flip() +
-    geom_col(
-      color="black",
-      fill="white")
+    geom_col(color="black", fill="white") +
+    ggtitle("Graph drawn by Steve Simon on 2025-01-16") +
+    xlab("Passenger class") +
+    ylab("Percentage") +
+    scale_y_continuous(breaks=ticks, labels=glue("{ticks}%")) +
+    coord_flip()
 ```
 
 
@@ -277,42 +287,89 @@ A large fraction (almost half) of the ages are missing. Of the non-missing ages,
 #| label: two-way
 
 ti_3 |>
-	count(sex, survived) -> basic_counts
-basic_counts
+	count(sex, survived) -> sex_survived_crosstab
+sex_survived_crosstab
 ```
 
 ## Overall percents
 
+```{r}
+#| label: overall
+
+sex_survived_crosstab |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total))
+```
+
 ## Percents by sex
 
+```{r}
+#| label: by-sex
+
+sex_survived_crosstab |>
+  group_by(sex) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  filter(survived=="alive") |>
+  mutate(pct_survived=glue("{pct}% ({n}/{total})")) |>
+  ungroup() |>
+  select(survived, pct_survived)
+```
+
 ## Percents by survived
+
+```{r}
+#| label: by-survived
+
+sex_survived_crosstab |>
+  group_by(survived) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  filter(sex=="female")  |>
+  mutate(pct_female=glue("{pct}% ({n}/{total})")) |>
+  ungroup() |>
+  select(sex, pct_female)
+```
 
 ## Arranged in a table
 
 ```{r}
 #| label: table
 
-basic_counts |>
+sex_survived_crosstab |>
 	pivot_wider(
 		names_from="survived",
-		values_from="n") -> basic_table
-basic_table
+		values_from="n") -> sex_survived_crosstabtable
+sex_survived_crosstabtable
 ```
 
-
-## clustered bar chart
+## clustered bar chart, 1
 
 ```{r}
-#label: clustered-1
+#| label: clustered-1
 
-ti_3 |>
-	count(sex, survived) |>
+sex_survived_crosstab |>
 	ggplot() +
-	  aes(x=sex, y=n) +
-	  geom_col()
+	  aes(x=sex, y=n, fill=survived) +
+    coord_flip() +
+	  geom_col(
+	    color="black",
+	    position="dodge")
 ```
 
-## Row proportions
+## clustered bar chart, 2
+
+```{r}
+#| label: clustered-2
+
+sex_survived_crosstab |>
+	ggplot() +
+	  aes(x=sex, y=n, fill=survived) +
+    coord_flip() +
+	  geom_col(
+	    color="black",
+	    position="stack")
+```
 
 ## Odds ratio
 
