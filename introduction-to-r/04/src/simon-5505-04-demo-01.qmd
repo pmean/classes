@@ -122,32 +122,12 @@ The [glue][ref07] function (part of the glue library) allows you to insert numbe
 
 More than half of the passengers were in third class. Among the remaining passengers, there were slightly more first class than second class passengers.
 
-## Bar chart with counts
-
-```{r}
-#| label: bar-counts
-#| fig.width: 6
-#| fig.height: 2.5
-pclass_counts |>
-  ggplot() +
-    aes(x=pclass, y=n) +
-    geom_col(color="black", fill="white")
-    ggtitle("Graph drawn by Steve Simon on 2025-01-16") +
-    xlab("Passenger class") +
-    ylab("Count") +
-    coord_flip() +
-```
-
-#### Comments on the code
-
-The [geom_col] function (parts of the ggplot2/tidyverse libraries) draws a bar chart with a bar for each level of the "x" variable and where the height of each bar is defined by the "y" variable.
-
 ## Bar chart with percents
 
 ```{r}
 #| label: bar-percents
 #| fig.width: 6
-#| fig.height: 2
+#| fig.height: 2.5
 ticks <- c(10, 20, 30, 40, 50)
 pclass_counts |>
   mutate(pct=100*n/total) |>
@@ -161,6 +141,14 @@ pclass_counts |>
     coord_flip()
 ```
 
+#### Comments on the code
+
+The [geom_col][ref10] function (parts of the ggplot2/tidyverse libraries) draws a bar chart with a bar for each level of the "x" variable and where the height of each bar is defined by the "y" variable. Don't confuse this with the geom_bar function which displays the counts for each level of a categorical variable.
+
+There is also a [barchart][ref11] function in the graphics library (part of base R) that you can use.
+
+[ref10]: https://ggplot2.tidyverse.org/reference/geom_bar.html
+[ref11]: https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/barplot.html
 
 ## Creating factors, 1
 
@@ -178,7 +166,9 @@ ti |>
 
 #### Comments on the code
 
-The [factor][ref10] function (part of base R), attaches descriptive labels to categorical data that otherwise might use cryptic number or letter codes.
+The [factor][ref12] function (part of base R), attaches descriptive labels to categorical data that otherwise might use cryptic number or letter codes.
+
+In this code, I store any changes made to the original data as a new tibble. If you do this, document at the top of the program what change was made in the new file.
 
 ## Creating factors, 2
 
@@ -211,6 +201,10 @@ ti_1 |>
   select(-n, -total)
 ```
 
+#### Comments on the code
+
+When R processes strings, it will arrange them by default in alphabetical order. If you want a different order, use that preferred order in the levels argument of the factor function.
+
 ## Recoding categorical data, 1
 
 ```{r}
@@ -225,6 +219,14 @@ ti_1 |>
         pclass=="2nd" ~ "no",
         pclass=="3rd" ~ "yes")) -> ti_2
 ```
+
+#### Comments on the code
+
+The [case_when][ref13] function (part of the dply/tidyverse libraries) will allow you to create a new variable based on various logical comparisons. You list a sequence of conditions on the left side of the tilde and the value that you want to assign if that condition is true on the right side of the tilde. The conditions are evaluated in sequence and the value chosen is the first logical comparison that evaluates to TRUE.
+
+There are no missing values for pclass, but accounting for missing values as the first comparison is a good habit to get into.
+
+[ref13]: https://dplyr.tidyverse.org/reference/case_when.html
 
 ## Recoding categorical data, 2
 
