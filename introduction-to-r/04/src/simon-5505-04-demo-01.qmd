@@ -154,7 +154,6 @@ There is also a [barchart][ref11] function in the graphics library (part of base
 
 ```{r}
 #| label: factors
-
 ti |>
   mutate(
     survived=
@@ -170,11 +169,12 @@ The [factor][ref12] function (part of base R), attaches descriptive labels to ca
 
 In this code, I store any changes made to the original data as a new tibble. If you do this, document at the top of the program what change was made in the new file.
 
+[ref12]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/factor.html
+
 ## Creating factors, 2
 
 ```{r}
 #| label: survived
-
 ti_1 |>
   count(survived) |>
   mutate(total=sum(n)) |>
@@ -191,7 +191,6 @@ Things did not go well for the passengers of the Titanic. Only about a third of 
 
 ```{r}
 #| label: re-order
-
 ti_1 |>
   mutate(pclass=factor(pclass, levels=c("3rd", "2nd", "1st"))) |>
   count(pclass) |>
@@ -209,7 +208,6 @@ When R processes strings, it will arrange them by default in alphabetical order.
 
 ```{r}
 #| label: recode-pclass
-
 ti_1 |>
   mutate(
     third_class=
@@ -232,7 +230,6 @@ There are no missing values for pclass, but accounting for missing values as the
 
 ```{r}
 #| label: count-third-class
-
 ti_2 |>
   count(third_class) |>
   mutate(total=sum(n)) |>
@@ -243,9 +240,9 @@ ti_2 |>
 
 #### Comments on the code
 
-The [case_when][ref11] function (part of the dplyr/tidyverse libraries) creates a new variable or modifies an old variable based on a sequence of logical conditions.
+The [case_when][ref14] function (part of the dplyr/tidyverse libraries) creates a new variable or modifies an old variable based on a sequence of logical conditions.
 
-[ref11]: https://dplyr.tidyverse.org/reference/case_when.html
+[ref14]: https://dplyr.tidyverse.org/reference/case_when.html
 
 #### Interpretation of the output
 
@@ -255,7 +252,6 @@ As noted earlier, a bit more than half of the passengers were in third class.
 
 ```{r}
 #| label: recode-age
-
 ti_2 |>
   mutate(
     child=
@@ -266,11 +262,14 @@ ti_2 |>
         TRUE ~ "No")) -> ti_3
 ```
 
+#### Comments on the code
+
+Notice again how you should check for missing values first. The code also checks for zero or negative ages (although there aren't any) just because it is a good habit you should develop.
+
 ## Converting continuous data to categorical data, 2
 
 ```{r}
 #| label: count-child
-
 ti_3 |>
   count(child) |>
   mutate(total=sum(n)) |>
@@ -287,27 +286,60 @@ A large fraction (almost half) of the ages are missing. Of the non-missing ages,
 
 ```{r}
 #| label: two-way
-
 ti_3 |>
 	count(sex, survived) -> sex_survived_crosstab
 sex_survived_crosstab
 ```
 
+#### Comments on the code
+
+The count function can also work with two (or more arguments). In this example, it calculates every possible combination of sex and survived:
+
+-   female died
+-   female alive
+-   male died
+-   male alive
+
+#### Interpretation of the output.
+
+The largest group on the Titanic was male deaths. There were only about half as many female survivors. The smallest counts were male survivors and female deaths.
+
+## Arranged in a table
+
+```{r}
+#| label: table
+sex_survived_crosstab |>
+	pivot_wider(
+		names_from="survived",
+		values_from="n") -> sex_survived_crosstabtable
+sex_survived_crosstabtable
+```
+
+#### Comments on the code
+
+The [pivot_wider][ref15] function (part of the dplyr/tidyverse libraries) will spread data across multiple columns. In this case, it places the counts of the survivors in one column and places the counts of the deaths in a separate column. This produces a rectangular format that most other statistical software programs use. In fact, the table function with two arguments will also produce the table you see here. There's a subtle difference, though. The table function produces an array rather than a tibble.
+
+If you wanted the counts for males in one column and the counts for females in a separate column, change the names from argument from "survived" to "sex".
+
+[ref15]: https://tidyr.tidyverse.org/reference/pivot_wider.html
+
 ## Overall percents
 
 ```{r}
 #| label: overall
-
 sex_survived_crosstab |>
   mutate(total=sum(n)) |>
   mutate(pct=round(100*n/total))
 ```
 
+#### Comments on the code
+
+There are three different percentages that you can calculate for this table. The first mutate command places the grand total (1,313) in each row of the data and the second mutate command computes a percentage. For the sake of simplicity, I did not use the glue function to create a nice display for these percentage.
+
 ## Percents by sex
 
 ```{r}
 #| label: by-sex
-
 sex_survived_crosstab |>
   group_by(sex) |>
   mutate(total=sum(n)) |>
@@ -318,11 +350,22 @@ sex_survived_crosstab |>
   select(survived, pct_survived)
 ```
 
+#### Comments on the code
+
+The [group_by][ref16] function (part of the dplyr/tidyverse libraries) creates a grouped tibble. A grouped tibble is a modification of the tibble that allows you to make calculations across subsets. In this case, the mutate function immediately following the group_by statement calculates separate totals for male and female passengers. This produces a set of conditional probabilities, the probability of death/survival separately for males and females. 
+
+Since death/survival is a binary event, you do not need to display both. The filter command keeps the survival probabilities and drops the death probabilities.
+
+[ref16]: https://dplyr.tidyverse.org/reference/group_by.html
+
+#### Interpretation of the output
+
+Most of the female passengers survived, about two out of every three. Very few male passengers survived, about one out of every six.
+
 ## Percents by survived
 
 ```{r}
 #| label: by-survived
-
 sex_survived_crosstab |>
   group_by(survived) |>
   mutate(total=sum(n)) |>
@@ -330,26 +373,21 @@ sex_survived_crosstab |>
   filter(sex=="female")  |>
   mutate(pct_female=glue("{pct}% ({n}/{total})")) |>
   ungroup() |>
-  select(sex, pct_female)
+  select(survived, pct_female)
 ```
 
-## Arranged in a table
+#### Comments on the code
 
-```{r}
-#| label: table
+Using survived as the argument in the group_by function creates a different set of conditional probabilities, The probability of being a male or female passenger given that you survived or given that you died.
 
-sex_survived_crosstab |>
-	pivot_wider(
-		names_from="survived",
-		values_from="n") -> sex_survived_crosstabtable
-sex_survived_crosstabtable
-```
+#### Interpretation of the output
+
+Only a small percentage of deaths (less than one in five) was female deaths. Among survivors, more than two-thrids were female.
 
 ## clustered bar chart, 1
 
 ```{r}
 #| label: clustered-1
-
 sex_survived_crosstab |>
 	ggplot() +
 	  aes(x=sex, y=n, fill=survived) +
@@ -358,6 +396,14 @@ sex_survived_crosstab |>
 	    color="black",
 	    position="dodge")
 ```
+
+#### Comments on the code
+
+The geom_col function can produce clustered bar charts. The cluster is defined by the fill argument in the aes function. The position="dodge" argument inside the geom_col function tells R that you want the clustered bars to appears side by side.
+
+#### Interpretation of the output
+
+The largest bar with a count of over 700 is for male deaths. The next largest bar, slighltly more than 300 is for female survivors. The two smallest bars around 150 passengers each are for male survivors and female deaths.
 
 ## clustered bar chart, 2
 
@@ -373,6 +419,14 @@ sex_survived_crosstab |>
 	    position="stack")
 ```
 
+#### Comments on the code
+
+If you replace position="dodge" with position= "stack", the bars are placed on the left and right of each other (or top and bottom if you didn't use coord_flip). This makes for a slightly different interpretation.
+
+#### Interpretation of the output
+
+The vast majority of male passengers died, while most of the female passengers survived.
+
 ## Odds ratio
 
 ```{r}
@@ -380,6 +434,18 @@ sex_survived_crosstab |>
 
 oddsratio(x=ti_3$sex, y=ti_3$survived)
 ```
+
+#### Comments on the code
+
+The [oddsratio][ref17] function (part of the epitools package) uses a bit different syntax. It does not have a data= argument and that means that you need to specify both the tibble and the variable separated by a dollar sign. This also makes it difficult for you to include this function inside a series of pipes. 
+
+This is common for many libraries (and for major parts of base R) and is a glaring inconsistency in the R language.
+
+[ref17]: https://cran.r-project.org/web/packages/epitools/epitools.pdf
+
+#### Interpretation of the output
+
+The odds of survival is ten times lower for males than females. The confidence interval excludes the value of 1, so there is a statistically significant decrease in risk of survival for male passengers compared to female passengers.
 
 ## Relative risk
 
@@ -389,3 +455,14 @@ oddsratio(x=ti_3$sex, y=ti_3$survived)
 riskratio(x=ti_3$sex, y=ti_3$survived)
 ```
 
+#### Comments on the code
+
+The riskratio function is also part of the epitools library and is documented in the previous link.
+
+#### Interpretation of the output
+
+The probability of survival is four times lower for males than females. Notice that this is quite different from the odds ratio. When to use the odds ratio and when to use the relative risk is well beyond the scope of this class. I have an [informal explanation][ref18] of the issues involved on my website that happens to use this same dataset as one of the illustrative examples.
+
+The confidence interval excludes the value of 1, so there is a statistically significant decrease in risk of survival for male passengers compared to female passengers.
+
+[ref18]: http://www.new.pmean.com/or-vs-rr/
