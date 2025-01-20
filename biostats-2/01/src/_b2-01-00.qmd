@@ -1,0 +1,204 @@
+---
+title: "01-00, Create and store datasets and functions for module01 slides"
+format: 
+  html:
+    embed-resources: true
+editor: source
+---
+
+## File details
+
+This program was written by Steve Simon on 2025-01-20 and is placed in the public domain. You can use this program any way you please.
+
+This program reads data on a study of breast feeding in preterm infants. Refer to the [data dictionary][ref01] for a more detailed description.
+
+[ref01]: https://github.com/pmean/data/blob/main/files/breast-feeding-preterm.yaml
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(glue)
+library(tidyverse)
+R.version.string
+Sys.Date()
+```
+
+## Intermediate datasets
+
+-   bf: Original file
+-   bf_1: Replace -1 throughout with NA
+-   bf_2: Create indicator for treatment
+-   bf_3: Create indicator for control
+
+## Read breast-feeding-preterm data
+
+```{r}
+#| label: read-bf
+#| message: false
+#| warning: false
+
+bf <- read_csv(
+  file="../data/breast-feeding-preterm.csv",
+  col_names=TRUE)
+glimpse(bf)
+```
+
+## Replace -1 with NA
+
+```{r}
+#| label: replace-missing
+
+bf |>
+  mutate(age_stop=na_if(age_stop, -1)) -> bf_1
+```
+
+#### Comments on the code
+
+The [na_if][ref01] function (part of the dplyr/tidyverse library) replaces values in a vector with the code for missing in R (NA). In this code, any value of age_stop equal to -1 is converted to missing. There are several variables where this needs to be done, but in all of the analyses planned on this data, conversion to NA is only needed for age_stop.
+
+[ref01]: https://dplyr.tidyverse.org/reference/na_if.html 
+
+## Descriptive statistics for feed_type
+
+```{r}
+#| label: feed_type
+
+bf_1 |>
+  count(feed_type) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})"))
+```
+
+#### Interpretation of the output
+
+## Descriptive statistics for age_stop
+
+```{r}
+#| label: age_stop-1
+
+bf_1 |>
+  summarize(
+    stop_mean=round(mean(age_stop, na.rm=TRUE), 1),
+    stop_sd=round(sd(age_stop, na.rm=TRUE), 1),
+    stop_min=min(age_stop, na.rm=TRUE),
+    stop_max=max(age_stop, na.rm=TRUE),
+    n_missing=sum(is.na(age_stop)))
+```
+
+#### Interpretation of the output
+
+## Histogram for age_stop
+
+```{r}
+#| label: age_stop-2
+bf_1 |>
+  filter(!is.na(age_stop)) |>
+  ggplot() +
+    aes(x=age_stop) +
+    geom_histogram(
+      binwidth=5,
+      color="black",
+      fill="white")
+```
+
+#### Interpretation of the output
+
+## Descriptive statistics for mom_age
+
+```{r}
+#| label: mom_age-1
+
+bf_1 |>
+  summarize(
+    mom_age_mean=round(mean(mom_age, na.rm=TRUE), 1),
+    mom_age_sd=round(sd(mom_age, na.rm=TRUE), 1),
+    mom_age_min=min(mom_age, na.rm=TRUE),
+    mom_age_max=max(mom_age, na.rm=TRUE),
+    n_missing=sum(is.na(mom_age)))
+```
+
+#### Interpretation of the output
+
+## Histogram for mom_age
+
+```{r}
+#| label: mom_age-2
+bf_1 |>
+  filter(!is.na(mom_age)) |>
+  ggplot() +
+    aes(x=mom_age) +
+    geom_histogram(
+      binwidth=5,
+      color="black",
+      fill="white")
+```
+
+#### Interpretation of the output
+
+## Scatterplot of mom_age versus age_stop
+
+#### Interpretation of the output
+
+## Create regression model and coefficients
+
+```{r}
+#| label: plot-bf-1
+m1 <- lm(age_stop~mom_age, data=bf)
+b <- coef(m1)
+```
+
+## Create simple dataset
+
+```{r}
+#| label: read-simple
+fn <- "../data/hypothetical-correlation.csv"
+read_csv(file=fn) %>% 
+  data.frame() %>%
+  set_names(c("y", "x")) -> simple
+```
+
+## Create draw_line function
+
+```{r}
+#| label: draw-line
+draw_line <- function(a, b, d=simple, pts=simple$y) {
+  d$pts <- pts
+  d$pred <- a+b*d$x
+  d$res <- d$pts-d$pred
+  sse <- sum(d$res^2)
+  d %>%
+    ggplot(aes(x, y)) +
+      expand_limits(x=c(0, 20), y=c(-5, 40)) +
+      geom_point(aes(x=x, y=pts)) +
+      geom_segment(aes(
+        x=x, 
+        y=pts, 
+        xend=x, 
+        yend=pred)) +
+      geom_segment(aes(
+        x=0,
+        y=a,
+        xend=20,
+        yend=a+b*20)) +
+      geom_label(aes(
+        x=x,
+        y=-3,
+        label=res))
+}
+```
+
+## Save everything
+
+```{r}
+#| label: save
+save(
+  bf, 
+  m1, 
+  b, 
+  simple, 
+  draw_line, 
+  file="../data/module01.RData")
+```

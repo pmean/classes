@@ -7,10 +7,135 @@ format:
 editor: source
 ---
 
-## TBA-3
+## Categorical independent variables, 1
 
-::: notes
+-   Regression equation
+    -   $Y_i=\beta_0+\beta_1 X_i+\epsilon_i$
+-   How do you modify this if $X_i$ is categorical?
+    -   Indicator variables
+-   Examples
+    -   Treatment: active drug=1, placebo=0
+    -   Second hand smoke: exposed=1, not exposed=0
+    -   Gender: male=1, female=0
+-   To be discussed later: three of more category levels 
 
-Add note here.
+:::notes
+The regression equation expects a numerical value for both X_i and Y_i. What if X_i is a categorical variable like treatment group, second-hand smoke exposure, or gender? You can't plug a category like "active drug" or "placebo" into this equation.
 
-::::
+The trick is to convert your categorical variable into an indicator variable. An indicator variable is equal to 1 for a particular category and 0 for the other category.
+
+It is a bit arbitrary which category gets the 1 and which gets the 0. I like to visualize the choice as 0 representing the absence of a quality and 1 representing the presence of a quality. So I always choose 0 for the placebo group and 1 for the active drug. I choose 0 for the unexposed group and 1 for the group with exposure.
+
+So for gender, I always use 0 for females and 1 for males. This represents absence or presence of the y-chromosome.
+:::
+  
+## Categorical independent variables, 2
+
+-   If $X_i$ = 0
+    -   $Y_i=\beta_0 + \beta_1 (0) + \epsilon_i$
+    -   $Y_i=\beta_0 + \epsilon_i$
+-   If $X_i$ = 1
+    -   $Y_i=\beta_0 + \beta_1 (1) + \epsilon_i$
+    -   $Y_i=\beta_0 + \beta_1 + \epsilon_i$
+
+:::notes
+When X is equal to either zero or one, the equation simplifies. For the "zero category", Y is just equal to beta0 plus epsilon. For the "one category", Y is equal to beta0 plus beta1 plus epsilon.
+:::
+
+## Categorical independent variables, 3
+
+-   Intperetation
+    -    $b_0$ is the estimated average value of Y when X equals the "zero category"
+    -    $b_1$ is the estimated average change in Y when X changes from the "zero category" to the "one category."
+    
+:::notes
+The intepretation changes, but only slightly, when X is an indicator variable.
+:::
+
+## Creating an indicator variable
+
+```{r fev-1}
+library(tidyverse)
+load("../data/module07.RData")
+pulmonary |>
+	select(fev, sex) |>
+	mutate(sex_male=as.numeric(sex=="M")) -> fev_a
+slice(fev_a, 1:6)
+```
+
+:::notes
+Here is a small piece of the fev dataset with an indicator variable, sex_male, added.
+:::
+
+## Graphical display using the indicator variable
+
+```{r fev-2}
+fev_a |>
+	ggplot(aes(sex_male, fev)) + 
+	  geom_point(shape=1, size=2) +
+	  geom_smooth(
+	  	method="lm", 
+	  	se=FALSE) +
+	  ggtitle("Plot drawn by Steve Simon on 2024-09-27") +
+	  xlab("Indicator variable for sex=M") +
+	  ylab("Forced expiratory volume (liters)")
+```
+
+:::notes
+It's a bit hard to read this graph, but it looks like the line is around 2.4 when X equals zero. That would be the intercept. The line does show an increase . At X equals one, the line appears to be around 2.8. This is a 0.4 unit increase in Y for a one unit increase in X.
+:::
+
+## Linear regression using the indicator variable
+
+```{r fev-3}
+m1 <- lm(fev ~ sex_male, data=fev_a)
+m1
+```
+
+The estimated average fev value is 2.45 liters for females. The estimated average fev value is 0.36 liters larger for males.
+
+:::notes
+The intercept represents the estimated average value of Y when X equals zero. In this case, it represents the estimated average fev for female.s The slope represents the estimated average value of Y when X increases by one unit. In this case, it represents how much larger the estimated average fev is for males compared to females.
+:::
+
+## Graphical display using alternate indicator variable
+
+```{r fev-4}
+pulmonary |>
+	select(fev, sex) |>
+	mutate(sex_female=as.numeric(sex=="F")) -> fev_b
+fev_b |>
+	ggplot(aes(sex_female, fev)) + 
+	  geom_point(shape=1, size=2) +
+	  geom_smooth(
+	  	method="lm", 
+	  	se=FALSE) +
+	  ggtitle("Plot drawn by Steve Simon on 2024-09-27") +
+	  xlab("Indicator variable for sex=F") +
+	  ylab("Forced expiratory volume (liters)")
+```
+
+:::notes
+The choice of 1 for males was arbitrary, and you could have just as easily designated 1 as the female category. When you do, the graph flips. The intercept is a bit larger (2.8) and the slope is negative.
+:::
+
+## Linear regression using alternate indicator variable
+
+```{r fev-5}
+m1 <- lm(fev ~ sex_female, data=fev_b)
+m1
+```
+
+## Letting your software create the indicator variable
+
+-   Different rules for different software
+    -   SPSS, SAS: first alphabetical category=1, second=0
+    -   R: second alphabetical category=1, first=0
+-   Always compare your output to the descriptive statistics
+
+:::notes
+You don't have to create the indicator variable yourself. Most statistical software will do it for you. Just be careful because the software has to make an arbitrary choice. SPSS and SAS choose the first category that appears when you put the data in alphabetical order. So they would choose females as 1 because the "F" code for sex appears alphabetically before the "M" code for sex. R does the opposite. If you ask R to create indicator variables automatically, it codes males as 1.
+
+It is easy to get confused about this, so you should always orient yourself by looking at the graphs and simple descriptive statistics before trying to interpret the output from a linear regression model.
+:::
+
