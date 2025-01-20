@@ -35,7 +35,7 @@ identify_files <- function(subdir) {
 ```{r}
 #| label: sweep
 
-sweep_files <- function( subdir, file_name) {
+sweep_files <- function(subdir, file_name) {
   old <- glue("../{subdir}/src/{file_name}")
   new <- glue("../{subdir}/results/{file_name}")
   file.rename(from=old, to=new)
