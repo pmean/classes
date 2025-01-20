@@ -23,10 +23,10 @@ library(tidyverse)
 ```{r}
 #| label: identify
 
-identify_files <- function(subdir) {
+identify_files <- function(subdir, ext) {
   list.files(
     path=glue("../{subdir}/src"),
-    pattern="html")
+    pattern=ext)
 }
 ```
 
@@ -50,7 +50,10 @@ sweep_files <- function(subdir, file_name) {
 modules <- c(glue("0{1:9}"), as.character(10:14))
 for (s in modules) {
   print(glue("Searching in module {s}"))
-  file_list <- identify_files(s)
+  file_list <- character(0)
+  for (ext in c("html", "pdf", "pptx")) {
+    file_list <- c(file_list, identify_files(s, ext))
+  }
   if (length(file_list) == 0) next
   print(glue("{s}/{file_list}"))
   for (f in file_list) {

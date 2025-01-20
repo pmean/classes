@@ -3049,17 +3049,17 @@ vertical-align: -.125em;
 <section id="identify-html-files" class="level2">
 <h2 class="anchored" data-anchor-id="identify-html-files">Identify html files</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>identify_files <span class="ot">&lt;-</span> <span class="cf">function</span>(subdir) {</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>identify_files <span class="ot">&lt;-</span> <span class="cf">function</span>(subdir, ext) {</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list.files</span>(</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">path=</span><span class="fu">glue</span>(<span class="st">&quot;../{subdir}/src&quot;</span>),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">pattern=</span><span class="st">&quot;html&quot;</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">pattern=</span>ext)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="move-html-files" class="level2">
 <h2 class="anchored" data-anchor-id="move-html-files">Move html files</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sweep_files <span class="ot">&lt;-</span> <span class="cf">function</span>( subdir, file_name) {</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sweep_files <span class="ot">&lt;-</span> <span class="cf">function</span>(subdir, file_name) {</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  old <span class="ot">&lt;-</span> <span class="fu">glue</span>(<span class="st">&quot;../{subdir}/src/{file_name}&quot;</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  new <span class="ot">&lt;-</span> <span class="fu">glue</span>(<span class="st">&quot;../{subdir}/results/{file_name}&quot;</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.rename</span>(<span class="at">from=</span>old, <span class="at">to=</span>new)</span>
@@ -3072,28 +3072,57 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>modules <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">glue</span>(<span class="st">&quot;0{1:9}&quot;</span>), <span class="fu">as.character</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">14</span>))</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (s <span class="cf">in</span> modules) {</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">&quot;Searching in module {s}&quot;</span>))</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  file_list <span class="ot">&lt;-</span> <span class="fu">identify_files</span>(s)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(file_list) <span class="sc">==</span> <span class="dv">0</span>) <span class="cf">next</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">&quot;{s}/{file_list}&quot;</span>))</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (f <span class="cf">in</span> file_list) {</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sweep_files</span>(s, f)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  file_list <span class="ot">&lt;-</span> <span class="fu">character</span>(<span class="dv">0</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (ext <span class="cf">in</span> <span class="fu">c</span>(<span class="st">&quot;html&quot;</span>, <span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;pptx&quot;</span>)) {</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    file_list <span class="ot">&lt;-</span> <span class="fu">c</span>(file_list, <span class="fu">identify_files</span>(s, ext))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(file_list) <span class="sc">==</span> <span class="dv">0</span>) <span class="cf">next</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">&quot;{s}/{file_list}&quot;</span>))</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (f <span class="cf">in</span> file_list) {</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sweep_files</span>(s, f)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Searching in module 01
 Searching in module 02
 Searching in module 03
 Searching in module 04
+04/b2-week-04.html
+04/b2-week-04.pdf
 Searching in module 05
+05/b2-week-05.html
+05/b2-week-05.pdf
 Searching in module 06
+06/b2-week-06.html
+06/b2-week-06.pdf
 Searching in module 07
+07/b2-week-07.html
+07/b2-week-07.pdf
 Searching in module 08
+08/b2-week-08.html
+08/b2-week-08.pdf
 Searching in module 09
+09/b2-module-09.html
+09/b2-module-09.pdf
 Searching in module 10
+10/_b2-10-01.html
+10/b2-module-10.html
+10/b2-module-10.pdf
 Searching in module 11
+11/b2-module-11.html
+11/b2-module-11.pdf
 Searching in module 12
+12/_b2-12-04.html
+12/b2-module-12.html
+12/b2-module-12.pdf
 Searching in module 13
-Searching in module 14</code></pre>
+13/b2-module-13.html
+13/b2-module-13.pdf
+Searching in module 14
+14/_b2-14-02.html
+14/_b2-14-07.html
+14/b2-module-14.html
+14/b2-module-14.pdf</code></pre>
 </div>
 </div>
 </section>

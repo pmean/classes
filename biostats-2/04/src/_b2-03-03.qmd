@@ -1,0 +1,94 @@
+---
+title: "Mathematical model"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Mathematical model
+
+-   $Y_i=\beta_0+\beta_1 X_i+\beta_2 T_i+\epsilon_i$
+    -   $X_i$ is the covariate
+    -   $T_i$ is an indicator variable for treatment
+-   Estimate $\hat\beta_0,\ \hat\beta_1,\ \hat\beta_2$
+
+::: notes
+
+:::
+
+## Interpretation, 1 of 4
+
+-   $\hat\beta_0$
+    -   estimated average value of Y
+        -   when X=0, T=0
+
+## Interpretation, 2 of 4
+
+-   $\hat\beta_1$
+    -   estimated average change in Y
+        -   when X increases by one unit and 
+        -   T is held constant
+
+## Interpretation, 3 of 4
+
+-   $\hat\beta_2$
+    -   estimated average change in Y
+    -   when T increases by one unit and 
+    -   X is held constant
+
+## Interpretation, 4 of 4
+
+-   $\hat\beta_0$ is intercept for controls
+-   $\hat\beta_0+\hat\beta_2$ is intercept for treatment
+
+$\ $
+
+-   $\hat\beta_2$ is the adjusted average difference between the treatment and the control
+
+## Diference in price adjusted for size
+
+![](images/housing-analysis-12.png)
+
+## Visualization
+
+![](images/housing-analysis-13.png)
+
+
+## Interpretation
+
+-   The estimated average price for a regular home with zero square feet is 11 thousand dollars.
+-   The adjusted average difference in price between a regular house and a custom built house holding the size of the house constant is 14 thousand dollars
+-   The estimated average price increases by 55 dollars when the size increases by one square foot, holding the type of house (regular or custom build) constant.
+
+##
+
+-   Unadjusted
+    -   $11.413 + 14.286*0 + 0.055*1505.30 = `r 11.413 + 14.286*0 + 0.055*1505.30`$
+    -   $11.413 + 14.286*1 + 0.055*2149.04 = `r 11.413 + 14.286*1 + 0.055*2149.04`$
+-   Adjusted
+    -   $11.413 + 14.286*0 + 0.055*1653.85 = `r 11.413 + 14.286*0 + 0.055*1653.85`$
+    -   $11.413 + 14.286*1 + 0.055*1653.85 = `r 11.413 + 14.286*1 + 0.055*1653.85`$
+
+::: notes
+0.055
+
+1505.30
+2149.04
+
+1653.85
+
+94.7522
+144.6778
+
+106.2735
+
+11.413
+14.286
+0.055
+:::
+
+## Visualization
+
+![](images/housing-analysis-14.png)
