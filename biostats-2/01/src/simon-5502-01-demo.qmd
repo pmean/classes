@@ -154,13 +154,16 @@ Not ready yet
 
 #### Interpretation of the output
 
-## Create regression model and coefficients
+Not ready yet
+
+## Create regression model predicting age_stop from mom_age
 
 ```{r}
 #| label: plot-bf-1
 m1 <- lm(age_stop~mom_age, data=bf)
 tidy(m1)
 ```
+
 
 
 ## Save everything
