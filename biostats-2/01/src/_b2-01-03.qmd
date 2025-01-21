@@ -54,12 +54,24 @@ The intepretation changes, but only slightly, when X is an indicator variable.
 
 ## Creating an indicator variable
 
-```{r fev-1}
+```{r}
+#| label: setup-3
+#| message: false
+#| warning: false
 library(tidyverse)
-load("../data/module07.RData")
-pulmonary |>
-	select(fev, sex) |>
-	mutate(sex_male=as.numeric(sex=="M")) -> fev_a
+load("../data/module01.RData")
+```
+
+```{r}
+#| label: print-categorical
+bf |>
+	select(feed_type, age_stop) |>
+	mutate(
+	  i_treatment =
+	    case_when(
+	      is.na(feed_type) ~ NA,
+	      feed_type=="Control" ~ 0,
+	      feed_type=="Treatmen" ~ 1)) -> bf_1
 slice(fev_a, 1:6)
 ```
 
