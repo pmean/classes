@@ -1,5 +1,5 @@
 ---
-title: "01-00, Create and store datasets and functions for module01 slides"
+title: "5502 module 01 demonstration program"
 format: 
   html:
     embed-resources: true
@@ -74,6 +74,8 @@ bf_1 |>
 
 #### Interpretation of the output
 
+Slightly more than half of the infants are in the control group.
+
 ## Descriptive statistics for age_stop
 
 ```{r}
@@ -89,6 +91,8 @@ bf_1 |>
 ```
 
 #### Interpretation of the output
+
+The average infant stopped breast feeding before 17 weeks. There is a lot of spread in the data with infants stopping after only one week to stopping after 34 weeks.
 
 ## Histogram for age_stop
 
@@ -106,6 +110,8 @@ bf_1 |>
 
 #### Interpretation of the output
 
+The distribution appears to be bimodal.
+
 ## Descriptive statistics for mom_age
 
 ```{r}
@@ -121,6 +127,8 @@ bf_1 |>
 ```
 
 #### Interpretation of the output
+
+The average mother is 27 years old, with a moderate standard deviation of 7. The ages range from 16 to 44 years, which are reasonable values.
 
 ## Histogram for mom_age
 
@@ -138,7 +146,11 @@ bf_1 |>
 
 #### Interpretation of the output
 
+The distribution of mother's ages appears to be reasonably close to a normal distribution.
+
 ## Scatterplot of mom_age versus age_stop
+
+Not ready yet
 
 #### Interpretation of the output
 
@@ -147,48 +159,9 @@ bf_1 |>
 ```{r}
 #| label: plot-bf-1
 m1 <- lm(age_stop~mom_age, data=bf)
-b <- coef(m1)
+tidy(m1)
 ```
 
-## Create simple dataset
-
-```{r}
-#| label: read-simple
-fn <- "../data/hypothetical-correlation.csv"
-read_csv(file=fn) %>% 
-  data.frame() %>%
-  set_names(c("y", "x")) -> simple
-```
-
-## Create draw_line function
-
-```{r}
-#| label: draw-line
-draw_line <- function(a, b, d=simple, pts=simple$y) {
-  d$pts <- pts
-  d$pred <- a+b*d$x
-  d$res <- d$pts-d$pred
-  sse <- sum(d$res^2)
-  d %>%
-    ggplot(aes(x, y)) +
-      expand_limits(x=c(0, 20), y=c(-5, 40)) +
-      geom_point(aes(x=x, y=pts)) +
-      geom_segment(aes(
-        x=x, 
-        y=pts, 
-        xend=x, 
-        yend=pred)) +
-      geom_segment(aes(
-        x=0,
-        y=a,
-        xend=20,
-        yend=a+b*20)) +
-      geom_label(aes(
-        x=x,
-        y=-3,
-        label=res))
-}
-```
 
 ## Save everything
 
@@ -197,8 +170,5 @@ draw_line <- function(a, b, d=simple, pts=simple$y) {
 save(
   bf, 
   m1, 
-  b, 
-  simple, 
-  draw_line, 
   file="../data/module01.RData")
 ```
