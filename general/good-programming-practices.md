@@ -15,7 +15,7 @@ There are **standards in six areas**:
 
 There **may be times when one or two of these standards do not apply**. Which
 standards apply and which don't should be obvious from the nature of the 
-programming assignment.
+programming assignment. Ask if you are unsure what is required.
 
 ## Documentation is required!
 
@@ -87,7 +87,7 @@ Always modify your graphs. **Do not settle for the default options**.
 
 ## Data dictionary
 
-If you include a **data set that you found on your own** rather than one that 
+If you use a **data set that you found on your own** rather than one that 
 your instructors provided, you must include a data dictionary. The elements of
 a data dictionary should include:
 
@@ -124,13 +124,13 @@ might take several forms:
     -   Do not use without permission
 -   Open source license
     -   Use the data with just a few restrictions
-        -   Cite the original source, [CC-By][refg1]
-        -   No commercial re-use [CC-By-NC][refg2]
-        -   Do not modify [CC-By-ND][refg3]
+        -   Cite the original source, [CC-By][ref81]
+        -   No commercial re-use [CC-By-NC][ref82]
+        -   Do not modify [CC-By-ND][ref83]
         
-[refg1]: https://creativecommons.org/licenses/by/4.0/
-[refg2]: https://creativecommons.org/licenses/by-nc/4.0/
-[refg3]: https://creativecommons.org/licenses/by-nd/4.0/
+[ref81]: https://creativecommons.org/licenses/by/4.0/
+[ref82]: https://creativecommons.org/licenses/by-nc/4.0/
+[ref83]: https://creativecommons.org/licenses/by-nd/4.0/
 
 ## Data dictionary: Size
 
@@ -168,4 +168,3 @@ might take several forms:
 ## File details
 
 This file was written by Steve Simon on 2024-12-26. It is in the public domain and you can use it any way you please.
-

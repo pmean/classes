@@ -17,34 +17,6 @@ execute:
   echo: true
 ---
 
-## Special note
-
-+ This slide show was created using R.
-  + Not complicated 
-  + But beyond scope of this class
-  + Combination of several files in [github folder][ref01]
-  + Slightly obsolte explanation on [my blog][ref02]
-  + [More current explanation][ref03] on using quarto and reveal.js
-  
-::: notes
-
-Okay. Let's get started.
-
-If you are viewing this presentation, I need to point out that it was developed using R. The process is not very complicated, but it is beyond the scope of this class. 
-
-I do want to note that I have switched recently from doing presentations using Powerpoint to presentations using reveal.js. I really like reveal.js, for a whole host of reasons that are hard to explain. The only difference that you might notice is that the presentations using reveal.js are html files. That means that you open them up using a web browser rather than Powerpoint.
-
-If you are curious, you can look at the code that I used to develop this
-PowerPoint presentation. It's all on my github site.
-
-But don't feel obligated to look at it. You will not be responsible for any of this in an introductory class.
-
-It may seem a bit weird to have an R program that creates a presentation that talks about a different R program, but it works well for me.
-
-:::
-
-
-
 ## Topics to be covered
 
 ```{r}
@@ -128,10 +100,6 @@ It may seem a bit weird to have an R program that creates a presentation that ta
     -   `r params$topic_05`
     -   `r params$topic_06`
     -   `r params$topic_07`
-
-[ref01]: https://github.com/pmean/classes/tree/master/introduction-to-r/01/src
-[ref02]: http://blog.pmean.com/powerpoint-with-r-markdown/
-[ref03]: https://quarto.org/docs/presentations/revealjs/
 
 <!---
       You have to put the title down 

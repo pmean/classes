@@ -13,11 +13,11 @@ title: "Syllabus: Applied Biostatistics II, MEDB 5505, 2025 Spring Semester"
 
 ## Instructor Response Time
 
-We prefer contact by email, but will respond to telephone calls or messages on Canvas. We are teaching multiple classes, so please remind us which class you are in. 
+We **prefer contact by email**, but will respond to telephone calls or messages on Canvas. We are teaching multiple classes, so please **remind us which class you are in**. We will check our email daily, except on weekends. **If you have not received a response withing 48 hours (excluding weekends)**, please feel free to follow up with a reminder email.
 
-We will check our email daily, except on weekends. If you have not received a response withing 48 hours (excluding weekends), please feel free to follow up with a reminder email.
+---
 
-You can attend weekly review sessions and ask questions about anything. Times and Zoom link information are available on Canvas. You can also schedule individual sessions, either via Zoom or face-to-face.
+You can attend **weekly review sessions** and ask questions about anything. Times and Zoom link information are available on Canvas. You can also **schedule individual sessions**, either via **Zoom** or **face-to-face**.
 
 ## MEDB 5502, Applied Biostatistics II, 3 credit hours
 
