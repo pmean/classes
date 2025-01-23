@@ -13,6 +13,8 @@ There are **standards in six areas**:
 -   Interpretation
 -   Conciseness
 
+---
+
 There **may be times when one or two of these standards do not apply**. Which
 standards apply and which don't should be obvious from the nature of the 
 programming assignment. Ask if you are unsure what is required.
@@ -122,6 +124,9 @@ might take several forms:
     -   Use the data any way you wish
 -   Copyright
     -   Do not use without permission
+
+---
+
 -   Open source license
     -   Use the data with just a few restrictions
         -   Cite the original source, [CC-By][ref81]

@@ -11,7 +11,8 @@ params:
   topic_04: "Anatomy of a small R program"
   topic_05: "Live demonstration"
   topic_06: "Good programming practices"
-  topic_07: "Your programming assignment"
+  topic_07: "The tidyverse libraries"
+  topic_08: "Your programming assignment"
 editor: source
 execute: 
   echo: true
@@ -33,6 +34,7 @@ execute:
     -   `r params$topic_05`
     -   `r params$topic_06`
     -   `r params$topic_07`
+    -   `r params$topic_08`
 
 {{< include _r-01-01.qmd >}}
 
@@ -90,6 +92,15 @@ execute:
 
 {{< include _r-01-07.qmd >}}
 
+## Break #7
+
+-   What you have learned
+    -   `r params$topic_07`
+-   What's coming next
+    -   `r params$topic_08`
+
+{{< include _r-01-08.qmd >}}
+
 ## Summary
 
 -   What you have learned
@@ -100,6 +111,7 @@ execute:
     -   `r params$topic_05`
     -   `r params$topic_06`
     -   `r params$topic_07`
+    -   `r params$topic_08`
 
 <!---
       You have to put the title down 
