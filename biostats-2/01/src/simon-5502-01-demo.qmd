@@ -21,6 +21,7 @@ This program reads data on a study of breast feeding in preterm infants. Refer t
 
 library(glue)
 library(tidyverse)
+library(broom)
 R.version.string
 Sys.Date()
 ```
@@ -28,9 +29,11 @@ Sys.Date()
 ## Intermediate datasets
 
 -   bf: Original file
--   bf_1: Replace -1 throughout with NA
+-   bf_1: Replace -1 in age_stop with NA
 -   bf_2: Create indicator for treatment
 -   bf_3: Create indicator for control
+-   m1: regression model using mom_age to predict age_stop
+-   m2: regression model using feed_type to predict age_stop
 
 ## Read breast-feeding-preterm data
 
@@ -45,6 +48,10 @@ bf <- read_csv(
 glimpse(bf)
 ```
 
+#### Comments on the code
+
+Normally, I specify the col_types argument when reading a file. This particular file, however, has 28 columns and I did not want to go through and specify which columns are strings and which are numbers. The read_csv function (and other functions in the readr/tidyverse packages) will peek at the data and make an intelligent guess. Always check this, because sometimes (not too often) the function guesses wrong. The glimpse function confirms that the columns of data are read in properly.
+
 ## Replace -1 with NA
 
 ```{r}
@@ -56,14 +63,14 @@ bf |>
 
 #### Comments on the code
 
-The [na_if][ref01] function (part of the dplyr/tidyverse library) replaces values in a vector with the code for missing in R (NA). In this code, any value of age_stop equal to -1 is converted to missing. There are several variables where this needs to be done, but in all of the analyses planned on this data, conversion to NA is only needed for age_stop.
+The [na_if][ref02] function (part of the dplyr/tidyverse library) replaces values in a vector with the code for missing in R (NA). In this code, any value of age_stop equal to -1 is converted to missing. There are several variables where this needs to be done, but in all of the analyses planned on this data, conversion to NA is only needed for age_stop.
 
-[ref01]: https://dplyr.tidyverse.org/reference/na_if.html 
+[ref02]: https://dplyr.tidyverse.org/reference/na_if.html 
 
 ## Descriptive statistics for feed_type
 
 ```{r}
-#| label: feed_type
+#| label: descriptives-1
 
 bf_1 |>
   count(feed_type) |>
@@ -76,10 +83,12 @@ bf_1 |>
 
 Slightly more than half of the infants are in the control group.
 
+Notice that the string for the treatment group is truncated to "treatmen". This is needed for other software, but not for R.
+
 ## Descriptive statistics for age_stop
 
 ```{r}
-#| label: age_stop-1
+#| label: descriptives-2
 
 bf_1 |>
   summarize(
@@ -92,12 +101,12 @@ bf_1 |>
 
 #### Interpretation of the output
 
-The average infant stopped breast feeding before 17 weeks. There is a lot of spread in the data with infants stopping after only one week to stopping after 34 weeks.
+The average infant stopped breast feeding before 17 weeks. There is a lot of spread in the data with infants stopping after only one week to stopping after 34 weeks. There are two missing values.
 
 ## Histogram for age_stop
 
 ```{r}
-#| label: age_stop-2
+#| label: histogram-1
 bf_1 |>
   filter(!is.na(age_stop)) |>
   ggplot() +
@@ -105,7 +114,9 @@ bf_1 |>
     geom_histogram(
       binwidth=5,
       color="black",
-      fill="white")
+      fill="white") + 
+  xlab("Age when infant stopped breast feeding (weeks)") +
+  ggtitle("Graph drawn by Steve Simon on 2025-01-23")
 ```
 
 #### Interpretation of the output
@@ -115,7 +126,7 @@ The distribution appears to be bimodal.
 ## Descriptive statistics for mom_age
 
 ```{r}
-#| label: mom_age-1
+#| label: descriptives-3
 
 bf_1 |>
   summarize(
@@ -128,12 +139,13 @@ bf_1 |>
 
 #### Interpretation of the output
 
-The average mother is 27 years old, with a moderate standard deviation of 7. The ages range from 16 to 44 years, which are reasonable values.
+The average mother is 27 years old, with a moderate standard deviation of 7. The ages range from 16 to 44 years, which are reasonable values. There are no missing values.
 
 ## Histogram for mom_age
 
 ```{r}
-#| label: mom_age-2
+#| label: histogram-2
+
 bf_1 |>
   filter(!is.na(mom_age)) |>
   ggplot() +
@@ -141,7 +153,9 @@ bf_1 |>
     geom_histogram(
       binwidth=5,
       color="black",
-      fill="white")
+      fill="white") +
+  xlab("Mother's age (years)") +
+  ggtitle("Graph drawn by Steve Simon on 2025-01-23")
 ```
 
 #### Interpretation of the output
@@ -150,28 +164,150 @@ The distribution of mother's ages appears to be reasonably close to a normal dis
 
 ## Scatterplot of mom_age versus age_stop
 
-Not ready yet
+```{r}
+#| label: plot-1
+bf_1 |>
+  filter(!is.na(age_stop)) |>
+  ggplot() +
+    aes(x=mom_age, y=age_stop) +
+    geom_point() +
+  geom_smooth (method = "lm", color = "red", se=FALSE) +
+  xlab("Mother's age (years)") +
+  ylab("Age when infant stopped breast feeding (weeks)") +
+  ggtitle ("Scatter Plot by Steve Simon and Suman Sahil dated 2025-01-21")
+```
+
+#### Comments on the code
+
+The [geom_smooth][ref03] function adds a trend line to the graph. The argument method="lm" produces a linear trend. This function also provides a variety of nonlinear trend lines. 
+
+The color argument in geom_smooth allows you to use a different color than the default. Here a red line tends to highlight the trend line a bit more than a black line would.
+
+The default in geom_smooth is to include an assessment of variability as a gray region around the trend line. You can suppress this with the se=FALSE argument.
+
+[ref03]: https://ggplot2.tidyverse.org/reference/geom_smooth.html
 
 #### Interpretation of the output
 
-Not ready yet
+The [filter][ref04] function removes rows from a tibble or data frame. In this code, the values removed are the two missing values for age_stop. While the ggplot function would catch and remove those two rows by default, it produces a warning message at the same time. In general, you want to avoid sending output with warning messages to others in your research team, which is why I added the filter step.
+
+There is an upward trend. It is weak, but still real. Older mothers do tend to breast feed longer than younger mothers.
 
 ## Create regression model predicting age_stop from mom_age
 
 ```{r}
-#| label: plot-bf-1
+#| label: regression-1
 m1 <- lm(age_stop~mom_age, data=bf)
 tidy(m1)
 ```
 
+#### Interpretation of the output
 
+The estimated average duration of breast feeding increases by 0.4 weeks for an increase of one year in the mother's age. The intercept represents an extrapolation beyond the range of the data and should not be interpreted.
+
+The p-value for the slope, 0.014, indicates that there is a statstically significant relationship between mother's age and duration of breast feeding.
+
+## Create regression model predicting age_stop from feed_type
+
+```{r}
+#| label: regression-2
+m2 <- lm(age_stop~feed_type, data=bf)
+tidy(m2)
+```
+
+#### Interpretation of the output
+
+Recall that feed_type is a string. When R encounters a string (or a factor) as the independent variable in a linear regression model, it creates one or more indicator variables. In this case, R takes the binary variable, feed_type, and creates an indicator that is equal to 1 for the treatment level and 0 for the control level.
+
+The estimated average duration of breast feeding is a bit less than 13 weeks when the infant is in the control group. The estimated average duration of breast feeding increases by 7.7 weeks when you switch from the control group to the treatment group.
+
+The p-value is reported in scientific notation, but it is simpler just to say that it is less than 0.001. There is a statisticall significant increase in duration of breast feeding in the treatment group.
+
+## Create an indicator variable for the treatment group
+
+```{r}
+#| label: indicator-1
+
+bf_1 |>
+  mutate(
+    i_treatment=
+      case_when(
+        feed_type=="Treatmen" ~ 1,
+        feed_type=="Control" ~ 0)) -> bf_2
+```
+
+#### Comments on the code
+
+There are several ways that you can create an indicator variable yourself. The [case_when][ref04] function is fairly simple, easy to read, and fairly flexible. You assign values of 1 or 0 to a new variable, i_treatment, depending on whether the feed_type variable is equal to "Treatmen" or "Control".
+
+Notice the use of the [double equal sign][ref05]. You use a single equal sign when assigning values to an argument inside a function You use a double equal sign when comparing a variables to a value for equality. This is hard to remember, but you will get better at knowing when to use which as you gain experience with R.
+
+[ref04]: https://dplyr.tidyverse.org/reference/case_when.html
+[ref05]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/Comparison.html
+
+## Scatterplot of age_stop versus feed_type
+
+```{r}
+#| label: plot-2
+bf_2 |>
+  filter(!is.na(age_stop)) |>
+  ggplot() +
+    aes(x=i_treatment, y=age_stop) +
+    geom_point() +
+  geom_smooth (method = "lm", color = "red", se=FALSE) +
+  ggtitle ("This plot was drawn by Steve Simon on 2025-01-23")
+```
+
+#### Interpretation of the output
+
+This plot shows graphically what you saw from the output of the lm function. The intercept is approximately 13 weeks and the slope is approximately 8 weeks.
+
+## Create an indicator variable for the treatment group
+
+```{r}
+#| label: indicator-2
+
+bf_2 |>
+  mutate(
+    i_control=
+      case_when(
+        feed_type=="Control" ~ 1,
+        feed_type=="Treatmen" ~ 0)) -> bf_3
+```
+
+#### Comments on the code
+
+There is nothing that requires that you assign the indicator variable to the treatment group. This code shows how the case_when function changes when you designate 1 for the control group and 0 for the treatment group.
+
+## Alternative scatterplot of age_stop versus feed_type
+
+```{r}
+#| label: plot-3
+bf_3 |>
+  filter(!is.na(age_stop)) |>
+  ggplot() +
+    aes(x=i_control, y=age_stop) +
+    geom_point() +
+  geom_smooth (method = "lm", color = "red", se=FALSE) +
+  ggtitle ("This plot was drawn by Steve Simon on 2025-01-23")
+```
+
+#### Interpretation of the output
+
+This plot shows graphically how the model changes when you use a different indicator variable. The intercept, approximately 21 weeks, represents the estimated average duration of breast feeding when the infant is in the treatment group and the slope is approximately -8 weeks.
+
+If you find yourself interpreting a regression model output and the results for a categorical predictor seem to be going in the "wrong" direction, check to see how your program coded the indicator variable.
 
 ## Save everything
 
 ```{r}
 #| label: save
 save(
-  bf, 
-  m1, 
+  bf,
+  bf_1,
+  bf_2,
+  bf_3,
+  m1,
+  m2,
   file="../data/module01.RData")
 ```
