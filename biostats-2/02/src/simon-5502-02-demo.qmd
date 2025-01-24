@@ -1,0 +1,255 @@
+---
+title: "5502 module 02 demonstration program"
+format: 
+  html:
+    embed-resources: true
+editor: source
+---
+
+## File details
+
+This program was written by Steve Simon on 2025-01-23 and is placed in the public domain. You can use this program any way you please.
+
+This program reads [fat.csv][ref01],a dataset that compares body fat measurements to girth measurements at various body locations. Refer to the [data dictionary][ref02] for a more detailed description.
+
+[ref01]: https://github.com/pmean/data/blob/main/files/fat.csv
+[ref02]: https://github.com/pmean/data/blob/main/files/fat.yaml
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(glue)
+library(tidyverse)
+library(broom)
+R.version.string
+Sys.Date()
+```
+
+## Intermediate files
+
+-   fat: original data from fat.csv
+-   m1: linear regression using chest, abdomen, hip to predict fat_b
+
+## Read the data
+
+```{r}
+#| label: read
+
+fat <- read_csv(
+  file="../data/fat.csv",
+  col_names=TRUE,
+  col_types="n")
+glimpse(fat)
+```
+
+#### Comments on the code
+
+There are 19 columns of data, but they are all numeric, so a single "n" for col_types will do the trick.
+
+## Descriptive statistics for fat_b
+
+```{r}
+#| label: descriptives-1
+
+fat |>
+  summarize(
+    fat_mean=mean(fat_b),
+    fat_sd=sd(fat_b),
+    fat_min=min(fat_b),
+    fat_max=max(fat_b))
+```
+
+#### Interpretation of the output
+
+## Histogram for fat_b
+
+```{r}
+#| label: histogram-1
+
+fat |>
+  ggplot() +
+  aes(x=fat_b) +
+  geom_histogram(
+    binwidth=5,
+    color="black",
+    fill="white") +
+  xlab("Percentage body fat") +
+  ggtitle("Graph drawn by Steve Simon on 2025-01-23")
+```
+
+#### Interpretation of the output
+
+## Descriptive statistics for chest
+
+```{r}
+#| label: descriptives-2
+
+fat |>
+  summarize(
+    chest_mean=mean(chest),
+    chest_sd=sd(chest),
+    chest_min=min(chest),
+    chest_max=max(chest))
+```
+
+#### Interpretation of the output
+
+## Histogram for chest
+
+```{r}
+#| label: histogram-2
+
+fat |>
+  ggplot() +
+  aes(x=chest) +
+  geom_histogram(
+    binwidth=2,
+    color="black",
+    fill="white") +
+  xlab("Chest circumference (cm)") +
+  ggtitle("Graph drawn by Steve Simon on 2025-01-23")
+```
+
+#### Interpretation of the output
+
+
+## Descriptive statistics for abdomen
+
+```{r}
+#| label: descriptives-3
+
+fat |>
+  summarize(
+    abdomen_mean=mean(abdomen),
+    abdomen_sd=sd(abdomen),
+    abdomen_min=min(abdomen),
+    abdomen_max=max(abdomen))
+```
+
+#### Interpretation of the output
+
+## Histogram for abdomen
+
+```{r}
+#| label: histogram-3
+
+fat |>
+  ggplot() +
+  aes(x=abdomen) +
+  geom_histogram(
+    binwidth=2,
+    color="black",
+    fill="white") +
+  xlab("Abdomen circumference (cm)") +
+  ggtitle("Graph drawn by Steve Simon on 2025-01-23")
+```
+
+#### Interpretation of the output
+
+
+## Descriptive statistics for hip
+
+```{r}
+#| label: descriptives-4
+
+fat |>
+  summarize(
+    hip_mean=mean(hip),
+    hip_sd=sd(hip),
+    hip_min=min(hip),
+    hip_max=max(hip))
+```
+
+## Histogram for abdomen
+
+```{r}
+#| label: histogram-4
+
+fat |>
+  ggplot() +
+  aes(x=hip) +
+  geom_histogram(
+    binwidth=2,
+    color="black",
+    fill="white") +
+  xlab("Hip circumference (cm)") +
+  ggtitle("Graph drawn by Steve Simon on 2025-01-23")
+```
+
+#### Interpretation of the output
+
+## Correlations
+
+```{r}
+#| label: correlations
+
+fat |>
+  select(
+    fat_b,
+    chest,
+    abdomen,
+    hip) |>
+  cor() |>
+  round(2)
+```
+
+#### Interpretation of the output
+
+## Linear regression model
+
+```{r}
+#| label: regression-1
+
+m1 <- lm(
+  fat_b ~ chest + abdomen + hip,
+  data=fat)
+
+m0 <- lm(
+  fat_b ~ 1, 
+  data=fat)
+```
+
+## Analysis of variance table
+
+```{r}
+#| label: anova
+
+anova(m0, m1)
+anova(m1)
+```
+
+#### Interpretation of the output
+
+## Coefficient estimates
+
+```{r}
+#| label: coefficients
+
+tidy(m1)
+```
+
+#### Interpretation of the output
+
+## R-squared
+
+```{r}
+#| label: r-squared
+
+glance(m1) |>
+  select(
+    r.squared,
+    adj.r.squared)
+```
+
+#### Interpretation of the output
+
+## Save everything
+
+```{r}
+#| label: save
+save(
+  fat,
+  file="../data/module02.RData")
+```
