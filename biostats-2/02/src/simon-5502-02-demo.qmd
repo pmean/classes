@@ -245,6 +245,12 @@ glance(m1) |>
 
 #### Interpretation of the output
 
+## Residuals
+
+```{r}
+r1 <- augment(m1)
+```
+
 ## Save everything
 
 ```{r}
