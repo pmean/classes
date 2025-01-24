@@ -31,6 +31,7 @@ Sys.Date()
 
 -   fat: original data from fat.csv
 -   m1: linear regression using chest, abdomen, hip to predict fat_b
+-   m0: linear regression with just an intercept
 
 ## Read the data
 
@@ -202,8 +203,12 @@ fat |>
 ```{r}
 #| label: regression-1
 
-m1 <- lm(
+m2 <- lm(
   fat_b ~ chest + abdomen + hip,
+  data=fat)
+
+m1 <- lm(
+  fat_b ~ abdomen,
   data=fat)
 
 m0 <- lm(

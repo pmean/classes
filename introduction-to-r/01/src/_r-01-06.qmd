@@ -12,13 +12,105 @@ editor: source
 ## The format function
 
 ```{r}
-x <- factorial(1:10)
-x
-format(x, big.mark=",")
+#| label: 01-06-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+library(glue)
 ```
+
+```{r}
+#| label: 01-06-big-mark
+#| echo: true
+
+for (i in seq(2, 10, by=2)) {
+	x <- factorial(i)
+	y <- format(x, big.mark=",")
+  print(glue("{i}! = {y}"))
+}
+```
+
+::: notes
+
+The format function with the big.mark argument will insert commas for any numbers larger than 999. This is especially important for numbers in the millions and higher.
+
+:::
 
 ## The round function for large numbers
 
 ```{r}
-round(x, -2)
+#| label: 01-06-round-1
+#| echo: true
+
+for (i in seq(2, 10, by=2)) {
+	x <- factorial(i)
+	y <- round(x, digits=-2)
+  print(glue("{i}! is approximately {y}"))
+}
 ```
+
+::: notes
+
+The round function with the argument digits=-2 will round to the nearest hundred value. 
+
+:::
+
+## The signif function for large numbers
+
+```{r}
+#| label: 01-06-signif-1
+#| echo: true
+
+for (i in seq(2, 10, by=2)) {
+	x <- factorial(i)
+	y <- signif(x, digits=2)
+  print(glue("{i}! is approximately {y}"))
+}
+```
+
+::: notes
+
+Contrast this with the signif function which maintains two significant digits.
+
+:::
+
+## The round function for small numbers
+
+```{r}
+#| label: 01-06-round-2
+#| echo: true
+
+for (i in seq(2, 10, by=2)) {
+	x <- 0.5^i
+	y <- round(x, digits=2)
+  print(glue("0.5^{i} is approximately {y}"))
+}
+```
+
+::: notes
+
+The round function with digits=2 will round to the nearest hundredth (0.01).
+
+:::
+
+## The signif function for small numbers
+
+```{r}
+#| label: 01-06-signif-2
+#| echo: true
+
+for (i in seq(2, 10, by=2)) {
+	x <- 0.5^i
+	y <- signif(x, 2)
+  print(glue("0.5^{i} is approximately {y}"))
+}
+
+```
+
+::: notes
+
+Contrast this again with the signif function which maintains two significant digits.
+
+:::
+

@@ -258,17 +258,13 @@ Finally, some more code, a graph, and a final comment.
 
 :::
 
-## Suggestions for nice looking comments
+## Suggestions for nice looking comments, 1
 
 -   Quarto (and Rmarkdown) use tagged text files
     -   Based on [Markdown][ref41]
     -   Easy to remember
     -   Easy read in its raw form
     -   Use any program that edits text files
--   Interface with [Pandoc][ref42] to convert to (and from)
-    -   Microsoft Word, Powerpoint
-    -   Html files
-    -   PDF files
 
 ::: notes
 
@@ -280,13 +276,22 @@ One of the nicest features of Markdown is that it is easy to read in its raw for
 
 Another big advantage of Markdown is that the files can be edited by a wide range of programs. You are not tied to a specific software system.
 
-Pandoc lives up to the "pan" in its name, which is code for "everything". Using Markdown syntax, Pandoc can convert markdown files into dozens of different formats. In particular, it can create Word documents, Powerpoint presentations, web pages (html format), and PDF files. I should not that PDF files are a bit tricky because you need some version of Latex (or a new alternative typst) on your system. Instead of going straight to PDF, I recommend that you produce html files and then print that file to a pdf printer.
+::::
+    
+## Suggestions for nice looking comments, 2
 
-There are lots of little enhancements to your comments. Some that I use quite often are the double pound (##) symbols at the start of the line to make a headline in a larger font.
+-   Interface with [Pandoc][ref42] to convert to (and from)
+    -   Microsoft Word, Powerpoint
+    -   Html files
+    -   PDF files
+
+::: notes
+
+Pandoc lives up to the "pan" in its name, which is code for "everything". Using Markdown syntax, Pandoc can convert markdown files into dozens of different formats. In particular, it can create Word documents, Powerpoint presentations, web pages (html format), and PDF files. I should not that PDF files are a bit tricky because you need some version of Latex (or a new alternative typst) on your system. Instead of going straight to PDF, I recommend that you produce html files and then print that file to a pdf printer.
 
 ::::
     
-## Suggestions for nice looking comments
+## Suggestions for nice looking comments, 3
 
 -   Start line with ## for headlines
 -   Start lines with -, +, or * for bulleted lists

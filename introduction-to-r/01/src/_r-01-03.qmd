@@ -83,10 +83,9 @@ Now avoid using common function names like list and matrix. R will allow this, b
 ## Recommendation for names, 2   
    
 -  Common alternatives to the underscore separator
-   -   short words separated by dots
+   -   Short words separated by dots (writers.exchage)
    -   Start each word with capital (WritersExchange)
--  Separate naming recommendation
-   -   Use dash instead of underscore for file names, chunk names
+   -   **Use dash instead of underscore for file names, chunk names** (writers-exchange)
 -  What should YOU use
    -   Now: Anything is fine, just be consistent
    -   Later: See if there is an official or unofficial company standard
