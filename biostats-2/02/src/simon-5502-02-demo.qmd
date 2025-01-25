@@ -64,6 +64,8 @@ fat |>
 
 #### Interpretation of the output
 
+The average patient has 19% body fat. The data has a wide range from 0% (check this value!) to 45%
+
 ## Histogram for fat_b
 
 ```{r}
@@ -82,6 +84,8 @@ fat |>
 
 #### Interpretation of the output
 
+Percentage body fat has a roughly normal distribution.
+
 ## Descriptive statistics for chest
 
 ```{r}
@@ -96,6 +100,8 @@ fat |>
 ```
 
 #### Interpretation of the output
+
+The average chest circumference is 101 centimeters. The range, 79 to 136 centimeters is fairly narrow.
 
 ## Histogram for chest
 
@@ -115,6 +121,7 @@ fat |>
 
 #### Interpretation of the output
 
+Although normality is not needed for the independent variables, here is a histogram, showing a slightly right skewed distribution for chest circumference.
 
 ## Descriptive statistics for abdomen
 
@@ -130,6 +137,8 @@ fat |>
 ```
 
 #### Interpretation of the output
+
+The average patient has a abdomen circumference of 92 centimeters, slightly smaller than the average chest circumference. The range from 70 to 148 centimeters is quite wide, certainly wider than the range for chest circumference.
 
 ## Histogram for abdomen
 
@@ -149,6 +158,7 @@ fat |>
 
 #### Interpretation of the output
 
+The distribution of abdomen circumferences is skewed right with one outlier on the high end.
 
 ## Descriptive statistics for hip
 
@@ -162,6 +172,10 @@ fat |>
     hip_min=min(hip),
     hip_max=max(hip))
 ```
+
+#### Interpretation of the output
+
+The average patient has a hip circumference of 100 centimeters. The range, from 85 to 148 centimeters is fairly narrow.
 
 ## Histogram for abdomen
 
@@ -181,6 +195,8 @@ fat |>
 
 #### Interpretation of the output
 
+The distribution of hip circumferences is skewed to the right with a pair of outliers around 126 and 148 centimeters.
+
 ## Correlations
 
 ```{r}
@@ -198,31 +214,126 @@ fat |>
 
 #### Interpretation of the output
 
+Not too surprisingly, there are many strong positive correlations. Patients with higher body fat tend to have higher circumferences and a larger circumference measure at one location tends to be associated with larger circumference measures at other locations.
+
+## Scatterplot of chest circumference and body fat
+
+```{r}
+#| label: plot-1
+
+fat |>
+  ggplot() +
+  aes(x=chest, y=fat_b) +
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE) +
+  xlab("Chest circumference (cm)") +
+  ylab("Percentage body fat") +
+  ggtitle("Graph drawn by Steve Simon on 2025-01-25")
+```
+
+#### Interpretation of the output
+
+There is a weak positive relationship between chest circumference and percentage body fat.
+
+## Scatterplot of abdomen circumference and body fat
+
+```{r}
+#| label: plot-2
+
+fat |>
+  ggplot() +
+  aes(x=abdomen, y=fat_b) +
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE) +
+  xlab("Abdomen circumference (cm)") +
+  ylab("Percentage body fat") +
+  ggtitle("Graph drawn by Steve Simon on 2025-01-25")
+```
+
+#### Interpretation of the output
+
+There is a somewhat stronger positive relationship between abdomen circumference and percentage body fat.
+
+## Scatterplot of hip circumference and body fat
+
+```{r}
+#| label: plot-3
+
+fat |>
+  ggplot() +
+  aes(x=abdomen, y=fat_b) +
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE) +
+  xlab("Hip circumference (cm)") +
+  ylab("Percentage body fat") +
+  ggtitle("Graph drawn by Steve Simon on 2025-01-25")
+```
+
+#### Interpretation of the output
+
+There is a weak positive relationship between hip circumference and percentage body fat.
+
 ## Linear regression model
 
 ```{r}
 #| label: regression-1
 
-m2 <- lm(
-  fat_b ~ chest + abdomen + hip,
+m0 <- lm(
+  fat_b ~ 1, 
   data=fat)
 
 m1 <- lm(
   fat_b ~ abdomen,
   data=fat)
 
-m0 <- lm(
-  fat_b ~ 1, 
+m2 <- lm(
+  fat_b ~ chest + abdomen + hip,
   data=fat)
+```
+
+#### Comments on the code
+
+Although it is not strictly needed for your data analysis, the first model, m0, is a null model that has no predictor variables other than an intercept.
+
+The m1 model is a simple linear regression model using one predictor variable, abdomen circumference, to predict percentage body fat.
+
+The m2 model uses three predictor variables, chest, abdomen, and hip circumferences. It will help us address the question whether measurements above and below the abdomen produce better predictions than using just the abdomen circumference alone.
+
+## Regression coefficients
+
+```{r}
+#| label: coefficients-1
+
+tidy(m0) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value <  0.001 ~ "< 0.001",
+        p.value >= 0.001 ~ as.character(round(p.value, 3))))
+
+tidy(m1) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value <  0.001 ~ "< 0.001",
+        p.value >= 0.001 ~ as.character(round(p.value, 3))))
+
+tidy(m2) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value <  0.001 ~ "< 0.001",
+        p.value >= 0.001 ~ as.character(round(p.value, 3))))
 ```
 
 ## Analysis of variance table
 
 ```{r}
 #| label: anova
-
 anova(m0, m1)
-anova(m1)
+anova(m0, m1) |> 
+  tidy() 
+anova(m1, m2) |> tidy()
 ```
 
 #### Interpretation of the output
@@ -253,7 +364,32 @@ glance(m1) |>
 ## Residuals
 
 ```{r}
-r1 <- augment(m1)
+r2 <- augment(m2)
+names(r2)
+```
+
+## Residual plots
+
+```{r}
+r2 |>
+  ggplot() +
+    aes(x=.fitted, y=.resid) +
+    geom_point() 
+
+r2 |> 
+  select(.resid) |>
+  bind_cols(fat)
+  ggplot() +
+    aes(x=wrist, y=.resid) +
+    geom_point() 
+```
+
+## Variance inflation factor
+
+```{r}
+#| label: vif
+
+vif(m2)
 ```
 
 ## Save everything
@@ -262,5 +398,9 @@ r1 <- augment(m1)
 #| label: save
 save(
   fat,
+  m0,
+  m1,
+  m2,
+  r2,
   file="../data/module02.RData")
 ```
