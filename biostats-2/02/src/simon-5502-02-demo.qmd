@@ -4,6 +4,8 @@ format:
   html:
     embed-resources: true
 editor: source
+execute: 
+  error: true
 ---
 
 ## File details
@@ -20,6 +22,7 @@ This program reads [fat.csv][ref01],a dataset that compares body fat measurement
 #| message: false
 #| warning: false
 
+library(car)
 library(glue)
 library(tidyverse)
 library(broom)
@@ -27,11 +30,18 @@ R.version.string
 Sys.Date()
 ```
 
+#### Comment on the code
+
+The [car][ref01] package provides some helpful functions for various regression models. This an acronym for Companion to Applied Regression, referring to the book, An R Companion to Applied Regression by John Fox and Sanord Weisberg. In this particular program, we use the vif function in car to produce variance inflation factors.
+
+[ref01]: https://CRAN.R-project.org/package=car 
+
 ## Intermediate files
 
 -   fat: original data from fat.csv
--   m1: linear regression using chest, abdomen, hip to predict fat_b
 -   m0: linear regression with just an intercept
+-   m1: linear regression using abdomen to predict fat_b
+-   m2: linear regression using chest, abdomen, hip to predict fat_b
 
 ## Read the data
 
@@ -289,6 +299,19 @@ m1 <- lm(
 m2 <- lm(
   fat_b ~ chest + abdomen + hip,
   data=fat)
+
+m3 <- lm(
+  fat_b ~ 
+    neck + chest + 
+    abdomen + 
+    hip +
+    thigh +
+    knee +
+    ankle +
+    biceps +
+    forearm +
+    wrist,
+  data=fat)
 ```
 
 #### Comments on the code
@@ -298,6 +321,8 @@ Although it is not strictly needed for your data analysis, the first model, m0, 
 The m1 model is a simple linear regression model using one predictor variable, abdomen circumference, to predict percentage body fat.
 
 The m2 model uses three predictor variables, chest, abdomen, and hip circumferences. It will help us address the question whether measurements above and below the abdomen produce better predictions than using just the abdomen circumference alone.
+
+The m3 model uses all ten circumference measurements. This model is perhaps a bit excessive, but provides an interesting comparison to the model that just adds the circumferences at the extremities to the middle three circumferences.
 
 ## Regression coefficients
 
@@ -324,16 +349,52 @@ tidy(m2) |>
       case_when(
         p.value <  0.001 ~ "< 0.001",
         p.value >= 0.001 ~ as.character(round(p.value, 3))))
+
+tidy(m3) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value <  0.001 ~ "< 0.001",
+        p.value >= 0.001 ~ as.character(round(p.value, 3))))
+```
+
+#### Comments on the code
+
+The [tidy][ref02] function (part of the broom library), provides a nice summary of the coefficients in various statistical models in R. This includes a standardization across all these statistical models. The tidy function also takes the list that is the result of most statistical models in R and extracts the necessary information into a tibble, which makes it easier for you to manipulate the results.
+
+One big modification that this provides is the ability to simplify the display of p-values. Very small p-values are lists as < 0.001 and the other p-values are rounded to three decimal places.
+
+[ref02]: https://cran.r-project.org/web/packages/broom/vignettes/broom.html
+
+## Explained/unexplained variation and r-squared
+
+```{r}
+#| label: rsq
+
+glance(m0) |>
+  bind_rows(glance(m1)) |>
+  bind_rows(glance(m2)) |>
+  bind_rows(glance(m3)) |>
+  mutate(regression_model=glue("m{0:3}")) |>
+  mutate(r.squared=round(r.squared, 2)) |>
+  mutate(deviance=round(deviance)) |>
+  mutate(deviance=format(deviance, big.mark=",")) |>
+  select(regression_model, r.squared, deviance)
 ```
 
 ## Analysis of variance table
 
 ```{r}
 #| label: anova
-anova(m0, m1)
+
+
+anova(m1) |> tidy()
 anova(m0, m1) |> 
   tidy() 
 anova(m1, m2) |> tidy()
+anova(m2, m3) |> tidy()
+
+
 ```
 
 #### Interpretation of the output
@@ -378,7 +439,7 @@ r2 |>
 
 r2 |> 
   select(.resid) |>
-  bind_cols(fat)
+  bind_cols(fat) |>
   ggplot() +
     aes(x=wrist, y=.resid) +
     geom_point() 
@@ -389,6 +450,7 @@ r2 |>
 ```{r}
 #| label: vif
 
+library(car)
 vif(m2)
 ```
 
@@ -401,6 +463,7 @@ save(
   m0,
   m1,
   m2,
+  m3,
   r2,
   file="../data/module02.RData")
 ```
