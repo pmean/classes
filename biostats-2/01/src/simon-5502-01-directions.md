@@ -1,8 +1,8 @@
 ---
-title: "Directions for 5501-12 programming assignment"
+title: "Directions for 5502-01 programming assignment"
 ---
 
-This programming assignment was written by Steve Simon on 2024-10-08 and is 
+This programming assignment was written by Steve Simon on 2025-01-27 and is 
 placed in the public domain.
 
 This assignment is for practice only and there is no grading.
