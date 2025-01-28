@@ -42,6 +42,7 @@ The [car][ref01] package provides some helpful functions for various regression 
 -   m0: linear regression with just an intercept
 -   m1: linear regression using abdomen to predict fat_b
 -   m2: linear regression using chest, abdomen, hip to predict fat_b
+-   m3: linear regression using all circumference measures to predict fat_b
 
 ## Read the data
 
@@ -188,7 +189,7 @@ fat |>
 The average patient has a hip circumference of 100 centimeters. The range, from 85 to 148 centimeters is fairly narrow.
 
 ## Histogram for abdomen
-
+ 
 ```{r}
 #| label: histogram-4
 
@@ -449,7 +450,7 @@ r2 |>
 #| label: thigh-plot
 r2 |> 
   select(.resid) |>
-  bind_cols(fat$thigh) |>
+  bind_cols(fat[ , "thigh"] |>
   ggplot() +
     aes(x=thigh, y=.resid) +
     geom_point() +
@@ -463,7 +464,7 @@ r2 |>
 #| label: knee-plot
 r2 |> 
   select(.resid) |>
-  bind_cols(fat) |>
+  bind_cols(fat$knee) |>
   ggplot() +
     aes(x=knee, y=.resid) +
     geom_point() +
@@ -474,10 +475,52 @@ r2 |>
 ```
 
 ```{r}
+#| label: ankle-plot
+r2 |> 
+  select(.resid) |>
+  bind_cols(fat$ankle) |>
+  ggplot() +
+    aes(x=knee, y=.resid) +
+    geom_point() +
+    geom_smooth(method="loess") +
+    xlab("Ankle circumference") +
+    ylab("Residuals from three variable model") +
+    ggtitle("Plot drawn by Steve Simon on 2025-01-27") 
+```
+
+```{r}
+#| label: biceps-plot
+r2 |> 
+  select(.resid) |>
+  bind_cols(fat$biceps) |>
+  ggplot() +
+    aes(x=knee, y=.resid) +
+    geom_point() +
+    geom_smooth(method="loess") +
+    xlab("Biceps circumference") +
+    ylab("Residuals from three variable model") +
+    ggtitle("Plot drawn by Steve Simon on 2025-01-27") 
+```
+
+```{r}
+#| label: forearm-plot
+r2 |> 
+  select(.resid) |>
+  bind_cols(fat$forearm) |>
+  ggplot() +
+    aes(x=knee, y=.resid) +
+    geom_point() +
+    geom_smooth(method="loess") +
+    xlab("Forearm circumference") +
+    ylab("Residuals from three variable model") +
+    ggtitle("Plot drawn by Steve Simon on 2025-01-27") 
+```
+
+```{r}
 #| label: wrist-plot
 r2 |> 
   select(.resid) |>
-  bind_cols(fat) |>
+  bind_cols(fat$wrist) |>
   ggplot() +
     aes(x=wrist, y=.resid) +
     geom_point() +
