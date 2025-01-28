@@ -12,14 +12,17 @@ editor: source
 -   Dependent variable: $Y_1, Y_2,\ldots,Y_n$
 -   First independent variable: $X_{11}, X_{12}, \ldots, X_{1n}$
 -   Second independent variable: $X_{21}, X_{22}, \ldots, X_{2n}$
+-   ...
 -   kth independent variable: $X_{k1}, X_{k2}, \ldots, X_{kn}$
 
 ::: notes
+
 For a multiple linear regression model, you need a dependent or outcome variable, traditionally designated by the letter "Y". The are n values of Y, one for each patient in your research study.
 
 Then you have k independent variables. The first one, designated by $X_1$ also has n values. The second independent variable, $X_2$ works similarly. There are k total independent variables.
 
 For now, let's assume that every variable, the one dependent variable and the k independent variables, is continuous.
+
 :::
 
 ## Matrix notation, 1 of 3
@@ -35,7 +38,9 @@ Y_n
 \end{matrix}
 
 ::: notes
+
 Often you will see multiple linear regression defined with a single column for the dependent variable Y ...
+
 :::
 
 ## Matrix notation, 2 of 3
@@ -51,7 +56,9 @@ X_{1n} & X_{2n} & \ldots & X_{in} & \ldots & X_{kn}
 \end{matrix}
 
 ::: notes
+
 ... and a matrix representing the independent variables. Each column in the matrix represents values of a particular independent variable for every subject and each row represents all of the independent variables for a particular subject.
+
 :::
 
 ## Matrix notation, 3 of 3
@@ -67,9 +74,11 @@ X_{1n} & X_{2n} & \ldots & X_{in} & \ldots & X_{kn}
 \end{matrix}
 
 ::: notes
+
 You may see a similar matrix, but with an extra column at the beginning with the value of 1 repeated down that column.
 
 There are lots of theoretical reasons why the dependent variable and the independent variables are laid out in this format. I will not talk about this in detail. I just wanted to show you this, so you would not be alarmed if you see it in some of the future readings you might have on multiple linear regression.
+
 :::
 
 ## Why use multiple linear regression
@@ -131,6 +140,7 @@ The residual, $e_i$, is the deviation between the actual data value and what you
     -   Many $\hat Y_i$ close to $Y_i$
     
 ::: notes
+
 Let's talk about a bad regression result. The word "bad" is a bit judgmental. You might substitute "disappointing" but that is also troublesome. Maybe "not too useful" is what I really mean.
 
 Let me give a hypothetical example. Suppose you paid a statistician a fortune to produce a linear regression model that predicted the average length of stay for heart attack patients of a particular age with particular systolic and diastolic blood pressure. 
@@ -150,6 +160,7 @@ In contrast a "good" or "useful" regression model is one where the predictions c
 Another way of thinking about a "good" regression model is that it's predictions are generally pretty close to the actual values.
 
 The analysis of variance table helps you identify "good" and "bad" regression models.
+
 :::
 
 ## Analysis of variance table for multiple linear regression, 1 of 3
@@ -188,7 +199,33 @@ You compute the F ratio by dividing the mean square for regression into the mean
 
 ## Example using fat data
 
-![](images/anova-table-01.png)
+```{r}
+#| label: setup-2
+#| message: false
+#| warning: false
+
+library(broom)
+library(glue)
+library(tidyverse)
+load("../data/module02.RData")
+```
+
+```{r}
+#| label: anova
+
+anova2 <- anova(m0, m2)
+anova2
+SSR <- format(round(anova2[2,4], 0), big.mark=",")
+SSE <- format(round(anova2[2,2], 1), big.mark=",")
+SST <- format(round(anova2[1,2], 1), big.mark=",")
+F = round(anova2[2,5], 2)
+```
+
+-   SSR = `r SSR`
+-   SSE = `r SSE`
+-   SST = `r SST`
+-   F = `r F`
+-   You should report the p-value as p < 0.001
 
 ::: notes
 Here is an example using the dataset with body fat measurements and circumference measurements at the hip, chest, and abdomen. The sum of squares are 10,500 for regression, 4,500 for residual or error and 15,000 for total. The respective degrees of freedom are 3 (for the three independent variables), 248 (252-3-1) for error and 251 (252-1) for total. The mean squares are quite different 3,500 versus 18. The F-ratio, 192, is a lot larger than 1 and the small p-value indicates that you should reject the null hypothesis and conclude that at least one of the three regression slopes is not equal to zero.
@@ -196,7 +233,7 @@ Here is an example using the dataset with body fat measurements and circumferenc
 
 ## R-squared
 
--   $R^2=SSR/SST$ or $1-SSE/SST$
+-   $R^2=SSR/SST$ or $1-(SSE/SST)$
     -    Proportion of explained variation
 
 ::: notes
@@ -205,9 +242,19 @@ R-squared is defined pretty much the same way as in simple linear regression (re
 
 ## Example using the fat data
 
-![](images/r-squared-01.png)
+```{r}
+#| label: rsq
 
-- 10,548.480/15,079.017 = 0.70
+m2_glance <- data.frame(glance(m2))
+m2_glance
+r.squared <- m2_glance$r.squared
+rsq <- glue("{round(100*r.squared)}%")
+```
+
+-   $R^2$ = `r SSR` / `r SST` = `r r.squared`
+    -   Alternately $R^2$ = 1- (`r SSE` / `r SST`)
+-   Round and express as a percentage
+    -   $R^2$ = `r rsq`
 
 ::: notes
 You can compute R-squared from the analysis of variance table. The sum of squares for regression is 10,548.480 and the sum of squares total is 15,079.017. When you are calculating, please use the maximum precision for any intermediate calculation, but then round aggressively with the final result.
@@ -218,11 +265,10 @@ Often you will see R-squared displayed as a percentage instead of a proportion (
 ## Adjusted $R^2$
 
 -   $1-\frac{MSE}{MST}$ or 
--   $1-\frac{SSE}{SST}\frac{(n-1)}{(n-k)}$
+-   $1-\frac{SSE/(n-k)}{SST/(n-1)}$
     -   Field textbook suggests a more complex formula
     -   Penalizes for model complexity (but not enough)
     
 ::: notes
 Many researchers propose an alternative measure, adjusted R-squared. This statistic modifies R-squared slightly downward. You can view this as a penalty for model complexity, but unfortunately, the penalty is small and does help enough to discourage the use of needlessly complex regression models.
 :::
-

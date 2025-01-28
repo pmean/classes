@@ -45,38 +45,41 @@ If you have more than a few independent variables, you can substitute a single p
 
 ## Q-Q plot of residuals
 
-![](images/qq-plot-01.png)
+```{r}
+#| label: setup-5
+#| message: false
+#| warning: false
+
+library(broom)
+library(glue)
+library(tidyverse)
+load("../data/module02.RData")
+```
+
+```{r}
+#| label: qq
+
+r2 |>
+	ggplot() +
+	  aes(sample=.resid) +
+	  stat_qq()
+```
 
 ::: notes
 This is the QQ plot of residuals. It looks like a straight line, indicating that the normality assumption is reasonable.
 :::
 
-## Scatterplot of residuals and chest circumference
-
-![](images/residual-chest-plot.png)
-
-::: notes
-There is no apparent problem with unequal variances or non-linearity with respect to chest circumference ...
-:::
-## Scatterplot of residuals and abdomen circumference
-
-![](images/residual-abdomen-plot.png)
-
-::: notes
-... or abdomen circumference ...
-:::
-
-## Scatterplot of residuals and hip circumference
-
-![](images/residual-hip-plot.png)
-
-::: notes
-... or hip circumference.
-:::
-
 ## Scatterplot of residuals and predicted values
 
-![](images/residual-predicted-plot.png)
+```{r}
+#| label: pred-plot
+
+r2 |>
+	ggplot() +
+	  aes(x=.fitted, y=.resid) +
+	  geom_point() +
+	  geom_smooth(method="loess")
+```
 
 ::: notes
 While three variables is not too many, here is what the plot of residuals versus predicted values looks like. Notice that it has pretty much the same features as the three individual plots.

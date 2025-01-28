@@ -43,6 +43,8 @@ There are also issues that arise far more often in one model than the other. Mul
 -   Single model that unites all three models.
 -   Use of indicator variables for categorical data
 -   Not the same as general **IZED** linear model
+    -   SAS: proc glm versus proc glim
+    -   R: lm() versus glm()
 
 ::: notes
 It didn't take long for researchers to discover a common linkage between multiple linear regression, analysis of covariance, and multifactor analysis of variance. In particular, you can treat categorical variables as if they were continuous through the use of indicator variables. You'll see more discussion about this later. 
@@ -56,14 +58,22 @@ You may see a bit about the generalized linear model in week 7 (logistic regress
 In any case, I have really preferred the use of a single model, the general linear model, in place of multiple linear regression, analysis of covariance, and multifactor analysis of variance. I am a "lumper" and not a "splitter". For what it is worth, SPSS forces you to use the individual approaches at times instead of the single general linear model.
 :::
 
-## The dialog box for the general linear model
+## Arguments for the lm() function {.smaller}
 
-![](images/glm-dialog-01.png)
+-   formula = $dependent-variable$ ~ $independent-variables$
+    -   $independent-variables$ can be numeric, factors, or strings
+-   data =
+-   subset =
+-   [na.action][ref11] =
+    -   na.fail
+    -   na.omit
+    -   na.exclude
+-   other arguments
+
+[ref11]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/na.fail.html
+
 
 ::: notes
-This is the dialog box you see when you select Analyze | General Linear Model | Univariate from the SPSS menu. The dependent variable gets added to the dependent variable field. Obviously!
 
-The nice thing about this dialog box is that you can added one or more categorical independent variables into the Fixed Factors field and one or more continuous independent variables into the Covariates field. Ignore the Random Factors and WLS Weight fields for now.
-
-I will try to show how you might fit a multiple linear regression model using the general linear model. Ditto for analysis of covariance and multi-factor analysis of variance. Not this week, though.
+This week I will show how you fit a multiple linear regression model using the lm function. Ditto for analysis of covariance and multi-factor analysis of variance. Not this week, though.
 :::

@@ -86,25 +86,22 @@ Other researchers have argued that this rule of thumb is not valid and that it i
 An important point to remember here is that k is the number of candidate variables that are considered at some time during the data analysis. It is NOT the number of variables in the final model.
 :::
 
-## Comparing models with k and k-1 predictors
+## Testing the impact of chest and hip controlling for abdomen
 
--   $Y_i=\beta_0+\beta_1 X_{1i}+\beta_2 X_{2i}+...+\beta_k X_{ki}+\epsilon_i$
-    -   Test $H_0:\ \beta_j=0$ versus $H_0:\ \beta_j \ne 0$
-        -   Remaining $\beta$'s  could be anything
-    -   Use least squares to estimate $\hat\beta_0,\ \hat\beta_1,\ \hat\beta_2,\ ...,\ \hat\beta_k$
-    -   Compute $T=\frac{\hat\beta_j}{se(\hat\beta_j)}$
-    -   Accept $H_0$ if T is close to zero
-    -   Reject $H_0$ if T is large negative or large positive
-    
-::: notes    
-If you want to look at the impact of an individual independent variable in a multiple regression model, compute the full model and compare the coefficient of one of the independent variables to its standard error. If that ratio is close to zero, accept the null hypothesis.
+```{r}
+#| label: setup-3
+#| message: false
+#| warning: false
 
-Now keep in mind that the test is highly dependent on what other variables are in the model. You are looking at the impact of the jth variable while holding the other variables constant. That is NOT the same as the impact of the jth variable by itself in a single variable linear regression model.
-:::
+library(broom)
+library(glue)
+library(tidyverse)
+load("../data/module02.RData")
+```
 
-## Testing the impact of chest circumference
-
-![](images/regression-coefficients-01.png)
+```{r}
+anova(m1, m2)
+```
 
 ::: notes
 What is the impact of chest circumference in a model that already includes abdomen and hip circumference? This table shows the regression coefficients and the standard errors for a multiple linear regression model with all three variables. The regression coefficient for chest is -0.186 and the standard error is 0.081. The test statistic is -2.304 which is large negative and the p-value is small. You should reject H0 and conclude that there is a negative relationship between chest circumference and body fat, after holding hip and abdomen circumference constant.
@@ -112,46 +109,21 @@ What is the impact of chest circumference in a model that already includes abdom
 
 ## Change in R-squared
 
-![](images/r-squared-01.png)
 
-![](images/r-squared-02.png)
+```{r}
+rsq1 <- glance(m1)$r.squared
+rsq2 <- glance(m2)$r.squared
 
-- $Partial\ R^2=0.700-0.693=0.007$
+```
 
-::: notes
-The regression model with chest, abdomen, and hip accounts for 70% of the variation, but a model with just abdomen and hip does almost as well, accounting for 69.3% of the variation. The difference, 0.7% is the amount of additional variation accounted for when you add chest to a model that already included abdomen and hip.
 
-That seems to contradict the earlier finding with the large negative test statistic and the small p-value. But actually, what it is saying is that although there is sufficient statistical evidence to conclude that chest circumference has a real impact, that impact is small. You will see this a lot, especially with datasets with very large sample sizes. You can often achieve statistical significance for an individual variable, but the practical impact can still be negligible.  
-:::
-
-## Partial F test
-
--   Test $H_0:\ \beta_{k+1}=\beta_{k+2}=...=\beta_{k+m}=0$
--   Calculate ANOVA table for k+m independent variables
-    -   Note various SS and MS values for the "full" model
--   Recalculate ANOVA table for only k independent variables
-    -   Note various SS and MS values for the "reduced" model.
--   Calculate $F=\frac{(SSR_{full}-SSR_{reduced})/m}{SSE_{full}/(n-(k+m+1))}$
+- Partial $R^2$ = `r rsq2` - `r rsq1` = `r rsq2-rsq1`
 
 ::: notes
-Although SPSS does not directly test the joint impact of two or more variables, you can run a test with a bit of work. Fit a model with k+m independent variables and print the analysis of variance table. Call this the full model. Then fit a model with only k independent variables. Call this the reduced model. Then see how much difference there is between the sum of squares regression in the full versus reduced model. This is a measure how much stronger the signal becomes when you add m new indpendent variables to a model which already has k independent variables.
-:::
 
-## Testing the impact of hips and chest, 1 of 2
+The regression model with chest, abdomen, and hip accounts for 70% of the variation, but a model with just abdomen does almost as well, accounting for 63% of the variation. The difference, 7% is the amount of additional variation accounted for when you add chest to a model that already included abdomen and hip.
 
-![](images/anova-table-02.png)
+That seems to contradict the earlier finding with the large negative test statistic and the small p-value. But actually, what it is saying is that although there is sufficient statistical evidence to conclude that chest circumference has a real impact, that impact is small. You will see this a lot, especially with datasets with very large sample sizes. You can often achieve statistical significance for an individual variable, but the practical impact can still be negligible. 
 
-::: notes
-You can place abdomen in the first block of variables. Then place hips and chest in the second block. SPSS will calculate the analysis of variance table for the reduced model (only abdomen) and the full model (abdomen, hips, and chest).
-:::
-
-## Testing the impact of hips and chest, 2 of 2
-
--   $F=\frac{(SSR_{full}-SSR_{reduced})/m}{SSE_{full}/(n-(k+m+1))}$
--   $F=\frac{(10,548.480-9984.086)/2}{4530.537/(252-(1+2+1))}$
--   $F=\frac{282.2}{18.26829}=15.4$
-
-::: notes
-The calculations are tedious, but not too difficult. The F ratio is a lot larger than 1, so you would rejuct the null hypothesis and conclude that hip and/or chest circumference measures provide additional predictive power above and beyond the impact of abdomen alone.
 :::
 

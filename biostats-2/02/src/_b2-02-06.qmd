@@ -93,7 +93,25 @@ I view a variance inflation factor of 10 or greater to be worthy of concern.
 
 ## Collinearity statistics for the fat dataset
 
-![](images/collinearity-statistics-01.png)
+```{r}
+#| label: setup-6
+#| message: false
+#| warning: false
+
+library(broom)
+library(car)
+library(glue)
+library(tidyverse)
+load("../data/module02.RData")
+```
+
+```{r}
+#| label: vif
+
+vif(m2)
+```
+
+
 
 ## What is perfect collinearity?
 
