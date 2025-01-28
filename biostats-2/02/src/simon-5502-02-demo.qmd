@@ -429,20 +429,62 @@ r2 <- augment(m2)
 names(r2)
 ```
 
-## Residual plots
+## Residual plots versus predicted
 
 ```{r}
+#| label: fitted-plot
 r2 |>
   ggplot() +
     aes(x=.fitted, y=.resid) +
-    geom_point() 
+    geom_point() +
+    geom_smooth(method="loess") +
+    xlab("Predicted values from three variable model") +
+    ylab("Residuals from three variable model") +
+    ggtitle("Plot drawn by Steve Simon on 2025-01-27") 
+```
 
+## Residual plots versus non-included variables
+
+```{r}
+#| label: thigh-plot
+r2 |> 
+  select(.resid) |>
+  bind_cols(fat$thigh) |>
+  ggplot() +
+    aes(x=thigh, y=.resid) +
+    geom_point() +
+    geom_smooth(method="loess") +
+    xlab("Thigh circumference") +
+    ylab("Residuals from three variable model") +
+    ggtitle("Plot drawn by Steve Simon on 2025-01-27")
+```
+
+```{r}
+#| label: knee-plot
+r2 |> 
+  select(.resid) |>
+  bind_cols(fat) |>
+  ggplot() +
+    aes(x=knee, y=.resid) +
+    geom_point() +
+    geom_smooth(method="loess") +
+    xlab("Knee circumference") +
+    ylab("Residuals from three variable model") +
+    ggtitle("Plot drawn by Steve Simon on 2025-01-27") 
+```
+
+```{r}
+#| label: wrist-plot
 r2 |> 
   select(.resid) |>
   bind_cols(fat) |>
   ggplot() +
     aes(x=wrist, y=.resid) +
-    geom_point() 
+    geom_point() +
+    geom_smooth(method="loess") +
+    xlab("Wrist circumference") +
+    ylab("Residuals from three variable model") +
+    ggtitle("Plot drawn by Steve Simon on 2025-01-27") 
 ```
 
 ## Variance inflation factor
