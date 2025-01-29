@@ -5,11 +5,9 @@ title: "Directions for 5502-02 programming assignment"
 This programming assignment was written by Steve Simon on 2025-01-27 and is 
 placed in the public domain.
 
-This assignment is for practice only and there is no grading.
-
 ## Program
 
--   Write this program on your own using examples from the previous semester. You may wish to adapt some code from the [demonstration program for module02][ref01].
+-   Write this program on your own using examples from the previous semester. You may wish to adapt some code from the [demonstration program for module02][ref01]. Replace my name with yours everywhere, remove the "Comments on the code" sections, and only include program chunks that address the questions listed below.
 
 [ref01]: https://github.com/pmean/classes/blob/master/biostats-2/02/src/simon-5502-02-demo.qmd
 
