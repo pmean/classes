@@ -9,8 +9,9 @@ title: "Directions for 5505-01 programming assignment"
 -   Modify the file name
     -   Use your last name instead of "simon"
     -   Change "demo" to "aids-cases"
--   Modify the documentation headers
+-   Modify the documentation
     -   Add your name
+    -   Remove sections labelled "Comments on the code"
     -   Optional: change the copyright statement
     
 [ref91]: https://github.com/pmean/classes/blob/master/introduction-to-r/01/src/simon-5505-01-demo.qmd
@@ -39,12 +40,6 @@ and provide a brief interpretation.
 
 Keep your output brief. After you have gotten your program to work, remove any code that does not address the questions above. Also, please remove any "Comments on the code" sections. But do provide interpretations when asked.
 
-## Grading rubric
-
-You will be evaluated using the [general grading rubric for programming assignments][ref94].
-
-[ref94]: https://github.com/pmean/classes/blob/master/general/general-grading-rubric.md
-
 ## Your submission
 
 -   Save the output in html format
@@ -55,11 +50,13 @@ You will be evaluated using the [general grading rubric for programming assignme
     -   The number of this module
 -   Upload the file
 
-## If it doesn't work
+## Your grade
 
-Please review the [suggestions if you encounter an error page][ref95].
+-   Your grade will be based on this [grading rubric][ref94]. Please also note the [policy on late submissions and rework][ref95]. if your program does not work, please review the [suggestions if you encounter an error page][ref96].
 
-[ref95]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
+[ref94]: https://github.com/pmean/classes/blob/master/biostats-2/general/programming-rubric.md
+[ref95]: https://github.com/pmean/classes/blob/master/general/policy-on-extensions-and-rework.md
+[ref96]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
 
 ## File details
 
