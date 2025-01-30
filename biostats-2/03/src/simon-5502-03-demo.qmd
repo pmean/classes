@@ -1,0 +1,210 @@
+---
+title: "5502 module 02 demonstration program"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute: 
+  error: true
+---
+
+## 1. File details
+
+This program was written by Steve Simon on 2025-01-30 and is placed in the public domain. You can use this program any way you please.
+
+This program reads [albuquerqe-housing.csv][ref01],a dataset that examines sales prices for residential homes in 1993 in Albuquerque, New Mexico. Refer to the [data dictionary][ref02] for a more detailed description.
+
+[ref01]: https://github.com/pmean/data/blob/main/files/albuquerque-housing.csv
+[ref02]: https://github.com/pmean/data/blob/main/files/albuquerque-housing.yaml
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(glue)
+library(knitr)
+library(tidyverse)
+R.version.string
+Sys.Date()
+```
+
+## 1. Intermediate files
+
+-   alb: original data from albuquerque-housing.csv
+
+## 1. Read the data
+
+```{r}
+#| label: read
+
+alb <- read_csv(
+  file="../data/albuquerque-housing.csv",
+  col_names=TRUE,
+  col_types="nnnnccc")
+glimpse(alb)
+```
+
+## 1. Descriptive statistics for price
+
+```{r}
+#| label: descriptives-1
+
+alb |>
+  summarize(
+    price_mean=mean(price),
+    price_sd=sd(price),
+    price_min=min(price),
+    price_max=max(price))
+```
+
+#### Comment on the code
+
+I use the word "dollars" in the interpretation below rather than putting in a dollar sign ($) because if Quarto sees two of these in a single line of comments, it will try to produce a math equation. You can work around this by preceding the dollar sign with a backslash (\$). This backslash trick also works in your comments for other symbols that Quarto might get confused by, such as the asterisk or the square bracket symbols.
+
+#### Interpretation of the output
+
+The average house sold for 106 thousand dollars. The range of prices is large, going from 54 thousand dollars to 215 thousand dollars. All of these prices seem low, but perhaps those prices were quite normal back in 1993.
+
+## 1. Descriptive statistics for sqft
+
+```{r}
+#| label: descriptives-2
+
+alb |>
+  summarize(
+    sqft_mean=mean(sqft),
+    sqft_sd=sd(sqft),
+    sqft_min=min(sqft),
+    sqft_max=max(sqft))
+```
+
+#### Interpretation of the output
+
+The average house is 1,600 square feet. The range again is quite wide. The houses seems small; the largest is still less than 4,000 square feet. This may have been reasonable back in 1993.
+
+## 1. Descriptive statistics for custom_build
+
+```{r}
+#| label: descriptives-3
+
+alb |>
+	count(custom_build) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) |>
+	mutate(pct=glue("{pct}% ({n}/{total})")) |>
+	select(-n, -total)
+```
+
+#### Interpretation of the output
+
+Only about a quarter of the houses are custom-built.
+
+## 1. Boxplot comparing price by custom_build.
+
+```{r}
+#| label: boxplot-1
+#| fig.width: 6
+#| fig.height: 2
+
+alb |>
+	ggplot() +
+	  aes(x=custom_build, y=price) +
+	  geom_boxplot() +
+	  xlab("Custom built?") +
+	  ylab("Price (dollars)") +
+	  coord_flip() +
+	  ggtitle("Plot drawn by Steve Simon on 2025-01-30")
+```
+
+#### Interpretation of the output
+
+Prices are substantially higher for custom-built homes.
+
+## Mean price by custom_build
+
+```{r}
+#| label: group-means-1
+
+alb |>
+	group_by(custom_build) |>
+	summarize(
+		mean_price=mean(price),
+		sd_price=sd(price),
+		n=n())
+```
+
+#### Interpretation of the output
+
+The mean price of regular homes is roughly 95 thousand dollars. Custom built homes have an average price of roughly 145 thousand dollars or 50 thousand dollars more expensive. Custom built houses are also more variable (a standard deviation of 48 thousand dollars compared to 25 thousand dollars).
+
+## The traditional form of the t-test
+
+```{r}
+#| label: t-test-1
+
+m1 <- t.test(
+	alb$price[alb$custom_build=="yes"],
+	alb$price[alb$custom_build=="no"],
+	var.equal=TRUE)
+m1
+```
+#### Comment on the code
+
+The [t.test][ref01] function will test the hypothesis that the mean is the same in both groups. It requires a bit of awkward syntax, so I prefer to do a comparable test using the lm function.
+
+[ref01]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/t.test.html
+
+#### Interpretation of the output
+
+The t statistic (7.2) is large, the p-value is very small (< 0.001), and the confidence interval (36 to 64 thousand dollars) excludes the value of zero. You should reject the null hypothesis and conclude that the average price of custom built homes is higher than the average price of regular homes.
+
+## Using lm to conduct a t-test
+
+```{r}
+#| label: t-test-2
+
+m2 <- lm(price~custom_build, data=alb)
+tidy(m2) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value <  0.001 ~ "< 0.001",
+        p.value >= 0.001 ~ as.character(round(p.value, 3))))
+```
+
+#### Interpretation of the output
+
+The intercept, 95 thousand dollars, is the estimated average price when the indicator variable equals zero. R sets up the indicator variable with 1 for the category that appears last alphabetically.
+
+The slope, 50 thousand dollars, is the estimated average change in price for a custom-built home compared to a regular home. The t-statistic (7.2) and the p-value match the values computed using the t.test function. Your conclusion, that the average price of custom built homes is higher than that of normal homes remains the same.
+
+## Confidence intervals
+
+```{r}
+#| label: ci
+
+m2 |>
+	confint() |>
+	round(digits=-3)
+```
+
+#### Comment on the code
+
+The [confint][ref02] function (part of base R) calculates confidence intervals for the estimates produces by the lm function as well as some other data analysis functions in R.
+
+[ref02]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/confint.html
+
+#### Interpretation of the output
+
+
+
+## Save everything
+
+```{r}
+#| label: save
+save(
+  alb,
+  file="../data/module03.RData")
+```
