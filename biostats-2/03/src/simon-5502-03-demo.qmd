@@ -122,7 +122,7 @@ alb |>
 
 Prices are substantially higher for custom-built homes.
 
-## Mean price by custom_build
+## 1. Mean price by custom_build
 
 ```{r}
 #| label: group-means-1
@@ -139,7 +139,7 @@ alb |>
 
 The mean price of regular homes is roughly 95 thousand dollars. Custom built homes have an average price of roughly 145 thousand dollars or 50 thousand dollars more expensive. Custom built houses are also more variable (a standard deviation of 48 thousand dollars compared to 25 thousand dollars).
 
-## The traditional form of the t-test
+## 1. The traditional form of the t-test
 
 ```{r}
 #| label: t-test-1
@@ -160,7 +160,7 @@ The [t.test][ref01] function will test the hypothesis that the mean is the same 
 
 The t statistic (7.2) is large, the p-value is very small (< 0.001), and the confidence interval (36 to 64 thousand dollars) excludes the value of zero. You should reject the null hypothesis and conclude that the average price of custom built homes is higher than the average price of regular homes.
 
-## Using lm to conduct a t-test
+## 1. Using lm to conduct a t-test
 
 ```{r}
 #| label: t-test-2
@@ -180,7 +180,7 @@ The intercept, 95 thousand dollars, is the estimated average price when the indi
 
 The slope, 50 thousand dollars, is the estimated average change in price for a custom-built home compared to a regular home. The t-statistic (7.2) and the p-value match the values computed using the t.test function. Your conclusion, that the average price of custom built homes is higher than that of normal homes remains the same.
 
-## Confidence intervals
+## 1. Confidence intervals
 
 ```{r}
 #| label: ci
@@ -198,7 +198,7 @@ The [confint][ref02] function (part of base R) calculates confidence intervals f
 
 #### Interpretation of the output
 
-
+Even after allowing for sampling error, the difference in means is at least 36 thousand dollars and possibly as much as 64 thousand dollars.
 
 ## Save everything
 
