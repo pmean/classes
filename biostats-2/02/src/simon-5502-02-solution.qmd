@@ -3,10 +3,11 @@ title: "Steve Simon's code for the 5502-02 programming assignment"
 format: 
   html:
     embed-resources: true
+execute:
+  error: true
 ---
 
-This programming assignment was written by Steve Simon on 2025-02-01 and is 
-placed in the public domain.
+This program was written by Steve Simon on 2025-02-01 and is placed in the public domain. It represents my solution to the programming assignment for module02 in MEDB 5502. Please do not look at this file until you have written your own program.
 
 ## File details
 
@@ -20,6 +21,8 @@ The [sleep.txt][ref01] data file is on the github site along with a [data dictio
 #| message: false
 #| warning: false
 
+library(broom)
+library(glue)
 library(tidyverse)
 R.version.string
 Sys.Date()
@@ -27,9 +30,14 @@ Sys.Date()
 
 ## Intermediate files
 
+Here are the important objects created by this program
+
 -   sleep: Data read from sleep.txt
 -   sleep_1: Remove missing values casewise
-
+-   m0: Linear regression for TotalSleep with no indepdent variables
+-   m1: Linear regression with BodyWt
+-   m2: Linear regression with BodyWt, LifeSpan, and Gestation
+-   r2: Residuals and predicted values from m2
 
 ## Read in the file
 
@@ -91,7 +99,7 @@ sleep_1 |>
 
 #### Interpretation of the output
 
-The average mammal sleeps for 10 hours. The standard deviation, 4.7 hours, implies a wide spread in the data, as does the range (2.6 to 19.9 hours).
+The average mammal weighs about 220 kilograms. The standard deviation is very large, 990 kilograms, and the the weights range along six orders of magnitude, from 5 grams to almost 6,700 kilograms.
 
 ## Descriptive statistics for LifeSpan
 
@@ -108,7 +116,7 @@ sleep_1 |>
 
 #### Interpretation of the output
 
-The average mammal sleeps for 10 hours. The standard deviation, 4.7 hours, implies a wide spread in the data, as does the range (2.6 to 19.9 hours).
+The average mammal lives 20 years. The standard deviation, 19 years, and the range, 2 to 100 years, indicate a large amount of variation.
 
 ## Descriptive statistics for gestation
 
@@ -125,17 +133,254 @@ sleep_1 |>
 
 #### Interpretation of the output
 
-The average mammal sleeps for 10 hours. The standard deviation, 4.7 hours, implies a wide spread in the data, as does the range (2.6 to 19.9 hours).
+The average mammal gestation is 142 days. The standard deviation is also 142 implying a wide amount of variation. The range of gestations goes from 12 days to 645 days (21.5 months).
+
+## Histogram for TotalSleep
+
+```{r}
+#| label: histogram-sleep
+
+sleep_1 |>
+  ggplot() +
+    aes(x=TotalSleep) +
+    geom_histogram(
+      color="black",
+      fill="white",
+      binwidth=2) +
+    xlab("Total sleep (hours)") +
+    ggtitle("Plot drawn by Steve Simon on 2025-02-01")
+```
+#### Comments on the output
+
+The distribution of sleep is approximately normal.
+
+## Histogram for BodyWt
+
+```{r}
+#| label: histogram-weight
+
+sleep_1 |>
+  ggplot() +
+    aes(x=BodyWt) +
+    geom_histogram(
+      color="black",
+      fill="white",
+      binwidth=100) +
+    xlab("Weight (kilograms)") +
+    ggtitle("Plot drawn by Steve Simon on 2025-02-01")
+```
+
+#### Interpretation of the output
+
+The distribution of body weights is extremely skewed with two outliers.
+
+## Histogram for BodyWt
+
+```{r}
+#| label: histogram-life-span
+
+sleep_1 |>
+  ggplot() +
+    aes(x=LifeSpan) +
+    geom_histogram(
+      color="black",
+      fill="white",
+      binwidth=5) +
+    xlab("Life span (years)") +
+    ggtitle("Plot drawn by Steve Simon on 2025-02-01")
+```
+
+#### Interpretation of the output
+
+The distribution of life spans is skewed right with two outliers.
+
+## Histogram for Gestation
+
+```{r}
+#| label: histogram-gestation
+
+sleep_1 |>
+  ggplot() +
+    aes(x=Gestation) +
+    geom_histogram(
+      color="black",
+      fill="white",
+      binwidth=20) +
+    xlab("Gestation (days)") +
+    ggtitle("Plot drawn by Steve Simon on 2025-02-01")
+```
+
+#### Interpretation of the output
+
+The distribution of gestation times is skewed to the right with two outliers.
 
 ## Question 2
 
 Calculate a linear regression model using BodyWt as the independent variable and a second linear regression model using BodyWt, LifeSpan, and Gestation. Interpret the r-squared values for both models.
 
+Note: while the question does not call for scatterplots, they are usually helpful in multiple linear regression.
+
+## Plot of BodyWt and TotalSleep
+
+```{r}
+#| label: plot-1
+
+sleep_1 |>
+  ggplot() +
+    aes(x=BodyWt, y=TotalSleep) +
+    geom_point() +
+    geom_smooth(method="lm") +
+    xlab("Weight (kilograms)") +
+    ylab("Total sleep (hours)") +
+    ggtitle("Graph drawn by Steve Simon on 2025-02-01")
+```
+
+#### Interpretation of the output
+
+Although the highly skewed distribution of BodyWt is not a violation of assumptions, you should be cautious about how to interpret any trend line. There are only two mammals that weigh more than a thousand kilograms, so trying to extrapolate the trend line to very large animals will be based on very little data.
+
+## Plot of LifeSpan and TotalSleep
+
+```{r}
+#| label: plot-2
+
+sleep_1 |>
+  ggplot() +
+    aes(x=LifeSpan, y=TotalSleep) +
+    geom_point() +
+    geom_smooth(method="lm") +
+    xlab("Lifespan (years)") +
+    ylab("Total sleep (hours)") +
+    ggtitle("Graph drawn by Steve Simon on 2025-02-01")
+```
+
+#### Interpretation of the output
+
+There is a weak downward trend, indicating the animals with shorter life spans tend to have longer sleep hours.
+
+## Plot of Gestation and TotalSleep
+
+```{r}
+#| label: plot-3
+
+sleep_1 |>
+  ggplot() +
+    aes(x=Gestation, y=TotalSleep) +
+    geom_point() +
+    geom_smooth(method="lm") +
+    xlab("Gestation (days)") +
+    ylab("Total sleep (hours)") +
+    ggtitle("Graph drawn by Steve Simon on 2025-02-01")
+```
+
+#### Interpretation of the output
+
+There is a strong downward trend, indicating that animals with long gesatational periods tend to sleep less on average.
+
+## Fit linear models
+
+```{r}
+#| label: regression-models
+
+m0 <- lm(TotalSleep ~ 1, data=sleep_1)
+
+m1 <- lm(TotalSleep ~ BodyWt, data=sleep_1)
+
+m2 <- lm(
+  TotalSleep ~ 
+      BodyWt + 
+      LifeSpan + 
+      Gestation, 
+  data=sleep_1)
+
+glance(m0) |>
+  bind_rows(glance(m1)) |>
+  bind_rows(glance(m2)) |>
+  mutate(model=glue("m_{0:2}")) |>
+  mutate(r.squared=round(r.squared, 2)) |>
+  mutate(deviance=format(deviance, big.mark=",")) |>
+  select(model, r.squared, deviance)
+```
+
+#### Interpretation of the output
+
+The linear model with just weight explains very little of the variation in total sleep (only 10%). The model that adds life span and length of gestation does a much better job, accounting for 32% more of the variation in total sleep.
+
 ## Question 3
 
 Test the hypothesis that LifeSpan and Gestation help in predicting TotalSleep above and beyond BodyWt.
+
+## Analysis of variance tables
+
+Note: It would okay to run anova(m0, m1) but it is not called for in the question.
+
+```{r}
+#| label: anova
+
+anova(m1, m2) |>
+  tidy() |>
+  mutate(
+    p.value=case_when(
+      p.value < 0.001 ~ "< 0.001",
+      p.value >= 0.001 ~ as.character(round(p.value, 3))))
+```
+
+#### Interpretation of the output
 
 ## Question 4
 
 Check the assumptions of normality, linearity, and homoscedascity for the model with BodyWt, LifeSpan, and Gestation as independent variables.
 
+## Compute residuals and predicted values
+
+```{r}
+#| label: compute-residuals
+
+r2 <- augment(m2)
+```
+
+## Plot predicted values versus residuals
+
+Note: instead of plotting the predicted variables versus the residuals, you could plot each of the three independent variables versus the residuals.
+
+```{r}
+#| label: predicted-vs-residuals
+
+r2 |>
+  ggplot() +
+    aes(x=.fitted, y=.resid) +
+    geom_point() +
+    geom_smooth(method="loess") +
+    xlab("Predicted values from three variable model") +
+    ylab("Residuals from three variable model") +
+    ggtitle("Plot drawn by Steve Simon on 2025-02-01")
+```
+
+#### Interpretation of the output
+
+There does not appear to be an evidence of nonlinearity. There is evidence of heteroscedascity because the residuals do appear to have more variation when the predicted value is large.
+
+## Normal probability plot of residuals
+
+```{r}
+#| label: qqplot
+
+r2 |>
+  ggplot() +
+    aes(sample=.resid) |>
+    stat_qq()
+```
+
+#### Interpretation of the output
+
+The qq plot is not perfectly straight, but close enough to satisfy me that the normality assumption is satisfied.
+
+## Final note
+
+There are additional analyses that you could run here, but you should not include them because they were not called for in the assignment.
+
+-   Additional models beyond the null model, one variable model, and three variable model
+-   Plots of residuals versus variables not in the model
+-   Leverage, studentized residuals, and Cook's distance
+-   Variance inflation factors
+-   Mediation analysis
