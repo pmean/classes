@@ -1,0 +1,141 @@
+---
+title: "Steve Simon's code for the 5502-02 programming assignment"
+format: 
+  html:
+    embed-resources: true
+---
+
+This programming assignment was written by Steve Simon on 2025-02-01 and is 
+placed in the public domain.
+
+## File details
+
+The [sleep.txt][ref01] data file is on the github site along with a [data dictionary][ref02]. 
+
+[ref01]: https://github.com/pmean/data/blob/main/files/sleep.txt
+[ref02]: https://github.com/pmean/data/blob/main/files/sleep.yaml
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+R.version.string
+Sys.Date()
+```
+
+## Intermediate files
+
+-   sleep: Data read from sleep.txt
+-   sleep_1: Remove missing values casewise
+
+
+## Read in the file
+
+```{r}
+#| label: read
+
+sleep <- read_tsv(
+  file="../data/sleep.txt",
+  col_names=TRUE,
+  col_types="cnnnnnnnnnn")
+glimpse(sleep)
+```
+
+## Filter out missing values casewise
+
+```{r}
+#| label: filter
+
+sleep |>
+  filter(!is.na(BodyWt)) |>
+  filter(!is.na(TotalSleep)) |>
+  filter(!is.na(LifeSpan)) |>
+  filter(!is.na(Gestation)) -> sleep_1
+```
+
+## Question 1
+
+You will not be graded on this, but get in the habit of computing some simple statistics (mean, standard deviation, minimum, and maximum) and histograms for the important variables in this dataset (TotalSleep, BodyWt, LifeSpan, and Gestation). Also, get in the habit of providing brief interpretations.
+
+## Descriptive statistics for TotalSleep
+
+```{r}
+#| label: descriptives-sleep
+
+sleep_1 |>
+  summarize(
+    sleep_mean=mean(TotalSleep),
+    sleep_sd=sd(TotalSleep),
+    sleep_min=min(TotalSleep),
+    sleep_max=max(TotalSleep))
+```
+
+#### Interpretation of the output
+
+The average mammal sleeps for 10 hours. The standard deviation, 4.7 hours, implies a wide spread in the data, as does the range (2.6 to 19.9 hours).
+
+## Descriptive statistics for BodyWt
+
+```{r}
+#| label: descriptives-weight
+
+sleep_1 |>
+  summarize(
+    weight_mean=mean(BodyWt),
+    weight_sd=sd(BodyWt),
+    weight_min=min(BodyWt),
+    weight_max=max(BodyWt))
+```
+
+#### Interpretation of the output
+
+The average mammal sleeps for 10 hours. The standard deviation, 4.7 hours, implies a wide spread in the data, as does the range (2.6 to 19.9 hours).
+
+## Descriptive statistics for LifeSpan
+
+```{r}
+#| label: descriptives-lifespan
+
+sleep_1 |>
+  summarize(
+    life_span_mean=mean(LifeSpan),
+    life_span_sd=sd(LifeSpan),
+    life_span_min=min(LifeSpan),
+    life_span_max=max(LifeSpan))
+```
+
+#### Interpretation of the output
+
+The average mammal sleeps for 10 hours. The standard deviation, 4.7 hours, implies a wide spread in the data, as does the range (2.6 to 19.9 hours).
+
+## Descriptive statistics for gestation
+
+```{r}
+#| label: descriptives-gestation
+
+sleep_1 |>
+  summarize(
+    gestation_mean=mean(Gestation),
+    gestation_sd=sd(Gestation),
+    gestation_min=min(Gestation),
+    gestation_max=max(Gestation))
+```
+
+#### Interpretation of the output
+
+The average mammal sleeps for 10 hours. The standard deviation, 4.7 hours, implies a wide spread in the data, as does the range (2.6 to 19.9 hours).
+
+## Question 2
+
+Calculate a linear regression model using BodyWt as the independent variable and a second linear regression model using BodyWt, LifeSpan, and Gestation. Interpret the r-squared values for both models.
+
+## Question 3
+
+Test the hypothesis that LifeSpan and Gestation help in predicting TotalSleep above and beyond BodyWt.
+
+## Question 4
+
+Check the assumptions of normality, linearity, and homoscedascity for the model with BodyWt, LifeSpan, and Gestation as independent variables.
+
