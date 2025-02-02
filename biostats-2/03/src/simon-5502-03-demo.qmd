@@ -200,6 +200,67 @@ The [confint][ref02] function (part of base R) calculates confidence intervals f
 
 Even after allowing for sampling error, the difference in means is at least 36 thousand dollars and possibly as much as 64 thousand dollars.
 
+## 1. Examination of covariate
+
+Note: the size of the home might be associated both with custom build and price. Let's investigate.
+
+## 1. Boxplot of sqft by custom_build
+
+```{r}
+#| label: boxplot-2
+#| fig.width: 6
+#| fig.height: 2
+
+alb |>
+	ggplot() +
+	  aes(x=custom_build, y=sqft) +
+	  geom_boxplot() +
+	  xlab("Custom built?") +
+	  ylab("Size of the house (square feet)") +
+	  coord_flip() +
+	  ggtitle("Plot drawn by Steve Simon on 2025-01-30")
+```
+
+#### Interpretation of the output
+
+Custom-built homes are much larger on average.
+
+## 1. Mean sqft by custom_build
+
+```{r}
+#| label: group-means-2
+
+alb |>
+	group_by(custom_build) |>
+	summarize(
+		mean_sqft=mean(sqft),
+		sd_sqft=sd(sqft),
+		n=n())
+```
+
+#### Interpretation of the output
+
+The average size of regular homes is about 1,500 square feet. Custom-built homes are about 650 square feet larger on average.
+
+## Scatterplot of sqft and price
+
+```{r}
+#| label: scatterplot-2
+
+alb |>
+  ggplot() +
+    aes(x=sqft, y=price) +
+    geom_point() +
+    geom_smooth(method="lm")
+    xlab("Size of home (square feet)") +
+    ylab("Price of home (dollars)") +
+    ggtitle("Graph drawn by Steve Simon on 2025-02-02")
+```
+
+#### Interpretation of the output
+
+There is a strong positive relationship. Larger homes tend to sell for more money.
+
 ## Save everything
 
 ```{r}
