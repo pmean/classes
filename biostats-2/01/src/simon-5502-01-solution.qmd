@@ -1,5 +1,5 @@
 ---
-title: "Directions for 5502-01 programming assignment"
+title: "Steve Simon's code for the 5502-01 programming assignment"
 format: 
   html:
     embed-resources: true
@@ -13,7 +13,7 @@ This solution to the programming assignment for module01 of MEDB 5502 was writte
 
 This assignment is for practice only and there is no grading.
 
-The data, [samara-velocity.txt][ref01] file is available on my github site, along with a [data dictionary][ref02].
+The data, [samara-velocity.txt][ref01], is available on my github site, along with a [data dictionary][ref02].
 
 [ref01]: https://github.com/pmean/data/blob/main/files/samara-velocity.txt
 [ref02]: https://github.com/pmean/data/blob/main/files/samara-velocity.yaml
@@ -23,11 +23,21 @@ The data, [samara-velocity.txt][ref01] file is available on my github site, alon
 #| message: false
 #| warning: false
 
+library(broom)
 library(glue)
 library(tidyverse)
 R.version.string
 Sys.Date()
 ```
+
+## Intermediate files
+
+It's optional, but a good practice to list all the objects that you create in your program.
+
+-   sam: data read from samara-velocity
+-   sam_1: add indicators for trees 2 and 3
+-   m1: linear regression using load to predict velocity
+-   m2: linear regression using indicators for tree to predict velocity
 
 ## Read the data
 
@@ -47,71 +57,133 @@ glimpse(sam)
 Calculate descriptive statistics for the three variables in the dataset. 
 Interpret these statistics. You do not need to produce any graphs.
 
+### Descriptive statistics for tree
+
 ```{r}
 #| label: descriptives-tree
 
 sam |>
-  count(tree) |>
+  count(Tree) |>
   mutate(total=sum(n)) |>
   mutate(pct=round(100*n/total)) |>
-  glue(pct="{pct}% ({n}/{total}") |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
   select(-n, -total)
 ```
 
 #### Interpretation of the output
 
-```{r}
-#| label: descriptives-load
+Each tree has 12 measurements.
 
-sam|>
-  summarize(
-    load_mean=mean(load),
-    load_sd=sd(load),
-    load_min=min(load),
-    load_max=max(load))
-```
-
-#### Interpretation of the output
+### Descriptive statistics for load
 
 ```{r}
 #| label: descriptives-load
 
 sam|>
   summarize(
-    load_mean=mean(load),
-    load_sd=sd(load),
-    load_min=min(load),
-    load_max=max(load))
+    load_mean=mean(Load, na.rm=TRUE),
+    load_sd=sd(Load, na.rm=TRUE),
+    load_min=min(Load, na.rm=TRUE),
+    load_max=max(Load, na.rm=TRUE))
 ```
 
 #### Interpretation of the output
+
+The average disk loading is 0.21. Note that the units are not specified in the data dictionary. The standard deviation and the range seem reasonably narrow.
+
+### Descriptive statistics for velocity
+
+```{r}
+#| label: descriptives-velocity
+
+sam|>
+  summarize(
+    velocity_mean=mean(Velocity, na.rm=TRUE),
+    velocity_sd=sd(Velocity, na.rm=TRUE),
+    velocity_min=min(Velocity, na.rm=TRUE),
+    velocity_max=max(Velocity, na.rm=TRUE))
+```
+
+#### Interpretation of the output
+
+The average velocity is 1.1 (units not specified in the data dictionary). The standard deviation and range both indicate little variation in the measurements.
 
 ## Question 2
 
 Calculate a linear regression model using Load as the independent variable and
 Velocity as the dependent variable. Interpret these results.
 
+```{r}
+#| label: lm-1
+
+m1 <- lm(Velocity ~ Load, data=sam)
+
+tidy(m1)|>
+  mutate(
+    p.value=case_when(
+      p.value < 0.001 ~ "< 0.001",
+      p.value >= 0.001 ~ as.character(round(p.value, 3))))
+```
+
+#### Interpretation of the output
+
+The estimated average velocity is -0.1 when the load is zero. This is clearly an extrapolation beyond the range of the data. The estimated average velocity increases by 5.8 units when load increases by one unit.
+
+The t-statistic, 11.4, is not close to zero and the p-value is small. Conclude that there is a positive relationship between load and velocity.
+
 ## Question 3
 
-Calculate indicator variables for Tree=2 and Tree=3. Include these as 
-independent variables in a linear regression model predicting Velocity.
-Interpret this model.
+Calculate indicator variables for Tree=2 and Tree=3. Include these as independent variables in a linear regression model predicting Velocity. Interpret this model.
 
-## Your submission
+### Average velocities for each tree
 
--   Save the output in html format
--   Convert it to pdf format.
--   Make sure that the pdf file includes
-    -   Your last name
-    -   The number of this course
-    -   The number of this module
--   Upload the file
--   Please note the [policy on late submissions and rework][sim3].
+Note: although it was not asked for, calculating the mean velocity for each tree will help you interpret the linear model with indicators.
 
-[sim3]: https://github.com/pmean/classes/blob/master/general/policy-on-extensions-and-rework.md
+```{r}
+#| label: velocity-means
 
-## If it doesn't work
+sam |>
+  group_by(Tree) |>
+  summarize(
+    velocity_mean=mean(Velocity, na.rm=TRUE),
+    velocity_sd=sd(Velocity, na.rm=TRUE))
+```
 
-Please review the [suggestions if you encounter an error page][sim4].
+#### Interpretation of the output
 
-[sim4]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
+The average velocity is lower for tree 3. There are some slight differences in the standard deviations, but nothing too serious.
+
+### Create indicators
+
+```{r}
+#| label: create-indicators
+
+sam |>
+  mutate(
+    tree2=case_when(
+      Tree==2 ~ 1,
+      Tree!=2 ~ 0)) |>
+  mutate(
+    tree3=case_when(
+      Tree==3 ~ 1,
+      Tree!=3 ~ 0)) -> sam_1
+```
+
+## Regression model with indicator variables
+
+```{r}
+#| label: lm-2
+
+m2 <- lm(Velocity ~ tree2 + tree3, data=sam_1)
+
+m2 |>
+  tidy() |>
+  mutate(
+    p.value=case_when(
+      p.value < 0.001 ~ "< 0.001",
+      p.value >= 0.001 ~ as.character(round(p.value, 3))))
+```
+
+#### Interpretation of the output
+
+The estimated average velocity is 1.2 for the first tree. The second tree has an average velocity that is lower by 0.05 units, but this change is not statistically significant. The third tree has an average velocity that is lower by 0.28 units and this change is statistically significant.

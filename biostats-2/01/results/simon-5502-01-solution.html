@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Sweep html files from src to results</title>
+<title>Steve Simon’s code for the 5502-01 programming assignment</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3023,7 +3023,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Sweep html files from src to results</h1>
+<h1 class="title">Steve Simon’s code for the 5502-01 programming assignment</h1>
 </div>
 
 
@@ -3040,68 +3040,209 @@ vertical-align: -.125em;
 
 <section id="file-details" class="level2">
 <h2 class="anchored" data-anchor-id="file-details">File details</h2>
-<p>This program moves files from the src folder to results folder in each of the modules. It was written by Steve Simon on 2025-01-08 and is placed in the public domain.</p>
+<p>This solution to the programming assignment for module01 of MEDB 5502 was written by Steve Simon on 2025-01-27 and is placed in the public domain.</p>
+<p>This assignment is for practice only and there is no grading.</p>
+<p>The data, <a href="https://github.com/pmean/data/blob/main/files/samara-velocity.txt">samara-velocity.txt</a>, is available on my github site, along with a <a href="https://github.com/pmean/data/blob/main/files/samara-velocity.yaml">data dictionary</a>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="identify-html-files" class="level2">
-<h2 class="anchored" data-anchor-id="identify-html-files">Identify html files</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>identify_files <span class="ot">&lt;-</span> <span class="cf">function</span>(subdir, ext) {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list.files</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">path=</span><span class="fu">glue</span>(<span class="st">&quot;../{subdir}/src&quot;</span>),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">pattern=</span>ext)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="move-html-files" class="level2">
-<h2 class="anchored" data-anchor-id="move-html-files">Move html files</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sweep_files <span class="ot">&lt;-</span> <span class="cf">function</span>(subdir, file_name) {</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  old <span class="ot">&lt;-</span> <span class="fu">glue</span>(<span class="st">&quot;../{subdir}/src/{file_name}&quot;</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  new <span class="ot">&lt;-</span> <span class="fu">glue</span>(<span class="st">&quot;../{subdir}/results/{file_name}&quot;</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.rename</span>(<span class="at">from=</span>old, <span class="at">to=</span>new)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="loop-across-all-subdirectories" class="level2">
-<h2 class="anchored" data-anchor-id="loop-across-all-subdirectories">Loop across all subdirectories</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>modules <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">glue</span>(<span class="st">&quot;0{1:9}&quot;</span>), <span class="fu">as.character</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">14</span>))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (s <span class="cf">in</span> modules) {</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">&quot;Searching in module {s}&quot;</span>))</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  file_list <span class="ot">&lt;-</span> <span class="fu">character</span>(<span class="dv">0</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (ext <span class="cf">in</span> <span class="fu">c</span>(<span class="st">&quot;html&quot;</span>, <span class="st">&quot;pdf&quot;</span>, <span class="st">&quot;pptx&quot;</span>)) {</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    file_list <span class="ot">&lt;-</span> <span class="fu">c</span>(file_list, <span class="fu">identify_files</span>(s, ext))</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(file_list) <span class="sc">==</span> <span class="dv">0</span>) <span class="cf">next</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">&quot;{s}/{file_list}&quot;</span>))</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (f <span class="cf">in</span> file_list) {</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sweep_files</span>(s, f)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Searching in module 01
-01/_b2-01-01.html
-01/simon-5502-01-solution.html
-Searching in module 02
-Searching in module 03
-03/simon-5502-03-demo.html
-Searching in module 04
-Searching in module 05
-Searching in module 06
-Searching in module 07
-Searching in module 08
-Searching in module 09
-Searching in module 10
-Searching in module 11
-Searching in module 12
-Searching in module 13
-Searching in module 14</code></pre>
+<pre><code>[1] &quot;R version 4.3.0 (2023-04-21 ucrt)&quot;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;2025-02-02&quot;</code></pre>
 </div>
 </div>
+</section>
+<section id="intermediate-files" class="level2">
+<h2 class="anchored" data-anchor-id="intermediate-files">Intermediate files</h2>
+<p>It’s optional, but a good practice to list all the objects that you create in your program.</p>
+<ul>
+<li>sam: data read from samara-velocity</li>
+<li>sam_1: add indicators for trees 2 and 3</li>
+<li>m1: linear regression using load to predict velocity</li>
+<li>m2: linear regression using indicators for tree to predict velocity</li>
+</ul>
+</section>
+<section id="read-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-the-data">Read the data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sam <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">&quot;../data/samara-velocity.txt&quot;</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names=</span><span class="cn">TRUE</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sam)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 36
+Columns: 3
+$ Tree     &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2…
+$ Load     &lt;dbl&gt; 0.239, 0.208, 0.223, 0.224, 0.246, 0.213, 0.198, 0.219, 0.241…
+$ Velocity &lt;dbl&gt; 1.34, 1.06, 1.14, 1.13, 1.35, 1.23, 1.23, 1.15, 1.25, 1.24, 1…</code></pre>
+</div>
+</div>
+</section>
+<section id="question-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<p>Calculate descriptive statistics for the three variables in the dataset. Interpret these statistics. You do not need to produce any graphs.</p>
+<section id="descriptive-statistics-for-tree" class="level3">
+<h3 class="anchored" data-anchor-id="descriptive-statistics-for-tree">Descriptive statistics for tree</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sam <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Tree) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{pct}% ({n}/{total})&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+   Tree pct        
+  &lt;dbl&gt; &lt;glue&gt;     
+1     1 33% (12/36)
+2     2 33% (12/36)
+3     3 33% (12/36)</code></pre>
+</div>
+</div>
+<section id="interpretation-of-the-output" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output">Interpretation of the output</h4>
+<p>Each tree has 12 measurements.</p>
+</section>
+</section>
+<section id="descriptive-statistics-for-load" class="level3">
+<h3 class="anchored" data-anchor-id="descriptive-statistics-for-load">Descriptive statistics for load</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sam<span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">load_mean=</span><span class="fu">mean</span>(Load, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">load_sd=</span><span class="fu">sd</span>(Load, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">load_min=</span><span class="fu">min</span>(Load, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">load_max=</span><span class="fu">max</span>(Load, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+  load_mean load_sd load_min load_max
+      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1     0.208  0.0271    0.155    0.269</code></pre>
+</div>
+</div>
+<section id="interpretation-of-the-output-1" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-1">Interpretation of the output</h4>
+<p>The average disk loading is 0.21. Note that the units are not specified in the data dictionary. The standard deviation and the range seem reasonably narrow.</p>
+</section>
+</section>
+<section id="descriptive-statistics-for-velocity" class="level3">
+<h3 class="anchored" data-anchor-id="descriptive-statistics-for-velocity">Descriptive statistics for velocity</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sam<span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">velocity_mean=</span><span class="fu">mean</span>(Velocity, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">velocity_sd=</span><span class="fu">sd</span>(Velocity, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">velocity_min=</span><span class="fu">min</span>(Velocity, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">velocity_max=</span><span class="fu">max</span>(Velocity, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+  velocity_mean velocity_sd velocity_min velocity_max
+          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+1          1.12       0.176         0.81         1.43</code></pre>
+</div>
+</div>
+<section id="interpretation-of-the-output-2" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-2">Interpretation of the output</h4>
+<p>The average velocity is 1.1 (units not specified in the data dictionary). The standard deviation and range both indicate little variation in the measurements.</p>
+</section>
+</section>
+</section>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<p>Calculate a linear regression model using Load as the independent variable and Velocity as the dependent variable. Interpret these results.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Velocity <span class="sc">~</span> Load, <span class="at">data=</span>sam)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m1)<span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.value=</span><span class="fu">case_when</span>(</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      p.value <span class="sc">&lt;</span> <span class="fl">0.001</span> <span class="sc">~</span> <span class="st">&quot;&lt; 0.001&quot;</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>      p.value <span class="sc">&gt;=</span> <span class="fl">0.001</span> <span class="sc">~</span> <span class="fu">as.character</span>(<span class="fu">round</span>(p.value, <span class="dv">3</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  
+1 (Intercept)  -0.0933     0.107    -0.868 0.392  
+2 Load          5.82       0.511    11.4   &lt; 0.001</code></pre>
+</div>
+</div>
+<section id="interpretation-of-the-output-3" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-3">Interpretation of the output</h4>
+<p>The estimated average velocity is -0.1 when the load is zero. This is clearly an extrapolation beyond the range of the data. The estimated average velocity increases by 5.8 units when load increases by one unit.</p>
+<p>The t-statistic, 11.4, is not close to zero and the p-value is small. Conclude that there is a positive relationship between load and velocity.</p>
+</section>
+</section>
+<section id="question-3" class="level2">
+<h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<p>Calculate indicator variables for Tree=2 and Tree=3. Include these as independent variables in a linear regression model predicting Velocity. Interpret this model.</p>
+<section id="average-velocities-for-each-tree" class="level3">
+<h3 class="anchored" data-anchor-id="average-velocities-for-each-tree">Average velocities for each tree</h3>
+<p>Note: although it was not asked for, calculating the mean velocity for each tree will help you interpret the linear model with indicators.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sam <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Tree) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">velocity_mean=</span><span class="fu">mean</span>(Velocity, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">velocity_sd=</span><span class="fu">sd</span>(Velocity, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+   Tree velocity_mean velocity_sd
+  &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+1     1         1.23       0.0985
+2     2         1.18       0.183 
+3     3         0.951      0.0839</code></pre>
+</div>
+</div>
+<section id="interpretation-of-the-output-4" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-4">Interpretation of the output</h4>
+<p>The average velocity is lower for tree 3. There are some slight differences in the standard deviations, but nothing too serious.</p>
+</section>
+</section>
+<section id="create-indicators" class="level3">
+<h3 class="anchored" data-anchor-id="create-indicators">Create indicators</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sam <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">tree2=</span><span class="fu">case_when</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>      Tree<span class="sc">==</span><span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>      Tree<span class="sc">!=</span><span class="dv">2</span> <span class="sc">~</span> <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">tree3=</span><span class="fu">case_when</span>(</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>      Tree<span class="sc">==</span><span class="dv">3</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>      Tree<span class="sc">!=</span><span class="dv">3</span> <span class="sc">~</span> <span class="dv">0</span>)) <span class="ot">-&gt;</span> sam_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="regression-model-with-indicator-variables" class="level2">
+<h2 class="anchored" data-anchor-id="regression-model-with-indicator-variables">Regression model with indicator variables</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Velocity <span class="sc">~</span> tree2 <span class="sc">+</span> tree3, <span class="at">data=</span>sam_1)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>m2 <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.value=</span><span class="fu">case_when</span>(</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>      p.value <span class="sc">&lt;</span> <span class="fl">0.001</span> <span class="sc">~</span> <span class="st">&quot;&lt; 0.001&quot;</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>      p.value <span class="sc">&gt;=</span> <span class="fl">0.001</span> <span class="sc">~</span> <span class="fu">as.character</span>(<span class="fu">round</span>(p.value, <span class="dv">3</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  term        estimate std.error statistic p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  
+1 (Intercept)   1.23      0.0368     33.6  &lt; 0.001
+2 tree2        -0.0542    0.0532     -1.02 0.316  
+3 tree3        -0.283     0.0520     -5.45 &lt; 0.001</code></pre>
+</div>
+</div>
+<section id="interpretation-of-the-output-5" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-5">Interpretation of the output</h4>
+<p>The estimated average velocity is 1.2 for the first tree. The second tree has an average velocity that is lower by 0.05 units, but this change is not statistically significant. The third tree has an average velocity that is lower by 0.28 units and this change is statistically significant.</p>
+</section>
 </section>
 
 </main>
