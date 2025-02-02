@@ -29,9 +29,7 @@ Interpret these statistics. You do not need to produce any graphs.
 ## Question 2
 
 Calculate a linear regression model using Load as the independent variable and
-Velocity as the dependent variable. Interpret these resutls.descriptive statistics for sleep (mean, standard deviation, and 
-sample size) by the combination of the two categorical predictors, partners and
-type. Is there evidence of heterogeneity?
+Velocity as the dependent variable. Interpret these results.
 
 ## Question 3
 
