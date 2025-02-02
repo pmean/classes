@@ -67,6 +67,8 @@ sleep |>
 
 You will not be graded on this, but get in the habit of computing some simple statistics (mean, standard deviation, minimum, and maximum) and histograms for the important variables in this dataset (TotalSleep, BodyWt, LifeSpan, and Gestation). Also, get in the habit of providing brief interpretations.
 
+Note: the descriptive statistics presented here represent a general example. You do not necessarily need all of these and you may want to compute a few different descriptive statistics instead.
+
 ## Descriptive statistics for TotalSleep
 
 ```{r}
