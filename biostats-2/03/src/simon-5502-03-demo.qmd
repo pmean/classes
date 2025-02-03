@@ -33,6 +33,8 @@ Sys.Date()
 ## 1. Intermediate files
 
 -   alb: original data from albuquerque-housing.csv
+-   m1: traditional t-test comparing prices by custom-built
+-   m2: linear model comparing prices by custom-built
 
 ## 1. Read the data
 
@@ -42,7 +44,8 @@ Sys.Date()
 alb <- read_csv(
   file="../data/albuquerque-housing.csv",
   col_names=TRUE,
-  col_types="nnnnccc")
+  col_types="nnnnccc",
+  na=".")
 glimpse(alb)
 ```
 
@@ -152,9 +155,9 @@ m1
 ```
 #### Comment on the code
 
-The [t.test][ref01] function will test the hypothesis that the mean is the same in both groups. It requires a bit of awkward syntax, so I prefer to do a comparable test using the lm function.
+The [t.test][ref04] function will test the hypothesis that the mean is the same in both groups. It requires a bit of awkward syntax, so I prefer to do a comparable test using the lm function.
 
-[ref01]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/t.test.html
+[ref04]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/t.test.html
 
 #### Interpretation of the output
 
@@ -192,9 +195,9 @@ m2 |>
 
 #### Comment on the code
 
-The [confint][ref02] function (part of base R) calculates confidence intervals for the estimates produces by the lm function as well as some other data analysis functions in R.
+The [confint][ref05] function (part of base R) calculates confidence intervals for the estimates produces by the lm function as well as some other data analysis functions in R.
 
-[ref02]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/confint.html
+[ref05]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/confint.html
 
 #### Interpretation of the output
 
@@ -260,6 +263,55 @@ alb |>
 #### Interpretation of the output
 
 There is a strong positive relationship. Larger homes tend to sell for more money.
+
+## 1. Analysis of covariance model
+
+```{r}
+#| label: ancova
+
+m3 <- lm(price ~ custom_build + sqft, data=alb)
+
+m3 |>
+  tidy() |>
+  mutate(
+    p.value =
+      case_when(
+        p.value <  0.001 ~ "< 0.001",
+        p.value >= 0.001 ~ as.character(round(p.value, 3))))
+```
+
+## Graphical illustration
+
+```{r}
+#| label: illustration
+
+b <- coef(m3)
+x0 <- min(alb$sqft)
+x1 <- max(alb$sqft)
+x2 <- mean(alb$sqft[alb$custom_build=="no"])
+x3 <- mean(alb$sqft[alb$custom_build=="yes"])
+x4 <- mean(alb$sqft)
+no_0  <- predict(m3, data.frame(sqft=x0, custom_build="no"))
+yes_0 <- predict(m3, data.frame(sqft=x0, custom_build="yes"))
+no_1  <- predict(m3, data.frame(sqft=x1, custom_build="no"))
+yes_1 <- predict(m3, data.frame(sqft=x1, custom_build="yes"))
+no_2  <- predict(m3, data.frame(sqft=x2, custom_build="no"))
+yes_3 <- predict(m3, data.frame(sqft=x3, custom_build="yes"))
+no_4  <- predict(m3, data.frame(sqft=x4, custom_build="no"))
+yes_4 <- predict(m3, data.frame(sqft=x4, custom_build="yes"))
+
+alb |>
+  ggplot() +
+  aes(x=sqft, y=price, label=custom_build, color=custom_build) +
+  geom_text(size=2) +
+  geom_segment(x=x0, y=no_0, xend=x1, yend=no_1) +
+  geom_segment(x=x0, y=yes_0, xend=x1, yend=yes_1) +
+  geom_label(x=x2, y=no_2, label=round(no_2)) +
+  geom_label(x=x3, y=yes_3, label=round(yes_3)) +
+  geom_label(x=x4, y=no_4, label=round(no_4)) +
+  geom_label(x=x4, y=yes_4, label=round(yes_4)) +
+  expand_limits(y=yes_1)
+```
 
 ## Save everything
 
