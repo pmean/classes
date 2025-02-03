@@ -6,9 +6,9 @@ This programming assignment was written by Steve Simon on 2025-01-30 and is plac
 
 ## Program
 
--   Write this program on your own using examples from the previous semester. You may wish to adapt some code from the [demonstration program for module02][ref01]. Replace my name with yours everywhere, remove the "Comments on the code" sections, and only include program chunks that address the questions listed below.
+-   Write a program to answer the questions listed below. You may wish to adapt some code from the [demonstration program for module03][ref01]. Replace my name with yours everywhere, remove the "Comments on the code" sections, and only include program chunks that address the questions listed below.
 
-[ref01]: https://github.com/pmean/classes/blob/master/biostats-2/02/src/simon-5502-02-demo.qmd
+[ref01]: https://github.com/pmean/classes/blob/master/biostats-2/03/src/simon-5502-03-demo.qmd
 
 ## Data
 
@@ -16,8 +16,8 @@ This programming assignment was written by Steve Simon on 2025-01-30 and is plac
     -   Store it in your data folder
 -   Refer to the [data dictionary][ref03], if needed.
 
-[ref02]: https://github.com/pmean/data/blob/main/files/sleep.txt
-[ref03]: https://github.com/pmean/data/blob/main/files/sleep.yaml
+[ref02]: https://github.com/pmean/data/blob/main/files/breast-feeding-preterm.csv
+[ref03]: https://github.com/pmean/data/blob/main/files/breast-feeding-preterm.yaml
 
 ## Question 1
 
@@ -54,8 +54,8 @@ Now adjust for mom_age in an analysis of covariance model. Display the parameter
 
 ## Your grade
 
--   Your grade will be based on this [grading rubric][ref04]. Please also note the [policy on late submissions and rework][ref05]. if your program does not work, please review the [suggestions if you encounter an error page][ref06].
+-   Your grade will be based on this [grading rubric][ref04]. Please also note the [policy on late submissions and rework][ref05]. If your program does not work, please review the [suggestions if you encounter an error page][ref06].
 
-[ref04]: https://github.com/pmean/classes/blob/master/biostats-2/general/programming-rubric.md
+[ref04]: https://github.com/pmean/classes/blob/master/general/general-grading-rubric.md
 [ref05]: https://github.com/pmean/classes/blob/master/general/policy-on-extensions-and-rework.md
 [ref06]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
