@@ -1,5 +1,5 @@
 ---
-title: "simon-5502-02-demo"
+title: "simon-5502-03-demo"
 format: 
   html:
     embed-resources: true
@@ -58,6 +58,10 @@ alb <- read_csv(
   na=".")
 glimpse(alb)
 ```
+
+#### Comments on the code
+
+You have seen the read-csv function before. The na="." argument tells R that missing values are designated by a single dot. Normally, R expects missing values to be designated by NA.
 
 ## Descriptive statistics for price
 
