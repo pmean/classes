@@ -10,37 +10,28 @@ editor: source
 ## Assumptions of analysis of covariance
 
 -   Same as multiple linear regression
-    -   Normality
     -   Equal variances
     -   Linearity
+    -   Normality
 -   One additional assumption
     -   No interaction
     
-::: notes
+## Residuals versus predicted
 
-:::
+```{r}
+#| label: plot-2
+
+plot_2
+```
 
 ## Q-Q plot of residuals
 
-![](images/housing-analysis-15.png)
+```{r}
+#| label: plot-3
 
-::: notes
-
-:::
-
-## Residuals versus predicted
-
-![](images/housing-analysis-16.png)
-
-::: notes
-
-:::
+plot_3
+```
 
 ## Testing for an interaction
 
-![](images/housing-analysis-17.png)
-
-::: notes
-
-:::
-
+Save this discussion for next week

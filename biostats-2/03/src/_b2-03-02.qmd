@@ -7,25 +7,52 @@ format:
 editor: source
 ---
 
-## Traditional t-test, 1 of 4
+```{r setup-2}
+#| label: 03-02-setup
+#| message: false
+#| warning: false
 
-![](images/housing-analysis-07.png)
+library(broom)
+library(glue)
+library(tidyverse)
 
-## Traditional t-test, 2 of 4
+load("../data/module03.RData")
+```
 
-![](images/housing-analysis-06.png)
+## Traditional t-test, 1
 
-## Traditional t-test, 3 of 4
+```{r}
+#| label: 03-02-boxplot
+#| fig-width: 6
+#| fig-height: 2
 
-![](images/housing-analysis-08.png)
+plot_1
+```
 
-## Traditional t-test, 4 of 4
+## Traditional t-test, 2
 
-![](images/housing-analysis-09.png)
+```{r}
+#| label: 03-02-table
+
+table_1
+```
+
+## Traditional t-test, 3
+
+```{r}
+#| label: 03-02-t-test
+
+m1
+```
 
 ## T-test using general linear model
 
-![](images/housing-analysis-10.png)
+```{r}
+#| label: lm
+
+tidy(m2)
+confint(m2)
+```
 
 ## Indicator variable coding
 
@@ -34,10 +61,6 @@ editor: source
     -   0 for "second" category
         -   Choice of "first" is arbitrary
 -   Can also be used for three or more categories
-
-## T-test using indicator variable
-
-![](images/housing-analysis-11.png)
 
 ## Why use the general linear model?
 

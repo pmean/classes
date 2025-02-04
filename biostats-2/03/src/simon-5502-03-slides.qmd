@@ -46,8 +46,6 @@ editor: source
 
 {{< include _b2-03-02.qmd >}}
 
-## Live demo, `r params$topic_02`
-
 ## Break #2
 
 -   What you have learned
@@ -57,7 +55,9 @@ editor: source
     
 {{< include _b2-03-03.qmd >}}
 
-## Live demo, `r params$topic_03`
+## Live demo, part 3
+
+## Live demo, parts 1 and 2
 
 ## Break #3
 
@@ -68,7 +68,7 @@ editor: source
     
 {{< include _b2-03-04.qmd >}}
 
-## Live demo, `r params$topic_04`
+## Live demo, part 4
 
 ## Summary
 

@@ -1,5 +1,5 @@
 ---
-title: "5502 module 02 demonstration program"
+title: "simon-5502-02-demo"
 format: 
   html:
     embed-resources: true
@@ -8,7 +8,9 @@ execute:
   error: true
 ---
 
-## 1. File details
+## Part 1. Read the data and produce descriptive statistics
+
+## File details
 
 This program was written by Steve Simon on 2025-01-30 and is placed in the public domain. You can use this program any way you please.
 
@@ -30,13 +32,21 @@ R.version.string
 Sys.Date()
 ```
 
-## 1. Intermediate files
+## Intermediate files
 
 -   alb: original data from albuquerque-housing.csv
 -   m1: traditional t-test comparing prices by custom-built
 -   m2: linear model comparing prices by custom-built
+-   m3: linear model adjusting for sqft
+-   alb1: small tibble for future predictions of m2
+-   alb2: small tibble for unadjusted future predictions of m3
+-   alb3: small tibble for adjusted future predictions of m3
+-   r3: residuals and predicted values for m3
+-   plot1: boxplot of custom_build and price
+-   plot2: plot of predicted versus residuals
+-   plot3: qq plot of residuals
 
-## 1. Read the data
+## Read the data
 
 ```{r}
 #| label: read
@@ -49,7 +59,7 @@ alb <- read_csv(
 glimpse(alb)
 ```
 
-## 1. Descriptive statistics for price
+## Descriptive statistics for price
 
 ```{r}
 #| label: descriptives-1
@@ -70,7 +80,7 @@ I use the word "dollars" in the interpretation below rather than putting in a do
 
 The average house sold for 106 thousand dollars. The range of prices is large, going from 54 thousand dollars to 215 thousand dollars. All of these prices seem low, but perhaps those prices were quite normal back in 1993.
 
-## 1. Descriptive statistics for sqft
+## Descriptive statistics for sqft
 
 ```{r}
 #| label: descriptives-2
@@ -87,7 +97,7 @@ alb |>
 
 The average house is 1,600 square feet. The range again is quite wide. The houses seems small; the largest is still less than 4,000 square feet. This may have been reasonable back in 1993.
 
-## 1. Descriptive statistics for custom_build
+## Descriptive statistics for custom_build
 
 ```{r}
 #| label: descriptives-3
@@ -104,7 +114,9 @@ alb |>
 
 Only about a quarter of the houses are custom-built.
 
-## 1. Boxplot comparing price by custom_build.
+## Part 2. t-test, traditional and with lm
+
+## Boxplot comparing price by custom_build.
 
 ```{r}
 #| label: boxplot-1
@@ -118,14 +130,15 @@ alb |>
 	  xlab("Custom built?") +
 	  ylab("Price (dollars)") +
 	  coord_flip() +
-	  ggtitle("Plot drawn by Steve Simon on 2025-01-30")
+	  ggtitle("Plot drawn by Steve Simon on 2025-01-30") -> plot_1
+plot_1
 ```
 
 #### Interpretation of the output
 
 Prices are substantially higher for custom-built homes.
 
-## 1. Mean price by custom_build
+## Mean price by custom_build
 
 ```{r}
 #| label: group-means-1
@@ -135,14 +148,14 @@ alb |>
 	summarize(
 		mean_price=mean(price),
 		sd_price=sd(price),
-		n=n())
+		n=n()) -> table_1
 ```
 
 #### Interpretation of the output
 
 The mean price of regular homes is roughly 95 thousand dollars. Custom built homes have an average price of roughly 145 thousand dollars or 50 thousand dollars more expensive. Custom built houses are also more variable (a standard deviation of 48 thousand dollars compared to 25 thousand dollars).
 
-## 1. The traditional form of the t-test
+## The traditional form of the t-test
 
 ```{r}
 #| label: t-test-1
@@ -163,7 +176,7 @@ The [t.test][ref04] function will test the hypothesis that the mean is the same 
 
 The t statistic (7.2) is large, the p-value is very small (< 0.001), and the confidence interval (36 to 64 thousand dollars) excludes the value of zero. You should reject the null hypothesis and conclude that the average price of custom built homes is higher than the average price of regular homes.
 
-## 1. Using lm to conduct a t-test
+## Using lm to conduct a t-test
 
 ```{r}
 #| label: t-test-2
@@ -183,7 +196,7 @@ The intercept, 95 thousand dollars, is the estimated average price when the indi
 
 The slope, 50 thousand dollars, is the estimated average change in price for a custom-built home compared to a regular home. The t-statistic (7.2) and the p-value match the values computed using the t.test function. Your conclusion, that the average price of custom built homes is higher than that of normal homes remains the same.
 
-## 1. Confidence intervals
+## Confidence intervals
 
 ```{r}
 #| label: ci
@@ -197,13 +210,15 @@ m2 |>
 
 The [confint][ref05] function (part of base R) calculates confidence intervals for the estimates produces by the lm function as well as some other data analysis functions in R.
 
+Note that I used the round function here with digits=-3 to round to the nearest thousand dollars. This is optional, but encouraged. What is required, however, is that you always round your data aggressively in your interpretation of the output.
+
 [ref05]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/confint.html
 
 #### Interpretation of the output
 
 Even after allowing for sampling error, the difference in means is at least 36 thousand dollars and possibly as much as 64 thousand dollars.
 
-## 1. Using the predict function
+## Using the predict function
 
 ```{r}
 #| label: predict
@@ -220,11 +235,11 @@ You have already seen how the augment function (part of the broom package) can p
 
 The prediction for a future observation of a normal (not custom-built) home is 95 thousand dollars. The prediction for a custom-built house is 145 thousand dollars.
 
-## 1. Examination of covariate
+## Part 3. Analysis of covariance
 
 Note: the size of the home might be associated both with custom build and price. Let's investigate.
 
-## 1. Boxplot of sqft by custom_build
+## Boxplot of sqft by custom_build
 
 ```{r}
 #| label: boxplot-2
@@ -243,9 +258,9 @@ alb |>
 
 #### Interpretation of the output
 
-Custom-built homes are much larger on average.
+Custom-built homes tend to be much larger.
 
-## 1. Mean sqft by custom_build
+## Mean sqft by custom_build
 
 ```{r}
 #| label: group-means-2
@@ -271,7 +286,7 @@ alb |>
   ggplot() +
     aes(x=sqft, y=price) +
     geom_point() +
-    geom_smooth(method="lm")
+    geom_smooth(method="lm") +
     xlab("Size of home (square feet)") +
     ylab("Price of home (dollars)") +
     ggtitle("Graph drawn by Steve Simon on 2025-02-02")
@@ -281,7 +296,7 @@ alb |>
 
 There is a strong positive relationship. Larger homes tend to sell for more money.
 
-## 1. Analysis of covariance model
+## Analysis of covariance model
 
 ```{r}
 #| label: ancova
@@ -297,10 +312,10 @@ m3 |>
         p.value >= 0.001 ~ as.character(round(p.value, 3))))
 ```
 
-## 1. Prediction without adjustment
+## Prediction without adjustment
 
 ```{r}
-#| label: unadjusted prediction-1
+#| label: unadjusted-prediction-1
 
 alb |>
   group_by(custom_build) |>
@@ -325,7 +340,7 @@ The predicted future value for a normal house with 1,500 square feet (the averag
 ## Prediction with adjustment
 
 ```{r}
-#| label: adjusted prediction-1
+#| label: adjusted-prediction-1
 
 alb_2 |>
   mutate(sqft=mean(alb$sqft)) -> alb_3
@@ -337,7 +352,7 @@ alb_3
 To make an adjusted prediction, you replace the different mean square footage values by a single mean of all the data. 
 
 ```{r}
-#| label: adjusted prediction-1
+#| label: adjusted-prediction-2
 
 augment(m3, newdata=alb_3)
 ```
@@ -346,38 +361,97 @@ augment(m3, newdata=alb_3)
 
 The predicted future price of a normal house with a size of 1,650 square feet is 103 thousand dollars. The predicted future price of a custom-built house with a size of 1,650 square feet is 117 thousand dollars. The difference, 14 thousand dollars, matches the estimate from the analysis of covariance model.
 
-## Graphical illustration
+## Part 4. Checking your assumptions
+
+## Compute residuals and predicted values
 
 ```{r}
-#| label: illustration
+#| label: augment
 
-b <- coef(m3)
-x0 <- min(alb$sqft)
-x1 <- max(alb$sqft)
-x2 <- mean(alb$sqft[alb$custom_build=="no"])
-x3 <- mean(alb$sqft[alb$custom_build=="yes"])
-x4 <- mean(alb$sqft)
-no_0  <- predict(m3, data.frame(sqft=x0, custom_build="no"))
-yes_0 <- predict(m3, data.frame(sqft=x0, custom_build="yes"))
-no_1  <- predict(m3, data.frame(sqft=x1, custom_build="no"))
-yes_1 <- predict(m3, data.frame(sqft=x1, custom_build="yes"))
-no_2  <- predict(m3, data.frame(sqft=x2, custom_build="no"))
-yes_3 <- predict(m3, data.frame(sqft=x3, custom_build="yes"))
-no_4  <- predict(m3, data.frame(sqft=x4, custom_build="no"))
-yes_4 <- predict(m3, data.frame(sqft=x4, custom_build="yes"))
-
-alb |>
-  ggplot() +
-  aes(x=sqft, y=price, label=custom_build, color=custom_build) +
-  geom_text(size=2) +
-  geom_segment(x=x0, y=no_0, xend=x1, yend=no_1) +
-  geom_segment(x=x0, y=yes_0, xend=x1, yend=yes_1) +
-  geom_label(x=x2, y=no_2, label=round(no_2)) +
-  geom_label(x=x3, y=yes_3, label=round(yes_3)) +
-  geom_label(x=x4, y=no_4, label=round(no_4)) +
-  geom_label(x=x4, y=yes_4, label=round(yes_4)) +
-  expand_limits(y=yes_1)
+r3 <- augment(m3)
 ```
+
+## Plot predicted values versus residuals
+
+```{r}
+#| label: plot-predicted
+
+r3 |>
+	ggplot() +
+	aes(x=.fitted, y=.resid) +
+	geom_point() +
+	geom_smooth(method="loess") +
+	xlab("Predicted values") +
+	ylab("Residuals") +
+	ggtitle("Plot drawn by Steve Simon on 2025-02-04") -> plot_2
+plot_2
+```
+
+#### Interpretation of the output
+
+There appears to be an outlier: the largest predicted value also has the smallest residual. Other than that, there is no evidence of violation of assumptions. There is no evidence of heterogeneity or of nonlinearity beside the outlier.
+
+## Normal probability plot
+
+```{r}
+#| label: qq-plot
+
+r3 |>
+	ggplot() +
+	aes(sample=.resid) +
+	stat_qq() +
+	ggtitle("Plot drawn by Steve Simon on 2025-02-04") -> plot_3
+```
+
+### Interpretation of the output
+
+There is an outlier on the low end. Excluding that outlier, the residuals appear to be approximately normal.
+
+## Examine studentized deleted residuals
+
+```{r}
+#| label: studentized
+
+r3 |>
+	filter(abs(.std.resid) > 3) |>
+	select(price, custom_build, sqft, .std.resid)
+```
+
+#### Interpretation of the output
+
+It is always tricky to identify what makes a data point an outlier. Here it is not quite so difficult.
+
+There are two outliers in the residuals. The first is a very big house that did not sell for very much money. The second is a very expensive house that was not very big. Both were custom-built.
+
+## Examine leverage
+
+```{r}
+#| label: leverage
+
+p <- 3
+n <- nrow(alb)
+r3 |>
+	filter(.hat > 3*(p+1)/n) |>
+	select(price, custom_build, sqft, .hat)
+```
+
+#### Interpretation of the output
+
+The house with the largest square footage is an influential data point.
+
+## Examine Cook's distance
+
+```{r}
+#| label: cook
+
+r3 |>
+	filter(.cooksd > 1) |>
+	select(price, custom_build, sqft, .cooksd)
+```
+
+#### Interpretation of the output
+
+The largest house has a strong influence on the regression equation.
 
 ## Save everything
 
@@ -385,5 +459,16 @@ alb |>
 #| label: save
 save(
   alb,
+  m1,
+  m2,
+  m3,
+  alb_1,
+  alb_2,
+  alb_3,
+  r3,
+  plot_1,
+  plot_2,
+  plot_3,
+  table_1,
   file="../data/module03.RData")
 ```
