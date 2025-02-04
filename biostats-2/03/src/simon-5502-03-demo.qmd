@@ -203,6 +203,23 @@ The [confint][ref05] function (part of base R) calculates confidence intervals f
 
 Even after allowing for sampling error, the difference in means is at least 36 thousand dollars and possibly as much as 64 thousand dollars.
 
+## 1. Using the predict function
+
+```{r}
+#| label: predict
+
+alb_1 <- tibble(custom_build=c("no", "yes"))
+augment(m2, newdata=alb_1)
+```
+
+#### Comments on the code
+
+You have already seen how the augment function (part of the broom package) can produce predicted values and residuals for the values in the dataset. You can also use augment to make future predictions. Just specify a data frame or tibble with the future values of the independent variable(s) that you want to predict at.
+
+#### Interpretation of the output
+
+The prediction for a future observation of a normal (not custom-built) home is 95 thousand dollars. The prediction for a custom-built house is 145 thousand dollars.
+
 ## 1. Examination of covariate
 
 Note: the size of the home might be associated both with custom build and price. Let's investigate.
@@ -279,6 +296,55 @@ m3 |>
         p.value <  0.001 ~ "< 0.001",
         p.value >= 0.001 ~ as.character(round(p.value, 3))))
 ```
+
+## 1. Prediction without adjustment
+
+```{r}
+#| label: unadjusted prediction-1
+
+alb |>
+  group_by(custom_build) |>
+  summarize(sqft=mean(sqft)) -> alb_2
+alb_2
+```
+
+#### Comment on the code
+
+To make an unadjusted prediction in the analysis of covariance model, you need to specify the two values for custom_build ("no" and "yes") along with the average sqft within each value of custom_build. This makes the "apples-to-oranges" nature of the unadjusted comparison more obvious.
+
+```{r}
+#| label: unadjusted prediction-2
+
+augment(m3, newdata=alb_2)
+```
+
+#### Interpretation of the output
+
+The predicted future value for a normal house with 1,500 square feet (the average size for normal houses) is 95 thousand dollars. The predicted future value for a custom-built house with 2,150 square feet (the average size for custom-built houses) is 145 thousand dollars. This matches the predicted future values from the model that did not include sqft as a covariate.
+
+## Prediction with adjustment
+
+```{r}
+#| label: adjusted prediction-1
+
+alb_2 |>
+  mutate(sqft=mean(alb$sqft)) -> alb_3
+alb_3
+```
+
+#### Comment on the code
+
+To make an adjusted prediction, you replace the different mean square footage values by a single mean of all the data. 
+
+```{r}
+#| label: adjusted prediction-1
+
+augment(m3, newdata=alb_3)
+```
+
+#### Interpretation of the output
+
+The predicted future price of a normal house with a size of 1,650 square feet is 103 thousand dollars. The predicted future price of a custom-built house with a size of 1,650 square feet is 117 thousand dollars. The difference, 14 thousand dollars, matches the estimate from the analysis of covariance model.
 
 ## Graphical illustration
 
