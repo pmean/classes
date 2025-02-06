@@ -9,6 +9,8 @@ params:
   topic_02: "Finding sources for your literature review"
   topic_03: "Summarizing and evaluating individual articles"
   topic_04: "An organizing structure to your literature review"
+  topic_05: "Writing a methods section"
+  topic_06: "Talking about your research"
 editor: source
 ---
 
@@ -34,6 +36,8 @@ editor: source
     -   `r params$topic_02`
     -   `r params$topic_03`
     -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
 
 {{< include _crm-03-01.qmd >}}
 
@@ -64,6 +68,26 @@ editor: source
     
 {{< include _crm-03-04.qmd >}}
 
+## Break #4
+
+-   What you have learned
+    -   `r params$topic_04`
+-   What's coming next
+    -   `r params$topic_05`
+    
+{{< include _crm-03-04.qmd >}}
+
+## Break #5
+
+-   What you have learned
+    -   `r params$topic_05`
+-   What's coming next
+    -   `r params$topic_06`
+    
+## Talking about your research
+
+Go to a separate slide show
+
 ## Summary
 
 -   What you have learned
@@ -71,6 +95,8 @@ editor: source
     -   `r params$topic_02`
     -   `r params$topic_03`
     -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
 
 <!---
       You have to put the title down 
@@ -79,5 +105,5 @@ editor: source
 --->
 
 ---
-title: "Comments for MEDB 5510, Week 03"
+title: "simon-5510-03-slides"
 ---

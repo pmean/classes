@@ -1,27 +1,15 @@
 ---
-title: "Video 14 - Talking about your research"
-author: "Steve Simon"
-output: 
-  powerpoint_presentation:
-    reference_doc: ../doc/template.pptx
-    slide_level: 3
-knit: (function(inputFile, encoding) {
-  rmarkdown::render(inputFile, encoding = encoding,
-  output_dir = "../results", output_format = "all") }) 
+title: "Talking about your research"
 ---
 
-```{r echo=FALSE}
-source("prelims.R", echo=FALSE)
-```
-
-### Talking about your research
+## Talking about your research
 
 + Very important skill
   + Talk every chance you get
 + Way outside my comfort zone
   + Rely on advice from the experts
 
-<div class="notes">
+::: notes
 
 Being able to talk about your research is an important skill. This includes both talks at formal research conferences and local seminars. Talk every chance you get. You want everyone you know to be aware of what you are doing, and you never can predict where help for your work will come from next.
 
@@ -29,51 +17,51 @@ I give pretty good talks. I won several area and regional Toastmasters contests,
 
 Let me share what I know, but I want to back this up with advice from the real experts.
 
-</div>
+:::
 
-### Ben Stein movie scene
+## Ben Stein movie scene
 
 ![YouTube video clip of Ben Stein](../images/ben-stein-boring-talk.png)
 
-<div class="notes">
+::: notes
 
 I almost never use negative examples, but this one is an exception. Ben Stein has a small role in the movie "Ferris Bueller's Day Off." He plays an Economics teacher who gives an exaggeratedly boring lecture about tariffs. There are several things he does that you should not do when you give a talk.
 
 You can find this video clip on YouTube, https://www.youtube.com/watch?v=uhiCFdWeQfA 
 
-</div>
+:::
 
-### "How to Give a Great Talk" Nic Fleming, Nature 2018 (1/6)
+## "How to Give a Great Talk" Nic Fleming, Nature 2018 (1/6)
 
 ![First page of Fleming article](../images/fleming-great-talk.png)
 
-<div class="notes">
+::: notes
 
 Here's some great advice from Nic Fleming, published in Nature in 2018.
 
-</div>
+:::
 
-### "How to Give a Great Talk" Nic Fleming, Nature 2018 (2/6)
+## "How to Give a Great Talk" Nic Fleming, Nature 2018 (2/6)
 
 + Use vivid words to paint a picture
   + delightful
   + disturbing
   + puzzling
 
-<div class="notes">
+::: notes
 
 Almost every researcher that I have met has a passion. The passions are different from one another, and sometimes they conflict. But the passion is what you are trying to convey. If something about your work makes you smile, use words like "delightful." If something makes you angry, use words like "disturbing." If something is difficult for you to understand use words like "puzzling."
 
-</div>
+:::
 
-### "How to Give a Great Talk" Nic Fleming, Nature 2018 (3/6)
+## "How to Give a Great Talk" Nic Fleming, Nature 2018 (3/6)
 
 + Use vocal variety
   + Volume
   + Pitch
   + Tone
 
-<div class="notes">
+::: notes
 
 Notice how Ben Stein talks in a monotone. It could be worse, but he sticks with the same volume, only has slight variations in pitch, and 
 
@@ -83,9 +71,9 @@ Use a higher pitch to raise questions. "Why do we have such poor health care in 
 
 What is tone exactly. The best example is a phrase that almost every child has heard from their mother: "Don't talk to me in that tone of voice." Tone is the emotion behind your voice. The mother was noting anger or contempt in the voice of the child. Unless you are a natural actor, you will have difficulty with tone. But make an effort. Think about the emotion you want to convey: happiness, anger, or curiosity. Use not just your words, but your tone to help create that mood. You don't have to be perfect at this, and any effort to convey emotion in the tone of your voice will help tremendously.
 
-</div>
+:::
 
-### "How to Give a Great Talk" Nic Fleming, Nature 2018 (4/6)
+## "How to Give a Great Talk" Nic Fleming, Nature 2018 (4/6)
 
 + Insert small pauses
   + Gets your audience to think
@@ -93,7 +81,7 @@ What is tone exactly. The best example is a phrase that almost every child has h
   + Allows your message to sink in.
   + Creates tension
 
-<div class="notes">
+::: notes
 
 Another very important tip is to insert pauses. Pauses often get your audience to think. This is especially helpful after questions. Notice how Ben Stein never gave his students a chance to answer any of his questions. He used the same pace throughout the lecture.
 
@@ -105,24 +93,24 @@ Pauses are also useful at times to create tension. Stop talking and people start
 
 Silence in a talk can work the same way. It creates tension and unease. There are times when you can use this to your advantage. For example, you are talking about ethical conduct of research. Say something like "All researchers have flirted with unethical behavior." Then stop. People will start to squirm and feel uncomfortable. Don't pause forever, but once you've provided this level of discomfort, use it to emphasize why rules of conduct for research are so important.
 
-</div>
+:::
 
-### "How to Give a Great Talk" Nic Fleming, Nature 2018 (5/6)
+## "How to Give a Great Talk" Nic Fleming, Nature 2018 (5/6)
 
 + Rehearse
   + Prepare, practice, and perfect.
   + Get feedback
   + Practice in an environment similar to your talk
 
-<div class="notes">
+::: notes
 
 Dr. Fleming offers advice throughout the paper about practice. Speak through your talk not to the point of total memorization, but to the point at which you don't find yourself making awkward pauses. Ask your colleagues to listen to you practice and get their feedback. Also practice in a setting similar to the environment that you will give your talk in. if your speech is in front of podium, find a podium somewhere to practice. If you will be talking as part of a panel seated along a table, practice your talk while you are sitting.
 
 The biggest advantage of practicing is that it tends to minimize the natural sense of nervousness that we all feel.
 
-</div>
+:::
 
-### "How to Give a Great Talk" Nic Fleming, Nature 2018 (6/6)
+## "How to Give a Great Talk" Nic Fleming, Nature 2018 (6/6)
 
 + Ensure you are within the time limit
   + Plan on fixed amount of time per slide
@@ -132,7 +120,7 @@ The biggest advantage of practicing is that it tends to minimize the natural sen
     + Develop a rhythm to help with timing
   + Give yourself a margin of error
 
-<div class="notes">
+::: notes
 
 The worst sin you can commit in scientific presentations is going over your allotted time limit. The audience will hate you for it, because they have a busy conference and don't want your talk to interfere with their schedule.
 
@@ -148,9 +136,9 @@ Don't stop rehearsing until you have your talk a bit under the time limit. Give 
 
 If you end up finishing a bit early, the other speakers will love you for it. Never feel bad about failing to fill out every allotted minute you have been given.
 
-</div>
+:::
 
-### Preparing your slides
+## Preparing your slides
 
 + Variety of programs
   + Microsoft PowerPoint
@@ -161,29 +149,29 @@ If you end up finishing a bit early, the other speakers will love you for it. Ne
   + Slidy
   + Beamer
 
-<div class="notes">
+::: notes
 
 I speak about slide presentations as if Microsoft PowerPoint were the only program out there that can produce slide presentations. It's not and here are some alternatives.
 
 I don't want to list advantages and disadvantages to these alternatives. In general, they all have their own quirks, but they are all still professional grade quality products.
 
-</div>
+:::
 
-### "Points of View. PowerPoint in the Classroom" (1/5)
+## "Points of View. PowerPoint in the Classroom" (1/5)
 
 ![First page of PowerPoint article](../images/powerpoint-in-the-classroom.png)
 
-<div class="notes">
+::: notes
 
 This is an article in Cell Biology Education in 2004 that I like because it offers a range of perspectives.
 
-</div>
+:::
 
-### "Points of View. PowerPoint in the Classroom" (2/5)
+## "Points of View. PowerPoint in the Classroom" (2/5)
 
 ![Example of a bad PowerPoint slide](../images/powerpoint-donts.png)
 
-<div class="notes">
+::: notes
 
 Here's a bad slide. Let me read it to you.
 
@@ -191,13 +179,13 @@ Here's a bad slide. Let me read it to you.
 
 This example is a trap I have fallen into. When I am nervous about a particular topic, I tend to put all the words I plan to say directly on the slide. That way I won't forget something important. But you can and should use speaker notes.
 
-</div>
+:::
 
-### "Points of View. PowerPoint in the Classroom" (3/5)
+## "Points of View. PowerPoint in the Classroom" (3/5)
 
 ![Speaker notes view from PowerPoint](../images/powerpoint-speaker-notes.png)
 
-<div class="notes">
+::: notes
 
 This is a view of the speaker notes from a Powerpoint presentation. The left side of the screen shows the slide your audience is currently looking at. The lower right corner contains your speaker notes. It's a great relief to have this up when you are talking. Sometimes I read the speaker notes directly, and sometimes I will improvise a bit. But it is my security blanket. 
 
@@ -205,16 +193,16 @@ A nice bonus appears in the upper right corner. You get a preview of your next s
 
 The speaker notes version works great when you have two or more monitors. Or you can print the speaker notes as a pdf file.
 
-</div>
+:::
 
-### "Points of View. PowerPoint in the Classroom" (4/5)
+## "Points of View. PowerPoint in the Classroom" (4/5)
 
 + PowerPointlessness
   + Transitions, sounds, other special effects
   + Distract the viewer from your main message
   + Distract you from more important elements
 
-<div class="notes">
+::: notes
 
 Here are two quotes from the paper worth remembering.
 
@@ -224,73 +212,73 @@ PowerPointlessness is "any fancy transitions, sounds, and other effects that hav
 
 
 
-</div>
+:::
 
-### "Points of View. PowerPoint in the Classroom" (5/5)
+## "Points of View. PowerPoint in the Classroom" (5/5)
 
 + PowerPoint Master Slide
   + Template to insure consistent appearance
   + Allows branding.
 
 
-<div class="notes">
+::: notes
 
 Although I do not recommend this, many people advocate the use of a master slide or template. This provides a consistent appearance to your presentation. It also allows for branding. If everyone from a given company or organization uses the same background image and color scheme, people will start to know and remember the organization that is sponsoring all of these talks. It's part of promoting a particular corporate image.
 
-</div>
+:::
 
-### UMKC templates (1/7)
+## UMKC templates (1/7)
 
 ![UMKC PowerPoint template](../images/umkc-template-1.png)
 
-<div class="notes">
+::: notes
 
 Here is a series of templates that UMKC provides. I do not recommend their use.
 
-</div>
+:::
 
-### UMKC templates (2/7)
+## UMKC templates (2/7)
 
 ![UMKC PowerPoint template](../images/umkc-template-2.png)
 
-### UMKC templates (3/7)
+## UMKC templates (3/7)
 
 ![UMKC PowerPoint template](../images/umkc-template-3.png)
 
-### UMKC templates (4/7)
+## UMKC templates (4/7)
 
 ![UMKC PowerPoint template](../images/umkc-template-4.png)
 
-### UMKC templates (5/7)
+## UMKC templates (5/7)
 
 ![UMKC PowerPoint template](../images/umkc-template-5.png)
 
-### UMKC templates (6/7)
+## UMKC templates (6/7)
 
 ![UMKC PowerPoint template](../images/umkc-template-6.png)
 
-### UMKC templates (7/7)
+## UMKC templates (7/7)
 
 ![UMKC PowerPoint template](../images/umkc-template-7.png)
 
 
-### Do you really need slides? (1/4)
+## Do you really need slides? (1/4)
 
 ![Front cover of The Cognitive Style of PowerPoint](../images/tufte-powerpoint.png)
 
-<div class="notes">
+::: notes
 
 There is a minority, but a very vocal minority who believe that the process of presenting information using slides in a program in PowerPoint is inherently flawed. It is not that people are using the tool wrong. It is that the tool itself is incapable of producing meaningful interactions.
 
 Edward Tufte is probably the most famous voice among these critics. He believes that programs like PowerPoint "weaken verbal and spatial reasoning, and almost always corrupt statistical analysis." He especially hates the use of bullet points. 
 
-</div>
+:::
 
-### Do you really need slides? (2/4)
+## Do you really need slides? (2/4)
 
 ![First page of Peter Norvig's PowerPoint satire](../images/norvig-gettysburg.png)
 
-<div class="notes">
+::: notes
 
 Peter Norvig has a satirical slide show up about Lincoln's Gettysburg address. This is one of the most famous speeches in U.S. History. I want to read it to you right now, because it is so well done.
 
@@ -302,14 +290,14 @@ But in a larger sense, we cannot dedicate, we cannot consecrate, we cannot hallo
 
 Peter Norvig imagines what would happen today if Abraham Lincoln gave the same address and used PowerPoint to "enhance" his talk.
 
-</div>
+:::
 
 
-### Do you really need slides? (3/4)
+## Do you really need slides? (3/4)
 
 ![Second slide from Peter Norvig's PowerPoint satire](../images/norvig-agenda-slide.png)
 
-<div class="notes">
+::: notes
 
 One of the earlier slides reads "Agenda" with bullet points
 
@@ -327,10 +315,10 @@ and a few sentences later
 
 "It is for us the living rather to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced."
 
-</div>
+:::
 
 
-### Do you really need slides? (4/4)
+## Do you really need slides? (4/4)
 
 + Two alternatives to slides
   + Stand in front of your audience and talk
@@ -340,7 +328,7 @@ and a few sentences later
   + Needed for remote presentation
   + Slides serve to show structure
 
-<div class="notes">
+::: notes
 
 So if you don't use slides, what should you do?
 
@@ -352,20 +340,10 @@ Having done this for many years, I have returned to using PowerPoint for my talk
 
 The bullet points is not the point that you are currently talking about. It is the bullet points just before and just after the bullet point you are talking about. Having a series of bullet points reminds the audience where the speaker was just a few seconds or minutes ago and where the speaker will be a few seconds or minutes from now. If your bullets follow a logical sequence, seeing them all up on the screen reinforces that logical sequence.
 
-</div>
+:::
 
-
-
-### Conclusion
+## Conclusion
 
 + Use vocal variety
 + Rehearse
 + Stay within your time limits
-
-
-<div class="notes">
-
-
-
-</div>
-
