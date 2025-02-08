@@ -1,0 +1,186 @@
+---
+title: "simon-5502-03-demo"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute: 
+  error: true
+---
+
+## File details
+
+Please do not look at this file before submitting your own work on this programming assignment. Although no interpretations are provided here, you must include them in your own submission.
+
+This program was written by Steve Simon on 2025-01-30 and is placed in the public domain. You can use this program any way you please.
+
+This program reads [breast-feeding-preterm.csv][ref01],a dataset that examines an intervention to improve breast feeding in pre-term infants.Refer to the [data dictionary][ref02] for a more detailed description.
+
+[ref01]: https://github.com/pmean/data/blob/main/files/breast-feeding-preterm.csv
+[ref02]: https://github.com/pmean/data/blob/main/files/breast-feeding-preterm.yaml
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(glue)
+library(knitr)
+library(tidyverse)
+R.version.string
+Sys.Date()
+```
+
+## Intermediate files
+
+-   bf: original data from breast-feeding-preterm.csv
+-   bf_1: remove missing values
+-   m1: Unadjusted comparision of age_stop by feed_type
+-   m2: Analysis adjusted for mother's age
+
+## Read the data
+
+```{r}
+#| label: read
+
+bf <- read_csv(
+  file="../data/breast-feeding-preterm.csv",
+  col_names=TRUE)
+glimpse(bf)
+```
+
+Note: You could use col_types here, but it is easier to let R decide which columns are numeric and which as character.
+
+## Question 1
+
+You will not be graded on this, but get in the habit of computing some simple statistics (mean, standard deviation, minimum, and maximum for continuous variables and counts and percentages for categorical variables) for the important variables in this dataset (age_stop, mom_age, feed_type). Also, get in the habit of providing brief interpretations.
+
+## Descriptive statistics for age_stop
+
+Note: remove any rows associated with missing values before further work. There are alternative ways to handle the missing value code. We will discuss missing values in more detail later in this class.
+
+```{r}
+#| label: missing
+
+bf |>
+	filter(!is.na(age_stop)) |>
+	filter(!is.na(feed_type)) |>
+	filter(!is.na(mom_age)) -> bf_1
+```
+
+```{r}
+#| label: descriptives-1
+
+bf_1 |>
+  summarize(
+    age_stop_mean=mean(age_stop),
+    age_stop_sd=sd(age_stop),
+    age_stop_min=min(age_stop),
+    age_stop_max=max(age_stop))
+```
+#### Interpretation of the output
+
+Don't forget to put interpretations here and after every other program chunk.
+
+## Descriptive statistics for mom_age
+
+```{r}
+#| label: descriptives-2
+
+bf_1 |>
+  summarize(
+    mom_age_mean=mean(mom_age),
+    mom_age_sd=sd(mom_age),
+    mom_age_min=min(mom_age),
+    mom_age_max=max(mom_age))
+```
+
+## Descriptive statistics for feed_type
+
+```{r}
+#| label: descriptives-3
+
+bf_1 |>
+	count(feed_type) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) |>
+	mutate(pct=glue("{pct}% ({n}/{total})")) |>
+	select(-n, -total)
+```
+
+## Question 2
+
+Display boxplots for age_stop and mom_age for the two levels of feed_type. Considering feed_type as the treatment variable, age_stop as the outcome variable, and mom_age as a covariate, is there any evidence of covariate imbalance?
+
+## Boxplot of age_stop by feed_type
+
+```{r}
+#| label: boxplot-1
+#| fig.width: 6
+#| fig.height: 2
+
+bf_1 |>
+	ggplot() +
+	  aes(x=feed_type, y=age_stop) +
+	  geom_boxplot() +
+	  xlab("Feeding type") +
+	  ylab("Age when infant stopped breast feeding (days)") +
+	  coord_flip() +
+	  ggtitle("Plot drawn by Steve Simon on 2025-02-06")
+```
+
+## Boxplot of mom_age by feed_type
+
+```{r}
+#| label: boxplot-2
+#| fig.width: 6
+#| fig.height: 2
+
+bf_1 |>
+	ggplot() +
+	  aes(x=feed_type, y=mom_age) +
+	  geom_boxplot() +
+	  xlab("Feeding type") +
+	  ylab("Mother's age (years)") +
+	  coord_flip() +
+	  ggtitle("Plot drawn by Steve Simon on 2025-02-06")
+```
+
+## Question 3
+
+Conduct an unadjusted analysis with age_stop as the dependent variable and feed_type as the independent variable. Display the parameter estimates and interpret them.
+
+## Using lm for unadjusted comparison
+
+Note: you may wish to calculate confidence intervals as well, using the confint function.
+
+```{r}
+#| label: lm-1
+
+m1 <- lm(age_stop~feed_type, data=bf_1)
+tidy(m1) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value <  0.001 ~ "< 0.001",
+        p.value >= 0.001 ~ as.character(round(p.value, 3))))
+```
+
+## Question 4 
+
+Now adjust for mom_age in an analysis of covariance model. Display the parameter estimates and interpret them.
+
+## Adjusted comparison
+
+```{r}
+#| label: lm-2
+
+m2 <- lm(age_stop ~ feed_type + mom_age, data=bf_1)
+tidy(m2) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value <  0.001 ~ "< 0.001",
+        p.value >= 0.001 ~ as.character(round(p.value, 3))))
+```

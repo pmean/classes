@@ -48,6 +48,14 @@ Sys.Date()
 -   ex: original data from exercise.sav
 -   pulmonary: original data from fev.csv
 
+## display_p
+
+```{r}
+
+
+
+```
+
 ## Read the data
 
 ```{r}
@@ -184,7 +192,7 @@ By swapping the roles of Month and Moon inside the ggplot function, you get a di
 
 ## Single factor analysis of variance
 
-```{}
+```{r}
 #| label: moon-anova-1
 
 m1 <- lm(Admission ~ Moon, data=er_1)
@@ -194,6 +202,16 @@ tidy(m1) |>
       case_when(
         p.value <  0.001 ~ "< 0.001",
         p.value >= 0.001 ~ as.character(round(p.value, 3))))
+m1 |>
+  aov() |>
+  TukeyHSD(ordered=TRUE) |>
+  tidy() |>
+  mutate(
+    p.value =
+      case_when(
+        p.value <  0.001 ~ "< 0.001",
+        p.value >= 0.001 ~ as.character(round(p.value, 3))))
+  
 ```
 
 ## Read

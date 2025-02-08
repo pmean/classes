@@ -25,22 +25,17 @@ You will not be graded on this, but get in the habit of computing some simple st
 
 ## Question 2
 
-Display boxplots for age_stop and mom_age for the two levels of feed_type. Considering feed_type as the treatment variable, age_stop as the outcome variable, and mom_age as a covariate, is there any evidence of covariate imbalance.
+Display boxplots for age_stop and mom_age for the two levels of feed_type. Considering feed_type as the treatment variable, age_stop as the outcome variable, and mom_age as a covariate, is there any evidence of covariate imbalance?
 
 ## Question 3
 
-Create an indicator variable for feed_type and conduct an unadjusted analysis of age_stop. Display the parameter estimates and interpret them.
+Conduct an unadjusted analysis with age_stop as the dependent variable and feed_type as the independent variable. Display the parameter estimates and interpret them.
 
 ## Question 4 
 
 Now adjust for mom_age in an analysis of covariance model. Display the parameter estimates and interpret them.
 
-## Question 5
-
-7. Draw a scatterplot of the residuals on the y-axis and the predicted values on the x-axis. Does this graph provide any evidence for nonlinearity or unequal variances?
-
-8. Draw a Q-Q plot for the residuals and interpret it.
-
+**Do not** provide additional analyses such as checking the assumptions. These are important, but I want to keep the programming assignment brief.
 
 ## Your submission
 
@@ -56,6 +51,6 @@ Now adjust for mom_age in an analysis of covariance model. Display the parameter
 
 -   Your grade will be based on this [grading rubric][ref04]. Please also note the [policy on late submissions and rework][ref05]. If your program does not work, please review the [suggestions if you encounter an error page][ref06].
 
-[ref04]: https://github.com/pmean/classes/blob/master/general/general-grading-rubric.md
-[ref05]: https://github.com/pmean/classes/blob/master/general/policy-on-extensions-and-rework.md
-[ref06]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
+[ref04]: https://github.com/pmean/classes/blob/master/general/src/general-grading-rubric.md
+[ref05]: https://github.com/pmean/classes/blob/master/general/src/policy-on-extensions-and-rework.md
+[ref06]: https://github.com/pmean/classes/blob/master/general/src/suggestions-if-you-encounter-an-error.md
