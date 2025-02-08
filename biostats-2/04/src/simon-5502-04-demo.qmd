@@ -1,0 +1,239 @@
+---
+title: "5502 module 04 demonstration program"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute: 
+  error: true
+---
+
+## File details
+
+This program was written by Steve Simon on 2025-01-30 and is placed in the public domain. You can use this program any way you please.
+
+There are three data files used in this program
+
+-   full-moon-er-admissions, [csv file][ref01], [dictionary][ref02]
+-   exercise-programs, [SPSS file][ref03], [dictionary][ref04]
+-   fev, [csv file][ref05], [dictionary][ref06]
+This program reads [albuquerqe-housing.csv][ref01],a dataset that examines sales prices for residential homes in 1993 in Albuquerque, New Mexico. Refer to the [data dictionary][ref02] for a more detailed description.
+
+[ref01]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.txt
+[ref02]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.yaml
+
+[ref03]: https://github.com/pmean/data/blob/main/files/exercise-programs.sav
+[ref04]: https://github.com/pmean/data/blob/main/files/exercise-programs.yaml
+
+[ref05]: https://github.com/pmean/data/blob/main/files/fev.txt
+[ref06]: https://github.com/pmean/data/blob/main/files/fev.yaml
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(glue)
+library(knitr)
+library(tidyverse)
+R.version.string
+Sys.Date()
+```
+
+## Intermediate files
+
+-   er: original data from full-moon-er-admissions.txt 
+-   er_1: re-order Month and Moon levels
+-   ex: original data from exercise.sav
+-   pulmonary: original data from fev.csv
+
+## Read the data
+
+```{r}
+#| label: moon-read
+
+er <- read_tsv(
+  file="../data/full-moon-er-admissions.txt",
+  col_names=TRUE,
+  col_types="ccn")
+glimpse(er)
+```
+
+## Create factors
+
+```{r}
+#| label: moon-factors
+
+month_list <- c(
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul")
+
+phase_list <- c(
+  "Before",
+  "During",
+  "After")
+
+er |>
+  mutate(Month=factor(Month, levels=month_list)) |>
+  mutate(Moon=factor(Moon, levels=phase_list)) -> er_1
+```
+
+#### Comment on the code
+
+By default, when R encounters a string, it will use alphabetical order in arranging the display in graphs. You can change this option by using the factor function. Create a vector listing the string values in the order that you want them displayed and then use that vector as the levels argument inside the factor function.
+
+## Descriptive statistics
+
+```{r}
+#| label: moon-descriptives-1
+
+er_1 |>
+	count(Month) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) |>
+	mutate(pct=glue("{pct}% ({n}/{total})")) |>
+	select(-n, -total)
+```
+
+#### Interpretation of the output
+
+There are twelve months, each representing 8% (1/12) of the data.
+
+```{r}
+#| label: moon-descriptives-2
+
+er_1 |>
+	count(Moon) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) |>
+	mutate(pct=glue("{pct}% ({n}/{total})")) |>
+	select(-n, -total)
+```
+
+#### Interpretation of the output
+
+There are three phase times, each representing 33% (1/3) of the data.
+
+```{r}
+#| label: moon-descriptives-3
+
+er_1 |>
+  summarize(
+    admission_mean=mean(Admission),
+    admission_sd=sd(Admission),
+    admission_min=min(Admission),
+    admission_max=max(Admission))
+```
+
+#### Interpretation of the output
+
+The average number of admissions is about 12 patients per day. There is a moderate amount of variation in the data.
+
+## Lineplot
+
+```{r}
+#| label: moon-lineplot-1
+
+er_1 |>
+  ggplot() +
+  aes(x=Moon, y=Admission) +
+  geom_line(aes(group=Month)) +
+  geom_text(aes(label=Month)) +
+  xlab("Moon phase") +
+  ylab("ER admission rate") +
+  ggtitle("Plot drawn by Steve Simon on 2025-02-08")
+```
+
+#### Comment on the output
+
+You have already used the [aes][ref07] function to define the x and y axes for various visualizations in ggplot. There are other applications of the aes function that can help control other features of your visualization.
+
+The group argument in the aes function tells the geom_line function that you want a separate line for each month of the year. The label argument in the aes function tells the geom_text function to write the string value of month at each combination of x=Moon and y=Admission.
+
+[ref07]: https://ggplot2.tidyverse.org/reference/aes.html
+
+## Alternative lineplot
+
+```{r}
+#| label: moon-lineplot-2
+
+er_1 |>
+  ggplot() +
+  aes(x=Month, y=Admission) +
+  geom_line(aes(group=Moon)) +
+  geom_text(aes(label=Moon)) +
+  ylab("ER admission rate") +
+  ggtitle("Plot drawn by Steve Simon on 2025-02-08")
+```
+
+#### Comment on the code
+
+By swapping the roles of Month and Moon inside the ggplot function, you get a different appearance. It is not always clear which way to draw the line graph. It usually helps for you to look at both approaches, but then display only the one that you think helps create the simplest interpretation of what is going on.
+
+
+## Single factor analysis of variance
+
+```{}
+#| label: moon-anova-1
+
+m1 <- lm(Admission ~ Moon, data=er_1)
+tidy(m1) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value <  0.001 ~ "< 0.001",
+        p.value >= 0.001 ~ as.character(round(p.value, 3))))
+```
+
+## Read
+
+```{r}
+#| label: read-exercise
+
+library(haven)
+
+ex <- read_sas(
+  data_file="../data/exercise.sas7bdat")
+glimpse(ex)
+```
+
+```{r}
+#| label: read-fev
+
+vars <- c(
+  "age", 
+  "fev",
+  "ht", 
+  "sex",
+  "smoke")
+
+pulmonary <- read_csv(
+  file="../data/fev.csv",
+  col_names=vars,
+  col_types="nnncc")
+glimpse(pulmonary)
+```
+
+
+
+## Save everything
+
+```{r}
+#| label: save
+save(
+  moon,
+  ex,
+  pulmonary,
+  file="../data/module04.RData")
+```

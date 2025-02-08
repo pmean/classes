@@ -197,7 +197,12 @@ draw_lines(c( 59, 78, 8,  53))
 In this final plot, the lines are not parallel, indicating a third type of interaction. The slope is much steeper for boys. Girls see a moderate improvement on average, but boys see a really large improvement.
 :::
 
+
+
 ## Data dictionary for exercise data, 1 of 3
+
+https://github.com/pmean/data/blob/main/files/exercise-programs.yaml
+https://github.com/pmean/data/blob/main/files/exercise-programs.sav
 
 ```{r}
 #| warnings: true 
