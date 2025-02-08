@@ -48,13 +48,68 @@ Sys.Date()
 -   ex: original data from exercise.sav
 -   pulmonary: original data from fev.csv
 
-## display_p
+## pretty_p
 
 ```{r}
+#| label: function-1
 
-
-
+pretty_p <- function(p_table) {
+  p_table |>
+    mutate(
+    p.value =
+      case_when(
+        p.value <  0.001 ~ "< 0.001",
+        p.value >= 0.001 ~ as.character(round(p.value, 3))))
+}
 ```
+
+#### Comment on the code
+
+I have been using the same set of instructions so often that I want to store it in a function for re-use. The pretty_p function takes a single argument, p-table, which is a data frame or tibble and modifies a variable inside it, p.value, by rounding it properly.
+
+## pretty_n
+
+```{r}
+#| label: function-2
+
+pretty_n <- function(n_table) {
+  n_table |>
+  	mutate(total=sum(n)) |>
+  	mutate(pct=round(100*n/total)) |>
+	  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+	  select(-n, -total)
+}
+```
+
+#### Comment on the code
+
+This is a similar task. After you compute a count, you use several other steps to compute a percentage and make it look nice. You can save time and trouble by creating a function for these repetitive tasks.
+
+## pretty_mean
+
+```{r}
+#| label: function-3
+
+pretty_mean <- function(d, v) {
+  d |>
+    filter(!is.na({{v}})) |>
+    summarize(
+      across({{v}}, 
+        list(
+          mean=mean, 
+          sd=sd,
+          min=min,
+          max=max))) |>
+  bind_cols(
+    tibble(
+      n_missing = nrow(
+        filter(d, is.na({{v}})))))
+}
+```
+
+## Read the moon data
+
+```{r}
 
 ## Read the data
 
@@ -108,10 +163,7 @@ By default, when R encounters a string, it will use alphabetical order in arrang
 
 er_1 |>
 	count(Month) |>
-	mutate(total=sum(n)) |>
-	mutate(pct=round(100*n/total)) |>
-	mutate(pct=glue("{pct}% ({n}/{total})")) |>
-	select(-n, -total)
+	pretty_n()
 ```
 
 #### Interpretation of the output
@@ -123,15 +175,13 @@ There are twelve months, each representing 8% (1/12) of the data.
 
 er_1 |>
 	count(Moon) |>
-	mutate(total=sum(n)) |>
-	mutate(pct=round(100*n/total)) |>
-	mutate(pct=glue("{pct}% ({n}/{total})")) |>
-	select(-n, -total)
+  pretty_n()
 ```
 
 #### Interpretation of the output
 
 There are three phase times, each representing 33% (1/3) of the data.
+
 
 ```{r}
 #| label: moon-descriptives-3
@@ -197,27 +247,80 @@ By swapping the roles of Month and Moon inside the ggplot function, you get a di
 
 m1 <- lm(Admission ~ Moon, data=er_1)
 tidy(m1) |>
-  mutate(
-    p.value =
-      case_when(
-        p.value <  0.001 ~ "< 0.001",
-        p.value >= 0.001 ~ as.character(round(p.value, 3))))
+  pretty_p()
+```
+
+#### Comment on the code
+
+Normally the reference category would be selected as the first alphabetically, but we used the factor function to place the strings in the order "Before", "During", and "After". So the reference category is "Before". You might prefer to use "During" as the reference category, which would be easy enough to achieve.
+
+#### Interpretation of the output
+
+The estimated average admission rate before a full moon is 10.9 patients per day. The estimated average admission rate increases by 2.5 patients per day during a full moon and by 0.5 patients per day after a full moon. You should not interpret the p-values here because you need to adjust for multiple comparisons.
+
+## Tukey post hoc test
+
+```{r}
+#| label: moon-tukey-1
+
 m1 |>
   aov() |>
   TukeyHSD(ordered=TRUE) |>
   tidy() |>
-  mutate(
-    p.value =
-      case_when(
-        p.value <  0.001 ~ "< 0.001",
-        p.value >= 0.001 ~ as.character(round(p.value, 3))))
-  
+  rename(p.value=adj.p.value) |>
+  pretty_p()
 ```
+
+#### Comments on the code
+
+The TukeyHSD function produces a data frame with a variable labeled p adj. This is not a legal name in R, so you can't manipulate it easily. The tidy function helps here, but the name it chooses, adj.p.value, does not work with the pretty_p function. So you need to use the [rename][ref08] function (part of the dplyr/tidyverse libraries) first.
+
+[ref08]: https://dplyr.tidyverse.org/reference/rename.html
+
+#### Interpretation of the output
+
+There are three possible comparisons among the levels of moon phase. None of the differences are statistically significant.
+
+## Two factor analysis of variance
+
+```{r}
+#| label: moon-anova-2
+
+m2 <- lm(Admission ~ Moon + Month, data=er_1)
+
+tidy(m2) |>
+  pretty_p()
+```
+
+#### Interpretation of the output
+
+There are so many terms in this model that is difficult to interpret properly. The reference categories are "Before" and "Aug" so the intercept tells you that the estimated average admission rate before a full moon in August is 4.7 patients per day. Holding month constnat, the estimated average admission rate increases from before a full moon to during a full moon by 2.5 patients per day. You should not interpret the p-values here because you need to adjust for multiple comparisons.
+
+## Tukey post hoc test
+
+```{r}
+#| label: moon-tukey-2
+
+m2 |>
+  aov() |>
+  TukeyHSD(ordered=TRUE, which="Moon") |>
+  tidy() |>
+  rename(p.value=adj.p.value) |>
+  pretty_p()
+```
+
+#### Comment on the code
+
+With two factors, you should provide information to the TukeyHSD function about the pairwise comparison(s) that you are interested in. Use the which argument to do this. If you leave the which argument out, the TukeyHSD function will do all pairwise comparisons among the three moon phases and all pairwise comparisons among the 12 months. The real interest in this study is how admission rates change by the phase of the moon and you only included the month in the model to remove some of the variations over time.
+
+#### Interpretation of the output
+
+There is no statistically significant difference between the average admission rate before and after a full moon. There is a statistically difference between the average admission rate before and during a full moon. This, however, is a borderline difference. The adjusted p-values is close to 0.05 and the lower limit of the confidence interval comes within kissing distance of zero. There is no statistically significant difference between the average admission rate during a full moon and after a full moon. This, however, is also a borderline result. The confidence interval does include zero, but just barely. Perhaps the only safe interpretation here is that you need more data.
 
 ## Read
 
 ```{r}
-#| label: read-exercise
+#| label: exercise-read
 
 library(haven)
 
@@ -225,6 +328,81 @@ ex <- read_sas(
   data_file="../data/exercise.sas7bdat")
 glimpse(ex)
 ```
+
+## Descriptive statistics
+
+```{r}
+#| label: exercise-descriptives-1
+
+ex |>
+	count(prog) |>
+  pretty_n()
+```
+
+#### Interpretation of the output
+
+```{r}
+#| label: exercise-descriptives-2
+
+ex |>
+	count(i) |>
+  pretty_n()
+```
+
+```{r}
+#| label: exercise-descriptives-3
+
+ex |>
+  summarize(
+    hours_mean=mean(hours),
+    hours_sd=sd(hours),
+    hours_min=min(hours),
+    hours_max=max(hours))
+```
+
+```{r}
+#| label: exercise-descriptives-4
+
+ex |>
+	count(female) |>
+  pretty_n()
+```
+
+#### Interpretation of the output
+
+```{r}
+#| label: exercise-descriptives-5
+
+ex |>
+  summarize(
+    effort_mean=mean(effort),
+    effort_sd=sd(effort),
+    effort_min=min(effort),
+    effort_max=max(effort))
+```
+
+#### Interpretation of the output
+
+```{r}
+#| label: exercise-descriptives-6
+
+ex |>
+  summarize(
+    loss_mean=mean(loss),
+    loss_sd=sd(loss),
+    loss_min=min(loss),
+    loss_max=max(loss))
+```
+
+#### Interpretation of the output
+
+## Interaction between prog and female on loss
+
+## Interaction between prog and hours on loss
+
+## Interaction between hours and effort on loss
+
+## fev
 
 ```{r}
 #| label: read-fev
