@@ -45,7 +45,7 @@ $\ $
 
 ::: notes
 
-There are two hypotheses. The first, testing that all the alphas equal zero is effectively testing whether the first factor has no impact on the outcome. Testing that all the betas equal zero is effectively testing whether the second factor has no impoact on the outcome.
+There are two hypotheses. The first, testing that all the alphas equal zero is effectively testing whether the first factor has no impact on the outcome. Testing that all the betas equal zero is effectively testing whether the second factor has no impact on the outcome.
 
 :::
 
@@ -63,12 +63,24 @@ These are the parameter estimates for the two factor analysis of variance. The r
 The intercept represents the average admission rate before a full moon when the month is August. The two terms associates with moon show how much changes there is from before a full moon to during a full moon and from before a full moon to after a full moon, respectively. The remaining parameter estimates show how much each month differs from the first month (August).
 :::
 
-## Parameter estimates for the full moon model
+## Analysis of variance table comparing the two factor model to the null model
 
 ```{r}
 #| label: table-6
 
 table_6
+```
+
+::: notes
+
+:::
+
+## Analysis of variance table comparing the two factor model to the one factor model
+
+```{r}
+#| label: table-7
+
+table_7
 ```
 
 ::: notes

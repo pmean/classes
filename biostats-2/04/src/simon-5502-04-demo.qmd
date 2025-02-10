@@ -17,14 +17,11 @@ There are three data files used in this program
 -   full-moon-er-admissions, [csv file][ref01], [dictionary][ref02]
 -   exercise-programs, [SPSS file][ref03], [dictionary][ref04]
 -   fev, [csv file][ref05], [dictionary][ref06]
-This program reads [albuquerqe-housing.csv][ref01],a dataset that examines sales prices for residential homes in 1993 in Albuquerque, New Mexico. Refer to the [data dictionary][ref02] for a more detailed description.
 
 [ref01]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.txt
 [ref02]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.yaml
-
 [ref03]: https://github.com/pmean/data/blob/main/files/exercise-programs.sav
 [ref04]: https://github.com/pmean/data/blob/main/files/exercise-programs.yaml
-
 [ref05]: https://github.com/pmean/data/blob/main/files/fev.txt
 [ref06]: https://github.com/pmean/data/blob/main/files/fev.yaml
 
@@ -295,24 +292,55 @@ table_05
 
 There are so many terms in this model that is difficult to interpret properly. The reference categories are "Before" and "Aug" so the intercept tells you that the estimated average admission rate before a full moon in August is 4.7 patients per day. Holding month constnat, the estimated average admission rate increases from before a full moon to during a full moon by 2.5 patients per day. You should not interpret the p-values here because you need to adjust for multiple comparisons.
 
-## Anova table
+## Anova table, 1
 
 ```{r}
-#| label: two-factor-anova
+#| label: two-factor-anova-1
+
+anova(m1, m3) |>
+  tidy() |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> table_06
+table_06
+```
+
+#### Interpretation of the output
+
+There is a statistically significant improvement in prediction when you use Month and Moon to predict admission rates compared to a null model.
+
+## Anova table, 2
+
+```{r}
+#| label: two-factor-anova-2
 
 anova(m2, m3) |>
   tidy() |>
   mutate(
     p.value =
       case_when(
-        adj.p.value >= 0.001 ~ glue("p = {round(adj.p.value, 3)}"),
-        adj.p.value <  0.001 ~ "p < 0.001")) -> table_06
-table_06
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> table_07
+table_07
 ```
 
 #### Interpretation of the output
 
-There is a statistically significant improvement in prediction when you add Month to a model that already includes Moon.
+There is a statistically significant improvement in prediction when you use Month and Moon to predict admission rates compared to a model with just Moon.
+
+## Comparison of r-squared values
+
+```{r}
+#| label: r-squared
+
+glance(m1) |>
+	bind_rows(glance(m2)) |>
+	bind_rows(glance(m3)) |>
+	mutate(model=glue("m{1:3}")) |>
+	select(model, r.squared, deviance)
+```
 
 ## Tukey post hoc test
 
