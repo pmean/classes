@@ -386,7 +386,7 @@ glimpse(ex)
 ex |>
 	count(prog) |>
 	mutate(total=sum(n)) |>
-	mutate(pct=round(100*n/total)) |>
+	mutate(pct=round(100*n/total, 1)) |>
   mutate(pct=glue("{pct}% ({n}/{total})")) |>
   select(-n, -total)
 ```
