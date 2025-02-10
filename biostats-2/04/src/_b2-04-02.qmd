@@ -7,14 +7,35 @@ format:
 editor: source
 ---
 
-## Mathematical model
+## Mathematical model, 1
+
+-   Decompose $\mu_ij$ into $\mu + \alpha_i + \beta_j$
+    -   $\alpha_i$ is the deviation for the ith level of first factor
+    -   $\beta_j$ is the deviation for the jth level of second factor
+    -   Require $\alpha_1=0$ and $\beta_1=0$
+    -   $\mu$ is the mean for the reference levels
+
+::: notes
+The mathematical model for two factor analysis of variance is a bit more complex than a single factor analysis of variance. You have a mean at the reference levels, mu, You also have deviations from the overall mean associated with the first factor (alpha), deviations from the overall mean associated with the second factor (beta)
+
+There are a total of a and b categories for the two categorical independent variables.
+:::
+
+## Mathematical model, 2
 
 -   $Y_{ijk} = \mu + \alpha_i + \beta_j +\epsilon_{ijk}$
     -   i=1,...,a levels of the first categorical variable
     -   j=1,...,b levels of the second categorical variable
     -   k=1,...,n replicates with first and second categories
+-   Note: $\mu, \alpha_i, \beta_j, \epsilon_{ijk}$ are population values
 
-$\ $
+::: notes
+The mathematical model for two factor analysis of variance is a bit more complex than a single factor analysis of variance. You have an overall mean, mu, and deviations from the overall mean associated with the first factor (alpha), deviations from the overall mean associated with the second factor (beta) and an error term (epsilon).
+
+There are a total of a and b categories for the two categorical independent variables.
+:::
+
+## Mathematical model, 3
 
 -   $H_0:\ \alpha_i=0$ for all i
 
@@ -23,20 +44,12 @@ $\ $
 -   $H_0:\ \beta_j=0$ for all j
 
 ::: notes
-The mathematical model for two factor analysis of variance is a bit more complex than a single factor analysis of variance. You have an overall mean, mu, and deviations from the overall mean associated with the first factor (alpha), deviations from the overall mean associated with the second factor (beta) and an error term (epsilon).
 
-There are a total of a and b categories for the two categorical independent variables.
+There are two hypotheses. The first, testing that all the alphas equal zero is effectively testing whether the first factor has no impact on the outcome. Testing that all the betas equal zero is effectively testing whether the second factor has no impoact on the outcome.
+
 :::
 
-## Crosstabulation of categorical predictors
-
-![](images/full-moon-analysis-16.png)
-
-::: notes
-This table shows how there is one observation for each combination of month and moon phase.
-:::
-
-## Analysis of variance table for moon data
+## Parameter estimates for the two factor model
 
 ```{r}
 #| label: table-5
@@ -45,17 +58,23 @@ table_5
 ```
 
 ::: notes
-This is the analysis of variance table. There is one less degree of freedom than the number of categories for each categorical predictor variable. There is a statistically significant difference between the twelve months and a borderline significant difference between the three moon phases.
+These are the parameter estimates for the two factor analysis of variance. The reference categories are "Before" and "Aug".
 
-This differs from the single factor analysis of variance because adding in month as a categorical predictor removed a lot of variation. You are now able to account for almost 80% of the variation in admission rates. Without month in the model, you accounted for less than 7% of the variation.
+The intercept represents the average admission rate before a full moon when the month is August. The two terms associates with moon show how much changes there is from before a full moon to during a full moon and from before a full moon to after a full moon, respectively. The remaining parameter estimates show how much each month differs from the first month (August).
 :::
 
 ## Parameter estimates for the full moon model
 
-![](images/full-moon-analysis-19.png)
+```{r}
+#| label: table-6
+
+table_6
+```
 
 ::: notes
-The intercept represents the average admission rate during a full moon when the month is September. The two slope terms show how much lower the average admission rates are before and after a full moon, respectively, compared to during a full moon, holding month constant.
+This is the analysis of variance table. There is one less degree of freedom than the number of categories for each categorical predictor variable. There is a statistically significant difference between the twelve months and a borderline significant difference between the three moon phases.
+
+This differs from the single factor analysis of variance because adding in month as a categorical predictor removed a lot of variation. You are now able to account for almost 80% of the variation in admission rates. Without month in the model, you accounted for less than 7% of the variation.
 :::
 
 ## Tukey post hoc test
