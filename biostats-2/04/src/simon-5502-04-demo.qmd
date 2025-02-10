@@ -5,7 +5,7 @@ format:
     embed-resources: true
 editor: source
 execute: 
-  error: true
+  error: false
 ---
 
 ## File details
@@ -47,71 +47,16 @@ Sys.Date()
 -   er_1: re-order Month and Moon levels
 -   ex: original data from exercise.sav
 -   pulmonary: original data from fev.csv
-
-## pretty_p
-
-```{r}
-#| label: function-1
-
-pretty_p <- function(p_table) {
-  p_table |>
-    mutate(
-    p.value =
-      case_when(
-        p.value <  0.001 ~ "< 0.001",
-        p.value >= 0.001 ~ as.character(round(p.value, 3))))
-}
-```
-
-#### Comment on the code
-
-I have been using the same set of instructions so often that I want to store it in a function for re-use. The pretty_p function takes a single argument, p-table, which is a data frame or tibble and modifies a variable inside it, p.value, by rounding it properly.
-
-## pretty_n
-
-```{r}
-#| label: function-2
-
-pretty_n <- function(n_table) {
-  n_table |>
-  	mutate(total=sum(n)) |>
-  	mutate(pct=round(100*n/total)) |>
-	  mutate(pct=glue("{pct}% ({n}/{total})")) |>
-	  select(-n, -total)
-}
-```
-
-#### Comment on the code
-
-This is a similar task. After you compute a count, you use several other steps to compute a percentage and make it look nice. You can save time and trouble by creating a function for these repetitive tasks.
-
-## pretty_mean
-
-```{r}
-#| label: function-3
-
-pretty_mean <- function(d, v) {
-  d |>
-    filter(!is.na({{v}})) |>
-    summarize(
-      across({{v}}, 
-        list(
-          mean=mean, 
-          sd=sd,
-          min=min,
-          max=max))) |>
-  bind_cols(
-    tibble(
-      n_missing = nrow(
-        filter(d, is.na({{v}})))))
-}
-```
+-   plot_01: Line plot for Moon data
+-   plot_02: Alternative line plot for Moon data
+-   table_01: Mean Admission by Moon
+-   table_02: Single factor analysis of variance for Moon data
+-   table_03: Parameter estimates
+-   table_04: Tukey post hoc
+-   table_05: 
+-   table_06: 
 
 ## Read the moon data
-
-```{r}
-
-## Read the data
 
 ```{r}
 #| label: moon-read
@@ -163,7 +108,10 @@ By default, when R encounters a string, it will use alphabetical order in arrang
 
 er_1 |>
 	count(Month) |>
-	pretty_n()
+  	mutate(total=sum(n)) |>
+  	mutate(pct=round(100*n/total)) |>
+	  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+	  select(-n, -total)
 ```
 
 #### Interpretation of the output
@@ -175,7 +123,10 @@ There are twelve months, each representing 8% (1/12) of the data.
 
 er_1 |>
 	count(Moon) |>
-  pretty_n()
+  	mutate(total=sum(n)) |>
+  	mutate(pct=round(100*n/total)) |>
+	  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+	  select(-n, -total)
 ```
 
 #### Interpretation of the output
@@ -208,9 +159,10 @@ er_1 |>
   aes(x=Moon, y=Admission) +
   geom_line(aes(group=Month)) +
   geom_text(aes(label=Month)) +
+  ggtitle("Plot drawn by Steve Simon on 2025-02-08") +
   xlab("Moon phase") +
-  ylab("ER admission rate") +
-  ggtitle("Plot drawn by Steve Simon on 2025-02-08")
+  ylab("ER admission rate") -> plot_01
+plot_01
 ```
 
 #### Comment on the output
@@ -231,23 +183,63 @@ er_1 |>
   aes(x=Month, y=Admission) +
   geom_line(aes(group=Moon)) +
   geom_text(aes(label=Moon)) +
-  ylab("ER admission rate") +
-  ggtitle("Plot drawn by Steve Simon on 2025-02-08")
+  ggtitle("Plot drawn by Steve Simon on 2025-02-08") +
+  ylab("ER admission rate") -> plot_02
 ```
 
 #### Comment on the code
 
 By swapping the roles of Month and Moon inside the ggplot function, you get a different appearance. It is not always clear which way to draw the line graph. It usually helps for you to look at both approaches, but then display only the one that you think helps create the simplest interpretation of what is going on.
 
+## Mean Admission by Moon
+
+```{r}
+#| label: admission-by-moon
+
+er_1 |>
+  group_by(Moon) |>
+  summarize(
+    Admission_mean=mean(Admission),
+    Admission_sd=sd(Admission)) -> table_01
+table_01
+```
+
+## Fit three models
+
+```{r}
+#| label: three-moon-models
+
+m1 <- lm(Admission ~ 1, data=er_1)
+m2 <- lm(Admission ~ Moon, data=er_1)
+m3 <- lm(Admission ~ Moon + Month, data=er_1)
+
+```
+
 
 ## Single factor analysis of variance
 
 ```{r}
-#| label: moon-anova-1
+anova(m1, m2) |> 
+  tidy() |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> table_02
+```
 
-m1 <- lm(Admission ~ Moon, data=er_1)
-tidy(m1) |>
-  pretty_p()
+## Parameter estimates
+
+```{r}
+#| label: moon-parameters-1
+
+tidy(m2) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> table_03
+table_03
 ```
 
 #### Comment on the code
@@ -263,12 +255,16 @@ The estimated average admission rate before a full moon is 10.9 patients per day
 ```{r}
 #| label: moon-tukey-1
 
-m1 |>
+m2 |>
   aov() |>
-  TukeyHSD(ordered=TRUE) |>
+  TukeyHSD() |>
   tidy() |>
-  rename(p.value=adj.p.value) |>
-  pretty_p()
+  mutate(
+    adj.p.value =
+      case_when(
+        adj.p.value >= 0.001 ~ glue("p = {round(adj.p.value, 3)}"),
+        adj.p.value <  0.001 ~ "p < 0.001")) -> table_04
+table_04
 ```
 
 #### Comments on the code
@@ -286,27 +282,52 @@ There are three possible comparisons among the levels of moon phase. None of the
 ```{r}
 #| label: moon-anova-2
 
-m2 <- lm(Admission ~ Moon + Month, data=er_1)
-
-tidy(m2) |>
-  pretty_p()
+tidy(m3) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> table_05
+table_05
 ```
 
 #### Interpretation of the output
 
 There are so many terms in this model that is difficult to interpret properly. The reference categories are "Before" and "Aug" so the intercept tells you that the estimated average admission rate before a full moon in August is 4.7 patients per day. Holding month constnat, the estimated average admission rate increases from before a full moon to during a full moon by 2.5 patients per day. You should not interpret the p-values here because you need to adjust for multiple comparisons.
 
+## Anova table
+
+```{r}
+#| label: two-factor-anova
+
+anova(m2, m3) |>
+  tidy() |>
+  mutate(
+    p.value =
+      case_when(
+        adj.p.value >= 0.001 ~ glue("p = {round(adj.p.value, 3)}"),
+        adj.p.value <  0.001 ~ "p < 0.001")) -> table_06
+table_06
+```
+
+#### Interpretation of the output
+
+There is a statistically significant improvement in prediction when you add Month to a model that already includes Moon.
+
 ## Tukey post hoc test
 
 ```{r}
 #| label: moon-tukey-2
 
-m2 |>
+m3 |>
   aov() |>
   TukeyHSD(ordered=TRUE, which="Moon") |>
   tidy() |>
-  rename(p.value=adj.p.value) |>
-  pretty_p()
+  mutate(
+    adj.p.value =
+      case_when(
+        adj.p.value <  0.001 ~ "< 0.001",
+        adj.p.value >= 0.001 ~ as.character(round(adj.p.value, 3))))
 ```
 
 #### Comment on the code
@@ -336,7 +357,10 @@ glimpse(ex)
 
 ex |>
 	count(prog) |>
-  pretty_n()
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total)
 ```
 
 #### Interpretation of the output
@@ -346,7 +370,10 @@ ex |>
 
 ex |>
 	count(i) |>
-  pretty_n()
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total)
 ```
 
 ```{r}
@@ -365,7 +392,10 @@ ex |>
 
 ex |>
 	count(female) |>
-  pretty_n()
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total)
 ```
 
 #### Interpretation of the output
@@ -421,15 +451,25 @@ pulmonary <- read_csv(
 glimpse(pulmonary)
 ```
 
-
-
 ## Save everything
 
 ```{r}
 #| label: save
 save(
-  moon,
+  er,
+  er_1,
   ex,
+  m1,
+  m2,
+  m3,
   pulmonary,
+  plot_01,
+  plot_02,
+  table_01,
+  table_02,
+  table_03,
+  table_04,
+  table_05,
+  table_06,
   file="../data/module04.RData")
 ```

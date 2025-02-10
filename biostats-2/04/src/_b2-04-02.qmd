@@ -38,20 +38,16 @@ This table shows how there is one observation for each combination of month and 
 
 ## Analysis of variance table for moon data
 
-![](images/full-moon-analysis-17.png)
+```{r}
+#| label: table-5
+
+table_5
+```
 
 ::: notes
-THis is the analysis of variance table. There is one less degree of freedom than the number of categories for each categorical predictor variable. There is a statistically significant difference between the twelve months and a borderline significant difference between the three moon phases.
+This is the analysis of variance table. There is one less degree of freedom than the number of categories for each categorical predictor variable. There is a statistically significant difference between the twelve months and a borderline significant difference between the three moon phases.
 
 This differs from the single factor analysis of variance because adding in month as a categorical predictor removed a lot of variation. You are now able to account for almost 80% of the variation in admission rates. Without month in the model, you accounted for less than 7% of the variation.
-:::
-
-## Removing irrelevant rows
-
-![](images/full-moon-analysis-18.png)
-
-::: notes
-The rows corresponding to the intercept and the total (uncorrected total) are not needed.
 :::
 
 ## Parameter estimates for the full moon model
