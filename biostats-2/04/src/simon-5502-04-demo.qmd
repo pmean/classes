@@ -204,6 +204,10 @@ er_1 |>
 table_01
 ```
 
+#### Interpretation of the output
+
+The average admission rate before a full moon is 11 patients per day. During a full moon the average rises by 2.5 patients per day. It falls back after a full moon but only by 2 patients per day.
+
 ## Fit three models
 
 ```{r}
@@ -427,6 +431,22 @@ ex |>
 #### Interpretation of the output
 
 ## Interaction between prog and female on loss
+
+```{r}
+#| label: ex-lineplot-1
+
+ex |>
+  group_by(prog, female) |>
+  summarize(loss_mean=mean(loss)) |>
+  ggplot() +
+  aes(x=prog, y=mean_loss) +
+  geom_line(aes(group=female)) +
+  geom_text(aes(label=female)) +
+  ggtitle("Graph drawn by Steve Simon on 2025-02-11") +
+  xlab("Exercise program") +
+  ylab("Average weight loss") |>
+  print() -> plot_3
+```
 
 ## Interaction between prog and hours on loss
 
