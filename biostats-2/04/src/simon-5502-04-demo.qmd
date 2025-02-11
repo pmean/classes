@@ -40,18 +40,22 @@ Sys.Date()
 
 ## Intermediate files
 
--   er: original data from full-moon-er-admissions.txt 
--   er_1: re-order Month and Moon levels
--   ex: original data from exercise.sav
--   pulmonary: original data from fev.csv
+-   er: Original data from full-moon-er-admissions.txt 
+-   er_1: Re-order Month and Moon levels
 -   plot_01: Line plot for Moon data
 -   plot_02: Alternative line plot for Moon data
+-   ex: Original data from exercise.sav
+-   ex_1: Create factors for female and prog
+-   ex_2: Create indicator variables
 -   table_01: Mean Admission by Moon
 -   table_02: Single factor analysis of variance for Moon data
 -   table_03: Parameter estimates
 -   table_04: Tukey post hoc
 -   table_05: Two factor model parameter estimates
 -   table_06: Two factor model ANOVA table
+-   plot_03: Line plot for Exercise data
+-   plot_04: Alternative line plot for Exercise data
+-   pulmonary: Original data from fev.csv
 
 ## Read the moon data
 
@@ -382,36 +386,60 @@ ex <- read_sas(
 glimpse(ex)
 ```
 
+## Add factors
+
+```{r}
+#| label: factors
+lab1 <- c("Reading", "Jogging", "Swimming")
+lab2 <- c("Male", "Female")
+
+ex |> 
+  mutate(prog=factor(prog, levels=c(3, 1, 2), labels=lab1)) |>
+  mutate(gender=factor(female, levels=0:1, labels=lab2)) -> ex_1
+```
+
+#### Comment on the code
+
+Notice that the levels for prog are specified in an alternative order. This is done to insure that the control group (reading) is the reference level in all statistical models.
+
+I also used gender rather than female for the factor name. This is something I only noticed after working with this dataset for a while. Certain parts of the output would be labelled as femaleFemale or femaleMale and I thought it would look nicer as genderFemale and genderMale. Normally I try to avoid making too many changes to the names of variables. It makes it easier to refer back to the original data dictionary.
+
 ## Descriptive statistics
 
 ```{r}
 #| label: exercise-descriptives-1
 
-ex |>
+ex_1 |>
 	count(prog) |>
-	mutate(total=sum(n)) |>
-	mutate(pct=round(100*n/total, 1)) |>
-  mutate(pct=glue("{pct}% ({n}/{total})")) |>
-  select(-n, -total)
-```
-
-#### Interpretation of the output
-
-```{r}
-#| label: exercise-descriptives-2
-
-ex |>
-	count(i) |>
 	mutate(total=sum(n)) |>
 	mutate(pct=round(100*n/total)) |>
   mutate(pct=glue("{pct}% ({n}/{total})")) |>
   select(-n, -total)
 ```
 
+#### Interpretation of the output
+
+Exactly one third of the patients are in each of the three exercise programs.
+
+```{r}
+#| label: exercise-descriptives-2
+
+ex_1 |>
+	count(i) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total, 2)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total)
+```
+
+#### Interpretation of the output
+
+This table doesn't really help so much and I should probably have deleted this program chunk.
+
 ```{r}
 #| label: exercise-descriptives-3
 
-ex |>
+ex_1 |>
   summarize(
     hours_mean=mean(hours),
     hours_sd=sd(hours),
@@ -419,11 +447,15 @@ ex |>
     hours_max=max(hours))
 ```
 
+#### Interpretation of the output
+
+The average patient exercised for 2 hours per week. There is a lot of variation, with at least one patient only exercising for ten minutes. 
+
 ```{r}
 #| label: exercise-descriptives-4
 
-ex |>
-	count(female) |>
+ex_1 |>
+	count(gender) |>
 	mutate(total=sum(n)) |>
 	mutate(pct=round(100*n/total)) |>
   mutate(pct=glue("{pct}% ({n}/{total})")) |>
@@ -432,10 +464,14 @@ ex |>
 
 #### Interpretation of the output
 
+There are equal numbers of men and women in the study.
+
+#### Interpretation of the output
+
 ```{r}
 #| label: exercise-descriptives-5
 
-ex |>
+ex_1 |>
   summarize(
     effort_mean=mean(effort),
     effort_sd=sd(effort),
@@ -445,10 +481,12 @@ ex |>
 
 #### Interpretation of the output
 
+Effort is measured on a scale from 0 to 50. The average effort was 30, roughly in the middle of this range. There is only a moderate amount of variation, with no one really very close to the low extreme of 0 or the high extreme of 50.
+
 ```{r}
 #| label: exercise-descriptives-6
 
-ex |>
+ex_1 |>
   summarize(
     loss_mean=mean(loss),
     loss_sd=sd(loss),
@@ -458,22 +496,100 @@ ex |>
 
 #### Interpretation of the output
 
-## Interaction between prog and female on loss
+The average weight loss is impressive, 30 pounds. There is a wide range with one person losing 54 pounds and another gaining 17 pounds.
+
+## Interaction between prog and gender on loss
 
 ```{r}
 #| label: ex-lineplot-1
 
-ex |>
-  group_by(prog, female) |>
-  summarize(loss_mean=mean(loss)) |>
+ex_1 |>
+  group_by(prog, gender) |>
+  summarize(
+    loss_mean=mean(loss)) |>
   ggplot() +
-  aes(x=prog, y=mean_loss) +
-  geom_line(aes(group=female)) +
-  geom_text(aes(label=female)) +
+  aes(x=prog, y=loss_mean) +
+  geom_line(aes(group=gender)) +
+  geom_text(aes(label=gender)) +
   ggtitle("Graph drawn by Steve Simon on 2025-02-11") +
   xlab("Exercise program") +
-  ylab("Average weight loss") |>
-  print() -> plot_3
+  ylab("Average weight loss") -> plot_3
+plot_3
+```
+
+#### Comment on the code
+
+When you use group_by with two arguments, you have a couple of options. You can continue with a second summary on just the first argument. This would useful if you wanted to compute averages by both groups and then average the averages by the first group.
+
+Alternately, you could just stop and remove the group_by condition before doing any further analysis. This makes sense if you want to manipulate or display the averages as is.
+
+The default in R is the first option, and R provides a warning message that the data remains grouped after applying the summarize function because most people.
+
+You can suppress this warning with a line near the top of the code
+
+|# warning: false
+
+or you can explicitly choose the first option by adding the argument
+
+.drop="drop_last"
+
+or the second option by adding the argument
+
+.drop="drop"
+
+```{r}
+#| label: ex-lineplot-2
+
+ex_1 |>
+  group_by(prog, gender) |>
+  summarize(
+    loss_mean=mean(loss)) |>
+  ggplot() +
+  aes(x=gender, y=loss_mean) +
+  geom_line(aes(group=prog)) +
+  geom_text(aes(label=prog)) +
+  ggtitle("Graph drawn by Steve Simon on 2025-02-11") +
+  xlab("Gender") +
+  ylab("Average weight loss") -> plot_4
+plot_4
+```
+
+#### Interpretation of the output
+
+The two plots seem to emphasize different features of the data. The first plot emphasizes the superior average weight loss of women in the jogging group, men in the swimming group with identical average weight loss in the control (reading) group. The second plot seems to emphasize that jogging showed the best average weight loss and the control group showing the worst average weight loss. But if you look closely at either plot, you should notice both trends.
+
+```{r}
+#| label: exercise-models
+
+m4 <- lm(loss ~ 1, data=ex_1)
+m5 <- lm(loss ~ gender+prog, data=ex_1)
+m6 <- lm(loss ~ gender*prog, data=ex_1)
+
+ex_1 |>
+  mutate(GenderFemale=as.numeric(gender=="Female")) |>
+  mutate(ProgSwimming=as.numeric(prog=="Swimming")) |>
+  mutate(ProgJogging=as.numeric(prog=="Jogging")) |>
+  mutate(GenderFemaleProgSwimming=GenderFemale*ProgSwimming) |>
+  mutate(GenderFemaleProgJogging=GenderFemale*ProgJogging) -> ex_2
+```
+
+#### Comment on the code
+
+Placing the term 'gender+prog" on the right hand side of the tilde fits a model with an indicator for gender and two indicators for prog. In contrast, the term "gender*prog" fits a model with these indicators plus interactions associated with the products of the one gender indicator and the two prog indicators.
+
+```{r}
+#| label: parameters
+tidy(m6) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> table_08
+table_08
+```
+
+```{r}
+coef(m4)
 ```
 
 ## Interaction between prog and hours on loss
@@ -507,9 +623,14 @@ save(
   er,
   er_1,
   ex,
+  ex_1,
+  ex_2,
   m1,
   m2,
   m3,
+  m4,
+  m5,
+  m6,
   pulmonary,
   plot_01,
   plot_02,
