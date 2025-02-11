@@ -21,18 +21,33 @@ The assumptions for multiple factor analysis of variance are no different than s
 
 ## Q-Q plot of residuals
 
-![](images/full-moon-analysis-22.png)
+```{r}
+#| label: plot-03
 
-::: notes
-The residuals from the full moon analysis of variance model appear to be normally distributed.
-:::
+plot_03
+```
 
 ## Residual versus predicted value plot
 
-![](images/full-moon-analysis-23.png)
+```{r}
+#| label: plot-04
+
+plot_04
+```
+
+## Diagnostic measures that are not needed
+
+-   Variance inflation factor
+-   Leverage
+-   Studentized deleted residuals
+-   Cook's distance
 
 ::: notes
-There is no evidence of unequal variances.
+There are some diagnostic measures that are important in multiple linear regression that are not at all needed for multiple factor analysis of variance. When your independent variables are categorical, there is little opportunity for collinearity to appear. So the variance inflation factor is not normally computed for multiple factor analysis of variance.
+
+While studentized deleted residuals could be used, they almost never deviate substantially from the plain resisuals, so there is no need to look at them.
+
+It is also difficult to produce outliers among the independent variables because categorical data can't have extreme values. In theory, it could happen if the distribution of data within certain categories was extremely unbalanced. The amount of imbalance, though, before this becomes an issue is never seen in real world datasets.
+
+for the same reason, Cook's distance, which is a measure that combines leverage with studentized deleted residuals, is never used in multiple factor analysis of variance.
 :::
-
-

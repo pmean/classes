@@ -5,51 +5,26 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "Indicator variables for three or more categories"
+  topic_01: "Review one factor analysis of variance"
   topic_02: "Multiple factor analysis of variance"
   topic_03: "Checking assumptions of analysis of variance"
   topic_04: "Interactions in analysis of variance"
-  topic_05: "Interactions in analysis of covariance"
-  topic_06: "Interactions in multiple linear regression"
-  topic_07: "Unbalanced data"
 editor: source
 ---
 
 ## Topics to be covered
-
-```{r}
-# Preliminaries, if needed
-
-# Keep this chunk, even if no code, so that
-# params is populated from the yaml header.
-
-# To print speaker notes, add
-#   ?print-pdf&showNotes=separate-page 
-#   to the end of the URL. Then open the
-#   print dialog box (ctrl-P) and choose
-#   Save as PDF for the printer. Other 
-#   options, like Microsoft Print to PDF
-#   do not seem to work.
-
-#| warning: false
-
-library(tidyverse)
-fn <- "../data/exercise-data-dictionary.yaml"
-exercise_dictionary <- str_trim(read_lines(fn))
-```
 
 -   What you will learn
     -   `r params$topic_01`
     -   `r params$topic_02`
     -   `r params$topic_03`
     -   `r params$topic_04`
-    -   `r params$topic_05`
-    -   `r params$topic_06`
-    -   `r params$topic_07`
 
-{{< include _04-01.qmd >}}
+{{< include _b2-04-01.qmd >}}
 
-## Live demo, `r params$topic_02`
+## Live demo, `r params$topic_01`
+
+Live demonstration of part 1 of [simon-5502-04-demo.qmd][ref01]
 
 ## Break #1
 
@@ -58,9 +33,11 @@ exercise_dictionary <- str_trim(read_lines(fn))
 -   What's coming next
     -   `r params$topic_02`
 
-{{< include _04-02.qmd >}}
+{{< include _b2-04-02.qmd >}}
 
 ## Live demo, `r params$topic_02`
+
+Live demonstration of part 2 of [simon-5502-04-demo.qmd][ref01]
 
 ## Break #2
 
@@ -69,9 +46,11 @@ exercise_dictionary <- str_trim(read_lines(fn))
 -   What's coming next
     -   `r params$topic_03`
     
-{{< include _04-03.qmd >}}
+{{< include _b2-04-03.qmd >}}
 
 ## Live demo, `r params$topic_03`
+
+Live demonstration of part 3 of [simon-5502-04-demo.qmd][ref01]
 
 ## Break #3
 
@@ -80,43 +59,13 @@ exercise_dictionary <- str_trim(read_lines(fn))
 -   What's coming next
     -   `r params$topic_04`
     
-{{< include _04-04.qmd >}}
+{{< include _b2-04-04.qmd >}}
 
 ## Live demo, `r params$topic_04`
 
-## Break #4
+Live demonstration of part 1 of [simon-5502-04-demo.qmd][ref01]
 
--   What you have learned
-    -   `r params$topic_04`
--   What's coming next
-    -   `r params$topic_05`
-
-{{< include _04-05.qmd >}}
-
-## Live demo, `r params$topic_05`
-
-
-## Break #5
-
--   What you have learned
-    -   `r params$topic_05`
--   What's coming next
-    -   `r params$topic_06`
-
-{{< include _04-06.qmd >}}
-
-## Live demo, `r params$topic_06`
-
-## Break #6
-
--   What you have learned
-    -   `r params$topic_06`
--   What's coming next
-    -   `r params$topic_07`
-
-{{< include _04-07.qmd >}}
-
-## Live demo, `r params$topic_07`
+[ref01]: https://github.com/pmean/classes/blob/master/biostats-2/04/src/simon-5502-04-demo.qmd
 
 ## Summary
 
@@ -125,46 +74,6 @@ exercise_dictionary <- str_trim(read_lines(fn))
     -   `r params$topic_02`
     -   `r params$topic_03`
     -   `r params$topic_04`
-    -   `r params$topic_05`
-    -   `r params$topic_06`
-    -   `r params$topic_07`
-
-## Additional topics??
-
-::: notes
--   Learning objectives for multifactor ANOVA
-    -   Define Factor
-    -   Define Level
-    -   Assess types of ANOVA based on factors and levels
-    -   Calculate the maximum number of groups in a multi-factorial ANOVA
-    -   Define interaction
-    -   Explain how to determine if an interaction between the factors exists
-    -   Explain how to "name" a multi-factorial ANOVA
-    -   Write the Null and Alternative Hypothesis for a multi-factorial ANOVA
-    -   Write the Research Questions for a multi-factorial ANOVA
-    -   Write the Research Interaction Questions for a multi-factorial ANOVA
-    -   Define and explain the order of interpretation for a multi-factorial ANOVA
-    -   Define Main Effects
-    -   Explain the test of the Main Effects
-    -   Define Simple Main Effects
-    -   Explain the test of the Simple Main Effects
-    -   Define Interaction Effect
-    -   Explain the test of the Interaction Effect
-    -   Explain what information the Interaction Effect test provides
-    -   Explain the difference in information obtained between a 2-way ANOVA and 2 one way ANOVA's
-    -   Define the  "Differences Between the Differences"
-    -   Calculate the "Differences Between the Differences"
-    -   Draw conclusions about the "Differences Between the Differences"
-    -   Interpret the Interaction Effect test
-    -   Determine the next steps of interpretation with a significant interaction effect
-    -   Determine the next steps of interpretation with a non-significant interaction effect
-    -   Interpret the Main Effects
-    -   Interpret the Simple Main Effects
-    -   List and define the Assumptions  and tests for a multi-factorial ANOVA
-    -   Define Marginal Means
-    -   Explain the difference between Marginal Means and Means
-    -   Complete a statistical write-up of a multi-factorial ANOVA with all elements included
-:::
 
 <!---
       You have to put the title down 

@@ -1,5 +1,5 @@
 ---
-title: "Indicator variables for three or more categories"
+title: "Review one factor analysis of variance"
 format: 
   revealjs:
     slide-number: true
@@ -29,11 +29,12 @@ load("../data/module04.RData")
 ```
 
 
--   Admission rates to mental health clinic before, during, and after full moon.
--   One year of data
+-   Admission rates to mental health clinic
+    -   Before, during, and after full moon.
+-   One year of data, starting in August
+-   Consult the [data dictionary][ref11] for more details
 
-https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.txt
-https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.yaml
+[ref11]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.yaml
 
 ::: notes
 To illustrate oneway analysis of variance, I found a dataset on mental health clinic admissions.
@@ -48,7 +49,7 @@ plot_01
 ```
 
 ::: notes
-Here is a lineplot. It is a useful way to display data in a two factor analysis of variance. You can see a general trend of increased admission rates during a full moon in some months, but not in others.
+For interpretation of this output from R and all other output from R included below, refer to the file simon-5502-04-demo.
 :::
 
 ## Alternative line graph of full moon data
@@ -59,12 +60,6 @@ Here is a lineplot. It is a useful way to display data in a two factor analysis 
 plot_02
 ```
 
-::: notes
-Here is an alternative lineplot. This is somewhat similar to deciding what to place as the rows and what to place as the columns in a table of counts.
-
-Which graph do you like better? I tend to waver between the two.
-:::
-
 ## Descriptive statistics
 
 ```{r}
@@ -72,10 +67,6 @@ Which graph do you like better? I tend to waver between the two.
 
 table_01
 ```
-
-::: notes
-Here are the means and standard deviations.
-:::
 
 ## Analysis of variance table
 
@@ -85,21 +76,13 @@ Here are the means and standard deviations.
 table_02
 ```
 
-## Output from lm function
+## Parameter estimates
 
 ```{r}
 #| label: table-03
 
 table_03
 ```
-
-::: notes
-Here are the parameter estimates. The intercept is the estimated average rate when the first and second indicator both equal zero. This is effectively the average rate for the third group (during a full moon).
-
-The first slope is the estimated average difference in rates when you increase the first indicator by one unit and hold the second indicator constant. This is effectively the the average rate for the first group (after a full moon) minus the average rate for the third group (during a full moon). When the days switch from during a full moon to after a full moon, the estimated average admission rate decreases by almost two patients per day.
-
-The second slope is the estimated average difference in rates when you increase the second indicator by one unit and hold the first indicator constant. This is effectively the the average rate for the second group (before a full moon) minus the average rate for the third group (during a full moon). When the days switch from during a full moon to before a full moon, the estimated average admission rate decreases by 2.5 patients per day.
-:::
 
 ## Tukey post hoc
 
@@ -108,13 +91,4 @@ The second slope is the estimated average difference in rates when you increase 
 
 table_04
 ```
-
-
-::: notes
-Normally, you would not run a post hoc test after accepting the null hypothesis. If you did, you would see that every confidence interval includes the value of zero.
-
-There are a few times (very, very few) where you accept the null hypothesis and the post hoc test shows differences between two of the groups.
-
-There are also a few times where you reject the null hypothesis, but the post hoc test shows no differences between any of the groups. There is an explanation in both cases, but the cases are so rare that I do not want to delve further into them.
-:::
 

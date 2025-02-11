@@ -12,15 +12,18 @@ execute:
 
 This program was written by Steve Simon on 2025-01-30 and is placed in the public domain. You can use this program any way you please.
 
-There are two data files used in this program
+There are three data files used in this program
 
 -   full-moon-er-admissions, [csv file][ref01], [dictionary][ref02]
 -   exercise-programs, [SPSS file][ref03], [dictionary][ref04]
+-   fev, [csv file][ref05], [dictionary][ref06]
 
 [ref01]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.txt
 [ref02]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.yaml
 [ref03]: https://github.com/pmean/data/blob/main/files/exercise-programs.sav
 [ref04]: https://github.com/pmean/data/blob/main/files/exercise-programs.yaml
+[ref05]: https://github.com/pmean/data/blob/main/files/fev.txt
+[ref06]: https://github.com/pmean/data/blob/main/files/fev.yaml
 
 ```{r}
 #| label: setup
@@ -602,6 +605,131 @@ plot_06
 
 The two plots seem to emphasize different features of the data. The first plot emphasizes the superior average weight loss of women in the jogging group, men in the swimming group with identical average weight loss in the control (reading) group. The second plot seems to emphasize that jogging showed the best average weight loss and the control group showing the worst average weight loss. But if you look closely at either plot, you should notice both trends.
 
+```{r}
+#| label: exercise-models
+
+m4 <- lm(loss ~ 1, data=ex_1)
+m5 <- lm(loss ~ gender+prog, data=ex_1)
+m6 <- lm(loss ~ gender*prog, data=ex_1)
+
+ex_1 |>
+  mutate(GenderFemale=as.numeric(gender=="Female")) |>
+  mutate(ProgSwimming=as.numeric(prog=="Swimming")) |>
+  mutate(ProgJogging=as.numeric(prog=="Jogging")) |>
+  mutate(GenderFemaleProgSwimming=GenderFemale*ProgSwimming) |>
+  mutate(GenderFemaleProgJogging=GenderFemale*ProgJogging) -> ex_2
+
+m7 <- lm(loss ~
+	GenderFemale +
+  ProgJogging +
+	ProgSwimming +
+	GenderFemaleProgSwimming +
+	GenderFemaleProgJogging, 
+	data=ex_2)
+```
+
+#### Comment on the code
+
+Placing the term "gender+prog" on the right hand side of the tilde fits a model with an indicator for gender and two indicators for prog. In contrast, the term "gender*prog" fits a model with these indicators plus interactions associated with the products of the one gender indicator and the two prog indicators.
+
+```{r}
+#| label: parameters
+tidy(m6) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> table_09
+table_09
+```
+
+```{r}
+coef(m6)
+coef(m7)
+```
+
+
+
+## Interaction between prog and hours on loss
+
+## Interaction between hours and effort on loss
+
+## fev
+
+```{r}
+#| label: read-fev
+
+vars <- c(
+  "age", 
+  "fev",
+  "ht", 
+  "sex",
+  "smoke")
+
+pulmonary <- read_csv(
+  file="../data/fev.csv",
+  col_names=vars,
+  col_types="nnncc")
+glimpse(pulmonary)
+```
+
+
+```{r}
+#| label: exercise-models
+
+m4 <- lm(loss ~ 1, data=ex_1)
+m5 <- lm(loss ~ gender+prog, data=ex_1)
+m6 <- lm(loss ~ gender*prog, data=ex_1)
+
+ex_1 |>
+  mutate(GenderFemale=as.numeric(gender=="Female")) |>
+  mutate(ProgSwimming=as.numeric(prog=="Swimming")) |>
+  mutate(ProgJogging=as.numeric(prog=="Jogging")) |>
+  mutate(GenderFemaleProgSwimming=GenderFemale*ProgSwimming) |>
+  mutate(GenderFemaleProgJogging=GenderFemale*ProgJogging) -> ex_2
+```
+
+#### Comment on the code
+
+Placing the term "gender+prog" on the right hand side of the tilde fits a model with an indicator for gender and two indicators for prog. In contrast, the term "gender*prog" fits a model with these indicators plus interactions associated with the products of the one gender indicator and the two prog indicators.
+
+```{r}
+#| label: parameters
+tidy(m6) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> table_09
+table_09
+```
+
+```{r}
+coef(m4)
+```
+
+## Interaction between prog and hours on loss
+
+## Interaction between hours and effort on loss
+
+## fev
+
+```{r}
+#| label: read-fev
+
+vars <- c(
+  "age", 
+  "fev",
+  "ht", 
+  "sex",
+  "smoke")
+
+pulmonary <- read_csv(
+  file="../data/fev.csv",
+  col_names=vars,
+  col_types="nnncc")
+glimpse(pulmonary)
+```
 
 ## Save everything
 
@@ -634,5 +762,6 @@ save(
   table_06,
   table_07,
   table_08,
+  table_09,
   file="../data/module04.RData")
 ```

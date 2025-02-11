@@ -9,7 +9,7 @@ editor: source
 
 ## Mathematical model, 1
 
--   Decompose $\mu_ij$ into $\mu + \alpha_i + \beta_j$
+-   Decompose $\mu_{ij}$ into $\mu + \alpha_i + \beta_j$
     -   $\alpha_i$ is the deviation for the ith level of first factor
     -   $\beta_j$ is the deviation for the jth level of second factor
     -   Require $\alpha_1=0$ and $\beta_1=0$
@@ -52,23 +52,17 @@ There are two hypotheses. The first, testing that all the alphas equal zero is e
 ## Parameter estimates for the two factor model
 
 ```{r}
-#| label: table-5
+#| label: table-05
 
-table_5
+table_05
 ```
-
-::: notes
-These are the parameter estimates for the two factor analysis of variance. The reference categories are "Before" and "Aug".
-
-The intercept represents the average admission rate before a full moon when the month is August. The two terms associates with moon show how much changes there is from before a full moon to during a full moon and from before a full moon to after a full moon, respectively. The remaining parameter estimates show how much each month differs from the first month (August).
-:::
 
 ## Analysis of variance table comparing the two factor model to the null model
 
 ```{r}
-#| label: table-6
+#| label: table-06
 
-table_6
+table_06
 ```
 
 ::: notes
@@ -78,22 +72,29 @@ table_6
 ## Analysis of variance table comparing the two factor model to the one factor model
 
 ```{r}
-#| label: table-7
+#| label: table-07
 
-table_7
+table_07
 ```
 
-::: notes
-This is the analysis of variance table. There is one less degree of freedom than the number of categories for each categorical predictor variable. There is a statistically significant difference between the twelve months and a borderline significant difference between the three moon phases.
+## R-squared values
 
-This differs from the single factor analysis of variance because adding in month as a categorical predictor removed a lot of variation. You are now able to account for almost 80% of the variation in admission rates. Without month in the model, you accounted for less than 7% of the variation.
-:::
+```{r}
+#| label: table-08
+
+table_08
+```
+
+
 
 ## Tukey post hoc test
 
-![](images/full-moon-analysis-20.png)
+```{r}
+#| label: table-09
 
-![](images/full-moon-analysis-21.png)
+table_09
+```
+
 
 ::: notes
 Use the Tukey posthoc test because the sample sizes are equal across the moon phases. The results are a bit ambiguous because before and after are not statistically different, after and during are not statistically different but before and during are statistically different. This is probably due to a lack of precision and an extra year's worth of data would help quite a bit.
