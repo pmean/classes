@@ -1,0 +1,35 @@
+---
+title: "Criticisms of principal components analysis and factor analysis"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Criticisms of principal components analysis
+
+-   Advantages
+    -   Makes collection of many variables manageable
+    -   Eliminates collinearity issues
+    -   Focus only on important sources of variation
+-   Disadvantages
+    -   Components often uninterpretable
+    -   False sense of parsimony 
+
+::: notes
+
+:::
+
+## Criticisms of factor analysis
+
+-   Advantages
+    -   Explore underlying structure
+    -   Create or validate subscales
+-   Disadvantages
+    -   Difficulty in choosing number of factors
+    -   Reification
+    
+::: notes
+
+:::

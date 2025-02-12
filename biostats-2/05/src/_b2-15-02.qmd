@@ -1,0 +1,49 @@
+---
+title: "Applications of principal components"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Applications
+
+-   Visualization
+    -   Reduce high dimensional visualization 
+    -   Fewer graphs
+-   Regression analysis
+    -   Fewer independent variables (rule of 15)
+    -   Removes collinearity
+
+## Boxplots of first four principal components
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/pca-application-03.png)
+:::
+::: {.column width="50%"}
+![](images/pca-application-04.png)
+:::
+::::
+
+
+## Scatterplot of first four principal components
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/pca-application-05.png)
+:::
+::: {.column width="50%"}
+![](images/pca-application-06.png)
+:::
+::::
+
+## R-squared using four principal components
+
+![](images/pca-application-01.png)
+
+## R-squared using all 24 variables
+
+![](images/pca-application-02.png)
+

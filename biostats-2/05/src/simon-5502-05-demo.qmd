@@ -12,15 +12,12 @@ execute:
 
 This program was written by Steve Simon on 2025-01-30 and is placed in the public domain. You can use this program any way you please.
 
-There are three data files used in this program
+There are two data files used in this program
 
--   full-moon-er-admissions, [csv file][ref01], [dictionary][ref02]
--   exercise-programs, [SPSS file][ref03], [dictionary][ref04]
+-   exercise-programs, [SAS][ref03], [dictionary][ref04]
 -   fev, [csv file][ref05], [dictionary][ref06]
 
-[ref01]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.txt
-[ref02]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.yaml
-[ref03]: https://github.com/pmean/data/blob/main/files/exercise-programs.sav
+[ref03]: https://raw.githubusercontent.com/pmean/data/main/files/exercise-programs.sas7bdat
 [ref04]: https://github.com/pmean/data/blob/main/files/exercise-programs.yaml
 [ref05]: https://github.com/pmean/data/blob/main/files/fev.txt
 [ref06]: https://github.com/pmean/data/blob/main/files/fev.yaml
@@ -32,7 +29,6 @@ There are three data files used in this program
 
 library(broom)
 library(glue)
-library(knitr)
 library(tidyverse)
 R.version.string
 Sys.Date()
@@ -40,407 +36,15 @@ Sys.Date()
 
 ## Intermediate files
 
--   er: Original data from full-moon-er-admissions.txt 
--   er_1: Re-order Month and Moon levels
--   plot_01: Line plot for Moon data
--   plot_02: Alternative line plot for Moon data
--   plot_03: QQ plot of residuals
--   plot_04: Predicted vs residuals
--   table_01: Mean Admission by Moon
--   table_02: Single factor analysis of variance for Moon data
--   table_03: Parameter estimates
--   table_04: Tukey post hoc
--   table_05: Two factor model parameter estimates
--   table_06: Global F test
--   table_07: Partial F test
--   ex: Original data from exercise.sav
+-   ex: Original data from exercise-programs.sas7bdat
 -   ex_1: Create factors for female and prog
 -   ex_2: Create indicator variables
--   plot_05: Line plot for Exercise data
--   plot_06: Alternative line plot for Exercise data
--   pulmonary: Original data from fev.csv
 
-## Part 1. Review one factor analysis of variance
-
-## Read the moon data
-
-```{r}
-#| label: moon-read
-
-er <- read_tsv(
-  file="../data/full-moon-er-admissions.txt",
-  col_names=TRUE,
-  col_types="ccn")
-glimpse(er)
-```
-
-## Create factors
-
-```{r}
-#| label: moon-factors
-
-month_list <- c(
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul")
-
-phase_list <- c(
-  "Before",
-  "During",
-  "After")
-
-er |>
-  mutate(Month=factor(Month, levels=month_list)) |>
-  mutate(Moon=factor(Moon, levels=phase_list)) -> er_1
-```
-
-#### Comment on the code
-
-By default, when R encounters a string, it will use alphabetical order in arranging the display in graphs. You can change this option by using the factor function. Create a vector listing the string values in the order that you want them displayed and then use that vector as the levels argument inside the factor function.
-
-## Descriptive statistics
-
-```{r}
-#| label: moon-descriptives-1
-
-er_1 |>
-	count(Month) |>
-  	mutate(total=sum(n)) |>
-  	mutate(pct=round(100*n/total)) |>
-	  mutate(pct=glue("{pct}% ({n}/{total})")) |>
-	  select(-n, -total)
-```
-
-#### Interpretation of the output
-
-There are twelve months, each representing 8% (1/12) of the data.
-
-```{r}
-#| label: moon-descriptives-2
-
-er_1 |>
-	count(Moon) |>
-  	mutate(total=sum(n)) |>
-  	mutate(pct=round(100*n/total)) |>
-	  mutate(pct=glue("{pct}% ({n}/{total})")) |>
-	  select(-n, -total)
-```
-
-#### Interpretation of the output
-
-There are three phase times, each representing 33% (1/3) of the data.
-
-
-```{r}
-#| label: moon-descriptives-3
-
-er_1 |>
-  summarize(
-    admission_mean=mean(Admission),
-    admission_sd=sd(Admission),
-    admission_min=min(Admission),
-    admission_max=max(Admission))
-```
-
-#### Interpretation of the output
-
-The average number of admissions is about 12 patients per day. There is a moderate amount of variation in the data.
-
-## Lineplot
-
-```{r}
-#| label: moon-lineplot-1
-
-er_1 |>
-  ggplot() +
-  aes(x=Moon, y=Admission) +
-  geom_line(aes(group=Month)) +
-  geom_text(aes(label=Month)) +
-  ggtitle("Plot drawn by Steve Simon on 2025-02-08") +
-  xlab("Moon phase") +
-  ylab("ER admission rate") -> plot_01
-plot_01
-```
-
-#### Comment on the output
-
-You have already used the [aes][ref07] function to define the x and y axes for various visualizations in ggplot. There are other applications of the aes function that can help control other features of your visualization.
-
-The group argument in the aes function tells the geom_line function that you want a separate line for each month of the year. The label argument in the aes function tells the geom_text function to write the string value of month at each combination of x=Moon and y=Admission.
-
-[ref07]: https://ggplot2.tidyverse.org/reference/aes.html
-
-## Alternative lineplot
-
-```{r}
-#| label: moon-lineplot-2
-
-er_1 |>
-  ggplot() +
-  aes(x=Month, y=Admission) +
-  geom_line(aes(group=Moon)) +
-  geom_text(aes(label=Moon)) +
-  ggtitle("Plot drawn by Steve Simon on 2025-02-08") +
-  ylab("ER admission rate") -> plot_02
-plot_02
-```
-
-#### Comment on the code
-
-By swapping the roles of Month and Moon inside the ggplot function, you get a different appearance. It is not always clear which way to draw the line graph. It usually helps for you to look at both approaches, but then display only the one that you think helps create the simplest interpretation of what is going on.
-
-Which graph do you like better? I tend to waver between the two.
-
-## Mean Admission by Moon
-
-```{r}
-#| label: admission-by-moon
-
-er_1 |>
-  group_by(Moon) |>
-  summarize(
-    Admission_mean=mean(Admission),
-    Admission_sd=sd(Admission)) -> table_01
-table_01
-```
-
-#### Interpretation of the output
-
-The average admission rate before a full moon is 11 patients per day. During a full moon the average rises by 2.5 patients per day. It falls back after a full moon but only by 2 patients per day.
-
-## Fit three models
-
-```{r}
-#| label: three-moon-models
-
-m1 <- lm(Admission ~ 1, data=er_1)
-m2 <- lm(Admission ~ Moon, data=er_1)
-m3 <- lm(Admission ~ Moon + Month, data=er_1)
-
-```
-
-
-## Single factor analysis of variance
-
-```{r}
-anova(m1, m2) |> 
-  tidy() |>
-  mutate(
-    p.value =
-      case_when(
-        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> table_02
-table_02
-```
-
-## Parameter estimates
-
-```{r}
-#| label: moon-parameters-1
-
-tidy(m2) |>
-  mutate(
-    p.value =
-      case_when(
-        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> table_03
-table_03
-```
-
-#### Comment on the code
-
-Normally the reference category would be selected as the first alphabetically, but we used the factor function to place the strings in the order "Before", "During", and "After". So the reference category is "Before". You might prefer to use "During" as the reference category, which would be easy enough to achieve.
-
-#### Interpretation of the output
-
-Here are the parameter estimates. The intercept is the estimated average rate when the first and second indicator both equal zero. This is effectively the average rate for the third group (during a full moon).
-
-The first slope is the estimated average difference in rates when you increase the first indicator by one unit and hold the second indicator constant. This is effectively the the average rate for the first group (after a full moon) minus the average rate for the third group (during a full moon). When the days switch from during a full moon to after a full moon, the estimated average admission rate decreases by almost two patients per day.
-
-The second slope is the estimated average difference in rates when you increase the second indicator by one unit and hold the first indicator constant. This is effectively the the average rate for the second group (before a full moon) minus the average rate for the third group (during a full moon). When the days switch from during a full moon to before a full moon, the estimated average admission rate decreases by 2.5 patients per day.
-
-## Tukey post hoc test
-
-```{r}
-#| label: moon-tukey-1
-
-m2 |>
-  aov() |>
-  TukeyHSD() |>
-  tidy() |>
-  mutate(
-    adj.p.value =
-      case_when(
-        adj.p.value >= 0.001 ~ glue("p = {round(adj.p.value, 3)}"),
-        adj.p.value <  0.001 ~ "p < 0.001")) -> table_04
-table_04
-```
-
-#### Comments on the code
-
-The TukeyHSD function produces a data frame with a variable labeled p adj. This is not a legal name in R, so you can't manipulate it easily. The tidy function helps here, but the name it chooses, adj.p.value, does not work with the pretty_p function. So you need to use the [rename][ref08] function (part of the dplyr/tidyverse libraries) first.
-
-[ref08]: https://dplyr.tidyverse.org/reference/rename.html
-
-#### Interpretation of the output
-
-Normally, you would not run a post hoc test after accepting the null hypothesis. If you did, you would see that every confidence interval includes the value of zero.
-
-There are a few times (very, very few) where you accept the null hypothesis and the post hoc test shows differences between two of the groups.
-
-There are also a few times where you reject the null hypothesis, but the post hoc test shows no differences between any of the groups. There is an explanation in both cases, but the cases are so rare that I do not want to delve further into them.
-
-There are three possible comparisons among the levels of moon phase. None of the differences are statistically significant.
-
-## Part 2. Two factor analysis of variance
-
-## Parameter estimates
-
-```{r}
-#| label: moon-anova-2
-
-tidy(m3) |>
-  mutate(
-    p.value =
-      case_when(
-        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> table_05
-table_05
-```
-
-#### Interpretation of the output
-
-These are the parameter estimates for the two factor analysis of variance. The reference categories are "Before" and "Aug".
-
-The intercept represents the average admission rate before a full moon when the month is August. The two terms associates with moon show how much changes there is from before a full moon to during a full moon and from before a full moon to after a full moon, respectively. The remaining parameter estimates show how much each month differs from the first month (August).
-
-## Anova table, 1
-
-```{r}
-#| label: moon-anova-3
-
-anova(m1, m3) |>
-  tidy() |>
-  mutate(
-    p.value =
-      case_when(
-        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> table_06
-table_06
-```
-
-#### Interpretation of the output
-
-There is a statistically significant improvement in prediction when you use Month and Moon to predict admission rates compared to a null model.
-
-## Anova table, 2
-
-```{r}
-#| label: two-factor-anova-2
-
-anova(m2, m3) |>
-  tidy() |>
-  mutate(
-    p.value =
-      case_when(
-        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> table_07
-table_07
-```
-
-#### Interpretation of the output
-
-There is a statistically significant improvement in prediction when you use Month and Moon to predict admission rates compared to a model with just Moon.
-
-## Comparison of r-squared values
-
-```{r}
-#| label: r-squared
-
-glance(m1) |>
-	bind_rows(glance(m2)) |>
-	bind_rows(glance(m3)) |>
-	mutate(model=glue("m{1:3}")) |>
-	select(model, r.squared, deviance) -> table_08
-table_08
-```
-
-#### Interpretation of the output
-
-The first factor, moon, only accounts for 7% of the variation in admission rates. Adding a second factor improves the model substantially.
-
-## Tukey post hoc test
-
-```{r}
-#| label: moon-tukey-2
-
-m3 |>
-  aov() |>
-  TukeyHSD(ordered=TRUE, which="Moon") |>
-  tidy() |>
-  mutate(
-    adj.p.value =
-      case_when(
-        adj.p.value >= 0.001 ~ as.character(round(adj.p.value, 3),
-        adj.p.value <  0.001 ~ "< 0.001"))) -> table_09
-table_09
-```
-
-#### Comment on the code
-
-With two factors, you should provide information to the TukeyHSD function about the pairwise comparison(s) that you are interested in. Use the which argument to do this. If you leave the which argument out, the TukeyHSD function will do all pairwise comparisons among the three moon phases and all pairwise comparisons among the 12 months. The real interest in this study is how admission rates change by the phase of the moon and you only included the month in the model to remove some of the variations over time.
-
-#### Interpretation of the output
-
-There is no statistically significant difference between the average admission rate before and after a full moon. There is a statistically difference between the average admission rate before and during a full moon. This, however, is a borderline difference. The adjusted p-values is close to 0.05 and the lower limit of the confidence interval comes within kissing distance of zero. There is no statistically significant difference between the average admission rate during a full moon and after a full moon. This, however, is also a borderline result. The confidence interval does include zero, but just barely. Perhaps the only safe interpretation here is that you need more data.
-
-## Part 3. Checking assumptions
-
-```{r}
-#| label: residual-plot-1
-
-r2 <- augment(m2)
-
-r2 |>
-	ggplot() +
-	aes(sample=.resid) +
-	stat_qq() +
-	ggtitle("Plot created by Steve Simon on 2025-02-11") -> plot_03
-plot_03
-```
-
-#### Interpretation of the output
-
-There is no evidence of non-normality.
-
-```{r}
-#| label: residual-plot-2
-
-r2 |>
-	ggplot() +
-	aes(x=.fitted, y=.resid) +
-	geom_point() +
-	ggtitle("Plot created by Steve Simon on 2025-02-11") +
-	xlab("Predicted values from two factor ANOVA") +
-	ylab("Residuals from two factor ANOVA") -> plot_04
-plot_04
-```
-
-## Part 4. Interactions
 
 ## Read exercise data
 
 ```{r}
-#| label: exercise-read
+#| label: ex-read
 
 library(haven)
 
@@ -452,7 +56,7 @@ glimpse(ex)
 ## Add factors
 
 ```{r}
-#| label: factors
+#| label: ex-factors
 lab1 <- c("Reading", "Jogging", "Swimming")
 lab2 <- c("Male", "Female")
 
@@ -470,7 +74,7 @@ I also used gender rather than female for the factor name. This is something I o
 ## Descriptive statistics
 
 ```{r}
-#| label: exercise-descriptives-1
+#| label: ex-pct-1
 
 ex_1 |>
 	count(prog) |>
@@ -485,7 +89,7 @@ ex_1 |>
 Exactly one third of the patients are in each of the three exercise programs.
 
 ```{r}
-#| label: exercise-descriptives-2
+#| label: ex-pct-2
 
 ex_1 |>
 	count(i) |>
@@ -500,7 +104,7 @@ ex_1 |>
 This table doesn't really help so much and I should probably have deleted this program chunk.
 
 ```{r}
-#| label: exercise-descriptives-3
+#| label: ex-mean-1
 
 ex_1 |>
   summarize(
@@ -515,7 +119,7 @@ ex_1 |>
 The average patient exercised for 2 hours per week. There is a lot of variation, with at least one patient only exercising for ten minutes. 
 
 ```{r}
-#| label: exercise-descriptives-4
+#| label: ex-pct-3
 
 ex_1 |>
 	count(gender) |>
@@ -532,7 +136,7 @@ There are equal numbers of men and women in the study.
 #### Interpretation of the output
 
 ```{r}
-#| label: exercise-descriptives-5
+#| label: ex-mean-2
 
 ex_1 |>
   summarize(
@@ -547,7 +151,7 @@ ex_1 |>
 Effort is measured on a scale from 0 to 50. The average effort was 30, roughly in the middle of this range. There is only a moderate amount of variation, with no one really very close to the low extreme of 0 or the high extreme of 50.
 
 ```{r}
-#| label: exercise-descriptives-6
+#| label: ex-mean-3
 
 ex_1 |>
   summarize(
@@ -564,7 +168,7 @@ The average weight loss is impressive, 30 pounds. There is a wide range with one
 ## Interaction between prog and gender on loss
 
 ```{r}
-#| label: ex-lineplot-1
+#| label: ex-lines-1
 
 ex_1 |>
   group_by(prog, gender) |>
@@ -576,8 +180,7 @@ ex_1 |>
   geom_text(aes(label=gender)) +
   ggtitle("Graph drawn by Steve Simon on 2025-02-11") +
   xlab("Exercise program") +
-  ylab("Average weight loss") -> plot_05
-plot_05
+  ylab("Average weight loss")
 ```
 
 #### Comment on the code
@@ -585,7 +188,7 @@ plot_05
 There is a warning message associated with this program chunk. It does not affect the validity of the output. I explain some of the details behind this warning in a webpage to be published soon.
 
 ```{r}
-#| label: ex-lineplot-2
+#| label: ex-lines-2
 
 ex_1 |>
   group_by(prog, gender) |>
@@ -606,7 +209,7 @@ plot_06
 The two plots seem to emphasize different features of the data. The first plot emphasizes the superior average weight loss of women in the jogging group, men in the swimming group with identical average weight loss in the control (reading) group. The second plot seems to emphasize that jogging showed the best average weight loss and the control group showing the worst average weight loss. But if you look closely at either plot, you should notice both trends.
 
 ```{r}
-#| label: exercise-models
+#| label: ex-models
 
 m4 <- lm(loss ~ 1, data=ex_1)
 m5 <- lm(loss ~ gender+prog, data=ex_1)
@@ -650,32 +253,9 @@ coef(m7)
 
 
 
-## Interaction between prog and hours on loss
-
-## Interaction between hours and effort on loss
-
-## fev
 
 ```{r}
-#| label: read-fev
-
-vars <- c(
-  "age", 
-  "fev",
-  "ht", 
-  "sex",
-  "smoke")
-
-pulmonary <- read_csv(
-  file="../data/fev.csv",
-  col_names=vars,
-  col_types="nnncc")
-glimpse(pulmonary)
-```
-
-
-```{r}
-#| label: exercise-models
+#| label: ex-models
 
 m4 <- lm(loss ~ 1, data=ex_1)
 m5 <- lm(loss ~ gender+prog, data=ex_1)
@@ -715,7 +295,7 @@ coef(m4)
 ## fev
 
 ```{r}
-#| label: read-fev
+#| label: fev-read
 
 vars <- c(
   "age", 
@@ -736,32 +316,8 @@ glimpse(pulmonary)
 ```{r}
 #| label: save
 save(
-  er,
-  er_1,
   ex,
   ex_1,
   ex_2,
-  m1,
-  m2,
-  m3,
-  m4,
-  m5,
-  m6,
-  pulmonary,
-  plot_01,
-  plot_02,
-  plot_03,
-  plot_04,
-  plot_05,
-  plot_06,
-  table_01,
-  table_02,
-  table_03,
-  table_04,
-  table_05,
-  table_06,
-  table_07,
-  table_08,
-  table_09,
-  file="../data/module04.RData")
+  file="../data/module05.RData")
 ```

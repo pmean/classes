@@ -1,0 +1,47 @@
+---
+title: "Factor analysis"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Philosophy behind factor analysis
+
+-   Variance equals information
+-   Covariance (correlation) equals shared information
+-   Modeling shared information creates latent variables
+
+::: notes
+Most of the time, statisticians talk about variation as if it were a bad thing. It's noise. It is what makes our confidence intervals so wide. It's what forces us to collect such large sample sizes.
+
+But, in a different context, variation is a good thing. It provides valuable information.
+
+Consider studies of student success done at Harvard and at Johnson County Community College. There is relatively little variation at Harvard in things like high school GPA and SAT scores because everyone is clustered near the upper limits of these scales. At Johnson County Community College--a very good school, don't get me wrong, there is a bit more variation. So you can see enough of a spread to better understand factors for success after graduation.
+
+Some clinical trials deliberately focus on the most seriously ill patients. Mildly ill patients don't have a lot of variation because there is only a small amount of improvement needed to get them back to full health. Serioulsly ill patients have more variation, giving you more opportunity to identify successful treatment options. Now, there are exceptions. If the patients are so seriously ill that no one recovers, you fall back into the same problem of too little variation.
+
+If variance equals information, then covariance (or equivalently correlation) equals shared information. 
+:::
+
+## Factor rotation
+
+-   Recombine factors
+-   Strive for simple interpretation
+    -   Components close to -1, 0, or 1
+    -   Each variable has one and only one non-zero components
+    -   Not always achievable
+
+## Rotated factor pattern, 1 of 3
+
+![](images/factor-analysis-01.png)
+
+## Rotated factor pattern, 2 of 3
+
+![](images/factor-analysis-03.png)
+
+## Rotated factor pattern, 3 of 3
+
+![](images/factor-analysis-02.png)
+
