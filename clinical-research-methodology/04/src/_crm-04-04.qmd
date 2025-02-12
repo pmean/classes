@@ -7,18 +7,11 @@ format:
 editor: source
 ---
 
-## When can't you randomize
+## When can't you randomize, 1
 
 -   Unethical
     -   Lack of equipoise
     -   Harmful exposures
--   Impractical
-    -   Too many patients
-    -   Too much time
-    -   Strong patient preferences
--   Impossible
-    -   Attribute variables
-    -   Retrospective studies
 
 ::: notes
 If you already know that one treatment is superior to another (this has to be more than just a hunch), then you cannot ethically use randomization and doom half of your patients to an inferior treatment.
@@ -28,9 +21,26 @@ Randomization is also unethical, for the most part, in studies of harmful exposu
 An exposure, on the other hand, is something that you are forced to endure and maybe it's okay, but you worry that it might cause real harm. With the exception of short term reversible harms, you can't randomly assign people to an exposure.
 
 You can quibble about these definitions. Is a particular diet an intervention or an exposure? But interventions versus exposures are yet another example of a false dichotomy that is still useful.
+:::
 
+## When can't you randomize, 2
+
+-   Impractical
+    -   Too many patients
+    -   Too much time
+    -   Strong patient preferences
+
+::: notes
 Many times, randomization is just impractical. When you are studying large groups of patients (say tens of thousands or more), you may not have the resources to set up a randomization process. Randomization is also difficult for certain diseases like cancer that have a long latency period. That cancerous polyp in your gut? it was from the Twinky you ate as a teenager and it's a ticking time bomb, but the fuse is set to go off three decades from now. You just don't have the time to wait on a study that could last half of your life.
+:::
 
+## When can't you randomize, 3
+
+-   Impossible
+    -   Attribute variables
+    -   Retrospective studies
+
+::: notes
 In other settings, randomization is impossible. You can't randomly assign people to a gender, race/ethnicity, or age group. You can't randomly assign someone in a retrospective study without a time machine. Actually, there is one cute example.
 
 [taken from http://www.pmean.com/04/temporality.html]

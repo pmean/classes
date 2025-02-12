@@ -7,9 +7,9 @@ format:
 editor: source
 ---
 
-## A fishy research story, 1 of 7
+## A fishy research story, 1
 
-![](images/fish-experiment-01.png)
+![](../images/fish-experiment-01.png)
 
 ::: notes
 [taken from http://www.pmean.com/12/fishy.html]
@@ -17,49 +17,49 @@ editor: source
 I was told this story but have no way of verifying its accuracy. It is one of those stories that if it is not true, it should be. It illustrates why randomization is important. A long, long, time ago, a research group wanted to examine a pollutant to find concentration levels that would kill fish. This research required that 30 fish be separated into five tanks, each of which would get a different level of the pollutant.
 :::
 
-## A fishy research story, 2 of 7
+## A fishy research story, 2
 
-![](images/fish-experiment-02.png)
+![](../images/fish-experiment-02.png)
 
 ::: notes
 The first six fish that you catch go in the first tank.
 :::
 
-## A fishy research story, 3 of 7
+## A fishy research story, 3
 
-![](images/fish-experiment-03.png)
+![](../images/fish-experiment-03.png)
 
 ::: notes
 The next six fish that you catch go into the second tank.
 :::
 
-## A fishy research story, 4 of 7
+## A fishy research story, 4
 
-![](images/fish-experiment-04.png)
-
-::: notes
-And so on.
-:::
-
-## A fishy research story, 5 of 7
-
-![](images/fish-experiment-05.png)
+![](../images/fish-experiment-04.png)
 
 ::: notes
 And so on.
 :::
 
-## A fishy research story, 6 of 7
+## A fishy research story, 5
 
-![](images/fish-experiment-06.png)
+![](../images/fish-experiment-05.png)
+
+::: notes
+And so on.
+:::
+
+## A fishy research story, 6
+
+![](../images/fish-experiment-06.png)
 
 ::: notes
 The last six fish that you catch go into the final tank.
 :::
 
-## A fishy research story, 7 of 7
+## A fishy research story, 7
 
-![](images/fish-experiment-07.png)
+![](../images/fish-experiment-07.png)
 
 ::: notes
 When they were done, they found that mortality was related not to the chemical concentration but to the order in which the tanks were filled. Most of the fishwere floating lifeless at the top of the first tank, but the fifth tank had almost all happy little swimmers.
@@ -106,13 +106,13 @@ How big a sample do you have to have in order not to worry about this. Your book
 
 :::: {.columns}
 ::: {.column width="50%"}
-![](images/how-to-randomize-01.png)
+![](../images/how-to-randomize-01.png)
 
 -   Place the data in a systematic order
 -   Add a column of random numbers
 :::
 ::: {.column width="50%"}
-![](images/how-to-randomize-02.png)
+![](../images/how-to-randomize-02.png)
 
 -   Sort the column of random numbers
 :::
@@ -126,13 +126,13 @@ Most of the published sources on how to randomize are difficult to follow. The s
 
 :::: {.columns}
 ::: {.column width="50%"}
-![](images/how-to-randomize-03.png)
+![](../images/how-to-randomize-03.png)
 
 -   Place the data in a systematic order
 -   Add a column of random numbers
 :::
 ::: {.column width="50%"}
-![](images/how-to-randomize-04.png)
+![](../images/how-to-randomize-04.png)
 
 -   Sort by block and then the column of random numbers
 :::
@@ -151,13 +151,13 @@ Block randomization prevents this from happening. You randomize the order inside
 
 :::: {.columns}
 ::: {.column width="50%"}
-![](images/how-to-randomize-05.png)
+![](../images/how-to-randomize-05.png)
 
 -   Place the data in a systematic order
 -   Add a column of random numbers
 :::
 ::: {.column width="50%"}
-![](images/how-to-randomize-06.png)
+![](../images/how-to-randomize-06.png)
 
 -   Sort by subject and then the column of random numbers
 :::
@@ -171,13 +171,13 @@ A closely related type of randomization is in a cross-over design. There will be
 
 :::: {.columns}
 ::: {.column width="50%"}
-![](images/how-to-randomize-07.png)
+![](../images/how-to-randomize-07.png)
 
 -   Place the data in a systematic order
 -   Add a column of random numbers
 :::
 ::: {.column width="50%"}
-![](images/how-to-randomize-08.png)
+![](../images/how-to-randomize-08.png)
 
 -   Sort by the column of random numbers
 -   Select starting from the top
