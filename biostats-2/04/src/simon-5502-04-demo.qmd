@@ -405,9 +405,9 @@ There is no statistically significant difference between the average admission r
 ```{r}
 #| label: residual-plot-1
 
-r2 <- augment(m2)
+r3 <- augment(m3)
 
-r2 |>
+r3 |>
 	ggplot() +
 	aes(sample=.resid) +
 	stat_qq() +
@@ -422,7 +422,7 @@ There is no evidence of non-normality.
 ```{r}
 #| label: residual-plot-2
 
-r2 |>
+r3 |>
 	ggplot() +
 	aes(x=.fitted, y=.resid) +
 	geom_point() +
@@ -628,5 +628,6 @@ save(
   table_06,
   table_07,
   table_08,
+  table_09,
   file="../data/module04.RData")
 ```

@@ -25,6 +25,7 @@ In Biostats-1, we discussed the comparison of three or more means using oneway o
 #| message: false
 #| warning: false
 
+library(tidyverse)
 load("../data/module04.RData")
 ```
 
