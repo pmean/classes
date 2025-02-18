@@ -7,5 +7,51 @@ format:
 editor: source
 ---
 
-## Mathematical model
+## Mathematical model, 1
 
+-   $Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha \beta)_{ij}+\epsilon_{ijk}$
+    -   i=1,...,a j=1,...,b, k=1,...,n
+-   If 1 is the reference category
+    -   \alpha_1=0
+    -   \beta_1=0
+    -   (\alpha \beta)_{1j}=0
+    -   (\alpha \beta)_{i1}=0
+
+::: notes
+
+You may see papers or books that present the mathematical model for an interaction. The model I present is a balanced model with the first category having levels one through a, the second category having levels one through b and for each combination of categories there are n observations.
+
+If you set the first level as the reference category for each category, then you need to set some of these parameters to zero.
+
+:::
+
+## Mathematical model, 2
+
+-   $SS_A=\Sigma_i nb(\bar{Y}_{i..}-\bar{Y}_{...})^2$
+-   $SS_B=\Sigma_i na(\bar{Y}_{.j.}-\bar{Y}_{...})^2$
+-   $SS_{AB}=\Sigma_i \Sigma_j n(\bar{Y}_{ij.}-\bar{Y}_{i..}-\bar{Y}_{.j.}+ \bar{Y}_{ij.})^2$
+-   $SS_E=\Sigma_i \Sigma_j \Sigma_k (Y_{ijk}-\bar{Y}_{ij.})^2$
+-   $SS_T=\Sigma_i \Sigma_j \Sigma_k (Y_{ijk}-\bar{Y}_{...})^2$
+
+::: notes
+
+The dot notation may be a bit confusing until you get used to it, but $\bar{Y}_{i..}$ is the average within the ith group, averaging across the subscripts j and k. $\bar{Y}_{.j.}$ is the average within the ith group, averaging across the subscripts i and k. $\bar{Y}_{ij.}$ is the average within the combination of the ith group and the jth group, averaging across the subscript k. Finally, $\bar{Y}_{...}$ is an overall mean and the average across all three subscripts.
+
+:::
+
+## Test for an interaction
+
+-   $SS_{AB}$ has (a-1)(b-1) degrees of freedom
+-   $SS_E$ has ab(n-1) degrees of freedom
+-   Accept $H_0$ if $F=\frac{MS_{AB}}{MS_E}$ is close to one
+    -   In R, fit a model without an interaction
+    -   Compare to a model with interaction
+    -   Using the anova function
+    
+::: notes
+
+The formal test for an interaction uses an F ratio and you accept the null hypothesis if that F ratio is close to one. You would reject the null hypothesis if the F ratio is much larger than one.
+
+It is not easy to get R to display all the sums of squares and mean squares that I defined above. Instead, compute two models-one without an interaction and one with an interaction. Compare those two models using the anova function.
+
+::::

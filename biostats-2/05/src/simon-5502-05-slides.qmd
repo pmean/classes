@@ -37,8 +37,6 @@ editor: source
 
 {{< include _b2-05-01.qmd >}}
 
-## Live demo, `r params$topic_01`
-
 ## Break #1
 
 -   What you have learned
@@ -77,14 +75,6 @@ editor: source
     -   `r params$topic_02`
     -   `r params$topic_03`
     -   `r params$topic_04`
-
-## Additional topics??
-
-::: notes
--   Learning objectives
-    -   To be determined
-    
-:::
 
 <!---
       You have to put the title down 

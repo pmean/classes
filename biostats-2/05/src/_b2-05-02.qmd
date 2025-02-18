@@ -7,4 +7,217 @@ format:
 editor: source
 ---
 
-## Applications
+## Hypothetical applications
+
+```{r}
+#| label: 05-02-setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(glue)
+library(tidyverse)
+load("../data/module05.RData")
+```
+
+-   Study with two drugs and two placebos
+-   Four treatment options
+    -   Placebo plus placebo
+    -   Drug A plus placebo
+    -   Placebo plus Drug B
+    -   Drug A plus Drug B
+    
+## Listing of hypothetical data
+
+```{r}
+#| label: 05-02-listing
+
+hyp <- tibble(
+  a=c("P", "P", "A", "A", "P", "P", "A", "A"),
+  b=c("P", "P", "P", "P", "B", "B", "B", "B"),
+  y=c(1      -0.1,
+      1      +0.1, 
+      1+2    -0.1,
+      1+2    +0.1, 
+      1  +3  -0.1,
+      1  +3  +0.1,
+      1+2+3+4-0.1,
+      1+2+3+4+0.1))
+hyp$a <- factor(hyp$a, levels=c("P", "A"))
+hyp$b <- factor(hyp$b, levels=c("P", "B"))
+hyp
+```
+
+## Line plot of hypothetical data, 1
+
+```{r}
+#| label: 05-02-line-plot-1
+
+hyp |>
+  group_by(a, b) |>
+  summarize(mean_y=mean(y), .groups="drop") |>
+  mutate(lab=glue("{a} {b}")) |>
+  ggplot() +
+  aes(x=a, y=mean_y) +
+  expand_limits(y=c(0, 12)) +
+  geom_line(aes(group=b)) +
+  scale_y_continuous(breaks=(0:6)*2) +
+  ggtitle("Graph drawn by Steve Simon on 2025-02-18") +
+  xlab("Drug A") +
+  ylab("Hypothetical mean") -> p1
+p1
+```
+
+## Create indicator variables
+
+```{r}
+#| label: 05-02-indicators
+
+hyp |>
+  mutate(i_a=as.numeric(a=="A")) |>
+  mutate(i_b=as.numeric(b=="B")) |>
+  mutate(i_ab=i_a*i_b) |>
+  select(a, b, i_a, i_b, i_ab, y) -> hyp_1
+hyp_1
+```
+
+## Interaction model, 1
+
+-   `lm(y=a+b+a:b, data=hyp)`
+-   `lm(y=a*b, data=hyp)`
+-   `lm(y=i_a+i_b+i_ab, data=hyp_1)`
+
+```{r}
+#| label: 05-02-model
+
+m1 <- lm(y~i_a+i_b+i_ab, data=hyp_1)
+m1 |>
+  tidy() |>
+  select(term, estimate)
+```
+
+## Interaction model, 2
+
+-   (Intercept): estimated average effort of two placebos
+-   i_a: estimated average change due to drug A alone
+-   i_b: estimated average change due to drug B alone
+-   i_ab: estimated synergistic effect of both drugs
+
+::: notes
+
+The intercept is the estimated average value of Y when all of the indicator variables are equal to zero. This is the average in the P P group. The slope associated with i_a is the estimated average change when moving from placebo to drug A, holding drug B constant. The slope associated with i_b is the estimated average change when moving from placebo to drug B, holding drug A constant. The slope associated with i_ab is the interaction, a measure of how much more the effect of the two drugs combined compared to the effect of drug A along plus drug B alone.
+
+:::
+
+## Interaction model, 3
+
+-   `P P mean = 1`
+-   `A P mean = 1 + 2`
+-   `P B mean = 1     + 3`
+-   `A B mean = 1 + 2 + 3 + 4`
+
+## Line plot of hypothetical data, 2
+
+```{r}
+#| label: 05-02-line-plot-2
+
+p1 +
+  geom_segment(x="P", y=1, xend="A", yend=1, linetype=2) +
+  geom_segment(x="P", y=4, xend="A", yend=6, linetype=2) +
+  geom_segment(x="P", y=0, xend="P", yend=1) +
+  geom_segment(x="A", y=1, xend="A", yend=3) +
+  geom_segment(x="P", y=1, xend="P", yend=4) +
+  geom_segment(x="A", y=3, xend="A", yend=10) +
+  geom_label(x="P", y=0.5, label="b0=1") +
+  geom_label(x="A", y=2,   label="b1=2") +
+  geom_label(x="P", y=2.5, label="b2=3") +
+  geom_label(x="A", y=4.5, label="b2=3") +
+  geom_label(x="A", y=8,   label="b3=4")
+```
+
+## Line plot of hypothetical data, 3
+
+```{r}
+#| label: 05-02-line-plot-3
+
+p1 +
+  geom_segment(x="P", y=1, xend="A", yend=1, linetype=2) +
+  geom_segment(x="P", y=4, xend="A", yend=6, linetype=2) +
+  geom_segment(x="P", y=0, xend="P", yend=1) +
+  geom_segment(x="A", y=1, xend="A", yend=3) +
+  geom_segment(x="P", y=1, xend="P", yend=4) +
+  geom_segment(x="A", y=3, xend="A", yend=10) +
+  geom_label(x="P", y=1, label="b0=1") +
+  geom_label(x="A", y=3, label="b0+b1=1+2") +
+  geom_label(x="P", y=4, label="b0+b2=1+3") +
+  geom_label(x="A", y=6, label="b0+b1+b2=1+2+3") +
+  geom_label(x="A", y=10,label="b0+b1+b2+b3=1+2+3+4")
+```
+
+## Study of three exercise programs
+
+-   Swimming
+-   Jogging
+-   Reading (control)
+
+## Descriptive statistics for exercise program
+
+```{r}
+#| label: 05-02-prog
+
+sv$prog_pct
+```
+
+## Descriptive statistics for hours
+
+```{r}
+#| label: 05-02-hours
+
+sv$hours_mean
+```
+
+## Descriptive statistics for gender
+
+```{r}
+#| label: 05-02-gender
+
+sv$gender_pct
+```
+
+## Descriptive statistics for effort 
+
+-   0 = no effort, 50=maximum effort
+
+```{r}
+#| label: 05-02-effort
+
+sv$effort_mean
+```
+
+## Descriptive statistics for loss
+
+-   A negative value is a weight gain
+
+```{r}
+#| label: 05-02-loss
+
+sv$loss_mean
+```
+
+## Line plot, weight loss by program and gender
+
+```{r}
+#| label: 05-02-line
+
+sv$loss_lines_2
+```
+
+## Interaction model
+
+-   Reference categories: male and reading
+
+```{r}
+#| label: 05-02-interaction
+
+sv$m2_betas
+```

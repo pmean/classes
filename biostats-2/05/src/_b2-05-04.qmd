@@ -8,3 +8,22 @@ editor: source
 ---
 
 ## Interactions in multiple linear regression
+
+-   Center your continuous predictors
+
+```{r}
+#| label: 05-04-setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(glue)
+library(tidyverse)
+load("../data/module05.RData")
+```
+
+```{r}
+#| label: 05-04-model
+
+sv$m5_betas
+```

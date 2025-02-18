@@ -8,13 +8,15 @@ execute:
   error: false
 ---
 
+## Start part 1
+
 ## File details
 
 This program was written by Steve Simon on 2025-01-30 and is placed in the public domain. You can use this program any way you please.
 
 There are two data files used in this program
 
--   exercise-programs, [SAS][ref03], [dictionary][ref04]
+-   exercise-programs, [SAS file][ref03], [dictionary][ref04]
 -   fev, [csv file][ref05], [dictionary][ref06]
 
 [ref03]: https://raw.githubusercontent.com/pmean/data/main/files/exercise-programs.sas7bdat
@@ -32,14 +34,39 @@ library(glue)
 library(tidyverse)
 R.version.string
 Sys.Date()
+sv <- NULL # tables and graphs for later use
 ```
+
+#### Comment on the code
+
+I need to save some of the objects created by R for use in a different program. It has gotten a bit unwieldy, so I am using a list, sv, to store everything in one place. You do not need to do this for your program, but it doesn't hurt either.
 
 ## Intermediate files
 
--   ex: Original data from exercise-programs.sas7bdat
--   ex_1: Create factors for female and prog
--   ex_2: Create indicator variables
+-   exercise: Original data from exercise-programs.sas7bdat
+-   exercise_1: Create factors for female (gender) and prog
+-   exercise_2: Create indicator variables
 
+## Saved output
+
+-   sv
+    -   prog_pct: Descriptive statistics for prog
+    -   hours_mean: Descriptive statistics for hours
+    -   gender_pct: Descriptive statistics for gender
+    -   effort_mean: Descriptive statistics for effort
+    -   loss_lines_1: Line plot for loss by prog and gender
+    -   loss_lines_2: Alternative line plot
+    -   m0: null model for loss
+    -   m1: two factor model with no interaction
+    -   m2: categorical by categorical interaction
+    -   m3: equivalent to m2 but using indicator variables
+    -   m4: categorical by continuous interaction
+    -   m1_betas: coefficients from m1
+    -   m2_betas: coefficients from m2
+    -   m3_betas: coefficients from m3
+    -   m4_betas: coefficients from m4
+    -   m5_betas: coefficients from m5
+    -   m6_betas: coefficients from m6
 
 ## Read exercise data
 
@@ -48,9 +75,9 @@ Sys.Date()
 
 library(haven)
 
-ex <- read_sas(
-  data_file="../data/exercise.sas7bdat")
-glimpse(ex)
+exercise <- read_sas(
+  data_file="../data/exercise-programs.sas7bdat")
+glimpse(exercise) 
 ```
 
 ## Add factors
@@ -60,9 +87,9 @@ glimpse(ex)
 lab1 <- c("Reading", "Jogging", "Swimming")
 lab2 <- c("Male", "Female")
 
-ex |> 
+exercise |> 
   mutate(prog=factor(prog, levels=c(3, 1, 2), labels=lab1)) |>
-  mutate(gender=factor(female, levels=0:1, labels=lab2)) -> ex_1
+  mutate(gender=factor(female, levels=0:1, labels=lab2)) -> exercise_1
 ```
 
 #### Comment on the code
@@ -71,106 +98,102 @@ Notice that the levels for prog are specified in an alternative order. This is d
 
 I also used gender rather than female for the factor name. This is something I only noticed after working with this dataset for a while. Certain parts of the output would be labelled as femaleFemale or femaleMale and I thought it would look nicer as genderFemale and genderMale. Normally I try to avoid making too many changes to the names of variables. It makes it easier to refer back to the original data dictionary.
 
-## Descriptive statistics
+## Descriptive statistics, prog
 
 ```{r}
-#| label: ex-pct-1
+#| label: prog-pct
 
-ex_1 |>
+exercise_1 |>
 	count(prog) |>
 	mutate(total=sum(n)) |>
 	mutate(pct=round(100*n/total)) |>
   mutate(pct=glue("{pct}% ({n}/{total})")) |>
-  select(-n, -total)
+  select(-n, -total) -> sv$prog_pct
+sv$prog_pct
 ```
 
 #### Interpretation of the output
 
 Exactly one third of the patients are in each of the three exercise programs.
 
-```{r}
-#| label: ex-pct-2
+## Descriptive statistics, hours
 
-ex_1 |>
-	count(i) |>
-	mutate(total=sum(n)) |>
-	mutate(pct=round(100*n/total, 2)) |>
-  mutate(pct=glue("{pct}% ({n}/{total})")) |>
-  select(-n, -total)
-```
-
-#### Interpretation of the output
-
-This table doesn't really help so much and I should probably have deleted this program chunk.
 
 ```{r}
-#| label: ex-mean-1
+#| label: hours-mean
 
-ex_1 |>
+exercise_1 |>
   summarize(
     hours_mean=mean(hours),
     hours_sd=sd(hours),
     hours_min=min(hours),
-    hours_max=max(hours))
+    hours_max=max(hours)) -> sv$hours_mean
+sv$hours_mean
 ```
 
 #### Interpretation of the output
 
 The average patient exercised for 2 hours per week. There is a lot of variation, with at least one patient only exercising for ten minutes. 
 
+## Descriptive statistics, gender
+
 ```{r}
 #| label: ex-pct-3
 
-ex_1 |>
+exercise_1 |>
 	count(gender) |>
 	mutate(total=sum(n)) |>
 	mutate(pct=round(100*n/total)) |>
   mutate(pct=glue("{pct}% ({n}/{total})")) |>
-  select(-n, -total)
+  select(-n, -total) -> sv$gender_pct
 ```
 
 #### Interpretation of the output
 
 There are equal numbers of men and women in the study.
 
-#### Interpretation of the output
+## Descriptive statistics, effort
 
 ```{r}
 #| label: ex-mean-2
 
-ex_1 |>
+exercise_1 |>
   summarize(
     effort_mean=mean(effort),
     effort_sd=sd(effort),
     effort_min=min(effort),
-    effort_max=max(effort))
+    effort_max=max(effort)) -> sv$effort_mean
+sv$effort_mean
 ```
 
 #### Interpretation of the output
 
 Effort is measured on a scale from 0 to 50. The average effort was 30, roughly in the middle of this range. There is only a moderate amount of variation, with no one really very close to the low extreme of 0 or the high extreme of 50.
 
+## Descriptive statistics, loss
+
 ```{r}
 #| label: ex-mean-3
 
-ex_1 |>
+exercise_1 |>
   summarize(
     loss_mean=mean(loss),
     loss_sd=sd(loss),
     loss_min=min(loss),
-    loss_max=max(loss))
+    loss_max=max(loss)) -> sv$loss_mean
+sv$loss_mean
 ```
 
 #### Interpretation of the output
 
 The average weight loss is impressive, 30 pounds. There is a wide range with one person losing 54 pounds and another gaining 17 pounds.
 
-## Interaction between prog and gender on loss
+## Interaction between prog and gender on loss, 1
 
 ```{r}
 #| label: ex-lines-1
 
-ex_1 |>
+exercise_1 |>
   group_by(prog, gender) |>
   summarize(
     loss_mean=mean(loss)) |>
@@ -180,17 +203,20 @@ ex_1 |>
   geom_text(aes(label=gender)) +
   ggtitle("Graph drawn by Steve Simon on 2025-02-11") +
   xlab("Exercise program") +
-  ylab("Average weight loss")
+  ylab("Average weight loss") -> sv$loss_lines_1
+sv$loss_lines_1
 ```
 
 #### Comment on the code
 
 There is a warning message associated with this program chunk. It does not affect the validity of the output. I explain some of the details behind this warning in a webpage to be published soon.
 
+## Interaction between prog and gender on loss, 2
+
 ```{r}
 #| label: ex-lines-2
 
-ex_1 |>
+exercise_1 |>
   group_by(prog, gender) |>
   summarize(
     loss_mean=mean(loss)) |>
@@ -200,97 +226,220 @@ ex_1 |>
   geom_text(aes(label=prog)) +
   ggtitle("Graph drawn by Steve Simon on 2025-02-11") +
   xlab("Gender") +
-  ylab("Average weight loss") -> plot_06
-plot_06
+  ylab("Average weight loss") -> sv$loss_lines_2
+sv$loss_lines_2
 ```
 
 #### Interpretation of the output
 
 The two plots seem to emphasize different features of the data. The first plot emphasizes the superior average weight loss of women in the jogging group, men in the swimming group with identical average weight loss in the control (reading) group. The second plot seems to emphasize that jogging showed the best average weight loss and the control group showing the worst average weight loss. But if you look closely at either plot, you should notice both trends.
 
+## Linear models
+
 ```{r}
-#| label: ex-models
+#| label: ex-models-1
 
-m4 <- lm(loss ~ 1, data=ex_1)
-m5 <- lm(loss ~ gender+prog, data=ex_1)
-m6 <- lm(loss ~ gender*prog, data=ex_1)
+sv$m0 <- lm(loss ~ 1, data=exercise_1)
+sv$m1 <- lm(loss ~ gender+prog, data=exercise_1)
+sv$m2 <- lm(loss ~ gender*prog, data=exercise_1)
 
-ex_1 |>
+exercise_1 |>
   mutate(GenderFemale=as.numeric(gender=="Female")) |>
   mutate(ProgSwimming=as.numeric(prog=="Swimming")) |>
   mutate(ProgJogging=as.numeric(prog=="Jogging")) |>
   mutate(GenderFemaleProgSwimming=GenderFemale*ProgSwimming) |>
-  mutate(GenderFemaleProgJogging=GenderFemale*ProgJogging) -> ex_2
+  mutate(GenderFemaleProgJogging=GenderFemale*ProgJogging) -> exercise_2
 
-m7 <- lm(loss ~
+sv$m3 <- lm(loss ~
 	GenderFemale +
   ProgJogging +
 	ProgSwimming +
 	GenderFemaleProgSwimming +
 	GenderFemaleProgJogging, 
-	data=ex_2)
+	data=exercise_2)
 ```
 
 #### Comment on the code
 
 Placing the term "gender+prog" on the right hand side of the tilde fits a model with an indicator for gender and two indicators for prog. In contrast, the term "gender*prog" fits a model with these indicators plus interactions associated with the products of the one gender indicator and the two prog indicators.
 
+## Parameters without an interaction
+
 ```{r}
-#| label: parameters
-tidy(m6) |>
+#| label: m1-parameters
+tidy(sv$m1) |>
   mutate(
     p.value =
       case_when(
         p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> table_09
-table_09
+        p.value <  0.001 ~ "p < 0.001")) -> sv$m1_betas
+sv$m1_betas
 ```
 
+#### Interpretation of the output
+
+## Parameters with an interaction, 1
+
 ```{r}
-coef(m6)
-coef(m7)
+#| label: m2-parameters
+tidy(sv$m2) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> sv$m2_betas
+sv$m2_betas
 ```
 
+#### Interpretation of the output
 
-
+## R-squared
 
 ```{r}
-#| label: ex-models
+#| r-squared
 
-m4 <- lm(loss ~ 1, data=ex_1)
-m5 <- lm(loss ~ gender+prog, data=ex_1)
-m6 <- lm(loss ~ gender*prog, data=ex_1)
+glance(sv$m0) |>
+  bind_rows(glance(sv$m1)) |>
+  bind_rows(glance(sv$m2)) |>
+  mutate(model=glue("m{0:2}"))
+```
 
-ex_1 |>
-  mutate(GenderFemale=as.numeric(gender=="Female")) |>
-  mutate(ProgSwimming=as.numeric(prog=="Swimming")) |>
-  mutate(ProgJogging=as.numeric(prog=="Jogging")) |>
-  mutate(GenderFemaleProgSwimming=GenderFemale*ProgSwimming) |>
-  mutate(GenderFemaleProgJogging=GenderFemale*ProgJogging) -> ex_2
+#### Interpretation of the output
+
+A model with gender and program and no interaction accounts for 75% of the variation. The model with an interaction accounts for 79% of the variation.
+
+## Analysis of variance
+
+```{r}
+#| anova
+
+anova(sv$m0, sv$m1)
+anova(sv$m1, sv$m2)
+```
+
+#### Interpretation of the output
+
+The model with gender and program compared to the model with no interaction is statistically significant. Adding an interaction provides a statistically significant improvement over a model with no interaction.
+
+
+## Parameters with an interaction, 2
+
+```{r}
+#| label: m3-parameters
+tidy(sv$m3) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> sv$m3_betas
+sv$m3_betas
+```
+
+#### Interpretation of the output
+
+These estimates using indicator variables match those with the categorical independent variables.
+
+## Start of part 2
+
+## Centering of continuous predictors
+
+```{r}
+#| label: center
+
+exercise_1 |>
+  mutate(hours=hours-mean(hours)) |>
+  mutate(effort-effort-mean(effort)) -> exercise_2
 ```
 
 #### Comment on the code
 
-Placing the term "gender+prog" on the right hand side of the tilde fits a model with an indicator for gender and two indicators for prog. In contrast, the term "gender*prog" fits a model with these indicators plus interactions associated with the products of the one gender indicator and the two prog indicators.
+## Graph of interaction
 
 ```{r}
-#| label: parameters
-tidy(m6) |>
-  mutate(
-    p.value =
-      case_when(
-        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> table_09
-table_09
+#| label: panel-plot-1
+
+exercise_2 |>
+  ggplot() +
+  aes(x=hours, y=loss) +
+  geom_point(shape=1) +
+  geom_smooth(method="lm", se=FALSE) +
+  facet_grid(cols=vars(prog)) +
+  ggtitle("Graph drawn by Steve Simon on 2025-02-17") +
+  xlab("Hours of exercise") +
+  ylab("Weight loss in pounds") -> sv$panel_1
+sv$panel_1
 ```
 
+#### Comment on the code
+
+The [facet_grid][ref01] function ... The [pch=1][ref02] argument in geom_point draws an open circle rather than the default closed circle. An open circle produces an easier to interpret graph when you have a large number of data points.
+
+[ref01]: https://ggplot2.tidyverse.org/reference/facet_grid.html
+[ref02]: https://ggplot2.tidyverse.org/reference/aes_linetype_size_shape.html
+
 ```{r}
-coef(m4)
+#| label: panel-plot-2
+
+exercise_2 |>
+  ggplot() +
+  aes(x=hours, y=loss) +
+  geom_point(shape=1) +
+  geom_smooth(method="lm", se=FALSE) +
+  facet_grid(rows=vars(prog)) +
+  ggtitle("Graph drawn by Steve Simon on 2025-02-17") +
+  xlab("Hours of exercise") +
+  ylab("Weight loss in pounds") -> sv$panel_2
+sv$panel_2
 ```
 
 ## Interaction between prog and hours on loss
 
+```{r}
+#| label: ex-models-2
+
+sv$m4 <- lm(loss ~ prog*hours, data=exercise_2)
+```
+
+```{r}
+#| label: m4-parameters
+
+tidy(sv$m4) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> sv$m4_betas
+sv$m4_betas
+```
+
+## Start of part 3
+
 ## Interaction between hours and effort on loss
+
+```{r}
+#| label: remove-reading
+
+exercise_2 |>
+  filter(prog != "Reading") -> exercise_3
+```
+ 
+```{r}
+#| label: ex-models-3
+
+sv$m5 <- lm(loss ~ hours*effort, data=exercise_3)
+```
+
+```{r}
+#| label: m5-parameters
+
+tidy(sv$m5) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> sv$m5_betas
+sv$m5_betas
+```
 
 ## fev
 
@@ -316,8 +465,9 @@ glimpse(pulmonary)
 ```{r}
 #| label: save
 save(
-  ex,
-  ex_1,
-  ex_2,
+  sv,
+  exercise,
+  exercise_1,
+  exercise_2,
   file="../data/module05.RData")
 ```

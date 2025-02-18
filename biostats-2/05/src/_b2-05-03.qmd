@@ -7,5 +7,41 @@ format:
 editor: source
 ---
 
-## Interactions in analysis of covariance
+## Interactions in analysis of covariance, 1
 
+-   Center your continuous covariate
+
+```{r}
+#| label: 05-03-setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(glue)
+library(tidyverse)
+load("../data/module05.RData")
+```
+
+```{r}
+#| label: 05-03-line-1
+
+sv$panel_1
+```
+
+## Interactions in analysis of covariance, 2
+
+-   Center your continuous covariate
+
+```{r}
+#| label: 05-03-line-2
+
+sv$panel_2
+```
+
+## Coefficients and interpretation
+
+```{r}
+#| label: 05-03-coef
+
+sv$m4_betas
+```
