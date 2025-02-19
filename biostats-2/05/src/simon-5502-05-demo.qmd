@@ -348,7 +348,7 @@ These estimates using indicator variables match those with the categorical indep
 
 exercise_1 |>
   mutate(hours=hours-mean(hours)) |>
-  mutate(effort-effort-mean(effort)) -> exercise_2
+  mutate(effort=effort-mean(effort)) -> exercise_2
 ```
 
 #### Comment on the code
@@ -397,19 +397,50 @@ sv$panel_2
 ```{r}
 #| label: ex-models-2
 
-sv$m4 <- lm(loss ~ prog*hours, data=exercise_2)
+sv$m5 <- lm(loss ~ prog*hours, data=exercise_2)
 ```
 
-```{r}
-#| label: m4-parameters
 
-tidy(sv$m4) |>
-  mutate(
-    p.value =
-      case_when(
-        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> sv$m4_betas
-sv$m4_betas
+## Predictions at the mean (hours=2)
+
+```{r}
+#| label: m3-predict-1
+
+new_prog <- factor(
+  x=c(3, 1, 2),
+  levels=c(3, 1, 2),
+  labels=lab1)
+
+augment(sv$m5, 
+  newdata=tibble(
+    prog=new_prog,
+    hours=rep(0, 3)))
+```
+
+#### Comment on the code
+
+This code creates a set of independent variables to produce predictions. It is a bit tricky because one of the independent variables is a factor. Rather than recreate the 
+
+## Predictions above the mean (hours=3.5)
+
+```{r}
+#| label: m3-predict-2
+
+augment(sv$m5, 
+  newdata=tibble(
+    prog=new_prog,
+    hours=rep(1.5, 3)))
+```
+
+## Predictions below the mean (hours=0.5)
+
+```{r}
+#| label: m3-predict-3
+
+augment(sv$m5, 
+  newdata=tibble(
+    prog=new_prog,
+    hours=rep(-1.5, 3)))
 ```
 
 ## Start of part 3
@@ -420,7 +451,9 @@ sv$m4_betas
 #| label: remove-reading
 
 exercise_2 |>
+  mutate(prog=as.character(prog)) |>
   filter(prog != "Reading") -> exercise_3
+glimpse(exercise_3)
 ```
  
 ```{r}

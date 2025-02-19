@@ -3059,7 +3059,7 @@ vertical-align: -.125em;
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] &quot;2025-02-18&quot;</code></pre>
+<pre><code>[1] &quot;2025-02-19&quot;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sv <span class="ot">&lt;-</span> <span class="cn">NULL</span> <span class="co"># tables and graphs for later use</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -3468,7 +3468,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>exercise_1 <span class="sc">|&gt;</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hours=</span>hours<span class="sc">-</span><span class="fu">mean</span>(hours)) <span class="sc">|&gt;</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(effort<span class="sc">-</span>effort<span class="sc">-</span><span class="fu">mean</span>(effort)) <span class="ot">-&gt;</span> exercise_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">effort=</span>effort<span class="sc">-</span><span class="fu">mean</span>(effort)) <span class="ot">-&gt;</span> exercise_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="comment-on-the-code-4" class="level4">
 <h4 class="anchored" data-anchor-id="comment-on-the-code-4">Comment on the code</h4>
@@ -3520,26 +3520,66 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <section id="interaction-between-prog-and-hours-on-loss" class="level2">
 <h2 class="anchored" data-anchor-id="interaction-between-prog-and-hours-on-loss">Interaction between prog and hours on loss</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sv<span class="sc">$</span>m4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(loss <span class="sc">~</span> prog<span class="sc">*</span>hours, <span class="at">data=</span>exercise_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sv<span class="sc">$</span>m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(loss <span class="sc">~</span> prog<span class="sc">*</span>hours, <span class="at">data=</span>exercise_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="predictions-at-the-mean-hours2" class="level2">
+<h2 class="anchored" data-anchor-id="predictions-at-the-mean-hours2">Predictions at the mean (hours=2)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(sv<span class="sc">$</span>m4) <span class="sc">|&gt;</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.value =</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">case_when</span>(</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>        p.value <span class="sc">&gt;=</span> <span class="fl">0.001</span> <span class="sc">~</span> <span class="fu">glue</span>(<span class="st">&quot;p = {round(p.value, 3)}&quot;</span>),</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>        p.value <span class="sc">&lt;</span>  <span class="fl">0.001</span> <span class="sc">~</span> <span class="st">&quot;p &lt; 0.001&quot;</span>)) <span class="ot">-&gt;</span> sv<span class="sc">$</span>m4_betas</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>sv<span class="sc">$</span>m4_betas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>new_prog <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x=</span><span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>),</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels=</span>lab1)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(sv<span class="sc">$</span>m5, </span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">newdata=</span><span class="fu">tibble</span>(</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">prog=</span>new_prog,</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">hours=</span><span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 5
-  term               estimate std.error statistic p.value  
-  &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;glue&gt;   
-1 (Intercept)           -3.70     0.376     -9.85 p &lt; 0.001
-2 progJogging           11.8      0.531     22.3  p &lt; 0.001
-3 progSwimming          29.6      0.531     55.7  p &lt; 0.001
-4 hours                 -2.96     0.708     -4.18 p &lt; 0.001
-5 progJogging:hours     10.4      1.07       9.71 p &lt; 0.001
-6 progSwimming:hours     9.83     1.05       9.35 p &lt; 0.001</code></pre>
+<pre><code># A tibble: 3 × 3
+  prog     hours .fitted
+  &lt;fct&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+1 Reading      0   -3.70
+2 Jogging      0    8.14
+3 Swimming     0   25.9 </code></pre>
+</div>
+</div>
+<section id="comment-on-the-code-6" class="level4">
+<h4 class="anchored" data-anchor-id="comment-on-the-code-6">Comment on the code</h4>
+<p>This code creates a set of independent variables to produce predictions. It is a bit tricky because one of the independent variables is a factor. Rather than recreate the</p>
+</section>
+</section>
+<section id="predictions-above-the-mean-hours3.5" class="level2">
+<h2 class="anchored" data-anchor-id="predictions-above-the-mean-hours3.5">Predictions above the mean (hours=3.5)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(sv<span class="sc">$</span>m5, </span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">newdata=</span><span class="fu">tibble</span>(</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">prog=</span>new_prog,</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">hours=</span><span class="fu">rep</span>(<span class="fl">1.5</span>, <span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  prog     hours .fitted
+  &lt;fct&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+1 Reading    1.5   -8.14
+2 Jogging    1.5   19.3 
+3 Swimming   1.5   36.2 </code></pre>
+</div>
+</div>
+</section>
+<section id="predictions-below-the-mean-hours0.5" class="level2">
+<h2 class="anchored" data-anchor-id="predictions-below-the-mean-hours0.5">Predictions below the mean (hours=0.5)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">augment</span>(sv<span class="sc">$</span>m5, </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">newdata=</span><span class="fu">tibble</span>(</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">prog=</span>new_prog,</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">hours=</span><span class="fu">rep</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  prog     hours .fitted
+  &lt;fct&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+1 Reading   -1.5   0.731
+2 Jogging   -1.5  -3.04 
+3 Swimming  -1.5  15.6  </code></pre>
 </div>
 </div>
 </section>
@@ -3549,46 +3589,61 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <section id="interaction-between-hours-and-effort-on-loss" class="level2">
 <h2 class="anchored" data-anchor-id="interaction-between-hours-and-effort-on-loss">Interaction between hours and effort on loss</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>exercise_2 <span class="sc">|&gt;</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(prog <span class="sc">!=</span> <span class="st">&quot;Reading&quot;</span>) <span class="ot">-&gt;</span> exercise_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>exercise_2 <span class="sc">|&gt;</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prog=</span><span class="fu">as.character</span>(prog)) <span class="sc">|&gt;</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(prog <span class="sc">!=</span> <span class="st">&quot;Reading&quot;</span>) <span class="ot">-&gt;</span> exercise_3</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(exercise_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 600
+Columns: 9
+$ prog      &lt;chr&gt; &quot;Jogging&quot;, &quot;Jogging&quot;, &quot;Jogging&quot;, &quot;Jogging&quot;, &quot;Jogging&quot;, &quot;Jogg…
+$ i         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
+$ hours     &lt;dbl&gt; -0.16569971, 0.38695694, 0.35971354, 0.51846247, -0.11257559…
+$ female    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ effort    &lt;dbl&gt; 8.0529654, -2.9352042, 6.6573539, -8.9587433, -4.9321015, 4.…
+$ loss      &lt;dbl&gt; 18.022263, 10.186416, 19.747276, 1.883600, 14.242589, 19.694…
+$ satiscont &lt;dbl&gt; 3.8426090, 4.8501397, 5.8883549, 6.3851246, 4.2493271, 4.226…
+$ satisfied &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, …
+$ gender    &lt;fct&gt; Male, Male, Male, Male, Male, Male, Male, Male, Male, Male, …</code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>sv<span class="sc">$</span>m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(loss <span class="sc">~</span> hours<span class="sc">*</span>effort, <span class="at">data=</span>exercise_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>sv<span class="sc">$</span>m5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(loss <span class="sc">~</span> hours<span class="sc">*</span>effort, <span class="at">data=</span>exercise_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(sv<span class="sc">$</span>m5) <span class="sc">|&gt;</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.value =</span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">case_when</span>(</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>        p.value <span class="sc">&gt;=</span> <span class="fl">0.001</span> <span class="sc">~</span> <span class="fu">glue</span>(<span class="st">&quot;p = {round(p.value, 3)}&quot;</span>),</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>        p.value <span class="sc">&lt;</span>  <span class="fl">0.001</span> <span class="sc">~</span> <span class="st">&quot;p &lt; 0.001&quot;</span>)) <span class="ot">-&gt;</span> sv<span class="sc">$</span>m5_betas</span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>sv<span class="sc">$</span>m5_betas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(sv<span class="sc">$</span>m5) <span class="sc">|&gt;</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.value =</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">case_when</span>(</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>        p.value <span class="sc">&gt;=</span> <span class="fl">0.001</span> <span class="sc">~</span> <span class="fu">glue</span>(<span class="st">&quot;p = {round(p.value, 3)}&quot;</span>),</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>        p.value <span class="sc">&lt;</span>  <span class="fl">0.001</span> <span class="sc">~</span> <span class="st">&quot;p &lt; 0.001&quot;</span>)) <span class="ot">-&gt;</span> sv<span class="sc">$</span>m5_betas</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>sv<span class="sc">$</span>m5_betas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 5
   term         estimate std.error statistic p.value  
   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;glue&gt;   
-1 (Intercept)    -9.55     2.59      -3.69  p &lt; 0.001
-2 hours          -4.19     5.73      -0.732 p = 0.464
-3 effort          0.890    0.0855    10.4   p &lt; 0.001
-4 hours:effort    0.373    0.187      2.00  p = 0.046</code></pre>
+1 (Intercept)    16.8      0.436      38.6  p &lt; 0.001
+2 hours           6.87     0.926       7.42 p &lt; 0.001
+3 effort          0.890    0.0855     10.4  p &lt; 0.001
+4 hours:effort    0.373    0.187       2.00 p = 0.046</code></pre>
 </div>
 </div>
 </section>
 <section id="fev" class="level2">
 <h2 class="anchored" data-anchor-id="fev">fev</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;age&quot;</span>, </span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;fev&quot;</span>,</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;ht&quot;</span>, </span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;sex&quot;</span>,</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;smoke&quot;</span>)</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>pulmonary <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">&quot;../data/fev.csv&quot;</span>,</span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names=</span>vars,</span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types=</span><span class="st">&quot;nnncc&quot;</span>)</span>
-<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pulmonary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;age&quot;</span>, </span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;fev&quot;</span>,</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;ht&quot;</span>, </span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;sex&quot;</span>,</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;smoke&quot;</span>)</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>pulmonary <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">&quot;../data/fev.csv&quot;</span>,</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names=</span>vars,</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types=</span><span class="st">&quot;nnncc&quot;</span>)</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pulmonary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 654
 Columns: 5
@@ -3603,12 +3658,12 @@ $ smoke &lt;chr&gt; &quot;N&quot;, &quot;N&quot;, &quot;N&quot;, &quot;N&quot;, 
 <section id="save-everything" class="level2">
 <h2 class="anchored" data-anchor-id="save-everything">Save everything</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  sv,</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  exercise,</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  exercise_1,</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  exercise_2,</span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">&quot;../data/module05.RData&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  sv,</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  exercise,</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  exercise_1,</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  exercise_2,</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">&quot;../data/module05.RData&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 

@@ -12,10 +12,10 @@ editor: source
 -   $Y_{ijk}=\mu+\alpha_i+\beta_j+(\alpha \beta)_{ij}+\epsilon_{ijk}$
     -   i=1,...,a j=1,...,b, k=1,...,n
 -   If 1 is the reference category
-    -   \alpha_1=0
-    -   \beta_1=0
-    -   (\alpha \beta)_{1j}=0
-    -   (\alpha \beta)_{i1}=0
+    -   $\alpha_1=0$
+    -   $\beta_1=0$
+    -   $(\alpha \beta)_{1j}=0$
+    -   $(\alpha \beta)_{i1}=0$
 
 ::: notes
 
