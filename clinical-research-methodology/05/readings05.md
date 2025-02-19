@@ -6,7 +6,7 @@ title: "Clinical Research Methods, Module05, Readings"
 
 1. Chapter 6 (also re-read Chapter 5)
 
-### Recommended reading <a name="recommended"></a>
+### Recommended reading
 
 Mike Evans. Quality Improvement in Healthcare. YouTube, November 26, 2014. Available as a [video (11 minutes)](https://www.youtube.com/watch?v=jq52ZjMzqyI).
 
@@ -28,7 +28,7 @@ M Best, D Neuhaser. W Edwards Deming: father of quality management, patient and 
 
 Diaz M, Neuhauser D. Pasteur and parachutes: when statistical process control is better than a randomized controlled trial. BMJ Quality & Safety 2005;14:140-143. Available in [html format](https://qualitysafety.bmj.com/content/14/2/140).
 
-David leonhardt. Making Health Care Better. New York Times Magazine 2009 (November 3). Available in [html format](https://www.nytimes.com/2009/11/08/magazine/08Healthcare-t.html).
+David Leonhardt. Making Health Care Better. New York Times Magazine 2009 (November 3). Available in [html format](https://www.nytimes.com/2009/11/08/magazine/08Healthcare-t.html).
 
 Lilford RJ, Brown CA, Nicholl J. Use of process measures to monitor the quality of clinical practice. BMJ. 2007;335(7621):648-50. Avialable in [html format](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1995522/) or [PDF format](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1995522/pdf/bmj-335-7621-ac-00648.pdf).
 
