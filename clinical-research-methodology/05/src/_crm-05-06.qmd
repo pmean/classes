@@ -11,9 +11,7 @@ editor: source
 
 $\ $
 
-```{r time-series-1, echo=FALSE, comment=""}
-cat("NR E: O1 O2 O3 X O4 O5 O6")
-```
+`NR E: O1 O2 O3 X O4 O5 O6`
 
 $\ $
 
@@ -53,9 +51,7 @@ title("Bad news")
 
 $\ $
 
-```{r time-series-3, echo=FALSE, comment=""}
-cat("NR E: O1 O2 X1 O3 O4 O5 X2 O6 O7 O8 X3 O9 O10")
-```
+`NR E: O1 O2 X1 O3 O4 O5 X2 O6 O7 O8 X3 O9 O10`
 
 $\ $
 
@@ -94,12 +90,11 @@ title("Bad news")
 
 $\ $
 
-```{r time-series-5, echo=FALSE, comment=""}
-cat("NR E1: O1 O2 X O3 O4 O5   O6 O7 O8   O9 O10\n")
-cat("NR E2: O1 O2   O3 O4 O5 X O6 O7 O8   O9 O10\n")
-cat("NR E3: O1 O2   O3 O4 O5   O6 O7 O8 X O9 O10\n")
-```
+`NR E1: O1 O2 X O3 O4 O5   O6 O7 O8   O9 O10`
 
+`NR E2: O1 O2   O3 O4 O5 X O6 O7 O8   O9 O10`
+
+`NR E3: O1 O2   O3 O4 O5   O6 O7 O8 X O9 O10` 
 
 $\ $
 

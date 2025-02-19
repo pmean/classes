@@ -12,12 +12,24 @@ editor: source
 -   Could but does not use randomization
 -   Never sneer at quasi-experimental studies
     -   Make a loud mistake
--   Problems with randomization
-    -   Cost
-    -   Logistical constraints
-    -   Contamination
-    -   Small n
-    -   Difficult to get buy-in
+
+::: notes
+A quasi-experimental study uses an active independent variable, but does not use a formal process of randomization to control that variable.
+
+The choice to forgo randomization is usually a deliberate choice. Many people, including the authors of your book, dismiss the quasi-experimental design as an inferior alternative to a randomized design, but that are wrong. In some settings, randomization puts you at a disadvantage. If you decide to use a quasi-experimental design, recognize that you are choosing this design because it is superior to a randomized trial. 
+
+I dated a piano major in college and I tried, with very limited success, to learn how to play the piano myself. She told me, "If you're going to make a mistake, make a loud mistake." You don't want to play the piano nervously and hesitantly. The same is true in research. 
+
+If you deviate from a well-established research norm, do so boldly and explicitly. Say something like "Although this quasi-experimental study has some limitations, it avoids many of the well-documented problems with a randomized trial" And then elaborate. Don't apologize for your research design. Brag about how it is the best approach for this particular problem and explain what advantages it offers over a randomized trial.
+:::
+
+## Problems with randomization
+
+-   Cost
+-   Logistical constraints
+-   Contamination
+-   Small n
+-   Difficult to get buy-in
   
 ::: notes
 A quasi-experimental study uses an active independent variable, but does not use a formal process of randomization to control that variable.
@@ -59,9 +71,10 @@ The symbols here mean all subjects were assigned to an exposure group, that two 
 
 $\ $
 
-```{r notation, echo=FALSE, comment=""}
-cat("R E: O1 X O2   O3\nR C: O1   O2 X O3")
-```
+`R E: O1 X O2   O3`
+
+`R C: O1   O2 X O3`
+
 
 ::: notes
 This is an example of a waiting list control group. The patients are randomly assigned to E or C. They both get a baseline, O1. Then the E group gets an intervention X that does not happen for the control group just yet. The second measurement is done, and after the second measurement, the same intervention is offered to the control group. Then both groups are measured a third time. The comparison of O2 between the experimental and control groups is the key measure, and you can adjust for baselines using a change score or analysis of covariance. But there are other interesting comparisons. With the experimental group, the comparison of O2 with O3 represents an assessment of whether the effect of X persists over a longer period of time.
@@ -71,9 +84,7 @@ This is an example of a waiting list control group. The patients are randomly as
 
 $\ $
 
-```{r single-group-post-only, echo=FALSE, comment=""}
-cat("NR E: X O")
-```
+`NR E: X O`
 
 $\ $
 
@@ -94,9 +105,7 @@ Although no comparisons can be done. It could be useful for pilot or feasibility
 
 $\ $
 
-```{r single-group-pre-post, echo=FALSE, comment=""}
-cat("NR E: O1 X O2")
-```
+`NR E: O1 X O2`
 
 $\ $
 
@@ -119,9 +128,9 @@ So a teaching intervention, for example, might teach lessons in X1 and X2, but n
 
 $\ $
 
-```{r two-group-post-only, echo=FALSE, comment=""}
-cat("NR E: X O\nNR C:   O")
-```
+`NR E: X O`
+
+`NR C:   O`
 
 $\ $
 
@@ -142,13 +151,13 @@ It's okay to make untestable assumptions if there is no way that you could colle
 One way to indirectly test the assumption that the two groups were comparable at baseline is to compare the two groups by some demographic variables like age or gender that might be associated with your baseline. If the demographic variables are comparable, then you have some assurance that the baselines would have been comparable, if you had an opportunity to measure and test them.
 :::
 
-## Two group comparison with a baseline
+## Two group comparison with a baseline {.smaller}
 
 $\ $
 
-```{r two-group-pre-post, echo=FALSE, comment=""}
-cat("NR E: O1 X O2\nNR C: O1   O2")
-```
+`NR E: O1 X O2`
+
+`NR C: O1   O2`
 
 $\ $
 
@@ -157,5 +166,3 @@ $\ $
     -   temporal trends in the control group.
     -   baseline imbalances
 -   Cannot check for unmeasured covariates
--   Cannot check for treatment interaction
-
