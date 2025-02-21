@@ -9,6 +9,18 @@ format:
 
 This program moves files from the src folder to results folder in each of the modules. It was written by Steve Simon on 2025-01-08 and is placed in the public domain. 
 
+## Remind on how to print pdf files with speaker notes
+
+To print speaker notes, add
+
+?print-pdf&showNotes=separate-page 
+
+to the end of the URL. Then open the print dialog box (ctrl-P) and choose
+
+Save as PDF
+
+for the printer. Other options, like Microsoft Print to PDF, do not seem to work.
+
 ```{r}
 #| label: setup
 #| message: false
@@ -16,7 +28,6 @@ This program moves files from the src folder to results folder in each of the mo
 
 library(glue)
 library(tidyverse)
-list.files()
 ```
 
 ## Identify html files
