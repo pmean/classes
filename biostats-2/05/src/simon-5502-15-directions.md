@@ -6,8 +6,6 @@ This programming assignment was written by Steve Simon on 2025-02-07 and is plac
 
 Homework assignment 05
 
-Use black text (if possible) for everything you include in this document. Keep both your answers and the original questions. Save this document in PDF format and submit it on Canvas. Please follow the general requirements described in the grading rubric.
-
 1. Show a documentation header. Include your name, the purpose of the program, and the conditions under which others may or may not use your results. 
 
 2. Import the file collaborative-consumption.xlsx into SPSS. Refer to the data dictionary if needed. Display the first ten rows of data below.
