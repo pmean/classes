@@ -72,14 +72,20 @@ glimpse(ti)
 ```{r}
 #| label: ti-factors
 lab1 <- c("Died", "Survived")
+lab2 <- c("3rd", "2nd", "1st")
 
 ti |> 
   mutate(
     Survived =
       factor(
     		Survived,
-		    level=1:0,
-		    labels=c("Yes", "No"))) -> ti_1
+		    levels=1:0,
+		    labels=c("Yes", "No"))) |>
+  mutate(
+    PClass = 
+      factor(
+        PClass,
+        levels=lab2))-> ti_1
 ```
 
 ## Get counts of sex by survival
@@ -236,6 +242,37 @@ ti_1 |>
   filter(Survived=="Yes") |>
   select(-n, -total) -> sv$survived_by_sex
 sv$survived_by_sex
+```
+
+## Logistic model using Sex to predict Survived
+
+```{r}
+#| label: logistic-1
+
+m1 <- glm(Survived~Sex, family="binomial", data=ti_1)
+tidy(m1)
+```
+
+#### Comment on the code
+
+#### Interpretation of the outpt
+
+## Logistic model using PClass to predict Survived
+
+```{r}
+#| label: logistic-2
+
+m2 <- glm(Survived~PClass, family="binomial", data=ti_1)
+tidy(m2)
+```
+
+## Logistic model with interaction
+
+```{r}
+#| label: logistic-2
+
+m2 <- glm(Survived~Sex*PClass, family="binomial", data=ti_1)
+tidy(m2)
 ```
 
 ## Save everything
