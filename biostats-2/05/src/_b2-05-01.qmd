@@ -29,7 +29,7 @@ If you set the first level as the reference category for each category, then you
 
 -   $SS_A=\Sigma_i nb(\bar{Y}_{i..}-\bar{Y}_{...})^2$
 -   $SS_B=\Sigma_i na(\bar{Y}_{.j.}-\bar{Y}_{...})^2$
--   $SS_{AB}=\Sigma_i \Sigma_j n(\bar{Y}_{ij.}-\bar{Y}_{i..}-\bar{Y}_{.j.}+ \bar{Y}_{ij.})^2$
+-   $SS_{AB}=\Sigma_i \Sigma_j n(\bar{Y}_{ij.}-\bar{Y}_{i..}-\bar{Y}_{.j.}+ \bar{Y}_{...})^2$
 -   $SS_E=\Sigma_i \Sigma_j \Sigma_k (Y_{ijk}-\bar{Y}_{ij.})^2$
 -   $SS_T=\Sigma_i \Sigma_j \Sigma_k (Y_{ijk}-\bar{Y}_{...})^2$
 

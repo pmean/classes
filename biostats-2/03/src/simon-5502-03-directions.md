@@ -7,7 +7,7 @@ This programming assignment was written by Steve Simon on 2025-01-30 and is plac
 ## Program
 
 -   Write a program to answer the questions listed below. You may wish to adapt some code from the [demonstration program for module03][ref01]. Replace my name with yours everywhere, remove the "Comments on the code" sections, and only include program chunks that address the questions listed below.
-
+ 
 [ref01]: https://github.com/pmean/classes/blob/master/biostats-2/03/src/simon-5502-03-demo.qmd
 
 ## Data

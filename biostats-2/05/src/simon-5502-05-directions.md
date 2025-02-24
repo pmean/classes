@@ -18,8 +18,6 @@ Please do not look at this file before submitting your own work on this programm
 
 This assignment was written by Steve Simon on 2025-02-22 and is placed in the public domain. You can use this assignment any way you please.
 
-This program examines a possible interaction in the use of goggles and flippers in a simple experiment on swimming speeds in a 25 meter pool.
-
 ## Question 1
 
 You will not be graded on this, but get in the habit of computing some simple statistics (mean, standard deviation, minimum, and maximum for continuous variables and counts and percentages for categorical variables) for the important variables in this dataset. Also, get in the habit of providing brief interpretations.

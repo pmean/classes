@@ -1,0 +1,190 @@
+---
+title: "See title at bottom of this file"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+params:
+  topic_01: "Test of two proportions"
+  topic_02: "Chi-square test of independence"
+  topic_03: "Odds ratio versus relative risk"
+  topic_04: "Concepts behind the logistic regression model"
+  topic_05: "Logistic regression with categorical variables"
+  topic_06: "Logistic regression with interactions"
+  topic_07: "Risk adjustment"
+  topic_08: "Diagnostics"
+editor: source
+---
+
+## Topics to be covered
+
+```{r}
+# Preliminaries, if needed
+
+# Keep this chunk, even if no code, so that
+# params is populated from the yaml header.
+
+# To print speaker notes, add
+#   ?print-pdf&showNotes=separate-page 
+#   to the end of the URL. Then open the
+#   print dialog box (ctrl-P) and choose
+#   Save as PDF for the printer. Other 
+#   options, like Microsoft Print to PDF
+#   do not seem to work.
+```
+
+-   What you will learn
+    -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
+    -   `r params$topic_07`
+    -   `r params$topic_08`
+
+{{< include _b2-06-01.qmd >}}
+
+## Live demo, `r params$topic_01`
+
+## Break #1
+
+-   What you have learned
+    -   `r params$topic_01`
+-   What's coming next
+    -   `r params$topic_02`
+
+{{< include _b2-06-02.qmd >}}
+
+## Live demo, `r params$topic_02`
+
+## Break #2
+
+-   What you have learned
+    -   `r params$topic_02`
+-   What's coming next
+    -   `r params$topic_03`
+
+{{< include _b2-06-03.qmd >}}
+
+## Break #3
+
+-   What you have learned
+    -   `r params$topic_03`
+-   What's coming next
+    -   `r params$topic_04`
+
+{{< include _b2-06-04.qmd >}}
+
+## Live demo, `r params$topic_04`
+
+## Break #4
+
+-   What you have learned
+    -   `r params$topic_04`
+-   What's coming next
+    -   `r params$topic_05`
+
+{{< include _b2-06-05.qmd >}}
+
+## Live demo, `r params$topic_05`
+
+## Break #5
+
+-   What you have learned
+    -   `r params$topic_05`
+-   What's coming next
+    -   `r params$topic_06`
+
+{{< include _b2-06-06.qmd >}}
+
+## Live demo, `r params$topic_06`
+
+## Break #6
+
+-   What you have learned
+    -   `r params$topic_06`
+-   What's coming next
+    -   `r params$topic_07`
+
+{{< include _b2-06-07.qmd >}}
+
+## Live demo, `r params$topic_07`
+
+## Break #7
+
+-   What you have learned
+    -   `r params$topic_07`
+-   What's coming next
+    -   `r params$topic_08`
+
+{{< include _b2-06-08.qmd >}}
+
+## Live demo, `r params$topic_08`
+
+## Summary
+
+-   What you have learned
+    -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
+    -   `r params$topic_07`
+    -   `r params$topic_08`
+
+## Additional topics??
+
+::: notes
+-   Learning objectives
+    -   Define Logistic Regression analysis
+    -   Compare and Contrast Multiple Regression analysis and Logistic Regression analysis
+    -   List and define the three types of logistic Regression analysis
+    -   Define how predictor variables are selected
+    -   Define Multicollinearity
+    -   List and explain the problems that Multicollinearity causes if present in a Logistic Regression analysis
+    -   List and explain the methods for selecting predictor variables
+    -   List and explain the problems that too many predictors can cause in a Logistic Regression analysis
+    -   Compare and contrast Logistic Regression analysis with Linear and Multiple Regression analysis
+    -   Explain the model equation for a Logistic Regression analysis
+    -   Explain the problem with the Assumption of Linearity for a Logistic Regression analysis
+    -   Explain the method that is used to overcome the problem with the Assumption of Linearity
+    -   Define Maximum Likelihood Estimation
+    -   Explain Probability
+    -   Explain Odds
+    -   Explain the conversion of probability to odds
+    -   Define and explain the model equation for a Logistic Regression analysis
+    -   Define reference standard
+    -   Identify the value that represents the fit of the model
+    -   Define Log likelihood
+    -   List and define the 4 different calculations for R squared for an Logistic Regression analysis
+    -   Define and explain the Wald Statistic
+    -   Explain the importance of Odds Ratios in a Logistic Regression analysis
+    -   Identify Exp(B)
+    -   Identify and define the methods for predictor variable input in a Logistic Regression analysis
+    -   Understand which predictor variable input method is best used
+    -   Identify, define and explain the testing for all assumptions
+    -   Identify and explain all "Important Considerations" for a Logistic Regression analysis
+    -   Calculate Sensitivity, Specificity, PPV and NPV using the information found in the SPSS Classification Table
+    -   Explain the meaning of Block 0
+    -   Explain the meaning of all subsequent blocks (following Block 0) in a Logistic Regression analysis
+    -   Interpret an Odds Ratio for a continuous predictor variable
+    -   Interpret an Odds Ratio for a categorical predictor variable
+    -   Calculate the sensitivity and specificity of the model
+    -   Explain what an ROC identifies in a Logistic Regression analysis
+    -   Create a complete write up for a Logistic Regression analysis
+    -   Know the table that must be included in a write up for a Logistic Regression analysis
+:::
+
+```{=html}
+<!---
+      You have to put the title down 
+      here to override the titles of
+      all the include files.
+--->
+```
+
+---
+title: "simon-5502-06-slides"
+---
