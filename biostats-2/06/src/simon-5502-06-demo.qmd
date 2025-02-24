@@ -53,6 +53,14 @@ sv <- NULL # tables and graphs for later use
     -   chisq: Chi-square test of independence
     -   fisher: Fisher's Exact Test
     -   or: Odds ratio with confidence intervals
+    -   sex_pct: counts for sex
+    -   pclass_pct: counts for passenger class
+    -   survived_pct: counts for survived
+    -   died_by_sex probability died by sex
+    -   survived_by_sex: probability survived by sex
+    -   m1: logistic regression using sex to predict survived
+    -   m1_betas: parameter estimates for m1
+    -   m1_or: odds ratio and confidence intervals for m1
 
 ## Read Titanic data
 
@@ -109,50 +117,53 @@ sv$table1 |>
 sv$prop1
 ```
 
-## Bar chart
-
-```{r}
-#| label: ti-bar
-ti_1 |>
-  ggplot() +
-    aes(x = Sex, fill = Survived) +
-    geom_bar(position = "fill") +
-	  xlab("Sex") +
-	  ylab("Proportion") +
-	  ggtitle("Graph drawn by Steve Simon on 2024-11-11")
-```
 
 ## Hypothesis test for two proportions
 
 ```{r}
 #| label: ti-equality-of-proportions
-sv$prop_test <- prop.test(sv$table1, correct=FALSE)
-sv$prop_test |> tidy()
+
+sv$table1 |>
+  prop.test(correct=FALSE) |>
+  tidy() -> sv$prop_test
+sv$prop_test
 ```
 
 ## Chi-squared test
 
 ```{r}
 #| label: chi-square-test
-sv$chisq <- chisq.test(sv$table1, correct=FALSE)
-sv$chisq |> tidy()
+
+sv$table1 |>
+  chisq.test(correct=FALSE) |>
+  tidy() -> sv$chisq
+sv$chisq
 ```
 
 ## Fisher's Exact test
 
 ```{r}
 #| label: fishers-exact
-sv$fisher <- fisher.test(sv$table1)
-sv$fisher |> tidy()
+
+sv$table1 |>
+  fisher.test() |>
+  tidy() -> sv$fisher
+sv$fisher
 ```
 
 ## Odds ratio calculation
 
 ```{r}
 #| label: odds-ratio
-sv$or <- oddsratio(sv$table1)
-sv$or 
+
+sv$table1 |>
+  oddsratio() -> sv$or
+sv$or
 ```
+
+#### Comment on the code
+
+Normally I feed the output from various statistical models into the tidy function. This is part of the broom package. It standardizes the output by storing it in a tibble with consistent names for measurements like the test statistic and p-value.
 
 ## Start part 2
 
@@ -230,7 +241,7 @@ sv$died_by_sex
 ## Proportion Survived=Yes by Sex
 
 ```{r}
-#| label: ti-died-by-sex
+#| label: ti-survived-by-sex
 
 ti_1 |>
 	count(Sex, Survived) |>
@@ -249,13 +260,54 @@ sv$survived_by_sex
 ```{r}
 #| label: logistic-1
 
-m1 <- glm(Survived~Sex, family="binomial", data=ti_1)
-tidy(m1)
+sv$m1 <- glm(Survived~Sex, family="binomial", data=ti_1)
 ```
 
 #### Comment on the code
 
+The [glm function][ref03] fits a broad class of statistical models known as generalized linear models. These models are useful when the normality and/or heterogeneity assumptions are not met or when the dependent variable takes an unusual form. The class of generalized linear models includes logistic regression, a regression model where the dependent variable can only have two possible values. You specify logistic regression with the family=binomial argument.
+
+[ref03]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html 
+
+## Logistic coefficients for Sex
+
+```{r}
+#| label: coefficients-1
+
+sv$m1 |>
+  tidy() |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> sv$m1_betas
+sv$m1_betas
+```
+
+## Back transforming Sex coefficients
+
+```{r}
+#| label: or-1
+
+sv$m1_betas |>
+  filter(term != "(Intercept)") |>
+  mutate(odds_ratio=exp(estimate)) |>
+  mutate(lower=exp(estimate+qnorm(0.025)*std.error)) |>
+  mutate(upper=exp(estimate+qnorm(0.975)*std.error)) |>
+  select(term, odds_ratio, lower, upper) -> sv$m1_or
+sv$m1_or
+```
+#### Comment on the code
+
 #### Interpretation of the outpt
+
+## Predicted values for Sex=male and Sex=female
+
+```{r}
+#| label: predicted-1
+
+augment(sv$m1, newdata=tibble(Sex=c("male", "female")), type.predict="response")
+```
 
 ## Logistic model using PClass to predict Survived
 
@@ -263,13 +315,28 @@ tidy(m1)
 #| label: logistic-2
 
 m2 <- glm(Survived~PClass, family="binomial", data=ti_1)
+```
+
+## Logistic coefficients for PClass
+
+```{r}
 tidy(m2)
 ```
+
+## Backtransforming PClass coefficients
+
+```{r}
+confint(m2)
+```
+
+## Start of part 3
+
+## Start of part 4
 
 ## Logistic model with interaction
 
 ```{r}
-#| label: logistic-2
+#| label: logistic-3
 
 m2 <- glm(Survived~Sex*PClass, family="binomial", data=ti_1)
 tidy(m2)

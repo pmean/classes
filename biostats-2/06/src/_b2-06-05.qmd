@@ -1,5 +1,5 @@
 ---
-title: "Logistic regression with categorical variables"
+title: "Logistic regression with interactions"
 format: 
   revealjs:
     slide-number: true
@@ -7,54 +7,41 @@ format:
 editor: source
 ---
 
-## Categorical variables in a logistic regression model, 1 of 3
+## Interactions in logistic regression
 
-![](images/logistic-concepts-10.gif)
+-   Odds ratios vary by a third factor
+-   Interpretation is more tedious
 
--   1st class odds: 129/193 = `r round(129/193,2)` or 193/129 = `r round(193/129,2)`
--   2nd class odds: 161/119 = `r round(161/119,2)` or 119/161 = `r round(119/161,2)`
--   3rd class odds: 573/138 = `r round(573/138,2)` or 138/573 = `r round(138/573,2)`
+## Odds ratios for first class
 
-::: notes
-You treat categorical variables in much the same way as you would in a linear regression model. Create indicator variables for each level of your categorical variable and then include all but one of them in your model. The category associated with the omitted variable is the reference category.
+![](images/interaction-05.png)
 
-How would SPSS handle a variable like Passenger Class, which has three levels
+![](images/interaction-01.png)
 
-1st,
-2nd,
-3rd?
+## Odds ratio for second class
 
-Here’s a crosstabulation of survival versus passenger class.
+![](images/interaction-06.png)
 
-Notice that the odds of dying are 0.67 to 1 in 1st class, 1.35 to 1 in 2nd class, and 4.15 to 1 in 3rd class. These are odds in favor of dying. The odds against dying are 1.50 to 1, 0.74 to 1, and 0.24 to 1, respectively.
-:::
+![](images/interaction-02.png)
 
-## Categorical variables in a logistic regression model, 2 of 3
+## Odds ratio for third class
 
-![](images/logistic-concepts-11.gif)
+![](images/interaction-07.png)
 
--  1.50 / 0.24 = 6.212
--  0.74 / 0.24 = 3.069
+![](images/interaction-03.png)
 
-::: notes
-The odds ratio for the pclass(1) row is 6.212, which is equal to 1.50 / 0.24. You should interpret this as the odds against dying are 6 times better in first class compared to third class. The odds ratio for the pclass(2) row is 3.069, which equals 0.74 / 0.24. This tells you that the odds against dying are about 3 times better in second class compared to third class. The Constant row tells you that the odds are 0.241 to 1 in third class.
-:::
+## Logistic regression with interaction
 
-## Categorical variables in a logistic regression model, 3 of 3
+![](images/interaction-04.png)
 
-![](images/logistic-concepts-12.gif)
+-   Odds ratio for 3rd class = 4.608
+-   Odds ratio for 1st class = 4.608 $\times$ 6.572 = 30.2
+-   Odds ratio for 2nd class = 4.608 $\times$ 9.289 = 42.8
 
--  0.74 / 1.50 = 0.494
--  0.24 / 1.50 = 0.161
+## Line plot for interaction, 1 of 2
 
+![](images/interaction-08.png)
 
-::: notes
-If you prefer to do the analysis with each of the other classes being compared back to first class, then select FIRST for reference category.
+## Line plot for interaction, 2 of 2
 
-This produces the following output:
-
-Here the pclass(1) row provides an odds ratio of 0.494 which equals 0.74 / 1.50. The odds against dying are about half in second class versus first class. The pclass(2) provides an odds ratio of 0.161 (approximately 1/6) which equals 0.24 / 1.50. The odds against dying are 1/6 in third class compared to first class. The Constant row provides an odds of 1.496 to 1 against dying for first class.
-
-Notice that the numbers in parentheses (pclass(1) and pclass(2)) do not necessarily correspond to first and second classes. It depends on how SPSS chooses the indicator variables. How did I know how to interpret the indicator variables and the odds ratios? I wouldn’t have known how to do this if I hadn’t computed a crosstabulation earlier. It is very important to do a few simple crosstabulations before you run a logistic regression model, because it helps you orient yourself to the data.
-:::
-
+![](images/interaction-09.png)

@@ -1,5 +1,5 @@
 ---
-title: "Risk adjustment in logistic regression"
+title: "Diagnostics"
 format: 
   revealjs:
     slide-number: true
@@ -7,87 +7,149 @@ format:
 editor: source
 ---
 
-## Description of bf data, 1 of 11
+## R-squared
+
+## Assumptions
+
+-   Linearity
+-   Independence
+    -   Binomial variation
+    
+## Residuals
+
+## Cook's distance
+
+## Studentized residuals
+
+## Leverage
+
+## Informal sample size calculations, 1 of 2
+
+-   Rule of 50
+    -   Need 25 to 50 events in each group
+    -   Based on approximate power calculation
+-   Example: newborn readmissions for jaundice
+    -   Occurs about 2% (1/50) of the time
+    -   Need 25 $\times$ 50=1,250 or 50 $\times$ 50=2,500 in each group
+    
+## Informal sample size calculations, 2 of 2
+
+-   Rule of 15
+    -   Need 15 events for each independent variable
+    -   Smaller ratio implies poor replicability
+    -   Note: events, not observations
+    
+## Formal power calculation    
+
+## Assumptions of logistic regression
+
+-   Independence
+-   Linearity
+    -   On a log odds scale
+-   No assumptions about normality
+
+## Computing probability estimates, male and 3rd class
+
+![](images/assumptions-05.png)
 
 ```{r}
-library(yaml)
-dd <- read_yaml("../data/bf.yaml")
-cat(as.yaml(dd["data_dictionary"]))
-cat(as.yaml(dd["description"]))
+b0 <- -2.029
+odds <- exp(b0)
+prob <- odds/(1+odds)
 ```
 
-## Description of bf data, 2 of 11
+-   log odds = `r b0`
+-   odds = exp(log odds) = `r round(odds, 4)`
+-   prob = odds / (1+odds) = `r round(prob, 4)`
+
+## Computing probability estimates, male and first class
+
+![](images/assumptions-05.png)
 
 ```{r}
-cat(as.yaml(dd$vars[1:4]))
+b1 <-  1.319
+odds <- exp(b0+b1)
+prob <- odds/(1+odds)
 ```
 
-## Description of bf data, 3 of 11
+-   log odds = `r b0` + `r b1`
+-   odds = exp(log odds) = `r round(odds, 4)`
+-   prob = odds / (1+odds) = `r round(prob, 4)`
+
+## Computing probability estimates, male and second class
+
+![](images/assumptions-05.png)
 
 ```{r}
-cat(as.yaml(dd$vars[5:8]))
+b2 <-  0.25
+odds <- exp(b0+b2)
+prob <- odds/(1+odds)
 ```
 
-## Description of bf data, 4 of 11
+-   log odds = `r b0` + `r b2`
+-   odds = exp(log odds) = `r round(odds, 4)`
+-   prob = odds / (1+odds) = `r round(prob, 4)`
+
+## Computing probability estimates, female and third class
+
+![](images/assumptions-05.png)
 
 ```{r}
-cat(as.yaml(dd$vars[9:11]))
+b3 <-  1.528
+odds <- exp(b0+b3)
+prob <- odds/(1+odds)
 ```
 
-## Description of bf data, 5 of 11
+-   log odds = `r b0` + `r b3`
+-   odds = exp(log odds) = `r round(odds, 4)`
+-   prob = odds / (1+odds) = `r round(prob, 4)`
+
+## Computing probability estimates, female and first class
+
+![](images/assumptions-05.png)
 
 ```{r}
-cat(as.yaml(dd$vars[12:14]))
+b4 <- 1.883
+odds <- exp(b0+b1+b3+b4)
+prob <- odds/(1+odds)
 ```
 
-## Description of bf data, 6 of 11
+-   log odds = `r b0` + `r b1` + `r b3` + `r b4`
+-   odds = exp(log odds) = `r round(odds, 4)`
+-   prob = odds / (1+odds) = `r round(prob, 4)`
+
+## Computing probability estimates, female and second class
+
+![](images/assumptions-05.png)
 
 ```{r}
-cat(as.yaml(dd$vars[15:18]))
+b5 <- 2.229
+odds <- exp(b0+b2+b3+b5)
+prob <- odds/(1+odds)
 ```
 
-## Description of bf data, 7 of 11
+-   log odds = `r b0` + `r b2` + `r b3` + `r b5`
+-   odds = exp(log odds) = `r round(odds, 4)`
+-   prob = odds / (1+odds) = `r round(prob, 4)`
 
-```{r}
-cat(as.yaml(dd$vars[19:20]))
-```
+## Assessing linearity on a log scale, 1 of 3
 
-## Description of bf data, 8 of 11
+![](images/assumptions-01.png)
 
-```{r}
-cat(as.yaml(dd$vars[21:22]))
-```
+![](images/assumptions-02.png)
 
-## Description of bf data, 9 of 11
+## Assessing linearity on a log scale, 2 of 3
 
-```{r}
-cat(as.yaml(dd$vars[23:24]))
-```
+![](images/assumptions-03.png)
 
-## Description of bf data, 10 of 11
+## Assessing linearity on a log scale, 3 of 3
 
-```{r}
-cat(as.yaml(dd$vars[25:26]))
-```
+![](images/assumptions-04.png)
 
-## Description of bf data, 11 of 11
+## How good are your predictions, 1 of 2
 
-```{r}
-cat(as.yaml(dd$vars[27:28]))
-```
+![](images/assumptions-06.png)
 
-## Creating a binary outcome
+## How good are your predictions, 2 of 2
 
-![](images/risk-02.png)
-
-## Crosstabulation of predictor and outcome
-
-![](images/risk-03.png)
-
-## Unadjusted odds ratio
-
-![](images/risk-04.png)
-
-## Adjusted odds ratio
-
-![](images/risk-05.png)
+![](images/assumptions-07.png)

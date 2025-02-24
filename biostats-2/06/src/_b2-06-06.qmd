@@ -1,5 +1,5 @@
 ---
-title: "Logistic regression with interactions"
+title: "Risk adjustment in logistic regression"
 format: 
   revealjs:
     slide-number: true
@@ -7,41 +7,87 @@ format:
 editor: source
 ---
 
-## Interactions in logistic regression
+## Description of bf data, 1 of 11
 
--   Odds ratios vary by a third factor
--   Interpretation is more tedious
+```{r}
+library(yaml)
+dd <- read_yaml("../data/bf.yaml")
+cat(as.yaml(dd["data_dictionary"]))
+cat(as.yaml(dd["description"]))
+```
 
-## Odds ratios for first class
+## Description of bf data, 2 of 11
 
-![](images/interaction-05.png)
+```{r}
+cat(as.yaml(dd$vars[1:4]))
+```
 
-![](images/interaction-01.png)
+## Description of bf data, 3 of 11
 
-## Odds ratio for second class
+```{r}
+cat(as.yaml(dd$vars[5:8]))
+```
 
-![](images/interaction-06.png)
+## Description of bf data, 4 of 11
 
-![](images/interaction-02.png)
+```{r}
+cat(as.yaml(dd$vars[9:11]))
+```
 
-## Odds ratio for third class
+## Description of bf data, 5 of 11
 
-![](images/interaction-07.png)
+```{r}
+cat(as.yaml(dd$vars[12:14]))
+```
 
-![](images/interaction-03.png)
+## Description of bf data, 6 of 11
 
-## Logistic regression with interaction
+```{r}
+cat(as.yaml(dd$vars[15:18]))
+```
 
-![](images/interaction-04.png)
+## Description of bf data, 7 of 11
 
--   Odds ratio for 3rd class = 4.608
--   Odds ratio for 1st class = 4.608 $\times$ 6.572 = 30.2
--   Odds ratio for 2nd class = 4.608 $\times$ 9.289 = 42.8
+```{r}
+cat(as.yaml(dd$vars[19:20]))
+```
 
-## Line plot for interaction, 1 of 2
+## Description of bf data, 8 of 11
 
-![](images/interaction-08.png)
+```{r}
+cat(as.yaml(dd$vars[21:22]))
+```
 
-## Line plot for interaction, 2 of 2
+## Description of bf data, 9 of 11
 
-![](images/interaction-09.png)
+```{r}
+cat(as.yaml(dd$vars[23:24]))
+```
+
+## Description of bf data, 10 of 11
+
+```{r}
+cat(as.yaml(dd$vars[25:26]))
+```
+
+## Description of bf data, 11 of 11
+
+```{r}
+cat(as.yaml(dd$vars[27:28]))
+```
+
+## Creating a binary outcome
+
+![](images/risk-02.png)
+
+## Crosstabulation of predictor and outcome
+
+![](images/risk-03.png)
+
+## Unadjusted odds ratio
+
+![](images/risk-04.png)
+
+## Adjusted odds ratio
+
+![](images/risk-05.png)
