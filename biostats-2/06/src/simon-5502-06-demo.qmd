@@ -40,27 +40,9 @@ sv <- NULL # tables and graphs for later use
 
 ## Intermediate files
 
--   titanic: Original data from titanic.txt
--   titanic_1: Create factor for Survived
--   titanic_2: Create indicator variables
-
-## Saved output
-
--   sv
-    -   table1: crosstabulation of Sex with Survived
-    -   prop1: proportions by sex from table1
-    -   prop_test: test for difference in proportions
-    -   chisq: Chi-square test of independence
-    -   fisher: Fisher's Exact Test
-    -   or: Odds ratio with confidence intervals
-    -   sex_pct: counts for sex
-    -   pclass_pct: counts for passenger class
-    -   survived_pct: counts for survived
-    -   died_by_sex probability died by sex
-    -   survived_by_sex: probability survived by sex
-    -   m1: logistic regression using sex to predict survived
-    -   m1_betas: parameter estimates for m1
-    -   m1_or: odds ratio and confidence intervals for m1
+-   ti: Original data from titanic.txt
+-   ti_1: Create factor for Survived
+-   ti_2: Remove missing values for Age
 
 ## Read Titanic data
 
@@ -100,8 +82,8 @@ ti |>
 
 ```{r}
 #| label: ti-counts
-sv$table1 <-xtabs(~Sex+Survived, data=ti_1)
-sv$table1
+table1 <-xtabs(~Sex+Survived, data=ti_1)
+table1
 ```
 
 #### Interpretation of the output
@@ -112,9 +94,9 @@ Normally, I would include interpretations here, but this is a review of last sem
 
 ```{r}
 #| label: ti-proportions
-sv$table1 |>
-  proportions("Sex") -> sv$prop1
-sv$prop1
+table1 |>
+  proportions("Sex") -> prop1
+prop1
 ```
 
 
@@ -123,10 +105,10 @@ sv$prop1
 ```{r}
 #| label: ti-equality-of-proportions
 
-sv$table1 |>
+table1 |>
   prop.test(correct=FALSE) |>
-  tidy() -> sv$prop_test
-sv$prop_test
+  tidy() -> prop_test
+prop_test
 ```
 
 ## Chi-squared test
@@ -134,10 +116,10 @@ sv$prop_test
 ```{r}
 #| label: chi-square-test
 
-sv$table1 |>
+table1 |>
   chisq.test(correct=FALSE) |>
-  tidy() -> sv$chisq
-sv$chisq
+  tidy() -> chisq
+chisq
 ```
 
 ## Fisher's Exact test
@@ -145,10 +127,10 @@ sv$chisq
 ```{r}
 #| label: fishers-exact
 
-sv$table1 |>
+table1 |>
   fisher.test() |>
-  tidy() -> sv$fisher
-sv$fisher
+  tidy() -> fisher
+fisher
 ```
 
 ## Odds ratio calculation
@@ -156,16 +138,16 @@ sv$fisher
 ```{r}
 #| label: odds-ratio
 
-sv$table1 |>
-  oddsratio() -> sv$or
-sv$or
+table1 |>
+  oddsratio() -> or
+or
 ```
 
 #### Comment on the code
 
 Normally I feed the output from various statistical models into the tidy function. This is part of the broom package. It standardizes the output by storing it in a tibble with consistent names for measurements like the test statistic and p-value.
 
-## Start part 2
+## Start part 2a
 
 ## Descriptive statistics for Sex
 
@@ -177,8 +159,8 @@ ti_1 |>
 	mutate(total=sum(n)) |>
 	mutate(pct=round(100*n/total)) |>
   mutate(pct=glue("{pct}% ({n}/{total})")) |>
-  select(-n, -total) -> sv$sex_pct
-sv$sex_pct
+  select(-n, -total) -> sex_pct
+sex_pct
 ```
 
 #### Interpretation of the output
@@ -195,8 +177,8 @@ ti_1 |>
 	mutate(total=sum(n)) |>
 	mutate(pct=round(100*n/total)) |>
   mutate(pct=glue("{pct}% ({n}/{total})")) |>
-  select(-n, -total) -> sv$pclass_pct
-sv$pclass_pct
+  select(-n, -total) -> pclass_pct
+pclass_pct
 ```
 
 #### Interpretation of the output
@@ -213,8 +195,8 @@ ti_1 |>
 	mutate(total=sum(n)) |>
 	mutate(pct=round(100*n/total)) |>
   mutate(pct=glue("{pct}% ({n}/{total})")) |>
-  select(-n, -total) -> sv$survived_pct
-sv$survived_pct
+  select(-n, -total) -> survived_pct
+survived_pct
 ```
 
 #### Interpretation of the output
@@ -234,8 +216,8 @@ ti_1 |>
   mutate(odds=round(n/(total-n), 2)) |>
   mutate(pct=glue("{pct}% ({n}/{total})")) |>
   filter(Survived=="No") |>
-  select(-n, -total) -> sv$died_by_sex
-sv$died_by_sex
+  select(-n, -total) -> died_by_sex
+died_by_sex
 ```
 
 ## Proportion Survived=Yes by Sex
@@ -251,8 +233,8 @@ ti_1 |>
   mutate(odds=round(n/(total-n), 2)) |>
   mutate(pct=glue("{pct}% ({n}/{total})")) |>
   filter(Survived=="Yes") |>
-  select(-n, -total) -> sv$survived_by_sex
-sv$survived_by_sex
+  select(-n, -total) -> survived_by_sex
+survived_by_sex
 ```
 
 ## Logistic model using Sex to predict Survived
@@ -260,7 +242,10 @@ sv$survived_by_sex
 ```{r}
 #| label: logistic-1
 
-sv$m1 <- glm(Survived~Sex, family="binomial", data=ti_1)
+m1 <- glm(
+	Survived~Sex, 
+	family="binomial", 
+	data=ti_1)
 ```
 
 #### Comment on the code
@@ -274,14 +259,14 @@ The [glm function][ref03] fits a broad class of statistical models known as gene
 ```{r}
 #| label: coefficients-1
 
-sv$m1 |>
+m1 |>
   tidy() |>
   mutate(
     p.value =
       case_when(
         p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> sv$m1_betas
-sv$m1_betas
+        p.value <  0.001 ~ "p < 0.001")) -> m1_betas
+m1_betas
 ```
 
 ## Back transforming Sex coefficients
@@ -289,66 +274,383 @@ sv$m1_betas
 ```{r}
 #| label: or-1
 
-sv$m1_betas |>
+m1_betas |>
   filter(term != "(Intercept)") |>
   mutate(odds_ratio=exp(estimate)) |>
   mutate(lower=exp(estimate+qnorm(0.025)*std.error)) |>
   mutate(upper=exp(estimate+qnorm(0.975)*std.error)) |>
-  select(term, odds_ratio, lower, upper) -> sv$m1_or
-sv$m1_or
+  select(term, odds_ratio, lower, upper) -> m1_or
+m1_or
 ```
-#### Comment on the code
 
-#### Interpretation of the outpt
+#### Interpretation of the output
+
+The odds ratio shows about a 10 fold increase in the odds of death for males compared to females. Even after allowing for sampling error, the odds ratio is still well above a 7 fold increase in risk.
 
 ## Predicted values for Sex=male and Sex=female
 
 ```{r}
 #| label: predicted-1
 
-augment(sv$m1, newdata=tibble(Sex=c("male", "female")), type.predict="response")
+m1 |>
+  augment(
+  	newdata=tibble(Sex=c("male", "female")),
+  	type.predict="response") -> m1_predict
+m1_predict
 ```
+
+#### Interpretation of the output
+
+The predicted values match the estimated probabilities.
+
+## Start of part 2b
+
+## Proportion Survived=No by PClass
+
+```{r}
+#| label: ti-died-by-pclass
+
+ti_1 |>
+	count(PClass, Survived) |>
+  group_by(PClass) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) |>
+  mutate(odds=round(n/(total-n), 2)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  filter(Survived=="No") |>
+  select(-n, -total) -> died_by_pclass
+died_by_pclass
+```
+
+#### Interpretation of the output
+
+The probability of death is a lot higher in third class.
 
 ## Logistic model using PClass to predict Survived
 
 ```{r}
 #| label: logistic-2
 
-m2 <- glm(Survived~PClass, family="binomial", data=ti_1)
+m2 <- glm(
+	Survived~PClass, 
+	family="binomial", 
+	data=ti_1)
 ```
 
 ## Logistic coefficients for PClass
 
 ```{r}
-tidy(m2)
+m2 |>
+	tidy() |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> m2_betas
+m2_betas
 ```
+
+#### Interpretation of the output
+
+The log odds ratios for first class versus third class and for second class versus third class are statistically significant. The odds of death are much lower in first and second class.
 
 ## Backtransforming PClass coefficients
 
 ```{r}
-confint(m2)
+m2_betas |>
+  filter(term != "(Intercept)") |>
+  mutate(odds_ratio=exp(estimate)) |>
+  mutate(lower=exp(estimate+qnorm(0.025)*std.error)) |>
+  mutate(upper=exp(estimate+qnorm(0.975)*std.error)) |>
+  select(term, odds_ratio, lower, upper) -> m2_or
+m2_or
 ```
+
+#### Interpretation of the output
+
+The odds for death are about one third as large in second class versus third class. The odds of death are about one sixth as large in first class versus third class.
+
+## Predicted values for PClass 
+
+```{r}
+#| label: predicted-2
+
+m2 |>
+  augment(
+  	newdata=tibble(PClass=factor(c(3, 2, 1), labels=lab2)),
+  	type.predict="response") -> m2_predict
+m2_predict
+```
+
+#### Interpretation of the output
+
+The predicted probabilities match the earlier computed probabilities.
 
 ## Start of part 3
 
-## Start of part 4
+## Interaction probabilities
+
+```{r}
+#| label: interaction-probabilities
+
+ti_1 |>
+	count(Sex, PClass, Survived) |>
+	group_by(Sex, PClass) |>
+	mutate(total=sum(n)) |>
+	mutate(prop=n/total) -> table2
+
+table2
+```
+
+#### Interpretation of the output
+
+This table shows the probability of death for each combination of sex and passenger class. The numbers are easier to interpret in the following graphs.
+
+## Interaction plot 
+
+```{r}
+#| label: interaction-1
+
+table2 |>
+	filter(Survived=="No") |>
+	ggplot() +
+  aes(x=Sex, y=prop) +
+  geom_line(aes(group=PClass)) +
+  geom_text(aes(label=PClass)) +
+	expand_limits(y=c(0.1, 0.9)) +
+	scale_y_continuous(breaks=(1:9)/10) +
+  ggtitle("Graph drawn by Steve Simon on 2025-02-11") +
+  xlab("Gender") +
+  ylab("Mortality probability") -> lines_1
+lines_1 +
+	scale_y_continuous(breaks=(1:9)/10)
+
+```
+
+#### Interpretation of the output
+
+There appear be a strong interaction. Second class females have a mortality rate similar to first class. For males, the mortality in second class is close to third class.
+
+## Interaction plot on a log odds scale
+
+```{r}
+#| label: interaction-2
+
+lines_1 +
+	scale_y_continuous(
+		breaks=(1:9)/10, 
+		transform="logit") -> lines_2
+lines_2
+```
+
+#### Interpretation of the output
+
+The plot on a log odds scale shows a similar pattern.
+## Alternative interaction plot 
+
+```{r}
+#| label: interaction-3
+
+table2 |>
+	filter(Survived=="No") |>
+	ggplot() +
+  aes(x=PClass, y=prop) +
+  geom_line(aes(group=Sex)) +
+  geom_text(aes(label=Sex)) +
+	expand_limits(y=c(0.1, 0.9)) +
+  ggtitle("Graph drawn by Steve Simon on 2025-02-11") +
+  xlab("Passenger class") +
+  ylab("Mortality probability") -> lines_3
+lines_3 +
+  scale_y_continuous(breaks=(1:9)/10)
+
+```
+
+#### Interpretation of the output
+
+Males show high probability of death for all three passenger classes. Females show a high probability of death only in third class.
+
+## Alternative interaction plot on a log odds scale
+
+```{r}
+#| label: interaction-4
+
+lines_3 +
+	scale_y_continuous(
+		breaks=(1:9)/10, 
+		transform="logit") -> lines_4
+lines_4
+```
+
+#### Interpretation of the output
+
+The plot on a log odds scale shows a similar pattern.
 
 ## Logistic model with interaction
 
 ```{r}
 #| label: logistic-3
 
-m2 <- glm(Survived~Sex*PClass, family="binomial", data=ti_1)
-tidy(m2)
+m3 <- glm(
+	Survived~Sex*PClass, 
+	family="binomial", 
+	data=ti_1)
 ```
+
+## Interaction coefficients
+
+```{r}
+#| label: m3-betas
+
+m3 |>
+	tidy() |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> m3_betas
+m3_betas
+	
+```
+
+#### Interpretation of the output
+
+All of the coefficients are statistically significant. Interpretation is best described by the previous graphs.
+
+## Start of part 4
+
+## Remove missing ages
+
+```{r}
+#| label: remove
+
+ti_1 |>
+	filter(!is.na(Age)) -> ti_2
+```
+
+## Descriptive statistics for Age
+
+```{r}
+#| label: descriptives-age
+
+ti_2 |>
+	summarize(
+		age_mean=mean(Age),
+		age_sd=sd(Age),
+		age_min=min(Age),
+		age_max=max(Age)) -> age_stats
+age_stats
+```
+
+#### Interpretation of the output
+
+The average passenger is 30 years old. The ages range from less than one year old to 71 years old.
+
+## Logistic regression using Age to predict Survived
+
+```{r}
+#| label: m4
+
+m0 <- glm(
+	Survived ~ 1,
+	family=binomial,
+	data=ti_2)
+
+m4 <- glm(
+	Survived ~ Age,
+	family=binomial,
+	data=ti_2)
+```
+
+## Coefficients for m4
+
+```{r}
+m4 |> 
+  tidy() |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> m4_betas
+m4_betas
+```
+
+#### Interpretation of the output
+
+There is no statistically significant affect due to age.
+
+## Back transforming Age coefficients
+
+```{r}
+#| label: or-4
+
+m4_betas |>
+  filter(term != "(Intercept)") |>
+  mutate(odds_ratio=exp(estimate)) |>
+  mutate(lower=exp(estimate+qnorm(0.025)*std.error)) |>
+  mutate(upper=exp(estimate+qnorm(0.975)*std.error)) |>
+  select(term, odds_ratio, lower, upper) -> m4_or
+m4_or
+```
+
+#### Interpretation of the output
+
+The odds ratio is very close to 1, showing almost no change in the risk of death by age.
+
+## Predicted values for m4
+
+```{r}
+#| label: m4-predict
+
+m4 |>
+  augment(
+    newdata=tibble(Age=seq(5, 70, 5)),
+    type.predict="response")
+```
+
+#### Interpretation of the output
+
+The predicted values change only slightly from 5 years to 70 years.
+
+## Start of Part 5
+
+## Comparison to null model
+
+```{r}
+#| label: anova
+
+anova(m0, m4) |> tidy()
+```
+
+#### Interpretation of the output
+
+A logistic regression model for age does not provide better predictions of mortality than a null model.
+
+## Check for linearity
+
+```{r}
+#| label: linearity
+
+ti_2 |>
+	ggplot() +
+	aes(x=Age, y=as.numeric(Survived=="No")) +
+	geom_point() + 
+	geom_smooth() +
+	ggtitle("Graph drawn by Steve Simon on 2025-02-25") +
+	xlab("Age in years") +
+	ylab("Indicator for died") +
+	scale_y_continuous(breaks=0:1) -> linearity_plot
+linearity_plot
+```
+
+#### Interpretation of the output
+
+There is a substantial evidence of a non-linear effect. Mortality probability rises to about age 20 then levels off before increasing again for elderly passengers.
 
 ## Save everything
 
 ```{r}
 #| label: save
-save(
-  sv,
-  ti,
-  ti_1,
-  file="../data/module06.RData")
+
+save.image(file="../data/module06.RData")
 ```

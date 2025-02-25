@@ -7,3 +7,53 @@ format:
 editor: source
 ---
 
+## Always start with descriptive statistics
+
+```{r}
+#| label: 06-03-setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(epitools)
+library(glue)
+library(magrittr)
+library(tidyverse)
+
+load("../data/module06.RData")
+```
+
+```{r}
+#| label: 06-03-descriptives
+
+sv$sex_pct
+sv$pclass_pct
+sv$survived_pct
+```
+
+## Compute survival probabilites by sex
+
+```{r}
+#| label: 06-03-survival-by-sex
+
+sv$died_by_sex
+sv$survived_by_sex
+```
+
+## Logistic model estimates
+
+```{r}
+#| label: 06-03-m1-betas
+
+sv$m1_betas
+```
+
+-   exp(2.3) = 9.99
+-   exp(2.3-1.96*0.135) = 7.67
+-   exp(2.3+1.96*0.135) = 13.0
+
+```{r}
+#| label: 06-03-or-1
+
+sv$m1_or
+```

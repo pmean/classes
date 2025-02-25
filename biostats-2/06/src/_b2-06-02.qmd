@@ -1,5 +1,5 @@
 ---
-title: "Odds ratio versus relative risk"
+title: "Concepts behind the logistic regression model"
 format: 
   revealjs:
     slide-number: true
@@ -34,9 +34,9 @@ A logistic regression model examines the relationship between one or more indepe
 Let’s consider an artificial data example where we collect data on the gestational age of infants (GA), which is a continuous variable, and the probability that these infants will be breast feeding at discharge from the hospital (BF), which is a binary variable. We expect an increasing trend in the probability of BF as GA increases. Premature infants are usually sicker and they have to stay in the hospital longer. Both of these present obstacles to BF.
 :::
 
-## A linear model for probability, 1 of 2
+## A linear model for probability, 1
 
-![](images/logistic-concepts-01.gif)
+![](../images/logistic-concepts-01.gif)
 
 ::: notes
 A linear model would presume that the probability of BF increases as a linear function of GA. You can represent a linear function algebraically as
@@ -57,9 +57,9 @@ which means that you can get the probability of BF by doubling GA and adding 4. 
 A simple interpretation of this model is that each additional week of GA adds an extra 2% to the probability of BF. We could call this an additive probability model.
 :::
 
-## A linear model of probability, 2 of 2
+## A linear model of probability, 2
 
-![](images/logistic-concepts-02.gif)
+![](../images/logistic-concepts-02.gif)
 
 ::: notes
 I’m not an expert on BF; what little experience I’ve had with the topic occurred over 67 years ago. But I do know that an additive probability model tends to have problems when you get probabilities close to 0% or 100%**. Let’s change the linear model slightly to the following:
@@ -76,7 +76,7 @@ You may find it difficult to explain what a probability of 106% means. This is a
 
 ## A multiplicative model for probability
 
-![](images/logistic-concepts-03.gif)
+![](../images/logistic-concepts-03.gif)
 
 ::: notes
 It’s worthwhile to consider a different model here, a multiplicative model for probability, even though it suffers from the same problems as the additive model.
@@ -120,9 +120,9 @@ prob = odds / (1+odds).
 In medicine and epidemiology, when an event is less likely to happen and more likely not to happen, we represent the odds as a value less than one. So odds of four to one against an event would be represented by the fraction 1/5 or 0.2. When an event is more likely to happen than not, we represent the odds as a value greater than one. So odds of three to one in favor of an event would be represented simply as an odds of 3. With this convention, odds are bounded below by zero, but have no upper bound.
 :::
 
-## A log odds model for probability, 1 of 4
+## A log odds model for probability, 1 
 
-![](images/logistic-concepts-04.gif)
+![](../images/logistic-concepts-04.gif)
 
 ::: notes
 Let’s consider a multiplicative model for the odds (not the probability) of BF.
@@ -133,9 +133,9 @@ Figure 4. Hypothetical odds from a multiplicative model
 This model implies that each additional week of GA triples the odds of BF. A multiplicative model for odds is nice because it can’t produce any meaningless estimates.
 :::
 
-## A log odds model for probability, 2 of 4
+## A log odds model for probability, 2
 
-![](images/logistic-concepts-05.gif)
+![](../images/logistic-concepts-05.gif)
 
 ::: notes
 It’s interesting to look at how the logarithm of the odds behave.
@@ -143,9 +143,9 @@ It’s interesting to look at how the logarithm of the odds behave.
 Notice that an extra week of GA adds 1.1 units to the log odds. So you can describe this model as linear (additive) in the log odds. When you run a logistic regression model in SPSS or other statistical software, it uses a model just like this, a model that is linear on the log odds scale. This may not seem too important now, but when you look at the output, you need to remember that SPSS presents all of the results in terms of log odds. If you want to see results in terms of probabilities instead of logs, you have to transform your results.
 :::
 
-## A log odds model for probability, 3 of 4
+## A log odds model for probability, 3
 
-![](images/logistic-concepts-06.gif)
+![](../images/logistic-concepts-06.gif)
 
 ::: notes
 Let’s look at how the probabilities behave in this model.
@@ -153,9 +153,9 @@ Let’s look at how the probabilities behave in this model.
 Notice that even when the odds get as large as 27 to 1, the probability still stays below 100%. Also notice that the probabilities change in neither an additive nor a multiplicative fashion.
 :::
 
-## A log odds model for probability, 4 of 4
+## A log odds model for probability, 4
 
-![](images/logistic-concepts-07.gif)
+![](../images/logistic-concepts-07.gif)
 
 ::: notes
 A graph shows what is happening.
@@ -163,17 +163,17 @@ A graph shows what is happening.
 The probabilities follow an S-shaped curve that is characteristic of all logistic regression models. The curve levels off at zero on one side and at one on the other side. This curve ensures that the estimated probabilities are always between 0% and 100%.
 :::
 
-## An example of a log odds model with real data, 1 of 3
+## An example of a log odds model with real data, 1
 
-![](images/logistic-concepts-08.gif)
+![](../images/logistic-concepts-08.gif)
 
 ::: notes
 There are other approaches that also work well for this type of data, such as a probit model, that I won’t discuss here. But I did want to show you what the data relating GA and BF really looks like.
 :::
 
-## An example of a log odds model with real data, 2 of 3
+## An example of a log odds model with real data, 2
 
-![](images/logistic-concepts-09.gif)
+![](../images/logistic-concepts-09.gif)
 
 -   log odds = -16.72 + 0.577 $\times$ GA
 
@@ -183,7 +183,7 @@ I’ve simplified this data set by removing some of the extreme gestational ages
 The table below shows the predicted log odds, and the calculations needed to transform this estimate back into predicted probabilities.
 :::
 
-## An example of a log odds model with real data, 3 of 3
+## An example of a log odds model with real data, 3
 
 ```{r}
 log_odds <- -16.72 + 0.577*30
