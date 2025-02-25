@@ -7,41 +7,57 @@ format:
 editor: source
 ---
 
-## Interactions in logistic regression
+```{r}
+#| label: 06-05-setup
+#| message: false
+#| warning: false
 
--   Odds ratios vary by a third factor
--   Interpretation is more tedious
+library(broom)
+library(epitools)
+library(glue)
+library(magrittr)
+library(tidyverse)
 
-## Odds ratios for first class
+load("../data/module06.RData")
+```
 
-![](images/interaction-05.png)
 
-![](images/interaction-01.png)
+## Line plot, 1
 
-## Odds ratio for second class
+```{r}
+#| label: line-1
 
-![](images/interaction-06.png)
+lines_1
+```
 
-![](images/interaction-02.png)
+## Line plot, 2
 
-## Odds ratio for third class
+```{r}
+#| label: line-2
 
-![](images/interaction-07.png)
+lines_2
+```
 
-![](images/interaction-03.png)
+## Line plot, 3
 
-## Logistic regression with interaction
+```{r}
+#| label: line-3
 
-![](images/interaction-04.png)
+lines_3
+```
 
--   Odds ratio for 3rd class = 4.608
--   Odds ratio for 1st class = 4.608 $\times$ 6.572 = 30.2
--   Odds ratio for 2nd class = 4.608 $\times$ 9.289 = 42.8
+## Line plot, 4
 
-## Line plot for interaction, 1 of 2
+```{r}
+#| label: line-4
 
-![](images/interaction-08.png)
+lines_4
+```
 
-## Line plot for interaction, 2 of 2
+## Logistic regression model with interaction
 
-![](images/interaction-09.png)
+```{r}
+#| label: 06-05-m4
+
+m4_betas
+```

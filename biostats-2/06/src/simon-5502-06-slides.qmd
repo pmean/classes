@@ -9,9 +9,8 @@ params:
   topic_02: "Concepts behind the logistic regression model"
   topic_03: "Logistic regression with categorical predictors"
   topic_04: "Logistic regression with continuous predictors"
-  topic_05: "Risk adjustment"
-  topic_06: "Logistic regression with interactions"
-  topic_07: "Diagnostics"
+  topic_05: "Logistic regression with interactions"
+  topic_06: "Diagnostics"
 editor: source
 ---
 
@@ -39,7 +38,6 @@ editor: source
     -   `r params$topic_04`
     -   `r params$topic_05`
     -   `r params$topic_06`
-    -   `r params$topic_07`
 
 {{< include _b2-06-01.qmd >}}
 

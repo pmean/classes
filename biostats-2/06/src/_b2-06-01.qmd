@@ -67,8 +67,8 @@ glimpse(ti)
 ```{r}
 #| label: 06-01-counts
 
-sv$table1
-sv$prop1
+table1
+prop1
 ```
 
 ## Test for difference in proportions
@@ -76,7 +76,7 @@ sv$prop1
 ```{r}
 #| label: 06-01-test-diff
 
-sv$prop_test
+prop_test
 ```
 
 ## Chi-square test of independence, 1 of 2
@@ -115,7 +115,7 @@ Observed counts
 ```{r}
 #| label: 06-01-observed
 
-sv$table1
+table1
 ```
 
 
@@ -123,7 +123,7 @@ Expected counts
 ```{r}
 #| label: 06-01-expected
 
-chisq.test(sv$table1) |>
+chisq.test(table1) |>
   extract2("expected")
 ```
 
@@ -132,7 +132,7 @@ chisq.test(sv$table1) |>
 ```{r}
 #| label: 06-01-chisq
 
-sv$chisq
+chisq
 ```
 
 ## Odds ratio calculation
@@ -185,5 +185,5 @@ The odds ratio compares the relative odds of death in each group. For females, t
 ```{r}
 #| label: 06-01-or
 
-sv$or
+or
 ```

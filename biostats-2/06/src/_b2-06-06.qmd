@@ -1,5 +1,5 @@
 ---
-title: "Risk adjustment in logistic regression"
+title: "Diagnostics"
 format: 
   revealjs:
     slide-number: true
@@ -7,87 +7,24 @@ format:
 editor: source
 ---
 
-## Description of bf data, 1 of 11
-
 ```{r}
-library(yaml)
-dd <- read_yaml("../data/bf.yaml")
-cat(as.yaml(dd["data_dictionary"]))
-cat(as.yaml(dd["description"]))
+#| label: 06-06-setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(epitools)
+library(glue)
+library(magrittr)
+library(tidyverse)
+
+load("../data/module06.RData")
 ```
 
-## Description of bf data, 2 of 11
+## Diagnostics
 
-```{r}
-cat(as.yaml(dd$vars[1:4]))
-```
-
-## Description of bf data, 3 of 11
-
-```{r}
-cat(as.yaml(dd$vars[5:8]))
-```
-
-## Description of bf data, 4 of 11
-
-```{r}
-cat(as.yaml(dd$vars[9:11]))
-```
-
-## Description of bf data, 5 of 11
-
-```{r}
-cat(as.yaml(dd$vars[12:14]))
-```
-
-## Description of bf data, 6 of 11
-
-```{r}
-cat(as.yaml(dd$vars[15:18]))
-```
-
-## Description of bf data, 7 of 11
-
-```{r}
-cat(as.yaml(dd$vars[19:20]))
-```
-
-## Description of bf data, 8 of 11
-
-```{r}
-cat(as.yaml(dd$vars[21:22]))
-```
-
-## Description of bf data, 9 of 11
-
-```{r}
-cat(as.yaml(dd$vars[23:24]))
-```
-
-## Description of bf data, 10 of 11
-
-```{r}
-cat(as.yaml(dd$vars[25:26]))
-```
-
-## Description of bf data, 11 of 11
-
-```{r}
-cat(as.yaml(dd$vars[27:28]))
-```
-
-## Creating a binary outcome
-
-![](images/risk-02.png)
-
-## Crosstabulation of predictor and outcome
-
-![](images/risk-03.png)
-
-## Unadjusted odds ratio
-
-![](images/risk-04.png)
-
-## Adjusted odds ratio
-
-![](images/risk-05.png)
+-   Comparison to null model
+-   Linearity
+    -   Only for continuous predictors
+-   Independence
+    -   Assessed qualitatively
