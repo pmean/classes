@@ -95,12 +95,12 @@ loop_folders("biostats-1", 15)
 loop_folders("biostats-2", 14)
 ```
 
-## clinical-reserach-methodology
+## clinical-research-methodology
 
 ```{r}
-#| label: clinical-reserach-methodology
+#| label: clinical-research-methodology
 
-loop_folders("clinical-reserach-methodology", 14)
+loop_folders("clinical-research-methodology", 14)
 ```
 
 ## introduction-to-r
