@@ -71,7 +71,7 @@ loop_folders <- function(class_dir, n) {
       file_list <- c(file_list, identify_files(s, ext))
     }
     if (length(file_list) == 0) next
-    print(glue("---{s}/{file_list}"))
+    print(glue("---{s}/src/{file_list}"))
     for (f in file_list) {
       sweep_files(s, f)
     }
@@ -98,9 +98,9 @@ loop_folders("biostats-2", 14)
 ## clinical-reserach-methodology
 
 ```{r}
-#| label: clinical-reserach-methodology
+#| label: clinical-research-methodology
 
-loop_folders("clinical-reserach-methodology", 14)
+loop_folders("clinical-research-methodology", 14)
 ```
 
 ## introduction-to-r

@@ -10,21 +10,23 @@ execute:
 
 ## General directions
 
-Use the dataset, [swim-speeds.txt][ref01], found on my github site. Refer to the [data dictionary][ref02] if needed. You may find it helpful to adapt some of the code from [simon-5502-05-demo.qmd][ref03]. This file is most easily read in using the [read_table function][ref04] of the [readr][ref05] library
+Use the dataset, [gardasil.xls][ref01], found on my github site. Refer to the [data dictionary][ref02] if needed. You may find it helpful to adapt some of the code from [simon-5502-05-demo.qmd][ref03]. This file is most easily read in using the [read_excel function][ref04] of the [readxl][ref05] library.
 
-[ref01]: https://github.com/pmean/data/blob/main/files/swim-speeds.txt
-[ref02]: https://github.com/pmean/data/blob/main/files/swim-spees.yaml
-[ref03]: https://github.com/pmean/classes/blob/master/biostats-2/05/src/simon-5502-05-demo.qmd
-[ref04]: https://readr.tidyverse.org/reference/read_table.html
-[ref05]: https://readr.tidyverse.org/
+Warning: if you try to use the read_excel function within R and the file is already open inside of Microsoft Excel, you might get an error message. Microsoft has some security features that lock a file when it is in use. This is intended to prevent a second program from modifying a file at the same time that you are modifying it in Excel. It seems like a nice feature but it gets in the way of the read_excel and other similar functions. These programs don't have any nefarious schemes of modifying the file. They just want to look at what's inside. 
+
+[ref01]: https://github.com/pmean/data/blob/main/files/gardasil.xls
+[ref02]: https://github.com/pmean/data/blob/main/files/gardasil.yaml
+[ref03]: https://github.com/pmean/classes/blob/master/biostats-2/06/src/simon-5502-06-demo.qmd
+[ref04]: https://readxl.tidyverse.org/reference/read_excel.html
+[ref05]: https://readxl.tidyverse.org/
 
 ## File details
 
 Please do not look at this file before submitting your own work on this programming assignment. Although no interpretations are provided here, you must include them in your own submission.
 
-This program was written by Steve Simon on 2025-02-22 and is placed in the public domain. You can use this program any way you please.
+This program was written by Steve Simon on 2025-02-27 and is placed in the public domain. You can use this program any way you please.
 
-This program examines a possible interaction in the use of goggles and flippers in a simple experiment on swimming speeds in a 25 meter pool.
+This program examines some logistic regression models to predict the probability that a patient will complete all three shots in the HPV vaccination program.
 
 ```{r}
 #| label: setup
@@ -33,7 +35,7 @@ This program examines a possible interaction in the use of goggles and flippers 
 
 library(broom)
 library(glue)
-library(knitr)
+library(readxl)
 library(tidyverse)
 R.version.string
 Sys.Date()
@@ -41,35 +43,50 @@ Sys.Date()
 
 ## Intermediate files
 
--   swim: original data from swim-speeds.txt
--   swim_1: create factors for Shirt, Googles, Flippers, End
+-   ga: original data from gardasil.xls
+-   ga_1: convert number codes to factors
 
 ## Read the data
 
 ```{r}
 #| label: read
 
-swim <- read_table(
-  file="../data/swim-speedS.txt",
+ga <- read_tsv(
+  file="../data/gardasil.tsv",
   col_names=TRUE,
-  col_types="nnnnnn")
-glimpse(swim)
+  col_types="n")
+glimpse(ga)
 ```
 
 ## Question 1
 
 You will not be graded on this, but get in the habit of computing some simple statistics (mean, standard deviation, minimum, and maximum for continuous variables and counts and percentages for categorical variables) for the important variables in this dataset. Also, get in the habit of providing brief interpretations.
 
-Be sure to create factors with descriptive levels for End, Shirt, Googles, and Flippers. For example:  mutate(Shirt=factor(Shirt, levels=0:1, labels=c("No Shirt", "Shirt")))
+Be sure to create factors with descriptive levels for any variables used in your analysis.
 
 ```{r}
 #| label: create-factors
+lab1 <- c("No", "Yes")
+lab2 <- c(
+  "Black",
+  "White",
+  "Hispanic",
+  "Other")
 
-swim |>
-  mutate(Shirt=factor(Shirt, levels=0:1, labels=c("No Shirt", "Shirt"))) |>
-  mutate(Goggles=factor(Goggles, levels=0:1, labels=c("No goggles", "Goggles"))) |>
-  mutate(Flippers=factor(Flippers, levels=0:1, labels=c("No flippers", "Flippers"))) |>
-  mutate(End=factor(End, levels=0:1, labels=c("Shallow", "Deep"))) -> swim_1
+
+ga |>
+  mutate(
+    Completed = 
+      factor(
+        Completed, 
+        levels=0:1, 
+        labels=lab1)) |>
+  mutate(
+    Race = 
+      factor(
+        Race, 
+        levels=c(1, 0, 2, 3), 
+        labels=lab2))-> ga_1
 ```
 
 ## Descriptive statistics
@@ -77,136 +94,120 @@ swim |>
 ```{r}
 #| label: descriptives-1
 
-swim_1 |>
+ga_1 |>
   summarize(
-    Time_mean=mean(Time),
-    Time_sd=sd(Time),
-    Time_min=min(Time),
-    Time_max=max(Time))
+    Age_mean=mean(Age),
+    Age_sd=sd(Age),
+    Age_min=min(Age),
+    Age_max=max(Age))
 ```
 
 #### Interpretation of the output
 
 Don't forget to put interpretations here and after every other program chunk that produces a table or graph.
 
-## Descriptive statistics for Shirt
+## Descriptive statistics for Race
 
 ```{r}
 #| label: descriptives-2
 
-swim_1|>
-	count(Shirt) |>
+ga_1 |>
+	count(Race, Completed) |>
+  group_by(Race) |>
 	mutate(total=sum(n)) |>
 	mutate(pct=round(100*n/total)) |>
 	mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  filter(Completed=="Yes") |>
 	select(-n, -total)
 ```
 
-## Descriptive statistics for Goggles
+## Descriptive statistics for InsuranceType
 
 ```{r}
 #| label: descriptives-3
 
-swim_1|>
-	count(Googles) |>
+ga_1 |>
+	count(InsuranceType, Completed) |>
+  group_by(InsuranceType) |>
 	mutate(total=sum(n)) |>
 	mutate(pct=round(100*n/total)) |>
 	mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  filter(Completed=="Yes") |>
 	select(-n, -total)
 ```
 
-## Descriptive statistics for Flippers
+## Descriptive statistics for MedAssist
 
 ```{r}
 #| label: descriptives-4
 
-swim_1|>
-	count(Flippers) |>
+ga_1 |>
+	count(MedAssist, Completed) |>
+  group_by(MedAssist) |>
 	mutate(total=sum(n)) |>
 	mutate(pct=round(100*n/total)) |>
 	mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  filter(Completed=="Yes") |>
 	select(-n, -total)
 ```
 
-## Descriptive statistics for End
+## Descriptive statistics for Location
 
 ```{r}
 #| label: descriptives-5
 
-swim_1|>
-	count(End) |>
+ga_1 |>
+	count(Location, Completed) |>
+  group_by(Location) |>
 	mutate(total=sum(n)) |>
 	mutate(pct=round(100*n/total)) |>
 	mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  filter(Completed=="Yes") |>
 	select(-n, -total)
 ```
 
-## Question 2
 
-Draw a line plot showing the possible interaction between Goggles and Flippers. Are the lines roughly parallel?
-
-Note: there are two ways to draw this line plot. Either way is fine, but do not show both ways.
+## Descriptive statistics for LocationType
 
 ```{r}
-#| label: lineplot-1
+#| label: descriptives-6
 
-swim_1 |>
-  group_by(Goggles, Flippers) |>
-  summarize(mean_time=mean(Time)) |>
-  ggplot() +
-  aes(x=Goggles, y=mean_time) +
-  geom_line(aes(group=Flippers)) +
-  geom_text(aes(label=Flippers)) +
-  ggtitle("Graph drawn by Steve Simon on 2025-02-22") +
-  xlab("Were googles worn?") +
-  ylab("Average swim time (seconds)")
+ga_1 |>
+	count(LocationType, Completed) |>
+  group_by(LocationType) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) |>
+	mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  filter(Completed=="Yes") |>
+	select(-n, -total)
 ```
 
-Here is an equally valid line plot. You do not need to show both.
+## Descriptive statistics for PracticeType
 
 ```{r}
-#| label: lineplot-2
+#| label: descriptives-7
 
-swim_1 |>
-  group_by(Goggles, Flippers) |>
-  summarize(mean_time=mean(Time)) |>
-  ggplot() +
-  aes(x=Flippers, y=mean_time) +
-  geom_line(aes(group=Goggles)) +
-  geom_text(aes(label=Goggles)) +
-  ggtitle("Graph drawn by Steve Simon on 2025-02-22") +
-  xlab("Were flippers worn?") +
-  ylab("Average swim time (seconds)")
+ga_1 |>
+	count(PracticeType, Completed) |>
+  group_by(PracticeType) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) |>
+	mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  filter(Completed=="Yes") |>
+	select(-n, -total)
 ```
 
-## Question 3
-
-Fit two models. The first should include Shirt, End, Goggles, and Flippers, but no interactions. The second should include all of the terms above plus an interaction between Goggles and Flippers. The latter model could be fit with the formula
-
--   Time ~ Shirt+End+Goggles*Flippers, or
-
--   Time ~ Shirt+End+Goggles+Flippers+Goggles:Flippers
-
-Compare the two models using the anova function. Is there evidence that the interaction improves the prediction of swim times?
+## Logistic models
 
 ```{r}
-m0 <- lm(Time ~ 1, data=swim) 
-m1 <- lm(Time ~ Shirt+End+Goggles+Flippers, data=swim)
-m2 <- lm(Time ~ Shirt+End+Goggles*Flippers, data=swim)
-anova(m1, m2)
+#| label: logistic-1
+
+
+m1 <- glm(
+  Completed~Race,
+  family=binomial,
+  data=ga_1)
+
+tidy(m1)
 ```
 
-## Question 4
-
-Compute the individual coefficients for the model including a Goggles by Flippers interaction. Interpret these results. Does there appear to to synergism between Googles and Flippers (i.e., the use of both goggles and flippers produces a larger average reduction in swim times than the average reduction due to goggles alone plus the individual reduction due to flippers alone)?
-
-```{r}
-#| label: coefficients
-
-tidy(m2) |>
-  mutate(
-    p.value =
-      case_when(
-        p.value <  0.001 ~ "< 0.001",
-        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}")))
-```
