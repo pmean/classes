@@ -1,0 +1,241 @@
+Directory example -----------------------------|
+
+ +-5505
+ +---data
+ +-----airline.txt
+ +-----gardasil.RData
+ +---src
+ +-----simon-5505-hw02.Rmd
+ +-----simon-5505-hw03.Rmd
+ +-archive
+ +---5505_backup_2021-05-17
+ +---5505_backup_2021-05-18
+ +---5505_backup_2021-05-19
+
+
+
+
+
+
+
+Documentation example #1 ----------------------|
+
+ ---
+ title: "Homework 02, MEDB 5505"
+ author: "Steve Simon"
+ date: "Created 2020-02-26"
+ output: html_document
+ ---
+ This program provides the answers to
+ homework in module02 of MEDB 5505, 
+ Introduction to R, where you were asked
+ to read in data from module02.Rdata
+ and calculate some simple statistics.
+
+ This program is in the public domain and
+ you can use the code in any way you wish
+ without asking permission.
+
+
+
+Documentation example #2 ----------------------|
+
+ /* simon-5507-hw01.sas
+
+ Written by Steve Simon
+ Creation date: 2018-09-17
+
+ This program reads the sleep data set 
+ and produces some simple descriptive
+ statistics.
+
+ It is placed in the public domain and
+ you can use this any way you please. */
+
+
+
+
+
+
+
+
+SAS example #1 --------------------------------|
+
+ proc sort data=intro.sleep;
+ by bodywt;
+ run;
+ proc print data=intro.sleep(obs=1);
+ var species bodywt;
+ title1 "The smallest body weight";
+ run;
+
+
+
+
+
+
+
+
+
+
+
+SAS example #2 --------------------------------|
+
+ proc sort data=intro.sleep;
+ by bodywt;
+ run;
+
+ proc print data=intro.sleep(obs=1);
+ var species bodywt;
+ title1 "The smallest body weight";
+ run;
+
+
+
+
+
+
+
+
+
+
+SAS example #3 --------------------------------|
+
+ proc sort data=intro.sleep;
+   by bodywt;
+ run;
+
+ proc print data=intro.sleep(obs=1);
+   var species bodywt;
+   title1 "The smallest body weight";
+ run;
+
+
+
+
+
+
+
+
+
+
+SAS example #4 --------------------------------|
+
+ proc sort
+     data=intro.sleep;
+   by bodywt;
+ run;
+
+ proc print
+     data=intro.sleep(obs=1);
+   var species bodywt;
+   title1 "The smallest body weight";
+ run;
+
+
+
+
+
+
+
+
+SAS example #5 --------------------------------|
+
+ proc sort
+     data=intro.sleep;
+   by bodywt;
+ run;
+
+ proc print
+     data=intro.sleep(obs=1);
+   var
+     species
+     bodywt;
+   title1 "The smallest body weight";
+ run;
+
+
+
+
+
+
+SQL example #1 --------------------------------|
+
+ select sex, count(*) as number_of_teens
+ from titanic_table
+ where age > 12 and age < 20
+ group by sex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SQL example #2 --------------------------------|
+
+ select 
+     sex, 
+     count(*) as number_of_teens
+   from titanic_table
+   where 
+     age > 12 and
+     age < 20
+   group by sex
+
+
+
+
+
+
+
+
+
+
+R example #1 ----------------------------------|
+
+ radius <- sqrt(ts[ , last_date])
+ zero <- radius == 0
+ ggplot(data=states) +
+ geom_sf(color="gray", fill="white") +
+ geom_sf(data=ts[!zero, ], size=radius[!zero]) +
+ coord_sf(xlim=lat, ylim=lon, expand=FALSE) +
+ ggtitle("Bubble plot of COVID-19 cases")
+
+
+
+
+
+
+
+
+
+
+
+R example #2 ----------------------------------|
+
+ radius <- sqrt(ts[ , last_date])
+ zero <- radius == 0
+
+ ggplot(data=states) +
+   geom_sf(
+     color="gray",
+     fill="white") +
+   geom_sf(
+     data=ts[!zero, ],
+     size=radius[!zero]) +
+   coord_sf(
+     xlim=lat,
+     ylim=lon,
+     expand=FALSE) +
+   ggtitle("Bubble plot of COVID-19 cases")
+
+
+
