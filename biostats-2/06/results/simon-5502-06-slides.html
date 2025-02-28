@@ -1768,13 +1768,26 @@ display:block!important;
 <h2>Always start with descriptive statistics</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>NULL</code></pre>
+<pre><code># A tibble: 2 × 2
+  Sex    pct           
+  &lt;chr&gt;  &lt;glue&gt;        
+1 female 35% (462/1313)
+2 male   65% (851/1313)</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>NULL</code></pre>
+<pre><code># A tibble: 3 × 2
+  PClass pct           
+  &lt;fct&gt;  &lt;glue&gt;        
+1 3rd    54% (711/1313)
+2 2nd    21% (280/1313)
+3 1st    25% (322/1313)</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>NULL</code></pre>
+<pre><code># A tibble: 2 × 2
+  Survived pct           
+  &lt;fct&gt;    &lt;glue&gt;        
+1 Yes      34% (450/1313)
+2 No       66% (863/1313)</code></pre>
 </div>
 </div>
 </section>
@@ -1782,10 +1795,20 @@ display:block!important;
 <h2>Compute survival probabilites by sex</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>NULL</code></pre>
+<pre><code># A tibble: 2 × 4
+# Groups:   Sex [2]
+  Sex    Survived pct            odds
+  &lt;chr&gt;  &lt;fct&gt;    &lt;glue&gt;        &lt;dbl&gt;
+1 female No       33% (154/462)  0.5 
+2 male   No       83% (709/851)  4.99</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>NULL</code></pre>
+<pre><code># A tibble: 2 × 4
+# Groups:   Sex [2]
+  Sex    Survived pct            odds
+  &lt;chr&gt;  &lt;fct&gt;    &lt;glue&gt;        &lt;dbl&gt;
+1 female Yes      67% (308/462)   2  
+2 male   Yes      17% (142/851)   0.2</code></pre>
 </div>
 </div>
 </section>
@@ -1793,7 +1816,11 @@ display:block!important;
 <h2>Logistic model estimates</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>NULL</code></pre>
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic p.value  
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;glue&gt;   
+1 (Intercept)   -0.693    0.0987     -7.02 p &lt; 0.001
+2 Sexmale        2.30     0.135      17.1  p &lt; 0.001</code></pre>
 </div>
 </div>
 <ul>
@@ -1803,7 +1830,10 @@ display:block!important;
 </ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>NULL</code></pre>
+<pre><code># A tibble: 1 × 4
+  term    odds_ratio lower upper
+  &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Sexmale       9.99  7.67  13.0</code></pre>
 </div>
 </div>
 </section>
@@ -1931,159 +1961,6 @@ display:block!important;
 <section id="live-demo-diagnostics" class="slide level2">
 <h2>Live demo, Diagnostics</h2>
 </section>
-<section id="break-6" class="slide level2">
-<h2>Break #6</h2>
-<ul>
-<li>What you have learned
-<ul>
-<li>Diagnostics</li>
-</ul></li>
-<li><h2 id="whats-coming-next">What’s coming next</h2></li>
-</ul>
-</section>
-<section id="r-squared" class="slide level2">
-<h2>R-squared</h2>
-</section>
-<section id="assumptions" class="slide level2">
-<h2>Assumptions</h2>
-<ul>
-<li>Linearity</li>
-<li>Independence
-<ul>
-<li>Binomial variation</li>
-</ul></li>
-</ul>
-</section>
-<section id="residuals" class="slide level2">
-<h2>Residuals</h2>
-</section>
-<section id="cooks-distance" class="slide level2">
-<h2>Cook’s distance</h2>
-</section>
-<section id="studentized-residuals" class="slide level2">
-<h2>Studentized residuals</h2>
-</section>
-<section id="leverage" class="slide level2">
-<h2>Leverage</h2>
-</section>
-<section id="informal-sample-size-calculations-1-of-2" class="slide level2">
-<h2>Informal sample size calculations, 1 of 2</h2>
-<ul>
-<li>Rule of 50
-<ul>
-<li>Need 25 to 50 events in each group</li>
-<li>Based on approximate power calculation</li>
-</ul></li>
-<li>Example: newborn readmissions for jaundice
-<ul>
-<li>Occurs about 2% (1/50) of the time</li>
-<li>Need 25 <span class="math inline">\(\times\)</span> 50=1,250 or 50 <span class="math inline">\(\times\)</span> 50=2,500 in each group</li>
-</ul></li>
-</ul>
-</section>
-<section id="informal-sample-size-calculations-2-of-2" class="slide level2">
-<h2>Informal sample size calculations, 2 of 2</h2>
-<ul>
-<li>Rule of 15
-<ul>
-<li>Need 15 events for each independent variable</li>
-<li>Smaller ratio implies poor replicability</li>
-<li>Note: events, not observations</li>
-</ul></li>
-</ul>
-</section>
-<section id="formal-power-calculation" class="slide level2">
-<h2>Formal power calculation</h2>
-</section>
-<section id="assumptions-of-logistic-regression" class="slide level2">
-<h2>Assumptions of logistic regression</h2>
-<ul>
-<li>Independence</li>
-<li>Linearity
-<ul>
-<li>On a log odds scale</li>
-</ul></li>
-<li>No assumptions about normality</li>
-</ul>
-</section>
-<section id="computing-probability-estimates-male-and-3rd-class" class="slide level2">
-<h2>Computing probability estimates, male and 3rd class</h2>
-
-<img role="img" data-src="images/assumptions-05.png" class="r-stretch"><ul>
-<li>log odds = -2.029</li>
-<li>odds = exp(log odds) = 0.1315</li>
-<li>prob = odds / (1+odds) = 0.1162</li>
-</ul>
-</section>
-<section id="computing-probability-estimates-male-and-first-class" class="slide level2">
-<h2>Computing probability estimates, male and first class</h2>
-
-<img role="img" data-src="images/assumptions-05.png" class="r-stretch"><ul>
-<li>log odds = -2.029 + 1.319</li>
-<li>odds = exp(log odds) = 0.4916</li>
-<li>prob = odds / (1+odds) = 0.3296</li>
-</ul>
-</section>
-<section id="computing-probability-estimates-male-and-second-class" class="slide level2">
-<h2>Computing probability estimates, male and second class</h2>
-
-<img role="img" data-src="images/assumptions-05.png" class="r-stretch"><ul>
-<li>log odds = -2.029 + 0.25</li>
-<li>odds = exp(log odds) = 0.1688</li>
-<li>prob = odds / (1+odds) = 0.1444</li>
-</ul>
-</section>
-<section id="computing-probability-estimates-female-and-third-class" class="slide level2">
-<h2>Computing probability estimates, female and third class</h2>
-
-<img role="img" data-src="images/assumptions-05.png" class="r-stretch"><ul>
-<li>log odds = -2.029 + 1.528</li>
-<li>odds = exp(log odds) = 0.6059</li>
-<li>prob = odds / (1+odds) = 0.3773</li>
-</ul>
-</section>
-<section id="computing-probability-estimates-female-and-first-class" class="slide level2">
-<h2>Computing probability estimates, female and first class</h2>
-
-<img role="img" data-src="images/assumptions-05.png" class="r-stretch"><ul>
-<li>log odds = -2.029 + 1.319 + 1.528 + 1.883</li>
-<li>odds = exp(log odds) = 14.8946</li>
-<li>prob = odds / (1+odds) = 0.9371</li>
-</ul>
-</section>
-<section id="computing-probability-estimates-female-and-second-class" class="slide level2">
-<h2>Computing probability estimates, female and second class</h2>
-
-<img role="img" data-src="images/assumptions-05.png" class="r-stretch"><ul>
-<li>log odds = -2.029 + 0.25 + 1.528 + 2.229</li>
-<li>odds = exp(log odds) = 7.2283</li>
-<li>prob = odds / (1+odds) = 0.8785</li>
-</ul>
-</section>
-<section id="assessing-linearity-on-a-log-scale-1-of-3" class="slide level2">
-<h2>Assessing linearity on a log scale, 1 of 3</h2>
-<p><img role="img" data-src="images/assumptions-01.png"></p>
-<p><img role="img" data-src="images/assumptions-02.png"></p>
-</section>
-<section id="assessing-linearity-on-a-log-scale-2-of-3" class="slide level2">
-<h2>Assessing linearity on a log scale, 2 of 3</h2>
-
-<img role="img" data-src="images/assumptions-03.png" class="r-stretch"></section>
-<section id="assessing-linearity-on-a-log-scale-3-of-3" class="slide level2">
-<h2>Assessing linearity on a log scale, 3 of 3</h2>
-
-<img role="img" data-src="images/assumptions-04.png" class="r-stretch"></section>
-<section id="how-good-are-your-predictions-1-of-2" class="slide level2">
-<h2>How good are your predictions, 1 of 2</h2>
-
-<img role="img" data-src="images/assumptions-06.png" class="r-stretch"></section>
-<section id="how-good-are-your-predictions-2-of-2" class="slide level2">
-<h2>How good are your predictions, 2 of 2</h2>
-
-<img role="img" data-src="images/assumptions-07.png" class="r-stretch"></section>
-<section id="live-demo" class="slide level2">
-<h2>Live demo,</h2>
-</section>
 <section id="summary" class="slide level2">
 <h2>Summary</h2>
 <ul>
@@ -2095,7 +1972,6 @@ display:block!important;
 <li>Logistic regression with continuous predictors</li>
 <li>Logistic regression with interactions</li>
 <li>Diagnostics</li>
-<li></li>
 </ul></li>
 </ul>
 <!---

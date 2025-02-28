@@ -26,9 +26,9 @@ load("../data/module06.RData")
 ```{r}
 #| label: 06-03-descriptives
 
-sv$sex_pct
-sv$pclass_pct
-sv$survived_pct
+sex_pct
+pclass_pct
+survived_pct
 ```
 
 ## Compute survival probabilites by sex
@@ -36,8 +36,8 @@ sv$survived_pct
 ```{r}
 #| label: 06-03-survival-by-sex
 
-sv$died_by_sex
-sv$survived_by_sex
+died_by_sex
+survived_by_sex
 ```
 
 ## Logistic model estimates
@@ -45,7 +45,7 @@ sv$survived_by_sex
 ```{r}
 #| label: 06-03-m1-betas
 
-sv$m1_betas
+m1_betas
 ```
 
 -   exp(2.3) = 9.99
@@ -55,5 +55,5 @@ sv$m1_betas
 ```{r}
 #| label: 06-03-or-1
 
-sv$m1_or
+m1_or
 ```
