@@ -1,11 +1,5 @@
 ---
 title: "simon-5502-06-directions"
-format: 
-  html:
-    embed-resources: true
-editor: source
-execute: 
-  error: true
 ---
 
 ## General directions
