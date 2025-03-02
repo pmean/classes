@@ -423,9 +423,17 @@ table2 |>
   xlab("Gender") +
   ylab("Mortality probability") -> lines_1
 lines_1 +
-	scale_y_continuous(breaks=(1:9)/10)
+	scale_y_continuous(breaks=seq(0.1, 0.9, 0.1))
 
 ```
+
+#### Comment on the code
+
+The [scale_x_continuous and scale_y_continuous][ref03] functions control the location of the tick marks on the x and y axis, but only for continuous variables. You would use [scale_x_discrete and scale_y_discrete][ref04] if your axis represented a categorical variable. There are also functions to control the color, size, and shape of various graphic elements. You can find a fairly detailed yet reasonably comprehensive description of all this in Chapters 10, 11, 12, and 14 of [ggplot2: Elegant Graphics for Data Analysis (3e)][ref05].
+
+[ref03]: https://ggplot2.tidyverse.org/reference/scale_continuous.html
+[ref04]: https://ggplot2.tidyverse.org/reference/scale_discrete.html
+[ref05]: https://ggplot2-book.org/
 
 #### Interpretation of the output
 
@@ -443,9 +451,16 @@ lines_1 +
 lines_2
 ```
 
+#### Comment on the code
+
+The transform="logit" argument in scale_y_continuous adjusts the y-axis so that comparisons can be made on the log odds scale. Assessing a lack of parallelism is best done on the log odds scale. For this dataset and many others, the bulk of the probabilities are between 20% and 80%. In this case, you will see very little difference between the plot using probabilities on the y-axis and plots using log odds on the y-axis. But when the bulk of your data is close to 0% or 100%, then the transform="logit" option will present a quite different appearance. In this case, any interpretation must be done with log odds on the y-axis.
+
 #### Interpretation of the output
 
 The plot on a log odds scale shows a similar pattern.
+
+Note: you should not show both graphs in your output because it will just confuse things. Use probabilities on the y-axis if most of your probabilities are between 20% and 80% and use log odds on the y-axis if most of your probabilities are below 20% or above 80%.
+
 ## Alternative interaction plot 
 
 ```{r}
@@ -642,6 +657,8 @@ ti_2 |>
 	scale_y_continuous(breaks=0:1) -> linearity_plot
 linearity_plot
 ```
+
+
 
 #### Interpretation of the output
 

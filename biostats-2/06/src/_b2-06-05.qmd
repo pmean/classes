@@ -25,34 +25,30 @@ load("../data/module06.RData")
 ## Line plot, 1
 
 ```{r}
-#| label: line-1
-
-lines_1
-```
-
-## Line plot, 2
-
-```{r}
 #| label: line-2
 
 lines_2
 ```
 
-## Line plot, 3
+::: notes
 
-```{r}
-#| label: line-3
+Notice how the spacing on the y-axis is not linear. This graph used a logit transformation. Logit is short for the log odds transformation. The demo program for this module shows how to graph the interaction on the probability scale or on the log odds scale. If most of the probabilities are between 20% and 80%, you won't see any major differences between these two plots. If many of the probabilities are small (less than 20%) or large (greater than 80%), then you should only interpret the interaction plot on the log odds scale.
 
-lines_3
-```
+:::
 
-## Line plot, 4
+## Line plot, 2
 
 ```{r}
 #| label: line-4
 
 lines_4
 ```
+
+::: notes
+
+This plot switches what goes on the x-axis and what goes on the individual lines. You should look at both plots, but please only use one in your reports.
+
+:::
 
 ## Logistic regression model with interaction
 

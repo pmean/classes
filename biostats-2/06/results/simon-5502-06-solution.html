@@ -3055,11 +3055,11 @@ vertical-align: -.125em;
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] &quot;R version 4.3.0 (2023-04-21 ucrt)&quot;</code></pre>
+<pre><code>[1] &quot;R version 4.4.3 (2025-02-28 ucrt)&quot;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] &quot;2025-02-27&quot;</code></pre>
+<pre><code>[1] &quot;2025-03-02&quot;</code></pre>
 </div>
 </div>
 </section>
@@ -3097,100 +3097,85 @@ $ PracticeType  &lt;dbl&gt; 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1
 <section id="question-1" class="level2">
 <h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
 <p>You will not be graded on this, but get in the habit of computing some simple statistics (mean, standard deviation, minimum, and maximum for continuous variables and counts and percentages for categorical variables) for the important variables in this dataset. Also, get in the habit of providing brief interpretations.</p>
-<p>Be sure to create factors with descriptive levels for any variables used in your analysis.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lab1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>lab2 <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Black&quot;</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;White&quot;</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Hispanic&quot;</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Other&quot;</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>ga <span class="sc">|&gt;</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">Completed =</span> </span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">factor</span>(</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        Completed, </span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">levels=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, </span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels=</span>lab1)) <span class="sc">|&gt;</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">Race =</span> </span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">factor</span>(</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        Race, </span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">levels=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">3</span>), </span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels=</span>lab2))<span class="ot">-&gt;</span> ga_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="descriptive-statistics" class="level2">
 <h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive statistics</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ga_1 <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Age_mean=</span><span class="fu">mean</span>(Age),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Age_sd=</span><span class="fu">sd</span>(Age),</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Age_min=</span><span class="fu">min</span>(Age),</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Age_max=</span><span class="fu">max</span>(Age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 4
-  Age_mean Age_sd Age_min Age_max
-     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1     18.5   4.23      11      26</code></pre>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ga_1 <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Age_mean=</span><span class="fu">mean</span>(Age),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Age_sd=</span><span class="fu">sd</span>(Age),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Age_min=</span><span class="fu">min</span>(Age),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Age_max=</span><span class="fu">max</span>(Age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error: object &#39;ga_1&#39; not found</code></pre>
 </div>
 </div>
 <section id="interpretation-of-the-output" class="level4">
 <h4 class="anchored" data-anchor-id="interpretation-of-the-output">Interpretation of the output</h4>
 <p>Don’t forget to put interpretations here and after every other program chunk that produces a table or graph.</p>
-</section>
-</section>
-<section id="descriptive-statistics-for-race" class="level2">
-<h2 class="anchored" data-anchor-id="descriptive-statistics-for-race">Descriptive statistics for Race</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ga_1 <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(Race, Completed) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Race) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{pct}% ({n}/{total})&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Completed<span class="sc">==</span><span class="st">&quot;Yes&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ga <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(Completed) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{pct}% ({n}/{total})&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 3
-# Groups:   Race [4]
-  Race     Completed pct          
-  &lt;fct&gt;    &lt;fct&gt;     &lt;glue&gt;       
-1 Black    Yes       24% (105/443)
-2 White    Yes       38% (280/732)
-3 Hispanic Yes       33% (17/52)  
-4 Other    Yes       36% (67/186) </code></pre>
+<pre><code># A tibble: 2 × 2
+  Completed pct           
+      &lt;dbl&gt; &lt;glue&gt;        
+1         0 67% (944/1413)
+2         1 33% (469/1413)</code></pre>
 </div>
 </div>
-</section>
-<section id="descriptive-statistics-for-insurancetype" class="level2">
-<h2 class="anchored" data-anchor-id="descriptive-statistics-for-insurancetype">Descriptive statistics for InsuranceType</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ga_1 <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(InsuranceType, Completed) <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(InsuranceType) <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{pct}% ({n}/{total})&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Completed<span class="sc">==</span><span class="st">&quot;Yes&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ga <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(MedAssist) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{pct}% ({n}/{total})&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 3
-# Groups:   InsuranceType [4]
-  InsuranceType Completed pct          
-          &lt;dbl&gt; &lt;fct&gt;     &lt;glue&gt;       
-1             0 Yes       20% (55/275) 
-2             1 Yes       35% (253/723)
-3             2 Yes       46% (39/84)  
-4             3 Yes       37% (122/331)</code></pre>
+<pre><code># A tibble: 2 × 2
+  MedAssist pct            
+      &lt;dbl&gt; &lt;glue&gt;         
+1         0 81% (1138/1413)
+2         1 19% (275/1413) </code></pre>
 </div>
 </div>
 </section>
-<section id="descriptive-statistics-for-medassist" class="level2">
-<h2 class="anchored" data-anchor-id="descriptive-statistics-for-medassist">Descriptive statistics for MedAssist</h2>
+</section>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<p>Create factors with descriptive levels for Completed, MedAssist, and LocationType. Orient your factor so that the reference category (the category that appears first) is “No” for Completed and MedAssist and “Urban” for LocationType. Calculate the probability of completing all three shorts for MedAssist and LocationType.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lab1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>lab2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Urban&quot;</span>, <span class="st">&quot;Suburban&quot;</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>ga <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Completed =</span> </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">factor</span>(</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        Completed, </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">levels=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>, </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels=</span>lab1)) <span class="sc">|&gt;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">MedAssist =</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">factor</span>(</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>        MedAssist,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">levels=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels=</span>lab1)) <span class="sc">|&gt;</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">LocationType =</span> </span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">factor</span>(</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>        LocationType, </span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">levels=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">0</span>,</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels=</span>lab2))<span class="ot">-&gt;</span> ga_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="completion-probabilities-for-medassist" class="level2">
+<h2 class="anchored" data-anchor-id="completion-probabilities-for-medassist">Completion probabilities for MedAssist</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ga_1 <span class="sc">|&gt;</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(MedAssist, Completed) <span class="sc">|&gt;</span></span>
@@ -3204,95 +3189,174 @@ $ PracticeType  &lt;dbl&gt; 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1
 <pre><code># A tibble: 2 × 3
 # Groups:   MedAssist [2]
   MedAssist Completed pct           
-      &lt;dbl&gt; &lt;fct&gt;     &lt;glue&gt;        
-1         0 Yes       36% (414/1138)
-2         1 Yes       20% (55/275)  </code></pre>
+  &lt;fct&gt;     &lt;fct&gt;     &lt;glue&gt;        
+1 No        Yes       36% (414/1138)
+2 Yes       Yes       20% (55/275)  </code></pre>
 </div>
 </div>
 </section>
-<section id="descriptive-statistics-for-location" class="level2">
-<h2 class="anchored" data-anchor-id="descriptive-statistics-for-location">Descriptive statistics for Location</h2>
+<section id="completion-probabilities-for-locationtype" class="level2">
+<h2 class="anchored" data-anchor-id="completion-probabilities-for-locationtype">Completion probabilities for LocationType</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ga_1 <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(Location, Completed) <span class="sc">|&gt;</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Location) <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(LocationType, Completed) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(LocationType) <span class="sc">|&gt;</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{pct}% ({n}/{total})&quot;</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Completed<span class="sc">==</span><span class="st">&quot;Yes&quot;</span>) <span class="sc">|&gt;</span></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 3
-# Groups:   Location [4]
-  Location Completed pct          
-     &lt;dbl&gt; &lt;fct&gt;     &lt;glue&gt;       
-1        1 Yes       34% (275/798)
-2        2 Yes       48% (80/165) 
-3        3 Yes       21% (19/89)  
-4        4 Yes       26% (95/361) </code></pre>
-</div>
-</div>
-</section>
-<section id="descriptive-statistics-for-locationtype" class="level2">
-<h2 class="anchored" data-anchor-id="descriptive-statistics-for-locationtype">Descriptive statistics for LocationType</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ga_1 <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(LocationType, Completed) <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(LocationType) <span class="sc">|&gt;</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{pct}% ({n}/{total})&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Completed<span class="sc">==</span><span class="st">&quot;Yes&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
 # Groups:   LocationType [2]
   LocationType Completed pct          
-         &lt;dbl&gt; &lt;fct&gt;     &lt;glue&gt;       
-1            0 Yes       37% (355/963)
-2            1 Yes       25% (114/450)</code></pre>
+  &lt;fct&gt;        &lt;fct&gt;     &lt;glue&gt;       
+1 Urban        Yes       25% (114/450)
+2 Suburban     Yes       37% (355/963)</code></pre>
 </div>
 </div>
 </section>
-<section id="descriptive-statistics-for-practicetype" class="level2">
-<h2 class="anchored" data-anchor-id="descriptive-statistics-for-practicetype">Descriptive statistics for PracticeType</h2>
+<section id="question-3" class="level2">
+<h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<p>Calculate a logistic regression model using Age (not AgeGroup) to predict whether a patient has completed all three shots. Interpret the odds ratio from this model.</p>
+</section>
+<section id="logistic-regression-models" class="level2">
+<h2 class="anchored" data-anchor-id="logistic-regression-models">Logistic regression models</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ga_1 <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(PracticeType, Completed) <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(PracticeType) <span class="sc">|&gt;</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{pct}% ({n}/{total})&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Completed<span class="sc">==</span><span class="st">&quot;Yes&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  Completed<span class="sc">~</span>Age,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">family=</span>binomial,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data=</span>ga_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="display-age-coefficient" class="level2">
+<h2 class="anchored" data-anchor-id="display-age-coefficient">Display Age coefficient</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.value =</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">case_when</span>(</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        p.value <span class="sc">&gt;=</span> <span class="fl">0.001</span> <span class="sc">~</span> <span class="fu">glue</span>(<span class="st">&quot;p = {round(p.value, 3)}&quot;</span>),</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        p.value <span class="sc">&lt;</span>  <span class="fl">0.001</span> <span class="sc">~</span> <span class="st">&quot;p &lt; 0.001&quot;</span>)) <span class="ot">-&gt;</span> m1_betas</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>m1_betas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 3
-# Groups:   PracticeType [3]
-  PracticeType Completed pct          
-         &lt;dbl&gt; &lt;fct&gt;     &lt;glue&gt;       
-1            0 Yes       31% (162/515)
-2            1 Yes       29% (106/365)
-3            2 Yes       38% (201/533)</code></pre>
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic p.value  
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;glue&gt;   
+1 (Intercept)  -0.334     0.253      -1.32 p = 0.187
+2 Age          -0.0198    0.0134     -1.47 p = 0.14 </code></pre>
 </div>
 </div>
 </section>
-<section id="logistic-models" class="level2">
-<h2 class="anchored" data-anchor-id="logistic-models">Logistic models</h2>
+<section id="back-transforming-sex-coefficients" class="level2">
+<h2 class="anchored" data-anchor-id="back-transforming-sex-coefficients">Back transforming Sex coefficients</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  Completed<span class="sc">~</span>Race,</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">family=</span>binomial,</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data=</span>ga_1)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>m1_betas <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">!=</span> <span class="st">&quot;(Intercept)&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">odds_ratio=</span><span class="fu">exp</span>(estimate)) <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lower=</span><span class="fu">exp</span>(estimate<span class="sc">+</span><span class="fu">qnorm</span>(<span class="fl">0.025</span>)<span class="sc">*</span>std.error)) <span class="sc">|&gt;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">upper=</span><span class="fu">exp</span>(estimate<span class="sc">+</span><span class="fu">qnorm</span>(<span class="fl">0.975</span>)<span class="sc">*</span>std.error)) <span class="sc">|&gt;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(term, odds_ratio, lower, upper) <span class="ot">-&gt;</span> m1_or</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>m1_or</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+  term  odds_ratio lower upper
+  &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Age        0.980 0.955  1.01</code></pre>
+</div>
+</div>
+</section>
+<section id="question-4" class="level2">
+<h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<p>You suspect that there is an interaction between MedAssist and LocationType in predicting whether a patient completed all three shots. Draw a line plot on the log odds scale. Interpret this plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ga_1 <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(MedAssist, LocationType, Completed) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(MedAssist, LocationType) <span class="sc">|&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">prop=</span>n<span class="sc">/</span>total) <span class="ot">-&gt;</span> table1</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>table1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 6
+# Groups:   MedAssist, LocationType [4]
+  MedAssist LocationType Completed     n total  prop
+  &lt;fct&gt;     &lt;fct&gt;        &lt;fct&gt;     &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
+1 No        Urban        No          149   213 0.700
+2 No        Urban        Yes          64   213 0.300
+3 No        Suburban     No          575   925 0.622
+4 No        Suburban     Yes         350   925 0.378
+5 Yes       Urban        No          187   237 0.789
+6 Yes       Urban        Yes          50   237 0.211
+7 Yes       Suburban     No           33    38 0.868
+8 Yes       Suburban     Yes           5    38 0.132</code></pre>
+</div>
+</div>
+</section>
+<section id="interaction-plot" class="level2">
+<h2 class="anchored" data-anchor-id="interaction-plot">Interaction plot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>table1 <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Completed<span class="sc">==</span><span class="st">&quot;Yes&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>MedAssist, <span class="at">y=</span>prop) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group=</span>LocationType)) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>LocationType)) <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expand_limits</span>(<span class="at">y=</span><span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Graph drawn by Steve Simon on 2025-03-02&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Did the patient have some type of medical assistance&quot;</span>) <span class="sc">+</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability of completing three shots&quot;</span>) <span class="ot">-&gt;</span> lines_1</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>lines_1 <span class="sc">+</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>)<span class="sc">/</span><span class="dv">10</span>, <span class="at">transform=</span><span class="st">&quot;logit&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABUAAAAPACAMAAADDuCPrAAACMVBMVEUAAAAAADUAADoAAF4AAGYANTUANV4ANYQAOjoAOmYAOpAAXqgAZpAAZrYzMzM1AAA1NQA1NTU1NV41Xl41XoQ1Xqg1hIQ1hKg1hMk6AAA6OgA6Ojo6OmY6OpA6Zjo6ZmY6ZpA6ZrY6kJA6kLY6kNtNTU1NTW5NTY5Nbm5Nbo5NbqtNjsheAABeNQBeXl5ehIRehKhehMleqMleqOtmAABmADpmOgBmOjpmOpBmZgBmZjpmZmZmZpBmkGZmkJBmkLZmkNtmtrZmtttmtv9uTU1ubk1ubm5ubo5ujqtujshuq8huq+SENQCEXjWEXl6EhKiEqKiEqMmEyeuOTU2Obk2Obm6Oq6uOq8iOq+SOyOSOyP+QOgCQOjqQZjqQZmaQZpCQkDqQkGaQkLaQtpCQtraQttuQ29uQ2/+oXgCoXjWohDWohF6oqKioycmoyeuo6+urbk2rbm6rjk2rjm6rq8iryOSr5Mir5P+2ZgC2Zjq2Zma2kDq2kGa2kJC2tpC2tra2ttu229u22/+2///Ijk3Ijm7Iq27Iq6vIyKvI5KvI5OTI5P/I///JhDXJqF7JqITJqKjJyajJycnJyevJ6+vbkDrbkGbbtmbbtpDbtrbbttvb27bb29vb2//b/7bb/9vb///kq27kyI7kyKvk5Mjk5P/k///rqF7ryYTryajrycnr66jr68nr6+v/tmb/yI7/25D/27b/29v/5Kv/5Mj/5OT//7b//8j//9v//+T////aQzQ8AAAACXBIWXMAAB2HAAAdhwGP5fFlAAAgAElEQVR4nO3dj58c9X3n+WLARhIrfmTBZhh8EkEtggCvE8ZwkVgriyZrcRhnjezNmVlpN7lwlu046E6XYwjE/BK52xVKloWx5APtSfadbIxmNNJoRz391239/l3d30/3p7rqW/16Ph6gmerq6q5Pf+o99budAQBgLE7TbwAAbEWAAsCYCFAAGBMBCgBjIkABYEwEKACMiQAFgDERoAAwJgIUAMZEgALAmAhQABgTAQoAYyJAAWBMBCgAjIkABYAxTS1Ar//FwrzjODv2vHpp/ImsOM4+zfHG0F92nCPCp/z9s5PPumj6W4vO3I9qeS2JT48/5L6thcOpue5feNYd9HC6EMWx3E8vUjoXJRO58ZY7kbm971a8E6OXBeSmFKAXnkktFI+O3bQ2Bmj/jdSs/0k8+MKzSglXNv02BKhXqPBdxfW6HrXBzveqx0oGlQdocSKD8/PhoL2lrWX0ssAYphKg6WXc7+P3x5yQhQGajgPXrkvRUKWEK51+CwI0877CgrlvK3LH+yZjlc1FcSKD9UJ9Rzyj7GWBMUwjQIN2ffjVi4NwW6u0zU1YGKArTrTteMNfDQ/el17ClU+/ed77esT9xPtvzce55Q6bc7eZ+2+6j+2uHGtjfmh/FCfiBeTOV90CvFE+/2YvC4xhGgG6kt54GgxWx1/M7QtQNw2St9Jfidap1AK0YvqN80Lt+eDH+C16PwSlWw/fZ9lY3oO7qydcnIjXUGHirpbFoeHLAmOYQoB6PZpZpShtcyP2BehqZt69J/tvTC1AK6bfuPXU+1oJE3E1ScbwAyobyxttyDwUJ5L6RErLaviywBimEKAr+bz0VgDG2/FkZYDuy/7qL66aAVo2/cal31eYV+nKhYNKxhpR4JKJuH+go/4qK6vhywLjqD9ASzaSVnccvuj/67Z2/415Z+5hv+svHPfPxgkeCxv/un/+SXR6ih+M173RdpSdf+KfrTL3yKU4QIe9wEq8XCXbeGEA+Q9VvEzwtj59NjlrJrPUruSW/tJE25jPHCLxX2lu73vFJ8R/CDKjjJx+/JZWvH/85z78ql+ATDUH7mxkJjtsvscYPRJmVLpOJUkXJdnwvy3DJ+IOKWzbGL4sMI76A3TIBruXbytRksTnmoRnlvhJFR1fDU9P8QIlOmVlZyFNoinM/SgdoFUvkETPerJTNsg/7//RiQP5Bc5/W6uZt5Va3y0swd60n8+/0UyAJqcoPHIpN4Voec+NMnL6mQCN3uu+ZDL7klnJTHbYfItHT4SVTq0plq1mRp+Hdwzp/z3/UPnfixETKdseN3xZYBz1B+hK9Z94t3kX/MXPHaFw8orX7N+Kzu8LJ7ESPSEZlNiIR77jj5MArXyBZMFacVKn/3jDhr2M97YOZR9MHTYuHADxU2dn7gz6dICmz6jZHb6b3BZnYZRR008H6F/ET30+PkE9PpCVm8mh5RWOnn2L+T2PxSSLd9+6o+2M/tQV98MMm8inz5T9rTZ8WWActQfosA71V44evTS4cTE41+T5S+GZJdGxAXdZejdYMIJp+BHgrZj4a5PFRcE/NyU4aX/fqBeIT8X0nxgseGH+jXwZZ1f0YPhOwxWwkjWcMHfm9vzVxezQ8Cmr4buOz8FZzxzzOFI2ysjpJwEazsgFbzvbn//kZJ6V8DGz8kpHT6yH1V0v3TmRH2sQrTGXJ2jlRII/SiUn0hu+LDCO2gPUW8CHBei+ZLRwEUyvd+32F4h+dBxqJX5CcbLeEhRszPrP3DfyBaJDCe4TF8LHwuVr2MsEb2uQeVvxQYn05mL8hONxHOx9NVWVZDUweVvek5NsDdeHi6OMnH46QONzg6LJrsTHXsLHjMsrGD0RP1a+dzc/VnBiq/tns+/vq8nHcuVEgp09D4/YS1z9ssA4phKg8VKQXOXsb1WtJvvOUhta7jOiAE0dXfUnkjqgX9jdlRoQL+xDXyDa8l515v6X+cyq5LCXKXtb8TZ8+Q61G2/FOxd2vho/Mz6HMX5GssIZLNPhYyWjjJp+KkDD95pKirASK5mCmJRXMnqmXiXFySVZMlbqjXo/5vcMVAfojkPPlq6zmr0sMJbproEWA7SkfcMVr8y2f7JqGC0M+azKbD2nDiINfYFwRWrXf81G6pCXKX1bUfBWn4HTv3DiofRGaRyg6URcDx6N3kU0tZJRRk0/FaC743lOnXTgzne+XruHz7dw9MzzwpQdkmTpv0op7jvNH5wauj7p757I10f+soCxpgM0t9j1P/v5ifDquswiuxovsvuyQ9Kvkyxsq2VbjfkX8I/R+0/c7U7YGxI9bcjLlL6t6IllW/CpZ/onEQVPjo+vZ69k96cWxXEYpGWjjJp+KkCTtbmoPMG7zNQrWSk1Ku/o0SPXU8d1qndGXi89+hPVOimAO87wPZrhKR+Gz6h6WcDYVA4i5Zet9dIADW4wFvV99n4b6yYBmiwM66UBmnuBcKLr3kK6Gi6p8WrhsAAtvK1op8Dwa2gGwSKbOdkxn47+g+G7X00fTMuNMmL6bQlQb19KfOeYysPhmbEy/FfIx+GQY+rhirbZM6pfFjDVyHmgZQF6PXXDu2KAGq2BDg/QwguEsbfq/bLh7QSNd2UaB2j8qH/GesktlvJPjzZKhwZo8L7S+wUqA7Ri+i0J0POZt5u+SUi6VOfzM5UoBmjVROTPGPKygKnpXImUW08oCdDwbJyFPd96578u1rEJX3yBIPbclwlOEt11Kd7BKN6EDxK75DZC+cPm0btMB2hxr6kfx9Ha7dBLGyumLw1QeXlHjB4NTJ/5X3aJQHGsXCFKVjHLJpJ+xj6jZwx7WcBU/QFasqe+JEBXw7M0B6MOIlUtslUHkapfIIi9jflwyne8Hy+uowI0/7bClcaSLfj8X498gJZfte/Hcdm7KaiYvkGAVhwVMi2vQYDmz1otuSi9ZKz0FndJQpZMZMRWvdnLAmOZws1E1gvbSr8oBmhqYVxPDiJFT4u2fIctsqkj7mWnHhZfIDh+tB6fO/Sv4lWVUQGaf1v+U+b+15Ityvx5MqvJ3oP8rdhSu1C9teJ4Nbl8lOHTNwjQfL2OjJhv4ejhX6z8kNSnsbt8rPSR97KrgIsTST+j5Li92csCY5lCgPrH3lNXrl8/7hQCNLVet5E6Cp8ESnx+UeUimz3TOx+gJS/gT++OPw5+Ds6m3x2/4aEBmn9bAz+Uf3+xZJ+a/9cjnnfvgqDs3ZhSt1pJLfyr/iWYqfdbHGXo9E0CtPzMeMPyjhzdv/dmbl0wudQhvpVncaxUUUvv1VmcSOoZZWeOmr0sMJZpBKgfaM5O/1rDGz/3j+UEX96TXTfwt7D9yxWTAE0uHkxfKZR7bjKJZPSyNdDcCwzCy1eiRHPiTb2RAZpcMnokM7hkozC43vHdS9FpRsErJ3nu/3V5N7zCNH0lQBKVpaMMnb5JgJZfm2lY3pGjl96ycCXY75hcTVo21np6bkvOMipMJHjGq+G1SyV3NTF6WWAc0wjQ3PXNyfroai4yYtFdNpJ7VYw+upM69jp3sBigxReIBiZBlrquZmiAHsq9rWgWy25J1F9xSl44fK9HsgfZk7jwnpTZsVccZdj0jQK09O4g1eWVjZ77xONdJtkBpWOlZqisoIWJBDs0IyUb5mYvC4xhOgEa3NYzEl3PmFns4qae+1fLcbJEd0uLvm1y+F63KGjmjpSdSF94gfAZqZt6lOwvLT8KH00rtca5UbJ2GDifiu74Dm3r8fOTa9lTuzm8h5N1pNJRhk3fKEAHW/GJXcn96YaUVzJ6/tyrMKNyX49ZMVach2VzW/qtnMlnW7pj0+xlAbkpBejA+/Jy7zT2uYcPJ3cNyix2wT2Dve9HCwYHR0+97eQd8VNGnTjzqX/D4PfKr0TKv0A4QvJVZnFkjT6Nyb9zc+Z+lcPONrpw3F+VXkjN+sC746XzaPCu/fs8P/xq6hn5+4qWjDJs+mYB6t1g2btLU/oOyUPLaz56enU1nVHBboaF5HSI0rGu+1c8VM1tbiK+4LsKH87f1q/8GVUvC4hNLUDFhp7/2D75yAPQfQSokuHfJQmgiwhQHWWXFQLoOAJUhfd1Q1xYDcwaAnRy4RlSdrxZAHoI0MkFR3W5shqYOQTo5Lzt9x1cWQ3MnvYGKAC0HAEKAGMiQAFgTAQoAIyJAAWAMRGgADAmAhQAxkSAAsCYCFAAGBMBCgBjIkABYEwEKACMiQAFgDERoAAwproDdA2aKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtBKjNKChEaBhtGgG6fXqp1zt6Nj3o5g96vf1/foUArRcFhQgNo00hQG8d63ke+zAZ9Ct/SO/xD/PjNj27HUNBIULDaFMI0DO9A2cHN0/1DsQrnJtL3qDtD1KDCNA6UFCI0DDaJg/QzSV/3fPWsf2vpyL1SvDvKwRonSgoRGgYbZMH6OXeE+G/L4ZDtk+FwXktfIgArQkFhQgNo23yAD1TSMvtU+HK6OZSfhu+6dntGAoKERpG28QBWpKWJYPuDoknDwC2UAlQd6X0ifBfAhTAzJgoQOMTmTaXei9c8Y7CZ85t8jS9wt0xFBQiNIw2zQBNdnheDs4D/bfsA60XBYUIDaOtngAd/Pr7vd63z3IQqWYUFCI0jLaJA7TkKHyM05hqRkEhQsNomzxAo/M/k/NAU9maH9T07HYMBYUIDaNt8gAtuRIpzNLNpWQQAVoHCgoRGkbb5AG6far3eO5a+Gu9/T8cDH69VFwnbXp2O4aCQoSG0TZ5gA5upu7GFK50fhAchS/cS4SPTxcFhQgNo00hQAc3T7thedQPy2ir/Vd/2uv9wQ+LozY9ux1DQSFCw2jTCFCBpme3YygoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbQSozSgoRGgYbVMOUADoLNZArUJBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZBIULDaCNAbUZB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" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="question-5" class="level2">
+<h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
+<p>Fit a model using MedAssist and LocationType to predict Completed, first without an interaction and then with an interaction. Test whether the interaction is statistically significant.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  Completed<span class="sc">~</span>MedAssist<span class="sc">+</span>LocationType,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">family=</span>binomial,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">data=</span>ga_1)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  Completed<span class="sc">~</span>MedAssist<span class="sc">*</span>LocationType,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">family=</span>binomial,</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">data=</span>ga_1)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2, m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Deviance Table
+
+Model 1: Completed ~ MedAssist + LocationType
+Model 2: Completed ~ MedAssist * LocationType
+  Resid. Df Resid. Dev Df Deviance Pr(&gt;Chi)  
+1      1410     1764.7                       
+2      1409     1761.2  1   3.4068  0.06493 .
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2, m3) <span class="sc">|&gt;</span> <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  term                      df.residual residual.deviance    df deviance p.value
+  &lt;chr&gt;                           &lt;dbl&gt;             &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+1 Completed ~ MedAssist + …        1410             1765.    NA    NA    NA     
+2 Completed ~ MedAssist * …        1409             1761.     1     3.41  0.0649</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m3) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">p.value=</span><span class="fu">round</span>(p.value, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 5
-  term         estimate std.error statistic  p.value
-  &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-1 (Intercept)    -1.17      0.112    -10.5  1.26e-25
-2 RaceWhite       0.690     0.135      5.11 3.28e- 7
-3 RaceHispanic    0.447     0.316      1.41 1.57e- 1
-4 RaceOther       0.595     0.189      3.14 1.68e- 3</code></pre>
+  term                              estimate std.error statistic p.value
+  &lt;chr&gt;                                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 (Intercept)                         -0.845     0.149     -5.65   0    
+2 MedAssistYes                        -0.474     0.218     -2.17   0.03 
+3 LocationTypeSuburban                 0.349     0.164      2.12   0.034
+4 MedAssistYes:LocationTypeSuburban   -0.917     0.532     -1.72   0.085</code></pre>
 </div>
 </div>
 </section>

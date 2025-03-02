@@ -1,0 +1,200 @@
+---
+title: "Tershlin Jeftha"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute: 
+  error: true
+---
+
+## Start part 1
+
+## File details
+
+This program was written by Tershlin Jeftha on 2025-02-25 and is placed in the public domain. You can use this program any way you please.
+
+There are two data files used in this program
+
+-   exercise-programs, [SAS file][ref03], [dictionary][ref04]
+-   fev, [csv file][ref05], [dictionary][ref06]
+
+[ref03]: https://raw.githubusercontent.com/pmean/data/main/files/exercise-programs.sas7bdat
+[ref04]: https://github.com/pmean/data/blob/main/files/exercise-programs.yaml
+[ref05]: https://github.com/pmean/data/blob/main/files/fev.txt
+[ref06]: https://github.com/pmean/data/blob/main/files/fev.yaml
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(broom)
+library(glue)
+library(tidyverse)
+R.version.string
+Sys.Date()
+sv <- NULL # tables and graphs for later use
+```
+
+## Read exercise data
+
+```{r}
+file_path <- "../data/swim-speeds.txt"
+swim_speeds <- read_table(file_path)
+head(swim_speeds)
+str(swim_speeds)
+```
+## Question 1:You will not be graded on this, but get in the habit of computing some simple statistics (mean, standard deviation, minimum, and maximum for continuous variables and counts and percentages for categorical variables) for the important variables in this dataset. Also, get in the habit of providing brief interpretations.
+
+## Be sure to create factors with descriptive levels for End, Shirt, Googles, and Flippers. For example: mutate(Shirt=factor(Shirt, levels=0:1, labels=c("No Shirt", "Shirt")))
+
+```{r}
+
+# Convert categorical variables to factors with descriptive labels
+swim_speeds <- swim_speeds %>%
+  mutate(
+    Shirt = factor(Shirt, levels = 0:1, labels = c("No Shirt", "Shirt")),
+    Goggles = factor(Goggles, levels = 0:1, labels = c("No Goggles", "Goggles")),
+    Flippers = factor(Flippers, levels = 0:1, labels = c("No Flippers", "Flippers")),
+    End = factor(End, levels = 0:1, labels = c("Did Not Finish", "Finished"))
+  )
+
+# Summary statistics for the continuous variable (Time)
+time_summary <- swim_speeds %>%
+  summarise(
+    Mean = mean(Time, na.rm = TRUE),
+    SD = sd(Time, na.rm = TRUE),
+    Min = min(Time, na.rm = TRUE),
+    Max = max(Time, na.rm = TRUE)
+  )
+
+# Counts and percentages for categorical variables
+categorical_summary <- swim_speeds %>%
+  select(Shirt, Goggles, Flippers, End) %>%
+  summarise(
+    Shirt_Count = list(count(swim_speeds, Shirt)),
+    Goggles_Count = list(count(swim_speeds, Goggles)),
+    Flippers_Count = list(count(swim_speeds, Flippers)),
+    End_Count = list(count(swim_speeds, End))
+  )
+
+# Print results
+print("Summary Statistics for Time:")
+print(time_summary)
+
+print("Counts and Percentages for Categorical Variables:")
+print(categorical_summary$Shirt_Count[[1]])
+print(categorical_summary$Goggles_Count[[1]])
+print(categorical_summary$Flippers_Count[[1]])
+print(categorical_summary$End_Count[[1]])
+
+```
+
+## Question 2: Draw a line plot showing the possible interaction between Goggles and Flippers. Are the lines roughly parallel?
+
+## Note: there are two ways to draw this line plot. Either way is fine, but do not show both ways.
+
+*I pulled several lines from the previous program chunk and placed it in a separate chunk with eval: false so that you would see the error more clearly. It is quite subtle. You define factors in one of the chunks above and then do it again down here. The problem is that once you define a factor, the levels change and using an argument levels = 0:1 leads to the creation of missing values. There are no longer any levels with the value of 0 or 1.*
+
+*The error messages are very bad here. They should say that you can't do certain things when all the values of a key variable are missing. But they don't. It took me quite a while to track this down.*
+
+*A good rule is that anytime you make a change to a tibble or dataframe, store it under a new name (e.g., swim_speeds_1). That way, you can easily revert to the original data, if needed. It's not a requirement, just a suggestion.*
+
+```{r}
+#| eval: false
+swim_speeds <- swim_speeds %>%
+  mutate(Flippers = factor(Flippers, levels = 0:1, labels = c("No Flippers", "Flippers")),
+         Goggles = factor(Goggles, levels = 0:1, labels = c("No Goggles", "Goggles")))
+```
+
+
+# Compute mean swim time for each combination of Goggles and Flippers
+```{r}
+interaction_data <- swim_speeds %>%
+  group_by(Goggles, Flippers) %>%
+  summarise(mean_time = mean(Time, na.rm = TRUE), .groups = "drop")
+
+# Create the line plot
+ggplot(interaction_data, aes(x = Flippers, y = mean_time, group = Goggles, color = Goggles)) +
+  geom_line(aes(linetype = Goggles), size = 1) +  # Ensures distinct lines
+  geom_point(size = 3) +
+  labs(title = "Interaction Between Goggles and Flippers on Swim Time",
+       x = "Flippers",
+       y = "Mean Swim Time (seconds)",
+       color = "Goggles",
+       linetype = "Goggles") +
+  theme_minimal()
+```
+
+## Question 3:Fit two models. The first should include Shirt, End, Goggles, and Flippers, but no interactions. The second should include all of the terms above plus an interaction between Goggles and Flippers. The latter model could be fit with the formula
+
+## Time ~ Shirt+End+Goggles*Flippers, or
+
+## Time ~ Shirt+End+Goggles+Flippers+Goggles:Flippers
+
+```{r}
+str(swim_speeds)
+
+sv$m0 <- lm(Time ~ Shirt + End + Goggles + Flippers, data=swim_speeds)
+
+sv$m1 <- lm(Time ~ Shirt + End + Goggles * Flippers, data=swim_speeds)
+```
+
+## Question 4: Compute the individual coefficients for the model including a Goggles by Flippers interaction. Interpret these results. Does there appear to to synergism between Googles and Flippers (i.e., the use of both goggles and flippers produces a larger average reduction in swim times than the average reduction due to goggles alone plus the individual reduction due to flippers alone)?
+
+```{r}
+
+model_interaction <- lm(Time ~ Shirt + End + Goggles * Flippers, data = swim_speeds)
+
+
+summary(model_interaction)
+```
+
+*There is some stray code that you cut and pasted from another source that is not really needed. So I pulled that code into a separate chunk with eval: false.*
+
+```{r}
+#| eval: false
+
+if (!is.factor(your_factor_variable)) {
+  your_factor_variable <- factor(your_factor_variable)
+}
+
+
+your_factor_variable <- na.omit(your_factor_variable)
+
+
+if (length(levels(your_factor_variable)) > 1) {
+ 
+  contrasts(your_factor_variable) <- contr.treatment(length(levels(your_factor_variable)))
+} else {
+  stop("Factor must have more than one level to apply contrasts")
+}
+
+
+levels(your_factor_variable)
+
+```
+
+*A couple of suggestions. I see that the code you use is different than mine. Maybe you are finding it in a Google search or maybe through a generative AI program or maybe it is code you used in a different class.  In any case, your code is still quite good. What might help me is if you split some of the longer lines and create vertical lists to make the code easier to read. You do this half of the time, but there are placed where you don't. See below for one example.*
+
+```{r}
+#| eval: false
+
+ggplot(interaction_data, 
+       aes(x = Flippers, 
+           y = mean_time, 
+           group = Goggles, 
+           color = Goggles)) + ...
+```
+
+*You are also using a different pipe symbol (%>%) than I the one I use (|>). Both work about the same, but there are some differences that only show up in special circumstances. It's your choice, and there are some good reasons to prefer to use %>%. Here are links from the* [tidyverse][ref07] *and from* [R-bloggers][ref08] *and you might want to look at the* [base-R][ref09] *explanation. And if you want a really deep dive into things, this* [video][ref10] *by Luke Tierney, starting around 1 hour 7 minutes, explains some  the thoughts of the R programming team before the new pipe was even implemented.*
+
+[ref07]: https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/
+[ref08]: https://www.r-bloggers.com/2021/05/the-new-r-pipe/
+[ref09]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/pipeOp.html
+[ref10]: https://www.youtube.com/watch?v=X_eDHNVceCU&t=4021s
+

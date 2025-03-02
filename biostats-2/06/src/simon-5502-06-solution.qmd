@@ -62,33 +62,6 @@ glimpse(ga)
 
 You will not be graded on this, but get in the habit of computing some simple statistics (mean, standard deviation, minimum, and maximum for continuous variables and counts and percentages for categorical variables) for the important variables in this dataset. Also, get in the habit of providing brief interpretations.
 
-Be sure to create factors with descriptive levels for any variables used in your analysis.
-
-```{r}
-#| label: create-factors
-lab1 <- c("No", "Yes")
-lab2 <- c(
-  "Black",
-  "White",
-  "Hispanic",
-  "Other")
-
-
-ga |>
-  mutate(
-    Completed = 
-      factor(
-        Completed, 
-        levels=0:1, 
-        labels=lab1)) |>
-  mutate(
-    Race = 
-      factor(
-        Race, 
-        levels=c(1, 0, 2, 3), 
-        labels=lab2))-> ga_1
-```
-
 ## Descriptive statistics
 
 ```{r}
@@ -106,37 +79,59 @@ ga_1 |>
 
 Don't forget to put interpretations here and after every other program chunk that produces a table or graph.
 
-## Descriptive statistics for Race
-
 ```{r}
 #| label: descriptives-2
 
-ga_1 |>
-	count(Race, Completed) |>
-  group_by(Race) |>
+ga |>
+	count(Completed) |>
 	mutate(total=sum(n)) |>
 	mutate(pct=round(100*n/total)) |>
 	mutate(pct=glue("{pct}% ({n}/{total})")) |>
-  filter(Completed=="Yes") |>
 	select(-n, -total)
 ```
-
-## Descriptive statistics for InsuranceType
 
 ```{r}
 #| label: descriptives-3
 
-ga_1 |>
-	count(InsuranceType, Completed) |>
-  group_by(InsuranceType) |>
+ga |>
+	count(MedAssist) |>
 	mutate(total=sum(n)) |>
 	mutate(pct=round(100*n/total)) |>
 	mutate(pct=glue("{pct}% ({n}/{total})")) |>
-  filter(Completed=="Yes") |>
 	select(-n, -total)
 ```
 
-## Descriptive statistics for MedAssist
+## Question 2
+
+Create factors with descriptive levels for Completed, MedAssist, and LocationType. Orient your factor so that the reference category (the category that appears first) is "No" for Completed and MedAssist and "Urban" for LocationType. Calculate the probability of completing all three shorts for MedAssist and LocationType.
+
+```{r}
+#| label: create-factors
+lab1 <- c("No", "Yes")
+lab2 <- c("Urban", "Suburban")
+
+ga |>
+  mutate(
+    Completed = 
+      factor(
+        Completed, 
+        levels=0:1, 
+        labels=lab1)) |>
+  mutate(
+    MedAssist =
+      factor(
+        MedAssist,
+        levels=0:1,
+        labels=lab1)) |>
+  mutate(
+    LocationType = 
+      factor(
+        LocationType, 
+        levels=1:0,
+        labels=lab2))-> ga_1
+```
+
+## Completion probabilities for MedAssist
 
 ```{r}
 #| label: descriptives-4
@@ -151,26 +146,10 @@ ga_1 |>
 	select(-n, -total)
 ```
 
-## Descriptive statistics for Location
+## Completion probabilities for LocationType
 
 ```{r}
 #| label: descriptives-5
-
-ga_1 |>
-	count(Location, Completed) |>
-  group_by(Location) |>
-	mutate(total=sum(n)) |>
-	mutate(pct=round(100*n/total)) |>
-	mutate(pct=glue("{pct}% ({n}/{total})")) |>
-  filter(Completed=="Yes") |>
-	select(-n, -total)
-```
-
-
-## Descriptive statistics for LocationType
-
-```{r}
-#| label: descriptives-6
 
 ga_1 |>
 	count(LocationType, Completed) |>
@@ -182,32 +161,122 @@ ga_1 |>
 	select(-n, -total)
 ```
 
-## Descriptive statistics for PracticeType
+## Question 3
 
-```{r}
-#| label: descriptives-7
+Calculate a logistic regression model using Age (not AgeGroup) to predict whether a patient has completed all three shots. Interpret the odds ratio from this model.
 
-ga_1 |>
-	count(PracticeType, Completed) |>
-  group_by(PracticeType) |>
-	mutate(total=sum(n)) |>
-	mutate(pct=round(100*n/total)) |>
-	mutate(pct=glue("{pct}% ({n}/{total})")) |>
-  filter(Completed=="Yes") |>
-	select(-n, -total)
-```
-
-## Logistic models
+## Logistic regression models
 
 ```{r}
 #| label: logistic-1
 
-
 m1 <- glm(
-  Completed~Race,
+  Completed~Age,
+  family=binomial,
+  data=ga_1)
+```
+
+## Display Age coefficient
+
+```{r}
+#| label: coefficients-1
+
+m1 |>
+  tidy() |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> m1_betas
+m1_betas
+```
+
+## Back transforming Sex coefficients
+
+```{r}
+#| label: or-1
+
+m1_betas |>
+  filter(term != "(Intercept)") |>
+  mutate(odds_ratio=exp(estimate)) |>
+  mutate(lower=exp(estimate+qnorm(0.025)*std.error)) |>
+  mutate(upper=exp(estimate+qnorm(0.975)*std.error)) |>
+  select(term, odds_ratio, lower, upper) -> m1_or
+m1_or
+```
+
+## Question 4
+
+You suspect that there is an interaction between MedAssist and LocationType in predicting whether a patient completed all three shots. Draw a line plot on the log odds scale. Interpret this plot.
+
+```{r}
+#| label: interaction-probabilities
+
+ga_1 |>
+	count(MedAssist, LocationType, Completed) |>
+	group_by(MedAssist, LocationType) |>
+	mutate(total=sum(n)) |>
+	mutate(prop=n/total) -> table1
+
+table1
+```
+
+## Interaction plot 
+
+```{r}
+#| label: interaction-1
+
+table1 |>
+	filter(Completed=="Yes") |>
+	ggplot() +
+  aes(x=MedAssist, y=prop) +
+  geom_line(aes(group=LocationType)) +
+  geom_text(aes(label=LocationType)) +
+	expand_limits(y=c(0.1, 0.9)) +
+  ggtitle("Graph drawn by Steve Simon on 2025-03-02") +
+  xlab("Did the patient have some type of medical assistance") +
+  ylab("Probability of completing three shots") -> lines_1
+lines_1 +
+	scale_y_continuous(breaks=(1:9)/10, transform="logit")
+```
+
+
+
+## Question 5
+
+Fit a model using MedAssist and LocationType to predict Completed, first without an interaction and then with an interaction. Test whether the interaction is statistically significant.
+
+## Fitting models without and with interaction
+
+```{r}
+#| label: logistic-2
+
+m2 <- glm(
+  Completed~MedAssist+LocationType,
   family=binomial,
   data=ga_1)
 
-tidy(m1)
+m3 <- glm(
+  Completed~MedAssist*LocationType,
+  family=binomial,
+  data=ga_1)
+```
+
+## Two approaches. You should present one or the other but not both
+
+## Testing interaction (first approach)
+
+```{r}
+#| label: interaction-1
+
+anova(m2, m3)
+```
+
+## Testing interaction (second approach) Note that only one is needed
+
+```{r}
+#| label: interaction-2
+
+tidy(m3) |> mutate(p.value=round(p.value, 3))
 ```
 
