@@ -1,5 +1,5 @@
 ---
-title: "simon-5502-05-solution"
+title: "simon-5502-06-solution"
 format: 
   html:
     embed-resources: true
@@ -10,15 +10,11 @@ execute:
 
 ## General directions
 
-Use the dataset, [gardasil.xls][ref01], found on my github site. Refer to the [data dictionary][ref02] if needed. You may find it helpful to adapt some of the code from [simon-5502-05-demo.qmd][ref03]. This file is most easily read in using the [read_excel function][ref04] of the [readxl][ref05] library.
+Use the dataset, [gardasil.tsv][ref01], found on my github site. Refer to the [data dictionary][ref02] if needed. You may find it helpful to adapt some of the code from [simon-5502-06-demo.qmd][ref03]. 
 
-Warning: if you try to use the read_excel function within R and the file is already open inside of Microsoft Excel, you might get an error message. Microsoft has some security features that lock a file when it is in use. This is intended to prevent a second program from modifying a file at the same time that you are modifying it in Excel. It seems like a nice feature but it gets in the way of the read_excel and other similar functions. These programs don't have any nefarious schemes of modifying the file. They just want to look at what's inside. 
-
-[ref01]: https://github.com/pmean/data/blob/main/files/gardasil.xls
+[ref01]: https://github.com/pmean/data/blob/main/files/gardasil.tsv
 [ref02]: https://github.com/pmean/data/blob/main/files/gardasil.yaml
 [ref03]: https://github.com/pmean/classes/blob/master/biostats-2/06/src/simon-5502-06-demo.qmd
-[ref04]: https://readxl.tidyverse.org/reference/read_excel.html
-[ref05]: https://readxl.tidyverse.org/
 
 ## File details
 
@@ -67,7 +63,7 @@ You will not be graded on this, but get in the habit of computing some simple st
 ```{r}
 #| label: descriptives-1
 
-ga_1 |>
+ga |>
   summarize(
     Age_mean=mean(Age),
     Age_sd=sd(Age),
@@ -103,7 +99,7 @@ ga |>
 
 ## Question 2
 
-Create factors with descriptive levels for Completed, MedAssist, and LocationType. Orient your factor so that the reference category (the category that appears first) is "No" for Completed and MedAssist and "Urban" for LocationType. Calculate the probability of completing all three shorts for MedAssist and LocationType.
+Create factors with descriptive levels for Completed, MedAssist, and LocationType. Orient your factor so that the reference category (the category that appears first) is "No" for Completed and MedAssist and "Urban" for LocationType. Calculate the probability of completing all three shorts for each level of MedAssist. Repeat for each level of LocationType.
 
 ```{r}
 #| label: create-factors
@@ -207,7 +203,9 @@ m1_or
 
 ## Question 4
 
-You suspect that there is an interaction between MedAssist and LocationType in predicting whether a patient completed all three shots. Draw a line plot on the log odds scale. Interpret this plot.
+You suspect that there is an interaction between MedAssist and LocationType in predicting whether a patient completed all three shots. Draw a line plot on the log odds scale. Interpret this plot. You should look at the plot two different ways, but please only include one plot here.
+
+Note: some versions of R may need to use trans="logit" instead of transform="logit" in the scale_y_continuous function.
 
 ```{r}
 #| label: interaction-probabilities
@@ -267,7 +265,7 @@ m3 <- glm(
 ## Testing interaction (first approach)
 
 ```{r}
-#| label: interaction-1
+#| label: interaction-2
 
 anova(m2, m3)
 ```
@@ -275,8 +273,15 @@ anova(m2, m3)
 ## Testing interaction (second approach) Note that only one is needed
 
 ```{r}
-#| label: interaction-2
+#| label: interaction-3
 
-tidy(m3) |> mutate(p.value=round(p.value, 3))
+m3 |>
+  tidy() |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> m3_betas
+m3_betas
 ```
 

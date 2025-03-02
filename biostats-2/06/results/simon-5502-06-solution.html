@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>simon-5502-05-solution</title>
+<title>simon-5502-06-solution</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3023,7 +3023,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">simon-5502-05-solution</h1>
+<h1 class="title">simon-5502-06-solution</h1>
 </div>
 
 
@@ -3040,8 +3040,7 @@ vertical-align: -.125em;
 
 <section id="general-directions" class="level2">
 <h2 class="anchored" data-anchor-id="general-directions">General directions</h2>
-<p>Use the dataset, <a href="https://github.com/pmean/data/blob/main/files/gardasil.xls">gardasil.xls</a>, found on my github site. Refer to the <a href="https://github.com/pmean/data/blob/main/files/gardasil.yaml">data dictionary</a> if needed. You may find it helpful to adapt some of the code from <a href="https://github.com/pmean/classes/blob/master/biostats-2/06/src/simon-5502-06-demo.qmd">simon-5502-05-demo.qmd</a>. This file is most easily read in using the <a href="https://readxl.tidyverse.org/reference/read_excel.html">read_excel function</a> of the <a href="https://readxl.tidyverse.org/">readxl</a> library.</p>
-<p>Warning: if you try to use the read_excel function within R and the file is already open inside of Microsoft Excel, you might get an error message. Microsoft has some security features that lock a file when it is in use. This is intended to prevent a second program from modifying a file at the same time that you are modifying it in Excel. It seems like a nice feature but it gets in the way of the read_excel and other similar functions. These programs don’t have any nefarious schemes of modifying the file. They just want to look at what’s inside.</p>
+<p>Use the dataset, <a href="https://github.com/pmean/data/blob/main/files/gardasil.tsv">gardasil.tsv</a>, found on my github site. Refer to the <a href="https://github.com/pmean/data/blob/main/files/gardasil.yaml">data dictionary</a> if needed. You may find it helpful to adapt some of the code from <a href="https://github.com/pmean/classes/blob/master/biostats-2/06/src/simon-5502-06-demo.qmd">simon-5502-06-demo.qmd</a>.</p>
 </section>
 <section id="file-details" class="level2">
 <h2 class="anchored" data-anchor-id="file-details">File details</h2>
@@ -3101,14 +3100,17 @@ $ PracticeType  &lt;dbl&gt; 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1
 <section id="descriptive-statistics" class="level2">
 <h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive statistics</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ga_1 <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ga <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Age_mean=</span><span class="fu">mean</span>(Age),</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Age_sd=</span><span class="fu">sd</span>(Age),</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Age_min=</span><span class="fu">min</span>(Age),</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Age_max=</span><span class="fu">max</span>(Age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error: object &#39;ga_1&#39; not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+  Age_mean Age_sd Age_min Age_max
+     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1     18.5   4.23      11      26</code></pre>
 </div>
 </div>
 <section id="interpretation-of-the-output" class="level4">
@@ -3148,7 +3150,7 @@ $ PracticeType  &lt;dbl&gt; 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1
 </section>
 <section id="question-2" class="level2">
 <h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
-<p>Create factors with descriptive levels for Completed, MedAssist, and LocationType. Orient your factor so that the reference category (the category that appears first) is “No” for Completed and MedAssist and “Urban” for LocationType. Calculate the probability of completing all three shorts for MedAssist and LocationType.</p>
+<p>Create factors with descriptive levels for Completed, MedAssist, and LocationType. Orient your factor so that the reference category (the category that appears first) is “No” for Completed and MedAssist and “Urban” for LocationType. Calculate the probability of completing all three shorts for each level of MedAssist. Repeat for each level of LocationType.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lab1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>lab2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Urban&quot;</span>, <span class="st">&quot;Suburban&quot;</span>)</span>
@@ -3269,7 +3271,8 @@ $ PracticeType  &lt;dbl&gt; 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1
 </section>
 <section id="question-4" class="level2">
 <h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
-<p>You suspect that there is an interaction between MedAssist and LocationType in predicting whether a patient completed all three shots. Draw a line plot on the log odds scale. Interpret this plot.</p>
+<p>You suspect that there is an interaction between MedAssist and LocationType in predicting whether a patient completed all three shots. Draw a line plot on the log odds scale. Interpret this plot. You should look at the plot two different ways, but please only include one plot here.</p>
+<p>Note: some versions of R may need to use trans=“logit” instead of transform=“logit” in the scale_y_continuous function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ga_1 <span class="sc">|&gt;</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(MedAssist, LocationType, Completed) <span class="sc">|&gt;</span></span>
@@ -3317,6 +3320,9 @@ $ PracticeType  &lt;dbl&gt; 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1
 <section id="question-5" class="level2">
 <h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
 <p>Fit a model using MedAssist and LocationType to predict Completed, first without an interaction and then with an interaction. Test whether the interaction is statistically significant.</p>
+</section>
+<section id="fitting-models-without-and-with-interaction" class="level2">
+<h2 class="anchored" data-anchor-id="fitting-models-without-and-with-interaction">Fitting models without and with interaction</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  Completed<span class="sc">~</span>MedAssist<span class="sc">+</span>LocationType,</span>
@@ -3326,9 +3332,16 @@ $ PracticeType  &lt;dbl&gt; 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  Completed<span class="sc">~</span>MedAssist<span class="sc">*</span>LocationType,</span>
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">family=</span>binomial,</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">data=</span>ga_1)</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2, m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">data=</span>ga_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="two-approaches.-you-should-present-one-or-the-other-but-not-both" class="level2">
+<h2 class="anchored" data-anchor-id="two-approaches.-you-should-present-one-or-the-other-but-not-both">Two approaches. You should present one or the other but not both</h2>
+</section>
+<section id="testing-interaction-first-approach" class="level2">
+<h2 class="anchored" data-anchor-id="testing-interaction-first-approach">Testing interaction (first approach)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2, m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Deviance Table
 
@@ -3340,23 +3353,27 @@ Model 2: Completed ~ MedAssist * LocationType
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2, m3) <span class="sc">|&gt;</span> <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 6
-  term                      df.residual residual.deviance    df deviance p.value
-  &lt;chr&gt;                           &lt;dbl&gt;             &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
-1 Completed ~ MedAssist + …        1410             1765.    NA    NA    NA     
-2 Completed ~ MedAssist * …        1409             1761.     1     3.41  0.0649</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(m3) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">p.value=</span><span class="fu">round</span>(p.value, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="testing-interaction-second-approach-note-that-only-one-is-needed" class="level2">
+<h2 class="anchored" data-anchor-id="testing-interaction-second-approach-note-that-only-one-is-needed">Testing interaction (second approach) Note that only one is needed</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>m3 <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.value =</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">case_when</span>(</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>        p.value <span class="sc">&gt;=</span> <span class="fl">0.001</span> <span class="sc">~</span> <span class="fu">glue</span>(<span class="st">&quot;p = {round(p.value, 3)}&quot;</span>),</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>        p.value <span class="sc">&lt;</span>  <span class="fl">0.001</span> <span class="sc">~</span> <span class="st">&quot;p &lt; 0.001&quot;</span>)) <span class="ot">-&gt;</span> m3_betas</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>m3_betas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 5
-  term                              estimate std.error statistic p.value
-  &lt;chr&gt;                                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-1 (Intercept)                         -0.845     0.149     -5.65   0    
-2 MedAssistYes                        -0.474     0.218     -2.17   0.03 
-3 LocationTypeSuburban                 0.349     0.164      2.12   0.034
-4 MedAssistYes:LocationTypeSuburban   -0.917     0.532     -1.72   0.085</code></pre>
+  term                              estimate std.error statistic p.value  
+  &lt;chr&gt;                                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;glue&gt;   
+1 (Intercept)                         -0.845     0.149     -5.65 p &lt; 0.001
+2 MedAssistYes                        -0.474     0.218     -2.17 p = 0.03 
+3 LocationTypeSuburban                 0.349     0.164      2.12 p = 0.034
+4 MedAssistYes:LocationTypeSuburban   -0.917     0.532     -1.72 p = 0.085</code></pre>
 </div>
 </div>
 </section>
