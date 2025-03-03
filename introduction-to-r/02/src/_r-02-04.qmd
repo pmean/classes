@@ -30,6 +30,7 @@ sleep <- read_tsv(
 ```{r}
 #| label: default-histogram-1
 #| echo: true
+
 sleep |>
   ggplot() +
   aes(x=BodyWt) +
@@ -38,7 +39,17 @@ sleep |>
 
 ::: notes
 
-R has at least three different approaches for graphs: base graphs, lattice, and ggplot2. All are excellent. I will rely almost entirely on ggplot2 for graphs that I use. 
+R has at least three different approaches for graphs: [base graphs][ref41] (graphing functions built into the base R package), [lattice][ref42], and [ggplot2][ref43]. All are excellent. I will rely almost entirely on ggplot2 for graphs that I use. 
+
+The [aes][ref44] function provides the framework for the graph. This includes which variables go on which axes, what colors are used to designate groups, and so on. You need to specify your continuous variable on the x-axis. Leave the y-axis unspecified because this is where the counts for the histogram belong.
+
+The [geom_histogram][ref45] function specifies the use of a histogram.
+
+[ref41]: https://r-graph-gallery.com/base-R.html
+[ref42]: https://ggplot2.tidyverse.org/
+[ref43]: https://cran.r-project.org/web/packages/lattice/index.html
+[ref44]: https://ggplot2.tidyverse.org/reference/aes.html
+[ref45]: https://ggplot2.tidyverse.org/reference/geom_histogram.html
 
 :::
 
@@ -48,12 +59,13 @@ R has at least three different approaches for graphs: base graphs, lattice, and 
 ```{r}
 #| label: default-histogram-2
 #| echo: true
+
 basic_histogram
 ```
 
 ::: notes
 
-Never settle for the default. I did change one default right off the bat. The default in ggplot for a histogram or bar chart is a dark gray bar with a dark gray border. There are a few times that this is a reasonable choice, but more often than not choosing the same color value for the border and the interior is confusing.
+Never settle for the default. The default in ggplot for a histogram or bar chart is a dark gray bar with a dark gray border. There are a few times that this is a reasonable choice, but more often than not choosing the same color value for the border and the interior is confusing.
 
 :::
 
@@ -62,6 +74,7 @@ Never settle for the default. I did change one default right off the bat. The de
 ```{r}
 #| label: better-histogram-1
 #| echo: true
+
 sleep |>
   ggplot() +
   aes(x=BodyWt) +
@@ -87,7 +100,7 @@ better_histogram
 
 ::: notes
 
-It may not be so obvious with this graph, but I do think that black borders with white interiors improve the appearace of most bar charts and histograms.
+It may not be so obvious with this graph, but I do think that black borders with white interiors improve the appearance of most bar charts and histograms.
 
 ::::
 
@@ -104,9 +117,9 @@ better_histogram +
 
 ::: notes
 
-You should always use the [xlab, ylab, and ggtitle][ref41] functions to make your graphs more interpretable. The xlab function changes the label on the x-axis from the default (just the variable name itself) to a more descriptive label. There is a ylab function as well, but I did not need it for the histogram because the word "count" that ggplot uses on the y-axis for its histograms is sufficiently descriptive. The ggtitle function places a title at the top of the graph. For this class, I require you to put your name and the date as the title. If you are preparing a graph for a publication, you will probably need a different title.
+You should always use the [xlab, ylab, and ggtitle][ref46] functions to make your graphs more interpretable. The xlab function changes the label on the x-axis from the default (just the variable name itself) to a more descriptive label. There is a ylab function as well, but I did not need it for the histogram because the word "count" that ggplot uses on the y-axis for its histograms is sufficiently descriptive. The ggtitle function places a title at the top of the graph. For this class, I require you to put your name and the date as the title. If you are preparing a graph for a publication, you will probably need a different title.
 
-[ref41]: https://ggplot2.tidyverse.org/reference/labs.html
+[ref46]: https://ggplot2.tidyverse.org/reference/labs.html
 
 :::
 
@@ -143,12 +156,15 @@ labeled_histogram +
 
 ::: notes
 
-The [scale_x_continuous and scale_y_continuous][ref42] functions control how the x and y axes are labelled. In this example, the breaks argument shows where to place tick marks and the labels argument changes what is displayed at each tick mark.
+The [seq][ref47] function provides an evenly spaced sequence of numbers. If the sequence increases by increments of 1, you can use the colon operator to produce the sequence. For example, seq(0,5, 1) and 0:5 both produce a vector with the values 0, 1, 2, 3, 4, 5.
 
-The [format][ref43] function modifies how numbers are displayed. The big.mark="," argument inserts commas for any numbers greater than 999.
+The [scale_x_continuous and scale_y_continuous][ref48] functions control how the x and y axes are labelled. In this example, the breaks argument shows where to place tick marks and the labels argument changes what is displayed at each tick mark.
 
-[ref42]: https://ggplot2.tidyverse.org/reference/scale_continuous.html
-[ref43]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/format.html
+The [format][ref49] function modifies how numbers are displayed. The big.mark="," argument inserts commas for any numbers greater than 999.
+
+[ref47]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/seq.html
+[ref48]: https://ggplot2.tidyverse.org/reference/scale_continuous.html
+[ref49]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/format.html
 
 :::
 
@@ -183,9 +199,9 @@ labeled_histogram +
 
 ::: notes
 
-The [scale_x_log10][ref42] function is one of a series of functions that controls how the scale of the x axis appears.
+The [scale_x_log10][ref4a] function is one of a series of functions that controls how the scale of the x axis appears.
 
-[ref42]: https://ggplot2.tidyverse.org/reference/scale_continuous.html
+[ref4a]: https://ggplot2.tidyverse.org/reference/scale_continuous.html
 
 :::
 
@@ -221,7 +237,9 @@ sleep |>
 
 ::: notes
 
-You produce a scatterplot by specifying continuous variables for x and y and using the [geom_point][ref44] function. Get in the habit of changing the labels on the axes to something more descriptive. Always include the units of measure.
+You produce a scatterplot by specifying continuous variables for x and y and using the [geom_point][ref4b] function. Get in the habit of changing the labels on the axes to something more descriptive. Always include the units of measure.
+
+[ref4b]: https://ggplot2.tidyverse.org/reference/geom_point.html
 
 :::
 
@@ -233,6 +251,12 @@ You produce a scatterplot by specifying continuous variables for x and y and usi
 
 labeled_scatterplot
 ```
+
+::: notes
+
+Notice how a few outliers distort the scale of this graph. It is hard to tell what is going on because the data is clustered in the lower left corner of the graph.
+
+:::
 
 ## Log transformed scatterplot, 1
 
@@ -253,6 +277,12 @@ labeled_scatterplot +
     labels=yticks)-> log_scatterplot
 ```
 
+::: notes
+
+Log transformation to the rescue!
+
+:::
+
 ## Log transformed scatterplot, 1
 
 ```{r}
@@ -269,8 +299,16 @@ log_scatterplot
 #| echo: true
 
 log_scatterplot +
-  geom_smooth() -> trend_line_graph
+  geom_smooth(method="gam") -> trend_line_graph
 ```
+
+::: note
+
+The [geom_smooth][ref4c] function adds a flexible trend line to a scatterplot. The argument method="gam" uses a cubic spline. This is a nice default choice. Changing the argument method="lm" produces a simple linear trend.
+
+[ref4c]: https://ggplot2.tidyverse.org/reference/geom_smooth.html
+
+:::
 
 ## Add a trend line, 2
 
