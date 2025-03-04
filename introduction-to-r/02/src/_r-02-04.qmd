@@ -198,9 +198,7 @@ labeled_histogram +
 
 ::: notes
 
-The [scale_x_log10][ref4a] function is one of a series of functions that controls how the scale of the x axis appears.
-
-[ref4a]: https://ggplot2.tidyverse.org/reference/scale_continuous.html
+The scale_x_log10, described in the link above, controls how the scale of the x axis appears.
 
 :::
 

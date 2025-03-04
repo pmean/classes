@@ -12,8 +12,6 @@ Use the dataset, [gardasil.tsv][ref01], found on my github site. Refer to the [d
 
 ## File details
 
-Please do not look at this file before submitting your own work on this programming assignment. Although no interpretations are provided here, you must include them in your own submission.
-
 This assignment was written by Steve Simon on 2025-02-27 and is placed in the public domain.
 
 ## Question 1

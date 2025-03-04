@@ -202,7 +202,7 @@ This is different from SAS and SPSS, where the default options choose perfectly 
 #| echo: true
 
 sleep |>
-  select(-1) |>
+  select(where(is.numeric)) |>
   mutate(across(everything(), is.na)) |>
   summarize(across(everything(), sum)) |>
   pivot_longer(
