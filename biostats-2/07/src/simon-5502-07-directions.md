@@ -8,9 +8,11 @@ Refer to the paper
 
 Ammar N, Kühnisch J. Diagnostic performance of artificial intelligence-aided caries detection on bitewing radiographs: a systematic review and meta-analysis. Jpn Dent Sci Rev. 2024 Dec;60:128-136. doi: [10.1016/j.jdsr.2024.02.001][kuhnisch-2024].
 
+Pay special attention to Table 2. Also find the National Institute of Dental and Craniofacial Research [report on Dental Caries (Tooth Decay)][nidcr-2022].
+
 [kuhnisch-2024]: https://dx.doi.org/10.1016/j.jdsr.2024.02.001
 
-Pay special attention to Table 2. Also find the National Institute of Dental and Craniofacial Research [report on Dental Caries (Tooth Decay)]
+[nidcr-2002]: https://www.nidcr.nih.gov/research/data-statistics/dental-caries
 
 ## File details
 
