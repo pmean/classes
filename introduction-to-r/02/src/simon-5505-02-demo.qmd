@@ -1,0 +1,882 @@
+---
+title: "Example programs for module 02"
+format: 
+  html:
+    embed-resources: true
+execute: 
+  error: true
+---
+
+## File details
+
+This program was written by Steve Simon on 2020-02-08 with a major revision on 2024-12-29. It is placed in the public domain and you can use this any way you wish.
+
+## Data dictionary for burger-calories
+
+The next few examples will use a data file, burger-calories. Refer to the [data dictionary][ref11] for details about this file.
+
+[ref11]: https://github.com/pmean/data/blob/main/files/burger-calories.yaml
+
+## Read burger-calories
+
+```{r}
+#| label: read-tsv
+#| echo: true
+#| message: false
+#| warning: false
+
+library(tidyverse)
+
+burgers <- read_tsv(
+  file="../data/burger-calories.txt", 
+  col_types="nnn")
+burgers
+```
+
+::: notes
+
+We will talk more about the read_tsv function later. For now, just note that it reads data from a text file and stores it in a tibble named burgers.
+
+:::
+
+## Select, 1
+
+```{r}
+#| label: select
+#| echo: true
+
+burgers |>
+  select(Calories)
+```
+
+::: notes
+
+The [select][ref12] function will include or exclude variables from a tibble/dataframe.
+
+[ref12]: https://dplyr.tidyverse.org/reference/select.html
+
+:::
+
+## Select, 2
+
+```{r}
+#| label: select-2
+#| echo: true
+
+burgers |>
+  select(-Fat)
+```
+
+::: notes
+
+Placing a minus sign in front of a variable excludes that variable.
+
+:::
+
+
+## Alternatives to select, 1
+
+```{r}
+#| label: select-alternative-1
+#| echo: true
+
+burgers$Calories
+```
+
+::: notes
+
+There are some "old school" ways to select a single column of data. Specify the name of the tibble, followed by a dollar sign, followed by the name of the variable. This produces a vector rather than a tibble.
+
+:::
+
+## Alternatives to select, 2
+
+```{r}
+#| label: select-alternative-2
+#| echo: true
+
+burgers[ , 1]
+```
+
+::: notes
+
+You can also use square brackets to select a variable. This code seems a bit strange at first. Think of the comma as a separator between the first index (which indicates rows) and the second index (which indicates columns). Leaving the first index blank is equivalent of saying select all rows and just the first column.
+
+:::
+
+## Alternatives to select, 3
+
+```{r}
+#| label: select-alternative-3
+#| echo: true
+
+burgers[ , "Calories"]
+```
+
+::: notes
+
+You can also specify a column by its name. Be sure to put the name inside quote marks.
+
+:::
+
+## Slice, 1
+
+```{r}
+#| label: slice-1
+#| echo: true
+
+burgers |>
+  slice(1)
+```
+
+::: notes
+
+The [slice][ref13] function selects rows based on their position.
+
+[ref13]: https://dplyr.tidyverse.org/reference/slice.html
+
+:::
+
+## Slice, 2
+
+```{r}
+#| label: slice-2
+#| echo: true
+
+burgers |>
+  slice_max(Calories)
+```
+
+::: notes
+
+The slice_max function, described in the previous link, selects rows based on the size of one of the variables.
+
+:::
+
+## Filter, 1
+
+```{r}
+#| label: filter-1
+#| echo: true
+
+burgers |>
+  filter(Sodium == 1500)
+```
+
+::: notes
+
+The [filter][ref14] function selects rows of a tibble or dataframe based on a logical condition (an R expression that produces true/false values).
+
+[ref14]: https://dplyr.tidyverse.org/reference/filter.html
+
+:::
+
+## Filter, 2
+
+```{r}
+#| label: filter-2
+#| echo: true
+
+burgers |>
+  filter(Calories >= 600)
+```
+
+::: notes
+
+With certain logical conditions, you can produce a tibble with more than one row.
+
+:::
+
+## Alternatives to slice/filter, 1
+
+```{r}
+#| label: slice-filter-alternatives-1
+#| echo: true
+
+burgers[1, ]
+```
+
+::: notes
+
+Using the same square bracket approach, you can select one or more rows. This code selects the first row and every column.
+
+:::
+
+
+## Alternatives to slice/filter, 2
+
+```{r}
+#| label: slice-filter-alternatives-2
+#| echo: true
+
+burgers[burgers$Sodium == 1500, ]
+```
+
+::: notes
+
+You can also place a logical condition inside the square brackets. The syntax is a bit awkward because you have to specify the name of the tibble twice.
+
+:::
+
+## Data dictionary for burger-calories
+
+The next few examples will use a different data file, sleep. Refer to the [data dictionary][ref21] for details about this file.
+
+[ref21]: https://github.com/pmean/data/blob/main/files/sleep.yaml
+
+## Read text file
+
+```{r}
+#| label: setup2
+#| message: false
+#| warning: false
+#| echo: true
+
+library(tidyverse)
+```
+
+```{r}
+#| label: read-sleep
+#| echo: true
+
+sleep <- read_tsv(
+  file="../data/sleep.txt",
+  col_types="cnnnnnnnnnn")
+glimpse(sleep)
+```
+
+::: notes
+
+The sleep data is too big to display on a single slide. The [glimpse][ref22] function provides a brief overview. It lists the number of rows and columns. This is followed with the name for each variable, its type, and the first few values.
+
+[ref22]: https://dplyr.tidyverse.org/reference/glimpse.html
+
+:::
+
+## Convert brain weight from grams to kilograms
+
+```{r}
+#| label: convert-units
+#| echo: true
+
+sleep |>
+  mutate(brain_wt_kg=BrainWt/1000) -> sleep
+sleep |>
+  slice(1:10) |>
+  select(Species, BrainWt, brain_wt_kg)
+```
+
+::: notes
+
+The [mutate][ref23] function creates a new variable or changes an existing variable. In this simple case, it is performing a unit conversion from grams to kilograms. This is needed for the next step.
+
+[ref23]: https://dplyr.tidyverse.org/reference/mutate.html
+
+:::
+
+
+## Calculate brain to body weight ratio
+
+```{r}
+#| label: calculate-percent
+#| echo: true
+
+sleep |>
+  mutate(brain_pct=100*brain_wt_kg/BodyWt) |>
+  mutate(brain_pct=round(brain_pct, 2)) |>
+  mutate(brain_pct=paste0(brain_pct, "%")) -> sleep
+
+sleep |>
+  slice(1:10) |>
+  select(Species, brain_wt_kg, BodyWt, brain_pct)
+```
+
+::: notes
+
+This is a more elaborate set of mutations. The [round][ref24] function is strongly recommended. It makes the data more readable. The [paste0][ref25] is icing on top of the cake. It takes the numeric calculation and adds a percent sign at the end. 
+
+[ref24]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/Round.html
+[ref25]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/paste.html
+
+:::
+
+## Summarize body weight
+
+```{r}
+#| label: summarize
+#| echo: true
+
+sleep |>
+  summarize(
+    body_wt_mean=round(mean(BodyWt), 0),
+    body_wt_sd=round(sd(BodyWt), 0),
+    body_wt_min=min(BodyWt),
+    body_wt_max=max(BodyWt))
+```
+
+::: notes
+
+The [summarize][ref26] function calculates simple statistics like the mean and standard deviation.
+
+[ref26]: https://dplyr.tidyverse.org/reference/summarise.html
+
+:::
+
+## Interpretation of body weight statistics
+
+The mean body weight is just a bit below 200 kilograms with a standard devation of about 900. The range of weights is extremely broad. The smallest animal is 0.005 kilograms (or 5 grams) and the largest is over 6,600 kilograms.
+
+::: notes
+
+I did not include any interpretations up to now because the computations were simple and self-explanatory. You should, however, always include a brief interpretation for any statistical summary like this one, as well as any graphs.
+
+:::
+
+---
+title: "r-02-03, Missing values"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Variable with missing values
+
+```{r}
+#| label: setup-3
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+```
+
+```{r}
+#| label: read-sleep-3
+#| echo: false
+
+sleep <- read_tsv(
+  file="../data/sleep.txt",
+  col_types="cnnnnnnnnnn")
+```
+
+```{r}
+#| label: total-sleep-listing
+#| echo: true
+
+sleep$TotalSleep
+```
+
+::: notes
+
+Several variables in the sleep file have missing values. There are many reasons why a variable might be missing. Maybe someone dropped a test tube in a lab. Maybe someone dropped out of a study. Maybe they skipped a question on your questionnaire.
+
+Always find out why a variable is missing. How you handle the missing value during data analysis depends on the reason it is missing. This is well beyond the scope of the class, but you do need to work with missing values during the data management phase.
+
+R uses the code NA for missing values. Other programs (SAS, SPSS) use a single dot. Other possibilities exist. Use the na argument inside of the read function if the missing value code is anything other than NA.
+
+:::
+
+## Statistics involving missing values
+
+```{r}
+#| label: summarize-1
+#| echo: true
+
+sleep |>
+  summarize(
+    sleep_mean=mean(TotalSleep),
+    sleep_sd=sd(TotalSleep))
+```
+
+::: notes
+
+If you try to compute a summary statistic on a variable with missing data, the result will be missing. This is different than SAS or SPSS, which by default will ignore missing values when computing most statistics.
+
+:::
+
+## The na.rm argument
+
+```{r}
+#| label: summarize-2
+#| echo: true
+
+sleep |>
+  summarize(
+    sleep_mean=mean(TotalSleep, na.rm=TRUE),
+    sleep_sd=sd(TotalSleep, na.rm=TRUE))
+```
+
+::: notes
+
+Think carefully about this and if you want R to ignore missing values when computing statistics, use the na.rm=TRUE argument.
+
+You may wish to use some sort of imputation model instead of ignoring missing values. Imputation is beyond the scope of this class.
+
+:::
+
+## The na.action and use arguments, 1
+
+-  More options for complex settings
+   -   na.action or use arguments
+   -   Example, cor function
+       -   use="everything" produces NA
+       -   use="complete.obs" produces casewise deletion
+       -   use="pairwise.complete.obs" produces pairwise deletion
+
+::: notes
+
+For univariate functions, there are only two realistic ways to handle missing values, but for bivariate and multivariate function, there are a multitude of approaches, such as pairwise deletion, listwise deletion, last observation carried forward, single imputation, and multiple imputation. There is a lot of controversy over various methods for handling missing values.
+
+:::
+
+## Correlations with use="everything" {.smaller}
+
+```{r}
+#| label: correlation-1
+#| echo: true
+
+options(width=120)
+# The greater output length allows the correlation matrix to fit on one slide.
+sleep |> 
+  select(-1) |>
+  cor(use="everything") |>
+  round(2)
+```
+
+
+## Interpretation of correlations, 1
+
+Any correlation involving NonDreaming, Dreaming, TotalSleep, LifeSpan, and Gestation are missing because these variables have at least one missing value.
+
+## Correlations with use="complete.obs" {.smaller}
+
+```{r}
+#| label: correlation-2
+#| echo: true
+
+sleep |> 
+  select(-1) |>
+  cor(use="complete.obs") |>
+  round(2)
+options(width=80)
+# Reset the width to the default value of 80
+```
+
+## Interpretation of correlations, 2
+
+There is a very strong positive association between body weight and brain weight, body weight and gestation, brain weight and gestation, non-dreaming sleep and total sleep, dreaming sleep and total sleep, predation and danger, and exposure and danger. There are no strong negative associations. There are many other weak positive and weak negative associations.
+
+::: notes
+
+It is tricky to interpret a large matrix of correlations. A first step is to highlight any strong positive (greater than 0.7) or strong negative (less than -0.7) correlations.
+
+:::
+
+## You cannot test missingness directly
+
+```{r}
+#| label: tracking-missing-1
+#| echo: true
+
+sleep |>
+  filter(TotalSleep == NA) |>
+  select(Species, TotalSleep)
+```
+
+<div class="notes">
+
+Logic involving missing values is tricky. If you checking for equality and one of the things in the comparison is missing, then the result is neither TRUE, not FALSE, but rather missing.
+
+Fair enough, but R takes it a bit further, and if both sides when you are checking for equality are missing, then they might both be 5 is they weren't missing or maybe one might be 5 and the other one 10. So it might be TRUE or it might be FALSE, so we're better off calling the logical result as missing.
+
+This is called a three valued logic system and it has advantages and disadvantages. I won't get into any technical details, except to say that you should never make assumptions. Check what you do when you are working with missing values to make sure that the three valued logic system doesn't produce results that you didn't expect.
+
+</div>
+
+## What is happening
+
+```{r}
+#| label: what-is-happening
+#| echo: true
+
+sleep$TotalSleep == NA
+```
+
+## The is.na function
+
+```{r}
+#| label: is.na.example
+#| echo: true
+
+sleep |>
+  filter(is.na(TotalSleep)) |>
+  select(Species, TotalSleep)
+```
+
+::: notes
+
+The short term solution to the above problem is to use a special function, [is.na][ref31].
+
+The summary function will trap and remove missing values, but most other functions in R will, by default, report a result as missing if any values going into that function are missing. The philosophy in R, I suppose, is that you need to actively select an approach for handling missing values rather than relying on a lazy default.
+
+R is also erring on the side of caution most of the time. You may not be aware that there are missing values lurking in your data, and R is going to go out of its way to remind you, unless you tell it otherwise.
+
+This is different from SAS and SPSS, where the default options choose perfectly reasonable approaches, but approaches that don't raise concern about missingness to the degree that R does.
+
+[ref31]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/NA.html
+
+:::
+
+## Counting missing values
+
+```{r}
+#| label: count-missing
+#| echo: true
+
+sleep |>
+  select(-1) |>
+  mutate(across(everything(), is.na)) |>
+  summarize(across(everything(), sum)) |>
+  pivot_longer(
+    everything(),
+    names_to="variable",
+    values_to="missing_count") |>
+  filter(missing_count > 0)
+```
+
+::: notes
+
+The [across][ref32] function (part of the dplyr/tidyverse libraries) allows you to apply various dplyr functions like mutate and summarize across more than one column. 
+
+The [pivot_longer][ref33] function (part of the tidyr/tidyverse libraries) will connect mutliple columns of a tibble or data frame into a single column.
+
+[ref32]: https://dplyr.tidyverse.org/reference/across.html
+[ref33]: https://tidyr.tidyverse.org/reference/pivot_longer.html
+
+:::
+
+## Interpretation of missing value counts
+
+There are five variables with missing data. Non-dreaming and dreaming sleep have 14 and 12 missing values, respectively. Total sleep, life span, and gestation all have 4 missing values. 
+
+---
+title: "r-01-04, Histograms, scatterplots"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Default histogram for body weight, 1
+
+```{r}
+#| label: setup-4
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+```
+
+```{r}
+#| label: read-sleep-4
+#| echo: false
+
+sleep <- read_tsv(
+  file="../data/sleep.txt",
+  col_types="cnnnnnnnnnn")
+```
+
+```{r}
+#| label: default-histogram-1
+#| echo: true
+
+sleep |>
+  ggplot() +
+  aes(x=BodyWt) +
+  geom_histogram() -> basic_histogram
+```
+
+::: notes
+
+R has at least three different approaches for graphs: [base graphs][ref41] (graphing functions built into the base R package), [lattice][ref42], and [ggplot2][ref43]. All are excellent. I will rely almost entirely on ggplot2 for graphs that I use. 
+
+The [aes][ref44] function provides the framework for the graph. This includes which variables go on which axes, what colors are used to designate groups, and so on. You need to specify your continuous variable on the x-axis. Leave the y-axis unspecified because this is where the counts for the histogram belong.
+
+The [geom_histogram][ref45] function specifies the use of a histogram.
+
+[ref41]: https://r-graph-gallery.com/base-R.html
+[ref42]: https://ggplot2.tidyverse.org/
+[ref43]: https://cran.r-project.org/web/packages/lattice/index.html
+[ref44]: https://ggplot2.tidyverse.org/reference/aes.html
+[ref45]: https://ggplot2.tidyverse.org/reference/geom_histogram.html
+
+:::
+
+## Default histogram for body weight, 2
+
+
+```{r}
+#| label: default-histogram-2
+#| echo: true
+
+basic_histogram
+```
+
+::: notes
+
+Never settle for the default. The default in ggplot for a histogram or bar chart is a dark gray bar with a dark gray border. There are a few times that this is a reasonable choice, but more often than not choosing the same color value for the border and the interior is confusing.
+
+:::
+
+## Better colors for the histogram, 1
+
+```{r}
+#| label: better-histogram-1
+#| echo: true
+
+sleep |>
+  ggplot() +
+  aes(x=BodyWt) +
+  geom_histogram(
+    color="black",
+    fill="white") -> better_histogram
+```
+
+::: notes
+
+I usually try a black border. The color argument specifies the color of the border and the fill argument specifies the color of the interior.
+
+:::
+
+## Better colors for the histogram, 2
+
+```{r}
+#| label: better-histogram-2
+#| echo: true
+
+better_histogram
+```
+
+::: notes
+
+It may not be so obvious with this graph, but I do think that black borders with white interiors improve the appearance of most bar charts and histograms.
+
+::::
+
+## Labeled histogram, 1
+
+```{r}
+#| label: histogram-with-labels-1
+#| echo: true
+
+better_histogram +
+  ggtitle("Graph drawn by Steve Simon on 2025-01-02") +
+  xlab("Body weight (kg)") -> labeled_histogram
+```
+
+::: notes
+
+You should always use the [xlab, ylab, and ggtitle][ref46] functions to make your graphs more interpretable. The xlab function changes the label on the x-axis from the default (just the variable name itself) to a more descriptive label. There is a ylab function as well, but I did not need it for the histogram because the word "count" that ggplot uses on the y-axis for its histograms is sufficiently descriptive. The ggtitle function places a title at the top of the graph. For this class, I require you to put your name and the date as the title. If you are preparing a graph for a publication, you will probably need a different title.
+
+[ref46]: https://ggplot2.tidyverse.org/reference/labs.html
+
+:::
+
+## Labeled histogram, 2
+
+```{r}
+#| label: histogram-with-labels-2
+#| echo: true
+
+labeled_histogram
+```
+
+::: notes
+
+This is what the labeled histogram looks like.
+
+:::
+
+## Extra tick marks, 1
+
+```{r}
+#| label: extra-ticks-1
+#| echo: true
+
+xticks <- seq(0, 6500, 500)
+yticks <- seq(0, 50, 5)
+labeled_histogram +
+  scale_x_continuous(
+    breaks=xticks,
+    labels=format(xticks, big.mark=",") +
+  scale_y_continuous(breaks=yticks) -> extra_ticks
+```
+
+::: notes
+
+The [seq][ref47] function provides an evenly spaced sequence of numbers. If the sequence increases by increments of 1, you can use the colon operator to produce the sequence. For example, seq(0,5, 1) and 0:5 both produce a vector with the values 0, 1, 2, 3, 4, 5.
+
+The [scale_x_continuous and scale_y_continuous][ref48] functions control how the x and y axes are labelled. In this example, the breaks argument shows where to place tick marks and the labels argument changes what is displayed at each tick mark.
+
+The [format][ref49] function modifies how numbers are displayed. The big.mark="," argument inserts commas for any numbers greater than 999.
+
+[ref47]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/seq.html
+[ref48]: https://ggplot2.tidyverse.org/reference/scale_continuous.html
+[ref49]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/format.html
+
+:::
+
+## Extra tick marks, 2
+
+```{r}
+#| label: extra-ticks-2
+#| echo: true
+
+extra_ticks
+```
+
+::: notes
+
+This is what histogram looks like with more ticks.
+
+:::
+
+## Log transformed histogram, 1
+
+```{r}
+#| label: histogram-with-log10-scale-1
+#| echo: true
+
+ticks <- 10^(-2:3)
+labeled_histogram +
+  scale_x_log10(
+    breaks=ticks,
+    minor_breaks=NULL,
+    labels=ticks) -> histogram_with_log10
+```
+
+::: notes
+
+The [scale_x_log10][ref4a] function is one of a series of functions that controls how the scale of the x axis appears.
+
+[ref4a]: https://ggplot2.tidyverse.org/reference/scale_continuous.html
+
+:::
+
+## Log transformed histogram, 2
+
+```{r}
+#| label: histogram-with-log10-scale-2
+#| echo: true
+
+histogram_with_log10
+```
+
+::: notes
+
+Here is the histogram on a log scale.
+
+:::
+
+## Labeled scatterplot, 1
+
+```{r}
+#| label: scatterplot-1
+#| echo: true
+
+sleep |>
+  ggplot() +
+  aes(x=BodyWt, y=BrainWt) +
+  geom_point() + 
+  ggtitle("This graph was drawn by Steve Simon on 2025-01-02") +
+  xlab("Body weight (kg)") +
+  ylab("Brain weight (g)") -> labeled_scatterplot
+```
+
+::: notes
+
+You produce a scatterplot by specifying continuous variables for x and y and using the [geom_point][ref4b] function. Get in the habit of changing the labels on the axes to something more descriptive. Always include the units of measure.
+
+[ref4b]: https://ggplot2.tidyverse.org/reference/geom_point.html
+
+:::
+
+## Labeled scatterplot, 2
+
+```{r}
+#| label: scatterplot-2
+#| echo: true
+
+labeled_scatterplot
+```
+
+::: notes
+
+Notice how a few outliers distort the scale of this graph. It is hard to tell what is going on because the data is clustered in the lower left corner of the graph.
+
+:::
+
+## Log transformed scatterplot, 1
+
+```{r}
+#| label: log-transformed-scatterplot-1
+#| echo: true
+
+xticks <- 10^(-2:3)
+yticks <- 10^(-2:3)
+labeled_scatterplot +
+  scale_x_log10(
+    breaks=xticks,
+    minor_breaks=NULL,
+    labels=xticks) +
+  scale_y_log10(
+    breaks=yticks,
+    minor_breaks=NULL,
+    labels=yticks)-> log_scatterplot
+```
+
+::: notes
+
+Log transformation to the rescue!
+
+:::
+
+## Log transformed scatterplot, 1
+
+```{r}
+#| label: log-transformed-scatterplot-2
+#| echo: true
+
+log_scatterplot
+```
+
+## Add a trend line, 1
+
+```{r}
+#| label: trend-line-1
+#| echo: true
+
+log_scatterplot +
+  geom_smooth(method="gam") -> trend_line_graph
+```
+
+::: note
+
+The [geom_smooth][ref4c] function adds a flexible trend line to a scatterplot. The argument method="gam" uses a cubic spline. This is a nice default choice. Changing the argument method="lm" produces a simple linear trend.
+
+[ref4c]: https://ggplot2.tidyverse.org/reference/geom_smooth.html
+
+:::
+
+## Add a trend line, 2
+
+```{r}
+#| label: trend-line-2
+#| echo: true
+
+trend_line_graph
+```

@@ -183,13 +183,15 @@ sleep |>
 
 ::: notes
 
-The short term solution to the above problem is to use a special function, is.na.
+The short term solution to the above problem is to use a special function, [is.na][ref31].
 
 The summary function will trap and remove missing values, but most other functions in R will, by default, report a result as missing if any values going into that function are missing. The philosophy in R, I suppose, is that you need to actively select an approach for handling missing values rather than relying on a lazy default.
 
 R is also erring on the side of caution most of the time. You may not be aware that there are missing values lurking in your data, and R is going to go out of its way to remind you, unless you tell it otherwise.
 
 This is different from SAS and SPSS, where the default options choose perfectly reasonable approaches, but approaches that don't raise concern about missingness to the degree that R does.
+
+[ref31]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/NA.html
 
 :::
 
@@ -209,6 +211,17 @@ sleep |>
     values_to="missing_count") |>
   filter(missing_count > 0)
 ```
+
+::: notes
+
+The [across][ref32] function (part of the dplyr/tidyverse libraries) allows you to apply various dplyr functions like mutate and summarize across more than one column. 
+
+The [pivot_longer][ref33] function (part of the tidyr/tidyverse libraries) will connect mutliple columns of a tibble or data frame into a single column.
+
+[ref32]: https://dplyr.tidyverse.org/reference/across.html
+[ref33]: https://tidyr.tidyverse.org/reference/pivot_longer.html
+
+:::
 
 ## Interpretation of missing value counts
 

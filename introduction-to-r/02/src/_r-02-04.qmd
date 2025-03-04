@@ -151,7 +151,6 @@ labeled_histogram +
     breaks=xticks,
     labels=format(xticks, big.mark=",") +
   scale_y_continuous(breaks=yticks) -> extra_ticks
-  )
 ```
 
 ::: notes

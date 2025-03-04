@@ -33,7 +33,7 @@ Calculate the mean, standard deviation, minimum, and maximum values for age and 
 
 ## Question 3
 
-The data dictionary implies that there are no missing values in the dataset. Write some code that checks whether this is true or not. Display the missing value counts in a vertical format. Hint: you do not need the select(-1) for this dataset.
+The data dictionary implies that there are no missing values in the dataset. Write some code that checks whether this is true or not. Display the missing value counts in a vertical format.
 
 ## Question 4
 

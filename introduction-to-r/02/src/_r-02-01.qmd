@@ -119,6 +119,12 @@ burgers |>
   select(-Fat)
 ```
 
+::: notes
+
+Placing a minus sign in front of a variable excludes that variable.
+
+:::
+
 
 ## Alternatives to select, 1
 

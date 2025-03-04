@@ -11,7 +11,6 @@ params:
   topic_04: "Histograms, scatterplots"
   topic_05: "Live demonstation"
   topic_06: "Your homework"
-  topic_07: "TBA-7"
 editor: source
 ---
 
@@ -28,7 +27,6 @@ editor: source
     -   `r params$topic_04`
     -   `r params$topic_05`
     -   `r params$topic_06`
-    -   `r params$topic_07`
 
 {{< include _r-02-01.qmd >}}
 
@@ -77,15 +75,6 @@ editor: source
 
 {{< include _r-02-06.qmd >}}
 
-## Break #6
-
--   What you have learned
-    -   `r params$topic_06`
--   What's coming next
-    -   `r params$topic_07`
-
-{{< include _r-02-07.qmd >}}
-
 ## Summary
 
 -   What you have learned
@@ -95,7 +84,6 @@ editor: source
     -   `r params$topic_04`
     -   `r params$topic_05`
     -   `r params$topic_06`
-    -   `r params$topic_07`
 
 <!---
       You have to put the title down 
@@ -104,6 +92,6 @@ editor: source
 --->
 
 ---
-title: "MEDB 5505, Module02"
-date: 2025-01-30
+title: "simon-5505-02-slides"
+date: 2025-03-04
 ---
