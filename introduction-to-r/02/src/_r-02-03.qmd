@@ -5,12 +5,15 @@ format:
     slide-number: true
     embed-resources: true
 editor: source
+execute: 
+  echo: true
+  eval: false
 ---
 
 ## Variable with missing values
 
 ```{r}
-#| label: setup-3
+#| label: 02-03-setup
 #| echo: false
 #| message: false
 #| warning: false
@@ -19,7 +22,7 @@ library(tidyverse)
 ```
 
 ```{r}
-#| label: read-sleep-3
+#| label: 02-03-read-sleep
 #| echo: false
 
 sleep <- read_tsv(
@@ -28,8 +31,7 @@ sleep <- read_tsv(
 ```
 
 ```{r}
-#| label: total-sleep-listing
-#| echo: true
+#| label: 02-03-total-sleep-listing
 
 sleep$TotalSleep
 ```
@@ -47,8 +49,8 @@ R uses the code NA for missing values. Other programs (SAS, SPSS) use a single d
 ## Statistics involving missing values
 
 ```{r}
-#| label: summarize-1
-#| echo: true
+#| label: 02-03-summarize-1
+
 
 sleep |>
   summarize(
@@ -65,8 +67,8 @@ If you try to compute a summary statistic on a variable with missing data, the r
 ## The na.rm argument
 
 ```{r}
-#| label: summarize-2
-#| echo: true
+#| label: 02-03-summarize-2
+
 
 sleep |>
   summarize(
@@ -100,8 +102,8 @@ For univariate functions, there are only two realistic ways to handle missing va
 ## Correlations with use="everything" {.smaller}
 
 ```{r}
-#| label: correlation-1
-#| echo: true
+#| label: 02-03-correlation-1
+
 
 options(width=120)
 # The greater output length allows the correlation matrix to fit on one slide.
@@ -119,8 +121,8 @@ Any correlation involving NonDreaming, Dreaming, TotalSleep, LifeSpan, and Gesta
 ## Correlations with use="complete.obs" {.smaller}
 
 ```{r}
-#| label: correlation-2
-#| echo: true
+#| label: 02-03-correlation-2
+
 
 sleep |> 
   select(-1) |>
@@ -143,8 +145,8 @@ It is tricky to interpret a large matrix of correlations. A first step is to hig
 ## You cannot test missingness directly
 
 ```{r}
-#| label: tracking-missing-1
-#| echo: true
+#| label: 02-03-tracking-missing-1
+
 
 sleep |>
   filter(TotalSleep == NA) |>
@@ -164,8 +166,8 @@ This is called a three valued logic system and it has advantages and disadvantag
 ## What is happening
 
 ```{r}
-#| label: what-is-happening
-#| echo: true
+#| label: 02-03-what-is-happening
+
 
 sleep$TotalSleep == NA
 ```
@@ -173,8 +175,8 @@ sleep$TotalSleep == NA
 ## The is.na function
 
 ```{r}
-#| label: is.na.example
-#| echo: true
+#| label: 02-03-is.na.example
+
 
 sleep |>
   filter(is.na(TotalSleep)) |>
@@ -198,8 +200,7 @@ This is different from SAS and SPSS, where the default options choose perfectly 
 ## Counting missing values
 
 ```{r}
-#| label: count-missing
-#| echo: true
+#| label: 02-03-count-missing
 
 sleep |>
   select(where(is.numeric)) |>

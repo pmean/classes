@@ -7,6 +7,8 @@ execute:
   error: true
 ---
 
+# Begin part 1 -----------------------------------------------------------------
+
 ## File details
 
 This program was written by Steve Simon on 2025-03-04 with a major revision on 2024-12-29. It is placed in the public domain and you can use this any way you wish.
@@ -27,11 +29,182 @@ Sys.Date()
 
 Always start by loading tidyverse and any other libraries you might need. Also display the date and the version of R that you are using.
 
+## Data dictionary for burger-calories
+
+The first few examples will use a data file, burger-calories. Refer to the [data dictionary][ref-burger] for details about this file.
+
+[ref-burger]: https://github.com/pmean/data/blob/main/files/burger-calories.yaml
+
+## Read burger-calories
+
+```{r}
+#| label: read-tsv
+#| message: false
+#| warning: false
+
+library(tidyverse)
+
+burgers <- read_tsv(
+  file="../data/burger-calories.txt", 
+  col_types="nnn")
+burgers
+```
+
+#### Comments on the code
+
+We will talk more about the read_tsv function later. For now, just note that it reads data from a text file and stores it in a tibble named burgers.
+
+## Select, 1
+
+```{r}
+#| label: select
+
+burgers |>
+  select(Calories)
+```
+
+#### Comments on the code
+
+The [select][ref-select] function will include or exclude variables from a tibble/dataframe.
+
+[ref-select]: https://dplyr.tidyverse.org/reference/select.html
+
+## Select, 2
+
+```{r}
+#| label: select-2
+
+burgers |>
+  select(-Fat)
+```
+
+#### Comments on the code
+
+Placing a minus sign in front of a variable excludes that variable.
+
+## Alternatives to select, 1
+
+```{r}
+#| label: select-alternative-1
+
+burgers$Calories
+```
+
+#### Comments on the code
+
+There are some "old school" ways to select a single column of data. Specify the name of the tibble, followed by a dollar sign, followed by the name of the variable. This produces a vector rather than a tibble.
+
+## Alternatives to select, 2
+
+```{r}
+#| label: select-alternative-2
+
+burgers[ , 1]
+```
+
+#### Comments on the code
+
+You can also use square brackets to select a variable. This code seems a bit strange at first. Think of the comma as a separator between the first index (which indicates rows) and the second index (which indicates columns). Leaving the first index blank is equivalent of saying select all rows and just the first column.
+
+## Alternatives to select, 3
+
+```{r}
+#| label: select-alternative-3
+
+burgers[ , "Calories"]
+```
+
+#### Comments on the code
+
+You can also specify a column by its name. Be sure to put the name inside quote marks.
+
+## Slice, 1
+
+```{r}
+#| label: slice-1
+
+burgers |>
+  slice(1)
+```
+
+#### Comments on the code
+
+The [slice][ref-slice] function selects rows based on their position.
+
+[ref-slice]: https://dplyr.tidyverse.org/reference/slice.html
+
+## Slice, 2
+
+```{r}
+#| label: slice-2
+
+burgers |>
+  slice_max(Calories)
+```
+
+#### Comments on the code
+
+The slice_max function, described in the previous link, selects rows based on the size of one of the variables.
+
+## Filter, 1
+
+```{r}
+#| label: filter-1
+
+burgers |>
+  filter(Sodium == 1500)
+```
+
+#### Comments on the code
+
+The [filter][ref-filter] function selects rows of a tibble or dataframe based on a logical condition (an R expression that produces true/false values).
+
+[ref-filter]: https://dplyr.tidyverse.org/reference/filter.html
+
+## Filter, 2
+
+```{r}
+#| label: filter-2
+
+burgers |>
+  filter(Calories >= 600)
+```
+
+#### Comments on the code
+
+With certain logical conditions, you can produce a tibble with more than one row.
+
+## Alternatives to slice/filter, 1
+
+```{r}
+#| label: slice-filter-alternatives-1
+
+burgers[1, ]
+```
+
+#### Comments on the code
+
+Using the same square bracket approach, you can select one or more rows. This code selects the first row and every column.
+
+## Alternatives to slice/filter, 2
+
+```{r}
+#| label: slice-filter-alternatives-2
+
+burgers[burgers$Sodium == 1500, ]
+```
+
+#### Comments on the code
+
+You can also place a logical condition inside the square brackets. The syntax is a bit awkward because you have to specify the name of the tibble twice.
+
+# Begin part 2 -----------------------------------------------------------------
+
 ## Read sleep data
 
-The next few examples will use a different data file, sleep. Refer to the [data dictionary][ref01] for details about this file.
+The next few examples will use a different data file, sleep. Refer to the [data dictionary][ref-sleep] for details about this file.
 
-[ref01]: https://github.com/pmean/data/blob/main/files/sleep.yaml
+[ref-sleep]: https://github.com/pmean/data/blob/main/files/sleep.yaml
 
 ## Read text file
 
@@ -46,9 +219,9 @@ glimpse(sleep)
 
 #### Comments on the code
 
-The sleep data is too big to display on a single slide. The [glimpse][ref02] function provides a brief overview. It lists the number of rows and columns. This is followed with the name for each variable, its type, and the first few values.
+The sleep data is too big to display on a single slide. The [glimpse][ref-glimpse] function provides a brief overview. It lists the number of rows and columns. This is followed with the name for each variable, its type, and the first few values.
 
-[ref02]: https://dplyr.tidyverse.org/reference/glimpse.html
+[ref-glimpse]: https://dplyr.tidyverse.org/reference/glimpse.html
 
 ## Convert brain weight from grams to kilograms
 
@@ -66,9 +239,9 @@ sleep_1 |>
 
 #### Comments on the code
 
-The [mutate][ref03] function creates a new variable or changes an existing variable. In this simple case, it is performing a unit conversion from grams to kilograms. This is needed for the next step.
+The [mutate][ref-mutate] function creates a new variable or changes an existing variable. In this simple case, it is performing a unit conversion from grams to kilograms. This is needed for the next step.
 
-[ref03]: https://dplyr.tidyverse.org/reference/mutate.html
+[ref-mutate]: https://dplyr.tidyverse.org/reference/mutate.html
 
 ## Calculate brain to body weight ratio
 
@@ -86,9 +259,9 @@ sleep_1 |>
 
 #### Comments on the code
 
-This is a more elaborate set of mutations. The round function is strongly recommended. It makes the data more readable. The [glue][ref04] function is icing on top of the cake. It takes the numeric calculation and adds a percent sign at the end. 
+This is a more elaborate set of mutations. The round function is strongly recommended. It makes the data more readable. The [glue][ref-glue] function is icing on top of the cake. It takes the numeric calculation and adds a percent sign at the end. 
 
-[ref04]: https://glue.tidyverse.org/
+[ref-glue]: https://glue.tidyverse.org/
 
 ## Summarize body weight
 
@@ -106,15 +279,17 @@ sleep |>
 
 #### Comments on the code
 
-The [summarize][ref05] function calculates simple statistics like the mean and standard deviation.
+The [summarize][ref-summarize] function calculates simple statistics like the mean and standard deviation.
 
-[ref05]: https://dplyr.tidyverse.org/reference/summarise.html
+[ref-summarize]: https://dplyr.tidyverse.org/reference/summarise.html
 
 I did not include any interpretations up to now because the computations were simple and self-explanatory. You should, however, always include a brief interpretation for any statistical summary like this one, as well as any graphs.
 
 ## Interpretation of the output
 
 The mean body weight is just a bit below 200 kilograms with a standard devation of about 900. The range of weights is extremely broad. The smallest animal is 0.005 kilograms (or 5 grams) and the largest is over 6,600 kilograms.
+
+# Begin part 3 -----------------------------------------------------------------
 
 ## Variable with missing values
 
@@ -159,9 +334,10 @@ sleep |>
 
 #### Comment on the code
 
-The [where][ref06] function (part of the tidyverse library) allows you to select variables that meet a certain condition. In this case, it selects variables where the [is.numeric][ref07] function evaluates to TRUE.
+The [where][ref-where] function (part of the tidyverse library) allows you to select variables that meet a certain condition. In this case, it selects variables where the [is.numeric][ref-is-numeric] function evaluates to TRUE.
 
-
+[ref-where]: https://tidyselect.r-lib.org/reference/where.html
+[ref-is-numeric]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/numeric.html
 
 #### Interpretation of the output
 
@@ -201,13 +377,13 @@ sleep |>
 
 Logic involving missing values is tricky. If you checking for equality and one of the things in the comparison is missing, then the result is neither TRUE, not FALSE, but rather missing.
 
-The short term solution to the above problem is to use a special function, [is.na][ref08].
+The short term solution to the above problem is to use a special function, [is.na][ref-is-na].
 
 R is erring on the side of caution most of the time. You may not be aware that there are missing values lurking in your data, and R is going to go out of its way to remind you, unless you tell it otherwise.
 
 This is different from SAS and SPSS, where the default options (removing missing values before computation) are perfectly reasonable approaches. These approaches, however, don't raise concern about missingness to the degree that R does.
 
-[ref08]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/NA.html
+[ref-is-na]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/NA.html
 
 ## Counting missing values
 
@@ -227,20 +403,18 @@ sleep |>
 
 #### Comments on the code
 
-The [where][ref09] function allows you to select variables that meet a certain condition. In this code, you are selecting variables that satisfy the condition [is.numeric][ref10] equals TRUE. 
+The [across][ref-across] function (part of the dplyr/tidyverse libraries) allows you to apply various dplyr functions like mutate and summarize across more than one column. 
 
-The [across][ref11] function (part of the dplyr/tidyverse libraries) allows you to apply various dplyr functions like mutate and summarize across more than one column. 
+The [pivot_longer][ref-pivot-longer] function (part of the tidyr/tidyverse libraries) will connect mutliple columns of a tibble or data frame into a single column.
 
-The [pivot_longer][ref12] function (part of the tidyr/tidyverse libraries) will connect mutliple columns of a tibble or data frame into a single column.
-
-[ref09]: https://tidyselect.r-lib.org/reference/where.html
-[ref10]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/numeric.html
-[ref11]: https://dplyr.tidyverse.org/reference/across.html
-[ref12]: https://tidyr.tidyverse.org/reference/pivot_longer.html
+[ref-across]: https://dplyr.tidyverse.org/reference/across.html
+[ref-pivot-longer]: https://tidyr.tidyverse.org/reference/pivot_longer.html
 
 ## Interpretation of the output
 
 There are five variables with missing data. Non-dreaming and dreaming sleep have 14 and 12 missing values, respectively. Total sleep, life span, and gestation all have 4 missing values. 
+
+# Begin part 4 -----------------------------------------------------------------
 
 ## Histogram for body weight, 1
 
@@ -251,6 +425,7 @@ sleep |>
   ggplot() +
   aes(x=BodyWt) +
   geom_histogram(
+    bins=8, 
     color="black",
     fill="white") +
 	ggtitle("Graph drawn by Steve Simon on 2025-03-04") +
@@ -261,22 +436,22 @@ body_weight_histogram
 
 #### Comments on the code
 
-R has at least three different approaches for graphs: [base graphs][ref13] (graphing functions built into the base R package), [lattice][ref14], and [ggplot2][ref15]. All are excellent. I will rely almost entirely on ggplot2 for graphs that I use. 
+R has at least three different approaches for graphs: [base graphs][ref-base-graphs] (graphing functions built into the base R package), [lattice][ref-lattice], and [ggplot2][ref-ggplot2]. All are excellent. I will rely almost entirely on ggplot2 for graphs that I use. 
 
-The [aes][ref16] function provides the framework for the graph. This includes which variables go on which axes, what colors are used to designate groups, and so on. You need to specify your continuous variable on the x-axis. Leave the y-axis unspecified because this is where the counts for the histogram belong.
+The [aes][ref-aes] function provides the framework for the graph. This includes which variables go on which axes, what colors are used to designate groups, and so on. You need to specify your continuous variable on the x-axis. Leave the y-axis unspecified because this is where the counts for the histogram belong.
 
-The [geom_histogram][ref17] function specifies the use of a histogram.
+The [geom_histogram][ref-geom-histogram] function specifies the use of a histogram. You should always specift either the number of bins (with the bins= argument) or the width of the bins (with the binwidth= argument). A good starting point is to set the number of bins equal to the square root of the sample size (rounded to a whole number, of course). Use trial and error to adjust until you produce a histogram that paints a fair picture of what is going on with your data.
 
 I usually try a black border. The color argument specifies the color of the border and the fill argument specifies the color of the interior.
 
-You should always use the [xlab, ylab, and ggtitle][ref18] functions to make your graphs more interpretable. The xlab function changes the label on the x-axis from the default (just the variable name itself) to a more descriptive label. There is a ylab function as well, but I did not need it for the histogram because the word "count" that ggplot uses on the y-axis for its histograms is sufficiently descriptive. The ggtitle function places a title at the top of the graph. For this class, I require you to put your name and the date as the title. If you are preparing a graph for a publication, you will probably need a different title.
+You should always use the [xlab, ylab, and ggtitle][ref-labels] functions to make your graphs more interpretable. The xlab function changes the label on the x-axis from the default (just the variable name itself) to a more descriptive label. There is a ylab function as well, but I did not need it for the histogram because the word "count" that ggplot uses on the y-axis for its histograms is sufficiently descriptive. The ggtitle function places a title at the top of the graph. For this class, I require you to put your name and the date as the title. If you are preparing a graph for a publication, you will probably need a different title.
 
-[ref13]: https://r-graph-gallery.com/base-R.html
-[ref14]: https://cran.r-project.org/web/packages/lattice/index.html
-[ref15]: https://ggplot2.tidyverse.org/
-[ref16]: https://ggplot2.tidyverse.org/reference/aes.html
-[ref17]: https://ggplot2.tidyverse.org/reference/geom_histogram.html
-[ref18]: https://ggplot2.tidyverse.org/reference/labs.html
+[ref-base-graphs]: https://r-graph-gallery.com/base-R.html
+[ref-lattice]: https://cran.r-project.org/web/packages/lattice/index.html
+[ref-ggplot2]: https://ggplot2.tidyverse.org/
+[ref-aes]: https://ggplot2.tidyverse.org/reference/aes.html
+[ref-geom-histogram]: https://ggplot2.tidyverse.org/reference/geom_histogram.html
+[ref-labels]: https://ggplot2.tidyverse.org/reference/labs.html
 
 #### Interpretation of the output
 
@@ -299,15 +474,12 @@ body_weight_histogram +
 
 #### Comments on the code
 
-The [seq][ref19] function provides an evenly spaced sequence of numbers. If the sequence increases by increments of 1, you can use the colon operator to produce the sequence. For example, seq(0,5, 1) and 0:5 both produce a vector with the values 0, 1, 2, 3, 4, 5.
+The [seq][ref-seq] function provides an evenly spaced sequence of numbers. If the sequence increases by increments of 1, you can use the colon operator to produce the sequence. For example, seq(0,5, 1) and 0:5 both produce a vector with the values 0, 1, 2, 3, 4, 5.
 
-The [scale_x_continuous and scale_y_continuous][ref20] functions control how the x and y axes are labelled. In this example, the breaks argument shows where to place tick marks and the labels argument changes what is displayed at each tick mark.
+The [scale_x_continuous and scale_y_continuous][ref-scale-continuous] functions control how the x and y axes are labelled. In this example, the breaks argument shows where to place tick marks and the labels argument changes what is displayed at each tick mark.
 
-The [format][ref21] function modifies how numbers are displayed. The big.mark="," argument inserts commas for any numbers greater than 999.
-
-[ref19]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/seq.html
-[ref20]: https://ggplot2.tidyverse.org/reference/scale_continuous.html
-[ref21]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/format.html
+[ref-seq]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/seq.html
+[ref-scale-continuous]: https://ggplot2.tidyverse.org/reference/scale_continuous.html
 
 ## Log transformed histogram, 1
 
@@ -325,13 +497,15 @@ body_weight_histogram +
 
 #### Comments on the code
 
-The [scale_x_log10][ref22] function is one of a series of functions that controls how the scale of the x axis appears.
+The [scale_x_log10][ref-scale-log] function is one of a series of functions that controls how the scale of the x axis appears.
 
-[ref22]: https://ggplot2.tidyverse.org/reference/scale_continuous.html
+[ref-scale-log]: https://ggplot2.tidyverse.org/reference/scale_continuous.html
 
 #### Interpretation of the output
 
 The body weights are approximately normal after a log transformation.
+
+# Begin part 5 -----------------------------------------------------------------
 
 ## Labeled scatterplot, 1
 
@@ -352,9 +526,9 @@ labeled_scatterplot
 
 #### Comments on the code
 
-You produce a scatterplot by specifying continuous variables for x and y and using the [geom_point][ref23] function. Get in the habit of changing the labels on the axes to something more descriptive. Always include the units of measure.
+You produce a scatterplot by specifying continuous variables for x and y and using the [geom_point][ref-geom-point] function. Get in the habit of changing the labels on the axes to something more descriptive. Always include the units of measure.
 
-[ref23]: https://ggplot2.tidyverse.org/reference/geom_point.html
+[ref-geom-point]: https://ggplot2.tidyverse.org/reference/geom_point.html
 
 #### Interpretation of the output
 
@@ -397,6 +571,6 @@ log_scatterplot +
 
 ### Comments on the code
 
-The [geom_smooth][ref24] function adds a flexible trend line to a scatterplot. The argument method="gam" uses a cubic spline. This is a nice default choice. Changing the argument method="lm" produces a simple linear trend.
+The [geom_smooth][ref-geom-smooth] function adds a flexible trend line to a scatterplot. The argument method="gam" uses a cubic spline. This is a nice default choice. Changing the argument method="lm" produces a simple linear trend.
 
-[ref24]: https://ggplot2.tidyverse.org/reference/geom_smooth.html
+[ref-geom-smooth]: https://ggplot2.tidyverse.org/reference/geom_smooth.html

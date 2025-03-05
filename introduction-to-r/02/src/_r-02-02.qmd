@@ -5,9 +5,12 @@ format:
     slide-number: true
     embed-resources: true
 editor: source
+execute:
+  echo: true
+  eval: false
 ---
 
-## Data dictionary for burger-calories
+## Data dictionary for sleep
 
 The next few examples will use a different data file, sleep. Refer to the [data dictionary][ref21] for details about this file.
 
@@ -16,7 +19,7 @@ The next few examples will use a different data file, sleep. Refer to the [data 
 ## Read text file
 
 ```{r}
-#| label: setup2
+#| label: 02-02-setup
 #| message: false
 #| warning: false
 #| echo: true
@@ -25,7 +28,7 @@ library(tidyverse)
 ```
 
 ```{r}
-#| label: read-sleep
+#| label: 02-02-read-sleep
 #| echo: true
 
 sleep <- read_tsv(
@@ -45,7 +48,7 @@ The sleep data is too big to display on a single slide. The [glimpse][ref22] fun
 ## Convert brain weight from grams to kilograms
 
 ```{r}
-#| label: convert-units
+#| label: 02-02-convert-units
 #| echo: true
 
 sleep |>
@@ -67,7 +70,7 @@ The [mutate][ref23] function creates a new variable or changes an existing varia
 ## Calculate brain to body weight ratio
 
 ```{r}
-#| label: calculate-percent
+#| label: 02-02-calculate-percent
 #| echo: true
 
 sleep |>
@@ -92,7 +95,7 @@ This is a more elaborate set of mutations. The [round][ref24] function is strong
 ## Summarize body weight
 
 ```{r}
-#| label: summarize
+#| label: 02-02-summarize
 #| echo: true
 
 sleep |>

@@ -1,5 +1,5 @@
 ---
-title: "r-01-05, Live demonstration"
+title: "r-02-05, Scatterplots"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,115 @@ format:
 editor: source
 ---
 
-## Live demonstration
+```{r}
+#| label: 02-05-setup
+#| echo: false
+#| message: false
+#| warning: false
 
-:::notes
+library(tidyverse)
+```
+
+```{r}
+#| label: 02-05-read-sleep
+#| echo: false
+
+sleep <- read_tsv(
+  file="../data/sleep.txt",
+  col_types="cnnnnnnnnnn")
+```
+
+## Labeled scatterplot, 1
+
+```{r}
+#| label: 02-05-scatterplot-1
+
+sleep |>
+  ggplot() +
+  aes(x=BodyWt, y=BrainWt) +
+  geom_point() + 
+  ggtitle("This graph was drawn by Steve Simon on 2025-01-02") +
+  xlab("Body weight (kg)") +
+  ylab("Brain weight (g)") -> labeled_scatterplot
+```
+
+::: notes
+
+You produce a scatterplot by specifying continuous variables for x and y and using the [geom_point][ref4b] function. Get in the habit of changing the labels on the axes to something more descriptive. Always include the units of measure.
+
+[ref4b]: https://ggplot2.tidyverse.org/reference/geom_point.html
 
 :::
+
+## Labeled scatterplot, 2
+
+```{r}
+#| label: 02-05-scatterplot-2
+
+labeled_scatterplot
+```
+
+::: notes
+
+Notice how a few outliers distort the scale of this graph. It is hard to tell what is going on because the data is clustered in the lower left corner of the graph.
+
+:::
+
+## Log transformed scatterplot, 1
+
+```{r}
+#| label: 02-05-log-transformed-scatterplot-1
+
+xticks <- 10^(-2:3)
+yticks <- 10^(-2:3)
+labeled_scatterplot +
+  scale_x_log10(
+    breaks=xticks,
+    minor_breaks=NULL,
+    labels=xticks) +
+  scale_y_log10(
+    breaks=yticks,
+    minor_breaks=NULL,
+    labels=yticks)-> log_scatterplot
+```
+
+::: notes
+
+Log transformation to the rescue!
+
+:::
+
+## Log transformed scatterplot, 1
+
+```{r}
+#| label: 02-05-log-transformed-scatterplot-2
+
+
+log_scatterplot
+```
+
+## Add a trend line, 1
+
+```{r}
+#| label: 02-05-trend-line-1
+
+log_scatterplot +
+  geom_smooth(method="gam") -> trend_line_graph
+```
+
+::: note
+
+The [geom_smooth][ref4c] function adds a flexible trend line to a scatterplot. The argument method="gam" uses a cubic spline. This is a nice default choice. Changing the argument method="lm" produces a simple linear trend.
+
+[ref4c]: https://ggplot2.tidyverse.org/reference/geom_smooth.html
+
+:::
+
+## Add a trend line, 2
+
+```{r}
+#| label: 02-05-trend-line-2
+
+trend_line_graph
+```
+

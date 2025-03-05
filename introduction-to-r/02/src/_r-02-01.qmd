@@ -5,6 +5,9 @@ format:
     slide-number: true
     embed-resources: true
 editor: source
+execute:
+  echo: true
+  eval: false
 ---
 
 ## Some definitions, 1
@@ -72,8 +75,7 @@ The next few examples will use a data file, burger-calories. Refer to the [data 
 ## Read burger-calories
 
 ```{r}
-#| label: read-tsv
-#| echo: true
+#| label: 02-01-read-tsv
 #| message: false
 #| warning: false
 
@@ -94,8 +96,7 @@ We will talk more about the read_tsv function later. For now, just note that it 
 ## Select, 1
 
 ```{r}
-#| label: select
-#| echo: true
+#| label: 02-01-select
 
 burgers |>
   select(Calories)
@@ -112,8 +113,7 @@ The [select][ref12] function will include or exclude variables from a tibble/dat
 ## Select, 2
 
 ```{r}
-#| label: select-2
-#| echo: true
+#| label: 02-01-select-2
 
 burgers |>
   select(-Fat)
@@ -129,8 +129,7 @@ Placing a minus sign in front of a variable excludes that variable.
 ## Alternatives to select, 1
 
 ```{r}
-#| label: select-alternative-1
-#| echo: true
+#| label: 02-01-select-alternative-1
 
 burgers$Calories
 ```
@@ -144,8 +143,7 @@ There are some "old school" ways to select a single column of data. Specify the 
 ## Alternatives to select, 2
 
 ```{r}
-#| label: select-alternative-2
-#| echo: true
+#| label: 02-01-select-alternative-2
 
 burgers[ , 1]
 ```
@@ -159,8 +157,7 @@ You can also use square brackets to select a variable. This code seems a bit str
 ## Alternatives to select, 3
 
 ```{r}
-#| label: select-alternative-3
-#| echo: true
+#| label: 02-01-select-alternative-3
 
 burgers[ , "Calories"]
 ```
@@ -174,8 +171,7 @@ You can also specify a column by its name. Be sure to put the name inside quote 
 ## Slice, 1
 
 ```{r}
-#| label: slice-1
-#| echo: true
+#| label: 02-01-slice-1
 
 burgers |>
   slice(1)
@@ -192,8 +188,7 @@ The [slice][ref13] function selects rows based on their position.
 ## Slice, 2
 
 ```{r}
-#| label: slice-2
-#| echo: true
+#| label: 02-01-slice-2
 
 burgers |>
   slice_max(Calories)
@@ -208,8 +203,7 @@ The slice_max function, described in the previous link, selects rows based on th
 ## Filter, 1
 
 ```{r}
-#| label: filter-1
-#| echo: true
+#| label: 02-01-filter-1
 
 burgers |>
   filter(Sodium == 1500)
@@ -226,8 +220,7 @@ The [filter][ref14] function selects rows of a tibble or dataframe based on a lo
 ## Filter, 2
 
 ```{r}
-#| label: filter-2
-#| echo: true
+#| label: 02-01-filter-2
 
 burgers |>
   filter(Calories >= 600)
@@ -242,8 +235,7 @@ With certain logical conditions, you can produce a tibble with more than one row
 ## Alternatives to slice/filter, 1
 
 ```{r}
-#| label: slice-filter-alternatives-1
-#| echo: true
+#| label: 02-01-slice-filter-alternatives-1
 
 burgers[1, ]
 ```
@@ -258,8 +250,7 @@ Using the same square bracket approach, you can select one or more rows. This co
 ## Alternatives to slice/filter, 2
 
 ```{r}
-#| label: slice-filter-alternatives-2
-#| echo: true
+#| label: 02-01-slice-filter-alternatives-2
 
 burgers[burgers$Sodium == 1500, ]
 ```

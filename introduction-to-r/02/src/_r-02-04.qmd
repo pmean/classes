@@ -1,16 +1,19 @@
 ---
-title: "r-01-04, Histograms, scatterplots"
+title: "r-02-04, Histograms"
 format: 
   revealjs:
     slide-number: true
     embed-resources: true
 editor: source
+execute: 
+  echo: true
+  eval: false
 ---
 
 ## Default histogram for body weight, 1
 
 ```{r}
-#| label: setup-4
+#| label: 02-04-setup
 #| echo: false
 #| message: false
 #| warning: false
@@ -19,7 +22,7 @@ library(tidyverse)
 ```
 
 ```{r}
-#| label: read-sleep-4
+#| label: 02-04-read-sleep-4
 #| echo: false
 
 sleep <- read_tsv(
@@ -28,8 +31,7 @@ sleep <- read_tsv(
 ```
 
 ```{r}
-#| label: default-histogram-1
-#| echo: true
+#| label: 02-04-default-histogram-1
 
 sleep |>
   ggplot() +
@@ -57,8 +59,7 @@ The [geom_histogram][ref45] function specifies the use of a histogram.
 
 
 ```{r}
-#| label: default-histogram-2
-#| echo: true
+#| label: 02-04-default-histogram-2
 
 basic_histogram
 ```
@@ -72,8 +73,7 @@ Never settle for the default. The default in ggplot for a histogram or bar chart
 ## Better colors for the histogram, 1
 
 ```{r}
-#| label: better-histogram-1
-#| echo: true
+#| label: 02-04-better-histogram-1
 
 sleep |>
   ggplot() +
@@ -92,8 +92,7 @@ I usually try a black border. The color argument specifies the color of the bord
 ## Better colors for the histogram, 2
 
 ```{r}
-#| label: better-histogram-2
-#| echo: true
+#| label: 02-04-better-histogram-2
 
 better_histogram
 ```
@@ -107,8 +106,7 @@ It may not be so obvious with this graph, but I do think that black borders with
 ## Labeled histogram, 1
 
 ```{r}
-#| label: histogram-with-labels-1
-#| echo: true
+#| label: 02-04-histogram-with-labels-1
 
 better_histogram +
   ggtitle("Graph drawn by Steve Simon on 2025-01-02") +
@@ -126,8 +124,7 @@ You should always use the [xlab, ylab, and ggtitle][ref46] functions to make you
 ## Labeled histogram, 2
 
 ```{r}
-#| label: histogram-with-labels-2
-#| echo: true
+#| label: 02-04-histogram-with-labels-2
 
 labeled_histogram
 ```
@@ -141,15 +138,14 @@ This is what the labeled histogram looks like.
 ## Extra tick marks, 1
 
 ```{r}
-#| label: extra-ticks-1
-#| echo: true
+#| label: 02-04-extra-ticks-1
 
 xticks <- seq(0, 6500, 500)
 yticks <- seq(0, 50, 5)
 labeled_histogram +
   scale_x_continuous(
     breaks=xticks,
-    labels=format(xticks, big.mark=",") +
+    labels=format(xticks, big.mark=",")) +
   scale_y_continuous(breaks=yticks) -> extra_ticks
 ```
 
@@ -170,8 +166,8 @@ The [format][ref49] function modifies how numbers are displayed. The big.mark=",
 ## Extra tick marks, 2
 
 ```{r}
-#| label: extra-ticks-2
-#| echo: true
+#| label: 02-04-extra-ticks-2
+
 
 extra_ticks
 ```
@@ -185,8 +181,7 @@ This is what histogram looks like with more ticks.
 ## Log transformed histogram, 1
 
 ```{r}
-#| label: histogram-with-log10-scale-1
-#| echo: true
+#| label: 02-04-histogram-with-log10-scale-1
 
 ticks <- 10^(-2:3)
 labeled_histogram +
@@ -205,8 +200,7 @@ The scale_x_log10, described in the link above, controls how the scale of the x 
 ## Log transformed histogram, 2
 
 ```{r}
-#| label: histogram-with-log10-scale-2
-#| echo: true
+#| label: 02-04-histogram-with-log10-scale-2
 
 histogram_with_log10
 ```
@@ -217,101 +211,3 @@ Here is the histogram on a log scale.
 
 :::
 
-## Labeled scatterplot, 1
-
-```{r}
-#| label: scatterplot-1
-#| echo: true
-
-sleep |>
-  ggplot() +
-  aes(x=BodyWt, y=BrainWt) +
-  geom_point() + 
-  ggtitle("This graph was drawn by Steve Simon on 2025-01-02") +
-  xlab("Body weight (kg)") +
-  ylab("Brain weight (g)") -> labeled_scatterplot
-```
-
-::: notes
-
-You produce a scatterplot by specifying continuous variables for x and y and using the [geom_point][ref4b] function. Get in the habit of changing the labels on the axes to something more descriptive. Always include the units of measure.
-
-[ref4b]: https://ggplot2.tidyverse.org/reference/geom_point.html
-
-:::
-
-## Labeled scatterplot, 2
-
-```{r}
-#| label: scatterplot-2
-#| echo: true
-
-labeled_scatterplot
-```
-
-::: notes
-
-Notice how a few outliers distort the scale of this graph. It is hard to tell what is going on because the data is clustered in the lower left corner of the graph.
-
-:::
-
-## Log transformed scatterplot, 1
-
-```{r}
-#| label: log-transformed-scatterplot-1
-#| echo: true
-
-xticks <- 10^(-2:3)
-yticks <- 10^(-2:3)
-labeled_scatterplot +
-  scale_x_log10(
-    breaks=xticks,
-    minor_breaks=NULL,
-    labels=xticks) +
-  scale_y_log10(
-    breaks=yticks,
-    minor_breaks=NULL,
-    labels=yticks)-> log_scatterplot
-```
-
-::: notes
-
-Log transformation to the rescue!
-
-:::
-
-## Log transformed scatterplot, 1
-
-```{r}
-#| label: log-transformed-scatterplot-2
-#| echo: true
-
-log_scatterplot
-```
-
-## Add a trend line, 1
-
-```{r}
-#| label: trend-line-1
-#| echo: true
-
-log_scatterplot +
-  geom_smooth(method="gam") -> trend_line_graph
-```
-
-::: note
-
-The [geom_smooth][ref4c] function adds a flexible trend line to a scatterplot. The argument method="gam" uses a cubic spline. This is a nice default choice. Changing the argument method="lm" produces a simple linear trend.
-
-[ref4c]: https://ggplot2.tidyverse.org/reference/geom_smooth.html
-
-:::
-
-## Add a trend line, 2
-
-```{r}
-#| label: trend-line-2
-#| echo: true
-
-trend_line_graph
-```
