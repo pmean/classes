@@ -25,10 +25,10 @@ sleep <- read_tsv(
   col_types="cnnnnnnnnnn")
 ```
 
-## Labeled scatterplot, 1
+## Labeled scatterplot
 
 ```{r}
-#| label: 02-05-scatterplot-1
+#| label: 02-05-scatterplot
 
 sleep |>
   ggplot() +
@@ -39,32 +39,10 @@ sleep |>
   ylab("Brain weight (g)") -> labeled_scatterplot
 ```
 
-::: notes
-
-You produce a scatterplot by specifying continuous variables for x and y and using the [geom_point][ref4b] function. Get in the habit of changing the labels on the axes to something more descriptive. Always include the units of measure.
-
-[ref4b]: https://ggplot2.tidyverse.org/reference/geom_point.html
-
-:::
-
-## Labeled scatterplot, 2
+## Log transformed scatterplot
 
 ```{r}
-#| label: 02-05-scatterplot-2
-
-labeled_scatterplot
-```
-
-::: notes
-
-Notice how a few outliers distort the scale of this graph. It is hard to tell what is going on because the data is clustered in the lower left corner of the graph.
-
-:::
-
-## Log transformed scatterplot, 1
-
-```{r}
-#| label: 02-05-log-transformed-scatterplot-1
+#| label: 02-05-log-transformed-scatterplot
 
 xticks <- 10^(-2:3)
 yticks <- 10^(-2:3)
@@ -79,43 +57,12 @@ labeled_scatterplot +
     labels=yticks)-> log_scatterplot
 ```
 
-::: notes
-
-Log transformation to the rescue!
-
-:::
-
-## Log transformed scatterplot, 1
+## Add a trend line
 
 ```{r}
-#| label: 02-05-log-transformed-scatterplot-2
-
-
-log_scatterplot
-```
-
-## Add a trend line, 1
-
-```{r}
-#| label: 02-05-trend-line-1
+#| label: 02-05-trend-line
 
 log_scatterplot +
   geom_smooth(method="gam") -> trend_line_graph
-```
-
-::: note
-
-The [geom_smooth][ref4c] function adds a flexible trend line to a scatterplot. The argument method="gam" uses a cubic spline. This is a nice default choice. Changing the argument method="lm" produces a simple linear trend.
-
-[ref4c]: https://ggplot2.tidyverse.org/reference/geom_smooth.html
-
-:::
-
-## Add a trend line, 2
-
-```{r}
-#| label: 02-05-trend-line-2
-
-trend_line_graph
 ```
 

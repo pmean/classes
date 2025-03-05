@@ -10,8 +10,6 @@ execute:
   eval: false
 ---
 
-## Default histogram for body weight, 1
-
 ```{r}
 #| label: 02-04-setup
 #| echo: false
@@ -30,115 +28,34 @@ sleep <- read_tsv(
   col_types="cnnnnnnnnnn")
 ```
 
-```{r}
-#| label: 02-04-default-histogram-1
-
-sleep |>
-  ggplot() +
-  aes(x=BodyWt) +
-  geom_histogram() -> basic_histogram
-```
-
-::: notes
-
-R has at least three different approaches for graphs: [base graphs][ref41] (graphing functions built into the base R package), [lattice][ref42], and [ggplot2][ref43]. All are excellent. I will rely almost entirely on ggplot2 for graphs that I use. 
-
-The [aes][ref44] function provides the framework for the graph. This includes which variables go on which axes, what colors are used to designate groups, and so on. You need to specify your continuous variable on the x-axis. Leave the y-axis unspecified because this is where the counts for the histogram belong.
-
-The [geom_histogram][ref45] function specifies the use of a histogram.
-
-[ref41]: https://r-graph-gallery.com/base-R.html
-[ref42]: https://ggplot2.tidyverse.org/
-[ref43]: https://cran.r-project.org/web/packages/lattice/index.html
-[ref44]: https://ggplot2.tidyverse.org/reference/aes.html
-[ref45]: https://ggplot2.tidyverse.org/reference/geom_histogram.html
-
-:::
-
-## Default histogram for body weight, 2
-
+## Basic histogram
 
 ```{r}
-#| label: 02-04-default-histogram-2
-
-basic_histogram
-```
-
-::: notes
-
-Never settle for the default. The default in ggplot for a histogram or bar chart is a dark gray bar with a dark gray border. There are a few times that this is a reasonable choice, but more often than not choosing the same color value for the border and the interior is confusing.
-
-:::
-
-## Better colors for the histogram, 1
-
-```{r}
-#| label: 02-04-better-histogram-1
+#| label: 02-04-better-histogram
 
 sleep |>
   ggplot() +
   aes(x=BodyWt) +
   geom_histogram(
+    bins=8,
     color="black",
     fill="white") -> better_histogram
 ```
 
-::: notes
-
-I usually try a black border. The color argument specifies the color of the border and the fill argument specifies the color of the interior.
-
-:::
-
-## Better colors for the histogram, 2
+## Labeled histogram
 
 ```{r}
-#| label: 02-04-better-histogram-2
-
-better_histogram
-```
-
-::: notes
-
-It may not be so obvious with this graph, but I do think that black borders with white interiors improve the appearance of most bar charts and histograms.
-
-::::
-
-## Labeled histogram, 1
-
-```{r}
-#| label: 02-04-histogram-with-labels-1
+#| label: 02-04-histogram-with-labels
 
 better_histogram +
   ggtitle("Graph drawn by Steve Simon on 2025-01-02") +
   xlab("Body weight (kg)") -> labeled_histogram
 ```
 
-::: notes
-
-You should always use the [xlab, ylab, and ggtitle][ref46] functions to make your graphs more interpretable. The xlab function changes the label on the x-axis from the default (just the variable name itself) to a more descriptive label. There is a ylab function as well, but I did not need it for the histogram because the word "count" that ggplot uses on the y-axis for its histograms is sufficiently descriptive. The ggtitle function places a title at the top of the graph. For this class, I require you to put your name and the date as the title. If you are preparing a graph for a publication, you will probably need a different title.
-
-[ref46]: https://ggplot2.tidyverse.org/reference/labs.html
-
-:::
-
-## Labeled histogram, 2
+## Extra tick marks
 
 ```{r}
-#| label: 02-04-histogram-with-labels-2
-
-labeled_histogram
-```
-
-::: notes
-
-This is what the labeled histogram looks like.
-
-:::
-
-## Extra tick marks, 1
-
-```{r}
-#| label: 02-04-extra-ticks-1
+#| label: 02-04-extra-ticks
 
 xticks <- seq(0, 6500, 500)
 yticks <- seq(0, 50, 5)
@@ -149,39 +66,10 @@ labeled_histogram +
   scale_y_continuous(breaks=yticks) -> extra_ticks
 ```
 
-::: notes
-
-The [seq][ref47] function provides an evenly spaced sequence of numbers. If the sequence increases by increments of 1, you can use the colon operator to produce the sequence. For example, seq(0,5, 1) and 0:5 both produce a vector with the values 0, 1, 2, 3, 4, 5.
-
-The [scale_x_continuous and scale_y_continuous][ref48] functions control how the x and y axes are labelled. In this example, the breaks argument shows where to place tick marks and the labels argument changes what is displayed at each tick mark.
-
-The [format][ref49] function modifies how numbers are displayed. The big.mark="," argument inserts commas for any numbers greater than 999.
-
-[ref47]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/seq.html
-[ref48]: https://ggplot2.tidyverse.org/reference/scale_continuous.html
-[ref49]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/format.html
-
-:::
-
-## Extra tick marks, 2
+## Log transformed histogram
 
 ```{r}
-#| label: 02-04-extra-ticks-2
-
-
-extra_ticks
-```
-
-::: notes
-
-This is what histogram looks like with more ticks.
-
-:::
-
-## Log transformed histogram, 1
-
-```{r}
-#| label: 02-04-histogram-with-log10-scale-1
+#| label: 02-04-histogram-with-log10-scale
 
 ticks <- 10^(-2:3)
 labeled_histogram +
@@ -190,24 +78,4 @@ labeled_histogram +
     minor_breaks=NULL,
     labels=ticks) -> histogram_with_log10
 ```
-
-::: notes
-
-The scale_x_log10, described in the link above, controls how the scale of the x axis appears.
-
-:::
-
-## Log transformed histogram, 2
-
-```{r}
-#| label: 02-04-histogram-with-log10-scale-2
-
-histogram_with_log10
-```
-
-::: notes
-
-Here is the histogram on a log scale.
-
-:::
 
