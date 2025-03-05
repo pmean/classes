@@ -87,12 +87,6 @@ burgers <- read_tsv(
 burgers
 ```
 
-::: notes
-
-We will talk more about the read_tsv function later. For now, just note that it reads data from a text file and stores it in a tibble named burgers.
-
-:::
-
 ## Select, 1
 
 ```{r}
@@ -101,14 +95,6 @@ We will talk more about the read_tsv function later. For now, just note that it 
 burgers |>
   select(Calories)
 ```
-
-::: notes
-
-The [select][ref12] function will include or exclude variables from a tibble/dataframe.
-
-[ref12]: https://dplyr.tidyverse.org/reference/select.html
-
-:::
 
 ## Select, 2
 
@@ -119,13 +105,6 @@ burgers |>
   select(-Fat)
 ```
 
-::: notes
-
-Placing a minus sign in front of a variable excludes that variable.
-
-:::
-
-
 ## Alternatives to select, 1
 
 ```{r}
@@ -133,12 +112,6 @@ Placing a minus sign in front of a variable excludes that variable.
 
 burgers$Calories
 ```
-
-::: notes
-
-There are some "old school" ways to select a single column of data. Specify the name of the tibble, followed by a dollar sign, followed by the name of the variable. This produces a vector rather than a tibble.
-
-:::
 
 ## Alternatives to select, 2
 
@@ -148,12 +121,6 @@ There are some "old school" ways to select a single column of data. Specify the 
 burgers[ , 1]
 ```
 
-::: notes
-
-You can also use square brackets to select a variable. This code seems a bit strange at first. Think of the comma as a separator between the first index (which indicates rows) and the second index (which indicates columns). Leaving the first index blank is equivalent of saying select all rows and just the first column.
-
-:::
-
 ## Alternatives to select, 3
 
 ```{r}
@@ -161,12 +128,6 @@ You can also use square brackets to select a variable. This code seems a bit str
 
 burgers[ , "Calories"]
 ```
-
-::: notes
-
-You can also specify a column by its name. Be sure to put the name inside quote marks.
-
-:::
 
 ## Slice, 1
 
@@ -177,14 +138,6 @@ burgers |>
   slice(1)
 ```
 
-::: notes
-
-The [slice][ref13] function selects rows based on their position.
-
-[ref13]: https://dplyr.tidyverse.org/reference/slice.html
-
-:::
-
 ## Slice, 2
 
 ```{r}
@@ -193,12 +146,6 @@ The [slice][ref13] function selects rows based on their position.
 burgers |>
   slice_max(Calories)
 ```
-
-::: notes
-
-The slice_max function, described in the previous link, selects rows based on the size of one of the variables.
-
-:::
 
 ## Filter, 1
 
@@ -209,14 +156,6 @@ burgers |>
   filter(Sodium == 1500)
 ```
 
-::: notes
-
-The [filter][ref14] function selects rows of a tibble or dataframe based on a logical condition (an R expression that produces true/false values).
-
-[ref14]: https://dplyr.tidyverse.org/reference/filter.html
-
-:::
-
 ## Filter, 2
 
 ```{r}
@@ -226,12 +165,6 @@ burgers |>
   filter(Calories >= 600)
 ```
 
-::: notes
-
-With certain logical conditions, you can produce a tibble with more than one row.
-
-:::
-
 ## Alternatives to slice/filter, 1
 
 ```{r}
@@ -240,13 +173,6 @@ With certain logical conditions, you can produce a tibble with more than one row
 burgers[1, ]
 ```
 
-::: notes
-
-Using the same square bracket approach, you can select one or more rows. This code selects the first row and every column.
-
-:::
-
-
 ## Alternatives to slice/filter, 2
 
 ```{r}
@@ -254,9 +180,3 @@ Using the same square bracket approach, you can select one or more rows. This co
 
 burgers[burgers$Sodium == 1500, ]
 ```
-
-::: notes
-
-You can also place a logical condition inside the square brackets. The syntax is a bit awkward because you have to specify the name of the tibble twice.
-
-:::
