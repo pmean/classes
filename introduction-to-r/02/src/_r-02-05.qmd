@@ -1,5 +1,5 @@
 ---
-title: "r-01-05, Live demonstration"
+title: "r-02-05, Scatterplots"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,62 @@ format:
 editor: source
 ---
 
-## Live demonstration
+```{r}
+#| label: 02-05-setup
+#| echo: false
+#| message: false
+#| warning: false
 
-:::notes
+library(tidyverse)
+```
 
-:::
+```{r}
+#| label: 02-05-read-sleep
+#| echo: false
+
+sleep <- read_tsv(
+  file="../data/sleep.txt",
+  col_types="cnnnnnnnnnn")
+```
+
+## Labeled scatterplot
+
+```{r}
+#| label: 02-05-scatterplot
+
+sleep |>
+  ggplot() +
+  aes(x=BodyWt, y=BrainWt) +
+  geom_point() + 
+  ggtitle("This graph was drawn by Steve Simon on 2025-01-02") +
+  xlab("Body weight (kg)") +
+  ylab("Brain weight (g)") -> labeled_scatterplot
+```
+
+## Log transformed scatterplot
+
+```{r}
+#| label: 02-05-log-transformed-scatterplot
+
+xticks <- 10^(-2:3)
+yticks <- 10^(-2:3)
+labeled_scatterplot +
+  scale_x_log10(
+    breaks=xticks,
+    minor_breaks=NULL,
+    labels=xticks) +
+  scale_y_log10(
+    breaks=yticks,
+    minor_breaks=NULL,
+    labels=yticks)-> log_scatterplot
+```
+
+## Add a trend line
+
+```{r}
+#| label: 02-05-trend-line
+
+log_scatterplot +
+  geom_smooth(method="gam") -> trend_line_graph
+```
+

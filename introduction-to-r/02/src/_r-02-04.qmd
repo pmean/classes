@@ -1,16 +1,17 @@
 ---
-title: "r-01-04, Histograms, scatterplots"
+title: "r-02-04, Histograms"
 format: 
   revealjs:
     slide-number: true
     embed-resources: true
 editor: source
+execute: 
+  echo: true
+  eval: false
 ---
 
-## Default histogram for body weight, 1
-
 ```{r}
-#| label: setup-4
+#| label: 02-04-setup
 #| echo: false
 #| message: false
 #| warning: false
@@ -19,7 +20,7 @@ library(tidyverse)
 ```
 
 ```{r}
-#| label: read-sleep-4
+#| label: 02-04-read-sleep-4
 #| echo: false
 
 sleep <- read_tsv(
@@ -27,166 +28,48 @@ sleep <- read_tsv(
   col_types="cnnnnnnnnnn")
 ```
 
-```{r}
-#| label: default-histogram-1
-#| echo: true
-
-sleep |>
-  ggplot() +
-  aes(x=BodyWt) +
-  geom_histogram() -> basic_histogram
-```
-
-::: notes
-
-R has at least three different approaches for graphs: [base graphs][ref41] (graphing functions built into the base R package), [lattice][ref42], and [ggplot2][ref43]. All are excellent. I will rely almost entirely on ggplot2 for graphs that I use. 
-
-The [aes][ref44] function provides the framework for the graph. This includes which variables go on which axes, what colors are used to designate groups, and so on. You need to specify your continuous variable on the x-axis. Leave the y-axis unspecified because this is where the counts for the histogram belong.
-
-The [geom_histogram][ref45] function specifies the use of a histogram.
-
-[ref41]: https://r-graph-gallery.com/base-R.html
-[ref42]: https://ggplot2.tidyverse.org/
-[ref43]: https://cran.r-project.org/web/packages/lattice/index.html
-[ref44]: https://ggplot2.tidyverse.org/reference/aes.html
-[ref45]: https://ggplot2.tidyverse.org/reference/geom_histogram.html
-
-:::
-
-## Default histogram for body weight, 2
-
+## Basic histogram
 
 ```{r}
-#| label: default-histogram-2
-#| echo: true
-
-basic_histogram
-```
-
-::: notes
-
-Never settle for the default. The default in ggplot for a histogram or bar chart is a dark gray bar with a dark gray border. There are a few times that this is a reasonable choice, but more often than not choosing the same color value for the border and the interior is confusing.
-
-:::
-
-## Better colors for the histogram, 1
-
-```{r}
-#| label: better-histogram-1
-#| echo: true
+#| label: 02-04-better-histogram
 
 sleep |>
   ggplot() +
   aes(x=BodyWt) +
   geom_histogram(
+    bins=8,
     color="black",
     fill="white") -> better_histogram
 ```
 
-::: notes
-
-I usually try a black border. The color argument specifies the color of the border and the fill argument specifies the color of the interior.
-
-:::
-
-## Better colors for the histogram, 2
+## Labeled histogram
 
 ```{r}
-#| label: better-histogram-2
-#| echo: true
-
-better_histogram
-```
-
-::: notes
-
-It may not be so obvious with this graph, but I do think that black borders with white interiors improve the appearance of most bar charts and histograms.
-
-::::
-
-## Labeled histogram, 1
-
-```{r}
-#| label: histogram-with-labels-1
-#| echo: true
+#| label: 02-04-histogram-with-labels
 
 better_histogram +
   ggtitle("Graph drawn by Steve Simon on 2025-01-02") +
   xlab("Body weight (kg)") -> labeled_histogram
 ```
 
-::: notes
-
-You should always use the [xlab, ylab, and ggtitle][ref46] functions to make your graphs more interpretable. The xlab function changes the label on the x-axis from the default (just the variable name itself) to a more descriptive label. There is a ylab function as well, but I did not need it for the histogram because the word "count" that ggplot uses on the y-axis for its histograms is sufficiently descriptive. The ggtitle function places a title at the top of the graph. For this class, I require you to put your name and the date as the title. If you are preparing a graph for a publication, you will probably need a different title.
-
-[ref46]: https://ggplot2.tidyverse.org/reference/labs.html
-
-:::
-
-## Labeled histogram, 2
+## Extra tick marks
 
 ```{r}
-#| label: histogram-with-labels-2
-#| echo: true
-
-labeled_histogram
-```
-
-::: notes
-
-This is what the labeled histogram looks like.
-
-:::
-
-## Extra tick marks, 1
-
-```{r}
-#| label: extra-ticks-1
-#| echo: true
+#| label: 02-04-extra-ticks
 
 xticks <- seq(0, 6500, 500)
 yticks <- seq(0, 50, 5)
 labeled_histogram +
   scale_x_continuous(
     breaks=xticks,
-    labels=format(xticks, big.mark=",") +
+    labels=format(xticks, big.mark=",")) +
   scale_y_continuous(breaks=yticks) -> extra_ticks
 ```
 
-::: notes
-
-The [seq][ref47] function provides an evenly spaced sequence of numbers. If the sequence increases by increments of 1, you can use the colon operator to produce the sequence. For example, seq(0,5, 1) and 0:5 both produce a vector with the values 0, 1, 2, 3, 4, 5.
-
-The [scale_x_continuous and scale_y_continuous][ref48] functions control how the x and y axes are labelled. In this example, the breaks argument shows where to place tick marks and the labels argument changes what is displayed at each tick mark.
-
-The [format][ref49] function modifies how numbers are displayed. The big.mark="," argument inserts commas for any numbers greater than 999.
-
-[ref47]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/seq.html
-[ref48]: https://ggplot2.tidyverse.org/reference/scale_continuous.html
-[ref49]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/format.html
-
-:::
-
-## Extra tick marks, 2
+## Log transformed histogram
 
 ```{r}
-#| label: extra-ticks-2
-#| echo: true
-
-extra_ticks
-```
-
-::: notes
-
-This is what histogram looks like with more ticks.
-
-:::
-
-## Log transformed histogram, 1
-
-```{r}
-#| label: histogram-with-log10-scale-1
-#| echo: true
+#| label: 02-04-histogram-with-log10-scale
 
 ticks <- 10^(-2:3)
 labeled_histogram +
@@ -196,122 +79,3 @@ labeled_histogram +
     labels=ticks) -> histogram_with_log10
 ```
 
-::: notes
-
-The scale_x_log10, described in the link above, controls how the scale of the x axis appears.
-
-:::
-
-## Log transformed histogram, 2
-
-```{r}
-#| label: histogram-with-log10-scale-2
-#| echo: true
-
-histogram_with_log10
-```
-
-::: notes
-
-Here is the histogram on a log scale.
-
-:::
-
-## Labeled scatterplot, 1
-
-```{r}
-#| label: scatterplot-1
-#| echo: true
-
-sleep |>
-  ggplot() +
-  aes(x=BodyWt, y=BrainWt) +
-  geom_point() + 
-  ggtitle("This graph was drawn by Steve Simon on 2025-01-02") +
-  xlab("Body weight (kg)") +
-  ylab("Brain weight (g)") -> labeled_scatterplot
-```
-
-::: notes
-
-You produce a scatterplot by specifying continuous variables for x and y and using the [geom_point][ref4b] function. Get in the habit of changing the labels on the axes to something more descriptive. Always include the units of measure.
-
-[ref4b]: https://ggplot2.tidyverse.org/reference/geom_point.html
-
-:::
-
-## Labeled scatterplot, 2
-
-```{r}
-#| label: scatterplot-2
-#| echo: true
-
-labeled_scatterplot
-```
-
-::: notes
-
-Notice how a few outliers distort the scale of this graph. It is hard to tell what is going on because the data is clustered in the lower left corner of the graph.
-
-:::
-
-## Log transformed scatterplot, 1
-
-```{r}
-#| label: log-transformed-scatterplot-1
-#| echo: true
-
-xticks <- 10^(-2:3)
-yticks <- 10^(-2:3)
-labeled_scatterplot +
-  scale_x_log10(
-    breaks=xticks,
-    minor_breaks=NULL,
-    labels=xticks) +
-  scale_y_log10(
-    breaks=yticks,
-    minor_breaks=NULL,
-    labels=yticks)-> log_scatterplot
-```
-
-::: notes
-
-Log transformation to the rescue!
-
-:::
-
-## Log transformed scatterplot, 1
-
-```{r}
-#| label: log-transformed-scatterplot-2
-#| echo: true
-
-log_scatterplot
-```
-
-## Add a trend line, 1
-
-```{r}
-#| label: trend-line-1
-#| echo: true
-
-log_scatterplot +
-  geom_smooth(method="gam") -> trend_line_graph
-```
-
-::: note
-
-The [geom_smooth][ref4c] function adds a flexible trend line to a scatterplot. The argument method="gam" uses a cubic spline. This is a nice default choice. Changing the argument method="lm" produces a simple linear trend.
-
-[ref4c]: https://ggplot2.tidyverse.org/reference/geom_smooth.html
-
-:::
-
-## Add a trend line, 2
-
-```{r}
-#| label: trend-line-2
-#| echo: true
-
-trend_line_graph
-```

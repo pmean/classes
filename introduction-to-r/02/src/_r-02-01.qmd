@@ -5,6 +5,9 @@ format:
     slide-number: true
     embed-resources: true
 editor: source
+execute:
+  echo: true
+  eval: false
 ---
 
 ## Some definitions, 1
@@ -72,8 +75,7 @@ The next few examples will use a data file, burger-calories. Refer to the [data 
 ## Read burger-calories
 
 ```{r}
-#| label: read-tsv
-#| echo: true
+#| label: 02-01-read-tsv
 #| message: false
 #| warning: false
 
@@ -85,187 +87,96 @@ burgers <- read_tsv(
 burgers
 ```
 
-::: notes
-
-We will talk more about the read_tsv function later. For now, just note that it reads data from a text file and stores it in a tibble named burgers.
-
-:::
-
 ## Select, 1
 
 ```{r}
-#| label: select
-#| echo: true
+#| label: 02-01-select
 
 burgers |>
   select(Calories)
 ```
 
-::: notes
-
-The [select][ref12] function will include or exclude variables from a tibble/dataframe.
-
-[ref12]: https://dplyr.tidyverse.org/reference/select.html
-
-:::
-
 ## Select, 2
 
 ```{r}
-#| label: select-2
-#| echo: true
+#| label: 02-01-select-2
 
 burgers |>
   select(-Fat)
 ```
 
-::: notes
-
-Placing a minus sign in front of a variable excludes that variable.
-
-:::
-
-
 ## Alternatives to select, 1
 
 ```{r}
-#| label: select-alternative-1
-#| echo: true
+#| label: 02-01-select-alternative-1
 
 burgers$Calories
 ```
 
-::: notes
-
-There are some "old school" ways to select a single column of data. Specify the name of the tibble, followed by a dollar sign, followed by the name of the variable. This produces a vector rather than a tibble.
-
-:::
-
 ## Alternatives to select, 2
 
 ```{r}
-#| label: select-alternative-2
-#| echo: true
+#| label: 02-01-select-alternative-2
 
 burgers[ , 1]
 ```
 
-::: notes
-
-You can also use square brackets to select a variable. This code seems a bit strange at first. Think of the comma as a separator between the first index (which indicates rows) and the second index (which indicates columns). Leaving the first index blank is equivalent of saying select all rows and just the first column.
-
-:::
-
 ## Alternatives to select, 3
 
 ```{r}
-#| label: select-alternative-3
-#| echo: true
+#| label: 02-01-select-alternative-3
 
 burgers[ , "Calories"]
 ```
 
-::: notes
-
-You can also specify a column by its name. Be sure to put the name inside quote marks.
-
-:::
-
 ## Slice, 1
 
 ```{r}
-#| label: slice-1
-#| echo: true
+#| label: 02-01-slice-1
 
 burgers |>
   slice(1)
 ```
 
-::: notes
-
-The [slice][ref13] function selects rows based on their position.
-
-[ref13]: https://dplyr.tidyverse.org/reference/slice.html
-
-:::
-
 ## Slice, 2
 
 ```{r}
-#| label: slice-2
-#| echo: true
+#| label: 02-01-slice-2
 
 burgers |>
   slice_max(Calories)
 ```
 
-::: notes
-
-The slice_max function, described in the previous link, selects rows based on the size of one of the variables.
-
-:::
-
 ## Filter, 1
 
 ```{r}
-#| label: filter-1
-#| echo: true
+#| label: 02-01-filter-1
 
 burgers |>
   filter(Sodium == 1500)
 ```
 
-::: notes
-
-The [filter][ref14] function selects rows of a tibble or dataframe based on a logical condition (an R expression that produces true/false values).
-
-[ref14]: https://dplyr.tidyverse.org/reference/filter.html
-
-:::
-
 ## Filter, 2
 
 ```{r}
-#| label: filter-2
-#| echo: true
+#| label: 02-01-filter-2
 
 burgers |>
   filter(Calories >= 600)
 ```
 
-::: notes
-
-With certain logical conditions, you can produce a tibble with more than one row.
-
-:::
-
 ## Alternatives to slice/filter, 1
 
 ```{r}
-#| label: slice-filter-alternatives-1
-#| echo: true
+#| label: 02-01-slice-filter-alternatives-1
 
 burgers[1, ]
 ```
 
-::: notes
-
-Using the same square bracket approach, you can select one or more rows. This code selects the first row and every column.
-
-:::
-
-
 ## Alternatives to slice/filter, 2
 
 ```{r}
-#| label: slice-filter-alternatives-2
-#| echo: true
+#| label: 02-01-slice-filter-alternatives-2
 
 burgers[burgers$Sodium == 1500, ]
 ```
-
-::: notes
-
-You can also place a logical condition inside the square brackets. The syntax is a bit awkward because you have to specify the name of the tibble twice.
-
-:::
