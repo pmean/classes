@@ -7,10 +7,37 @@ format:
 editor: source
 ---
 
+## The readr library
+
+-   Part of tidyverse
+-   For importing text files
+-   Broad range of formats
+-   Very fast
+-   Makes intelligent guesses
+
+## Functions in the readr library
+
+-   read_csv(): comma-separated values (CSV)
+-   read_tsv(): tab-separated values (TSV)
+-   read_fwf(): fixed-width files
+-   read_table(): whitespace-separated files
+-   Several other functions
+
+## Arguments for most readr functions
+
+-   col_names =
+    -   TRUE, FALSE, or a vector of names
+-   col_types = 
+    -   "n" for numeric, "c" for character, "?" for guess
+-   na = 
+    -   Defaults to NA
+-   skip =
+    -   How many rows to skip (defaults to 0)
+
 ## An example of a comma delimited file
 
 ```{r}
-#| label: setup-02
+#| label: 03-02-setup-02
 #| echo: false
 
 load("../data/module03.RData")

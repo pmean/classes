@@ -102,5 +102,20 @@ If all else fails, go in and edit the file manually. This helps if there are jus
 
 ## Troubleshooting
 
--   Multiple data read in as single variable.
--   Lots of missing values
+-   Some warning signs that it didn't work.
+    -   Multiple data read in as single variable.
+    -   Lots of missing values
+    -   Bottom looks different than top
+        -   [slice_head, slice_tail][ref-slice]
+
+[ref-slice]: https://dplyr.tidyverse.org/reference/slice.html
+
+::: notes
+
+Sometimes the effort to read in the data will seem like it works, but the data does not get read in properly. If you choose the wrong delimiter, then everything will get squished together into a single file.
+
+You might see a lot of missing values, especially if R was looking for a numeric value for a particular variable, but the data set had string values in that location.
+
+Also, peek at the bottom of the file and compare it to the top. Sometimes an import will get out of step partway through and every single row after that gets misaligned. Make sure that what you see at the bottom of dataset is roughly the same as what you see at the top.
+
+:::
