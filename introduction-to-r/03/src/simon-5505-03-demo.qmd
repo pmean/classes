@@ -1,0 +1,263 @@
+---
+title: "Reading text files"
+format: 
+  html:
+    embed-resources: true
+execute: 
+  error: true
+editor: source
+---
+
+# Begin Part 1 -----------------------------------------------------------------
+
+## File details
+
+This program reads data from a variety of text files. It was written by Steve Simon on 2025-01-06 and is placed in the public domain. You can use this program any way you please.
+
+The data itself is small and artificial, so there is no need for a data dictionary.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+R.version.string
+Sys.Date()
+library(tidyverse)
+```
+
+## Read csv file
+
+```{r}
+#| label: read-comma
+
+simple_comma <- read_csv(
+  file="../data/simple.csv",
+  col_names=TRUE,
+  col_types="nn")
+
+simple_comma(raw_data)
+```
+
+#### Comments on the code
+
+The [read_csv][ref-read-delim] function opens a text file. If it is structured properly, it will create a tibble from the data in the text file. The col_names=TRUE argument tells R that the first row of the file contains the variable names. The col_types="nn" tells R that there are two columns of data, both numeric.
+
+The base R program has a similar function, [read.csv][ref-read-table], that also works. This function is a bit slower, which can be a problem for very large files. It also has fewer features.
+
+[ref-read-delim]: https://readr.tidyverse.org/reference/read_delim.html
+[ref-read-rable]: https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html
+
+# Begin Part 2 -----------------------------------------------------------------
+
+## Read tsv file
+
+```{r}
+#| label: read-tab
+
+simple_tab <- read_tsv(
+  file="../data/simple.tsv",
+  col_names=TRUE,
+  col_types="nn")
+
+simple_tab
+```
+
+#### Comments on the code
+
+The read_tsv function is described in the same page that describes the read_csv function.
+
+# Begin Part 3 -----------------------------------------------------------------
+
+## Read tilde-delimited file
+
+```{r}
+#| label: read-tilde
+
+raw_data <- read_delim(
+  file="../data/tilde.txt",
+  delim="~",
+  col_names=TRUE,
+  col_types="nn")
+
+glimpse(raw_data)
+```
+
+#### Comments on the code
+
+The read_delim function is described in the same page that describes the read_csv and read_tsv functions.
+
+# Begin Part 4 -----------------------------------------------------------------
+
+## Read in data
+
+```{r}
+#| label: read-fixed
+
+raw_data <- read_fwf(
+  file="../data/fixed.txt", 
+  col_names=c("x", "y"),
+  col_positions = fwf_cols(1, 2),
+  col_types="nn")
+
+glimpse(raw_data)
+```
+
+
+#### Comments on the code
+
+The [read_fwf][ref-read-fwf] function reads data from is described in the same page that describes the read_csv  and read_tsv functions. There is a similar function, [read.fwf][ref-read-dot-fwf], in the base R package that works similarly.
+
+Most fixed width files do not include the variable names in the first row. You can provide the actual names by supplying the col_names argument with a character vector of names.
+
+There are several helpful functions that will allow you to specify column positions. The fwf_cols function will allow you to enter the widths of each column of data.
+
+[ref-read-fwf]: https://readr.tidyverse.org/reference/read_fwf.html
+[ref-read-dot-fwf]: https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.fwf.html
+
+# Begin Part 5 -----------------------------------------------------------------
+
+## Program outline
+
+This part of the program will read in three very different text data files. Here are some links.
+
+-   Example 1: binary.csv
+    -   [Description][ref-binary-dd]
+    -   [Download][ref-binary]
+-   Example 2: barbershop-music.txt
+    -   [Description][ref-barbershop-dd]
+    -   [Download][ref-barbershop]
+-   Example 3: airport.txt
+    -   [Description][ref-airport-dd]
+    -   [Download][ref-airport]
+
+[ref-binary-dd]: https://stats.idre.ucla.edu/r/dae/logit-regression/
+[ref-binary]: https://stats.idre.ucla.edu/stat/data/binary.csv
+[ref-barbershop-dd]: https://dasl.datadescription.com/datafile/barbershop-music/
+[ref-barbershop]: https://dasl.datadescription.com/download/data/3061
+[ref-airport-dd]: http://jse.amstat.org/datasets/airport.txt
+[ref-airport]: http://jse.amstat.org/datasets/airport.dat.txt
+
+## Example 1, quick peek
+
+```{r}
+#| label: peek-binary
+
+url_1 <- "https://stats.idre.ucla.edu/stat/data/binary.csv"
+read_lines(
+  file=url_binary, 
+  n_max=10)
+```
+
+#### Comments on the code
+
+The [read_lines][ref07] function will read each line of the text file into a single string vector. This doesn't allow you to separate out the individual data values. It is, however, a quick way to review the contents of a file to better understand how it is structured. 
+
+[ref07]: https://readr.tidyverse.org/reference/read_lines.html
+
+#### Interpretation of the output
+
+Peeking at the first ten lines of data, you can see that this file uses commas as delimiters and the first line contains variable names. 
+
+## Example 1, read_csv
+
+```{r}
+#| label: read-binary
+
+example_1 <- read_csv(
+  file=fn,
+  col_names=TRUE,
+  col_types="nnnn")
+
+glimpse(example_1)
+```
+
+#### Interpretation of the output
+
+The data shown here appears to match the description of the file on the web.
+
+## Example 2, quick peek
+
+```{r}
+#| label: peek-barbershop
+
+url_barbershop <- "https://dasl.datadescription.com/download/data/3061"
+read_lines(
+  file=url_barbershop,
+  n_max=10)
+```
+
+#### Interpretation of the output
+
+It looks like it is a tab delimited file. The read_lines file replaces the tab with a key code (backslash-t). The first row lists the variable names.
+
+## Example 2, read_tsv
+
+```{r}
+#| label: read-barbershop
+
+raw_data <- read_tsv(
+  file=url_barbershop,
+  col_names=TRUE,
+  col_types="nnn")
+
+glimpse(raw_data)
+```
+
+#### Interpretation of the output
+
+The data appears to match the description.
+
+The read_tsv function works well here.
+
+## Example 3, peek
+
+```{r}
+#| label: peek-airport
+
+url_airport <- "http://jse.amstat.org/datasets/airport.dat.txt"
+read_lines(
+  file=url_airport,
+  n_max=10)
+```
+
+#### Interpretation of the output
+
+This could be a tab delimited file, but the numbers are right justified. In a tab delimited file, the numbers would be left justified. There are no variable names in the first row of data.
+
+## Example 3, define data columns and names
+
+```{r}
+#| label: define-airport
+
+start_column <- c( 1, 22, 44, 51, 58, 67, 77)
+end_column <-   c(21, 43, 49, 56, 65, 75, 85)
+variable_names <- c(
+  "airport",
+  "city",
+  "scheduled_departures",
+  "performed_departures",
+  "enplaned_passengers",
+  "enplaned_freight",
+  "enplaned_mail")
+```
+
+## Example 3, read_fwf
+
+```{r}
+#| label: read-airport
+
+example_3 <- read_fwf(
+  file=url_3, 
+  fwf_positions(
+    start=start_column, 
+    end=end_column),
+  col_names=variable_names,
+  col_types="ccnnnnn")
+
+glimpse(example_3)
+```
+
+#### Interpretation of the output
+
+The data appears to match the description.

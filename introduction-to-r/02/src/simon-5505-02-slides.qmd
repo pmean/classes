@@ -12,6 +12,9 @@ params:
   topic_05: "Scatterplots"
   topic_06: "Your homework"
 editor: source
+execute: 
+  echo: true
+  eval: false
 ---
 
 ## Topics to be covered

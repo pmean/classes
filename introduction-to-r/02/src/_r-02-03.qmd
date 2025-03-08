@@ -15,6 +15,7 @@ execute:
 ```{r}
 #| label: 02-03-setup
 #| echo: false
+#| eval: true
 #| message: false
 #| warning: false
 
@@ -24,6 +25,7 @@ library(tidyverse)
 ```{r}
 #| label: 02-03-read-sleep
 #| echo: false
+#| eval: true
 
 sleep <- read_tsv(
   file="../data/sleep.txt",
