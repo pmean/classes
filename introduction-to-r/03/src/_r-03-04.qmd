@@ -5,42 +5,48 @@ format:
     slide-number: true
     embed-resources: true
 editor: source
+execute: 
+  echo: true
+  eval: false
 ---
 
 ## Anything can be a delimiter
 
 ```{r}
-#| label: setup-04
+#| label: 03-04-setup
 #| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+
+library(tidyverse)
 
 load("../data/module03.RData")
 ```
 
-`r simple_tilde`
+```{r}
+#| echo: false
+#| eval: true
+#| label: 03-04-read-lines
+
+read_lines("../data/tilde.txt")|> 
+  cat(sep="\n")
+```
 
 ::: notes
 
-Type in the same data, but using the tilde (~) as a separator (e.g., 1~4). Save the file as tilde.txt.
+This file uses the tilde (~) as a separator (e.g., 1~4).
 
-Here is how you would use read_delim to read this file.
-
-:::
-
-## Using the read_delim function with delim="~"
-
-`r read_tilde`
-
-::: notes
-
-The data reads in just fine. Why would you use a tilde as a delimiter? Sometimes your data itself includes delimiters like spaces and commas, and then you might want to choose an obscure out of the way symbol to serve as a delimiter.
+Why would you use a tilde as a delimiter? Sometimes your data itself includes delimiters like spaces and commas, and then you might want to choose an obscure out of the way symbol to serve as a delimiter.
 
 Another obscure character that is sometimes used as a delimiter is the vertical bar (|).
 
 :::
 
+## Using the read_delim function
+
+`r code["tilde"]`
+
 ## Live demonstration, 3
 
-Now, you will see a live demonstration of the program [simon-5505-03-demo-04][ref41].
-
-[ref41]: https://github.com/pmean/classes/blob/master/introduction-to-r/03/src/simon-5505-03-demo-04.qmd
-
+Now, you will see a live demonstration of part 3 of [simon-5505-03-demo][ref-demo].

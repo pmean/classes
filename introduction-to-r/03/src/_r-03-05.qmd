@@ -5,18 +5,31 @@ format:
     slide-number: true
     embed-resources: true
 editor: source
+execute: 
+  echo: true
+  eval: false
 ---
 
 ## Reading fixed width format files
 
 ```{r}
-#| label: setup-05
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+#| label: 03-05-setup
+
+library(tidyverse)
 
 load("../data/module03.RData")
 ```
 
-`r simple_fixed`
+```{r}
+#| label: 03-05-read-lines
 
+read_lines("../data/fixed.txt")|> 
+  cat(sep="\n")
+```
 
 ::: notes
 
@@ -25,35 +38,6 @@ Here's another variation.
 Sometimes you will get a file with no delimiters to save space. This requires that each variable takes up a fixed number of columns and that information is often specified in a separate file.
 
 Okay, I deliberately did not put the variable names as the first line. Fixed width files often do not include the variable names in the file itself.
-
-:::
-
-## The read_fwf function 
-
-`r read_fixed`
-
-::: notes
-
-Use the read.fwf (fwf stands for fixed width format) function to read this data.
-
-Another function that you can use when the data is clearly separated by one or more whitespace characters (blanks or tabs) is read_table.
-
-https://readr.tidyverse.org/reference/read_table.html
-
-:::
-
-## Helpful functions with read_fwf
-
--    fwf_empty()
-     -   Uses spacing to guess at column positions
--    fwf_widths()
-     -   Specifies column widths
--    fwf_positions()
-     -   Specifies start and end locations for each column
-     
-::: notes
-
-There are several ways to identify the column positions for a fixed width file. The fwf_empty function will make a reasonable guess as long as there is whitespace (one or more blanks/tabs) between each variable. You could also specify the column widths or the start and end location for each column.
 
 :::
 
@@ -90,9 +74,25 @@ If you were to use delimiters in this file, you'd have to add 900 commas or 900 
 
 :::
 
+## Helpful functions with read_fwf
+
+-    fwf_empty()
+     -   Uses spacing to guess at column positions
+-    fwf_widths()
+     -   Specifies column widths
+-    fwf_positions()
+     -   Specifies start and end locations for each column
+     
+::: notes
+
+There are several ways to identify the column positions for a fixed width file. The fwf_empty function will make a reasonable guess as long as there is whitespace (one or more blanks/tabs) between each variable. You could also specify the column widths or the start and end location for each column.
+
+:::
+
+## Using the read_fwf function 
+
+`r code["fixed"]`
+
 ## Live demonstration, 4
 
-Now, you will see a live demonstration of the program [simon-5505-03-demo-05][ref51].
-
-[ref51]: https://github.com/pmean/classes/blob/master/introduction-to-r/03/src/simon-5505-03-demo-05.qmd
-
+Now, you will see a live demonstration of part 4 of [simon-5505-03-demo][ref-demo].

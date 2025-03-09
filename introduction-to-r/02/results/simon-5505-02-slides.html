@@ -1216,6 +1216,9 @@ margin-right: 0; }
 </section>
 <section id="topics-to-be-covered" class="slide level2">
 <h2>Topics to be covered</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># A small section of R code to kick start the params.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
 <li>What you will learn
 <ul>
@@ -1321,163 +1324,88 @@ display:block!important;
 <section id="read-burger-calories" class="slide level2">
 <h2>Read burger-calories</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 3
-    Fat Sodium Calories
-  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
-1    19    920      410
-2    31   1500      580
-3    34   1310      590
-4    35    860      570
-5    39   1180      640
-6    39    940      680
-7    43   1260      660</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>burgers <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(</span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="at">file=</span><span class="st">&quot;../data/burger-calories.txt&quot;</span>, </span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="at">col_types=</span><span class="st">&quot;nnn&quot;</span>)</span>
+<span id="cb2-6"><a href="#cb2-6"></a>burgers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="select-1" class="slide level2">
 <h2>Select, 1</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 1
-  Calories
-     &lt;dbl&gt;
-1      410
-2      580
-3      590
-4      570
-5      640
-6      680
-7      660</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>burgers <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">select</span>(Calories)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="select-2" class="slide level2">
 <h2>Select, 2</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 2
-  Sodium Calories
-   &lt;dbl&gt;    &lt;dbl&gt;
-1    920      410
-2   1500      580
-3   1310      590
-4    860      570
-5   1180      640
-6    940      680
-7   1260      660</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>burgers <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">select</span>(<span class="sc">-</span>Fat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="alternatives-to-select-1" class="slide level2">
 <h2>Alternatives to select, 1</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 410 580 590 570 640 680 660</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>burgers<span class="sc">$</span>Calories</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="alternatives-to-select-2" class="slide level2">
 <h2>Alternatives to select, 2</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 1
-    Fat
-  &lt;dbl&gt;
-1    19
-2    31
-3    34
-4    35
-5    39
-6    39
-7    43</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>burgers[ , <span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="alternatives-to-select-3" class="slide level2">
 <h2>Alternatives to select, 3</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 1
-  Calories
-     &lt;dbl&gt;
-1      410
-2      580
-3      590
-4      570
-5      640
-6      680
-7      660</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>burgers[ , <span class="st">&quot;Calories&quot;</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="slice-1" class="slide level2">
 <h2>Slice, 1</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 3
-    Fat Sodium Calories
-  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
-1    19    920      410</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>burgers <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">slice</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="slice-2" class="slide level2">
 <h2>Slice, 2</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 3
-    Fat Sodium Calories
-  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
-1    39    940      680</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>burgers <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">slice_max</span>(Calories)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="filter-1" class="slide level2">
 <h2>Filter, 1</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 3
-    Fat Sodium Calories
-  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
-1    31   1500      580</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>burgers <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">filter</span>(Sodium <span class="sc">==</span> <span class="dv">1500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="filter-2" class="slide level2">
 <h2>Filter, 2</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 3
-    Fat Sodium Calories
-  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
-1    39   1180      640
-2    39    940      680
-3    43   1260      660</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>burgers <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">filter</span>(Calories <span class="sc">&gt;=</span> <span class="dv">600</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="alternatives-to-slicefilter-1" class="slide level2">
 <h2>Alternatives to slice/filter, 1</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 3
-    Fat Sodium Calories
-  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
-1    19    920      410</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>burgers[<span class="dv">1</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="alternatives-to-slicefilter-2" class="slide level2">
 <h2>Alternatives to slice/filter, 2</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 3
-    Fat Sodium Calories
-  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
-1    31   1500      580</code></pre>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>burgers[burgers<span class="sc">$</span>Sodium <span class="sc">==</span> <span class="dv">1500</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
+</section>
+<section id="live-demo-part-1" class="slide level2">
+<h2>Live demo, part 1</h2>
 </section>
 <section id="break-1" class="slide level2">
 <h2>Break #1</h2>
@@ -1499,84 +1427,55 @@ display:block!important;
 <section id="read-text-file" class="slide level2">
 <h2>Read text file</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>sleep <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(</span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="at">file=</span><span class="st">&quot;../data/sleep.txt&quot;</span>,</span>
-<span id="cb14-3"><a href="#cb14-3"></a>  <span class="at">col_types=</span><span class="st">&quot;cnnnnnnnnnn&quot;</span>)</span>
-<span id="cb14-4"><a href="#cb14-4"></a><span class="fu">glimpse</span>(sleep)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 62
-Columns: 11
-$ Species     &lt;chr&gt; &quot;African_elephant&quot;, &quot;African_giant_pouched_rat&quot;, &quot;Arctic_f…
-$ BodyWt      &lt;dbl&gt; 6654.000, 1.000, 3.385, 0.920, 2547.000, 10.550, 0.023, 16…
-$ BrainWt     &lt;dbl&gt; 5712.0, 6.6, 44.5, 5.7, 4603.0, 179.5, 0.3, 169.0, 25.6, 4…
-$ NonDreaming &lt;dbl&gt; NA, 6.3, NA, NA, 2.1, 9.1, 15.8, 5.2, 10.9, 8.3, 11.0, 3.2…
-$ Dreaming    &lt;dbl&gt; NA, 2.0, NA, NA, 1.8, 0.7, 3.9, 1.0, 3.6, 1.4, 1.5, 0.7, 2…
-$ TotalSleep  &lt;dbl&gt; 3.3, 8.3, 12.5, 16.5, 3.9, 9.8, 19.7, 6.2, 14.5, 9.7, 12.5…
-$ LifeSpan    &lt;dbl&gt; 38.6, 4.5, 14.0, NA, 69.0, 27.0, 19.0, 30.4, 28.0, 50.0, 7…
-$ Gestation   &lt;dbl&gt; 645, 42, 60, 25, 624, 180, 35, 392, 63, 230, 112, 281, NA,…
-$ Predation   &lt;dbl&gt; 3, 3, 1, 5, 3, 4, 1, 4, 1, 1, 5, 5, 2, 5, 1, 2, 2, 2, 1, 1…
-$ Exposure    &lt;dbl&gt; 5, 1, 1, 2, 5, 4, 1, 5, 2, 1, 4, 5, 1, 5, 1, 2, 2, 2, 2, 1…
-$ Danger      &lt;dbl&gt; 3, 3, 1, 3, 4, 4, 1, 4, 1, 1, 4, 5, 2, 5, 1, 2, 2, 2, 1, 1…</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>sleep <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(</span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="at">file=</span><span class="st">&quot;../data/sleep.txt&quot;</span>,</span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="at">col_types=</span><span class="st">&quot;cnnnnnnnnnn&quot;</span>)</span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="fu">glimpse</span>(sleep)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="convert-brain-weight-from-grams-to-kilograms" class="slide level2">
 <h2>Convert brain weight from grams to kilograms</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 3
-   Species                   BrainWt brain_wt_kg
-   &lt;chr&gt;                       &lt;dbl&gt;       &lt;dbl&gt;
- 1 African_elephant           5712        5.71  
- 2 African_giant_pouched_rat     6.6      0.0066
- 3 Arctic_fox                   44.5      0.0445
- 4 Arctic_ground_squirrel        5.7      0.0057
- 5 Asian_elephant             4603        4.60  
- 6 Baboon                      180.       0.180 
- 7 Big_brown_bat                 0.3      0.0003
- 8 Brazilian_tapir             169        0.169 
- 9 Cat                          25.6      0.0256
-10 Chimpanzee                  440        0.44  </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>sleep <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">mutate</span>(<span class="at">brain_wt_kg=</span>BrainWt<span class="sc">/</span><span class="dv">1000</span>) <span class="ot">-&gt;</span> sleep</span>
+<span id="cb16-3"><a href="#cb16-3"></a>sleep <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="fu">select</span>(Species, BrainWt, brain_wt_kg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="calculate-brain-to-body-weight-ratio" class="slide level2">
 <h2>Calculate brain to body weight ratio</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 4
-   Species                   brain_wt_kg   BodyWt brain_pct
-   &lt;chr&gt;                           &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    
- 1 African_elephant               5.71   6654     0.09%    
- 2 African_giant_pouched_rat      0.0066    1     0.66%    
- 3 Arctic_fox                     0.0445    3.38  1.31%    
- 4 Arctic_ground_squirrel         0.0057    0.92  0.62%    
- 5 Asian_elephant                 4.60   2547     0.18%    
- 6 Baboon                         0.180    10.6   1.7%     
- 7 Big_brown_bat                  0.0003    0.023 1.3%     
- 8 Brazilian_tapir                0.169   160     0.11%    
- 9 Cat                            0.0256    3.3   0.78%    
-10 Chimpanzee                     0.44     52.2   0.84%    </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>sleep <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">mutate</span>(<span class="at">brain_pct=</span><span class="dv">100</span><span class="sc">*</span>brain_wt_kg<span class="sc">/</span>BodyWt) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">mutate</span>(<span class="at">brain_pct=</span><span class="fu">round</span>(brain_pct, <span class="dv">2</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">mutate</span>(<span class="at">brain_pct=</span><span class="fu">paste0</span>(brain_pct, <span class="st">&quot;%&quot;</span>)) <span class="ot">-&gt;</span> sleep</span>
+<span id="cb17-5"><a href="#cb17-5"></a></span>
+<span id="cb17-6"><a href="#cb17-6"></a>sleep <span class="sc">|&gt;</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a>  <span class="fu">select</span>(Species, brain_wt_kg, BodyWt, brain_pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="summarize-body-weight" class="slide level2">
 <h2>Summarize body weight</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 4
-  body_wt_mean body_wt_sd body_wt_min body_wt_max
-         &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
-1          199        899       0.005        6654</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>sleep <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb18-3"><a href="#cb18-3"></a>    <span class="at">body_wt_mean=</span><span class="fu">round</span>(<span class="fu">mean</span>(BodyWt), <span class="dv">0</span>),</span>
+<span id="cb18-4"><a href="#cb18-4"></a>    <span class="at">body_wt_sd=</span><span class="fu">round</span>(<span class="fu">sd</span>(BodyWt), <span class="dv">0</span>),</span>
+<span id="cb18-5"><a href="#cb18-5"></a>    <span class="at">body_wt_min=</span><span class="fu">min</span>(BodyWt),</span>
+<span id="cb18-6"><a href="#cb18-6"></a>    <span class="at">body_wt_max=</span><span class="fu">max</span>(BodyWt))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="interpretation-of-body-weight-statistics" class="slide level2">
 <h2>Interpretation of body weight statistics</h2>
 <p>The mean body weight is just a bit below 200 kilograms with a standard devation of about 900. The range of weights is extremely broad. The smallest animal is 0.005 kilograms (or 5 grams) and the largest is over 6,600 kilograms.</p>
+</section>
+<section id="live-demo-part-2" class="slide level2">
+<h2>Live demo, part 2</h2>
 </section>
 <section id="break-2" class="slide level2">
 <h2>Break #2</h2>
@@ -1594,6 +1493,7 @@ $ Danger      &lt;dbl&gt; 3, 3, 1, 3, 4, 4, 1, 4, 1, 1, 4, 5, 2, 5, 1, 2, 2, 2, 
 <section id="variable-with-missing-values" class="slide level2">
 <h2>Variable with missing values</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>sleep<span class="sc">$</span>TotalSleep</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  3.3  8.3 12.5 16.5  3.9  9.8 19.7  6.2 14.5  9.7 12.5  3.9 10.3  3.1  8.4
 [16]  8.6 10.7 10.7  6.1 18.1   NA  3.8 14.4 12.0  6.2 13.0 13.8  8.2  2.9 10.8
@@ -1621,6 +1521,10 @@ display:block!important;
 <section id="statistics-involving-missing-values" class="slide level2">
 <h2>Statistics involving missing values</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>sleep <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb21-3"><a href="#cb21-3"></a>    <span class="at">sleep_mean=</span><span class="fu">mean</span>(TotalSleep),</span>
+<span id="cb21-4"><a href="#cb21-4"></a>    <span class="at">sleep_sd=</span><span class="fu">sd</span>(TotalSleep))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   sleep_mean sleep_sd
@@ -1645,6 +1549,10 @@ display:block!important;
 <section id="the-na.rm-argument" class="slide level2">
 <h2>The na.rm argument</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>sleep <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb23-3"><a href="#cb23-3"></a>    <span class="at">sleep_mean=</span><span class="fu">mean</span>(TotalSleep, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb23-4"><a href="#cb23-4"></a>    <span class="at">sleep_sd=</span><span class="fu">sd</span>(TotalSleep, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   sleep_mean sleep_sd
@@ -1698,42 +1606,31 @@ display:block!important;
 <section id="correlations-with-useeverything" class="slide level2 smaller">
 <h2>Correlations with use=“everything”</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>            BodyWt BrainWt NonDreaming Dreaming TotalSleep LifeSpan Gestation Predation Exposure Danger
-BodyWt        1.00    0.93          NA       NA         NA       NA        NA      0.06     0.34   0.13
-BrainWt       0.93    1.00          NA       NA         NA       NA        NA      0.03     0.37   0.15
-NonDreaming     NA      NA           1       NA         NA       NA        NA        NA       NA     NA
-Dreaming        NA      NA          NA        1         NA       NA        NA        NA       NA     NA
-TotalSleep      NA      NA          NA       NA          1       NA        NA        NA       NA     NA
-LifeSpan        NA      NA          NA       NA         NA        1        NA        NA       NA     NA
-Gestation       NA      NA          NA       NA         NA       NA         1        NA       NA     NA
-Predation     0.06    0.03          NA       NA         NA       NA        NA      1.00     0.62   0.92
-Exposure      0.34    0.37          NA       NA         NA       NA        NA      0.62     1.00   0.79
-Danger        0.13    0.15          NA       NA         NA       NA        NA      0.92     0.79   1.00</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">options</span>(<span class="at">width=</span><span class="dv">120</span>)</span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="co"># The greater output length allows the correlation matrix to fit on one slide.</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a>sleep <span class="sc">|&gt;</span> </span>
+<span id="cb25-4"><a href="#cb25-4"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a>  <span class="fu">cor</span>(<span class="at">use=</span><span class="st">&quot;everything&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a>  <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="correlations-with-usecomplete.obs" class="slide level2 smaller">
 <h2>Correlations with use=“complete.obs”</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>            BodyWt BrainWt NonDreaming Dreaming TotalSleep LifeSpan Gestation Predation Exposure Danger
-BodyWt        1.00    0.96       -0.39    -0.07      -0.34     0.47      0.71      0.10     0.41   0.26
-BrainWt       0.96    1.00       -0.39    -0.07      -0.34     0.63      0.73     -0.02     0.32   0.15
-NonDreaming  -0.39   -0.39        1.00     0.52       0.97    -0.37     -0.61     -0.35    -0.58  -0.53
-Dreaming     -0.07   -0.07        0.52     1.00       0.72    -0.27     -0.41     -0.40    -0.50  -0.57
-TotalSleep   -0.34   -0.34        0.97     0.72       1.00    -0.38     -0.61     -0.40    -0.62  -0.60
-LifeSpan      0.47    0.63       -0.37    -0.27      -0.38     1.00      0.65     -0.17     0.32   0.01
-Gestation     0.71    0.73       -0.61    -0.41      -0.61     0.65      1.00      0.09     0.57   0.31
-Predation     0.10   -0.02       -0.35    -0.40      -0.40    -0.17      0.09      1.00     0.63   0.93
-Exposure      0.41    0.32       -0.58    -0.50      -0.62     0.32      0.57      0.63     1.00   0.79
-Danger        0.26    0.15       -0.53    -0.57      -0.60     0.01      0.31      0.93     0.79   1.00</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>sleep <span class="sc">|&gt;</span> </span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">cor</span>(<span class="at">use=</span><span class="st">&quot;complete.obs&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4"></a>  <span class="fu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb26-5"><a href="#cb26-5"></a><span class="fu">options</span>(<span class="at">width=</span><span class="dv">80</span>)</span>
+<span id="cb26-6"><a href="#cb26-6"></a><span class="co"># Reset the width to the default value of 80</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="you-cannot-test-missingness-directly" class="slide level2">
 <h2>You cannot test missingness directly</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>sleep <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">filter</span>(TotalSleep <span class="sc">==</span> <span class="cn">NA</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">select</span>(Species, TotalSleep)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 0 × 2
 # ℹ 2 variables: Species &lt;chr&gt;, TotalSleep &lt;dbl&gt;</code></pre>
@@ -1758,6 +1655,7 @@ display:block!important;
 <section id="what-is-happening" class="slide level2">
 <h2>What is happening</h2>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>sleep<span class="sc">$</span>TotalSleep <span class="sc">==</span> <span class="cn">NA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
 [26] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
@@ -1768,31 +1666,27 @@ display:block!important;
 <section id="the-is.na-function" class="slide level2">
 <h2>The is.na function</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 2
-  Species               TotalSleep
-  &lt;chr&gt;                      &lt;dbl&gt;
-1 Giraffe                       NA
-2 Kangaroo                      NA
-3 Okapi                         NA
-4 Yellow-bellied_marmot         NA</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>sleep <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(TotalSleep)) <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a>  <span class="fu">select</span>(Species, TotalSleep)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="counting-missing-values" class="slide level2">
 <h2>Counting missing values</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 2
-  variable    missing_count
-  &lt;chr&gt;               &lt;int&gt;
-1 NonDreaming            14
-2 Dreaming               12
-3 TotalSleep              4
-4 LifeSpan                4
-5 Gestation               4</code></pre>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>sleep <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">|&gt;</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), is.na)) <span class="sc">|&gt;</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), sum)) <span class="sc">|&gt;</span></span>
+<span id="cb32-5"><a href="#cb32-5"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb32-6"><a href="#cb32-6"></a>    <span class="fu">everything</span>(),</span>
+<span id="cb32-7"><a href="#cb32-7"></a>    <span class="at">names_to=</span><span class="st">&quot;variable&quot;</span>,</span>
+<span id="cb32-8"><a href="#cb32-8"></a>    <span class="at">values_to=</span><span class="st">&quot;missing_count&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb32-9"><a href="#cb32-9"></a>  <span class="fu">filter</span>(missing_count <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
+</section>
+<section id="live-demo-part-3" class="slide level2">
+<h2>Live demo, part 3</h2>
 </section>
 <section id="break-3" class="slide level2">
 <h2>Break #3</h2>
@@ -1809,15 +1703,49 @@ display:block!important;
 </section>
 <section id="basic-histogram" class="slide level2">
 <h2>Basic histogram</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>sleep <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3"></a>  <span class="fu">aes</span>(<span class="at">x=</span>BodyWt) <span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4"></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb33-5"><a href="#cb33-5"></a>    <span class="at">bins=</span><span class="dv">8</span>,</span>
+<span id="cb33-6"><a href="#cb33-6"></a>    <span class="at">color=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb33-7"><a href="#cb33-7"></a>    <span class="at">fill=</span><span class="st">&quot;white&quot;</span>) <span class="ot">-&gt;</span> better_histogram</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="labeled-histogram" class="slide level2">
 <h2>Labeled histogram</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>better_histogram <span class="sc">+</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Graph drawn by Steve Simon on 2025-01-02&quot;</span>) <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Body weight (kg)&quot;</span>) <span class="ot">-&gt;</span> labeled_histogram</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="extra-tick-marks" class="slide level2">
 <h2>Extra tick marks</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>xticks <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">6500</span>, <span class="dv">500</span>)</span>
+<span id="cb35-2"><a href="#cb35-2"></a>yticks <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">50</span>, <span class="dv">5</span>)</span>
+<span id="cb35-3"><a href="#cb35-3"></a>labeled_histogram <span class="sc">+</span></span>
+<span id="cb35-4"><a href="#cb35-4"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb35-5"><a href="#cb35-5"></a>    <span class="at">breaks=</span>xticks,</span>
+<span id="cb35-6"><a href="#cb35-6"></a>    <span class="at">labels=</span><span class="fu">format</span>(xticks, <span class="at">big.mark=</span><span class="st">&quot;,&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb35-7"><a href="#cb35-7"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks=</span>yticks) <span class="ot">-&gt;</span> extra_ticks</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="log-transformed-histogram" class="slide level2">
 <h2>Log transformed histogram</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>ticks <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb36-2"><a href="#cb36-2"></a>labeled_histogram <span class="sc">+</span></span>
+<span id="cb36-3"><a href="#cb36-3"></a>  <span class="fu">scale_x_log10</span>(</span>
+<span id="cb36-4"><a href="#cb36-4"></a>    <span class="at">breaks=</span>ticks,</span>
+<span id="cb36-5"><a href="#cb36-5"></a>    <span class="at">minor_breaks=</span><span class="cn">NULL</span>,</span>
+<span id="cb36-6"><a href="#cb36-6"></a>    <span class="at">labels=</span>ticks) <span class="ot">-&gt;</span> histogram_with_log10</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="live-demo-part-4" class="slide level2">
+<h2>Live demo, part 4</h2>
 </section>
 <section id="break-4" class="slide level2">
 <h2>Break #4</h2>
@@ -1834,12 +1762,41 @@ display:block!important;
 </section>
 <section id="labeled-scatterplot" class="slide level2">
 <h2>Labeled scatterplot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a>sleep <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3"></a>  <span class="fu">aes</span>(<span class="at">x=</span>BodyWt, <span class="at">y=</span>BrainWt) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb37-5"><a href="#cb37-5"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;This graph was drawn by Steve Simon on 2025-01-02&quot;</span>) <span class="sc">+</span></span>
+<span id="cb37-6"><a href="#cb37-6"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Body weight (kg)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb37-7"><a href="#cb37-7"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Brain weight (g)&quot;</span>) <span class="ot">-&gt;</span> labeled_scatterplot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="log-transformed-scatterplot" class="slide level2">
 <h2>Log transformed scatterplot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>xticks <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb38-2"><a href="#cb38-2"></a>yticks <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb38-3"><a href="#cb38-3"></a>labeled_scatterplot <span class="sc">+</span></span>
+<span id="cb38-4"><a href="#cb38-4"></a>  <span class="fu">scale_x_log10</span>(</span>
+<span id="cb38-5"><a href="#cb38-5"></a>    <span class="at">breaks=</span>xticks,</span>
+<span id="cb38-6"><a href="#cb38-6"></a>    <span class="at">minor_breaks=</span><span class="cn">NULL</span>,</span>
+<span id="cb38-7"><a href="#cb38-7"></a>    <span class="at">labels=</span>xticks) <span class="sc">+</span></span>
+<span id="cb38-8"><a href="#cb38-8"></a>  <span class="fu">scale_y_log10</span>(</span>
+<span id="cb38-9"><a href="#cb38-9"></a>    <span class="at">breaks=</span>yticks,</span>
+<span id="cb38-10"><a href="#cb38-10"></a>    <span class="at">minor_breaks=</span><span class="cn">NULL</span>,</span>
+<span id="cb38-11"><a href="#cb38-11"></a>    <span class="at">labels=</span>yticks)<span class="ot">-&gt;</span> log_scatterplot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="add-a-trend-line" class="slide level2">
 <h2>Add a trend line</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>log_scatterplot <span class="sc">+</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;gam&quot;</span>) <span class="ot">-&gt;</span> trend_line_graph</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="live-demo-part-5" class="slide level2">
+<h2>Live demo, part 5</h2>
 </section>
 <section id="break-5" class="slide level2">
 <h2>Break #5</h2>

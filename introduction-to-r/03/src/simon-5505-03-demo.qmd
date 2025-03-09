@@ -3,8 +3,6 @@ title: "Reading text files"
 format: 
   html:
     embed-resources: true
-execute: 
-  error: true
 editor: source
 ---
 
@@ -17,9 +15,9 @@ This program reads data from a variety of text files. It was written by Steve Si
 The data itself is small and artificial, so there is no need for a data dictionary.
 
 ```{r}
-#| label: setup
 #| message: false
 #| warning: false
+#| label: setup
 
 R.version.string
 Sys.Date()
@@ -29,14 +27,14 @@ library(tidyverse)
 ## Read csv file
 
 ```{r}
-#| label: read-comma
+#| label: csv
 
 simple_comma <- read_csv(
   file="../data/simple.csv",
   col_names=TRUE,
   col_types="nn")
 
-simple_comma(raw_data)
+glimpse(simple_comma)
 ```
 
 #### Comments on the code
@@ -53,14 +51,14 @@ The base R program has a similar function, [read.csv][ref-read-table], that also
 ## Read tsv file
 
 ```{r}
-#| label: read-tab
+#| label: tsv
 
 simple_tab <- read_tsv(
   file="../data/simple.tsv",
   col_names=TRUE,
   col_types="nn")
 
-simple_tab
+glimpse(simple_tab)
 ```
 
 #### Comments on the code
@@ -72,15 +70,15 @@ The read_tsv function is described in the same page that describes the read_csv 
 ## Read tilde-delimited file
 
 ```{r}
-#| label: read-tilde
+#| label: tilde
 
-raw_data <- read_delim(
+simple_tilde <- read_delim(
   file="../data/tilde.txt",
   delim="~",
   col_names=TRUE,
   col_types="nn")
 
-glimpse(raw_data)
+glimpse(simple_tilde)
 ```
 
 #### Comments on the code
@@ -89,24 +87,25 @@ The read_delim function is described in the same page that describes the read_cs
 
 # Begin Part 4 -----------------------------------------------------------------
 
-## Read in data
+## Read in fixed width data
 
 ```{r}
-#| label: read-fixed
+#| label: fixed
 
-raw_data <- read_fwf(
+simple_fixed <- read_fwf(
   file="../data/fixed.txt", 
-  col_names=c("x", "y"),
-  col_positions = fwf_cols(1, 2),
-  col_types="nn")
+  col_types="nn", 
+  col_positions = fwf_widths(
+    c(1, 2),
+    col_names=c("x", "y")))
 
-glimpse(raw_data)
+glimpse(simple_fixed)
 ```
 
 
 #### Comments on the code
 
-The [read_fwf][ref-read-fwf] function reads data from is described in the same page that describes the read_csv  and read_tsv functions. There is a similar function, [read.fwf][ref-read-dot-fwf], in the base R package that works similarly.
+The [read_fwf][ref-read-fwf] function reads data from is described in the same page that describes the read_csv  and read_tsv functions. There is a function, [read.fwf][ref-read-dot-fwf], in the base R package that works similarly.
 
 Most fixed width files do not include the variable names in the first row. You can provide the actual names by supplying the col_names argument with a character vector of names.
 
@@ -145,7 +144,7 @@ This part of the program will read in three very different text data files. Here
 
 url_1 <- "https://stats.idre.ucla.edu/stat/data/binary.csv"
 read_lines(
-  file=url_binary, 
+  file=url_1, 
   n_max=10)
 ```
 
@@ -157,7 +156,11 @@ The [read_lines][ref07] function will read each line of the text file into a sin
 
 #### Interpretation of the output
 
-Peeking at the first ten lines of data, you can see that this file uses commas as delimiters and the first line contains variable names. 
+Peeking at the first ten lines of data, you can see that 
+
+1. the first line contains variable names
+2. this file uses commas as delimiters
+3. all the variables are numeric
 
 ## Example 1, read_csv
 
@@ -165,7 +168,7 @@ Peeking at the first ten lines of data, you can see that this file uses commas a
 #| label: read-binary
 
 example_1 <- read_csv(
-  file=fn,
+  file=url_1,
   col_names=TRUE,
   col_types="nnnn")
 
@@ -181,9 +184,9 @@ The data shown here appears to match the description of the file on the web.
 ```{r}
 #| label: peek-barbershop
 
-url_barbershop <- "https://dasl.datadescription.com/download/data/3061"
+url_2 <- "https://dasl.datadescription.com/download/data/3061"
 read_lines(
-  file=url_barbershop,
+  file=url_2,
   n_max=10)
 ```
 
@@ -196,12 +199,12 @@ It looks like it is a tab delimited file. The read_lines file replaces the tab w
 ```{r}
 #| label: read-barbershop
 
-raw_data <- read_tsv(
-  file=url_barbershop,
+example_2 <- read_tsv(
+  file=url_2,
   col_names=TRUE,
   col_types="nnn")
 
-glimpse(raw_data)
+glimpse(example_2)
 ```
 
 #### Interpretation of the output
@@ -215,9 +218,9 @@ The read_tsv function works well here.
 ```{r}
 #| label: peek-airport
 
-url_airport <- "http://jse.amstat.org/datasets/airport.dat.txt"
+url_3 <- "http://jse.amstat.org/datasets/airport.dat.txt"
 read_lines(
-  file=url_airport,
+  file=url_3,
   n_max=10)
 ```
 
@@ -248,12 +251,12 @@ variable_names <- c(
 #| label: read-airport
 
 example_3 <- read_fwf(
-  file=url_3, 
-  fwf_positions(
+  file=url_3,
+  col_types="ccnnnnn", 
+  col_positions=fwf_positions(
     start=start_column, 
-    end=end_column),
-  col_names=variable_names,
-  col_types="ccnnnnn")
+    end=end_column,
+    col_names=variable_names))
 
 glimpse(example_3)
 ```

@@ -5,40 +5,118 @@ format:
     slide-number: true
     embed-resources: true
 editor: source
+execute: 
+  echo: true
+  eval: false
 ---
 
-## Tab delimited files
+## The evil tab character
+
+-   Jumps to a specific location
+    -   Location varies from program to program
+-   Looks like multiple blanks, but is a single character
+-   Can mask hidden blanks
+
+::: notes
+
+I do not like tabs. They cause all sorts of problems. The tab character is a way to imitate how manual typewriters (does anyone remember them?) would allow you to jump to a pre-specified location. This made it easy for a typist to create columns in a table.
+
+The tab character can jump to a specific location, but that location varies from program to program. So a tab in one program might jump to columns 9, 17, 25, etc. and another might jump to columns 5, 9, 13, etc.
+
+:::
+
+## How to recognize a tab delimited file
+
+-   Partially aligned columns
+-   Everything is left justified
+
+## This is an example of a tab delimited file
+
+```{}
+Fat	Sodium	Calories
+19	920	410
+31	1500	580
+34	1310	590
+35	860	570
+39	1180	640
+39	940	680
+43	1260	660
+```
+
+::: notes
+
+I have a small data file on my github site, burger-calories.txt, that uses tbs as delimiters. Notice how the Sodium values are left justified.  Also notice how some of the Calories values line up on column 9 and others line up on column 13.
+
+:::
+
+## This file is not tab delimited
+
+```{}
+Alpine           14.1 0.86 0.9853 13.6
+Benson&Hedges    16.0 1.06 1.0938 16.6
+BullDurham       29.8 2.03 1.1650 23.5
+CamelLights       8.0 0.67 0.9280 10.2
+Carlton           4.1 0.40 0.9462  5.4
+Chesterfield     15.0 1.04 0.8885 15.0
+```
+
+::: notes
+
+Here are the first few lines of another file on my github site, cigaretter-measurements.txt. Notice that the columns align perfectly. Also notice that the numbers are right justified. This is a white-space delimited file.
+
+:::
+
+## Tab delimited? Maybe, maybe not
+
+```{}
+  9 1.7080 57.0   F     N
+  8 1.7240 67.5   F     N
+  7 1.7200 54.5   F     N
+  9 1.5580 53.0   M     N
+  9 1.8950 57.0   M     N
+  8 2.3360 61.0   F     N
+```
+
+::: notes
+
+Here is a data set, where you can't be sure. This is a partial listing of fev.txt, also from my github site. Because everything in a column is exactly the same length, you can't distinguish between left and right justification. Actually, you can notice that all the data is right justified if you go down far enough. The point is, though, that sometimes you can't look at a file and recognize right away if it is tab delimited.
+
+:::
+
+## A simple tab delimited file
 
 ```{r}
-#| label: setup-03
 #| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+#| label: 03-03-setup
+
+library(tidyverse)
 
 load("../data/module03.RData")
 ```
 
-`r simple_tab`
+```{r}
+#| echo: false
+#| eval: true
+#| label: 03-03-read-lines
+
+read_lines("../data/simple.tsv")|> 
+  cat(sep="\n")
+```
+
 
 ::: notes
 
-Tabs are little bit different and you might want to listen to the live video where I show how the tab key works.
-
-Type the following into notepad and what appears to be multiple blanks, I want you to press the tab key, but only once.
+Here is the same data, using tabs as delimiters.
 
 :::
 
 ## Using the read_tsv function
 
-`r read_tab`
-
-::: notes
-
-The read_tsv function works when you have a tab character as the delimiter. It uses the same arguments as the read_csv function.
-
-:::
+`r code["tsv"]`
 
 ## Live demonstration, 2
 
-Now, you will see a live demonstration of the program [simon-5505-03-demo-03][ref31].
-
-[ref31]: https://github.com/pmean/classes/blob/master/introduction-to-r/03/src/simon-5505-03-demo-03.qmd
-
+Now, you will see a live demonstration of part 2 of [simon-5505-03-demo][ref-demo].

@@ -9,128 +9,55 @@ editor: source
 ## Preliminaries
 
 ```{r}
-#| label: setup
+#| label: 03-00-setup
 #| message: false
 #| warning: false
 
 library(tidyverse)
 ```
 
-## Create grab functions
+## Read and parse simon-5505-03-demo.qmd
 
 ```{r}
-#| label: grab
+#| label: 03-00-parse
 
-grab_entire_file <- function(fn) {
-  tx <- read_lines(fn)
-  paste0(c("```", tx, "```"), collapse="\n")
+fn <- "simon-5505-03-demo.qmd"
+
+s1 <- fixed("#| label: ")
+s2 <- "^```$"
+
+demo_text <- read_lines(fn)
+
+t1 <- str_which(demo_text, s1)
+t2 <- str_which(demo_text, s2)
+
+code <- NULL
+
+prefix <- "```{}"
+postfix <- "```"
+
+for (i in 1:length(t1)) {
+  demo_text[t1[i]] |>
+    str_remove(s1) |>
+    str_replace_all(fixed("-"), "_") -> v
+ 
+  r <- (t1[i]+2):(t2[i]-1) 
+  prefix |>
+    append(demo_text[r]) |>
+    append(postfix) |>
+    paste0(collapse="\n") -> code[v]
 }
 
-grab_code_segment <- function(fn, lab) {
-  tx <- read_lines(fn)
-  n_lines <- length(tx)
-  start <- which(str_detect(tx, fixed(lab)))
-  if (length(start) == 0) return("String not found")
-  for (i in start:n_lines) {
-    if (str_detect(tx[i], "```")) break
-  }
-  stop <- i
-  paste0(c("```", tx[(start+2):stop]), collapse="\n")
-}
-```
-
-## Create segments
-
-```{r}
-#| label: create-segments
-
-simple_comma <- grab_entire_file("../data/simple.csv")
-cat(simple_comma)
-
-read_comma <- grab_code_segment(
-  "simon-5505-03-demo-02.qmd", 
-  "#| label: read-comma")
-cat(read_comma)
-
-simple_tab <- grab_entire_file("../data/simple.tsv")
-cat(simple_tab)
-
-read_tab <- grab_code_segment(
-  "simon-5505-03-demo-03.qmd", 
-  "#| label: read-tab")
-cat(read_tab)
-
-simple_tilde <- grab_entire_file("../data/tilde.txt")
-cat(simple_tilde)
-
-read_tilde <- grab_code_segment(
-  "simon-5505-03-demo-04.qmd", 
-  "#| label: read-tilde")
-cat(read_tilde)
-
-simple_fixed <- grab_entire_file("../data/fixed.txt")
-cat(simple_fixed)
-
-read_fixed <- grab_code_segment(
-  "simon-5505-03-demo-05.qmd", 
-  "#| label: read-fixed")
-cat(read_fixed)
-
-peek_binary <- grab_code_segment(
-  "simon-5505-03-demo-06.qmd", 
-  "#| label: peek-binary")
-cat(peek_binary)
-
-read_binary <- grab_code_segment(
-  "simon-5505-03-demo-06.qmd", 
-  "#| label: read-binary")
-cat(read_binary)
-
-peek_barbershop <- grab_code_segment(
-  "simon-5505-03-demo-06.qmd", 
-  "#| label: peek-barbershop")
-cat(peek_barbershop)
-
-read_barbershop <- grab_code_segment(
-  "simon-5505-03-demo-06.qmd", 
-  "#| label: read-barbershop")
-cat(read_barbershop)
-
-peek_airport <- grab_code_segment(
-  "simon-5505-03-demo-06.qmd", 
-  "#| label: peek-airport")
-cat(peek_binary)
-
-define_airport <- grab_code_segment(
-  "simon-5505-03-demo-06.qmd", 
-  "#| label: define-airport")
-cat(define_airport)
-
-read_airport <- grab_code_segment(
-  "simon-5505-03-demo-06.qmd", 
-  "#| label: read-airport")
-cat(read_airport)
-
+for (v in names(code)) {
+   cat("\n---\n")
+   cat(v)
+   cat("\n---\n")
+   cat(code[v])
+}   
 ```
 
 ## Save everything important
 
 ```{r save}
-save(
-  simple_comma,
-  read_comma,
-  simple_tab,
-  read_tab,
-  simple_tilde,
-  read_tilde,
-  simple_fixed,
-  read_fixed,
-  peek_binary,
-  read_binary,
-  peek_barbershop,
-  read_barbershop,
-  peek_airport,
-  define_airport,
-  read_airport,
-	file="../data/module03.RData")
+save(code, file="../data/module03.RData")
 ```

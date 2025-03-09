@@ -5,6 +5,9 @@ format:
     slide-number: true
     embed-resources: true
 editor: source
+execute: 
+  echo: true
+  eval: false
 ---
 
 ## Function arguments for advanced options
@@ -67,12 +70,25 @@ As a quick note, while I like to look at a file in Notepad or Notepad++, but I p
 ## Example 1, the code to peek at the data
 
 ```{r}
-#| label: setup-06
+#| label: 03-06-setup
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+
+library(tidyverse)
 
 load("../data/module03.RData")
 ```
 
-`r peek_binary`
+```{r}
+#| label: 03-06-peek-binary
+
+url_1 <- "https://stats.idre.ucla.edu/stat/data/binary.csv"
+read_lines(
+  file=url_1, 
+  n_max=10)
+```
 
 ::: notes
 
@@ -85,13 +101,7 @@ Always, always, always limit the amount of data that you display. The first time
 
 ## Example 1, the code to read the data
 
-`r read_binary`
-
-::: notes
-
-Choose the read_csv function and specify four numeric variables.
-
-:::
+`r code["read_binary"]`
 
 ## Example 2, barbershop-music.txt
 
@@ -115,22 +125,16 @@ Looking at it in notepad, it looks like it is a tab delimited file. It might be 
 
 :::
 
-## Example 2, the code to peek at the data
+## Example 2, peeking at the data
 
-`r peek_barbershop`
+```{}
+ [1] "Singing\tPerformance\tMusic" "151\t143\t138"              
+ [3] "152\t146\t136"               "146\t143\t140"              
+ [5] "146\t147\t142"               "145\t141\t134"              
+ [7] "144\t139\t140"               "133\t138\t132"              
+ [9] "129\t135\t128"               "134\t125\t132"
+```
 
-```
- [1] "Singing\tPerformance\tMusic"
- [2] "151\t143\t138"              
- [3] "152\t146\t136"              
- [4] "146\t143\t140"              
- [5] "146\t147\t142"              
- [6] "145\t141\t134"              
- [7] "144\t139\t140"              
- [8] "133\t138\t132"              
- [9] "129\t135\t128"              
-[10] "134\t125\t132"
-```
 ::: notes
 
 When you use the read_lines function to peek at the data, notice how R displays the tabs using a special code (\t). This is a common shorthand used by many programs. Other programs use ^t.
@@ -139,13 +143,7 @@ When you use the read_lines function to peek at the data, notice how R displays 
 
 ## Example 2, the code to read the data
 
-`r read_barbershop`
-
-::: notes
-
-Choose the read_csv function and specify four numeric variables.
-
-:::
+`r code["read_barbershop"]`
 
 ## Example 3, airport.txt
 
@@ -191,7 +189,7 @@ From the description on the website, you can tell that it is a fixed width forma
 
 ## Example 3, the code to peek at the data
 
-`r peek_airport`
+`r code["peek_airport"]`
 
 ::: notes
 
@@ -201,7 +199,7 @@ You could also infer that this is a fixed width file using the read_lines functi
 
 ## Example 3, Defining variable names and column locations
 
-`r define_airport`
+`r code["define_airport"]`
 
 ::: notes
 
@@ -211,7 +209,7 @@ You have to specify a bit of information before using the read_fwf function.
 
 ## Example 3, the code to read the data
 
-`r read_airport`
+`r code["read_airport"]`
 
 ::: notes
 
