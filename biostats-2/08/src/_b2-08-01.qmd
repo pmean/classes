@@ -5,6 +5,9 @@ format:
     slide-number: true
     embed-resources: true
 editor: source
+execute: 
+  echo: false
+  eval: true
 ---
 
 ## Survival analysis
@@ -37,12 +40,27 @@ A patient may drop out of a study, and you no longer are able to tell from that 
 When your patient does not die during the study, this is not a missing value. You have partial information. You know that the patient was alive for a certain amount of time. When you end the study within a certain time frame, you know that your patient dies at a time beyond the end date of your study. If your patient drops out after six months, you know that the patient survived for more than six months.
 :::
 
-## First fruit fly experiment, 1 of 4
+## First fruit fly experiment, 1
 
 ```{r}
+#| message: false
+#| warning: false
+#| label: 08-01-setup
+
+library(ggfortify)
+library(glue)
 library(readr)
+library(survival)
+library(tidyverse)
 library(yaml)
-dd <- read_yaml("../data/fly1.yaml")
+```
+
+```{r}
+#| label: 08-01-yaml
+
+f0 <- "https://raw.githubusercontent.com/pmean"
+f1 <- "data/refs/heads/main/files"
+dd <- read_yaml(glue("{f0}/{f1}/fly1.yaml"))
 cat(as.yaml(dd["data_dictionary"]))
 cat(as.yaml(dd["description"]))
 cat(as.yaml(dd["vars"]))
@@ -55,9 +73,11 @@ The following data represents survival time for a group of fruit flies and is a 
 There are 25 flies in the sample, with the first fly dying on day 37 and the last fly dying on day 96.
 :::
 
-## First fruit fly experiment, 2 of 4
+## First fruit fly experiment, 2
 
 ```{r}
+#| label: 08-01-fly1a
+
 fly1 <- read_csv(
   "../data/fly1.txt",
   col_names=FALSE,
@@ -72,13 +92,15 @@ If you wanted to estimate the survival probability for this data, you would draw
 
 :::
 
-## First fruit fly experiment, 3 of 4
+## First fruit fly experiment, 3
 
 :::: {.columns}
 
 ::: {.column width=33%}
 
 ```{r}
+#| label: 08-01-fly1b
+
 names(fly1) <- "day"
 fly1$p <- paste0(100-4*(1:25), "%")
 fly1 <- data.frame(fly1)
@@ -90,6 +112,8 @@ fly1[1:9, ]
 ::: {.column width=33%}
 
 ```{r}
+#| label: 08-01-fly1c
+
 fly1[10:18, ]
 ```
 
@@ -98,6 +122,8 @@ fly1[10:18, ]
 ::: {.column width=34%}
 
 ```{r}
+#| label: 08-01-fly1d
+
 fly1[19:25, ]
 ```
 
@@ -109,9 +135,21 @@ fly1[19:25, ]
 The probability of survival drops by 4% (1/25) at each day of death.
 :::
 
-## First fruit fly experiment, 4 of 4
+## First fruit fly experiment, 4
 
-![](images/fly-01.png "Plot of survivor probabilities with drop of 4% (1/25) at each day of death")
+
+```{r}
+#| label: fly-plot-1
+
+f1 <- survfit(
+  Surv(fly1$day, rep(1, 25)) ~ 1,
+  data=fly1)
+
+autoplot(f1, conf.int=FALSE) +
+  ggtitle("Graph drawn by Steve Simon on 2025-03-10") +
+  xlab("Survival time (days)") +
+  ylab("Percentage survived")
+```
 
 ::: notes
 Here's a graph of these probabilities over time.
@@ -119,9 +157,11 @@ Here's a graph of these probabilities over time.
 By tradition and for some rather technical reasons, you should use a stair step pattern rather than a diagonal line to connect adjacent survival probabilities.
 :::
 
-## Second fruit fly experiment, 1 of 4
+## Second fruit fly experiment, 1
 
 ```{r}
+#| label: 08-01-fly2a
+
 day2 <- fly1$day
 day2[16:25] <- "??"
 cat(paste(day2, collapse=", "))
@@ -134,13 +174,15 @@ You're probably worried that the whole experiment has been ruined. But don't be 
 
 :::
 
-## Second fruit fly experiment, 2 of 4
+## Second fruit fly experiment, 2
 
 :::: {.columns}
 
 ::: {.column width=33%}
 
 ```{r}
+#| label: 08-01-fly2b
+
 fly2 <- data.frame(day=fly1$day)
 fly2$day[16:25] <- 70
 fly2$event <- rep(1:0, c(15, 10))
@@ -152,6 +194,8 @@ fly2[1:9, ]
 ::: {.column width=33%}
 
 ```{r}
+#| label: 08-01-fly2c
+
 fly2[10:18, ]
 ```
 
@@ -160,6 +204,8 @@ fly2[10:18, ]
 ::: {.column width=34%}
 
 ```{r}
+#| label: 08-01-fly2d
+
 fly2[19:25, ]
 ```
 
@@ -171,13 +217,15 @@ fly2[19:25, ]
 Here's how you would code the data for importing into SPSS or any other software.
 :::
 
-## Second fruit fly experiment, 3 of 4
+## Second fruit fly experiment, 3
 
 :::: {.columns}
 
 ::: {.column width=33%}
 
 ```{r}
+#| label: 08-01-fly2e
+
 fly2$p <- fly1$p
 fly2$p[16:25] <- " "
 fly2[1:9, ]
@@ -188,6 +236,8 @@ fly2[1:9, ]
 ::: {.column width=33%}
 
 ```{r}
+#| label: 08-01-fly2f
+
 fly2[10:18, ]
 ```
 
@@ -196,6 +246,8 @@ fly2[10:18, ]
 ::: {.column width=34%}
 
 ```{r}
+#| label: 08-01-fly2g
+
 fly2[19:25, ]
 ```
 
@@ -207,21 +259,35 @@ fly2[19:25, ]
 We clearly have enough data to make several important statements about survival probability. For example, the median survival time is 61 days because roughly half of the flies had died before this day.
 :::
 
-## Second fruit fly experiment, 4 of 4
+## Second fruit fly experiment, 4
 
-![](images/fly-02.png "Plot of survivor probabilities, similar to previous plot, but stopping at 40%")
+```{r}
+#| label: fly-plot-2
+
+f2 <- survfit(
+  Surv(fly2$day, event) ~ 1,
+  data=fly2)
+
+autoplot(f2, conf.int=FALSE) +
+  expand_limits(x=96, y=0) +
+  ggtitle("Graph drawn by Steve Simon on 2025-03-10") +
+  xlab("Survival time (days)") +
+  ylab("Percentage survived")
+```
 
 ::: notes
+
 Here is a graph of the survival probabilities of the second experiment. This graph is identical to the graph in the first experiment up to day 70 after which you can no longer estimate survival probabilities.
 
 By the way, you might be tempted to ignore the ten flies who escaped. But that would seriously bias your results. All of these flies were tough and hardy flies who lived well beyond the median day of death. If you pretended that they didn't exist, you would seriously underestimate the survival probabilities. The median survival time, for example, of the 15 flies who did not escape, for example, is only 54 days which is much smaller than the actual median.
 
-
 :::
 
-## Third fruit fly experiment, 1 of 4
+## Third fruit fly experiment, 1
 
 ```{r}
+#| label: 08-01-fly3a
+
 fly3 <- read_delim(
 	"../data/fly3.txt",
 	delim=" ",
@@ -235,17 +301,20 @@ cat(paste(day3, collapse=", "))
 ```
 
 ::: notes
+
 Let's look at a third experiment, where the screen cover is left open and all but four of the remaining flies escape. It turns out that those four remaining flies who didn't bug out will allow us to still get reasonable estimates of survival probabilities beyond 70 days. 
 
 :::
 
-## Third fruit fly experiment, 2 of 4
+## Third fruit fly experiment, 2
 
 :::: {.columns}
 
 ::: {.column width=33%}
 
 ```{r}
+#| label: 08-01-fly3b
+
 fly3[1:9, ]
 ```
 
@@ -254,6 +323,8 @@ fly3[1:9, ]
 ::: {.column width=33%}
 
 ```{r}
+#| label: 08-01-fly3c
+
 fly3[10:18, ]
 ```
 
@@ -262,6 +333,8 @@ fly3[10:18, ]
 ::: {.column width=34%}
 
 ```{r}
+#| label: 08-01-fly3d
+
 fly3[19:25, ]
 ```
 
@@ -273,13 +346,15 @@ fly3[19:25, ]
 Here is how you would code the data for importing into SPSS.
 :::
 
-## Third fruit fly experiment, 3 of 4
+## Third fruit fly experiment, 3
 
 :::: {.columns}
 
 ::: {.column width=33%}
 
 ```{r}
+#| label: 08-01-fly3e
+
 fly3$p <- fly1$p
 fly3$p[fly3$day==70] <- " "
 fly3$p[fly3$day > 70] <- paste0(10*c(3:0), "%")
@@ -291,6 +366,8 @@ fly3[1:9, ]
 ::: {.column width=33%}
 
 ```{r}
+#| label: 08-01-fly3f
+
 fly3[10:18, ]
 ```
 
@@ -299,6 +376,8 @@ fly3[10:18, ]
 ::: {.column width=34%}
 
 ```{r}
+#| label: 08-01-fly3g
+
 fly3[19:25, ]
 ```
 
@@ -307,14 +386,31 @@ fly3[19:25, ]
 ::::
 
 ::: notes
+
 What you do with the six escaped flies is to allocate their survival probabilities equally among the four flies who didn't bug out. This places a great responsibility among each of those four remaining flies since each one is now responsible for 10% of the remaining survival probability, their original 4% plus 6% more which represents a fourth of the 24% survival probability that was lost with the six escaping flies.
 
 Another way of looking at this is that the six flies who escaped influence the denominator of the survival probabilities up to day 70 and then totally drop out of the calculations for any further survival probabilities. Because the denominator has been reduced, the jumps at each remaining death are much larger.
+
 :::
 
-## Third fruit fly experiment, 4 of 4
+## Third fruit fly experiment, 4
 
-![](images/fly-03.png "Plot of survivor probabilities, similar to previous plot, but with probabilities below 40%")
+```{r}
+#| label: fly-plot-3
+
+f3 <- survfit(
+  Surv(fly3$day, event) ~ 1,
+  data=fly3)
+
+autoplot(f3, conf.int=FALSE) +
+  expand_limits(x=96, y=0) +
+  ggtitle("Graph drawn by Steve Simon on 2025-03-10") +
+  xlab("Survival time (days)") +
+  ylab("Percentage survived") -> fly_plot_3
+
+fly_plot_3
+```
+
 
 ::: notes
 Here is a graph of the survival probability estimates from the third experiment.
@@ -326,31 +422,119 @@ If the censoring mechanism were somehow related to survival prognosis, then you 
 This is known as informative censoring, and it happens more often that you might expect. Suppose someone drops out of a cancer mortality study because they are abandoning the drugs being studied in favor of laetrile treatments down in Mexico. Usually, this is a sign that the current drugs are not working well, so a censored observation here might represent a patient with a poorer prognosis. Excluding these patients would lead to an overestimate of survival probabilities.
 :::
 
-## Interpreting Kaplan-Meier plots
+## Interpreting Kaplan-Meier plots, 1
 
-![](images/fly-04.png "Survival probabilities with corners designated as happy or sad")
+```{r}
+#| label: fly-plot-4
+
+fly4 <- fly3
+
+fly4$event[seq(1, 23, 3)] <- 0
+fly4$event[seq(2, 24, 3)] <- 0
+
+f4 <- survfit(
+  Surv(day, event) ~ 1,
+  data=fly4)
+
+autoplot(f4, conf.int=FALSE) +
+  expand_limits(x=96, y=0) + 
+  geom_label(x=95, y=0.95, label="Happy\ncorner") +
+  ggtitle("Graph drawn by Steve Simon on 2025-03-10") +
+  xlab("Survival time (days)") +
+  ylab("Percentage survived")
+```
+
+## Interpreting Kaplan-Meier plots, 2
+
+```{r}
+#| label: fly-plot-5
+
+fly3 |>
+  mutate(day=(day %%21)) -> fly5 
+
+fly5$day[c(5, 15, 25)] <- fly3$day[c(5, 15, 25)]
+
+f5 <- survfit(
+  Surv(day, event) ~ 1,
+  data=fly5)
+
+autoplot(f5, conf.int=FALSE) +
+  expand_limits(x=96, y=0) + 
+  geom_label(x=5, y=0.05, label="Sad\ncorner") +
+  ggtitle("Graph drawn by Steve Simon on 2025-03-10") +
+  xlab("Survival time (days)") +
+  ylab("Percentage survived")
+```
 
 ::: notes
+
 When you see a survival curve in a research paper, there are three ways to interpret it.
 
 First, presuming that the event in question is a sad event (such as death, relapse), then the upper right hand corner is the happy corner. Most of you patients go for a very long time with only a small proportion suffering the negative event.
 
 In contrast, the lower left corner is the sad corner. Most of your patients experience the bad event, and they experience it very quickly.
+
 :::
 
-## Interpreting Kaplan-Meier plots, 2 of 3
+## Interpreting Kaplan-Meier plots, 3
 
-![](images/fly-05.png "Survival probabilities with median projection at 61 days" )
+```{r}
+#| label: fly-plot-6
+
+fly_plot_3 +
+  geom_segment(
+    x=0, 
+    y=0.5, 
+    xend=61, 
+    yend=0.5, 
+    color="red",
+    linewidth=1.5) +
+  geom_segment(
+    x=61, 
+    y=0.5, 
+    xend=61, 
+    yend=0, 
+    color="red",
+    linewidth=1.5) +
+  ggtitle("Graph drawn by Steve Simon on 2025-03-10") +
+  xlab("Survival time (days)") +
+  ylab("Percentage survived")
+```
 
 ::: notes
+
 Next, you can get an estimate of the median (or other percentiles) by projecting horizontally until you intersect with the survival curve and then head down to get your estimate. In the survival curve we have just looked at, you would estimate the median survival as slightly more than 60 days.
+
 :::
 
-## Interpreting Kaplan-Meier plots, 3 of 3
+## Interpreting Kaplan-Meier plots, 4
 
-![](images/fly-06.png "Survival probabilities with projection of survival probability at 80 days" )
+```{r}
+#| label: fly-plot-7
+
+fly_plot_3 +
+  geom_segment(
+    x=80, 
+    y=0, 
+    xend=80, 
+    yend=0.2,
+    color="red",
+    linewidth=1.5) +
+  geom_segment(
+    x=80, 
+    y=0.2, 
+    xend=0, 
+    yend=0.2,
+    color="red",
+    linewidth=1.5) +
+  ggtitle("Graph drawn by Steve Simon on 2025-03-10") +
+  xlab("Survival time (days)") +
+  ylab("Percentage survived")  
+```
 
 ::: notes
+
 You can also estimate probabilities for survival at any given time by projecting up from the time and then moving to the left to estimate the probability. In the example below, you can see that the 80 day survival probability is a little bit less than 25%.
+
 :::
 

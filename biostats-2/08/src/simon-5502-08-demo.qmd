@@ -1,0 +1,180 @@
+---
+title: "simon-5502-08-demo"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute: 
+  error: false
+---
+
+## Start part 1
+
+## File details
+
+This program was written by Steve Simon on 2025-02-23 and is placed in the public domain. You can use this program any way you please.
+
+There is one data file used in this program
+
+-   whas500, [Tab delimited file][ref01], [dictionary][ref02]
+
+[ref01]: https://github.com/pmean/data/blob/main/files/whas500.dat
+[ref02]: https://github.com/pmean/data/blob/main/files/whas500.yaml
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(ggfortify)
+library(glue)
+library(lubridate)
+library(survival)
+library(tidyverse)
+
+R.version.string
+Sys.Date()
+```
+
+## Intermediate files
+
+-   whas: Original data from whas500.dat
+-   whas_1: Convert dates from strings, drop last column
+-   whas_2: Check date calculations
+-   whas_3: Remove patients who died in the hospital
+-   whas_4: Convert days to years
+
+## Read Worcester Heart Attack Study
+
+```{r}
+#| label: whas-read
+
+whas_names <- c(
+  "id",
+  "age", 
+  "gender",
+  "hr",
+  "sysbp",
+  "diasbp",
+  "bmi",
+  "cvd",
+  "afb",
+  "sho",
+  "chf",
+  "av3",
+  "miord",
+  "mitype",
+  "year",
+  "admitdate",
+  "disdate",
+  "fdate",
+  "los",
+  "dstat",
+  "lenfol",
+  "fstat",
+  "not_needed")
+
+whas <- read_table(
+  file="../data/whas500.dat",
+  col_types="nnnnnnnnnnnnnnncccnnnnn",
+  col_names=whas_names)
+
+glimpse(whas) 
+```
+
+## Convert dates
+
+```{r}
+#| label: dates
+
+whas |>
+  select(-23) |>
+  mutate(admitdate=mdy(admitdate)) |>
+  mutate(disdate=mdy(disdate)) |>
+  mutate(fdate=mdy(fdate)) -> whas_1
+```
+
+## Count events
+
+```{r}
+#| label: count
+
+whas_1 |>
+  count(fstat)
+```
+
+#### Interpretation of the output
+
+There are enough events to support a reasonably complex model (215/15 = 14.3).
+
+## Check lenfol calculations
+
+```{r}
+#| label: check-1
+
+whas_1 |>
+  mutate(f_minus_admit = fdate - admitdate) |>
+  mutate(f_minus_dis = fdate - disdate) |>
+  mutate(dis_minus_admit = disdate - admitdate) -> whas_2
+
+whas_2 |>
+  select(lenfol, f_minus_admit, f_minus_dis, dis_minus_admit)
+```
+
+## Check dstat=1
+
+```{r}
+#| label: check-2
+
+whas_2 |>
+  filter(dstat == 1) |>
+  select(lenfol, f_minus_admit, f_minus_dis, dis_minus_admit)
+```
+
+## Remove patients who died in the hospital
+
+```{r}
+#| label: remove
+
+whas_1 |>
+  filter(dstat != 1) -> whas_3
+```
+
+## Convert days to years
+
+```{r}
+#| label: convert
+
+whas_3 |>
+  mutate(lenfol=lenfol/365.25) -> whas_4
+```
+
+## Overall Kaplan-Meier curve
+
+```{r}
+#| label: overall
+
+m0 <- survfit(
+  Surv(lenfol, fstat) ~ gender,
+  data=whas_4)
+
+autoplot(m0, conf.int=FALSE) +
+  ggtitle("Graph drawn by Steve Simon on 2025-03-10") +
+  xlab("Survival time (days)") +
+  ylab("Percentage survived")
+```
+
+```{r}
+survdiff(
+  Surv(lenfol, fstat) ~ gender,
+  data=whas_4)
+```
+
+## Save everything
+
+```{r}
+#| label: save
+
+save.image(file="../data/module08.RData")
+```

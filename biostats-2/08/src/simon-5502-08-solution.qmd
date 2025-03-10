@@ -1,0 +1,287 @@
+---
+title: "simon-5502-08-solution"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute: 
+  error: true
+---
+
+## General directions
+
+Use the dataset, [gardasil.tsv][ref01], found on my github site. Refer to the [data dictionary][ref02] if needed. You may find it helpful to adapt some of the code from [simon-5502-06-demo.qmd][ref03]. 
+
+[ref01]: https://github.com/pmean/data/blob/main/files/gardasil.tsv
+[ref02]: https://github.com/pmean/data/blob/main/files/gardasil.yaml
+[ref03]: https://github.com/pmean/classes/blob/master/biostats-2/06/src/simon-5502-06-demo.qmd
+
+## File details
+
+Please do not look at this file before submitting your own work on this programming assignment. Although no interpretations are provided here, you must include them in your own submission.
+
+This program was written by Steve Simon on 2025-02-27 and is placed in the public domain. You can use this program any way you please.
+
+This program examines some logistic regression models to predict the probability that a patient will complete all three shots in the HPV vaccination program.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(glue)
+library(readxl)
+library(tidyverse)
+R.version.string
+Sys.Date()
+```
+
+## Intermediate files
+
+-   ga: original data from gardasil.xls
+-   ga_1: convert number codes to factors
+
+## Read the data
+
+```{r}
+#| label: read
+
+ga <- read_tsv(
+  file="../data/gardasil.tsv",
+  col_names=TRUE,
+  col_types="n")
+glimpse(ga)
+```
+
+## Question 1
+
+You will not be graded on this, but get in the habit of computing some simple statistics (mean, standard deviation, minimum, and maximum for continuous variables and counts and percentages for categorical variables) for the important variables in this dataset. Also, get in the habit of providing brief interpretations.
+
+## Descriptive statistics
+
+```{r}
+#| label: descriptives-1
+
+ga |>
+  summarize(
+    Age_mean=mean(Age),
+    Age_sd=sd(Age),
+    Age_min=min(Age),
+    Age_max=max(Age))
+```
+
+#### Interpretation of the output
+
+Don't forget to put interpretations here and after every other program chunk that produces a table or graph.
+
+```{r}
+#| label: descriptives-2
+
+ga |>
+	count(Completed) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) |>
+	mutate(pct=glue("{pct}% ({n}/{total})")) |>
+	select(-n, -total)
+```
+
+```{r}
+#| label: descriptives-3
+
+ga |>
+	count(MedAssist) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) |>
+	mutate(pct=glue("{pct}% ({n}/{total})")) |>
+	select(-n, -total)
+```
+
+## Question 2
+
+Create factors with descriptive levels for Completed, MedAssist, and LocationType. Orient your factor so that the reference category (the category that appears first) is "No" for Completed and MedAssist and "Urban" for LocationType. Calculate the probability of completing all three shorts for each level of MedAssist. Repeat for each level of LocationType.
+
+```{r}
+#| label: create-factors
+lab1 <- c("No", "Yes")
+lab2 <- c("Urban", "Suburban")
+
+ga |>
+  mutate(
+    Completed = 
+      factor(
+        Completed, 
+        levels=0:1, 
+        labels=lab1)) |>
+  mutate(
+    MedAssist =
+      factor(
+        MedAssist,
+        levels=0:1,
+        labels=lab1)) |>
+  mutate(
+    LocationType = 
+      factor(
+        LocationType, 
+        levels=1:0,
+        labels=lab2))-> ga_1
+```
+
+## Completion probabilities for MedAssist
+
+```{r}
+#| label: descriptives-4
+
+ga_1 |>
+	count(MedAssist, Completed) |>
+  group_by(MedAssist) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) |>
+	mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  filter(Completed=="Yes") |>
+	select(-n, -total)
+```
+
+## Completion probabilities for LocationType
+
+```{r}
+#| label: descriptives-5
+
+ga_1 |>
+	count(LocationType, Completed) |>
+  group_by(LocationType) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) |>
+	mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  filter(Completed=="Yes") |>
+	select(-n, -total)
+```
+
+## Question 3
+
+Calculate a logistic regression model using Age (not AgeGroup) to predict whether a patient has completed all three shots. Interpret the odds ratio from this model.
+
+## Logistic regression models
+
+```{r}
+#| label: logistic-1
+
+m1 <- glm(
+  Completed~Age,
+  family=binomial,
+  data=ga_1)
+```
+
+## Display Age coefficient
+
+```{r}
+#| label: coefficients-1
+
+m1 |>
+  tidy() |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> m1_betas
+m1_betas
+```
+
+## Back transforming Sex coefficients
+
+```{r}
+#| label: or-1
+
+m1_betas |>
+  filter(term != "(Intercept)") |>
+  mutate(odds_ratio=exp(estimate)) |>
+  mutate(lower=exp(estimate+qnorm(0.025)*std.error)) |>
+  mutate(upper=exp(estimate+qnorm(0.975)*std.error)) |>
+  select(term, odds_ratio, lower, upper) -> m1_or
+m1_or
+```
+
+## Question 4
+
+You suspect that there is an interaction between MedAssist and LocationType in predicting whether a patient completed all three shots. Draw a line plot on the log odds scale. Interpret this plot. You should look at the plot two different ways, but please only include one plot here.
+
+Note: some versions of R may need to use trans="logit" instead of transform="logit" in the scale_y_continuous function.
+
+```{r}
+#| label: interaction-probabilities
+
+ga_1 |>
+	count(MedAssist, LocationType, Completed) |>
+	group_by(MedAssist, LocationType) |>
+	mutate(total=sum(n)) |>
+	mutate(prop=n/total) -> table1
+
+table1
+```
+
+## Interaction plot 
+
+```{r}
+#| label: interaction-1
+
+table1 |>
+	filter(Completed=="Yes") |>
+	ggplot() +
+  aes(x=MedAssist, y=prop) +
+  geom_line(aes(group=LocationType)) +
+  geom_text(aes(label=LocationType)) +
+	expand_limits(y=c(0.1, 0.9)) +
+  ggtitle("Graph drawn by Steve Simon on 2025-03-02") +
+  xlab("Did the patient have some type of medical assistance") +
+  ylab("Probability of completing three shots") -> lines_1
+lines_1 +
+	scale_y_continuous(breaks=(1:9)/10, transform="logit")
+```
+
+
+
+## Question 5
+
+Fit a model using MedAssist and LocationType to predict Completed, first without an interaction and then with an interaction. Test whether the interaction is statistically significant.
+
+## Fitting models without and with interaction
+
+```{r}
+#| label: logistic-2
+
+m2 <- glm(
+  Completed~MedAssist+LocationType,
+  family=binomial,
+  data=ga_1)
+
+m3 <- glm(
+  Completed~MedAssist*LocationType,
+  family=binomial,
+  data=ga_1)
+```
+
+## Two approaches. You should present one or the other but not both
+
+## Testing interaction (first approach)
+
+```{r}
+#| label: interaction-2
+
+anova(m2, m3)
+```
+
+## Testing interaction (second approach) Note that only one is needed
+
+```{r}
+#| label: interaction-3
+
+m3 |>
+  tidy() |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> m3_betas
+m3_betas
+```
+
