@@ -8,7 +8,7 @@ execute:
   error: false
 ---
 
-## Start part 1
+# Start part 1 ----------------------------------------------------------------
 
 ## File details
 
@@ -101,7 +101,7 @@ whas |>
 #| label: count
 
 whas_1 |>
-  count(fstat)
+  count(fstat) -> event_count
 ```
 
 #### Interpretation of the output
@@ -161,14 +161,31 @@ m0 <- survfit(
 
 autoplot(m0, conf.int=FALSE) +
   ggtitle("Graph drawn by Steve Simon on 2025-03-10") +
-  xlab("Survival time (days)") +
-  ylab("Percentage survived")
+  xlab("Survival time (years)") +
+  ylab("Percentage survived") -> km_overall
+
+km_overall
+```
+
+## Start part 2 ----------------------------------------------------------------
+
+## Descriptive statistics on gender
+
+```{r}
+#| label: count-gender
+
+whas_4 |>
+	count(gender, fstat) |>
+	group_by(fstat) |>
+	summarize(count=sum(n)) -> count_gender
+
+count_gender
 ```
 
 ## Comparison of two or more survival curves
 
 ```{r}
-#| label: gender
+#| label: km-gender-
 
 m1 <- survfit(
   Surv(lenfol, fstat) ~ gender,
@@ -177,23 +194,51 @@ m1 <- survfit(
 autoplot(m1, conf.int=FALSE) +
   ggtitle("Graph drawn by Steve Simon on 2025-03-10") +
   xlab("Survival time (days)") +
-  ylab("Percentage survived")
+  ylab("Percentage survived") -> km_by_gender
+
+km_by_gender
 ```
 
 ## Log rank test
 
 ```{r}
+#| label: log-rank
+
 survdiff(
   Surv(lenfol, fstat) ~ gender,
-  data=whas_4)
+  data=whas_4) -> log_rank_gender
+
+log_rank_gender
 ```
 
-## Cox proportional hazards test
+## Start part 3 ----------------------------------------------------------------
+
+## Cox proportional hazards test for gender
 
 ```{r}
 coxph(
   Surv(lenfol, fstat) ~ gender,
-  data=whas_4)
+  data=whas_4) -> cox_gender
+```
+
+## Comparison of ages
+
+```{r}
+#| label: comparison
+
+whas_4 |>
+	group_by(gender) |>
+	summarize(age_mean=mean(age)) -> table_mean_age_by_gender
+
+table_mean_age_by_gender
+```
+
+## Test for gender, adjusting for age
+
+```{r}
+coxph(
+  Surv(lenfol, fstat) ~ gender,
+  data=whas_4) -> cox_adjusted
 ```
 
 ## Save everything

@@ -40,15 +40,15 @@ A patient may drop out of a study, for example, and you no longer know if or whe
 
 ## Survival curves that cross
 
-![](images/assumptions-01.png "Survival probabilities where one group is better at early times but the other group is better at later times." )
+![](../images/assumptions-01.png "Survival probabilities where one group is better at early times but the other group is better at later times." )
 
 ## One curve flattening out over time
 
-![](images/assumptions-02.png "Survival probabilities where one curve levels off well above 0")
+![](../images/assumptions-02.png "Survival probabilities where one curve levels off well above 0")
 
 ## Curves diverge only at later times
 
-![](images/assumptions-03.png "Survival probabilities that are roughly equal before day 60 but diverge afterwards")
+![](../images/assumptions-03.png "Survival probabilities that are roughly equal before day 60 but diverge afterwards")
 
 ## Sample size issues
 
@@ -57,11 +57,11 @@ A patient may drop out of a study, for example, and you no longer know if or whe
 
 ## Use ISO format for dates
 
-![](images/dates-01.png "XKCD cartoon satirizing the many ways that you can designate a particular date")
+![](../images/dates-01.png "XKCD cartoon satirizing the many ways that you can designate a particular date")
 
 ## Understand the internal storage system for dates
 
-![](images/dates-02.png "Screenshot of IBM SPSS website describing how dates are stored")
+![](../images/dates-02.png "Screenshot of IBM SPSS website describing how dates are stored")
 
 ## Date management
 
@@ -89,7 +89,7 @@ A patient may drop out of a study, for example, and you no longer know if or whe
 You have various choices for the date of origin. It depends a lot on the context of the research.
 :::
 
-## The data of the event
+## The date of the event
 
 -   Define your event precisely
     -   All-cause mortality
@@ -122,4 +122,4 @@ A date after the event date may represent a data error!
 
 ## Survival calculations, 2 of 2
 
-![](images/dates-03.png "Excel spreadsheet with date calculations")
+![](../images/dates-03.png "Excel spreadsheet with date calculations")
