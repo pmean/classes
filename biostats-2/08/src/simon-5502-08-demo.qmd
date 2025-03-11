@@ -156,7 +156,7 @@ whas_3 |>
 #| label: overall
 
 m0 <- survfit(
-  Surv(lenfol, fstat) ~ gender,
+  Surv(lenfol, fstat) ~ 1,
   data=whas_4)
 
 autoplot(m0, conf.int=FALSE) +
@@ -165,8 +165,33 @@ autoplot(m0, conf.int=FALSE) +
   ylab("Percentage survived")
 ```
 
+## Comparison of two or more survival curves
+
+```{r}
+#| label: gender
+
+m1 <- survfit(
+  Surv(lenfol, fstat) ~ gender,
+  data=whas_4)
+
+autoplot(m1, conf.int=FALSE) +
+  ggtitle("Graph drawn by Steve Simon on 2025-03-10") +
+  xlab("Survival time (days)") +
+  ylab("Percentage survived")
+```
+
+## Log rank test
+
 ```{r}
 survdiff(
+  Surv(lenfol, fstat) ~ gender,
+  data=whas_4)
+```
+
+## Cox proportional hazards test
+
+```{r}
+coxph(
   Surv(lenfol, fstat) ~ gender,
   data=whas_4)
 ```
