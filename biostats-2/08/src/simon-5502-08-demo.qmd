@@ -102,6 +102,8 @@ whas |>
 
 whas_1 |>
   count(fstat) -> event_count
+
+event_count
 ```
 
 #### Interpretation of the output
@@ -175,9 +177,7 @@ km_overall
 #| label: count-gender
 
 whas_4 |>
-	count(gender, fstat) |>
-	group_by(fstat) |>
-	summarize(count=sum(n)) -> count_gender
+	count(gender, fstat) -> count_gender
 
 count_gender
 ```
@@ -219,6 +219,8 @@ log_rank_gender
 coxph(
   Surv(lenfol, fstat) ~ gender,
   data=whas_4) -> cox_gender
+
+cox_gender
 ```
 
 ## Comparison of ages
@@ -237,8 +239,10 @@ table_mean_age_by_gender
 
 ```{r}
 coxph(
-  Surv(lenfol, fstat) ~ gender,
+  Surv(lenfol, fstat) ~ gender + age,
   data=whas_4) -> cox_adjusted
+
+cox_adjusted
 ```
 
 ## Save everything

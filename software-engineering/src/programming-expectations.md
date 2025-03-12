@@ -1,11 +1,5 @@
 ---
 title: "Basic programming expectations"
-author: "Steve Simon"
-date: "Created 2021-05-19"
-output: powerpoint_presentation
-knit: (function(inputFile, encoding) {
-  rmarkdown::render(inputFile, encoding = encoding,
-  output_dir = "../results", output_format = "all") })  
 ---
 
 ### Overview
