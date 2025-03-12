@@ -2,7 +2,11 @@
 title: "Examples from module03"
 author: "Steve Simon"
 date: "Created 2022-03-09"
-output: html_document
+format: 
+  html:
+    embed-resources: true
+execute: 
+  error: true
 ---
 
 This is a small program written in Rmarkdown to show how to read in some simple text datasets.
