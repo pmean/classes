@@ -7,30 +7,32 @@ This programming assignment was written by Steve Simon on 2024-12-18 and is plac
 ## Program
 
 -   Create a single program to address the questions below.
-    -   Refer to the module 03 demonstration programs as needed.
+    -   Refer to the [module 03 demonstration program][ref-demo] as needed.
     -   Store your program in the src folder
     -   Follow the naming conventions recommended for this class
     -   Include the appropriate documentation
+
+[ref-demo]: https://github.com/pmean/classes/blob/master/introduction-to-r/03/src/simon-5505-03-demo.qmd
     
 ## Question 1
 
-The oyster dataset shows two different computer vision methods that can be used to estimate oyster weight and oyster volume. Please consult the [data description][refd1] and then review [the dataset itself][refd2]. This is a tab delimited file. Read in the file and show a glimpse of the data. No interpretation of the output is needed.
+The oyster dataset shows two different computer vision methods that can be used to estimate oyster weight and oyster volume. Please consult the [data description][ref-oysters-dd] and then review [the dataset itself][ref-oysters]. This is a tab delimited file. Read in the file and show a glimpse of the data. No interpretation of the output is needed.
 
-[refd1]: http://jse.amstat.org/datasets/30oysters.txt
-[refd2]: http://jse.amstat.org/datasets/30oysters.dat.txt
+[ref-oysters-dd]: http://jse.amstat.org/datasets/30oysters.txt
+[ref-oysters]: http://jse.amstat.org/datasets/30oysters.dat.txt
 
 ## Question 2
 
-The file diamond.txt is data from a study of diamond ring prices. Please consult the [data description][refd3] and then review [the dataset itself][refd4]. This is a fixed width text file. Read in the file and show a glimpse of the data. No interpretation of the output is needed.
+The file diamond.txt is data from a study of diamond ring prices. Please consult the [data description][ref-diamonds-dd] and then review [the dataset itself][ref-diamonds]. This is a fixed width text file. Read in the file and show a glimpse of the data. No interpretation of the output is needed.
 
-[refd3]: http://jse.amstat.org/datasets/diamond.txt
-[refd4]: http://jse.amstat.org/datasets/diamond.dat.txt
+[ref-diamonds-dd]: http://jse.amstat.org/datasets/diamond.txt
+[ref-diamonds]: http://jse.amstat.org/datasets/diamond.dat.txt
 
 ## Grading rubric
 
-You will be evaluated using the [general grading rubric for programming assignments][sim2].
+You will be evaluated using the [general grading rubric for programming assignments][ref-rubric].
 
-[sim2]: https://github.com/pmean/classes/blob/master/general/general-grading-rubric.md
+[ref-rubric]: https://github.com/pmean/classes/blob/master/general/general-grading-rubric.md
 
 ## Your submission
 
@@ -44,6 +46,6 @@ You will be evaluated using the [general grading rubric for programming assignme
 
 ## If it doesn't work
 
-Please review the [suggestions if you encounter an error page][sim3].
+Please review the [suggestions if you encounter an error page][ref-suggestions].
 
-[sim3]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
+[ref-suggestions]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
