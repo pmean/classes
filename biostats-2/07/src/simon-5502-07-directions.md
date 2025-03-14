@@ -6,13 +6,20 @@ title: "simon-5502-07-directions"
 
 Refer to the paper
 
-Ammar N, Kühnisch J. Diagnostic performance of artificial intelligence-aided caries detection on bitewing radiographs: a systematic review and meta-analysis. Jpn Dent Sci Rev. 2024 Dec;60:128-136. doi: [10.1016/j.jdsr.2024.02.001][kuhnisch-2024].
+-   Ammar N, Kühnisch J. Diagnostic performance of artificial intelligence-aided caries detection on bitewing radiographs: a systematic review and meta-analysis. Jpn Dent Sci Rev. 2024 Dec;60:128-136. doi: [10.1016/j.jdsr.2024.02.001][ref-ammar-2024].
 
-Pay special attention to Table 2. Also find the National Institute of Dental and Craniofacial Research [report on Dental Caries (Tooth Decay)][nidcr-2022].
+Pay special attention to [Table 2][ref-ammar-2024-table-2] in this paper
 
-[kuhnisch-2024]: https://dx.doi.org/10.1016/j.jdsr.2024.02.001
+and the special report of the National Institute of Dental and Craniofacial Research
 
-[nidcr-2022]: https://www.nidcr.nih.gov/research/data-statistics/dental-caries
+-   Dental Caries (Tooth Decay). Available in [html format][ref-nidcr-2022].
+
+Pay special attention to [Table 2][ref-nicdr-2022-table-2] in this report, which provides information on rates of untreated caries in adults. 
+
+[ref-ammar-2024]: https://dx.doi.org/10.1016/j.jdsr.2024.02.001
+[ref-ammar-2024-table-2]: https://www.sciencedirect.com/science/article/pii/S1882761624000048?via%3Dihub#tbl0010
+[ref-nidcr-2022]: https://www.nidcr.nih.gov/research/data-statistics/dental-caries
+[ref-nicdr-2022-table-2]: https://www.nidcr.nih.gov/research/data-statistics/dental-caries/adults#table2
 
 ## File details
 
