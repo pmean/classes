@@ -12,7 +12,7 @@ Pay special attention to Table 2. Also find the National Institute of Dental and
 
 [kuhnisch-2024]: https://dx.doi.org/10.1016/j.jdsr.2024.02.001
 
-[nidcr-2002]: https://www.nidcr.nih.gov/research/data-statistics/dental-caries
+[nidcr-2022]: https://www.nidcr.nih.gov/research/data-statistics/dental-caries
 
 ## File details
 
