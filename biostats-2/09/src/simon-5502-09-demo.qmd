@@ -8,21 +8,31 @@ execute:
   error: false
 ---
 
-# Start part 1 ----------------------------------------------------------------
-
 ## File details
 
 This program was written by Steve Simon on 2025-02-23 and is placed in the public domain. You can use this program any way you please.
 
-There is are two data files used in this program
-
--   art-malpresentations, [Comma delimited file][ref-art], [dictionary][ref-art-dd]
--   vaccine-willingness,  [Comma delimited file][ref-vax], [dictionary][ref-vax-dd]
+-   Data used in this program
+    -   art-malpresentations
+        -   [comma delimited file][ref-art]
+        -   [dictionary][ref-art-dd]
+    -   vaccine-willingness
+        -   [comma delimited file][ref-vax]
+        -   [dictionary][ref-vax-dd]
 
 [ref-art]: https://github.com/pmean/data/blob/main/files/art-malpresentations.csv
 [ref-art-dd]: https://github.com/pmean/data/blob/main/files/art-malpresentations.yaml
 [ref-vax]: https://github.com/pmean/data/blob/main/files/vaccine-willingness.csv
 [ref-vax-dd]: https://github.com/pmean/data/blob/main/files/vaccine-willingness.yaml
+
+-   Tibbles created by this program
+    -   art: Original data from art-malpresentations.csv
+    -   vax: Original data from vaccine-willingness.csv
+-   Models created by this program
+    -   m1: Analysis of art-malpresentations using log odds ratios
+    -   m2: Subgroup analysis using study type
+    -   m3: Analysis of vaccine-willingness using means
+    -   m4: Subgroup analysis using study type
 
 ```{r}
 #| message: false
@@ -36,13 +46,25 @@ R.version.string
 Sys.Date()
 ```
 
-## Intermediate files
+#### Comments on the code
 
--   art: Original data from art-malpresentations.csv
--   whas_1: Convert dates from strings, drop last column
--   whas_2: Check date calculations
--   whas_3: Remove patients who died in the hospital
--   whas_4: Convert days to years
+There are two packages in R for meta-analysis. I will use the [meta][ref-meta-2025] package in this program, but there are numerous other packages described in
+
+-   Michael Dewey, Wolfgang Viechtbauer (2024). CRAN Task View: Meta-Analysis. Version 2024-11-13. Available in [html format][ref-dewey-2024].
+
+There is a book about meta analysis targeted to novices that uses a the meta package along with other meta-analysis packages in R.
+
+-   Mathias Harrer, Pim Cuijpers, Toshi Furukawa, David Ebert (2022). Doing Meta-analysis with R. A Hands-on Guide. Boca Raton, FL and London: Chapman & Hall/CRC Press. ISBN 978-0-367-61007-4. Also available as a [free online book][ref-harrer-2022].
+
+
+You should also look at a tutorial article focused on using the meta package.
+
+-   Sara Balduzzi, Gerta Rücker, Guido Schwarzer. How to perform a meta-analysis with R: a practical tutorial: BMJ Mental Health 2019, Volume 22, Issue 4. DOI: [10.1136/ebmental-2019-300117][ref-balduzzi-2019].
+
+[ref-balduzzi-2019]: https://doi.org/10.1136/ebmental-2019-300117
+[ref-dewey-2024]: https://CRAN.R-project.org/view=MetaAnalysis
+[ref-harrer-2022]: https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/].
+[ref-meta-2025]: https://cran.r-project.org/package=meta
 
 ## Read art-malpresentations
 
@@ -63,12 +85,25 @@ glimpse(art)
 #| label: or
 
 art |>
-  mutate(art_odds = art_events/(art_total - art_events)) |>
-  mutate(nc_odds = nc_events/(nc_total - nc_events)) |>
-  mutate(odds_ratio = art_odds / nc_odds) |>
-  mutate(odds_ratio=round(odds_ratio, 2)) |>
-  select(-art_odds, -nc_odds)
+  mutate(art_prob = art_events/art_total) |>
+  mutate(nc_prob = nc_events/nc_total) |>
+  mutate(
+    odds_ratio =
+      (art_prob/(1-art_prob)) /
+      (nc_prob/(1-nc_prob))) |>
+  mutate(art_prob = round(art_prob, 3)) |>
+  mutate(nc_prob = round(nc_prob, 3)) |>
+  mutate(odds_ratio = round(odds_ratio, 2)) |>
+  select(author, art_prob, nc_prob, odds_ratio)
 ```
+
+#### Interpretation of the output
+
+Most of the studies show an increased risk of malpresentation associated with art.
+
+#### Comments on the code
+
+You should wait and only round the probabilities after you have computed the odds ratio.
 
 ## Fit binary meta-analysis
 
@@ -76,10 +111,10 @@ art |>
 #| label: metabin
 
 m1 <- metabin(
-  art_events,
-  art_total,
-  nc_events,
-  nc_total,
+  event.e = art_events,
+  n.e = art_total,
+  event.c = nc_events,
+  n.c = nc_total,
   data = art,
   studlab = author,
   common = FALSE,
@@ -89,18 +124,61 @@ m1 <- metabin(
 m1
 ```
 
+#### Interpretation of the output
+
+The overall odds ratio is 1.5 with a small p-value and a confidence interval that excludes 1. This indicates a significantly significant increase in the risk of malpresentation associated with art.
+
+I-squared is larger than 25% and H is larger than 1, indicating evidence of heterogeneity. The Cochran's Q test has a small p-value, also providing evidence of heterogeneity.
+
+#### Comment on the code
+
+The [metabin][ref-metabin] function combines the results of individual studies that all use a binary outcome. 
+
+Warning: the meta package was written before the tidyverse came out and uses an approach quite at odds with the tidyverse approach. Instead of providing a sparse set of output and only adding things at your request, it tends towards the SAS-like approach of throwing everything in that it thinks you might need. Suppressing things that you don't need is tedious and doesn't always work.
+
+Another discrepancy between how meta does things and how the tidyverse does things is that the tidyverse will let you build up an analysis or a visualization using small and relatively simple layers. In meta, all the work is done in a few very complex functions. The metabin function, for example, has 67 separate arguments.
+
+Use the event.e and n.e arguments to define the number of events and the total sample size in the intervention/exposure group. Use event.c and n.c to define the comparable numbers in the control group. 
+
+The studlab argument provides a brief label for the individual studies. 
+
+You tell the function to not calculate a fixed effects analysis using the argument common = FALSE and to calculate a random effects analysis with the argument random = TRUE.
+
+Specify an analysis of the log odds ratios using the sm = "OR" argument.
+
+[ref-metabin]: https://search.r-project.org/CRAN/refmans/meta/html/metabin.html
+
 ## Forest plot for art
 
 ```{r}
 #| label: art-forest
 
 forest(
-  m1, 
+  m1,
   leftcols="studlab",
   print.I2 = FALSE,
   print.tau2 = FALSE,
   print.pval.Q = FALSE)
 ```
+
+#### Interpretation of the output
+
+The studies are somewhat inconsistent, but most indicate a significant increase in the risk of malpresentation, as does the overall estimate in the diamond at the bottom of the forest plot.
+
+#### Comments on the code
+
+The default output of the forest function provides so much detail that it can sometimes spill over the margins. The default layout is also crowded and difficult to read.
+
+The leftcols="studlab" tells R to only print the study label, which you defined earlier in the metabin function. The default includes the event and total counts for both groups, which takes up a lot of unnecessary space.
+
+The arguments print.I2 = FALSE, print.tau2 = FALSE, and print.pval.Q = FALSE suppresss the printing of various measures of heterogeneity. You saw these measures after running the metabin function, so there is no need to repeat them here.
+
+Finally, the forest function uses [grid][ref-grid-nodate], a specialized R plotting facility. This means that you cannot add a title to this graph.
+
+There is a package, [ref-forestploter-nodate], that will produce a forest plot using the ggplot2 approach, but it is rather complex.
+
+[ref-forestploter-nodate]: https://cran.r-project.org/package=forestploter
+[ref-grid-nodate]: https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/grid.html
 
 ## Funnel plot for art
 
@@ -108,7 +186,68 @@ forest(
 #| label: art-funnel
 
 funnel(m1)
+title("Plot drawn by Steve Simon on 2025-03-18")
 ```
+
+#### Interpretation of the output
+
+The data is reasonably symmetric for both large studies (those near the top of the graph) and small studies (those near the bottom). This is evidence that publication bias may not be a problem with these studies.
+
+#### Comments on the code
+
+You need to use a separate title function rather than adding ggtitle because funnel uses base R graphs rather than the ggplot2 library.
+
+## Subgroup analysis for art
+
+```{r}
+#| label: art-subgroup
+
+m2 <- metabin(
+  event.e = art_events,
+  n.e = art_total,
+  event.c = nc_events,
+  n.c = nc_total,
+  data = art,
+  studlab = author,
+  common = FALSE,
+  random = TRUE,
+  sm = "OR",
+  subgroup = study_type)
+
+m2
+```
+
+#### Interpretation of the output
+
+You can find the additional statistics associated with the subgroup analysis appended to the bottom of the output.
+
+The overall odds ratio for the case-control subgroup (1.4) and the overall odds ratio for the cohort study (1.6) are reasonably similar. The p-value for the comparison of subgroups is larger indicating that you should accept the null hypothesis and conclude that the overall measure of risk does not differ between the case-control studies and the cohort studies.
+
+#### Comments on the code
+
+The subgroup argument produces separate estimates for each level of study_type as well as a statistical test of the hypothesis that the subgroups have the same overall effect.
+
+## Forest plot for art organized by subgroup
+
+```{r}
+#| lab: art-forest-subgroup
+
+forest(
+  m2, 
+  leftcols="studlab",
+  print.I2 = FALSE,
+  print.tau2 = FALSE,
+  print.pval.Q = FALSE,
+  test.subgroup = FALSE)
+```
+
+#### Interpretation of the output
+
+The cohort studies are less variable than the case-control studies but otherwise do not appear to be much different.
+
+#### Comments on the code
+
+The forest function recognizes the subgroup and arranges the forest plot accordingly.
 
 ## Read vaccine-willingness
 
@@ -123,12 +262,27 @@ vax <- read_csv(
 glimpse(vax) 
 ```
 
+## Calculate effect sizes by hand
+
+```{r}
+#| label: vax-effect-sizes
+
+vax |>
+  mutate(glass_delta = (willing_mean-unwilling_mean)/unwilling_sd) |>
+  mutate(glass_delta = round(glass_delta, 2)) |>
+  select(author, willing_mean, unwilling_mean, unwilling_sd, glass_delta)
+```
+
+#### Interpretation of the output
+
+The standardized mean differences are all positive and have a fairly broad range (0.06 to 0.78).
+
 ## Meta-analysis for continuous outcome
 
 ```{r}
 #| label: metacont
 
-m2 <- metacont(
+m3 <- metacont(
   n.e = willing_n,
   mean.e = willing_mean,
   sd.e = willing_sd,
@@ -137,11 +291,19 @@ m2 <- metacont(
   sd.c = unwilling_sd,
   studlab = author,
   data = vax,
+  sm = "SMD", 
+  method.smd = "Glass", 
   common = FALSE,
   random = TRUE)
 
-m2
+m3
 ```
+
+#### Interpretation of the output
+
+The overall vaccine literacy in patients willing to get vaccinated is about a third of a standard deviation larger than in patients unwilling to get vaccinated. The confidence interval excludes zero and the p-value is small indicating that this is statistically significant and cannot be accounted for my sampling error.
+
+The I-squared measure is larger than 25% and H is larger than one, indicating heterogeneity among studies. The Cochran's Q statistic has a small p-value, also indicating heterogeneity.
 
 ## Forest plot for vax
 
@@ -149,22 +311,78 @@ m2
 #| label: vax-forest
 
 forest(
-  m2, 
+  m3, 
   leftcols="studlab",
   print.I2 = FALSE,
   print.tau2 = FALSE,
   print.pval.Q = FALSE)
 ```
 
+#### Interpretation of the output
+
+There is substantial variation in the results from one study to another, but the overall estimate across all studies is significantly greater than zero.
+
 ## Funnel plot for vax
 
 ```{r}
 #| label: vax-funnel
 
-funnel(m2)
+funnel(m3)
+title("Plot drawn by Steve Simon on 2025-03-18")
 ```
 
+#### Interpretation of the output
 
+There is some asymmetry in this plot, but the portion of the funnel that is missing on the lower right corner of the plot just seems to indicate that the smaller studies seemed to show less significance. This is an odd finding that warrants further investigation but it could not be explained by publication bias.
+
+## Subgroup analysis for art
+
+```{r}
+#| label: vax-subgroup
+
+m4 <- metacont(
+  n.e = willing_n,
+  mean.e = willing_mean,
+  sd.e = willing_sd,
+  n.c = unwilling_n,
+  mean.c = unwilling_mean,
+  sd.c = unwilling_sd,
+  studlab = author,
+  data = vax,
+  sm = "SMD", 
+  method.smd = "Glass", 
+  common = FALSE,
+  random = TRUE,
+  subgroup = vaccine_type)
+
+m4
+```
+
+#### Interpretation of the output
+
+There is a large difference in vaccine literacy between those willing and unwilling to get shots when you look just at booster shorts. There is no difference, however, when looking at primary shots. Whatever caused some people to want to get the shots and others to not want it was due to something other than general knowledge about vaccines.
+
+Heterogeneity is largely absent in the primary vaccine subgroup but still a problem in the booster vaccine subgroup.
+
+The test for differences between the two subgroups is significant, indicating that the type of vaccine was at least partially responsible for some of the heterogeneity seen in the studies as a whole.
+
+## Forest plot for vax organized by subgroup
+
+```{r}
+#| lab: vax-forest-subgroup
+
+forest(
+  m4, 
+  leftcols="studlab",
+  print.I2 = FALSE,
+  print.tau2 = FALSE,
+  print.pval.Q = FALSE,
+  test.subgroup = FALSE)
+```
+
+#### Interpretation of the output
+
+There is a striking difference in the studies with the booster vaccine subgroup showing large and mostly significant effects. The primary vaccine subgroup shows smaller and mostly not statistically significant effects.
 
 ## Save everything
 
