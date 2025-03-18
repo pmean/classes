@@ -94,7 +94,9 @@ art |>
   mutate(art_prob = round(art_prob, 3)) |>
   mutate(nc_prob = round(nc_prob, 3)) |>
   mutate(odds_ratio = round(odds_ratio, 2)) |>
-  select(author, art_prob, nc_prob, odds_ratio)
+  select(author, art_prob, nc_prob, odds_ratio) -> art1
+
+art1
 ```
 
 #### Interpretation of the output
@@ -270,7 +272,9 @@ glimpse(vax)
 vax |>
   mutate(glass_delta = (willing_mean-unwilling_mean)/unwilling_sd) |>
   mutate(glass_delta = round(glass_delta, 2)) |>
-  select(author, willing_mean, unwilling_mean, unwilling_sd, glass_delta)
+  select(author, willing_mean, unwilling_mean, unwilling_sd, glass_delta) -> vax1
+
+vax1
 ```
 
 #### Interpretation of the output

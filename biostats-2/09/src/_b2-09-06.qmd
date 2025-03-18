@@ -7,17 +7,83 @@ format:
 editor: source
 ---
 
+
+## Description of vaccine-willingness data, 1
+
+```{r}
+#| label: 09-06-yaml-vax
+
+library(glue)
+library(yaml)
+
+f1 <- "https://raw.githubusercontent.com/pmean"
+f2 <- "data/refs/heads/main/files"
+f4 <- "vaccine-willingness.yaml"
+dd <- read_yaml(glue("{f1}/{f2}/{f4}"))
+cat(as.yaml(dd["data_dictionary"]))
+cat(as.yaml(dd["description"]))
+cat(as.yaml(dd["source"]))
+```
+
+## Description of vaccine-willingness data, 2
+
+```{r}
+#| label: 09-06-vax-vars-1
+
+cat(as.yaml(dd$vars[1:2]))
+```
+
+## Description of vaccine-willingness data, 3
+
+```{r}
+#| label: 09-06-vax-vars-2
+
+cat(as.yaml(dd$vars[3:8]))
+```
+
+## Description of art-malpresentations data, 1
+
+```{r}
+#| label: 09-06-yaml-art
+
+f3 <- "art-malpresentations.yaml"
+
+dd <- read_yaml(glue("{f1}/{f2}/{f3}"))
+cat(as.yaml(dd["data_dictionary"]))
+cat(as.yaml(dd["description"]))
+cat(as.yaml(dd["source"]))
+```
+
+::: notes
+This is a description of the assisted reproduction technology meta-analysis.
+:::
+
+
+## Description of art-malpresentations data, 2
+
+```{r}
+#| label: 09-06-art-vars-1
+
+cat(as.yaml(dd$vars[1:2]))
+```
+
+## Description of art-malpresentations data, 3
+
+```{r}
+#| label: 09-06-art-vars-2
+
+cat(as.yaml(dd$vars[3:6]))
+```
+
 ## Summary statistics for continuous outcomes
 
 -   Standardized mean difference (SMD)
     -   $\frac{\bar X_2-\bar X_1}{Estimated\ standard\ deviation}$
     -   Be consistent with direction
 -   Choices for estimated standard deviation
+    -   Control group standard deviation (Glass's delta)
     -   Pooled standard deviation (Cohen's d)
     -   Bias adjustment (Hedges' g)
-    -   Heteroscedascity?
-        -   Use control variance
-        -   Average the two variances
 
 ::: notes
 You need a single number that summarizes what each study found. For continuous outcomes, this take the form of something akin to an effect size. It is not quite the same but close. It is a unitless quantity, which in theory allows you to combine results from a study where on study measures obesity as body mass index and another measures it as waist to hip ratio. You may not be comfortable with this, of course.
@@ -26,8 +92,17 @@ The standardized mean difference is the difference in the means divided by some 
 
 There is some debate about what to put for the estimated standard deviation. The simplest choice, the pooled standard deviation is called Cohen's d and is equal to the effect size. There is a bias adjustment that some researchers use called Hedges' g. It is only important for small sample sizes.
 
-If there is substantial differences between the variances of the control and treatment group, you have to choose between using the variance of the control group and the average of the control and treatment variances. Note that this is not quite the same as averaging of the control and treatment standard deviations.
+If there is substantial differences between the variances of the control and treatment group, you have to choose between (1) using the variance of the control group and (2) the average of the control and treatment variances. Note that this is not quite the same as averaging of the control and treatment standard deviations.
 :::
+
+## Calculations for the vax study
+
+```{r}
+#| label: 09-06-vax-smd
+
+load("../data/module09.RData")
+vax1
+```
 
 ## Summary statistics for categorical outcomes
 
@@ -51,122 +126,142 @@ The absolute difference involves subtraction rather than division. This measure 
 Because of the lack of consensus, seek some guidance first. Talk to your boss and your colleagues. See what is commonly done in your medical discipline.
 :::
 
-## Description of art-malpresentations data, 1 of 3
+## Calculations for the art study
 
 ```{r}
-#| label: 09-06-yaml-art
+#| label: 09-06-or
 
-library(glue)
-library(yaml)
-
-f1 <- "https://raw.githubusercontent.com/pmean"
-f2 <- "data/refs/heads/main/files"
-f3 <- "art-malpresentations.yaml"
-
-dd <- read_yaml(glue("{f1}/{f2}/{f3}"))
-cat(as.yaml(dd["data_dictionary"]))
-cat(as.yaml(dd["description"]))
-cat(as.yaml(dd["source"]))
+art1
 ```
 
-::: notes
-This is a description of the assisted reproduction technology meta-analysis.
-:::
+## Models to compute overall estimate
 
+-   Fixed effects model
+    -   Ignores possible sources of heterogeneity
+    -   Average weighted by sample size or precision
+    -   Strongly downweights small studies
+-   Random effects model
+    -   Adds an extra source of variation
+    -   Assumes heterogeneity follows a normal distribution
+    -   Less downweighting of small studies
+    
+## Overall estimate for vax study
 
-## Description of art-malpresentations data, 2 of 3
+```{}
+Number of studies: k = 7
+Number of observations: o = 7673 (o.e = 5651, o.c = 2022)
 
-```{r}
-#| label: 09-06-art-vars-1
-
-cat(as.yaml(dd$vars[1:2]))
+                        SMD           95%-CI    z p-value
+Random effects model 0.3306 [0.1152; 0.5461] 3.01  0.0026
 ```
 
-## Description of art-malpresentations data, 3 of 3
+## Overall estimate for art study
 
-```{r}
-#| label: 09-06-art-vars-2
+```{}
+Number of studies: k = 11
+Number of observations: o = 3360134 (o.e = 44899, o.c = 3315235)
+Number of events: e = 133765
 
-cat(as.yaml(dd$vars[3:6]))
+                         OR           95%-CI    z  p-value
+Random effects model 1.5442 [1.2739; 1.8717] 4.43 < 0.0001
 ```
 
-## ART results, 1 of 6
+## Assess heterogeneity, 1
 
-![](../images/art-01.png "Effect size estimates show a significant difference both overall and in the cohort subgroup")
+-   $\tau^2$
+    -   Estimate of variation due to heterogeneity
+    -   Zero implies no heterogeneity
+-   Cochran's Q (Chi-square distribution)
+    -   $Q = \Sigma w_k (\hat{\theta}_k - \hat{\theta})^2$
+    -   Accept the null hypothesis if Q is close to degrees of freedom
 
-## ART results, 2 of 6
+## Assess heterogeneity, 2
 
-![](../images/art-02.png "Effect size estimates for individual studies with weight percentages")
+-   I-squared
+    -   $I^2 = \frac{Q - df}{Q}$
+    -   Set equal to 0 if negative
+    -   < 25% implies no serious heterogeneity
+-   H-squared
+    -   $H^2 = \frac{Q}{df}
+    -   < 1 implies no serious heterogeneity
 
-## ART results, 3 of 6
+## Heterogeneity in vax study
 
-![](../images/art-03.png "Tests show significant heterogeneity overall and within each subgroups")
+```{}
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.0764 [0.0272; 0.3957]; tau = 0.2764 [0.1650; 0.6290]
+ I^2 = 93.9% [89.8%; 96.3%]; H = 4.04 [3.12; 5.22]
 
-![](../images/art-04.png "Test shows no significant heterogeneity between subgroups")
-
-## ART results, 4 of 6
-
-![](../images/art-05.png "Measures show significant heterogeneity overall and within subgroups")
-
-## ART results, 5 of 6
-
-![](../images/art-06.png "Forest plot shows dramatic effects in cohort studies but smaller effects in case-control studies")
-
-## ART results, 6 of 6
-
-![](../images/art-07.png "Funnel plot shows no evidence of publication bias")
-
-## Description of vaccine-willingness data, 1 of 3
-
-```{r}
-#| label: 09-06-yaml-vax
-
-f4 <- "vaccine-willingness.yaml"
-dd <- read_yaml(glue("{f1}/{f2}/{f4}"))
-cat(as.yaml(dd["data_dictionary"]))
-cat(as.yaml(dd["description"]))
-cat(as.yaml(dd["source"]))
+Test of heterogeneity:
+     Q d.f.  p-value
+ 97.77    6 < 0.0001
 ```
 
-## Description of vaccine-willingness data, 2 of 3
+## Heterogeneity in art study
 
-```{r}
-#| label: 09-06-vax-vars-1
+```{}
+Quantifying heterogeneity (with 95%-CIs):
+ tau^2 = 0.0755 [0.0281; 0.5167]; tau = 0.2748 [0.1676; 0.7188]
+ I^2 = 89.1% [82.5%; 93.2%]; H = 3.03 [2.39; 3.83]
 
-cat(as.yaml(dd$vars[1:2]))
+Test of heterogeneity:
+     Q d.f.  p-value
+ 91.53   10 < 0.0001
 ```
 
-## Description of vaccine-willingness data, 3 of 3
+## Forest plot
 
-```{r}
-#| label: 09-06-vax-vars-2
+-   Individual estimates and confidence limits at top
+    -   Size of square indicates relative weight given to study
+-   Overall estimate and confidence limits at bottom
+    -   Diamond shape
 
-cat(as.yaml(dd$vars[3:8]))
+## Forest plot for vax
+
+![](../images/vax-forest.png)
+
+## Forest plot for art
+
+![](../images/art-forest.png)
+
+## Funnel plot
+
+-   Plot individual estimates versus precision
+    -   Publication bias
+        -  Asymmetry in low precision studies
+-   Difficult to assess
+
+## Funnel plot for vax
+
+![](../images/vax-funnel.png)
+
+## Funnel plot for art
+
+![](../images/vax-funnel.png)
+
+## Subgroup analysis for vax
+
+```{}
+Results for subgroups (random effects model):
+                         k    SMD           95%-CI  tau^2    tau    Q   I^2
+vaccine_type = booster   3 0.6110 [0.4239; 0.7981] 0.0217 0.1472 9.11 78.0%
+vaccine_type = primary   4 0.0919 [0.0092; 0.1746]      0      0 0.77  0.0%
+
+Test for subgroup differences (random effects model):
+                   Q d.f.  p-value
+Between groups 24.73    1 < 0.0001
 ```
 
-## Vaccine results, 1 of 6
+## Subgroup analysis for art
 
-![](../images/vaccine-01.png "Effect size estimates show a significant difference both overall and in the subgroups")
+```{}
+Results for subgroups (random effects model):
+                            k     OR           95%-CI  tau^2    tau     Q   I^2
+study_type = case-control   5 1.4083 [0.8386; 2.3649] 0.2658 0.5156 16.25 75.4%
+study_type = cohort         6 1.5955 [1.3483; 1.8881] 0.0378 0.1943 74.66 93.3%
 
-## Vaccine results, 2 of 6
-
-![](../images/vaccine-02.png "Effect size estimates for individual studies with weight percentages")
-
-## Vaccine results, 3 of 6
-
-![](../images/vaccine-03.png "Tests show significant heterogeneity overall and within the booster subgroups")
-
-![](../images/vaccine-04.png "Test shows significant heterogeneity between subgroups")
-
-## Vaccine results, 4 of 6
-
-![](../images/vaccine-05.png "Measures show significant heterogeneity overall and within the booster subgroup")
-
-## Vaccine results, 5 of 6
-
-![](../images/vaccine-06.png "Forest plot shows dramatic effects in booster subgroup but smaller effects in the primary subgroup")
-
-## Vaccine results, 6 of 6
-
-![](../images/vaccine-07.png "Funnel plot shows no evidence of publication bias")
+Test for subgroup differences (random effects model):
+                  Q d.f. p-value
+Between groups 0.20    1  0.6535
+```
 
