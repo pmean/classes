@@ -1,0 +1,175 @@
+---
+title: "simon-5502-09-demo"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute: 
+  error: false
+---
+
+# Start part 1 ----------------------------------------------------------------
+
+## File details
+
+This program was written by Steve Simon on 2025-02-23 and is placed in the public domain. You can use this program any way you please.
+
+There is are two data files used in this program
+
+-   art-malpresentations, [Comma delimited file][ref-art], [dictionary][ref-art-dd]
+-   vaccine-willingness,  [Comma delimited file][ref-vax], [dictionary][ref-vax-dd]
+
+[ref-art]: https://github.com/pmean/data/blob/main/files/art-malpresentations.csv
+[ref-art-dd]: https://github.com/pmean/data/blob/main/files/art-malpresentations.yaml
+[ref-vax]: https://github.com/pmean/data/blob/main/files/vaccine-willingness.csv
+[ref-vax-dd]: https://github.com/pmean/data/blob/main/files/vaccine-willingness.yaml
+
+```{r}
+#| message: false
+#| warning: false
+#| label: setup
+
+library(meta)
+library(tidyverse)
+
+R.version.string
+Sys.Date()
+```
+
+## Intermediate files
+
+-   art: Original data from art-malpresentations.csv
+-   whas_1: Convert dates from strings, drop last column
+-   whas_2: Check date calculations
+-   whas_3: Remove patients who died in the hospital
+-   whas_4: Convert days to years
+
+## Read art-malpresentations
+
+```{r}
+#| label: art-read
+
+art <- read_csv(
+  file="../data/art-malpresentations.csv",
+  col_types="ccnnnn",
+  col_names=TRUE)
+
+glimpse(art) 
+```
+
+## Calculate art odds ratio by hand
+
+```{r}
+#| label: or
+
+art |>
+  mutate(art_odds = art_events/(art_total - art_events)) |>
+  mutate(nc_odds = nc_events/(nc_total - nc_events)) |>
+  mutate(odds_ratio = art_odds / nc_odds) |>
+  mutate(odds_ratio=round(odds_ratio, 2)) |>
+  select(-art_odds, -nc_odds)
+```
+
+## Fit binary meta-analysis
+
+```{r}
+#| label: metabin
+
+m1 <- metabin(
+  art_events,
+  art_total,
+  nc_events,
+  nc_total,
+  data = art,
+  studlab = author,
+  common = FALSE,
+  random = TRUE,
+  sm = "OR")
+
+m1
+```
+
+## Forest plot for art
+
+```{r}
+#| label: art-forest
+
+forest(
+  m1, 
+  leftcols="studlab",
+  print.I2 = FALSE,
+  print.tau2 = FALSE,
+  print.pval.Q = FALSE)
+```
+
+## Funnel plot for art
+
+```{r}
+#| label: art-funnel
+
+funnel(m1)
+```
+
+## Read vaccine-willingness
+
+```{r}
+#| label: vax-read
+
+vax <- read_csv(
+  file="../data/vaccine-willingness.csv",
+  col_types="ccnnnnnn",
+  col_names=TRUE)
+
+glimpse(vax) 
+```
+
+## Meta-analysis for continuous outcome
+
+```{r}
+#| label: metacont
+
+m2 <- metacont(
+  n.e = willing_n,
+  mean.e = willing_mean,
+  sd.e = willing_sd,
+  n.c = unwilling_n,
+  mean.c = unwilling_mean,
+  sd.c = unwilling_sd,
+  studlab = author,
+  data = vax,
+  common = FALSE,
+  random = TRUE)
+
+m2
+```
+
+## Forest plot for vax
+
+```{r}
+#| label: vax-forest
+
+forest(
+  m2, 
+  leftcols="studlab",
+  print.I2 = FALSE,
+  print.tau2 = FALSE,
+  print.pval.Q = FALSE)
+```
+
+## Funnel plot for vax
+
+```{r}
+#| label: vax-funnel
+
+funnel(m2)
+```
+
+
+
+## Save everything
+
+```{r}
+#| label: save
+
+save.image(file="../data/module09.RData")
+```

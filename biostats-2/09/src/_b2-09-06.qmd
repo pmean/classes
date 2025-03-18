@@ -54,8 +54,16 @@ Because of the lack of consensus, seek some guidance first. Talk to your boss an
 ## Description of art-malpresentations data, 1 of 3
 
 ```{r}
+#| label: 09-06-yaml-art
+
+library(glue)
 library(yaml)
-dd <- read_yaml("../../../datasets/art-malpresentations.yaml")
+
+f1 <- "https://raw.githubusercontent.com/pmean"
+f2 <- "data/refs/heads/main/files"
+f3 <- "art-malpresentations.yaml"
+
+dd <- read_yaml(glue("{f1}/{f2}/{f3}"))
 cat(as.yaml(dd["data_dictionary"]))
 cat(as.yaml(dd["description"]))
 cat(as.yaml(dd["source"]))
@@ -69,45 +77,52 @@ This is a description of the assisted reproduction technology meta-analysis.
 ## Description of art-malpresentations data, 2 of 3
 
 ```{r}
+#| label: 09-06-art-vars-1
+
 cat(as.yaml(dd$vars[1:2]))
 ```
 
 ## Description of art-malpresentations data, 3 of 3
 
 ```{r}
+#| label: 09-06-art-vars-2
+
 cat(as.yaml(dd$vars[3:6]))
 ```
 
 ## ART results, 1 of 6
 
-![](images/art-01.png "Effect size estimates show a significant difference both overall and in the cohort subgroup")
+![](../images/art-01.png "Effect size estimates show a significant difference both overall and in the cohort subgroup")
 
 ## ART results, 2 of 6
 
-![](images/art-02.png "Effect size estimates for individual studies with weight percentages")
+![](../images/art-02.png "Effect size estimates for individual studies with weight percentages")
 
 ## ART results, 3 of 6
 
-![](images/art-03.png "Tests show significant heterogeneity overall and within each subgroups")
+![](../images/art-03.png "Tests show significant heterogeneity overall and within each subgroups")
 
-![](images/art-04.png "Test shows no significant heterogeneity between subgroups")
+![](../images/art-04.png "Test shows no significant heterogeneity between subgroups")
 
 ## ART results, 4 of 6
 
-![](images/art-05.png "Measures show significant heterogeneity overall and within subgroups")
+![](../images/art-05.png "Measures show significant heterogeneity overall and within subgroups")
 
 ## ART results, 5 of 6
 
-![](images/art-06.png "Forest plot shows dramatic effects in cohort studies but smaller effects in case-control studies")
+![](../images/art-06.png "Forest plot shows dramatic effects in cohort studies but smaller effects in case-control studies")
 
 ## ART results, 6 of 6
 
-![](images/art-07.png "Funnel plot shows no evidence of publication bias")
+![](../images/art-07.png "Funnel plot shows no evidence of publication bias")
 
 ## Description of vaccine-willingness data, 1 of 3
 
 ```{r}
-dd <- read_yaml("../../../datasets/vaccine-willingness.yaml")
+#| label: 09-06-yaml-vax
+
+f4 <- "vaccine-willingness.yaml"
+dd <- read_yaml(glue("{f1}/{f2}/{f4}"))
 cat(as.yaml(dd["data_dictionary"]))
 cat(as.yaml(dd["description"]))
 cat(as.yaml(dd["source"]))
@@ -116,38 +131,42 @@ cat(as.yaml(dd["source"]))
 ## Description of vaccine-willingness data, 2 of 3
 
 ```{r}
+#| label: 09-06-vax-vars-1
+
 cat(as.yaml(dd$vars[1:2]))
 ```
 
 ## Description of vaccine-willingness data, 3 of 3
 
 ```{r}
+#| label: 09-06-vax-vars-2
+
 cat(as.yaml(dd$vars[3:8]))
 ```
 
 ## Vaccine results, 1 of 6
 
-![](images/vaccine-01.png "Effect size estimates show a significant difference both overall and in the subgroups")
+![](../images/vaccine-01.png "Effect size estimates show a significant difference both overall and in the subgroups")
 
 ## Vaccine results, 2 of 6
 
-![](images/vaccine-02.png "Effect size estimates for individual studies with weight percentages")
+![](../images/vaccine-02.png "Effect size estimates for individual studies with weight percentages")
 
 ## Vaccine results, 3 of 6
 
-![](images/vaccine-03.png "Tests show significant heterogeneity overall and within the booster subgroups")
+![](../images/vaccine-03.png "Tests show significant heterogeneity overall and within the booster subgroups")
 
-![](images/vaccine-04.png "Test shows significant heterogeneity between subgroups")
+![](../images/vaccine-04.png "Test shows significant heterogeneity between subgroups")
 
 ## Vaccine results, 4 of 6
 
-![](images/vaccine-05.png "Measures show significant heterogeneity overall and within the booster subgroup")
+![](../images/vaccine-05.png "Measures show significant heterogeneity overall and within the booster subgroup")
 
 ## Vaccine results, 5 of 6
 
-![](images/vaccine-06.png "Forest plot shows dramatic effects in boster subgroup but smaller effects in the primary subgroup")
+![](../images/vaccine-06.png "Forest plot shows dramatic effects in booster subgroup but smaller effects in the primary subgroup")
 
 ## Vaccine results, 6 of 6
 
-![](images/vaccine-07.png "Funnel plot shows no evidence of publication bias")
+![](../images/vaccine-07.png "Funnel plot shows no evidence of publication bias")
 
