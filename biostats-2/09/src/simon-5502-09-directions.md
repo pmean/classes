@@ -16,7 +16,7 @@ This assignment was written by Steve Simon on 2025-03-18 and is placed in the pu
 
 ## Question 1
 
-Open the comma delimited text file glycyrrhizin.csv and display the first ten rows of data. Compute the treatment_probability and control_probability and the odds ratio by hand. Provide a brief interpretation of these odds ratios.
+Open the comma delimited text file glycyrrhizin.csv. Compute the treatment_probability and control_probability and the odds ratio by hand. Provide a brief interpretation of these odds ratios.
 
 ## Question 2
 

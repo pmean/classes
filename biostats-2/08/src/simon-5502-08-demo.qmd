@@ -16,10 +16,10 @@ This program was written by Steve Simon on 2025-02-23 and is placed in the publi
 
 There is one data file used in this program
 
--   whas500, [Tab delimited file][ref01], [dictionary][ref02]
+-   whas500, [Tab delimited file][ref-whas], [dictionary][ref-whas-dd]
 
-[ref01]: https://github.com/pmean/data/blob/main/files/whas500.dat
-[ref02]: https://github.com/pmean/data/blob/main/files/whas500.yaml
+[ref-whas]: https://github.com/pmean/data/blob/main/files/whas500.dat
+[ref-whas-dd]: https://github.com/pmean/data/blob/main/files/whas500.yaml
 
 ```{r}
 #| label: setup

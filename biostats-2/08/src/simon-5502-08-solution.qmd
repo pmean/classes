@@ -10,11 +10,12 @@ execute:
 
 ## General directions
 
-Use the dataset, [gardasil.tsv][ref01], found on my github site. Refer to the [data dictionary][ref02] if needed. You may find it helpful to adapt some of the code from [simon-5502-06-demo.qmd][ref03]. 
+Use the dataset, [whas500.dat][ref-whas], found on my github site. Refer to the [data dictionary][ref-whas-dd] if needed. You may find it helpful to adapt some of the code from [simon-5502-08-demo.qmd][ref-08-demo]. 
 
-[ref01]: https://github.com/pmean/data/blob/main/files/gardasil.tsv
-[ref02]: https://github.com/pmean/data/blob/main/files/gardasil.yaml
-[ref03]: https://github.com/pmean/classes/blob/master/biostats-2/06/src/simon-5502-06-demo.qmd
+
+[ref-whas]: https://github.com/pmean/data/blob/main/files/whas500.dat
+[ref-whas-dd]: https://github.com/pmean/data/blob/main/files/whas500.yaml
+[ref-08-demo]: https://github.com/pmean/classes/blob/master/biostats-2/08/src/simon-5502-08-demo.qmd
 
 ## File details
 
@@ -22,266 +23,172 @@ Please do not look at this file before submitting your own work on this programm
 
 This program was written by Steve Simon on 2025-02-27 and is placed in the public domain. You can use this program any way you please.
 
-This program examines some logistic regression models to predict the probability that a patient will complete all three shots in the HPV vaccination program.
+## Program outline
+
+-   simon-5502-08-solution
+    -   created: 2025-03-19
+    -   copyright: public domain
+    -   reads
+        -   whas500.dat,[Tab delimited file][ref-whas], [dictionary][ref-whas-dd]
+    -   creates
+        -   whas, original data from whas500.dat
+    -   computes
+        -   Kaplan-Meier curve
+    -   produces
+        -   html output
+
+
+[ref-whas]: https://github.com/pmean/data/blob/main/files/whas500.dat
+[ref-whas-dd]: https://github.com/pmean/data/blob/main/files/whas500.yaml
+
+## Introduction
 
 ```{r}
 #| label: setup
 #| message: false
 #| warning: false
 
-library(broom)
+library(ggfortify)
 library(glue)
-library(readxl)
+library(lubridate)
+library(survival)
 library(tidyverse)
+
 R.version.string
 Sys.Date()
 ```
-
-## Intermediate files
-
--   ga: original data from gardasil.xls
--   ga_1: convert number codes to factors
 
 ## Read the data
 
 ```{r}
 #| label: read
 
-ga <- read_tsv(
-  file="../data/gardasil.tsv",
-  col_names=TRUE,
-  col_types="n")
-glimpse(ga)
+#| label: whas-read
+
+whas_names <- c(
+  "id",
+  "age", 
+  "gender",
+  "hr",
+  "sysbp",
+  "diasbp",
+  "bmi",
+  "cvd",
+  "afb",
+  "sho",
+  "chf",
+  "av3",
+  "miord",
+  "mitype",
+  "year",
+  "admitdate",
+  "disdate",
+  "fdate",
+  "los",
+  "dstat",
+  "lenfol",
+  "fstat",
+  "not_needed")
+
+whas <- read_table(
+  file="../data/whas500.dat",
+  col_types="nnnnnnnnnnnnnnncccnnnnn",
+  col_names=whas_names)
+
+glimpse(whas) 
 ```
 
-## Question 1
-
-You will not be graded on this, but get in the habit of computing some simple statistics (mean, standard deviation, minimum, and maximum for continuous variables and counts and percentages for categorical variables) for the important variables in this dataset. Also, get in the habit of providing brief interpretations.
-
-## Descriptive statistics
+## Convert dates
 
 ```{r}
-#| label: descriptives-1
+#| label: dates
 
-ga |>
-  summarize(
-    Age_mean=mean(Age),
-    Age_sd=sd(Age),
-    Age_min=min(Age),
-    Age_max=max(Age))
+whas |>
+  select(-not_needed) |>
+  mutate(admitdate=mdy(admitdate)) |>
+  mutate(disdate=mdy(disdate)) |>
+  mutate(fdate=mdy(fdate)) -> whas_1
 ```
 
-#### Interpretation of the output
-
-Don't forget to put interpretations here and after every other program chunk that produces a table or graph.
+## Remove patients who died in the hospital
 
 ```{r}
-#| label: descriptives-2
+#| label: remove
 
-ga |>
-	count(Completed) |>
-	mutate(total=sum(n)) |>
-	mutate(pct=round(100*n/total)) |>
-	mutate(pct=glue("{pct}% ({n}/{total})")) |>
-	select(-n, -total)
+whas_1 |>
+  filter(dstat != 1) -> whas_3
 ```
 
-```{r}
-#| label: descriptives-3
-
-ga |>
-	count(MedAssist) |>
-	mutate(total=sum(n)) |>
-	mutate(pct=round(100*n/total)) |>
-	mutate(pct=glue("{pct}% ({n}/{total})")) |>
-	select(-n, -total)
-```
-
-## Question 2
-
-Create factors with descriptive levels for Completed, MedAssist, and LocationType. Orient your factor so that the reference category (the category that appears first) is "No" for Completed and MedAssist and "Urban" for LocationType. Calculate the probability of completing all three shorts for each level of MedAssist. Repeat for each level of LocationType.
+## Convert days to years
 
 ```{r}
-#| label: create-factors
-lab1 <- c("No", "Yes")
-lab2 <- c("Urban", "Suburban")
+#| label: convert
 
-ga |>
-  mutate(
-    Completed = 
-      factor(
-        Completed, 
-        levels=0:1, 
-        labels=lab1)) |>
-  mutate(
-    MedAssist =
-      factor(
-        MedAssist,
-        levels=0:1,
-        labels=lab1)) |>
-  mutate(
-    LocationType = 
-      factor(
-        LocationType, 
-        levels=1:0,
-        labels=lab2))-> ga_1
-```
-
-## Completion probabilities for MedAssist
-
-```{r}
-#| label: descriptives-4
-
-ga_1 |>
-	count(MedAssist, Completed) |>
-  group_by(MedAssist) |>
-	mutate(total=sum(n)) |>
-	mutate(pct=round(100*n/total)) |>
-	mutate(pct=glue("{pct}% ({n}/{total})")) |>
-  filter(Completed=="Yes") |>
-	select(-n, -total)
-```
-
-## Completion probabilities for LocationType
-
-```{r}
-#| label: descriptives-5
-
-ga_1 |>
-	count(LocationType, Completed) |>
-  group_by(LocationType) |>
-	mutate(total=sum(n)) |>
-	mutate(pct=round(100*n/total)) |>
-	mutate(pct=glue("{pct}% ({n}/{total})")) |>
-  filter(Completed=="Yes") |>
-	select(-n, -total)
-```
-
-## Question 3
-
-Calculate a logistic regression model using Age (not AgeGroup) to predict whether a patient has completed all three shots. Interpret the odds ratio from this model.
-
-## Logistic regression models
-
-```{r}
-#| label: logistic-1
-
-m1 <- glm(
-  Completed~Age,
-  family=binomial,
-  data=ga_1)
-```
-
-## Display Age coefficient
-
-```{r}
-#| label: coefficients-1
-
-m1 |>
-  tidy() |>
-  mutate(
-    p.value =
-      case_when(
-        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> m1_betas
-m1_betas
-```
-
-## Back transforming Sex coefficients
-
-```{r}
-#| label: or-1
-
-m1_betas |>
-  filter(term != "(Intercept)") |>
-  mutate(odds_ratio=exp(estimate)) |>
-  mutate(lower=exp(estimate+qnorm(0.025)*std.error)) |>
-  mutate(upper=exp(estimate+qnorm(0.975)*std.error)) |>
-  select(term, odds_ratio, lower, upper) -> m1_or
-m1_or
-```
-
-## Question 4
-
-You suspect that there is an interaction between MedAssist and LocationType in predicting whether a patient completed all three shots. Draw a line plot on the log odds scale. Interpret this plot. You should look at the plot two different ways, but please only include one plot here.
-
-Note: some versions of R may need to use trans="logit" instead of transform="logit" in the scale_y_continuous function.
-
-```{r}
-#| label: interaction-probabilities
-
-ga_1 |>
-	count(MedAssist, LocationType, Completed) |>
-	group_by(MedAssist, LocationType) |>
-	mutate(total=sum(n)) |>
-	mutate(prop=n/total) -> table1
-
-table1
-```
-
-## Interaction plot 
-
-```{r}
-#| label: interaction-1
-
-table1 |>
-	filter(Completed=="Yes") |>
-	ggplot() +
-  aes(x=MedAssist, y=prop) +
-  geom_line(aes(group=LocationType)) +
-  geom_text(aes(label=LocationType)) +
-	expand_limits(y=c(0.1, 0.9)) +
-  ggtitle("Graph drawn by Steve Simon on 2025-03-02") +
-  xlab("Did the patient have some type of medical assistance") +
-  ylab("Probability of completing three shots") -> lines_1
-lines_1 +
-	scale_y_continuous(breaks=(1:9)/10, transform="logit")
+whas_3 |>
+  mutate(lenfol=lenfol/365.25) -> whas_4
 ```
 
 
-
-## Question 5
-
-Fit a model using MedAssist and LocationType to predict Completed, first without an interaction and then with an interaction. Test whether the interaction is statistically significant.
-
-## Fitting models without and with interaction
+## Comparison of two or more survival curves
 
 ```{r}
-#| label: logistic-2
+#| label: km-gender-
 
-m2 <- glm(
-  Completed~MedAssist+LocationType,
-  family=binomial,
-  data=ga_1)
+m1 <- survfit(
+  Surv(lenfol, fstat) ~ chf,
+  data=whas_4)
 
-m3 <- glm(
-  Completed~MedAssist*LocationType,
-  family=binomial,
-  data=ga_1)
+autoplot(m1, conf.int=FALSE) +
+  ggtitle("Graph drawn by Steve Simon on 2025-03-10") +
+  xlab("Survival time (days)") +
+  ylab("Percentage survived") -> km_by_chf
+
+km_by_chf
 ```
 
-## Two approaches. You should present one or the other but not both
-
-## Testing interaction (first approach)
+## Log rank test
 
 ```{r}
-#| label: interaction-2
+#| label: log-rank
 
-anova(m2, m3)
+survdiff(
+  Surv(lenfol, fstat) ~ chf,
+  data=whas_4) -> log_rank_chf
+
+log_rank_chf
 ```
 
-## Testing interaction (second approach) Note that only one is needed
+## Start part 3 ----------------------------------------------------------------
+
+## Cox proportional hazards test for chf
 
 ```{r}
-#| label: interaction-3
+coxph(
+  Surv(lenfol, fstat) ~ chf,
+  data=whas_4) -> cox_chf
 
-m3 |>
-  tidy() |>
-  mutate(
-    p.value =
-      case_when(
-        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> m3_betas
-m3_betas
+cox_chf
+```
+
+## Comparison of ages
+
+```{r}
+#| label: comparison
+
+whas_4 |>
+	group_by(chf) |>
+	summarize(age_mean=mean(age)) -> table_mean_age_by_chf
+
+table_mean_age_by_chf
+```
+
+## Test for gender, adjusting for age
+
+```{r}
+coxph(
+  Surv(lenfol, fstat) ~ chf + age,
+  data=whas_4) -> cox_adjusted
+
+cox_adjusted
 ```
 
