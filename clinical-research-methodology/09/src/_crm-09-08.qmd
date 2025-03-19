@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "KR-20 and Cronbach's alpha"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,85 @@ format:
 editor: source
 ---
 
-## Slide 01-08
+## Kuder-Richardson 20 formula
+
+-   Only for composite measures with binary items
+-   Book's formula is confusing
+    -   $S^2$ and $\sigma^2$ used interchangably
+    -   Subscripts are missing
+-   Correct formula
+    -   $X_i=\Sigma_i B_{ij}$
+      -   Where $B_{ij}$ is binary (0 or 1)
+    -   $KR-20=\frac{1}{I-1}\big(1-\frac{\Sigma_i \hat{p}_i\hat{q}_i}{S^2}\big)$
+      -   where $S^2=\Sigma_i(X_i-\bar{X})^2$,
+      -   $\hat{p}_j=\Sigma_i B_{ij}$,
+      -   $\hat{q}_j=\Sigma_i (1-B_{ij})$
+    
+::: notes
+
+Another measure for reliability, Kuder-Richardson 20, is used for composite measures, but only those composite measures that have binary items. Your book does a poor job explaining this, and the notation is inconsistent.
+
+:::
+  
+## Kuder-Richardson 20 interpretation
+
+-   KR-20
+    -   $\frac{1}{I-1}\big(1-\frac{\Sigma_i \hat{p}_i\hat{q}_i}{S^2}\big)$
+      -   $\Sigma_i \hat{p}_i\hat{q}_i$ is a theoretical minimum variation
+      -   $S^2$ is observed variation
+      -   $S^2 = \Sigma_i \hat{p}_i\hat{q}_i$ implies randomness
+      -   $S^2 > \Sigma_i \hat{p}_i\hat{q}_i$ implies internal consistency
+  
+::: notes
+
+If you are curious, the formula is comparing a theoretical minimum variation, a variation computed using independent Bernoulli random variables, but with different p's and q's for each item. Strictly speaking, this is not accurate, but a smaller value than the sum of the pq's could only occur if there is negative correlation among the individual items, and this implies almost a conspiracy among the individual items to make things as bad as possible for you.
+
+You compare this to the variation observed among the total scores in the sample. If the observed variation is equal to the theoretical minimum, the individual items are behaving randomly, with no internal consistency. This means that any split halves that you could compute would have next to no correlation.
+
+If there is much more observed variation, that means that people show positive correlations. Low on one item means low on most of the other items and high on one item means high on the other items. This positive correlation is a measure of internal consistency.
+
+Keep in mind that if you have a different population, the minimum variation would stay the same, but the observed variation might change. So a measure that is reliable in one population might prove to be not reliable in a different population.
+
+:::
+  
+## Cronbach’s alpha, formula
+
+-   Used for composite measurements with continuous items
+-   Book's formula is confusing
+    -   $\Sigma S^2$ should be $\Sigma S_i^2$
+-   Correct formula
+    -   $X_i=\Sigma_j X_{ij}$
+    -   $\alpha=\frac{1}{I-1}\Big(1-\frac{\Sigma_i S_i^2}{S^2}\Big)$
+      -   where $S_i^2=\Sigma_j(X_{ij}-\bar{X}_j)^2$, and
+      -   $S^2=\Sigma_i(X_i-\bar{X})^2$, and
 
 ::: notes
 
-:::
+A similar measure, Cronbach's alpha is used for composite measures, but does not require the individual items to be binary.
 
+Again, your book does a poor job explaining this, and the notation is confusing.
+
+:::
+  
+## Cronbach’s alpha, interpretation
+
+-   Cronbach's $\alpha$
+    -   $\frac{1}{I-1}\Big(1-\frac{\Sigma_i S_i^2}{S^2}\Big)$
+      -   $\Sigma_i S_i^2$ is a theoretical minimum variation
+      -   $S^2$ is observed variation
+      -   $S^2 = \Sigma_i S_i^2$ implies randomness
+      -   $S^2 > \Sigma_i S_i^2$ implies internal consistency
+-   Cronbach's alpha is NOT a measure of unidimensionality
+
+::: notes
+
+Just like Kuder-Richardson 20, Cronbach's alpha computes a a theoretical minimum variation. This time it is a sum of the variances for the individual items. Strictly speaking, this is not accurate, but a smaller value than the sum of the variances implies a deep and dark conspiracy against you by the individual items in your composite.
+
+You compare this to the variation observed in the total score. If the two values are close, that tells you that the individual items are more or less independent of each other and that any split halves that you might compute would have little or no correlation.
+
+If there is much more observed variation, that means that people show positive correlations. Low on one item means low on most of the other items and high on one item means high on the other items. This positive correlation is a measure of internal consistency.
+
+Some people confuse the concept of internal consistency with uni-dimensionality. Uni-dimensionality means that all of the items are measuring the same construct. If they are, then Cronbach's alpha will be large. But you can also get a large value for Cronbach's alpha, even when the items are measuring multiple constructs, especially when you have a large number of items. Dimensionality can only be measured using some form of factor analysis.
+
+:::
+  

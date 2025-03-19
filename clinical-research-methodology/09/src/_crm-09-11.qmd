@@ -1,0 +1,87 @@
+---
+title: "Criterion and construct validity"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Criterion validity
+
+-   Comparison to external criterion
+    -   Represents "truth"
+    -   Not always available
+-   Predictive evidence
+    -   Measurement in the future
+    -   Be careful about dropouts
+-   Concurrent evidence
+    -   Measured at the same time
+
+::: notes
+
+Criterion validity is the most straightforward approach to establishing validity. You want to see how well your measurement corresponds with what it's supposed to measure. So include what your supposed to measure and see how strongly it correlates with what you want to measure.
+
+This isn't always possible, of course, but if you can measure truth then go for it!
+
+Now, why, might you ask yourself, would you use a measurement that correlates well with truth when you can measure truth directly? It probably has something to do with time or money. You can measure the truth but it costs too much to do it in a big study. Or it takes way too long. So you run a smaller study where you measure truth, show that your cheaper and faster measurement correlates well with the truth, and then you can save a whole bunch of time and money in the big study.
+
+Your evidence for validity is predictive evidence if the truth represents something that occurs in the future, meaning after your measurement is taken. In the big study, you can't wait around and wait for the truth to reveal itself. But in a smaller study, you might have that luxury.
+
+It's important in using predictive evidence that you don't have dropouts, especially if those dropouts tend to differ from those who do provide you with data.
+
+Your book offers an interesting example of this with standardized testing for college admission. A school might want to correlate an SAT score, for example, with the grades that a student gets after one year of college. Easy to do, but think about the dropouts. A college, for the most part, is going to admit only those people who score above a cutoff for the SAT. You lose information about those who scored low on the SAT and are left only with those students in a narrow range of SAT scores. It's even worse if the students who score super high on the SAT decide to attend a more prestigious university than your little podunk college.
+
+Another example is using criterion validity for a test intended to diagnose disease. Suppose you have a test that can predict appendicitis. Patients who score high on the measurement, you send them straight to the OR, so you can cut out the appendix before it ruptures. But what about the patients who score low. They probably don't have appendicitis, but you don't know. They won't volunteer to get cut open in the name of science.
+
+Predictive evidence can sometimes take too long, so you may want to use concurrent evidence, evidence that you can collect at the same time as your measurement. Your book suggests that you ask colllege students at the end of their first year to re-take the SAT and see how that re-take correlates with the grades they are just receiving. It's not perfect, but it certainly takes less time.
+
+The other application of concurrent evidence is when you don't have a direct measure of truth, but you have an already validated measure of truth that you can collect concurrently with your new measure. The assumption here, as earlier is that your new measure is cheaper or faster than the currently used and validated measure. If you correlate well with an already validated measure, and that validated measure has already been shown to correlate well with the truth, then you have indirectly established criterion validity.
+
+Now this approach has limits. You can never get quite as much evidence of validity as the already validated measurement has.
+
+:::
+
+## Construct validity
+
+-   Used for a psychological construct
+-   No direct measure of the truth exists
+-   Define associations consistent with your constuct
+    -   Does your measurement show the expected association?
+    -   Known as convergent evidence
+-   Define non-associations with your construct
+    -   Does your measurement also show non-association?
+    -   Known as discriminant or divergent evidence
+
+::: notes
+
+Construct validity is when you are developing a psychological construct and you don't have a direct measure of the construct you are trying to measure. What you do have is various associations and non-associations that your construct is expected to have. You develop these using your deep thinking power or maybe just a bit of common sense. If your measurement shows the same associations and non-associations that you would expect your construct to have, you have established construct validity.
+
+:::
+
+## Alternative framework for validity
+
+-   Content
+-   Response processes
+-   Internal structure
+-   Relations to other variables
+-   Consequences
+
+::: notes
+
+Your book cites a different standard for establishing validity. It's a good standard, but not used that commonly in my experience. Read this on your own.
+
+:::
+
+## Validity of diagnostic tests
+-   Sensitivity
+	+ A test's ability to obtain a positive result when the target condition is really present
+-   Specificity
+	+ A test's ability to obtain a negative result when the target condition is really absent
+
+::: notes
+
+Diagnostic tests are a special example of validation. It is essentially criterion validity using predictive evidence. Since the diagnostic measurement is binary and the criterion is binary, you can summarize the results using a two by two table. I won't go into any detail on sensitivity and specificity except to mention that I can never remember which is sensitivity and which is specificity.
+
+:::
+

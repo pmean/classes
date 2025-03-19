@@ -1,0 +1,230 @@
+---
+title: "Case studies revisited"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Case study #1
+
+![](../images/nes-image.jpg)
+
+::: notes
+
+Here is the Neighborhood Environment Survey again.
+
+This is a self report and it is also a composite measure.
+
+:::
+
+## Case study #1 - Neighborhood environment survey
+![](../images/nes-measurement.png)
+
+## Case study #1 - Neighborhood environment survey
+-   Reliability - What you can't do
+    -   Inter-rater reliability
+-   Reliability - What you can do
+    -   Test-retest reliability
+    -   Cronbach's alpha
+
+
+::: notes
+
+This is a composite measure and a self report. You can't compare two or more raters because there is only one "self."
+
+Cronbach's alpha is used for components that are continuous and this scale has binary (true/false) statements.
+
+It is easy to run a test-retest reliability study. Neighborhoods don't change overnight, so it would be fine to wait a week or so.
+
+You can also run Cronbach's alpha here. If you are a stickler for detail, the reliability measure in this case is better described as Kuder-Richardson 20 because the individual components are binary.
+
+:::
+
+## Case study #1 - Neighborhood environment survey
+-   Validity - What you can't do
+    -   Criterion validity
+-   Validity - What you can do
+    -   Face/content validity
+    -   Response process validity
+    -   Factor analysis
+    -   Construct validity
+
+## Case study #2
+
+![](../images/pain-image.jpg)
+
+::: notes
+
+This is a pain scale again. It is a self report, but it is a single measure rather than a composite.
+
+:::
+
+## Case study #2 - Pain scale
+
+![](../images/pain-measurement.png)
+
+## Case study #2 - Pain scale
+-   Reliability - What you can't do
+    -   Inter-rater reliability
+    -   Cronbach's alpha
+-   Reliability - What you can do
+    -   Test-retest reliability
+
+::: notes
+
+Like the first measurement, this self report scale cannot compare two or more independent raters. It is a single measurement, so you can't apply Cronbach's alpah or KR-20.
+
+Test-retest reliability works well here, but you have to make sure that you are quick. A narrow time interval between the test and the re-test is important if you are looking at acute pain.
+
+:::
+
+## Case study #2 - Pain scale
+-   Validity - What you can't do
+    -   Criterion validity
+    -   Face/content validity
+    -   Response process validity
+    -   Factor analysis
+-   Validity - What you can do
+    -   Construct validity
+
+::: notes
+
+Pain is not a construct, it is a real physical process. But it is difficult to measure this physical process directly. So it is not possible to compare pain with any objectively true measure of pain. You can, however, note items that should be correlated with pain, which fits in well with the concept of construct validity.
+
+:::
+
+## Case study #3
+
+![](../images/apgar-image.jpg)
+
+::: notes
+
+This is the Apgar score again. It is a composite measure collected by the researcher and not by self report.
+
+:::
+
+## Case study #3 - Apgar score
+
+![](../images/apgar-measurement.jpg)
+
+::: notes
+
+
+:::
+
+## Case study #3 - Apgar score
+-   Reliability - What you can't do
+    -   Test-retest reliability
+-   Reliability - What you can do
+    -   Inter-rater reliability
+    -   Cronbach's alpha
+
+::: notes
+
+Because timing is important, you cannot evaluate the Apgar score at one minue and at two hours. You also can't use KR-20 because it is not binary.
+
+Inter-rater reliability is very easy and very useful here. Have two raters at the scene of the birth and ask them to estimate the Apgra score. No peeking! Then correlate the responses.
+
+Cronbach's alpha is really intended for continuous components, and values of 0, 1, and 2 are not really on a continuum. But there is nothing terribly wrong with pretending it is continuous. 
+
+:::
+
+## Case study #3 - Apgar score
+-   Validity - What you can't do
+    -   Criterion validity
+-   Validity - What you can do
+    -   Face/content validity
+    -   Response process validity
+    -   Construct validity
+
+::: notes
+
+Construct validity is hard to apply here. There is no single biological or physical measurement of infant distress.
+
+It is a composite measure so you can have experts review the individual components. You can also watch as someone answers the five components of the Apgar score. There are several predictive criterion. Does a low Apgar score predict infant mortality?
+
+You can run a factor analysis on the Apgar score because it has multiple comonents.
+
+:::
+
+## Case study #4
+
+![](../images/bbps-image.jpg)
+
+::: notes
+
+This is an example of a physician report. No self report is available here. But you still want to examine reliability and validity because this does have the potential to be perceived as subjective.
+
+Note also that, unlike the Apgar score, this is not a composite measure. There is a single number that you get.
+
+:::
+
+## Case study #4 - Boston Bowel Prep Score
+
+![](../images/bbps-magnified.png)
+
+## Case study #4 - Boston Bowel Prep Score
+-   Reliability - What you can't do
+    -   Test-retest reliability
+    -   Cronbach's alpha
+-   Reliability - What you can do
+    -   Inter-rater reliability
+
+
+## Case study #4 - Boston Bowel Prep Score
+-   Validity - What you can't do
+    -   Face/content validity
+    -   Response process validity
+    -   Construct validity
+-   Validity - What you can do
+    -   Criterion validity
+  
+::: notes
+
+
+
+:::
+
+## Case study #5 - Disgust Scale Revised
+
+![](../images/disgust-measurement.png)
+
+## Case study #5
+
+-   What do you think?
+
+:::::: {.columns}
+::: {.column}
+-   What measures of reliability?
+    -   Test-retest reliability
+    -   Inter-rater reliability
+    -   Measures of internal consistency
+:::
+
+::: {.column}
+-   What measures of validity?
+    -   Face/content validity
+    -   Response process validity
+    -   Criterion validity
+    -   Construct validity
+:::
+::::::
+
+## Conclusion
+
+-   What you've seen today
+    -   Internal validity
+    -   External validity
+    -   Measurement reliability
+    -   Measurement validity
+    -   Three dichotomies of measurement
+    -   Five case studies
+
+::: notes
+
+Different measures of reliability and validity apply depending on whether your measurement is a self report or not and depending on whether it is a composite measure or not and whether is is a construct or not.
+
+:::
+  
