@@ -3,6 +3,8 @@ title: "List topics for each module in each class"
 format: 
   html:
     embed-resources: true
+execute: 
+  echo: false
 ---
 
 ## File details
@@ -18,11 +20,8 @@ library(glue)
 library(tidyverse)
 ```
 
-## Identify slide files
-
 ```{r}
-#| label: identify
-
+#| label: identify-function
 
 identify_topics <- function(class_dir, module_dir, slide_prefix, slide_postfix) {
   course_topics <- NULL
@@ -35,6 +34,12 @@ identify_topics <- function(class_dir, module_dir, slide_prefix, slide_postfix) 
   }
   c(course_topics, rep(" ", 2))
 }
+```
+
+## Introduction to Biostatistics I
+
+```{r}
+#| label: medb-5501
 
 all_topics <- identify_topics(
   class_dir = "biostats-1",
@@ -43,6 +48,12 @@ all_topics <- identify_topics(
   slide_postfix = "slides.qmd"
   )
 cat(all_topics, sep="\n")
+```
+
+## Introduction to Biostatistics II
+
+```{r}
+#| label: medb-5502
 
 all_topics <- identify_topics(
   class_dir = "biostats-2",
@@ -51,6 +62,27 @@ all_topics <- identify_topics(
   slide_postfix = "slides.qmd"
   )
 cat(all_topics, sep="\n")
+```
+
+## Introduction to R
+
+```{r}
+#| label: medb-5505
+
+all_topics <- identify_topics(
+  class_dir = "introduction-to-r",
+  module_dir = c(glue("0{1:6}")),
+  slide_prefix = "simon-5505",
+  slide_postfix = "slides.qmd"
+  )
+cat(all_topics, sep="\n")
+
+```
+
+## Clinical Research Methodology
+
+```{r}
+#| label: medb-5510
 
 all_topics <- identify_topics(
   class_dir = "clinical-research-methodology",
@@ -59,75 +91,5 @@ all_topics <- identify_topics(
   slide_postfix = "slides.qmd"
   )
 cat(all_topics, sep="\n")
-
-```
-
-## Move html files
-
-```{r}
-#| label: sweep
-
-sweep_files <- function(subdir, file_name) {
-  old <- glue("{subdir}/src/{file_name}")
-  new <- glue("{subdir}/results/{file_name}")
-  file.rename(from=old, to=new)
-}
-```
-
-## Loop across folders
-
-```{r}
-#| label: loop
-
-z99 <- c(glue("0{1:9}"), as.character(10:99))
-
-loop_folders <- function(class_dir, n) {
-  modules <- paste0(class_dir,"/", z99[1:n])
-  for (s in modules) {
-  	s00 <- glue("{s}/src")
-    print(glue("Searching in module {s00}"))
-    file_list <- character(0)
-    for (ext in c("html", "pdf", "pptx")) {
-      file_list <- c(file_list, identify_files(s, ext))
-    }
-    if (length(file_list) == 0) next
-    print(glue("---{s}/src/{file_list}"))
-    for (f in file_list) {
-      sweep_files(s, f)
-    }
-  }
-}
-```
-
-## Biostats-1
-
-```{r}
-#| label: biostats-1
-
-loop_folders("biostats-1", 15)
-```
-
-## Biostats-2
-
-```{r}
-#| label: biostats-2
-
-loop_folders("biostats-2", 14)
-```
-
-## clinical-research-methodology
-
-```{r}
-#| label: clinical-research-methodology
-
-loop_folders("clinical-research-methodology", 14)
-```
-
-## introduction-to-r
-
-```{r}
-#| label: introduction-to-r
-
-loop_folders("introduction-to-r", 9)
 ```
 
