@@ -1,0 +1,133 @@
+---
+title: "List topics for each module in each class"
+format: 
+  html:
+    embed-resources: true
+---
+
+## File details
+
+This program reads the topic list from the slide presentations for each module in each class and pulls out the individual topics. It was written by Steve Simon on 2025-03-25 and is placed in the public domain. 
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(glue)
+library(tidyverse)
+```
+
+## Identify slide files
+
+```{r}
+#| label: identify
+
+
+identify_topics <- function(class_dir, module_dir, slide_prefix, slide_postfix) {
+  course_topics <- NULL
+  slide_names <- glue("{slide_prefix}-{module_dir}-{slide_postfix}")
+  for (i in 1:length(module_dir)) {
+    fn <- glue("{class_dir}/{module_dir[i]}/src/{slide_names[i]}")
+    read_lines(fn) |>
+      str_subset(fixed("  topic_")) -> module_topics
+    course_topics <- c(course_topics, fn, module_topics," ")
+  }
+  c(course_topics, rep(" ", 2))
+}
+
+all_topics <- identify_topics(
+  class_dir = "biostats-1",
+  module_dir = c(glue("0{1:9}"), 10:14),
+  slide_prefix = "simon-5501",
+  slide_postfix = "slides.qmd"
+  )
+cat(all_topics, sep="\n")
+
+all_topics <- identify_topics(
+  class_dir = "biostats-2",
+  module_dir = c(glue("0{1:9}"), 10:14),
+  slide_prefix = "simon-5502",
+  slide_postfix = "slides.qmd"
+  )
+cat(all_topics, sep="\n")
+
+all_topics <- identify_topics(
+  class_dir = "clinical-research-methodology",
+  module_dir = c(glue("0{1:9}"), 10:14),
+  slide_prefix = "simon-5510",
+  slide_postfix = "slides.qmd"
+  )
+cat(all_topics, sep="\n")
+
+```
+
+## Move html files
+
+```{r}
+#| label: sweep
+
+sweep_files <- function(subdir, file_name) {
+  old <- glue("{subdir}/src/{file_name}")
+  new <- glue("{subdir}/results/{file_name}")
+  file.rename(from=old, to=new)
+}
+```
+
+## Loop across folders
+
+```{r}
+#| label: loop
+
+z99 <- c(glue("0{1:9}"), as.character(10:99))
+
+loop_folders <- function(class_dir, n) {
+  modules <- paste0(class_dir,"/", z99[1:n])
+  for (s in modules) {
+  	s00 <- glue("{s}/src")
+    print(glue("Searching in module {s00}"))
+    file_list <- character(0)
+    for (ext in c("html", "pdf", "pptx")) {
+      file_list <- c(file_list, identify_files(s, ext))
+    }
+    if (length(file_list) == 0) next
+    print(glue("---{s}/src/{file_list}"))
+    for (f in file_list) {
+      sweep_files(s, f)
+    }
+  }
+}
+```
+
+## Biostats-1
+
+```{r}
+#| label: biostats-1
+
+loop_folders("biostats-1", 15)
+```
+
+## Biostats-2
+
+```{r}
+#| label: biostats-2
+
+loop_folders("biostats-2", 14)
+```
+
+## clinical-research-methodology
+
+```{r}
+#| label: clinical-research-methodology
+
+loop_folders("clinical-research-methodology", 14)
+```
+
+## introduction-to-r
+
+```{r}
+#| label: introduction-to-r
+
+loop_folders("introduction-to-r", 9)
+```
+

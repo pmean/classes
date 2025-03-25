@@ -1,0 +1,56 @@
+---
+title: "See bottom of file for title"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+params:
+  topic_01: "Please skip this module"
+editor: source
+---
+
+## Topics to be covered
+
+```{r}
+# Preliminaries, if needed
+
+# Keep this chunk, even if no code, so that
+# params is populated from the yaml header.
+
+# To print speaker notes, add
+#   ?print-pdf&showNotes=separate-page 
+#   to the end of the URL. Then open the
+#   print dialog box (ctrl-P) and choose
+#   Save as PDF for the printer. Other 
+#   options, like Microsoft Print to PDF
+#   do not seem to work.
+```
+
+-   What you will learn
+    -   `r params$topic_01`
+
+{{< include _crm-07-01.qmd >}}
+
+## Break #1
+
+-   What you have learned
+    -   `r params$topic_01`
+-   What's coming next
+    -   `r params$topic_01`
+
+{{< include _crm-07-02.qmd >}}
+
+## Summary
+
+-   What you have learned
+    -   `r params$topic_01`
+
+<!---
+      You have to put the title down 
+      here to override the titles of
+      all the include files.
+--->
+
+---
+title: "Comments for MEDB 5510, Week 07"
+---
