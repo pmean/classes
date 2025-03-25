@@ -4,11 +4,12 @@ title: "simon-5502-08-directions"
 
 ## General directions
 
-Use the dataset, [gardasil.tsv][ref01], found on my github site. Refer to the [data dictionary][ref02] if needed. You may find it helpful to adapt some of the code from [simon-5502-06-demo.qmd][ref03]. 
+Use the dataset, [whas500.dat][ref-whas], found on my github site. Refer to the [data dictionary][ref-whas-dd] if needed. You may find it helpful to adapt some of the code from [simon-5502-08-demo.qmd][ref-08-demo]. 
 
-[ref01]: https://github.com/pmean/data/blob/main/files/gardasil.tsv
-[ref02]: https://github.com/pmean/data/blob/main/files/gardasil.yaml
-[ref03]: https://github.com/pmean/classes/blob/master/biostats-2/06/src/simon-5502-06-demo.qmd
+
+[ref-whas]: https://github.com/pmean/data/blob/main/files/whas500.dat
+[ref-whas-dd]: https://github.com/pmean/data/blob/main/files/whas500.yaml
+[ref-08-demo]: https://github.com/pmean/classes/blob/master/biostats-2/08/src/simon-5502-08-demo.qmd
 
 ## File details
 
@@ -16,22 +17,22 @@ This assignment was written by Steve Simon on 2025-02-27 and is placed in the pu
 
 ## Question 1
 
-You will not be graded on this, but get in the habit of computing some simple statistics (mean, standard deviation, minimum, and maximum for continuous variables and counts and percentages for categorical variables) for the important variables in this dataset. Also, get in the habit of providing brief interpretations.
+You will not be graded on this, but get in the habit of computing some simple statistics (mean, standard deviation, minimum, and maximum for continuous variables and counts and percentages for categorical variables) for the important variables in this dataset. Provide brief interpretations.
+
+Note: you do not need to examine the dates, as I did in the section "Check lenfol calculations".
 
 ## Question 2
 
-Create factors with descriptive levels for Completed, MedAssist, and LocationType. Orient your factor so that the reference category (the category that appears first) is "No" for Completed and MedAssist and "Urban" for LocationType. Calculate the probability of completing all three shorts for each level of MedAssist. Repeat for each level of LocationType.
+Exclude the observations where the patient died in the hospital (dstat=1). Create a factor for chf and make "No" the reference category. Then draw Kaplan-Meier curves for the two values of chf. The survival times are in the variable lenfol, with fstat indicating whether an event occurred or was censored. Interpret the two curves.
 
 ## Question 3
 
-Calculate a logistic regression model using Age (not AgeGroup) to predict whether a patient has completed all three shots. Interpret the odds ratio from this model.
+Calculate a Cox regression model with chf as the one independent variable. Interpret the hazard ratio.
 
 ## Question 4
 
-You suspect that there is an interaction between MedAssist and LocationType in predicting whether a patient completed all three shots. Draw a line plot on the log odds scale. Interpret this plot. You should look at the plot two different ways, but please only include one plot here.
-
-Note: some versions of R may need to use trans="logit" instead of transform="logit" in the scale_y_continuous function.
+There may be an age difference between the patients with and without congestive heart complications. Compute the average ages of the two groups and interpret your findings.
 
 ## Question 5
 
-Fit a model using MedAssist and LocationType to predict Completed, first without an interaction and then with an interaction. Test whether the interaction is statistically significant.
+Recalculate the Cox regression model including age as a covariate. Did the hazard ratio for chf change? Interpret these results.
