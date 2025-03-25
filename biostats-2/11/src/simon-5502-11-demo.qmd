@@ -1,0 +1,85 @@
+---
+title: "simon-5502-11-demo"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute: 
+  error: false
+---
+
+## File details
+
+This program was written by Steve Simon on 2025-02-23 and is placed in the public domain. You can use this program any way you please.
+
+-   Data used in this program
+    -   postural-sway
+        -   [tab delimited file][ref-sway]
+        -   [dictionary][ref-sway-dd]
+
+[ref-sway]: https://github.com/pmean/data/blob/main/files/postural-sway.txt
+[ref-sway-dd]: https://github.com/pmean/data/blob/main/files/postural-sway.yaml
+
+-   Tibbles created by this program
+    -   sway: Original data from postural-sway.txt
+-   Models created by this program
+    -   m1: 
+
+```{r}
+#| message: false
+#| warning: false
+#| label: setup
+
+library(broom)
+library(lme4)
+library(nlme)
+library(tidyverse)
+
+R.version.string
+Sys.Date()
+```
+
+
+## Read postural-sway
+
+```{r}
+#| label: sway-read
+
+sway <- read_tsv(
+  file="../data/postural-sway.txt",
+  col_types="cnn",
+  col_names=TRUE)
+
+glimpse(sway) 
+```
+
+## Analyze as a two-sample test
+
+```{r}
+#| label: two-sample
+
+sway |>
+  mutate(id=1:nrow(sway)) |>
+  select(-Age) |>
+  pivot_longer(
+    cols=FBSway:SideSway,
+    names_to="direction",
+    values_to="sway") -> sway_1
+
+sd(sway$FBSway - sway$SideSway)
+
+lm(sway~direction, data=sway_1) |> confint()
+# lme(sway~direction + 1 | id, data=sway_1)
+lmer(sway~direction + (1 | id), data=sway_1, REML=FALSE) |> summary()
+
+t.test(sway$FBSway, sway$SideSway, var.equal=TRUE) |> tidy()
+t.test(sway$FBSway, sway$SideSway, paired=TRUE, var.equal=TRUE) |> tidy()
+```
+
+## Save everything
+
+```{r}
+#| label: save
+
+save.image(file="../data/module11.RData")
+```
