@@ -26,3 +26,31 @@ https://www.wired.com/story/null-license-plate-landed-one-hacker-ticket-hell/
 
 :::
 
+## Who is the villain?
+
+-   Government bureaucracies that can't work with one another
+-   Programmers who don't understand the difference between the string "NULL" and a null value.
+-   Joseph Tartaro
+    -   Thought that a NULL license plate might cause the computer system to lose his traffic violoations
+
+## How was the victim harmed?
+
+-   $12,049 worth of traffic fines
+-   Lost time trying to resolve things
+
+## What could have prevented this?
+
+-   Quality review of code
+-   Flexibility to allow for common sense deviations
+
+## Did anything surprise you?
+
+-   How hard it has been to fix things.
+
+## Did you disagree with anything in the article?
+
+-   No
+
+## Is there a single quote from the article that summarizes it well? {.smaller}
+
+-   "Prank or not, Tartaro was playing with fire by going with NULL in the first place. 'He had it coming,' says Christopher Null, a journalist who has written previously for WIRED about the challenges his last name presents. 'All you ever get is errors and crashes and headaches.' If anything, Null says, the problem has gotten worse over the years. 'The "minimum viable product" concept has pushed a lot of bad code through that doesn’t go through with the proper level of testing,' Null says, adding that anyone affected is inevitably an edge case, a relatively small problem not worth devoting a lot of resources to fix."

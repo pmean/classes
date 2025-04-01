@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Problems with generative AI"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,218 @@ format:
 editor: source
 ---
 
-## Slide 10-08
+## Existential Comics, 1
+
+![](../images/existential-comics-01.png)
 
 ::: notes
 
+I have not been thrilled with all of the hype and hoopla about Generative AI that is in the press and everywhere. My thoughts about this are similar to those of Corey Mohler.
+
+Corey Mohler. AI and the Meaning of Life. Existential Comics. No date. Available in [html format][mohler-no-date].
+
+[mohler-no-date]: https://existentialcomics.com/comic/557
+
 :::
 
+## Existential Comics, 2
+
+![](../images/existential-comics-02.png)
+
+## Existential Comics, 3
+
+![](../images/existential-comics-03.png)
+
+## Existential Comics, 4
+
+![](../images/existential-comics-04.png)
+
+## Existential Comics, 5
+
+![](../images/existential-comics-05.png)
+
+## Existential Comics, 6
+
+![](../images/existential-comics-06.png)
+
+## Existential Comics, 7
+
+![](../images/existential-comics-07.png)
+
+::: notes
+
+Nevertheless, there are some useful applications of this technology and I need to learn how to use them. Here's a brief summary of what I (as a total beginner in this area) know about the bad (first) and then the good.
+
+:::
+
+<!---more--->
+
+## What are some of the concerns with this new technology?
+
+-   Copyright concerns
+-   Style and manner
+-   Halluncinations
+-   Reinforcing stereotypes
+
+::: notes
+
+First, I have to say that there are some serious ethical and legal problems with at least some of these generative AI programs. I can't say it is true of all of them, but at least some of them represent a massive theft of intellectual property.
+
+Generative AI uses a neural network to produce a sequence of words in response to a user's prompt. This neural network (and just about any neural network) needs a large amount of data for training. This data comes from scraping the Internet. 
+
+Fine. But much of the material on the Internet is copyrighted. Worse yet, the Internet includes many resources that themselves are thefts of intellectual property.
+
+:::
+
+## Copyright provisions
+
+-   Creative commons licenses
+    -   Attribution
+    -   Noncommercial
+    -   NoDerivatives
+-   Full copyright
+    -   "any use of this material without the express written consent of ... is prohibited."
+-   Pirate sites
+    -   Re-using material that has already been stolen once
+
+::: notes
+
+When you publish your work on the Internet, you have the option of using a Creative Commons open source license. This is a popular choice on the Internet. There are several license options. You can require that anyone using your content has to [cite the original source][cc-by-4.0]. You can require that they only use your content for [non-commercial purposes][cc-by-nc-4.0]. You can require that they use your content [only in an unmodified form][cc-by-nd-4.0] (no derivative works). 
+
+Any one of these licenses could be seen as forbidding the use of your content in training a neural net. Well maybe not. The companies creating these generative AI models would argue that their use of your content falls under the fair use provisions of copyright law. Well, maybe, but I doubt it.
+
+It's worse than this, though. There is lots of material on the Internet that is published with much more restrictive copyright provisions. Include phrases like "any use of this material without the express written consent of ... is prohibited." 
+
+Even more of a problem is that there are many publishers on the Internet that are themselves great thieves of intellectual property. Can you re-use material that has already been stolen once? I hope not.
+
+See the Appel (2023), Levy (2024), and Metz (2024) references for overviews of some of the issues.
+
+Gil Appel, Juliana Neelbauer and David A. Schweidel. Generative AI Has an Intellectual Property Problem. Harvard Business Review, 2023-04-07. Available in [html format][appel-2023].
+
+Annelise Levy. Nvidia Illegally Scraped YouTube Videos for AI, Suit Says. Bloomberg Law, 2024-08-15. Available in [html format][levy-2024]
+
+Cade Metz, Cecilia Kang, Sheera Frenkel, Stuart A. Thompson, Nico Grant. How Tech Giants Cut Corners to Harvest Data for A.I. The New York Times, 2024-04-06. Available in [html format][metz-2024].
+
+[appel-2023]: https://hbr.org/2023/04/generative-ai-has-an-intellectual-property-problem
+[levy-2024]: https://news.bloomberglaw.com/ip-law/nvidia-illegally-scrapped-youtube-videos-to-train-ai-suit-says
+[metz-2024]: https://www.nytimes.com/2024/04/06/technology/tech-giants-harvest-data-artificial-intelligence.html
+
+[cc-by-4.0]: https://creativecommons.org/licenses/by/4.0/
+[cc-by-nc-4.0]: https://creativecommons.org/licenses/by-nc/4.0/
+[cc-by-nd-4.0]: https://creativecommons.org/licenses/by-nd/4.0/
+
+:::
+
+## A person note about intellectual property
+
+-   I used copyrighted material in this talk
+    -   Falls under fair use provisions
+        -   Educational purposes
+        -   Limited amount of material
+        -   Does not compete on potential market
+-   I always try to give credit to my sources
+
+::: notes
+
+https://www.copyright.gov/help/faq/faq-fairuse.html
+
+https://www.nolo.com/legal-encyclopedia/fair-use-the-four-factors.html
+
+:::
+
+## Style and manner, 1
+
+![](../images/ghibli-01.png)
+
+::: notes
+
+https://mashable.com/article/studio-ghibli-ai-memes-openai-chatgpt
+
+https://www.nytimes.com/2025/03/27/style/ai-chatgpt-studio-ghibli.html
+
+There's a second issue about intellectual theft beyond the theft of those developing the generative AI models. You can use generative AI to create original content, but in a style or manner that is so similar to the original writer or artist that it infringes on their intellectual property. 
+
+This is a gray area in copyright law, and many experts say that this is not a violation of copyright, but I still think this should be a concern.
+
+:::
+
+## Style and manner, 2
+
+![](../images/ghibli-02.png)
+
+## Style and manner, 3
+
+![](../images/ghibli-03.png)
+
+## Style and manner, 4
+
+![](../images/ghibli-04.png)
+
+
+## Plagiarism concerns
+
+-   Will Generative AI pass "TurnItIn.com"?
+-   Will you acknowledge your source?
+
+::: notes
+
+Finally, you might find yourself accused of plagiarism if the content you get from a generative AI program was crafted too closely to a single source. I am unaware of any examples where this has happened, but I would encourage anyone using content from a generative AI program to run their results by a plagiarism detector before publishing it.
+
+Peer-reviewed journals have concerns about the use of generative AI both in the publications that they have submitted and in the peer reviews themselves.
+
+:::
+
+## Hallucinations
+
+-   Training data contains accurate and inaccurate information
+-   Combines data from multiple sources
+-   Like autocomplete on steroids
+-   Proposed solution: fact-checking using limited but reliable sources
+
+::: notes
+
+Haensel and Gretel were brother and sister who got lost in a forest. They found a house with three beds. One was too hard, one was too soft but tehy found one that was just right and fell asleep in it. Little Red Riding Hood entered and commented on the big ears, big eyes, and big teeth that Hansel and Gretel have.
+
+https://mitsloanedtech.mit.edu/ai/basics/addressing-ai-hallucinations-and-bias/
+
+For an example of how AI hallucinations can play out in the real world, consider the legal case of Mata v. Avianca. In this case, a New York attorney representing a client’s injury claim relied on ChatGPT to conduct his legal research. The federal judge overseeing the suit noted that the opinion contained internal citations and quotes that were nonexistent. Not only did the chatbot make them up, it even stipulated they were available in major legal databases (Weiser, 2023).
+
+:::
+
+## Reinforcing prejudices and stereotypes, 1
+
+![](../images/stereotypes-01.png)
+
+::: notes
+
+https://www.washingtonpost.com/technology/interactive/2023/ai-generated-images-bias-racism-sexism-stereotypes/
+
+Generative AI looks for common themes in images and will tend to reduce the diversity. This tends to amplify common stereotypes.
+
+::::
+
+## Reinforcing prejudices and stereotypes, 2
+
+![](../images/stereotypes-02.png)
+
+## Reinforcing prejudices and stereotypes, 3
+
+![](../images/stereotypes-03.png)
+
+## Promising technologies
+
+-   Github Copilot
+-   NotebookLM
+-   Gemini
+
+::: notes
+
+Github Copilot will turn your commented code in RMarkdown or Jupyter into code that 
+
+NotebookLM lets you can use the methods of large language models on resources of your own choosing.
+
+Gemini is a system that can answer questions such as "How do I select an appropriate sample size for a research study."
+
+It gave a lengthy, but well organized response (link available soon). As I understand it, there is some variation in responses by this system if you word things slightly differently and maybe even if you use the exact same prompt.
+
+:::

@@ -12,6 +12,7 @@ params:
   topic_05: "License plate case study"
   topic_06: "Personalized medicine case study"
   topic_07: "What's the cause and what's the cure"
+  topic_08: "Problems with large language models"
 editor: source
 ---
 
@@ -97,6 +98,15 @@ editor: source
 
 {{< include _b2-10-07.qmd >}}
 
+## Break #7
+
+-   What you have learned
+    -   `r params$topic_07`
+-   What's coming next
+    -   `r params$topic_08`
+
+{{< include _b2-10-08.qmd >}}
+
 ## Summary
 
 -   What you have learned
@@ -107,13 +117,7 @@ editor: source
     -   `r params$topic_05`
     -   `r params$topic_06`
     -   `r params$topic_07`
-
-## Additional topics??
-
-::: notes
--   Learning objectives
-    -   To be defined
-:::
+    -   `r params$topic_08`
 
 <!---
       You have to put the title down 
@@ -122,5 +126,5 @@ editor: source
 --->
 
 ---
-title: "MEDB 5502, Week 10, The dark side of data science"
+title: "simon-5502-10-slides"
 ---
