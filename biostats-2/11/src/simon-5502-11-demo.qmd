@@ -53,27 +53,98 @@ sway <- read_tsv(
 glimpse(sway) 
 ```
 
-## Analyze as a two-sample test
+## Descriptive statistics
+
+```{r}
+#| label: descriptives
+
+sway |>
+  mutate(sway_difference=FBSway-SideSway) |>
+  summarize(
+    fb_sd=sd(FBSway),
+    side_sd=sd(SideSway),
+    diff_sd=sd(sway_difference)) -> sway_descriptives
+
+with(sway, cor(FBSway, SideSway))
+```
+
+## Restructure
+
+```{r}
+#| label: restructure
+
+sway |>
+  mutate(id=1:nrow(sway)) |>
+  pivot_longer(
+    cols=FBSway:SideSway,
+    names_to="direction",
+    values_to="sway") -> sway_2
+
+glimpse(sway_2)
+```
+
+## Plots
+
+```{r}
+#| label: boxplot
+
+sway_2 |>
+  ggplot() +
+  aes(x=direction, y=sway) +
+  geom_boxplot() +
+  scale_y_log10()
+```
+
+```{r}
+#| label: line plot
+
+sway_2 |>
+  ggplot() +
+  aes(x=direction, y=sway, group=id) +
+  geom_line() +
+  scale_y_log10()
+```
+
+
+
+## Analyze as a paired t-test
+
+```{r}
+#| label: paired
+
+m1 <- with(sway, t.test(x=FBSway, y=SideSway, paired=TRUE))
+tidy(m1)
+
+m2 <- lmer(sway~direction + (1 | id), data=sway_2, REML=TRUE)
+summary(m2)
+```
+
+#### Comments on the code
+
+The [t.test][ref-t-test] function will conduct three different t-tests, a single sample t-test, a two-sample t-test, and a paired t-test. I normally do not use the t.test function because I prefer to provide a comparable test using the [lm][ref-lm] function.
+
+[ref-t-test]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/t.test.html
+[ref-lm]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html
+
+## Analyze as a two-sample t-test
 
 ```{r}
 #| label: two-sample
 
-sway |>
-  mutate(id=1:nrow(sway)) |>
-  select(-Age) |>
-  pivot_longer(
-    cols=FBSway:SideSway,
-    names_to="direction",
-    values_to="sway") -> sway_1
+m3 <- with(sway_2, t.test(sway ~ direction, var.equal=TRUE))
+tidy(m3)
 
-sd(sway$FBSway - sway$SideSway)
+m4 <- lmer(sway~direction + (1 | id), data=sway_2, REML=TRUE)
+summary(m4)
+```
 
-lm(sway~direction, data=sway_1) |> confint()
-# lme(sway~direction + 1 | id, data=sway_1)
-lmer(sway~direction + (1 | id), data=sway_1, REML=FALSE) |> summary()
+## Analyze as a mixed model
 
-t.test(sway$FBSway, sway$SideSway, var.equal=TRUE) |> tidy()
-t.test(sway$FBSway, sway$SideSway, paired=TRUE, var.equal=TRUE) |> tidy()
+```{r}
+#| label: mixed
+
+m5 <- lmer(sway~Age*direction + (1 | id), data=sway_2, REML=TRUE)
+summary(m5)
 ```
 
 ## Save everything

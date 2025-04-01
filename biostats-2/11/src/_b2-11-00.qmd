@@ -1,0 +1,93 @@
+---
+title: "simon-5502-11-demo"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute: 
+  error: false
+---
+
+## File details
+
+This program was written by Steve Simon on 2025-02-23 and is placed in the public domain. You can use this program any way you please.
+
+-   Data used in this program
+    -   postural-sway
+        -   [tab delimited file][ref-sway]
+        -   [dictionary][ref-sway-dd]
+
+[ref-sway]: https://github.com/pmean/data/blob/main/files/postural-sway.txt
+[ref-sway-dd]: https://github.com/pmean/data/blob/main/files/postural-sway.yaml
+
+-   Tibbles created by this program
+    -   sway: Original data from postural-sway.txt
+-   Models created by this program
+    -   m1: 
+
+```{r}
+#| message: false
+#| warning: false
+#| label: setup
+
+library(broom)
+library(lme4)
+library(nlme)
+library(tidyverse)
+
+R.version.string
+Sys.Date()
+```
+
+## Read litter-weights
+
+```{r}
+#| label: read-litter
+
+library(foreign)
+w <- read.spss(file="../data/litter-weights.sav")
+w <- data.frame(w)
+names(w) <- tolower(names(w))
+glimpse(w)
+```
+
+```{r}
+count(w, grp)
+l <- unique(w$litter)
+w$x <- rep(c(1:10, 12:21), each=6)
+w$y <- rep(1:6, 20)
+w$s <- rep(rep(c("M", "F"), each=3), 20)
+```
+
+```{r}
+w |>
+  ggplot() +
+  aes(x, y, label=s) +
+  geom_text() + 
+  geom_text(x=5.5, y=6.5, label="Group 1") +
+  geom_text(x=16.5, y=6.5, label="Group 2") +
+  scale_x_continuous(
+    name="Litter",
+    breaks=unique(w$x),
+    minor_breaks=NULL,
+    labels=l) +
+  scale_y_continuous(
+    name="Animal",
+    breaks=1:6, 
+    minor_break=NULL) +
+  expand_limits(x=c(-1, 24), y=c(0,7))
+```
+
+## Read postural-sway
+
+```{r}
+#| label: sway-read
+
+sway <- read_tsv(
+  file="../data/postural-sway.txt",
+  col_types="cnn",
+  col_names=TRUE)
+
+glimpse(sway) 
+```
+

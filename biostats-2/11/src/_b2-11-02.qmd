@@ -10,8 +10,12 @@ editor: source
 ## Description of litter weights data, 1 of 3
 
 ```{r}
+library(glue)
 library(yaml)
-dd <- read_yaml("../../../datasets/litter-weights.yaml")
+f1 <- "https://raw.githubusercontent.com"
+f2 <- "pmean/data/refs/heads/main/files"
+f3 <- "litter-weights.yaml"
+dd <- read_yaml(glue("{f1}/{f2}/{f3}"))
 cat(as.yaml(dd["data_dictionary"]))
 cat(as.yaml(dd["description"]))
 cat(as.yaml(dd["source"]))

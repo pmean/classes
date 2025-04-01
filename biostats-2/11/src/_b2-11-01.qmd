@@ -93,15 +93,15 @@ A special case that I want to handle separately is longitudinal data. This is si
 
 ## Expected mean squares, 1 of 2
 
--   $MS(between) = \frac{1}{a-1}\Sigma_i n(\bar{Y}_{i.}-\bar{Y}_{..})^2$
+-   $MS(between) = \frac{1}{a-1}\Sigma n(\bar{Y}_{i.}-\bar{Y}_{..})^2$
     -   $E[MS(between)] = n\sigma^2_{between}+\sigma^2_{within}$
 
 ## Expected mean squares, 2 of 2
 
--   $MS(within) = \frac{1}{a(n-1)}\Sigma_i\Sigma_j(\bar{Y}_{ij}-\bar{Y}_{i.})^2$
+-   $MS(within) = \frac{1}{a(n-1)}\Sigma\Sigma(\bar{Y}_{ij}-\bar{Y}_{i.})^2$
     -   $E[MS(within)] = \sigma^2_{within}$
     
 ## Variance components estimates
 
--   $\hat\sigma_{between}=\frac{MS(between)-MS(within)}{a}$
--   $\hat\sigma_{within}=MS(within)$
+-   $\hat\sigma_{between}^2=\frac{MS(between)-MS(within)}{a}$
+-   $\hat\sigma_{within}^2=MS(within)$

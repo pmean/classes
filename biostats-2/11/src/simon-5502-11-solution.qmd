@@ -1,0 +1,118 @@
+---
+title: "simon-5502-11-demo"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute: 
+  error: false
+---
+
+## File details
+
+This program was written by Steve Simon on 2025-03-30 and is placed in the public domain. You can use this program any way you please.
+
+
+-   Data used in this program
+    -   absorbent-paper
+        -   [comma delimited file][ref-paper]
+        -   [dictionary][ref-paper-dd]
+
+[ref-paper]: https://github.com/pmean/data/blob/main/files/absorbent-paper.csv
+[ref-paper-dd]: https://github.com/pmean/data/blob/main/files/absorbent-paper.yaml
+
+-   Tibbles created by this program
+    -   sway: Original data from postural-sway.txt
+-   Models created by this program
+    -   m1: 
+
+```{r}
+#| message: false
+#| warning: false
+#| label: setup
+
+library(broom)
+library(lme4)
+library(nlme)
+library(tidyverse)
+
+R.version.string
+Sys.Date()
+```
+
+
+## Read
+
+```{r}
+#| label: read
+
+paper <- read_csv(
+  file="../data/absorbent-paper.csv",
+  col_names = TRUE,
+  col_types = "ncnn",
+  name_repair = "universal")
+
+glimpse(paper)
+```
+1. You would expect that the two PFA measurements would be positively correlated and that the difference in measurements would be less variable than the individual measurements. Compute and interpret the correlation. 
+
+
+
+
+## Compute differences
+
+```{r}
+#| label: differences
+
+with(paper, cor(Measure.1, Measure.2))
+
+paper |>
+  mutate(measure_difference=Measure.1-Measure.2) |>
+  summarize(
+    sd1=sd(Measure.1),
+    sd2=sd(Measure.2),
+    sd3=sd(measure_difference))
+```
+
+2. Restructure the data so that Measure1 and Measure2 are in the single column named fpa. Please save your original data as an SPSS sav file before running the restructure. In your restructured dataset, make sure to include a new variable, evaluation, that is equal to “First” for the data coming from Measure1 and “Second” for the data coming from Measure2. Also keep the case and foot variables in the restructured dataset. Save the restructured data as a new SPSS sav file. Show the first ten rows of this restructured data.
+
+## Pivot
+
+```{r}
+#| label: pivot
+
+paper |>
+  pivot_longer(
+    cols=Measure.1:Measure.2,
+    names_to = "measure",
+    values_to = "fpa") -> paper_1
+
+glimpse(paper_1)
+```
+
+3. Calculate a variance components model for the restructured dataset. Specify case as a random factor. Specify foot and evaluation as fixed factors. Build a model with foot, evaluation and case as main effects, but no interactions. Click on the Options button and specify the ANOVA method and display sums of squares and expected mean squares.
+
+## Mixed model
+
+```{r}
+#| label: mixed
+
+m1 <- lmer(fpa ~ foot*measure + (1 | case), data=paper_1)
+m1
+summary(m1)
+VarCorr(m1)
+```
+
+7. Use a calculator to compute the intraclass correlation. Interpret this number.
+
+```{r}
+#| label: icc
+
+10.649 / (10.649 + 8.252)
+```
+
+8. (Extra credit, 2 points) Using a calculator, compute the F ratios for testing the effects of foot and evaluation. Both foot and evaluation are within subject comparisons, so you should use the same mean square error in the denominator for both tests. Explain which mean square is appropriate for these two comparisons. Use the calculator at
+https://homepage.divms.uiowa.edu/~mbognar/applets/f.html 
+to compute p-values for the two F ratios. Interpret these p-values.
+
+

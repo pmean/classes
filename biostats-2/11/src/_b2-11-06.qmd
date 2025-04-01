@@ -11,7 +11,7 @@ editor: source
 
 -   Random factor
     -   Litter
-Fixed factors
+-   Fixed factors
     -   Sex
         -   Within litter comparison
     -   Group
@@ -19,13 +19,13 @@ Fixed factors
         
 ## Variance components, 1 of 2
 
-![](images/litter-weights-full-02.png "Sums of squares and mean squares but no F ratios")
+![](../images/litter-weights-full-02.png "Sums of squares and mean squares but no F ratios")
 
 ## Variance components, 2 of 2
 
-![](images/litter-weights-full-03.png "Expected mean squares for the Litter and Error")
+![](../images/litter-weights-full-03.png "Expected mean squares for the Litter and Error")
 
-![](images/litter-weights-full-04.png "Between and within variance estimates")
+![](../images/litter-weights-full-04.png "Between and within variance estimates")
 
 ::: notes
 The F-ratios are 23.426/1.077 = `r `round(23.426/1.077, 1)` and 33.184/12.046 = `r round(33.184/12.046, 1)`.
