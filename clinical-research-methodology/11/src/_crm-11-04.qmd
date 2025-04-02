@@ -35,7 +35,7 @@ Single letter codes are easy to remember. The letter codes (M, F, and U) for gen
 
 ## Example of ambiguous coding
 
-![](images/ambiguous-frequency-table-01.png "Frequency table showing ambiguous results: blanks and two W values")
+![](../images/ambiguous-frequency-table-01.png "Frequency table showing ambiguous results: blanks and two W values")
 
 ::: notes
 
@@ -109,7 +109,7 @@ Always account properly for missing values when reverse scaling. It's a good ide
 
 ## A multiple response example
 
-![](images/multiple-response-01.png "Hypothetical responses to What are a few of your favorite things with multiple responses allowed")
+![](../images/multiple-response-01.png "Hypothetical responses to What are a few of your favorite things with multiple responses allowed")
 
 ::: notes
 
@@ -125,7 +125,7 @@ The third patient liked the last two things: bright copper kettles, and warm woo
 
 ## Coding with a single string
 
-![](images/multiple-response-02.png "Coding of multiple responses using a single string: bcd, abc or cd")
+![](../images/multiple-response-02.png "Coding of multiple responses using a single string: bcd, abc or cd")
 
 ::: notes
 
@@ -137,7 +137,7 @@ This approach makes it difficult to compute even simple statistics, such as the 
 
 ## Coding using single letters
 
-![](images/multiple-response-03.png "Coding of multiple responses using single letters, a, b, c, or d, in individual columns")
+![](../images/multiple-response-03.png "Coding of multiple responses using single letters, a, b, c, or d, in individual columns")
 
 ::: notes
 
@@ -155,7 +155,7 @@ This format is also a bit tricky. Notice how even though all three patients sele
 
 ## Coding using indicator variables
 
-![](images/multiple-response-04.png "Coding of multiple responses using indicator (0, 1) variables for each possible response")
+![](../images/multiple-response-04.png "Coding of multiple responses using indicator (0, 1) variables for each possible response")
 
 ::: notes
 

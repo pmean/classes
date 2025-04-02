@@ -28,7 +28,7 @@ Some data analyses, such as plots, work better with the tall and thin format. Ot
 
 ## Example of tall/thin data dictionary
 
-![](images/repeated-measures-01.png "Data dictionary for data arranged in tall and thing format. Notice that there are only 8 variables")
+![](../images/repeated-measures-01.png "Data dictionary for data arranged in tall and thing format. Notice that there are only 8 variables")
 
 ::: notes
 
@@ -42,7 +42,7 @@ This is the data dictionary for the tall and thin formatted data. A single colum
 
 ## Example of short/fat, dictionary
 
-![Repeated measures example in short and fat format](images/repeated-measures-02.png "Data dictionary for data arranged in short and fat format. Notice that there are 17 variables")
+![Repeated measures example in short and fat format](../images/repeated-measures-02.png "Data dictionary for data arranged in short and fat format. Notice that there are 17 variables")
 
 ::: notes
 
@@ -52,7 +52,7 @@ Here's the data dictionary for the short and fat format. There's one row per pat
 
 ## Example of tall/thin, data
 
-![](images/repeated-measures-03.png "Partial data listing in the tall and thin format. Notice that there are twelve rows per patient.")
+![](../images/repeated-measures-03.png "Partial data listing in the tall and thin format. Notice that there are twelve rows per patient.")
 
 ::: notes
 
@@ -62,7 +62,7 @@ Here's the data for the tall and thin format. Don't worry about individual value
 
 ## Example of short/fat, data
 
-![](images/repeated-measures-04.png "Partial data listing in the short and fat format. Notice only one row per patient.")
+![](../images/repeated-measures-04.png "Partial data listing in the short and fat format. Notice only one row per patient.")
 
 ::: notes
 
@@ -96,7 +96,7 @@ The time varying table contains values that change from one visit to another in 
 
 ## Time constant data
 
-![](images/repeated-measures-05.png "Partial listing of time constant data: Sex, Age, Height, Weight")
+![](../images/repeated-measures-05.png "Partial listing of time constant data: Sex, Age, Height, Weight")
 
 ::: notes
 
@@ -106,7 +106,7 @@ There is one row per patient for the time constant variables and notice that the
 
 ## Time varying data
 
-![](images/repeated-measures-06.png "Listing of time varying data: Surface, Vision, and CTSIB")
+![](../images/repeated-measures-06.png "Listing of time varying data: Surface, Vision, and CTSIB")
 
 ::: notes
 

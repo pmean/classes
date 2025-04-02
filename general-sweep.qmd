@@ -3,6 +3,8 @@ title: "Sweep html files from src to results"
 format: 
   html:
     embed-resources: true
+execute: 
+  echo: false
 ---
 
 ## File details

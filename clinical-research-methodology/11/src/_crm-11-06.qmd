@@ -54,7 +54,7 @@ If the structure of your data is irregular and cannot fit into a rectangular gri
 
 ## A poorly structured spreadsheet 
 
-![](images/spreadsheet-data-01.png "A spreadsheet with numerous troublesome issues")
+![](../images/spreadsheet-data-01.png "A spreadsheet with numerous troublesome issues")
 
 ::: notes
 
@@ -82,7 +82,7 @@ Finally, notice the blank cells. I found out that these represented cases where 
 
 ## Revisions to this spreadsheet
 
-![](images/spreadsheet-data-02.png "A revised spreadsheet collapsing the first few rows and removing information that belongs in a data dictionary")
+![](../images/spreadsheet-data-02.png "A revised spreadsheet collapsing the first few rows and removing information that belongs in a data dictionary")
 
 ::: notes
 
@@ -94,7 +94,7 @@ The first row includes brief, but descriptive variable names. The column names a
 
 ## The codebook from this spreadsheet
 
-![](images/spreadsheet-data-03.png "Information from the original spreadsheet moved to a data dictionary")
+![](../images/spreadsheet-data-03.png "Information from the original spreadsheet moved to a data dictionary")
 
 ::: notes
 
