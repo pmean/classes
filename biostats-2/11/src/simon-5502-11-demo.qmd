@@ -31,12 +31,25 @@ This program was written by Steve Simon on 2025-02-23 and is placed in the publi
 #| label: setup
 
 library(broom)
+library(foreign)
 library(lme4)
 library(nlme)
 library(tidyverse)
 
 R.version.string
 Sys.Date()
+```
+
+## Read physical-activity
+
+```{r}
+#| label: read-pa
+
+pa <- read.spss(
+  file="../data/physical-activity.sav",
+  to.data.frame=TRUE)
+
+glimpse(pa)
 ```
 
 
