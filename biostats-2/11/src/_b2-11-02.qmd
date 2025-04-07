@@ -33,3 +33,57 @@ cat(as.yaml(dd$vars[1:3]))
 cat(as.yaml(dd$vars[4:5]))
 ```
 
+## Layout of full dataset
+
+```{r}
+#| label: 11-02-setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+load("../data/module11.RData")
+```
+
+```{r}
+#| label: 11-02-g1
+#| fig.width: 6
+#| fig.height: 3
+
+litter_graph_1
+```
+
+## Layout for two sample t-test
+
+```{r}
+#| label: 11-02-g2
+#| fig.width: 6
+#| fig.height: 3
+
+litter_graph_2
+```
+
+## Layout for the paired t-test
+
+```{r}
+#| label: 11-02-g3
+#| fig.width: 6
+#| fig.height: 3
+
+litter_graph_3
+```
+
+
+## Why you need to accommodate non-independence
+
+-   Increase in power and precision
+-   Combine multiple tests into single framework
+-   Handle missing data 
+-   Allows more sophisticated analyses
+
+## How much more power/precision?
+
+-   Within cluster comparisons standard error
+    -   $\sqrt{\frac{\sigma^2_{within}}{an}}$
+-   Between cluster comparisons standard error
+    -   $\sqrt{\frac{\sigma^2_{within}}{an}+\frac{\sigma^2_{between}}{a}}$
+    -   $\sqrt{\frac{\sigma^2_{total}}{an}(1+(n-1) \rho_{ICC})}$    

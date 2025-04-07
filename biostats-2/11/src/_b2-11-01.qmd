@@ -55,7 +55,7 @@ Often, you take measurements repeatedly on an individual under different experim
     -   Emphasis in changes over time
 
 ::: notes
-A special case that I want to handle separately is longitudinal data. This is similar to repeated measures data. With longitudinal data, often the emphasis is in changes that occur over time. Repeated measurements, in contrast, emphasize different treatments with the hope that the time gaps between the measurements are small enough that you don't see changes over time.
+A special case that I want to handle separately is longitudinal data. This is similar to repeated measures data. With longitudinal data, often the emphasis is in changes that occur over time. Repeated measurements, in contrast, emphasize different treatments with the hope that the time gaps between the measurements are small enough that you don't see changes over time other than the changes caused by differences in what you measure and how you measure it.
 :::
 
 ## Between and within cluster comparisons
@@ -105,6 +105,8 @@ A special case that I want to handle separately is longitudinal data. This is si
 
 -   $\hat\sigma_{between}^2=\frac{MS(between)-MS(within)}{a}$
 -   $\hat\sigma_{within}^2=MS(within)$
+
+## Pseudo replication
 
 ## Randomized block design
 
