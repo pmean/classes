@@ -2,11 +2,15 @@
 title: "Clinical Research Methods, Module10, Readings"
 ---
 
-### Required reading
+## Required reading
 
 Gliner, Morgan, and Leech, Chapter 13
 
-### Recommended reading <a name="recommended"></a>
+## Recommended reading
+
+Bellary S, Krishnankutty B, Latha MS. Basics of case report form designing in clinical research. Perspect Clin Res. 2014;5(4):159-166. doi: [10.4103/2229-3485.140555][ref-bellary-2014]
+
+[ref-bellary-2014]: https://doi.org/10.4103/2229-3485.140555 
 
 Bishop PA, Herron RL. Use and Misuse of the Likert Item Responses and Other Ordinal Measures. Int J Exerc Sci. 2015;8(3):297–302. Published 2015 Jul 1. Available in [html format](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4833473/) or [pdf format](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4833473/pdf/ijes_08_03_297.pdf).
 
@@ -16,7 +20,13 @@ Desselle SP. Construction, Implementation, and Analysis of Summated Rating Attit
 
 Diaz A, Peake K, Nucci-Sack A, Shankar V. Comparison of Modes of Administration of Screens to Identify a History of Childhood Physical Abuse in an Adolescent and Young Adult Population. Ann Glob Health. 2017;83(5-6):726–734. doi:10.1016/j.aogh.2017.10.023. Available in [html format](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5739060/) or [pdf format](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5739060/pdf/nihms917351.pdf).
 
+Good M. Data Management & Case Report Form Development in Clinical Trials. Introduction to the Principles and Practice of Clinical Research. Published 2016-02-02. Available as a video on [YouTube][ref-good-2016] or on the [NIH website][ref-good-2016a].
+
+Hall B. How to Prepare Case Report Forms. Sengi. Available in [html format][ref-hall-nodate].
+
 Harrison C. Questionnaire Design Tip Sheet. Harvard University Program on Survey Research. Available in [pdf format](https://psr.iq.harvard.edu/files/psr/files/PSRQuestionnaireTipSheet_0.pdf).
+
+Henderson AR. Understanding Case Report Forms. Lilly TrialGuide blog, 2020-03-03. Available in [html format][ref-henderson-2020].
 
 Jamshed S. Qualitative research method-interviewing and observation. J Basic Clin Pharm. 2014;5(4):87–88. doi:10.4103/0976-0105.141942. Available in [html format](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4194943/) or [pdf format](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4194943/pdf/JBCP-5-87.pdf).
 
@@ -34,8 +44,17 @@ Tausch AP, Menold N. Methodological Aspects of Focus Groups in Health Research: 
 
 Vanderbilt University. REDCap Videos. Available in [html format](https://projectredcap.org/resources/videos/) but note that the individual links are to mp4 video files.
 
+Venable LT, Hamilton J. Do’s and Don’ts of CRF Design. 2013-02-13. Available as a [slide show in html format][ref-venable-2013].
+
 WikiHow. How to Run a Focus Group. Available in [html format](https://www.wikihow.com/Run-a-Focus-Group).
 
 Whiting LS. Nursing Standard 2008: 22(23); 35-40. This article is behind a paywall and can be downloaded from the Canvas website.
 
 YouTube. Leading Questions- Yes Prime Minister. Taken from the 1st Season of Yes Prime Minister – Episode 2, The Ministerial Broadcast. 2:16 running time. Published on Jan 15, 2012. Available in [video format](https://www.youtube.com/watch?v=G0ZZJXw4MTA)
+
+[ref-good-2016]: https://www.youtube.com/watch?app=desktop&v=IT7iSwcaPuY&t=3591s
+[ref-good-2016a]: https://videocast.nih.gov/watch=44950
+[ref-hall-nodate]: https://sengiclinical.com/research-tips/95-prepare-case-report-forms
+[ref-henderson-2020]: https://trials.lilly.com/en-US/blog/understanding-case-report-forms
+[ref-venable-2013]: https://www.slideshare.net/slideshow/2009-ohsugdosanddontsofcrfdesign/16507572
+

@@ -13,17 +13,27 @@ execute:
 This program was written by Steve Simon on 2025-02-23 and is placed in the public domain. You can use this program any way you please.
 
 -   Data used in this program
-    -   postural-sway
-        -   [tab delimited file][ref-sway]
-        -   [dictionary][ref-sway-dd]
-
-[ref-sway]: https://github.com/pmean/data/blob/main/files/postural-sway.txt
-[ref-sway-dd]: https://github.com/pmean/data/blob/main/files/postural-sway.yaml
-
+    -   physical-activity
+        -   [tab delimited file][ref-pa]
+        -   [dictionary][ref-pa-dd]
+    -   oa
+        -   [tab delimited file][ref-oa]
+        -   [dictionary][ref-oa-dd]
+    
 -   Tibbles created by this program
-    -   sway: Original data from postural-sway.txt
+    -   oa: Original data from arthritis-treatments
+    -   oa_1: Subset with only VAS values
+    -   oa_2: Restructure to long format
+    -   pa: Original data from physical-activity-sav
+    -   pa_1: Compute change score
 -   Models created by this program
-    -   m1: 
+    -   m1: Mixed model with school as a random effect
+
+[ref-oa]: https://github.com/pmean/data/blob/main/files/oa.txt
+[ref-oa-dd]: https://github.com/pmean/data/blob/main/files/oa.yaml
+[ref-pa]: https://github.com/pmean/data/blob/main/files/physical-activity.sav
+[ref-pa-dd]: https://github.com/pmean/data/blob/main/files/physical-activity.yaml
+
 
 ```{r}
 #| message: false
@@ -31,6 +41,7 @@ This program was written by Steve Simon on 2025-02-23 and is placed in the publi
 #| label: setup
 
 library(broom)
+library(foreign)
 library(lme4)
 library(nlme)
 library(tidyverse)
@@ -39,112 +50,184 @@ R.version.string
 Sys.Date()
 ```
 
-
-## Read postural-sway
+## Read oa
 
 ```{r}
-#| label: sway-read
+#| label: read-oa
 
-sway <- read_tsv(
-  file="../data/postural-sway.txt",
-  col_types="cnn",
-  col_names=TRUE)
+oa <- read_table(
+  file="../data/arthritis-treatments.txt",
+  col_names=TRUE,
+  col_types="nnnnnnn")
 
-glimpse(sway) 
+glimpse(oa)
+```
+
+## Create subset for VAS
+
+```{r}
+#| label: subset
+
+oa |>
+  select(
+    Subject,
+    NoROM,
+    TENSROM,
+    SWDROM) |>
+  rename(
+    no=NoROM,
+    tens=TENSROM,
+    swd=SWDROM) -> oa_1
+```
+
+## Restructure into long format
+
+```{r}
+#| label: long
+
+oa_1 |>
+  pivot_longer(
+    cols=no:swd,
+    names_to="treatment",
+    values_to="rom") -> oa_2
+
+glimpse(oa_2)
+```
+
+
+## Descriptive statistics
+
+```{r}
+#| label: descriptives-oa
+
+oa_2 |>
+  group_by(treatment) |>
+  summarize(
+    vas_mean=mean(rom),
+    vas_sd=sd(rom))
+```
+
+## Plot by subject
+
+```{r}
+#| label: plot-1
+
+oa_2 |>
+  ggplot() +
+  aes(
+    x = treatment, 
+    y = rom, 
+    group = Subject) +
+  geom_line()
+```
+
+## Mixed model for oa
+
+```{r}
+#| label: mixed-oa
+
+m1 <- lmer(
+  rom ~ treatment + (1 | Subject),
+  data=oa_2)
+
+summary(m1)
+```
+
+## Variance components
+
+```{r}
+v1 <- VarCorr(m1)
+v1
+```
+
+
+## Read physical-activity
+
+```{r}
+#| label: read-pa
+
+pa <- read.spss(
+  file="../data/physical-activity.sav",
+  to.data.frame=TRUE)
+
+glimpse(pa)
 ```
 
 ## Descriptive statistics
 
 ```{r}
-#| label: descriptives
+#| label: descriptives-pa
 
-sway |>
-  mutate(sway_difference=FBSway-SideSway) |>
+pa |>
   summarize(
-    fb_sd=sd(FBSway),
-    side_sd=sd(SideSway),
-    diff_sd=sd(sway_difference)) -> sway_descriptives
-
-with(sway, cor(FBSway, SideSway))
+    mean_pre=mean(WC_PRE, na.rm=TRUE),
+    mean_post=sd(WC_POST, na.rm=TRUE))
 ```
 
-## Restructure
+## Compute change score
 
 ```{r}
-#| label: restructure
+#| label: change-score
 
-sway |>
-  mutate(id=1:nrow(sway)) |>
-  pivot_longer(
-    cols=FBSway:SideSway,
-    names_to="direction",
-    values_to="sway") -> sway_2
-
-glimpse(sway_2)
+pa |>
+  mutate(change_score=WC_POST - WC_PRE) -> pa_1
 ```
 
-## Plots
+## Draw boxplot by school
 
 ```{r}
-#| label: boxplot
+#| label: box-1
 
-sway_2 |>
+pa_1 |>
+  filter(!is.na(change_score)) |>
   ggplot() +
-  aes(x=direction, y=sway) +
+  aes(
+    x=factor(School), 
+    y=change_score) +
   geom_boxplot() +
-  scale_y_log10()
+  coord_flip() +
+  xlab("School") +
+  ylab("Change score") +
+  ggtitle("Graph drawn by Steve Simon on 2025-04-06")
 ```
 
-```{r}
-#| label: line plot
+## Draw boxplot by group
 
-sway_2 |>
+```{r}
+#| label: box-2
+#| fig.height: 1.5
+#| fig.width: 6
+
+pa_1 |>
+  filter(!is.na(change_score)) |>
   ggplot() +
-  aes(x=direction, y=sway, group=id) +
-  geom_line() +
-  scale_y_log10()
+  aes(
+    x=Group_allocation, 
+    y=change_score) +
+  geom_boxplot() +
+  coord_flip() +
+  xlab("Group") +
+  ylab("Change score") +
+  ggtitle("Graph drawn by Steve Simon on 2025-04-06")
 ```
 
-
-
-## Analyze as a paired t-test
-
-```{r}
-#| label: paired
-
-m1 <- with(sway, t.test(x=FBSway, y=SideSway, paired=TRUE))
-tidy(m1)
-
-m2 <- lmer(sway~direction + (1 | id), data=sway_2, REML=TRUE)
-summary(m2)
-```
-
-#### Comments on the code
-
-The [t.test][ref-t-test] function will conduct three different t-tests, a single sample t-test, a two-sample t-test, and a paired t-test. I normally do not use the t.test function because I prefer to provide a comparable test using the [lm][ref-lm] function.
-
-[ref-t-test]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/t.test.html
-[ref-lm]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html
-
-## Analyze as a two-sample t-test
-
-```{r}
-#| label: two-sample
-
-m3 <- with(sway_2, t.test(sway ~ direction, var.equal=TRUE))
-tidy(m3)
-
-m4 <- lmer(sway~direction + (1 | id), data=sway_2, REML=TRUE)
-summary(m4)
-```
-
-## Analyze as a mixed model
+## Fit mixed model
 
 ```{r}
 #| label: mixed
 
-m5 <- lmer(sway~Age*direction + (1 | id), data=sway_2, REML=TRUE)
-summary(m5)
+m2 <- lmer(
+  change_score ~ Group_allocation + (1 | School),
+  data=pa_1)
+
+summary(m2)
+```
+
+## Variance components
+
+```{r}
+v2 <- VarCorr(m2)
+v2
 ```
 
 ## Save everything
