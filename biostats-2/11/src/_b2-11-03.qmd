@@ -1,5 +1,5 @@
 ---
-title: "Two sample t-test on first subset"
+title: "Cluster randomized trials"
 format: 
   revealjs:
     slide-number: true
@@ -7,22 +7,150 @@ format:
 editor: source
 ---
 
-## Subset1 of litter weights
+## Design
 
--   Consider only groups 1 and 2.
--   Pick a male (sex=1) randomly from each litter
--   Example of a between litter comparison
+-   Designate two treatments
+    -   i=1,2
+    -   Possible to use three or more treatments
+-   Randomly assign clusters
+    -   j=1,...,b
+    -   Entire cluster gets same treatment
+    -   Possible to have unequal numbers within each treatment
+-   Randomly select patients within clusters
+    -   k=1,...,n
+    -   Possible to have unequal numbers within each cluster
+    
+## Physical activity study, data dictionary
 
-## Listing of subset
+```{r}
+#| label: 11-03-setup
+#| message: false
+#| warning: false
 
-![](../images/litter-weights-subset1-01.png "Listing of subset data with 20 rows and four columns")
+library(glue)
+library(tidyverse)
+library(yaml)
+load("../data/demo11.RData")
+```
 
-## Graph of subset
+```{r}
+#| label: 11-03-pa-dictionary
 
-![](../images/litter-weights-subset1-02.png "Graph showing a downward trend in means from group 1 to group 2")
+f1 <- "https://raw.githubusercontent.com/pmean"
+f2 <- "data/refs/heads/main/files"
+f3 <- "arthritis-treatments.yaml"
 
-## Two-sample t-test
+# dd <- read_yaml(glue("{f1}/{f2}/{f3}"))
+```
 
-![](../images/litter-weights-subset1-03.png "Listing of group means and standard deviations")
+This data set is from a cluster randomized trial in Norway. Students from 57 schools were recruited for the study. 29 schools were randomly assigned to physical activity intervention and 28 schools served as a control group. The outcomes were changes in various measures of cardiometabolic health.
 
-![](../images/litter-weights-subset1-04.png "Listing of group means and standard deviations")
+## Glimpse of original data
+
+```{r}
+#| label: 11-03-oa
+
+glimpse(oa)
+```
+
+## Physical activity study, glimpse of restructured data
+
+```{r}
+#| label: 11-03-oa-2
+
+glimpse(oa_2)
+```
+
+## Descriptive statistics
+
+```{r}
+#| label: 11-03-descriptives
+
+oa_means
+```
+
+## Plot by subject
+
+```{r}
+#| label: 11-03-plot
+
+oa_plot
+```
+
+## Mixed model, 1
+
+```{r}
+#| label: 11-03-mixed
+#| echo: true
+
+library(lme4)
+
+m1 <- lmer(
+  rom ~ treatment + (1 | Subject),
+  data=oa_2)
+```
+
+::: notes
+
+Information about this code is in simon-5502-11-demo
+
+:::
+
+## Mixed model, 2
+
+```{}
+Linear mixed model fit by REML ['lmerMod']
+Formula: rom ~ treatment + (1 | Subject)
+   Data: oa_2
+
+REML criterion at convergence: 253.5
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-1.8326 -0.4790  0.1129  0.6702  1.4533 
+```
+
+-   (You can ignore this part of the output)
+
+## Mixed model, 3
+
+```{}
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ Subject  (Intercept) 481.7    21.95   
+ Residual             301.8    17.37   
+Number of obs: 30, groups:  Subject, 10
+```
+
+-   $\sigma_{between}$ = 21.95
+-   $\sigma_{within}$ = 17.37
+-   ICC = 481.7/(481.7+301.8)
+    -   = `r round(481.7/(481.7+301.8), 2)`
+
+## Mixed model, 4
+
+```{}
+Fixed effects:
+              Estimate Std. Error t value
+(Intercept)     98.400      8.851  11.117
+treatmentswd     4.100      7.769   0.528
+treatmenttens  -14.200      7.769  -1.828
+```
+
+-   $\bar{X}_{swd}-\bar{X}_{no}$ = 4.1
+    -   t is close to zero, accept H0
+-   $\bar{X}_{tens}-\bar{X}_{no}$ = -14.2
+    -   Goes in the wrong direction!!!
+    -   t is close to zero, accept H0
+
+## Mixed model, 5
+
+```{}
+Correlation of Fixed Effects:
+            (Intr) trtmnts
+treatmntswd -0.439        
+treatmnttns -0.439  0.500 
+```
+
+-   (You can ignore this part of the output)
+

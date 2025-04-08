@@ -82,8 +82,47 @@ litter_graph_3
 
 ## How much more power/precision?
 
+-   Only for simple cases
+    -   Tedious but not difficult to extend
 -   Within cluster comparisons standard error
     -   $\sqrt{\frac{\sigma^2_{within}}{an}}$
+    -   $\sqrt{\frac{\sigma^2_{total}}{an}(1-\rho_{ICC})}$
 -   Between cluster comparisons standard error
     -   $\sqrt{\frac{\sigma^2_{within}}{an}+\frac{\sigma^2_{between}}{a}}$
-    -   $\sqrt{\frac{\sigma^2_{total}}{an}(1+(n-1) \rho_{ICC})}$    
+    -   $\sqrt{\frac{\sigma^2_{total}}{an}(1+(n-1) \rho_{ICC})}$
+    
+## Pseudo-replication
+
+-   Hypothetical study of water contamination
+    -   Drill 5 wells
+    -   Sample 4 times at each well
+    -   Treat as 20 independent observations
+-   Standard error is not
+    -   $\sqrt{\frac{\sigma^2_{total}}{an}}$
+-   Standard error is
+    -   $\sqrt{\frac{\sigma^2_{total}}{an}(1+(n-1) \rho_{ICC})}$
+
+::: notes
+
+Stuart H. Hurlbert. (1984), Pseudoreplication and the Design of Ecological Field Experiments. Ecological Monographs, 54: 187-211. https://doi.org/10.2307/1942661
+
+Festing, M.F.W. The “completely randomised” and the “randomised block” are the only experimental designs suitable for widespread use in pre-clinical research. Sci Rep 10, 17577 (2020). https://doi.org/10.1038/s41598-020-74538-3
+
+:::
+
+## Design considerations
+
+-   Within cluster comparisons always have greater precision and power
+    -   Not always possible
+-   Best to increase number of clusters
+    -   Not always economical
+
+## Degrees of freedom
+
+-   df = N - k
+    -   k = number of estimated parameters
+    -   What is N?
+        -   N=5? (Number of wells)
+        -   N=20? (Number of water samples)
+
+

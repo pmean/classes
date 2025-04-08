@@ -1,5 +1,5 @@
 ---
-title: "Paired t-test on second subset"
+title: "Within cluster comparisons"
 format: 
   revealjs:
     slide-number: true
@@ -7,37 +7,120 @@ format:
 editor: source
 ---
 
-## Subset2 of litter weights
+## Physical activity study, data dictionary
 
--   Only group 1
--   Randomly select one male and one female
--   Example of a within litter comparison
+```{r}
+#| label: 11-04-setup
+#| message: false
+#| warning: false
+
+library(glue)
+library(tidyverse)
+library(yaml)
+load("../data/demo11.RData")
+```
+
+```{r}
+#| label: 11-04-pa-dictionary
+
+f1 <- "https://raw.githubusercontent.com/pmean"
+f2 <- "data/refs/heads/main/files"
+f3 <- "physical-activity.yaml"
+
+dd <- read_yaml(glue("{f1}/{f2}/{f3}"))
+```
+
+`r dd$description`
+
+## Counts by school (partial listing)
+
+```{r}
+#| label: 11-04-counts
+
+pa_counts[1:10, ]
+```
+
+## Boxplot of change scores
+
+```{r}
+#| label: 11-04-pa-box
+#| fig.height: 1.5
+#| fig.width: 6
+
+pa_box
+```
+
+## Mixed model, 1
+
+```{r}
+#| label: 11-04-mixed
+#| echo: true
+
+library(lme4)
+
+m2 <- lmer(
+  change_score ~ Group_allocation + (1 | School),
+  data=pa_1)
+```
 
 ::: notes
 
+Information about this code is in simon-5502-11-demo
+
 :::
 
-## Listing of subset
+## Mixed model, 2
 
-![](../images/litter-weights-subset2-01.png "Listing of subset with 20 row and 4 columns")
+```{}
+Linear mixed model fit by REML ['lmerMod']
+Formula: change_score ~ Group_allocation + (1 | School)
+   Data: pa_1
 
-## Graph of data
+REML criterion at convergence: 5013.3
 
-![](../images/litter-weights-subset2-02.png "Line graph showing a variety of upward and downward trends between females and males within each litter")
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-4.6825 -0.5667  0.0021  0.5684  4.5686 
+```
 
-## Restructuring information
+-   (You can ignore this part of the output)
 
-![](../images/litter-weights-subset2-03.png "Messages from restructure wizard showing new variable names")
+## Mixed model, 3
 
-![](../images/litter-weights-subset2-04.png "Messages from restructure wizard showing change from 20 rows to 10 rows")
+```{}
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ School   (Intercept) 1.590    1.261   
+ Residual             6.578    2.565   
+Number of obs: 1043, groups:  School, 57
+```
 
-## View of data after restructuring
+-   $\sigma_{between}$ = 1.261
+-   $\sigma_{within}$ = 2.565
+-   ICC = 1.261/(1.261+2.565)
+    -   = `r round(1.261/(1.261+2.565), 2)`
 
-![](../images/litter-weights-subset3-01.png "Resturctured data with an extra column but only 10 rows")
+## Mixed model, 4
 
-## Paired t-test
+```{}
+Fixed effects:
+                             Estimate Std. Error t value
+(Intercept)                   1.34079    0.27058   4.955
+Group_allocationIntervention -0.01049    0.38135  -0.028
+```
 
-![](../images/litter-weights-subset2-05.png "Means and standard deviations for each half of the pairing")
+-   $\bar{X}_{Intervention}-\bar{X}_{Control}$ = -0.01
+    -   t is close to zero, accept H0
 
-![](../images/litter-weights-subset2-06.png "Test statistic and p-value for the paired t-test")
+## Mixed model, 5
+
+```{}
+Correlation of Fixed Effects:
+            (Intr)
+Grp_llctnIn -0.710
+```
+
+-   (You can ignore this part of the output)
+
+
 

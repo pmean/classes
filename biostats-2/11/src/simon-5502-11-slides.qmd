@@ -7,11 +7,8 @@ format:
 params:
   topic_01: "Hierarchical models"
   topic_02: "Hypothetical litter weights"
-  topic_03: "Two sample t-test on first subset"
-  topic_04: "Paired t-test on second subset"
-  topic_05: "Variance components on third subset"
-  topic_06: "Analysis of full dataset"
-  topic_07: "Assumptions and complications"
+  topic_03: "Cluster randomized trials"
+  topic_04: "Within cluster comparisons"
 editor: source
 ---
 
@@ -37,9 +34,6 @@ editor: source
     -   `r params$topic_02`
     -   `r params$topic_03`
     -   `r params$topic_04`
-    -   `r params$topic_05`
-    -   `r params$topic_06`
-    -   `r params$topic_07`
 
 {{< include _b2-11-01.qmd >}}
 
@@ -72,39 +66,6 @@ editor: source
     
 {{< include _b2-11-04.qmd >}}
 
-## Live demo, paired t-test and restructuring
-
-## Break #4
-
--   What you have learned
-    -   `r params$topic_04`
--   What's coming next
-    -   `r params$topic_05`
-
-{{< include _b2-11-05.qmd >}}
-
-## Live demo, Variance components
-
-## Break #5
-
--   What you have learned
-    -   `r params$topic_05`
--   What's coming next
-    -   `r params$topic_06`
-
-{{< include _b2-11-06.qmd >}}
-
-## Live demo, More variance components
-
-## Break #6
-
--   What you have learned
-    -   `r params$topic_06`
--   What's coming next
-    -   `r params$topic_07`
-
-{{< include _b2-11-07.qmd >}}
-
 ## Summary
 
 -   What you have learned
@@ -112,9 +73,6 @@ editor: source
     -   `r params$topic_02`
     -   `r params$topic_03`
     -   `r params$topic_04`
-    -   `r params$topic_05`
-    -   `r params$topic_06`
-    -   `r params$topic_07`
 
 <!---
       You have to put the title down 
