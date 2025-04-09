@@ -103,6 +103,6 @@ A special case that I want to handle separately is longitudinal data. This is si
     
 ## Variance components estimates
 
--   $\hat\sigma_{between}^2=\frac{MS(between)-MS(within)}{a}$
+-   $\hat\sigma_{between}^2=\frac{MS(between)-MS(within)}{n}$
 -   $\hat\sigma_{within}^2=MS(within)$
 

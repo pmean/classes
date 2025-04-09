@@ -82,14 +82,18 @@ litter_graph_3
 
 ## How much more power/precision?
 
--   Only for simple cases
-    -   Tedious but not difficult to extend
 -   Within cluster comparisons standard error
     -   $\sqrt{\frac{\sigma^2_{within}}{an}}$
     -   $\sqrt{\frac{\sigma^2_{total}}{an}(1-\rho_{ICC})}$
 -   Between cluster comparisons standard error
     -   $\sqrt{\frac{\sigma^2_{within}}{an}+\frac{\sigma^2_{between}}{a}}$
     -   $\sqrt{\frac{\sigma^2_{total}}{an}(1+(n-1) \rho_{ICC})}$
+
+::: notes
+
+These calculations only work for the simple case where you have the exact same number of observations in each cluster. The formulas illustrate an important issue that also holds when the number of observations does vary from cluster to cluster. The actual formulas, though, become quite tedious in this setting.
+
+:::
     
 ## Pseudo-replication
 

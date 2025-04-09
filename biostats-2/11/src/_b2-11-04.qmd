@@ -97,8 +97,8 @@ Number of obs: 1043, groups:  School, 57
 
 -   $\sigma_{between}$ = 1.261
 -   $\sigma_{within}$ = 2.565
--   ICC = 1.261/(1.261+2.565)
-    -   = `r round(1.261/(1.261+2.565), 2)`
+-   ICC = 1.590/(1.590+6.578)
+    -   = `r round(1.590/(1.590+6.578), 2)`
 
 ## Mixed model, 4
 
