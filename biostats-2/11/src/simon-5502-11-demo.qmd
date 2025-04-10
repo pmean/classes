@@ -27,8 +27,8 @@ This program was written by Steve Simon on 2025-02-23 and is placed in the publi
     -   pa: Original data from physical-activity
     -   pa_1: Compute change score
 -   Models created by this program
-    -   m1: Within cluster analysis
-    -   m2: Between cluster analysis
+    -   m1: Within cluster analysis of arthritis treatments data
+    -   m2: Between cluster analysis of physical activity data
 
 [ref-oa]: https://github.com/pmean/data/blob/main/files/oa.txt
 [ref-oa-dd]: https://github.com/pmean/data/blob/main/files/oa.yaml
@@ -50,6 +50,8 @@ library(tidyverse)
 R.version.string
 Sys.Date()
 ```
+
+------------------------------Begin part 1--------------------------------------
 
 ## Read oa
 
@@ -145,6 +147,8 @@ m1 <- lmer(
 
 summary(m1)
 ```
+
+------------------------------Begin part 2--------------------------------------
 
 ## Read physical-activity
 
