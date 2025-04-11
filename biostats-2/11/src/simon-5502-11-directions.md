@@ -4,7 +4,7 @@ title: "simon-5502-11-directions"
 
 ## General directions
 
-Use the dataset, [arthritis-treatments.txt][ref-oa], found on my github site. Refer to the [data dictionary][ref-oa-dd] if needed. You may find it helpful to adapt some of the code from [simon-5502-11-demo.qmd][ref03]. 
+Use the dataset, [arthritis-treatments.txt][ref-oa], found on my github site. Refer to the [data dictionary][ref-oa-dd] if needed. You may find it helpful to adapt some of the code from [simon-5502-11-demo.qmd][ref-simon-nodate]. 
 
 [ref-oa]: https://github.com/pmean/data/blob/main/files/arthritis-treatments.txt
 [ref-oa-dd]: https://github.com/pmean/data/blob/main/files/arthritis-treatments.yaml
