@@ -3128,8 +3128,8 @@ vertical-align: -.125em;
 </ul></li>
 <li>Models created by this program
 <ul>
-<li>m1: Within cluster analysis</li>
-<li>m2: Between cluster analysis</li>
+<li>m1: Within cluster analysis of arthritis treatments data</li>
+<li>m2: Between cluster analysis of physical activity data</li>
 </ul></li>
 </ul>
 <div class="cell">
@@ -3141,13 +3141,14 @@ vertical-align: -.125em;
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] &quot;R version 4.4.1 (2024-06-14 ucrt)&quot;</code></pre>
+<pre><code>[1] &quot;R version 4.4.3 (2025-02-28 ucrt)&quot;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] &quot;2025-04-08&quot;</code></pre>
+<pre><code>[1] &quot;2025-04-11&quot;</code></pre>
 </div>
 </div>
+<p>——————————Begin part 1————————————–</p>
 </section>
 <section id="read-oa" class="level2">
 <h2 class="anchored" data-anchor-id="read-oa">Read oa</h2>
@@ -3204,6 +3205,10 @@ $ treatment &lt;chr&gt; &quot;no&quot;, &quot;tens&quot;, &quot;swd&quot;, &quot
 $ rom       &lt;dbl&gt; 35, 50, 64, 110, 90, 120, 101, 110, 116, 99, 103, 135, 126, …</code></pre>
 </div>
 </div>
+<section id="comments-on-the-code" class="level4">
+<h4 class="anchored" data-anchor-id="comments-on-the-code">Comments on the code</h4>
+<p>The <a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a> function is in the <a href="https://tidyr.tidyverse.org/">tidyr</a> package, which is part of the tidyverse.</p>
+</section>
 </section>
 <section id="descriptive-statistics" class="level2">
 <h2 class="anchored" data-anchor-id="descriptive-statistics">Descriptive statistics</h2>
@@ -3291,6 +3296,19 @@ treatmntswd -0.439
 treatmnttns -0.439  0.500 </code></pre>
 </div>
 </div>
+<section id="comments-on-the-code-1" class="level4">
+<h4 class="anchored" data-anchor-id="comments-on-the-code-1">Comments on the code</h4>
+<p>The <a href="https://cran.r-project.org/web/packages/multilevelTools/vignettes/lmer-vignette.html">lmer</a> function is part of the <a href="https://github.com/lme4/lme4">lme4</a> package. The packageis quite detailed, but you only need to use some basic parts of it. The lmer function uses a similar approach as the lm function. You specify a model with a formula that includes a tilde(~). The dependent variable goes on the left side of the tilde and the independent variables plus the cluster variable goes on the right side. The cluster variable needs to be defined as (1 | <em>cluster-variable</em>). This might seem a bit strange, but the syntax is required for more complex models that what you will be using, at least at the start.</p>
+<p>The output from lmer is quite verbose and there is no easy way to select just what you want. You do want to use the summary function, which provides a list of fixed and random effects.</p>
+<p>I have not found a simple function that will compute the intraclass correlation. It is easy enough for you to calculate by hand.</p>
+</section>
+<section id="interpretation-of-the-output-2" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-2">Interpretation of the output</h4>
+<p>The estimated range of motion in the reference category (treament=no) is 98 degrees. The range of motion for treatment=swd is 4 degree larger than treatment=no, which represents a very small is only slightly better result. The t-value is close to zero, so you would accept the null hypothesis and conclude that there is no statistically significant difference between the groups.</p>
+<p>The estimated range of motion is smaller for treatment=swd than treatment=no. This is a surprising and disappointing result. The t statistic is borderline but probably needs to be larger than plus or minus two before you might consider this to be a statistically significant decline in range of motion.</p>
+<p>There is substantial variation between clusters (subjects are the cluster). The intraclass correlation is 481.7 / (481.7 + 301.8) = 0.61. This indicates a large degree of correlation for two measurements on the same subject.</p>
+<p>——————————Begin part 2————————————–</p>
+</section>
 </section>
 <section id="read-physical-activity" class="level2">
 <h2 class="anchored" data-anchor-id="read-physical-activity">Read physical-activity</h2>
@@ -3361,8 +3379,8 @@ $ Andersen_test_POST         &lt;dbl&gt; 820, 905, NA, NA, NA, NA, 668, 709, 860
 1 62.00128  63.18463</code></pre>
 </div>
 </div>
-<section id="interpretation-of-the-output-2" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output-2">Interpretation of the output</h4>
+<section id="interpretation-of-the-output-3" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-3">Interpretation of the output</h4>
 <p>There is a small increase in waist circumference after the study is over. This may be due to natural growth over time.</p>
 </section>
 </section>
@@ -3434,8 +3452,8 @@ $ Andersen_test_POST         &lt;dbl&gt; 820, 905, NA, NA, NA, NA, 668, 709, 860
 57     60          Control  8</code></pre>
 </div>
 </div>
-<section id="interpretation-of-the-output-3" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output-3">Interpretation of the output</h4>
+<section id="interpretation-of-the-output-4" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-4">Interpretation of the output</h4>
 <p>There is a lot of variation in the number of subjects per school, but every school has at least 7.</p>
 </section>
 </section>
@@ -3470,8 +3488,8 @@ $ Andersen_test_POST         &lt;dbl&gt; 820, 905, NA, NA, NA, NA, 668, 709, 860
 </div>
 </div>
 </div>
-<section id="interpretation-of-the-output-4" class="level3">
-<h3 class="anchored" data-anchor-id="interpretation-of-the-output-4">Interpretation of the output</h3>
+<section id="interpretation-of-the-output-5" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation-of-the-output-5">Interpretation of the output</h3>
 <p>The amount of increase in waist circumference is about the same in the treatment and control groups.</p>
 </section>
 </section>
@@ -3510,6 +3528,11 @@ Correlation of Fixed Effects:
 Grp_llctnIn -0.710</code></pre>
 </div>
 </div>
+<section id="interpretation-of-the-output-6" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-6">Interpretation of the output</h4>
+<p>The estimated change in waist circumference in the reference category (Group_allocation=Control) is 1.34 centimeters. The estimated change in the treatment group versus the control group is -0.01 which is so very very slightly smaller that you might as well call it zero. The t-statistic is close to zero indicating that this difference is not statistically significant.</p>
+<p>There is a moderate amount of variation between clusters (schools are the cluster). The intraclass correlation is 1.590 / (1.590 + 6.578) = 0.19. This indicates a weak degree of correlation for two measurements within the same school.</p>
+</section>
 </section>
 <section id="save-everything" class="level2">
 <h2 class="anchored" data-anchor-id="save-everything">Save everything</h2>
