@@ -1,0 +1,227 @@
+---
+title: "simon-5502-12-demo"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute: 
+  error: false
+---
+
+## File details
+
+This program was written by Steve Simon on 2025-04-12 and is placed in the public domain. You can use this program any way you please.
+
+-   Data used in this program
+    -   hiv-intervention
+        -   [tab delimited file][ref-hiv-nodate]
+        -   [dictionary][ref-hiv-dd-nodate]
+-   Tibbles created by this program
+    -   hiv: Original data from hiv-intervention.csv
+    -   hiv_1: Add subject id
+    -   hiv_2: Restructure to long format
+    -   hiv_3: Drop the pre measurement and controls
+-   Models created by this program
+    -   m1: Random intercepts model
+    -   m2: Random slopes model
+
+[ref-hiv-nodate]: https://github.com/pmean/data/blob/main/files/hiv-intervention.txt
+[ref-hiv-dd-nodate]: https://github.com/pmean/data/blob/main/files/hiv-intervention.yaml
+
+```{r}
+#| message: false
+#| warning: false
+#| label: setup
+
+library(lme4)
+library(tidyverse)
+
+R.version.string
+Sys.Date()
+```
+
+## Read hiv-intervention
+
+```{r}
+#| label: read
+
+hiv <- read_tsv(
+  file="../data/hiv-intervention.txt",
+  col_types="nnnnn",
+  col_names=TRUE)
+
+glimpse(hiv) 
+```
+
+## Add subject id
+
+```{r}
+#| label: add-id
+
+n <- nrow(hiv)
+hiv |>
+  mutate(id=1:n) -> hiv_1
+
+glimpse(hiv_1)
+```
+
+## Switch to long format
+
+```{r}
+#| label: long
+
+hiv_1 |>
+  pivot_longer(
+    cols=Pre:FU12,
+    names_to="t",
+    values_to="protected_sex") |>
+  mutate(t=case_when(
+    t=="Pre"  ~ -6,
+    t=="Post" ~  0,
+    t=="FU6"  ~  6,
+    t=="FU12" ~ 12)) -> hiv_2
+
+glimpse(hiv_2)
+```
+
+## Plot individual subjects for treatment group
+
+```{r}
+#| label: plot-1
+
+hiv_2 |>
+  filter(BST == 1) |>
+  ggplot() +
+  aes(x=t, y=protected_sex) +
+  geom_point() +
+  geom_line() +
+  scale_x_continuous(breaks=c(-6, 0, 6, 12)) +
+  facet_wrap(~ id, ncol=5) -> plot_1
+
+plot_1
+```
+
+#### Comment on the code
+
+The [facet_wrap][ref-facet-nodate] function is part of the [ggplot2][ref-ggplot2-nodate] library. It creates a series of small plots based on a subsetting variable. By default, the plots use the same scale on the X and Y axis.
+
+[ref-facet-nodate]: https://ggplot2.tidyverse.org/reference/facet_wrap.html
+[ref-ggplot2-nodate]: https://ggplot2.tidyverse.org/
+
+## Plot individual subjects for control group
+
+```{r}
+#| label: plot-2
+
+hiv_2 |>
+  filter(BST == 0) |>
+  ggplot() +
+  aes(x=t, y=protected_sex) +
+  geom_point() +
+  geom_line() +
+  scale_x_continuous(breaks=c(-6, 0, 6, 12)) +
+  facet_wrap(~ id, ncol=5) -> plot_2
+
+plot_2
+```
+
+## Drop the pre  and controls
+
+```{r}
+#| label: drop
+
+hiv_2 |>
+  filter(t != -6) |>
+  filter(BST != 0) -> hiv_3
+```
+
+## Fit a random intercepts model
+
+```{r}
+#| label: random-intercepts
+
+m1 <- lmer(
+  protected_sex ~ t + (1 | id),
+  data=hiv_3)
+
+summary(m1)
+```
+
+#### Comments on the code
+
+The formula in the lmer function is very similar to the formulas that were used in the previous module. The only distinction between a random intercepts model and the models used earlier (within cluster analysis and the between cluster analysis) is that the independent variable (t) is continuous rather than categorical.
+
+#### Interpretation of the output
+
+There is substantial variation in the random intercepts. The intraclass correlation is 69.57 / (69.57 + 53.34) = 0.57.
+
+The intercept, 22.3 represents the estimated average rate of protected sex at the start of the intervention (when t=0). It is unclear what the units of measurement are for this mean. The slope, -0.22,  represents the estimated average change in the rate of protected sex for each additional month. At the end of the study (12 months), the rate has declined by -0.22 * 12 = -2.64. The t-statistic is close to zero, so you should accept the null hypothesis that the slope is flat (no change over time).
+
+## Predictions, residuals, and random effects
+
+```{r}
+#| label: predict
+
+m1_predicted <- predict(m1)
+m1_residuals <- resid(m1)
+m1_random_effects <- ranef(m1)
+```
+
+## Plot of predicted values
+
+```{r}
+#| label: plot_3
+
+hiv_3 |>
+  ggplot() +
+  aes(x=t, y=protected_sex) +
+  geom_point() +
+  geom_line(y=p1) + 
+  ggtitle("Plot drawn by Steve Simon on 2025-04-12") +
+  xlab("")
+  facet_wrap(~ id, ncol=5) -> plot_3
+
+plot_3
+```
+
+## Check linearity
+
+```{r}
+#| label: plot_4
+
+hiv_3 |>
+  bind_cols(tibble(r=m1_residuals)) |>
+  ggplot() +
+  aes(x=t, y=r) +
+  geom_point()
+```
+
+## Check normality of residuals
+
+```{r}
+#| label: plot_5
+
+tibble(m1_residuals) |>
+  ggplot() +
+  aes(sample=m1_residuals) +
+  geom_qq()
+```
+
+## Check normality of random intercepts
+
+```{r}
+#| label: plot_6
+
+tibble(m1_random_effects) |>
+  ggplot() +
+  aes(sample=m1_random_effects) +
+  geom_qq()
+```
+
+## Save everything
+
+```{r}
+#| label: save
+
+save.image(file="../data/module11.RData")
+```

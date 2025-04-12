@@ -58,7 +58,9 @@ The correlation of two measurements on the same patient is comparable to a measu
 ## Random intercepts illustrated, 1 of 2
 
 ```{r}
+#| label: 12-01-plot-1
 #| fig.width: 2.667
+
 library(tidyverse)
 t <- 0:3
 e1 <- c( 1, -3,  3, -1)
@@ -67,6 +69,7 @@ g <- rep(1:3, each=4)
 data.frame(
 	  t=rep(t, 3), 
 	  g=g,
+	  lab0="Intercept = 50",
 	  y=30+10*t+10*(g==1)+50*(g==3)+3*e) -> d
 d$lab <- rep(c("- 10", "- 20", "+ 30"), each=4)
 d$lab <- paste0("Intercept = 50 ", d$lab)
@@ -80,14 +83,27 @@ d %>%
 	  	ltype="dotted",
 	  	color="black") +
 	  expand_limits(y=0) -> g1
-g1
+g1 + facet_grid(~lab0)
 
 ```
+
+::: notes
+
+This graph shows a single line. It does reasonably well, but there is a fair amount of variation. There is something worth examining more closely. The third group has values well above the regression line. The first two groups have values slightly below the regression line.
+
+:::
 
 ## Random intercepts illustrated, 2 of 2
 
 ```{r}
+#| label: 12-01-plot-2
 #| fig.width: 7
 g1 + facet_grid(~lab)
 
 ```
+
+::: notes
+
+If you fit a separate intercept for each line, you get a lot closer to the data.
+
+:::

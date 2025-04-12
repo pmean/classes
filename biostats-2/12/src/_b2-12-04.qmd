@@ -20,9 +20,9 @@ The random slopes model has the same basic notation for the time and outcome var
 
 ## Random slopes model, 2 of 2
 
--   $Y_{ij}=\beta_0+u_{0i}+\beta_1 t_j+u_{0i} t_j+\epsilon_{ij}$
+-   $Y_{ij}=\beta_0+u_{0i}+\beta_1 t_j+u_{1i} t_j+\epsilon_{ij}$
     -   $\beta_0$ and $\beta_1$ are unknown constants
-    -   $u_{0i}$, $u_{0i}$, and $\epsilon_{ij}$ are normally distributed
+    -   $u_{0i}$, $u_{1i}$, and $\epsilon_{ij}$ are normally distributed
         -   $SD(u_{0i})=\sigma_{intercept}$
         -   $SD(u_{1i})=\sigma_{slope}$
         -   $SD(\epsilon_{ij})=\sigma_{error}$
