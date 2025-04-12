@@ -11,44 +11,44 @@ editor: source
 
 ## After menu Graph | Boxplot 
 
-![](images/dialog-box-01.png "Boxplot dialog box with icon Clustered and option Summaries of separate variables")
+![](../images/dialog-box-01.png "Boxplot dialog box with icon Clustered and option Summaries of separate variables")
 
 ## After button Define 
 
-![](images/dialog-box-02.png "Summaries of Separate Variables dialog box with field Boxes Represent: Pre, Post, FU6, FU12 and field Category Axis: BST")
+![](../images/dialog-box-02.png "Summaries of Separate Variables dialog box with field Boxes Represent: Pre, Post, FU6, FU12 and field Category Axis: BST")
 
 ## After menu Data | Restructure 
 
-![](images/dialog-box-03.png "Restructure Data Wizard dialog box with option Restructure selected variables into cases")
+![](../images/dialog-box-03.png "Restructure Data Wizard dialog box with option Restructure selected variables into cases")
 
 ## After button Next
 
-![](images/dialog-box-04.png "Step 2 dialog box with default option One")
+![](../images/dialog-box-04.png "Step 2 dialog box with default option One")
 
 ## After button Next
 
-![](images/dialog-box-05.png "Step 3 dialog box with field Name id, field Target Variable: log_frequency and field Target Variable: Post, FU6, FU12, and field Fixed Variable(s): BST, Pre")
+![](../images/dialog-box-05.png "Step 3 dialog box with field Name id, field Target Variable: log_frequency and field Target Variable: Post, FU6, FU12, and field Fixed Variable(s): BST, Pre")
 
 ## After button Next
 
-![](images/dialog-box-06.png "Step 4 dialog box with default option One")
+![](../images/dialog-box-06.png "Step 4 dialog box with default option One")
 
 ## After button Next
 
-![](images/dialog-box-07.png "Step 5 dialog box with option Variable names")
+![](../images/dialog-box-07.png "Step 5 dialog box with option Variable names")
 
 ## After menu Transform | Recode into Different Variables
 
-![](images/dialog-box-08.png "Recode into Different Variables dialog box with field String Variable: Index1 and field Output Variable Name: time")
+![](../images/dialog-box-08.png "Recode into Different Variables dialog box with field String Variable: Index1 and field Output Variable Name: time")
 
 ## After button Old and New Values
 
-![](images/dialog-box-09.png "Old and New Values dialog box with Old --> New field: MISSING -> SYSMIS, 'Post' -> 0, 'FU6 -> 6, 'FU12' -> 12, ELSE -. 99")
+![](../images/dialog-box-09.png "Old and New Values dialog box with Old --> New field: MISSING -> SYSMIS, 'Post' -> 0, 'FU6 -> 6, 'FU12' -> 12, ELSE -. 99")
 
 ## After menu Graphs | Boxplot
 
-![](images/dialog-box-10.png "Boxplot dialog box with icon Clustered and option Summaries for groups of cases")
+![](../images/dialog-box-10.png "Boxplot dialog box with icon Clustered and option Summaries for groups of cases")
 
 ## After button Define
 
-![](images/dialog-box-11.png "Summaries for Groups of Cases  dialog box with field Variable log_frequency, field Category Axis: time, and field Define Clusters by: BST")
+![](../images/dialog-box-11.png "Summaries for Groups of Cases  dialog box with field Variable log_frequency, field Category Axis: time, and field Define Clusters by: BST")

@@ -22,7 +22,7 @@ editor: source
 
 ## Normality check, 1 of 2
 
-![](images/hiv-intervention-normality-check-01.png "Normal probability plot shows close to a straight line indicating normality of the random intercepts")
+![](../images/hiv-intervention-normality-check-01.png "Normal probability plot shows close to a straight line indicating normality of the random intercepts")
 
 ::: notes
 The residuals represent the deviations of individual time measurements from the regression line for an individual patient. That means the deviation from a trend line that has been randomly shifted up or down (random intercepts) and/or a randomly steeper or flatter trend line (random slopes). In this dataset, the normal probability plot looks fairly close to a straight line.
@@ -30,7 +30,7 @@ The residuals represent the deviations of individual time measurements from the 
 
 ## Normality check, 2 of 2
 
-![](images/hiv-intervention-normality-check-02.png "Normal probability plot shows a slight curvature indicating possible non-normality of the residuals")
+![](../images/hiv-intervention-normality-check-02.png "Normal probability plot shows a slight curvature indicating possible non-normality of the residuals")
 
 ::: notes
 

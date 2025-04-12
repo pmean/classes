@@ -63,7 +63,7 @@ library(tidyverse)
 t <- 0:3
 e1 <- c( 1, -3,  3, -1)
 e <- c(e1, rev(e1), e1)
-g <- rep(1:3, each=4)
+g <- rep(1:3, each=4) 
 data.frame(
 	  t=rep(t, 3), 
 	  g=g,

@@ -10,8 +10,11 @@ editor: source
 ## Description of hiv-intervention data, 1 of 2
 
 ```{r}
+#| label: 12-02-yaml
+
 library(yaml)
-dd <- read_yaml("../../../datasets/hiv-intervention.yaml")
+fn <- "https://raw.githubusercontent.com/pmean/data/refs/heads/main/files/hiv-intervention.yaml"
+dd <- read_yaml(fn)
 cat(as.yaml(dd["data_dictionary"]))
 cat(as.yaml(dd["source"]))
 cat(as.yaml(dd["description"]))
@@ -35,20 +38,20 @@ The remaining two variables FU6 and FU12 represent time=6 and time=12, respectiv
 
 ## Wide format
 
-![](images/hiv-intervention-restructure-01.png "Partial listing of original data with measurement times in separate columns")
+![](../images/hiv-intervention-restructure-01.png "Partial listing of original data with measurement times in separate columns")
 
 ## Boxplots
 
-![](images/hiv-intervention-restructure-02.png "Boxplots showing the measurement times by treatment group")
+![](../images/hiv-intervention-restructure-02.png "Boxplots showing the measurement times by treatment group")
 
 ## Colors and patterns
 
-![](images/hiv-intervention-restructure-03.png "Dialog box showing color and pattern choices")
+![](../images/hiv-intervention-restructure-03.png "Dialog box showing color and pattern choices")
 
 ## Tall format
 
-![](images/hiv-intervention-restructure-04.png "Partial listing of restructured data with all time measurements in a single column")
+![](../images/hiv-intervention-restructure-04.png "Partial listing of restructured data with all time measurements in a single column")
 
 ## Alternate clustering of boxplots
 
-![](images/hiv-intervention-restructure-05.png "Boxplots with treatment groups side by side")
+![](../images/hiv-intervention-restructure-05.png "Boxplots with treatment groups side by side")
