@@ -7,53 +7,51 @@ format:
 editor: source
 ---
 
-## Random intercepts analysis, 1 of 6
+## Random intercepts analysis, 1
 
-![](../images/hiv-intervention-analysis-01.png "")
+```{}
+Linear mixed model fit by REML ['lmerMod']
+Formula: protected_sex ~ t + (1 | id)
+   Data: hiv_3
 
-::: notes
+REML criterion at convergence: 215.1
 
-:::
-
-## Random intercepts analysis, 2 of 6
-
-![](../images/hiv-intervention-analysis-02.png "")
-
-::: notes
-
-:::
-
-## Random intercepts analysis, 3 of 6
-
-![](../images/hiv-intervention-analysis-03.png "")
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-1.8385 -0.6028  0.0364  0.5183  2.1998 
+```
 
 ::: notes
 
-:::
-
-## Random intercepts analysis, 4 of 6
-
-![](../images/hiv-intervention-analysis-04.png "")
-
-::: notes
+See simon-5505-12-demo for a detailed interpretation of this output.
 
 :::
 
-## Random intercepts analysis, 5 of 6
+## Random intercepts analysis, 2
 
-![](../images/hiv-intervention-analysis-05.png "")
+```{}
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ id       (Intercept) 69.57    8.341   
+ Residual             53.34    7.304   
+Number of obs: 30, groups:  id, 10
+```
 
-::: notes
+## Random intercepts analysis, 3
 
-:::
+```{}
+Fixed effects:
+            Estimate Std. Error t value
+(Intercept)  22.2333     3.3768   6.584
+t            -0.2167     0.2722  -0.796
+```
 
-## Random intercepts analysis, 6 of 6
+## Random intercepts analysis, 4
 
-![](../images/hiv-intervention-analysis-06.png "")
+```{}
+Correlation of Fixed Effects:
+  (Intr)
+t -0.484
+```
 
-::: notes
-
-Inserting test comment
-
-:::
-
+## Live demo, fitting a random intercepts model

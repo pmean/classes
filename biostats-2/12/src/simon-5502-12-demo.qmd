@@ -10,6 +10,8 @@ execute:
 
 ## File details
 
+[Jump](#ref-1)
+
 This program was written by Steve Simon on 2025-04-12 and is placed in the public domain. You can use this program any way you please.
 
 -   Data used in this program
@@ -39,6 +41,8 @@ library(tidyverse)
 R.version.string
 Sys.Date()
 ```
+
+------------------------------Begin part 1--------------------------------------
 
 ## Read hiv-intervention
 
@@ -95,6 +99,9 @@ hiv_2 |>
   aes(x=t, y=protected_sex) +
   geom_point() +
   geom_line() +
+  ggtitle("Plot drawn by Steve Simon on 2025-04-12") +
+  xlab("Time in months") +
+  ylab("Rate of using protected sex") +
   scale_x_continuous(breaks=c(-6, 0, 6, 12)) +
   facet_wrap(~ id, ncol=5) -> plot_1
 
@@ -108,6 +115,10 @@ The [facet_wrap][ref-facet-nodate] function is part of the [ggplot2][ref-ggplot2
 [ref-facet-nodate]: https://ggplot2.tidyverse.org/reference/facet_wrap.html
 [ref-ggplot2-nodate]: https://ggplot2.tidyverse.org/
 
+#### Interpretation of the output
+
+This graph and the one that follows show a rather chaotic state with no obvious trend or pattern across multiple patients. This leads a decision later on in this program to analyze a small subset of the data with the hope that something might emerge in that simplified setting.
+
 ## Plot individual subjects for control group
 
 ```{r}
@@ -120,6 +131,9 @@ hiv_2 |>
   geom_point() +
   geom_line() +
   scale_x_continuous(breaks=c(-6, 0, 6, 12)) +
+  ggtitle("Plot drawn by Steve Simon on 2025-04-12") +
+  xlab("Time in months") +
+  ylab("Rate of using protected sex") +
   facet_wrap(~ id, ncol=5) -> plot_2
 
 plot_2
@@ -157,6 +171,8 @@ There is substantial variation in the random intercepts. The intraclass correlat
 
 The intercept, 22.3 represents the estimated average rate of protected sex at the start of the intervention (when t=0). It is unclear what the units of measurement are for this mean. The slope, -0.22,  represents the estimated average change in the rate of protected sex for each additional month. At the end of the study (12 months), the rate has declined by -0.22 * 12 = -2.64. The t-statistic is close to zero, so you should accept the null hypothesis that the slope is flat (no change over time).
 
+------------------------------Begin part 2--------------------------------------
+
 ## Predictions, residuals, and random effects
 
 ```{r}
@@ -167,6 +183,12 @@ m1_residuals <- resid(m1)
 m1_random_effects <- ranef(m1)
 ```
 
+#### Comments on the code
+
+There is some ambiguity in what represents a predicted value. The default in the predict function is to take the estimated intercept and slope plus the estimated random intercept for a particular cluster.
+
+The [ranef][ref-ranef-nodate] function is part of the lme4 library. It extracts estimates of the random effect. In this case, this would be the random intercepts.
+
 ## Plot of predicted values
 
 ```{r}
@@ -176,13 +198,19 @@ hiv_3 |>
   ggplot() +
   aes(x=t, y=protected_sex) +
   geom_point() +
-  geom_line(y=p1) + 
+  geom_line(y=m1_predicted) + 
+  scale_x_continuous(breaks=c(0, 6, 12)) +
   ggtitle("Plot drawn by Steve Simon on 2025-04-12") +
-  xlab("")
+  xlab("Time in months") +
+  ylab("Rate of using protected sex") +
   facet_wrap(~ id, ncol=5) -> plot_3
 
 plot_3
 ```
+
+#### Interpretation of the output
+
+The predicted values show a nearly flat line with only a small decrease over time. Notice how allowing each subject to have a different intercept leads to reasonable fits for at least some of the subjects.
 
 ## Check linearity
 
@@ -190,11 +218,26 @@ plot_3
 #| label: plot_4
 
 hiv_3 |>
-  bind_cols(tibble(r=m1_residuals)) |>
+  select(t) |>
+  bind_cols(tibble(m1_residuals)) |>
   ggplot() +
-  aes(x=t, y=r) +
-  geom_point()
+  aes(x=t, y=m1_residuals) +
+  scale_x_continuous(breaks=c(0, 6, 12)) +
+  geom_point() -> plot_4
+
+plot_4
 ```
+
+#### Comments on the code
+
+In order to plot the residuals versus t, you must put both of them in the same data frame or tibble. There are several ways to do this. The [bind_cols][ref-bind-nodate] function will merge two data frames or tibbles side by side. They must have the same number of rows and the same order. The bind_cols function gets a bit confused when you are binding a vector, which is why you should convert the vector using the [tibble][ref-tibble-nodate] function.
+
+[ref-bind-nodate]: https://dplyr.tidyverse.org/reference/bind_cols.html
+[ref-tibble-nodate]: https://tibble.tidyverse.org/reference/tibble.html
+
+#### Interpretation of the output
+
+There is no obvious deviation from linearity in this graph. It looks like the 6 month value shows a bit less variability than the other time points, but this does not seem to be too serious.
 
 ## Check normality of residuals
 
@@ -204,24 +247,52 @@ hiv_3 |>
 tibble(m1_residuals) |>
   ggplot() +
   aes(sample=m1_residuals) +
-  geom_qq()
+  ggtitle("Plot drawn by Steve Simon on 2025-04-12") +
+  xlab(" ") +
+  ylab("Within subject residuals") +
+  geom_qq() -> plot_5
+
+plot_5
 ```
+
+#### Comments on the code
+
+The ggplot function expects to see a data frame or a tibble and m1_residuals is a vector. The [tibble][ref-tibble-nodate] function converts the vector into a tibble.
+
+[ref-tibble-nodate]: https://tibble.tidyverse.org/reference/tibble.html
+
+#### Interpretation of the output
+
+There appears to be an outlier on the low end, but it is not too extreme. Otherwise the random intercepts appears to be fairly close to a normal distribution.
 
 ## Check normality of random intercepts
 
 ```{r}
 #| label: plot_6
 
-tibble(m1_random_effects) |>
+tibble(x=unlist(m1_random_effects)) |>
   ggplot() +
-  aes(sample=m1_random_effects) +
-  geom_qq()
+  aes(sample=x) +
+  ggtitle("Plot drawn by Steve Simon on 2025-04-12") +
+  xlab(" ") +
+  ylab("Estimated random intercepts") +
+  geom_qq() -> plot_6
+
+plot_6
 ```
+
+#### Interpretation of the output
+
+There is another outlier, but not too extreme among the residuals. Beyond that, the residuals appear to be fairly close to a normal distribution.
 
 ## Save everything
 
 ```{r}
 #| label: save
 
-save.image(file="../data/module11.RData")
+save.image(file="../data/demo_12.RData")
 ```
+
+## References
+
+<a id="ref-1"></a>Reference #1.

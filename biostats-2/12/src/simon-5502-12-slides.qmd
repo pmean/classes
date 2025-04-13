@@ -40,8 +40,6 @@ editor: source
 
 {{< include _b2-12-02.qmd >}}
 
-{{< include _b2-12-02-demo.qmd >}}
-
 ## Break #2
 
 -   What you have learned
@@ -50,8 +48,6 @@ editor: source
     -   `r params$topic_03`
     
 {{< include _b2-12-03.qmd >}}
-
-{{< include _b2-12-03-demo.qmd >}}
 
 ## Break #3
 
@@ -71,8 +67,6 @@ editor: source
 
 {{< include _b2-12-05.qmd >}}
 
-## Live demo, normality checks
-
 ## Summary
 
 -   What you have learned
@@ -81,63 +75,6 @@ editor: source
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
-
-## Additional topics??
-
-::: notes
--   Learning objectives for mixed models
-    -   Set up a data set for a Repeated Measures ANOVA
-    -   Explain when a n-way RM ANOVA would be used to analyze data
-    -   Explain the data requirements for a n-way RM ANOVA
-    -   Write a research question for a n-way RM ANOVA
-    -   Write the Null and Research Hypotheses for a n-way RM ANOVA
-    -   Run a complete n-way RM ANOVA
-    -   List the assumptions for a n-way RM ANOVA
-    -   Explain the tests for the assumptions for a n-way RM ANOVA
-    -   Run the assumptions tests for a n-way RM ANOVA
-    -   Interpret the assumptions tests for a n-way RM ANOVA
-    -   Explain the issue that arises if the assumption of sphericity is violated
-    -   Explain how the Epsilon correction works
-    -   Explain the condition of a significant interaction effect
-    -   Explain the process to run simple main effects for a Repeated Measures n-way ANOVA
-    -   Run simple main effects for a Repeated Measures n-way ANOVA
-    -   Interpret simple main effects for a Repeated Measures n-way ANOVA
-    -   Explain the special considerations for simple main effects for a Repeated Measures n-way ANOVA with a factor with >2 levels
-    -   Explain the process to run  main effects for a Repeated Measures n-way ANOVA
-    -   Run main effects for a Repeated Measures n-way ANOVA
-    -   Interpret main effects for a Repeated Measures n-way ANOVA
-    -   Summarize the output of a complete n-way RM ANOVA
-    -   Define the meaning of mixed model
-    -   Define Between Subjects in relation to the mixed model
-    -   Define Within Subjects in relation to the mixed model
-    -   Be familiar with the various names for a mixed model ANOVA
-    -   List the purpose of running a mixed model ANOVA
-    -   Identify Between and Within factors for a mixed model ANOVA
-    -   List the type of data that can be used to define the levels in a mixed model ANOVA
-    -   List the assumptions for a mixed model ANOVA
-    -   Successfully run the statistical analysis tests for the assumptions of a mixed model ANOVA
-    -   Interpret the statistical analysis tests for the assumptions of a mixed model ANOVA
-    -   Explain how normality of the data is assessed
-    -   Explain the rules for violation of the assumption of homogeneity of variances
-    -   Define Homogeneity of Covariances
-    -   Identify Box's Test
-    -   Develop a research question for a mixed model ANOVA
-    -   Write the Null and Alternative for a mixed model ANOVA
-    -   Set up data for a mixed model ANOVA in the SPSS data editor
-    -   Run a two-way mixed model ANOVA analysis using SPSS
-    -   Interpret the output of a two-way mixed model ANOVA analysis
-    -   Understand the process of determining the presence or not of an interaction effect
-    -   Define Simple Main Effects
-    -   Determine when Simple Main Effects would be run
-    -   Define Main Effects
-    -   Determine when  Main Effects would be run
-    -   Run the Simple Main Effects following a decision about the interaction effect
-    -   Interpret the Simple Main Effects
-    -   Run the Main Effects following a decision about the interaction effect
-    -   Interpret the Main Effects
-    -   Interpret Pair-Wise comparisons
-    -   Create a complete write up of a mixed model ANOVA analysis
-:::
 
 <!---
       You have to put the title down 

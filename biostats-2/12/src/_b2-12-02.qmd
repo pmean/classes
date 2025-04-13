@@ -7,7 +7,19 @@ format:
 editor: source
 ---
 
-## Description of hiv-intervention data, 1 of 2
+```{r}
+#| label: 12-02-setup
+#| message: false
+#| warning: false
+
+library(lme4)
+library(tidyverse)
+library(yaml)
+
+load("../data/demo_12.RData")
+```
+
+## Description of hiv-intervention data, 1
 
 ```{r}
 #| label: 12-02-yaml
@@ -21,37 +33,71 @@ cat(as.yaml(dd["description"]))
 ```
 
 ::: notes
+
 Here is a dataset I will use to illustrate the random intercepts model. It actually might require a more sophisticated model than the random intercepts, but it is always a good idea to start with the simplest model, even if you know it is an oversimplification. Slowly add layers of complexity, and don't fit the final model too early. You want to wade in from the shallow end of the pool rather than jump right away into the deep end.
+
 :::
 
-## Description of hiv-intervention data, 2 of 2
+## Description of hiv-intervention data, 2
 
 ```{r}
 cat(as.yaml(dd$vars[1:5]))
 ```
 
 ::: notes
-Here are the first three variables. The actual times associated with the Pre and Post measurements are unclear. It turns out that it will be best to hold the Pre measurement back for the time being and start the clock at time=0 for the Post measurement. Remember that you are wading in from the shallow end of the pool.
+Here are the variables. The actual times associated with the Pre and Post measurements are unclear. It turns out that it will be best to hold the Pre measurement back for the time being and start the clock at time=0 for the Post measurement. Remember that you are wading in from the shallow end of the pool.
 
 The remaining two variables FU6 and FU12 represent time=6 and time=12, respectively.
+
 :::
 
-## Wide format
+## Glimpse of the hiv-intervention data
 
-![](../images/hiv-intervention-restructure-01.png "Partial listing of original data with measurement times in separate columns")
+```{r}
+#| label: 12-02-glimpse-1
 
-## Boxplots
+glimpse(hiv)
+```
 
-![](../images/hiv-intervention-restructure-02.png "Boxplots showing the measurement times by treatment group")
+::: notes
 
-## Colors and patterns
+The data uses a wide format with one row per subject and individual columns for the measurements prior to the intervention, after the intervention, 6 months later, and 12 months later.
 
-![](../images/hiv-intervention-restructure-03.png "Dialog box showing color and pattern choices")
+:::
 
-## Tall format
+## Plot of the data, 1
 
-![](../images/hiv-intervention-restructure-04.png "Partial listing of restructured data with all time measurements in a single column")
+```{r}
+#| label: 12-02-plot-1
 
-## Alternate clustering of boxplots
+plot_1
+```
 
-![](../images/hiv-intervention-restructure-05.png "Boxplots with treatment groups side by side")
+::: notes
+
+This is a series of plots, one for each subject, in the treatment group (BST=1). It uses the facet_wrap function.
+
+:::
+
+## Plot of the data, 2
+
+```{r}
+#| label: 12-02-plot-2
+
+plot_2
+```
+
+::: notes
+
+This is a similar series of plots for the control group (BST=0).
+
+:::
+
+## Glimpse of the restructured and simplified data
+
+```{r}
+#| label: 12-02-glimpse-2
+
+
+glimpse(hiv_3)
+```

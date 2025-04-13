@@ -20,7 +20,7 @@ Longitudinal data is similar to repeated measures data. With both, you measure t
 The differences between longitudinal data, repeated measures data, or hierarchical data are subtle. Perhaps these are distinctions without a difference. I decided to separate out longitudinal data for a different module perhaps more out of the desire to split a complex topic into smaller bite-sized pieces.
 :::
 
-## Random intercepts model, 1 of 3
+## Random intercepts model, 1
 
 -   Simplest pattern for longitudinal data
 -   $Y_{ij},\ i=1,...,n;\ j=1,...,k$
@@ -32,7 +32,7 @@ The differences between longitudinal data, repeated measures data, or hierarchic
 The simplest longitudinal model has n subjects and k time points. The first time point is often set to zero. The times are often evenly spaced, but they don't have to be.
 :::
 
-## Random intercepts model, 2 of 3
+## Random intercepts model, 2
 
 -   $Y_{ij}=\beta_0+u_{0i}+\beta_1 t_j + \epsilon_{ij}$
     -   $\beta_0$ and $\beta_1$ are unknown constants
@@ -44,7 +44,7 @@ The simplest longitudinal model has n subjects and k time points. The first time
 There are two sources of random variation in the random intercepts model, $u_{0i}$ and $\epsilon_{ij}$.
 :::
 
-## Random intercepts model, 3 of 3
+## Random intercepts model, 3
 
 -   $SD(Y_{ij})=\sqrt{\sigma^2_{intercept}\ +\ \sigma^2_{error}}$
 -   $Corr(Y_{ij}, Y_{im})=\frac{\sigma^2_{intercept}}{\sigma^2_{intercept}\ +\ \sigma^2_{error}}$
@@ -55,7 +55,7 @@ The standard deviation for any individual observation combines the standard devi
 The correlation of two measurements on the same patient is comparable to a measure we defined in the last module, the intraclass correlation.
 :::
 
-## Random intercepts illustrated, 1 of 2
+## Random intercepts illustrated, 1
 
 ```{r}
 #| label: 12-01-plot-1
@@ -93,7 +93,7 @@ This graph shows a single line. It does reasonably well, but there is a fair amo
 
 :::
 
-## Random intercepts illustrated, 2 of 2
+## Random intercepts illustrated, 2
 
 ```{r}
 #| label: 12-01-plot-2
@@ -107,3 +107,17 @@ g1 + facet_grid(~lab)
 If you fit a separate intercept for each line, you get a lot closer to the data.
 
 :::
+
+## Illustration of random intercepts with real data
+
+```{r}
+#| label: 12-01-setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+
+load("../data/demo_12.RData")
+
+plot_3
+```
