@@ -1,0 +1,1134 @@
+---
+title: "Reading the Titanic dataset"
+format: 
+  html:
+    embed-resources: true
+execute: 
+  error: true
+editor: source
+---
+
+## File details
+
+This program was written by Steve Simon on 2025-01-06 and is placed in the public domain. You can use this program any way you please.
+
+This program reads data on mortality of passengers on the Titanic. Refer to the [data dictionary][ref01] for a more detailed description.
+
+[ref01]: https://github.com/pmean/data/blob/main/files/titanic.yaml
+
+```{r}
+#| message: false
+#| warning: false
+#| label: setup
+
+R.version.string
+Sys.Date()
+library(epitools)
+library(glue)
+library(tidyverse)
+```
+
+#### Documentation of the intermediate datasets
+
+-   ti: Data as originally read in from the text file
+-   ti_1: Convert survived to a factor
+-   ti_2: Created new variable, third_class
+-   ti_3: Created new variable, child
+-   pclass_counts: counts and percentages for each passenger class
+-   sex_survived_crosstab: counts for survived by sex
+
+## Reading in the Titanic data set
+
+```{r}
+#| label: read-ti
+
+fn <- "../data/titanic.csv"
+ti <- read_csv(fn,
+  col_types="ccncn")
+glimpse(ti)
+```
+
+## Peek at the bottom of the data
+
+```{r}
+#| label: tail-ti
+
+ti |>
+  slice_tail(n=10)
+```
+
+#### Comments on the code
+
+The [slice_tail][ref02] function (part of the dplyr/tidyverse libraries) displays one or more rows of data at the bottom of a data set. This is similar to the [tail][ref03] function in base R. 
+
+For large files, it is often worthwhile to look at the bottom of dataset after you read it in. Often the first few rows of data look fine. but problems crop up in the middle of the file which distort the data from that point onward. Other times, you might find stray comments or extra blank lines at the end of a text file. You won't notice these problems if you don't look at the bottom of the file.
+
+[ref02]: https://dplyr.tidyverse.org/reference/slice.html
+[ref03]: https://stat.ethz.ch/R-manual/R-devel/library/utils/html/head.html
+
+## Descriptive statistics on age
+
+```{r}
+#| label: age-ti
+
+ti |>
+  summarize(
+    age_mean=round(mean(age, na.rm=TRUE), 1),
+    age_sd=round(sd(age, na.rm=TRUE), 1),
+    age_min=min(age, na.rm=TRUE),
+    age_max=max(age, na.rm=TRUE),
+    age_missing=sum(is.na(age)))
+```
+
+#### Interpretation of the output
+
+The average passenger on the Titanic was 30 years old. There is a wide variation in ages, with a standard deviation of 14 and a range of ages from 0.17 years (2 months) to 70 years.
+
+## More information on the extremes
+
+```{r}
+#| label: extremes-ti
+
+ti |>
+  slice_min(age, na_rm=TRUE)
+
+ti |>
+  slice_max(age, na_rm=TRUE)
+```
+
+#### Comments on the code
+
+The [slice_min][ref-slice-nodate] function is part of the dplyr/tidyverse library. It will select the row or rows of a data frame or tibble that have the smallest value for a particular variable. The slice_max function does the same for the largest value. Note the use of the na_rm argument, which is inconsistent with the na.rm argument found in the min and max functions.
+
+[ref-slice-nodate]: https://dplyr.tidyverse.org/reference/slice.html
+
+#### Interpretation of the output
+
+The youngest passenger, a female in third class, survived. There were three passengers tied for the oldest. All were men in first or second class and all of them died.
+
+## Counts and percentages
+
+```{r}
+#| label: counts-ti
+
+ti |>
+  count(pclass) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total) |>
+  mutate(pct=glue("{n}/{total} ({round(pct)}%)")) |>
+  select(-n, -total)
+```
+
+#### Comments on the code
+
+The [count][ref04] function (part of the dplyr/tidyverse libraries) counts the number of observations in each level of a categorical variable. You can also use the [table][ref05] function in base R, which produces results in a slightly different format.
+
+[ref04]: https://dplyr.tidyverse.org/reference/count.html
+[ref05]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/table.html
+
+The [sum][ref06] function adds up all the values. When placed inside the mutate function, it creates a new column with the same sum beside each row. This allows us to compute a percentage later.
+
+[ref06]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/sum.html
+
+The [glue][ref07] function (part of the glue library) allows you to insert numbers into nicely formatted strings. You can also use the [paste and paste0][ref08] functions to do the same thing. If you are familiar with how C and C++ produces nicely formatted output, you might consider using the [sprintf][ref09] function.
+
+[ref07]: https://glue.tidyverse.org/
+[ref08]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/paste.html
+[ref09]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/sprintf.html
+
+#### Interpretation of the output
+
+More than half of the passengers were in third class. Among the remaining passengers, there were slightly more first class than second class passengers.
+
+## Bar chart with percents
+
+```{r}
+#| fig.width: 6
+#| fig.height: 2.5
+#| label: bar-percents
+
+ticks <- c(10, 20, 30, 40, 50)
+pclass_counts |>
+  mutate(pct=100*n/total) |>
+  ggplot() +
+    aes(x=pclass, y=pct) +
+    geom_col(color="black", fill="white") +
+    ggtitle("Graph drawn by Steve Simon on 2025-01-16") +
+    xlab("Passenger class") +
+    ylab("Percentage") +
+    scale_y_continuous(breaks=ticks, labels=glue("{ticks}%")) +
+    coord_flip()
+```
+
+#### Comments on the code
+
+The [geom_col][ref10] function (parts of the ggplot2/tidyverse libraries) draws a bar chart with a bar for each level of the "x" variable and where the height of each bar is defined by the "y" variable. Don't confuse this with the geom_bar function which displays the counts for each level of a categorical variable.
+
+There is also a [barchart][ref11] function in the graphics library (part of base R) that you can use.
+
+[ref10]: https://ggplot2.tidyverse.org/reference/geom_bar.html
+[ref11]: https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/barplot.html
+
+## Creating factors, 1
+
+```{r}
+#| label: factors
+
+ti |>
+  mutate(
+    survived=
+      factor(
+        survived, 
+        levels=c(0, 1), 
+        labels=c("dead", "alive"))) -> ti_1
+```
+
+## The Titanic dataset, 1
+
+```{r}
+#| message: false
+#| warning: false
+#| label: r-04-01-setup
+
+library(tidyverse)
+```
+
+
+## The Titanic dataset, 2
+
+```{r}
+#| label: 04-01-glimpse
+
+glimpse(ti)
+```
+
+::: notes
+
+Here are the key variables.
+
+:::
+
+
+## Descriptive statistics on age
+
+```{r}
+#| label: 04-01-age-1
+
+ti |>
+  summarize(
+    age_mean=mean(age, na.rm=TRUE),
+    age_sd=sd(age, na.rm=TRUE),
+    age_min=min(age, na.rm=TRUE),
+    age_max=max(age, na.rm=TRUE),
+    missing=sum(is.na(age))
+  )
+
+```
+
+::: notes
+
+You learned how to get descriptive statistics for continuous variables in a previous module. The youngest passenger is `r min(ti$age, na.rm=TRUE)` years old and the oldest is `r max(ti$age, na.rm=TRUE)` years old. Let's peek at their data values.
+
+:::
+
+## Print out information on youngest
+
+```{r min}
+ti |>
+  slice_min(age, na_rm=TRUE)
+```
+
+::: notes
+
+:::
+
+## Print out information on oldest
+
+```{r max}
+ti |>
+  slice_max(age, na_rm=TRUE)
+```
+
+::: notes
+
+Here is the oldest passenger. There are three actually, who are tied for the oldest. It turns out that the little baby survived, but nonoe of the three oldest men.
+
+:::
+
+## Freqency counts
+
+```{r table-simple}
+PClass_counts <- table(ti$PClass)
+PClass_counts
+```
+
+::: notes
+
+For categorical variables, you should first get frequency counts. A mean and standard deviation are usually meaningless for categorical data.
+
+Unlike most other statistical packages, R tends to have a minimalist approach to statistics. If you asked for frequency counts in SAS or SPSS, these systems would automatically add percentages. R doesn't add percentages automatically.
+
+This is something that you will either love or hate. You might think that SAS and SPSS are more thoughtful because almost every time you want a count, you'd also want the corresponding percentage. Or you might find it annoying to tell those programs to not clutter up your output with information you didn't want.
+
+Personally, I don't like software deciding for me what I want. I'd rather ask for percentages explicitly when I need them rather than have them come as the default.
+
+Now this is a rather trivial issue, but it does illustrate an important difference in philosophy. R makes you ask for the extras that you might need. SAS and SPSS force you to ask to NOT include things that they think are important.
+
+So the table function produces only counts. 
+
+:::
+
+## Proportions
+
+```{r table-proportion}
+PClass_proportions <-
+  prop.table(PClass_counts)
+PClass_proportions
+```
+
+::: notes
+
+If you want percentages in addition to counts, there are several approaches.
+
+The prop.table function takes a frequency table and converts it to a proportion.
+
+:::
+
+## Percentages
+
+```{r table-pct}
+PClass_percents <- 
+  round(100*PClass_proportions)
+PClass_percents
+```
+
+::: notes
+
+Multiply by 100 and round to get percentages.
+
+:::
+
+## Percentages
+
+```{r table-pct-sign}
+pct.sign <- "%"
+PClass_nice_percents <- 
+  paste0(PClass_percents, pct.sign)
+PClass_nice_percents
+```
+
+::: notes
+
+You can get even fancier. The paste function concatenates several string variables and if something is not a string, R will convert it to a string before concatenating.
+
+:::
+
+## Percentages
+
+```{r table-names}
+colon <- ": "
+PClass_nicest_percents <- 
+  paste0(
+    names(PClass_percents), 
+    colon,
+    PClass_percents, 
+    pct.sign)
+PClass_nicest_percents
+```
+
+::: notes
+
+Somehow, the names of the passenger class got lost. So let's add them back in. A colon and a space between the names and the numbers helps as well.
+
+:::
+
+## Fractions and percentages
+
+```{r fractions}
+n  <- sum(PClass_counts)
+slash <- "/"
+comma <- ", "
+percents_and_fractions <- paste0(
+  PClass_nicest_percents, comma,
+  PClass_counts, slash, n)
+percents_and_fractions
+```
+
+::: notes
+
+Finally, you can combine the counts and the total with the percents to make things look really nice.
+
+This shows how I like to program in R. First, get something simple. Then slowly add layers to it until you get a nice polished product.
+
+In contrast, most other statistical packages try to produce polished results right from the start. This has some advantages, but the approach used by R, where many of the functions do something simple and basic, allows you to polish the results the way you want them.
+
+:::
+
+## Tables that include counts of missing values.
+
+```{r table-usena}
+PClass_missing <- 
+  table(ti$PClass, useNA="always")
+PClass_missing
+```
+
+::: notes
+
+The default option in the table function is to not list missing values. During the intitial data screening, you should always look for missing values. This is done with the useNA parameter.
+
+:::
+
+## Total count
+
+```{r table-addmargins}
+PClass_total <- 
+  addmargins(PClass_missing)
+PClass_total
+```
+
+::: notes
+
+You can add a total count to the frequency table with the addmargins function.
+
+:::
+
+## An alternative approach to counts and percentages (1/6)
+
+```{r alt-1}
+pclass_count <- 
+  count(ti, PClass)
+pclass_count
+```
+
+## An alternative approach to counts and percentages (2/6)
+
+```{r alt-2}
+pclass_totals <- 
+  mutate(pclass_count, total=sum(n))
+pclass_totals
+```
+
+## An alternative approach to counts and percentages (3/6)
+
+```{r alt-3}
+pclass_percents <- 
+  mutate(
+    pclass_totals, 
+    pct=round(100*n/total))
+```
+
+## An alternative approach to counts and percentages (4/6)
+
+```{r alt-4}
+pclass_percents
+```
+
+## An alternative approach to counts and percentages (5/6)
+
+```{r alt-5}
+pclass_nice_percents <- 
+  mutate(
+    pclass_percents, 
+    pct=
+      paste0(
+        pct, "% (", n, "/", total, ")"))
+```
+
+## An alternative approach to counts and percentages (6/6)
+
+```{r alt-6}
+select(pclass_nice_percents, PClass, pct)
+```
+
+## One more
+
+```{r alt-7}
+pclass_nice_percents %>%
+  select(PClass, pct) %>%
+  pivot_wider(names_from=PClass, values_from=pct)
+```
+
+
+## Factors
+
+```{r factors-2}
+ti$surv_factor <- 
+  factor(
+    ti$Survived, 
+    levels=0:1, 
+    labels=c("No","Yes"))
+table(ti$surv_factor)
+```
+
+::: notes
+
+The factor function is similar to the variable label in SPSS and the format statement in SAS. It assigns category names (No and Yes) to numeric codes (0 and 1). It also has other features that are helpful in linear and logistic regression models, such as the ability to specify contrasts.
+
+:::
+
+## Crosstabulation
+
+```{r crosstabs1}
+pclass_by_gender <- 
+  table(ti$PClass, ti$Sex)
+pclass_by_gender
+```
+
+::: notes
+
+A crosstabulation shows counts across the combination of two different categorical variables. 
+
+:::
+
+## Row proportions, code
+
+```{r row_proportions}
+row_proportions <- 
+  prop.table(
+    pclass_by_gender, 
+    margin=1)
+```
+
+::: notes
+
+The prop.table function converts counts into proportions. Use margin=1 to get row proportions.
+
+:::
+
+## Row proportions, output
+
+```{r display-row-proportions}
+row_proportions
+```
+
+::: notes
+
+Row proportions add up to 1 within each row.
+
+:::
+
+## Row percentages
+
+```{r row_pcts}
+row_pcts <- round(100*row_proportions)
+row_pcts
+```
+
+::: notes
+
+It is a lot easier to read if you convert the proportions into percentages and then round. 
+
+:::
+
+## Column percentages, code
+
+```{r compute-column-percentages}
+col_proportions <- 
+  prop.table(
+    pclass_by_gender,
+    margin=2)
+col_pcts <- round(100*col_proportions)
+```
+
+::: notes
+
+Setting the margin parameter to 2 gives column proportions.
+
+:::
+
+## Column percentages, output
+
+```{r display-column-percentages}
+col_pcts
+```
+
+::: notes
+
+Column proportions add up to 1 within each column. 
+
+:::
+
+## Cell percentages, code
+
+```{r cell_pcts-code}
+cell_proportions <- 
+  prop.table(pclass_by_gender)
+cell_pcts <- 
+  round(100*cell_proportions)
+```
+
+::: notes
+
+If you omit the margin parameter, R produces cell proportions.
+
+:::
+
+## Cell percentages, output
+
+```{r cell-pcts-output}
+cell_pcts
+```
+
+::: notes
+
+Cell proportions add up to 1 across all the cells in the table. 
+
+:::
+
+## Which percentages should you use
+
++ General guidance
+  + Set the rows to your treatment/exposure 
+  + Set the columns to your outcome
+  + Compute row percentages
++ why not try several formats
+  + Revised your tables as often as you revise your writing
+  
+::: notes
+
+It's beyond the scope of this class, but with crosstabulations, you have choices as to what should be the rows and what should be the columns. Then you can compute row, column, or cell percentages.
+
+I've found that nine times out of ten, the best choice depends on what is your treatment variable and what is your outcome. It usually works best if you place the treatment variable in the rows and the outcome in the columns and compute row percentages. That shows how often you see a particular outcome in the treatment group and the percentage in the control group is right beneath it.
+
+That being said, I would also encourage you to try several different approaches.
+
+:::
+
+## Practical example, code
+
+```{r survival-chart}
+gender_by_survival <- 
+  table(ti$Sex, ti$surv_factor)
+survival_proportions <- 
+  prop.table(
+    gender_by_survival, 
+    margin=1)
+survival_percents <- 
+  round(100*survival_proportions)
+```
+
+## Practical example, output
+
+```{r survival_percents}
+survival_percents
+```
+
+::: notes
+
+The key question in the Titanic dataset is survival. Who lived and who died. Kate Winslet lived, but sad to say, Leonardo diCaprio didn't. So what was the survival rate for all women? For all men?
+
+Using the rules shown on the previous slide, survival is obviously the outcome. Make that the columns and gender the rows. Then compute row percentages (margin=1).
+
+For this, you can see that 67% of the women survived, but only 17% of the men did.
+
+:::
+
+## Barplot of counts, code
+
+```{r barplot1}
+simple_barplot <- 
+  ggplot(ti, aes(x=PClass)) + 
+    geom_bar()
+ggsave(
+  "../images/barplot1.png", 
+  simple_barplot)
+```
+
+::: notes
+
+I'm not a big fan of bar plots, but they sometimes have their uses. You can get a barplot for the frequency count.
+
+Because of the way Rmarkdown displays graphs, I have to put the code on a separate slide from the graph.
+
+:::
+
+## Barplot of counts, graph
+
+![Barplot of counts](../images/barplot1.png)
+
+::: notes
+
+Here is what the plot looks like.
+
+:::
+
+
+## Barplot of percentages, code
+
+```{r barplot2}
+percentages_barplot <- 
+  ggplot(ti, aes(x=PClass)) + 
+    geom_bar(aes(weight=100/n))
+ggsave(
+  "../images/barplot2.png", 
+  percentages_barplot)
+```
+
+::: notes
+
+Use weights to get a bar chart of percentages.
+
+:::
+
+## Barplot of proportions, graph
+
+![Barplot of proportions](../images/barplot2.png)
+
+::: notes
+
+Here is what the plot looks like.
+
+:::
+
+## Barplot of percentages, code
+
+```{r barplot3}
+labeled_barplot <- 
+  percentages_barplot +
+    scale_y_continuous(
+      "Percent", 
+      breaks=c(0, 20, 40), 
+      labels=c("0%", "20%", "40%"))
+ggsave(
+  "../images/barplot3.png", 
+  labeled_barplot)
+```
+
+::: notes
+
+You can control how the y-axis is labeled with the scale_y_continuous function.
+
+:::
+
+## Barplot of counts, graph
+
+![Barplot of counts](../images/barplot3.png)
+
+::: notes
+
+Here is what the plot looks like.
+
+:::
+
+## New categorical variables
+
+```{r recode-simple}
+ti$child <- case_when(
+  is.na(ti$Age) ~ "Unknown",
+  ti$Age <=  0   ~ "Invalid",
+  ti$Age <  18    ~ "Yes",
+  ti$Age >= 18    ~ "No")
+table(ti$child, useNA="always")
+```
+
+::: notes
+
+There are several ways to create a new categorical variable in R, but the easiest way is through the use of logical comparisons.
+
+Suppose you wanted to compute a categorical variable called "child" which is equal to 1 if a passenger is less than 18 years old and 0 if a passenger is 18 or older. Here's one way to do it.
+
+:::
+
+## Quality check for child
+
+```{r recode-child-check}
+range(ti$Age[ti$child=="No"])
+range(ti$Age[ti$child=="Yes"])
+table(ti$Age[ti$child=="Unknown"], useNA="always")
+```
+
+::: notes
+
+Anytime you create a new categorical variable, you should run a quality check to make sure nothing is wrong. The range function is useful for this.
+
+:::
+
+## More on recoding
+
+```{r recode-combine-code}
+ti$lower_class <- case_when(
+  is.na(ti$PClass) ~ "Unknown",
+  ti$PClass=="1st" ~ "No",
+  ti$PClass=="2nd" ~ "Yes",
+  ti$PClass=="3rd" ~ "Yes")
+```
+
+::: notes
+
+Sometimes you want to combine two or more of the categories together. Here is how you might create a new passenger class variable with values of 1 for second and third class and 0 for first class.
+
+:::
+
+## More on recoding, output
+
+```{r recode-combine-output}
+table(
+  ti$lower_class,
+  ti$PClass, 
+  useNA="always")
+```
+
+::: notes
+
+As before, it's a good a idea to run a crosstabulation to verify that the new coding was done properly.
+
+:::
+
+## Creating multi-level categories, code
+
+```{r recode-cut-code}
+ti$age_groups <- case_when(
+  is.na(ti$Age) ~ "Missing",
+  ti$Age <= 0   ~ "Invalid",
+  ti$Age <= 1.5 ~ "Infant",
+  ti$Age <= 12  ~ "Child",
+  ti$Age <= 19  ~ "Teenager",
+  ti$Age >  19  ~ "Adult")
+```
+
+::: notes
+
+Here's a more complex example. Notice that I check instinctively for invalid values.
+
+:::
+
+## Creating multi-level categories, output
+
+```{r recode-cut-output}
+table(ti$age_groups, useNA="always")
+```
+
+::: notes
+
+These are the counts for each of the age groups.
+
+:::
+
+## Quality check
+
+```{r qc}
+range(ti$Age[ti$age_groups=="Infant"])
+range(ti$Age[ti$age_groups=="Child"])
+range(ti$Age[ti$age_groups=="Teenager"])
+range(ti$Age[ti$age_groups=="Adult"])
+```
+
+::: notes
+
+Notice that the ages are consistent with our expectations. A table like this is nice documentation, since decisions about who is an adult (18 and older? 21 and older?) are sometimes forgotten.
+
+:::
+
+
+#### Comments on the code
+
+The [factor][ref12] function (part of base R), attaches descriptive labels to categorical data that otherwise might use cryptic number or letter codes.
+
+In this code, I store any changes made to the original data as a new tibble. If you do this, document at the top of the program what change was made in the new file.
+
+[ref12]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/factor.html
+
+## Creating factors, 2
+
+```{r}
+#| label: survived
+ti_1 |>
+  count(survived) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{n}/{total} ({pct}%)")) |>
+  select(-n, -total)
+```
+
+#### Interpretation of the output
+
+Things did not go well for the passengers of the Titanic. Only about a third of the passengers survived.
+
+## Re-ordering categories
+
+```{r}
+#| label: re-order
+ti_1 |>
+  mutate(pclass=factor(pclass, levels=c("3rd", "2nd", "1st"))) |>
+  count(pclass) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{n}/{total} ({pct}%)")) |>
+  select(-n, -total)
+```
+
+#### Comments on the code
+
+When R processes strings, it will arrange them by default in alphabetical order. If you want a different order, use that preferred order in the levels argument of the factor function.
+
+## Recoding categorical data, 1
+
+```{r}
+#| label: recode-pclass
+ti_1 |>
+  mutate(
+    third_class=
+      case_when(
+        is.na(pclass) ~ "unknown",
+        pclass=="1st" ~ "no",
+        pclass=="2nd" ~ "no",
+        pclass=="3rd" ~ "yes")) -> ti_2
+```
+
+#### Comments on the code
+
+The [case_when][ref13] function (part of the dply/tidyverse libraries) will allow you to create a new variable based on various logical comparisons. You list a sequence of conditions on the left side of the tilde and the value that you want to assign if that condition is true on the right side of the tilde. The conditions are evaluated in sequence and the value chosen is the first logical comparison that evaluates to TRUE.
+
+There are no missing values for pclass, but accounting for missing values as the first comparison is a good habit to get into.
+
+[ref13]: https://dplyr.tidyverse.org/reference/case_when.html
+
+## Recoding categorical data, 2
+
+```{r}
+#| label: count-third-class
+ti_2 |>
+  count(third_class) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{n}/{total} ({pct}%)")) |>
+  select(-n, -total)
+```
+
+#### Comments on the code
+
+The [case_when][ref14] function (part of the dplyr/tidyverse libraries) creates a new variable or modifies an old variable based on a sequence of logical conditions.
+
+[ref14]: https://dplyr.tidyverse.org/reference/case_when.html
+
+#### Interpretation of the output
+
+As noted earlier, a bit more than half of the passengers were in third class.
+
+## Converting continuous data to categorical data, 1
+
+```{r}
+#| label: recode-age
+ti_2 |>
+  mutate(
+    child=
+      case_when(
+        is.na(age) ~ "Unknown",
+        age <= 0 ~ "Invalid",
+        age < 18 ~ "Yes",
+        TRUE ~ "No")) -> ti_3
+```
+
+#### Comments on the code
+
+Notice again how you should check for missing values first. The code also checks for zero or negative ages (although there aren't any) just because it is a good habit you should develop.
+
+## Converting continuous data to categorical data, 2
+
+```{r}
+#| label: count-child
+ti_3 |>
+  count(child) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{n}/{total} ({pct}%)")) |>
+  select(-n, -total)
+```
+
+#### Interpretation of the output
+
+A large fraction (almost half) of the ages are missing. Of the non-missing ages, there were more than 7 times as many adults as children.
+
+## Two way crosstabulation
+
+```{r}
+#| label: two-way
+ti_3 |>
+	count(sex, survived) -> sex_survived_crosstab
+sex_survived_crosstab
+```
+
+#### Comments on the code
+
+The count function can also work with two (or more arguments). In this example, it calculates every possible combination of sex and survived:
+
+-   female died
+-   female alive
+-   male died
+-   male alive
+
+#### Interpretation of the output.
+
+The largest group on the Titanic was male deaths. There were only about half as many female survivors. The smallest counts were male survivors and female deaths.
+
+## Arranged in a table
+
+```{r}
+#| label: table
+sex_survived_crosstab |>
+	pivot_wider(
+		names_from="survived",
+		values_from="n") -> sex_survived_crosstabtable
+sex_survived_crosstabtable
+```
+
+#### Comments on the code
+
+The [pivot_wider][ref15] function (part of the dplyr/tidyverse libraries) will spread data across multiple columns. In this case, it places the counts of the survivors in one column and places the counts of the deaths in a separate column. This produces a rectangular format that most other statistical software programs use. In fact, the table function with two arguments will also produce the table you see here. There's a subtle difference, though. The table function produces an array rather than a tibble.
+
+If you wanted the counts for males in one column and the counts for females in a separate column, change the names from argument from "survived" to "sex".
+
+[ref15]: https://tidyr.tidyverse.org/reference/pivot_wider.html
+
+## Overall percents
+
+```{r}
+#| label: overall
+sex_survived_crosstab |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total))
+```
+
+#### Comments on the code
+
+There are three different percentages that you can calculate for this table. The first mutate command places the grand total (1,313) in each row of the data and the second mutate command computes a percentage. For the sake of simplicity, I did not use the glue function to create a nice display for these percentage.
+
+## Percents by sex
+
+```{r}
+#| label: by-sex
+sex_survived_crosstab |>
+  group_by(sex) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  filter(survived=="alive") |>
+  mutate(pct_survived=glue("{pct}% ({n}/{total})")) |>
+  ungroup() |>
+  select(survived, pct_survived)
+```
+
+#### Comments on the code
+
+The [group_by][ref16] function (part of the dplyr/tidyverse libraries) creates a grouped tibble. A grouped tibble is a modification of the tibble that allows you to make calculations across subsets. In this case, the mutate function immediately following the group_by statement calculates separate totals for male and female passengers. This produces a set of conditional probabilities, the probability of death/survival separately for males and females. 
+
+Since death/survival is a binary event, you do not need to display both. The filter command keeps the survival probabilities and drops the death probabilities.
+
+[ref16]: https://dplyr.tidyverse.org/reference/group_by.html
+
+#### Interpretation of the output
+
+Most of the female passengers survived, about two out of every three. Very few male passengers survived, about one out of every six.
+
+## Percents by survived
+
+```{r}
+#| label: by-survived
+sex_survived_crosstab |>
+  group_by(survived) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  filter(sex=="female")  |>
+  mutate(pct_female=glue("{pct}% ({n}/{total})")) |>
+  ungroup() |>
+  select(survived, pct_female)
+```
+
+#### Comments on the code
+
+Using survived as the argument in the group_by function creates a different set of conditional probabilities, The probability of being a male or female passenger given that you survived or given that you died.
+
+#### Interpretation of the output
+
+Only a small percentage of deaths (less than one in five) was female deaths. Among survivors, more than two-thrids were female.
+
+## clustered bar chart, 1
+
+```{r}
+#| label: clustered-1
+sex_survived_crosstab |>
+	ggplot() +
+	  aes(x=sex, y=n, fill=survived) +
+    coord_flip() +
+	  geom_col(
+	    color="black",
+	    position="dodge")
+```
+
+#### Comments on the code
+
+The geom_col function can produce clustered bar charts. The cluster is defined by the fill argument in the aes function. The position="dodge" argument inside the geom_col function tells R that you want the clustered bars to appears side by side.
+
+#### Interpretation of the output
+
+The largest bar with a count of over 700 is for male deaths. The next largest bar, slighltly more than 300 is for female survivors. The two smallest bars around 150 passengers each are for male survivors and female deaths.
+
+## clustered bar chart, 2
+
+```{r}
+#| label: clustered-2
+
+sex_survived_crosstab |>
+	ggplot() +
+	  aes(x=sex, y=n, fill=survived) +
+    coord_flip() +
+	  geom_col(
+	    color="black",
+	    position="stack")
+```
+
+#### Comments on the code
+
+If you replace position="dodge" with position= "stack", the bars are placed on the left and right of each other (or top and bottom if you didn't use coord_flip). This makes for a slightly different interpretation.
+
+#### Interpretation of the output
+
+The vast majority of male passengers died, while most of the female passengers survived.
+
+## Odds ratio
+
+```{r}
+#| label: or
+
+oddsratio(x=ti_3$sex, y=ti_3$survived)
+```
+
+#### Comments on the code
+
+The [oddsratio][ref17] function (part of the epitools package) uses a bit different syntax. It does not have a data= argument and that means that you need to specify both the tibble and the variable separated by a dollar sign. This also makes it difficult for you to include this function inside a series of pipes. 
+
+This is common for many libraries (and for major parts of base R) and is a glaring inconsistency in the R language.
+
+[ref17]: https://cran.r-project.org/web/packages/epitools/epitools.pdf
+
+#### Interpretation of the output
+
+The odds of survival is ten times lower for males than females. The confidence interval excludes the value of 1, so there is a statistically significant decrease in risk of survival for male passengers compared to female passengers.
+
+## Relative risk
+
+```{r}
+#| label: rr
+
+riskratio(x=ti_3$sex, y=ti_3$survived)
+```
+
+#### Comments on the code
+
+The riskratio function is also part of the epitools library and is documented in the previous link.
+
+#### Interpretation of the output
+
+The probability of survival is four times lower for males than females. Notice that this is quite different from the odds ratio. When to use the odds ratio and when to use the relative risk is well beyond the scope of this class. I have an [informal explanation][ref18] of the issues involved on my website that happens to use this same dataset as one of the illustrative examples.
+
+The confidence interval excludes the value of 1, so there is a statistically significant decrease in risk of survival for male passengers compared to female passengers.
+
+[ref18]: http://www.new.pmean.com/or-vs-rr/
+
+## Save everything
+
+```{r}
+#| label: save
+
+
+save.image("../data/demo-04.RData")
+```

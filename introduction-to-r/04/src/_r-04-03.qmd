@@ -1,5 +1,5 @@
 ---
-title: "r-01-03, TBA-3"
+title: "r-04-03, Factors and crosstabulations"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,177 @@ format:
 editor: source
 ---
 
-## TBA-3
+## Factors
 
-:::notes
+```{r factors}
+ti$surv_factor <- 
+  factor(
+    ti$Survived, 
+    levels=0:1, 
+    labels=c("No","Yes"))
+table(ti$surv_factor)
+```
+
+::: notes
+
+The factor function is similar to the variable label in SPSS and the format statement in SAS. It assigns category names (No and Yes) to numeric codes (0 and 1). It also has other features that are helpful in linear and logistic regression models, such as the ability to specify contrasts.
 
 :::
+
+## Crosstabulation
+
+```{r crosstabs1}
+pclass_by_gender <- 
+  table(ti$PClass, ti$Sex)
+pclass_by_gender
+```
+
+::: notes
+
+A crosstabulation shows counts across the combination of two different categorical variables. This table shows that there are `r pclass_by_gender[1, 1]` female first class passengers, `r pclass_by_gender[1, 2]` male first class passengers, `r pclass_by_gender[2, 1]` female second class passengers, etc.
+
+:::
+
+## Row proportions, code
+
+```{r row_proportions}
+row_proportions <- 
+  prop.table(
+    pclass_by_gender, 
+    margin=1)
+```
+
+::: notes
+
+The prop.table function converts counts into proportions. Use margin=1 to get row proportions.
+
+:::
+
+## Row proportions, output
+
+```{r display-row-proportions}
+row_proportions
+```
+
+::: notes
+
+Row proportions add up to 1 within each row.
+
+:::
+
+## Row percentages
+
+```{r row_pcts}
+row_pcts <- round(100*row_proportions)
+row_pcts
+```
+
+::: notes
+
+It is a lot easier to read if you convert the proportions into percentages and then round. In first class, `r row_pcts[1, 1]`% of the passengers are female. In second class, `r row_pcts[2, 1]`% are female, and so forth.
+
+:::
+
+## Column percentages, code
+
+```{r compute-column-percentages}
+col_proportions <- 
+  prop.table(
+    pclass_by_gender,
+    margin=2)
+col_pcts <- round(100*col_proportions)
+```
+
+::: notes
+
+Setting the margin parameter to 2 gives column proportions.
+
+:::
+
+## Column percentages, output
+
+```{r display-column-percentages}
+col_pcts
+```
+
+::: notes
+
+Column proportions add up to 1 within each column. Again, converting to percents and rounding helps a lot. Among the female passengers, `r col_pcts[1, 1]`% traveled in first class, `r col_pcts[2, 1]`% in second class, and `r col_pcts[3, 1]`% in third class.
+
+:::
+
+## Cell percentages, code
+
+```{r cell_pcts-code}
+cell_proportions <- 
+  prop.table(pclass_by_gender)
+cell_pcts <- 
+  round(100*cell_proportions)
+```
+
+::: notes
+
+If you omit the margin parameter, R produces cell proportions.
+
+:::
+
+## Cell percentages, output
+
+```{r cell-pcts-output}
+cell_pcts
+```
+
+::: notes
+
+Cell proportions add up to 1 across all the cells in the table. Converting to percents, you can see that `r cell_pcts[1, 1]`% of the passengers were first class femles, `r cell_pcts[1, 2]`% were first class males, `r cell_pcts[2, 1]`% were second class females, etc.
+
+:::
+
+## Which percentages should you use
+
++ General guidance
+  + Set the rows to your treatment/exposure 
+  + Set the columns to your outcome
+  + Compute row percentages
++ why not try several formats
+  + Revised your tables as often as you revise your writing
+  
+::: notes
+
+It's beyond the scope of this class, but with crosstabulations, you have choices as to what should be the rows and what should be the columns. Then you can compute row, column, or cell percentages.
+
+I've found that nine times out of ten, the best choice depends on what is your treatment variable and what is your outcome. It usually works best if you place the treatment variable in the rows and the outcome in the columns and compute row percentages. That shows how often you see a particular outcome in the treatment group and the percentage in the control group is right beneath it.
+
+That being said, I would also encourage you to try several different approaches.
+
+:::
+
+## Practical example, code
+
+```{r survival-chart}
+gender_by_survival <- 
+  table(ti$Sex, ti$surv_factor)
+survival_proportions <- 
+  prop.table(
+    gender_by_survival, 
+    margin=1)
+survival_percents <- 
+  round(100*survival_proportions)
+```
+
+## Practical example, output
+
+```{r survival_percents}
+survival_percents
+```
+
+::: notes
+
+The key question in the Titanic dataset is survival. Who lived and who died. Kate Winslet lived, but sad to say, Leonardo diCaprio didn't. So what was the survival rate for all women? For all men?
+
+Using the rules shown on the previous slide, survival is obviously the outcome. Make that the columns and gender the rows. Then compute row percentages (margin=1).
+
+For this, you can see that `r survival_percents[1, 2]`% of the women survived, but only `r survival_percents[2, 2]`% of the men did.
+
+:::
+

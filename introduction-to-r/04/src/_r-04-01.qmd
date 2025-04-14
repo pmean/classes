@@ -1,5 +1,5 @@
 ---
-title: "r-04-01, The Titanic dataset"
+title: "r-04-01, Review statistics for continuous outcomes"
 format: 
   revealjs:
     slide-number: true
@@ -10,15 +10,17 @@ editor: source
 ## The Titanic dataset, 1
 
 ```{r}
-#| label: r-04-01-setup
+#| label: 04-01-setup
 #| message: false
 #| warning: false
 
+library(glue)
 library(tidyverse)
-load("../data/module04.RData")
+load("../data/module-04.RData")
+load("../data/demo-04.RData")
 ```
 
-`r titanic_dictionary$description`
+titanic_dictionary$description
 
 ::: notes
 
@@ -40,57 +42,57 @@ Here are the key variables.
 
 :::
 
+## Peek at the bottom
+
+`r tail`
+
+::: notes
+
+Comments on the code and interpretation of the output appears in simon-5505-04-demo.
+
+:::
 
 ## Descriptive statistics on age
 
+`r age`
+
+
+## Print out information on youngest and oldest passengers
+
+`r extremes`
+
+## Counts and percentages, 1
+
+## Counts and percentages, 1
+
 ```{r}
-#| label: 04-01-age-1
+#| label: 04-01-counts-1
 
 ti |>
-  summarize(
-    age_mean=mean(age, na.rm=TRUE),
-    age_sd=sd(age, na.rm=TRUE),
-    age_min=min(age, na.rm=TRUE),
-    age_max=max(age, na.rm=TRUE),
-    missing=sum(is.na(age))
-  )
-
+  count(pclass)
 ```
 
-::: notes
+## Counts and percentages, 2
 
-You learned how to get descriptive statistics for continuous variables in a previous module. The youngest passenger is `r min(ti$Age, na.rm=TRUE)` years old and the oldest is `r max(ti$Age, na.rm=TRUE)` years old. Let's peek at their data values.
+```{r}
+#| label: 04-01-counts-2
 
-:::
-
-## Print out information on youngest
-
-```{r min}
 ti |>
-  slice_min(Age, na.rm=TRUE)
+  count(pclass) |>
+  mutate(total=sum(n))   
+  mutate(pct=100*n/total)
 ```
 
-::: notes
+## Counts and percentages, 3
 
-:::
+```{r}
+#| label: 04-01-counts-3
 
-## Print out information on oldest
-
-```{r max}
 ti |>
-  slice_max(Age, na.rm=TRUE)
+  count(pclass) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total) |>
+  mutate(pct=glue("{n}/{total} ({round(pct)}%)")) |>
+  select(-n, -total)
 ```
-
-::: notes
-
-Here is the oldest passenger. It turns out that the little baby survived, but not the old man.
-
-:::
-
-## Break #1
-+ What have you learned
-  + Reading in the Titanic dataset
-+ What's next
-  + Categorical versus continuous variables
-  + Counts, proportions, and percentage
 

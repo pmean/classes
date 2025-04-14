@@ -1,5 +1,5 @@
 ---
-title: "r-01-04, TBA-4"
+title: "r-04-04, Barplots"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,90 @@ format:
 editor: source
 ---
 
-## TBA-4
+## Barplot of counts, code
 
-:::notes
+```{r barplot1}
+simple_barplot <- 
+  ggplot(ti, aes(x=PClass)) + 
+    geom_bar()
+ggsave(
+  "../images/barplot1.png", 
+  simple_barplot)
+```
+
+::: notes
+
+I'm not a big fan of bar plots, but they sometimes have their uses. You can get a barplot for the frequency count.
+
+Because of the way Rmarkdown displays graphs, I have to put the code on a separate slide from the graph.
 
 :::
+
+## Barplot of counts, graph
+
+![Barplot of counts](../images/barplot1.png)
+
+::: notes
+
+Here is what the plot looks like.
+
+:::
+
+
+## Barplot of percentages, code
+
+```{r barplot2}
+percentages_barplot <- 
+  ggplot(ti, aes(x=PClass)) + 
+    geom_bar(aes(weight=100/n))
+ggsave(
+  "../images/barplot2.png", 
+  percentages_barplot)
+```
+
+::: notes
+
+Use weights to get a bar chart of percentages.
+
+:::
+
+## Barplot of proportions, graph
+
+![Barplot of proportions](../images/barplot2.png)
+
+::: notes
+
+Here is what the plot looks like.
+
+:::
+
+## Barplot of percentages, code
+
+```{r barplot3}
+labeled_barplot <- 
+  percentages_barplot +
+    scale_y_continuous(
+      "Percent", 
+      breaks=c(0, 20, 40), 
+      labels=c("0%", "20%", "40%"))
+ggsave(
+  "../images/barplot3.png", 
+  labeled_barplot)
+```
+
+::: notes
+
+You can control how the y-axis is labeled with the scale_y_continuous function.
+
+:::
+
+## Barplot of counts, graph
+
+![Barplot of counts](../images/barplot3.png)
+
+::: notes
+
+Here is what the plot looks like.
+
+:::
+

@@ -6,80 +6,81 @@ format:
 editor: source
 ---
 
-```{r setup-0}
+## Preliminaries
+
+```{r}
 #| message: false
 #| warning: false
+#| label: 04-00-setup
 
+library(glue)
 library(tidyverse)
-library(yaml)
 ```
 
-## Data dictionary
+## Read and parse simon-5505-04-demo.qmd
 
 ```{r}
-#| label: yaml
-#| message: false
-#| warning: false
+#| label: 04-00-parse
 
-library(yaml)
+fn <- "simon-5505-04-demo.qmd"
 
-f1 <- "https://raw.githubusercontent.com/"
-f2 <- "pmean/data/refs/heads/main/files/"
-f3 <- "titanic.yaml"
-titanic_dictionary <- read_yaml(paste0(f1, f2, f3))
-```
+parse_code <- function(fn) {
+  # Extract code from individual chunks of a Quarto or 
+  # RMarkdown program.
+  
+  # For my programs, code always starts at s1 and ends at s2.
+  # I want to display the code inside another Quarto program,
+  # so I add a prefix and postfix that tells Quarto to
+  # display the code without any reformatting.
+  
+  s1 <- fixed("#| label: ") # Beginning boundary
+  s2 <- "^```$"             # Ending boundary
 
-`r titanic_dictionary$description`
+  prefix <- "```{}"         # Goes before R chunk
+  postfix <- "```"          # Goes after R chunk
 
-## Create grab functions
+  demo_text <- read_lines(fn)
 
-```{r}
-#| label: grab
+  t1 <- str_which(demo_text, s1)
+  t2 <- str_which(demo_text, s2)
+  
+  # I should check here that the lengths of t1 and t2 are the same.
 
-grab_entire_file <- function(fn, max_lines=10) {
-  tx <- read_lines(fn)
-  if (length(tx) > max_lines) tx <- tx[1:max_lines]
-  paste0(c("```", tx, "```"), collapse="\n")
-}
+  code <- NULL
 
-grab_code_segment <- function(fn, lab) {
-  tx <- read_lines(fn)
-  n_lines <- length(tx)
-  start <- which(str_detect(tx, fixed(lab)))
-  if (length(start) == 0) return("String not found")
-  for (i in start:n_lines) {
-    if (str_detect(tx[i], "```")) break
+  for (i in 1:length(t1)) {
+    # Find the label value for a chunk and store it in v.
+    demo_text[t1[i]] |>
+      str_remove(s1) |>
+      str_replace_all(fixed("-"), "_") -> v
+    
+    # Select two lines after s1 and one line before s2
+    # and add prefix and postfix. Store in a list with
+    # the name stored in v.
+    r <- (t1[i]+2):(t2[i]-1) 
+    prefix |>
+      append(demo_text[r]) |>
+      append(postfix) |>
+      paste0(collapse="\n") -> code[v]
   }
-  stop <- i
-  paste0(c("```", tx[(start+2):stop]), collapse="\n")
+  # Display the results here as a quality check.
+  for (v in names(code)) {
+    cat("\n----------")
+    cat(v)
+    cat("----------\n")
+    cat(code[v])
+  }   
 }
 ```
 
-## Create segments
-
 ```{r}
-#| label: create-segments
+#| label: parse
 
-titanic_data <- grab_entire_file("../data/titanic.csv")
-cat(titanic_data)
-
-titanic_read <- grab_code_segment(
-  "simon-5505-04-demo-01.qmd", 
-  "#| label: titanic-read")
-cat(titanic_read)
-
-titanic_tail <- grab_code_segment(
-  "simon-5505-04-demo-01.qmd", 
-  "#| label: titanic-tail")
-cat(titanic_tail)
-
+code <- parse_code("simon-5505-04-demo.qmd")
 ```
+
+## Save everything important
 
 ```{r save}
-save(
-	titanic_dictionary,
-	titanic_data,
-	titanic_read,
-	titanic_tail,
-	file="../data/module04.RData")
+save(code, file="../data/module-04.RData")
 ```
