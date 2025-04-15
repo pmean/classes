@@ -160,7 +160,14 @@ More than half of the passengers were in third class. Among the remaining passen
 
 -------------------------------Begin Part 3-------------------------------------
 
+```{r}
+#| label: crosstabs
 
+ti_1 |>
+  count(sex, survived)
+
+
+```
 
 ::: notes
 

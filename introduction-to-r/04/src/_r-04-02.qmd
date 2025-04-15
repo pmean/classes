@@ -7,6 +7,21 @@ format:
 editor: source
 ---
 
+```{r}
+#| label: 04-02-setup
+#| message: false
+#| warning: false
+
+library(glue)
+library(tidyverse)
+library(yaml)
+
+load("../data/module-04.RData")
+load("../data/demo-04.RData")
+```
+
+
+
 ## Categorical versus continuous variables
 
 + Categorical
@@ -30,7 +45,7 @@ The distinction between continuous and categorical variables is important in dec
 
 ```{r}
 #| echo: true
-#| label: 04-01-counts-1
+#| label: 04-02-counts-1
 
 ti |>
   count(pclass)
@@ -54,7 +69,7 @@ Now this is a rather trivial issue, but it does illustrate an important differen
 
 ```{r}
 #| echo: true
-#| label: 04-01-counts-2
+#| label: 04-02-counts-2
 
 ti |>
   count(pclass) |>
@@ -72,7 +87,7 @@ Most other programs will compute percentages automatically or as part of the sam
 
 ```{r}
 #| echo: true
-#| label: 04-01-counts-3
+#| label: 04-02-counts-3
 
 ti |>
   count(pclass) |>
@@ -87,17 +102,3 @@ ti |>
 Another nice feature of R is that if you don't like what the output looks like, you have many different ways to improve on it.
 
 :::
-
-
-```{r table-addmargins}
-PClass_total <- 
-  addmargins(PClass_missing)
-PClass_total
-```
-
-::: notes
-
-You can add a total count to the frequency table with the addmargins function.
-
-:::
-
