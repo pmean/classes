@@ -1,5 +1,5 @@
 ---
-title: "r-04-03, Factors and crosstabulations"
+title: "r-04-03, Crosstabulations"
 format: 
   revealjs:
     slide-number: true
@@ -16,7 +16,7 @@ library(glue)
 library(tidyverse)
 ```
 
-## Crosstabulation
+## Hypothetical dataset
 
 ```{r}
 #| label: hypothetical-2
@@ -35,7 +35,7 @@ Here is a simple hypothetical data set. The variable "intervention" represents w
 
 :::
 
-##
+## Counts by intervention and result
 
 ```{r}
 #| echo: true
@@ -51,6 +51,8 @@ A crosstabulation shows counts across the combination of two different categoric
 
 :::
 
+## Counts by result and intervention
+
 ```{r}
 #| echo: true
 #| label: 04-03-xtabs-2
@@ -65,9 +67,10 @@ There is a subtle change when you switch the order of the two arguments in the c
 
 :::
 
-## Rectangular layout, 1
+## Rectangular layout, rows are result
 
 ```{r}
+#| echo: true
 #| label: 04-03-rectangle-1
 
 hypo_2 |>
@@ -85,9 +88,10 @@ R is a minimalist package and you have to convert the counts from a single colum
 
 :::
 
-## Rectangular layout, 2
+## Rectangular layout, rows are outcome
 
 ```{r}
+#| echo: true
 #| label: 04-03-rectangle-2
 
 hypo_2 |>
@@ -100,4 +104,55 @@ hypo_2 |>
 
 ## Conditional probabilities, 1
 
+```{r}
+#| echo: true
+#| label: 04-03-conditional-1
+
+hypo_2 |>
+  count(intervention, result) |>
+	group_by(intervention) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) -> prob_1
+
+prob_1
+```
+
+::: notes
+
+There are two different ways to compute conditional probabilities. The first is to divide by the number of controls (3) or the number of treated (7).
+
+:::
+
 ## Conditional probabilities, 2
+
+```{r}
+#| echo: true
+#| label: 04-03-conditional-2
+
+hypo_2 |>
+  count(intervention, result) |>
+	group_by(result) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total))
+```
+
+::: notes
+
+You could also divide the numer of failures (4) or the number of successes. This is more than a trivial distinction.
+
+:::
+
+## Interpretation, 1
+
+```{r}
+#| label: 04-03-interpretation-1
+
+interpretation <- c(
+	"P[f|c]",
+	"P[s|c]",
+	"P[f|t]",
+	"P[s|t]")
+
+bind_cols(prob_1, interpretation)
+```
+
