@@ -1,0 +1,134 @@
+---
+title: Sample size justification
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+```{r}
+#| label: 12-06-setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(tidyverse)
+```
+
+## Effect of co-housing on sample size calculations, 1
+
+![](../images/luciano-01.png)
+
+::: notes
+
+Read a bit from this abstract:
+
+"Analysis of preclinical lifespan studies often assume that outcome data from co-housed animals are independent. In practice, treatments, such as controlled feeding or putative life-extending compounds, are applied to whole housing units, and as a result the outcomes are potentially correlated within housing units. We consider intra-class (here, intra-cage) correlation in three published and two unpublished lifespan studies of aged mice encompassing more than 20 thousand observations. We show that the independence assumption underlying common analytic techniques does not hold in these data, particularly for traits associated with frailty. We describe and demonstrate various analytical tools available to accommodate this study design and highlight a limitation of standard variance components models (i.e., linear mixed models) which are the usual statistical tool for handling correlated errors. Through simulations, we examine the statistical biases resulting from intra-cage correlations with similar magnitudes as observed in these case studies and discuss implications for power and reproducibility."
+
+:::
+
+## Effect of co-housing on sample size calculations, 2
+
+![](../images/luciano-02.png)
+
+::: notes
+
+There are around 120 different conditions across five major studies. The total number of mice in all these studies is roughly twenty thousand.
+
+If you are planning a study, find a boxplot similar to yours (in particular, look at the sex and the strain of mouse).
+
+I just picked the bottom most graph for females. The median is about 28 months and the interquartile range is about 15.
+
+:::
+
+## Effect of co-housing on sample size calculations, 3
+
+![](../images/luciano-03.png)
+
+::: notes
+
+There are two different ways to estimate the intraclass correlation. The combined estimate from a linear mixed model (bottom left) is 0.049. This is a reasonable choice, but if you know some details of these experiments, you may prefer an estimate from an experiment that is similar to the one you plan.
+
+:::
+
+## Effect of co-housing on sample size calculations, 4
+
+![](../images/luciano-04.png)
+
+::: notes
+
+The researchers did some sample size calculations for a between cluster comparison. The general trend is that you need a larger sample size as the intraclass correlation increases. Notice that even a very small intraclass correlation has an impact on the sample size. Also notice that housing more mice per cage also causes an increase in sample size. This is fairly intutive if you think about it. More animals in a cage means more positive correlation spread across a larger number of animals.
+
+:::
+
+## Sample size estimate without clustering
+
+```{r}
+#| echo: true
+#| label: sample-size-1
+
+delta <- 4
+sd_independence <- 11.1
+
+power.t.test(
+	n=NULL, 
+	delta=4,
+	sd=sd_independence,
+	sig.level=0.05,
+	power=0.8,
+	type="two.sample") |> 
+	tidy() -> sample_size_1
+
+sample_size_1
+```
+
+## Sample size estimate with clustering, 4 animals per cage
+
+```{r}
+#| echo: true
+#| label: sample-size-2
+
+deff <- 1+(4-1)*0.049
+sd_correlated <- sd_independence * sqrt(deff)
+
+power.t.test(
+	n=NULL, 
+	delta=4,
+	sd=sd_correlated,
+	sig.level=0.05,
+	power=0.8,
+	type="two.sample") |> 
+	tidy()
+```
+
+
+
+## Sample size estimate with clustering, 8 animals per cage
+
+```{r}
+#| echo: true
+#| label: sample-size-3
+
+deff <- 1+(8-1)*0.049
+sd_correlated <- sd_independence * sqrt(deff)
+
+power.t.test(
+	n=NULL, 
+	delta=4,
+	sd=sd_correlated,
+	sig.level=0.05,
+	power=0.8,
+	type="two.sample") |> 
+	tidy()
+```
+
+## You could also just multiply the sample size by the design effect
+
+```{r}
+#| echo: true
+#| label: sample-size-4
+
+sample_size_1$n * (1+(4-1)*0.049)
+sample_size_1$n * (1+(8-1)*0.049)
+```

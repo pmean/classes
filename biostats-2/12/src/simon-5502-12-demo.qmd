@@ -10,8 +10,6 @@ execute:
 
 ## File details
 
-[Jump](#ref-1)
-
 This program was written by Steve Simon on 2025-04-12 and is placed in the public domain. You can use this program any way you please.
 
 -   Data used in this program
@@ -25,7 +23,6 @@ This program was written by Steve Simon on 2025-04-12 and is placed in the publi
     -   hiv_3: Drop the pre measurement and controls
 -   Models created by this program
     -   m1: Random intercepts model
-    -   m2: Random slopes model
 
 [ref-hiv-nodate]: https://github.com/pmean/data/blob/main/files/hiv-intervention.txt
 [ref-hiv-dd-nodate]: https://github.com/pmean/data/blob/main/files/hiv-intervention.yaml
@@ -35,6 +32,7 @@ This program was written by Steve Simon on 2025-04-12 and is placed in the publi
 #| warning: false
 #| label: setup
 
+library(broom)
 library(lme4)
 library(tidyverse)
 
@@ -283,16 +281,12 @@ plot_6
 
 #### Interpretation of the output
 
-There is another outlier, but not too extreme among the residuals. Beyond that, the residuals appear to be fairly close to a normal distribution.
+There is another outlier, but not too extreme among the random intercepts. Beyond that, the values appear to be fairly close to a normal distribution.
 
 ## Save everything
 
 ```{r}
 #| label: save
 
-save.image(file="../data/demo_12.RData")
+save.image(file="../data/demo-12.RData")
 ```
-
-## References
-
-<a id="ref-1"></a>Reference #1.

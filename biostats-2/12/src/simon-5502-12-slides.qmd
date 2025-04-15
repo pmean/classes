@@ -10,6 +10,7 @@ params:
   topic_03: "Random intercepts model using hiv-intervention data"
   topic_04: "Mathematical formulation of random slopes model"
   topic_05: "Assumptions and complications"
+  topic_06: "Sample size justification"
 editor: source
 ---
 
@@ -28,6 +29,7 @@ editor: source
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
+    -   `r params$topic_06`
 
 {{< include _b2-12-01.qmd >}}
 
@@ -67,6 +69,15 @@ editor: source
 
 {{< include _b2-12-05.qmd >}}
 
+## Break #5
+
+-   What you have learned
+    -   `r params$topic_05`
+-   What's coming next
+    -   `r params$topic_06`
+
+{{< include _b2-12-06.qmd >}}
+
 ## Summary
 
 -   What you have learned
@@ -75,6 +86,7 @@ editor: source
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
+    -   `r params$topic_06`
 
 <!---
       You have to put the title down 
