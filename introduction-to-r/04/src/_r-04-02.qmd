@@ -22,17 +22,18 @@ A categorical variable is defined (loosely) as a variable that has a small numbe
 
 In a previous module, almost all of the variables that you used were continuous. Today, almost all of the variables that you will use will be categorical.
 
-The distinction between continuous and categorical variables is important in deciding what types of descriptive and inferential statistics you should use. But, there is often gray and fuzzy line between categorical and continuous variables. Don't worry too much about this today. If you're not sure whether a variable is categorical or continuous, try some simple descriptive statistics and graphs appropriate for categorical data and then try some simple descriptive statistics and graphs for continuous data. You will usually figure out quickly whehther treating your variable as categorical or continuous makes the most sense.
-
-There are other types of variables also, such as count variables, that have their own special features.
+The distinction between continuous and categorical variables is important in deciding what types of descriptive and inferential statistics you should use. But, there is often gray and fuzzy line between categorical and continuous variables. Don't worry too much about this today. If you're not sure whether a variable is categorical or continuous, try some simple descriptive statistics and graphs appropriate for categorical data and then try some simple descriptive statistics and graphs for continuous data. You will usually figure out quickly whether treating your variable as categorical or continuous makes the most sense.
 
 :::
 
-## Freqency counts
+## Counts and percentages, 1
 
-```{r table-simple}
-PClass_counts <- table(ti$PClass)
-PClass_counts
+```{r}
+#| echo: true
+#| label: 04-01-counts-1
+
+ti |>
+  count(pclass)
 ```
 
 ::: notes
@@ -47,111 +48,46 @@ Personally, I don't like software deciding for me what I want. I'd rather ask fo
 
 Now this is a rather trivial issue, but it does illustrate an important difference in philosophy. R makes you ask for the extras that you might need. SAS and SPSS force you to ask to NOT include things that they think are important.
 
-So the table function produces only counts. 
-
 :::
 
-## Proportions
+## Counts and percentages, 2
 
-```{r table-proportion}
-PClass_proportions <-
-  prop.table(PClass_counts)
-PClass_proportions
+```{r}
+#| echo: true
+#| label: 04-01-counts-2
+
+ti |>
+  count(pclass) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total)
 ```
 
 ::: notes
 
-If you want percentages in addition to counts, there are several approaches.
-
-The prop.table function takes a frequency table and converts it to a proportion.
+Most other programs will compute percentages automatically or as part of the same procedure that gave you the counts. As I have mentioned many times, R takes a minimalist approach. It gives you counts with one function but if you want percentages, you have to ask for it. In this example, you add a couple of mutate functions.
 
 :::
 
-## Percentages
+## Counts and percentages, 3
 
-```{r table-pct}
-PClass_percents <- 
-  round(100*PClass_proportions)
-PClass_percents
+```{r}
+#| echo: true
+#| label: 04-01-counts-3
+
+ti |>
+  count(pclass) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total) |>
+  mutate(pct=glue("{n}/{total} ({round(pct)}%)")) |>
+  select(-n, -total)
 ```
 
 ::: notes
 
-Multiply by 100 and round to get percentages.
+Another nice feature of R is that if you don't like what the output looks like, you have many different ways to improve on it.
 
 :::
 
-## Percentages
-
-```{r table-pct-sign}
-pct.sign <- "%"
-PClass_nice_percents <- 
-  paste0(PClass_percents, pct.sign)
-PClass_nice_percents
-```
-
-::: notes
-
-You can get even fancier. The paste function concatenates several string variables and if something is not a string, R will convert it to a string before concatenating.
-
-:::
-
-## Percentages
-
-```{r table-names}
-colon <- ": "
-PClass_nicest_percents <- 
-  paste0(
-    names(PClass_percents), 
-    colon,
-    PClass_percents, 
-    pct.sign)
-PClass_nicest_percents
-```
-
-::: notes
-
-Somehow, the names of the passenger class got lost. So let's add them back in. A colon and a space between the names and the numbers helps as well.
-
-:::
-
-## Fractions and percentages
-
-```{r fractions}
-n  <- sum(PClass_counts)
-slash <- "/"
-comma <- ", "
-percents_and_fractions <- paste0(
-  PClass_nicest_percents, comma,
-  PClass_counts, slash, n)
-percents_and_fractions
-```
-
-::: notes
-
-Finally, you can combine the counts and the total with the percents to make things look really nice.
-
-This shows how I like to program in R. First, get something simple. Then slowly add layers to it until you get a nice polished product.
-
-In contrast, most other statistical packages try to produce polished results right from the start. This has some advantages, but the approach used by R, where many of the functions do something simple and basic, allows you to polish the results the way you want them.
-
-:::
-
-## Tables that include counts of missing values.
-
-```{r table-usena}
-PClass_missing <- 
-  table(ti$PClass, useNA="always")
-PClass_missing
-```
-
-::: notes
-
-The default option in the table function is to not list missing values. During the intitial data screening, you should always look for missing values. This is done with the useNA parameter.
-
-:::
-
-## Total count
 
 ```{r table-addmargins}
 PClass_total <- 
@@ -164,60 +100,4 @@ PClass_total
 You can add a total count to the frequency table with the addmargins function.
 
 :::
-
-## An alternative approach to counts and percentages (1/6)
-
-```{r alt-1}
-pclass_count <- 
-  count(ti, PClass)
-pclass_count
-```
-
-## An alternative approach to counts and percentages (2/6)
-
-```{r alt-2}
-pclass_totals <- 
-  mutate(pclass_count, total=sum(n))
-pclass_totals
-```
-
-## An alternative approach to counts and percentages (3/6)
-
-```{r alt-3}
-pclass_percents <- 
-  mutate(
-    pclass_totals, 
-    pct=round(100*n/total))
-```
-
-## An alternative approach to counts and percentages (4/6)
-
-```{r alt-4}
-pclass_percents
-```
-
-## An alternative approach to counts and percentages (5/6)
-
-```{r alt-5}
-pclass_nice_percents <- 
-  mutate(
-    pclass_percents, 
-    pct=
-      paste0(
-        pct, "% (", n, "/", total, ")"))
-```
-
-## An alternative approach to counts and percentages (6/6)
-
-```{r alt-6}
-select(pclass_nice_percents, PClass, pct)
-```
-
-## One more
-
-```{r alt-7}
-pclass_nice_percents %>%
-  select(PClass, pct) %>%
-  pivot_wider(names_from=PClass, values_from=pct)
-```
 

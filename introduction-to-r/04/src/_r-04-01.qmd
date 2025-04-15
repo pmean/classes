@@ -16,11 +16,15 @@ editor: source
 
 library(glue)
 library(tidyverse)
+library(yaml)
+
 load("../data/module-04.RData")
 load("../data/demo-04.RData")
+
+dd <- read_yaml("https://raw.githubusercontent.com/pmean/data/refs/heads/main/files/titanic.yaml")
 ```
 
-titanic_dictionary$description
+`r dd$description`
 
 ::: notes
 
@@ -44,7 +48,7 @@ Here are the key variables.
 
 ## Peek at the bottom
 
-`r tail`
+`r code["tail_ti"]`
 
 ::: notes
 
@@ -54,45 +58,10 @@ Comments on the code and interpretation of the output appears in simon-5505-04-d
 
 ## Descriptive statistics on age
 
-`r age`
-
+`r code["age_ti"]`
 
 ## Print out information on youngest and oldest passengers
 
-`r extremes`
+`r code["extremes_ti"]`
 
-## Counts and percentages, 1
-
-## Counts and percentages, 1
-
-```{r}
-#| label: 04-01-counts-1
-
-ti |>
-  count(pclass)
-```
-
-## Counts and percentages, 2
-
-```{r}
-#| label: 04-01-counts-2
-
-ti |>
-  count(pclass) |>
-  mutate(total=sum(n))   
-  mutate(pct=100*n/total)
-```
-
-## Counts and percentages, 3
-
-```{r}
-#| label: 04-01-counts-3
-
-ti |>
-  count(pclass) |>
-  mutate(total=sum(n)) |>
-  mutate(pct=100*n/total) |>
-  mutate(pct=glue("{n}/{total} ({round(pct)}%)")) |>
-  select(-n, -total)
-```
 

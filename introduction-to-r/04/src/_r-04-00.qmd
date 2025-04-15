@@ -69,7 +69,8 @@ parse_code <- function(fn) {
     cat(v)
     cat("----------\n")
     cat(code[v])
-  }   
+  } 
+  return(code)
 }
 ```
 

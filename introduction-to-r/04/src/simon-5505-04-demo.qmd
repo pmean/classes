@@ -37,6 +37,8 @@ library(tidyverse)
 -   pclass_counts: counts and percentages for each passenger class
 -   sex_survived_crosstab: counts for survived by sex
 
+-------------------------------Begin Part 1-------------------------------------
+
 ## Reading in the Titanic data set
 
 ```{r}
@@ -106,12 +108,28 @@ The [slice_min][ref-slice-nodate] function is part of the dplyr/tidyverse librar
 
 The youngest passenger, a female in third class, survived. There were three passengers tied for the oldest. All were men in first or second class and all of them died.
 
+-------------------------------Begin Part 2-------------------------------------
+
+## Creating factors
+
+```{r}
+#| label: factors-ti
+
+ti |>
+  mutate(
+    survived=
+      factor(
+        survived, 
+        levels=c(0, 1), 
+        labels=c("dead", "alive"))) -> ti_1
+```
+
 ## Counts and percentages
 
 ```{r}
 #| label: counts-ti
 
-ti |>
+ti_1 |>
   count(pclass) |>
   mutate(total=sum(n)) |>
   mutate(pct=100*n/total) |>
@@ -140,151 +158,9 @@ The [glue][ref07] function (part of the glue library) allows you to insert numbe
 
 More than half of the passengers were in third class. Among the remaining passengers, there were slightly more first class than second class passengers.
 
-## Bar chart with percents
-
-```{r}
-#| fig.width: 6
-#| fig.height: 2.5
-#| label: bar-percents
-
-ticks <- c(10, 20, 30, 40, 50)
-pclass_counts |>
-  mutate(pct=100*n/total) |>
-  ggplot() +
-    aes(x=pclass, y=pct) +
-    geom_col(color="black", fill="white") +
-    ggtitle("Graph drawn by Steve Simon on 2025-01-16") +
-    xlab("Passenger class") +
-    ylab("Percentage") +
-    scale_y_continuous(breaks=ticks, labels=glue("{ticks}%")) +
-    coord_flip()
-```
-
-#### Comments on the code
-
-The [geom_col][ref10] function (parts of the ggplot2/tidyverse libraries) draws a bar chart with a bar for each level of the "x" variable and where the height of each bar is defined by the "y" variable. Don't confuse this with the geom_bar function which displays the counts for each level of a categorical variable.
-
-There is also a [barchart][ref11] function in the graphics library (part of base R) that you can use.
-
-[ref10]: https://ggplot2.tidyverse.org/reference/geom_bar.html
-[ref11]: https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/barplot.html
-
-## Creating factors, 1
-
-```{r}
-#| label: factors
-
-ti |>
-  mutate(
-    survived=
-      factor(
-        survived, 
-        levels=c(0, 1), 
-        labels=c("dead", "alive"))) -> ti_1
-```
-
-## The Titanic dataset, 1
-
-```{r}
-#| message: false
-#| warning: false
-#| label: r-04-01-setup
-
-library(tidyverse)
-```
+-------------------------------Begin Part 3-------------------------------------
 
 
-## The Titanic dataset, 2
-
-```{r}
-#| label: 04-01-glimpse
-
-glimpse(ti)
-```
-
-::: notes
-
-Here are the key variables.
-
-:::
-
-
-## Descriptive statistics on age
-
-```{r}
-#| label: 04-01-age-1
-
-ti |>
-  summarize(
-    age_mean=mean(age, na.rm=TRUE),
-    age_sd=sd(age, na.rm=TRUE),
-    age_min=min(age, na.rm=TRUE),
-    age_max=max(age, na.rm=TRUE),
-    missing=sum(is.na(age))
-  )
-
-```
-
-::: notes
-
-You learned how to get descriptive statistics for continuous variables in a previous module. The youngest passenger is `r min(ti$age, na.rm=TRUE)` years old and the oldest is `r max(ti$age, na.rm=TRUE)` years old. Let's peek at their data values.
-
-:::
-
-## Print out information on youngest
-
-```{r min}
-ti |>
-  slice_min(age, na_rm=TRUE)
-```
-
-::: notes
-
-:::
-
-## Print out information on oldest
-
-```{r max}
-ti |>
-  slice_max(age, na_rm=TRUE)
-```
-
-::: notes
-
-Here is the oldest passenger. There are three actually, who are tied for the oldest. It turns out that the little baby survived, but nonoe of the three oldest men.
-
-:::
-
-## Freqency counts
-
-```{r table-simple}
-PClass_counts <- table(ti$PClass)
-PClass_counts
-```
-
-::: notes
-
-For categorical variables, you should first get frequency counts. A mean and standard deviation are usually meaningless for categorical data.
-
-Unlike most other statistical packages, R tends to have a minimalist approach to statistics. If you asked for frequency counts in SAS or SPSS, these systems would automatically add percentages. R doesn't add percentages automatically.
-
-This is something that you will either love or hate. You might think that SAS and SPSS are more thoughtful because almost every time you want a count, you'd also want the corresponding percentage. Or you might find it annoying to tell those programs to not clutter up your output with information you didn't want.
-
-Personally, I don't like software deciding for me what I want. I'd rather ask for percentages explicitly when I need them rather than have them come as the default.
-
-Now this is a rather trivial issue, but it does illustrate an important difference in philosophy. R makes you ask for the extras that you might need. SAS and SPSS force you to ask to NOT include things that they think are important.
-
-So the table function produces only counts. 
-
-:::
-
-## Proportions
-
-```{r table-proportion}
-PClass_proportions <-
-  prop.table(PClass_counts)
-PClass_proportions
-```
 
 ::: notes
 
@@ -622,6 +498,42 @@ Using the rules shown on the previous slide, survival is obviously the outcome. 
 For this, you can see that 67% of the women survived, but only 17% of the men did.
 
 :::
+
+
+
+-------------------------------Begin Part 4-------------------------------------
+
+
+
+## Bar chart with percents
+
+```{r}
+#| fig.width: 6
+#| fig.height: 2.5
+#| label: bar-percents
+
+ticks <- c(10, 20, 30, 40, 50)
+pclass_counts |>
+  mutate(pct=100*n/total) |>
+  ggplot() +
+    aes(x=pclass, y=pct) +
+    geom_col(color="black", fill="white") +
+    ggtitle("Graph drawn by Steve Simon on 2025-01-16") +
+    xlab("Passenger class") +
+    ylab("Percentage") +
+    scale_y_continuous(breaks=ticks, labels=glue("{ticks}%")) +
+    coord_flip()
+```
+
+#### Comments on the code
+
+The [geom_col][ref10] function (parts of the ggplot2/tidyverse libraries) draws a bar chart with a bar for each level of the "x" variable and where the height of each bar is defined by the "y" variable. Don't confuse this with the geom_bar function which displays the counts for each level of a categorical variable.
+
+There is also a [barchart][ref11] function in the graphics library (part of base R) that you can use.
+
+[ref10]: https://ggplot2.tidyverse.org/reference/geom_bar.html
+[ref11]: https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/barplot.html
+
 
 ## Barplot of counts, code
 
