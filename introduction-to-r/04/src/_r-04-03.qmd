@@ -133,7 +133,9 @@ hypo_2 |>
   count(intervention, result) |>
 	group_by(result) |>
 	mutate(total=sum(n)) |>
-	mutate(pct=round(100*n/total))
+	mutate(pct=round(100*n/total)) -> prob_2
+
+prob_2
 ```
 
 ::: notes
@@ -153,6 +155,53 @@ interpretation <- c(
 	"P[f|t]",
 	"P[s|t]")
 
-bind_cols(prob_1, interpretation)
+bind_cols(prob_1, tibble(interpretation))
 ```
 
+## Interpretation, 2
+
+```{r}
+#| label: 04-03-interpretation-2
+
+interpretation <- c(
+	"P[c|f]",
+	"P[c|s]",
+	"P[t|f]",
+	"P[t|s]")
+
+bind_cols(prob_2, tibble(interpretation))
+```
+
+## Rectangular arangement of probabilities, 1
+
+```{r}
+#| label: 04-03-rectangular-probabilities-1
+
+prob_1 |>
+  select(-n, -total) |>
+  pivot_wider(
+    names_from=result,
+    values_from=pct)
+
+```
+
+```{}
+
+```
+
+## Rectangular arangement of probabilities, 2
+
+```{r}
+#| label: 04-03-rectangular-probabilities-2
+
+prob_1 |>
+  select(-n, -total) |>
+  pivot_wider(
+    names_from=intervention,
+    values_from=pct)
+
+```
+
+```{}
+            67  - 57
+```
