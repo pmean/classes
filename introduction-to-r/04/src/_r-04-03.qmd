@@ -140,7 +140,7 @@ prob_2
 
 ::: notes
 
-You could also divide the numer of failures (4) or the number of successes. This is more than a trivial distinction.
+You could also divide the number of failures (4) or the number of successes (6). This is more than a trivial distinction.
 
 :::
 
@@ -157,6 +157,12 @@ interpretation <- c(
 
 bind_cols(prob_1, tibble(interpretation))
 ```
+
+::: notes
+
+These probabilities are conditional probabilities. You are looking at the probability of failure or success conditional on the intervention. The overall probability of success is 60%, but when you restrict your attention to just the controls, it jumps to 67%. When you restrict your attention to just the treatment it drops to 57%. The difference is 10%, showing that compared to the controls, the treatment is much less effective.
+
+:::
 
 ## Interpretation, 2
 
@@ -185,9 +191,12 @@ prob_1 |>
 
 ```
 
-```{}
+::: notes
 
-```
+Here is where it gets tricky. The percentages can be arranged with this orientation...
+
+:::
+
 
 ## Rectangular arangement of probabilities, 2
 
@@ -202,6 +211,82 @@ prob_1 |>
 
 ```
 
+::: notes
+
+... or this orientation. Which is better?
+
+While both orientations are okay, I have a definite preference for the first one. It all relates to the proximity principle. Place your most interesting comparisons in close proximity.
+
+What is the most interesting comparison? It is the how much larger the success rate in the control group (67%) is compared to the success rate in the treatment group (57%).
+
+:::
+
+## The proximity principle, 1
+
 ```{}
-            67  - 57
+# A tibble: 2 × 3
+# Groups:   intervention [2]
+  intervention     f     s
+  <chr>        <dbl> <dbl>
+1 c                     67
+2 t                     57
 ```
+
+```{}
+
+
+# A tibble: 2 × 3
+  result           c     t
+  <chr>        <dbl> <dbl>
+1 f                 
+2 s               67    57
+```
+
+::: notes
+
+Here are the two tables with only 67% and the 57% showing. Notice how much closer the two numbers are when one is directly beneath the other rather than the two numbers side by side.
+
+:::
+
+## The proximity principle, 2
+
+```{}
+
+                      1256
+                       123
+```
+
+```{}
+
+
+                    
+                1256   123
+```
+
+::: notes
+
+This is a general rule for other numbers as well. Notice how the extra digit in the 1256 stands out when you have 983 directly beneath it compared to when the two numbers are side by side.
+
+There will always be exceptions to the proximity principle, but it is always worth considering.
+
+:::
+
+## Which percentages should you use
+
++ General guidance
+  + Set the rows to your treatment/exposure 
+  + Set the columns to your outcome
+  + Compute row percentages
++ why not try several formats
+  + Revised your tables as often as you revise your writing
+  
+::: notes
+
+It's beyond the scope of this class, but with crosstabulations, you have choices as to what should be the rows and what should be the columns. Then you can compute row, column, or cell percentages.
+
+I've found that nine times out of ten, the best choice depends on what is your treatment variable and what is your outcome. It usually works best if you place the treatment variable in the rows and the outcome in the columns and compute row percentages. That shows how often you see a particular outcome in the treatment group and the percentage in the control group is right beneath it.
+
+That being said, I would also encourage you to try several different approaches.
+
+:::
+

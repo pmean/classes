@@ -41,14 +41,24 @@ The distinction between continuous and categorical variables is important in dec
 
 :::
 
+## A hypothetical dataset
+
+```{r}
+#| label: 04-02-hypo-1
+
+hypo_1 <- tibble(grp=rep(letters[1:4], 1:4))
+
+hypo_1
+```
+
 ## Counts and percentages, 1
 
 ```{r}
 #| echo: true
 #| label: 04-02-counts-1
 
-ti |>
-  count(pclass)
+hypo_1 |>
+  count(grp)
 ```
 
 ::: notes
@@ -71,8 +81,8 @@ Now this is a rather trivial issue, but it does illustrate an important differen
 #| echo: true
 #| label: 04-02-counts-2
 
-ti |>
-  count(pclass) |>
+hypo_1 |>
+  count(grp) |>
   mutate(total=sum(n)) |>
   mutate(pct=100*n/total)
 ```
@@ -89,8 +99,8 @@ Most other programs will compute percentages automatically or as part of the sam
 #| echo: true
 #| label: 04-02-counts-3
 
-ti |>
-  count(pclass) |>
+hypo_1 |>
+  count(grp) |>
   mutate(total=sum(n)) |>
   mutate(pct=100*n/total) |>
   mutate(pct=glue("{n}/{total} ({round(pct)}%)")) |>
@@ -102,3 +112,4 @@ ti |>
 Another nice feature of R is that if you don't like what the output looks like, you have many different ways to improve on it.
 
 :::
+
