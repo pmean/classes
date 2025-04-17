@@ -19,7 +19,7 @@ library(tidyverse)
 ## Hypothetical dataset
 
 ```{r}
-#| label: hypothetical-2
+#| label: 04-03-hypothetical-2
 
 hypo_2 <- tibble(
   intervention=rep(c("c", "c", "t", "t"), 1:4),

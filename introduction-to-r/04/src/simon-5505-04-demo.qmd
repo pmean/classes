@@ -219,19 +219,22 @@ For this, you can see that two-thirds of the women survived, but only one out of
 #| fig.height: 2.5
 #| label: bar-percents
 
-ticks <- c(10, 20, 30, 40, 50)
-pclass_counts |>
-  mutate(pct=100*n/total) |>
+ticks <- seq(from = 0, to = 50, by = 10)
+
+ti |>
+  count(pclass) |>
+  mutate(total = sum(n)) |>
+  mutate(pct = round(100*n/total)) |>
   ggplot() +
-    aes(x=pclass, y=pct) +
-    geom_col(color="black", fill="white") +
-    ggtitle("Graph drawn by Steve Simon on 2025-01-16") +
-    xlab("Passenger class") +
-    ylab("Percentage") +
-    scale_y_continuous(
-    	breaks=ticks, 
-    	labels=glue("{ticks}%")) +
-    coord_flip()
+  aes(x=pclass, y=pct) +
+  geom_col(color="black", fill="white") +
+  ggtitle("Graph drawn by Steve Simon on 2025-01-16") +
+  xlab("Passenger class") +
+  ylab("Percentage") +
+  scale_y_continuous(
+  	breaks=ticks, 
+  	labels=glue("{ticks}%")) +
+  coord_flip()
 ```
 
 #### Comments on the code
