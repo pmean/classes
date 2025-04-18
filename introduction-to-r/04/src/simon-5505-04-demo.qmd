@@ -122,6 +122,10 @@ ti |>
         labels=c("dead", "alive"))) -> ti_1
 ```
 
+#### Comments on the code
+
+(Add a discussion of the factor function. Note that we are modifying an existing variable instead of creating a new variable.)
+
 ## Counts and percentages
 
 ```{r}
