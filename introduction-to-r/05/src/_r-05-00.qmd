@@ -21,69 +21,64 @@ library(tidyverse)
 ```{r}
 #| label: 05-00-parse-function
 
-parse_code <- function(fn) {
-  # Extract code from individual chunks of a Quarto or 
-  # RMarkdown program.
-  
-  # For my programs, code always starts at s1 and ends at s2.
-  # I want to display the code inside another Quarto program,
-  # so I add a prefix and postfix that tells Quarto to
-  # display the code without any reformatting.
-  
-  s1 <- fixed("#| label: ") # Beginning boundary
-  s2 <- "^```$"             # Ending boundary
+extract_label <- function(demo_text, t1, i) {
 
+  # Find the label value for a chunk and store it in v.
+  
+  demo_text[t1[i]] |>
+    str_remove(fixed("#| label: ")) |>
+    str_replace_all(fixed("-"), "_") -> v
+  return(v)
+}
+
+extract_chunk <- function(demo_text, t1, t2, i) {
+    
+  # Select two lines after t1 and one line before t2
+  # and add prefix and postfix. Store in a list with
+  # the name stored in v.
+  
+  r <- (t1[i]+2):(t2[i]-1) 
   prefix <- "```{}"         # Goes before R chunk
   postfix <- "```"          # Goes after R chunk
-
-  demo_text <- read_lines(fn)
-
-  t1 <- str_which(demo_text, s1)
-  t2 <- str_which(demo_text, s2)
-  
-  print(t1)
-  print(t2)
-  print(demo_text[t1])
-  print(demo_text[t2])
-  
-  # cat(glue("{t1} to {t2}: demo_text[t1]"))
-  # cat("\n")
-  
-  # I should check here that the lengths of t1 and t2 are the same.
-
-  code <- NULL
-
-  for (i in 1:length(t1)) {
-    # Find the label value for a chunk and store it in v.
-    demo_text[t1[i]] |>
-      str_remove(s1) |>
-      str_replace_all(fixed("-"), "_") -> v
-    
-    # Select two lines after s1 and one line before s2
-    # and add prefix and postfix. Store in a list with
-    # the name stored in v.
-    r <- (t1[i]+2):(t2[i]-1) 
-    prefix |>
-      append(demo_text[r]) |>
-      append(postfix) |>
-      paste0(collapse="\n") -> code[v]
-  }
-  # Display the results here as a quality check.
-  for (v in names(code)) {
-    cat("\n----------")
-    cat(v)
-    cat("----------\n")
-    cat(code[v])
-  } 
-  return(code)
+  prefix |>
+    append(demo_text[r]) |>
+    append(postfix) |>
+    paste0(collapse="\n") |>
+    list() -> chunk
+  return(chunk)
 }
+
+display_code <- function(code) {
+  for (v in names(code)) {
+    cat("\n----- ")
+    cat(v)
+    cat(" -----\n")
+    cat(code[[v]])
+  } 
+}
+
+# Extract code from individual chunks of a Quarto or 
+# RMarkdown program.
+
+fn <- "simon-5505-05-demo.qmd"
+demo_text <- read_lines(fn)
+  
+t1 <- str_which(demo_text, fixed("#| label: "))
+t2 <- str_which(demo_text, "^```$")
+
+code <- NULL
+v <- NULL
+for (i in 1:length(t1)) {
+  v[i] <- extract_label(demo_text, t1, i)
+  code[i] <- extract_chunk(demo_text, t1, t2, i)
+}
+names(code) <- v
+  
+# Display the results here as a quality check.
+  
+display_code(code)
 ```
 
-```{r}
-#| label: 05-00-parse-demo
-
-code <- parse_code("simon-5505-05-demo.qmd")
-```
 
 ## Save everything important
 
