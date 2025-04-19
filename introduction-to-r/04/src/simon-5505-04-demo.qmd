@@ -23,7 +23,7 @@ This program reads data on mortality of passengers on the Titanic. Refer to the 
 
 R.version.string
 Sys.Date()
-library(epitools)
+
 library(glue)
 library(tidyverse)
 ```

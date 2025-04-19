@@ -5,119 +5,88 @@ format:
     embed-resources: true
 editor: source
 ---
+## Preliminaries
 
-```{r setup-0}
+```{r}
 #| message: false
 #| warning: false
+#| label: 05-00-setup
+
+library(glue)
 library(tidyverse)
-library(yaml)
 ```
 
-## Data dictionary
+## Read and parse simon-5505-04-demo.qmd
 
-```{r yaml-text}
-f1 <- "https://raw.githubusercontent.com/"
-f2 <- "pmean/data/main/files/"
-f3 <- "postural-sway.yaml"
-yaml_text <- read_yaml(paste0(f1, f2, f3))
+```{r}
+#| label: 05-00-parse-function
 
-yaml_text_names <- 
-	setdiff(names(yaml_text), "vars")
-n <- length(yaml_text_names)
+parse_code <- function(fn) {
+  # Extract code from individual chunks of a Quarto or 
+  # RMarkdown program.
+  
+  # For my programs, code always starts at s1 and ends at s2.
+  # I want to display the code inside another Quarto program,
+  # so I add a prefix and postfix that tells Quarto to
+  # display the code without any reformatting.
+  
+  s1 <- fixed("#| label: ") # Beginning boundary
+  s2 <- "^```$"             # Ending boundary
 
-datac <- 
-	data.frame(
-		lab=yaml_text_names, 
-		chunk=" ")
-for (i in 1:n) {
-	datac$chunk[i] <- 
-		as.yaml(
-			yaml_text[datac$lab[i]])
+  prefix <- "```{}"         # Goes before R chunk
+  postfix <- "```"          # Goes after R chunk
+
+  demo_text <- read_lines(fn)
+
+  t1 <- str_which(demo_text, s1)
+  t2 <- str_which(demo_text, s2)
+  
+  print(t1)
+  print(t2)
+  print(demo_text[t1])
+  print(demo_text[t2])
+  
+  # cat(glue("{t1} to {t2}: demo_text[t1]"))
+  # cat("\n")
+  
+  # I should check here that the lengths of t1 and t2 are the same.
+
+  code <- NULL
+
+  for (i in 1:length(t1)) {
+    # Find the label value for a chunk and store it in v.
+    demo_text[t1[i]] |>
+      str_remove(s1) |>
+      str_replace_all(fixed("-"), "_") -> v
+    
+    # Select two lines after s1 and one line before s2
+    # and add prefix and postfix. Store in a list with
+    # the name stored in v.
+    r <- (t1[i]+2):(t2[i]-1) 
+    prefix |>
+      append(demo_text[r]) |>
+      append(postfix) |>
+      paste0(collapse="\n") -> code[v]
+  }
+  # Display the results here as a quality check.
+  for (v in names(code)) {
+    cat("\n----------")
+    cat(v)
+    cat("----------\n")
+    cat(code[v])
+  } 
+  return(code)
 }
-datac$chunk <- paste0(datac$chunk, "\n")
-datac[ , 1]
-dim(datac)
-
-var_names <- names(yaml_text$vars)
-m <- length(yaml_text$vars)
-
-datav <- 
-	data.frame(
-		lab=var_names, 
-		chunk=" ")
-for (i in 1:m) {
-	datav$chunk[i] <- 
-		as.yaml(
-			yaml_text$vars[datav$lab[i]])
-}
-datav$chunk <- paste0(datav$chunk, "\n")
-datav[ , 1]
-dim(datav)
 ```
 
-## Code
+```{r}
+#| label: 05-00-parse-demo
 
-```{r code-text}
-fn <- "simon-5501-08-sway.qmd"
-code_text <- read_lines(file=fn)
-chunk <- 
-	cumsum(
-	  str_detect(
-	  	code_text, "## "))
-data.frame(code_text, chunk) |>
-	group_by(chunk) |>
-	summarize(
-		chunk_text =
-			paste0(
-				code_text, 
-				sep="\n", 
-				collapse="")) |>
-	pull(chunk_text) -> codec
-codec <- paste0(codec, "\n")
-cat(codec[1])
-length(codec)
+code <- parse_code("simon-5505-05-demo.qmd")
 ```
 
-## Programming assignment
-
-```{r prog-text}
-fn <- "simon-5501-08-directions.md"
-prog_text <- read_lines(file=fn)
-chunk <- 
-	cumsum(
-	  str_detect(
-	  	prog_text, "## "))
-data.frame(prog_text, chunk) |>
-	group_by(chunk) |>
-	summarize(
-		chunk_text =
-			paste0(
-				prog_text, 
-				sep="\n", 
-				collapse="")) |>
-	pull(chunk_text) -> progc
-# progc <- paste0(progc, "\n")
-cat(progc[length(progc)])
-length(progc)
-```
-
-## postural-sway data
-
-```{r read-fev}
-sway <- read_tsv(
-  file="../data/postural-sway.txt",
-  col_types="cnn")
-names(sway) <- tolower(names(sway))
-glimpse(sway)
-```
-
+## Save everything important
 
 ```{r save}
-save(
-	datac,
-	datav,
-	codec,
-	progc,
-	sway,
-	file="../data/module08.RData")
+save(code, file="../data/module-05.RData")
 ```

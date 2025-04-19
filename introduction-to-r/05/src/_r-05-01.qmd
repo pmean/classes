@@ -8,10 +8,12 @@ editor: source
 ---
 
 ```{r}
-#| label: setup-1
+#| label: 05-01-setup
 #| message: false
 #| warning: false
+
 library(tidyverse)
+library(yaml)
 ``` 
 
 ## How do you characterize relationships?
@@ -35,68 +37,42 @@ In this module, you will see datasets that have a mix of continuous and categori
 
 ## FEV data
 
-+ FEV dataset
-  + http://www.amstat.org/publications/jse/datasets/fev.dat.txt
-+ FEV data dictionary
-  + http://ww2.amstat.org/publications/jse/datasets/fev.txt
+```{r}
+#| label: 05-01-yaml
+
+f1 <- "https://raw.githubusercontent.com"
+f2 <- "pmean/data/refs/heads/main/files"
+f3 <- "fev.yaml"
+
+dd <- read_yaml(glue("f1/f2/f3"))
+```
+
+`r dd$description`
 
 ::: notes
 
-The first data set looks at pulmonary function in a group of children. The acronym FEV stands for Forced Expiratory Volume and represents how air you can blow out of your lungs.
-
-:::
-
-## FEV data dictionary
-
-![Screenshot of data dictionary page](../images/fev-data-dictionary.png)
-
-::: notes
+The fev data set looks at pulmonary function in a group of children. The acronym FEV stands for Forced Expiratory Volume and represents how air you can blow out of your lungs.
 
 This dataset has 654 rows and 5 variables: age (in years), fev (in liters), height (in inches), sex, and smoking status. Both sex and smoking status are categorical and use number codes. 
 
 :::
 
-## Peek at FEV dataset
-
-![Listing of first few lines of data](../images/fev-view.png)
-
-::: notes
-
-This is a listing of the first few rows. It could be a tab delimited file or a fixed width file. If you look carefully at the data, you will see that there are blanks and no tabs. So this is a file that you can read in most easily using a fixed width format.
-
-:::
-
-## read in the FEV data set, code
-
-```{r read-fev-code}
-fn <- "../data/fev.txt"
-fev <- read_fwf(file=fn,
-  col_types="nnnnn",
-  col_positions=fwf_cols(
-    age=3, 
-    fev=7,
-    ht=5,
-    sex=4,
-    smoke=6))
-```
-
-::: notes
-
-If you count carefully, you will see that the first three columns represent the first variable, you need seven more columns for the second variable, and so forth.
-
-:::
 
 ## read in the FEV data set, glimpse
 
-```{r read-fev-glimpse}
+```{r}
 glimpse(fev)
 ```
 
 ::: notes
 
-Here is the structure of the data frame.
+Here is a glimpse of the data.
 
 :::
+
+## Create factors
+
+`r code[fev-factors]`
 
 ## Summary for continuous variables: age
 
