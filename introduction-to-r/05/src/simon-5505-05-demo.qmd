@@ -1,0 +1,384 @@
+---
+title: "Demonstation program for module 05"
+format: 
+  html:
+    embed-resources: true
+execute: 
+  error: true
+editor: source
+---
+
+## File details
+
+This program was written by Steve Simon on 2025-01-17 and is placed in the public domain. You can use this program any way you please.
+
+This program reads data on a study of pulmonary function in a pediatric population. Refer to the [data dictionary][ref-fev-nodate] for a more detailed description.
+
+[ref-fev-nodate]: https://github.com/pmean/data/blob/main/files/fev.yaml
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+R.version.string
+Sys.Date()
+
+library(gt)
+library(glue)
+library(tidyverse)
+```
+
+## Documentation of the intermediate datasets
+
+-   pulmonary: original dataset as read in from fev.txt
+-   pulmonary_1: create factors for smoke and sex
+
+# --- Begin part 1 ---
+
+## Peek at the FEV data
+
+```{r}
+#| label: peek
+
+fn <- "../data/fev.txt"
+read_lines(file=fn, n_max=10)
+```
+
+#### Interpretation of the output
+
+The read_lines function (part of the readr/tidyverse libraries) is useful for displaying the first few lines of a text file. It will read in each line of a file and store it as a string. As such, it does not need any information about format or delimiters. It helps you decide what function you need for importing the data and with which arguments.
+
+In this particular file, it could be tab delimited, but is more likely to be a fixed width format. If you count carefully, you will see that the first three columns represent the first variable, you need seven more columns for the second variable, and so forth.
+
+
+
+## read in the FEV data set
+
+```{r}
+#| label: read
+
+pulmonary <- read_fwf(file=fn,
+  col_types="nnnnn",
+  col_positions=fwf_cols(
+    age=3, 
+    fev=7,
+    ht=5,
+    sex=4,
+    smoke=6))
+
+glimpse(pulmonary)
+```
+
+## Verify that there are no missing values
+
+```{r}
+#| label: missing
+
+pulmonary |>
+  mutate(across(everything(), is.na)) |>
+  summarize(across(everything(), sum)) |>
+  gt() |>
+  tab_header(md("**Missing value count**")) |>
+  tab_source_note("Simon, 2025-04-20")
+```
+#### Comments on the code
+
+The [across][ref-across-nodate] and the [everything][ref-everything-nodate] functions allow you to make transformations and summaries for every variable in the tibble or data frame.
+
+This particular piece of code first converts every value in the entire tibble or data frame into a true/false value with true representing missing values. Then it sums the values for each variable. A true/false value gets converted to 1/0, so this ends up counting the number of true (i.e., missing) values.
+
+[ref-across-nodate]: https://tidyselect.r-lib.org/reference/everything.html
+[ref-everything-nodate]: https://tidyselect.r-lib.org/reference/everything.html
+
+#### Interpretation of the output
+
+This output confirms that there are no missing values for any of the variables.
+
+I am introducing a new package, gt, that produces publication ready tables. I want to encourage you to use gt, but it is entirely optional. The first couple of things to add are tab_header and tab_footnote. It is a good idea to produce a simple descriptive title and to list your name and date as a footnote.
+
+## Create factors
+
+```{r}
+#| label: factors
+
+pulmonary |>
+  mutate(smoke=factor(
+    smoke, 
+    levels=0:1,
+    labels=c("nonsmoker", "smoker"))) |>
+  mutate(sex=factor(
+    sex, 
+    levels=0:1,
+    labels=c("female", "male"))) -> pulmonary_1
+```
+
+
+## Summary for continuous variables: age
+
+```{r}
+#| label: age
+
+pulmonary_1 |>
+  summarize(
+    age_mean=mean(age),
+    age_sd=sd(age),
+    age_min=min(age),
+    age_max=max(age)) |>
+  gt() |>
+  tab_header(md("**Missing value count**")) |>
+  tab_source_note("Simon, 2025-04-20")
+```
+
+
+
+#### Interpretation of the output
+
+This is clearly a pediatric population.
+
+## Summary for continuous variables: fev
+
+```{r}
+#| label: fev
+
+pulmonary_1 |> 
+  summarize(
+    fev_mean=mean(fev),
+    fev_sd=sd(fev),
+    fev_min=min(fev),
+    fev_max=max(fev))
+```
+
+#### Interpretation of the output
+
+I am not an expert on FEV, but these values seem reasonable.
+
+## Summary for continuous variables: ht
+
+```{r}
+#| label: ht
+
+pulmonary_1 |> 
+  summarize(
+    ht_mean=mean(ht),
+    ht_sd=sd(ht),
+    ht_min=min(ht),
+    ht_max=max(ht))
+```
+
+#### Interpretation of the output
+
+Again, these seem to be reasonable values.
+
+## Summary for categorical variables: sex
+
+```{r}
+#| label: sex
+
+pulmonary_1 |>
+  count(sex) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{n}/{total} ({pct}%)"))
+```
+
+#### Interpretation of the output
+
+The patients are split almost evenly with slightly more males than females.
+
+## Summary for categorical variables: smoke
+
+```{r}
+#| label: smoke
+
+pulmonary_1 |>
+  count(smoke) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{n}/{total} ({pct}%)"))
+```
+
+#### Interpretation of the output
+
+Only a small fraction (10%) of the patients are smokers.
+
+# --- Begin part 2 ---
+
+## Group means, fev-by-sex
+
+```{r}
+#| label: means-fev-by-sex}
+
+pulmonary_1 |>
+  group_by(sex) |>
+  summarize(
+    fev_mean=mean(fev),
+    fev_sd=sd(fev))
+```
+
+#### Comments on the code
+
+#### Interpretation of the output
+
+## Group means, fev-by-smoke
+
+```{r}
+#| label: means-fev-by-smoke}
+
+pulmonary_1 |>
+  group_by(smoke) |>
+  summarize(
+    fev_mean=mean(fev),
+    fev_sd=sd(fev))
+```
+
+#### Interpretation of the output
+
+## Group means, age-by-smoke
+
+```{r}
+#| label: means-age-by-smoke
+
+pulmonary_1 |>
+  group_by(smoke) |>
+  summarize(
+    age_mean=mean(age),
+    age_sd=sd(age))
+```
+
+#### Interpretation of the output
+
+# --- Begin part 3 ---
+
+## Scatterplot
+
+```{r}
+#| label: plot-1
+
+pulmonary_1 |>
+  ggplot() +
+  aes(x=age, y=fev) +
+  geom_point() +
+  labs(
+    title="Scatterplot",
+    x="Age in years",
+    y="Forced expiratory volume (liters)",
+    caption="Simon, 2025-04-19") -> plot_1
+
+plot_1
+```
+
+#### Inpterpretation of the output
+
+There is a strong positive relationship between age and fev.
+
+Recall that you use a scatterplot to examine the relationship between two continuous variables.
+
+## Crosstabs
+
+```{r}
+#| label: sex-by-smoke
+
+pulmonary_1 |>
+  count(sex, smoke) |>
+  group_by(sex) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{n}/{total} ({pct}%)")) |>
+  select(-n, -total) |>
+  pivot_wider(
+    names_from=smoke, 
+    values_from=pct)
+```
+
+#### Interpretation of the output
+
+Smoking is uncommon but occurs slightly more often with female patients.
+
+## Boxplots
+
+```{r}
+#| fig.width: 6
+#| fig.height: 1.5
+#| label: smoke-by-fev
+
+pulmonary_1 |>
+  ggplot() +
+  aes(x=smoke, y=fev) +
+  geom_boxplot() +
+  coord_flip()
+  labs(
+    title="Boxplots",
+    x="Smoking status",
+    y="Forced expiratory volume (liters)",
+    caption="Simon, 2025-04-19") -> plot_2
+
+plot_2
+  
+```
+
+
+#### Comments on the code
+
+The [boxplot][ref-boxplot-nodate] function draws boxplots. Most of the time, you want to put two or more boxplots side by side. The categorical variable that defines what goes into each boxplot is designated as x and the continuous variable summarized by the boxplot is designated as y.
+
+Boxplots, especially for a small number of levels of your categorical variable, tend to look nicer flipped horizontally and with a fairly small height. 
+
+#### Interpretation of the output
+
+In a bit of a surprise, fev values tend to be higher for smokers than for non-smokers.
+
+## Clustered boxplots, 1
+
+```{r}
+#| fig.width: 6
+#| fig.height: 2.5
+#| label: fev-by-smoke-sex
+
+pulmonary_1 |>
+  ggplot() +
+  aes(x=smoke, y=fev, fill=sex) +
+  geom_boxplot() +
+  coord_flip() +
+  labs(
+    title="Boxplots",
+    x="Smoking status",
+    y="Forced expiratory volume (liters)",
+    caption="Simon, 2025-04-19") -> plot_3
+
+plot_3
+```
+
+#### Comments on the code
+
+Specifying the fill argument tells ggplot that you want to further break down your boxplots by a second categorical variable, sex.
+
+## Clustered boxplots, 2
+
+```{r}
+#| fig.width: 6
+#| fig.height: 2.5
+#| label: smoke-by-sex-smoke
+
+pulmonary_1 |>
+  ggplot() +
+  aes(x=sex, y=fev, fill=smoke) +
+  geom_boxplot() +
+  coord_flip() +
+  labs(
+    title="Boxplots",
+    x="Smoking status",
+    y="Forced expiratory volume (liters)",
+    caption="Simon, 2025-04-19") -> plot_3
+
+plot_3
+```
+
+## Save everything
+
+```{r}
+#| label: save
+
+save.image("../data/demo-05.RData")
+```
+

@@ -1,5 +1,5 @@
 ---
-title: "r-01-02, TBA-2"
+title: "r-05-02, Group means"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,218 @@ format:
 editor: source
 ---
 
-## TBA-1
+```{r}
+#| label: 05-02-setup
+#| message: false
+#| warning: false
 
-:::notes
+library(tidyverse)
+
+load("../data/module-05.RData")
+``` 
+
+## The group_by statement
+
+-   group_by creates separate analysis groups
+    -   Similar to split files (SPSS), by statement (SAS)
+    -   You create groups using one or more categorical variables
+    -   All further work done separately on each group
+
+::: notes
+
+Once you start working with larger data sets with multiple categorical and continuous variables, you will find the group_by function to be very helpful. 
+
+You should refer to [this documentation][ref-grouping-nodate] for a nice description of how you can use group_by in a variety of settings.
+
+[ref-grouping-nodate]: https://dplyr.tidyverse.org/articles/grouping.html
 
 :::
+
+## Hypothetical data
+
+```{r}
+#| label: 05-02-hypo
+
+hypo_4 <- tibble(
+  intervention = rep(c("c", "t"), c(4, 8)),
+  gender = rep(c("F", "M"), 6),
+  age=c(6, 4, 7, 9, 6, 3, 5, 8, 4, 7, 6, 2))
+
+hypo_4
+```
+
+::: notes
+
+Here's a small hypothetical dataset that will help illustrate how the group_by function works. I normally dislike hypothetical datasets, but they do help when you are hearing for the first time how certain R functions work. Hypothetical data keeps the focus on the programming logic without letting the context of the problem get in the way.
+
+:::
+
+## Using mutate with group_by
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| label: 05-02-mutate-1
+#| echo: true
+
+hypo_4 |>
+  count(intervention, gender) |>
+  mutate(total=sum(n))
+```
+:::
+::: {.column width="50%"}
+```{r}
+#| label: 05-02-mutate-2
+#| echo: true
+
+hypo_4 |>
+  count(intervention, gender) |>
+  group_by(intervention) |>
+  mutate(total=sum(n))
+```
+:::
+::::
+
+::: notes
+
+You've seen the group-by function in use already with the mutate function. Without the group_by function, the sum function adds up across all twelve observations. When you include the group_by function, the sum function adds up across the four controls and separately adds up across the eight treatments.
+
+:::
+
+## Using summarize with group_by
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| label: 05-02-summarize-1
+#| echo: true
+
+hypo_4 |>
+  summarize(
+    age_mean=mean(age),
+    age_sd=sd(age),
+    n=n())
+```
+:::
+::: {.column width="50%"}
+```{r}
+#| label: 05-02-summarize-2
+#| echo: true
+
+hypo_4 |>
+  group_by(intervention) |>
+  summarize(
+    age_mean=mean(age),
+    age_sd=sd(age),
+    n=n())
+```
+:::
+::::
+
+::: notes
+
+While the summarize function normally summarizes across all the rows, after a group_by function, it summarizes separate means, standard deviations, and sample sizes for each intervention. 
+
+:::
+
+## Slice, 1
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| label: 05-02-slice-1
+#| echo: true
+
+hypo_4 |>
+  slice_min(age)
+```
+:::
+::: {.column width="50%"}
+```{r}
+#| label: 05-02-slice-2
+#| echo: true
+
+hypo_4 |>
+  group_by(intervention) |>
+  slice_min(age)
+```
+:::
+::::
+
+::: notes
+
+There are various slice functions, and they work slightly differently after a group_by statement. The slice_min, for example, normally shows the row where a certain variable is equal to its minimum. After a group_by statement, it shows the rows with the minimum variable within each group.
+
+:::
+
+## Slice, 2
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| label: 05-02-slice-3
+#| echo: true
+
+hypo_4 |>
+  slice_sample(n=4)
+```
+:::
+::: {.column width="50%"}
+```{r}
+#| label: 05-02-slice-4
+#| echo: true
+
+hypo_4 |>
+  group_by(intervention) |>
+  slice_sample(n=2)
+```
+:::
+::::
+
+::: notes
+
+The slice_sample function normally selects a random sample across the entire tibble or data frame. After the group_by function, it selects a random sample in each group. This is effectively the same as a stratified sample.
+
+:::
+
+## Side effects of group_by
+
+-   Converts tibble or data frame to grouped tibble.
+    -   Some older R functions cannot work with grouped tibble
+    -   Use the ungroup function
+    
+## Be careful with group_by on two categorical variables, 1
+
+```{r}
+#| label: 05-02-two-cats-1
+#| echo: true
+#| message: true
+#| warning: true
+
+hypo_4 |>
+  group_by(intervention, gender) |>
+  summarize(
+    age_mean=mean(age),
+    age_sd=sd(age),
+    n=n()) |>
+  mutate(total=sum(n))
+```
+
+## Be careful with group_by on two categorical variables, 2
+
+```{r}
+#| label: 05-02-two-cats-2
+#| echo: true
+#| message: true
+#| warning: true
+
+hypo_4 |>
+  group_by(intervention, gender) |>
+  summarize(
+    age_mean=mean(age),
+    age_sd=sd(age),
+    n=n(),
+    .groups="drop") |>
+  mutate(total=sum(n))
+```
+
