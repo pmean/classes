@@ -126,8 +126,9 @@ pulmonary_1 |>
     age_min=min(age),
     age_max=max(age)) |>
   gt() |>
-  tab_header(md("**Missing value count**")) |>
-  tab_source_note("Simon, 2025-04-20")
+  tab_header(md("**Descriptive statistics**")) |>
+  tab_source_note("Simon, 2025-04-20") |>
+  fmt_number(n_sigfig=3)
 ```
 
 
@@ -146,7 +147,11 @@ pulmonary_1 |>
     fev_mean=mean(fev),
     fev_sd=sd(fev),
     fev_min=min(fev),
-    fev_max=max(fev))
+    fev_max=max(fev)) |>
+  gt() |>
+  tab_header(md("**Descriptive statistics**")) |>
+  tab_source_note("Simon, 2025-04-20") |>
+  fmt_number(n_sigfig=3)
 ```
 
 #### Interpretation of the output
@@ -163,7 +168,11 @@ pulmonary_1 |>
     ht_mean=mean(ht),
     ht_sd=sd(ht),
     ht_min=min(ht),
-    ht_max=max(ht))
+    ht_max=max(ht)) |>
+  gt() |>
+  tab_header(md("**Descriptive statistics**")) |>
+  tab_source_note("Simon, 2025-04-20") |>
+  fmt_number(n_sigfig=3)
 ```
 
 #### Interpretation of the output
@@ -179,7 +188,10 @@ pulmonary_1 |>
   count(sex) |>
   mutate(total=sum(n)) |>
   mutate(pct=round(100*n/total)) |>
-  mutate(pct=glue("{n}/{total} ({pct}%)"))
+  mutate(pct=glue("{n}/{total} ({pct}%)")) |>
+  gt() |>
+  tab_header(md("**Descriptive statistics**")) |>
+  tab_source_note("Simon, 2025-04-20")
 ```
 
 #### Interpretation of the output
@@ -195,7 +207,11 @@ pulmonary_1 |>
   count(smoke) |>
   mutate(total=sum(n)) |>
   mutate(pct=round(100*n/total)) |>
-  mutate(pct=glue("{n}/{total} ({pct}%)"))
+  mutate(pct=glue("{n}/{total} ({pct}%)")) |>
+  select(-n, -total) |>
+  gt() |>
+  tab_header(md("**Descriptive statistics**")) |>
+  tab_source_note("Simon, 2025-04-20")
 ```
 
 #### Interpretation of the output
@@ -213,7 +229,10 @@ pulmonary_1 |>
   group_by(sex) |>
   summarize(
     fev_mean=mean(fev),
-    fev_sd=sd(fev))
+    fev_sd=sd(fev)) |>
+  gt() |>
+  tab_header(md("**Descriptive statistics**")) |>
+  tab_source_note("Simon, 2025-04-20")
 ```
 
 #### Comments on the code
@@ -229,7 +248,11 @@ pulmonary_1 |>
   group_by(smoke) |>
   summarize(
     fev_mean=mean(fev),
-    fev_sd=sd(fev))
+    fev_sd=sd(fev)) |>
+  gt() |>
+  tab_header(md("**Group means**")) |>
+  tab_source_note("Simon, 2025-04-20") |>
+  fmt_number(n_sigfig=3)
 ```
 
 #### Interpretation of the output
@@ -243,7 +266,11 @@ pulmonary_1 |>
   group_by(smoke) |>
   summarize(
     age_mean=mean(age),
-    age_sd=sd(age))
+    age_sd=sd(age)) |>
+  gt() |>
+  tab_header(md("**Group means**")) |>
+  tab_source_note("Simon, 2025-04-20") |>
+  fmt_number(n_sigfig=3)
 ```
 
 #### Interpretation of the output
@@ -288,7 +315,10 @@ pulmonary_1 |>
   select(-n, -total) |>
   pivot_wider(
     names_from=smoke, 
-    values_from=pct)
+    values_from=pct) |>
+  gt() |>
+  tab_header(md("**Crosstabulation**")) |>
+  tab_source_note("Simon, 2025-04-20")
 ```
 
 #### Interpretation of the output
