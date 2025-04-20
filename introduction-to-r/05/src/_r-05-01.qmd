@@ -1,5 +1,5 @@
 ---
-title: "r-01-01, TBA-1"
+title: "r-05-01, The FEV data set"
 format: 
   revealjs:
     slide-number: true
@@ -12,8 +12,12 @@ editor: source
 #| message: false
 #| warning: false
 
+library(glue)
 library(tidyverse)
 library(yaml)
+
+load("../data/demo-05.RData")
+load("../data/module-05.RData")
 ``` 
 
 ## How do you characterize relationships?
@@ -44,7 +48,7 @@ f1 <- "https://raw.githubusercontent.com"
 f2 <- "pmean/data/refs/heads/main/files"
 f3 <- "fev.yaml"
 
-dd <- read_yaml(glue("f1/f2/f3"))
+dd <- read_yaml(glue("{f1}/{f2}/{f3}"))
 ```
 
 `r dd$description`
@@ -61,7 +65,9 @@ This dataset has 654 rows and 5 variables: age (in years), fev (in liters), heig
 ## read in the FEV data set, glimpse
 
 ```{r}
-glimpse(fev)
+#| label: 05-01-glimpse
+
+glimpse(pulmonary)
 ```
 
 ::: notes
@@ -70,446 +76,30 @@ Here is a glimpse of the data.
 
 :::
 
+## Verify that there are no missing values
+
+`r code[["missing"]]`
+
 ## Create factors
 
-`r code[fev-factors]`
+`r code[["factors"]]`
 
 ## Summary for continuous variables: age
 
-```{r summary_age}
-mean(fev$age)
-sd(fev$age)
-range(fev$age)
-```
-
-::: notes
-
-This is clearly a pediatric population. You could use the summary function here, as it provides the mean, median, quartiles and minimum/maximum, but unfortunately, it does not include the standard deviation.
-
-:::
+`r code[["age"]]`
 
 ## Summary for continuous variables: fev
 
-```{r summary_fev}
-mean(fev$fev)
-sd(fev$fev)
-range(fev$fev)
-```
-
-::: notes
-
-I am not an expert on FEV, but these values seem reasonable.
-
-:::
+`r code[["fev"]]`
 
 ## Summary for continuous variables: ht
 
-```{r summary_ht}
-mean(fev$ht)
-sd(fev$ht)
-range(fev$ht)
-```
+`r code[["ht"]]`
 
-::: notes
+## Summary for categorical variables: sex
 
-Again, these seem to be reasonable values.
+`r code[["sex"]]`
 
-:::
+## Summary for categorical variables: smoke
 
-## Scatterplot
-
-```{r fev_scatterplot}
-plot1 <- ggplot(fev, aes(x=age, y=fev)) +
-  geom_point()
-ggsave(
-  "../images/age-by-fev.png", 
-  plot1)
-```
-
-::: notes
-
-Recall that you use a scatterplot to examine the relationship between two continuous variables.
-
-:::
-
-## Scatterplot
-
-![](../images/age-by-fev.png)
-
-::: notes
-
-Here is the plot that is produced by this code.
-
-:::
-
-## Create factors
-
-```{r factors.fev}
-fev$smoke_factor <- factor(
-  fev$smoke, 
-  levels=0:1,
-  labels=c("nonsmoker", "smoker"))
-fev$sex_factor <- factor(
-  fev$sex, 
-  levels=0:1,
-  labels=c("female", "male"))
-```
-
-::: notes
-
-When you have number codes for categorical data, it is always a good idea to create factors. Remember, though, that you should not create factors until most of the data management tasks (e.g., recoding) is done.
-
-:::
-
-## FEV frequency tables
-
-```{r fev-tables}
-table(fev$smoke_factor, useNA="always")
-table(fev$sex_factor, useNA="always")
-```
-
-::: notes
-
-The two categorical variables have no missing values.
-
-:::
-
-## Crosstabs
-
-```{r fev_crosstabs}
-crosstab <- 
-  table(fev$sex_factor,fev$smoke_factor)
-prop_table <- prop.table(crosstab, margin=1)
-pct_table <- round(100*prop_table)
-```
-
-::: notes
-
-Also recall that you use a crosstabulation to examine the relationship between two categorical variables.
-
-The general advice, which works more than 90% of the time is to place your outcome variable as the columns and ask for row percents. Recall that margin=1 provides row percents.
-
-The females smoke more often than the males, `r pct_table["female", "smoker"]`% versus `r pct_table["male", "smoker"]`%.
-
-:::
-
-## Break #1
-
-+ What have you learned
-  + Review analysis of continuous variables
-  + Review analysis of categorical variables
-+ What's next
-  + Analysis of a mix: continuous and categorical
-  
-::: notes
-
-Let's take a short break here. What you've seen so far is review of methods that you use when examining relationships between two continuous variables (scatterplots) and methods that you use when examining relationships between two categorical variables (crosstabulations).
-
-Coming up next is how you examine relationships between a continuous variable and a categorical variable.
-
-:::
-
-## Boxplots
-
-```{r fev_boxplots-fev}
-plot2 <- 
-  ggplot(fev, 
-    aes(x=smoke_factor, y=fev)) +
-      geom_boxplot()
-ggsave("../images/smoke-by-fev.png")
-```
-
-::: notes
-
-When you want to look at a relationship between a categorical variable and a continuous variable, you should use a boxplot.
-
-:::
-
-## Boxplots
-
-![Boxplots comparing FEV values for smokers and non-smokers](../images/smoke-by-fev.png)
-
-::: notes
-
-Here is the boxplot. The results are very odd. Smokers tend to have higher FEV values than non-smokers. 
-
-You can get a hint as to why smokers might have higher fev values than non-smokers by looking at how age and smoking status are related.
-
-:::
-
-## Boxplots
-
-```{r fev_boxplots-age}
-plot3 <- 
-  ggplot(fev, aes(smoke_factor, age)) +
-    geom_boxplot()
-ggsave(
-  "../images/smoke-by-age.png", 
-  plot3)
-```
-
-::: notes
-
-This is the code to draw a boxplot of the ages for smokers and non-smokers
-
-:::
-
-## Boxplots
-
-![Boxplots comparing ages for smokers and non-smokers](../images/smoke-by-age.png)
-
-::: notes
-
-Here's what's happening. Older kids are more likely to be smokers, and older kids have bigger and more mature lungs. This a classic case of confounding.
-
-:::
-
-## Break #2
-
-+ What have you learned?
-  + Boxplots
-+ What's coming up next?
-  + Group means and standard deviations
-  
-::: notes
-
-Time for another break. You saw how to use boxplots to visually compare a continuous variable across different levels of a categorical variable.
-
-Coming up next is the calculation of group means and standard deviations.
-
-:::
-
-## Group means, code
-
-```{r fev-means-1}
-fev_means <- 
-  by(
-    fev$fev, 
-    fev$smoke_factor, 
-    mean, 
-    na.rm=TRUE)
-```
-
-::: notes
-
-Calculate means for subgroups using the by function.
-
-:::
-
-## Group means, code
-
-```{r fev-means-2}
-fev_means
-```
-
-::: notes
-
-Here are the group means.
-
-:::
-
-## Don't forget to round
-
-```{r rounded-means}
-round(fev_means, 1)
-```
-
-## More statistics, code (1/5)
-
-```{r fev-sd-1}
-fev_stdev <- 
-  by(
-    fev$fev, 
-    fev$smoke_factor, 
-    sd, 
-    na.rm=TRUE)
-```
-
-::: notes
-
-I want to show an advanced example, for a variety of reasons. It emphasizes how in R, you take small pieces and put them together to create something complex. It also shows how to make output close to publication-ready. Finally, it explains the counter-intuitive finding the smokers have a higher average FEV than non-smokers.
-
-You don't need to use this extra level of effort for your homework. 
-
-First start by computing standard deviations for FEV. grouped by smoking status.
-
-:::
-
-## More statistics, code (2/5)
-
-```{r fev-sd-2}
-age_means <- 
-  by(
-    fev$fev, 
-    fev$smoke_factor, 
-    mean, 
-    na.rm=TRUE)
-```
-
-::: notes
-
-Now compute the average age, grouped by smoking status.
-
-:::
-
-## More statistics, code (3/5)
-
-```{r fev-sd-3}
-age_stdev <- 
-  by(
-    fev$fev, 
-    fev$smoke_factor, 
-    sd, 
-    na.rm=TRUE)
-```
-
-::: notes
-
-Compute the standard deviations for age, grouped by smoking status.
-
-:::
-
-## More statistics, code (4/5)
-
-```{r fev_paste_fev}
-colon <- ": "
-plus_minus <- "+/-"
-fev_stats <- paste0(
-  names(fev_means),
-  colon,
-  round(fev_means, 1),
-  plus_minus,
-  round(fev_stdev, 1))
-```
-
-::: notes
-
-Now combine the FEV means and standard deviations into a single string.
-
-:::
-
-## More statistics, code (5/5)
-
-```{r fev_paste_age}
-age_stats <- paste0(
-  names(age_means),
-  colon,
-  round(age_means,1),
-  plus_minus,
-  round(age_stdev,1),
-  sep="")
-```
-
-::: notes
-
-Now combine the age means and standard deviations the same way.
-
-:::
-
-## More statistics, output
-
-```{r counter-intuitive}
-fev_stats
-age_stats
-```
-
-::: notes
-
-Notice that smokers are 4 years older on average than nonsmokers. Older children have bigger lungs and larger FEV values. So age is a confounding variable for the effect of smoking on FEV.
-
-Now I need to emphasize again that you don't have to provide this level of complexity in your homework...unless you are ambitious and want to try something a bit out of the ordinary.
-
-:::
-
-## Break #3
-
-+ What have you learned?
-  + Review earlier material
-  + Boxplots
-  + Group means and standard deviations
-+ What's coming up next?
-  + Datasets needed for your homework
-  
-::: notes
-
-Time for another break. You saw how to use boxplots to visually compare a continuous variable across different levels of a categorical variable.
-
-Coming up next is the calculation of group means and standard deviations.
-
-:::
-
-## The Albuquerque dataset
-
-+ Housing data dictionary
-  + http://www.pmean.com/introduction-to-r/data/albuquerque-data-dictionary.txt
-+ Housing dataset
-  + http://www.pmean.com/introduction-to-r/data/albuquerque-housing.txt
-
-::: notes
-
-The first file you will need for your homework is the Albuquerque dataset. It has information on 117 housing resales in the city of Albuquerque, New Mexico back in 1993. The dataset includes information on the size and age of the house, among other things, that might be predictive of the sales price.
-
-:::
-
-## The Albuquerque dataset
-
-![Data dictionary for the Albuquerque dataset](../images/albuquerque-data-dictionary.png)
-
-::: notes
-
-This is the data dictionary. Notice that there are several categorical variables. 
-
-Northeast is an indicator variable for whether the house was located in the Northeast part of the city, which is believed to be slightly more upscale than the other parts of the city.
-
-CustomBuild is an indicator variable for whether the house was built using special (custom) plans or if it was built using standard plans.
-
-CornerLot is an indicator variable for whether the house sat on a corner lot (a lot at the intersection of two streets). There are reasons to believe that houses on corner lots should be more expensive than other houses, but also reasons to believe that these houses should be less expensive.
-
-:::
-
-## The Albuquerque dataset
-
-![A peek at the raw data for the Albuquerque dataset](../images/albuquerque-view.png)
-
-::: notes
-
-There is only a single blank between each data value. Use a blank as a delimiter.
-
-:::
-
-## The Diamond dataset
-
-+ Diamond data dictionary
-  + http://jse.amstat.org/v9n2/4C.txt
-+ Diamond dataset
-  + http://jse.amstat.org/v9n2/4Cdata.txt
-  
-::: notes
-
-Note that the data dictionary describes two different datasets. You will be using the first dataset, the one with a smaller number of variables.
-
-:::
-
-## The Diamond dataset
-
-![Data dictionary for the Diamond dataset](../images/diamond-data-dictionary.png)
-
-::: notes
-
-This is the data dictionary.
-
-:::
-
-## The Diamond dataset
-
-![A peek at the raw data for the Diamond dataset](../images/diamond-view.png)
-
-::: notes
-
-This could either be a tab delimited file or a fixed width file. If you scroll through enough of the data, you will see that most of the variables are left justified, but the price is right justified. Tab delimited files almost always have left justification for all data. So try a fixed width format.
-
-:::
-
-```{r save-image, echo=FALSE}
-save.image("../data/slides05.RData")
-```
+`r code[["smoke"]]`

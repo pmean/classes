@@ -3112,10 +3112,11 @@ vertical-align: -.125em;
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.Date</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] &quot;2025-04-19&quot;</code></pre>
+<pre><code>[1] &quot;2025-04-20&quot;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="documentation-of-the-intermediate-datasets" class="level2">
@@ -3175,12 +3176,438 @@ $ smoke &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pulmonary <span class="sc">|&gt;</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), is.na)) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), sum))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 5
-    age   fev    ht   sex smoke
-  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-1     0     0     0     0     0</code></pre>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), sum)) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="fu">md</span>(<span class="st">&quot;**Missing value count**&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(<span class="st">&quot;Simon, 2025-04-20&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="xextkwtxhg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xextkwtxhg table {
+font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+#xextkwtxhg thead, #xextkwtxhg tbody, #xextkwtxhg tfoot, #xextkwtxhg tr, #xextkwtxhg td, #xextkwtxhg th {
+border-style: none;
+}
+#xextkwtxhg p {
+margin: 0;
+padding: 0;
+}
+#xextkwtxhg .gt_table {
+display: table;
+border-collapse: collapse;
+line-height: normal;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 16px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: auto;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #A8A8A8;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #A8A8A8;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}
+#xextkwtxhg .gt_caption {
+padding-top: 4px;
+padding-bottom: 4px;
+}
+#xextkwtxhg .gt_title {
+color: #333333;
+font-size: 125%;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}
+#xextkwtxhg .gt_subtitle {
+color: #333333;
+font-size: 85%;
+font-weight: initial;
+padding-top: 3px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}
+#xextkwtxhg .gt_heading {
+background-color: #FFFFFF;
+text-align: center;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#xextkwtxhg .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#xextkwtxhg .gt_col_headings {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#xextkwtxhg .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}
+#xextkwtxhg .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}
+#xextkwtxhg .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}
+#xextkwtxhg .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}
+#xextkwtxhg .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}
+#xextkwtxhg .gt_spanner_row {
+border-bottom-style: hidden;
+}
+#xextkwtxhg .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+text-align: left;
+}
+#xextkwtxhg .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: middle;
+}
+#xextkwtxhg .gt_from_md > :first-child {
+margin-top: 0;
+}
+#xextkwtxhg .gt_from_md > :last-child {
+margin-bottom: 0;
+}
+#xextkwtxhg .gt_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}
+#xextkwtxhg .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xextkwtxhg .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}
+#xextkwtxhg .gt_row_group_first td {
+border-top-width: 2px;
+}
+#xextkwtxhg .gt_row_group_first th {
+border-top-width: 2px;
+}
+#xextkwtxhg .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xextkwtxhg .gt_first_summary_row {
+border-top-style: solid;
+border-top-color: #D3D3D3;
+}
+#xextkwtxhg .gt_first_summary_row.thick {
+border-top-width: 2px;
+}
+#xextkwtxhg .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#xextkwtxhg .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xextkwtxhg .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: double;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}
+#xextkwtxhg .gt_last_grand_summary_row_top {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: double;
+border-bottom-width: 6px;
+border-bottom-color: #D3D3D3;
+}
+#xextkwtxhg .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}
+#xextkwtxhg .gt_table_body {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#xextkwtxhg .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#xextkwtxhg .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xextkwtxhg .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#xextkwtxhg .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xextkwtxhg .gt_left {
+text-align: left;
+}
+#xextkwtxhg .gt_center {
+text-align: center;
+}
+#xextkwtxhg .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}
+#xextkwtxhg .gt_font_normal {
+font-weight: normal;
+}
+#xextkwtxhg .gt_font_bold {
+font-weight: bold;
+}
+#xextkwtxhg .gt_font_italic {
+font-style: italic;
+}
+#xextkwtxhg .gt_super {
+font-size: 65%;
+}
+#xextkwtxhg .gt_footnote_marks {
+font-size: 75%;
+vertical-align: 0.4em;
+position: initial;
+}
+#xextkwtxhg .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}
+#xextkwtxhg .gt_indent_1 {
+text-indent: 5px;
+}
+#xextkwtxhg .gt_indent_2 {
+text-indent: 10px;
+}
+#xextkwtxhg .gt_indent_3 {
+text-indent: 15px;
+}
+#xextkwtxhg .gt_indent_4 {
+text-indent: 20px;
+}
+#xextkwtxhg .gt_indent_5 {
+text-indent: 25px;
+}
+#xextkwtxhg .katex-display {
+display: inline-flex !important;
+margin-bottom: 0.75em !important;
+}
+#xextkwtxhg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border"><strong>Missing value count</strong></th>
+</tr>
+<tr class="odd gt_col_headings">
+<th id="age" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">age</th>
+<th id="fev" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">fev</th>
+<th id="ht" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">ht</th>
+<th id="sex" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">sex</th>
+<th id="smoke" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">smoke</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="age">0</td>
+<td class="gt_row gt_right" headers="fev">0</td>
+<td class="gt_row gt_right" headers="ht">0</td>
+<td class="gt_row gt_right" headers="sex">0</td>
+<td class="gt_row gt_right" headers="smoke">0</td>
+</tr>
+</tbody><tfoot class="gt_sourcenotes">
+<tr class="odd">
+<td colspan="5" class="gt_sourcenote">Simon, 2025-04-20</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
 </div>
 </div>
 <section id="comments-on-the-code" class="level4">
@@ -3196,26 +3623,26 @@ $ smoke &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 <section id="create-factors" class="level2">
 <h2 class="anchored" data-anchor-id="create-factors">Create factors</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pulmonary <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">smoke=</span><span class="fu">factor</span>(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    smoke, </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;nonsmoker&quot;</span>, <span class="st">&quot;smoker&quot;</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex=</span><span class="fu">factor</span>(</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    sex, </span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>))) <span class="ot">-&gt;</span> pulmonary_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pulmonary <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">smoke=</span><span class="fu">factor</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    smoke, </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;nonsmoker&quot;</span>, <span class="st">&quot;smoker&quot;</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex=</span><span class="fu">factor</span>(</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    sex, </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;female&quot;</span>, <span class="st">&quot;male&quot;</span>))) <span class="ot">-&gt;</span> pulmonary_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="summary-for-continuous-variables-age" class="level2">
 <h2 class="anchored" data-anchor-id="summary-for-continuous-variables-age">Summary for continuous variables: age</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">age_mean=</span><span class="fu">mean</span>(age),</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">age_sd=</span><span class="fu">sd</span>(age),</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">age_min=</span><span class="fu">min</span>(age),</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">age_max=</span><span class="fu">max</span>(age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">age_mean=</span><span class="fu">mean</span>(age),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">age_sd=</span><span class="fu">sd</span>(age),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">age_min=</span><span class="fu">min</span>(age),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">age_max=</span><span class="fu">max</span>(age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 4
   age_mean age_sd age_min age_max
@@ -3231,12 +3658,12 @@ $ smoke &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 <section id="summary-for-continuous-variables-fev" class="level2">
 <h2 class="anchored" data-anchor-id="summary-for-continuous-variables-fev">Summary for continuous variables: fev</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span> </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">fev_mean=</span><span class="fu">mean</span>(fev),</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fev_sd=</span><span class="fu">sd</span>(fev),</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fev_min=</span><span class="fu">min</span>(fev),</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">fev_max=</span><span class="fu">max</span>(fev))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">fev_mean=</span><span class="fu">mean</span>(fev),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fev_sd=</span><span class="fu">sd</span>(fev),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fev_min=</span><span class="fu">min</span>(fev),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">fev_max=</span><span class="fu">max</span>(fev))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 4
   fev_mean fev_sd fev_min fev_max
@@ -3252,12 +3679,12 @@ $ smoke &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 <section id="summary-for-continuous-variables-ht" class="level2">
 <h2 class="anchored" data-anchor-id="summary-for-continuous-variables-ht">Summary for continuous variables: ht</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ht_mean=</span><span class="fu">mean</span>(ht),</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ht_sd=</span><span class="fu">sd</span>(ht),</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ht_min=</span><span class="fu">min</span>(ht),</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ht_max=</span><span class="fu">max</span>(ht))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ht_mean=</span><span class="fu">mean</span>(ht),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ht_sd=</span><span class="fu">sd</span>(ht),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ht_min=</span><span class="fu">min</span>(ht),</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ht_max=</span><span class="fu">max</span>(ht))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 4
   ht_mean ht_sd ht_min ht_max
@@ -3273,11 +3700,11 @@ $ smoke &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 <section id="summary-for-categorical-variables-sex" class="level2">
 <h2 class="anchored" data-anchor-id="summary-for-categorical-variables-sex">Summary for categorical variables: sex</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sex) <span class="sc">|&gt;</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{n}/{total} ({pct}%)&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sex) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{n}/{total} ({pct}%)&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
   sex        n total pct          
@@ -3294,11 +3721,11 @@ $ smoke &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 <section id="summary-for-categorical-variables-smoke" class="level2">
 <h2 class="anchored" data-anchor-id="summary-for-categorical-variables-smoke">Summary for categorical variables: smoke</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(smoke) <span class="sc">|&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{n}/{total} ({pct}%)&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(smoke) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{n}/{total} ({pct}%)&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
   smoke         n total pct          
@@ -3315,24 +3742,92 @@ $ smoke &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 </section>
 <section id="begin-part-2" class="level1">
 <h1>— Begin part 2 —</h1>
+<section id="group-means-fev-by-sex" class="level2">
+<h2 class="anchored" data-anchor-id="group-means-fev-by-sex">Group means, fev-by-sex</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fev_mean=</span><span class="fu">mean</span>(fev),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fev_sd=</span><span class="fu">sd</span>(fev))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  sex    fev_mean fev_sd
+  &lt;fct&gt;     &lt;dbl&gt;  &lt;dbl&gt;
+1 female     2.45  0.646
+2 male       2.81  1.00 </code></pre>
+</div>
+</div>
+<section id="comments-on-the-code-1" class="level4">
+<h4 class="anchored" data-anchor-id="comments-on-the-code-1">Comments on the code</h4>
+</section>
+<section id="interpretation-of-the-output-7" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-7">Interpretation of the output</h4>
+</section>
+</section>
+<section id="group-means-fev-by-smoke" class="level2">
+<h2 class="anchored" data-anchor-id="group-means-fev-by-smoke">Group means, fev-by-smoke</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(smoke) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fev_mean=</span><span class="fu">mean</span>(fev),</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fev_sd=</span><span class="fu">sd</span>(fev))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  smoke     fev_mean fev_sd
+  &lt;fct&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+1 nonsmoker     2.57  0.851
+2 smoker        3.28  0.750</code></pre>
+</div>
+</div>
+<section id="interpretation-of-the-output-8" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-8">Interpretation of the output</h4>
+</section>
+</section>
+<section id="group-means-age-by-smoke" class="level2">
+<h2 class="anchored" data-anchor-id="group-means-age-by-smoke">Group means, age-by-smoke</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(smoke) <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">age_mean=</span><span class="fu">mean</span>(age),</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">age_sd=</span><span class="fu">sd</span>(age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  smoke     age_mean age_sd
+  &lt;fct&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+1 nonsmoker     9.53   2.74
+2 smoker       13.5    2.34</code></pre>
+</div>
+</div>
+<section id="interpretation-of-the-output-9" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-9">Interpretation of the output</h4>
+</section>
+</section>
+</section>
+<section id="begin-part-3" class="level1">
+<h1>— Begin part 3 —</h1>
 <section id="scatterplot" class="level2">
 <h2 class="anchored" data-anchor-id="scatterplot">Scatterplot</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>pulmonary_2 <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>age, <span class="at">y=</span>fev) <span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">&quot;Scatterplot&quot;</span>,</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">&quot;Age in years&quot;</span>,</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">&quot;Forced expiratory volume (liters)&quot;</span>,</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">&quot;Simon, 2025-04-19&quot;</span>) <span class="ot">-&gt;</span> plot_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error: object &#39;pulmonary_2&#39; not found</code></pre>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>age, <span class="at">y=</span>fev) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">&quot;Scatterplot&quot;</span>,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">&quot;Age in years&quot;</span>,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">&quot;Forced expiratory volume (liters)&quot;</span>,</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">&quot;Simon, 2025-04-19&quot;</span>) <span class="ot">-&gt;</span> plot_1</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>plot_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img role="img" src="data:image/png;base64,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" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>plot_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error: object &#39;plot_1&#39; not found</code></pre>
 </div>
 </div>
 <section id="inpterpretation-of-the-output" class="level4">
@@ -3344,16 +3839,16 @@ $ smoke &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 <section id="crosstabs" class="level2">
 <h2 class="anchored" data-anchor-id="crosstabs">Crosstabs</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sex, smoke) <span class="sc">|&gt;</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{n}/{total} ({pct}%)&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total) <span class="sc">|&gt;</span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from=</span>smoke, </span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from=</span>pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sex, smoke) <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)) <span class="sc">|&gt;</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="fu">glue</span>(<span class="st">&quot;{n}/{total} ({pct}%)&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n, <span class="sc">-</span>total) <span class="sc">|&gt;</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from=</span>smoke, </span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from=</span>pct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
 # Groups:   sex [2]
@@ -3363,19 +3858,19 @@ $ smoke &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 2 male   310/336 (92%) 26/336 (8%) </code></pre>
 </div>
 </div>
-<section id="interpretation-of-the-output-7" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output-7">Interpretation of the output</h4>
+<section id="interpretation-of-the-output-10" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-10">Interpretation of the output</h4>
 <p>Smoking is uncommon but occurs slightly more often with female patients.</p>
 </section>
 </section>
 <section id="boxplots" class="level2">
 <h2 class="anchored" data-anchor-id="boxplots">Boxplots</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>smoke, <span class="at">y=</span>fev) <span class="sc">+</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>smoke, <span class="at">y=</span>fev) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3383,13 +3878,13 @@ $ smoke &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">&quot;Boxplots&quot;</span>,</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">&quot;Smoking status&quot;</span>,</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">&quot;Forced expiratory volume (liters)&quot;</span>,</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">&quot;Simon, 2025-04-19&quot;</span>) <span class="ot">-&gt;</span> plot_2</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>plot_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">&quot;Boxplots&quot;</span>,</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">&quot;Smoking status&quot;</span>,</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">&quot;Forced expiratory volume (liters)&quot;</span>,</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">&quot;Simon, 2025-04-19&quot;</span>) <span class="ot">-&gt;</span> plot_2</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>plot_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$x
 [1] &quot;Smoking status&quot;
@@ -3407,31 +3902,31 @@ attr(,&quot;class&quot;)
 [1] &quot;labels&quot;</code></pre>
 </div>
 </div>
-<section id="comments-on-the-code-1" class="level4">
-<h4 class="anchored" data-anchor-id="comments-on-the-code-1">Comments on the code</h4>
+<section id="comments-on-the-code-2" class="level4">
+<h4 class="anchored" data-anchor-id="comments-on-the-code-2">Comments on the code</h4>
 <p>The [boxplot][ref-boxplot-nodate] function draws boxplots. Most of the time, you want to put two or more boxplots side by side. The categorical variable that defines what goes into each boxplot is designated as x and the continuous variable summarized by the boxplot is designated as y.</p>
 <p>Boxplots, especially for a small number of levels of your categorical variable, tend to look nicer flipped horizontally and with a fairly small height.</p>
 </section>
-<section id="interpretation-of-the-output-8" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output-8">Interpretation of the output</h4>
+<section id="interpretation-of-the-output-11" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-11">Interpretation of the output</h4>
 <p>In a bit of a surprise, fev values tend to be higher for smokers than for non-smokers.</p>
 </section>
 </section>
 <section id="clustered-boxplots-1" class="level2">
 <h2 class="anchored" data-anchor-id="clustered-boxplots-1">Clustered boxplots, 1</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>smoke, <span class="at">y=</span>fev, <span class="at">fill=</span>sex) <span class="sc">+</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">&quot;Boxplots&quot;</span>,</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">&quot;Smoking status&quot;</span>,</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">&quot;Forced expiratory volume (liters)&quot;</span>,</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">&quot;Simon, 2025-04-19&quot;</span>) <span class="ot">-&gt;</span> plot_3</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>plot_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>smoke, <span class="at">y=</span>fev, <span class="at">fill=</span>sex) <span class="sc">+</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">&quot;Boxplots&quot;</span>,</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">&quot;Smoking status&quot;</span>,</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">&quot;Forced expiratory volume (liters)&quot;</span>,</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">&quot;Simon, 2025-04-19&quot;</span>) <span class="ot">-&gt;</span> plot_3</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>plot_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3440,116 +3935,40 @@ attr(,&quot;class&quot;)
 </div>
 </div>
 </div>
-<section id="comments-on-the-code-2" class="level4">
-<h4 class="anchored" data-anchor-id="comments-on-the-code-2">Comments on the code</h4>
+<section id="comments-on-the-code-3" class="level4">
+<h4 class="anchored" data-anchor-id="comments-on-the-code-3">Comments on the code</h4>
 <p>Specifying the fill argument tells ggplot that you want to further break down your boxplots by a second categorical variable, sex.</p>
 </section>
 </section>
 <section id="clustered-boxplots-2" class="level2">
 <h2 class="anchored" data-anchor-id="clustered-boxplots-2">Clustered boxplots, 2</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>sex, <span class="at">y=</span>fev, <span class="at">fill=</span>smoke) <span class="sc">+</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x=</span>sex, <span class="at">y=</span>fev, <span class="at">fill=</span>smoke) <span class="sc">+</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">&quot;Boxplots&quot;</span>,</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">&quot;Smoking status&quot;</span>,</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">&quot;Forced expiratory volume (liters)&quot;</span>,</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">&quot;Simon, 2025-04-19&quot;</span>) <span class="ot">-&gt;</span> plot_3</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>plot_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img role="img" src="data:image/png;base64,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" class="img-fluid figure-img" width="576"></p>
+<p><img role="img" src="data:image/png;base64,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" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">&quot;Boxplots&quot;</span>,</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">&quot;Smoking status&quot;</span>,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">&quot;Forced expiratory volume (liters)&quot;</span>,</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">&quot;Simon, 2025-04-19&quot;</span>) <span class="ot">-&gt;</span> plot_3</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>plot_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$x
-[1] &quot;Smoking status&quot;
-
-$y
-[1] &quot;Forced expiratory volume (liters)&quot;
-
-$title
-[1] &quot;Boxplots&quot;
-
-$caption
-[1] &quot;Simon, 2025-04-19&quot;
-
-attr(,&quot;class&quot;)
-[1] &quot;labels&quot;</code></pre>
-</div>
 </div>
 </section>
-</section>
-<section id="begin-part-3" class="level1">
-<h1>— Begin part 3 —</h1>
-<section id="group-means-fev-by-sex" class="level2">
-<h2 class="anchored" data-anchor-id="group-means-fev-by-sex">Group means, fev-by-sex</h2>
+<section id="save-everything" class="level2">
+<h2 class="anchored" data-anchor-id="save-everything">Save everything</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">|&gt;</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fev_mean=</span><span class="fu">mean</span>(fev),</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fev_sd=</span><span class="fu">sd</span>(fev))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 3
-  sex    fev_mean fev_sd
-  &lt;fct&gt;     &lt;dbl&gt;  &lt;dbl&gt;
-1 female     2.45  0.646
-2 male       2.81  1.00 </code></pre>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>(<span class="st">&quot;../data/demo-05.RData&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<section id="comments-on-the-code-3" class="level4">
-<h4 class="anchored" data-anchor-id="comments-on-the-code-3">Comments on the code</h4>
-</section>
-<section id="interpretation-of-the-output-9" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output-9">Interpretation of the output</h4>
-</section>
-</section>
-<section id="group-means-fev-by-smoke" class="level2">
-<h2 class="anchored" data-anchor-id="group-means-fev-by-smoke">Group means, fev-by-smoke</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(smoke) <span class="sc">|&gt;</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fev_mean=</span><span class="fu">mean</span>(fev),</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fev_sd=</span><span class="fu">sd</span>(fev))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 3
-  smoke     fev_mean fev_sd
-  &lt;fct&gt;        &lt;dbl&gt;  &lt;dbl&gt;
-1 nonsmoker     2.57  0.851
-2 smoker        3.28  0.750</code></pre>
-</div>
-</div>
-<section id="interpretation-of-the-output-10" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output-10">Interpretation of the output</h4>
-</section>
-</section>
-<section id="group-means-age-by-smoke" class="level2">
-<h2 class="anchored" data-anchor-id="group-means-age-by-smoke">Group means, age-by-smoke</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>pulmonary_1 <span class="sc">|&gt;</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(smoke) <span class="sc">|&gt;</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">age_mean=</span><span class="fu">mean</span>(age),</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">age_sd=</span><span class="fu">sd</span>(age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 3
-  smoke     age_mean age_sd
-  &lt;fct&gt;        &lt;dbl&gt;  &lt;dbl&gt;
-1 nonsmoker     9.53   2.74
-2 smoker       13.5    2.34</code></pre>
-</div>
-</div>
-<section id="interpretation-of-the-output-11" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output-11">Interpretation of the output</h4>
-</section>
 </section>
 </section>
 

@@ -24,6 +24,7 @@ This program reads data on a study of pulmonary function in a pediatric populati
 R.version.string
 Sys.Date()
 
+library(gt)
 library(glue)
 library(tidyverse)
 ```
@@ -39,7 +40,6 @@ library(tidyverse)
 
 ```{r}
 #| label: peek
-
 
 fn <- "../data/fev.txt"
 read_lines(file=fn, n_max=10)
@@ -77,7 +77,10 @@ glimpse(pulmonary)
 
 pulmonary |>
   mutate(across(everything(), is.na)) |>
-  summarize(across(everything(), sum))
+  summarize(across(everything(), sum)) |>
+  gt() |>
+  tab_header(md("**Missing value count**")) |>
+  tab_source_note("Simon, 2025-04-20")
 ```
 #### Comments on the code
 
@@ -91,6 +94,8 @@ This particular piece of code first converts every value in the entire tibble or
 #### Interpretation of the output
 
 This output confirms that there are no missing values for any of the variables.
+
+I am introducing a new package, gt, that produces publication ready tables. I want to encourage you to use gt, but it is entirely optional. The first couple of things to add are tab_header and tab_footnote. It is a good idea to produce a simple descriptive title and to list your name and date as a footnote.
 
 ## Create factors
 
@@ -119,7 +124,10 @@ pulmonary_1 |>
     age_mean=mean(age),
     age_sd=sd(age),
     age_min=min(age),
-    age_max=max(age))
+    age_max=max(age)) |>
+  gt() |>
+  tab_header(md("**Missing value count**")) |>
+  tab_source_note("Simon, 2025-04-20")
 ```
 
 
@@ -366,4 +374,11 @@ pulmonary_1 |>
 plot_3
 ```
 
+## Save everything
+
+```{r}
+#| label: save
+
+save.image("../data/demo-05.RData")
+```
 
