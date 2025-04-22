@@ -17,9 +17,9 @@ This program reads data on a study of pulmonary function in a pediatric populati
 [ref-fev-nodate]: https://github.com/pmean/data/blob/main/files/fev.yaml
 
 ```{r}
-#| label: setup
 #| message: false
 #| warning: false
+#| label: setup
 
 R.version.string
 Sys.Date()
@@ -28,6 +28,12 @@ library(gt)
 library(glue)
 library(tidyverse)
 ```
+
+#### Comments on the code
+
+I am including a new library, [gt][ref-gt-nodate], that provides more professional looking displays of tables. I encourage you to use this library, but it is entirely optional. You will see a few simple examples of how gt works in the upcoming code.
+
+[ref-gt-nodate]: https://gt.rstudio.com/reference/index.html
 
 ## Documentation of the intermediate datasets
 
@@ -77,7 +83,9 @@ glimpse(pulmonary)
 
 pulmonary |>
   mutate(across(everything(), is.na)) |>
-  summarize(across(everything(), sum)) |>
+  summarize(across(everything(), sum)) -> table_01
+
+table_01 |>
   gt() |>
   tab_header(md("**Missing value count**")) |>
   tab_source_note("Simon, 2025-04-20")
@@ -88,8 +96,12 @@ The [across][ref-across-nodate] and the [everything][ref-everything-nodate] func
 
 This particular piece of code first converts every value in the entire tibble or data frame into a true/false value with true representing missing values. Then it sums the values for each variable. A true/false value gets converted to 1/0, so this ends up counting the number of true (i.e., missing) values.
 
+The [tab_header][ref-header-nodate] and [tab_source_note][ref-source-nodate] functions place text at the top and bottom of a table, respectively. I suggest that you provide a very brief explanatory title at the top and your name and date at the bottom.
+
 [ref-across-nodate]: https://tidyselect.r-lib.org/reference/everything.html
 [ref-everything-nodate]: https://tidyselect.r-lib.org/reference/everything.html
+[ref-header-nodate]: https://gt.rstudio.com/reference/tab_header.html
+[ref-source-nodate]: https://gt.rstudio.com/reference/tab_source_note.html
 
 #### Interpretation of the output
 
@@ -124,13 +136,20 @@ pulmonary_1 |>
     age_mean=mean(age),
     age_sd=sd(age),
     age_min=min(age),
-    age_max=max(age)) |>
+    age_max=max(age)) -> table_02
+
+table_02 |>
   gt() |>
-  tab_header(md("**Missing value count**")) |>
-  tab_source_note("Simon, 2025-04-20")
+  tab_header(md("**Descriptive statistics**")) |>
+  tab_source_note("Simon, 2025-04-20") |>
+  fmt_number(columns=1:2, n_sigfig=2)
 ```
 
+#### Comments on the code
 
+The [fmt_number][ref-number-nodate] function allows you to specify how numbers are displayed. The n_sigfig argument controls how many significant digits your numbers are rounded to. The columns argument restricts rounding to specific columns. 
+
+[ref-number-nodate]: https://gt.rstudio.com/reference/fmt_number.html
 
 #### Interpretation of the output
 
@@ -146,7 +165,13 @@ pulmonary_1 |>
     fev_mean=mean(fev),
     fev_sd=sd(fev),
     fev_min=min(fev),
-    fev_max=max(fev))
+    fev_max=max(fev)) -> table_03
+
+table_03 |>
+  gt() |>
+  tab_header(md("**Descriptive statistics**")) |>
+  tab_source_note("Simon, 2025-04-20") |>
+  fmt_number(columns=1:2, n_sigfig=2)
 ```
 
 #### Interpretation of the output
@@ -163,7 +188,13 @@ pulmonary_1 |>
     ht_mean=mean(ht),
     ht_sd=sd(ht),
     ht_min=min(ht),
-    ht_max=max(ht))
+    ht_max=max(ht)) -> table_04
+
+table_04 |>
+  gt() |>
+  tab_header(md("**Descriptive statistics**")) |>
+  tab_source_note("Simon, 2025-04-20") |>
+  fmt_number(columns=1:2, n_sigfig=2)
 ```
 
 #### Interpretation of the output
@@ -179,7 +210,12 @@ pulmonary_1 |>
   count(sex) |>
   mutate(total=sum(n)) |>
   mutate(pct=round(100*n/total)) |>
-  mutate(pct=glue("{n}/{total} ({pct}%)"))
+  mutate(pct=glue("{n}/{total} ({pct}%)")) -> table_05
+
+table_05 |>
+  gt() |>
+  tab_header(md("**Descriptive statistics**")) |>
+  tab_source_note("Simon, 2025-04-20")
 ```
 
 #### Interpretation of the output
@@ -195,7 +231,12 @@ pulmonary_1 |>
   count(smoke) |>
   mutate(total=sum(n)) |>
   mutate(pct=round(100*n/total)) |>
-  mutate(pct=glue("{n}/{total} ({pct}%)"))
+  mutate(pct=glue("{n}/{total} ({pct}%)")) -> table_06
+
+table_06 |>
+  gt() |>
+  tab_header(md("**Descriptive statistics**")) |>
+  tab_source_note("Simon, 2025-04-20")
 ```
 
 #### Interpretation of the output
@@ -207,13 +248,20 @@ Only a small fraction (10%) of the patients are smokers.
 ## Group means, fev-by-sex
 
 ```{r}
-#| label: means-fev-by-sex}
+#| label: means-fev-by-sex
 
 pulmonary_1 |>
   group_by(sex) |>
   summarize(
     fev_mean=mean(fev),
-    fev_sd=sd(fev))
+    fev_sd=sd(fev),
+    n=n()) -> table_07
+
+table_07 |>
+  gt() |>
+  tab_header(md("**Group statistics**")) |>
+  tab_source_note("Simon, 2025-04-20") |>
+  fmt_number(columns=1:2, n_sigfig=2)
 ```
 
 #### Comments on the code
@@ -223,13 +271,20 @@ pulmonary_1 |>
 ## Group means, fev-by-smoke
 
 ```{r}
-#| label: means-fev-by-smoke}
+#| label: means-fev-by-smoke
 
 pulmonary_1 |>
   group_by(smoke) |>
   summarize(
     fev_mean=mean(fev),
-    fev_sd=sd(fev))
+    fev_sd=sd(fev),
+    n=n()) -> table_08
+
+table_08 |>
+  gt() |>
+  tab_header(md("**Group statistics**")) |>
+  tab_source_note("Simon, 2025-04-20") |>
+	fmt_number(columns=1:2, n_sigfig=2)
 ```
 
 #### Interpretation of the output
@@ -243,7 +298,14 @@ pulmonary_1 |>
   group_by(smoke) |>
   summarize(
     age_mean=mean(age),
-    age_sd=sd(age))
+    age_sd=sd(age),
+    n=n())  -> table_09
+
+table_09 |>
+  gt() |>
+  tab_header(md("**Group statistics**")) |>
+  tab_source_note("Simon, 2025-04-20") |>
+	fmt_number(columns=1:2, n_sigfig=2)
 ```
 
 #### Interpretation of the output
@@ -263,9 +325,9 @@ pulmonary_1 |>
     title="Scatterplot",
     x="Age in years",
     y="Forced expiratory volume (liters)",
-    caption="Simon, 2025-04-19") -> plot_1
+    caption="Simon, 2025-04-19") -> plot_01
 
-plot_1
+plot_01
 ```
 
 #### Inpterpretation of the output
@@ -285,10 +347,16 @@ pulmonary_1 |>
   mutate(total=sum(n)) |>
   mutate(pct=round(100*n/total)) |>
   mutate(pct=glue("{n}/{total} ({pct}%)")) |>
-  select(-n, -total) |>
+  select(-n, -total) -> table_10
+
+table_10 |>
   pivot_wider(
     names_from=smoke, 
-    values_from=pct)
+    values_from=pct) |>
+	ungroup() |>
+  gt() |>
+  tab_header(md("**Crosstabulation**")) |>
+  tab_source_note("Simon, 2025-04-20")
 ```
 
 #### Interpretation of the output
@@ -306,14 +374,14 @@ pulmonary_1 |>
   ggplot() +
   aes(x=smoke, y=fev) +
   geom_boxplot() +
-  coord_flip()
+  coord_flip() +
   labs(
     title="Boxplots",
     x="Smoking status",
     y="Forced expiratory volume (liters)",
-    caption="Simon, 2025-04-19") -> plot_2
+    caption="Simon, 2025-04-19") -> plot_02
 
-plot_2
+plot_02
   
 ```
 
@@ -323,6 +391,8 @@ plot_2
 The [boxplot][ref-boxplot-nodate] function draws boxplots. Most of the time, you want to put two or more boxplots side by side. The categorical variable that defines what goes into each boxplot is designated as x and the continuous variable summarized by the boxplot is designated as y.
 
 Boxplots, especially for a small number of levels of your categorical variable, tend to look nicer flipped horizontally and with a fairly small height. 
+
+[ref-boxplot-nodate]: https://ggplot2.tidyverse.org/reference/geom_boxplot.html
 
 #### Interpretation of the output
 
@@ -344,9 +414,9 @@ pulmonary_1 |>
     title="Boxplots",
     x="Smoking status",
     y="Forced expiratory volume (liters)",
-    caption="Simon, 2025-04-19") -> plot_3
+    caption="Simon, 2025-04-19") -> plot_03
 
-plot_3
+plot_03
 ```
 
 #### Comments on the code
@@ -369,15 +439,17 @@ pulmonary_1 |>
     title="Boxplots",
     x="Smoking status",
     y="Forced expiratory volume (liters)",
-    caption="Simon, 2025-04-19") -> plot_3
+    caption="Simon, 2025-04-19") -> plot_04
 
-plot_3
+plot_04
 ```
 
 ## Save everything
 
 ```{r}
 #| label: save
+
+warnings()
 
 save.image("../data/demo-05.RData")
 ```

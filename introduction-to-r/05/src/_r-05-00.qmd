@@ -5,6 +5,7 @@ format:
     embed-resources: true
 editor: source
 ---
+
 ## Preliminaries
 
 ```{r}
@@ -12,76 +13,74 @@ editor: source
 #| warning: false
 #| label: 05-00-setup
 
-library(glue)
 library(tidyverse)
 ```
 
 ## Read and parse simon-5505-04-demo.qmd
 
 ```{r}
-#| label: 05-00-parse-function
+#| label: read
 
-extract_label <- function(demo_text, t1, i) {
-
-  # Find the label value for a chunk and store it in v.
-  
-  demo_text[t1[i]] |>
-    str_remove(fixed("#| label: ")) |>
-    str_replace_all(fixed("-"), "_") -> v
-  return(v)
-}
-
-extract_chunk <- function(demo_text, t1, t2, i) {
-    
-  # Select two lines after t1 and one line before t2
-  # and add prefix and postfix. Store in a list with
-  # the name stored in v.
-  
-  r <- (t1[i]+2):(t2[i]-1) 
-  prefix <- "```{}"         # Goes before R chunk
-  postfix <- "```"          # Goes after R chunk
-  prefix |>
-    append(demo_text[r]) |>
-    append(postfix) |>
-    paste0(collapse="\n") |>
-    list() -> chunk
-  return(chunk)
-}
-
-display_code <- function(code) {
-  for (v in names(code)) {
-    cat("\n----- ")
-    cat(v)
-    cat(" -----\n")
-    cat(code[[v]])
-  } 
-}
-
-# Extract code from individual chunks of a Quarto or 
-# RMarkdown program.
-
-fn <- "simon-5505-05-demo.qmd"
-demo_text <- read_lines(fn)
-  
-t1 <- str_which(demo_text, fixed("#| label: "))
-t2 <- str_which(demo_text, "^```$")
-
-code <- NULL
-v <- NULL
-for (i in 1:length(t1)) {
-  v[i] <- extract_label(demo_text, t1, i)
-  code[i] <- extract_chunk(demo_text, t1, t2, i)
-}
-names(code) <- v
-  
-# Display the results here as a quality check.
-  
-display_code(code)
+demo_text <- read_lines("simon-5505-05-demo.qmd")
 ```
 
+```{r}
+#| label: find-labels
+
+label_rows <- str_which(
+	demo_text,
+	fixed("#| label: "))
+
+label_rows
+```
+
+```{r}
+#| label: find-backticks
+
+backtick_rows <- str_which(
+	demo_text,
+	"^```$")
+
+backtick_rows
+```
+
+```{r}
+#| label: extract-names
+
+demo_text[label_rows] |>
+	str_remove(fixed("#| label: ")) |>
+	str_replace_all("-", "_") -> v
+
+v
+```
+
+```{r}
+#| label: extract-chunks
+
+prefix <- "```{}"
+code <- NULL
+for (i in 1:length(label_rows)) {
+	r <- (label_rows[i]+2):(backtick_rows[i])
+  chunk <- c(prefix, demo_text[r])
+	code[i] <- paste0(chunk, collapse="\n")
+}
+names(code) <- v
+```
+
+```{r}
+#| label: display-code
+
+for (u in names(code)) {
+  cat("\n\n----- ")
+  cat(u)
+  cat(" -----\n")
+  cat(code[u])
+} 
+```
 
 ## Save everything important
 
 ```{r save}
+
 save(code, file="../data/module-05.RData")
 ```

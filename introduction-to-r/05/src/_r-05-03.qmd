@@ -1,5 +1,5 @@
 ---
-title: "r-01-03, Boxplots"
+title: "r-05-03, Boxplots"
 format: 
   revealjs:
     slide-number: true
@@ -7,8 +7,103 @@ format:
 editor: source
 ---
 
-## TBA-3
+```{r}
+#| message: false
+#| warning: false
+#| label: 05-03-setup
 
-:::notes
+library(gt)
+library(tidyverse)
+
+load("../data/demo-05.RData")
+# load("../data/module-05.RData")
+``` 
+
+## How to show relationships
+
+-   Two continuous variables
+    -   Scatterplot
+-   Two categorical variables
+    -   Crosstabulation
+-   One categorical and one contnuous variable
+    -   Boxplots
+
+## Boxplots, 1
+
+```{r}
+#| fig.height: 2
+#| fig.width: 6
+
+plot_02
+```
+
+::: notes
+
+If you have a categorical variable and a continuous variable, you show the relationship between them using a boxplot.
+
+:::
+
+## Illustration of a boxplot
+
+```{r}
+#| fig.height: 1.5
+#| fig.width: 6
+#| label: illustration
+
+hypo_5 <- c(1, 2, 5, 7, 8, 10, 14, 20, 22, 24, 36, 54, 60)
+qx <- quantile(hypo_5)
+
+tibble(u=rep(" ", 13), v=hypo_5) |>
+	ggplot() +
+	aes(x=u, y=v) +
+	geom_boxplot() +
+	xlab(" ") +
+	ylab(" ") +
+	coord_flip() + scale_y_continuous(
+		breaks=c(qx[1], qx[2], qx[3], qx[4], 36, 54, 60),
+		minor=NULL,
+		labels=c(
+			"Min\nw/o outliers", 
+			"25%", 
+			"50%", 
+			"75%", 
+			"Max\nw/o outliers",
+			"Outlier",
+			"Outlier"))
+```
+
+## Clustered boxplots, 1
+
+```{r}
+#| fig.height: 3
+#| fig.width: 6
+
+plot_03
+```
+
+::: notes
+
+If you have a second categorical variable, you can create a clustered box plot. It might look like this...
+
+::::
+
+## Clustered boxplots, 2
+
+```{r}
+#| fig.height: 3
+#| fig.width: 6
+
+plot_04
+```
+
+::: notes
+
+... or it might look like this.
+
+When deciding which way to cluster, consider the proximity principle. Ask yourself what comparison is most important. Then arrange your cluster so that the important comparison requires less distance.
+
+In this clustered boxplots male smokers are close to male non-smokers. Female smoklers are close to female non-smokers. This makes sense if the most important thing to you is the impact of smoking and you want to examine differences separately in males and in females.
+
+In the previous clustered boxplot, male smokers are close to female smokers and male non-smokers are close to female non-smokers. This makes sense if the most important thing to you is gender differences and you want to examine those differences in smokers and separately in non-smokers.
 
 :::
