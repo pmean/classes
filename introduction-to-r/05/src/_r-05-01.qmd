@@ -20,6 +20,50 @@ load("../data/demo-05.RData")
 load("../data/module-05.RData")
 ``` 
 
+## A quick note on a side topic, 1
+
+-   Creating "nice" tables is difficult
+    -   Round aggressively
+    -   Include title at top
+    -   Add explanatory material at bottom
+    -   Use descriptive row and column names
+    -   Use shading and borders
+    
+::: notes
+
+I have been struggling for the past two years to settle on an approach for creating nice tables in R. The word "nice" means several things.
+
+First, your tables should round aggressively. Two significant figures in most cases. Sometimes three significant figures if a number is close to a power of 10.
+
+Every table should have a title.
+
+:::
+
+## A quick note on a side topic, 2
+
+-   Your options
+    -   Cut and paste into Word/Excel
+        -   Fast
+        -   WYSIWG
+        -   Revisions are painful
+    -   Create nice table in R
+        -   Slow
+        -   Every change requires a re-rendering
+        -   Revisions are easy
+        
+## A quick note on a side topic, 3
+
+-   Many R packages for nice tables
+    -   David Keyes. How to make beautiful tables in R. R for the rest of us blog, 2019-11-12. Available in [html format][ref-keyes-2019].
+-   I will use gt library in this demo
+    -   Short for "Grammar of tables"
+    -   Uses a layered approach like ggplot2
+-   Use in this class is recommended, but not required.
+    
+[ref-keyes-2019]: https://rfortherestofus.com/2019/11/how-to-make-beautiful-tables-in-r
+    -   kable, kableExtra
+    -   gt
+
 ## How do you characterize relationships?
 
 + Between two continuous variables

@@ -73,7 +73,8 @@ glimpse(pulmonary)
 ## Verify that there are no missing values
 
 ```{r}
-#| label: missing
+#| label: tbl-missing
+#| tbl-cap: "Testing B"
 
 pulmonary |>
   mutate(across(everything(), is.na)) |>
@@ -91,11 +92,13 @@ This particular piece of code first converts every value in the entire tibble or
 [ref-across-nodate]: https://tidyselect.r-lib.org/reference/everything.html
 [ref-everything-nodate]: https://tidyselect.r-lib.org/reference/everything.html
 
+#### Comments on the code
+
+I am introducing a new package, gt, that produces publication ready tables. I want to encourage you to use gt, but it is entirely optional. The first couple of things to add are tab_header and tab_source_note. It is a good idea to produce a simple descriptive title and to list your name and date as a note at the end of the table.
+
 #### Interpretation of the output
 
 This output confirms that there are no missing values for any of the variables.
-
-I am introducing a new package, gt, that produces publication ready tables. I want to encourage you to use gt, but it is entirely optional. The first couple of things to add are tab_header and tab_footnote. It is a good idea to produce a simple descriptive title and to list your name and date as a footnote.
 
 ## Create factors
 
@@ -117,7 +120,8 @@ pulmonary |>
 ## Summary for continuous variables: age
 
 ```{r}
-#| label: age
+#| label: tbl-age
+#| tbl-cap: "Testing B"
 
 pulmonary_1 |>
   summarize(
@@ -316,7 +320,8 @@ pulmonary_1 |>
   pivot_wider(
     names_from=smoke, 
     values_from=pct) |>
-  gt() |>
+  ungroup() |>
+  gt(rowname_col="sex") |>
   tab_header(md("**Crosstabulation**")) |>
   tab_source_note("Simon, 2025-04-20")
 ```
@@ -336,7 +341,7 @@ pulmonary_1 |>
   ggplot() +
   aes(x=smoke, y=fev) +
   geom_boxplot() +
-  coord_flip()
+  coord_flip() +
   labs(
     title="Boxplots",
     x="Smoking status",
