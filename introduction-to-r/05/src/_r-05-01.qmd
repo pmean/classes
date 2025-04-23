@@ -13,6 +13,7 @@ editor: source
 #| warning: false
 
 library(glue)
+library(gt)
 library(tidyverse)
 library(yaml)
 
@@ -27,7 +28,7 @@ load("../data/module-05.RData")
     -   Include title at top
     -   Add explanatory material at bottom
     -   Use descriptive row and column names
-    -   Use shading and borders
+    -   Use shading and/or borders
     
 ::: notes
 
@@ -35,7 +36,11 @@ I have been struggling for the past two years to settle on an approach for creat
 
 First, your tables should round aggressively. Two significant figures in most cases. Sometimes three significant figures if a number is close to a power of 10.
 
-Every table should have a title.
+Second, every table should have a title. It might also be nice to include an explanatory note at the bottom of the table, such as the name of the person who created the table and when it was created.
+
+You might want to use descriptive row and column names rather than the cryptic names you use in R.
+
+You might want to add shading and/or borders to make your table easier to read.
 
 :::
 
@@ -61,8 +66,38 @@ Every table should have a title.
 -   Use in this class is recommended, but not required.
     
 [ref-keyes-2019]: https://rfortherestofus.com/2019/11/how-to-make-beautiful-tables-in-r
-    -   kable, kableExtra
-    -   gt
+
+## One warning about gt and similar packages
+
+-   Nice and re-usable are in conflict
+    -   Numbers converted to strings
+    -   Column names might be non-standard
+        -   Embedded blanks, special symbols
+    -   Merged cells destroy rectangular format
+    
+::: notes
+
+When you create nice looking tables, you have to adapt the simple structure of a tibble or data frame. Some of your numbers might be converted to strings to allow you to insert comma separators at the thousand and million marks. Your column names might end up with embedded blanks or special symbols that are not standard names that R likes to see. Your table might merge cells, column headers, or row labels. This destroys the rectangular format of your data.
+
+:::
+
+## The gt function creates a tbl_df object
+
+```{r}
+#| echo: true
+#| label: 05-01-gt
+
+tibble(x=1:4) |>
+	gt() -> test01
+
+names(test01)
+```
+
+::: notes
+
+The gt function, in particular, takes a very simple tibble and adds a whole host of extra information. The result is an object called a tbl_df. It is a list with 17 values starting with the data itself and information (at this point just default values) for how to present the heading, footnotes, etc. You need all this complexity to display the data nicely, but it means that the output from the gt function can only be easily manipulated by other functions in the gt library.
+
+:::
 
 ## How do you characterize relationships?
 

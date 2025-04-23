@@ -28,7 +28,7 @@ hypo_3 <- tibble(
 hypo_3
 ```
 
-## Barplot of counts, code
+## Barplot of counts, 1
 
 ```{r}
 #| echo: true
@@ -42,7 +42,8 @@ hypo_3 |>
     title = "Subject counts by intervention",
     x = "Intervention (hypothetical data)",
     y = "Counts",
-    caption = "Simon, 2025-04-17") -> bar_1
+    caption = "Simon, 2025-04-17")  +
+	coord_flip() -> bar_1
 ```
 
 ::: notes
@@ -53,18 +54,21 @@ Because of the way Rmarkdown displays graphs, I have to put the code on a separa
 
 :::
 
-## Barplot of counts, plot
+## Barplot of counts, 2
 
 ```{r}
+#| fig.width: 6
+#| fig.height: 2.5
 #| label: 04-04-bar-1
 
 bar_1
 ```
 
-## Barplot of percents
+## Barplot of percents, 1
 
 ```{r}
-#| label: 04-04-bar-2
+#| echo: true
+#| label: 04-04-code-2
 
 pct_ticks <- seq(from = 0, to = 50, by = 10)
 hypo_3 |>
@@ -78,9 +82,19 @@ hypo_3 |>
     labels=glue("{pct_ticks}%")) +
   ggtitle("Graph drawn by Steve Simon on 2025-04-17") +
   xlab("Intervention (hypothetical data)") +
-  ylab("Percent")
+  ylab("Percent") +
+	coord_flip() -> bar_2
 ```
 
+## Barplot of percents, 2
+
+```{r}
+#| fig.width: 6
+#| fig.height: 2.5
+#| label: 04-04-bar-2
+
+bar_2
+```
 
 ::: notes
 
@@ -92,7 +106,8 @@ Here is what the plot looks like.
 ## Barplot with two categorical counts, 1
 
 ```{r}
-#| label: 04-04-bar-3
+#| echo: true
+#| label: 04-04-code-3
 
 hypo_3 |>
   ggplot() +
@@ -101,9 +116,19 @@ hypo_3 |>
     fill=result) +
   geom_bar(position=position_dodge()) + 
   ggtitle("Graph drawn by Steve Simon on 2025-04-17") +
-  xlab("Inteverntion (hypothetical data)")
+  xlab("Inteverntion (hypothetical data)") +
+	coord_flip() -> bar_3
 ```
 
+## Barplot with two categorical counts, 2
+
+```{r}
+#| fig.width: 6
+#| fig.height: 2.5
+#| label: 04-04-bar-3
+
+bar_3
+```
 
 ::: notes
 
@@ -111,10 +136,11 @@ Here is what the plot looks like.
 
 :::
 
-## Barplot with two categorical counts, 2
+## Barplot with two categorical counts, 3
 
 ```{r}
-#| label: 04-04-bar-4
+#| echo: true
+#| label: 04-04-code-4
 
 hypo_3 |>
   ggplot() +
@@ -123,13 +149,31 @@ hypo_3 |>
     fill=result) +
   geom_bar(position=position_stack()) + 
   ggtitle("Graph drawn by Steve Simon on 2025-04-17") +
-  xlab("Intervention (hypothetical data)")
+  xlab("Intervention (hypothetical data)") +
+	coord_flip() -> bar_4
 ```
+
+## Barplot with two categorical counts, 4
+
+```{r}
+#| fig.width: 6
+#| fig.height: 2.5
+#| label: 04-04-bar-4
+
+bar_4
+```
+
+::: notes
+
+Here is what the plot looks like.
+
+:::
 
 ## Barplot with two categorical percentages, 1
 
 ```{r}
-#| label: 04-04-bar-5
+#| echo: true
+#| label: 04-04-code-5
 
 hypo_3 |>
   count(intervention, result) |>
@@ -143,13 +187,32 @@ hypo_3 |>
     fill = intervention) +
   geom_col(position = position_stack()) + 
   ggtitle("Graph drawn by Steve Simon on 2025-04-17") +
-  xlab("Intervention (hypothetical data)")
+  xlab("Intervention (hypothetical data)") +
+	ylab("Percent") +
+	coord_flip() -> bar_5
 ```
 
 ## Barplot with two categorical percentages, 2
 
 ```{r}
-#| label: 04-04-bar-6
+#| fig.width: 6
+#| fig.height: 2.5
+#| label: 04-04-bar-5
+
+bar_5
+```
+
+::: notes
+
+Here is what the plot looks like.
+
+:::
+
+## Barplot with two categorical percentages, 3
+
+```{r}
+#| echo: true
+#| label: 04-04-code-6
 
 hypo_3 |>
   count(intervention, result) |>
@@ -163,13 +226,32 @@ hypo_3 |>
     fill = result) +
   geom_col(position = position_stack()) + 
   ggtitle("Graph drawn by Steve Simon on 2025-04-17") +
-  xlab("Intervention (hypothetical data)")
+  xlab("Intervention (hypothetical data)") + 
+  ylab("Percent") +
+  coord_flip() -> bar_6
 ```
 
-## Barplot with two categorical percentages, 2
+## Barplot with two categorical percentages, 4
 
 ```{r}
-#| label: 04-04-bar-7
+#| fig.width: 6
+#| fig.height: 2.5
+#| label: 04-04-bar-6
+
+bar_6
+```
+
+::: notes
+
+Here is what the plot looks like.
+
+:::
+
+## Barplot with two categorical percentages, 5
+
+```{r}
+#| echo: true
+#| label: 04-04-code-7
 
 hypo_3 |>
   count(intervention, result) |>
@@ -183,6 +265,24 @@ hypo_3 |>
     y = pct) +
   geom_col() + 
   ggtitle("Graph drawn by Steve Simon on 2025-04-17") +
-  xlab("Intervention (hypothetical data)")
+  xlab("Intervention (hypothetical data)") +
+  ylab("Percent") +
+  coord_flip() -> bar_7
 ```
+
+## Barplot with two categorical percentages, 6
+
+```{r}
+#| fig.width: 6
+#| fig.height: 2.5
+#| label: 04-04-bar-7
+
+bar_7
+```
+
+::: notes
+
+Here is what the plot looks like.
+
+:::
 
