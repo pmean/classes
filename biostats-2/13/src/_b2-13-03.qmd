@@ -9,7 +9,7 @@ editor: source
 
 ## Lay out the parameters
 
-![](images/blank-sheet.png "Blank sheet listing ECMO and control probabilities")
+![](../images/blank-sheet.png "Blank sheet listing ECMO and control probabilities")
 
 ::: notes
 Here's an example of a very simple Bayesian analysis. The columns, pi1, represent the population proportion of infants on ECMO who survive. We hope that the results will be on the right hand side, but we don't know until we run the experiment.
@@ -17,17 +17,21 @@ Here's an example of a very simple Bayesian analysis. The columns, pi1, represen
 The rows represent the population proportion of infants in the control group who survive. We'd like to see the values near the bottom rather than the top, but in a population of very premature births, this is not guaranteed.
 :::
 
-## Place half the probability on the diagonal
+## Half of probability on the diagonal
 
-![](images/main-diagonal.png "Probabilities of 0.005000 for every diagonal cell")
+-   P(H|E) = P(E|H) <span style="color:red;">P(H)</span> / P(E)
+
+![](../images/main-diagonal.png "Probabilities of 0.005000 for every diagonal cell")
 
 ::: notes
 We don't know if ECMO is better or worse, so let's start out by placing half the probability along the diagonal. The diagonal here represents all the cases where the survival probability on ECMO equals the survival probability in the control group. There are ten diagonal cells, so it seems fair to divide the 50% probability into ten pieces of 5% each.
 :::
 
-## Difuse prior
+## Half of probability off the diagonal
 
-![](images/off-diagonal.png "Probabilities of 0.00556 for every off-diagonal cell")
+-   P(H|E) = P(E|H) <span style="color:red;">P(H)</span> / P(E)
+
+![](../images/off-diagonal.png "Probabilities of 0.00556 for every off-diagonal cell")
 
 ::: notes
 Now spread out the remaining 50% of the probability across the remainder of the table. There are 90 cells remaining, so when you divide 50% by 90, you get 0.56%. Notice that the upper triangle gets just as much probability as the lower triangle. if the parameter were found in the upper triangle, that would represent cases where ECMO has a higher survival rate than the control group.
@@ -35,7 +39,9 @@ Now spread out the remaining 50% of the probability across the remainder of the 
 
 ## Difuse prior
 
-![](images/prior-combined.png "Diagonal and off-diagonal measurements combined into one matrix")
+-   P(H|E) = P(E|H) <span style="color:red;">P(H)</span> / P(E)
+
+![](../images/prior-combined.png "Diagonal and off-diagonal measurements combined into one matrix")
 
 ::: notes
 

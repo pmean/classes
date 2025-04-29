@@ -9,7 +9,9 @@ editor: source
 
 ## Multiply
 
-![](images/bayes-product.png "Product of prior and likelihood showing the need to rescale")
+-   P(H|E) = <span style="color:red;">P(E|H) P(H)</span> / P(E)
+
+![](../images/bayes-product.png "Product of prior and likelihood showing the need to rescale")
 
 ::: notes
 
@@ -25,7 +27,9 @@ In the example shown here, this calculation is pretty easy: add up the 121 cells
 
 ## Standardize
 
-![](images/bayes-posterior.png "Standardized values (posterior) showing probabilities for each combination of pi1 and pi2")
+-   P(H|E) = <span style="color:red;">P(E|H) P(H) / P(E)</span>
+
+![](../images/bayes-posterior.png "Standardized values (posterior) showing probabilities for each combination of pi1 and pi2")
 
 ::: notes
 Here's the table after standardizing all the terms so they add up to 1.
@@ -35,7 +39,9 @@ This table is the posterior probabilities, P(H | E). You can calculate the proba
 
 ## Main diagonal of posterior probabilities
 
-![](images/posterior-diagonal.png "Posterior probabilities along the diagonal are small, adding up to only 6%")
+-   <span style="color:red;">P(H|E)</span> = P(E|H) P(H) / P(E)
+
+![](../images/posterior-diagonal.png "Posterior probabilities along the diagonal are small, adding up to only 6%")
 
 ::: notes
 You can combine and manipulate these posterior probabilities far more easily than classical statistics would allow. For example, how likely are we to believe the hypothesis that ECMO and conventional therapy have the same survival rates? Just add the cells along the diagonal to get 6.0%. Prior to collecting the data, we placed the probability that the two rates were equal at 500 out of a thousand, so the data has greatly (but not completely) dissuaded us from this belief. 
@@ -43,7 +49,9 @@ You can combine and manipulate these posterior probabilities far more easily tha
 
 ## Upper triangle of posterior probabilities
 
-![](images/posterior-upper-triangle.png "Posterior probabilites above the diagonal are large, adding up to 94%")
+-   <span style="color:red;">P(H|E)</span> = P(E|H) P(H) / P(E)
+
+![](../images/posterior-upper-triangle.png "Posterior probabilites above the diagonal are large, adding up to 94%")
 
 ::: notes
 The probability of the upper triangle is 93.9%. That's pretty strong evidence that ECMO is superior. There's a lot more you can do with this data, but I just wanted to give you a small taste of how a Bayesian analysis works. First, you lay out the possible values for the population parameters. Then specify probabilities for these parameters. If you do not have a strong prior belief, or if you do not want to incorporate your prior beliefs into the analysis, spread out the probabilities in a more or less uniform fashion. Then calculate the likelihood of the data for each set of population parameters. In a survival setting, this is just a binomial distribution. Multiply the prior times the likelihood and standardize. The resulting matrix is a set of probabilities that you can sum up or manipulate in other ways. 

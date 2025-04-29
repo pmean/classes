@@ -9,7 +9,9 @@ editor: source
 
 ## Likelihood
 
-![](images/bayes-likelihood.png "Likelihoods for combinations of pi1 and pi2 with large values clustering on the right")
+-   P(H|E) = <span style="color:red;">P(E|H)</span> P(H) / P(E)
+
+![](../images/bayes-likelihood.png "Likelihoods for combinations of pi1 and pi2 with large values clustering on the right")
 
 ::: notes
 

@@ -1,0 +1,115 @@
+---
+title: "simon-5502-12-demo"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute: 
+  error: false
+---
+
+## File details
+
+This program was written by Steve Simon on 2025-04-29 and is placed in the public domain. You can use this program any way you please.
+
+-   Data used in this program
+    -   Will the baby walk away?
+        -   Your baby is learning to walk. The baby begins by holding onto a couch. Whenever she is next to the couch, there is a 25 percent chance that she will take a step forward and a 75 percent chance that she will stay clutching the couch. If the baby is one or more steps away from the couch, there’s a 25 percent chance that she will take a step forward, a 25 percent chance she’ll stay in place and a 50 percent chance she’ll take one step back toward the couch. In the long run, what percent of the time does the baby choose to clutch the couch?
+    -   ECMO study
+        -   ECMO babies: 28 out of 29 survived
+        -   Control babies: 6 out of 10 survived
+
+```{r}
+#| message: false
+#| warning: false
+#| label: setup
+
+library(brms)
+library(tidyverse)
+
+R.version.string
+Sys.Date()
+```
+
+## Baby walk data
+
+```{r}
+#| label: baby-simulation
+
+n <- 10000
+couch_distance <- rep(NA, n)
+couch_distance[1] <- 0
+random_uniforms <- runif(n-1)
+for (i in 2:n) {
+	if (couch_distance[i-1]==0) {
+		if (random_uniforms[i-1] < 0.75) step=0
+		if (random_uniforms[i-1] >= 0.75) step=1
+	}
+	if (couch_distance[i-1] > 0) {
+		if (random_uniforms[i-1] < 0.5) step=-1
+		if (random_uniforms[i-1] >= 0.5 & random_uniforms[i-1] < 0.75) step=0
+		if (random_uniforms[i-1] >= 0.75) step=1
+	}
+	couch_distance[i] <- couch_distance[i-1] + step
+}
+
+couch_distance
+```
+
+## Baby walk graph
+
+```{r}
+#| label: baby-graph
+tibble(t=1:100, d=couch_distance[1:100]) |>
+	ggplot() +
+	aes(x=t, y=d) +
+	geom_line() +
+		labs(
+		title="Baby walk illustration of first 100 steps",
+		x="Step number",
+		y="Distance from the couch",
+		caption="Simon, 2025-04-29")
+
+```
+
+## Baby walk histogram
+
+```{r}
+#| label: baby-histogram
+
+tibble(d=couch_distance) |>
+	ggplot() +
+	aes(x=d) +
+	geom_histogram(
+		color="black",
+		fill="white",
+		binwidth=1) +
+	labs(
+		title="Baby walk simulation with 10000 steps",
+		x="Distance from the couch",
+		caption="Simon, 2025-04-29")
+```
+
+```{r}
+#| fig.width: 6
+#| fig.height: 6
+#| label: ecmo-graph
+
+n <- 10000
+ecmo <- rbeta(n, 29, 1)
+control <- rbeta(n, 7, 5)
+
+tibble(ecmo, control) |>
+	ggplot() +
+	aes(x=ecmo, y=control) +
+	geom_point(alpha=0.1) + 
+	expand_limits(x=0:1, y=0:1) +
+	labs(
+		title="Bayesian simulation from ECMO study",
+		x="Posterior survival probability for ECMO",
+		y="Posterior survival probability for Control",
+		caption="Simon, 2025-04-29")
+	
+```
+
+
