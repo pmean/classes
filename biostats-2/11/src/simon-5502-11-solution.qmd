@@ -1,8 +1,6 @@
 ---
-title: "simon-5502-11-demo"
-format: 
-  html:
-    embed-resources: true
+title: "simon-5502-11-solution"
+format: docx
 editor: source
 execute: 
   error: false
@@ -13,14 +11,19 @@ execute:
 This program was written by Steve Simon on 2025-03-30 and is placed in the public domain. You can use this program any way you please.
 
 -   Data used in this program
+    -    [arthritis-treatments.txt][ref-oa]
+    -    [data dictionary][ref-oa-dd]
 
-[ref-paper]: https://github.com/pmean/data/blob/main/files/absorbent-paper.csv
-[ref-paper-dd]: https://github.com/pmean/data/blob/main/files/absorbent-paper.yaml
+[ref-oa]: https://github.com/pmean/data/blob/main/files/arthritis-treatments.txt
+[ref-oa-dd]: https://github.com/pmean/data/blob/main/files/arthritis-treatments.yaml
+
 
 -   Tibbles created by this program
-    -   sway: Original data from postural-sway.txt
+    -   oa: Original data from arthritis-treatments.txt
+    -   oa_1: Renamed variables, exclude ROM variables
+    -   oa_2: Pivot to a wide format
 -   Models created by this program
-    -   m1: 
+    -   m1: Random effects model
 
 ```{r}
 #| message: false
@@ -110,7 +113,12 @@ oa_2 |>
     x = treatment, 
     y = vas, 
     group = Subject) +
-  geom_line() -> oa_plot
+  geom_line() +
+	labs(
+		x="Treatment",
+		y="Pain (visual analog scale)",
+		title="Line graph of pain across treatments",
+		caption="Simon, 2025-04-29") -> oa_plot
 
 oa_plot
 ```

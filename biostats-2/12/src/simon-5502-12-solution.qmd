@@ -1,0 +1,134 @@
+---
+title: "simon-5502-12-solution"
+format: docx
+editor: source
+execute: 
+  error: false
+---
+
+## File details
+
+This program was written by Steve Simon on 2025-04-29 and is placed in the public domain. You can use this program any way you please.
+
+```{r}
+#| message: false
+#| warning: false
+#| label: setup
+
+library(lme4)
+library(tidyverse)
+
+R.version.string
+Sys.Date()
+```
+
+## Read fasting-turtles
+
+```{r}
+#| label: read
+
+turtles <- read_tsv(
+  file="../data/fasting-turtles.txt",
+  col_names=TRUE,
+  col_types="ncnnn")
+
+glimpse(turtles)
+```
+
+## Check for missing values (optional)
+
+```{r}
+#| label: missing
+
+turtles |>
+	mutate(across(everything(), is.na)) |>
+	summarize(across(everything(), sum))
+```
+
+## Descriptive statistics 
+
+None for sex because it is not needed in this analysis. It would also be fine to wait until after restructuring to calculate descriptive statistics.
+
+```{r}
+#| label: descriptives
+
+turtles |>
+	summarize(
+		baseline_mean=mean(Fed),
+		baseline_sd=sd(Fed),
+		baseline_min=min(Fed),
+		baseline_max=max(Fed))
+
+turtles |>
+	summarize(
+		time_10_mean=mean(Fasted10),
+		time_10_sd=sd(Fasted10),
+		time_10_min=min(Fasted10),
+		time_10_max=max(Fasted10))
+
+turtles |>
+	summarize(
+		time_20_mean=mean(Fasted20),
+		time_20_sd=sd(Fasted20),
+		time_20_min=min(Fasted20),
+		time_20_max=max(Fasted20))
+
+```
+
+## Restructure into long format
+
+```{r}
+#| label: long
+
+turtles |>
+  pivot_longer(
+    cols=Fed:Fasted20,
+    names_to="measure",
+    values_to="plasma_protein") |>
+  mutate(time=case_when(
+  	measure=="Fed" ~ 0,
+  	measure=="Fasted10" ~ 10,
+  	measure=="Fasted20" ~ 20)) -> turtles_1
+
+glimpse(turtles_1)
+```
+
+## Plot by subject
+
+```{r}
+#| label: plot-1
+
+turtles_1 |>
+  ggplot() +
+  aes(
+    x = time, 
+    y = plasma_protein, 
+    group = Subject) +
+  geom_line() +
+	labs(
+		x="Time (days)",
+		y="Plasma protein (mg/ml)",
+		title="Line graph of individual turtles over time",
+		caption="Simon, 2025-04-29")
+```
+
+## Mixed model
+
+```{r}
+#| label: mixed
+
+m1 <- lmer(
+  plasma_protein ~ time + (1 | Subject),
+  data=turtles_1)
+
+summary(m1)
+```
+
+## Calculate ICC
+
+```{r}
+#| label: icc
+
+icc <- 10.7945/(10.7945+0.5811)
+icc
+```
