@@ -4,40 +4,37 @@ title: "Directions for 5505-01 programming assignment"
 
 This programming assignment was written by Steve Simon on 2024-12-18 and is placed in the public domain.
 
-## Program
+-   Create a single program to address the questions below.
+    -   Refer to [simon-5505-05-demo.qmd][ref-simon-2025] as needed.
+    -   Store your program in the src folder
+    -   Follow the naming conventions recommended for this class
+    -   Include the appropriate documentation
 
--   Download the [xx program][sim1]
-    -   Store it in your src folder
--   Modify the file names
-    -   Use your last name instead of "simon"
--   Modify the documentation headers
-    -   Add your name
-    -   Optional: change the copyright statement
-    
-[sim1]: https://github.com/pmean/classes/blob/master/introduction-to-r/01/src/simon-5505-01-xx.qmd
+[ref-simon-2025]: https://github.com/pmean/classes/blob/master/introduction-to-r/05/src/simon-5505-05-demo.qmd
 
 ## Data
 
--   Download the [data][dat] file
+-   Download the [albuquerque-housing][ref-abq-nodate-a] data file
     -   Store it in your data folder
--   Refer to the [data dictionary][dic], if needed.
+-   Refer to the [data dictionary][ref-abq-nodate-b], if needed.
 
-[dat]: https://github.com/pmean/data/blob/main/files/aids-cases.csv
-[dic]: https://github.com/pmean/data/blob/main/files/aids-cases.yaml
+[ref-abq-nodate-a]: https://github.com/pmean/data/blob/main/files/albuquerque-housing.csv
+[ref-abq-nodate-b]: https://github.com/pmean/data/blob/main/files/albuquerque-housing.yaml
     
-## Question 1
+Questions 1-5 refer to the Albuquerque dataset.
 
-xx
+1. You will not be graded on this, but get in the habit of computing descriptive statistics for any variable used below.
 
-## Question 2
+2. Compute the average age for custom-built and regular houses. Do custom built houses appear to be much newer tahn regular houses?
 
-xx
+3. Draw a clustered boxplot comparing prices for custom-built versus regular houses and corner lots versus side lots. The most important comparison is custom-built versus regular houses whether located on corner lots or on side lots. So make sure that the custom-built/regular boxplots appear close to one another.
 
+3. Find the details on the largest custom-built house and the largest regular house.
 ## Grading rubric
 
-You will be evaluated using the [general grading rubric for programming assignments][sim2].
+You will be evaluated using the [general grading rubric for programming assignments][ref-simon-nodate-a].
 
-[sim2]: https://github.com/pmean/classes/blob/master/general/general-grading-rubric.md
+[ref-simon-nodate-a]: https://github.com/pmean/classes/blob/master/general/general-grading-rubric.md
 
 ## Your submission
 
@@ -51,6 +48,6 @@ You will be evaluated using the [general grading rubric for programming assignme
 
 ## If it doesn't work
 
-Please review the [suggestions if you encounter an error page][sim3].
+Please review the [suggestions if you encounter an error page][ref-simon-nodate-b].
 
-[sim3]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
+[ref-simon-nodate-b]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
