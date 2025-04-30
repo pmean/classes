@@ -14,9 +14,19 @@ Use the dataset, [fasting-turtles.txt][ref-fasting-nodate], found on my github s
 
 This assignment was written by Steve Simon on 2025-03-18 and is placed in the public domain.
 
+## If you can't get the lmer function to work
+
+Some people have had problems with the lmer function in the lme4 library. If you are one of those people, then please just use the output I provided in [this Word document][ref-sim-2025] and add your answers and interpretations to it. Be sure to convert from Word to PDF format before submitting.
+
+[ref-sim-2025]: https://github.com/pmean/classes/blob/master/biostats-2/11/results/simon-5502-11-solution.docx
+
+
+
 ## Question 1
 
 You will not be graded on this, but get in the habit of drawing a few graphs and computing a few statistics that will help you better understand the dataset you are working with. Only examine variables that will be part of the further analyses.
+
+It would also be fine to wait until after restructuring to calculate descriptive statistics.
 
 ## Question 2
 

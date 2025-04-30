@@ -35,19 +35,11 @@ turtles <- read_tsv(
 glimpse(turtles)
 ```
 
-## Check for missing values (optional)
+## Question 1
 
-```{r}
-#| label: missing
+You will not be graded on this, but get in the habit of drawing a few graphs and computing a few statistics that will help you better understand the dataset you are working with. Only examine variables that will be part of the further analyses.
 
-turtles |>
-	mutate(across(everything(), is.na)) |>
-	summarize(across(everything(), sum))
-```
-
-## Descriptive statistics 
-
-None for sex because it is not needed in this analysis. It would also be fine to wait until after restructuring to calculate descriptive statistics.
+It would also be fine to wait until after restructuring to calculate descriptive statistics.
 
 ```{r}
 #| label: descriptives
@@ -75,6 +67,10 @@ turtles |>
 
 ```
 
+## Question 2
+
+Restructure the data so Fed, Fasted10, and Fasted20 are in the same column. Create a new time variable from Fed, Fasted10, and Fasted20 that has values of 0, 10, and 20 respectively. The restructured dataset should have 24 rows. Show a glimpse of the new dataset.
+
 ## Restructure into long format
 
 ```{r}
@@ -93,7 +89,9 @@ turtles |>
 glimpse(turtles_1)
 ```
 
-## Plot by subject
+## Question 3
+
+Draw a line graph, showing the change in plasma protein over time for each turtle. Ignore sex in this graph. Do the data show a consistent pattern (e.g., patients with large values at baseline tend to have large values after 10 and 20 days of fasting (relative to turtles that have small values at baseline)?
 
 ```{r}
 #| label: plot-1
@@ -112,7 +110,9 @@ turtles_1 |>
 		caption="Simon, 2025-04-29")
 ```
 
-## Mixed model
+## Question 4
+
+Fit a random intercepts model with plasma protein as the dependent variable and time as the independent variable. Is there a statistically significant decline in plasma protein over time?
 
 ```{r}
 #| label: mixed
@@ -124,7 +124,9 @@ m1 <- lmer(
 summary(m1)
 ```
 
-## Calculate ICC
+## Question 5
+
+Calculate the intraclass correlation coefficient. Interpret this value.
 
 ```{r}
 #| label: icc

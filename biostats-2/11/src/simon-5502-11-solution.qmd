@@ -52,7 +52,9 @@ oa <- read_table(
 glimpse(oa)
 ```
 
-## Create subset for VAS
+## Question 2 (done out of order!)
+
+Select the pain variables (those ending in VAS) and pivot the data to a wider format. Include a glimpse of the original data and the pivoted data to show that the restructuring was done properly. The original dataset should have 10 rows and 4 columns (after removing the range of motion measurements). The restructured dataset should have 30 rows and 3 columns.
 
 ```{r}
 #| label: subset
@@ -69,8 +71,6 @@ oa |>
     swd=SWDVAS) -> oa_1
 ```
 
-## Restructure into long format
-
 ```{r}
 #| label: long
 
@@ -83,8 +83,11 @@ oa_1 |>
 glimpse(oa_2)
 ```
 
+## Question 1
 
-## Descriptive statistics
+You will not be graded on this, but get in the habit of drawing a few graphs and computing a few statistics that will help you better understand the dataset you are working with. Only examine variables that will be part of the further analyses.
+
+It would also be fine to wait until after restructuring to calculate descriptive statistics.
 
 ```{r}
 #| label: descriptives-oa
@@ -98,11 +101,9 @@ oa_2 |>
 oa_means
 ```
 
-#### Interpretation of the output
+## Question 3
 
-You should provide the interpretation here and after other parts of the output.
-
-## Plot by subject
+Draw a line graph. Do the data show a consistent pattern (e.g., patients with large values on one measurement tend to have large values on the other measurements)?
 
 ```{r}
 #| label: plot-1
@@ -123,7 +124,9 @@ oa_2 |>
 oa_plot
 ```
 
-## Mixed model for oa
+## Question 4
+
+Fit a mixed model with pain score (vas) as the dependent variable, treatment as the independent variable, and Subject as a random effect. Interpret the fixed effects. Are the t-statistics for TENS and SWD close enough to zero to conclude that there is no effect of the two treatments on pain, compared to the control group?
 
 ```{r}
 #| label: mixed-oa
@@ -133,4 +136,16 @@ m1 <- lmer(
   data=oa_2)
 
 summary(m1)
+```
+
+## Question 5
+
+Calculate the intraclass correlation. It is very small. What does this tell you?
+
+```{r}
+#| label: icc
+
+icc <- 4.133e-15 /(4.133e-15 + 4.652e+00)
+
+icc
 ```
