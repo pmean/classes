@@ -18,7 +18,7 @@ This assignment was written by Steve Simon on 2025-03-18 and is placed in the pu
 
 Some people have had problems with the lmer function in the lme4 library. If you are one of those people, then please just use the output I provided in [this Word document][ref-sim-2025] and add your answers and interpretations to it. Be sure to convert from Word to PDF format before submitting.
 
-[ref-sim-2025]: https://github.com/pmean/classes/blob/master/biostats-2/11/results/simon-5502-11-solution.docx
+[ref-sim-2025]: https://github.com/pmean/classes/blob/master/biostats-2/12/results/simon-5502-12-solution.docx
 
 
 

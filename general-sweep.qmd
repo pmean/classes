@@ -69,7 +69,7 @@ loop_folders <- function(class_dir, n) {
   	s00 <- glue("{s}/src")
     print(glue("Searching in module {s00}"))
     file_list <- character(0)
-    for (ext in c("html", "pdf", "pptx")) {
+    for (ext in c("docx", "html", "pdf", "pptx")) {
       file_list <- c(file_list, identify_files(s, ext))
     }
     if (length(file_list) == 0) next
