@@ -34,7 +34,7 @@ Questions 1-5 refer to the Albuquerque dataset.
 
 You will be evaluated using the [general grading rubric for programming assignments][ref-simon-nodate-a].
 
-[ref-simon-nodate-a]: https://github.com/pmean/classes/blob/master/general/general-grading-rubric.md
+[ref-simon-nodate-a]: https://github.com/pmean/classes/blob/master/general/src/general-grading-rubric.md
 
 ## Your submission
 
@@ -50,4 +50,4 @@ You will be evaluated using the [general grading rubric for programming assignme
 
 Please review the [suggestions if you encounter an error page][ref-simon-nodate-b].
 
-[ref-simon-nodate-b]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
+[ref-simon-nodate-b]: https://github.com/pmean/classes/blob/master/general/src/suggestions-if-you-encounter-an-error.md
