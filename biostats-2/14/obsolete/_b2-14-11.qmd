@@ -1,0 +1,38 @@
+---
+title: "Hierarchical models"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Module 11, Hierarchical models
+
+-   Clustered data
+-   Between and within cluster variation
+    -   Intraclass correlation
+
+## Module 11, Checking assumptions
+
+-   Independence
+    -   Only between clusters
+-   Normality
+    -   Within clusters
+    -   Between clusters
+    
+## Module 11, SPSS, Variance components, 1 of 2
+
+![](../module11/images/litter-weights-full-02.png "Sums of squares and mean squares but no F ratios")
+
+## Module 11, SPSS, Variance components, 2 of 2
+
+![](../module11/images/litter-weights-full-03.png "Expected mean squares for the Litter and Error")
+
+![](../module11/images/litter-weights-full-04.png "Between and within variance estimates")
+
+::: notes
+The F-ratios are 23.426/1.077 = `r `round(23.426/1.077, 1)` and 33.184/12.046 = `r round(33.184/12.046, 1)`.
+
+The intraclass correlation is 1.828/(1.828+1.077) = `r round(1.828/(1.828+1.077), 2)`.
+:::

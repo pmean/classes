@@ -114,9 +114,11 @@ Be cautious with your interpretation of the intercept. Sometimes the value X=0 i
 
 ## Simple regression example with interpretation, 1
 
-```{r setup-1}
+```{r}
 #| message: false
 #| warning: false
+#| label: 05-01-setup
+
 library(broom)
 library(glue)
 library(tidyverse)

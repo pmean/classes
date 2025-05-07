@@ -1,0 +1,68 @@
+---
+title: "See bottom of file for title"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+execute: 
+  error: true
+---
+
+## What did we learn in biostats-1, module 02?
+
+{{< include ../../../biostats-1/02/src/_02-01.qmd >}}
+
+## What did we learn in biostats-1, module 03?
+
+{{< include ../../../biostats-1/03/src/_03-01.qmd >}}
+
+## What did we learn in biostats-1, module 04?
+
+{{< include ../../../biostats-1/04/src/_04-01.qmd >}}
+
+## What did we learn in biostats-1, module 05?
+
+{{< include ../../../biostats-1/05/src/_05-01.qmd >}}
+
+## What did we learn in biostats-1, module 06?
+
+{{< include ../../../biostats-1/06/src/_06-01.qmd >}}
+
+## What did we learn in biostats-1, module 07?
+
+{{< include ../../../biostats-1/07/src/_07-01.qmd >}}
+
+## What did we learn in biostats-1, module 08?
+
+{{< include ../../../biostats-1/08/src/_08-01.qmd >}}
+
+## What did we learn in biostats-1, module 09?
+
+{{< include ../../../biostats-1/09/src/_09-01.qmd >}}
+
+## What did we learn in biostats-1, module 10?
+
+{{< include ../../../biostats-1/10/src/_10-01.qmd >}}
+
+## What did we learn in biostats-1, module 11?
+
+{{< include ../../../biostats-1/11/src/_11-01.qmd >}}
+
+## What did we learn in biostats-1, module 12?
+
+{{< include ../../../biostats-1/12/src/_b1-12-01.qmd >}}
+
+## What did we learn in biostats-1, module 13?
+
+{{< include ../../../biostats-1/13/src/_b1-13-01.qmd >}}
+
+<!---
+      You have to put the title down 
+      here to override the titles of
+      all the include files.
+--->
+
+---  
+title: "simon-5501-15-slides"
+---

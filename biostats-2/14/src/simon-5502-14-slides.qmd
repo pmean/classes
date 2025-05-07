@@ -4,189 +4,67 @@ format:
   revealjs:
     slide-number: true
     embed-resources: true
-params:
-  topic_01: "01 Linear regresion, analysis of variance"
-  topic_02: "02 Linear regression with multiple independent variables"
-  topic_03: "03 Analysis of covariance"
-  topic_04: "04 Multi-factor analysis of variance"
-  topic_05: "05 Dimension reduction"
-  topic_06: "06 Logistic regression"
-  topic_07: "07 Diagnostic tests"
-  topic_08: "08 Survival analysis"
-  topic_09: "09 Meta-analysis"
-  topic_10: "10 Dark side of data science"
-  topic_11: "11 Hierarchical models"
-  topic_12: "12 Longitudinal data"
-  topic_13: "13 Bayesian statistics"
 editor: source
+execute: 
+  error: true
 ---
 
-## Topics to be covered, 1 of 2
+## What did we learn in biostats-2, module 02?
 
 ```{r}
-# Preliminaries, if needed
+#| label: 14-02
 
-# Keep this chunk, even if no code, so that
-# params is populated from the yaml header.
-
-# To print speaker notes, add
-#   ?print-pdf&showNotes=separate-page 
-#   to the end of the URL. Then open the
-#   print dialog box (ctrl-P) and choose
-#   Save as PDF for the printer. Other 
-#   options, like Microsoft Print to PDF
-#   do not seem to work.
+read_lines("../../02/src/simon-5502-02-slides.qmd") |>
+	str_subset("  topic") |>
+	str_replace_all('"', '') |>
+	str_replace("  topic.... ", "")
 ```
 
--   What you will learn
-    -   `r params$topic_01`
-    -   `r params$topic_02`
-    -   `r params$topic_03`
-    -   `r params$topic_04`
-    -   `r params$topic_05`
-    -   `r params$topic_06`
-    -   `r params$topic_07`
+{{< include ../../02/src/_b2-02-01.qmd >}}
 
-## Topics to be covered, 2 of 2
+## What did we learn in biostats-2, module 03?
 
--   What you will learn
-    -   `r params$topic_08`
-    -   `r params$topic_09`
-    -   `r params$topic_10`
-    -   `r params$topic_11`
-    -   `r params$topic_12`
-    -   `r params$topic_13`
+{{< include ../../03/src/_b2-03-01.qmd >}}
 
-{{< include _b2-14-01.qmd >}}
+## What did we learn in module 04?
 
-## Break #1
+{{< include ../../04/src/_b2-04-02.qmd >}}
 
--   What you have learned
-    -   `r params$topic_01`
--   What's coming next
-    -   `r params$topic_02`
+## What did we learn in module 05?
 
-{{< include _b2-14-02.qmd >}}
+{{< include ../../05/src/_b2-05-01.qmd >}}
 
-## Break #2
+## What did we learn in module 06?
 
--   What you have learned
-    -   `r params$topic_02`
--   What's coming next
-    -   `r params$topic_03`
-    
-{{< include _b2-14-03.qmd >}}
+{{< include ../../06/src/_b2-06-01.qmd >}}
 
-## Break #3
+## What did we learn in module 07?
 
--   What you have learned
-    -   `r params$topic_03`
--   What's coming next
-    -   `r params$topic_04`
-    
-{{< include _b2-14-04.qmd >}}
+{{< include ../../07/src/_b2-07-01.qmd >}}
 
-## Break #4
+## What did we learn in module 08?
 
--   What you have learned
-    -   `r params$topic_04`
--   What's coming next
-    -   `r params$topic_05`
+{{< include ../../08/src/_b2-08-01.qmd >}}
 
-{{< include _b2-14-05.qmd >}}
+## What did we learn in module 09?
 
-## Break #5
+{{< include ../../09/src/_b2-09-01.qmd >}}
 
--   What you have learned
-    -   `r params$topic_05`
--   What's coming next
-    -   `r params$topic_06`
+## What did we learn in module 10?
 
-{{< include _b2-14-06.qmd >}}
+{{< include ../../10/src/_b2-10-01.qmd >}}
 
-## Break #6
+## What did we learn in module 11?
 
--   What you have learned
-    -   `r params$topic_06`
--   What's coming next
-    -   `r params$topic_07`
+{{< include ../../11/src/_b2-11-01.qmd >}}
 
-{{< include _b2-14-07.qmd >}}
+## What did we learn in module 12?
 
-## Break #7
+{{< include ../../12/src/_b2-12-01.qmd >}}
 
--   What you have learned
-    -   `r params$topic_07`
--   What's coming next
-    -   `r params$topic_08`
+## What did we learn in module 13?
 
-{{< include _b2-14-08.qmd >}}
-
-## Break #8
-
--   What you have learned
-    -   `r params$topic_08`
--   What's coming next
-    -   `r params$topic_09`
-
-{{< include _b2-14-09.qmd >}}
-
-## Break #9
-
--   What you have learned
-    -   `r params$topic_09`
--   What's coming next
-    -   `r params$topic_10`
-
-{{< include _b2-14-10.qmd >}}
-
-## Break #10
-
--   What you have learned
-    -   `r params$topic_10`
--   What's coming next
-    -   `r params$topic_11`
-
-{{< include _b2-14-11.qmd >}}
-
-## Break #11
-
--   What you have learned
-    -   `r params$topic_11`
--   What's coming next
-    -   `r params$topic_12`
-
-{{< include _b2-14-12.qmd >}}
-
-## Break #12
-
--   What you have learned
-    -   `r params$topic_12`
--   What's coming next
-    -   `r params$topic_13`
-
-{{< include _b2-14-13.qmd >}}
-
-## Summary, 1 of 2
-
--   What you have learned
-    -   `r params$topic_01`
-    -   `r params$topic_02`
-    -   `r params$topic_03`
-    -   `r params$topic_04`
-    -   `r params$topic_05`
-    -   `r params$topic_06`
-    -   `r params$topic_07`
-
-## Summary, 2 of 2
-
--   What you have learned
-    -   `r params$topic_08`
-    -   `r params$topic_09`
-    -   `r params$topic_10`
-    -   `r params$topic_11`
-    -   `r params$topic_12`
-    -   `r params$topic_13`
+{{< include ../../13/src/_b2-13-02.qmd >}}
 
 <!---
       You have to put the title down 
@@ -194,6 +72,6 @@ editor: source
       all the include files.
 --->
 
----
-title: "MEDB 5502, Module 14, review"
+---  
+title: "simon-5502-14-slides"
 ---

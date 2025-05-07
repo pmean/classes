@@ -7,7 +7,9 @@ format:
 editor: source
 ---
 
-```{r setup-1}
+```{r}
+#| label: 03-01-setup
+
 library(tidyverse)
 ```
 

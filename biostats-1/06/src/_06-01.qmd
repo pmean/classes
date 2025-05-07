@@ -58,7 +58,9 @@ A key point that you will see if that patterns in the dependent variable are oft
 
 ## Diagnosing non-linearity, 1
 
-```{r setup-1}
+```{r}
+#| label: 06-01-setup
+
 library(tidyverse)
 library(magrittr)
 load("../data/module06.RData")
