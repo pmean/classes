@@ -54,7 +54,8 @@ The intepretation changes, but only slightly, when X is an indicator variable.
 
 ## Creating an indicator variable
 
-```{r fev-1}
+```{r}
+#| label: 07-01-fev-1
 library(tidyverse)
 load("../data/module07.RData")
 pulmonary |>

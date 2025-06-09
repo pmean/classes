@@ -1,0 +1,59 @@
+---
+title: "lsmeans"
+format: 
+  html:
+  	embed-resources: true
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+#| label: ti-read
+
+ti <- read_tsv(
+  file="../data/titanic.txt",
+  col_names=TRUE,
+  col_types="ccncn",
+  na="NA")
+glimpse(ti) 
+```
+
+```{r}
+#| label: means-1
+
+ti |>
+	filter(!is.na(Age)) -> ti_1
+
+ti_1 |>
+	group_by(Sex, PClass) |>
+	summarize(
+		age_mean=mean(Age),
+		n=n()) -> m1
+
+m1
+```
+
+```{r}
+#| label: mean-2
+
+m1 |>
+	group_by(Sex) |>
+	summarize(
+		age_mean=mean(age_mean)) -> m2
+
+m2
+```
+
+```{r}
+#| label: mean-3
+
+ti_1 |>
+	group_by(Sex) |>
+	summarize(
+		age_mean=mean(Age)) -> m3
+
+m3
+```
+

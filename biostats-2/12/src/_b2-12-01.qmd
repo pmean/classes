@@ -117,7 +117,7 @@ If you fit a separate intercept for each line, you get a lot closer to the data.
 
 library(tidyverse)
 
-load("../data/demo_12.RData")
+load("../data/demo-12.RData")
 
 plot_3
 ```

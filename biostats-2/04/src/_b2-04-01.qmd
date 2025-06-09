@@ -21,7 +21,7 @@ In Biostats-1, we discussed the comparison of three or more means using oneway o
 ## Full moon data
 
 ```{r}
-#| label: setup-1
+#| label: 04-01-setup
 #| message: false
 #| warning: false
 

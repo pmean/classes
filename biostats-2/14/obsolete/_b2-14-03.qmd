@@ -1,0 +1,65 @@
+---
+title: "Analysis of covariance"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Module 03, Analysis of covariance
+
+-   Confounding/covariate imbalance
+-   Interpretation
+-   Interactions
+
+## Module 03, Checking assumptions
+
+-   Non-normality
+    -   Q-Q plot of residuals
+-   Lack of independence
+    -   Assessed qualitatively
+-   Unequal variances, Non-linearity
+    -   Residual scatterplots
+    
+
+## Module 03, SPSS calculation of unadjusted estimates
+
+![](../module03/images/housing-analysis-10.png)
+
+## Module 03, SPSS calculation of adjusted estimates
+
+![](../module03/images/housing-analysis-12.png)
+
+## Module 03, SPSS visualization, 1 of 2
+
+![](../module03/images/housing-analysis-13.png)
+
+## Module 03, SPSS visualization, 2 of 2
+
+![](../module03/images/housing-analysis-14.png)
+
+## Module 03, SPSS Q-Q plot
+
+![](../module03/images/housing-analysis-15.png)
+
+::: notes
+
+:::
+
+## Module 03, SPSS scatterplot
+
+![](../module03/images/housing-analysis-16.png)
+
+::: notes
+
+:::
+
+## Module 03, SPSS interaction test
+
+![](../module03/images/housing-analysis-17.png)
+
+::: notes
+
+:::
+
