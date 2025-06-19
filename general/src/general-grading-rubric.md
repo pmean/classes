@@ -57,7 +57,7 @@ Always modify your graphs. **Do not settle for the default options**.
 -   Avoid small p-values (e.g., p=0.000)
     -   Change to p<0.001
 -   Suppress the printing of unneeded tables
-    -   Sometimes difficult
+-   Some programs (e.g., SAS) do not make it easy to modify tables. If you cannot round and use nice formats, make sure that your interpretations meet these goals.
 
 ## Sometimes default tables/graphs acceptable
 

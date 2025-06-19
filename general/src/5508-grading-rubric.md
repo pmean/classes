@@ -1,5 +1,5 @@
 ---
-title: General grading rubric
+title: Grading rubric for 5508 assignments
 ---
 
 ## Grading rubric: general requirements.
@@ -24,7 +24,7 @@ Your instructors will strive to create readable code in their classroom examples
 
 ## Be concise
 
--   Place limits in your SQL code
+-   Any printouts of data should have limits
     -   No more than ten records (rows)
     -   No more than five fields (variables)
         
