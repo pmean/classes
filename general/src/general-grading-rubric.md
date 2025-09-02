@@ -2,6 +2,12 @@
 title: General grading rubric
 ---
 
+## Use of AI for your homework
+
+You are welcome to use any non-human resource to write your programs. This includes websites that have sample programs. It also includes large language models (e.g., ChatGPT, Gemini). Please give appropriate credit in your assignment. A statement like "This code is loosely based on code found at ..." or "Gemini provided a first draft of the section of this program dealing with ..." is sufficient. You won't lose any points for failing to cite your sources, but it is a nice programming habit that you should develop.
+
+If you get an error message that you can't resolve, you are welcome to seek advice from us, from your fellow students, your co-workers, or anyone else. You can't ask someone else to write your program, but you can seek their guidance once you have written your first draft.
+
 ## Grading rubric: general requirements.
 
 There are **standards in six areas**:
@@ -57,7 +63,7 @@ Always modify your graphs. **Do not settle for the default options**.
 -   Avoid small p-values (e.g., p=0.000)
     -   Change to p<0.001
 -   Suppress the printing of unneeded tables
-    -   Sometimes difficult
+-   Some programs (e.g., SAS) do not make it easy to modify tables. If you cannot round and use nice formatsin your output, make sure that your interpretations meet these goals.
 
 ## Sometimes default tables/graphs acceptable
 

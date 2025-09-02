@@ -1,0 +1,71 @@
+---
+title: "simon-5508-01-import"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute: 
+  error: false
+---
+
+Output produced at `r format(Sys.time(), "%Y-%m-%d, %I:%M%p")`.
+
+## File details
+
+This program was written by Steve Simon on 2025-06-08 and is placed in the public domain. You can use this program any way you please.
+
+```{r}
+#| message: false
+#| warning: false
+#| label: setup
+
+library(glue)
+library(RSQLite)
+library(tidyverse)
+
+R.version.string
+Sys.Date()
+```
+
+## Resources
+
+This code is adapted from the [Hadley Wickham vignette, RQLite][ref-wickham-nodate].
+
+[ref-wickham-nodate]: https://cran.r-project.org/web/packages/RSQLite/vignettes/RSQLite.html
+
+## Identify all csv files
+
+```{r}
+#| label: identify
+
+csv_list <- list.files(path="../data", pattern="csv$")
+csv_list
+```
+
+## Loop through all csv files
+
+```{r}
+#| label: loop
+
+mydb <- dbConnect(SQLite(), "../data/mimic")
+
+for (fn in csv_list) {
+  table_name <- str_remove(fn, "\\.csv")
+  print(table_name)
+  rawdata <- read_csv(glue("../data/{fn}"))
+  dbWriteTable(mydb, table_name, rawdata)
+}
+
+dbListTables(mydb)
+dbDisconnect(mydb)
+
+```
+
+
+## Save everything
+
+```{r}
+#| label: save
+
+save.image(file="../data/import.RData")
+```

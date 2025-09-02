@@ -36,7 +36,7 @@ Please ask for an extension prior to the due date. This is very important. You c
 
 ## Extensions near the end of the semester
 
-Starting on April 29, 2024 (for classes in Spring Semester 2024), you can no longer receive automatic extensions. Short extensions may be available for a limited number of students, but you must get permission from one of your instructors first. We have deadlines for reporting grades and are not given an extension on that deadline.
+Starting with homework due in week 14 of the semester (the week of December 1 in Fall Semester 2025), you can no longer receive automatic extensions. Short extensions may be available for a limited number of students, but you must get permission from one of your instructors first. We have deadlines for reporting grades and we are not given an extension on our deadline.
 
 ## If you are falling behind
 
