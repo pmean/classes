@@ -1,17 +1,14 @@
 ---
 title: "Directions for 5501-02 programming assignment"
+author: "Steve Simon"
+format: 
+  html:
+    embed-resources: true
+date: 2024-08-18
 ---
 
-This programming assignment was written by Steve Simon on 2024-08-18 and is placed in the public domain.
-
-## Download program
-
-Before you start this assignment, download the program listed on the
+Before you start this assignment, download all the files listed on the
 Canvas page for this programming assignment.
-
-## Download data
-
-Also download the data listed on the Canvas page.
 
 ## Question #1
 
@@ -22,17 +19,6 @@ Interpret these values.
 
 Calculate the counts and percentages for employment_status in the 
 sharing dataset. Interpret these values.
-
-## Quetion #3
-
-Calculate the mean and standard deviation for the change in bacterial 
-counts. Interpret these numbers.
-
-## Question #4
-
-Calculate the median, minimum, and maximum for the change in bacterial
-counts. Is the median much different than the mean? Characterize the 
-range as either wide or narrow.
 
 ## Your submission
 
@@ -46,6 +32,11 @@ range as either wide or narrow.
 
 ## If it doesn't work
 
-Please review the [suggestions if you encounter an error page][sim3].
+If your program has any errors or fails to produce the output that you
+desire and you can't resolve the problem,  upload the program file 
+along with the pdf file to help us figure out what went wrong. You 
+will get a chance to resubmit the assignment if needed.
 
-[sim3]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
+## File details
+
+This file was created on 2024-08-27 and is placed in the public domain.

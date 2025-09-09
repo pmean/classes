@@ -17,9 +17,11 @@ This code is placed in the public domain.
 
 For most of your programs, you should load the tidyverse library. The messages and warnings are suppressed.
 
-```{r setup}
+```{r}
+#| label: setup
 #| message: false
 #| warning: false
+
 library(tidyverse)
 ```
 
@@ -27,7 +29,9 @@ library(tidyverse)
 
 Use the read_csv function to read the data. The glimpse function will produce a brief summary.
 
-```{r read}
+```{r}
+#| label: read
+
 alb <- read_csv(
   file="../data/albuquerque-housing.csv",
   col_names=TRUE,
@@ -40,7 +44,9 @@ glimpse(alb)
 
 The summarize_if function produces means, but only for numeric data. You wouldn't want to compute means for data with values "yes" and "no".
 
-```{r means}
+```{r}
+#| label: means
+
 alb |>
   summarise_if(is.numeric, mean, na.rm = TRUE)
 ```

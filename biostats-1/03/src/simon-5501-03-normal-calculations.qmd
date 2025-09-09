@@ -12,17 +12,19 @@ This program displays the standard normal curve along with various probabilities
 
 ## Load the tidyverse library
 
-```{r setup}
+```{r}
+#| label: setup
 #| message: false
 #| warning: false
+
 library(tidyverse)
 ```
 
 ## Using R to draw the standard normal curve
 
-use seq to calculate 100 evenly spaced values between -4 and +4 and dnorm to compute the bell curve at each point. Use geom_polygon to paint the area surrounded by the bell curve.
+```{r}
+#| label: standard-normal
 
-```{r standard-normal}
 x <- seq(-4, 4, length=100)
 y <- dnorm(x)
 data.frame(x, y) |>
@@ -31,11 +33,15 @@ data.frame(x, y) |>
 normal_curve
 ```
 
+#### Comments on the code
+
+Use seq to calculate 100 evenly spaced values between -4 and +4 and dnorm to compute the bell curve at each point. Use geom_polygon to paint the area surrounded by the bell curve.
+
 ## P[Z < 1.5]
 
-Use geom_vline and geom_label to draw a vertical reference line and add text to the normal curve. The pnorm function computes the standard normal probability.
+```{r}
+#| label: prob-1
 
-```{r prob-1}
 a <- 1.5
 normal_curve +
   geom_vline(xintercept=a) +
@@ -44,11 +50,19 @@ normal_curve +
 pnorm(1.5)
 ```
 
+#### Comments on the code
+
+Use geom_vline and geom_label to draw a vertical reference line and add text to the normal curve. The pnorm function computes the standard normal probability.
+
+#### Interpretation of the output
+
 The probability that a standard normal variable is less than 1.5 is about 93%.
 
 ## P[Z < -0.5]
 
-```{r prob-2}
+```{r}
+#| label: prob-2
+
 a <- -0.5
 normal_curve +
   geom_vline(xintercept=a) +
@@ -57,13 +71,14 @@ normal_curve +
 pnorm(-0.5)
 ```
 
+#### Interpretation of the output
+
 The probability that a standard normal variable is less than -0.5 is about 31%.
 
 ## P[Z > 1]
 
-When you are calculating the probability on the right (probability greater than some number), use 1-pnorm.
-
-```{r prob-3}
+```{r}
+#| label: prob-3
 a <- 1
 normal_curve +
   geom_vline(xintercept=a) +
@@ -72,11 +87,19 @@ normal_curve +
 1- pnorm(1)
 ```
 
+#### Comments on the code
+
+When you are calculating the probability on the right (probability greater than some number), use 1-pnorm.
+
+#### Interpretation of the output
+
 The probability that a standard normal variable is larger than 1 is about 16%.
 
 ## P[Z > -2]
 
-```{r prob-4}
+```{r}
+#| label: prob-4
+
 a <- -2
 normal_curve +
   geom_vline(xintercept=a) +
@@ -85,13 +108,15 @@ normal_curve +
 1- pnorm(-2)
 ```
 
+#### Interpretation of the output
+
 The probability that a standard normal variable is larger than -2 is about 98%.
 
 ## P[-2.5 < Z < 2.5]
 
-When you are calculating the probability between two values, compute pnorm of the larger value minus pnorm of the smaller value.
+```{r}
+#| label: prob-5
 
-```{r prob-5}
 a <- 2.5
 normal_curve +
   geom_vline(xintercept=-a) +
@@ -102,9 +127,19 @@ normal_curve +
 pnorm(2.5)- pnorm(-2.5)
 ```
 
+#### Comments on the code
+
+When you are calculating the probability between two values, compute pnorm of the larger value minus pnorm of the smaller value.
+
+#### Interpretation of the output.
+
+The probability that a standard normal variable is between -2.5 and 2.5 is approximately 99%.
+
 ## P[-0.5 < Z < 0.5]
 
-```{r prob-6}
+```{r}
+#| label: prob-6
+
 a <- 0.5
 normal_curve +
   geom_vline(xintercept=-a) +
@@ -115,13 +150,15 @@ normal_curve +
 pnorm(0.5) - pnorm(-0.5)
 ```
 
+#### Interpretation of the output
+
 The probability that a standard normal variable is between -0.5 and 0.5 is about 38%.
 
 ## 25th percentile of a standard normal
 
-Use qnorm to calculate quantiles of the standard normal distribution.
+```{r}
+#| label: quantile-1
 
-```{r quantile-1}
 p <- 0.25
 a <- qnorm(p)
 normal_curve +
@@ -131,11 +168,19 @@ normal_curve +
 qnorm(0.25)
 ```
 
+#### Comments on the code
+
+Use qnorm to calculate quantiles of the standard normal distribution.
+
+#### Interpretation of the output
+
 The 25th percentile of a standard normal distribution is -0.67.
 
 ## 90th percentile of a standard normal
 
-```{r quantile-2}
+```{r}
+#| label: quantile-2
+
 p <- 0.9
 a <- qnorm(p)
 normal_curve +
@@ -144,5 +189,7 @@ normal_curve +
   geom_label(x=a-0.5, y=0, label=p)
 qnorm(0.9)
 ```
+
+#### Interpretation of the output
 
 The 90th percentile of a standard normal distribution is 1.28.
