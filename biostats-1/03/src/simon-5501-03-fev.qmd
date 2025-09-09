@@ -74,7 +74,7 @@ fev |>
 
 #### Interpretation of the output
 
-The mean fev is 2.6 liters and the standard deviation is 0.84 liters. I am not an expert on pulmonary function, but these values do not appear to be unusually large or small.
+The mean fev is 2.6 liters and the standard deviation is 0.87 liters. I am not an expert on pulmonary function, but these values do not appear to be unusually large or small.
 
 ## Histogram for fev, wide bars
 
@@ -90,8 +90,7 @@ fev |>
     fill="white") + 
   scale_x_continuous(breaks=1:6) +
   xlab("Forced Expiratory Volume (Liters)") +
-  labs(caption=
-    "Steve Simon, 2024-09-02")
+  labs(caption="Steve Simon, 2024-09-02")
 ```
 
 #### Comments on the code
@@ -122,8 +121,6 @@ fev |>
 #### Interpretation of the output
 
 See above for the interpretation.
-
-This histogram shows a slight amount of skewness. I would quibble with someone who interpreted them as being approximately normal.
 
 ## Normal probability plot for fev
 
