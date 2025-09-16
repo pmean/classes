@@ -59,12 +59,23 @@ This relates to the above item. You usually are interested in the probability of
 
 ## Rule #4: If one variable has a lot more levels than the other variable, place that variable in rows.
 
-![](../images/nytimes-front-page.png)
+![](../images/table-with-many-rows.png)
+
+
 :::notes
 A table that is tall and thin is usually easier to read than a table that is short and wide. It is easier to scroll up and down rather than left and right. For a really large number of levels, you might have to print your table on two or more pages. Usually it is a lot easier to align these pages if the table is tall and thin. A short wide table that is split on two or more pages is often a disaster.
+:::
+
+## Why is tall and thin better?
+
+![](../images/nytimes-front-page.png)
+
+::: notes
+If your eye has to scan across long lines, you can easily loose track of where you are when you go from the end of one line to the beginning of another. That is why newspapers place most of their content in narrow columns.
 
 Image is taken from The New York Times Learning Network, available at https://archive.nytimes.com/www.nytimes.com/learning/general/onthisday/990814onthisday_big.html
 :::
+
 
 ## Rule #5: Whenever you report percentages - always round.
 
@@ -72,7 +83,7 @@ Image is taken from The New York Times Learning Network, available at https://ar
     -   Exception: close to 100% or 10% or 1%
         -   99.7832% -> 99.8%
         -   10.1417% -> 10.1%
-        -   1.2067% -> 1.21%
+        -   1.02067% -> 1.02%
 -   Don't worry about whether your percentages add up to 99% or 101%.
 
 :::notes
