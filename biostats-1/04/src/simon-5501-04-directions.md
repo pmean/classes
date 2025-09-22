@@ -30,7 +30,7 @@ and store it in your data folder. You may already have the first file from a pre
 
 ## Question #1
 
-Use the  simon-5501-04-fev.qmd file. Update the program to calculate descriptive statistics (mean and standard deviation). Interpret these statistics.
+Use the  simon-5501-04-fev.qmd file. Update the program to calculate descriptive statistics (mean and standard deviation) for ht. Interpret these statistics.
 
 ## Question #2
 
