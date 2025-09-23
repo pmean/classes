@@ -7,22 +7,6 @@ format:
 editor: source
 ---
 
-## simon-5501-05-bf.qmd, 11
+## Location of code
 
-```{r write11}
-cat(template[chunk_beg[11]:chunk_end[11]], sep="\n")
-```
-
-:::notes
-R produces confidence intervals for both the slope and the intercept. Ignore the confidence interval for the intercept in this example since it represents a dangerous extrapoloation of the data.
-:::
-
-## simon-5501-05-bf.qmd, 12
-
-```{r write12}
-cat(template[chunk_beg[12]:chunk_end[12]], sep="\n")
-```
-
-:::notes
-Here is a table that includes the T statistic and the p-value.
-:::
+-   [simon-5501-05-bf.qmd][ref-simon-2024]
