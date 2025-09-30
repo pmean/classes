@@ -17,18 +17,24 @@ This code is placed in the public domain.
 
 For most of your programs, you should load the tidyverse library. The broom package provides a nice way to compute residuals and predicted values. The messages and warnings are suppressed.
 
-```{r setup}
+```{r}
+#| label: setup
 #| message: false
 #| warning: false
+#| 
 library(broom)
 library(tidyverse)
 ```
+
+#--- Part 1: Diagnostic plots
 
 ## Read the data and view a brief summary
 
 Use the read_csv function to read the data. The glimpse function will produce a brief summary.
 
-```{r read}
+```{r}
+#| label: read
+
 alb <- read_csv(
   file="../data/albuquerque-housing.csv",
   col_names=TRUE,
@@ -43,7 +49,9 @@ You might expect that a house with more features would have a higher sales price
 
 ## m1: Calculate descriptive statistics for number of features
 
-```{r features-means}
+```{r}
+#| label: features-means
+
 alb |>
   summarise(
     features_mn=mean(features, na.rm=TRUE),
@@ -53,11 +61,14 @@ alb |>
     n_missing=sum(is.na(features)))
 ```
 
+#### Interpretation of the output
+
 The average number of features is small (3.5) and the standard deviation (1.4) indicates very little variation. At least one house has zero features and no house has all 13 features.
 
 ## m1: Calculate descriptive statistics for price
 
-```{r price-means}
+```{r}
+#| label: price-means
 alb |>
   summarize(
     price_mn=mean(price, na.rm=TRUE),
@@ -67,11 +78,15 @@ alb |>
     n_missing=sum(is.na(price)))
 ```
 
+#### Interpretation of the output
+
 The average price is low (\$106,000), but the standard deviation (\$38,000) shows a fair amount of variation. Note that a dollar sign in R has special meaning. To get it to print normally, you have to put a backslash in front of it.
 
 ## m1: Plot features versus price
 
-```{r scatterplot-1}
+```{r}
+#| label: scatterplot-1
+
 alb |>
   ggplot(aes(features, price)) +
     geom_point() +
@@ -81,14 +96,20 @@ alb |>
 	  ylab("Price in dollars")
 ```
 
+#### Interpretation of the output
+
 There is a weak positive relationship between the number of features and the price of a house.
 
 ## m1: Use features to predict price
 
-```{r regression-1}
+```{r}
+#| label: regression-1
+
 m1 <- lm(price~features, data=alb)
 m1
 ```
+
+#### Interpretation of the output
 
 The estimated average sales price for a house with no features is \$66,000. This not an extrapolation beyond the range of the data. The estimated average sales price increases by \$11,000 for each additional feature. This is surprisingly large when you look at what the features are. Perhaps houses with more features are bigger and newer. 
 
@@ -98,18 +119,29 @@ Normally, you would follow this up with various functions like anova(), confint(
 
 ## m1: Calculate residuals and predicted values
 
-```{r residuals-1}
+```{r}
+#| label: residuals-1
 r1 <- augment(m1)
 glimpse(r1)
 ```
+
+#### Interpretation of the output
 
 You could have also used the resid() and predict() functions. No interpretation is needed here, as these numbers are better reviewed using various graphical displays.
 
 ## m1: Normal probability plot for residuals
 
-```{r qqplot-1}
-qqnorm(r1$.resid)
+```{r}
+#| label: qqplot-1
+
+r1 |>
+  ggplot() +
+  aes(sample=.resid) +
+  stat_qq() +
+  labs(caption="Simon 2025-09-30, CC0")
 ```
+
+#### Interpretation of the output
 
 The normal probability plot deviates markedly from a straight line, indicating some possible issues with the normality assumption.
 
@@ -117,58 +149,84 @@ Note that you cannnot use ggtitle, xlab, or ylab with the qqnorm function.
 
 ## m1: Histogram for residuals
 
-```{r histogram-1}
+```{r}
+#| label: histogram-1
+
 r1 |>
   ggplot(aes(.resid)) +
     geom_histogram(
       binwidth=10000,
       color="black",
       fill="white") +
-	  ggtitle("Plot drawn by Steve Simon on 2023-09-24") +
-	  xlab("Residuals from m1")
+    labs(
+      x="Residuals from m1",
+      caption="Simon 2025-09-30, CC0")
 ```
+
+#### Interpretation of the output
 
 The histogram reinforces these concerns. It looks like the data is skewed to the right.
 
 ## m1: Plot residuals versus features
 
-```{r residual-scatterplot-1}
+```{r}
+#| label: residual-scatterplot-1
+
 r1 |>
   ggplot(aes(features, .resid)) + 
-    geom_point() +
-	  ggtitle("Plot drawn by Steve Simon on 2023-09-24") +
-	  xlab("Number of features") +
-	  ylab("Residuals from m1") 
+  geom_point() +
+  labs(
+    x="Number of features",
+    y="Residuals from m1",
+    caption="Simon 2025-09-30, CC0") 
 ```
+
+#### Interpretation of the output
 
 This plot is difficult to interpret. There is some evidence of heterogeneity. It looks, perhaps, like houses with more features also tend to exhibit more variation. There is no evidence of non-linearity.
 
+#--- Part 2: Influence measures
+
 ## m1: Leverage values
 
-```{r leverage-1}
+```{r}
+#| label: leverage-1
+
 n <- nrow(r1)
 r1 |> filter(.hat > 3*2/n)
 ```
+
+#### Interpretation of the output
 
 There are four data points with high leverage. These correspond to the houses with the most and the fewest features.
 
 ## m1: Studentized deleted residual
 
-```{r studentized-1}
+```{r}
+#| label: studentized-1
+
 r1 |>
   filter(abs(.std.resid) > 3)
 ```
+
+#### Interpretation of the output
 
 Only one house, with only an average number of features (3) but with the highest sales price (\$215,000), might be considered an outlier.
 
 ## m1: Cook's distance
 
-```{r cook-1}
+```{r}
+#| label: cook-1
+
 r1 |>
   filter(.cooksd > 1)
 ```
 
+#### Interpretation of the output
+
 No houses had a large value for Cook's distance. Even though there are a few high leverage points and one outlier, no single data point has unusually high influence on the predicted values.
+
+#--- Part 3: Log transformation
 
 ## m2: Using features to predict log(price)
 
@@ -176,63 +234,93 @@ Because there are some concerns about non-normality and heterogeneity, you might
 
 ## m2: scatterplot
 
-```{r scatterplot-2}
+```{r}
+#| label: scatterplot-2
+
 alb$log_price <- log10(alb$price)
 alb |>
   ggplot(aes(features, log_price)) +
     geom_point() +
     geom_smooth(method="lm", se=FALSE) +
-	  ggtitle("Plot drawn by Steve Simon on 2023-09-24") +
-	  xlab("Number of features") +
-	  ylab("Log base 10 of price in dollars")
+	  labs(
+	    x="Number of features",
+	    y="Log base 10 of price in dollars",
+	    caption="Simon 2025-09-30, CC0")
 ```
+
+#### Interpretation of the output
 
 There is a weak positive linear relationship between log price and features.
 
 ## m2: linear regression on log transformed price
 
-```{r regression-2}
+```{r}
+#| label: regression-2
+
 m2 <- lm(log_price~features, data=alb)
 m2
 ```
+
+#### Interpretation of the output
 
 The estimated average log price is 4.8 for a house with no features. The estimated average log price increases by 0.043 for each additional feature. These numbers are easier to interpret when transformed back to the original scale.
 
 ## m2: Coefficients back transformed to original scale
 
-```{r back-transform-2}
+```{r}
+#| label: back-transform-2
+
 10^(coef(m2))
 ```
+
+#### Interpretation of the output
 
 The estimated average price is \$71,000 for a house with no features. The estimated average price increases by 1.10 (10%) for each additional feature.
 
 ## m2: Normal probability plot
 
-```{r qqplot-2}
+```{r}
+#| label: qqplot-2
+
 r2 <- augment(m2)
-qqnorm(r2$.resid)
+r2 |>
+  ggplot() +
+  aes(sample=.resid) +
+  stat_qq() +
+  labs(
+    caption="Simon 2025-09-30, CC0")
+
 ```
+
+#### Interpretation of the output
 
 The normal probability plot is close to a straight line, indicating a reasonably close fit to a normal distribution.
 
 ## m2: Histogram of residuals
 
-```{r histogram-2}
+```{r}
+#| label: histogram-2
+
 r2 |>
   ggplot(aes(.resid)) +
     geom_histogram(
       binwidth=0.05,
       color="black",
       fill="white") +
-	  ggtitle("Plot drawn by Steve Simon on 2023-09-24") +
-	  xlab("Residuals from m2")
+	  labs(
+	    x="Residuals from m2",
+      caption="Simon 2025-09-30, CC0")
 ```
+
+#### Interpretation of the output
 
 The histogram of residuals also indicates a close fit to a normal distribution. The regression model using log price does a better job meeting the normality assumption.
 
 ## m2: Plot residuals versus features
 
-```{r residual-scatterplot-2}
+```{r}
+#| label: residual-scatterplot-2
+
 r2 |>
   ggplot(aes(features, .resid)) + 
     geom_point() +
@@ -241,4 +329,10 @@ r2 |>
 	  ylab("Residuals from m2")
 ```
 
+#### Interpretation of the output
+
 This plot is difficult to interpret. There is certainly no evidence of non-linearity, but perhaps the problems with heterogenity persist even after the log transformation. Houses with zero or one features seem to have less variation than the rest of the data.
+
+## Additional analyses not done
+
+As with the previous regression model, you may wish to do some inferential statistics with functions like anova(), confint(), or tidy(). You may also want to look at leverage, studentized deleted residuals, and Cook's distance.

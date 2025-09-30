@@ -20,8 +20,6 @@ If you have more than one dataset, possibly because you changed something, then 
 
 ## Load the tidyverse library
 
-For most of your programs, you should load the tidyverse library. The messages and warnings are suppressed.
-
 ```{r}
 #| label: setup
 #| message: false
