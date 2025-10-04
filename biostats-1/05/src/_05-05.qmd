@@ -1,5 +1,5 @@
 ---
-title: "05-05, R code for bar plots"
+title: "05-05, R code, part 2"
 format: 
   revealjs:
     slide-number: true
@@ -7,23 +7,6 @@ format:
 editor: source
 ---
 
-## simon-5501-05-bf.qmd, 9
+## Location of code
 
-```{r write9}
-cat(template[chunk_beg[9]:chunk_end[9]], sep="\n")
-```
-
-:::notes
-Here is the analysis of variance table.
-:::
-
-## simon-5501-05-bf.qmd, 10
-
-```{r write10}
-cat(template[chunk_beg[10]:chunk_end[10]], sep="\n")
-```
-
-:::notes
-T.
-:::
-
+-   [simon-5501-05-bf.qmd][ref-simon-2024]

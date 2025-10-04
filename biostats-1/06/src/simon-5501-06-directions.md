@@ -45,23 +45,7 @@ Draw a scatterplot of sqft on the x-axis and the residuals on the y-axis. Is the
 
 ## Question 6
 
-Display the data (if any) for leverage values greater than 3*2/n. Describe where these leverage values are found relative to the independent and/or dependent variables.
-
-## Question 7
-
-Display the data (if any) for studentized deleted residuals (.std.resid) values greater than 3. Describe where these leverage values are found relative to the independent and/or dependent variables.
-
-## Question 8
-
-Display the data (if any) for Cook's distance (.cooksd) values greater than 1. Describe where these leverage values are found relative to the independent and/or dependent variables.
-
-## Question 9
-
-Calculate the regression equation predicting log10 of price using sqft. Transform the coefficients back to the original scale of measurement and interpret these values.
-
-## Question 10
-
-Calculate diagnostic plots (normal probability plot, histogram, and sqft versus residuals). Do these plots show that a model using log10 price better meets the assumptions for linear regression?
+Based on the diagnostic plots shown here, would you consider using a log transformation on price? There is no right or wrong answer, but I am interested in your opinion.
 
 ## Your submission
 
