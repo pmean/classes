@@ -41,7 +41,7 @@ Be sure to use descriptive labels for the two axes, including units of measureme
 
 ## Question 4
 
-Use the lm function to compute the slope and intercept for the regression model predicting age at discharge using gestational age.
+Use the lm function to compute the slope and intercept for the regression model predicting age at discharge (your dependent variable) using gestational age (your independent variable).
 
 Interpret both the slope and the intercept and state whether the intercept represents an inappropriate extrapoloation.
 
