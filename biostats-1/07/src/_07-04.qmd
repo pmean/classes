@@ -7,67 +7,8 @@ format:
 editor: source
 ---
 
-## simon-5501-07-fev.qmd, 24
+## simon-5501-07-fev.qmd
 
-```{r write24}
-cat(codec[24])
-```
+Refer to part 2 of [my code][ref-simon-nodate2].
 
-## simon-5501-07-fev.qmd, 25
-
-```{r write25}
-cat(codec[25])
-```
-
-## simon-5501-07-fev.qmd, 26
-
-```{r write26}
-cat(codec[26])
-```
-
-## simon-5501-07-fev.qmd, 27
-
-```{r write27}
-cat(codec[27])
-```
-
-## simon-5501-07-fev.qmd, 28
-
-```{r write28}
-cat(codec[28])
-```
-
-## simon-5501-07-fev.qmd, 29
-
-```{r write29}
-cat(codec[29])
-```
-
-## simon-5501-07-fev.qmd, 30
-
-```{r write30}
-cat(codec[30])
-```
-
-## simon-5501-07-fev.qmd, 31
-
-```{r write31}
-cat(codec[31])
-```
-
-:::notes
-The first few lines are the documentation header
-:::
-
-## simon-5501-07-fev.qmd, 32
-
-```{r write32}
-cat(codec[32])
-```
-
-## simon-5501-07-fev.qmd, 33
-
-```{r write33}
-cat(codec[33])
-```
-
+[ref-simon-nodate2]: https://github.com/pmean/classes/blob/master/biostats-1/07/src/simon-5501-07-fev.qmd
