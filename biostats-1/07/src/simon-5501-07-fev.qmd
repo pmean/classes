@@ -13,11 +13,13 @@ There is a [data dictionary][dd] that provides more details about the data. The 
 
 ## Libraries
 
-You should always load the tidyverse library. The broom library provides the glance, tidy, and augment functions that help you with computations of linear regression models. The car library provides the vif function for measuing collinearity.
+You should always load the tidyverse library. The broom library provides the glance, tidy, and augment functions that help you with computations of linear regression models. The car library provides the vif function for measuring collinearity.
 
-```{r setup}
+```{r}
+#| label: setup
 #| message: false
 #| warning: false
+
 library(broom)
 library(car)
 library(tidyverse)
@@ -27,7 +29,9 @@ library(tidyverse)
 
 Since the variable names are not listed in the data file itself, you need to list them here.
 
-```{r names}
+```{r}
+#| label: names
+
 pulmonary_names <- c(
     "age",
     "fev",
@@ -40,7 +44,9 @@ pulmonary_names <- c(
 
 Here is the code to read the data and show a glimpse. 
 
-```{r read}
+```{r}
+#| label: read
+
 pulmonary <- read_csv(
   file="../data/fev.csv",
   col_names=pulmonary_names,
@@ -54,7 +60,9 @@ Is there a relationship between sex and fev? Do males tend to have larger fev va
 
 ## m1: Descriptive stastics for sex
 
-```{r sex}
+```{r}
+#| label: sex
+
 pulmonary |>
 	count(sex) |>
 	mutate(total=sum(n)) |>
@@ -65,7 +73,9 @@ There are slightly more males (51%) than females in this sample.
 
 ## m1: Descriptive statistics for fev
 
-```{r fev}
+```{r}
+#| label: fev
+
 pulmonary |>
   summarize(
     fev_mn=mean(fev),
@@ -74,11 +84,15 @@ pulmonary |>
     fev_max=max(fev))
 ```
 
+## Interpretation of the output
+
 The average fev value, 2.6, seems reasonable. The standard deviation, 0.87, indicates a fair amount of variation. The minimum and maximum values both appear to be reasonable.
 
 ## m1: Tabular summary of the relationship between sex and fev, 1
 
-```{r sex-and-fev-1}
+```{r}
+#| label: sex-and-fev-1
+
 pulmonary |>
   group_by(sex) |>
 	summarize(
@@ -86,11 +100,15 @@ pulmonary |>
 		fev_sd=sd(fev))
 ```
 
+## Interpretation of the output
+
 The average fev is 0.36 liters higher for males than females. There is very slightly more variation in the males (the standard deviation is 1.00 versus 0.65).
 
 ## m1: Graphical summary of the relationship between sex and fev, 2
 
-```{r sex-and-fev-2}
+```{r}
+#| label: sex-and-fev-2
+
 pulmonary |>
   ggplot(aes(sex, fev)) +
     geom_boxplot() + 
@@ -100,56 +118,76 @@ pulmonary |>
 	  ylab("Forced Expiratory Volume (liters)")
 ```
 
+## Interpretation of the output
+
 The boxplot shows the same pattern slightly larger fev values for males compared to females and slightly more variation. 
 
 ## m1: Fit the linear regression model
 
-```{r m1-model}
+```{r}
+#| label: m1-model
+
 m1 <- lm(fev ~ sex, data=pulmonary)
 m1
 ```
+
+## Interpretation of the output
 
 The estimated average fev is 2.45 for females and 0.36 inches higher for males.
 
 ## m1: Analysis of variance table
 
-```{r m1-anova}
+```{r}
+#| label: m1-anova
+
 anova(m1)
 ```
+
+## Interpretation of the output
 
 The F-statistic, 29.6, is large, and the p-value is very small (< 0.001). Reject the null hypothesis and conclude that the average fev values are different between males and females.
 
 ## m1: R-squared
 
-```{r m1-r-squared}
+```{r}
+#| label: m1-r-squared
+
 glance(m1)$r.squared
 ```
+
+## Interpretation of the output
 
 Sex is a very weak predictor of fev. Only 4% of the variation in fev values can be accounted for by a patient's sex.
 
 ## m1: Confidence intervals
 
-```{r m1-ci}
+```{r}
+#| label: m1-ci
+
 confint(m1)
 ```
+
+## Interpretation of the output
 
 We are 95% confident that the difference in fev values is between 0.23 and 0.49. This is a positive difference for all values in the confidence interval, demonstrating that the average fev values are larger for males than for females. This interval is narrow indicating that there is very little sampling error. Hardly a surprise with such a large dataset (n=654).
 
 ## m1: T-tests
 
-```{r m1-t-tests}
+```{r}
+#| label: m1-t-tests
+
 tidy(m1)
 ```
+
+## Interpretation of the output
 
 The t-statistic, 5.4, is not close to zero. Conclude that there is a difference in average fev values between males and females. Since the t-statistic is positive, conclude also that the average fev value is larger for males.
 
 ## m1: Normal probability plot of residuals, 1
 
-Note: I learn something new everyday. You do not have to use qqnorm to create a normal probability plot. You can do it using the ggplot and stat_qq functions. This looks nicer, is consistent with other visualizations in R, and allows you to put in a title using ggtitle. In your homework, you are welcome to use this approach (ggplot and stat_qq) or you can use qqnorm.
+```{r}
+#| label: m1-qq-plot
 
-## m1: Normal probability plot of residuals, 2
-
-```{r m1-qq-plot}
 r1 <- augment(m1)
 r1 |>
 	ggplot(aes(sample=.resid)) +
@@ -157,11 +195,15 @@ r1 |>
     ggtitle("Graph drawn by Steve Simon on 2024-09-30")
 ```
 
+## Interpretation of the output
+
 The straight lines indicates that the residuals are normally distributed.
 
 ## m1: Histogram of residuals
 
-```{r m1-histogram}
+```{r}
+#| label: m1-histogram
+
 r1 |>
 	ggplot(aes(.resid)) +
 	  geom_histogram(
@@ -172,16 +214,22 @@ r1 |>
 	  xlab("Residuals from m1 regression model")
 ```
 
+## Interpretation of the output
+
 The histogram also indicates that the residuals are normally distributed.
 
 ## m1: Influential data points
 
 Both leverage and Cook's distance make little sense for a regression model using a categorical independent variable. The studentized deleted residual is still useful.
 
-```{r m1-studentized-deleted-residual}
+```{r}
+#| label: m1-studentized-deleted-residual
+
 r1 |>
 	filter(abs(.std.resid) > 3)
 ```
+
+## Interpretation of the output
 
 There are three outliers on the high end, corresponding to fev values of 5.6, 5.6, and 5.8 liters in males. There are no outliers among the female patients.
 
@@ -191,18 +239,24 @@ Is there a relationship between smoke and fev? This section (labeled m2) shows s
 
 ## m2: Descriptive statistics for smoke
 
-```{r smoke}
+```{r}
+#| label: smoke
+
 pulmonary |>
 	count(smoke) |>
 	mutate(total=sum(n)) |>
 	mutate(pct=100*n/total)
 ```
 
+## Interpretation of the output
+
 There are very few smokers (65 or 10%) in this sample. Descriptive statistics for fev were shown earlier.
 
 ## m2: Relationship between smoke and fev, 1
 
-```{r smoke-and-fev-1}
+```{r}
+#| label: smoke-and-fev-1
+
 pulmonary |>
   group_by(smoke) |>
 	summarize(
@@ -210,11 +264,15 @@ pulmonary |>
 		fev_sd=sd(fev))
 ```
 
+## Interpretation of the output
+
 Smokers have an average fev value that is 0.7 units higher than non-smokers. The standard deviations (0.85 and 0.75) demonstrate roughly the same amount of variation in the two groups.
 
 ## m2: Relationship between smoke and fev, 2
 
-```{r smoke-and-fev-2}
+```{r}
+#| label: smoke-and-fev-2
+
 pulmonary |>
   ggplot(aes(smoke, fev)) +
     geom_boxplot() + 
@@ -224,14 +282,20 @@ pulmonary |>
 	  ylab("Forced Expiratory Volume (liters)")
 ```
 
+## Interpretation of the output
+
 The boxplot shows the same pattern as noted above.
 
 ## m2: Fit the linear regression model
 
-```{r m2-model}
+```{r}
+#| label: m2-model
+
 m2 <- lm(fev ~ smoke, data=pulmonary)
 m2
 ```
+
+## Interpretation of the output
 
 The estimated average fev is 2.57 liters for non-smokers and 0.71 liters higher on average for smokers.
 
@@ -245,7 +309,9 @@ You should always start with descriptive statistics and graphs. With two or more
 
 ## m3: Descriptive statistics for age
 
-```{r age}
+```{r}
+#| label: age
+
 pulmonary |>
   summarize(
     age_mn=mean(age),
@@ -254,11 +320,15 @@ pulmonary |>
     age_max=max(age))
 ```
 
+## Interpretation of the output
+
 The descriptive statistics are consistent with a pediatric study. The average age is 9.9 years. The standard deviation, 3.0, shows a large amount of variation in age (large at least for a pediatric study). The range, 3 years to 19 years, also demonstrates a large amount of variation.
 
 ## m3: Descriptive statistics for height
 
-```{r height}
+```{r}
+#| label: height
+
 pulmonary |>
   summarize(
     ht_mn=mean(height),
@@ -273,17 +343,23 @@ The average height, 61 inches, is reasonable for a group of children with an ave
 
 Reduce the pulmonary data frame to just the first three columns before computing correlations.
 
-```{r corr}
+```{r}
+#| label: corr
+
 pulmonary |>
   select(height, age, fev) |> 
   cor()
 ```
 
+## Interpretation of the output
+
 The two independent variables, age and ht, are both strongly correlated with fev (r=0.76 and 0.87). They are also strongly correlated with one another (r=0.79).
 
 ## m3: Predicting fev using age and ht
 
-```{r m3}
+```{r}
+#| label: m3
+
 m3 <- lm(fev ~ age + height, data=pulmonary)
 m3
 ```
@@ -294,18 +370,26 @@ The estimated average fev value increases by 0.05 liters for each increase of on
 
 The use of [2, ] (and of [3, ]) isolates the individual rows of the data frame produced by confint. This is not really necessary, but is done to fit the information easily on separate slides.
 
-```{r m3-ci-1}
+```{r}
+#| label: m3-ci-1
+
 m3
 confint(m3)[2, ]
 ```
+
+## Interpretation of the output
 
 We are 95% confident that the estimated average fev value increases between 0.036 and 0.072 liters for each increase of one year of age holding height constant. Conclude that there is a positive relationship between fev and age.
 
 ## m3: Confidence intervals, 2
 
-```{r m3-ci-2}
+```{r}
+#| label: m3-ci-2
+
 confint(m3)[3, ]
 ```
+
+## Interpretation of the output
 
 We are 95% confident that the estimated average fev value increases between 0.10 and 0.12 liters for each increase of one inch in patient's height holding age constant. Conclude that there is a positive relationship between height and fev.
 
@@ -313,29 +397,43 @@ Do not interpret the confidence interval for the intercept.
 
 ## m3: Analysis of variance table
 
-```{r m3-anova}
+```{r}
+#| label: m3-anova
+
 anova(m3)
 ```
+
+## Interpretation of the output
 
 The sum of squares total (SST) is 280.9 + 95.3 + 114.7 = 490.9. Only a small portion of the variation (114.7) is unexplained variation. The F-ratio is much larger than 1, and the p-value is less than 0.001. You can conclude that the combination of age and height helps significantly in predicting fev.
 
 ## m3: R-squared
 
-```{r m3-r-squared}
+```{r}
+#| label: m3-r-squared
+
 glance(m3)$r.squared
 ```
+
+## Interpretation of the output
 
 Roughly 77% of the variation in fev can be explained by the combination of the age and height of the patients.
 
 ## m3: t-tests
 
 ```{r}
+#| label:
+
 tidy(m3)
 ```
 
+## Interpretation of the output
+
 ## m3: Diagnostic plots, 1
 
-```{r diagnostic-1}
+```{r}
+#| label: diagnostic-1
+
 r3 <- augment(m3)
 r3 |>
 	ggplot(aes(sample=.resid)) +
@@ -343,9 +441,13 @@ r3 |>
     ggtitle("Graph drawn by Steve Simon on 2024-09-30")
 ```
 
+## Interpretation of the output
+
 ## m3: Diagnostic plots, 2
 
-```{r diagnostic-2}
+```{r}
+#| label: diagnostic-2
+
 r3 |>
   ggplot(aes(.resid)) +
     geom_histogram(
@@ -356,9 +458,13 @@ r3 |>
     ggtitle("Graph drawn by Steve Simon on 2024-09-25")
 ```
 
+## Interpretation of the output
+
 ## m3: Diagnostic plots, 3
 
-```{r diagnostic-3}
+```{r}
+#| label: diagnostic-3
+
 r3 |>
   ggplot(aes(.fitted, .resid)) +
     geom_point() +
@@ -367,32 +473,49 @@ r3 |>
     ggtitle("Graph drawn by Steve Simon on 2024-09-25")
 ```
 
+## Interpretation of the output
+
 ## m3: Influential data points, 1
 
-```{r influence-1}
+```{r}
+#| label: influence-1
+
 n <- nrow(r3)
 r3 |> filter(.hat > 3*3/n)
 ```
 
-
+## Interpretation of the output
 
 ## m3: Influential data points, 2
 
-```{r influence-2}
+```{r}
+#| label: influence-2
+
 r3 |> 
   filter(abs(.std.resid) > 3)
 ```
 
+## Interpretation of the output
+
 ## m3: Influential data points, 3
 
-```{r influence-3}
+```{r}
+#| label: influence-3
+
 r3 |> 
   filter(.cooksd > 1)
 ```
 
+## Interpretation of the output
+
 ## m3: Variance inflation factor
 
-```{r vif}
+```{r}
+#| label: vif
+
 library(car)
 vif(m3)
 ```
+
+## Interpretation of the output
+
