@@ -145,8 +145,6 @@ r1 |>
 
 The normal probability plot deviates markedly from a straight line, indicating some possible issues with the normality assumption.
 
-Note that you cannnot use ggtitle, xlab, or ylab with the qqnorm function.
-
 ## m1: Histogram for residuals
 
 ```{r}

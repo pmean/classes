@@ -7,6 +7,8 @@ format:
 date: 2024-09-11
 ---
 
+Note to myself: put in #--- Part x breaks
+
 This program reads data and fits various linear regression models on a breast feeding study in pre-term infants.  Find more information in the [data dictionary][dd]. This code is placed in the public domain.
 
 [dd]: https://raw.githubusercontent.com/pmean/datasets/master/breast-feeding-preterm.yaml
