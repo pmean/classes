@@ -32,7 +32,7 @@ library(tidyverse)
 
 #### Comments on the code
 
-You should always load the tidyverse library. The broom library provides the glance, tidy, and augment functions that help you with computations of linear regression models. The car library provides the vif function for measuing collinearity.
+You should always load the tidyverse library. The broom library provides the glance, tidy, and augment functions that help you with computations of linear regression models. The car library provides the vif function for measuring collinearity.
 
 ## List variable names
 
@@ -364,6 +364,8 @@ We are 95% confident that the estimated average fev value increases between 0.03
 
 We are 95% confident that the estimated average fev value increases between 0.10 and 0.12 liters for each increase of one inch in patient's height holding age constant. Conclude that there is a positive relationship between height and fev.
 
+Both intervals are narrow, showing that sampling error is small for this dataset.
+
 Do not interpret the confidence interval for the intercept.
 
 ## m3: Analysis of variance table
@@ -415,11 +417,12 @@ The assumption of normality seems to be reasonably satisfied.
 #| label: diagnostic-2
 
 r3 |>
-  ggplot(aes(.resid)) +
-    geom_histogram(
-      binwidth=0.2,
-      color="black",
-      fill="white") +
+  ggplot() +
+  aes(x=.resid) +
+	geom_histogram(
+    binwidth=0.2,
+    color="black",
+    fill="white") +
 	labs(
 		x="Residuals from m3 regression",
 		caption="Steve Simon, 2024-09-25 CC0")
@@ -436,7 +439,7 @@ Same interpretation as above.
 
 r3 |>
   ggplot() +
-	aes(.fitted, .resid) +
+	aes(x=.fitted, y=.resid) +
   geom_point() +
 	labs(
 		x="Predicted values from m3 regression",
@@ -486,7 +489,7 @@ r3 |>
 
 #### Interpretation of the output
 
-In spite of the concerns with leverage and studentized residuals, none of these combine to create a serious concern about overly influential data. In other words, niether the outliers in the independent variables, nor the outliers in the residuals cause a very large shift in the regression line if they are removed.
+In spite of the concerns with leverage and studentized residuals, none of these combine to create a serious concern about overly influential data. In other words, neither the outliers in the independent variables, nor the outliers in the residuals cause a very large shift in the regression line if they are removed.
 
 ## m3: Variance inflation factor
 
