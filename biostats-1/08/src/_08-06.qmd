@@ -13,7 +13,7 @@ editor: source
 2.  Measure of variability
 3.  Minimum clinically important difference (MCID)
 
-## Scenario, 1
+## Scenario
 
 -   Replicate postural sway study
     -   Different populations
@@ -22,10 +22,12 @@ editor: source
 -   Standard deviations: 9.77, 4.09
 -   MCID = 4
 
-## Scenario, 2
+## Scenario, R code
 
-```{r power-1}
+```{r}
+#| label: power-1
 #| echo: true
+
 sample_size_estimate <- power.t.test(
   n=NULL,
   delta=4,
@@ -35,9 +37,11 @@ sample_size_estimate <- power.t.test(
   type="two.sample",
   alternative="two.sided")
 ```
-    
-## Scenario, 3
 
-```{r power-2}
+## Scenario, Output
+
+```{r}
+#| label: power-2
+
 sample_size_estimate
 ```

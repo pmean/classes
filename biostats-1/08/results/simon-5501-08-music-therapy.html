@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Sweep html files from src to results</title>
+<title>Sample size justification for infant pain study</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,6 +18,41 @@ ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+}
+pre.numberSource { margin-left: 3em; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -2143,7 +2178,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Sweep html files from src to results</h1>
+<h1 class="title">Sample size justification for infant pain study</h1>
 </div>
 
 
@@ -2160,114 +2195,37 @@ vertical-align: -.125em;
 </header>
 
 
-<section id="file-details" class="level2">
-<h2 class="anchored" data-anchor-id="file-details">File details</h2>
-<p>This program moves files from the src folder to results folder in each of the modules. It was written by Steve Simon on 2025-01-08 and is placed in the public domain.</p>
-</section>
-<section id="remind-on-how-to-print-pdf-files-with-speaker-notes" class="level2">
-<h2 class="anchored" data-anchor-id="remind-on-how-to-print-pdf-files-with-speaker-notes">Remind on how to print pdf files with speaker notes</h2>
-<p>To print speaker notes, add</p>
-<ul>
-<li>?print-pdf&amp;showNotes=separate-page</li>
-</ul>
-<p>to the end of the URL. Then open the print dialog box (ctrl-P) and choose</p>
-<ul>
-<li>Save as PDF</li>
-</ul>
-<p>for the printer. Other options, like Microsoft Print to PDF, do not seem to work.</p>
-</section>
-<section id="identify-html-files" class="level2">
-<h2 class="anchored" data-anchor-id="identify-html-files">Identify html files</h2>
-</section>
-<section id="move-html-files" class="level2">
-<h2 class="anchored" data-anchor-id="move-html-files">Move html files</h2>
-</section>
-<section id="loop-across-folders" class="level2">
-<h2 class="anchored" data-anchor-id="loop-across-folders">Loop across folders</h2>
-</section>
-<section id="biostats-1" class="level2">
-<h2 class="anchored" data-anchor-id="biostats-1">Biostats-1</h2>
+<p>The code for this program was written by Steve Simon on 2024-10-01 and is placed in the public domain.</p>
+<p>This program examines power for comparing pain in two groups of infants. The outcome variable, the Neonatal Pain, Agitation and Sedation Scale (N-PASS), is a summary of five elements: crying/irritability, behaviour/state, facial expression, extremities/tone and vital signs. The total score is 0 to 10 for infants 30 weeks and above in gestational age. One point is added for infants below 30 weeks, making the score 1 to 11 for those infants. This scale is graded as non pain (0-3), mild pain (4-7) or severe pain (8-11).</p>
+<p>There are two groups in the study and 40 patients total. What is the minimum difference in average pain scores between the two groups that can be detected with at least 80% power.</p>
+<p>A review of the literature found an article, Badr et al 2016, with information on the N-PASS scale in a similar study of preterm infants. This study had three groups, with standard deviations of 1.28, 1.64, and 2.27</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">power.t.test</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">n=</span><span class="dv">20</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">delta=</span><span class="cn">NULL</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sig.level=</span><span class="fl">0.05</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">power=</span><span class="fl">0.8</span>, </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">type=</span><span class="st">&quot;two.sample&quot;</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">alternative=</span><span class="st">&quot;two.sided&quot;</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Searching in module biostats-1/01/src
-Searching in module biostats-1/02/src
-Searching in module biostats-1/03/src
-Searching in module biostats-1/04/src
-Searching in module biostats-1/05/src
-Searching in module biostats-1/06/src
-Searching in module biostats-1/07/src
-Searching in module biostats-1/08/src
----biostats-1/08/src/simon-5501-08-music-therapy.html
----biostats-1/08/src/simon-5501-08-slides.html
----biostats-1/08/src/simon-5501-08-sway.html
-Searching in module biostats-1/09/src
-Searching in module biostats-1/10/src
-Searching in module biostats-1/11/src
-Searching in module biostats-1/12/src
-Searching in module biostats-1/13/src
-Searching in module biostats-1/14/src
-Searching in module biostats-1/15/src</code></pre>
+<pre><code>
+     Two-sample t test power calculation 
+
+              n = 20
+          delta = 0.9091306
+             sd = 1
+      sig.level = 0.05
+          power = 0.8
+    alternative = two.sided
+
+NOTE: n is number in *each* group</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: leaving sigma out of the function sets it equal to the default</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># of 1, which ends up producing an effect size rather than a minimum</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># clinically important difference.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="biostats-2" class="level2">
-<h2 class="anchored" data-anchor-id="biostats-2">Biostats-2</h2>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Searching in module biostats-2/01/src
-Searching in module biostats-2/02/src
-Searching in module biostats-2/03/src
-Searching in module biostats-2/04/src
-Searching in module biostats-2/05/src
-Searching in module biostats-2/06/src
-Searching in module biostats-2/07/src
-Searching in module biostats-2/08/src
-Searching in module biostats-2/09/src
-Searching in module biostats-2/10/src
-Searching in module biostats-2/11/src
-Searching in module biostats-2/12/src
-Searching in module biostats-2/13/src
-Searching in module biostats-2/14/src</code></pre>
-</div>
-</div>
-</section>
-<section id="clinical-research-methodology" class="level2">
-<h2 class="anchored" data-anchor-id="clinical-research-methodology">clinical-research-methodology</h2>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Searching in module clinical-research-methodology/01/src
-Searching in module clinical-research-methodology/02/src
-Searching in module clinical-research-methodology/03/src
-Searching in module clinical-research-methodology/04/src
-Searching in module clinical-research-methodology/05/src
-Searching in module clinical-research-methodology/06/src
-Searching in module clinical-research-methodology/07/src
-Searching in module clinical-research-methodology/08/src
-Searching in module clinical-research-methodology/09/src
-Searching in module clinical-research-methodology/10/src
-Searching in module clinical-research-methodology/11/src
-Searching in module clinical-research-methodology/12/src
-Searching in module clinical-research-methodology/13/src
-Searching in module clinical-research-methodology/14/src</code></pre>
-</div>
-</div>
-</section>
-<section id="introduction-to-r" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-to-r">introduction-to-r</h2>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Searching in module introduction-to-r/01/src
-Searching in module introduction-to-r/02/src
-Searching in module introduction-to-r/03/src
-Searching in module introduction-to-r/04/src
-Searching in module introduction-to-r/05/src
-Searching in module introduction-to-r/06/src
-Searching in module introduction-to-r/07/src
-Searching in module introduction-to-r/08/src
-Searching in module introduction-to-r/09/src</code></pre>
-</div>
-</div>
-</section>
+<p>A sample of 20 in each group would provide 80% power for detecting an effect size of 0.91 standard deviations. If the observed standard deviation in this study matched the middle standard deviation in Badr et al 2016 study, then we could detect a difference of 0.91 * 1.64 = 1.49 units on the N-PASS scale.</p>
 
 </main>
 <!-- /main column -->

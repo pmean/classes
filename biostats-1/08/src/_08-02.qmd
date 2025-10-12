@@ -36,35 +36,33 @@ y2 <- dt(x, 10)
 y3 <- dt(x, 4)
 
 data.frame(x, y1, y2, y3) |>
-  ggplot(aes(x, y1)) + 
-    geom_line(
-      color="black",
-      size=1) +
-    geom_line(
-      aes(y=y2), 
-      color="darkgreen",
-      size=1,
-      linetype="51") +
-    geom_line(
-      aes(y=y3), 
-      color="darkred",
-      size=1,
-      linetype="11") +
-    geom_text(
-      x=1.5, y=0.38, hjust=0, 
-      label=
-        "Black solid line is the normal distribution") +
-    geom_text(
-      x=1.5, y=0.36, hjust=0,
-      color="darkgreen",
-      label=
-        "Dark green dashed line is the t with df=10") +
-    geom_text(
-      x=1.5, y=0.34, hjust=0,  
-      color="darkred",
-      label=
-        "Dark red dotted line is the t with df=4") +
-    ggtitle("Graph drawn by Steve Simon on 2024-10-06")
+  ggplot() +
+  aes(x, y1) +
+  geom_line(
+    color="black",
+    size=1) +
+  geom_line(
+    aes(y=y2), 
+    color="darkgreen",
+    size=1,
+    linetype="51") +
+  geom_line(
+    aes(y=y3), 
+    color="darkred",
+    size=1,
+    linetype="11") +
+  geom_text(
+    x=1.5, y=0.38, hjust=0, 
+    label="Black solid line is the normal distribution") +
+  geom_text(
+    x=1.5, y=0.36, hjust=0,
+    color="darkgreen",
+    label="Dark green dashed line is the t with df=10") +
+  geom_text(
+    x=1.5, y=0.34, hjust=0,  
+    color="darkred",
+    label="Dark red dotted line is the t with df=4") +
+  labs(caption="Steve Simon, 2024-10-06, CC0")
 ```
 
 :::notes
@@ -79,8 +77,10 @@ library(tidyverse)
 
 ```{r t-with-4-df}
 data.frame(x, y3) |>
-  ggplot(aes(x, y3)) + 
-    geom_polygon(fill="white", color="black") -> t_4_curve
+  ggplot() + 
+  aes(x, y3) +
+  geom_polygon(fill="white", color="black") +
+  labs(caption="Steve Simon, 2024-10-06, CC0") -> t_4_curve
 ```
 
 ## P[t(4) < 1.5]

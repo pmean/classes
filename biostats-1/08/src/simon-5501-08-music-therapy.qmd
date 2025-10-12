@@ -15,14 +15,21 @@ There are two groups in the study and 40 patients total. What is the minimum dif
 A review of the literature found an article, Badr et al 2016, with information on the N-PASS scale in a similar study of preterm infants. This study had three groups, with standard deviations of 1.28, 1.64, and 2.27
 
 ```{r}
-library(pwr)
-p1 <- pwr.t.test(
-	power=0.8, 
-	sig.level=0.05,
+#| label: power
+ 
+p1 <- power.t.test(
 	n=20,
+  delta=NULL,
+	sig.level=0.05,
+	power=0.8, 
 	type="two.sample",
 	alternative="two.sided")
+
+# Note: leaving sigma out of the function sets it equal to the default
+# of 1, which ends up producing an effect size rather than a minimum
+# clinically important difference.
+
 p1
 ```
 
-A sample of 20 in each group would provide 80% power for detecting an effect size of `r round(p1$d, 2)` standard deviations. If the observed standard deviation in this study matched the middle standard deviation in Badr et al 2016 study, then we could detect a difference of `r round(p1$d*1.64, 2)` units on the N-PASS scale.
+A sample of 20 in each group would provide 80% power for detecting an effect size of `r round(p1$delta, 2)` standard deviations. If the observed standard deviation in this study matched the middle standard deviation in Badr et al 2016 study, then we could detect a difference of `r round(p1$delta, 2)` * 1.64 = `r round(p1$delta * 1.64, 2)` units on the N-PASS scale.
