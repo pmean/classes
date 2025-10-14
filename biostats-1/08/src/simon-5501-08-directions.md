@@ -6,7 +6,7 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
 
 ## Program
 
--   Download the [sway program][sway] and the [sample size program][sample]
+-   Download the [sway program][sway]
     -   Store it in your src folder
 -   Modify the file names
     -   Use your last name instead of "simon"
@@ -15,7 +15,6 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
     -   Optional: change the copyright statement
     
 [sway]: https://github.com/pmean/classes/blob/master/biostats-1/08/src/simon-5501-08-sway.qmd
-[sample]: https://github.com/pmean/classes/blob/master/biostats-1/08/src/simon-5501-08-sample-size.qmd
 
 ## Data
 
