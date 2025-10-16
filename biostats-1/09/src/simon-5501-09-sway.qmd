@@ -14,17 +14,22 @@ This program runs some alternatives to the two-sample t-test. Consult the [data 
 This program was written by Steve Simon on 2024-10-13. It is placed in the public domain.
 
 
+
 ## Libraries
 
-```{r setup}
+```{r}
+#| label: setup
 #| message: false
 #| warning: false
+
 library(tidyverse)
 ```
 
 ## Read data
 
-```{r read-sway}
+```{r}
+#| label: read-sway
+
 sway <- read_tsv(
   file="../data/postural-sway.txt",
   col_types="cnn")
@@ -32,25 +37,34 @@ names(sway) <- tolower(names(sway))
 glimpse(sway)
 ```
 
+# --- Part 1
+
 ## Boxplot of front-to-back sway by age
 
-```{r boxplot-1}
+```{r}
+#| label: boxplot-1
 #| fig.height: 2
 #| fig.width: 6
+
 sway |>
-  ggplot(aes(age, fbsway)) +
-    geom_boxplot() +
-    ggtitle("Graph drawn by Steve Simon on 2024-10-13") +
-    xlab("Treatment group") +
-    ylab("Front to back sway") +
-    coord_flip()
+  ggplot() +
+  aes(fbsway, age) +
+  geom_boxplot() +
+  labs(
+    caption="Steve Simon, 2024-10-13, CC0",
+    x="Front to back sway",
+    y="Treatment group")
 ```
+
+#### Interpretation of the output
 
 The outlier causes some concern about the validity of the two-sample t-test.
 
 ## Descriptive statistics for front-to-back sway by age
 
-```{r group-means}
+```{r}
+#| label: group-means
+
 sway |>
   group_by(age) |>
   summarize(
@@ -59,34 +73,47 @@ sway |>
     n=n())
 ```
 
+#### Interpretation of the output
+
 In addition to the outlier, notice that the group with the larger mean (elderly) has the larger standard deviation. This indicates that a log transformation may produce better results.
 
 ## Log transformation, 1
 
-```{r log-transform-1}
+```{r}
+#| label: log-transform-1
+
 sway |>
   mutate(log_fbsway=log10(fbsway)) -> log_sway
 ```
 
+#### Interpretation of the output
+
 ## Log transformation, 2
 
-```{r log-transform-2}
+```{r}
+#| label: log-transform-2
 #| fig.height: 2
 #| fig.width: 6
+
 log_sway |>
-  ggplot(aes(age, log_fbsway)) +
-    geom_boxplot() +
-    ggtitle("Graph drawn by Steve Simon on 2024-10-13") +
-    xlab("Treatment group") +
-    ylab("Front to back sway") +
-    coord_flip()
+  ggplot() +
+  aes(age, log_fbsway) +
+  geom_boxplot() +
+  labs(
+    caption="Steve Simon, 2024-10-13, CC0",
+    x="Front to back sway",
+    y="Treatment group")
 ```
+
+#### Interpretation of the output
 
 There are no outliers after a log transformation.
 
 ## Log transformation, 3
 
-```{r compare-means-on-log-scale}
+```{r}
+#| label: compare-means-on-log-scale
+
 log_sway |>
   group_by(age) |>
   summarize(
@@ -95,11 +122,15 @@ log_sway |>
     n=n())
 ```
 
+#### Interpretation of the output
+
 The standard deviations on the log scale are quite a bit more similar than they were on the original scale.
 
 ## Two-sample t-test using the log transformation
 
-```{r t-test}
+```{r}
+#| label: t-test
+
 m2 <- t.test(
   log_fbsway ~ age, 
   data=log_sway,
@@ -108,20 +139,88 @@ m2 <- t.test(
 m2
 ```
 
+#### Interpretation of the output
+
 There is a statistically significant difference between the log front-to-back sway between elderly patients and young patients. The confidence interval will be interpreted after transforming back to the original scale of measurement.
 
 ## Back-transform confidence interval to the original scale.
 
-```{r back-transform}
+```{r}
+#| label: back-transform
+
 10^(m2$conf.int)
 ```
+
+#### Interpretation of the output
 
 We are 95% confident that the geometric mean front-to-back sway in elderly patients is somewhere between 1.24 times higher and 8 times higher than the geometric mean for young patients. This indicates a statistically significantly higher mean for elderly patients. The confidence interval is still very wide, indicating a lot of sampling error in these two small samples.
 
 ## Mann-Whitney-Wilcoxon
 
-```{r nonparametric-test}
+```{r}
+#| label: nonparametric-test
+
 wilcox.test(fbsway ~ age, data=sway)
 ```
 
+#### Interpretation of the output
+
 Since the p-value is small, you would reject the null hypothesis and conclude that there is a statistically significant difference in front-to-back sway values between elderly and young patients.
+
+# -- Part 2
+
+## Paired t-test
+
+The research team is also interested in whether the front-to-back sway is larger than the side-to-side sway, combining both the elderly and young patients into one group.
+
+## Compute and graph differences
+
+```{r}
+#| label: compute-difference-1
+
+sway |>
+  mutate(diff_sway=fbsway-sidesway) -> paired_differences
+paired_differences |>
+  summarize(
+    diff_mn=mean(diff_sway),
+    diff_sd=sd(diff_sway))
+```
+
+#### Interpretation of the output
+
+The average difference is positive, indicating that front-to-back-sways are larger on average. The standard deviation of the differences is large. 
+
+## Boxplot of differences
+
+```{r}
+#| label: compute-difference-2
+
+#| fig.height: 1.5
+#| fig.width: 6
+paired_differences |>
+  ggplot(aes(diff_sway, "Combined")) +
+    geom_boxplot() +
+    ggtitle("Graph drawn by Steve Simon on 2024-10-13") +
+    xlab("Front-to-back sway minus side-to-side sway") +
+    ylab(" ")
+```
+
+#### Interpretation of the output
+
+More than 75% of the differences are positive, also indicating that front-to-back sways tend to be larger.
+
+## Paired t-test
+
+```{r}
+#| label: paired-t-test
+
+t.test(
+  sway$fbsway, 
+  sway$sidesway,
+  paired=TRUE,
+  alternative="two.sided")
+```
+
+#### Interpretation of the output
+
+The p-value is small, indicating that front-to-back sways are significantly larger than side-to-side sways. The 95% confidence intervals shows that the mean difference is at least 0.21 units larger for front-to-back sway and possibly as large as 7.0 units.
