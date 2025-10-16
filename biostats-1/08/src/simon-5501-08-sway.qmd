@@ -79,7 +79,7 @@ sway |>
 
 #### Interpretation of the output
 
-The average front-to-back sway is about 7 millimeters higher on average in the elderly patients. There is more variation in the elderly group, possibly caused by the extreme outlier.
+The average front-to-back sway is about 8 millimeters higher on average in the elderly patients. There is more variation in the elderly group, possibly caused by the extreme outlier.
 
 ## Two-sample t-test
 
@@ -96,7 +96,7 @@ m1
 
 #### Comments on the code
 
-The [t.test function][ref-r-nodate] is part of the base R package. You use a formula identical to the formula used in the lm function. The dependent or outcome variable goes to the left of the tilde and the binary category goes on the right. The alternative argument is "two.sided" for a two-sided test. Use "less" to test the one sided hypothesis H1: mu1 <- m2 and "greater" to test the hypothesis H1: mu1 > mu2.
+The [t.test function][ref-r-nodate] is part of the base R package. You use a formula identical to the formula used in the lm function. The dependent or outcome variable goes to the left of the tilde and the binary category goes on the right. The alternative argument is "two.sided" for a two-sided test. Use "less" to test the one sided hypothesis H1: mu1 < mu2 and "greater" to test the hypothesis H1: mu1 > mu2.
 
 [ref-r-nodate]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/t.test.html
 
