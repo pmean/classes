@@ -13,18 +13,22 @@ This program was written by Steve Simon on 2024-10-20 and is placed in the publi
 
 ## Load the tidyverse library
 
-For most of your programs, you should load the tidyverse library. The messages and warnings are suppressed.
-
-```{r setup}
+```{r}
+#| label: setup
 #| message: false
 #| warning: false
+
 library(broom)
 library(tidyverse)
 ```
 
+# --- Part 1
+
 ## Read the data
 
-```{r read-1}
+```{r}
+#| label: read-1
+
 river <- read_tsv(
   file="../data/wolf-river-pollution.txt",
   col_names=TRUE,
@@ -35,23 +39,30 @@ glimpse(river)
 
 ## Draw boxplots
 
-```{r box-1}
+```{r}
+#| label: box-1
 #| fig.width: 6
 #| fig.height: 2.5
+
 river |>
-  ggplot(aes(depth, aldrin)) +
-    geom_boxplot() +
-    xlab("River depth") +
-    ylab("Aldrin concentration") +
-    ggtitle("Graph drawn by Steve Simon on 2024-10-20") +
-    coord_flip()
+  ggplot() +
+  aes(aldrin, depth) +
+  geom_boxplot() +
+  labs(
+    x="Aldrin concentration",
+    y="River depth",
+    caption="Steve Simon, 2024-10-20, CC0")
 ```
+
+#### Interpretation of the output
 
 The deeper you sample, the higher the concentration of Aldrin. The variation also increases as you go deeper. There are some minor deviations from normality, but nothing too serious.
 
 ## Descriptive statistics
 
-```{r descriptives-1}
+```{r}
+#| label: descriptives-1
+
 river |>
   group_by(depth) |>
   summarize(
@@ -60,26 +71,38 @@ river |>
     n=n())
 ```
 
+#### Interpretation of the output
+
 The bottom samples have the highest average concentration and the highest amount of variability.
 
 ## Analysis of variance table
 
-```{r aov-1}
+```{r}
+#| label: aov-1
+
 m1 <- aov(aldrin ~ depth, data=river)
 tidy(m1)
 ```
+
+#### Interpretation of the output
 
 The F-ratio is large and the p-value is less than alpha. You should reject the null hypothesis and conclude that at least two means differ from one another.
 
 ## Pairwise tests
 
-```{r pairwise-1}
+```{r}
+#| label: pairwise-1
+
 TukeyHSD(m1)
 ```
+
+#### Interpretation of the output
 
 There is a statistically significant difference in average concentration of Aldrin between the surface measurements and the bottom measurements. The confidence interval, however, is very wide, indicating a large amount of sampling error. 
 
 Although the average middepth measurements are larger than the surface measurements and smaller than the bottom measurements, the difference of about 0.8 to 1.0 units is not statistically significant.
+
+# --- Part 2
 
 ## Sample size calculation scenario
 
@@ -87,7 +110,9 @@ You want to replicate this study at a different site and want a lot more precisi
 
 ## Sample size calculation, R code
 
-```{r sample-size}
+```{r}
+#| label: sample-size
+
 v <- var(c(4.8, 5.0, 5.2))
 power.anova.test(
 	groups=3,
@@ -98,17 +123,17 @@ power.anova.test(
 	power=0.90)
 ```
 
-## Sample size calculation, interpretation
+#### Interpretation of the output
 
 A sample size of 221 measurements per depth level would provide 90% power for detecting a difference between means of 4.8, 5.0, and 5.2 in aldrin concentration. This assumes that the variation within groups is similar to the previous study (1.39) and an alpha level of 0.05.
-
-## Recalculate sample size, new scenario
 
 There is no way in heaven or earth that you can afford to make 221 measurements at each depth. So give up the idea that you can detect changes in means across such a narrow range. Suppose that you want to be able to detect differences among means that are 4.5, 5.0, and 5.5. If you could live with that and if everything remains the same, what sample size would you need?
 
 ## Recalculate sample size, R code
 
-```{r recalculate}
+```{r}
+#| label: recalculate
+
 v <- var(c(4.5, 5.0, 5.5))
 power.anova.test(
 	groups=3,
@@ -119,6 +144,6 @@ power.anova.test(
 	power=0.90)
 ```
 
-## Recalculate sample size, interpretation. 
+#### Interpretation of the output
 
 Much better! A sample size of 37 measurements per depth level would provide 90% power for detecting a difference between means of 4.5, 5.0, and 5.5 in aldrin concentration. This assumes that the variation within groups is similar to the previous study (1.39) and an alpha level of 0.05.

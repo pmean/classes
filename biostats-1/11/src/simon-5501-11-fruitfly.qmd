@@ -13,9 +13,12 @@ This code was written by Steve Simon on 2024-10-23 and is placed in the public d
 
 ## Load the tidyverse library
 
-```{r setup}
+```{r}
+
+#| label: setup
 #| message: false
 #| warning: false
+
 library(broom)
 library(tidyverse)
 ```
@@ -24,7 +27,9 @@ For most of your programs, you should load the tidyverse library. The broom libr
 
 ## List the variable names
 
-```{r variable-list}
+```{r}
+#| label: variable-list
+
 fn <- "https://jse.amstat.org/datasets/fruitfly.dat.txt"
 vlist <- c(
   "id",
@@ -35,11 +40,15 @@ vlist <- c(
   "sleep")
 ```
 
+#### Comments on the code
+
 When a dataset does not have variables on the first line, you need to specify them in the code.
 
 ## Read the data and view a brief summary
 
-```{r read}
+```{r}
+#| label: read
+
 fly <- read_fwf(
   "../data/fruitfly.txt",
   col_types="nnnnnn",
@@ -49,12 +58,16 @@ fly <- read_fwf(
 glimpse(fly)
 ```
 
+#### Interpretation of the output
+
 The fruitfly dataset has a fixed width format (fwf). You need to specify the 
 columns that each variable uses.
 
 ## Create cage groups
 
-```{r cage}
+```{r}
+#| label: cage
+
 fly$cage <- 
   case_when(
     fly$partners==0 & fly$type==9 ~ "No females",
@@ -64,11 +77,15 @@ fly$cage <-
     fly$partners==8 & fly$type==1 ~ "Eight virgin females")
 ```
 
+#### Interpretation of the output
+
 The five categories represent different combinations of partners and type.
 
 ## Calculate descriptive statistics
 
-```{r longevity-means}
+```{r}
+#| label: longevity-means
+
 fly |>
   group_by(cage) |>
   summarize(
@@ -77,50 +94,69 @@ fly |>
     n=n())
 ```
 
+#### Interpretation of the output
+
 The mean lifespan is much lower for the eight virgin females group. The standard
 deviations are reasonably small and more or less consistent across all groups.
 
 ## Draw boxplot
 
-```{r longevity-boxplot}
+```{r}
+#| label: longevity-boxplot
 #| fig.width: 6
 #| fig.height: 2.5
+
 fly |>
-  ggplot(aes(cage, longevity)) +
-    geom_boxplot() +
-    ggtitle("Graph drawn by Steve Simon on 2024-10-23") +
-    xlab("Cage residents") +
-    ylab("Lifespan (days)") +
-    coord_flip()
+  ggplot() +
+  aes(cage, longevity) +
+  geom_boxplot() +
+  labs(
+    caption="Steve Simon, 2024-10-23, CC0",
+    x="Lifespan (days)",
+    y="Cage residents")
 ```
+
+#### Interpretation of the output
 
 The boxplot shows a roughly normal distribution with no outliers.
 
 ## One factor analysis of variance for longevity
 
-```{r longevity-one-factor-anova}
+```{r}
+#| label: longevity-one-factor-anova
+
 m1 <- aov(longevity ~ cage, data=fly)
 tidy(m1)
 ```
+
+#### Interpretation of the output
 
 The F-ratio is large and the p-value is small. Conclude that there is a 
 difference among some or all of the population mean lifespans.
 
 ## Linear model for longevity, 1
 
-```{r longevity-lm-1}
+```{r}
+#| label: longevity-lm-1
+
 m2 <- lm(longevity ~ cage, data=fly)
 anova(m2)
 ```
+
+#### Interpretation of the output
 
 You can use linear regression to reach the same conclusion. The sums of squares,
 degrees of freedom, F-ratio, and p-value all match.
 
 ## Linear model for longevity, 2
 
-```{r longevity-lm-2}
+```{r}
+#| label: longevity-lm-2
+
 tidy(m2)
 ```
+
+#### Interpretation of the output
 
 The linear model creates indicator variable for four out of the five category
 levels. The regression slopes represent the estimated average difference in 
@@ -128,13 +164,17 @@ means between each category and the reference category.
 
 ## Linear model for longevity, 3
 
-```{r longevity-lm-3}
+```{r}
+#| label: longevity-lm-3
+
 fly |>
   group_by(cage) |>
   summarize(longevity_mn=mean(longevity)) |>
   mutate(reference_mn=first(longevity_mn)) |>
   mutate(mean_difference=longevity_mn-reference_mn)
 ```
+
+#### Interpretation of the output
 
 This table shows how to interpret the intercept and the four slope terms. The
 intercept is the estimated average lifespan for the first level of the 
@@ -143,7 +183,9 @@ other levels of the categorical variable and the first level.
 
 ## Re-order cage groups, 1
 
-```{r re-order-1}
+```{r}
+#| label: re-order-1
+
 fly$cage_1 <- 
   factor(
     fly$cage,
@@ -155,40 +197,57 @@ fly$cage_1 <-
       "Eight virgin females"))
 ```
 
+#### Interpretation of the output
+
 Compare every category to the No females category (the control condition).
 
 ## Re-order cage groups, 2
 
-```{r re-order-2}
+```{r}
+#| label: re-order-2
+
 m3 <- lm(longevity ~ cage_1, data=fly)
 tidy(m3)
 ```
+
+#### Interpretation of the output
 
 There is one group, eight virgin females, that is statistically significantly
 different from the no female control group.
 
 ## Log transformation, 1
 
-```{r log-longevity-anova-1}
+```{r}
+#| label: log-longevity-anova-1
+
 fly |>
   mutate(log_longevity=log10(longevity)) -> log_fly
+
 m3 <- aov(log_longevity ~ cage, data=log_fly)
 tidy(m3)
 ```
+
+#### Interpretation of the output
 
 Although there are no problems with heterogeneity or non-normality, here is an 
 illustration of how to use a log transformation with analysis of variance.
 
 ## Log transformation, 2
 
-```{r log-longevity-anova-2}
+```{r}
+#| label: log-longevity-anova-2
+
 t3 <- TukeyHSD(m3, ordered=TRUE)
 t3
 ```
 
+#### Interpretation of the output
+
 ## Log transformation, 3
 
-```{r log-longevity-anova-3}
+```{r}
+#| label: log-longevity-anova-3
+
 t3$cage |>
   data.frame() |>
   select(diff, lwr, upr) |> 
@@ -198,9 +257,13 @@ t3$cage |>
     upr=10^upr)
 ```
 
+#### Interpretation of the output
+
 ## Log transformation, 4
 
-```{r log-longevity-anova-4}
+```{r}
+#| label: log-longevity-anova-4
+
 t3$cage |>
   data.frame() |>
   select(diff, lwr, upr) |> 
@@ -210,18 +273,26 @@ t3$cage |>
     lwr=10^(-upr))
 ```
 
+#### Interpretation of the output
+
 ## Kruskal-Wallis test
 
-```{r kw}
+```{r}
+#| label: kw
+
 kruskal.test(longevity ~ cage, data=fly)
 ```
+
+#### Interpretation of the output
 
 It may not be needed with this particular dataset, but this is an illustration
 of how to use the Kruskal-Wallis test. 
 
 ## Save important files for later use
 
-```{r save}
+```{r}
+#| label: save
+
 save(
   fly,
   log_fly,
