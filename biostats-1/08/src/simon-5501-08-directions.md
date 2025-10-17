@@ -63,7 +63,7 @@ Change the power in scenario 1 from 0.9 to 0.95, keeping everything else the sam
 
 #### Scenario 10, alternative="greater"
 
-Change the alternative in scenario 1 from "two.sided" to "greater", keeping everything else the same. How does the sample size change if you use a one-sided test instead of a two-sided test?
+Change the alternative in scenario 1 from "two.sided" to "one.sided", keeping everything else the same. How does the sample size change if you use a one-sided test instead of a two-sided test?
 
 #### Your submission
 
