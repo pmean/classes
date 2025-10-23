@@ -7,42 +7,125 @@ format:
 editor: source
 ---
 
-## Important assumptions
+## Population model
 
--   Same as independent-samples t-test
-    -   Normality
-    -   Equal variances
-    -   Independence
--   Note: unequal sample sizes is not a violation of assumptions
-    -   But does lead to some tedious complications
+-   There are k populations
+    -   $Y_{11}, Y_{12}, .\ \ .\ \ ., Y_{1N_1}$
+    -   $Y_{21}, Y_{22}, ..., Y_{2N_2}$
+    -   ...
+    -   $Y_{k1}, Y_{k2}, .\ .\ ., Y_{kN_k}$
+    
+::: notes
+The population model in analysis of variance is effectively a description of k populations. The are N1 observations in the first population, N2 in the second population and Nk in the kth population. Notice the change in the spacing of the dot-dot-dot. This emphasizes that the k populations may not be all the same size.
+:::
+
+## Sampling from the population
+
+-   Select k samples
+    -   $Y_{11}, Y_{12}, .\ .\ ., Y_{1n_1}$
+    -   $Y_{21}, Y_{22}, ..., Y_{2n_2}$
+    -   ...
+    -   $Y_{k1}, Y_{k2}, .\ \ .\ \ ., Y_{kn_k}$
+    
+::: notes
+Since N1, N2, etc. are denoted by capital letters, that reflects the fact that the size of the populations are often quite large--too large to measure every patient in each population. Instead you choose a smaller number of observations. Denote n1, n2, etc. as the size of the samples. Again, the spacing is slightly different because the size of the k samples do not have to be exactly equal.
+:::
+
+## Assumptions about the populations
+
+-   $Y_{ij} = \mu_i + \epsilon_{ij}$
+    -   $\epsilon_{ij}$ should be 
+        -   Normal
+        -   Homogenous (equal variance)
+        -   Independent
+        
+::: notes
+The three assumptions in analysis of variance are normality, homogeneity, and indepdendence. Violations of the assumptions would be characterized as non-normality, heterogeneity, and lack of independence.
+:::
+
+## Residuals in analysis of variance
+
+-   In linear regression
+    -   $e_i=Y_i-\hat{Y}_i$
+    -   Residual = Observed - Predicted
+-   In analysis of variance
+    -   $e_{ij}=Y_{ij}-\bar{Y}_i$
+    -   Residual = Observed - Predicted
+-   Behavior of $e_{ij}$ hints at assumptions on $\epsilon_{ij}$
+    
+::: notes
+You can compute residuals in analysis of variance much in the same way as you computed residuals in linear regression. In analysis of variance, the predicted values are the means in each group. So, in analysis of variance, you look at the deviations of the observed values from the group means, rather than deviations of the observed values from the trend line. But this is a fairly minor distinction. Always think of residuals as the difference between what you observed and what you predicted.
+:::
+
+## Important caveats
+
+-   Important notes
+    -   Check normality only in the residuals
+    -   Non-normality is less of a concern for large sample sizes
+-   -   Unequal sample sizes is not a violation of assumptions
+
+::: notes
+The assumptions for analysis of variance are pretty much identical to the assumptions of the independent samples t-test and not all that different from the assumptions of linear regression. You need to assume normality, though it is normality of the residuals that you care about. The original outcome variable could be bimodal or trimodal or worse, just because the means are unequal. You are assuming that each group has a normal distribution, but the means of each normal distributions can be (and often are) quite different.
+
+One more important note. You do not have to have exactly the same number of observations in each group. Unequal sample sizes is not a violation of assumptions.
+:::
+
+## Influential data points
+
+-   Less emphasis in analysis of variance
+    -   Impossible to have an outlier in the independent variable when it is categorical
+-   Studentized residuals may still be worth examining. 
+
+::: notes
+In the modules on linear regression, you saw several measures of influence, leverage, studentized residuals, and Cook's distance. Leverage is a measure of how extreme an outlier is in the indepdent variable. When the independent variable is categorical, you almost never see an outlier in that dimension. It can happen when the first and second groups have several hundred patients and the third group only has five or ten patients. Such extreme imbalances are uncommon. Because of this, you really don't need to examine leverage. Cook's distance is not too critical either. There might be some value in looking at the studentized residual.
+
+Actually, a simple set of boxplots works just as well as the studentized residual in identifying extreme values in the outcome measure.
+:::
 
 ## How to check for non-normality
 
 -   Boxplots
     -   Look for evidence of skewness or outliers
     
+::: notes
+Boxplots are very helpful for identifying skewness or outliers. Look for asymmetry. If the median is closer to one quartile than the other, that is an indication of skewness. If one whisker in the boxplot is a lot longer on one side than the other, that is also an indication of skewness. 
+
+Boxplots will highlight individual values that might be considered outliers.
+:::
+    
 ## How to check for heterogeneity
 
--   Descriptive statistics
-    -   Look for one standard deviation much larger than another
 -   Boxplots
     -   Look for one box that is much wider than another
+-   Descriptive statistics
+    -   Look for one standard deviation much larger than another
+    
+::: notes
+Boxplots are also useful for identifying heterogeneity (unequal variances). The relative size of the boxes in a boxplot help here. Don't overinterpret small discrepancies. You shouldn't really worry much about unequal variances unless the box in one boxplot two or three times wider that the box in another boxplot.
+
+Likewise, look at the standard deviations in each group. Is one standard deviation a lot larger than another? Again, only worry if the disparity is large (two or three fold differences).
+:::
     
 ##  How to check for independence 
 
 -   Qualitative assessment of how data was collected
 
-## Optional: analysis of residuals, 1
+::: notes
+Although there are some formal tests for independence, these almost never apply. Do not use the runs test or the Durbin-Watson test unless there is a rigid temporal sequence in how the data was collected.
 
--   Predicted value, $\hat{Y}_{ij}$
-    -   $\hat{Y}_{ij} = \bar{Y}_i$
--   Residual, $e_{ij}$
-    -   $e_{ij}$= Observed - Predicted
-    -   $e_{ij}= Y_{ij}-\hat{Y}_{ij}$
-    -   $e_{ij}= Y_{ij}-\bar{Y}_i$
+Instead, examine the assumption of independence by looking at details on how the data was collected.
+:::
 
-## Optional: analysis of residuals, 2
+## Optional: analysis of residuals
 
 -   Normal probability plot (QQ plot) of residuals
 -   Histogram of residuals
 -   Plot predicted values versus residuals.
+
+::: notes
+While the boxplots are often quite informative, you might also want to look at various plots of the residuals.
+
+The normal probability plot and the histogram help identify non-normality.
+
+A plot of predicted values versus residuals helps identify heterogeneity. Recall that the predicted value in analysis of variance is just the group means. Be on the lookout for a fairly common pattern where groups with larger sample means also exhibit greater variation.
+:::

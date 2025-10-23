@@ -17,6 +17,10 @@ editor: source
     -   *sig.level* is the alpha level
     -   *power* is the power
 -   Set *n=NULL* to estimate sample size
+
+::: notes
+Estimating sample size is a bit trickier for analysis of variance. The power.anova.test does a pretty good job of handling this case.
+:::
     
 ## What if n is outside your budget?
 
@@ -24,3 +28,15 @@ editor: source
 -   Increase Type I error rate (sig.level)
 -   Increase Type II error rate (decrease power)
 -   Decrease number of groups
+
+::: notes
+You may find that your first shot at estimating the sample size causes a panic in your reserach team. There are some changes that you might consider. 
+
+First, look at the various group means that are used to calculate the between variance. Maybe you are hoping to detect a really small difference among these means. Can you live with a research design that only has good power for a slightly wide range of group means?
+
+You might consider increasing the Type I error rate. There is no good reason other than tradition to hold the Type I error rate at 0.05 and you will find that a Type I error rate of 0.10 will require a slightly smaller sample size. Now, realistically, it is hard to publish research that deviates from the widely accepted practice of keep the alpha level at 0.05.
+
+You could increase the Type II error rate (or equivalently decrease the power). Using a Type II error rate of 0.10 *(or power equals 0.90) is a good starting point. Perhaps a Type II error rate of 0.20 (power equals 0.80) might be tolerable. Don't try to go more extreme than this. I might not mind, but the are others who do kick up a fuss for any power less than 0.80.
+
+You can also decrease the sample size markedly by decreasing the number of groups. Can you live with three groups instead of six? You'll cut your sample size by more than half, actually, because the F distribution behaves a lot nicer with fewer groups.
+:::

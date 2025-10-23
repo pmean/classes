@@ -17,12 +17,13 @@ editor: source
     -   $df_2$ = degrees of freedom for denominator
 
 :::notes
-The F distribution appears many times in Statistics when you are comparing two different measures of variation.
+The F distribution appears many times in Statistics when you are comparing two different measures of variation. If it is close to one, that indicates that the two measures of variation are comparable. If it is a lot larger than one, that indicates that one source of variation (typically explained variation) is much larger.
 :::
 
 ## Graph of the F distribution
   
-```{r 10-02-f-plot}
+```{r}
+#| label: 10-02-f-plot
 #| message: false
 #| warning: false
 
@@ -47,6 +48,7 @@ Here is a picture of the F distribution.
     -   Compute F = MS(Between) / MS(Within)
     -   Accept H0 if the F < $F(1-\alpha, k-1, N-k)$
 -   Only reject $H_0$ for large values
+    -   Note: the f-ratio can never be negative
 
 :::notes
 You only reject the null hypothesis for large values of F. If the variation between groups is about equal to the variation within groups or if it is much smaller than the variation within groups, you should accept the null hypothesis.
@@ -61,23 +63,61 @@ You only reject the null hypothesis for large values of F. If the variation betw
 R will compute a p-value for you and you compare the p-value to alpha. With a large p-value (greater than alpha), you should accept the null hypothesis. With a small p-value (less than or equal to alpha), you should reject the null hypothesis.
 :::
 
+## Can you use analysis of variance when you have two groups?
+
+-   Yes
+    -   $F = T^2$
+-   Some prefer the t-test with two groups
+    -   Simpler
+-   Some prefer analysis of variance
+    -   Generalizes to more complex settings (risk adjustment, interactions)
+    
+::: notes
+While I specified analysis of variance as an approach that you use for three or more groups, it can be used when you only have two groups. The F statistic in analysis of variance is equal to the square of the T statistic in the two-sample t-test.
+
+You will find that some researchers will only use the two sample t-test when there are two groups. Their rationale, in most cases, is that the two-sample t-test is the simpler approach and simpler is always better.
+
+Other researchers, however, will adopt the analysis of variance framework at times. The analysis of variance framework allows you to consider more complex settings such as risk adjustment, and examination of interactions.
+
+For most researchers, it is six of one and a half dozen of the other. Just be careful to never claim that analysis of variance works ONLY with three or more groups.
+:::
+
+## How does analysis of variance compare to the analysis of variance table in linear regression
+
+-   Linear regression SSR is comparable to analysis of variance SSB
+    -   Both represent explained variation
+-   Linear regression SSE is comparable to analysis of variance SSE
+    -   Both represent unexplained variation
+    
+::: notes
+You've probably been wondering about the similarity of wording between the analysis of variance model and the analysis of variance table in linear regression. Analysis of variance is used when your independent variable is categorical and linear regression is used when your independent variable is continuous. Otherwise, they are pretty  much the same thing. The regression sum of squares in linear regression and the between sum of squares in analysis of variance both represent explained variation. The error sum of squares in linear regression and the error sum of squares in analysis of variance both represent unexplained variation.
+:::
+
 ## R code for the F test
 
-```{r 10-02-f-test}
+```{r}
+#| label: 10-02-f-test
+
 m1 <- aov(y ~ factor(g), data=aa)
 tidy(m1)
 ```
 
+::: notes
 Because the F-ratio is large and the p-value is less than 0.05, you should reject $H_0$ and conclude that there is a difference among the means.
+:::
 
 ## R-squared
 
 -   $R^2 = \frac{SS(Between)}{SS(Total)}$
     -   Proportion of variation explained by groups
     
-```{r 10-02-r-squared}
+```{r}
+#| label: 10-02-r-squared
+
 #| echo: true
 glance(m1)$r.squared
 ```
 
+::: notes
 Approximately 74% of the variation in measurements can be accounted for by the grouping.
+:::

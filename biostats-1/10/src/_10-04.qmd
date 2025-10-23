@@ -7,7 +7,7 @@ format:
 editor: source
 ---
 
-## Review multiple comparisons issue
+## Multiple comparisons issue
 
 -   Type I error: rejecting the null hypothesis when the null hypothesis is true.
     -   Multiple simultaneous hypotheses increase the Type I error rate.
@@ -16,6 +16,10 @@ editor: source
     -   $P[E_1\ \cup\ E_2]=P[E_1]+P[E_2]-P[E_1\ \cap\ E_2]$
     -   $P[E_1\ \cup\ E_2]\ \le\ P[E_1]+P[E_2]$
     -   $P[E_1\ \cup\ E_2]\ \le\ 2 \alpha$
+    
+::: notes
+Recall that a Type I error is rejecting the null hypothesis when the null hypothesis is true. In analysis of variance, there are several types of deviations that you might want to investigate. Let's look at this from a theoretical perspective. Let's suppose there are two alternative hypotheses H1 and H2 and you will reject the null hypothesis if either one of the alterantives is true. A bit of math will show that if you have an alpha level for each of the two hypotheses, then your chance of making a Type II error almost doubles. You thought you were controlling the Type I error rate at 5% but you let the Type I error rate creep up to almost 10%.
+:::
 
 ## Bonferroni adjustment
 
@@ -26,15 +30,26 @@ editor: source
 -   Example, 3 simultaneous hypotheses
     -   Reject H0 if p-value \< 0.05/3 or 0.0167
 
+::: notes
+For multiple hypotheses, it gets worse. With m hypotheses, your Type I error rate gets multiplied by m. Now it isn't that bad in reality, but it is close. With 3 hypotheses, a Type I error rate that holds individually at 5% can be almost as bad as 15%. With 10 hypotheses, it can be almost 50%.
+
+The solution is to test each individual hypothesis at a smaller level. If you have three ways that the null hypothesis might be rejected. Test each at a 0.05/3 or 0.0167 Type I error rate.
+:::
+
 ## Tukey post hoc tests
 
--   If you reject H0, which values are unequal
+-   $H1\ \mu_i \ne \mu_j$ for at least one i, j
+-   If you reject H0, which i,j comparisons are unequal?
     -   With k groups, there are k(k-1)/2 comparisons
 -   Studentized range (Tukey test)
     -   Requires equal sample sizes per group
     -   Uses harmonic mean approximation for slightly unequal sample sizes.
         -   Do not use harmonic means if seriously different sample sizes.
 -   `TukeyHSD`
+
+::: notes
+A similar approach is known as the Tukey post hoc test. This is based on a statistic known as the studentized range. The details are not important, but it helps you identify for which values of i and j, the groups differ. And even though there are k (k-1)/2 comparisons, the Tukey post hoc test adjusts the individual Type I error rates so that the overall Type I error rate is still less than alpha.
+:::
 
 ## Example of Tukey post hoc test with artificial data
 
@@ -47,17 +62,31 @@ m1 <- aov(y ~ factor(g), data=aa)
 TukeyHSD(m1)
 ```
 
+::: notes
+Now the sample sizes are not quite equal here, but they are close enough to try the Tukey post hoc test.
+:::
+
 ## Interpretation, 1
 
--   Group 2 (mean=38) is larger than Group 1 (mean=26)
--   Group 3 (mean=28) and Group 1 (mean=26) are not different
--   Group 3 (mean=28) is smaller than Group 2 (mean=38)
+-   Group 2 (mean=38) is significantly larger than Group 1 (mean=26)
+-   Group 3 (mean=28) and Group 1 (mean=26) are not significantly different
+-   Group 3 (mean=28) is significantly smaller than Group 2 (mean=38)
+
+::: notes
+Here is how you would interpret the data. The word "significant" means statistically significant. It means that the difference that you see between a pair of means is larger than what you might expect due to sampling error.
+:::
 
 ## Interpretation, 2
 
--   Group 2 (mean=38) is larger than Group 1 (mean=26)
--   Group 2 (mean=38) is larger than Group 3 (mean=28)
+-   Group 2 (mean=38) is significantly larger than Group 1 (mean=26)
+-   Group 2 (mean=38) is significantly larger than Group 3 (mean=28)
 -   Group 1 (mean=28) and Group 3 (mean=26) are not different
+
+::: notes
+It might help to orient your groups from the largest mean to the smallest mean (or from the smallest mean to the largest mean). Here you conclude that group 2 has a population mean that is larger than the population means for groups 1 and 3. You also conclude that group 1 and group 3 have the same population mean.
+
+Sorting the data like this doesn't always lead to a nice simple interpretation, but it is always worth a try.
+:::
 
 ## Alternatives to Tukey post hoc tests, 1
 
@@ -69,9 +98,28 @@ TukeyHSD(m1)
 -   Scheffe's test
     -   Works for complex comparison
         -   Example $\mu_1\ vs.\ \frac{\mu_2+\mu_3+\mu_4}{3}$
+        
+::: notes
+There are several good alternatives to the Tukey post hoc test. You won't have to run any of these in your programming assignment, but it helps to mention their names in case you see reference to them in a published research paper.
+
+The Bonferroni adjustment, mentioned earlier is not quite as good as the Tukey post hoc test, but it still works even with unequal sample sizes and even with unequal variances.
+
+The Dunnett's test is helpful when you have multiple treatment and you want to compare each treatment to a control group, but you are not intersted in comparisons within each treatment. In this setting, you get a bit more precision and power with Dunnett's test compared to the Tukey post hoc test.
+
+Finally there is Scheffe's test which works for more complex comparisons such as whether the first group mean differs from an average of the second, third, and fourth group means.
+:::
+
 
 ## Controversies over Tukey/Bonferroni adjustment
 
+-   Criticisms that extend beyond one factor analysis of variance.
 -   Increases Type II errors
 -   Impractical for large values of m
 
+::: notes
+Although most researchers like using a Tukey or Bonferroni adjustment in analysis of variance, there is a vocal minority who argue that you should not use them, either in one factor analysis of variance or in more complex settings. These researchers suggest that no adjustment is better than Tukey or Bonferroni adjustments because while Tukey and Bonferroni do succeed in controlling the Type I error rate, they pay a high price (too high a price in some people's minds) in an increase in the Type II error rates.
+
+The other problem is that these adjustments are impractical for very large numbers of comparisons, such as you might see in many genomics studies.
+
+There is something to be said for these critiques, but you will probably have less resistance in any peer review of your work if you do try to control the Type I error rate with Tukey or Bonferroni.
+:::

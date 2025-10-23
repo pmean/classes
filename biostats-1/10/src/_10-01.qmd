@@ -15,22 +15,30 @@ editor: source
     -   Accept H0 if T is close to zero.
 
 ::: notes
-You saw how to compare two means last week. Here is the general framework.
+You saw how to compare two means last week. Here is the general framework. In the earlier lectures, I used the null hypothesis H0 mu1-mu2=0, but it is often written in an equivalent form H0 mu1 = mu2.
 :::
 
 ## What to do with three or more groups?
 
--   $H_0:\ \mu_1=\mu_2=...=\mu_k$
--   $H_1:\ \mu_i \ne \mu_j$ for some i, j
--   Accept H0 if the F ratio (defined below) is close to 1.
+-   Analysis of variance test framework
+    -   $H_0:\ \mu_1=\mu_2=...=\mu_k$
+    -   $H_1:\ \mu_i \ne \mu_j$ for some i, j
+    -   Accept H0 if the F ratio (defined below) is close to 1.
+-   The alternative is NOT $H_0:\ \mu_1 \ne \mu_2 \ne ...\ne \mu_k$
+    -   Some equalities might be mixed in
+    -   Example: $\mu_1=\mu_2$, but $\mu_1 \ne \mu3$ and $\mu2 \ne \mu3$.
+
+::: notes
+With three or more groups, the hypothesis changes slightly. The null hypothesis is what you would expect, but the alternative is that at least one pair (possibly more than one pair) of means are not equal. So, for example, the population mean in the first group equals the population mean in the second group, but both of these are not equal to the population mean of the third group.
+:::
 
 ## Artificial data
 
-::: notes
-To motivate some of the calculations in Analysis of Variance, I created an artificial data set with numbers that are easy to work with.
-:::
+```{r}
+#| label: 10-01-create-artificial
+#| message: false
+#| warning: false
 
-```{r 10-01-create-artificial}
 library(broom)
 library(tidyverse)
 load("../data/module10.RData")
@@ -57,7 +65,9 @@ To motivate some of the calculations in Analysis of Variance, I created an artif
 
 ## Scatterplot
 
-```{r 10-01-plot-artificial}
+```{r}
+#| label: 10-01-plot-artificial
+
 ggplot(d, aes(xpos, y, col=factor(g))) +
   expand_limits(y=c(15,50), breaks=5**(3:10)) +
   scale_x_continuous(
@@ -78,7 +88,9 @@ Here is a plot of the data.
 
 ##  SS(Total) = `r sum(sst)`
 
-```{r 10-01-total-ss}
+```{r}
+#| label: 10-01-total-ss
+
 g2 +
   geom_segment(xend=xpos, yend=ybarbar) +
   geom_text(y=ybarbar, label=ybarbar) +
@@ -86,12 +98,14 @@ g2 +
 ```
 
 ::: notes
-Total sums of squares is the squared deviation between each individual value and the overall mean.
+Total sum of squares is the squared deviation between each individual value and the overall mean. The first observation is 23, 9 units below the overall mean of 32. This contributes 81 to the total sum of squares. The second observation is 30, 2 units below the overall mean of 32. This contributes 4 to the total sum of squares. Keep on going. The last observation is 31, 1 unit below the overall mean of 32. It contributes 1 to the total sum of squares.
 :::
 
 ## SS(Within) = `r sum(ssw)`
 
-```{r 10-01-within-ss}
+```{r}
+#| label: 10-01-within-ss
+
 g2 +
   geom_segment(xend=xpos, yend=ybar) +
   geom_text(y=ybar, label=ybar) +
@@ -99,12 +113,14 @@ g2 +
 ```
 
 ::: notes
-Within sums of squares is the squared deviation between each individual value and the group means.
+Within sum of squares is the squared deviation between each individual value and the group means. The first group has a mean of 26. The first observation in the group, 23, is 3 units below the group 1 mean and contributes 9 to the within sum of squares. The second observation in the group, 40, is 4 units above the mean and contributes 16 to the within sum of squares. The third observation in the group, 25, is one unit below the group 1 mean and contributes only 1 to the within sum of squares. You compare the fourth observation, 33, to the group 2 mean. It is 5 units below the group 2 mean and contributes 25 to the within sum of squares. And so on.
 :::
 
 ## SS(Between) = `r sum(ssb)`
 
-```{r 10-01-between-ss}
+```{r}
+#| label: 10-01-between-ss
+
 g1 +
   geom_text(y=ybar, label=ybar) +
   geom_segment(x=xpos, y=ybar, xend=xpos, yend=ybarbar) +
@@ -113,7 +129,20 @@ g1 +
 ```
 
 ::: notes
-Between SS is the squared deviation between the group means and the overall mean.
+The between sum of squares is the squared deviation between the group means and the overall mean. In the first group, there are three observations. In each case, the group 1 mean, 26, is 6 units smaller than the overall mean. So the first three observations each contribute 36 to the between sum of squares. The next five observations come from a group with a mean of 38. This is 6 units above the overall mean, so each of these five observations contribute 36 to the between sum of squares. Finally, the last three observations have a group mean of 28, which is 4 units below the overall mean. So the last three observations contribute 16 to the between sum of squares.
+:::
+
+## Interpretation
+
+-   SST is the total variation in the dataset.
+-   SSE is the unexplained variation in the dataset
+-   SSB is the explained variation in the dataset
+    -    $R^2=\frac{SSB}{SST}$ is the proportion of explained variation
+    
+::: notes
+The sum of squares total represents the variation about the overall mean. It can be partitioned into unexplained variation (sum of squares error) and explained variation (sum of squares between). The ratio of sum of squares between to sum of squares total is denoted by R-squared and has the same interpretation that you saw in linear regression, the proportion of explained variation.
+
+If sum of squares between is small, there is very little variation in the group means. Thois means that knowing group membership does not help that much in predicting your outcome. if the sum of squares between is large, there is quite a bit of variation in the group means. One mean might be really big, another really small and a third in the middle. Knowing which group a patient is in tells you a lot about whether the outcome would be big, small, or somewhere in the middle.
 :::
 
 ## Degrees of freedom
@@ -142,13 +171,15 @@ In general, if you let N represent the total number of observations across all g
 
 ## R calculations of sums of squares
 
-```{r 10-01-r-calculation}
+```{r}
+#| label: 10-01-r-calculation
 #| echo: true
+
 m2 <- aov(y ~ factor(g), data=aa)
 tidy(m2) |>
   select(term, df, sumsq, meansq)
 ```
 
 :::notes
-Here is the analysis of variance table as computed by R. I have left out the p-value and F-ratio, which you will hear about in the next video.
+Here is the analysis of variance table for the artificial dataset as computed by R. I have left out the F-ratio and the p-value, which you will hear about in the next video.
 :::
