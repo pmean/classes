@@ -94,8 +94,6 @@ sway |>
   mutate(log_fbsway=log10(fbsway)) -> log_sway
 ```
 
-#### Interpretation of the output
-
 ## Log transformation, 2
 
 ```{r}

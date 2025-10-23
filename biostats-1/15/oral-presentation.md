@@ -38,10 +38,12 @@ Then prepare a five minute presentation with slides that discusses the details o
     -   Good (4 points) Only minor problems with readable. Careful and well thought out order of presentation.
 -   Did you finish within the established time limit? This element also addresses student learning objective 5.
     -   More than 120 seconds over time (0 points)
-    -   61 seconds to 120 seconds over time (1 point)
-    -   31 seconds to 60 seconds over time (2 points)
-    -   Up to 30 seconds over time (3 points)
-    -   On time (five minutes zero seconds or under) (4 points)
+    -   Up to 60 seconds over time (1 points)
+    -   Up to 60 seconds over time (2 points)
+    -   On time (five minutes zero seconds or under) (3 points)
+-   Did you remember to talk only about the hypothesis and not the data analysis?
+    -   No (0 points)
+    -   Yes (1 point)
 -   Did you effectively field questions about your hypothesis? This element also addresses student learning objective 5 (effectively field questions in an oral presentation format).
     -   Poor (0 points) Failed to provide an appropriate answer to one or more of the questions posed after the study ended.
     -   Fair (2 points) Answers were incomplete or provided only a limited perspective on the biological, biomedical, or population context of the data.
