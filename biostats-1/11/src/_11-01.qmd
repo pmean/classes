@@ -12,10 +12,49 @@ editor: source
 -  Two levels is less complex with three or more levels
    -   R assigns 0 to first category (alphabetically)
    -   R assigns 1 to second category
+   -   Examples:
+       -   Female=0, Male=1
+       -   Man=0, Woman=1
 -  Interpretation
    -   Intercept is estimated average outcome for first category
    -   Slope is the estimated average change
        -   Second category average minus first category average
+       
+::: notes
+Back in the previous modules, you saw a relationship between creating an indicator variable for a linear regression model and running a two-sample t-test. Just to review, when R sees a string that represents a categorical variable, it assigns the value of 0 to the level that appears first in alphabetical order and 1 to the level that appears last in alphabetical order. So a variable that has strings "male" and "female", R will assign 0 to "female" and 1 to "male". If the string were "man" and "woman", R would assign 0 to "man" and 1 to "woman".
+
+The intercept represents the estimated average value of Y for the first or zero category. The slope represents the estimated average change in Y when you switch from the 0 category to the 1 category.
+:::
+
+## Test
+
+```{}
+Sex     Fed  Fasted10  Fasted20
+Male   42.8      42.4      38.9
+Male   43.1      42.2      40.3
+Male   40.4      40.8      37.5
+Male   46.6      45.9      42.9
+Female 42.2      42.4      39.7
+Female 38.7      38.1      35.8
+Female 35.3      34.3      32.3
+Female 40.5      40.1      37.3
+```
+
+
+## Test
+
+```{}
+Sex     Fed  Fasted10  Fasted20 Indicator
+Male   42.8      42.4      38.9         1
+Male   43.1      42.2      40.3         1
+Male   40.4      40.8      37.5         1
+Male   46.6      45.9      42.9         1
+Female 42.2      42.4      39.7         0
+Female 38.7      38.1      35.8         0
+Female 35.3      34.3      32.3         0
+Female 40.5      40.1      37.3         0
+```
+
 
 ## Indicator variables, 2
 
@@ -27,6 +66,15 @@ editor: source
         -   R assigns 1 to third category (alphabetically)
         -   R assigns 0 to all other categories
    -   And so on
+-  Note: the first category in alphabetical order is zero for all indicator variables.
+   
+::: notes
+If you have a categorical variable with more than 2 levels, you need more than 1 indicator. The number of indicators is always one less than the number of levels. So a category with 3 levels needs two indicators, a category with 6 levels needs 5 indicators.
+
+How this is done in R differs from how it is done in SAS or SPSS. R looks at the alphabetical order. The first indicator is equal to 1 for the SECOND category level in alphabetical order. The next indicator is equal to 1 for the THIRD category level in alphabetical order. And so forth.
+
+The way R defines things the first category level in alphabetical order is zero for each of the k-1 indicators.
+:::
 
 ## Indicator variables, 3
 
@@ -60,18 +108,77 @@ editor: source
     -   Set partners=8, type=0
 -   Cages 101-125 have one male fruitfly, eight virgin females
     -   Set partners=8, type=1
+    
+## Test
 
-```{r 11-01-setup}
-#| message: false
-#| warning: false
-library(tidyverse)
-load("../data/chopper.RData")
+```{}
+Cracker Digested
+control 1772.84
+bran    1752.63
+combo   2121.97
+gum     2558.61
+gum     2026.91
+bran    2047.42
+combo   2254.75
+control 2353.21
+combo   2153.36
+gum     2331.19
+bran    2547.77
+...
 ```
 
-```{r 11-01-dictionary}
-#| output: asis
-partition_yaml("fruitfly.yaml") |>
-	cat(sep="\n")
+## Test
+
+```{}
+Cracker Digested i1
+control 1772.84   0
+bran    1752.63   0
+combo   2121.97   1
+gum     2558.61   0
+gum     2026.91   0
+bran    2047.42   0
+combo   2254.75   1
+control 2353.21   0
+combo   2153.36   1
+gum     2331.19   0
+bran    2547.77   0
+...
+```
+
+## Test
+
+```{}
+Cracker Digested i1 i2
+control 1772.84   0  1
+bran    1752.63   0  0
+combo   2121.97   1  0
+gum     2558.61   0  0
+gum     2026.91   0  0
+bran    2047.42   0  0
+combo   2254.75   1  0
+control 2353.21   0  1
+combo   2153.36   1  0
+gum     2331.19   0  0
+bran    2547.77   0  0
+...
+```
+
+## Test
+
+```{}
+Cracker Digested i1 i2 i3
+control 1772.84   0  1  0
+bran    1752.63   0  0  0
+combo   2121.97   1  0  0
+gum     2558.61   0  0  1
+gum     2026.91   0  0  1
+bran    2047.42   0  0  0
+combo   2254.75   1  0  0
+control 2353.21   0  1  0
+combo   2153.36   1  0  0
+gum     2331.19   0  0  1
+bran    2547.77   0  0  0
+...
 ```
 
 ## Fruitfly lifespan boxplots
