@@ -235,15 +235,15 @@ If you want R to create these indicator variables for you, list the category lev
 -   Experiment with 125 cages
     -   Does fruitfly mating affect average male lifespan?
     -   Isolate a male fruitfly with 
-        -   one or nine virgin females, 
-        -   one or nine pregnant females, or
+        -   one or eight virgin females, 
+        -   one or eight pregnant females, or
         -   no females
     -   Note: males will not mate with pregnant females
     
 ::: notes
 Here is an experiment, apparently a real experiment, looking at average lifespan for male fruitflies. Fruitflies have fairly short lifespans, making it easy to run experiments like this. 
 
-The research question is whether mating affects the average lifetime of fruitflies.
+The research question is whether mating or crowding affects the average lifetime of fruitflies.
 :::
 
 ## Example using fruitfly lifespans, 2
@@ -257,7 +257,14 @@ The research question is whether mating affects the average lifetime of fruitfli
 ::: notes
 There is an interesting series of experimental conditions. The male fruitfly in each of the first 25 cages is trapped alone and therefore not able to mate.
 
-In the second set of cages, each male fruitfly shares a cage with a pregnant female fruitfly
+In the second set of cages, each male fruitfly shares a cage with a pregnant female fruitfly. Males will not mate with a pregnant female. So this serves as a second type of control group for the hypothesis that mating affects longevity. It also allows you test whether sharing a cage with another fly affects longevity.
+
+In the third set of cages, the one male fruitfly shares the cage with a virgin female. By comparing this set to the first two sets, you can examine the hypothesis that mating decreases the average lifespan.
+
+The fourth cage is where it gets really interesting. The one male fly shares a cage with EIGHT pregnant females. If there is an effect of crowding on longevity, surely you will see it here.
+
+The first cage includes eight virgin flies with the one male fly. Lots of crowding and lots of opportunities for mating. It will be interesting to tabulate the results from this cage and compare it to the previous cage with eight pregnant females which has lots of crowding and no opportunities for mating. it will also be interesting to compare it to groups 2 and 3. The presence of only female fly means a lot less crowding. Finally, there is an interesting comparison to the first group, the group with no female flies and therefore no crowding.
+
 :::
 
 ## Fruitfly lifespan boxplots
@@ -277,7 +284,7 @@ load("../data/fruitfly.RData")
 #| fig.width: 6
 #| fig.height: 2.5
 
-fly |>
+fly_1 |>
   ggplot(aes(cage, longevity)) +
     geom_boxplot() +
     ggtitle("Graph drawn by Steve Simon on 2024-10-23") +
@@ -286,12 +293,16 @@ fly |>
     coord_flip()
 ```
 
+::: notes
+Here are the boxplots of the five groups. Notice that R alphabetizes these groups. You can change this using the factor function as noted above.
+:::
+
 ## Fruitfly lifespan group means
 
 ```{r}
 #| label: 11-01-group-means
 
-fly |>
+fly_1 |>
   group_by(cage) |>
   summarize(
     longevity_mn=mean(longevity),
@@ -299,43 +310,8 @@ fly |>
     n=n())
 ```
 
-## Fruitfly lifespan analysis using aov
+::: notes
+The means show the same pattern. The lifespans tend to be much lower in the cages with eight virgin females. The second lowest mean is with the cages with one virgin female. This tends to support the belief that it is mating rather than crowding that affects longevity.
 
-```{r}
-#| label: 11-01-aov
-#| echo: true
-
-new_order <- c(
-  "No females",
-  "One pregnant female",
-  "One virgin female",
-  "Eight pregnant females",
-  "Eight virgin females")
-
-fly |>
-  mutate(cage=factor(cage, levels=new_order)) -> fly_1
-  
-m1 <- aov(longevity ~ cage, data=fly_1)
-anova(m1)
-```
-
-## Fruitfly lifespan analysis using lm, 1
-
-```{r}
-#| label: 11-01-lm-anova
-#| echo: true
-
-m2 <- lm(longevity ~ cage, data=fly_1)
-anova(m2)
-```
-
-
-## Fruitfly lifespan analysis using lm, 2
-
-```{r}
-#| label: 11-01-lm-tidy
-#| echo: true
-
-tidy(m2)
-```
-
+The formal statistical models will be covered in the next video.
+:::

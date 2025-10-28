@@ -1,73 +1,13 @@
 ---
-title: "11-02, Log transformation"
+title: "11-02, R code for analysis of variance"
 format: 
   revealjs:
     slide-number: true
     embed-resources: true
 editor: source
 ---
+## R code for analysis of variance
 
-## Analysis of variance model
+Refer to the program [simon-5501-11-fruitfly.qmd][ref-simon-nodate].
 
--   Sample 1: $Y_{11}, Y_{12}, \cdots, Y_{1n_1}$ are $N(\mu_1, \sigma)$
--   Sample 2: $Y_{21}, Y_{22}, \cdots, Y_{2n_2}$ are $N(\mu_2, \sigma)$
--   $\cdots$
--   Sample k: $Y_{k1}, Y_{k2}, \cdots, Y_{kn_k}$ are $N(\mu_k, \sigma)$
-$\ $                                          
--   $H_0:\ \mu_1=\mu_2=...=\mu_k$
--   $H_1:\ \mu_i \ne \mu_j$ for some i, j
-
-
-## Violation of assumptions
-
--   Non-normality
--   Heterogeneity
--   Lack of independence
-
-## When to consider a log transformation
-
--   Only positive values
--   Max/min > 3
--   Skewed distribution
--   Groups with larger means have more variation
-
-## Log transformation, 1
-
-```{r log-longevity-anova-1}
-fly |>
-  mutate(log_longevity=log10(longevity)) -> log_fly
-m3 <- aov(log_longevity ~ cage, data=log_fly)
-anova(m3)
-```
-
-:::notes
-Although there are no problems with heterogeneity or non-normality with this particular dataset, here is an illustration of how to use a log transformation with analysis of variance.
-:::
-
-## Log transformation, 2
-
-```{r log-longevity-anova-2}
-t3 <- TukeyHSD(m3, ordered=TRUE)
-t3
-```
-
-:::notes
-Here are the results of the Tukey post hoc tests on the log scale. These intervals are difficult to interpret.
-:::
- 
-## Log transformation, 3
-
-```{r log-longevity-anova-3}
-t3$cage |>
-  data.frame() |>
-  select(diff, lwr, upr) |> 
-  mutate(
-    diff=10^diff,
-    lwr=10^lwr,
-    upr=10^upr)
-```
-
-:::notes
-Here are the results translated back to the original scale. The confidence intervals are intervals for the ratio of two geometric means.
-:::
-
+[ref-simon-nodate]: https://github.com/pmean/classes/blob/master/biostats-1/11/src/simon-5501-11-fruitfly.qmd

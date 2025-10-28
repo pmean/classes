@@ -1,5 +1,5 @@
 ---
-title: "11-03, Kruskal-Wallis test"
+title: "11-03, Log transformation"
 format: 
   revealjs:
     slide-number: true
@@ -7,72 +7,170 @@ format:
 editor: source
 ---
 
-## The Chi-squared distribution
+## Analysis of variance model
 
--   Often denoted as $\chi^2_{df}$
--   Has a single parameter, degrees of freedom
-    -   Never negative
-    -   Skewed right
-    -   Mean equals degrees of freedom
--   Calculations in R
-    -   pchisq(x, df) = $P[\chi^2_{df} < x]$
-    -   qchisq(p, df) = $p^{th}$ quantile, $\chi^2_{df, p}$
-    
-## The Chi-squared distribution
+-   Sample 1: $Y_{11}, Y_{12}, \cdots, Y_{1n_1}$ are $N(\mu_1, \sigma)$
+-   Sample 2: $Y_{21}, Y_{22}, \cdots, Y_{2n_2}$ are $N(\mu_2, \sigma)$
+-   $\cdots$
+-   Sample k: $Y_{k1}, Y_{k2}, \cdots, Y_{kn_k}$ are $N(\mu_k, \sigma)$
+$\ $                                          
+-   $H_0:\ \mu_1=\mu_2=...=\mu_k$
+-   $H_1:\ \mu_i \ne \mu_j$ for some i, j
 
-```{r 11-03-chi-squared-graph}
+::: notes
+Let's revisit the discussion of assumptions. There are k samples and you are testing the hypothesis that the population means associated with these samples are all equal versus the alternative that at least two of the means differ from each other.
+:::
+
+
+## Violation of assumptions
+
+-   Non-normality
+-   Heterogeneity
+-   Lack of independence
+
+::: notes
+The possible violations of the assumptions in an analysis of variance model are non-normality, heterogeneity, and lack of independence.
+
+In some settings, a log transformation can remedy the first two of these violations. 
+:::
+
+## When to consider a log transformation
+
+-   Only positive values
+-   Max/min > 3
+-   Right (positive) skewed distribution
+-   Groups with larger means have more variation
+
+::: notes
+Some practical guidance helps you decide whether you should consider a log transformation. 
+
+First, do you have only positive values? The log transformation does not work with zeros or negative values.
+
+Is there a good spread in the data? The log transformation squeezes the large values and stretches the small values, but only if there is a lot of difference between the large and small values. 
+
+Look at the largest and smallest values in the dataset across all the groups. If they differ by a factor of three or more, then a log transformation might help.
+
+Is the data in each group skewed to the right or skewed positive? Does it tend to produce extreme values, but only on the high end? Then the stretching and squeezing will bring those high end outliers closer to the rest of the data.
+
+Finally, do the groups with larger means also have more variation? If so, the log transformation will squeeze the groups with the larger standard deviations more, which might tend to equalize the variations.
+
+To state this negatively, skip the log transformation if 
+
+-   there are zeros and/or negative values, 
+-   if the ratio of the largest to smallest value is less than 3, 
+-   if the distribution in each group is symmetric or skewed left, or
+-   if the groups with the largest means do not show more variation.
+:::
+
+## How logarithms convert multiplication and division
+
+-   $log(a \times b)=log(a)+log(b)$
+    -   $log(a / b)=log(a)-log(b)$
+
+::: notes
+An interesting property of logarithms is how they handle multiplication and division.
+
+The log of a times b equals the log of a plus the log of b. In other words, the log of a product is equal to the sum of the logs. The log converts multiplication to addition.
+
+Similarly, the log of a divided by b equals the log of a minus the log of b. The log converts division to subtraction.
+:::
+
+## The slide rule uses this property
+
+![](../images/slide-rule.png)
+
+::: notes
+A slide rule used to be commonly used for mathematical calculations before we had pocket calculators. It used logarithmic spacing to allow easy computation of multiplications and divisions.
+:::
+
+## The book of logarithms
+
+![](../images/book-of-logarithms.png)
+
+::: notes
+Going back even further in history, mathematical calculations often relied on a book of logarithms. Mathematical calculations involving multiplication and/or division were time consuming to be done by hand. Not terribly so, but the calculations needed, for example, to make astronomical predictions relied on so many of these calculations.
+
+It was faster to convert the two numbers into logarithms, add or subtract, and then convert back using antilogarithms.
+:::
+
+## What a back transformation does
+
+-   $antilog(a)+antilog(b)=antilog(a \times b)$
+-   $antilog(a)-antilog(b)=antilog(a / b)$
+    -   For log base ten, antilog(x) means $10^x$
+    -   For log base two, antilog(x) means $2^x$
+-   A difference of means on the log scale becomes a ratio of means after back transformation.
+
+::: notes
+You reverse the property of log transformation with back transformation. A sum of two antilogs is the antilog of the product. A difference of two antilogs is the antilog of the ratio.
+
+Recall that antilog, the reversal of the log transformation means raising 10 to the power if you used base 10 logarithms. If you used base 2 logarithms it means raising 2 to the power.
+
+From a statistical perspective what this means is that back transformation converts a difference of means into a ratio of means.
+:::
+
+## Interpretation of the back transformed confidence intervals
+
+-   A confidence interval is a range of plausible values.
+    -   A back transformed confidence interval is a range of plausible ratios.
+-   Does the interval contain the ratio of 1?
+    -   The two groups are statistically the same.
+-   Does the interval contain only values larger than 1?
+    -   The first group is statistically larger
+-   Does the interval contain only values smaller than 1?
+    -   The first group is statistically smaller
+
+::: notes
+Ask yourself if the interval contains the value of 1. A ratio of 1 implies equality. So if 1 is a plausible value, then it is plausible to behave as if the two population means are equal. 
+
+If the confidence interval only includes values larger than 1, then it is plausible to behave as if the population mean of the first group is larger than the population mean of the second group.
+
+If the confidence interval only includes values smaller than 1, then it is plausible to behave as if the population mean of the first group is smaller than the population mean of the second group.
+
+:::
+
+## Log transformation, 1
+
+```{r}
+#| label: log-longevity-anova-1
 #| message: false
 #| warning: false
+
+library(broom)
 library(tidyverse)
+
 load("../data/fruitfly.RData")
-df <- 5
-x <- seq(0, df+5*sqrt(df), length=100)
-y <- dchisq(x, df)
-data.frame(x, y) |>
-	ggplot(aes(x, y)) +
-	  geom_line() +
-	  ggtitle("Graph drawn by Steve Simon on 2024-10-29")
+
+aov(log_longevity ~ cage, data=fly_3) |>
+  TukeyHSD() |>
+	tidy() -> t3
+t3
 ```
 
 :::notes
-This is a graph of the Chi-squared distribution with 5 degrees of freedom.
+Although there are no problems with heterogeneity or non-normality with this particular dataset, here is an illustration of how to use a log transformation with analysis of variance.
+
+Here are the results of the Tukey post hoc tests on the log scale. You can examine whether these intervals include or exclude the value of zero, but further interpretation, using log-days as the unit of measurement, is tricky.
 :::
+ 
+## Log transformation, 3
 
-## Computing the Kruskal-Wallis test
-
--   Rank the observations, $R(X_{ij})$
-    -   1 for smallest, 2 for second smallest, etc.
-    -   Compute the average rank in each group, $\bar{R}_i$
-    -   Compute the overall rank, $\bar{R}$
-    -   T = $(N-1)\frac{\Sigma n_i(\bar{R}_i - \bar{R})^2}{\Sigma \Sigma(R(X_{ij})-\bar{R})^2}$
-
-
-:::notes
-The Kruskal-Wallis test is similar to the Mann-Whitney-Wilcoxon test. You rank the data from low to high, calculate an average rank in each group. Look at how much deviation the group rank averages are from the overall rank averages.
-:::
-  
-## Decision rule for Kruskal-Wallis test, 1
-
--   Accept $H_0$ if T <- $\chi^2_{df, 1-\alpha}$
-    -   df = k-1
--   Accept $H_0$ if p-value > $\alpha$
-    -   p-value = $P[\chi^2_{df} > T]$
-
-## Decision rule for Kruskal-Wallis test, 1
-
--   Null hypothesis is difficult to define
-    -   Does not involve population means
-    -   Some claim involvement of population medians
-    -   Stochastic dominance
-        -   $P[X_{aj} > X_{bj}] > 0.5$ for some a and b.
-        
-## Application of Kruskal-Wallis test to fruitfly longevity
-
-```{r 11-03-kw-test}
-#| echo: true
-kruskal.test(longevity ~ cage, data=fly)
+```{r log-longevity-anova-3}
+t3 |>
+  select(contrast, estimate, conf.low, conf.high) |> 
+  mutate(
+    estimate=10^estimate,
+    conf.low=10^conf.low,
+    conf.high=10^conf.high)
 ```
 
 :::notes
-There a five groups, so four degrees of freedom. The test statistic is much larger than the degrees of freedom and the p-value is small. Reject the null hypothesis and conclude that there are differences between at least two of the five groups.
+Here are the results translated back to the original scale. The confidence intervals are intervals for the ratio. Notice that six of the ten intervals include the value of 1.
+
+Let's interpret the first and last intervals.
+
+The ratio of average longevity comparing one pregnant female to no females is 1.02, or 2% larger. The confidence interval ranges from 0.82 or 18% smaller to 1.28 or 28% larger. There is no statistically significant change in longevity between fruitflies caged alone and fruitflies caged with one pregnant female.
+
+The ratio of average longevity comparing eight virgin females to one virgin female is 0.67 or 33% smaller. The confidence interval ranges from 0.54 or 46% smaller to 0.84 or 16% smaller. The average longevity of fruitflies with 8 virgin females is significantly shorter than the average longevity of fruitflies with only 1 virgin female.
 :::
+

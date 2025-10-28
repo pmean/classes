@@ -14,7 +14,9 @@ This code was written by Steve Simon on 2024-10-23 and is placed in the public d
 ## Datasets
 
 -   fly: original data from fruitfly.txt
--   fly_1: re-order the categories in the variable cage
+-   fly_1: created category levels
+-   fly_2: re-order the categories in the variable cage
+-   fly_3: log transformed longevity
 
 ## Models
 
@@ -34,6 +36,8 @@ This code was written by Steve Simon on 2024-10-23 and is placed in the public d
 library(broom)
 library(tidyverse)
 ```
+
+# --- Part 1
 
 ## List the variable names
 
@@ -242,6 +246,8 @@ There is a statistically significant decrease in average longevity for
 -   eight virgin females compared to eight pregnant females
 -   eight virgin females compared to one virgin female
 
+# --- Part 2
+
 ## Log transformation, 1
 
 ```{r}
@@ -285,6 +291,8 @@ When you back-transform after a log transformation, the confidence intervals are
 
 In this example, there are four statistically significant differences, all involving the cage with eight virgin females. The fruitflies with eight virgin females have a longevity that 40% shorter on average frutiflies with no females. The relevant computation is 100*(1-0.5961729). These fruitfiles has a than 
 
+# --- Part 3
+
 ## Kruskal-Wallis test
 
 ```{r}
@@ -305,6 +313,8 @@ of how to use the Kruskal-Wallis test.
 
 save(
   fly,
+  fly_1,
+  fly_2,
   fly_3,
   file="../data/fruitfly.RData")
 ```
