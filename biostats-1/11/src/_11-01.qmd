@@ -26,7 +26,7 @@ Back in the previous modules, you saw a relationship between creating an indicat
 The intercept represents the estimated average value of Y for the first or zero category. The slope represents the estimated average change in Y when you switch from the 0 category to the 1 category.
 :::
 
-## Test
+## Example: Turtle experiment, 1
 
 ```{}
 Sex     Fed  Fasted10  Fasted20
@@ -40,8 +40,12 @@ Female 35.3      34.3      32.3
 Female 40.5      40.1      37.3
 ```
 
+::: notes
+Here is some data from a study of protein levels in turtles that are fed regularly and then subjected to short fasting periods. How would R assign an indicator variable for this data?
+:::
 
-## Test
+
+## Turtle experiment, 2
 
 ```{}
 Sex     Fed  Fasted10  Fasted20 Indicator
@@ -55,7 +59,9 @@ Female 35.3      34.3      32.3         0
 Female 40.5      40.1      37.3         0
 ```
 
-
+::: notes
+R will assign 0 to the category level that appears first alphabetically, which is "Female". It assigns 1 to the category level that appears second alphabetically, which is "Male".
+:::
 ## Indicator variables, 2
 
 -  With k levels, you need k-1 indicators
@@ -76,40 +82,7 @@ How this is done in R differs from how it is done in SAS or SPSS. R looks at the
 The way R defines things the first category level in alphabetical order is zero for each of the k-1 indicators.
 :::
 
-## Indicator variables, 3
-
--  Interpretation
-   -   Intercept is estimated average outcome for first category
-   -   First slope is the estimated average change
-       -   Second category average minus first category average
-   -   Second slope is the estimated average change
-       -   Third category average minus first category average
-   -   And so on
-   
-## Example using fruitfly lifespans, 1
-
--   Experiment with 125 cages
-    -   Does fruitfly mating affect average male lifespan?
-    -   Isolate a male fruitfly with 
-        -   virgin females, 
-        -   pregnant females, or
-        -   no females
--   Cages 1-25 have one male fruitfly, no female fruit flies
-    -   Set partners=0, type=9
-
-## Example using fruitfly lifespans, 2
-
--   Cages 26-50 have one male fruitfly, one pregnant female
-    -   Set partners=1, type=0
-    -   Males will not mate with pregnant females
--   Cages 51-75 have one male fruitfly, one virgin female
-    -   Set partners=1, type=1
--   Cages 76-100 have one male fruitfly, eight pregnant females
-    -   Set partners=8, type=0
--   Cages 101-125 have one male fruitfly, eight virgin females
-    -   Set partners=8, type=1
-    
-## Test
+## Example with dietary cracker data
 
 ```{}
 Cracker Digested
@@ -125,9 +98,16 @@ combo   2153.36
 gum     2331.19
 bran    2547.77
 ...
+
 ```
 
-## Test
+::: notes
+This is a partial listing of a study of digested calorie counts for four differnt types of crackers: control, bran, combo, and gum. How would R assign indicator variables for this data?
+
+With four levels, you need three indicator variables.
+:::
+
+## Dietary cracker data, first indicator variable
 
 ```{}
 Cracker Digested i1
@@ -143,9 +123,14 @@ combo   2153.36   1
 gum     2331.19   0
 bran    2547.77   0
 ...
+
 ```
 
-## Test
+::: notes
+If you put the category levels in alphabetical order (bran, combo, control, gum), then the second category level is "combo". The first indicator variable is 1 for "combo" and 0 for the other levels.
+:::
+
+## Dietary cracker data, second indicator variable
 
 ```{}
 Cracker Digested i1 i2
@@ -161,9 +146,14 @@ combo   2153.36   1  0
 gum     2331.19   0  0
 bran    2547.77   0  0
 ...
+
 ```
 
-## Test
+::: notes
+The third category level in alphabetical order is "control". The second indicator variable is assigned a value of 1 for "control" and 0 for the other category levels.
+:::
+
+## Dietary cracker data, third indicator variable
 
 ```{}
 Cracker Digested i1 i2 i3
@@ -179,21 +169,114 @@ combo   2153.36   1  0  0
 gum     2331.19   0  0  1
 bran    2547.77   0  0  0
 ...
+
 ```
+
+::: notes
+The fourth category level in alphabetical order is "gum". The third indicator is assigned a value of 1 for "gum" and 0 for the other categories.
+
+Notice that the category level that appears first  ("bran") is left out. You could assign an indicator for it, but that would lead to a redundancy. Once you see that the cracker is not "combo", "control", or "gum", then you know that it must be "bran".
+
+The category level that is always zero is called the reference category.
+:::
+
+## Interpretation with multiple indicator variables
+
+-   Intercept is estimated average outcome for first category
+-   First slope is the estimated change
+    -   Second category average minus first category average
+-   Second slope is the estimated change
+    -   Third category average minus first category average
+-   And so on
+
+::: notes
+The interpretation of the regression estimates when you use multiple indicator variables is not too much different than your interpretation when you have a single indicator variable.
+
+The intercept is the estimated average value of Y when all of the indicator variables are equal to zero. This is the estimated average value of Y for the reference level, which by default in R is the category level that appears first in alphabetical order.
+
+The first slope represents an estimated change. It is the change when you move from the first category level to the second category level. This is essentially the difference between the second category level mean and the first category level mean.
+
+The second slope also represents an estimated change, but for a different pair of categories. It is the difference between the third category level mean and the first category level mean.
+
+This continues for any other indicator variables. Every comparison is a comparison to the reference level or the level that appears first in alphabetical order.
+:::
+
+## What if you want a different reference category?
+
+Create your own indicator variables
+
+```{}
+dietary |>
+  mutate(i1=as.numeric(Cracker=="bran")) |>
+  mutate(i2=as.numeric(Cracker=="combo")) |>
+  mutate(i3=as.numeric(Cracker=="gum")) -> dietary_1
+
+```
+
+or revise the order using the factor function.
+
+```{}
+new_order <- c("control", "bran", "combo", "gum")
+dietary |>
+  mutate(Cracker=factor(Cracker, levels=new_order)) -> dietary_2
+lm()
+```
+
+::: notes
+Now there is no special reason to make the first category level in alphabetical order the reference category. In the dietary cracker example, it may make more sense to compare every other cracker type to the "control" cracker type. This would require you to change the default in R. 
+
+There are two ways to do this. First, you can create your own indicator variables. The code above shows that the first indicator, i1, is 1 for "bran" and 0 for the other categories. The second indicator, i2, is 1 for "combo" and 0 for the other categories. The third indicator, i3, is 1 for "gum" and 0 for the other categories. This make the "control" level the only level which is 0 for every indicator. The results will be that the slope associated with i1, the first indicator, represents the estimated average difference between "bran" and "control". The slope associate with i2 represents the estimated average difference between "combo" and "control". The slope associated with i3 represents the estimated average difference between "gum" and "control".
+
+If you want R to create these indicator variables for you, list the category levels in a new order with the reference level being the first level in the list. Then use the factor function to assign this order, rather than an alphabetical order, to the category levels.
+:::
+
+## Example using fruitfly lifespans, 1
+
+-   Experiment with 125 cages
+    -   Does fruitfly mating affect average male lifespan?
+    -   Isolate a male fruitfly with 
+        -   one or nine virgin females, 
+        -   one or nine pregnant females, or
+        -   no females
+    -   Note: males will not mate with pregnant females
+    
+::: notes
+Here is an experiment, apparently a real experiment, looking at average lifespan for male fruitflies. Fruitflies have fairly short lifespans, making it easy to run experiments like this. 
+
+The research question is whether mating affects the average lifetime of fruitflies.
+:::
+
+## Example using fruitfly lifespans, 2
+
+-   Cages 1-25 have one male fruitfly, no female fruit flies
+-   Cages 26-50 have one male fruitfly, one pregnant female
+-   Cages 51-75 have one male fruitfly, one virgin female
+-   Cages 76-100 have one male fruitfly, eight pregnant females
+-   Cages 101-125 have one male fruitfly, eight virgin females
+
+::: notes
+There is an interesting series of experimental conditions. The male fruitfly in each of the first 25 cages is trapped alone and therefore not able to mate.
+
+In the second set of cages, each male fruitfly shares a cage with a pregnant female fruitfly
+:::
 
 ## Fruitfly lifespan boxplots
 
-```{r 11-01-read-fruitfly-data}
+```{r}
+#| label: 11-01-read-fruitfly-data
 #| message: false
 #| warning: false
+
 library(broom)
 library(tidyverse)
 load("../data/fruitfly.RData")
 ```
 
-```{r 11-01-boxplots}
+```{r}
+#| label: 11-01-boxplots
 #| fig.width: 6
 #| fig.height: 2.5
+
 fly |>
   ggplot(aes(cage, longevity)) +
     geom_boxplot() +
@@ -205,7 +288,9 @@ fly |>
 
 ## Fruitfly lifespan group means
 
-```{r 11-01-group-means}
+```{r}
+#| label: 11-01-group-means
+
 fly |>
   group_by(cage) |>
   summarize(
@@ -216,36 +301,41 @@ fly |>
 
 ## Fruitfly lifespan analysis using aov
 
-```{r 11-01-aov}
+```{r}
+#| label: 11-01-aov
 #| echo: true
-m1 <- aov(longevity ~ cage, data=fly)
+
+new_order <- c(
+  "No females",
+  "One pregnant female",
+  "One virgin female",
+  "Eight pregnant females",
+  "Eight virgin females")
+
+fly |>
+  mutate(cage=factor(cage, levels=new_order)) -> fly_1
+  
+m1 <- aov(longevity ~ cage, data=fly_1)
 anova(m1)
 ```
 
 ## Fruitfly lifespan analysis using lm, 1
 
-```{r 11-01-lm-anova}
+```{r}
+#| label: 11-01-lm-anova
 #| echo: true
-m2 <- lm(longevity ~ cage, data=fly)
+
+m2 <- lm(longevity ~ cage, data=fly_1)
 anova(m2)
 ```
 
 
 ## Fruitfly lifespan analysis using lm, 2
 
-```{r 11-01-lm-tidy}
+```{r}
+#| label: 11-01-lm-tidy
 #| echo: true
-m2 <- lm(longevity ~ cage, data=fly)
+
 tidy(m2)
-```
-
-## Fruitfly lifespan analysis using lm, 3
-
-```{r 11-01-lm-means}
-fly |>
-  group_by(cage) |>
-  summarize(longevity_mn=mean(longevity)) |>
-  mutate(reference_mn=first(longevity_mn)) |>
-  mutate(mean_difference=longevity_mn-reference_mn)
 ```
 

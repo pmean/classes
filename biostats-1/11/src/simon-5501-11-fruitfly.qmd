@@ -11,6 +11,18 @@ This program reads data on fruit fly longevity. Find more information in the [da
 
 This code was written by Steve Simon on 2024-10-23 and is placed in the public domain.
 
+## Datasets
+
+-   fly: original data from fruitfly.txt
+-   fly_1: re-order the categories in the variable cage
+
+## Models
+
+-   m1: analysis of variance, longevity ~ cage
+-   m2: linear regression, same variables
+-   m3: analysis of variance, make no females the reference category
+
+
 ## Load the tidyverse library
 
 ```{r}
@@ -22,8 +34,6 @@ This code was written by Steve Simon on 2024-10-23 and is placed in the public d
 library(broom)
 library(tidyverse)
 ```
-
-For most of your programs, you should load the tidyverse library. The broom library converts your output to a nicely arranged dataframe. The messages and warnings are suppressed.
 
 ## List the variable names
 
@@ -49,44 +59,41 @@ When a dataset does not have variables on the first line, you need to specify th
 ```{r}
 #| label: read
 
-fly <- read_fwf(
+fly <- read_table(
   "../data/fruitfly.txt",
   col_types="nnnnnn",
-  fwf_widths(
-    widths=c(2, 2, 2, 3, 5, 3),
-    col_names=vlist))
+  col_names=vlist)
 glimpse(fly)
 ```
 
-#### Interpretation of the output
+#### Comments on the code
 
-The fruitfly dataset has a fixed width format (fwf). You need to specify the 
-columns that each variable uses.
+The read_table function is part of the readr library, which is included when you specify the tidyverse library. You can use this function when you have one or more blanks or tabls between each data value.
 
 ## Create cage groups
 
 ```{r}
 #| label: cage
 
-fly$cage <- 
-  case_when(
+fly |>
+  mutate(cage=case_when(
     fly$partners==0 & fly$type==9 ~ "No females",
     fly$partners==1 & fly$type==0 ~ "One pregnant female",
     fly$partners==1 & fly$type==1 ~ "One virgin female",
     fly$partners==8 & fly$type==0 ~ "Eight pregnant females",
-    fly$partners==8 & fly$type==1 ~ "Eight virgin females")
+    fly$partners==8 & fly$type==1 ~ "Eight virgin females")) -> fly_1
 ```
 
-#### Interpretation of the output
+#### Comments on the code
 
-The five categories represent different combinations of partners and type.
+The case_when function is part of the dplyr library, which is included when you specify the tidyverse library. This function evaluates a series of tests (listed on the left side of the tilde) and assigns the particular value to the first test that evaluates to TRUE. If no test evaluates to TRUE, the case_when function assigns a missing value.
 
 ## Calculate descriptive statistics
 
 ```{r}
 #| label: longevity-means
 
-fly |>
+fly_1 |>
   group_by(cage) |>
   summarize(
     longevity_mn=mean(longevity),
@@ -96,8 +103,7 @@ fly |>
 
 #### Interpretation of the output
 
-The mean lifespan is much lower for the eight virgin females group. The standard
-deviations are reasonably small and more or less consistent across all groups.
+The mean lifespan is 39 days for the "Each virgin females" category, which is much lower than the other means. The means lifespan is 57 days for the "One virgin female" category and this is slightly lower than the remained three categories. The standard deviations are reasonably small and more or less consistent across all groups.
 
 ## Draw boxplot
 
@@ -106,9 +112,9 @@ deviations are reasonably small and more or less consistent across all groups.
 #| fig.width: 6
 #| fig.height: 2.5
 
-fly |>
+fly_1 |>
   ggplot() +
-  aes(cage, longevity) +
+  aes(longevity, cage) +
   geom_boxplot() +
   labs(
     caption="Steve Simon, 2024-10-23, CC0",
@@ -125,7 +131,7 @@ The boxplot shows a roughly normal distribution with no outliers.
 ```{r}
 #| label: longevity-one-factor-anova
 
-m1 <- aov(longevity ~ cage, data=fly)
+m1 <- aov(longevity ~ cage, data=fly_1)
 tidy(m1)
 ```
 
@@ -139,7 +145,7 @@ difference among some or all of the population mean lifespans.
 ```{r}
 #| label: longevity-lm-1
 
-m2 <- lm(longevity ~ cage, data=fly)
+m2 <- lm(longevity ~ cage, data=fly_1)
 anova(m2)
 ```
 
@@ -156,74 +162,95 @@ degrees of freedom, F-ratio, and p-value all match.
 tidy(m2)
 ```
 
+#### Comments on the code
+
+The test statistics and p-values listed here do not make any adjustments for multiple comparisons. Some researchers think this is fine. Others prefer that you use the Tukey post hoc comparisons, which insures that the overall Type I error rate is less than 0.05.
+
 #### Interpretation of the output
 
 The linear model creates indicator variable for four out of the five category
-levels. The regression slopes represent the estimated average difference in 
-means between each category and the reference category.
+levels. The reference category is "Eight pregnant females" which is the first category level in alphabetical order. 
 
-## Linear model for longevity, 3
+The intercept, 63 days, is the estimated average longevity in days for the "Eight pregnant females" category.
 
-```{r}
-#| label: longevity-lm-3
+The first slope is -25. The estimated average longevity decreases by 25 days when you switch from the "Eight pregnant females" category to the "Eight virgin females" category.
 
-fly |>
-  group_by(cage) |>
-  summarize(longevity_mn=mean(longevity)) |>
-  mutate(reference_mn=first(longevity_mn)) |>
-  mutate(mean_difference=longevity_mn-reference_mn)
-```
+The second slope is 0.2. The estimated average longevity increases by 0.2 days when you switch from the "Eight pregnant females" category to the "No females" category.
 
-#### Interpretation of the output
+The third slope is 1.4. The estimated average longevity increases by 1.4 days when you switch from the "Eight pregnant females" category to the "One pregnant female" category.
 
-This table shows how to interpret the intercept and the four slope terms. The
-intercept is the estimated average lifespan for the first level of the 
-categorical variable. The slope terms are the estimated average changes from the
-other levels of the categorical variable and the first level.
+The fourth slope is -6.6. The estimated average longevity decreases by 6.6 days when you switch from the "Eight pregnant females" category to the "One virgin female" category.
 
 ## Re-order cage groups, 1
 
 ```{r}
 #| label: re-order-1
+new_order <- c(
+  "No females",
+  "One pregnant female",
+  "Eight pregnant females",
+  "One virgin female",
+  "Eight virgin females")
 
-fly$cage_1 <- 
-  factor(
-    fly$cage,
-    levels = c(
-      "No females",
-      "One pregnant female",
-      "Eight pregnant females",
-      "One virgin female",
-      "Eight virgin females"))
+fly_1 |>
+  mutate(cage=factor(cage, levels=new_order)) -> fly_2
 ```
 
-#### Interpretation of the output
+#### Comments on the code
 
-Compare every category to the No females category (the control condition).
+The factor function converts a variable a new variable with number codes and labels. The order of labels is designated by the levels argument.
+
+In this example, the code creates a reference category of "no females" instead of the default reference category based on alphabetical order.
 
 ## Re-order cage groups, 2
 
 ```{r}
 #| label: re-order-2
 
-m3 <- lm(longevity ~ cage_1, data=fly)
+m3 <- lm(longevity ~ cage, data=fly_2)
 tidy(m3)
 ```
 
 #### Interpretation of the output
 
-There is one group, eight virgin females, that is statistically significantly
-different from the no female control group.
+The estimated average longevity is 64 days for the cage with no females. The cages with one and eight pregnant females change only slightly: one day or less on average. The cage with one virgin female has 6.8 days less in longevity on average and the cage with eight virgin females has 25 days in average longevity.
+
+Do not interpret the p-values because they are not adjusted for multiple comparisons.
+
+## Tukey post-hoc test
+
+```{r}
+m4 <- aov(longevity ~ cage, data=fly_2)
+TukeyHSD(m4)
+```
+
+#### Interpretation of the output
+
+There are ten possible comparisons among the five groups. Six of the confidence intervals contain zero. This indicates that there is no statistically significant difference between 
+
+-   one pregnant female and no females
+-   eight pregnant females and no females
+-   eight pregnant females and one pregnant female
+-   one virgin female and one pregnant female
+-   one virgin female and one pregnant female
+-   one virgin female and eight pregnant females
+
+There is a statistically significant decrease in average longevity for
+
+-   eight virgin females compared to no females
+-   eight virgin females compared to one pregnant female
+-   eight virgin females compared to eight pregnant females
+-   eight virgin females compared to one virgin female
 
 ## Log transformation, 1
 
 ```{r}
 #| label: log-longevity-anova-1
 
-fly |>
-  mutate(log_longevity=log10(longevity)) -> log_fly
+fly_2 |>
+  mutate(log_longevity=log10(longevity)) -> fly_3
 
-m3 <- aov(log_longevity ~ cage, data=log_fly)
+m3 <- aov(log_longevity ~ cage, data=fly_3)
 tidy(m3)
 ```
 
@@ -237,50 +264,33 @@ illustration of how to use a log transformation with analysis of variance.
 ```{r}
 #| label: log-longevity-anova-2
 
-t3 <- TukeyHSD(m3, ordered=TRUE)
-t3
+m3 |>
+  TukeyHSD() |>
+  tidy() -> m4
+
+m4 |> 
+  select(contrast, estimate, conf.low, conf.high) |>
+  mutate(estimate=10^estimate) |>
+  mutate(conf.low=10^conf.low) |>
+  mutate(conf.hight=10^conf.high)
 ```
+
+#### Comments on the code
+
+It is better to transform these results back to the original scale of measurement before intepreting the confidence intervals.
 
 #### Interpretation of the output
 
-## Log transformation, 3
+When you back-transform after a log transformation, the confidence intervals are confidence intervals for a ratio of means. If the confidence interval includes the value of 1, there is no statistically significant difference between the two groups.
 
-```{r}
-#| label: log-longevity-anova-3
-
-t3$cage |>
-  data.frame() |>
-  select(diff, lwr, upr) |> 
-  mutate(
-    diff=10^diff,
-    lwr=10^lwr,
-    upr=10^upr)
-```
-
-#### Interpretation of the output
-
-## Log transformation, 4
-
-```{r}
-#| label: log-longevity-anova-4
-
-t3$cage |>
-  data.frame() |>
-  select(diff, lwr, upr) |> 
-  mutate(
-    diff=10^(-diff),
-    upr=10^(-lwr),
-    lwr=10^(-upr))
-```
-
-#### Interpretation of the output
+In this example, there are four statistically significant differences, all involving the cage with eight virgin females. The fruitflies with eight virgin females have a longevity that 40% shorter on average frutiflies with no females. The relevant computation is 100*(1-0.5961729). These fruitfiles has a than 
 
 ## Kruskal-Wallis test
 
 ```{r}
 #| label: kw
 
-kruskal.test(longevity ~ cage, data=fly)
+kruskal.test(longevity ~ cage, data=fly_2)
 ```
 
 #### Interpretation of the output
@@ -295,6 +305,6 @@ of how to use the Kruskal-Wallis test.
 
 save(
   fly,
-  log_fly,
+  fly_3,
   file="../data/fruitfly.RData")
 ```

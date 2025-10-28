@@ -167,7 +167,7 @@ fly$cage <-
     fly$partners==1 & fly$type==0 ~ "One pregnant female",
     fly$partners==1 & fly$type==1 ~ "One virgin female",
     fly$partners==8 & fly$type==0 ~ "Eight pregnant females",
-    fly$partners==8 & fly$type==0 ~ "Eight virgin females")
+    fly$partners==8 & fly$type==1 ~ "Eight virgin females")
 glimpse(fly)
 ```
 
