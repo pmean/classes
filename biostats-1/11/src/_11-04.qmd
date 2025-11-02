@@ -1,5 +1,5 @@
 ---
-title: "11-04, R code for analysis of variance"
+title: "11-04, R code for log transformed analysis of variance"
 format: 
   revealjs:
     slide-number: true
@@ -7,16 +7,6 @@ format:
 editor: source
 ---
 
-```{r 11-04-setup}
-# message: false
-# warning: false
-library(tidyverse)
-load("../data/chopper.RData")
-```
+## R code for log transformed analysis of variance
 
-
-```{r 11-04-display-qmd}
-#| output: asis
-partition_qmd("simon-5501-11-fruitfly.qmd") |>
-  cat(sep="\n")
-```
+Refer to the program [simon-5501-11-fruitfly.qmd][ref-simon-nodate].

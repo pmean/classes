@@ -1,5 +1,5 @@
 ---
-title: "11-05, Your homework"
+title: "11-05, Kruskal-Wallis test"
 format: 
   revealjs:
     slide-number: true
@@ -7,15 +7,81 @@ format:
 editor: source
 ---
 
-```{r 11-05-setup}
-# message: false
-# warning: false
+## The Chi-squared distribution
+
+-   Often denoted as $\chi^2_{df}$
+-   Has a single parameter, degrees of freedom
+    -   Never negative
+    -   Skewed right
+    -   Mean equals degrees of freedom
+-   Calculations in R
+    -   pchisq(x, df) = $P[\chi^2_{df} < x]$
+    -   qchisq(p, df) = $p^{th}$ quantile, $\chi^2_{df, p}$
+    
+## The Chi-squared distribution
+
+```{r 11-03-chi-squared-graph}
+#| message: false
+#| warning: false
+
 library(tidyverse)
-load("../data/chopper.RData")
+
+load("../data/fruitfly.RData")
+
+df <- 5
+x <- seq(0, df+5*sqrt(df), length=100)
+y <- dchisq(x, df)
+data.frame(x, y) |>
+	ggplot(aes(x, y)) +
+	  geom_line() +
+	  ggtitle("Graph drawn by Steve Simon on 2024-10-29")
 ```
 
-```{r 11-05-display-md}
-#| output: asis
-partition_qmd("simon-5501-11-directions.md") |>
-  cat(sep="\n")
+:::notes
+This is a graph of the Chi-squared distribution with 5 degrees of freedom.
+:::
+
+## Computing the Kruskal-Wallis test
+
+-   Rank the observations, $R(X_{ij})$
+    -   1 for smallest, 2 for second smallest, etc.
+    -   Compute the average rank in each group, $\bar{R}_i$
+    -   Compute the overall rank, $\bar{R}$
+    -   T = $(N-1)\frac{\Sigma n_i(\bar{R}_i - \bar{R})^2}{\Sigma \Sigma(R(X_{ij})-\bar{R})^2}$
+
+
+:::notes
+The Kruskal-Wallis test is similar to the Mann-Whitney-Wilcoxon test. You rank the data from low to high, calculate an average rank in each group. Look at how much deviation the group rank averages are from the overall rank averages.
+:::
+  
+## Decision rule for Kruskal-Wallis test, 1
+
+-   Accept $H_0$ if T <- $\chi^2_{df, 1-\alpha}$
+    -   df = k-1
+-   Accept $H_0$ if p-value > $\alpha$
+    -   p-value = $P[\chi^2_{df} > T]$
+    
+## Decision rule for Kruskal-Wallis test, 1
+
+-   Null hypothesis is difficult to define
+    -   Does not involve population means
+    -   Some claim involvement of population medians
+    -   Stochastic dominance
+        -   $P[X_{aj} > X_{bj}] > 0.5$ for some a and b.
+        
+::: notes
+There is a technical issue with the Kruskal-Wallis test and nonparametric tests in general. Strictly speaking, they are not really tests of populations means. Some people describe the hypothesis in terms of population medians. Others talk about stochastic dominance. This is a distinction that some people prefer to sidestep, but others can get fussy about it.
+
+If you are working with someone who is a stickler for details, use the concept of stochastic dominance. If they are not sticklers, just talk vaguely about one group possibly being "larger" in some sense than another group.
+:::
+
+## Application of Kruskal-Wallis test to fruitfly longevity
+
+```{r 11-03-kw-test}
+#| echo: true
+kruskal.test(longevity ~ cage, data=fly_1)
 ```
+
+:::notes
+There a five groups, so four degrees of freedom. The test statistic is much larger than the degrees of freedom and the p-value is small. Reject the null hypothesis and conclude that there are differences between at least two of the five groups.
+:::
