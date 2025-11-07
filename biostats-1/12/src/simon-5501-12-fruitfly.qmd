@@ -14,9 +14,11 @@ domain.
 
 ## Load the tidyverse library
 
-```{r setup}
+```{r}
+#| label: setup
 #| message: false
 #| warning: false
+
 library(broom)
 library(tidyverse)
 ```
@@ -29,7 +31,9 @@ warnings are suppressed.
 
 ## List the variable names
 
-```{r variable-list}
+```{r}
+#| label: variable-list
+
 vlist <- c(
   "id",
   "partners",
@@ -46,7 +50,9 @@ them in the code.
 
 ## Read the data and view a brief summary
 
-```{r read}
+```{r}
+#| label: read
+
 fly <- read_fwf(
   "../data/fruitfly.txt",
   col_types="nnnnnn",
@@ -67,7 +73,9 @@ they were continuous, use the factor function in some of the code below.
 
 ## Create a subset of fruitfly dataset
 
-```{r subset}
+```{r}
+#| label: subset
+
 fly |>
   filter(type != 9) -> fly_subset
 ```
@@ -85,9 +93,11 @@ outcomes measured.
 
 ## Draw boxplot of longevity by partners and type
 
-```{r boxplots-partners-type}
+```{r}
+#| label: boxplots-partners-type
 #| fig.width: 6
 #| fig.height: 2.5
+
 fly_subset |>
   ggplot(aes(factor(partners), longevity, fill=factor(type))) +
     geom_boxplot() +
@@ -106,8 +116,10 @@ There are no problems with the homogeneity and normality assumptions.
 
 ## Calculate average longevity by partners and type
 
-```{r by-partners-and-type}
+```{r}
+#| label: by-partners-and-type
 #| message: false
+
 fly_subset |>
   group_by(type, partners) |>
   summarize(
@@ -124,7 +136,9 @@ roughly the same.
 
 ## Draw line graph
 
-```{r line-graph}
+```{r}
+#| label: line-graph
+
 fly_means |>
   ggplot(aes(
     factor(partners), 
@@ -153,7 +167,9 @@ average longevity.
 
 ## Analysis of variance including the interaction
 
-```{r anova-with-interaction}
+```{r}
+#| label: anova-with-interaction
+
 m1 <- aov(longevity ~ factor(partners)*factor(type), data=fly_subset)
 anova(m1)
 ```
@@ -167,7 +183,9 @@ predictors.
 
 ## Using lm, 1
 
-```{r lm-with-interactions-1}
+```{r}
+#| label: lm-with-interactions-1
+
 m2 <- lm(longevity ~ factor(partners)*factor(type), data=fly_subset)
 anova(m2)
 ```
@@ -178,7 +196,9 @@ The analysis of variance table is identical when using lm instead of aov.
 
 ## Using lm, 2
 
-```{r lm-with-interactions-2}
+```{r}
+#| label: lm-with-interactions-2
+
 tidy(m2)
 ```
 
@@ -191,7 +211,9 @@ shows that this cage is actually 16.6 days worse than that on average.
 
 ## Using lm, 3
 
-```{r add-coefficients}
+```{r}
+#| label: add-coefficients
+
 b <- coef(m2) 
 fly_means |>
   mutate(b0=b[1]) |>
@@ -234,7 +256,9 @@ beyond the individual impact of eight versus one and virgin versus pregnant.
 
 ## Save important files for later use
 
-```{r save}
+```{r}
+#| label: save
+
 save(
   fly,
   fly_subset,
