@@ -5,30 +5,32 @@ format:
     embed-resources: true
 ---
 
-This program reads data on admissions to an emergency room before, during, and 
-after a full moon. Find more information in the [data dictionary][dd].
+This program reads data on admissions to an emergency room before, during, and after a full moon. Find more information in the [data dictionary][dd].
 
 [dd]: https://github.com/pmean/data/blob/master/files/full-moon-er-admissions.yaml
 
-This code was written by Steve Simon on 2024-11-02 and is placed in the public 
-domain.
+This code was written by Steve Simon on 2024-11-02 and is placed in the public domain.
 
 ## Load the tidyverse library
 
-```{r setup}
+```{r}
+#| label: setup
 #| message: false
 #| warning: false
+
 library(broom)
 library(tidyverse)
 ```
 
-For most of your programs, you should load the tidyverse library. The broom 
-library converts your output to a nicely arranged dataframe. The messages and
-warnings are suppressed.
+#### Comments on the code
+
+For most of your programs, you should load the tidyverse library. The broom library converts your output to a nicely arranged dataframe. The messages and warnings are suppressed.
 
 ## Read the data and view a brief summary
 
-```{r read}
+```{r}
+#| label: read
+
 er <- read_tsv(
   "../data/full-moon-er-admissions.txt",
   col_types="ccn",
@@ -37,12 +39,15 @@ names(er) <- tolower(names(er))
 glimpse(er)
 ```
 
-This is a tab delimited file. I changed all the variable names to all lowercase.
-That's one less thing opportunity for inconsistency errors.
+#### Comments on the code
+
+This is a tab delimited file. I changed all the variable names to all lowercase. That's one less thing opportunity for inconsistency errors.
 
 ## Reorder the category levels, 1
 
-```{r reorder-moon}
+```{r}
+#| label: reorder-moon
+
 er$moon1 <- factor(
   er$moon,
   levels=c(
@@ -51,11 +56,15 @@ er$moon1 <- factor(
     "After"))
 ```
 
+#### Comments on the code
+
 If you let R order the categories, it will do it alphabetically. The factor function will place them in a more logical order.
 
 ## Reorder the category levels, 2
 
-```{r reorder-month}
+```{r}
+#| label: reorder-month
+
 er$month1 <- factor(
   er$month,
   levels=c(
@@ -65,13 +74,17 @@ er$month1 <- factor(
     "May", "Jun", "Jul"))
 ```
 
+#### Comments on the code
+
 Since the study started in August, it makes sense to order the months starting then. An alphabetical ordering (April first then August?) makes no sense here.
 
 ## Draw boxplot of admission versus moon
 
-```{r boxplots-admission-vs-moon}
+```{r}
+#| label: boxplots-admission-vs-moon
 #| fig.width: 6
 #| fig.height: 2.0
+
 er |>
   ggplot(aes(moon1, admission)) +
     geom_boxplot() +
@@ -81,29 +94,35 @@ er |>
     coord_flip()
 ```
 
-Although there are a few outliers, I would not worry too much about the 
-normality assumption. It also looks like heterogeneity would not be too much of
-a concern.
+#### Interpretation of the output
+
+Although there are a few outliers, I would not worry too much about the normality assumption. It also looks like heterogeneity would not be too much of a concern.
 
 ## Draw boxplot of admission versus month
 
-```{r boxplots-admission-vs-month}
+```{r}
+#| label: boxplots-admission-vs-month
 #| fig.width: 6
-#| fig.height: 6.0
+#| fig.height: 6
+
 er |>
-  ggplot(aes(month1, admission)) +
+  ggplot(aes(admission, month1)) +
     geom_boxplot() +
-    xlab("Month") +
-    ylab("ER admissions per day") +
-    ggtitle("Graphs drawn by Steve Simon on 2024-11-02") +
-    coord_flip()
+	  labs(
+	  	x="ER admissions per day",
+	  	y="Month",
+	  	caption="Steve Simon, 2024-11-02, CC0")
 ```
+
+#### Interpretation of the output
 
 Although there are some unusual patterns here, keep in mind that there are only two observations per month.
 
 ## Calculate average ER admissions versus moon
 
-```{r by-moon}
+```{r}
+#| label: by-moon
+
 er |>
   group_by(moon1) |>
   summarize(
@@ -112,12 +131,15 @@ er |>
     n=n())
 ```
 
-There is a slightly higher average admission rate and slightly more vaiation 
-during a full moon.
+#### Interpretation of the output
+
+There is a slightly higher average admission rate and slightly more vaiation during a full moon.
 
 ## Calculate average ER admissions versus month
 
-```{r by-month}
+```{r}
+#| label: by-month
+
 er |>
   group_by(month1) |>
   summarize(
@@ -126,47 +148,53 @@ er |>
     n=n())
 ```
 
-Er admissions are trending upward over time and there is some evidence of 
-heterogeneity. Again, treat this with caution as there are only three 
-observations per month.
+#### Interpretation of the output
+
+Er admissions are trending upward over time and there is some evidence of heterogeneity. Again, treat this with caution as there are only three observations per month.
 
 ## Analysis of variance
 
-```{r anova}
+```{r}
+#| label: anova
+
 m1 <- aov(admission ~ moon1 + month1, data=er)
 anova(m1)
 ```
 
-There is a borderline, but statistically significant difference in average 
-admission rates during different phases of the moon. There is a statistically 
-significant difference in average admission rates between some of the months.
+#### Interpretation of the output
+
+There is a borderline, but statistically significant difference in average admission rates during different phases of the moon. There is a statistically significant difference in average admission rates between some of the months.
 
 ## Using lm, 1
 
-```{r lm-1}
+```{r}
+#| label: lm-1
+
 m2 <- lm(admission ~ moon1 + month1, data=er)
 anova(m2)
 ```
 
-The analysis of variance table using lm is the same as the analysis of variance
-table using aov.
+#### Interpretation of the output
+
+The analysis of variance table using lm is the same as the analysis of variance table using aov.
 
 ## Using lm, 2
 
-```{r lm-2}
+```{r}
+#| label: lm-2
+
 tidy(m2)
 ```
 
-The intercept represents the estimated average admission rate before a full moon
-and during the month of August. The admission rate is 2.5 patients per day 
-higher during a full moon compared to a full moon. This is small but probably 
-still important. The difference in average admission rates is 0.54 patients per 
-day higher after a full moon compared to before a full moon. The remaining 
-estimates compare each month back to the first month (August).
+#### Interpretation of the output
+
+The intercept represents the estimated average admission rate before a full moon and during the month of August. The admission rate is 2.5 patients per day higher during a full moon compared to a full moon. This is small but probably still important. The difference in average admission rates is 0.54 patients per day higher after a full moon compared to before a full moon. The remaining estimates compare each month back to the first month (August).
 
 ## Using lm, 3
 
-```{r lm-3}
+```{r}
+#| label: lm-3
+
 er |>
   group_by(moon1) |>
   summarize(admission_mn=mean(admission)) |>
@@ -174,13 +202,15 @@ er |>
   mutate(difference=admission_mn-admission_before)
 ```
 
-This table shows how to calculate the regression coefficients associated with
-phases of the moon. It is not really needed for the analysis, but helps
-illustrate how these coefficients are computed.
+#### Comments on the code
+
+This table shows how to calculate the regression coefficients associated with phases of the moon. It is not really needed for the analysis, but helps illustrate how these coefficients are computed.
 
 ## Using lm, 4
 
-```{r lm-4}
+```{r}
+#| label: lm-4
+
 er |>
   group_by(month1) |>
   summarize(admission_mn=mean(admission)) |>
@@ -188,14 +218,15 @@ er |>
   mutate(difference=admission_mn-admission_aug)
 ```
 
-This table shows how to calculate the regression coefficients associated with
-months of the year.
+#### Comments on the code
 
-
+This table shows how to calculate the regression coefficients associated with months of the year.
 
 ## Save important files for later use
 
-```{r save}
+```{r}
+#| label: save
+
 save(
   er,
   file="../data/full-moon-er-admissions.RData")
