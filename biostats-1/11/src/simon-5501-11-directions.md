@@ -39,8 +39,7 @@ Draw a boxplot for sleep levels in each group. Interpret the boxplots.
 ## Question 3
 
 Based on the previous two questions, do you believe that the assumptions of
-analysis of variance are met. Proceed with all of the remaining questions
-regardless of your conclusion here.
+analysis of variance are met. Proceed with all of the remaining questions without using a log transformation, regardless of your conclusion here.
 
 ## Question 4
 
