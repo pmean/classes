@@ -27,32 +27,23 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
     
 ## Question 1
 
-Create a subset of the fruitfly data by removing the age where type equals 9. 
-Draw a clustered boxplot with sleep as the outcome and partners and type as the
-categorical predictors. Interpret this graph. Is there evidence of 
-non-normality?
+Create a subset of the fruitfly data by removing the rows where type equals 9. Draw a clustered boxplot with sleep as the outcome and partners and type as the categorical predictors. Interpret this graph. Is there evidence of non-normality?
 
 ## Question 2
 
-Calculate descriptive statistics for sleep (mean, standard deviation, and 
-sample size) by the combination of the two categorical predictors, partners and
-type. Is there evidence of heterogeneity?
+Calculate descriptive statistics for sleep (mean, standard deviation, and sample size) by the combination of the two categorical predictors, partners and type. Is there evidence of heterogeneity?
 
 ## Question 3
 
-Draw a line graph for the mean sleep levels compared by type and partners. Is
-there evidence of an interaction?
+Draw a line graph for the mean sleep levels compared by type and partners. Is there evidence of an interaction?
 
 ## Question 4
 
-Analyze the sleep variable using a two factor analysis of variance with an 
-interaction. Present and interpret the analysis of variance table.
+Analyze the sleep variable using a two factor analysis of variance with an interaction. Present and interpret the analysis of variance table.
 
 ## Question 5
 
-What factors might make you consider using a log transformation for the sleep 
-variable? Do not run such an analysis but tell us whether you think the data
-would warrant such a transformation?
+What factors might make you consider using a log transformation for the sleep variable? Do not run such an analysis but tell us whether you think the data would warrant such a transformation?
 
 ## Your submission
 

@@ -9,8 +9,7 @@ This program reads data on fruit fly longevity. Find more information in the [da
 
 [dd]: https://github.com/pmean/data/blob/master/files/fruitfly.yaml
 
-This code was written by Steve Simon on 2024-10-29 and is placed in the public
-domain.
+This code was written by Steve Simon on 2024-10-29 and is placed in the public domain.
 
 ## Load the tidyverse library
 
@@ -25,9 +24,7 @@ library(tidyverse)
 
 #### Comments on the code
 
-For most of your programs, you should load the tidyverse library. The broom 
-library converts your output to a nicely arranged dataframe. The messages and
-warnings are suppressed.
+For most of your programs, you should load the tidyverse library. The broom library converts your output to a nicely arranged dataframe. The messages and warnings are suppressed.
 
 ## List the variable names
 
@@ -45,8 +42,7 @@ vlist <- c(
 
 #### Comments on the code
 
-When a dataset does not have variables on the first line, you need to specify 
-them in the code.
+When a dataset does not have variables on the first line, you need to specify them in the code.
 
 ## Read the data and view a brief summary
 
@@ -64,12 +60,9 @@ glimpse(fly)
 
 #### Comments on the code
 
-The fruitfly dataset has a fixed width format (fwf). You need to specify the
-columns that each variable uses.
+The fruitfly dataset has a fixed width format (fwf). You need to specify the columns that each variable uses.
 
-Notice that the two categorical variables, partners and type, are actually
-numbers rather than strings. To avoid having R treat these variables as if
-they were continuous, use the factor function in some of the code below.
+Notice that the two categorical variables, partners and type, are actually numbers rather than strings. To avoid having R treat these variables as if they were continuous, use the factor function in some of the code below.
 
 ## Create a subset of fruitfly dataset
 
@@ -82,14 +75,7 @@ fly |>
 
 #### Comments on the code
 
-If you exclude the pure control group (No females), you can analyze the two
-factors, partners and type individually. Partners has two category levels, 1 for
-when one female was included in the cage and 8 for when eight females were 
-included in the cage. Type also has two category levels, 0 for pregnant female
-fly/flies and 1 for virgin fly/flies. A male fly will not mate with a pregnant
-females, so you can think of this as a second level of controls. The two factors
-are crossed, meaning that every possible combination of partners and type has 
-outcomes measured.
+If you exclude the pure control group (No females), you can analyze the two factors, partners and type individually. Partners has two category levels, 1 for when one female was included in the cage and 8 for when eight females were included in the cage. Type also has two category levels, 0 for pregnant female fly/flies and 1 for virgin fly/flies. A male fly will not mate with a pregnant females, so you can think of this as a second level of controls. The two factors are crossed, meaning that every possible combination of partners and type has outcomes measured.
 
 ## Draw boxplot of longevity by partners and type
 
@@ -99,20 +85,23 @@ outcomes measured.
 #| fig.height: 2.5
 
 fly_subset |>
-  ggplot(aes(factor(partners), longevity, fill=factor(type))) +
-    geom_boxplot() +
-    xlab("Number of partners") +
-    ylab("Lifespan in days") +
-    ggtitle("Graphs drawn by Steve Simon on 2024-10-28") +
-    labs(fill="Female fly type") +
-    scale_fill_discrete(labels=c("Pregnant", "Virgin")) +
-    coord_flip()
+  ggplot() +
+	aes(
+		x=longevity, 
+		y=factor(partners), 
+		fill=factor(type)) +
+  geom_boxplot() +
+  labs(
+  	x="Lifespan in days",
+  	y="Number of partners",
+  	fill="Female fly type",
+  	caption="Steve Simon, 2024-10-28, CC0") +
+  scale_fill_discrete(labels=c("Pregnant", "Virgin"))
 ```
 
 #### Interpretation of the output
 
-The lifespans tend to be quite a bit shorter in cages with 8 virgin females.
-There are no problems with the homogeneity and normality assumptions.
+The lifespans tend to be quite a bit shorter in cages with 8 virgin females. There are no problems with the homogeneity and normality assumptions.
 
 ## Calculate average longevity by partners and type
 
@@ -131,8 +120,7 @@ fly_means
 
 #### Interpretation of the output
 
-The means show the same pattern as noted above. The standard deviations are all
-roughly the same.
+The means show the same pattern as noted above. The standard deviations are all roughly the same.
 
 ## Draw line graph
 
@@ -140,16 +128,19 @@ roughly the same.
 #| label: line-graph
 
 fly_means |>
-  ggplot(aes(
-    factor(partners), 
-    longevity_mn, 
+  ggplot() +
+  aes(
+    x=factor(partners), 
+    y=longevity_mn, 
     group=factor(type),
-    color=factor(type))) +
+    color=factor(type)) +
     geom_line(linewidth=2) +
 	expand_limits(y=range(fly_subset$longevity)) +
-  xlab("Number of partners") +
-  ylab("Lifespan in days") +
-  labs(color="Female fly type") +
+	labs(
+		x="Number of partners",
+		y="Lifespan in days",
+		color="Female fly type",
+		caption="Steve Simon, 2024-10-28, CC0") +
   scale_color_discrete(labels=c("Pregnant", "Virgin"))
 ```
 

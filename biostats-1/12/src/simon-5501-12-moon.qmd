@@ -86,12 +86,13 @@ Since the study started in August, it makes sense to order the months starting t
 #| fig.height: 2.0
 
 er |>
-  ggplot(aes(moon1, admission)) +
-    geom_boxplot() +
-    xlab("Moon phase") +
-    ylab("ER admissions per day") +
-    ggtitle("Graphs drawn by Steve Simon on 2024-11-02") +
-    coord_flip()
+  ggplot() +
+    aes(x=admission, y=moon1) +
+	  geom_boxplot() +
+	  labs(
+	  	x="Moon phase",
+	  	y="ER admissions per day",
+	  	caption="Steve Simon, 2024-11-02, CC0")
 ```
 
 #### Interpretation of the output
