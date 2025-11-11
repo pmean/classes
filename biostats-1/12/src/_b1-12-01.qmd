@@ -17,7 +17,7 @@ editor: source
     -   Gender (Female or Male)
     
 :::notes
-Two factor analysis of variance uses two categorical variables to predict a continuous outcome. We will focus today on the balanced case. In the balanced case, each combination of category levels has the same number of observations.
+Two factor analysis of variance uses two categorical variables to predict a continuous outcome. We will focus today on the balanced case. In the balanced case, each combination of category levels has the same number of observations or if they differ, they differ in a proportional way.
 :::
   
 ## Balanced data    
@@ -27,7 +27,7 @@ Two factor analysis of variance uses two categorical variables to predict a cont
     -   6 old females, 6 old males, 2 young females, 2 young males
 
 :::notes
-Two factor analysis of variance uses two categorical variables to predict a continuous outcome. We will focus today on the balanced case. In the balanced case, each combination of category levels has the same number of observations.
+The first case each combination of gender and age has exactly three observations. The second case is also balanced. The ratio of old to young is 3 to 1 both for females and for males. 
 :::
   
 ## Unbalanced data    
@@ -39,8 +39,51 @@ Two factor analysis of variance uses two categorical variables to predict a cont
 
 :::notes
 In the unbalanced case the observations are not equal or proportional. These cases are quite complex from several perspectives.
+
+First, the formulas are messier. Second the computation of averages for either one of the two categorical variables is ambiguous. Third, measurement of various sums of squares for the analysis of variance table is tricky. I won't go into more detail about this, but hope to elaborate on the topic in Biostats II.
 :::
-  
+
+## Historical perspective on unbalanced data, 1
+
+![](../images/george-milliken.png "Photo of George Milliken")
+
+::: notes
+Let me take a few minutes to discuss some of the people behind the work on unbalanced data. I don't want you to delve too deeply into this, as the work is highly mathematical. But I do have a special fondness for this work because I know some of the people who were pioneers in this area.
+
+One of the pioneers in documenting the complexities of unbalanced data is George Milliken, a Statistics faculty member (long since retired) from Kansas State University.
+:::
+
+## Historical perspective on unbalanced data, 2
+
+![](../images/dallas-johnson.png "Photo of Dallas Johnson")
+
+::: notes
+A second pioneer in this area is Dallas Johnson. He is also a faculty member in Statistics at Kansas State University and also long retired.
+:::
+
+## Historical perspective on unbalanced data, 3
+
+![](../images/messy-data.png "Book cover of Analysis of Messy Data, Volume 1")
+
+::: notes
+Together, they wrote a series of books with the provocative title, Analysis of Messy Data. This is the first volume in the series, published in 1984. The book deals largely with unbalanced data in analysis of variance. I must admire the bravery of writing this book. At a time when I avoided the complexities of unbalanced data in my teaching, Milliken and Johnson dove straight in.
+
+I've met both Milliken and Johnson at several "Agriculture and Statistics" conferences held for many years at Kansas State University. I've always been more of the health care side than the agricultural side of statistics, but there is a lot that I have learned from these conferences. An interesting sidelight is that the conference always held line dancing lessons on the Sunday before the conference start. I and other geeky statisticians would get up and awkwardly follow the instructions. I never got very good at line dancing, but it was always a lot of fun.
+:::
+
+## Historical perspective on unbalanced data, 4
+
+![](../images/russell-lenth.png "Photo of Russell Lenth")
+
+::: notes
+A third and more receint pioneer in this area is Russell Lenth, a faculty member in Statistics at the University of Iowa and also long retired. I know Russ very well, as he was my dissertation adviser when I got my PhD from Iowa in 1982. He wrote the definitive package in R for unbalanced data, emmeans.
+:::
+
+
+
+## A simple illustration of the complexities of unbalanced data
+
+
 ## Mathematical model, 1
 
 -   $Y_{ijk}$
