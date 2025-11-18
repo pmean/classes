@@ -75,6 +75,32 @@ There is a technical issue with the Kruskal-Wallis test and nonparametric tests 
 If you are working with someone who is a stickler for details, use the concept of stochastic dominance. If they are not sticklers, just talk vaguely about one group possibly being "larger" in some sense than another group.
 :::
 
+## Assumptions of the Kruskal-Wallis test
+
+-   Homogeneity
+-   Independence
+    -   Assessed qualitatively
+-   Normality is not an assumption
+
+::: notes
+While normality is not an assumption of the Kruskal-Wallis test, you still have to worry about whether the data is homogenous and whether the observations are independent of one another. The independence assumption is usually assess qualitatively.
+:::
+    
+## Advantages and disadvantages of Kruskal-Wallis test
+
+-   Advantages
+    -   No need for normality assumption
+    -   Still requires homogeneity and independence
+    -   Not influenced by outliers
+-   Disadvantages
+    -   Difficult to get confidence intervals
+
+::: notes
+The Kruskal-Wallis test has fewer assumptions and is not affected by outliers. An extreme value is still going to have a reasonable rank.
+
+A big disadvantage of Kruskal-Wallis and other tests based on ranks is that it is difficult to compute confidence intervals. It can be done, but it is tedious. It is also unclear exactly what population parameters the confidence intervals are for.
+:::
+
 ## Application of Kruskal-Wallis test to fruitfly longevity
 
 ```{r 11-03-kw-test}

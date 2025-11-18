@@ -9,8 +9,7 @@ This program reads data on fruit fly longevity. Find more information in the [da
 
 [dd]: https://github.com/pmean/data/blob/master/files/fruitfly.yaml
 
-This code was written by Steve Simon on 2024-10-29 and is placed in the public
-domain.
+This code was written by Steve Simon on 2024-10-29 and is placed in the public domain.
 
 ## Load the tidyverse library
 
@@ -25,9 +24,7 @@ library(tidyverse)
 
 #### Comments on the code
 
-For most of your programs, you should load the tidyverse library. The broom 
-library converts your output to a nicely arranged dataframe. The messages and
-warnings are suppressed.
+For most of your programs, you should load the tidyverse library. The broom library converts your output to a nicely arranged dataframe. The messages and warnings are suppressed.
 
 ## List the variable names
 
@@ -45,8 +42,7 @@ vlist <- c(
 
 #### Comments on the code
 
-When a dataset does not have variables on the first line, you need to specify 
-them in the code.
+When a dataset does not have variables on the first line, you need to specify them in the code.
 
 ## Read the data and view a brief summary
 
@@ -64,12 +60,9 @@ glimpse(fly)
 
 #### Comments on the code
 
-The fruitfly dataset has a fixed width format (fwf). You need to specify the
-columns that each variable uses.
+The fruitfly dataset has a fixed width format (fwf). You need to specify the columns that each variable uses.
 
-Notice that the two categorical variables, partners and type, are actually
-numbers rather than strings. To avoid having R treat these variables as if
-they were continuous, use the factor function in some of the code below.
+Notice that the two categorical variables, partners and type, are actually numbers rather than strings. To avoid having R treat these variables as if they were continuous, use the factor function in some of the code below.
 
 ## Create a subset of fruitfly dataset
 
@@ -82,14 +75,7 @@ fly |>
 
 #### Comments on the code
 
-If you exclude the pure control group (No females), you can analyze the two
-factors, partners and type individually. Partners has two category levels, 1 for
-when one female was included in the cage and 8 for when eight females were 
-included in the cage. Type also has two category levels, 0 for pregnant female
-fly/flies and 1 for virgin fly/flies. A male fly will not mate with a pregnant
-females, so you can think of this as a second level of controls. The two factors
-are crossed, meaning that every possible combination of partners and type has 
-outcomes measured.
+If you exclude the pure control group (No females), you can analyze the two factors, partners and type individually. Partners has two category levels, 1 for when one female was included in the cage and 8 for when eight females were included in the cage. Type also has two category levels, 0 for pregnant female fly/flies and 1 for virgin fly/flies. A male fly will not mate with a pregnant females, so you can think of this as a second level of controls. The two factors are crossed, meaning that every possible combination of partners and type has outcomes measured.
 
 ## Draw boxplot of longevity by partners and type
 
@@ -99,20 +85,23 @@ outcomes measured.
 #| fig.height: 2.5
 
 fly_subset |>
-  ggplot(aes(factor(partners), longevity, fill=factor(type))) +
-    geom_boxplot() +
-    xlab("Number of partners") +
-    ylab("Lifespan in days") +
-    ggtitle("Graphs drawn by Steve Simon on 2024-10-28") +
-    labs(fill="Female fly type") +
-    scale_fill_discrete(labels=c("Pregnant", "Virgin")) +
-    coord_flip()
+  ggplot() +
+	aes(
+		x=longevity, 
+		y=factor(partners), 
+		fill=factor(type)) +
+  geom_boxplot() +
+  labs(
+  	x="Lifespan in days",
+  	y="Number of partners",
+  	fill="Female fly type",
+  	caption="Steve Simon, 2024-10-28, CC0") +
+  scale_fill_discrete(labels=c("Pregnant", "Virgin"))
 ```
 
 #### Interpretation of the output
 
-The lifespans tend to be quite a bit shorter in cages with 8 virgin females.
-There are no problems with the homogeneity and normality assumptions.
+The lifespans tend to be quite a bit shorter in cages with 8 virgin females. There are no problems with the homogeneity and normality assumptions.
 
 ## Calculate average longevity by partners and type
 
@@ -131,8 +120,7 @@ fly_means
 
 #### Interpretation of the output
 
-The means show the same pattern as noted above. The standard deviations are all
-roughly the same.
+The means show the same pattern as noted above. The standard deviations are all roughly the same.
 
 ## Draw line graph
 
@@ -140,16 +128,19 @@ roughly the same.
 #| label: line-graph
 
 fly_means |>
-  ggplot(aes(
-    factor(partners), 
-    longevity_mn, 
+  ggplot() +
+  aes(
+    x=factor(partners), 
+    y=longevity_mn, 
     group=factor(type),
-    color=factor(type))) +
+    color=factor(type)) +
     geom_line(linewidth=2) +
 	expand_limits(y=range(fly_subset$longevity)) +
-  xlab("Number of partners") +
-  ylab("Lifespan in days") +
-  labs(color="Female fly type") +
+	labs(
+		x="Number of partners",
+		y="Lifespan in days",
+		color="Female fly type",
+		caption="Steve Simon, 2024-10-28, CC0") +
   scale_color_discrete(labels=c("Pregnant", "Virgin"))
 ```
 
@@ -157,13 +148,9 @@ fly_means |>
 
 This plot shows strong evidence of an interaction.
 
-Male fruitflies do appear to have shorter average lifespans when sharing a cage
-with virgin females compared to pregnant females, but this effect is far 
-stronger when the number of female fruitflies is eight rather than one.
+Male fruitflies do appear to have shorter average lifespans when sharing a cage with virgin females compared to pregnant females, but this effect is far stronger when the number of female fruitflies is eight rather than one.
 
-The line for pregnant (sharing a cage with pregnant females) is close to flat,
-indicating that there is little impact of the number of pregnant females on
-average longevity.
+The line for pregnant (sharing a cage with pregnant females) is close to flat, indicating that there is little impact of the number of pregnant females on average longevity.
 
 ## Analysis of variance including the interaction
 
@@ -176,10 +163,7 @@ anova(m1)
 
 #### Interpretation of the output
 
-There is a statistically significant interaction between the number of female
-partners and the type of partners (pregnant or virgin). When you have an
-interaction, you do not normally interpret the individual categorical 
-predictors.
+There is a statistically significant interaction between the number of female partners and the type of partners (pregnant or virgin). When you have an interaction, you do not normally interpret the individual categorical predictors.
 
 ## Using lm, 1
 
@@ -204,10 +188,7 @@ tidy(m2)
 
 #### Interpretation of the output
 
-The lifespan of fruitflies in cages with 8 virgin females is 17 days shorter 
-than what you would expect. If the effect of type and partners were independent,
-you'd expect to see a 9.4 (= 8.0 + 1.4) day decline on average. The interaction
-shows that this cage is actually 16.6 days worse than that on average.
+The lifespan of fruitflies in cages with 8 virgin females is 17 days shorter than what you would expect. If the effect of type and partners were independent, you'd expect to see a 9.4 (= 8.0 + 1.4) day decline on average. The interaction shows that this cage is actually 16.6 days worse than that on average.
 
 ## Using lm, 3
 
@@ -229,30 +210,19 @@ fly_coefficients
 
 #### Comments on the code
 
-The coef function takes the intercept and slopes from a linear regression model
-and stores them in a vector. The mutate command adds the individual intercept
-and slopes to separate columns. Finally, place zeros in places where the various
-slopes are not needed.
+The coef function takes the intercept and slopes from a linear regression model and stores them in a vector. The mutate command adds the individual intercept and slopes to separate columns. Finally, place zeros in places where the various slopes are not needed.
 
 #### Interpretation of the output
 
-This table is not needed for the data analysis, but is included to illustrate 
-how the regression coefficients are computed in a two factor analysis of 
-variance with an interaction.
+This table is not needed for the data analysis, but is included to illustrate how the regression coefficients are computed in a two factor analysis of variance with an interaction.
 
-The intercept is the estimated average with both categories each to the "zero"
-or reference level. In this case, the average lifespan of flies in a cage with
-one pregnant female.
+The intercept is the estimated average with both categories each to the "zero" or reference level. In this case, the average lifespan of flies in a cage with one pregnant female.
 
-The first slope coefficient (b1) represents the estimated average difference in
-lifespan between eight pregnant females and one pregnant females.
+The first slope coefficient (b1) represents the estimated average difference in lifespan between eight pregnant females and one pregnant females.
 
-The second slope coefficient (b2) represents the estimated average difference in
-lifespan between one pregnant females and one virgin female.
+The second slope coefficient (b2) represents the estimated average difference in lifespan between one pregnant females and one virgin female.
 
-The third slope coefficient (b3) represents the interaction. It is a measure of
-how much shorter the average lifespan is with eight virgin females above and
-beyond the individual impact of eight versus one and virgin versus pregnant.
+The third slope coefficient (b3) represents the interaction. It is a measure of how much shorter the average lifespan is with eight virgin females above and beyond the individual impact of eight versus one and virgin versus pregnant.
 
 ## Save important files for later use
 
@@ -267,5 +237,4 @@ save(
 
 #### Comments on the code
 
-It is always good form to save the important pieces of your data analysis that
-might be re-used sometime later.
+It is always good form to save the important pieces of your data analysis that might be re-used sometime later.

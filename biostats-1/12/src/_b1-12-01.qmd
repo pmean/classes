@@ -33,14 +33,14 @@ The first case each combination of gender and age has exactly three observations
 ## Unbalanced data    
 
 -   Unequal numbers in some category combinations
-    -   3 old females, 3 old males, 3 young females, 2 young males
+    -   2 old females, 4 old males, 3 young females, 2 young males
 -   Extreme case: empty category combinations
     -   3 old females, 3 old males, 3 young females, 0 young males
 
 :::notes
 In the unbalanced case the observations are not equal or proportional. These cases are quite complex from several perspectives.
 
-First, the formulas are messier. Second the computation of averages for either one of the two categorical variables is ambiguous. Third, measurement of various sums of squares for the analysis of variance table is tricky. I won't go into more detail about this, but hope to elaborate on the topic in Biostats II.
+The root cause of all the complexity is that there is more than one way to calculate averages.
 :::
 
 ## Historical perspective on unbalanced data, 1
@@ -81,8 +81,35 @@ A third and more receint pioneer in this area is Russell Lenth, a faculty member
 
 
 
-## A simple illustration of the complexities of unbalanced data
+## A simple illustration of the complexities of unbalanced data, 1
 
+![](../images/unbalanced-means-raw-data.png "List of hypothetical data")
+
+::: notes
+Here is some hypothetical data to illustrate two different ways of computing average hearing loss in old patients.
+:::
+
+## A simple illustration of the complexities of unbalanced data, 2
+
+![](../images/unbalanced-means-two-step.png "List of mean calculations in two steps")
+
+::: notes
+To get the average for all old patients, start by computing the average for old female patients (50) and old male patients (20). Then average the old female mean and the old male mean to get an old patient mean of 35.
+:::
+
+## A simple illustration of the complexities of unbalanced data, 3
+
+![](../images/unbalanced-means-one-step.png "List of mean calculations in one step")
+
+::: notes
+You could also compute the average across all six old patients in a single step. This produces an old patient mean of 30.
+
+Why the difference? In the single step calculation the four old males carry more weight than the two old females. In the two step calculation, old males and old females get equal weight.
+
+You might argue that the equal weighting makes more sense, and in some contexts it does. You might consider this an effort to adjust for the imbalance.
+
+I won't go into more detail about this, but hope to elaborate on the topic in Biostats II.
+:::
 
 ## Mathematical model, 1
 
@@ -101,6 +128,8 @@ $\begin{smallmatrix} Age & Gender & Outcome \\ Old   & Female & Y_{111} \\ Old  
 
 :::notes
 Here's a simple example where the first categorical predictor and the second categorical predictor have two levels and there are three observation in each combination.
+
+Notice that unlike Milliken and Johnson, I am avoiding the complexities of imbalance in this example.
 :::
 
 ## Mathematical model, 3

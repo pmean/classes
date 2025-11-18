@@ -7,15 +7,10 @@ format:
 editor: source
 ---
 
-```{r b1-12-07-setup}
-# message: false
-# warning: false
-library(tidyverse)
-load("../../../general/chopper.RData")
-```
+## Your homework
 
-```{r b1-12-07-display-md}
-#| output: asis
-partition_qmd("simon-5501-12-directions.md") |>
-  cat(sep="\n")
-```
+
+
+Find the file [simon-5501-12-directions.md][ref-simon-nodate2] on my github site.
+
+[ref-simon-nodate2]: https://github.com/pmean/classes/blob/master/biostats-1/12/src/simon-5501-12-directions.md
