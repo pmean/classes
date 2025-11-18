@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Analysis of Titanic dataset</title>
+<title>Sweep html files from src to results</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,41 +18,6 @@ ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
-}
-
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-{ counter-reset: source-line 0; }
-pre.numberSource code > span
-{ position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-{ content: counter(source-line);
-position: relative; left: -1em; text-align: right; vertical-align: baseline;
-border: none; display: inline-block;
--webkit-touch-callout: none; -webkit-user-select: none;
--khtml-user-select: none; -moz-user-select: none;
--ms-user-select: none; user-select: none;
-padding: 0 4px; width: 4em;
-}
-pre.numberSource { margin-left: 3em; padding-left: 4px; }
-div.sourceCode
-{ }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -2178,7 +2143,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Analysis of Titanic dataset</h1>
+<h1 class="title">Sweep html files from src to results</h1>
 </div>
 
 
@@ -2195,380 +2160,112 @@ vertical-align: -.125em;
 </header>
 
 
-<p>This program reads data on survival of passengers on the Titanic. Find more information in the <a href="https://github.com/pmean/data/blob/main/files/titanic.yaml">data dictionary</a>.</p>
-<p>This code was written by Steve Simon on 2024-11-09 and is placed in the public domain.</p>
-<section id="load-the-tidyverse-and-epitools-library" class="level2">
-<h2 class="anchored" data-anchor-id="load-the-tidyverse-and-epitools-library">Load the tidyverse and epitools library</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epitools)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="comments-on-the-code" class="level4">
-<h4 class="anchored" data-anchor-id="comments-on-the-code">Comments on the code</h4>
-<p>For most of your programs, you should load the tidyverse library. The <a href="https://CRAN.R-project.org/package=epitools">epitools</a> library helps with calculations involving the odds ratio and relative risk.</p>
+<section id="file-details" class="level2">
+<h2 class="anchored" data-anchor-id="file-details">File details</h2>
+<p>This program moves files from the src folder to results folder in each of the modules. It was written by Steve Simon on 2025-01-08 and is placed in the public domain.</p>
 </section>
+<section id="reminder-on-how-to-print-pdf-files-with-speaker-notes" class="level2">
+<h2 class="anchored" data-anchor-id="reminder-on-how-to-print-pdf-files-with-speaker-notes">Reminder on how to print pdf files with speaker notes</h2>
+<p>To print speaker notes, add</p>
+<ul>
+<li>?print-pdf&amp;showNotes=separate-page</li>
+</ul>
+<p>to the end of the URL. Then open the print dialog box (ctrl-P) and choose</p>
+<ul>
+<li>Save as PDF</li>
+</ul>
+<p>for the printer. Other options, like Microsoft Print to PDF, do not seem to work.</p>
 </section>
-<section id="read-the-data-and-view-a-brief-summary" class="level2">
-<h2 class="anchored" data-anchor-id="read-the-data-and-view-a-brief-summary">Read the data and view a brief summary</h2>
+<section id="identify-html-files" class="level2">
+<h2 class="anchored" data-anchor-id="identify-html-files">Identify html files</h2>
+</section>
+<section id="move-html-files" class="level2">
+<h2 class="anchored" data-anchor-id="move-html-files">Move html files</h2>
+</section>
+<section id="loop-across-folders" class="level2">
+<h2 class="anchored" data-anchor-id="loop-across-folders">Loop across folders</h2>
+</section>
+<section id="biostats-1" class="level2">
+<h2 class="anchored" data-anchor-id="biostats-1">Biostats-1</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ti <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">&quot;../data/titanic.txt&quot;</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names=</span><span class="cn">TRUE</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types=</span><span class="st">&quot;ccncn&quot;</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">na=</span><span class="st">&quot;NA&quot;</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ti) <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">names</span>(ti))</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(ti)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 1,313
-Columns: 5
-$ name     &lt;chr&gt; &quot;Allen, Miss Elisabeth Walton&quot;, &quot;Allison, Miss Helen Loraine&quot;…
-$ pclass   &lt;chr&gt; &quot;1st&quot;, &quot;1st&quot;, &quot;1st&quot;, &quot;1st&quot;, &quot;1st&quot;, &quot;1st&quot;, &quot;1st&quot;, &quot;1st&quot;, &quot;1st&quot;…
-$ age      &lt;dbl&gt; 29.00, 2.00, 30.00, 25.00, 0.92, 47.00, 63.00, 39.00, 58.00, …
-$ sex      &lt;chr&gt; &quot;female&quot;, &quot;female&quot;, &quot;male&quot;, &quot;female&quot;, &quot;male&quot;, &quot;male&quot;, &quot;female…
-$ survived &lt;dbl&gt; 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1…</code></pre>
+<pre><code>Searching in module biostats-1/01/src
+Searching in module biostats-1/02/src
+Searching in module biostats-1/03/src
+Searching in module biostats-1/04/src
+Searching in module biostats-1/05/src
+Searching in module biostats-1/06/src
+Searching in module biostats-1/07/src
+Searching in module biostats-1/08/src
+Searching in module biostats-1/09/src
+Searching in module biostats-1/10/src
+Searching in module biostats-1/11/src
+Searching in module biostats-1/12/src
+Searching in module biostats-1/13/src
+---biostats-1/13/src/simon-5501-13-slides.html
+---biostats-1/13/src/simon-5501-13-titanic.html
+Searching in module biostats-1/14/src
+Searching in module biostats-1/15/src</code></pre>
 </div>
 </div>
-<section id="comments-on-the-code-1" class="level4">
-<h4 class="anchored" data-anchor-id="comments-on-the-code-1">Comments on the code</h4>
-<p>Use read_tsv from the <a href="https://readr.tidyverse.org/">readr package</a> to read this file. Use col_names=TRUE because the column names are included as the first row of the file. The col_types=“ccncn” specifies the first second and fourth columns as strings and the third and fifth as numeric. There are missing values in this dataset, designated by the letters “NA”.</p>
 </section>
-</section>
-<section id="part-1" class="level1">
-<h1>— Part 1</h1>
-<section id="replace-numeric-codes-for-survived" class="level2">
-<h2 class="anchored" data-anchor-id="replace-numeric-codes-for-survived">Replace numeric codes for survived</h2>
+<section id="biostats-2" class="level2">
+<h2 class="anchored" data-anchor-id="biostats-2">Biostats-2</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ti<span class="sc">$</span>survived <span class="ot">&lt;-</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">factor</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        ti<span class="sc">$</span>survived,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">level=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">0</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="comments-on-the-code-2" class="level4">
-<h4 class="anchored" data-anchor-id="comments-on-the-code-2">Comments on the code</h4>
-<p>The <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/factor.html">factor function</a> places the levels of a categorical variable in a specific order and (optionally) attaches labels to each level. In this code, the number codes are reordered so that 1 appears first followed by 0. The labels “yes” and “no” are attached to these two codes.</p>
-</section>
-</section>
-<section id="get-counts-of-sex-by-survival" class="level2">
-<h2 class="anchored" data-anchor-id="get-counts-of-sex-by-survival">Get counts of sex by survival</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>table1 <span class="ot">&lt;-</span><span class="fu">xtabs</span>(<span class="sc">~</span>sex<span class="sc">+</span>survived, <span class="at">data=</span>ti)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>table1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        survived
-sex      yes  no
-  female 308 154
-  male   142 709</code></pre>
+<pre><code>Searching in module biostats-2/01/src
+Searching in module biostats-2/02/src
+Searching in module biostats-2/03/src
+Searching in module biostats-2/04/src
+Searching in module biostats-2/05/src
+Searching in module biostats-2/06/src
+Searching in module biostats-2/07/src
+Searching in module biostats-2/08/src
+Searching in module biostats-2/09/src
+Searching in module biostats-2/10/src
+Searching in module biostats-2/11/src
+Searching in module biostats-2/12/src
+Searching in module biostats-2/13/src
+Searching in module biostats-2/14/src</code></pre>
 </div>
 </div>
-<section id="comments-on-the-code-3" class="level4">
-<h4 class="anchored" data-anchor-id="comments-on-the-code-3">Comments on the code</h4>
-<p>The <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/table.html">table function</a> or the <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/xtabs.html">xtabs function</a> creates a matrix with the number of observations in each combination of sex and survived. The <a href="https://dplyr.tidyverse.org/reference/count.html">count function</a> provides an alternative where these values are placed in a single column.</p>
 </section>
-<section id="interpretation-of-the-output" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output">Interpretation of the output</h4>
-<p>There are 154 female passengers who died and 308 who survived. There are 709 male passengers who died and 142 who survived.</p>
-</section>
-</section>
-<section id="get-proportions-for-diedsurvived-by-sex" class="level2">
-<h2 class="anchored" data-anchor-id="get-proportions-for-diedsurvived-by-sex">Get proportions for died/survived by sex</h2>
+<section id="clinical-research-methodology" class="level2">
+<h2 class="anchored" data-anchor-id="clinical-research-methodology">clinical-research-methodology</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>table1 <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">proportions</span>(<span class="st">&quot;sex&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        survived
-sex            yes        no
-  female 0.6666667 0.3333333
-  male   0.1668625 0.8331375</code></pre>
+<pre><code>Searching in module clinical-research-methodology/01/src
+Searching in module clinical-research-methodology/02/src
+Searching in module clinical-research-methodology/03/src
+Searching in module clinical-research-methodology/04/src
+Searching in module clinical-research-methodology/05/src
+Searching in module clinical-research-methodology/06/src
+Searching in module clinical-research-methodology/07/src
+Searching in module clinical-research-methodology/08/src
+Searching in module clinical-research-methodology/09/src
+Searching in module clinical-research-methodology/10/src
+Searching in module clinical-research-methodology/11/src
+Searching in module clinical-research-methodology/12/src
+Searching in module clinical-research-methodology/13/src
+Searching in module clinical-research-methodology/14/src</code></pre>
 </div>
 </div>
-<section id="comments-on-the-code-4" class="level4">
-<h4 class="anchored" data-anchor-id="comments-on-the-code-4">Comments on the code</h4>
-<p>The <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/proportions.html">proportions function</a> calculate proportions for a matrix, either by row (margin=1), by column (margin=2) or across all cells (margin=NULL). This code shows an alternative where you specify which variable to summarize across. The line proportions(“sex”) tells R to compute totals for each level of sex and divide by those totals. In this case, since sex represents the rows of table1, R produces row percentages. This syntax is easier to remember than margin=1 and margin=2.</p>
 </section>
-<section id="interpretation-of-the-output-1" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output-1">Interpretation of the output</h4>
-<p>The proportion of women who died is 33%. The proportion of men who died is much higher at 83%.</p>
-</section>
-</section>
-<section id="bar-chart" class="level2">
-<h2 class="anchored" data-anchor-id="bar-chart">Bar chart</h2>
+<section id="introduction-to-r" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-r">introduction-to-r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ti <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">y =</span> sex, <span class="at">fill =</span> survived) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">&quot;Sex&quot;</span>,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">&quot;Proportion&quot;</span>,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption=</span><span class="st">&quot;Steve Simon, 2024-11-11, CC0&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img role="img" src="data:image/png;base64,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" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<section id="comments-on-the-code-5" class="level4">
-<h4 class="anchored" data-anchor-id="comments-on-the-code-5">Comments on the code</h4>
-<p>The <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a> function creates a bar chart. Setting one of the variables to y in the aes function will produce a horizontal bar chart. By default, geom_bar presents the counts for the cross-classification of “fill” and “y”. The <a href="https://ggplot2.tidyverse.org/reference/position_stack.html">position=“fill”</a> argument stacks these counts and standardizes them. This is effectively computing the conditional probability of the “fill” variable given the “y” variable.</p>
-</section>
-<section id="interpretation-of-the-output-2" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output-2">Interpretation of the output</h4>
-<p>I am not a big fan of bar charts, but they are quite popular. This bar chart shows a large disparity in the proportion who survived in each sex (the upper portion of the bar in peach). Equivalently, you can say that there is a large disparity in the proportion who died in each sex (the lower portion of the bar in green-blue).</p>
-</section>
-</section>
-<section id="hypothesis-test-for-two-proportions" class="level2">
-<h2 class="anchored" data-anchor-id="hypothesis-test-for-two-proportions">Hypothesis test for two proportions</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(table1, <span class="at">correct=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-    2-sample test for equality of proportions without continuity correction
-
-data:  table1
-X-squared = 332.06, df = 1, p-value &lt; 2.2e-16
-alternative hypothesis: two.sided
-95 percent confidence interval:
- 0.4500519 0.5495564
-sample estimates:
-   prop 1    prop 2 
-0.6666667 0.1668625 </code></pre>
+<pre><code>Searching in module introduction-to-r/01/src
+Searching in module introduction-to-r/02/src
+Searching in module introduction-to-r/03/src
+Searching in module introduction-to-r/04/src
+Searching in module introduction-to-r/05/src
+Searching in module introduction-to-r/06/src
+Searching in module introduction-to-r/07/src
+Searching in module introduction-to-r/08/src
+Searching in module introduction-to-r/09/src</code></pre>
 </div>
 </div>
-<section id="comments-on-the-code-6" class="level4">
-<h4 class="anchored" data-anchor-id="comments-on-the-code-6">Comments on the code</h4>
-<p>The <a href="https://search.r-project.org/R/refmans/stats/html/prop.test.html">prop.test function</a> does not work on raw data. You need to get summary counts, either from the table function or the xtabs function. The option correct=FALSE informs R to not use the <a href="https://www.statskingdom.com/121proportion_normal2.html">Yates continuity correction</a>.</p>
-</section>
-<section id="interpretation-of-the-output." class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output.">Interpretation of the output.</h4>
-<p>The Chi-squared statistic is much larger than the degrees of freedom and the p-value is small. So you would reject the null hypothesis and conclude that there is a statistically significant difference in the mortality rates between men and women on the Titanic. The 95% confidence interval for the difference in proportions is -0.55 to -0.45. This interval excludes the value of zero and indicates that the mortality rate is at least 45% lower and possibly as much as 55% lower for men.</p>
-</section>
-</section>
-</section>
-<section id="part-2" class="level1">
-<h1>— Part 2</h1>
-<section id="power-calculation" class="level2">
-<h2 class="anchored" data-anchor-id="power-calculation">Power calculation</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">power.prop.test</span>(<span class="at">p1=</span><span class="fl">0.17</span>, <span class="at">p2=</span><span class="fl">0.67</span>, <span class="at">power=</span><span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-     Two-sample comparison of proportions power calculation 
-
-              n = 18.30686
-             p1 = 0.17
-             p2 = 0.67
-      sig.level = 0.05
-          power = 0.9
-    alternative = two.sided
-
-NOTE: n is number in *each* group</code></pre>
-</div>
-</div>
-<section id="comments-on-the-code-7" class="level4">
-<h4 class="anchored" data-anchor-id="comments-on-the-code-7">Comments on the code</h4>
-<p>The <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/power.prop.test.html">power.prop.test</a> function will compute a sample size if you specify the two group probabilities, the significance level, and the power. It will also do other calculations, such as the minimum difference in probabilities that you could detect for a specific sample size and a specific power.</p>
-</section>
-<section id="interpretation-of-the-output-3" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output-3">Interpretation of the output</h4>
-<p>Clearly, a sample size of 1,313 passengers provided more than enough power and precision, especially considering that the difference in survival rates was so large. Out of curiosity, what sample size would still be adequate for testing a shift of 50% from a survival rate of 17% to a survival rate of 67%? If you wanted power to be at least 90%, then a sample size of only 19 passengers of each sex would be needed.</p>
-</section>
-</section>
-</section>
-<section id="part-3" class="level1">
-<h1>— Part 3</h1>
-<section id="chi-squared-test" class="level2">
-<h2 class="anchored" data-anchor-id="chi-squared-test">Chi-squared test</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(table1, <span class="at">correct=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson&#39;s Chi-squared test
-
-data:  table1
-X-squared = 332.06, df = 1, p-value &lt; 2.2e-16</code></pre>
-</div>
-</div>
-<section id="comments-on-the-code-8" class="level4">
-<h4 class="anchored" data-anchor-id="comments-on-the-code-8">Comments on the code</h4>
-<p>The <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/chisq.test.html">chisq.test function</a> calculates a chi-square test of independence. It takes input in a variety of forms. In this example, it uses a crosstabulation computed by the xtabs command as input.</p>
-</section>
-<section id="interpretation-of-the-output-4" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output-4">Interpretation of the output</h4>
-<p>The chi-squared statistic is much larger than the degrees of freedom and the p-value is small. You should reject the null hypothesis and conclude that sex and survival are related (not independent)</p>
-</section>
-</section>
-<section id="fishers-exact-test" class="level2">
-<h2 class="anchored" data-anchor-id="fishers-exact-test">Fisher’s Exact test</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(table1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Fisher&#39;s Exact Test for Count Data
-
-data:  table1
-p-value &lt; 2.2e-16
-alternative hypothesis: true odds ratio is not equal to 1
-95 percent confidence interval:
-  7.601263 13.122462
-sample estimates:
-odds ratio 
-  9.965185 </code></pre>
-</div>
-</div>
-<section id="comments-on-the-code-9" class="level4">
-<h4 class="anchored" data-anchor-id="comments-on-the-code-9">Comments on the code</h4>
-<p>The <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/fisher.test.html">fisher.test function</a> calculates the Fisher’s exact test, which is helpful for small sample sizes. The 1,313 passengers on the Titanic do not constitute a small sample size by any means. This test is just shown as an example of how to calculate this test.</p>
-</section>
-<section id="interpretation-of-the-output-5" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output-5">Interpretation of the output</h4>
-<p>The p-value is small. You should reject the null hypothesis and conclude that sex and survival are related (not independent). The estimated odds ratio is 9.97. The confidence interval for the odds ratio excludes the value of 1, leading to the same conclusion. In fact, even after allowing for sampling error, the odds of survival are at least 7.6 times greater for women than for men.</p>
-</section>
-</section>
-</section>
-<section id="part-4" class="level1">
-<h1>— Part 4</h1>
-<section id="odds-ratio-calculation" class="level2">
-<h2 class="anchored" data-anchor-id="odds-ratio-calculation">Odds ratio calculation</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oddsratio</span>(table1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$data
-        survived
-sex      yes  no Total
-  female 308 154   462
-  male   142 709   851
-  Total  450 863  1313
-
-$measure
-        odds ratio with 95% C.I.
-sex      estimate    lower    upper
-  female 1.000000       NA       NA
-  male   9.956188 7.662525 13.00928
-
-$p.value
-        two-sided
-sex      midp.exact fisher.exact   chi.square
-  female         NA           NA           NA
-  male            0 4.826448e-74 3.425855e-74
-
-$correction
-[1] FALSE
-
-attr(,&quot;method&quot;)
-[1] &quot;median-unbiased estimate &amp; mid-p exact CI&quot;</code></pre>
-</div>
-</div>
-<section id="comments-on-the-code-10" class="level4">
-<h4 class="anchored" data-anchor-id="comments-on-the-code-10">Comments on the code</h4>
-<p>The oddsratio function and riskratio function (see below) are part of the epitools library epi1. It produces an odds ratio and confidence interval and p-values associated with the Fisher’s Exact test and the Chi-squared test of independence.</p>
-</section>
-<section id="interpretation-of-the-output-6" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output-6">Interpretation of the output</h4>
-<p>We are 95% confident that the odds ratio of survival for women versus men is at least 7.7 and possibly as large as 13, after accounting for sampling error. This interval excludes the value of 1, so you can conclude that the risk of death is much higher for men than for women. Equivalently you could conclude that the odds of survival are much higher for women than for men.</p>
-</section>
-</section>
-<section id="risk-ratio-calculation-1" class="level2">
-<h2 class="anchored" data-anchor-id="risk-ratio-calculation-1">Risk ratio calculation, 1</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>table1 <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">proportions</span>(<span class="st">&quot;sex&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>        survived
-sex            yes        no
-  female 0.6666667 0.3333333
-  male   0.1668625 0.8331375</code></pre>
-</div>
-</div>
-<section id="interpretation-of-the-output-7" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output-7">Interpretation of the output</h4>
-<p>Before calculating the risk ratio, let’s look at the row percentages one more time. The probability of survival is around 2/3 for women and about 1/6 for men. This means that the risk ratio from a survival perspective is around 4 (2/3 divided by 1/6). The probability of death is 1/3 for females and about 5/6 for males. The risk ratio from a mortality perspective is 0.4 (1/3 divided by 5/6)</p>
-</section>
-</section>
-<section id="risk-ratio-calculation-2" class="level2">
-<h2 class="anchored" data-anchor-id="risk-ratio-calculation-2">Risk ratio calculation, 2</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">riskratio</span>(table1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$data
-        survived
-sex      yes  no Total
-  female 308 154   462
-  male   142 709   851
-  Total  450 863  1313
-
-$measure
-        risk ratio with 95% C.I.
-sex      estimate    lower    upper
-  female 1.000000       NA       NA
-  male   2.499412 2.189428 2.853285
-
-$p.value
-        two-sided
-sex      midp.exact fisher.exact   chi.square
-  female         NA           NA           NA
-  male            0 4.826448e-74 3.425855e-74
-
-$correction
-[1] FALSE
-
-attr(,&quot;method&quot;)
-[1] &quot;Unconditional MLE &amp; normal approximation (Wald) CI&quot;</code></pre>
-</div>
-</div>
-<section id="interpretation-of-the-output-8" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output-8">Interpretation of the output</h4>
-<p>The risk ratio is comparing the probability of death between men and women. Men have 2.5 times higher probability of death compared to women. The confidence interval excludes the value of 1, indicating a statistically significant increase.</p>
-</section>
-</section>
-<section id="risk-ratio-calculation-3" class="level2">
-<h2 class="anchored" data-anchor-id="risk-ratio-calculation-3">Risk ratio calculation, 3</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">riskratio</span>(table1, <span class="at">rev=</span><span class="st">&quot;columns&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$data
-        survived
-sex       no yes Total
-  female 154 308   462
-  male   709 142   851
-  Total  863 450  1313
-
-$measure
-        risk ratio with 95% C.I.
-sex       estimate     lower     upper
-  female 1.0000000        NA        NA
-  male   0.2502938 0.2125647 0.2947195
-
-$p.value
-        two-sided
-sex      midp.exact fisher.exact   chi.square
-  female         NA           NA           NA
-  male            0 4.826448e-74 3.425855e-74
-
-$correction
-[1] FALSE
-
-attr(,&quot;method&quot;)
-[1] &quot;Unconditional MLE &amp; normal approximation (Wald) CI&quot;</code></pre>
-</div>
-</div>
-<section id="interpretation-of-the-output-9" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-of-the-output-9">Interpretation of the output</h4>
-<p>The risk ratio is comparing the probability of survival between men and women. Men has one-fourth the probability of survival compared to women. The confidence interval excludes the value of 1, indicating that men have a statistically significantly lower probability of survival compared to women.</p>
-</section>
-</section>
-<section id="save-data-for-later-use" class="level2">
-<h2 class="anchored" data-anchor-id="save-data-for-later-use">Save data for later use</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(ti, <span class="at">file=</span><span class="st">&quot;../data/titanic.RData&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="comments-on-the-code-11" class="level4">
-<h4 class="anchored" data-anchor-id="comments-on-the-code-11">Comments on the code</h4>
-<p>It is usually a good idea to <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html">save</a> your data in an RData file to make it easier to retrieve this data later (with the <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html">load function</a>).</p>
-</section>
-</section>
 </section>
 
 </main>

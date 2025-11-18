@@ -18,7 +18,7 @@ params:
 editor: source
 ---
 
-## Topics to be covered
+## Topics to be covered, 1
 
 ```{r}
 # A small section of R code to kick start the params.
@@ -30,6 +30,10 @@ editor: source
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
+
+## Topics to be covered, 2
+
+-   What you will learn
     -   `r params$topic_06`
     -   `r params$topic_07`
     -   `r params$topic_08`
@@ -119,13 +123,16 @@ editor: source
 
 {{< include _b1-13-10.qmd >}}
 
-## Summary
+## Summary, 1
 -   What you have learned
     -   `r params$topic_01`
     -   `r params$topic_02`
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
+
+## Summary, 2
+-   What you have learned
     -   `r params$topic_06`
     -   `r params$topic_07`
     -   `r params$topic_08`
