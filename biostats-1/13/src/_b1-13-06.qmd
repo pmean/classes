@@ -1,5 +1,5 @@
 ---
-title: "13-06, R code"
+title: "13-06, Chi-squared test of independence"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,148 @@ format:
 editor: source
 ---
 
-## R code for chi-squared test
+```{r}
+#| label: 13-06-setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+```
+
+## Crosstabulation with row and column totals
+
+-   Counts
+
+```{r}
+#| label: 13-06-crosstabulaton-1
+
+load("../data/titanic.RData")
+table1 <- xtabs(~sex+survived, data=ti)
+table2 <- addmargins(table1)
+table2
+```
+
+-   Cell percents
+
+```{r}
+#| label: 13-06-crosstabulaton-2
+
+table3 <- table2/1313
+table3
+
+```
+
+## Conditional probability
+
+-   $P[A|B] = \frac{P[A \cap B]}{P[B]}$
+    -   Read $P[A|B]$ as probability of A given B
+    -   Read $P[A \cap B]$ as probability of A and B
+    -   Note: $P[A|B] \ne P[B|A]$
+
+## What does independence mean?
+
+-   $P[A|B] = P[A]$
+-   Equivalent definition of independence
+    -   $P[A \cap B] = P[A] \times P[B]$
+
+## Positive association
+
+-   $P[A|B] > P[A]$
+-   $P[A \cap B] > P[A] \times P[B]$
+    -   Change direction for negative association
+
+## Expected counts
+
+```{}
+             Good      Bad
+            Outcome  Outcome     Total
+Placebo        ?        ?       (a+b)/n
+Treated        ?        ?       (c+d)/n
+Total       (a+c)/n  (b+d)/n       1
+
+where n=a+b+c+d
+
+```
+
+-   $E_{11}=n\times\frac{a+b}{n}\times\frac{a+c}{n}$
+    -   $E_{12},\ E_{21},\ E_{22}$ are defined similarly
+
+## Expected counts for Titanic data
+
+```{}
+        survived
+sex            yes        no       Sum
+  female                     0.3518660
+  male                       0.6481340
+  Sum    0.3427266 0.6572734 1.0000000
+```
+
+-   $E_{11}$ = 1313 $\times$ 0.3518660 $\times$ 0.3427266 = `r 1313*0.3518660*0.3427266`
+-   $E_{12}$ = `r 1313*0.3518660*0.6572734`  
+-   $E_{21}$ = `r 1313*0.6481340*0.3427266`
+-   $E_{22}$ = `r 1313*0.6481340*0.6572734`  
+
+##  Expected counts for Titanic data
+
+-   Observed counts
+
+```{r}
+#| label: 13-06-observed
+
+m1 <- chisq.test(table1, correct=FALSE)
+m1$observed
+```
+
+-   Expected counts
+
+```{r}
+#| label: 13-06-expected
+
+m1$expected
+```
+
+## Test statistic
+
+-   $H_0:\ Independence$
+-   $H_1:\ Dependence$
+    -   $T=\Sigma_i \Sigma_j \frac{(O_{ij}-E_{ij})^2}{E_{ij}}$
+    -   p-value = $P[T > \chi^2(df=1)]$
+        -   Accept $H_0$ if T < $\chi^2(1-\alpha, df=1)$
+        -   Accept $H_0$ if p-value > $\alpha$
+    
+## Example with Titanic data
+
+-   $H_0:$ Mortality is independent of sex
+-   $H_1:$ Mortality is related to sex
+    
+```{r}
+#| label: 13-06-chi-squared
+#| echo: true
+
+m1 <- chisq.test(table1, correct=FALSE)
+m1
+```
 
 :::notes
-The
+Since the test statistic is a lot larger than the degrees of freedom and since the p-value is small, reject the null hypothesis and conclude that there is a relationship between sex and survival.
 :::
-  
+
+## Chi-squared test is an approximation
+
+-   Reasonable if all expected counts > 5
+-   Use Fisher's Exact test otherwise
+
+## Fisher's exact test for the Titanic data
+
+```{r}
+#| label: 13-06-fisher
+#| echo: true
+
+m2 <- fisher.test(table1)
+m2
+```
+
+:::notes
+Although the expected counts are much larger than 5, here is the code for running Fisher's Exact test.
+:::
+

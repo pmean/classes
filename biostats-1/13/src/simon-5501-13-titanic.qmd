@@ -5,35 +5,28 @@ format:
     embed-resources: true
 ---
 
-This program reads data on survival of passengers on the Titanic. Find more
-information in the [data dictionary][web00].
+This program reads data on survival of passengers on the Titanic. Find more information in the [data dictionary][ref-simon-nodate].
 
-[web00]: https://github.com/pmean/data/blob/main/files/titanic.yaml
+[ref-simon-nodate]: https://github.com/pmean/data/blob/main/files/titanic.yaml
 
-This code was written by Steve Simon on 2024-11-09 and is placed in the public
-domain.
+This code was written by Steve Simon on 2024-11-09 and is placed in the public domain.
 
-## Load the tidyverse library
+## Load the tidyverse  and epitools library
 
 ```{r}
 #| label: setup
 #| message: false
 #| warning: false
-library(broom)
+
 library(epitools)
 library(tidyverse)
 ```
 
 #### Comments on the code
 
-For most of your programs, you should load the [tidyverse library][web01]. The messages and warnings are suppressed.
+For most of your programs, you should load the tidyverse library. The [epitools][ref-aragon-2020] library helps with calculations involving the odds ratio and relative risk.
 
-[web01]: https://www.tidyverse.org/
-
-In previous programs, I put a label for each chunk inside the curly braces ({}).
-It is recommended instead to put the label on a separate line inside the program
-chunk. It is a bit more work to provide a unique label for each chunk, but it
-helps quite a bit to isolate where to look when your code produces an error.
+[ref-aragon-2020]: https://CRAN.R-project.org/package=epitools 
 
 ## Read the data and view a brief summary
 
@@ -50,13 +43,11 @@ glimpse(ti)
 
 #### Comments on the code
 
-Use read_tsv from the [readr package][web02] to  read this file. Use 
-col_names=TRUE because the column names are included as the first row of the 
-file. The col_types="ccncn" specifies the first second and fourth columns as
-strings and the third and fifth as numeric. There are missing values in this
-dataset, designated by the letters "NA".
+Use read_tsv from the [readr package][web02] to  read this file. Use col_names=TRUE because the column names are included as the first row of the file. The col_types="ccncn" specifies the first second and fourth columns as strings and the third and fifth as numeric. There are missing values in this dataset, designated by the letters "NA".
 
 [web02]: https://readr.tidyverse.org/
+
+# --- Part 1
 
 ## Replace numeric codes for survived
 
@@ -71,8 +62,7 @@ ti$survived <-
 
 #### Comments on the code
 
-The [factor function][web03] places the levels of a categorical variable in a specific order and (optionally) attaches labels to each level. In this code, the
-number codes are reordered so that 1 appears first followed by 0. The labels "yes" and "no" are attached to these two codes.
+The [factor function][web03] places the levels of a categorical variable in a specific order and (optionally) attaches labels to each level. In this code, the number codes are reordered so that 1 appears first followed by 0. The labels "yes" and "no" are attached to these two codes.
 
 [web03]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/factor.html
 
@@ -118,16 +108,25 @@ The proportion of women who died is 33%. The proportion of men who died is much 
 
 ```{r}
 #| label: bar
+#| fig-height: 1.5
+#| fig-width: 8
+
 ti |>
   ggplot() +
-    aes(x = sex, fill = survived) +
-    geom_bar(position = "fill") +
-	  xlab("Sex") +
-	  ylab("Proportion") +
-	  ggtitle("Graph drawn by Steve Simon on 2024-11-11")
+  aes(y = sex, fill = survived) +
+  geom_bar(position = "fill") +
+  labs(
+    x="Sex",
+    y="Proportion",
+    caption="Steve Simon, 2024-11-11, CC0")
 ```
 
 #### Comments on the code
+
+The [geom_bar][bar] function creates a bar chart. Setting one of the variables to y in the aes function will produce a horizontal bar chart. By default, geom_bar presents the counts for the cross-classification of "fill" and "y". The [position="fill"][pos] argument stacks these counts and standardizes them. This is effectively computing the conditional probability of the "fill" variable given the "y" variable.
+
+[bar]: https://ggplot2.tidyverse.org/reference/geom_bar.html
+[pos]: https://ggplot2.tidyverse.org/reference/position_stack.html
 
 #### Interpretation of the output
 
@@ -137,6 +136,7 @@ I am not a big fan of bar charts, but they are quite popular. This bar chart sho
 
 ```{r}
 #| label: equality-of-proportions
+
 prop.test(table1, correct=FALSE)
 ```
 
@@ -149,13 +149,10 @@ The [prop.test function][pro2] does not work on raw data. You need to get summar
 
 #### Interpretation of the output. 
 
-The Chi-squared statistic is much larger than the degrees of freedom and the
-p-value is small. So you would reject the null hypothesis and conclude that 
-there is a statistically significant difference in the mortality rates between
-men and women on the Titanic. The 95% confidence interval for the difference
-in proportions is -0.55 to -0.45. This interval excludes the value of zero and
-indicates that the mortality rate is at least 45% lower and possibly as much as
+The Chi-squared statistic is much larger than the degrees of freedom and the p-value is small. So you would reject the null hypothesis and conclude that there is a statistically significant difference in the mortality rates between men and women on the Titanic. The 95% confidence interval for the difference in proportions is -0.55 to -0.45. This interval excludes the value of zero and indicates that the mortality rate is at least 45% lower and possibly as much as
 55% lower for men.
+
+# --- Part 2
 
 ## Power calculation
 
@@ -166,21 +163,15 @@ power.prop.test(p1=0.17, p2=0.67, power=0.9)
 
 #### Comments on the code
 
-The [power.prop.test][pow1] function will compute a sample size if you specify 
-the two group probabilities, the significance level, and the power. It will also
-do other calculations, such as the minimum difference in probabilities that you
-could detect for a specific sample size and a specific power.
+The [power.prop.test][pow1] function will compute a sample size if you specify the two group probabilities, the significance level, and the power. It will also do other calculations, such as the minimum difference in probabilities that you could detect for a specific sample size and a specific power.
 
 [pow1]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/power.prop.test.html
 
 #### Interpretation of the output
 
-Clearly, a sample size of 1,313 passengers provided more than enough power and
-precision, especially considering that the difference in survival rates was so
-large. Out of curiosity, what sample size would still be adequate for testing a
-shift of 50% from a survival rate of 17% to a survival rate of 67%? If you 
-wanted power to be at least 90%, then a sample size of only 19 passengers of 
-each sex would be needed.
+Clearly, a sample size of 1,313 passengers provided more than enough power and precision, especially considering that the difference in survival rates was so large. Out of curiosity, what sample size would still be adequate for testing a shift of 50% from a survival rate of 17% to a survival rate of 67%? If you wanted power to be at least 90%, then a sample size of only 19 passengers of each sex would be needed.
+
+# --- Part 3
 
 ## Chi-squared test
 
@@ -191,20 +182,13 @@ chisq.test(table1, correct=FALSE)
 
 #### Comments on the code
 
-The [chisq.test function][chi1] calculates a chi-square test of independence. It
-takes input in a variety of forms. In this example, it uses a crosstabulation
-computed by the xtabs command as input.
-
-This function also will run a goodness-of-fit test, which is not discussed in 
-this lecture.
+The [chisq.test function][chi1] calculates a chi-square test of independence. It takes input in a variety of forms. In this example, it uses a crosstabulation computed by the xtabs command as input.
 
 [chi1]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/chisq.test.html
 
 #### Interpretation of the output
 
-The chi-squared statistic is much larger than the degrees of freedom and the
-p-value is small. You should reject the null hypothesis and conclude that sex
-and survival are related (not independent)
+The chi-squared statistic is much larger than the degrees of freedom and the p-value is small. You should reject the null hypothesis and conclude that sex and survival are related (not independent)
 
 ## Fisher's Exact test
 
@@ -215,20 +199,15 @@ fisher.test(table1)
 
 #### Comments on the code
 
-The [fisher.test function][fis1] calculates the Fisher's exact test, which is
-helpful for small sample sizes. The 1,313 passengers on the Titanic do not
-constitute a small sample size by any means. This test is just shown as an 
-example of how to calculate this test. 
+The [fisher.test function][fis1] calculates the Fisher's exact test, which is helpful for small sample sizes. The 1,313 passengers on the Titanic do not constitute a small sample size by any means. This test is just shown as an example of how to calculate this test. 
 
 [fis1]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/fisher.test.html
 
 #### Interpretation of the output
 
-The p-value is small. You should reject the null hypothesis and conclude that 
-sex and survival are related (not independent). The estimated odds ratio is 
-9.97. The confidence interval for the odds ratio excludes the value of 1 
-leading to the same conclusion. In fact, even after allowing for sampling error
-that odds of survival are at least 7.6 times greater for women than for me.
+The p-value is small. You should reject the null hypothesis and conclude that sex and survival are related (not independent). The estimated odds ratio is 9.97. The confidence interval for the odds ratio excludes the value of 1, leading to the same conclusion. In fact, even after allowing for sampling error, the odds of survival are at least 7.6 times greater for women than for men.
+
+# --- Part 4
 
 ## Odds ratio calculation
 
@@ -239,20 +218,11 @@ oddsratio(table1)
 
 #### Comments on the code
 
-The oddsratio function and riskratio function (see below) are part of the 
-[epitools library][epi1]. It produces an odds ratio and confidence interval 
-and p-values associated with the Fisher's Exact test and the Chi-squared test of
-independence.
-
-[epi1]: https://cran.r-project.org/web/packages/epitools/epitools.pdf
+The oddsratio function and riskratio function (see below) are part of the epitools library epi1. It produces an odds ratio and confidence interval and p-values associated with the Fisher's Exact test and the Chi-squared test of independence.
 
 #### Interpretation of the output
 
-We are 95% confident that the odds ratio of survival for women versus men is at
-least 7.7 and possibly as large as 13, after accounting for sampling error. 
-This interval excludes the value of 1, so you can conclude that the risk of 
-death is much higher for men than for women. Equivalently you could conclude 
-that the odds of survival are much higher for women than for men.
+We are 95% confident that the odds ratio of survival for women versus men is at least 7.7 and possibly as large as 13, after accounting for sampling error.  This interval excludes the value of 1, so you can conclude that the risk of death is much higher for men than for women. Equivalently you could conclude that the odds of survival are much higher for women than for men.
 
 ## Risk ratio calculation, 1
 
@@ -264,8 +234,7 @@ table1 |>
 
 #### Interpretation of the output
 
-Before calculating the risk ratio, let's look at the row percentages one more 
-time. The probability of survival is around 2/3 for women and about 1/6 for men. This means that the risk ratio from a survival perspective is around 4 (2/3 divided by 1/6). The probability of death is 1/3 for females and about 5/6 for males. The risk ratio from a mortality perspective is 0.4 (1/3 divided by 5/6)
+Before calculating the risk ratio, let's look at the row percentages one more time. The probability of survival is around 2/3 for women and about 1/6 for men. This means that the risk ratio from a survival perspective is around 4 (2/3 divided by 1/6). The probability of death is 1/3 for females and about 5/6 for males. The risk ratio from a mortality perspective is 0.4 (1/3 divided by 5/6)
 
 ## Risk ratio calculation, 2
 
@@ -297,8 +266,7 @@ save(ti, file="../data/titanic.RData")
 
 #### Comments on the code
 
-It is usually a good idea to [save][sav1] your data in an RData file to make it
-easier to retrieve this data later (with the [load function][loa1]).
+It is usually a good idea to [save][save] your data in an RData file to make it easier to retrieve this data later (with the [load function][load]).
 
-[sav1]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html
-[loa1]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html
+[save]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html
+[load]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html

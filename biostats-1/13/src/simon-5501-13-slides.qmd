@@ -7,9 +7,14 @@ format:
 params:
   topic_01: "The two by two crosstabulaton"
   topic_02: "Test of equality of two proportions"
-  topic_03: "Sample size calculations"
-  topic_04: "R code"
-  topic_05: "Your homework"
+  topic_03: "R code for the test of equality of two proportions"
+  topic_04: "Sample size calculations"
+  topic_05: "R code for sample size calculations"
+  topic_06: "Chi-squared test of independence"
+  topic_07: "R code for the chi-squared test of independence"
+  topic_08: "Odds ratios and relative risks"
+  topic_09: "R code for odds ratios and relative risks"
+  topic_10: "Your homework"
 editor: source
 ---
 
@@ -25,6 +30,11 @@ editor: source
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
+    -   `r params$topic_06`
+    -   `r params$topic_07`
+    -   `r params$topic_08`
+    -   `r params$topic_09`
+    -   `r params$topic_10`
 
 {{< include _b1-13-01.qmd >}}
 
@@ -64,6 +74,51 @@ editor: source
 
 {{< include _b1-13-05.qmd >}}
 
+## Break #5
+
+-   What you have learned
+    -   `r params$topic_05`
+-   What's coming next
+    -   `r params$topic_06`
+
+{{< include _b1-13-06.qmd >}}
+
+## Break #6
+
+-   What you have learned
+    -   `r params$topic_06`
+-   What's coming next
+    -   `r params$topic_07`
+
+{{< include _b1-13-07.qmd >}}
+
+## Break #7
+
+-   What you have learned
+    -   `r params$topic_07`
+-   What's coming next
+    -   `r params$topic_08`
+
+{{< include _b1-13-08.qmd >}}
+
+## Break #8
+
+-   What you have learned
+    -   `r params$topic_08`
+-   What's coming next
+    -   `r params$topic_09`
+
+{{< include _b1-13-09.qmd >}}
+
+## Break #9
+
+-   What you have learned
+    -   `r params$topic_09`
+-   What's coming next
+    -   `r params$topic_10`
+
+{{< include _b1-13-10.qmd >}}
+
 ## Summary
 -   What you have learned
     -   `r params$topic_01`
@@ -71,6 +126,11 @@ editor: source
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
+    -   `r params$topic_06`
+    -   `r params$topic_07`
+    -   `r params$topic_08`
+    -   `r params$topic_09`
+    -   `r params$topic_10`
 
 <!---Put the title down here to override the include files.--->
 

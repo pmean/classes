@@ -12,10 +12,9 @@ editor: source
 #| output: asis
 #| message: false
 #| warning: false
+
+library(epitools)
 library(tidyverse)
-load("../../../general/chopper.RData")
-partition_yaml("titanic.yaml") |>
-	cat(sep="\n")
 ```
 
 ## The crosstabulation of two binary variables
@@ -113,7 +112,7 @@ table2[2:1, ]
 table2[ , 2:1]
 ```
 
--   Transposed, swab both
+-   Transposed, swap both
 
 ```{r}
 #| label: 13-01-crosstabulation-9
@@ -222,7 +221,7 @@ The orientation is also important. You want the percentages that are most intere
 Often in a cross tabulation, you will do some mental math. You might, for example, want to subtract survival probabilities.
 ::::
 
-## Always round, 1
+## Always round, 2
 
 ```{}
   0.67

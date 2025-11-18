@@ -1,5 +1,5 @@
 ---
-title: "13-04, Odds ratio and relative risk"
+title: "13-04, Sample size calculations"
 format: 
   revealjs:
     slide-number: true
@@ -7,10 +7,63 @@ format:
 editor: source
 ---
 
-```{r 13-04-display-qmd}
-#| output: asis
-partition_qmd("simon-5501-13-titanic.qmd") |>
-  cat(sep="\n")
+## What you need for a continuous outcome
+
+-   Research hypothesis
+-   Standard deviation of your outcome measure
+-   Minimum clinically important difference
+-   Other details
+    -   Type I error rate (usually 0.05)
+    -   Power (usually 0.90)
+
+:::notes
+In an earlier lecture, you saw that a sample size calculation needed three major elements, a research hypothesis, a standard deviation, and the minimum clinically important difference.
+
+That's not all, but the Type I error rate or alpha is usually fixed at 0.05. Power is usually fixed at 0.9. You might go a bit lower, but don't go much lower than 0.8 for power. It might be okay from your perspective, but power around 0.75 or less is considered a red flag by those who might examine your research (IRB members, granting agencies, journal peer reviewers).
+:::
+  
+## What you need for a categorical outcome
+
+-   Research hypothesis
+-   Expected proportion in the control group
+-   Minimum clinically important difference
+
+:::notes
+The elements that you need when you have a categorical outcome change a bit. Instead of a standard deviation, you need to specify the expected proportion of events in the control group.
+:::
+
+## Hypothetical scenario, 1
+
+-   Weight loss study
+    -   Control is recommended diet and exercise routine
+    -   Treatment adds experimental weight loss drug
+    -   Binary event, losing at least 5 pounds after 6 months
+-   Hypothesis proportion is higher in treatment group than control
+-   Proportion in control group is 10%
+-   Need to see at least 5% more events in treatment group
+
+## Hypothetical scenario, 2
+
+-   Set power to 90%
+-   Set Type I error rate (alpha) to 5%
+
+```{r}
+#| label: 13-04-power
+#| echo: true
+
+power.prop.test(
+	p1=0.10, 
+	p2=0.15, 
+	power=0.9,
+	sig.level=0.05)
 ```
 
+## Rule of 50 
 
+-   Want to detect a doubling or halving
+-   Need 25 to 50 events in each group
+-   Example
+    -   Control probability is 0.1
+    -   Want to see 20% in treatment group
+    -   25/0.1 = 250; 50/0.1 = 500
+    
