@@ -1059,8 +1059,8 @@ margin-right: 0; }
 
   <p class="date">2025-11-18</p>
 </section>
-<section id="topics-to-be-covered" class="slide level2">
-<h2>Topics to be covered</h2>
+<section id="topics-to-be-covered-1" class="slide level2">
+<h2>Topics to be covered, 1</h2>
 <ul>
 <li>What you will learn
 <ul>
@@ -1069,6 +1069,14 @@ margin-right: 0; }
 <li>R code for the test of equality of two proportions</li>
 <li>Sample size calculations</li>
 <li>R code for sample size calculations</li>
+</ul></li>
+</ul>
+</section>
+<section id="topics-to-be-covered-2" class="slide level2">
+<h2>Topics to be covered, 2</h2>
+<ul>
+<li>What you will learn
+<ul>
 <li>Chi-squared test of independence</li>
 <li>R code for the chi-squared test of independence</li>
 <li>Odds ratios and relative risks</li>
@@ -1787,9 +1795,6 @@ NOTE: n is number in *each* group</code></pre>
 <section id="r-code-for-the-sample-size-calculations" class="slide level2">
 <h2>R code for the sample size calculations</h2>
 <p>Please refer to the program simon-5501-13-titanic.qmd.</p>
-<ul>
-<li></li>
-</ul>
 </section>
 <section id="break-5" class="slide level2">
 <h2>Break #5</h2>
@@ -1837,7 +1842,7 @@ sex            yes        no       Sum
 <li><span class="math inline">\(P[A|B] = \frac{P[A \cap B]}{P[B]}\)</span>
 <ul>
 <li>Read <span class="math inline">\(P[A|B]\)</span> as probability of A given B</li>
-<li>Read <span class="math inline">\(P[A \cap B]}\)</span> and probability of A and B</li>
+<li>Read <span class="math inline">\(P[A \cap B]\)</span> as probability of A and B</li>
 <li>Note: <span class="math inline">\(P[A|B] \ne P[B|A]\)</span></li>
 </ul></li>
 </ul>
@@ -2316,16 +2321,53 @@ overflow: hidden!important;
 display:block!important;
 }</style></aside>
 </section>
-<section id="odds-for-titanic" class="slide level2">
-<h2>Odds for Titanic</h2>
+<section id="odd-ratio-for-titanic-data" class="slide level2">
+<h2>Odd ratio for Titanic data</h2>
 <pre><code>        survived
 sex       yes   no  odds
   female  308  154  154/308 = 0.5
-  male    142  709  709/142 = 4.993
+  male    142  709  709/142 = 4.993 (round to 5.0)
   
-Odds ratio = 4.993 / 0.5 = 9.986
+Odds ratio = 5.0 / 0.5 = 10
 
-Odds ratio = 308*709 / 154*142 = 9.986</code></pre>
+        survived
+sex       yes   no  odds
+  male    142  709  709/142 = 4.993 (round to 5.0)
+  female  308  154  154/308 = 0.5
+  
+Odds ratio = 0.5 / 5.0 = 0.1</code></pre>
+</section>
+<section id="relative-risk-for-titanic-data-1" class="slide level2">
+<h2>Relative risk for Titanic data, 1</h2>
+<pre><code>        survived
+sex       yes   no  total probability
+  female  308  154  462   154/462 = 0.3333
+  male    142  709  851   709/851 = 0.8331
+  
+Relative risk = 0.8331 / 0.3333 = 2.500
+
+        survived
+sex       yes   no  total probability
+  male    142  709  851   709/851 = 0.8331
+  female  308  154  462   154/462 = 0.3333
+  
+Relative risk = 0.3333 / 0.8331 = 0.4</code></pre>
+</section>
+<section id="relative-risk-for-titanic-data-2" class="slide level2">
+<h2>Relative risk for Titanic data, 2</h2>
+<pre><code>        survived
+sex       no   yes  total probability
+  female  154  308  462   308/462 = 0.6667
+  male    709  142  851   142/851 = 0.1669
+  
+Relative risk = 0.1669 / 0.6667 = 0.25
+
+        survived
+sex       no   yes  total probability
+  male    709  142  851   142/851 = 0.1669
+  female  154  308  462   308/462 = 0.6667
+  
+Relative risk = 0.6667 / 0.1669 = 4.0</code></pre>
 </section>
 <section id="break-8" class="slide level2">
 <h2>Break #8</h2>
@@ -2361,8 +2403,8 @@ Odds ratio = 308*709 / 154*142 = 9.986</code></pre>
 <h2>Your homework</h2>
 <p>Please refer to the file <a href="https://github.com/pmean/classes/blob/master/biostats-1/13/src/simon-5501-13-directions.md">simon-5501-13-directions.qmd</a>.</p>
 </section>
-<section id="summary" class="slide level2">
-<h2>Summary</h2>
+<section id="summary-1" class="slide level2">
+<h2>Summary, 1</h2>
 <ul>
 <li>What you have learned
 <ul>
@@ -2371,6 +2413,14 @@ Odds ratio = 308*709 / 154*142 = 9.986</code></pre>
 <li>R code for the test of equality of two proportions</li>
 <li>Sample size calculations</li>
 <li>R code for sample size calculations</li>
+</ul></li>
+</ul>
+</section>
+<section id="summary-2" class="slide level2">
+<h2>Summary, 2</h2>
+<ul>
+<li>What you have learned
+<ul>
 <li>Chi-squared test of independence</li>
 <li>R code for the chi-squared test of independence</li>
 <li>Odds ratios and relative risks</li>
