@@ -19,12 +19,24 @@ This program reads data on a study of breast feeding in preterm infants. Refer t
 #| message: false
 #| warning: false
 
+library(broom)
 library(glue)
 library(tidyverse)
-library(broom)
 R.version.string
 Sys.Date()
 ```
+
+#### Comments on the code
+
+The broom library takes the output from a variety of data analysis functions in R and places them in a standard format. This makes it easier to display the results the way you like and to compare different statistical models.
+
+The glue library simplifies the task for displaying output in nice and easily understood formats.
+
+The tidyverse is a series of libraries that make data management easier. You should always include the tidyverse libraries in your R programs.
+
+It is always a good idea to print the version of R using the internal constant R.version.string, and the current date and time using the Sys.Date function.
+
+
 
 ## Intermediate datasets
 
