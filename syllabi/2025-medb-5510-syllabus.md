@@ -32,7 +32,7 @@ Only Graduate level students (students holding a BS or BA or higher degree) are 
 
 ## Course Objectives
 
-The Biostatistics sequence (MEDB5501 and 5502) will provide students with an understanding of basic and more advanced concepts in statistics as applied to health sciences. The objective of this course, MEDB 5502, is to examine more complex statistical models than those presented in MEDB 5501. In particular, you will see how to handle multiple variables simultaneously. This course will also provide a firm foundationfor those students planning to take MEDB 5503 or other advanced and specialized statistical analysis classes.
+This course will show you how to assemble all the parts needed for a research plan in clinical medicine.
 
 ## Student Learning Objectives
 

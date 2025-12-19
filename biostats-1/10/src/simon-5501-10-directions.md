@@ -31,7 +31,7 @@ Compare the average hcb concentrations between the surface, middepth and bottom 
 
 ## Question 2
 
-You want to run a sample size calculation for a replication of this experiment using hcb as the outcome measure. Assume that the sample means for hcb are similar at surface and middepth, but higher at the bottom (4.8 for the surface, 4.8 for middepth, and 5.2 for the bottom). What sample size would you need to achieve 90% power at an alpha level of 0.05.
+You want to run a sample size calculation for a replication of this experiment using hcb as the outcome measure. Assume that the sample means for hcb are similar at surface and middepth, but higher at the bottom (4.8 for the surface, 4.8 for middepth, and 5.2 for the bottom). What sample size would you need to achieve 90% power at an alpha level of 0.05. Use the mean squared error that you computed in the analysis of variance table for question 1 for the within.var argument of power.anova.test.
 
 ## Your submission
 
