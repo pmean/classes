@@ -182,18 +182,18 @@ Image taken from: http://en.wikipedia.org/wiki/File:Butterfly_large.jpg.
 ![](http://pmean.com/news/images/201011/04a.gif)
 
 :::notes
-There are several ways to look at the data, and they all show that the vote for Buchanna in Palm Beach County was unusual. Here is a graph looking at the votes for Bush in each county of Florida on the X-axis and the votes for Buchanan in that same county.
+There are several ways to look at the data, and they all show that the vote for Buchannan in Palm Beach County was unusual. Here is a graph looking at the votes for Bush in each county of Florida on the X-axis and the votes for Buchanan in that same county.
 
-Notice that there is a strong positive trend. Counties with lots of votes for Bush tended to produce lots of votes for Buchanan. Not one to one of course, because votes for Bush were in the hunderds of thousands, while votes for Buchanan were two orders of magnitude smaller.
+Notice that there is a strong positive trend. Counties with lots of votes for Bush tended to produce lots of votes for Buchanan. Not one to one of course, because votes for Bush were in the hundreds of thousands, while votes for Buchanan were two orders of magnitude smaller.
 
 The relationship occurs in part because both Bush and Buchanan were candidates that appealed to the same type of voter, someone on the conservative side of the voting spectrum. More importantly, though, is that bigger counties would tend to produce more votes for both candidates.
 
-Notice the one point very hight in the middle of the graph. This is Palm Beach County. Buchanan got over 3,000 votes there and 
+Notice the one point very high in the middle of the graph. This is Palm Beach County. Buchanan got over 3,000 votes there and did not get anywhere close to that number in any other county.
 :::
 
 ## Residuals, 4
 
--   Votes (Buchanan) = 45.3 +0.0049 * Votes (Bush)
+-   Votes (Buchanan) = 45.3 + 0.0049 * Votes (Bush)
     -   The estimated average number of votes for Buchanan increase by 1/200 for every increase of one vote for Bush.
     
 ## Residuals, 5
