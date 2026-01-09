@@ -15,14 +15,12 @@ title: "Syllabus: Applied Biostatistics II, MEDB 5502, 2026 Spring Semester"
 
 We **prefer contact by email**, but will respond to telephone calls or messages on Canvas. We are teaching multiple classes, so please **remind us which class you are in**. We will check our email daily, except on weekends. **If you have not received a response withing 48 hours (excluding weekends)**, please feel free to follow up with a reminder email.
 
----
-
 You can attend **weekly review sessions** and ask questions about anything. Times and Zoom link information are available on Canvas. You can also **schedule individual sessions**, either via **Zoom** or **face-to-face**.
 
 ## MEDB 5502, Applied Biostatistics II, 3 credit hours
 
 -   Section 0001 (11680): Synchronous zoom
-    -   Students attend a Zoom session every Tuesday from 1:00pm to 3:45pm at [this link][zoom-1]. Attendance will be taken. If work or personal commitments prevent you from attending on a particular week, please notify me by email and watch the recorded videos instead. if you expect that you will not be able to attend the Zoom sessions on most Tuesdays, please consider switching to the asynchronous section. Students in this section are welcome to view the recorded videos to review material.
+    -   Students attend a Zoom session every Tuesday from 1:00pm to 3:45pm at [this link][zoom-1]. Attendance will be taken. If work or personal commitments prevent you from attending on a particular week, please notify me by email and watch the recorded videos instead. if you expect that you will not be able to attend the Zoom sessions on most Tuesdays, please consider switching to the asynchronous section. Students in the synchronous Zoom section are welcome to view the recorded videos to review material.
 -   Section 0002 (12295): Asynchronous
     -   Students will watch recorded videos (available every Wednesday by noon). These are recordings of the Tuesday Zoom sessions. Students in this section are welcome to attend the Zoom session in any week if they have the time.
 -   Section 0003 (14543): In person attendance
