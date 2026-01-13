@@ -19,18 +19,19 @@ You can attend **weekly review sessions** and ask questions about anything. Time
 
 ## MEDB 5502, Applied Biostatistics II, 3 credit hours
 
+There are three sections for this class.
+
 -   Section 0001 (11680): Synchronous zoom
-    -   Students attend a Zoom session every Tuesday from 1:00pm to 3:45pm at [this link][zoom-1]. Attendance will be taken. If work or personal commitments prevent you from attending on a particular week, please notify me by email and watch the recorded videos instead. if you expect that you will not be able to attend the Zoom sessions on most Tuesdays, please consider switching to the asynchronous section. Students in the synchronous Zoom section are welcome to view the recorded videos to review material.
+    -   Students attend a Zoom session every Tuesday from 1:00pm to 3:45pm at [this link][zoom-1].
 -   Section 0002 (12295): Asynchronous
-    -   Students will watch recorded videos (available every Wednesday by noon). These are recordings of the Tuesday Zoom sessions. Students in this section are welcome to attend the Zoom session in any week if they have the time.
+    -   Students will watch recorded videos (available every Wednesday by 4pm). These are recordings of the Tuesday Zoom sessions.
 -   Section 0003 (14543): In person attendance
-    -   Students attend a Zoom session every Tuesday from 1:00pm to 3:45pm at [this link][zoom-1]. In addition, they will sign in on an attendance sheet kept at Ricardo Moniz's desk (Bioinformatics Suite, fifth floor of the School of Medicine Building). If work or personal commitments prevent you from attending on a particular week, please notify me by email and watch the recorded videos instead. Students in this section are welcome to view the recorded videos to review material.
+    -   Students attend a Zoom session every Tuesday from 1:00pm to 3:45pm at [this link][zoom-1] and sign in weekly on an attendance sheet.
     
-All sections will use the same Canvas site and have the same assignments and tests.
+See the [section requirements page][requirements] for more details on the differing requirements for each section. All sections will use the same Canvas site and have the same quizzes and assignments.
 
 [zoom-1]: https://umsystem.instructure.com/courses/350214/external_tools/31795
-
-Students in the synchronous Zoom section are welcome to watch the videos. Students in the asynchronous section are welcome to attend any or all of the synchronous Zoom session.
+[requirements]: https://github.com/pmean/classes/blob/master/general/src/section-requirements.md
 
 ## Introduction
 
@@ -59,16 +60,17 @@ The general framework will be mostly consistent from week to week, but I reserve
 Each week, you will listen to weekly lectures, either via Zoom or through asynchronous videos. After listening to the lectures, you will
 
 -   take a short quiz,
--   prepare sample questions for a final exam,
--   write a well-documented R program for a particular analysis,
--   interpret the output from your program, and 
--   offer feedback on the lessons learned
+-   run and interpret an R program to analyze data,
+-   propose questions for your final exam, and
+-   offer feedback on the lessons learned.
 
-There will be a midterm presentation and written report as well as a final exam. The quizzes and final exam will be a mixture of true-false, multiple-choice, and check-all-that-apply questions.
+There will be several writing assignments, culminating in a final project that prepares a literature review and methods section for a hypothetical study of your choice.
 
 ## Course Expectations, Course Policies, Requirements and Standards for Student Coursework and Student Behavior
 
-You are expected to do your homework independently. Reviewing your book, the videos, slide and speaker notes, and the recommended readings is certainly acceptable. You can also use external resources that you find on the Internet, including generative AI agents or chatbots. You cannot ask another person to write your programs for you, but you can seek out help from other human resources (classmates, friends, and don't forget your instructors!) to help decode an error message that you don't understand. If you adapt code that you find on the Internet or through a generative AI prompt, we recommend that you acknowledge the source for that code in the comments of your program. This is good programming practice, but it is not a requirement.
+As a general rule, you cannot ask another human (a fellow student, a friend, or a co-worker) to do your work for you, but you can ask for their assistance once you have a completed draft of your work. You can use generative AI, chatbots, and similar resources but only for limited parts of your work, not the entire assignment. See the [acceptable sources of assistance page][assistance] for specific details.
+
+[assistance]: https://github.com/pmean/classes/blob/master/general/src/acceptable-sources-of-assistance.md
 
 ## Evaluation and Grading
 
@@ -161,7 +163,7 @@ Students are responsible for meeting the standards of academic performance estab
 The University grade appeal procedure is available only for the review of allegedly capricious grading and not for review of the instructor's evaluation of the student's academic performance. Capricious grading, as that term is used here, comprises any of the following: 
 
 -   The assignment of a grade to a particular student on some basis other than the performance in the course; 
--   The assignment of a grade to a particular student according to more exacting or demanding standards than were applied to other students in the course; (Note: Additional or different grading criteria may be applied to graduate students enrolled for graduate credit in 300- and 400-level courses.) 
+-   The assignment of a grade to a particular student according to more exacting or demanding standards than were applied to other students in the course; (Note: Additional or different grading criteria may be applied to graduate students enrolled for graduate credit in 300- and 400-level courses.)
 -   The assignment of a grade by a substantial departure from the instructor's previously announced standards. 
 
 Students who have concerns about this course should first consult with the specific instructor with whom there is a problem. If the issues are not satisfactorily resolved the student should contact the course director. In the event a student would like to appeal a course grade they must follow the [School of Medicine procedure for grade appeal for graduate courses][ref08].

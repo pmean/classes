@@ -4,7 +4,11 @@ title: "Acceptable and unacceptable sources of assistance on your assignments"
 
 This policy was written by Steve Simon on 2026-01-07.
 
-As a general rule, you cannot ask another human (a fellow student, a friend, or a co-worker) to do your work for you, but you can ask for their assistance once you have a completed draft of your work.
+## Abstract
+
+As a general rule, you cannot ask another human (a fellow student, a friend, or a co-worker) to do your work for you, but you can ask for their assistance once you have a completed draft of your work. You can use generative AI, chatbots, and similar resources but only for limited parts of your work, not the entire assignment.
+
+## Use of non-human resources
 
 At any time, you can use a variety of non-human resources:
 
@@ -18,13 +22,21 @@ For all assignments, there are a multitude of non-human resources that you can d
 -   grammar and spell checkers,
 -   plagiarism reviews
 
+## Use of generative AI and similar resources
+
 Use of generative AI (such as Chat GPT or Gemini), is okay with restrictions. In general, you can use these systems to small pieces of your work, but not the entire assignment. Do not ask them to prepare a report, for example, on the ethical issues associated with placebo controlled trials, and turn that in as your own work. It is okay, however, to ask for help in defining "equipoise" and including that definition in your report. The boundary between these two examples if unclear and you can always check with your instructors about any borderline issues.
 
-If you use generative AI, please acknowledge the source somewhere in your assignment. Acknowledgement of other sources, particular peer-reviewed publications and web pages, may also be appropriate. 
+If you use generative AI, please acknowledge the source somewhere in your assignment. Acknowledgement of other sources, particularly peer-reviewed publications and web pages, may also be appropriate. 
 
 Some assignments may require a formal bibliograhy and a standard citation format. You will find clear instructions on assignments where such formalities are required. In assignments without these instructions, any reasonable approach to acknowledging your sources is acceptable.
 
-Always remember that we love working with students individually. It's one of the best parts of our job. Don't be shy in asking for help.
+## Use of human resources
+
+You may get assistance from friends, relatives, co-workers, or fellow students. It is important, however, that these resources serve only to review your work.
+
+You have to prepare any programs, reports, or presentations by yourself. You cannot ask anyone to prepare these for you. What you can do is to show a completed draft of your work and ask for suggestions on how to improve it.
+
+When you are thinking of human resources, don't forget us, your instructors. We love working with students individually. It's one of the best parts of our job. Don't be shy in asking us for help.
 
 ## Programming assignments
 
@@ -40,7 +52,9 @@ If you have a bug that you can't fix, you can also ask your instructors for help
 
 ## Oral presentations
 
-Your presentation should rely on slide shows prepared by software like Microsoft PowerPoint or Apple Keynote. You must prepare these slides yourself. Do not ask another person to prepare your slides for you. Do not ask generative AI to prepare your entire slide show, but you can ask for help on a limited number of slides. Please acknowledge generative AI on any slide that it assists with. This is best done through a brief note at the bottom of the slide.
+Your presentation should rely on slide shows prepared by software like Microsoft PowerPoint or Apple Keynote. Not every presentation you do in your career will need slides, but you have to use them in these classes because the quality of your slides (font size, readability) are part of your grading rubric.
+
+You must prepare these slides yourself. Do not ask another person to prepare your slides for you. Do not ask generative AI to prepare your entire slide show, but you can ask for help on a limited number of slides. Please acknowledge generative AI on any slide that it assists with. This is best done through a brief note at the bottom of the slide.
 
 Once you have completed a full draft of your slide presentation, you can ask anyone to review your work and offer suggestions.
 
@@ -51,6 +65,8 @@ If the content of a particular slide relies on a peer-reviewed publication, or i
 For example, "Wilson 2023 Environ Res" is a reasonable abbreviation for "Wilson NJ, Friedman E, Kennedy K, Manolakos PT, Reierson L, Roberts A, Simon S. Using exterior housing conditions to predict elevated pediatric blood lead levels. Environmental Research. 2023 Feb 1;218:114944. doi: 10.1016/j.envres.2022.114944." 
 
 Do not include a bibliography of all your references in your slide presentation.
+
+It is always a good idea to practice your talk and if you can find someone to listen, all the better.
 
 ## Written reports
 
