@@ -216,7 +216,13 @@ Listed below is a rough outline of the topics covered in the class. There may be
 
 ## Module 01
 
-This module has a general introduction to what clinical research is. You will learn some ideas on how to generate an interesting research idea and explore some of the major dichotomies in research.
+How do you get started in research? First, you have to choose a problem to study. This is sometimes easy, but sometimes not so easy. This module will help you think about how to identify a research topic. It will also outline some of the fundamental choices that you will need to make as you work on your research problem. Do you want to do theoretical or applied research? Laboratory or field research? Qualitative or quantitative research? Inductive or deductive research? You should become familiar with all of these aspects of research so you can thoughtfully select the approach that makes the most sense for your topic.
+
+In this module, you will learn how to
+
+-   Define "clinical research methodology"
+-   Select an appropriate research topic
+-   Distinguish between various research approaches
 
 ## Module 02
 
