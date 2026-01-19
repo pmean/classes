@@ -2,8 +2,7 @@
 title: "Directions for 5502-02 programming assignment"
 ---
 
-This programming assignment was written by Steve Simon on 2025-01-27 and is 
-placed in the public domain.
+This programming assignment was written by Steve Simon on 2025-01-27 and is placed in the public domain.
 
 ## Program
 

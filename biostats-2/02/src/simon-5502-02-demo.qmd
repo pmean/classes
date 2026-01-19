@@ -8,7 +8,7 @@ execute:
   error: true
 ---
 
-## 1. File details
+## File details
 
 This program was written by Steve Simon on 2025-01-23 and is placed in the public domain. You can use this program any way you please.
 
@@ -36,7 +36,7 @@ The [car][ref03] package provides some helpful functions for various regression 
 
 [ref03]: https://CRAN.R-project.org/package=car 
 
-## 1. Intermediate files
+## Intermediate files
 
 -   fat: original data from fat.csv
 -   m0: linear regression with just an intercept
@@ -50,7 +50,7 @@ The [car][ref03] package provides some helpful functions for various regression 
 -   r2a: r2 with all columns except .resid removed
 
 
-## 1. Read the data
+## Read the data
 
 ```{r}
 #| label: read
@@ -66,7 +66,7 @@ glimpse(fat)
 
 There are 19 columns of data, but they are all numeric, so a single "n" for col_types will do the trick.
 
-## 1. Descriptive statistics for fat_b
+## Descriptive statistics for fat_b
 
 ```{r}
 #| label: descriptives-1
@@ -83,7 +83,7 @@ fat |>
 
 The average patient has 19% body fat. The data has a wide range from 0% (check this value!) to 45%
 
-## 1. Histogram for fat_b
+## Histogram for fat_b
 
 ```{r}
 #| label: histogram-1
@@ -105,7 +105,7 @@ Percentage body fat has a roughly normal distribution.
 
 Note: while additional descriptive statistics should be calculated for all the important independent variables, we will not show them here in the interest of time and space.
 
-## 1. Correlations
+## Correlations
 
 ```{r}
 #| label: correlations
@@ -130,7 +130,7 @@ The [cor][ref04] function was discussed in Biostats-1. It does help to round the
 
 Not too surprisingly, there are many strong positive correlations. Patients with higher body fat tend to have higher circumferences and a larger circumference measure at one location tends to be associated with larger circumference measures at other locations.
 
-## 1. Scatterplot of chest circumference and body fat
+## Scatterplot of chest circumference and body fat
 
 ```{r}
 #| label: plot-1
@@ -149,7 +149,7 @@ fat |>
 
 There is a weak positive relationship between chest circumference and percentage body fat.
 
-## 1. Scatterplot of abdomen circumference and body fat
+## Scatterplot of abdomen circumference and body fat
 
 ```{r}
 #| label: plot-2
@@ -168,7 +168,7 @@ fat |>
 
 There is a somewhat stronger positive relationship between abdomen circumference and percentage body fat.
 
-## 1. Scatterplot of hip circumference and body fat
+## Scatterplot of hip circumference and body fat
 
 ```{r}
 #| label: plot-3
@@ -187,7 +187,7 @@ fat |>
 
 There is a weak positive relationship between hip circumference and percentage body fat.
 
-## 1. Linear regression model
+## Linear regression model
 
 ```{r}
 #| label: regression-1
@@ -236,7 +236,7 @@ The m2 model uses three predictor variables, chest, abdomen, and hip circumferen
 
 The m3 model uses all ten circumference measurements. This model is perhaps a bit excessive, but provides an interesting comparison to the model that just adds the circumferences at the extremities to the middle three circumferences.
 
-## 1. Regression coefficients
+## Regression coefficients
 
 ```{r}
 #| label: coefficients-1
@@ -278,7 +278,7 @@ One big modification that this provides is the ability to simplify the display o
 
 [ref05]: https://cran.r-project.org/web/packages/broom/vignettes/broom.html
 
-## 1. Explained/unexplained variation and r-squared
+## Explained/unexplained variation and r-squared
 
 ```{r}
 #| label: rsq

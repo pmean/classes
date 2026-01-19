@@ -6,13 +6,15 @@ format:
 editor: source
 ---
 
+# --- Part 1
+
 ## File details
 
 This program was written by Steve Simon on 2025-01-20 and is placed in the public domain. You can use this program any way you please.
 
-This program reads data on a study of breast feeding in preterm infants. Refer to the [data dictionary][ref01] for a more detailed description.
+Both parts of this program use data on a study of breast feeding in preterm infants. Refer to the [data dictionary][ref-dictionary] for a more detailed description.
 
-[ref01]: https://github.com/pmean/data/blob/main/files/breast-feeding-preterm.yaml
+[ref-dictionary]: https://github.com/pmean/data/blob/main/files/breast-feeding-preterm.yaml
 
 ```{r}
 #| label: setup
@@ -22,6 +24,7 @@ This program reads data on a study of breast feeding in preterm infants. Refer t
 library(broom)
 library(glue)
 library(tidyverse)
+
 R.version.string
 Sys.Date()
 ```
@@ -36,28 +39,41 @@ The tidyverse is a series of libraries that make data management easier. You sho
 
 It is always a good idea to print the version of R using the internal constant R.version.string, and the current date and time using the Sys.Date function.
 
-
-
 ## Intermediate datasets
 
--   bf: Original file
--   bf_1: Replace -1 in age_stop with NA
--   bf_2: Create indicator for treatment
--   bf_3: Create indicator for control
--   m1: regression model using mom_age to predict age_stop
--   m2: regression model using feed_type to predict age_stop
+-   ng0: Original file
+-   ng1: Replace -1 in age_stop with NA
+-   ng2: Create indicator for treatment
+-   ng3: Create indicator for control
+-   ng4: Create indicator for breast feeding at discharge
+-   ng5: Add labels for del_type and stop_at_dc
+
+## Statistical models
+
+-   m1: linear regression using mom_age to predict age_stop
+-   m2: linear regression using feed_type to predict age_stop
+-   m3: logistic regression using dc_age to predict stop_at_dc
+-   m4: logistic regression using del_type to predict stop_at_dc
+
+## Plots
+
+-   p1: histogram, x=age_stop
+-   p2: scatterplot, x=mom_age, y=age_stop
+-   p3: scatterplot, x=i_treatment, y=age-stop
+-   p4: scatterplot, x=i_control, y=age_stop
+-   p5: boxplot, x=dc_age
 
 ## Read breast-feeding-preterm data
 
 ```{r}
-#| label: read-bf
+#| label: read-ng0
 #| message: false
 #| warning: false
 
-bf <- read_csv(
+ng0 <- read_csv(
   file="../data/breast-feeding-preterm.csv",
   col_names=TRUE)
-glimpse(bf)
+glimpse(x=ng0)
 ```
 
 #### Comments on the code
@@ -69,27 +85,31 @@ Normally, I specify the col_types argument when reading a file. This particular 
 ```{r}
 #| label: replace-missing
 
-bf |>
-  mutate(age_stop=na_if(age_stop, -1)) -> bf_1
+ng0 |>
+  mutate(age_stop=na_if(x=age_stop, y=-1)) -> ng1
 ```
 
 #### Comments on the code
 
-The [na_if][ref02] function (part of the dplyr/tidyverse library) replaces values in a vector with the code for missing in R (NA). In this code, any value of age_stop equal to -1 is converted to missing. There are several variables where this needs to be done, but in all of the analyses planned on this data, conversion to NA is only needed for age_stop.
+The [na_if][ref-na-if] function (part of the dplyr/tidyverse library) replaces some of the values in a vector to missing. This function is very useful if your data uses a numeric code to designate missingness. The x argument represent the vector that you want to convert and the y argument represents the value that gets converted to missing (NA). In this code, any value of age_stop equal to -1 is converted to missing. There are several variables where this needs to be done, but in all of the analyses planned on this data, conversion to NA is only needed for age_stop.
 
-[ref02]: https://dplyr.tidyverse.org/reference/na_if.html 
+[ref-na-if]: https://dplyr.tidyverse.org/reference/na_if.html 
 
 ## Descriptive statistics for feed_type
 
 ```{r}
-#| label: descriptives-1
+#| label: descriptives-feed-type
 
-bf_1 |>
+ng1 |>
   count(feed_type) |>
   mutate(total=sum(n)) |>
   mutate(pct=round(100*n/total)) |>
   mutate(pct=glue("{pct}% ({n}/{total})"))
 ```
+
+#### Comments on the code
+
+A summary of a categorical variable should include a percentage. Optional, but helpful, is to specify the numerator and denominator that go into the calculation of the percentage. You should always report descriptive statistics for any categorical variable that is used in your statistical model. You might make an exception for a categorical variable that has a very large number of values. A hundred or more values would qualify as very large.
 
 #### Interpretation of the output
 
@@ -97,29 +117,12 @@ Slightly more than half of the infants are in the control group.
 
 Notice that the string for the treatment group is truncated to "treatmen". This is needed for other software, but not for R.
 
-## Descriptive statistics for age_stop
-
-```{r}
-#| label: descriptives-2
-
-bf_1 |>
-  summarize(
-    stop_mean=round(mean(age_stop, na.rm=TRUE), 1),
-    stop_sd=round(sd(age_stop, na.rm=TRUE), 1),
-    stop_min=min(age_stop, na.rm=TRUE),
-    stop_max=max(age_stop, na.rm=TRUE),
-    n_missing=sum(is.na(age_stop)))
-```
-
-#### Interpretation of the output
-
-The average infant stopped breast feeding before 17 weeks. There is a lot of spread in the data with infants stopping after only one week to stopping after 34 weeks. There are two missing values.
-
 ## Histogram for age_stop
 
 ```{r}
-#| label: histogram-1
-bf_1 |>
+#| label: histogram-age-stop
+
+ng1 |>
   filter(!is.na(age_stop)) |>
   ggplot() +
     aes(x=age_stop) +
@@ -127,9 +130,15 @@ bf_1 |>
       binwidth=5,
       color="black",
       fill="white") + 
-  xlab("Age when infant stopped breast feeding (weeks)") +
-  ggtitle("Graph drawn by Steve Simon on 2025-01-23")
+    labs(
+      x="Age when infant stopped breast feeding (weeks)",
+      caption="Steve Simon, 2025-01-23, CC0") -> p1
+p1
 ```
+
+#### Comments on the code
+
+There are many ways to describe a continuous variable: a histogram (geom_histogram), a mean/standard deviation (summarize), or a boxplot (geom_boxplot) to name a few. Be sure to use at least one of these descriptive summaries for any continuous variables that are part of the statistical model.
 
 #### Interpretation of the output
 
@@ -138,12 +147,12 @@ The distribution appears to be bimodal.
 ## Descriptive statistics for mom_age
 
 ```{r}
-#| label: descriptives-3
+#| label: descriptives-mom-age
 
-bf_1 |>
+ng1 |>
   summarize(
-    mom_age_mean=round(mean(mom_age, na.rm=TRUE), 1),
-    mom_age_sd=round(sd(mom_age, na.rm=TRUE), 1),
+    mom_age_mean=mean(mom_age, na.rm=TRUE),
+    mom_age_sd=sd(mom_age, na.rm=TRUE),
     mom_age_min=min(mom_age, na.rm=TRUE),
     mom_age_max=max(mom_age, na.rm=TRUE),
     n_missing=sum(is.na(mom_age)))
@@ -153,138 +162,144 @@ bf_1 |>
 
 The average mother is 27 years old, with a moderate standard deviation of 7. The ages range from 16 to 44 years, which are reasonable values. There are no missing values.
 
-## Histogram for mom_age
-
-```{r}
-#| label: histogram-2
-
-bf_1 |>
-  filter(!is.na(mom_age)) |>
-  ggplot() +
-    aes(x=mom_age) +
-    geom_histogram(
-      binwidth=5,
-      color="black",
-      fill="white") +
-  xlab("Mother's age (years)") +
-  ggtitle("Graph drawn by Steve Simon on 2025-01-23")
-```
-
-#### Interpretation of the output
-
-The distribution of mother's ages appears to be reasonably close to a normal distribution.
-
 ## Scatterplot of mom_age versus age_stop
 
 ```{r}
-#| label: plot-1
-bf_1 |>
+#| label: plot-age-stop-mom-age
+ng1 |>
   filter(!is.na(age_stop)) |>
   ggplot() +
     aes(x=mom_age, y=age_stop) +
     geom_point() +
-  geom_smooth (method = "lm", color = "red", se=FALSE) +
-  xlab("Mother's age (years)") +
-  ylab("Age when infant stopped breast feeding (weeks)") +
-  ggtitle ("Scatter Plot by Steve Simon and Suman Sahil dated 2025-01-21")
+  geom_smooth(method = "lm", color = "red", se=FALSE) +
+  labs(
+    x="Mother's age (years)",
+    y="Age when infant stopped breast feeding (weeks)",
+    caption="Steve Simon and Suman Sahil, 2025-01-21, CC0") -> p2
+p2
 ```
 
 #### Comments on the code
 
-The [geom_smooth][ref03] function adds a trend line to the graph. The argument method="lm" produces a linear trend. This function also provides a variety of nonlinear trend lines. 
+The [geom_smooth][ref-smooth] function adds a trend line to the graph. The argument method="lm" produces a linear trend. This function also provides a variety of nonlinear trend lines. 
 
 The color argument in geom_smooth allows you to use a different color than the default. Here a red line tends to highlight the trend line a bit more than a black line would.
 
 The default in geom_smooth is to include an assessment of variability as a gray region around the trend line. You can suppress this with the se=FALSE argument.
 
-[ref03]: https://ggplot2.tidyverse.org/reference/geom_smooth.html
+The [filter][ref-filter] function removes rows from a tibble or data frame. In this code, the values removed are the two missing values for age_stop. While the ggplot function would catch and remove those two rows by default, it produces a warning message at the same time. In general, you want to avoid sending output with warning messages to others in your research team, which is why I added the filter step.
+
+[ref-smooth]: https://ggplot2.tidyverse.org/reference/geom_smooth.html
+[ref-filter]: https://dplyr.tidyverse.org/reference/filter.html
 
 #### Interpretation of the output
-
-The [filter][ref04] function removes rows from a tibble or data frame. In this code, the values removed are the two missing values for age_stop. While the ggplot function would catch and remove those two rows by default, it produces a warning message at the same time. In general, you want to avoid sending output with warning messages to others in your research team, which is why I added the filter step.
 
 There is an upward trend. It is weak, but still real. Older mothers do tend to breast feed longer than younger mothers.
 
 ## Create regression model predicting age_stop from mom_age
 
 ```{r}
-#| label: regression-1
-m1 <- lm(age_stop~mom_age, data=bf)
+#| label: regression-using-mom-age
+
+m1 <- lm(formula=age_stop ~ mom_age, data=ng1)
 tidy(m1)
+confint(m1)[-1, ]
 ```
+
+#### Comments on the code
+
+The [confint][ref-confint] function produces a matrix with confidence limits for the linear regression coefficients. The -1 as the row argument inside square brackets removes the intercept row.
+
+[ref-confint]: https://stat.ethz.ch/R-manual/R-devel/RHOME/library/stats/html/confint.html
 
 #### Interpretation of the output
 
 The estimated average duration of breast feeding increases by 0.4 weeks for an increase of one year in the mother's age. The intercept represents an extrapolation beyond the range of the data and should not be interpreted.
 
-The p-value for the slope, 0.014, indicates that there is a statstically significant relationship between mother's age and duration of breast feeding.
+The p-value for the slope is small and the confidence interval excludes the value of 0. This indicates that there is a statistically significant relationship between mother's age and duration of breast feeding.
 
 ## Create regression model predicting age_stop from feed_type
 
 ```{r}
-#| label: regression-2
-m2 <- lm(age_stop~feed_type, data=bf)
+#| label: regression-using-feed-type
+
+m2 <- lm(formula=age_stop ~ feed_type, data=ng1)
 tidy(m2)
+
+confint(m2)[-1, ]
 ```
 
 #### Interpretation of the output
 
 Recall that feed_type is a string. When R encounters a string (or a factor) as the independent variable in a linear regression model, it creates one or more indicator variables. In this case, R takes the binary variable, feed_type, and creates an indicator that is equal to 1 for the treatment level and 0 for the control level.
 
-The estimated average duration of breast feeding is a bit less than 13 weeks when the infant is in the control group. The estimated average duration of breast feeding increases by 7.7 weeks when you switch from the control group to the treatment group.
+The estimated average duration of breast feeding is a bit less than 13 weeks when the infant is in the control group. The estimated average duration of breast feeding increases by 7 weeks when you switch from the control group to the treatment group.
 
-The p-value is reported in scientific notation, but it is simpler just to say that it is less than 0.001. There is a statisticall significant increase in duration of breast feeding in the treatment group.
+The p-value is reported in scientific notation, but it is simpler just to say that it is less than 0.001. This is very small and the confidence interval excludes the value of zero. There is a statistically significant increase in duration of breast feeding in the treatment group.
 
 ## Create an indicator variable for the treatment group
 
 ```{r}
-#| label: indicator-1
+#| label: indicator-treatment
 
-bf_1 |>
+ng1 |>
   mutate(
     i_treatment=
       case_when(
         feed_type=="Treatmen" ~ 1,
-        feed_type=="Control" ~ 0)) -> bf_2
+        feed_type=="Control" ~ 0)) -> ng2
+
+ng2 |>
+  count(feed_type, i_treatment)
 ```
 
 #### Comments on the code
 
-There are several ways that you can create an indicator variable yourself. The [case_when][ref04] function is fairly simple, easy to read, and fairly flexible. You assign values of 1 or 0 to a new variable, i_treatment, depending on whether the feed_type variable is equal to "Treatmen" or "Control".
+There are several ways that you can create an indicator variable yourself. The [case_when][ref-when] function is fairly simple, easy to read, and fairly flexible. You assign values of 1 or 0 to a new variable, i_treatment, depending on whether the feed_type variable is equal to "Treatmen" or "Control".
 
-Notice the use of the [double equal sign][ref05]. You use a single equal sign when assigning values to an argument inside a function You use a double equal sign when comparing a variables to a value for equality. This is hard to remember, but you will get better at knowing when to use which as you gain experience with R.
+Notice the use of the [double equal sign][ref-double]. You use a single equal sign when assigning values to an argument inside a function You use a double equal sign when comparing a variables to a value for equality. This is hard to remember, but you will get better at knowing when to use which as you gain experience with R.
 
-[ref04]: https://dplyr.tidyverse.org/reference/case_when.html
-[ref05]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/Comparison.html
+It is a good habit to get counts of the old and new variables after using case_when. This helps insure that there are no mistakes in the code and also serves as documentation about which category is represented by 0 and which by 1.
+
+[ref-when]: https://dplyr.tidyverse.org/reference/case_when.html
+[ref-equal]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/Comparison.html
 
 ## Scatterplot of age_stop versus feed_type
 
 ```{r}
-#| label: plot-2
-bf_2 |>
+#| label: plot-treatment-age-stop
+
+ng2 |>
   filter(!is.na(age_stop)) |>
   ggplot() +
     aes(x=i_treatment, y=age_stop) +
     geom_point() +
   geom_smooth (method = "lm", color = "red", se=FALSE) +
-  ggtitle ("This plot was drawn by Steve Simon on 2025-01-23")
+  labs(
+    x="Indicator for treatment",
+    y="Age when infant stopped breast feeding (weeks)",
+    caption="Steve Simon, 2025-01-23, CC0") -> p3
+p3
 ```
 
 #### Interpretation of the output
 
 This plot shows graphically what you saw from the output of the lm function. The intercept is approximately 13 weeks and the slope is approximately 8 weeks.
 
-## Create an indicator variable for the treatment group
+## Create an indicator variable for the control group
 
 ```{r}
-#| label: indicator-2
+#| label: indicator-control
 
-bf_2 |>
+ng2 |>
   mutate(
     i_control=
       case_when(
         feed_type=="Control" ~ 1,
-        feed_type=="Treatmen" ~ 0)) -> bf_3
+        feed_type=="Treatmen" ~ 0)) -> ng3
+
+ng3 |>
+  count(feed_type, i_control)
 ```
 
 #### Comments on the code
@@ -294,14 +309,18 @@ There is nothing that requires that you assign the indicator variable to the tre
 ## Alternative scatterplot of age_stop versus feed_type
 
 ```{r}
-#| label: plot-3
-bf_3 |>
+#| label: plot-control-age-stop
+ng3 |>
   filter(!is.na(age_stop)) |>
   ggplot() +
     aes(x=i_control, y=age_stop) +
     geom_point() +
   geom_smooth (method = "lm", color = "red", se=FALSE) +
-  ggtitle ("This plot was drawn by Steve Simon on 2025-01-23")
+  labs(
+    x="Indicator for control",
+    y="Age when infant stopped breast feeding (weeks)",
+    caption="Steve Simon, 2025-01-23, CC0") -> p4
+p4
 ```
 
 #### Interpretation of the output
@@ -310,16 +329,234 @@ This plot shows graphically how the model changes when you use a different indic
 
 If you find yourself interpreting a regression model output and the results for a categorical predictor seem to be going in the "wrong" direction, check to see how your program coded the indicator variable.
 
+# --- Part 2
+
+## Descriptive statistics for bf0
+
+```{r}
+#| label: descriptives-bf0
+
+ng3 |>
+  count(bf0) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})"))
+```
+
+#### Interpretation of the output
+
+Referring to the data dictionary, 4 represents stopped breast feeding. So roughly a quarter of the mothers stopped breastfeeding at discharge. Recall that this is a study of pre-term infants, so continuing breast feeding after a lengthy stay in the birth hospital is not easy. Mothers did volunteer to be part of the study on breastfeeding, so you might argue that this represents a group of mothers with stronger motivations to breastfeed.
+
+## Create an indicator, stop_at_dc
+
+Combine the categories 1 (exclusive) and 2 (partial) and compare them to 4 (none) by creating an indicator variable.
+
+```{r}
+#| label: indicator-none
+
+ng3 |>
+  mutate(
+    stop_at_dc=
+      case_when(
+        bf0==4 ~ 1,
+        bf0==2 ~ 0,
+        bf0==1 ~ 0)) -> ng4
+
+ng4 |>
+  count(bf0, stop_at_dc)
+```
+
+## Descriptive statistics for dc_age
+
+
+```{r}
+#| label: boxplot-dc-age
+#| fig.width: 6
+#| fig.height: 1.25
+
+ng4 |>
+  ggplot() +
+  aes(x=dc_age) +
+  geom_boxplot() +
+  labs(
+    x="Age at discharge (days)",
+    y=" ",
+    caption="Steve Simon, 2026-01-19, CC0") -> p5
+p5
+```
+
+#### Interpretation of the output
+
+The median age at discharge about 32 days, which is expected in a study of pre-term infants. There is a lot of variation in the data and a slight tendency towards right skewness.
+
+## Probabilities at quartiles of dc_age
+
+```{r}
+#| label: quartiles
+
+ng4 |>
+  mutate(dc_age_quartile=ntile(x=dc_age, n=4)) |>
+  group_by(dc_age_quartile) |>
+  summarize(Probability_stop_at_dc=mean(stop_at_dc))
+```
+
+#### Comments on the code
+
+The [ntile][ref-ntile] function divides the data into evenly spaced groups based on the vector assigned to the argument x. Setting n=4 splits the data into quartiles (four groups of roughly equal size). With a larger sample size you might consider splitting the data into quintiles (five groups) or deciles (ten groups).
+
+The [group_by][ref-group] function allows you to compute separate statistics for each level of dc_age_quartile.
+
+[ref-ntile]: https://dplyr.tidyverse.org/reference/ntile.html
+[ref-group]: https://dplyr.tidyverse.org/reference/group_by.html
+
+#### Interpretation of the output
+
+In this dataset, the quartiles are roughly 19, 32, and 42. 
+
+Infants in the lowest quartile, discharge ages of 19 days or less has a higher probability of stopping breastfeeding at discharge than the second quartile (discharge ages between 19 and 32). This is inconsistent with our expectations. The trends from the second to the third quartile and from the third to the fourth quartile seem reasonable.
+
+Perhaps the infants let out very early were let out too early, but that is highly speculative.
+
+## Logistic regression model for dc_age
+
+```{r}
+#| label: logistic-using dc-age
+
+m3 <- glm(
+  formula=stop_at_dc ~ dc_age, 
+  family=binomial, 
+  data=ng4)
+
+m3 |>
+  tidy() |>
+  filter(term != "(Intercept)") |>
+  mutate(odds_ratio=exp(estimate))
+
+confint(m3)[-1, ] |> exp()
+```
+
+#### Comments on the code
+
+The [glm][ref-glm] function provides a wide range of alternatives to linear regression that includes logistic regression. Setting the family argument to binomial will produce a logistic regression model.
+
+The tidy function creates a tibble that makes it easy to do further interpretations. 
+
+The filter function removes the row associated with the intercept, which usually represents a dangerous extrapolation. In this case, it represents infants discharged on the day they were born, which does not happen for pre-term births.
+
+The exp function inside of the mutate function converts the value of estimate, a log odds ratio, to an odds ratio.
+
+The confint function produces a matrix with confidence limits for the logistic regression coefficients. The -1 as the row argument inside square brackets removes the intercept row and the exp function converts the interval from a log odds ratio scale to an odds ratio scale.
+
+[ref-glm]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/glm.html
+
+#### Interpretation of the output
+
+The odds ratio is 1.03, showing that the odds of stopping breastfeeding increases as the age at discharge increases, and this relationship is statistically significant because the p-value is small and the confidence interval excludes the value of 1. More investigation is needed. Perhaps a larger sample size or a more complex function of discharge age would produce more precise and more accurate results.
+
+## Descriptive statistics for del_type
+
+```{r}
+#| label: descriptive-del-type
+
+ng4 |>
+  count(del_type) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total)
+```
+
+#### Interpretation of the output
+
+According to the data dictionary, 1 represents vaginal deliveries and 2 represents C-section deliveries. The proportions are roughly the same in each group.
+
+## Crosstabulation of del_type, stop_at_dc
+
+```{r}
+#| label: del_type-vs-stop_at_dc
+
+del_labels <- c("Vaginal", "C-section")
+stop_labels <- c("Continued bf", "Stopped bf")
+
+ng4 |>
+  mutate(del_type=factor(
+    del_type, 
+    levels=1:2, 
+    labels=del_labels)) |>
+  mutate(stop_at_dc=factor(
+    stop_at_dc,
+    levels=0:1,
+    labels=stop_labels)) -> ng5
+
+ng5 |>
+  count(del_type, stop_at_dc) |>
+  group_by(del_type) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total) |>
+  pivot_wider(
+    names_from=stop_at_dc,
+    values_from=pct)
+```
+
+#### Comments on the code
+
+The numeric codes become a bit confusing in a crosstabulaton, so you should use the [factor][ref-factor] function to assign labels to each category number. You could also use the case_when function here.
+
+The group_by function allows you to compute percentages for each delivery type. The [pivot_wider][ref-wider] function places the percentages in a two columns of two rather than all four in a single column.
+
+[ref-wider]: https://tidyr.tidyverse.org/reference/pivot_wider.html
+
+#### Interpretation of the output
+
+The probability of stopping breastfeeding at discharge is much higher for the vaginal delivery group.
+
+## Logistic regression using del_type
+
+```{r}
+#| label: logistic using del_type
+
+m4 <- glm(
+  formula=stop_at_dc ~ del_type, 
+  family=binomial, 
+  data=ng4)
+
+m4 |>
+  tidy() |>
+  filter(term != "(Intercept)") |>
+  mutate(odds_ratio=exp(estimate))
+
+confint(m4)[-1, ] |> exp()
+```
+
+#### Comment on the code
+
+When you have a categorical variable with number codes and you add labels using the factor function, the question is how R decides to code the underlying indicator variable. Does it set 1 equal to the last number that appears after sorting or the last label? It turns out that R uses the number, but these details are almost impossible to remember. Just make sure that you look at the crosstabulation before interpreting your results.
+
+#### Interpretation of the output
+
+The odds ratio is 0.42, indicating that the odds of stopping breastfeeding are lower when you switch from vaginal births to C-section births. The change in odds is not statistically significant, however, because the p-value is large and the confidence interval includes the value of 1.
+
 ## Save everything
 
 ```{r}
 #| label: save
 save(
-  bf,
-  bf_1,
-  bf_2,
-  bf_3,
+  ng0,
+  ng1,
+  ng2,
+  ng3,
+  ng4,
+  ng5,
   m1,
   m2,
+  m3,
+  m4,
+  p1,
+  p2,
+  p3,
+  p4,
+  p5,
   file="../data/module01.RData")
 ```

@@ -1,5 +1,5 @@
 ---
-title: "TBA-3"
+title: "Linear regression with a categorical predictor"
 format: 
   revealjs:
     slide-number: true
@@ -49,59 +49,55 @@ When X is equal to either zero or one, the equation simplifies. For the "zero ca
     -    $b_1$ is the estimated average change in Y when X changes from the "zero category" to the "one category."
     
 :::notes
-The intepretation changes, but only slightly, when X is an indicator variable.
+The interpretation changes, but only slightly, when X is an indicator variable.
 :::
 
 ## Creating an indicator variable
 
 ```{r}
-#| label: setup-3
+#| label: 03-setup
 #| message: false
 #| warning: false
+
 library(tidyverse)
 load("../data/module01.RData")
 ```
 
 ```{r}
-#| label: print-categorical
-bf |>
+#| label: 03-print-categorical
+ng5 |>
 	select(feed_type, age_stop) |>
 	mutate(
 	  i_treatment =
 	    case_when(
 	      is.na(feed_type) ~ NA,
 	      feed_type=="Control" ~ 0,
-	      feed_type=="Treatmen" ~ 1)) -> bf_1
-slice(fev_a, 1:6)
+	      feed_type=="Treatmen" ~ 1)) -> ng6
+slice(ng6, 1:6)
 ```
 
 :::notes
-Here is a small piece of the fev dataset with an indicator variable, sex_male, added.
+Here is a small piece of the breastfeeding dataset with an indicator variable, i_treatment, added.
 :::
 
 ## Graphical display using the indicator variable
 
-```{r fev-2}
-fev_a |>
-	ggplot(aes(sex_male, fev)) + 
-	  geom_point(shape=1, size=2) +
-	  geom_smooth(
-	  	method="lm", 
-	  	se=FALSE) +
-	  ggtitle("Plot drawn by Steve Simon on 2024-09-27") +
-	  xlab("Indicator variable for sex=M") +
-	  ylab("Forced expiratory volume (liters)")
+```{r}
+#| label: 03-graph
+
+p3
 ```
 
 :::notes
-It's a bit hard to read this graph, but it looks like the line is around 2.4 when X equals zero. That would be the intercept. The line does show an increase . At X equals one, the line appears to be around 2.8. This is a 0.4 unit increase in Y for a one unit increase in X.
+It's a bit hard to read this graph, but it looks like the line is around 13 when X equals zero. That would be the intercept. The line does show an increase . At X equals one, the line appears to be around 20. This is a 7 unit increase in Y for a one unit increase in X.
 :::
 
 ## Linear regression using the indicator variable
 
-```{r fev-3}
-m1 <- lm(fev ~ sex_male, data=fev_a)
-m1
+```{r}
+#| label: 03-indicator
+
+tidy(m2)
 ```
 
 The estimated average fev value is 2.45 liters for females. The estimated average fev value is 0.36 liters larger for males.
@@ -112,31 +108,16 @@ The intercept represents the estimated average value of Y when X equals zero. In
 
 ## Graphical display using alternate indicator variable
 
-```{r fev-4}
-pulmonary |>
-	select(fev, sex) |>
-	mutate(sex_female=as.numeric(sex=="F")) -> fev_b
-fev_b |>
-	ggplot(aes(sex_female, fev)) + 
-	  geom_point(shape=1, size=2) +
-	  geom_smooth(
-	  	method="lm", 
-	  	se=FALSE) +
-	  ggtitle("Plot drawn by Steve Simon on 2024-09-27") +
-	  xlab("Indicator variable for sex=F") +
-	  ylab("Forced expiratory volume (liters)")
+```{r}
+#| label: indicator-control
+
+p4
 ```
 
 :::notes
-The choice of 1 for males was arbitrary, and you could have just as easily designated 1 as the female category. When you do, the graph flips. The intercept is a bit larger (2.8) and the slope is negative.
+The choice of 1 for treatment was arbitrary, and you could have just as easily designated 1 as the control. When you do, the graph flips. The intercept is 20 and the slope is -7.
+
 :::
-
-## Linear regression using alternate indicator variable
-
-```{r fev-5}
-m1 <- lm(fev ~ sex_female, data=fev_b)
-m1
-```
 
 ## Letting your software create the indicator variable
 
@@ -146,7 +127,7 @@ m1
 -   Always compare your output to the descriptive statistics
 
 :::notes
-You don't have to create the indicator variable yourself. Most statistical software will do it for you. Just be careful because the software has to make an arbitrary choice. SPSS and SAS choose the first category that appears when you put the data in alphabetical order. So they would choose females as 1 because the "F" code for sex appears alphabetically before the "M" code for sex. R does the opposite. If you ask R to create indicator variables automatically, it codes males as 1.
+You don't have to create the indicator variable yourself. Most statistical software will do it for you. Just be careful because the software has to make an arbitrary choice. SPSS and SAS choose the first category that appears when you put the data in alphabetical order. So they would choose control as 1 because the "control" appears alphabetically before the "treatment". R does the opposite. If you ask R to create indicator variables automatically, it codes treatment as 1.
 
 It is easy to get confused about this, so you should always orient yourself by looking at the graphs and simple descriptive statistics before trying to interpret the output from a linear regression model.
 :::

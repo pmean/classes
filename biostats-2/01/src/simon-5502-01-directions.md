@@ -19,7 +19,6 @@ This assignment is for practice only and there is no grading.
 
 [ref01]: https://github.com/pmean/data/blob/main/files/samara-velocity.txt
 [ref02]: https://github.com/pmean/data/blob/main/files/samara-velocity.yaml
-    
 
 ## Question 1
 
