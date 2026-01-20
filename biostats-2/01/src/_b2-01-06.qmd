@@ -7,10 +7,62 @@ format:
 editor: source
 ---
 
-## TBA-6
+## Binary independent variable
 
-::: notes
+-   Slight change in interpretation
+-   Intercept: estimated log odds for 0 category
+-   Slope: estimated log odds ratio
+    -   comparing 0 category to 1 category
+    
+## Untransformed logistic regression coefficients
 
-Add note here.
+```{r}
+#| label: 06-setup
+#| echo: false
+#| message: false
+#| warning: false
 
-::::
+library(broom)
+library(glue)
+library(tidyverse)
+
+load("../data/module01.RData")
+```
+
+```{r}
+#| label: 06-untransformed
+#| echo: false
+
+tidy(m4)
+```
+
+## Transformed logistic regression coefficients
+
+```{r}
+#| label: 06-transformed
+
+tidy(m4) |>
+  mutate(transformed_estimate=exp(estimate))
+```
+
+## Calculation of odds ratio from crosstabulation, 1
+
+```{r}
+#| label: 05-odds-ratio
+
+tab1 <- table(ng4$del_type, ng4$stop_at_dc)
+tab1
+dimnames(tab1) <- list(c("Vaginal", "C-section"), c("Continued bf", "Stopped bf"))
+tab1
+odds_ng <- rep(NA, 3)
+odds_ng[1] <- tab1[1, 2] / tab1[1, 1]
+odds_ng[2] <- tab1[2, 2] / tab1[2, 1]
+odds_ng[3] <- odds_ng[2] / odds_ng[1]
+odds_ng <- round(odds_ng, 3)
+```
+
+## Calculation of odds ratio from crosstabulation, 1
+
+-   Odds_vaginal = `r tab1[1, 2]` / `r tab1[1, 1]` = `r odds_ng[1]`
+-   Odds_csection = `r tab1[2, 2]` / `r tab1[2, 1]` = `r odds_ng[2]`
+-   Odds_ratio = `r odds_ng[2]` / `r odds_ng[1]` = `r odds_ng[3]`

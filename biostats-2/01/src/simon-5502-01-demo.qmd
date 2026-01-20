@@ -497,7 +497,8 @@ ng5 |>
   select(-n, -total) |>
   pivot_wider(
     names_from=stop_at_dc,
-    values_from=pct)
+    values_from=pct) -> crosstab1
+crosstab1
 ```
 
 #### Comments on the code
@@ -558,5 +559,6 @@ save(
   p3,
   p4,
   p5,
+  crosstab1,
   file="../data/module01.RData")
 ```

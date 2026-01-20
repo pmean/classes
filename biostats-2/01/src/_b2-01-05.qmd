@@ -7,10 +7,86 @@ format:
 editor: source
 ---
 
-## TBA-5
+## Probability
 
-::: notes
+-   Binary outcome
+    -   n1 successes
+    -   n2 failures
+-   Probability = n1 / (n1+n2)
+    -   Always between 0 and 1
+    
+## Odds
 
-Add note here.
+-   Odds = n1/n2
+    -   Always between 0 and +$\infty$
+-   Log-odds = log(n1/n2)
+    -   Traditional to use natural logarithm (base e)
+    -   Always between -$\infty$ and +$\infty$
+    
+## Logistic regression
 
-::::
+-   Linear on a log-odds scale
+    -   Impossible to produce an invalid response
+-   Back transform
+    -   Odds = exp(log-odds)
+    -   Probability = Odds / (1 + Odds)
+    
+## Interpretation of logistic regression coefficient
+
+-   Intercept: estimated log odds when X=0
+    -   Often an extrapolation
+-   Slope: estimated average change in log-odds
+    -   When x increases by one unit
+    -   Equivalent to a log odds ratio
+    
+## Untransformed logistic regression coefficients
+
+```{r}
+#| label: 05-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+library(broom)
+library(glue)
+library(tidyverse)
+
+load("../data/module01.RData")
+```
+
+```{r}
+#| label: 05-untransformed
+#| echo: false
+
+tidy(m3)
+```
+
+## Transformed logistic regression coefficients
+
+```{r}
+#| label: 05-transformed
+
+tidy(m3) |>
+  mutate(transformed_estimate=exp(estimate))
+```
+
+## Prediction from a logistic regression model
+
+```{r}
+#| label: 05-prediction
+
+b <- coef(m3)
+
+predicted <- rep(NA, 3)
+predicted[1] <- b[1]+40*b[2]
+predicted[2] <- exp(predicted[1])
+predicted[3] <- predicted[2]/(1+predicted[2])
+
+b <- round(b, 3)
+predicted <- round(predicted, 3)
+
+```
+
+-   log-odds = `r b[1]` + 40 $\times$ `r b[2]` = `r predicted[1]`
+-   odds = exp(`r predicted[1]`) = `r predicted[2]`
+-   probability = `r predicted[2]` / (1 + `r predicted[2]`) = `r predicted[3]`
