@@ -51,7 +51,6 @@ tidy(m4) |>
 #| label: 05-odds-ratio
 
 tab1 <- table(ng4$del_type, ng4$stop_at_dc)
-tab1
 dimnames(tab1) <- list(c("Vaginal", "C-section"), c("Continued bf", "Stopped bf"))
 tab1
 odds_ng <- rep(NA, 3)
