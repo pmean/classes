@@ -105,7 +105,7 @@ ng1 |>
   mutate(total=sum(n)) |>
   mutate(pct=round(100*n/total)) |>
   mutate(pct=glue("{pct}% ({n}/{total})")) |>
-	select(-n, -total)
+  select(-n, -total)
 ```
 
 #### Comments on the code
