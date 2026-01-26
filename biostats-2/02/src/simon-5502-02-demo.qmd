@@ -12,7 +12,7 @@ execute:
 
 This program was written by Steve Simon on 2025-01-23 and is placed in the public domain. You can use this program any way you please.
 
-This program reads [fat.csv][ref-fat-csv],a dataset that compares body fat measurements to girth measurements at various body locations. Refer to the [data dictionary][ref-fat-yaml] for a more detailed description.
+This program reads [fat.csv][ref-fat-csv], a dataset that compares body fat measurements to girth measurements at various body locations. Refer to the [data dictionary][ref-fat-yaml] for a more detailed description.
 
 [ref-fat-csv]: https://github.com/pmean/data/blob/main/files/fat.csv
 [ref-fat-yaml]: https://github.com/pmean/data/blob/main/files/fat.yaml
@@ -179,7 +179,7 @@ There is a weak positive relationship between hip circumference and percentage b
 ## Linear regression model
 
 ```{r}
-#| label: regression-1
+#| label: models-0-to-3
 
 m0 <- lm(
   fat_b ~ 1, 
@@ -206,69 +206,17 @@ m3 <- lm(
     forearm +
     wrist,
   data=fat)
-
-m4 <- lm(
-	fat_b ~ age, 
-	data=fat)
-
-m5 <- lm(
-	fat_b ~ age + abdomen, 
-	data=fat)
 ```
 
 #### Comments on the code
 
-Although it is not strictly needed for your data analysis, the first model, m0, is a null model that has no predictor variables other than an intercept.
+Although it is not strictly needed for your data analysis, the first model, m0, is a null model that has no predictor variables other than an intercept. This is represented by the formula fat_b~1.
 
-The m1 model is a simple linear regression model using one predictor variable, abdomen circumference, to predict percentage body fat.
+The m1 model is a simple linear regression model using one predictor variable, abdomen circumference, to predict percentage body fat. This is represented by the formula fat_b~abdomen
 
-The m2 model uses three predictor variables, chest, abdomen, and hip circumferences. It will help us address the question whether measurements above and below the abdomen produce better predictions than using just the abdomen circumference alone.
+The m2 model uses three predictor variables, chest, abdomen, and hip circumferences. It will help us address the question whether measurements above and below the abdomen produce better predictions than using just the abdomen circumference alone. To include multiple predictor variables, list them with plus signs between the variables.
 
-The m3 model uses all ten circumference measurements. This model is perhaps a bit excessive, but provides an interesting comparison to the model that adds the circumferences at the extremities (neck, arms and legs) to the middle three circumferences.
-
-## Regression coefficients
-
-```{r}
-#| label: coefficients-1
-
-tidy(m0) |>
-  mutate(
-    p.value =
-      case_when(
-        p.value <  0.001 ~ "< 0.001",
-        p.value >= 0.001 ~ as.character(round(p.value, 3))))
-
-tidy(m1) |>
-  mutate(
-    p.value =
-      case_when(
-        p.value <  0.001 ~ "< 0.001",
-        p.value >= 0.001 ~ as.character(round(p.value, 3))))
-
-tidy(m2) |>
-  mutate(
-    p.value =
-      case_when(
-        p.value <  0.001 ~ "< 0.001",
-        p.value >= 0.001 ~ as.character(round(p.value, 3))))
-
-tidy(m3) |>
-  mutate(
-    p.value =
-      case_when(
-        p.value <  0.001 ~ "< 0.001",
-        p.value >= 0.001 ~ as.character(round(p.value, 3))))
-```
-
-#### Comments on the code
-
-The [tidy][ref-broom] function (part of the broom library), provides a nice summary of the coefficients in various statistical models in R. This includes a standardization across all these statistical models. The tidy function also takes the list that is the result of most statistical models in R and extracts the necessary information into a tibble, which makes it easier for you to manipulate the results.
-
-One big modification that this provides is the ability to simplify the display of p-values. Very small p-values are listed as < 0.001 and the other p-values are rounded to three decimal places.
-
-[ref-broom]: https://cran.r-project.org/web/packages/broom/vignettes/broom.html
-
-# --- Part 2
+The m3 model uses all ten circumference measurements. This model is perhaps a bit excessive, but provides an interesting model that adds the circumferences at the extremities (neck, arms and legs) to the middle three circumferences.
 
 ## Analysis of variance for a null model
 
@@ -288,7 +236,7 @@ Although you do not need this for a formal analysis, it is instructive to look a
 
 #### Interpretation of the output
 
-There is a total amount of unexplained variation of roughly 15,100 before any variables are entered into the model.
+There is a total amount of unexplained variation of roughly 15,000 before any variables are entered into the model.
 
 ## Analysis of variance for a one variable model
 
@@ -300,7 +248,7 @@ anova(m0, m1)
 
 #### Interpretation of the output
 
-The unexplained variation of the null model, 15,100, can be is reduced to an unexplained variation of 5,100 by a one variable model. The one variable model has explained variation of 10,000.
+The unexplained variation of the null model, 15,000, can be is reduced to an unexplained variation of 5,000 by a one variable model. The one variable model has explained variation of 10,000.
 
 The F-statistic is large and the p-value is small, indicating that the one variable model provides a statistically significant prediction of the percentage of body fat. You could state equivalently that the one variable model provides a statistically significant reduction in unexplained variation over a null model.
 
@@ -314,7 +262,7 @@ anova(m0, m2)
 
 #### Interpretation of the output
 
-The unexplained variation of the null model, 15,100, can be is reduced to an unexplained variation of 4,500 by a three variable model. The three variable model has explained variation of 10,500.
+The unexplained variation of the null model, 15,000, can be is reduced to an unexplained variation of 4,500 by a three variable model. The three variable model has explained variation of 10,500.
 
 The F-statistic is large and the p-value is small, indicating that the three variable model provides a statistically significant prediction of the percentage of body fat. You could state equivalently that the one variable model provides a statistically significant reduction in unexplained variation over a null model.
 
@@ -328,7 +276,9 @@ anova(m0, m3)
 
 #### Interpretation of the output
 
+The unexplained variation of the null model, 15,000, can be reduced to an unexplained variation of 4,000 by a ten variable model. The ten variable model has explained variation of 11,000.
 
+The F-statistic is large and the p-value is small, indicating that the ten variable model provides a statistically significant prediction of the percentage of body fat. You could state equivalently that the ten variable model provides a statistically significant reduction in unexplained variation over a null model.
 
 ## Calcuation of r-squared for each model
 
@@ -349,39 +299,107 @@ rsq_table
 
 #### Comments on the code
 
-The [glance][ref06] function (part of the broom library) provides a range of summary measures for a linear regression model as well as many other statistical models.
+The [glance][ref-glance] function (part of the broom library) provides a range of summary measures for a linear regression model as well as many other statistical models.
 
-THe [bind_rows][ref07] function (part of the dplyr/tidyverse libraries) helps to put all the results of the individual models into a single tibble.
+We keep the R-squared value and the deviance. The deviance is a general name for what is unexplained variation (SSE) in the context of linear regression.
 
-[ref06]: https://broom.tidymodels.org/reference/glance.lm.html
-[ref07]: https://dplyr.tidyverse.org/reference/bind_rows.html
+THe [bind_rows][ref-bind-rows] function (part of the dplyr/tidyverse libraries) helps to put all the results of the individual models into a single tibble.
+
+[ref-glance]: https://broom.tidymodels.org/reference/glance.lm.html
+[ref-bind-rows]: https://dplyr.tidyverse.org/reference/bind_rows.html
 
 #### Interpretation of the output
 
 Unexplained variation for the null model is 15,000. A model with abdomen reduces unexplained variation to 5,000 and accounts for 66% of the variation. A model with chest, abdomen, and hips reduces unexplained variation only slightly more, down to 4,500. This model accounts for 70% of the variation. A model with every circumference reduces unexplained variation a tiny bit more, to about 4,000 and accounts for about 74% of the variation.
 
-## Analysis of variance table
+# --- Part 2
+
+## Tests of individual regression coefficients, one variable model
 
 ```{r}
-#| label: anova
+#| label: coefficients-one-variable
 
+tidy(m1) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value <  0.001 ~ "< 0.001",
+        p.value >= 0.001 ~ as.character(round(p.value, 3))))
+```
 
-anova(m0, m1) |> tidy() 
-anova(m1, m2) |> tidy()
-anova(m2, m3) |> tidy()
+#### Comments on the code
+
+The [tidy][ref-broom] function (part of the broom library), provides a nice summary of the coefficients in various statistical models in R. This includes a standardization across all these statistical models. The tidy function also takes the list that is the result of most statistical models in R and extracts the necessary information into a tibble, which makes it easier for you to manipulate the results.
+
+One big modification that this provides is the ability to simplify the display of p-values. Very small p-values are listed as < 0.001 and the other p-values are rounded to three decimal places.
+
+[ref-broom]: https://cran.r-project.org/web/packages/broom/vignettes/broom.html
+
+#### Interpretation of the output
+
+## Tests of individual regression coefficients, three variable model
+
+```{r}
+#| label: coefficients-three-variable
+tidy(m2) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value <  0.001 ~ "< 0.001",
+        p.value >= 0.001 ~ as.character(round(p.value, 3))))
 ```
 
 #### Interpretation of the output
 
-There is a statistically significant improvement using abdomen over the null model (m1 vs m0), as well as for using chest and hip in addition to abdomen (m2 vs m1), and for using all circumference measures over just chest, abdomen, and hip. 
+## Tests of individual regression coefficients, ten variable model
+
+```{r}
+#| label: coefficients-ten-variable
+
+tidy(m3) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value <  0.001 ~ "< 0.001",
+        p.value >= 0.001 ~ as.character(round(p.value, 3))))
+```
+
+## Comparison of one and three variable models
+
+```{r}
+#| label: anova-m1-m2
+
+anova(m1, m2)
+```
+
+#### Comments on the code
+
+You can compare the improvement of complex model over a simple model by including the simple and complex model as arguments in the anova function. You can put them in either order, but the table looks closer to the common format if you place the simple model as the first argument.
+
+#### Interpretation of the output
+
+There is a statistically significant improvement using chest and hip in addition to abdomen (m2 vs m1), and for using all circumference measures over just chest, abdomen, and hip. 
+
+## Comparison of three and ten variable models
+
+```{r}
+#| label: anova-m2-m3
+
+anova(m2, m3)
+```
+
+#### Interpretation of the output
+
+There is a statistically significant improvement using all circumference measures over just chest, abdomen, and hip. 
 
 # --- Part 3
 
 ## Residuals
 
 ```{r}
+#| label: augment
+
 r2 <- augment(m2)
-names(r2)
 ```
 
 ## Residual plots versus predicted
@@ -390,12 +408,12 @@ names(r2)
 #| label: fitted-plot
 r2 |>
   ggplot() +
-    aes(x=.fitted, y=.resid) +
-    geom_point() +
-    geom_smooth(method="loess") +
-    xlab("Predicted values from three variable model") +
-    ylab("Residuals from three variable model") +
-    ggtitle("Plot drawn by Steve Simon on 2025-01-27") 
+  aes(x=.fitted, y=.resid) +
+  geom_point() +
+  labs(
+    x="Predicted values from three variable model",
+    y="Residuals from three variable model",
+    caption="Steve Simon, 2025-01-27, CC0") 
 ```
 
 ## Residual plots versus non-included variables
@@ -403,16 +421,18 @@ r2 |>
 ```{r}
 #| label: thigh-plot
 
-r2 |> select(.resid) -> r2a
-fat |>
-  bind_cols(r2a) |>
+r2 |> 
+  select(.resid) |>
+  bind_cols(fat) -> r2a
+
+r2a |>
   ggplot() +
-    aes(x=thigh, y=.resid) +
-    geom_point() +
-    geom_smooth(method="loess") +
-    xlab("Thigh circumference") +
-    ylab("Residuals from three variable model") +
-    ggtitle("Plot drawn by Steve Simon on 2025-01-27")
+  aes(x=thigh, y=.resid) +
+  geom_point() +
+  labs(
+    x="Thigh circumference (cm)",
+    y="Residuals from three variable model",
+    caption="Steve Simon, 2025-01-27, CC0")
 ```
 
 #### Interpretation of the output
@@ -421,67 +441,77 @@ For this and the remaining plots it looks like there is no evidence that these v
 
 ```{r}
 #| label: knee-plot
-fat |>
-  bind_cols(r2a) |>
+r2a |>
   ggplot() +
-    aes(x=knee, y=.resid) +
-    geom_point() +
-    geom_smooth(method="loess") +
-    xlab("Knee circumference") +
-    ylab("Residuals from three variable model") +
-    ggtitle("Plot drawn by Steve Simon on 2025-01-27") 
+  aes(x=knee, y=.resid) +
+  geom_point() +
+  labs(
+    x="Knee circumference (cm)",
+    y="Residuals from three variable model",
+    caption="Steve Simon, 2025-01-27, CC0")
 ```
 
 ```{r}
 #| label: ankle-plot
-fat |>
-  bind_cols(r2a) |>
+
+r2a |>
   ggplot() +
-    aes(x=knee, y=.resid) +
-    geom_point() +
-    geom_smooth(method="loess") +
-    xlab("Ankle circumference") +
-    ylab("Residuals from three variable model") +
-    ggtitle("Plot drawn by Steve Simon on 2025-01-27") 
+  aes(x=ankle, y=.resid) +
+  geom_point() +
+  labs(
+    x="Ankle circumference (cm)",
+    y="Residuals from three variable model",
+    caption="Steve Simon, 2025-01-27, CC0")
 ```
 
 ```{r}
 #| label: biceps-plot
-fat |>
-  bind_cols(r2a) |>
+
+r2a |>
   ggplot() +
-    aes(x=knee, y=.resid) +
-    geom_point() +
-    geom_smooth(method="loess") +
-    xlab("Biceps circumference") +
-    ylab("Residuals from three variable model") +
-    ggtitle("Plot drawn by Steve Simon on 2025-01-27") 
+  aes(x=biceps, y=.resid) +
+  geom_point() +
+  labs(
+    x="Biceps circumference (cm)",
+    y="Residuals from three variable model",
+    caption="Steve Simon, 2025-01-27, CC0")
 ```
 
 ```{r}
 #| label: forearm-plot
-fat |>
-  bind_cols(r2a) |>
+r2a |>
   ggplot() +
-    aes(x=knee, y=.resid) +
-    geom_point() +
-    geom_smooth(method="loess") +
-    xlab("Forearm circumference") +
-    ylab("Residuals from three variable model") +
-    ggtitle("Plot drawn by Steve Simon on 2025-01-27") 
+  aes(x=forearm, y=.resid) +
+  geom_point() +
+  labs(
+    x="Forearm circumference (cm)",
+    y="Residuals from three variable model",
+    caption="Steve Simon, 2025-01-27, CC0")
 ```
 
 ```{r}
 #| label: wrist-plot
-fat |>
-  bind_cols(r2a) |>
+r2a |>
   ggplot() +
-    aes(x=wrist, y=.resid) +
-    geom_point() +
-    geom_smooth(method="loess") +
-    xlab("Wrist circumference") +
-    ylab("Residuals from three variable model") +
-    ggtitle("Plot drawn by Steve Simon on 2025-01-27") 
+  aes(x=wrist, y=.resid) +
+  geom_point() +
+  geom_smooth(method="loess") +
+  labs(
+    x="Wrist circumference (cm)",
+    y="Residuals from three variable model",
+    caption="Steve Simon, 2025-01-27, CC0")
+```
+
+```{r}
+#| label: neck-plot
+r2a |>
+  ggplot() +
+  aes(x=neck, y=.resid) +
+  geom_point() +
+  labs(
+    x="Neck circumference (cm)",
+    y="Residuals from three variable model",
+    caption="Steve Simon, 2025-01-27, CC0")
 ```
 
 # --- Part 4
@@ -499,8 +529,31 @@ vif(m2)
 
 ## Mediation analysis
 
+## Linear regression model
+
 ```{r}
-#| label: coefficients-2
+#| label: models-4-to-6
+
+m4 <- lm(
+	fat_b ~ age, 
+	data=fat)
+
+m5 <- lm(
+	abdomen ~ age, 
+	data=fat)
+
+m6 <- lm(
+	fat_b ~ age + abdomen, 
+	data=fat)
+```
+
+#### Comments on the code
+
+Mediation is tested in three steps. Does the variable influence the outcome, does the variable influence the mediator, and does the effect of the variable on the outcome disappear when you model both the variable and the mediator in predicting the outcome.
+
+
+```{r}
+#| label: coefficients-m4
 
 tidy(m4) |>
   mutate(
@@ -508,6 +561,14 @@ tidy(m4) |>
       case_when(
         p.value <  0.001 ~ "< 0.001",
         p.value >= 0.001 ~ as.character(round(p.value, 3))))
+```
+
+#### Comments on the output
+
+
+
+```{r}
+#| label: coefficients-m5
 
 tidy(m5) |>
   mutate(
@@ -515,6 +576,25 @@ tidy(m5) |>
       case_when(
         p.value <  0.001 ~ "< 0.001",
         p.value >= 0.001 ~ as.character(round(p.value, 3))))
+```
+
+#### Comments on the output
+
+
+
+
+```{r}
+#| label: coefficients-m6
+
+tidy(m6) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value <  0.001 ~ "< 0.001",
+        p.value >= 0.001 ~ as.character(round(p.value, 3))))
+```
+
+#### Comments on the output
 
 
 
@@ -530,6 +610,7 @@ save(
   m3,
   m4,
   m5,
+  m6,
   rsq_table
   r2,
   file="../data/module02.RData")
