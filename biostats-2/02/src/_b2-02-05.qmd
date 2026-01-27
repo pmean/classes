@@ -84,3 +84,12 @@ r2 |>
 ::: notes
 While three variables is not too many, here is what the plot of residuals versus predicted values looks like. Notice that it has pretty much the same features as the three individual plots.
 :::
+
+## Measures of influence
+
+-   Same as in biostats-1
+    -   Leverage > 3(p+1)/n
+    -   Studentized residual > +/-3
+    -   Cook's distance > 1
+
+## Live demo, part 3
