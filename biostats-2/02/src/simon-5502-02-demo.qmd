@@ -45,7 +45,8 @@ The [car][ref-car] package provides some helpful functions for various regressio
 -   m2: linear regression using chest, abdomen, hip to predict fat_b
 -   m3: linear regression using all circumference measures to predict fat_b
 -   m4: linear regression using age to predict fat_b
--   m5: linear regression using age and abdomen to predict fat_b
+-   m5: linear regression using age to predict abdomen
+-   m6: linear regression using age and abdomen to predict fat_b
 -   rsq_table: listing of r-squared values for various models
 -   r2: applying augment to m2
 -   r2a: r2 with all columns except .resid removed
@@ -129,7 +130,9 @@ fat |>
   labs(
     x="Chest circumference (cm)",
     y="Percentage body fat",
-    caption="Steve Simon, 2025-01-25, CC0")
+    caption="Steve Simon, 2025-01-25, CC0") -> plot_chest
+
+plot_chest
 ```
 
 #### Interpretation of the output
@@ -149,7 +152,9 @@ fat |>
   labs(
     x="Abdomen circumference (cm)",
     y="Percentage body fat",
-    caption="Steve Simon, 2025-01-25, CC0")
+    caption="Steve Simon, 2025-01-25, CC0") -> plot_abdomen
+
+plot_abdomen
 ```
 
 #### Interpretation of the output
@@ -163,13 +168,15 @@ There is a somewhat stronger positive relationship between abdomen circumference
 
 fat |>
   ggplot() +
-  aes(x=abdomen, y=fat_b) +
+  aes(x=hip, y=fat_b) +
   geom_point() +
   geom_smooth(method="lm", se=FALSE) +
   labs(
     x="Hip circumference (cm)",
     y="Percentage body fat",
-    caption="Steve Simon, 2025-01-25, CC0")
+    caption="Steve Simon, 2025-01-25, CC0") -> plot_hip
+
+plot_hip
 ```
 
 #### Interpretation of the output
@@ -218,22 +225,6 @@ The m2 model uses three predictor variables, chest, abdomen, and hip circumferen
 
 The m3 model uses all ten circumference measurements. This model is perhaps a bit excessive, but provides an interesting model that adds the circumferences at the extremities (neck, arms and legs) to the middle three circumferences.
 
-## Analysis of variance for a null model
-
-```{r}
-#| label: anova-m0
-
-anova(m0)
-```
-
-#### Comments on the code
-
-The [anova][ref-anova] function takes the results of a linear regression model and creates an analysis of variance model.
-
-Although you do not need this for a formal analysis, it is instructive to look at the analysis of variance table for a null model. It has only one row which represents unexplained variation. There is no explained variation in a null model. You do not need to specify units here and in later output from the anova function, but they are the square of the units used by the outcome variable.
-
-[ref-anova]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/anova.lm.html
-
 #### Interpretation of the output
 
 There is a total amount of unexplained variation of roughly 15,000 before any variables are entered into the model.
@@ -245,6 +236,12 @@ There is a total amount of unexplained variation of roughly 15,000 before any va
 
 anova(m0, m1)
 ```
+
+#### Comments on the code
+
+The [anova][ref-anova] function compares the results of two linear regression models using an analysis of variance table.
+
+[ref-anova]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/anova.lm.html
 
 #### Interpretation of the output
 
@@ -280,21 +277,13 @@ The unexplained variation of the null model, 15,000, can be reduced to an unexpl
 
 The F-statistic is large and the p-value is small, indicating that the ten variable model provides a statistically significant prediction of the percentage of body fat. You could state equivalently that the ten variable model provides a statistically significant reduction in unexplained variation over a null model.
 
-## Calcuation of r-squared for each model
+## Calcuation of r-squared for the one variable model
 
 ```{r}
-#| label: rsq
+#| label: rsq-m1
 
-glance(m0) |>
-  bind_rows(glance(m1)) |>
-  bind_rows(glance(m2)) |>
-  bind_rows(glance(m3)) |>
-  mutate(regression_model=glue("m{0:3}")) |>
-  mutate(r.squared=round(r.squared, 2)) |>
-  mutate(deviance=round(deviance)) |>
-  mutate(deviance=format(deviance, big.mark=",")) |>
-  select(regression_model, r.squared, deviance) -> rsq_table
-rsq_table
+glance(m1) |>
+  select(r.squared, deviance)
 ```
 
 #### Comments on the code
@@ -303,14 +292,38 @@ The [glance][ref-glance] function (part of the broom library) provides a range o
 
 We keep the R-squared value and the deviance. The deviance is a general name for what is unexplained variation (SSE) in the context of linear regression.
 
-THe [bind_rows][ref-bind-rows] function (part of the dplyr/tidyverse libraries) helps to put all the results of the individual models into a single tibble.
-
 [ref-glance]: https://broom.tidymodels.org/reference/glance.lm.html
-[ref-bind-rows]: https://dplyr.tidyverse.org/reference/bind_rows.html
 
 #### Interpretation of the output
 
-Unexplained variation for the null model is 15,000. A model with abdomen reduces unexplained variation to 5,000 and accounts for 66% of the variation. A model with chest, abdomen, and hips reduces unexplained variation only slightly more, down to 4,500. This model accounts for 70% of the variation. A model with every circumference reduces unexplained variation a tiny bit more, to about 4,000 and accounts for about 74% of the variation.
+A model with abdomen reduces unexplained variation to 5,000 and accounts for 66% of the variation in percentage body fat.
+
+
+## Calcuation of r-squared for the three variable model
+
+```{r}
+#| label: rsq-m2
+
+glance(m2) |>
+  select(r.squared, deviance)
+```
+
+#### Interpretation of the output
+
+A model with chest, abdomen, and hips reduces unexplained variation only slightly more, down to 4,500. This model accounts for 70% of the variation.
+
+## Calcuation of r-squared for the three variable model
+
+```{r}
+#| label: rsq-m3
+
+glance(m3) |>
+  select(r.squared, deviance)
+```
+
+#### Interpretation of the output
+
+A model with every circumference reduces unexplained variation a tiny bit more, to about 4,000 and accounts for about 74% of the variation.
 
 # --- Part 2
 
@@ -402,6 +415,29 @@ There is a statistically significant improvement using all circumference measure
 r2 <- augment(m2)
 ```
 
+## Normal probability plot of the residuals
+
+```{r}
+#| label: qq-plot
+
+r2 |>
+  ggplot() +
+  aes(sample=.resid) +
+  geom_qq() -> plot_qq
+
+plot_qq
+```
+
+#### Comments on the code
+
+The [geom_qq][ref-geom-qq] function produces a normal probability plot. There are several closely related functions that you could also use. See the geom_qq page for details.
+
+[ref-geom-qq]: https://ggplot2.tidyverse.org/reference/geom_qq.html
+
+#### Interpretation of the output
+
+There are some slight deviations from a linear shape at the extremes, but otherwise, the residuals look like they follow a normal distribution.
+
 ## Residual plots versus predicted
 
 ```{r}
@@ -413,8 +449,78 @@ r2 |>
   labs(
     x="Predicted values from three variable model",
     y="Residuals from three variable model",
-    caption="Steve Simon, 2025-01-27, CC0") 
+    caption="Steve Simon, 2025-01-27, CC0") -> plot_fitted
+
+plot_fitted
 ```
+
+#### Interpretation of the output
+
+
+the plot shows a random featureless pattern, with the exception of one outiler with a very high predicted value and a very large negative residual. The appears to be no evidence of non-linearity or heterogeneity.
+
+## Interpretation of leverage
+
+```{r}
+#| label: leverage
+
+n <- nrow(fat)
+p <- 3
+
+r2 |>
+  filter(.hat > 3*(p+1)/n)
+```
+
+#### Interpretation of the output
+
+There are several data points that could be classified as outliers in the independent variable dimensions.
+
+## Display extreme studentized residuals
+
+```{r}
+#| label: studentized-residual
+
+r2 |>
+  filter(abs(.std.resid) > 3)
+```
+
+#### Interpretation of the output
+
+There is a single data point with a large studentized residual. It's one of the points that was also had a high leverage value.
+
+## Display extreme Cook's distance values
+
+```{r}
+#| label: cooks-distance
+
+r2 |>
+  filter(.cooksd > 1)
+```
+
+#### Interpretation of the output
+
+There are no data points with a large value of Cook's distance. We still should look carefully at the one point that was a copncern from the perspective of the other two measures.
+
+## Investigate unusual data value
+
+```{r}
+#| label: investigate
+
+odd_row <- which.max(r2$.std.resid)
+
+r2 |> 
+  slice_max(abs(.std.resid))
+```
+
+#### Comment on the code
+
+The [slice_max][ref-slice-max] function displays the row with the largest value of a particular variable. if there are more than one values tied at the maximum, it displays all of those rows.
+
+[ref-slice-max]: https://dplyr.tidyverse.org/reference/slice.html
+
+#### Interpretation of the output.
+
+Whoever this individual is, they are pretty big. A hip circumference of 147.7 inches is about 58 inches.That would be a 4XL at the big and tall store. The Cook's distance is not greater than 1, but is still a bit of a concern at 0.72.
 
 ## Residual plots versus non-included variables
 
@@ -432,12 +538,16 @@ r2a |>
   labs(
     x="Thigh circumference (cm)",
     y="Residuals from three variable model",
-    caption="Steve Simon, 2025-01-27, CC0")
+    caption="Steve Simon, 2025-01-27, CC0") -> plot_thigh
+
+plot_thigh
 ```
 
 #### Interpretation of the output
 
-For this and the remaining plots it looks like there is no evidence that these variables might provide additional predictive power above and beyond the prediction using chest, abdomen, and hip. There is an outlier on the high end of most circumference measures that may need to be investigated.
+It looks like there is no evidence that the thigh circumference might provide additional predictive power above and beyond the prediction using chest, abdomen, and hip. There is an outlier on the high end for thigh circumference with a large negative residual that may need to be investigated.
+
+I am presenting the remaining plots without interpretation.
 
 ```{r}
 #| label: knee-plot
@@ -495,7 +605,6 @@ r2a |>
   ggplot() +
   aes(x=wrist, y=.resid) +
   geom_point() +
-  geom_smooth(method="loess") +
   labs(
     x="Wrist circumference (cm)",
     y="Residuals from three variable model",
@@ -521,9 +630,18 @@ r2a |>
 ```{r}
 #| label: vif
 
-library(car)
 vif(m2)
 ```
+
+#### Comments on the code
+
+The [vif][ref-vif] function, part of the car library, calculates the variance inflation factor for all the variables included in a linear regression model.
+
+[ref-vif]: https://cran.r-project.org/web/packages/car/refman/car.html#vif
+
+#### Interpretation of the output
+
+There is a small amount of collinearity in the data, but none of the variance inflation factors exceed 10.
 
 # --- Part 5
 
@@ -549,8 +667,11 @@ m6 <- lm(
 
 #### Comments on the code
 
-Mediation is tested in three steps. Does the variable influence the outcome, does the variable influence the mediator, and does the effect of the variable on the outcome disappear when you model both the variable and the mediator in predicting the outcome.
+This description comes from a [Bommae Kim webpage][ref-kim] on mediation analysis.
 
+Mediation is tested in three steps. Does the variable influence the outcome, does the variable influence the mediator, and does the effect of the variable on the outcome disappear when you model both the variable and the mediator in predicting the outcome. These results are stored in m4, m5, and m6, respectively.
+
+[ref-kim]: https://library.virginia.edu/data/articles/introduction-to-mediation-analysis
 
 ```{r}
 #| label: coefficients-m4
@@ -565,7 +686,7 @@ tidy(m4) |>
 
 #### Comments on the output
 
-
+Age is significant predictor of percentage body fat. That's the first step for establishing a mediation effect.
 
 ```{r}
 #| label: coefficients-m5
@@ -580,7 +701,7 @@ tidy(m5) |>
 
 #### Comments on the output
 
-
+Age is also a significant predictor of abdomen. This is the second step in establishing a mediation effect.
 
 
 ```{r}
@@ -596,7 +717,9 @@ tidy(m6) |>
 
 #### Comments on the output
 
+This model is the third step in establishing a mediation effect.
 
+The effect of age is decreased sharply when you include abdomen in the model along with age. It does not disappear entirely, however. So abdomen circumference is a partial mediator of age in predicting percentage fat. Most of the effect on age on body fat is indirect, through the increase in your belly size as you get older. Some of the increase in body fat as you age is still there even if you were successful in avoiding an increase in abdomen circumference.
 
 ## Save everything
 
@@ -613,5 +736,11 @@ save(
   m6,
   rsq_table
   r2,
+  plot_chest,
+  plot_abdomen,
+  plot_hip,
+  plot_qq,
+  plot_fitted,
+  plot_thigh,
   file="../data/module02.RData")
 ```
