@@ -29,17 +29,11 @@ Calculate several linear regression models using weight in pounds (wt) as the de
 
 ## Question 3
 
-The regression coefficient for abdomen is quite different in the single variable model compared to the three variable model. Display the regression coefficients for each model with tests of significance. Explain the important difference in the interpretation of the abdomen coefficent in the single variable model versus the three variable model.
+The regression coefficient for abdomen is quite different in the single variable model compared to the three variable model. Display the regression coefficients for each model with tests of significance. Explain the important difference in the interpretation of the abdomen coefficient in the single variable model versus the three variable model.
 
 ## Question 4
 
 Compute residuals from the three variable model and assess the assumption of normality using a QQ plot.
-
-Test the hypothesis that LifeSpan and Gestation help in predicting TotalSleep above and beyond BodyWt.
-
-## Question 4
-
-Check the assumptions of normality, linearity, and homoscedascity for the model with BodyWt, LifeSpan, and Gestation as independent variables.
 
 ## Your submission
 
