@@ -8,8 +8,6 @@ execute:
   error: true
 ---
 
-## Part 1. Read the data and produce descriptive statistics
-
 ## File details
 
 This program was written by Steve Simon on 2025-01-30 and is placed in the public domain. You can use this program any way you please.
@@ -46,6 +44,8 @@ Sys.Date()
 -   plot1: boxplot of custom_build and price
 -   plot2: plot of predicted versus residuals
 -   plot3: qq plot of residuals
+
+# --- Part 1
 
 ## Read the data
 
@@ -122,14 +122,14 @@ alb |>
 
 Only about a quarter of the houses are custom-built.
 
-## Part 2. t-test, traditional and with lm
+# --- Part 2
 
 ## Boxplot comparing price by custom_build.
 
 ```{r}
 #| label: boxplot-1
-#| fig.width: 6
-#| fig.height: 2
+#| fig-width: 6
+#| fig-height: 2
 
 alb |>
 	ggplot() +
