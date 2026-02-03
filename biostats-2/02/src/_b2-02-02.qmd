@@ -200,7 +200,7 @@ You compute the F ratio by dividing the mean square for regression into the mean
 ## Example using fat data
 
 ```{r}
-#| label: setup-2
+#| label: 02-02-setup
 #| message: false
 #| warning: false
 
@@ -229,12 +229,15 @@ F = round(anova2[2,5], 2)
 
 ::: notes
 Here is an example using the dataset with body fat measurements and circumference measurements at the hip, chest, and abdomen. The sum of squares are 10,500 for regression, 4,500 for residual or error and 15,000 for total. The respective degrees of freedom are 3 (for the three independent variables), 248 (252-3-1) for error and 251 (252-1) for total. The mean squares are quite different 3,500 versus 18. The F-ratio, 192, is a lot larger than 1 and the small p-value indicates that you should reject the null hypothesis and conclude that at least one of the three regression slopes is not equal to zero.
+
+Note that this test does not tell you which variable or variables are needed to predict body fat. It is an overall test of the combined effect of all three variables.
 :::
 
 ## R-squared
 
 -   $R^2=SSR/SST$ or $1-(SSE/SST)$
     -    Proportion of explained variation
+    -    1 - proportion of unexplained variation
 
 ::: notes
 R-squared is defined pretty much the same way as in simple linear regression (regression with only one independent variable). It is the ratio of explained variation ($SS_{regression}$) to total variation ($SS_{total}$) or 1 minus the ratio of unexplained variation ($SS_{error}$) to total variation. This is a descriptive measure and there is no rule of thumb, but you are happier with the quality of the regression predictions if R-squared is closer to 1. 
@@ -243,7 +246,7 @@ R-squared is defined pretty much the same way as in simple linear regression (re
 ## Example using the fat data
 
 ```{r}
-#| label: rsq
+#| label: 02-02-rsq
 
 m2_glance <- data.frame(glance(m2))
 m2_glance
@@ -272,3 +275,5 @@ Often you will see R-squared displayed as a percentage instead of a proportion (
 ::: notes
 Many researchers propose an alternative measure, adjusted R-squared. This statistic modifies R-squared slightly downward. You can view this as a penalty for model complexity, but unfortunately, the penalty is small and does help enough to discourage the use of needlessly complex regression models.
 :::
+
+## Live demo, part 1

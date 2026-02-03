@@ -64,16 +64,15 @@ In any case, I have really preferred the use of a single model, the general line
     -   $independent-variables$ can be numeric, factors, or strings
 -   data =
 -   subset =
--   [na.action][ref11] =
+-   [na.action][ref-na] =
     -   na.fail
     -   na.omit
     -   na.exclude
 -   other arguments
 
-[ref11]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/na.fail.html
+[ref-na]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/na.fail.html
 
 
 ::: notes
-
-This week I will show how you fit a multiple linear regression model using the lm function. Ditto for analysis of covariance and multi-factor analysis of variance. Not this week, though.
+This week I will show how you fit a multiple linear regression model using the lm function. In the following two weeks, I will show how to use the lm function to compute analysis of covariance and multi-factor analysis of variance.
 :::

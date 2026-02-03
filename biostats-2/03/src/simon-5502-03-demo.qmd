@@ -8,16 +8,14 @@ execute:
   error: true
 ---
 
-## Part 1. Read the data and produce descriptive statistics
-
 ## File details
 
 This program was written by Steve Simon on 2025-01-30 and is placed in the public domain. You can use this program any way you please.
 
-This program reads [albuquerqe-housing.csv][ref01],a dataset that examines sales prices for residential homes in 1993 in Albuquerque, New Mexico. Refer to the [data dictionary][ref02] for a more detailed description.
+This program reads [albuquerqe-housing.csv][ref-alb-csv],a dataset that examines sales prices for residential homes in 1993 in Albuquerque, New Mexico. Refer to the [data dictionary][ref-alb-yaml] for a more detailed description.
 
-[ref01]: https://github.com/pmean/data/blob/main/files/albuquerque-housing.csv
-[ref02]: https://github.com/pmean/data/blob/main/files/albuquerque-housing.yaml
+[ref-alb-csv]: https://github.com/pmean/data/blob/main/files/albuquerque-housing.csv
+[ref-alb-yaml]: https://github.com/pmean/data/blob/main/files/albuquerque-housing.yaml
 
 ```{r}
 #| label: setup
@@ -28,6 +26,7 @@ library(broom)
 library(glue)
 library(knitr)
 library(tidyverse)
+
 R.version.string
 Sys.Date()
 ```
@@ -46,6 +45,8 @@ Sys.Date()
 -   plot2: plot of predicted versus residuals
 -   plot3: qq plot of residuals
 
+# --- Part 1
+
 ## Read the data
 
 ```{r}
@@ -56,6 +57,7 @@ alb <- read_csv(
   col_names=TRUE,
   col_types="nnnnccc",
   na=".")
+
 glimpse(alb)
 ```
 
@@ -70,10 +72,11 @@ You have seen the read-csv function before. The na="." argument tells R that mis
 
 alb |>
   summarize(
-    price_mean=mean(price),
-    price_sd=sd(price),
-    price_min=min(price),
-    price_max=max(price))
+    price_mean=mean(price, na.rm=TRUE),
+    price_sd=sd(price, na.rm=TRUE),
+    price_min=min(price, na.rm=TRUE),
+    price_max=max(price, na.rm=TRUE),
+    n_missing=sum(is.na(price)))
 ```
 
 #### Comment on the code
@@ -82,7 +85,7 @@ I use the word "dollars" in the interpretation below rather than putting in a do
 
 #### Interpretation of the output
 
-The average house sold for 106 thousand dollars. The range of prices is large, going from 54 thousand dollars to 215 thousand dollars. All of these prices seem low, but perhaps those prices were quite normal back in 1993.
+The average house sold for 106 thousand dollars. The range of prices is large, going from 54 thousand dollars to 215 thousand dollars. All of these prices seem low, but perhaps those prices were quite normal back in 1993. There are no missing values.
 
 ## Descriptive statistics for sqft
 
@@ -91,15 +94,16 @@ The average house sold for 106 thousand dollars. The range of prices is large, g
 
 alb |>
   summarize(
-    sqft_mean=mean(sqft),
-    sqft_sd=sd(sqft),
-    sqft_min=min(sqft),
-    sqft_max=max(sqft))
+    sqft_mean=mean(sqft, na.rm=TRUE),
+    sqft_sd=sd(sqft, na.rm=TRUE),
+    sqft_min=min(sqft, na.rm=TRUE),
+    sqft_max=max(sqft, na.rm=TRUE),
+    n_missing=sum(is.na(sqft)))
 ```
 
 #### Interpretation of the output
 
-The average house is 1,600 square feet. The range again is quite wide. The houses seems small; the largest is still less than 4,000 square feet. This may have been reasonable back in 1993.
+The average house is 1,600 square feet. The range again is quite wide. The houses seems small; the largest is still less than 4,000 square feet. This may have been reasonable back in 1993. There are no missing values.
 
 ## Descriptive statistics for custom_build
 
@@ -118,24 +122,25 @@ alb |>
 
 Only about a quarter of the houses are custom-built.
 
-## Part 2. t-test, traditional and with lm
+# --- Part 2
 
 ## Boxplot comparing price by custom_build.
 
 ```{r}
 #| label: boxplot-1
-#| fig.width: 6
-#| fig.height: 2
+#| fig-width: 6
+#| fig-height: 2
 
 alb |>
 	ggplot() +
-	  aes(x=custom_build, y=price) +
-	  geom_boxplot() +
-	  xlab("Custom built?") +
-	  ylab("Price (dollars)") +
-	  coord_flip() +
-	  ggtitle("Plot drawn by Steve Simon on 2025-01-30") -> plot_1
-plot_1
+	aes(x=price, y=custom_build) +
+	geom_boxplot() +
+  labs(
+	  x="Price (dollars)",
+	  y="Custom built?",
+	  caption="Steve Simon, 2025-01-30, CC0") -> plot1
+
+plot1
 ```
 
 #### Interpretation of the output
@@ -152,7 +157,9 @@ alb |>
 	summarize(
 		mean_price=mean(price),
 		sd_price=sd(price),
-		n=n()) -> table_1
+		n=n()) -> table1
+
+table1
 ```
 
 #### Interpretation of the output
@@ -165,14 +172,15 @@ The mean price of regular homes is roughly 95 thousand dollars. Custom built hom
 #| label: t-test-1
 
 m1 <- t.test(
-	alb$price[alb$custom_build=="yes"],
-	alb$price[alb$custom_build=="no"],
+  formula = price ~ custom_build,
+  data=alb,
 	var.equal=TRUE)
+
 m1
 ```
 #### Comment on the code
 
-The [t.test][ref04] function will test the hypothesis that the mean is the same in both groups. It requires a bit of awkward syntax, so I prefer to do a comparable test using the lm function.
+The [t.test][ref04] function will test the hypothesis that the mean is the same in both groups. I prefer to do a comparable test using the lm function.
 
 [ref04]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/t.test.html
 
@@ -212,11 +220,11 @@ m2 |>
 
 #### Comment on the code
 
-The [confint][ref05] function (part of base R) calculates confidence intervals for the estimates produces by the lm function as well as some other data analysis functions in R.
+The [confint][ref-confint] function (part of base R) calculates confidence intervals for the estimates produces by the lm function as well as some other data analysis functions in R.
 
 Note that I used the round function here with digits=-3 to round to the nearest thousand dollars. This is optional, but encouraged. What is required, however, is that you always round your data aggressively in your interpretation of the output.
 
-[ref05]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/confint.html
+[ref-confint]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/confint.html
 
 #### Interpretation of the output
 
@@ -227,8 +235,8 @@ Even after allowing for sampling error, the difference in means is at least 36 t
 ```{r}
 #| label: predict
 
-alb_1 <- tibble(custom_build=c("no", "yes"))
-augment(m2, newdata=alb_1)
+alb1 <- tibble(custom_build=c("no", "yes"))
+augment(m2, newdata=alb1)
 ```
 
 #### Comments on the code
@@ -252,12 +260,12 @@ Note: the size of the home might be associated both with custom build and price.
 
 alb |>
 	ggplot() +
-	  aes(x=custom_build, y=sqft) +
-	  geom_boxplot() +
-	  xlab("Custom built?") +
-	  ylab("Size of the house (square feet)") +
-	  coord_flip() +
-	  ggtitle("Plot drawn by Steve Simon on 2025-01-30")
+	aes(x=sqft, y=custom_build) +
+	geom_boxplot() +
+	labs(
+	  x="Size of the house (square feet)",
+	  y="Custom built?",
+	  caption="Steve Simon, 2025-01-30, CC0")
 ```
 
 #### Interpretation of the output
@@ -288,12 +296,13 @@ The average size of regular homes is about 1,500 square feet. Custom-built homes
 
 alb |>
   ggplot() +
-    aes(x=sqft, y=price) +
-    geom_point() +
-    geom_smooth(method="lm") +
-    xlab("Size of home (square feet)") +
-    ylab("Price of home (dollars)") +
-    ggtitle("Graph drawn by Steve Simon on 2025-02-02")
+  aes(x=sqft, y=price) +
+  geom_point() +
+  geom_smooth(method="lm") +
+  labs(
+    x="Size of home (square feet)",
+    y="Price of home (dollars)",
+    caption="Steve Simon, 2025-02-02, CC0")
 ```
 
 #### Interpretation of the output
@@ -323,8 +332,8 @@ m3 |>
 
 alb |>
   group_by(custom_build) |>
-  summarize(sqft=mean(sqft)) -> alb_2
-alb_2
+  summarize(sqft=mean(sqft)) -> alb2
+alb2
 ```
 
 #### Comment on the code
@@ -334,7 +343,7 @@ To make an unadjusted prediction in the analysis of covariance model, you need t
 ```{r}
 #| label: unadjusted prediction-2
 
-augment(m3, newdata=alb_2)
+augment(m3, newdata=alb2)
 ```
 
 #### Interpretation of the output
@@ -346,9 +355,9 @@ The predicted future value for a normal house with 1,500 square feet (the averag
 ```{r}
 #| label: adjusted-prediction-1
 
-alb_2 |>
-  mutate(sqft=mean(alb$sqft)) -> alb_3
-alb_3
+alb2 |>
+  mutate(sqft=mean(alb$sqft)) -> alb3
+alb3
 ```
 
 #### Comment on the code
@@ -358,7 +367,7 @@ To make an adjusted prediction, you replace the different mean square footage va
 ```{r}
 #| label: adjusted-prediction-2
 
-augment(m3, newdata=alb_3)
+augment(m3, newdata=alb3)
 ```
 
 #### Interpretation of the output
@@ -384,11 +393,11 @@ r3 |>
 	ggplot() +
 	aes(x=.fitted, y=.resid) +
 	geom_point() +
-	geom_smooth(method="loess") +
-	xlab("Predicted values") +
-	ylab("Residuals") +
-	ggtitle("Plot drawn by Steve Simon on 2025-02-04") -> plot_2
-plot_2
+  labs(
+	  x="Predicted values",
+  	y="Residuals",
+	  caption="Steve Simon, 2025-02-04, CC0") -> plot2
+plot2
 ```
 
 #### Interpretation of the output
@@ -404,7 +413,11 @@ r3 |>
 	ggplot() +
 	aes(sample=.resid) +
 	stat_qq() +
-	ggtitle("Plot drawn by Steve Simon on 2025-02-04") -> plot_3
+  labs(
+    y="Residuals from ANCOVA model",
+    caption="Steve Simon, 2025-02-04, CC0") -> plot3
+
+plot3
 ```
 
 ### Interpretation of the output
@@ -466,13 +479,13 @@ save(
   m1,
   m2,
   m3,
-  alb_1,
-  alb_2,
-  alb_3,
+  alb1,
+  alb2,
+  alb3,
   r3,
-  plot_1,
-  plot_2,
-  plot_3,
-  table_1,
+  plot1,
+  plot2,
+  plot3,
+  table1,
   file="../data/module03.RData")
 ```
