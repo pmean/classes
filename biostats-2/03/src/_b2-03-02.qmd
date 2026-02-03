@@ -7,7 +7,7 @@ format:
 editor: source
 ---
 
-```{r setup-2}
+```{r}
 #| label: 03-02-setup
 #| message: false
 #| warning: false
@@ -48,7 +48,7 @@ m1
 ## T-test using general linear model
 
 ```{r}
-#| label: lm
+#| label: 03-02-lm
 
 tidy(m2)
 confint(m2)

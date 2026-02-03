@@ -19,7 +19,7 @@ editor: source
 ## Residuals versus predicted
 
 ```{r}
-#| label: plot-2
+#| label: 03-04-plot-2
 
 plot_2
 ```
@@ -27,7 +27,7 @@ plot_2
 ## Q-Q plot of residuals
 
 ```{r}
-#| label: plot-3
+#| label: 03-04-plot-3
 
 plot_3
 ```
@@ -35,3 +35,7 @@ plot_3
 ## Testing for an interaction
 
 Save this discussion for next week
+
+## Live demo, part 4
+
+Refer to the simon-5502-03-demo program.

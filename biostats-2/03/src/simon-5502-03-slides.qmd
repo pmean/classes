@@ -9,6 +9,7 @@ params:
   topic_02: "Indicator variable coding"
   topic_03: "Mathematical model"
   topic_04: "Assumptions"
+  topic_05: "Choosing your covariates"
 editor: source
 ---
 
@@ -34,6 +35,7 @@ editor: source
     -   `r params$topic_02`
     -   `r params$topic_03`
     -   `r params$topic_04`
+    -   `r params$topic_05`
 
 {{< include _b2-03-01.qmd >}}
 
@@ -55,10 +57,6 @@ editor: source
     
 {{< include _b2-03-03.qmd >}}
 
-## Live demo, part 3
-
-## Live demo, parts 1 and 2
-
 ## Break #3
 
 -   What you have learned
@@ -68,8 +66,22 @@ editor: source
     
 {{< include _b2-03-04.qmd >}}
 
-## Live demo, part 4
+## Break #4
 
+-   What you have learned
+    -   `r params$topic_04`
+-   What's coming next
+    -   `r params$topic_05`
+    
+{{< include _b2-03-05.qmd >}}
+
+## Break #5
+
+-   What you have learned
+    -   `r params$topic_05`
+-   What's coming next
+    -   Your homework
+    
 ## Summary
 
 -   What you have learned
@@ -77,6 +89,7 @@ editor: source
     -   `r params$topic_02`
     -   `r params$topic_03`
     -   `r params$topic_04`
+    -   `r params$topic_05`
 
 
 <!---

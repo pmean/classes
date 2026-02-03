@@ -6,18 +6,19 @@ This programming assignment was written by Steve Simon on 2025-01-30 and is plac
 
 ## Program
 
--   Write a program to answer the questions listed below. You may wish to adapt some code from the [demonstration program for module03][ref01]. Replace my name with yours everywhere, remove the "Comments on the code" sections, and only include program chunks that address the questions listed below.
+-   Write a program to answer the questions listed below. You may wish to adapt some code from the [demonstration program for module03][ref-5502-03-demo]. Replace my name with yours everywhere, remove the "Comments on the code" sections, and only include program chunks that address the questions listed below. You might also want to review a [program used last semester in module05][ref-5501-05-demo].
  
-[ref01]: https://github.com/pmean/classes/blob/master/biostats-2/03/src/simon-5502-03-demo.qmd
+[ref-5502-03-demo]: https://github.com/pmean/classes/blob/master/biostats-2/03/src/simon-5502-03-demo.qmd
+[ref-5501-05-demo]: https://github.com/pmean/classes/blob/master/biostats-1/05/src/simon-5501-05-bf.qmd
 
 ## Data
 
--   Download the [data][ref02] file
+-   Download the [data][ref-bf-csv] file
     -   Store it in your data folder
--   Refer to the [data dictionary][ref03], if needed.
+-   Refer to the [data dictionary][ref-bf-yaml], if needed.
 
-[ref02]: https://github.com/pmean/data/blob/main/files/breast-feeding-preterm.csv
-[ref03]: https://github.com/pmean/data/blob/main/files/breast-feeding-preterm.yaml
+[ref-bf-csv]: https://github.com/pmean/data/blob/main/files/breast-feeding-preterm.csv
+[ref-bf-yaml]: https://github.com/pmean/data/blob/main/files/breast-feeding-preterm.yaml
 
 ## Question 1
 
@@ -49,8 +50,8 @@ Now adjust for mom_age in an analysis of covariance model. Display the parameter
 
 ## Your grade
 
--   Your grade will be based on this [grading rubric][ref04]. Please also note the [policy on late submissions and rework][ref05]. If your program does not work, please review the [suggestions if you encounter an error page][ref06].
+-   Your grade will be based on this [grading rubric][ref-rubric]. Please also note the [policy on late submissions and rework][ref-late]. If your program does not work, please review the [suggestions if you encounter an error page][ref-error].
 
-[ref04]: https://github.com/pmean/classes/blob/master/general/src/general-grading-rubric.md
-[ref05]: https://github.com/pmean/classes/blob/master/general/src/policy-on-extensions-and-rework.md
-[ref06]: https://github.com/pmean/classes/blob/master/general/src/suggestions-if-you-encounter-an-error.md
+[ref-rubric]: https://github.com/pmean/classes/blob/master/general/src/general-grading-rubric.md
+[ref-late]: https://github.com/pmean/classes/blob/master/general/src/policy-on-extensions-and-rework.md
+[ref-error]: https://github.com/pmean/classes/blob/master/general/src/suggestions-if-you-encounter-an-error.md
