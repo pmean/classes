@@ -12,7 +12,7 @@ title: "Directions for 5505-02 programming assignment"
     -   Add your name
     -   Optional: change the copyright statement
     
-[refp1]: https://github.com/pmean/classes/blob/master/introduction-to-r/01/src/simon-5505-02-template.qmd
+[refp1]: https://github.com/pmean/classes/blob/master/introduction-to-r/02/src/simon-5505-02-demo.qmd
 
 ## Data
 

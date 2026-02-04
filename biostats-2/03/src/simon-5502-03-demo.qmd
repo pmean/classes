@@ -247,7 +247,7 @@ You have already seen how the augment function (part of the broom package) can p
 
 The prediction for a future observation of a normal (not custom-built) home is 95 thousand dollars. The prediction for a custom-built house is 145 thousand dollars.
 
-## Part 3. Analysis of covariance
+# --- Part 3
 
 Note: the size of the home might be associated both with custom build and price. Let's investigate.
 
@@ -374,7 +374,7 @@ augment(m3, newdata=alb3)
 
 The predicted future price of a normal house with a size of 1,650 square feet is 103 thousand dollars. The predicted future price of a custom-built house with a size of 1,650 square feet is 117 thousand dollars. The difference, 14 thousand dollars, matches the estimate from the analysis of covariance model.
 
-## Part 4. Checking your assumptions
+# --- Part 4
 
 ## Compute residuals and predicted values
 

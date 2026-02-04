@@ -1,0 +1,75 @@
+---
+title: "Choosing your covariates"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## What variable(s) should you include as covariates
+
+-   Not recommended
+    -   Pre-screen for imbalance
+    -   Pre-screen for correlation
+    -   Use stepwise regression
+-   Recommended
+    -   Use medical/scientific judgement
+    -   Be expansive
+    
+::: notes
+
+One of the more difficult questions is what variable or variables should you include as covariates. There are several approaches that are commonly used but which are frowned upon by the experts. First, you should not use any pre-screening. Do not include covariates because they look unbalanced with repsect to the treatment or exposure variable. Don't include covariates because they appear to be correlated with the outcome variable. Above all do not use stepwise regression to select covariates.
+
+The problem with all these approaches is that they produce residual confounding--confounding that remains even after you do all the adjustemts mandated by the pre-screen or stepwise regression.
+
+What you should do is include covariates based on your medical and scientific expertise. That's not to say that pre-screening should be totally ignored. Just be sure to include variables that you know are important, even if they don't show serious imbalance and strong correlation with the outcome. And do not include a variable that shows imbalance or correlation if there is not a plausible scientific or medical reason to include it.
+
+As a general rule, it is best to be expansive in the list of covariates that you adjust for. Keep in mind the rule of 15 (you should have 15 observations for each independent variable in your model).
+
+:::
+
+## Using matching instead of covariate adjustment
+
+-   The algorithms for matching are tricky
+    -   Greedy matching
+-   Allow a small amount of wiggle room
+    -   Example: age plus or minus 3 years
+-   Some data will be lost
+
+::: notes
+
+You can try to match your control group to the intervention/exposed group, but the actual algorithms are tricky. A simple approach called greedy matching finds the closest match between the a patient in the treatment/exposuregroup and a patient in the control group. That becomes your first pair. Then look for the closest match in the remaining patients. Continue until no more good matches are found. This seems reasonable, but sometimes an early match could be switched to a patient that was just barely not as good, but which allows for better matching in the future.
+
+Matching works best when there is a large pool of control patients to choose from. In any case, you will often find a few patients in the intervention/exposure group that do not have a good match with any of the patients in the control group. 
+
+:::
+
+## Propensity score models
+
+-   Very useful with a large number of covariates
+-   Logistic model of treatment/exposure versus control
+    -   Calculate predicted probabilities
+    -   Known as propensity scores
+-   Several ways to use propensity scores
+    -   Use to reweight observations
+    -   Use to match patients
+    -   Use as a single composite covariate
+    
+::: notes
+
+If you have a very large number of covariates, you can use propensity score models. Develop a logistic regression model that ignores the outcome but instead tries to predict whether a patient is in the treatment/exposure group or in the control group based just on the covariates in the model.
+
+The logistic model will produce predicted probabilities. These probabilities are called propensity scores. A high propensity score represents a covariate pattern that looks more like the covariate patterns seen in the treatment/exposure group. A low propensity score represents a covariate pattern that looks more like the covariate patterns seen in the control group.
+
+You will find a few control patients with a high propensity score. These are very important patients. They are the ones which represent "fair" comparisons to the treatment/exposure group. If you give greater weight to these subjects and lesser weight to the control subjects with low propensity scores, you are likely to produce a control population whose weighted covariates look like the covariates in the treatment/exposure group.
+
+You can also use the propensity score to create matches between the treatment/exposure group and the control group. Matching on a single propensity score is a lot simpler than trying to match on several covariates simultaneously.
+
+You can also use the propensity score as a single composite covariate.
+
+The propensity score approach usually works quite well, but it is important to look at various diagnostic tables and graphs that show how much covariate imbalance remains after applying the propensity score through weighting or matching.
+
+If I can find room in the next few modules, I will try to show some actual propensity score models in action.
+
+:::
