@@ -11,6 +11,7 @@ params:
   topic_04: "An organizing structure to your literature review"
   topic_05: "Writing a methods section"
   topic_06: "Talking about your research"
+  topic_07: "Your homework"
 editor: source
 ---
 
@@ -90,6 +91,10 @@ Switch to a [different presentation][ref-talking].
 
 [ref-talking]: https://github.com/pmean/classes/blob/master/general/results/research-talks.html
 
+## Your homework
+
+Switch to the Canvas site.
+
 ## Summary
 
 -   What you have learned
@@ -99,6 +104,7 @@ Switch to a [different presentation][ref-talking].
     -   `r params$topic_04`
     -   `r params$topic_05`
     -   `r params$topic_06`
+    -   `r params$topic_07`
 
 <!---
       You have to put the title down 
