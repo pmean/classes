@@ -1,8 +1,13 @@
 ---
 title: "Talking about your research"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
 ---
 
-## Talking about your research
+## Introduction
 
 + Very important skill
   + Talk every chance you get
@@ -13,7 +18,7 @@ title: "Talking about your research"
 
 Being able to talk about your research is an important skill. This includes both talks at formal research conferences and local seminars. Talk every chance you get. You want everyone you know to be aware of what you are doing, and you never can predict where help for your work will come from next.
 
-I give pretty good talks. I won several area and regional Toastmasters contests, for example. One of my talks in 1997 won an award. But I could do a lot better.
+I give pretty good talks. I won several area and regional Toastmasters contests, for example. One of my talks in 1997 won an award at a research conference. But I could do a lot better.
 
 Let me share what I know, but I want to back this up with advice from the real experts.
 
@@ -145,9 +150,7 @@ If you end up finishing a bit early, the other speakers will love you for it. Ne
   + Adobe pdf
   + Apple Keynote
   + Prezi
-  + Ioslides
-  + Slidy
-  + Beamer
+  + reveal.js
 
 ::: notes
 

@@ -75,7 +75,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_05`
     
-{{< include _crm-03-04.qmd >}}
+{{< include _crm-03-05.qmd >}}
 
 ## Break #5
 
@@ -86,7 +86,11 @@ editor: source
     
 ## Talking about your research
 
-Go to a separate slide show
+Switch to a [different presentation][ref-talking].
+
+[ref-talking]: 
+
+{{< include ../../../general/src/research-talks.qmd >}}
 
 ## Summary
 
