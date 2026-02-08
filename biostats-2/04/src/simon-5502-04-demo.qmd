@@ -12,10 +12,12 @@ execute:
 
 This program was written by Steve Simon on 2025-01-30 and is placed in the public domain. You can use this program any way you please.
 
-There are two data files used in this program
+There are four data files used in this program
 
 -   full-moon-er-admissions, [csv file][ref01], [dictionary][ref02]
 -   exercise-programs, [SPSS file][ref03], [dictionary][ref04]
+-   pulmonary
+-   tracking
 
 [ref01]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.txt
 [ref02]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.yaml
@@ -35,12 +37,18 @@ R.version.string
 Sys.Date()
 ```
 
-## Intermediate files
+## Intermediate files, er_admits
 
--   er: Original data from full-moon-er-admissions.txt 
--   er_1: Re-order Month and Moon levels
--   plot_01: Line plot for Moon data
--   plot_02: Alternative line plot for Moon data
+-   er_admits_0: 0riginal data from full-moon-er-admissions.txt 
+-   er_admits_1: re-order month and moon levels
+-   month_table: counts and percentages for months
+-   moon_table: counts and percentages for moon
+-   admits_table: means and standard deviations for admissions
+-   admits_plot_1: line plot for er-admits data
+-   admits_plot_2: alternative line plot for moon data
+-   admits_by_moon_table: means and standard deviation for admits by moon
+
+
 -   plot_03: QQ plot of residuals
 -   plot_04: Predicted vs residuals
 -   table_01: Mean Admission by Moon
@@ -64,17 +72,24 @@ Sys.Date()
 ```{r}
 #| label: moon-read
 
-er <- read_tsv(
+er_admits_0 <- read_tsv(
   file="../data/full-moon-er-admissions.txt",
   col_names=TRUE,
   col_types="ccn")
-glimpse(er)
+
+names(er_admits_0) <- tolower(names(er_admits_0))
+
+glimpse(er_admits_0)
 ```
+
+#### Comment on the code
+
+It is optional, but I often like to convert my variable names to all lower case rather than having an initial capital letter. So "Moon" changes to "moon", for example. Having variables as consistently all lower case makes things easier for me to remember when I switch from one dataset to another.
 
 ## Create factors
 
 ```{r}
-#| label: moon-factors
+#| label: add-factors
 
 month_list <- c(
   "Aug",
@@ -95,9 +110,9 @@ phase_list <- c(
   "During",
   "After")
 
-er |>
-  mutate(Month=factor(Month, levels=month_list)) |>
-  mutate(Moon=factor(Moon, levels=phase_list)) -> er_1
+er_admits_0 |>
+  mutate(month=factor(month, levels=month_list)) |>
+  mutate(moon=factor(moon, levels=phase_list)) -> er_admits_1
 ```
 
 #### Comment on the code
@@ -107,14 +122,16 @@ By default, when R encounters a string, it will use alphabetical order in arrang
 ## Descriptive statistics
 
 ```{r}
-#| label: moon-descriptives-1
+#| label: month-table
 
-er_1 |>
-	count(Month) |>
+er_admits_1 |>
+	count(month) |>
   	mutate(total=sum(n)) |>
   	mutate(pct=round(100*n/total)) |>
 	  mutate(pct=glue("{pct}% ({n}/{total})")) |>
-	  select(-n, -total)
+	  select(-n, -total) -> month_table
+
+month_table
 ```
 
 #### Interpretation of the output
@@ -122,14 +139,16 @@ er_1 |>
 There are twelve months, each representing 8% (1/12) of the data.
 
 ```{r}
-#| label: moon-descriptives-2
+#| label: moon-table
 
-er_1 |>
-	count(Moon) |>
+er_admits_1 |>
+	count(moon) |>
   	mutate(total=sum(n)) |>
   	mutate(pct=round(100*n/total)) |>
 	  mutate(pct=glue("{pct}% ({n}/{total})")) |>
-	  select(-n, -total)
+	  select(-n, -total) -> moon_table
+
+moon_table
 ```
 
 #### Interpretation of the output
@@ -138,14 +157,16 @@ There are three phase times, each representing 33% (1/3) of the data.
 
 
 ```{r}
-#| label: moon-descriptives-3
+#| label: admits-table
 
-er_1 |>
+er_admits_1 |>
   summarize(
-    admission_mean=mean(Admission),
-    admission_sd=sd(Admission),
-    admission_min=min(Admission),
-    admission_max=max(Admission))
+    admission_mean=mean(admission),
+    admission_sd=sd(admission),
+    admission_min=min(admission),
+    admission_max=max(admission)) -> admits_table
+
+admits_table
 ```
 
 #### Interpretation of the output
@@ -155,24 +176,26 @@ The average number of admissions is about 12 patients per day. There is a modera
 ## Lineplot
 
 ```{r}
-#| label: moon-lineplot-1
+#| label: admits-plot-1
 
-er_1 |>
+er_admits_1 |>
   ggplot() +
-  aes(x=Moon, y=Admission) +
-  geom_line(aes(group=Month)) +
-  geom_text(aes(label=Month)) +
-  ggtitle("Plot drawn by Steve Simon on 2025-02-08") +
-  xlab("Moon phase") +
-  ylab("ER admission rate") -> plot_01
-plot_01
+  aes(x=moon, y=admission) +
+  geom_line(aes(group=month)) +
+  geom_text(aes(label=month)) +
+  labs(
+    x="Moon phase",
+    y="ER admission rate",
+    caption="Steve Simon, 2025-02-08, CC0") -> admits_plot_1
+
+admits_plot_1
 ```
 
 #### Comment on the output
 
 You have already used the [aes][ref07] function to define the x and y axes for various visualizations in ggplot. There are other applications of the aes function that can help control other features of your visualization.
 
-The group argument in the aes function tells the geom_line function that you want a separate line for each month of the year. The label argument in the aes function tells the geom_text function to write the string value of month at each combination of x=Moon and y=Admission.
+The group argument in the aes function tells the geom_line function that you want a separate line for each month of the year. The label argument in the aes function tells the geom_text function to write the string value of month at each combination of x=moon and y=admission.
 
 [ref07]: https://ggplot2.tidyverse.org/reference/aes.html
 
@@ -181,19 +204,23 @@ The group argument in the aes function tells the geom_line function that you wan
 ```{r}
 #| label: moon-lineplot-2
 
-er_1 |>
+er_admits_1 |>
   ggplot() +
   aes(x=Month, y=Admission) +
   geom_line(aes(group=Moon)) +
   geom_text(aes(label=Moon)) +
-  ggtitle("Plot drawn by Steve Simon on 2025-02-08") +
-  ylab("ER admission rate") -> plot_02
-plot_02
+  labs(
+    y="ER admission rate (patients/day)",
+    caption="Steve Simon, 2025-02-08, CC0") -> admits_plot_2
+
+admits_plot_2
 ```
 
 #### Comment on the code
 
 By swapping the roles of Month and Moon inside the ggplot function, you get a different appearance. It is not always clear which way to draw the line graph. It usually helps for you to look at both approaches, but then display only the one that you think helps create the simplest interpretation of what is going on.
+
+You don't need a label for the x-axis in this plot because "month" is sufficiently descriptive.
 
 Which graph do you like better? I tend to waver between the two.
 
@@ -202,12 +229,13 @@ Which graph do you like better? I tend to waver between the two.
 ```{r}
 #| label: admission-by-moon
 
-er_1 |>
-  group_by(Moon) |>
+er_admits_1 |>
+  group_by(moon) |>
   summarize(
-    Admission_mean=mean(Admission),
-    Admission_sd=sd(Admission)) -> table_01
-table_01
+    Admission_mean=mean(admission),
+    Admission_sd=sd(admission)) -> admits_by_moon_table
+
+admits_by_moon_table
 ```
 
 #### Interpretation of the output
@@ -219,9 +247,9 @@ The average admission rate before a full moon is 11 patients per day. During a f
 ```{r}
 #| label: three-moon-models
 
-m1 <- lm(Admission ~ 1, data=er_1)
-m2 <- lm(Admission ~ Moon, data=er_1)
-m3 <- lm(Admission ~ Moon + Month, data=er_1)
+m1 <- lm(Admission ~ 1, data=er_admits_1)
+m2 <- lm(Admission ~ Moon, data=er_admits_1)
+m3 <- lm(Admission ~ Moon + Month, data=er_admits_1)
 
 ```
 
@@ -602,13 +630,189 @@ plot_06
 
 The two plots seem to emphasize different features of the data. The first plot emphasizes the superior average weight loss of women in the jogging group, men in the swimming group with identical average weight loss in the control (reading) group. The second plot seems to emphasize that jogging showed the best average weight loss and the control group showing the worst average weight loss. But if you look closely at either plot, you should notice both trends.
 
+```{r}
+#| label: read-tracking
+
+library(glue)
+library(tidyverse)
+
+tracking0 <- read_tsv(
+  file="../data/tracking.txt",
+  col_types="cncnnnn",
+  col_names=TRUE)
+names(tracking0) <- tolower(names(tracking0))
+
+glimpse(tracking0)
+```
+::: notes
+https://gksmyth.github.io/ozdasl/general/tracking.html
+https://gksmyth.github.io/ozdasl/general/tracking.txt
+:::
+
+## Create Child variable
+
+```{r}
+#| label: create-child
+
+tracking0 |>
+  mutate(child =case_when(
+    age <= 18 ~ "yes",
+    age > 18 ~ "no")) -> tracking1
+```
+
+## Descriptive statistics for sex
+
+```{r}
+#| label: sex-counts
+
+tracking1 |>
+  count(sex) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total)
+```
+
+#### Interpretatipon of the output
+
+Males comprise 62% of the sample
+
+## Descriptive statistics for child
+
+```{r}
+#| label: child-counts
+
+tracking1 |>
+  count(child) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total)
+```
+
+#### Interpretation of the output
+
+Children (18 and younger) comprise 56% of the sample.
+
+## Descriptive statistics for shape
+
+```{r}
+#| label: shape-counts
+
+tracking1 |>
+  count(shape) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total)
+
+```
+
+#### Interpretation of the output
+
+Boxes were used as tracking symbols in 70% of the trials.
+
+## Descriptive statistics for trial4
+
+```{r}
+#| label: trial4-mean
+
+tracking1 |>
+  summarize(
+    trial4_mean=mean(trial4),
+    trial4_sd=sd(trial4),
+    trial4_min=min(trial4),
+    trial4_max=max(trial4))
+```
+
+#### Interpretation of the output
+
+The tracking task lasted for 15 seconds, so the average time is quite low. There is a wide range of variation, with one subject tracking for more than 11 seconds out of 15.
+
+## Boxplots
+
+```{r}
+#| label: trial4-boxplots
+#| fig-wdith: 8
+#| fig.height: 3
+
+tracking1 |>
+  ggplot() +
+  aes(
+    x=trial4,
+    y=child,
+    color=sex) +
+  geom_boxplot() +
+  labs(
+    x="Tracking time (seconds)",
+    y="Child",
+    caption="Simon, 2026-02-05")
+```
+
+#### Interpretation of the output
+
+Male adults do better than female adults and both are better then children of either sex.
+
+## Interaction plot
+
+```{r}
+#| label: tracking-time-interaction-1
+
+tracking1 |>
+  pull(trial4) |>
+  range() -> time_range
+
+tracking1 |>
+  group_by(sex, child) |>
+  summarize(time_mean=mean(trial4)) |>
+  ggplot() +
+  aes(
+    x=child,
+    y=time_mean,
+    group=sex,
+    color=sex) +
+  scale_y_continuous(limits=time_range) +
+  geom_line() +
+  labs(
+    x="Child",
+    y="Average tracking time (seconds)",
+    caption="Steve Simon, 2025-02-06, CC0")
+```
+
+```{r}
+#| label: tracking-time-interaction-2
+
+tracking1 |>
+  group_by(sex, child) |>
+  summarize(time_mean=mean(trial4)) |>
+  ggplot() +
+  aes(
+    x=sex,
+    y=time_mean,
+    group=child,
+    color=child) +
+  scale_y_continuous(limits=time_range) +
+  geom_line() +
+  labs(
+    x="Sex",
+    y="Average tracking time (seconds)",
+    caption="Steve Simon, 2025-02-06, CC0")
+```
+
 ## Save everything
 
 ```{r}
 #| label: save
 save(
-  er,
-  er_1,
+  er_admits_0,
+  er_admits_1,
+  month_table,
+  moon_table,
+  admits_table,
+  admits_plot_1,
+  admits_plot_2,
+  admits_by_moon_table
+  
   ex,
   ex_1,
   m1,
@@ -631,3 +835,4 @@ save(
   table_09,
   file="../data/module04.RData")
 ```
+
