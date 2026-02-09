@@ -14,15 +14,19 @@ This program was written by Steve Simon on 2025-01-30 and is placed in the publi
 
 There are four data files used in this program
 
--   full-moon-er-admissions, [csv file][ref01], [dictionary][ref02]
--   exercise-programs, [SPSS file][ref03], [dictionary][ref04]
--   pulmonary
--   tracking
+-   full-moon-er-admissions, [txt file][ref-moon-txt], [dictionary][ref-moon-yaml]
+-   tracking, [txt file][ref-tracking-txt], [dictionary][ref-tracking-yaml]
+-   exercise-programs, [SPSS file][ref-exercise-sav], [dictionary][ref-exercise-yaml]
+-   pulmonary, [csv file][ref-pulmonary-csv], [dictionary][ref-pulmonary-yaml]
 
-[ref01]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.txt
-[ref02]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.yaml
-[ref03]: https://github.com/pmean/data/blob/main/files/exercise-programs.sav
-[ref04]: https://github.com/pmean/data/blob/main/files/exercise-programs.yaml
+[ref-moon-txt]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.txt
+[ref-moon-yaml]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.yaml
+[ref-tracking-txt]: https://github.com/pmean/data/blob/main/files/tracking.txt
+[ref-tracking-yaml]: https://github.com/pmean/data/blob/main/files/tracking.yaml
+[ref-exercise-sav]: https://github.com/pmean/data/blob/main/files/exercise-programs.sav
+[ref-exercise-yaml]: https://github.com/pmean/data/blob/main/files/exercise-programs.yaml
+[ref-pulmonary-csv]: https://github.com/pmean/data/blob/main/files/fev.csv
+[ref-pulmonary-yaml]: https://github.com/pmean/data/blob/main/files/fev.yaml
 
 ```{r}
 #| label: setup
@@ -39,47 +43,42 @@ Sys.Date()
 
 ## Intermediate files, er_admits
 
--   er_admits_0: 0riginal data from full-moon-er-admissions.txt 
--   er_admits_1: re-order month and moon levels
--   month_table: counts and percentages for months
--   moon_table: counts and percentages for moon
--   admits_table: means and standard deviations for admissions
--   admits_plot_1: line plot for er-admits data
--   admits_plot_2: alternative line plot for moon data
--   admits_by_moon_table: means and standard deviation for admits by moon
+-   er_admits0: 0riginal data from full-moon-er-admissions.txt 
+-   er_admits1: re-order month and moon levels
 
+-   lm_null_model: null model for predicting admits
+-   lm_moon_model: model using moon to predict admits
+-   lm_moon_month_model: model using moon, month to predict admits
 
--   plot_03: QQ plot of residuals
--   plot_04: Predicted vs residuals
--   table_01: Mean Admission by Moon
--   table_02: Single factor analysis of variance for Moon data
--   table_03: Parameter estimates
--   table_04: Tukey post hoc
--   table_05: Two factor model parameter estimates
--   table_06: Global F test
--   table_07: Partial F test
+## Intermediate files, ex
+
 -   ex: Original data from exercise.sav
 -   ex_1: Create factors for female and prog
 -   ex_2: Create indicator variables
 -   plot_05: Line plot for Exercise data
 -   plot_06: Alternative line plot for Exercise data
+
+## Intermediate files, tracking
+
+## Intermediate files, pulmonary
+
 -   pulmonary: Original data from fev.csv
 
-## Part 1. Review one factor analysis of variance
+# --- Part 1, Review one factor analysis of variance
 
 ## Read the moon data
 
 ```{r}
 #| label: moon-read
 
-er_admits_0 <- read_tsv(
+er_admits0 <- read_tsv(
   file="../data/full-moon-er-admissions.txt",
   col_names=TRUE,
   col_types="ccn")
 
-names(er_admits_0) <- tolower(names(er_admits_0))
+names(er_admits0) <- tolower(names(er_admits0))
 
-glimpse(er_admits_0)
+glimpse(er_admits0)
 ```
 
 #### Comment on the code
@@ -110,9 +109,9 @@ phase_list <- c(
   "During",
   "After")
 
-er_admits_0 |>
+er_admits0 |>
   mutate(month=factor(month, levels=month_list)) |>
-  mutate(moon=factor(moon, levels=phase_list)) -> er_admits_1
+  mutate(moon=factor(moon, levels=phase_list)) -> er_admits1
 ```
 
 #### Comment on the code
@@ -124,7 +123,7 @@ By default, when R encounters a string, it will use alphabetical order in arrang
 ```{r}
 #| label: month-table
 
-er_admits_1 |>
+er_admits1 |>
 	count(month) |>
   	mutate(total=sum(n)) |>
   	mutate(pct=round(100*n/total)) |>
@@ -141,7 +140,7 @@ There are twelve months, each representing 8% (1/12) of the data.
 ```{r}
 #| label: moon-table
 
-er_admits_1 |>
+er_admits1 |>
 	count(moon) |>
   	mutate(total=sum(n)) |>
   	mutate(pct=round(100*n/total)) |>
@@ -159,7 +158,7 @@ There are three phase times, each representing 33% (1/3) of the data.
 ```{r}
 #| label: admits-table
 
-er_admits_1 |>
+er_admits1 |>
   summarize(
     admission_mean=mean(admission),
     admission_sd=sd(admission),
@@ -178,7 +177,7 @@ The average number of admissions is about 12 patients per day. There is a modera
 ```{r}
 #| label: admits-plot-1
 
-er_admits_1 |>
+er_admits1 |>
   ggplot() +
   aes(x=moon, y=admission) +
   geom_line(aes(group=month)) +
@@ -186,9 +185,9 @@ er_admits_1 |>
   labs(
     x="Moon phase",
     y="ER admission rate",
-    caption="Steve Simon, 2025-02-08, CC0") -> admits_plot_1
+    caption="Steve Simon, 2025-02-08, CC0") -> admits_plot1
 
-admits_plot_1
+admits_plot1
 ```
 
 #### Comment on the output
@@ -202,18 +201,18 @@ The group argument in the aes function tells the geom_line function that you wan
 ## Alternative lineplot
 
 ```{r}
-#| label: moon-lineplot-2
+#| label: admits-plot-2
 
-er_admits_1 |>
+er_admits1 |>
   ggplot() +
-  aes(x=Month, y=Admission) +
-  geom_line(aes(group=Moon)) +
-  geom_text(aes(label=Moon)) +
+  aes(x=month, y=admission) +
+  geom_line(aes(group=moon)) +
+  geom_text(aes(label=moon)) +
   labs(
     y="ER admission rate (patients/day)",
-    caption="Steve Simon, 2025-02-08, CC0") -> admits_plot_2
+    caption="Steve Simon, 2025-02-08, CC0") -> admits_plot2
 
-admits_plot_2
+admits_plot2
 ```
 
 #### Comment on the code
@@ -229,7 +228,7 @@ Which graph do you like better? I tend to waver between the two.
 ```{r}
 #| label: admission-by-moon
 
-er_admits_1 |>
+er_admits1 |>
   group_by(moon) |>
   summarize(
     Admission_mean=mean(admission),
@@ -247,9 +246,9 @@ The average admission rate before a full moon is 11 patients per day. During a f
 ```{r}
 #| label: three-moon-models
 
-m1 <- lm(Admission ~ 1, data=er_admits_1)
-m2 <- lm(Admission ~ Moon, data=er_admits_1)
-m3 <- lm(Admission ~ Moon + Month, data=er_admits_1)
+lm_null_model <- lm(admission ~ 1, data=er_admits1)
+lm_moon_model <- lm(admission ~ moon, data=er_admits1)
+lm_moon_month_model <- lm(admission ~ moon + month, data=er_admits1)
 
 ```
 
@@ -257,28 +256,32 @@ m3 <- lm(Admission ~ Moon + Month, data=er_admits_1)
 ## Single factor analysis of variance
 
 ```{r}
-anova(m1, m2) |> 
+#| label: anova-moon-table
+
+anova(lm_null_model, lm_moon_model) |> 
   tidy() |>
   mutate(
     p.value =
       case_when(
         p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> table_02
-table_02
+        p.value <  0.001 ~ "p < 0.001")) -> anova_moon_table
+
+anova_moon_table
 ```
 
 ## Parameter estimates
 
 ```{r}
-#| label: moon-parameters-1
+#| label: estimates-moon-table
 
-tidy(m2) |>
+tidy(lm_moon_model) |>
   mutate(
     p.value =
       case_when(
         p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> table_03
-table_03
+        p.value <  0.001 ~ "p < 0.001")) -> estimates_moon_table
+
+estimates_moon_table
 ```
 
 #### Comment on the code
@@ -287,80 +290,50 @@ Normally the reference category would be selected as the first alphabetically, b
 
 #### Interpretation of the output
 
-Here are the parameter estimates. The intercept is the estimated average rate when the first and second indicator both equal zero. This is effectively the average rate for the third group (during a full moon).
+Here are the parameter estimates. The intercept is the estimated average rate when the first and second indicator both equal zero. This is effectively the average rate for the reference category (before a full moon).
 
-The first slope is the estimated average difference in rates when you increase the first indicator by one unit and hold the second indicator constant. This is effectively the the average rate for the first group (after a full moon) minus the average rate for the third group (during a full moon). When the days switch from during a full moon to after a full moon, the estimated average admission rate decreases by almost two patients per day.
+The first slope is the estimated average difference in rates when you increase the first indicator by one unit and hold the second indicator constant. This is effectively the average rate for the second group (during a full moon) minus the average rate for the reference group (before a full moon). When the days switch from before a full moon to during a full moon, the estimated average admission rate increases by about 2.5 patients/day.
 
-The second slope is the estimated average difference in rates when you increase the second indicator by one unit and hold the first indicator constant. This is effectively the the average rate for the second group (before a full moon) minus the average rate for the third group (during a full moon). When the days switch from during a full moon to before a full moon, the estimated average admission rate decreases by 2.5 patients per day.
+The second slope is the estimated average difference in rates when you increase the second indicator by one unit and hold the first indicator constant. This is effectively the the average rate for the third group (after a full moon) minus the average rate for the reference group (before a full moon). When the days switch from before a full moon to after a full moon, the estimated average admission rate increases about half a patient per day.
 
-## Tukey post hoc test
 
-```{r}
-#| label: moon-tukey-1
-
-m2 |>
-  aov() |>
-  TukeyHSD() |>
-  tidy() |>
-  mutate(
-    adj.p.value =
-      case_when(
-        adj.p.value >= 0.001 ~ glue("p = {round(adj.p.value, 3)}"),
-        adj.p.value <  0.001 ~ "p < 0.001")) -> table_04
-table_04
-```
-
-#### Comments on the code
-
-The TukeyHSD function produces a data frame with a variable labeled p adj. This is not a legal name in R, so you can't manipulate it easily. The tidy function helps here, but the name it chooses, adj.p.value, does not work with the pretty_p function. So you need to use the [rename][ref08] function (part of the dplyr/tidyverse libraries) first.
-
-[ref08]: https://dplyr.tidyverse.org/reference/rename.html
-
-#### Interpretation of the output
-
-Normally, you would not run a post hoc test after accepting the null hypothesis. If you did, you would see that every confidence interval includes the value of zero.
-
-There are a few times (very, very few) where you accept the null hypothesis and the post hoc test shows differences between two of the groups.
-
-There are also a few times where you reject the null hypothesis, but the post hoc test shows no differences between any of the groups. There is an explanation in both cases, but the cases are so rare that I do not want to delve further into them.
-
-There are three possible comparisons among the levels of moon phase. None of the differences are statistically significant.
-
-## Part 2. Two factor analysis of variance
+# --- Part 2, Two factor analysis of variance
 
 ## Parameter estimates
 
 ```{r}
-#| label: moon-anova-2
+#| label: estimates-moon-month-table
 
-tidy(m3) |>
+tidy(lm_moon_month_model) |>
   mutate(
     p.value =
       case_when(
         p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> table_05
-table_05
+        p.value <  0.001 ~ "p < 0.001")) -> estimates_moon_month_table
+
+estimates_moon_month_table
 ```
 
 #### Interpretation of the output
 
 These are the parameter estimates for the two factor analysis of variance. The reference categories are "Before" and "Aug".
 
-The intercept represents the average admission rate before a full moon when the month is August. The two terms associates with moon show how much changes there is from before a full moon to during a full moon and from before a full moon to after a full moon, respectively. The remaining parameter estimates show how much each month differs from the first month (August).
+The intercept represents the average admission rate before a full moon when the month is August. The two terms associated with moon show how much changes there is from before a full moon to during a full moon and from before a full moon to after a full moon, respectively. The remaining parameter estimates show how much each month differs from the first month (August).
 
 ## Anova table, 1
 
 ```{r}
-#| label: moon-anova-3
+#| label: anova-moon-month-table
 
-anova(m1, m3) |>
+anova(lm_null_model, lm_moon_month_model) |>
   tidy() |>
   mutate(
     p.value =
       case_when(
         p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> table_06
-table_06
+        p.value <  0.001 ~ "p < 0.001")) -> anova_moon_month_table
+
+anova_moon_month_table
 ```
 
 #### Interpretation of the output
@@ -370,16 +343,17 @@ There is a statistically significant improvement in prediction when you use Mont
 ## Anova table, 2
 
 ```{r}
-#| label: two-factor-anova-2
+#| label: partial-month_table
 
-anova(m2, m3) |>
+anova(lm_moon_model, lm_moon_month_model) |>
   tidy() |>
   mutate(
     p.value =
       case_when(
         p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> table_07
-table_07
+        p.value <  0.001 ~ "p < 0.001")) -> partial_month_table
+
+partial_month_table
 ```
 
 #### Interpretation of the output
@@ -389,14 +363,15 @@ There is a statistically significant improvement in prediction when you use Mont
 ## Comparison of r-squared values
 
 ```{r}
-#| label: r-squared
+#| label: admits-rsquared-table
 
-glance(m1) |>
-	bind_rows(glance(m2)) |>
-	bind_rows(glance(m3)) |>
-	mutate(model=glue("m{1:3}")) |>
-	select(model, r.squared, deviance) -> table_08
-table_08
+glance(lm_null_model) |>
+	bind_rows(glance(lm_moon_model)) |>
+	bind_rows(glance(lm_moon_month_model)) |>
+	mutate(model=c("Null", "Moon", "Moon Month")) |>
+	select(model, r.squared, deviance) -> admits_rsquared_table
+
+admits_rsquared_table
 ```
 
 #### Interpretation of the output
@@ -406,18 +381,19 @@ The first factor, moon, only accounts for 7% of the variation in admission rates
 ## Tukey post hoc test
 
 ```{r}
-#| label: moon-tukey-2
+#| label: tukey-moon-table
 
-m3 |>
+lm_moon_month_model |>
   aov() |>
-  TukeyHSD(ordered=TRUE, which="Moon") |>
+  TukeyHSD(ordered=TRUE, which="moon") |>
   tidy() |>
   mutate(
     adj.p.value =
       case_when(
         adj.p.value >= 0.001 ~ as.character(round(adj.p.value, 3),
-        adj.p.value <  0.001 ~ "< 0.001"))) -> table_09
-table_09
+        adj.p.value <  0.001 ~ "< 0.001"))) -> tukey_moon_table
+
+tukey_moon_table
 ```
 
 #### Comment on the code
@@ -428,19 +404,22 @@ With two factors, you should provide information to the TukeyHSD function about 
 
 There is no statistically significant difference between the average admission rate before and after a full moon. There is a statistically difference between the average admission rate before and during a full moon. This, however, is a borderline difference. The adjusted p-values is close to 0.05 and the lower limit of the confidence interval comes within kissing distance of zero. There is no statistically significant difference between the average admission rate during a full moon and after a full moon. This, however, is also a borderline result. The confidence interval does include zero, but just barely. Perhaps the only safe interpretation here is that you need more data.
 
-## Part 3. Checking assumptions
+# --- Part 3, Checking assumptions
 
 ```{r}
-#| label: residual-plot-1
+#| label: qq-residual-plot
 
-r3 <- augment(m3)
+augment_moon_month <- augment(lm_moon_month_model)
 
-r3 |>
+augment_moon_month |>
 	ggplot() +
 	aes(sample=.resid) +
 	stat_qq() +
-	ggtitle("Plot created by Steve Simon on 2025-02-11") -> plot_03
-plot_03
+  labs(
+    y="Residuals from moon month model",
+    caption="Steve Simon, 2025-02-11, CC0") -> qq_residuals_plot
+
+qq_residuals_plot
 ```
 
 #### Interpretation of the output
@@ -448,21 +427,143 @@ plot_03
 There is no evidence of non-normality.
 
 ```{r}
-#| label: residual-plot-2
+#| label: predicted-residual-moon-month-plot
 
-r3 |>
+augment_moon_month |>
 	ggplot() +
 	aes(x=.fitted, y=.resid) +
 	geom_point() +
-	ggtitle("Plot created by Steve Simon on 2025-02-11") +
-	xlab("Predicted values from two factor ANOVA") +
-	ylab("Residuals from two factor ANOVA") -> plot_04
-plot_04
+  labs(
+    x="Predicted values from moon month model",
+    y="Residuals from moon month model",
+    caption="Steve Simon, 2025-02-11, CC0") -> predicted_residuals_plot
+
+predicted_residuals_plot
 ```
 
-## Part 4. Interactions
+# --- Part 4, Interactions in multi-factor analysis of variance
 
-## Read exercise data
+## Read tracking data
+
+```{r}
+#| label: read-tracking
+
+tracking0 <- read_tsv(
+  file="../data/tracking.txt",
+  col_types="cncnnnn",
+  col_names=TRUE)
+names(tracking0) <- tolower(names(tracking0))
+
+glimpse(tracking0)
+```
+::: notes
+https://gksmyth.github.io/ozdasl/general/tracking.html
+https://gksmyth.github.io/ozdasl/general/tracking.txt
+:::
+
+## Create Child variable
+
+```{r}
+#| label: create-child
+
+tracking0 |>
+  mutate(child = case_when(
+    age <= 18 ~ "yes",
+    age > 18 ~ "no")) -> tracking1
+```
+
+## Descriptive statistics for sex
+
+```{r}
+#| label: sex-counts
+
+tracking1 |>
+  count(sex) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total)
+```
+
+#### Interpretatipon of the output
+
+Males comprise 62% of the sample
+
+## Descriptive statistics for child
+
+```{r}
+#| label: child-counts
+
+tracking1 |>
+  count(child) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total)
+```
+
+#### Interpretation of the output
+
+Children (18 and younger) comprise 56% of the sample.
+
+## Descriptive statistics for shape
+
+```{r}
+#| label: shape-counts
+
+tracking1 |>
+  count(shape) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total)
+
+```
+
+#### Interpretation of the output
+
+Boxes were used as tracking symbols in 70% of the trials.
+
+## Descriptive statistics for trial4
+
+```{r}
+#| label: trial4-mean
+
+tracking1 |>
+  summarize(
+    trial4_mean=mean(trial4),
+    trial4_sd=sd(trial4),
+    trial4_min=min(trial4),
+    trial4_max=max(trial4))
+```
+
+#### Interpretation of the output
+
+The tracking task lasted for 15 seconds, so the average time is quite low. There is a wide range of variation, with one subject tracking for more than 11 seconds out of 15.
+
+## Boxplots
+
+```{r}
+#| label: trial4-boxplots
+#| fig-wdith: 8
+#| fig.height: 2
+
+tracking1 |>
+  ggplot() +
+  aes(
+    x=trial4,
+    y=child,
+    color=sex) +
+  geom_boxplot() +
+  labs(
+    x="Tracking time (seconds)",
+    y="Child",
+    caption="Simon, 2026-02-05")
+```
+
+#### Interpretation of the output
+
+# --- Part 5, Interactions in analysis of covariance
 
 ```{r}
 #| label: exercise-read
@@ -630,209 +731,42 @@ plot_06
 
 The two plots seem to emphasize different features of the data. The first plot emphasizes the superior average weight loss of women in the jogging group, men in the swimming group with identical average weight loss in the control (reading) group. The second plot seems to emphasize that jogging showed the best average weight loss and the control group showing the worst average weight loss. But if you look closely at either plot, you should notice both trends.
 
-```{r}
-#| label: read-tracking
+# --- Part 6, Interations in multiple linear regression
 
-library(glue)
-library(tidyverse)
-
-tracking0 <- read_tsv(
-  file="../data/tracking.txt",
-  col_types="cncnnnn",
-  col_names=TRUE)
-names(tracking0) <- tolower(names(tracking0))
-
-glimpse(tracking0)
-```
-::: notes
-https://gksmyth.github.io/ozdasl/general/tracking.html
-https://gksmyth.github.io/ozdasl/general/tracking.txt
-:::
-
-## Create Child variable
-
-```{r}
-#| label: create-child
-
-tracking0 |>
-  mutate(child =case_when(
-    age <= 18 ~ "yes",
-    age > 18 ~ "no")) -> tracking1
-```
-
-## Descriptive statistics for sex
-
-```{r}
-#| label: sex-counts
-
-tracking1 |>
-  count(sex) |>
-  mutate(total=sum(n)) |>
-  mutate(pct=round(100*n/total)) |>
-  mutate(pct=glue("{pct}% ({n}/{total})")) |>
-  select(-n, -total)
-```
-
-#### Interpretatipon of the output
-
-Males comprise 62% of the sample
-
-## Descriptive statistics for child
-
-```{r}
-#| label: child-counts
-
-tracking1 |>
-  count(child) |>
-  mutate(total=sum(n)) |>
-  mutate(pct=round(100*n/total)) |>
-  mutate(pct=glue("{pct}% ({n}/{total})")) |>
-  select(-n, -total)
-```
-
-#### Interpretation of the output
-
-Children (18 and younger) comprise 56% of the sample.
-
-## Descriptive statistics for shape
-
-```{r}
-#| label: shape-counts
-
-tracking1 |>
-  count(shape) |>
-  mutate(total=sum(n)) |>
-  mutate(pct=round(100*n/total)) |>
-  mutate(pct=glue("{pct}% ({n}/{total})")) |>
-  select(-n, -total)
-
-```
-
-#### Interpretation of the output
-
-Boxes were used as tracking symbols in 70% of the trials.
-
-## Descriptive statistics for trial4
-
-```{r}
-#| label: trial4-mean
-
-tracking1 |>
-  summarize(
-    trial4_mean=mean(trial4),
-    trial4_sd=sd(trial4),
-    trial4_min=min(trial4),
-    trial4_max=max(trial4))
-```
-
-#### Interpretation of the output
-
-The tracking task lasted for 15 seconds, so the average time is quite low. There is a wide range of variation, with one subject tracking for more than 11 seconds out of 15.
-
-## Boxplots
-
-```{r}
-#| label: trial4-boxplots
-#| fig-wdith: 8
-#| fig.height: 3
-
-tracking1 |>
-  ggplot() +
-  aes(
-    x=trial4,
-    y=child,
-    color=sex) +
-  geom_boxplot() +
-  labs(
-    x="Tracking time (seconds)",
-    y="Child",
-    caption="Simon, 2026-02-05")
-```
-
-#### Interpretation of the output
-
-Male adults do better than female adults and both are better then children of either sex.
-
-## Interaction plot
-
-```{r}
-#| label: tracking-time-interaction-1
-
-tracking1 |>
-  pull(trial4) |>
-  range() -> time_range
-
-tracking1 |>
-  group_by(sex, child) |>
-  summarize(time_mean=mean(trial4)) |>
-  ggplot() +
-  aes(
-    x=child,
-    y=time_mean,
-    group=sex,
-    color=sex) +
-  scale_y_continuous(limits=time_range) +
-  geom_line() +
-  labs(
-    x="Child",
-    y="Average tracking time (seconds)",
-    caption="Steve Simon, 2025-02-06, CC0")
-```
-
-```{r}
-#| label: tracking-time-interaction-2
-
-tracking1 |>
-  group_by(sex, child) |>
-  summarize(time_mean=mean(trial4)) |>
-  ggplot() +
-  aes(
-    x=sex,
-    y=time_mean,
-    group=child,
-    color=child) +
-  scale_y_continuous(limits=time_range) +
-  geom_line() +
-  labs(
-    x="Sex",
-    y="Average tracking time (seconds)",
-    caption="Steve Simon, 2025-02-06, CC0")
-```
+## Read fev dataset
 
 ## Save everything
 
 ```{r}
 #| label: save
 save(
-  er_admits_0,
-  er_admits_1,
+  er_admits0,
+  er_admits1,
+  
   month_table,
   moon_table,
   admits_table,
-  admits_plot_1,
-  admits_plot_2,
-  admits_by_moon_table
   
-  ex,
-  ex_1,
-  m1,
-  m2,
-  m3,
-  plot_01,
-  plot_02,
-  plot_03,
-  plot_04,
-  plot_05,
-  plot_06,
-  table_01,
-  table_02,
-  table_03,
-  table_04,
-  table_05,
-  table_06,
-  table_07,
-  table_08,
-  table_09,
+  admits_plot1,
+  admits_plot2,
+  
+  admits_by_moon_table,
+  
+  lm_null_model,
+  lm_moon_model,
+  lm_moon_month_model,
+  
+  anova_moon_table,
+  estimates_moon_table,
+  estimates_moon_month_table,
+  admits_rsquared_table,
+  
+  qq_residuals_plot,
+  predicted_residuals_plot,
+  
+  tracking0,
+  tracking1,
+
   file="../data/module04.RData")
 ```
 
