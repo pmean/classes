@@ -50,6 +50,8 @@ Sys.Date()
 -   lm_moon_model: model using moon to predict admits
 -   lm_moon_month_model: model using moon, month to predict admits
 
+## Intermediate files, tracking
+
 ## Intermediate files, ex
 
 -   ex: Original data from exercise.sav
@@ -57,8 +59,6 @@ Sys.Date()
 -   ex_2: Create indicator variables
 -   plot_05: Line plot for Exercise data
 -   plot_06: Alternative line plot for Exercise data
-
-## Intermediate files, tracking
 
 ## Intermediate files, pulmonary
 
@@ -132,6 +132,14 @@ er_admits1 |>
 
 month_table
 ```
+
+#### Comments on the code
+
+I often need to re-use or adapt previously computed tables and plots. You can store the results in an object by using the [-> assignment shortcut][ref-assignment] at the end of a chain of pipes. After you make an assignment, you can display the table or plot just by naming the object that you made the assignment to. 
+
+In previous programs, I have fallen into the bad habit of just using sequence numbers (table_1, table_2, etc.). This is fine if you have a small number of tables or plots. In this program, I had so many that I couldn't remember which number went with which table/plot. So, in this code, I have tried to use more descriptive names for the tables and plots.
+
+[ref-assignment]: https://stat.ethz.ch/R-manual//R-devel/RHOME/library/base/html/assignOps.html
 
 #### Interpretation of the output
 
@@ -244,12 +252,11 @@ The average admission rate before a full moon is 11 patients per day. During a f
 ## Fit three models
 
 ```{r}
-#| label: three-moon-models
+#| label: three-admits-models
 
 lm_null_model <- lm(admission ~ 1, data=er_admits1)
 lm_moon_model <- lm(admission ~ moon, data=er_admits1)
 lm_moon_month_model <- lm(admission ~ moon + month, data=er_admits1)
-
 ```
 
 
@@ -457,8 +464,7 @@ names(tracking0) <- tolower(names(tracking0))
 glimpse(tracking0)
 ```
 ::: notes
-https://gksmyth.github.io/ozdasl/general/tracking.html
-https://gksmyth.github.io/ozdasl/general/tracking.txt
+The tracking dataset looks at a task where volunteer subjects of both sexes and a wide range of ages performed a test of motor skills where they tried to track a moving target on a rotating disk. A larger value indicates better motor skills. We will use age to divide the sample into children and adults.
 :::
 
 ## Create Child variable
@@ -522,7 +528,7 @@ tracking1 |>
 
 #### Interpretation of the output
 
-Boxes were used as tracking symbols in 70% of the trials.
+Boxes were used as tracking symbols in 70% of the trials with circles accounting for the remaining 30%..
 
 ## Descriptive statistics for trial4
 
@@ -539,7 +545,7 @@ tracking1 |>
 
 #### Interpretation of the output
 
-The tracking task lasted for 15 seconds, so the average time is quite low. There is a wide range of variation, with one subject tracking for more than 11 seconds out of 15.
+Let's focus initially on the fourth trial. This is possibly a better indication of moter skills than the previous three trials, but that is a bit speculative on my part. The tracking task lasted for 15 seconds, so the average time is quite low. There is a wide range of variation, with one subject tracking for more than 11 seconds out of 15.
 
 ## Boxplots
 
@@ -560,6 +566,10 @@ tracking1 |>
     y="Child",
     caption="Simon, 2026-02-05")
 ```
+
+#### Comments on the code
+
+
 
 #### Interpretation of the output
 
