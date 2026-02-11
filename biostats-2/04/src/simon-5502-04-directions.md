@@ -21,7 +21,7 @@ This assignment is not ready yet. It should be ready by Wednesday at noon.
 [ref-tracking-txt]: https://github.com/pmean/data/blob/main/files/tracking.txt
 [ref-tracking.yaml]: https://github.com/pmean/data/blob/main/files/tracking.yaml
 
-# Question 1
+## Question 1
 
 Create a child variable using the code you saw in class. Also create an improvement variable that calculates how much better the results in trial4 are compared to trial1. Calculate and interpret a histogram for the improvement variable.
 
