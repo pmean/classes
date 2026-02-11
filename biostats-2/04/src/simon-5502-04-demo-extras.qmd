@@ -111,12 +111,16 @@ By default, when R encounters a string, it will use alphabetical order in arrang
 ```{r}
 #| label: month-table
 
+library(gt)
+
 er_admits1 |>
 	count(month) |>
-  	mutate(total=sum(n)) |>
-  	mutate(pct=round(100*n/total)) |>
-	  mutate(pct=glue("{pct}% ({n}/{total})")) |>
-	  select(-n, -total) -> month_table
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total) |>
+  gt() |>
+  fmt_number(pct, decimals=0, pattern="{x}%") |>
+  tab_source_note("Steve Simon, 2026-02-11, CC0") ->
+    month_table
 
 month_table
 ```
@@ -138,10 +142,12 @@ There are twelve months, each representing 8% (1/12) of the data.
 
 er_admits1 |>
 	count(moon) |>
-  	mutate(total=sum(n)) |>
-  	mutate(pct=round(100*n/total)) |>
-	  mutate(pct=glue("{pct}% ({n}/{total})")) |>
-	  select(-n, -total) -> moon_table
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total) |>
+  gt() |>
+  fmt_number(pct, decimals=0, pattern="{x}%") |>
+  tab_source_note("Steve Simon, 2026-02-11, CC0") ->
+    moon_table
 
 moon_table
 ```
@@ -159,7 +165,10 @@ er_admits1 |>
     admission_mean=mean(admission),
     admission_sd=sd(admission),
     admission_min=min(admission),
-    admission_max=max(admission)) -> admits_table
+    admission_max=max(admission)) |>
+  gt() |>
+  fmt_number(admission_mean, decimals=1) |>
+  fmt_number(admission_sd, decimals=1) -> admits_table
 
 admits_table
 ```
@@ -228,7 +237,9 @@ er_admits1 |>
   group_by(moon) |>
   summarize(
     Admission_mean=mean(admission),
-    Admission_sd=sd(admission)) -> admits_by_moon_table
+    Admission_sd=sd(admission)) |>
+  gt() |>
+  fmt_number(decimals=1) -> admits_by_moon_table
 
 admits_by_moon_table
 ```
@@ -237,14 +248,13 @@ admits_by_moon_table
 
 The average admission rate before a full moon is 11 patients per day. During a full moon the average rises by 2.5 patients per day. It falls back after a full moon but only by 2 patients per day.
 
-## Fit three models
+## Fit one factor anova
 
 ```{r}
-#| label: three-admits-models
+#| label: one-factor-anova
 
 lm_null_model <- lm(admission ~ 1, data=er_admits1)
 lm_moon_model <- lm(admission ~ moon, data=er_admits1)
-lm_moon_month_model <- lm(admission ~ moon + month, data=er_admits1)
 ```
 
 
@@ -298,6 +308,10 @@ The second slope is the estimated average difference in rates when you increase 
 
 ```{r}
 #| label: estimates-moon-month-table
+
+lm_moon_month_model <- lm(
+  admission ~ moon + month,
+  data=er_admits1)
 
 tidy(lm_moon_month_model) |>
   mutate(
@@ -620,18 +634,69 @@ trial4_plot2
 ## Analysis with an interaction
 
 ```{r}
-#| label: lm-trial4-model
+#| label: lm-trial4-interaction-model
 
-lm_trial4_model <- lm(trial4~gender+child+gender:child, data=tracking2)
+lm_trial4_interaction_model <- lm(
+  trial4~gender+child+gender:child, 
+  data=tracking2)
 
-tidy(lm_trial4_model) |>
+tidy(lm_trial4_interaction_model) |>
   mutate(
     p.value =
       case_when(
         p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> estimates_trial4_table
+        p.value <  0.001 ~ "p < 0.001")) -> estimates_trial4_interaction_table
   
-estimates_trial4_table
+estimates_trial4_interaction_table
+```
+
+#### Comment on the code
+
+In the [formula][ref-formula] used to specify your model inside the [lm function][ref-lm], placing a colon between two independent variables produce an interaction term.
+
+[ref-formula]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/formula.html
+
+[ref-lm]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html
+
+## Comparison to analysis without an interaction
+
+```{r}
+#| label: lm-trial4-main-effects-model
+
+library(gt)
+
+lm_trial4_main_effects_model <- lm(
+  trial4~gender+child, 
+  data=tracking2)
+
+tidy(lm_trial4_main_effects_model) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001"))
+
+tidy(lm_trial4_main_effects_model) |>
+  gt() |>
+  fmt_number(estimate, decimals=2) |>
+  fmt_number(std.error, decimals=2) |>
+  fmt_number(statistics, decimals=2) |>
+  fmt_number(p.value, decimals=3) -> estimates_trial4_main_effects_table
+
+estimates_trial4_main_effects_table
+
+anova(
+  lm_trial4_main_effects_model, 
+  lm_trial4_interaction_model) |> 
+  tidy() |>  
+  gt() |>
+  fmt_number(rss, decimals=1) |>
+  fmt_number(sumsq, decimals=1) |>
+  fmt_number(statistic, decimals=2) |>
+  fmt_number(p.value, decimals=3) |>
+  tab_source_note("Steve Simon, 2026-02-11, CC0") -> anova_trial4_table
+
+anova_trial4_table
 ```
 
 ## Save everything
@@ -644,6 +709,6 @@ save.image(file="../data/module04.RData")
 
 #### Comment on the code
 
-There are so many things that I needed to save, that I decided to use the [save.image function][ref-sav-image], which saves every object that this program created.
+There are so many things that I needed to save, that I decided to use the [save.image function][ref-save-image], which saves every object that this program created.
 
 [ref-save-image]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html

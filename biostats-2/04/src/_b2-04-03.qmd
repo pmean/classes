@@ -7,6 +7,15 @@ format:
 editor: source
 ---
 
+```{r}
+#| label: 04-03-setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+load("../data/module04.RData")
+```
+
 ## Assumptions
 
 -   Normality
@@ -22,18 +31,26 @@ The assumptions for multiple factor analysis of variance are no different than s
 ## Q-Q plot of residuals
 
 ```{r}
-#| label: plot-03
+#| label: 04-03-qq-residuals-plot
 
-plot_03
+qq_residuals_plot
 ```
+
+::: notes
+For the moon analysis, the normality assumption appears to be satisfied.
+:::
 
 ## Residual versus predicted value plot
 
 ```{r}
-#| label: plot-04
+#| label: 04-03-predicted-residuals-plot
 
-plot_04
+predicted_residuals_plot
 ```
+
+::: notes
+The homogeneity assumption also appears to be satisfied. A violation of homogeneity is often a fanning out patter where you see more variation for large predicted values than for small predicted values.
+:::
 
 ## Diagnostic measures that are not needed
 
@@ -49,5 +66,5 @@ While studentized deleted residuals could be used, they almost never deviate sub
 
 It is also difficult to produce outliers among the independent variables because categorical data can't have extreme values. In theory, it could happen if the distribution of data within certain categories was extremely unbalanced. The amount of imbalance, though, before this becomes an issue is never seen in real world datasets.
 
-for the same reason, Cook's distance, which is a measure that combines leverage with studentized deleted residuals, is never used in multiple factor analysis of variance.
+For the same reason, Cook's distance, which is a measure that combines leverage with studentized deleted residuals, is never used in multiple factor analysis of variance.
 :::

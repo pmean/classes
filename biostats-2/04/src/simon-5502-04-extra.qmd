@@ -12,15 +12,21 @@ execute:
 
 This program was written by Steve Simon on 2025-01-30 and is placed in the public domain. You can use this program any way you please.
 
-There are two data files used in this program
+There are four data files used in this program
 
 -   full-moon-er-admissions, [txt file][ref-moon-txt], [dictionary][ref-moon-yaml]
 -   tracking, [txt file][ref-tracking-txt], [dictionary][ref-tracking-yaml]
+-   exercise-programs, [SPSS file][ref-exercise-sav], [dictionary][ref-exercise-yaml]
+-   pulmonary, [csv file][ref-pulmonary-csv], [dictionary][ref-pulmonary-yaml]
 
 [ref-moon-txt]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.txt
 [ref-moon-yaml]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.yaml
 [ref-tracking-txt]: https://github.com/pmean/data/blob/main/files/tracking.txt
 [ref-tracking-yaml]: https://github.com/pmean/data/blob/main/files/tracking.yaml
+[ref-exercise-sav]: https://github.com/pmean/data/blob/main/files/exercise-programs.sav
+[ref-exercise-yaml]: https://github.com/pmean/data/blob/main/files/exercise-programs.yaml
+[ref-pulmonary-csv]: https://github.com/pmean/data/blob/main/files/fev.csv
+[ref-pulmonary-yaml]: https://github.com/pmean/data/blob/main/files/fev.yaml
 
 ```{r}
 #| label: setup
@@ -29,7 +35,7 @@ There are two data files used in this program
 
 library(broom)
 library(glue)
-# library(knitr)
+library(knitr)
 library(tidyverse)
 R.version.string
 Sys.Date()
@@ -51,6 +57,18 @@ Sys.Date()
 -   tracking2: computed child variable from age
 
 -   lm_trial4_model: module using interaction
+
+## Intermediate files, ex
+
+-   ex: Original data from exercise.sav
+-   ex_1: Create factors for female and prog
+-   ex_2: Create indicator variables
+-   plot_05: Line plot for Exercise data
+-   plot_06: Alternative line plot for Exercise data
+
+## Intermediate files, pulmonary
+
+-   pulmonary: Original data from fev.csv
 
 # --- Part 1, Review one factor analysis of variance
 
@@ -460,8 +478,6 @@ glimpse(tracking1)
 
 #### Comments on the code
 
-When I was writing up some of the interpretations for this program, I decided I did not like the juxtaposition of "child" and "sex". I was worried that some filter would trap my code and flag it for an investigation of pedophilia. Without going into any of the technical distinctions between the two terms, I decided to change "sex" to "gender".
-
 The [rename function][ref-rename] changes the names in a data frame or tibble. The new name goes to the left of the equal sign and the old name goes to the right.
 
 [ref-rename]: https://dplyr.tidyverse.org/reference/rename.html
@@ -478,14 +494,14 @@ The tracking dataset looks at a task where volunteer subjects of both genders an
 
 tracking1 |>
   mutate(child = case_when(
-    age <= 18 ~ "Yes",
-    age > 18 ~ "No")) |>
-  mutate(child=factor(child, levels=c("Yes", "No"))) -> tracking2
+    age <= 18 ~ "yes",
+    age > 18 ~ "no")) |>
+  mutate(child=factor(child, levels=c("yes", "no"))) -> tracking2
 ```
 
 #### Comment on the code
 
-After looking at some of the tables, I decided that I wanted to use child="Yes" and gender="F" as the reference categories. The [factor function][ref-factor] allows you to override the default in R to use the first category that appears in alphabetical order as the reference category. I don't need to do anything with gender, because the default is already what I want.
+After looking at some of the tables, I decided that I wanted to use child="yes" and gender="F" as the reference categories. The [factor function][ref-factor] allows you to override the default in R to use the first category that appears in alphabetical order as the reference category. I don't need to do anything with gender, because the default is already what I want.
 
 [ref-factor]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/factor.html
 
@@ -634,11 +650,183 @@ tidy(lm_trial4_model) |>
 estimates_trial4_table
 ```
 
+
+# --- Part 5, Interactions in analysis of covariance
+
+```{r}
+#| label: exercise-read
+
+library(haven)
+
+ex <- read_sas(
+  data_file="../data/exercise.sas7bdat")
+glimpse(ex)
+```
+
+## Add factors
+
+```{r}
+#| label: factors
+lab1 <- c("Reading", "Jogging", "Swimming")
+lab2 <- c("Male", "Female")
+
+ex |> 
+  mutate(prog=factor(prog, levels=c(3, 1, 2), labels=lab1)) |>
+  mutate(gender=factor(female, levels=0:1, labels=lab2)) -> ex_1
+```
+
+#### Comment on the code
+
+Notice that the levels for prog are specified in an alternative order. This is done to insure that the control group (reading) is the reference level in all statistical models.
+
+I also used gender rather than female for the factor name. This is something I only noticed after working with this dataset for a while. Certain parts of the output would be labelled as femaleFemale or femaleMale and I thought it would look nicer as genderFemale and genderMale. Normally I try to avoid making too many changes to the names of variables. It makes it easier to refer back to the original data dictionary.
+
+## Descriptive statistics
+
+```{r}
+#| label: exercise-descriptives-1
+
+ex_1 |>
+	count(prog) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total)
+```
+
+#### Interpretation of the output
+
+Exactly one third of the patients are in each of the three exercise programs.
+
+```{r}
+#| label: exercise-descriptives-2
+
+ex_1 |>
+	count(i) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total, 2)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total)
+```
+
+#### Interpretation of the output
+
+This table doesn't really help so much and I should probably have deleted this program chunk.
+
+```{r}
+#| label: exercise-descriptives-3
+
+ex_1 |>
+  summarize(
+    hours_mean=mean(hours),
+    hours_sd=sd(hours),
+    hours_min=min(hours),
+    hours_max=max(hours))
+```
+
+#### Interpretation of the output
+
+The average patient exercised for 2 hours per week. There is a lot of variation, with at least one patient only exercising for ten minutes. 
+
+```{r}
+#| label: exercise-descriptives-4
+
+ex_1 |>
+	count(gender) |>
+	mutate(total=sum(n)) |>
+	mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total)
+```
+
+#### Interpretation of the output
+
+There are equal numbers of men and women in the study.
+
+#### Interpretation of the output
+
+```{r}
+#| label: exercise-descriptives-5
+
+ex_1 |>
+  summarize(
+    effort_mean=mean(effort),
+    effort_sd=sd(effort),
+    effort_min=min(effort),
+    effort_max=max(effort))
+```
+
+#### Interpretation of the output
+
+Effort is measured on a scale from 0 to 50. The average effort was 30, roughly in the middle of this range. There is only a moderate amount of variation, with no one really very close to the low extreme of 0 or the high extreme of 50.
+
+```{r}
+#| label: exercise-descriptives-6
+
+ex_1 |>
+  summarize(
+    loss_mean=mean(loss),
+    loss_sd=sd(loss),
+    loss_min=min(loss),
+    loss_max=max(loss))
+```
+
+#### Interpretation of the output
+
+The average weight loss is impressive, 30 pounds. There is a wide range with one person losing 54 pounds and another gaining 17 pounds.
+
+## Interaction between prog and gender on loss
+
+```{r}
+#| label: ex-lineplot-1
+
+ex_1 |>
+  group_by(prog, gender) |>
+  summarize(
+    loss_mean=mean(loss)) |>
+  ggplot() +
+  aes(x=prog, y=loss_mean) +
+  geom_line(aes(group=gender)) +
+  geom_text(aes(label=gender)) +
+  ggtitle("Graph drawn by Steve Simon on 2025-02-11") +
+  xlab("Exercise program") +
+  ylab("Average weight loss") -> plot_05
+plot_05
+```
+
+#### Comment on the code
+
+There is a warning message associated with this program chunk. It does not affect the validity of the output. I explain some of the details behind this warning in a webpage to be published soon.
+
+```{r}
+#| label: ex-lineplot-2
+
+ex_1 |>
+  group_by(prog, gender) |>
+  summarize(
+    loss_mean=mean(loss)) |>
+  ggplot() +
+  aes(x=gender, y=loss_mean) +
+  geom_line(aes(group=prog)) +
+  geom_text(aes(label=prog)) +
+  ggtitle("Graph drawn by Steve Simon on 2025-02-11") +
+  xlab("Gender") +
+  ylab("Average weight loss") -> plot_06
+plot_06
+```
+
+#### Interpretation of the output
+
+The two plots seem to emphasize different features of the data. The first plot emphasizes the superior average weight loss of women in the jogging group, men in the swimming group with identical average weight loss in the control (reading) group. The second plot seems to emphasize that jogging showed the best average weight loss and the control group showing the worst average weight loss. But if you look closely at either plot, you should notice both trends.
+
+# --- Part 6, Interations in multiple linear regression
+
+## Read fev dataset
+
 ## Save everything
 
 ```{r}
 #| label: save
-
 save.image(file="../data/module04.RData")
 ```
 

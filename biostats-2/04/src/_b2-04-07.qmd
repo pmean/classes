@@ -1,24 +1,14 @@
 ---
-title: "Unbalanced data"
+title: "Interactions in multiple linear regression"
 format: 
   revealjs:
     slide-number: true
     embed-resources: true
 editor: source
 ---
+## Analysis of variance table
 
-## FEV data
-
-Descriptive Abstract: Sample of 654 youths, aged 3 to 19, in the area of East Boston during middle to late 1970's. Interest concerns the relationship between smoking and FEV. Since the study is necessarily observational, statistical adjustment via regression models clarifies the relationship.
-
--   fev continuous measure (liters)
--   sex discrete/nominal (Female coded 0, Male coded 1)
--   smoke discrete/nominal (Nonsmoker coded 0, Smoker coded 1)
-    -   Source: https://jse.amstat.org/datasets/fev.txt
-
-## Line plots of means for unbalanced data
-
-![](images/unbalanced-analysis-01.png)
+![](images/exercise-analysis-09.png)
 
 ::: notes
 
@@ -26,16 +16,24 @@ Descriptive Abstract: Sample of 654 youths, aged 3 to 19, in the area of East Bo
 
 ## Table of means
 
-![](images/unbalanced-analysis-02.png)
+![](images/exercise-analysis-13.png)
+
+## Centered analysis
+
+![](images/exercise-analysis-10.png)
 
 ::: notes
 
 :::
 
-## Table of frequencies and column percentages
+## Weight loss at various conditions
 
-![](images/unbalanced-analysis-03.png)
+-   hours = 2 (mean), effort = 30 (mean),
+    -   $\hat Y$ = 10.005
+-   hours = 4 (mean+2), effort = 30 (mean),
+    -   $\hat y$ = `10.005 + 2.291*2` = `r 10.005 + 2.291*2`
+-   hours = 2 (mean), effort = 40 (mean+20)
+    -   $\hat Y$ = `10.005 + 0.707*20` = `r 10.005 + 0.707*20`
+-   hours = 4 (mean+2), effort = 40 (mean+20)
+    -   $\hat Y$ = `10.005 + 2.291*2 + 0.707*20 + 0.393*2*20` = `r 10.005 + 2.291*2 + 0.707*20 + 0.393*2*20`
 
-::: notes
-
-:::

@@ -1,0 +1,41 @@
+---
+title: "Unbalanced data"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## FEV data
+
+Descriptive Abstract: Sample of 654 youths, aged 3 to 19, in the area of East Boston during middle to late 1970's. Interest concerns the relationship between smoking and FEV. Since the study is necessarily observational, statistical adjustment via regression models clarifies the relationship.
+
+-   fev continuous measure (liters)
+-   sex discrete/nominal (Female coded 0, Male coded 1)
+-   smoke discrete/nominal (Nonsmoker coded 0, Smoker coded 1)
+    -   Source: https://jse.amstat.org/datasets/fev.txt
+
+## Line plots of means for unbalanced data
+
+![](images/unbalanced-analysis-01.png)
+
+::: notes
+
+:::
+
+## Table of means
+
+![](images/unbalanced-analysis-02.png)
+
+::: notes
+
+:::
+
+## Table of frequencies and column percentages
+
+![](images/unbalanced-analysis-03.png)
+
+::: notes
+
+:::

@@ -44,52 +44,61 @@ To illustrate oneway analysis of variance, I found a dataset on mental health cl
 ## Line graph of full moon data
 
 ```{r}
-#| label: plot-01
+#| label: 04-01-admits-plot1
 
-plot_01
+admits_plot1
 ```
 
 ::: notes
-For interpretation of this output from R and all other output from R included below, refer to the file simon-5502-04-demo.
+This plot shows a separate line for each month and tracks the admission rates before, during, and after a full moon.
+
+This plot is very busy and hard to interpret. The pattern that you might expect to see is an inverted V for each month, showing that ER admissions jump during a full moon and fall back down again afterwards. This seems to hold for some months, but not others. So if there really is an effect of the full moon on admissions, it is not very strong or consistent.
 :::
 
 ## Alternative line graph of full moon data
 
 ```{r}
-#| label: plot-02
+#| label: 04-01-admits-plot2
 
-plot_02
+admits_plot2
 ```
 
-## Descriptive statistics
+::: notes
+You can draw this plot differently with three lines, one for each phase and show how the ER admission rates change over the months. There appears to be a general upward trend over time. The before, during, and after lines criss-cross quite often indicating that there may not be a consistent effect of phase of the moon. But it does look like there are more months where the during line rises well above the other lines.
+:::
+
+## Descriptive statistics by moon phase
 
 ```{r}
-#| label: table-01
+#| label: 04-01-admits-by-moon-table
 
-table_01
+admits_by_moon_table
 ```
 
 ## Analysis of variance table
 
 ```{r}
-#| label: table-02
+#| label: 04-01-anova-moon-table
 
-table_02
+anova_moon_table
 ```
+
+::: notes
+The F-ratio (1.17) is close to zero and the p-value (0.322) is large. There is no evidence that the average admission rates change by phase of the moon.
+:::
 
 ## Parameter estimates
 
 ```{r}
-#| label: table-03
+#| label: 04-01-estimates_moon_table
 
-table_03
+estimates_moon_table
 ```
 
-## Tukey post hoc
+::: notes
+The reference level was set at moon=Before. So the intercept represents the estimated average admission rate before a full moon. 
 
-```{r}
-#| label: table-04
+The first slope is interpreted as the estimated average change in admission rates when the phase of the moon shifts from before a full moon to during a full moon. There is an increase of 2.5 patients per day, but this is not statistically significant. There is too much noise in the data.
 
-table_04
-```
-
+The second slope is interpreted as the estimated average difference between the admission rates after a full moon compared to before a full moon. This change is very small (0.5 patients per day) and is also not statistically significant.
+:::

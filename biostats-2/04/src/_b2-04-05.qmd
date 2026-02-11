@@ -1,5 +1,5 @@
 ---
-title: "Interactions in analysis of covariance"
+title: "Interactions in analysis of variance"
 format: 
   revealjs:
     slide-number: true
@@ -7,77 +7,70 @@ format:
 editor: source
 ---
 
-## A second type of interaction
-
--   Interactions in analysis of covariance
-    -   Between categorical predictor and continuous predictor
-    -   Different slopes within each category
-    
-::: notes
-Last week, I touched briefly on the interaction in an analysis of covariance model. That model makes an assumption that the effect of a covariate on the outcome is the same in both the treatment group and the control group. That implies that the trend lines are parallel.
-
-If there is an interaction, then the slope differs within each category. It might be steeper in the treatment group for example, and shallower in the control group.
-:::
-
-## Interaction between exercise program and hours spent exercising
-
-![](images/exercise-analysis-05.png)
-
-::: notes
-This plot shows a marked interaction. If you looked just at prog 1 (jogging program) and prog 2 (swimming program), there is no interaction. The more hours you spent on the program the more weight you lost.
-
-The reading program, however, has a different slope. Instead of increasing steadily, the more time you spent reading the less weight that you lost. You might even gain some weight if you followed the reading program religiously.
-:::
-
-## Testing for interaction in analysis of covariance
-
-![](images/exercise-analysis-06.png)
-
-::: notes
-This table shows a statistically significant interaction. The F ratio is large and the p-value is small.
-:::
-
-## Table with irrelevant rows removed
-
-![](images/exercise-analysis-07.png)
-
-::: notes
-Remove the rows associated with the intercept and the (uncorrected) total.
-:::
-
-## Parameter estimates
-
-![](images/exercise-analysis-08.png)
-
 ```{r}
-b0 <- 2.216
-b1 <- -8.997
-b2 <- 9.993
-b3 <- -2.956
-b4 <- 10.409
-b5 <- 9.830
+#| label: 04-04-setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+load("../data/module04.RData")
 ```
 
--   Intercept for prog=1, `r b1` + `r b0` = `r b1+b0`
--   Intercept for prog=2, `r b2` + `r b0` = `r b2+b0`
--   Intercept for prog=3, `r b0`
--   Slope for prog=1, `r b4` + `r b3` = `r b4+b3`
--   Slope for prog=2, `r b5` + `r b3` = `r b5+b3`
--   Slope for prog=3, `r b3`
+## Group means for tracking data
 
+```{r}
+#| label: trial4-interaction-table
+
+trial4_interaction_table
+```
 
 ::: notes
-The first three coefficients are a bit of an extrapolation because they represent patients who spend zero hours on the proposed intervention.
+The data used here is an exercise in motor skills where a subject is asked to maintain contact with a small area on a rotating disk. There were both male and female subjects and a wide range of ages. I decided to classify age into child=Yes (18 and younger) and child=NO (over 18).
 
-The intercept is the estimated average weight loss in the reference category (group=3 or reading program) when the number of hours devoted to the program is zero. In this case it is a weight gain of 2 pounds.
+The means for this study are interesting. There is almost no difference between male and female children. Adults do better than children, but the gap is much larger when comparing male adults to male children.
+:::
 
-The coefficient for group=1 is how much better the weight loss is when you switch from the reading program to the jogging program, but still put in zero hours.
+## Line plot of tracking data
 
-The coefficient for group=2 is how much better the weight loss is on average when you switch from the reading program to the jogging program, but still put in zero hours.
+```{r}
+#| label: trial4-plot1
 
-The coefficient for hours is how much better the weight loss is when you add an extra hour of effort and you are in the reading program. Actually, it is how much worse. Each extra hour of reading and you gain an extra three pounds on average.
+trial4_plot1
+```
 
-The coefficient for hours*group=1 shows the change in slope when you switch from the reading program to the jogging program. Each hour invested is 10 pounds better (a loss of 7 pounds per hour invested instead of a gain of 3 pounds per hour invested) when you switch from the reading program to the jogging program.
+::: notes
+The two lines are right on top of one another for child=Yes and diverge for child=No. So there is a gender gap, but only for adults.
+:::
 
-The interpretation for hours*group=2 is similar It shows the change in slope when you switch from the reading program to the swimming program. Each hour invested is 10 pounds better (a loss of 7 pounds per hour invested instead of a gain of 3 pounds per hour invested) when you switch from the reading program to the swimming program.
+## Alternative line plot of exercise data
+
+```{r}
+#| label: trial4-plot2
+
+trial4_plot2
+```
+
+::: notes
+This is an alternate display of the interaction. The chld=Yes line is flat indicating no change due to gender. The child=No line is above the child=Yes line, indicating superior performance for adults versus children. The gap is wider for males than for females.
+
+You should try both graphs and then display only one. Display the one that portrays the clearest picture of what is going on.
+:::
+
+## Alternative line plot of exercise data
+
+```{r}
+#| label: test
+
+anova_trial4_table
+```
+
+## When you can't estimate an interaction
+
+-   Special case, n=1
+    -   Only one observation for categorical combination
+    
+::: notes
+There is a special case where you have two categorical independent variables and you cannot estimate an interaction. If you have n=1, exactly one observation for each combination of your two categorical variables, then you don't have enough degrees of freedom to estimate an interaction and still be able to test whether that interaction is statistically significant.
+
+It's sort of like that old joke I told about married life (it's okay but you lose a degree of freedom). Interactions cause an even bigger loss of degrees of freedom and in the case with only one observation per combination of categories, you lose enough degrees of freedom that it is not marriage, it being in prison.
 :::
