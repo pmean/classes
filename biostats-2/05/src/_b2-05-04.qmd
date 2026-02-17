@@ -1,15 +1,11 @@
 ---
-title: "Interactions in multiple linear regression"
+title: "Interactions in analysis of covariance"
 format: 
   revealjs:
     slide-number: true
     embed-resources: true
 editor: source
 ---
-
-## Interactions in multiple linear regression
-
--   Center your continuous predictors
 
 ```{r}
 #| label: 05-04-setup
@@ -19,11 +15,226 @@ editor: source
 library(broom)
 library(glue)
 library(tidyverse)
+
 load("../data/module05.RData")
 ```
 
-```{r}
-#| label: 05-04-model
+## Interactions in analysis of covariance
 
-sv$m5_betas
+-   When you suspect an interaction
+    -   Graph your data
+    -   Draw a separate trend line for each group
+    -   Hope that the lines are mostly parallel
+-   Compute models with and without the interaction
+    -   Compare using the anova function
+    -   Center your continuous covariate (very important!)
+
+::: notes
+One of the assumptions of analysis of covariance is that there is no interaction between the covariate and the treatment/exposure variable. When the interaction is absent, you can totally remove the effect of the covariate.
+
+An interaction changes things markedly. An interaction means that the effect of the covariate differs between the treatment group and the control group. You can no longer talk about removing the effect of the covariate by holding it constant. Instead, you have to recognize that the impact of the treatment varies, depending on the value of the covariate. A treatment that looks effective for some values of the covariate may be ineffective or even harmful for other values of the covariate.
+
+If you suspect an interaction, first look at a graph. For the two levels of the treatment variable, draw a separate trend line associating the covariate with the outcome. If the lines are approximately parallel, that is a qualitative indication of no interaction.
+
+A formal test of interaction requires you to fit a model with and without the interaction. Compare these two models using the anova function.
+
+If you want to try to interpret the coefficients of the interaction model, you must (this is very important) center your covariate by subtracting the mean. Subtracting the mean places in the intercept in the heart of the data--no dangerous extrapolations needed.
+:::
+
+## Example: three exercise regimens
+
+-   Two exercise regimens, jogging, swimmin
+-   One control group: reading
+    -   Subjects tracked hours per week (mean = 2)
+-   Outcome variable, weight loss
+    -   Negative values represent weight gain
+
+::: notes
+Patients were put on two different exercise regimens, jogging or swimming, or in a control group that was asked to read for the same amount of time that the other two groups were supposed to spend exercising.  You migt want to look at the effect of the three interventions after adjusting for the amount of time spent in each intervention.
+
+The mean amount of time was 2 hours per week, so I computed a centerd version of hours by subtracing 2. negative values for this new variable meant that the subject spent less time on the intervention than the average subject. Positive values mean that the subject spent more time on the intervention than the average subject.
+
+The intercept represents the estimated average weight loss for subjects with hours on the intervention equal to the overall average of 2. This is not an extrapolation. Most subejct spent somewhere between 1 and 4 hours on the intervention.
+:::
+
+## Visualizing the interaction
+
+```{r}
+#| label: 05-04-interaction-exercise-plot
+
+interaction_exercise_plot
 ```
+
+::: notes
+There is a very clear interaction. In the jogging and swimming groups, the more time that the subject spent on the exercise regiment, the more weight that they lost. The trend is in the opposite direction for the reading regimen. More time reading meant more weight GAIN. Clearly reading does no come with calories, but I suspect that the time spent reading crowded out other casual activities like walking the dog. More reading meant less dog walking and less dog walking meant more weight gain.
+:::
+
+## Testing the interaction
+
+```{r}
+#| label: 05-04-anova-loss-interaction-table
+
+library(gt)
+
+anova_loss_interaction_table
+```
+
+::: notes
+The output does not quite fit on this slide, but you can see enough to recognize what is going on.
+
+The F statistic is large and the p-value is small. This tells you that an interaction model does a statistically significantly better job of prediction than a model with no interaction.
+:::
+
+## Coefficients and interpretation
+
+```{r}
+#| label: 05-04-estimates-loss-interaction-table
+
+estimates_loss_interaction_table
+```
+
+::: notes
+The estimates are a bit tricky to interpret. 
+
+Let me show them to you on the graph to make things clearer.
+:::
+
+## Interpreting the intercept (-4)
+
+```{r}
+#| label: 05-04-intercept
+
+interaction_exercise_plot +
+  geom_label(x=2, 
+             y=-3.7, 
+             label="-4", 
+             color="black", 
+             show.legend=FALSE)
+```
+
+::: notes
+The intercept tells you that the estimated average weight loss is -4 pounds (actually a weight gain of 4 pounds) when the program is set to the reference value of reading and the number of hours_centered is zero (or equivalently, when the number of hours before centering is 2).
+:::
+
+## Interpreting progJogging (12)
+
+```{r}
+#| label: 05-04-progJogging
+
+interaction_exercise_plot +
+  geom_label(x=2,
+             y=8.1, 
+             label="8", 
+             color="black", 
+             show.legend=FALSE)
+
+```
+
+::: notes
+The progJogging term tells you that the estimated average weight loss improves by 12 pounds when you switch from reading to jogging and you hold the hours constant at 2. An improvement of 12 pounds means that you go from a weight gain of 4 pounds to a weight loss of 8 pounds when the time in the intervention is held constant at 2 hours per week.
+:::
+
+## Interpreting progSwimming (30)
+
+```{r}
+#| label: 05-04-progSwimming
+
+interaction_exercise_plot +
+  geom_label(x=2,
+             y=25.9, 
+             label="26", 
+             color="black", 
+             show.legend=FALSE)
+```
+
+::: notes
+The progSwimming term tells you that the estimated average weight loss improves by 30 pounds when you switch from reading to swimming, holding teh hours constant at 2. An improvement of 30 pounds means that you go from a weight gain of 4 pounds to a weight loss of 26 pounds when the time in the intervention is held constant at 2 hours per week.
+:::
+
+## Interpreting hours_centered (-3)
+
+```{r}
+#| label: 05-04-hours-centered
+
+interaction_exercise_plot +
+  geom_label(x=1,
+             y=-0.7, 
+             label="-1", 
+             color="black", 
+             show.legend=FALSE) +
+  geom_label(x=2,
+             y=-3.7, 
+             label="-4", 
+             color="black", 
+             show.legend=FALSE) +
+  geom_label(x=3,
+             y=-6.7, 
+             label="-7", 
+             color="black", 
+             show.legend=FALSE)
+```
+
+::: notes
+The hours_centered term tells you that you reduce your weight loss by 3 pounds (or increase your weight gain by 3 pounds) for change in one hour in the time spent in the intervention, holding the intervention at the reference level of reading. More reading means more weight gain. An average weight gain of 4 pounds for a volunteer with two hours of effort per week increases to an average weight gain of 7 pounds for a volunteer with three hours of effort per week. With one hour of effort per week, the average weight gain in the reading group is only 1 pound. 
+:::
+
+## Interpreting progJogging:hours_centered: (10)
+
+```{r}
+#| label: 05-04-interaction-1
+
+interaction_exercise_plot +
+  geom_label(x=1,
+             y=0.7, 
+             label="1", 
+             color="black", 
+             show.legend=FALSE) +
+  geom_label(x=2,
+             y=8.1, 
+             label="8", 
+             color="black", 
+             show.legend=FALSE) +
+  geom_label(x=3,
+             y=15.5, 
+             label="15", 
+             color="black", 
+             show.legend=FALSE)
+```
+
+::: notes
+The progJogging by hours_centered interaction tells you that the change in weight loss is 10 pounds better for volunteers in the jogging group than the change that you see in the reading group after increasing the effort by one hour per week. This improvement means that the slope of -3 in the reading group changes to a slope of +7 in the jogging group. More jogging means more weight loss. An average weight loss of 8 pounds for a jogging volunteer with two hours of effort increases to an average weight loss of 15 pounds for a jogging volunteer with three hours of effort. You see a similar change but in the opposite direction for a jogging volunteer with only one hour per week of effort. Those volunteers see an average weight loss of only one pound.
+:::
+
+## Interpreting progSwimming:hours_centered: (10)
+
+```{r}
+#| label: 05-04-interaction-2
+
+interaction_exercise_plot +
+  geom_label(x=1,
+             y=18.5, 
+             label="19", 
+             color="black", 
+             show.legend=FALSE) +
+  geom_label(x=2,
+             y=25.9, 
+             label="26", 
+             color="black", 
+             show.legend=FALSE) +
+  geom_label(x=3,
+             y=33.3, 
+             label="33", 
+             color="black", 
+             show.legend=FALSE)
+```
+
+::: notes
+The progSwimming by hours_centered interaction tells you that the change in weight loss is 10 pounds better for volunteers in the swimming group than the change that you see in the reading group. This improvement means that the slope of -3 in the reading group changes to a slope of +7 in the swimming group. More swimming means more weight loss. An average weight loss of 26 pounds for a swimming volunteer with two hours of effort increases to an average weight loss of 33 pounds for a swimming volunteer with three hours of effort.  The average weight loss for a swimming volunteer with only one hour per week effort is 19 pounds, not quite as big but still impressive.
+:::
+
+## General conclusions
+
+-   Jogging is better than reading, but only if you invest more than an hour per week.
+-   Swimming is better than jogging or reading.
+-   Extra time helps with the jogging and swimming interventions
+-   Extra time hurts with the reading intervention

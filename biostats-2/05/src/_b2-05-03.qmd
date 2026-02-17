@@ -1,5 +1,5 @@
 ---
-title: "Interactions in analysis of covariance"
+title: "Other examples of interactions"
 format: 
   revealjs:
     slide-number: true
@@ -7,41 +7,33 @@ format:
 editor: source
 ---
 
-## Interactions in analysis of covariance, 1
+## Interaction of self-esteem and outcome
 
--   Center your continuous covariate
+![](../images/esteem-outcome-interaction.gif "Plot showing an interaction between self-esteem and outcome")
 
-```{r}
-#| label: 05-03-setup
-#| message: false
-#| warning: false
+::: notes
+Source: David M. Lane, Multi-Factor Between-Subjects Designs. Chapter XV, Section E of  Available in [html format][ref-lane-nodate].
 
-library(broom)
-library(glue)
-library(tidyverse)
-load("../data/module05.RData")
-```
+[ref-lane-nodate]: https://onlinestatbook.com/2/analysis_of_variance/multiway.html
+:::
 
-```{r}
-#| label: 05-03-line-1
+## Interaction of training and autonomy
 
-sv$panel_1
-```
+![](../images/training-autonomy-interaction.png "Interaction plot between training and autonomy")
 
-## Interactions in analysis of covariance, 2
+::: notes
+Source: Wikipedia. Moderation (statistics). Available in [html format][ref-wikipedia-moderation].
 
--   Center your continuous covariate
+[ref-wikipedia-moderation]: https://en.wikipedia.org/wiki/Moderation_(statistics)
+:::
 
-```{r}
-#| label: 05-03-line-2
+## Interaction of group and gender
 
-sv$panel_2
-```
+![](../images/group-gender-interaction.jpg "Interaction plot showing a gender difference but only in group 4")
 
-## Coefficients and interpretation
+::: notes
+Source: Wikipedia. Analysis of covariance. Available in [html format][ref-wikipedia-ancova]
 
-```{r}
-#| label: 05-03-coef
+[ref-wikipedia-ancova]: https://en.wikipedia.org/wiki/Analysis_of_covariance
+:::
 
-sv$m4_betas
-```

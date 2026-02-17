@@ -18,17 +18,32 @@ editor: source
     -   $(\alpha \beta)_{i1}=0$
 
 ::: notes
-
 You may see papers or books that present the mathematical model for an interaction. The model I present is a balanced model with the first category having levels one through a, the second category having levels one through b and for each combination of categories there are n observations.
 
 If you set the first level as the reference category for each category, then you need to set some of these parameters to zero.
+:::
 
+## Interpretation
+
+-   $\mu$, estimated average outcome for both A, B at reference level
+-   $\alpha$ average change from reference level for A holding B fixed at reference level
+-   $\beta$ average change from reference level for B holding A fixed at reference level
+-   $\alpha \beta$ average deviation from parallelism
+
+::: notes
+The interpretation of these parameters is a bit different when you have an interaction. The overall mean, mu, is the estimated average outcome when A and B are both at the reference level. This much has not changed.
+
+The interpretation of the alpha values is different, but in a subtle way. It represents the average change when you switch A from the reference level to one of the other reference levels, holding B constant but constant at the reference level for B. 
+
+Similarly, beta represents  the average change when you switch B from the reference level to one of the other reference levels, holding B constant at the reference level for B. 
+
+The interaction term, alpha-beta, is the degree to which a particular combination of non-reference levels for A and B differ from parallelism. Parallelism means a model with no interaction. You can think of the interaction term as the degree of super-additivity (if the term is positive) or sub-additivity (if the term is negative).
 :::
 
 ## Mathematical model, 2
 
 -   $SS_A=\Sigma_i nb(\bar{Y}_{i..}-\bar{Y}_{...})^2$
--   $SS_B=\Sigma_i na(\bar{Y}_{.j.}-\bar{Y}_{...})^2$
+-   $SS_B=\Sigma_j na(\bar{Y}_{.j.}-\bar{Y}_{...})^2$
 -   $SS_{AB}=\Sigma_i \Sigma_j n(\bar{Y}_{ij.}-\bar{Y}_{i..}-\bar{Y}_{.j.}+ \bar{Y}_{...})^2$
 -   $SS_E=\Sigma_i \Sigma_j \Sigma_k (Y_{ijk}-\bar{Y}_{ij.})^2$
 -   $SS_T=\Sigma_i \Sigma_j \Sigma_k (Y_{ijk}-\bar{Y}_{...})^2$
@@ -49,9 +64,7 @@ The dot notation may be a bit confusing until you get used to it, but $\bar{Y}_{
     -   Using the anova function
     
 ::: notes
-
 The formal test for an interaction uses an F ratio and you accept the null hypothesis if that F ratio is close to one. You would reject the null hypothesis if the F ratio is much larger than one.
 
 It is not easy to get R to display all the sums of squares and mean squares that I defined above. Instead, compute two models-one without an interaction and one with an interaction. Compare those two models using the anova function.
-
-::::
+:::

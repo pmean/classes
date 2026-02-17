@@ -1,0 +1,26 @@
+---
+title: "Interactions in multiple linear regression"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+```{r}
+#| label: 05-05-setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(glue)
+library(tidyverse)
+load("../data/module05.RData")
+```
+
+## Interactions in multiple linear regression
+
+-   Center your continuous predictors
+
+## Pulmonary data
+

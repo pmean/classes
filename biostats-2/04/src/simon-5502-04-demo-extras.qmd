@@ -29,8 +29,9 @@ There are two data files used in this program
 
 library(broom)
 library(glue)
-# library(knitr)
+library(gt)
 library(tidyverse)
+
 R.version.string
 Sys.Date()
 ```
@@ -127,6 +128,10 @@ month_table
 
 #### Comments on the code
 
+The gt function produces a nice table, and allows many possible customizations. The two most important customization functions are format_number and tab_source_note. The format_number function allws you to round the results in your table, add extra text (like a percent sign), and insert commas for numbers 1,000 and larger. The tab_source_note function places a note at the bottom of the table. I use this to identify the author, date, and copyright restrictions. for me, it functions largely the same as the caption argument in the labs function in ggplot2.
+
+For future assignments, please use gt for every table that you produce other than a listing of the data. Be sure to change the rounding of a column of numbers if needed, and put your own name, date, and copyright restrictions.
+
 I often need to re-use or adapt previously computed tables and plots. You can store the results in an object by using the [-> assignment shortcut][ref-assignment] at the end of a chain of pipes. After you make an assignment, you can display the table or plot just by naming the object that you made the assignment to. 
 
 In previous programs, I have fallen into the bad habit of just using sequence numbers (table_1, table_2, etc.). This is fine if you have a small number of tables or plots. In this program, I had so many that I couldn't remember which number went with which table/plot. So, in this code, I have tried to use more descriptive names for the tables and plots.
@@ -146,11 +151,14 @@ er_admits1 |>
   mutate(pct=100*n/total) |>
   gt() |>
   fmt_number(pct, decimals=0, pattern="{x}%") |>
-  tab_source_note("Steve Simon, 2026-02-11, CC0") ->
-    moon_table
+  tab_source_note("Steve Simon, 2026-02-11, CC0") -> moon_table
 
 moon_table
 ```
+
+#### Comment on the code
+
+The pattern argument of the fmt_number function allows you to display a variable with extra text. In this example, the pattern function adds a percentage sign to the pct variable.
 
 #### Interpretation of the output
 
@@ -168,7 +176,8 @@ er_admits1 |>
     admission_max=max(admission)) |>
   gt() |>
   fmt_number(admission_mean, decimals=1) |>
-  fmt_number(admission_sd, decimals=1) -> admits_table
+  fmt_number(admission_sd, decimals=1) |>
+  tab_source_note("Steve Simon, 2026-02-11, CC0") -> admits_table
 
 admits_table
 ```
@@ -239,10 +248,15 @@ er_admits1 |>
     Admission_mean=mean(admission),
     Admission_sd=sd(admission)) |>
   gt() |>
-  fmt_number(decimals=1) -> admits_by_moon_table
+  fmt_number(decimals=1) |>
+  tab_source_note("Steve Simon, 2026-02-11, CC0") -> admits_by_moon_table
 
 admits_by_moon_table
 ```
+
+#### Comment on the code
+
+If you leave the column name outof the fmt_number function of gt, then  
 
 #### Interpretation of the output
 
@@ -265,11 +279,12 @@ lm_moon_model <- lm(admission ~ moon, data=er_admits1)
 
 anova(lm_null_model, lm_moon_model) |> 
   tidy() |>
-  mutate(
-    p.value =
-      case_when(
-        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> anova_moon_table
+  gt() |>
+  fmt_number(rss, decimals=1) |>
+  fmt_number(sumsq, decimals=1) |>
+  fmt_number(statistic, decimals=2) |>
+  fmt_number(p.value, decimals=3) |>
+  tab_source_note("Steve Simon, 2026-02-11, CC0") -> anova_moon_table
 
 anova_moon_table
 ```
@@ -279,12 +294,14 @@ anova_moon_table
 ```{r}
 #| label: estimates-moon-table
 
-tidy(lm_moon_model) |>
-  mutate(
-    p.value =
-      case_when(
-        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
-        p.value <  0.001 ~ "p < 0.001")) -> estimates_moon_table
+lm_moon_model |>
+  tidy() |>
+  gt() |>
+  fmt_number(estimate, decimals=1) |>
+  fmt_number(std.error, decimals=1) |>
+  fmt_number(statistic, decimals=2) |>
+  fmt_number(p.value, decimals=3) |>
+  tab_source_note("Steve Simon, 2026-02-11, CC0") -> estimates_moon_table
 
 estimates_moon_table
 ```
