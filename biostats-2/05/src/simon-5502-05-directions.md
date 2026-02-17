@@ -31,7 +31,7 @@ Use the factor function, if needed, to insure that child=Yes and gender=F are th
 
 ## Question 3
 
-Display the estimates for the interaction model and provide a brief interpretation of whether the interaction term is super-additive/sub-additive. You could use the terms synergistic/antagonistic if you prefer.
+Display the estimates for the interaction model and provide a brief interpretation of whether the interaction term is super-additive or sub-additive. You could use the term synergistic or antagonistic if you prefer.
 
 ## Your submission
 
