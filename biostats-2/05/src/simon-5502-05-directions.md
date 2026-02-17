@@ -2,43 +2,51 @@
 title: "simon-5502-05-directions"
 ---
 
-## General directions
+This programming assignment was written by Steve Simon on 2026-02-17 and is placed in the public domain.
 
-Use the dataset, [swim-speeds.txt][ref01], found on my github site. Refer to the [data dictionary][ref02] if needed. You may find it helpful to adapt some of the code from [simon-5502-05-demo.qmd][ref03]. This file is most easily read in using the [read_table function][ref04] of the [readr][ref05] library
+## Program
 
-[ref01]: https://github.com/pmean/data/blob/main/files/swim-speeds.txt
-[ref02]: https://github.com/pmean/data/blob/main/files/swim-spees.yaml
-[ref03]: https://github.com/pmean/classes/blob/master/biostats-2/05/src/simon-5502-05-demo.qmd
-[ref04]: https://readr.tidyverse.org/reference/read_table.html
-[ref05]: https://readr.tidyverse.org/
+-   Write a program to answer the questions listed below. You may wish to adapt some code from the [demonstration program for module03][ref-5502-04-demo]. Replace my name with yours everywhere, remove the "Comments on the code" sections, and only include program chunks that address the questions listed below.
 
-## File details
+[ref-5502-04-demo]: https://github.com/pmean/classes/blob/master/biostats-2/04/src/simon-5502-04-demo.qmd
 
-Please do not look at this file before submitting your own work on this programming assignment. Although no interpretations are provided here, you must include them in your own submission.
+## Data
 
-This assignment was written by Steve Simon on 2025-02-22 and is placed in the public domain. You can use this assignment any way you please.
+-   Download the [data][ref-tracking-txt] file
+    -   Store it in your data folder
+-   Refer to the [data dictionary][ref-tracking-yaml], if needed.
+
+[ref-tracking-txt]: https://github.com/pmean/data/blob/main/files/tracking.txt
+[ref-tracking.yaml]: https://github.com/pmean/data/blob/main/files/tracking.yaml
+
+You should show your work from module 04 in this program including the interpretations that you made for the interaction plot.
 
 ## Question 1
 
-You will not be graded on this, but get in the habit of computing some simple statistics (mean, standard deviation, minimum, and maximum for continuous variables and counts and percentages for categorical variables) for the important variables in this dataset. Also, get in the habit of providing brief interpretations.
-
-Be sure to create factors with descriptive levels for End, Shirt, Googles, and Flippers. For example:  mutate(Shirt=factor(Shirt, levels=0:1, labels=c("No Shirt", "Shirt")))
+Using the dataset from last week where you created a child variable and an improvement variable, conduct a formal test to see if there is an interaction between child and gender on the amount of improvement between trial1 and trial4. Interpret your results.
 
 ## Question 2
 
-Draw a line plot showing the possible interaction between Goggles and Flippers. Are the lines roughly parallel?
-
-Note: there are two ways to draw this line plot. Either way is fine, but do not show both ways.
+Use the factor function, if needed, to insure that child=Yes and gender=F are the two reference levels.
 
 ## Question 3
 
-Fit two models. The first should include Shirt, End, Goggles, and Flippers, but no interactions. The second should include all of the terms above plus an interaction between Goggles and Flippers. The latter model could be fit with the formula
+Display the estimates for the interaction model and provide a brief interpretation of whether the interaction term is super-additive/sub-additive. You could use the terms synergistic/antagonistic if you prefer.
 
--   Time ~ Shirt+End+Goggles*Flippers, or
+## Your submission
 
--   Time ~ Shirt+End+Goggles+Flippers+Goggles:Flippers
+-   Save the output in html format
+-   Convert it to pdf format.
+-   Make sure that the pdf file includes
+    -   Your last name
+    -   The number of this course
+    -   The number of this module
+-   Upload the file
 
-## Question 4
+## Your grade
 
-Compute the individual coefficients for the model including a Goggles by Flippers interaction. Interpret these results. Does there appear to to synergism between Googles and Flippers (i.e., the use of both goggles and flippers produces a larger average reduction in swim times than the average reduction due to goggles alone plus the individual reduction due to flippers alone)?
+-   Your grade will be based on this [grading rubric][ref04]. Please also note the [policy on late submissions and rework][ref05]. If your program does not work, please review the [suggestions if you encounter an error page][ref06].
 
+[ref04]: https://github.com/pmean/classes/blob/master/general/general-grading-rubric.md
+[ref05]: https://github.com/pmean/classes/blob/master/general/policy-on-extensions-and-rework.md
+[ref06]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md

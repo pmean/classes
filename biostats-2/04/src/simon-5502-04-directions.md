@@ -4,8 +4,6 @@ title: "Directions for 5502-04 programming assignment"
 
 This programming assignment was written by Steve Simon on 2025-02-07 and is placed in the public domain.
 
-This assignment is not ready yet. It should be ready by Wednesday at noon.
-
 ## Program
 
 -   Write a program to answer the questions listed below. You may wish to adapt some code from the [demonstration program for module03][ref-5502-04-demo]. Replace my name with yours everywhere, remove the "Comments on the code" sections, and only include program chunks that address the questions listed below.
