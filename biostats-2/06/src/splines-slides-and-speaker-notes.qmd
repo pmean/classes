@@ -1,0 +1,119 @@
+---
+title: "See bottom of file for title"
+format:
+  pptx:
+    reference-doc: T#015 STSP-PPT-Wide-Template.pptx
+params:
+  topic_01: "Variety of regressions"
+  topic_02: "Building cubic splines from scratch"
+  topic_03: "B-splines"
+  topic_04: "How many knots and where to put them"
+  topic_05: "Logistic regression example"
+  topic_06: "Some code hints for R, SAS, Stata"
+editor: source
+---
+
+```{r}
+# Preliminaries, if needed
+
+# Keep this chunk, even if no code, so that
+# params is populated from the yaml header.
+```
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+# library(pspline)
+library(readr)
+library(rms)
+library(tidyverse)
+```
+
+
+## Topics to be covered
+
+-   What you will learn
+    -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
+    
+::: notes
+
+"What are cubic splines and when do you need to use them?"
+
+Splines provide a useful way to model relationships that are more complex than a simple linear function. They work with a variety of regression models. They rely on some simple mathematical concepts: continuity and smoothness. You will see some simple applications where continuity and smoothness are important  and learn how to use splines for linear regression and the generalized linear model.
+
+:::
+
+{{< include _splines-01.qmd >}}
+
+## Break #1
+
+-   What you have learned
+    -   `r params$topic_01`
+-   What's coming next
+    -   `r params$topic_02`
+
+{{< include _splines-02.qmd >}}
+
+## Break #2
+
+-   What you have learned
+    -   `r params$topic_02`
+-   What's coming next
+    -   `r params$topic_03`
+    
+{{< include _splines-03.qmd >}}
+
+## Break #3
+
+-   What you have learned
+    -   `r params$topic_03`
+-   What's coming next
+    -   `r params$topic_04`
+    
+{{< include _splines-04.qmd >}}
+
+## Break #4
+
+-   What you have learned
+    -   `r params$topic_04`
+-   What's coming next
+    -   `r params$topic_05`
+
+{{< include _splines-05.qmd >}}
+
+## Break #5
+
+-   What you have learned
+    -   `r params$topic_05`
+-   What's coming next
+    -   `r params$topic_06`
+    
+{{< include _splines-06.qmd >}}
+
+## Summary
+
+-   What you have learned
+    -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
+
+<!---
+      You have to put the title down 
+      here to override the titles of
+      all the include files.
+--->
+
+---
+title: "What are splines and how are they used?"
+author: "Steve Simon"
+---

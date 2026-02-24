@@ -1,0 +1,108 @@
+---
+title: "simon-5502-06-extra-data"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute: 
+  error: false
+---
+
+# --- Part 1
+
+## File details
+
+This program was written by Steve Simon on 2026-02-22 and is placed in the public domain. You can use this program any way you please.
+
+This program reads in some files from DASL (Data and Story Library) and produces a few preliminary plots. Some of these files might be good for student projects.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+
+R.version.string
+Sys.Date()
+```
+
+## Read Mazda data
+
+```{r}
+#| label: read-mazda
+
+prices0 <- read_tsv(file="https://gksmyth.github.io/ozdasl/oz/mazdas.txt")
+```
+
+```{r}
+#| label: plot-price
+
+prices0 |>
+  mutate(age=91-Year) |>
+  ggplot() +
+  aes(x=age, y=Price) +
+  geom_point()
+```
+
+```{r}
+#| label: plot-log-price
+
+prices0 |>
+  mutate(age=91-Year) |>
+  mutate(log_price=log2(Price)) |>
+  ggplot() +
+  aes(x=age, y=log_price) +
+  geom_point()
+```
+
+## Read dexterity data
+
+```{r}
+#| label: read-dexterity
+
+dexterity <- read_tsv(file="https://dasl.datadescription.com/download/data/3253")
+glimpse()
+
+```{r}
+#| label: plot-dexterity
+
+dexterity |>
+  ggplot() +
+  aes(`Age(yr)`, Speed) +
+  geom_point()
+```
+
+## Movie
+
+```{r}
+#| label: read-movie
+
+movie <- read_tsv(file="https://dasl.datadescription.com/download/data/3347")
+glimpse(movie)
+```
+
+```{r}
+#| label: plot-movie
+
+movie |>
+  ggplot() +
+  aes(x=Budget, y=USGross....) +
+  geom_point()
+```
+
+## Marriage
+
+```{r}
+#| label: read-marriage
+
+marriage <- read_tsv(file="https://dasl.datadescription.com/download/data/3329")
+glimpse(marriage)
+
+marriage |>
+  mutate(gap=Men-Women) |>
+  ggplot() +
+  aes(x=Year, y=gap) +
+  geom_point()
+```
+

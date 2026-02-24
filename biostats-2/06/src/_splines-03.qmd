@@ -1,0 +1,141 @@
+---
+title: "Splines, part 03"
+format: pptx
+editor: source
+---
+
+```{r}
+#| label: 03-setup
+#| message: false
+#| warning: false
+
+library(splines)
+library(tidyverse)
+```
+
+## B-splines
+
+-   B-splines = Basis splines
+    -   Basis is a mathematical property of a set and a subset
+-   Mathematically equivalent to formulation shown earlier
+-   Much less collinearity
+
+::: notes
+
+B-splines provide a solution with less issues of multi-collinearity.
+
+:::
+
+```{r}
+#| label: 03-b-splines
+
+b_spline <- bs(xm$c2, knots=c(5, 10, 15), degree=3, intercept=TRUE)
+```
+
+```{r}
+#| label: 03-bplot
+
+n <- ncol(b_spline)
+bplot <- list(rep(NULL, n))
+for (j in 1:n) {
+  dat <- cbind(xm$c2, b_spline[ , j])
+  display_curve(dat, "Cubic B-spline terms") |>
+    display_dots(dat[1:21, ]) -> bplot[[j]]
+}
+```
+
+## B-spline, 1
+
+```{r}
+#| label: 03-bplot-1
+
+bplot[[1]]
+```
+
+::: notes
+
+
+The individual columns represent piecwise cubic polynomials. As I cycle through these graphs, notice how they are concentrated in certain intervals and there is only a partial overlap between these intervals. Also notice how they transition smoothly to zero outside those intervals.
+
+
+:::
+
+## B-spline, 2
+
+```{r}
+#| label: 03-bplot-2
+
+bplot[[2]]
+```
+
+## B-spline, 3
+
+```{r}
+#| label: 03-bplot-3
+
+bplot[[3]]
+```
+
+## B-spline, 4
+
+```{r}
+#| label: 03-bplot-4
+
+bplot[[4]]
+```
+
+## B-spline, 5
+
+```{r}
+#| label: 03-bplot-5
+
+bplot[[5]]
+```
+
+## B-spline, 6
+
+```{r}
+#| label: 03-bplot-6
+
+bplot[[6]]
+```
+
+## B-spline, 7
+
+```{r}
+#| label: 03-bplot-7
+
+bplot[[7]]
+```
+
+## Correlation of B-spline terms
+
+```{r}
+#| label: 03-cor
+
+b_spline |>
+  data.frame() |>
+  set_names(paste0("S", 1:7)) |>
+  data.frame() |>
+  cor() |>
+  round(2)
+```
+
+::: notes
+
+Although there is some correlation, this is not nearly as bad as the piecewise approach.
+
+:::
+
+## B-spline fit to the artificial data
+
+```{r}
+#| label: 03-b-spline-fit
+
+lm(xm$y~b_spline) %>%
+  augment(newdata=xm) %>%
+  select(c2, .fitted) %>%
+    display_curve("Cubic spline fit to the data") %>%
+    display_dots(simulated_example)
+```
+

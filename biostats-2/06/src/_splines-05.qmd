@@ -1,0 +1,267 @@
+---
+title: "Splines, part 05"
+format: pptx
+editor: source
+---
+
+```{r}
+#| label: 05-setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(gt)
+library(rms)
+library(tidyverse)
+```
+
+## About the Titanic
+
+-   Largest passenger ship at its time
+-   Maiden voyage in 1912
+-   Hit an iceberg and sank
+-   Detailed information on all passengers
+    -   Survived (no/yes)
+    -   Sex (female/male)
+    -   Passenger class (1st, 2nd, 3rd)
+    -   Age (2 months to 71 years)
+
+::: notes
+
+The Titanic was a large cruise ship, the biggest of its kind in 1912. It was thought to be unsinkable, but when it set sail from England to American in its maiden voyage, it struck an iceberg and sank, killing many of the passengers and crew. You can get fairly good data on the characteristics of passengers who died and compare them to those that survived. The data indicate a strong effect due to age and gender, representing a philosophy of "women and children first" that held during the boarding of life boats. Let's look at the effect of age on survival using a logistic regression model.
+
+:::
+
+## First few rows of data
+
+```{r}
+#| label: 05-head
+
+f2 <- "../data/titanic.txt"
+ti <- 
+  data.frame(
+    read_tsv(
+      file=f2,
+      col_types="ccncn"))
+
+names(ti) <- tolower(names(ti))
+
+ti |>
+  slice(1:3) |>
+  gt()
+```
+
+## A few descriptive statistics, 1
+
+```{r}
+#| label: 05-descriptives-1
+
+ti |>
+  filter(!is.na(age)) |>
+  summarize(
+    age_mean=mean(age),
+    age_sd=sd(age),
+    age_min=min(age),
+    age_max=max(age),
+    n=n()) |>
+  gt()
+```
+
+## A few descriptive statistics, 2
+
+```{r}
+#| label: 05-descriptives-2
+
+ti |> 
+  count(pclass) |>
+  gt()
+```
+
+## A few descriptive statistics, 3
+
+```{r}
+#| label: 05-descriptives-3
+
+ti |> 
+  count(sex) |>
+  gt()
+```
+
+## A few descriptive statistics, 4
+
+```{r}
+#| label: 05-descriptives-4
+
+ti |> 
+  count(survived) |>
+  gt()
+```
+
+
+## Boxplots
+
+```{r}
+#| label: 05-box
+
+ggplot(data=ti, aes(factor(survived), age)) + 
+  geom_boxplot()
+```
+
+::: notes
+
+The boxplots reveal little differences between the ages of survivors and deaths. If something is going on, it is subtle.
+
+:::
+
+## Fit a linear model first.
+
+```{r}
+#| label: linear
+
+ti1 <- filter(ti, !is.na(age))
+linear_fit <- glm(
+  survived ~ age,
+  family=binomial,
+  data=ti1)
+tidy(linear_fit) |>
+  gt()
+```
+
+::: notes
+
+There may be a downward trend in the odds of survival over time, but it is not statistically significant.
+
+:::
+
+## Now fit a spline function.
+
+```{r}
+#| label: 05-fit
+
+spline_fit <- glm(
+  survived ~ rcs(age),
+  family=binomial,
+  data=ti1)
+tidy(spline_fit) |>
+  gt()
+```
+
+::: notes
+
+The coefficients from the restricted cubic spline are pretty much uninterpretable. You have to visualize the spline graphically. First do this on the log odds scale to see how far from linear the spline fit is.
+
+:::
+
+## Predictions on a log odds scale
+
+```{r}
+#| label: 05-plot-log-odds
+
+age_sequence <- data.frame(
+  age = seq(min(ti1$age), max(ti1$age), length=100))
+
+age_sequence$prediction <- 
+  predict(spline_fit, newdata=age_sequence, type="link")
+ggplot(data=age_sequence, aes(age, prediction)) +
+  geom_line()
+```
+
+::: notes
+
+It looks like a definite departure from linearity. The log odds for survival are best for very young children. They decline in older children and are at their worst for young adults. The log odds rise again starting at age 30 but this is a smaller and less dramatic change than you see in the children versus young adults.
+
+The final dip for very old passengers, starting around 45, might be real and could reflect their relative frailty. But be careful about interpreting results in the tails.
+
+:::
+
+## Predictions on the probability scale
+
+```{r}
+#| label:  05-plot-probabilities
+age_sequence$prediction <- 
+  predict(spline_fit, newdata=age_sequence, type="response")
+ggplot(data=ti1, aes(age, survived)) +
+  geom_jitter(pch=1, width=0.5, height=0) +
+  geom_line(
+    data=age_sequence,
+    aes(age, prediction))
+```
+
+::: notes
+
+The ages fall on whole number boundaries and in order to see things clearly, I jittered the data.
+
+It looks like "women and children" first might actually be "women, children, and old people first".
+
+:::
+
+## Most models will accept splines
+
+-   Easy
+    -   Linear regression
+    -   Random effects regression models
+-   Harder but not too difficult
+    -   Generalized linear model
+    -   Cox regression
+-   Not at all helpful for data science models
+    -   Random forests
+    -   Deep neural nets
+
+::: notes
+
+Splines work with a variety of statistical models. They work very nicely with linear regression and random effects regression models.
+
+It takes a bit more work with the generalized linear model because of the nonlinear relationship with the outcome variable. With a bit of care, you will be fine.
+
+Cox regression models also require a bit of care.
+
+Many of the recent data science models do not work well with splines. The random forest model and deep neural nets, to name two, have their own way of modeling non-linearity and the spline functions would just get in the way.
+
+Let me show how to use a spline in a logistic regression model with data from survival of passengers on the Titanic.
+
+:::
+
+## Spline coefficients are uninterpretable
+
+```{r}
+tidy(spline_fit) |>
+  gt()
+```
+
+::: notes
+
+In the simple logistic regression model where age was treated linearly, you could exponentiate the coefficient to get an odds ratio. It turns out that the odds ratio for age is 0.99. Each additional year of age decreases the odds of survival by 1%. Not a lot, but it can add up across several decades of age.
+
+You really can't do anything with the spline coefficients. Go ahead and exponentiate them, but they won't represent any meaningful odds ratio.
+
+The ONLY way to interpret a spline model is through a graph.
+
+:::
+
+## Splines are a package deal
+
+```{r}
+tidy(spline_fit) |>
+  gt()
+```
+
+::: notes
+
+The other thing to keep in mind is that the spline terms have to stick together. You can't use stepwise regression to add or remove terms from the model and the individual p-values for the individual coefficients are misleading. You look at this output and you think to yourself that you can simplify the model by removing some of the spline terms with large p-values. You can't do it. The spline coefficients are either all in or all out.
+
+Now it is fairly easy to compare a spline model to a linear model. The linear model is implicitly nested within the spline model so you can just look at partial F tests, changes in R-squared, etc.
+
+:::
+
+## Don't over-interpret the tails
+
+![](../images/liu-2025a "A non-linear relationship between DI-GM and sleep duration")
+
+::: notes
+
+Standard errors are pretty easy to get with spline models. The mathematics behind this is tedious but not difficult. One thing that almost every spline exhibits is a fanning out of the standard errors at the extremes. This makes sense because there is less data to assess where the spline goes at the extremes.
+
+So don't get too worked up about unusual trends on the low end of the high end of the spline. It may be real or it may be sampling error.
+
+:::
+
