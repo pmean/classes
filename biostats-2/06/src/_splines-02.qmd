@@ -1,6 +1,9 @@
 ---
 title: "Splines, part 02"
-format: pptx
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
 editor: source
 ---
 
@@ -15,22 +18,7 @@ library(splines)
 library(tidyverse)
 ```
 
-```{r}
-#| label: 02-libraries
-#| eval: false
-
-library(ggplot2)
-suppressMessages(suppressWarnings(library(broom)))
-suppressMessages(suppressWarnings(library(dplyr)))
-suppressMessages(suppressWarnings(library(Hmisc)))
-suppressMessages(suppressWarnings(library(knitr)))
-suppressMessages(suppressWarnings(library(magrittr)))
-suppressMessages(suppressWarnings(library(rms)))
-suppressMessages(suppressWarnings(library(splines)))
-suppressMessages(suppressWarnings(library(tidyr)))
-```
-
-## Splines
+## 06-02 Splines
 
 -   Piecewise cubic polynomial
     -   Continuous (no jumps)
@@ -43,7 +31,7 @@ A spline is a piecewise cubic polynomial. It converts from one cubic polynomial 
 
 :::
 
-## A physical spline
+## 06-02 A physical spline
 
 ![](../images/spline.png "A flexible strip of wood curved and constrained at certain points")
 
@@ -55,7 +43,7 @@ Here is an image from Wikipedia of physical spline. It is a thin strip of wood--
 
 :::
 
-## A french curve
+## 06-02 A french curve
 
 ![](../images/french-curve.png "Several french curves showing varying curvatures")
 
@@ -77,7 +65,7 @@ y <- y+round(rnorm(21), 1)
 simulated_example <- data.frame(x, y)
 ```
 
-## Graph of artificial data
+## 06-02 Graph of artificial data
 
 ```{r}
 #| label: 02-artificial-data-plot
@@ -169,7 +157,7 @@ for (j in 1:16) {
 c_plots[[1]] <- c_plots[[1]] + expand_limits(y=0)
 ```
 
-## Single cubic polynomial
+## 06-02 Single cubic polynomial
 
 ```{r}
 #| label: 02-single-cubic
@@ -189,10 +177,10 @@ You need a way to transition between a wiggly cubic and a mostly flat cubic.
 
 :::
 
-## Cubic polynomials with knots at x=5, 10, 15
+## 06-02 Cubic polynomials with knots at x=5, 10, 15
 
 ```{r}
-#| label: all-plots
+#| label: 02-all-plots
 
 library(gridExtra)
 
@@ -217,7 +205,7 @@ grid.arrange(
   nrow=4)
 ```
 
-## What the numbers look like
+## 06-02 What the numbers look like
 
 ![](../images/spline-data.png "Actual data values for overall terms and knots")
 
@@ -227,7 +215,7 @@ This is what the raw numbers look like. I apologize for the size of the fonts. I
 
 :::
 
-## What the numbers look like, overall terms
+## 06-02 What the numbers look like, overall terms
 
 ![](../images/spline-data-overall.png "Actual data values for overall terms")
 
@@ -237,7 +225,7 @@ The overall terms are constant, linear, quadratic, or cubic across the entire ra
 
 :::
 
-## What the numbers look like, knot 1 terms
+## 06-02 What the numbers look like, knot 1 terms
 
 ![](../images/spline-data-knot-1.png "Actual data values for knot 1 terms")
 
@@ -247,7 +235,7 @@ The knot 1 terms are all zero until you hit x=5. Then they are constant, linear,
 
 :::
 
-## What the numbers look like, knot 2 terms
+## 06-02 What the numbers look like, knot 2 terms
 
 ![](../images/spline-data-knot-2.png "Actual data values for knot 2 terms")
 
@@ -258,7 +246,7 @@ The knot 1 terms are all zero until you hit x=10. Then they are constant, linear
 
 :::
 
-## What the numbers look like, knot 3 terms
+## 06-02 What the numbers look like, knot 3 terms
 
 ![](../images/spline-data-knot-3.png "Actual data values for knot 3 terms")
 
@@ -269,7 +257,7 @@ The knot 3 terms are all zero until you hit x=15. Then they are constant, linear
 
 :::
 
-## Discontinuous cubic spline
+## 06-02 Discontinuous cubic spline
 
 ```{r}
 #| label: 02-discontinuous
@@ -291,7 +279,7 @@ This function is not continuous or smooth. To make the function continuous, drop
 
 :::
 
-## Remove piece-wise intercepts
+## 06-02 Remove piece-wise intercepts
 
 ```{r}
 #| label: 02-continuous-grid
@@ -320,7 +308,7 @@ grid.arrange(
   nrow=4)
 ```
 
-## Continuous spline
+## 06-02 Continuous spline
 
 ```{r}
 #| label: 02-continuous
@@ -338,7 +326,7 @@ While this graph is continuous, it still takes some abrupt turns. What this curv
 
 :::
 
-## Remove piecewise linear terms
+## 06-02 Remove piecewise linear terms
 
 ```{r}
 #| label: 02-smooth-grid
@@ -367,7 +355,7 @@ grid.arrange(
   nrow=4)
 ```
 
-## Smooth splines
+## 06-02 Smooth splines
 
 ```{r}
 #| label: smooth
@@ -385,7 +373,7 @@ Here is a function that has a continuous first derivative. You fit this model by
 
 :::
 
-## Remove piecewise quadratic terms
+## 06-02 Remove piecewise quadratic terms
 
 ```{r}
 #| label: 02-smoother-grid
@@ -414,7 +402,7 @@ grid.arrange(
   nrow=4)
 ```
 
-## Even smoother
+## 06-02 Even smoother
 
 ```{r}
 #| label: 02-even-smoother
@@ -439,7 +427,7 @@ This approach is simple and easy to follow, but there is one catch. There is an 
 
 :::
 
-## Multicollinearity
+## 06-02 Multicollinearity
 
 ```{r}
 #| label: 02-multicollinearity

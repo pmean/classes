@@ -2,17 +2,30 @@
 title: "simon-5502-12-directions"
 ---
 
-## General directions
-
-Use the dataset, [fasting-turtles.txt][ref-fasting-nodate], found on my github site. Refer to the [data dictionary][ref-dd-nodate] if needed. You may find it helpful to adapt some of the code from [simon-5502-12-demo.qmd][ref-simon-nodate]. 
-
-[ref-fasting-nodate]: https://github.com/pmean/data/blob/main/files/fasting-turtles.txt
-[ref-dd-nodate]: https://github.com/pmean/data/blob/main/files/fasting-turtles.yaml
-[ref-simon-nodate]: https://github.com/pmean/classes/blob/master/biostats-2/12/src/simon-5502-12-demo.qmd
-
 ## File details
 
 This assignment was written by Steve Simon on 2025-03-18 and is placed in the public domain.
+
+## Program
+
+-   Write a program to answer the questions listed below.
+-   Include the original questions above the appropriate program chunks in your code.
+-   Feel free to borrow code from the [demonstration program for this module][ref-demo].
+-   Place your name (not mine) and the creation date on every graph.
+-   Remove the "Comments on the code" sections.
+-   Provide a brief interpretation for every table and graph.
+-   Only include program chunks that address the questions listed below.
+
+[ref-demo]: https://github.com/pmean/classes/blob/master/biostats-2/12/src/simon-5502-12-demo.qmd
+
+## Data
+
+-   Download the [data][ref-data] file
+    -   Store it in your data folder
+-   Refer to the [data dictionary][ref-dictionary], if needed.
+
+[ref-data]: https://github.com/pmean/data/blob/main/files/fasting-turtles.txt
+[ref-dictionary]: https://github.com/pmean/data/blob/main/files/fasting-turtles.yaml
 
 ## If you can't get the lmer function to work
 

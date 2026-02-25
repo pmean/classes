@@ -1,6 +1,9 @@
 ---
 title: "Splines, part 1"
-format: pptx
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
 editor: source
 ---
 
@@ -14,7 +17,7 @@ library(tidyverse)
 ```
 
 
-## xkcd comic
+## 06-01 xkcd comic
 
 -   Title "CURVE-FITTING METHODS AND THE MESSAGE THEY SEND"
 -   Drawn by Scott Munro
@@ -31,7 +34,7 @@ Let me start with a cartoon from the xkcd site of Scott Munro. Scott Munro produ
 
 :::
 
-## xkcd comic, panel 01
+## 06-01 xkcd comic, panel 01
 
 ![](../images/xkcd-01.png "Panel 01 of xkcd comic")
 
@@ -41,7 +44,7 @@ This shows a scatter of data points with a linear regression fit. The caption re
 
 :::
 
-## xkcd comic, panel 02
+## 06-01 xkcd comic, panel 02
 
 ![](../images/xkcd-02.png "Panel 02 of xkcd comic")
 
@@ -51,7 +54,7 @@ This shows a scatter of data points with a quadratic regression fit. The caption
 
 :::
 
-## xkcd comic, panel 03
+## 06-01 xkcd comic, panel 03
 
 ![](../images/xkcd-03.png "Panel 03 of xkcd comic")
 
@@ -61,7 +64,7 @@ This shows a scatter of data points with a logarithmic regression fit. The capti
 
 :::
 
-## xkcd comic, panel 04
+## 06-01 xkcd comic, panel 04
 
 ![](../images/xkcd-04.png "Panel 04 of xkcd comic")
 
@@ -71,7 +74,7 @@ This shows a scatter of data points with an exponential regression fit. The capt
 
 :::
 
-## xkcd comic, panel 05
+## 06-01 xkcd comic, panel 05
 
 ![](../images/xkcd-05.png "Panel 05 of xkcd comic")
 
@@ -81,7 +84,7 @@ This shows a scatter of data points with a loess smoothing curve. The caption re
 
 :::
 
-## xkcd comic, panel 06
+## 06-01 xkcd comic, panel 06
 
 ![](../images/xkcd-06.png "Panel 06 of xkcd comic")
 
@@ -91,7 +94,7 @@ This shows a scatter of data points with a flat linear regression fit (slope=0).
 
 :::
 
-## xkcd comic, panel 07
+## 06-01 xkcd comic, panel 07
 
 ![](../images/xkcd-07.png "Panel 07 of xkcd comic")
 
@@ -101,7 +104,7 @@ This shows a scatter of data points with a logistic curve regression fit. The ca
 
 :::
 
-## xkcd comic, panel 08
+## 06-01 xkcd comic, panel 08
 
 ![](../images/xkcd-08.png "Panel 08 of xkcd comic")
 
@@ -113,7 +116,7 @@ There is an active field of research under the topic uncertainty quantification 
 
 :::
 
-## xkcd comic, panel 09
+## 06-01 xkcd comic, panel 09
 
 ![](../images/xkcd-09.png "Panel 09 of xkcd comic")
 
@@ -123,7 +126,7 @@ This shows a scatter of data points with a piecewise linear regression fit. The 
 
 :::
 
-## xkcd comic, panel 10
+## 06-01 xkcd comic, panel 10
 
 ![](../images/xkcd-10.png "Panel 10 of xkcd comic")
 
@@ -133,7 +136,7 @@ Here the proposed regression model gets a bit silly. This shows a scatter of dat
 
 :::
 
-## xkcd comic, panel 11
+## 06-01 xkcd comic, panel 11
 
 ![](../images/xkcd-11.png "Panel 11 of xkcd comic")
 
@@ -143,7 +146,7 @@ This shows a scatter of data points with a smoother that looks like it uses medi
 
 :::
 
-## xkcd comic, panel 12
+## 06-01 xkcd comic, panel 12
 
 ![](../images/xkcd-12.png "Panel 12 of xkcd comic")
 
@@ -153,7 +156,7 @@ This shows a scatter of data points with what looks like a B-spline. The caption
 
 :::
 
-## Examples of splines, 1
+## 06-01 Examples of splines, 1
 
 ![](../images/liu-2025 "Excerpt from Liu et al 2025")
 
@@ -165,7 +168,7 @@ Liu J, Huang S. Association between dietary index for gut microbiota and sleep d
 
 :::
 
-## Examples of splines, 2
+## 06-01 Examples of splines, 2
 
 ![](../images/liu-2025a "A non-linear relationship between DI-GM and sleep duration")
 
@@ -175,7 +178,7 @@ The cubic spline starts out flat for low values of DI-GM, then rises, dips, and 
 
 :::
 
-## Examples of splines, 3
+## 06-01 Examples of splines, 3
 
 ![](../images/wang-2025 "Excerpt from Wang et al 2025")
 
@@ -187,7 +190,7 @@ Wang Y, Chang Y, Zhang P, Zheng Z, Ai X, Zhang S, Wu S. Association between trig
 
 :::
 
-## Examples of splines, 4
+## 06-01 Examples of splines, 4
 
 ![](../images/wang-2025a "A non-linear relationship between cholesterol measures and spine Z scores")
 
@@ -197,7 +200,7 @@ The box plot examines DMD patients without corticosteroid treatment (DMDWS) to t
 
 :::
 
-## Examples of splines, 5
+## 06-01 Examples of splines, 5
 
 ![](../images/hu-2025 "Excerpt from Hu et al 2025")
 
@@ -209,7 +212,7 @@ Hu C, Tang T. Association between niacin intake and chronic kidney disease in ma
 
 :::
 
-## Examples of splines, 6
+## 06-01 Examples of splines, 6
 
 ![](../images/hu-2025a "Figure shoing the odds ratio for risk of CKD associated with niacin consumption")
 
@@ -219,7 +222,7 @@ The cubic spline shows that a deficiency of niacin increases the odds of CKD, bu
 
 :::
 
-## A real-world problem, without the data
+## 06-01 A real-world problem, without the data
 
 -   Threshold model
     -   Nothing happens until you meet a threshold
@@ -233,7 +236,7 @@ I don't have the data for this problem but let me illustrate conceptually how a 
 
 :::
 
-## Fake data
+## 06-01 Fake data
 
 ```{r}
 #| label: 01-fake-0
@@ -319,7 +322,7 @@ fake_4 |>
 plot(plot_0)
 ```
     
-## Linear function
+## 06-01 Linear function
 
 ```{r}
 #| label: 01-linear
@@ -335,7 +338,7 @@ Here is what a linear function might look like. It is not what we want, but alwa
 
 :::
 
-## Computational formula for linear regression
+## 06-01 Computational formula for linear regression
 
 $X = \begin{bmatrix}
  1 & 0 \\     
@@ -361,7 +364,7 @@ I do want to note here that you can get a different regression model by changing
 
 :::
 
-## Step function
+## 06-01 Step function
 
 ```{r}
 #| label: 01-step
@@ -379,7 +382,7 @@ This is a discontinuous function. It might make sense in some settings. In other
 
 :::
 
-## Computational formula for step regression
+## 06-01 Computational formula for step regression
 
 $X = \begin{bmatrix}
  1 & 0 \\     
@@ -405,7 +408,7 @@ More importantly, any statistical software that can compute a linear regression 
 
 :::
 
-## Elbow function
+## 06-01 Elbow function
 
 ```{r}
 #| label: 01-elbow
@@ -426,7 +429,7 @@ Note the "elbow" at the threshold. This might be okay, but it might be better fo
 
 :::
 
-## Computational formula for elbow regression
+## 06-01 Computational formula for elbow regression
 
 $X = \begin{bmatrix}
  1 & 0 \\     
@@ -450,7 +453,7 @@ Notice that the matrix formula still has not changed. Fitting an elbow regressio
 
 :::
 
-## Quadratic analog
+## 06-01 Quadratic analog
 
 ```{r}
 #| label: 01-quadratic
@@ -466,7 +469,7 @@ Here is a functional form that avoid the elbow at the threshold value. It fits a
 
 :::
 
-## Computational formula for quadratic analog
+## 06-01 Computational formula for quadratic analog
 
 $X = \begin{bmatrix}
  1 & 0 \\     

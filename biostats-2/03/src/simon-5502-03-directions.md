@@ -6,19 +6,26 @@ This programming assignment was written by Steve Simon on 2025-01-30 and is plac
 
 ## Program
 
--   Write a program to answer the questions listed below. You may wish to adapt some code from the [demonstration program for module03][ref-5502-03-demo]. Replace my name with yours everywhere, remove the "Comments on the code" sections, and only include program chunks that address the questions listed below. You might also want to review a [program used last semester in module05][ref-5501-05-demo].
- 
-[ref-5502-03-demo]: https://github.com/pmean/classes/blob/master/biostats-2/03/src/simon-5502-03-demo.qmd
-[ref-5501-05-demo]: https://github.com/pmean/classes/blob/master/biostats-1/05/src/simon-5501-05-bf.qmd
+-   Write a program to answer the questions listed below.
+-   Include the original questions above the appropriate program chunks in your code.
+-   Feel free to borrow code from the [demonstration program for this module][ref-demo].
+-   You may also find code from a [previous demonstration program][ref-demo1] to be helpful.
+-   Place your name (not mine) and the creation date on every graph.
+-   Remove the "Comments on the code" sections.
+-   Provide a brief interpretation for every table and graph.
+-   Only include program chunks that address the questions listed below.
+
+[ref-demo]: https://github.com/pmean/classes/blob/master/biostats-2/03/src/simon-5502-03-demo.qmd
+[ref-demo1]: https://github.com/pmean/classes/blob/master/biostats-1/05/src/simon-5501-05-bf.qmd
 
 ## Data
 
--   Download the [data][ref-bf-csv] file
+-   Download the [data][ref-data] file
     -   Store it in your data folder
--   Refer to the [data dictionary][ref-bf-yaml], if needed.
+-   Refer to the [data dictionary][ref-dictionary], if needed.
 
-[ref-bf-csv]: https://github.com/pmean/data/blob/main/files/breast-feeding-preterm.csv
-[ref-bf-yaml]: https://github.com/pmean/data/blob/main/files/breast-feeding-preterm.yaml
+[ref-data]: https://github.com/pmean/data/blob/main/files/breast-feeding-preterm.csv
+[ref-dictionary]: https://github.com/pmean/data/blob/main/files/breast-feeding-preterm.yaml
 
 ## Question 1
 

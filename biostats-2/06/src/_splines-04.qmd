@@ -1,6 +1,9 @@
 ---
 title: "Splines, part 04"
-format: pptx
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
 editor: source
 ---
 
@@ -13,7 +16,7 @@ library(broom)
 library(tidyverse)
 ```
 
-## How many knots?
+## 06-04 How many knots?
 
 -   Use AIC or BIC
 -   Eyeball the data
@@ -80,7 +83,7 @@ for (k in 3:5) {
 }
 ```
 
-## AIC for a linear fit
+## 06-04 AIC for a linear fit
 
 ```{r}
 #| label: 05-aplots-1
@@ -90,7 +93,7 @@ aplots[[i]]
 i <- i+1
 ```
 
-## AIC for a three knot spline
+## 06-04 AIC for a three knot spline
 
 ```{r}
 #| label: 05-aplots-2
@@ -99,7 +102,7 @@ aplots[[i]]
 i <- i+1
 ```
 
-## AIC for a four knot spline
+## 06-04 AIC for a four knot spline
 
 ```{r}
 #| label: 05-aplots-3
@@ -108,7 +111,7 @@ aplots[[i]]
 i <- i+1
 ```
 
-## AIC for a five knot spline
+## 06-04 AIC for a five knot spline
 
 ```{r}
 #| label: 05-aplots-4
@@ -117,7 +120,7 @@ aplots[[i]]
 i <- i+1
 ```
 
-## Use inside knowlege to place the knots
+## 06-04 Use inside knowlege to place the knots
 
 -   Automatic transmission locks in at 40 miles per hour
 -   Kidney function is fine above 90, problematic below 30
@@ -133,7 +136,7 @@ Similarly, CD4 cell counts above 500 are a good sign, but things turn rapidly wo
 
 :::
 
-## Frank Harrell's suggestion for knot placement
+## 06-04 Frank Harrell's suggestion for knot placement
 
 -   Evenly spaced percentiles
     -   More knots where there is more data
@@ -155,7 +158,7 @@ If you pick this apart, you can deduce that 4 knots for a large dataset would be
 
 :::
 
-## Knot placement doesn't matter
+## 06-04 Knot placement doesn't matter
 
 -   Number of knots is important
 -   Placement of knots is not important
@@ -166,7 +169,7 @@ Most references I have looked at state that it is the number of knots rather tha
 
 :::
 
-## Extensions
+## 06-04 Extensions
 
 -   Natural splines
 -   Penalized splines

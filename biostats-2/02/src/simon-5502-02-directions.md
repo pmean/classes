@@ -2,22 +2,30 @@
 title: "Directions for 5502-02 programming assignment"
 ---
 
+## File details
+
 This programming assignment was written by Steve Simon on 2025-01-27 and is placed in the public domain.
 
 ## Program
 
--   Write this program on your own using examples from the previous semester. You may wish to adapt some code from the [demonstration program for module02][ref-demo]. Replace my name with yours everywhere, remove the "Comments on the code" sections, and only include program chunks that address the questions listed below.
+-   Write a program to answer the questions listed below.
+-   Include the original questions above the appropriate program chunks in your code.
+-   Feel free to borrow code from the [demonstration program for this module][ref-demo].
+-   Place your name (not mine) and the creation date on every graph.
+-   Remove the "Comments on the code" sections.
+-   Provide a brief interpretation for every table and graph.
+-   Only include program chunks that address the questions listed below.
 
 [ref-demo]: https://github.com/pmean/classes/blob/master/biostats-2/02/src/simon-5502-02-demo.qmd
 
 ## Data
 
--   Download the [data][ref-fat-csv] file
+-   Download the [data][ref-data] file
     -   Store it in your data folder
--   Refer to the [data dictionary][ref-fat-yaml], if needed.
+-   Refer to the [data dictionary][ref-dictionary], if needed.
 
-[ref-fat-csv]: https://github.com/pmean/data/blob/main/files/fat.csv
-[ref-fat-yaml]: https://github.com/pmean/data/blob/main/files/fat.yaml
+[ref-data]: https://github.com/pmean/data/blob/main/files/fat.csv
+[ref-dictionary]: https://github.com/pmean/data/blob/main/files/fat.yaml
 
 ## Question 1
 
@@ -25,7 +33,7 @@ You will not be graded on this, but get in the habit of computing some simple st
 
 ## Question 2
 
-Calculate several linear regression models using weight in pounds (wt) as the dependent variable instead of fat_b. Fit a single variable model (abdomen) and a three variable model (chest, abdomen, hip)Compare both of these to a null model (no independent variables) usng an analysis of variance table.
+Calculate several linear regression models using weight in pounds (wt) as the dependent variable instead of fat_b. Fit a single variable model (abdomen) and a three variable model (chest, abdomen, hip). Compare both of these to a null model (no independent variables) usng an analysis of variance table.
 
 ## Question 3
 

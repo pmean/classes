@@ -1,6 +1,9 @@
 ---
 title: "Splines, part 03"
-format: pptx
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
 editor: source
 ---
 
@@ -13,7 +16,7 @@ library(splines)
 library(tidyverse)
 ```
 
-## B-splines
+## 06-03 B-splines
 
 -   B-splines = Basis splines
     -   Basis is a mathematical property of a set and a subset
@@ -44,7 +47,7 @@ for (j in 1:n) {
 }
 ```
 
-## B-spline, 1
+## 06-03 B-spline, 1
 
 ```{r}
 #| label: 03-bplot-1
@@ -60,7 +63,7 @@ The individual columns represent piecwise cubic polynomials. As I cycle through 
 
 :::
 
-## B-spline, 2
+## 06-03 B-spline, 2
 
 ```{r}
 #| label: 03-bplot-2
@@ -68,7 +71,7 @@ The individual columns represent piecwise cubic polynomials. As I cycle through 
 bplot[[2]]
 ```
 
-## B-spline, 3
+## 06-03 B-spline, 3
 
 ```{r}
 #| label: 03-bplot-3
@@ -76,7 +79,7 @@ bplot[[2]]
 bplot[[3]]
 ```
 
-## B-spline, 4
+## 06-03 B-spline, 4
 
 ```{r}
 #| label: 03-bplot-4
@@ -84,7 +87,7 @@ bplot[[3]]
 bplot[[4]]
 ```
 
-## B-spline, 5
+## 06-03 B-spline, 5
 
 ```{r}
 #| label: 03-bplot-5
@@ -92,7 +95,7 @@ bplot[[4]]
 bplot[[5]]
 ```
 
-## B-spline, 6
+## 06-03 B-spline, 6
 
 ```{r}
 #| label: 03-bplot-6
@@ -100,7 +103,7 @@ bplot[[5]]
 bplot[[6]]
 ```
 
-## B-spline, 7
+## 06-03 B-spline, 7
 
 ```{r}
 #| label: 03-bplot-7
@@ -108,7 +111,7 @@ bplot[[6]]
 bplot[[7]]
 ```
 
-## Correlation of B-spline terms
+## 06-03 Correlation of B-spline terms
 
 ```{r}
 #| label: 03-cor
@@ -127,7 +130,7 @@ Although there is some correlation, this is not nearly as bad as the piecewise a
 
 :::
 
-## B-spline fit to the artificial data
+## 06-03 B-spline fit to the artificial data
 
 ```{r}
 #| label: 03-b-spline-fit

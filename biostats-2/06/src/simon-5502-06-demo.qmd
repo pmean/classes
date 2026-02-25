@@ -126,8 +126,6 @@ The average age declines through the 1960s the rebounds to an even higher averag
 ```{r}
 #| label: men-models
 
-library(splines)
-
 marriage_men_linear <- lm(men ~ year, data=marriage0)
 marriage_men_spline <- lm(men ~ year+bs(year, df=5), data=marriage0)
 
@@ -283,7 +281,7 @@ titanic3
 
 #### Comments on the code
 
-The [ntile function][ref-ntile] is part of the dplyr/tidyverse libraries. It divides the data into groups of roughly equal size. The n argumet specifies the number of groups.
+The [ntile function][ref-ntile] is part of the dplyr/tidyverse libraries. It divides the data into groups of roughly equal size. The n argument specifies the number of groups.
 
 The average of a logical statement, such as survived=="No" converts the true values to one and the false values to zero. The average is then equivalent to the probability that the logical statement is true. In this case, it represents the mortality probability.
 
@@ -335,13 +333,14 @@ anova(
   titanic_age_linear,
   titanic_age_spline) |>
   tidy() |>
+  data.frame() |>
   mutate(
     p.value =
       case_when(
         p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
         p.value <  0.001 ~ "p < 0.001")) -> titanic_age_spline_anova
 
-titanic_age_spline_anova |> data.frame()
+titanic_age_spline_anova
 ```
 
 #### Interpretation of the output
