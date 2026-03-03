@@ -6,13 +6,10 @@ format:
     embed-resources: true
 params:
   topic_01: "What is a diagnostic test?"
-  topic_02: "Assessing the quality of a diagnostic test"
-  topic_03: "The role of prevalence in diagnostic testing"
+  topic_02: "The role of prevalence in diagnostic testing"
+  topic_03: "Assessing the quality of a diagnostic test"
   topic_04: "Likelihood ratio"
   topic_05: "Receiver Operating Curve"
-  topic_06: "Evidence-based guidelines for diagnostic tests"
-  topic_07: "To be determined"
-  topic_08: "To be determined"
 editor: source
 ---
 
@@ -36,6 +33,14 @@ editor: source
 -   Most of the lecture will come directly from
     -   An Introduction to Diagnostic Tests, by Stephen D. Simon (me!).
 -   There is a small section on diagnostic tests with multiple values and the receiver operating characteristic curve which is covered here.
+
+{{< include _b2-07-01.qmd >}}
+
+{{< include _b2-07-02.qmd >}}
+
+{{< include _b2-07-03.qmd >}}
+
+{{< include _b2-07-04.qmd >}}
 
 {{< include _b2-07-05.qmd >}}
 
