@@ -1,0 +1,494 @@
+---
+title: "Splines, part 1"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+```{r}
+#| label: 01-setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(tidyverse)
+```
+
+
+## 06-01 xkcd comic
+
+-   Title "CURVE-FITTING METHODS AND THE MESSAGE THEY SEND"
+-   Drawn by Scott Munro
+-   Open-source license
+-   [Link to comic][ref-xkcd] at xkcd.com
+-   [More details][ref-explain] at explain-xkcd.com
+
+[ref-xkcd]: https://xkcd.com/2048/
+[ref-explain]: https://www.explainxkcd.com/wiki/index.php/2048:_Curve-Fitting
+
+::: notes
+
+Let me start with a cartoon from the xkcd site of Scott Munro. Scott Munro produces comics that poke fun at various scientific and mathematical concepts. There are a handful that directly address statistics, including this one. The actual panels in the comic are small, so I split them up onto separate slides.
+
+:::
+
+## 06-01 xkcd comic, panel 01
+
+![](../images/xkcd-01.png "Panel 01 of xkcd comic")
+
+::: notes
+
+This shows a scatter of data points with a linear regression fit. The caption reads, "Hey, I did a regression."
+
+:::
+
+## 06-01 xkcd comic, panel 02
+
+![](../images/xkcd-02.png "Panel 02 of xkcd comic")
+
+::: notes
+
+This shows a scatter of data points with a quadratic regression fit. The caption reads, "I wanted a curved line, so I made one with Math."
+
+:::
+
+## 06-01 xkcd comic, panel 03
+
+![](../images/xkcd-03.png "Panel 03 of xkcd comic")
+
+::: notes
+
+This shows a scatter of data points with a logarithmic regression fit. The caption reads, "Look, it's tapering off!"
+
+:::
+
+## 06-01 xkcd comic, panel 04
+
+![](../images/xkcd-04.png "Panel 04 of xkcd comic")
+
+::: notes
+
+This shows a scatter of data points with an exponential regression fit. The caption reads, "Look, it's growing uncontrollably."
+
+:::
+
+## 06-01 xkcd comic, panel 05
+
+![](../images/xkcd-05.png "Panel 05 of xkcd comic")
+
+::: notes
+
+This shows a scatter of data points with a loess smoothing curve. The caption reads, "I'm sophisticated, not like those bumbling polynomial people."
+
+:::
+
+## 06-01 xkcd comic, panel 06
+
+![](../images/xkcd-06.png "Panel 06 of xkcd comic")
+
+::: notes
+
+This shows a scatter of data points with a flat linear regression fit (slope=0). The caption reads, "I'm making a scatter plot but I don't want to."
+
+:::
+
+## 06-01 xkcd comic, panel 07
+
+![](../images/xkcd-07.png "Panel 07 of xkcd comic")
+
+::: notes
+
+This shows a scatter of data points with a logistic curve regression fit. The caption reads, "I need to connect these two lines, but my first idea didn't have enough Math."
+
+:::
+
+## 06-01 xkcd comic, panel 08
+
+![](../images/xkcd-08.png "Panel 08 of xkcd comic")
+
+::: notes
+
+This shows a scatter of data points with no particular regression line, but a very wide (nd probably appropriate) confidence band. This captures the idea that there is uncertainty not only in the deviation of the points from the regression curve, but true uncertainty about the shape of that regression curve. The caption reads, "Listen, science is hard. But I'm a serious person doing my best."
+
+There is an active field of research under the topic uncertainty quantification that tries to take into account all the sources of uncertainty including uncertainty about which model is the correct model.
+
+:::
+
+## 06-01 xkcd comic, panel 09
+
+![](../images/xkcd-09.png "Panel 09 of xkcd comic")
+
+::: notes
+
+This shows a scatter of data points with a piecewise linear regression fit. The caption reads, "I have a theory and this is the only data I could find."
+
+:::
+
+## 06-01 xkcd comic, panel 10
+
+![](../images/xkcd-10.png "Panel 10 of xkcd comic")
+
+::: notes
+
+Here the proposed regression model gets a bit silly. This shows a scatter of data points with a smooth curve connecting every data point. The caption reads, "I clikced 'smooth lines' in Excel."
+
+:::
+
+## 06-01 xkcd comic, panel 11
+
+![](../images/xkcd-11.png "Panel 11 of xkcd comic")
+
+::: notes
+
+This shows a scatter of data points with a smoother that looks like it uses medians somehow. The caption reads, "I had an idea for how to clean up the data. What do you think?"
+
+:::
+
+## 06-01 xkcd comic, panel 12
+
+![](../images/xkcd-12.png "Panel 12 of xkcd comic")
+
+::: notes
+
+This shows a scatter of data points with what looks like a B-spline. The caption reads, "As you can see, this model smoothly fits the - Wait, No, No, Don't extend it. AAAAAA!!"
+
+:::
+
+## 06-01 Examples of splines, 1
+
+![](../images/liu-2025 "Excerpt from Liu et al 2025")
+
+::: notes
+
+Here's a peer-reviewed study of sleep duration and how it relates to your gut microbiota--all those tiny bugs living inside your intestines. The authors used a composite score called the dietary index for gut micrtobiota with the acronym DI-GM. This article is published under an open source license, like all the other papers you will see today.
+
+Liu J, Huang S. Association between dietary index for gut microbiota and sleep duration in US adults: a cross-sectional study. Curr Res Microb Sci. 2025 May 27;9:100412. doi: 10.1016/j.crmicr.2025.100412. PMID: 40528895; PMCID: PMC12171763.
+
+:::
+
+## 06-01 Examples of splines, 2
+
+![](../images/liu-2025a "A non-linear relationship between DI-GM and sleep duration")
+
+::: notes
+
+The cubic spline starts out flat for low values of DI-GM, then rises, dips, and rises again.
+
+:::
+
+## 06-01 Examples of splines, 3
+
+![](../images/wang-2025 "Excerpt from Wang et al 2025")
+
+::: notes
+
+Here's another open source article, a  peer-reviewed study of patients with Duchene muscular dystrophy (DMD). The authors measured spine bone mineral density and sought to see how that related to various cholesterol measures, including triglycerides and remnant cholesterol both in patients with DMD and age-matched healthy controls. The authors controlled for a variety of factors including steroid use.
+
+Wang Y, Chang Y, Zhang P, Zheng Z, Ai X, Zhang S, Wu S. Association between triglycerides and remnant cholesterol levels and spine bone mineral density in Duchenne muscular dystrophy. Lipids Health Dis. 2025 Jun 9;24(1):209. doi: 10.1186/s12944-025-02628-0. Erratum in: Lipids Health Dis. 2025 Jun 27;24(1):222. doi: 10.1186/s12944-025-02646-y. PMID: 40490739; PMCID: PMC12147359.
+
+:::
+
+## 06-01 Examples of splines, 4
+
+![](../images/wang-2025a "A non-linear relationship between cholesterol measures and spine Z scores")
+
+::: notes
+
+The box plot examines DMD patients without corticosteroid treatment (DMDWS) to the healthy controls. Triglycerides and remnant cholesterol was elevated in the DMDWS group. The cubic spline shows a deline in bone health for larger values of triglycerides and remnant cholesterol, but the effect is not quite as strong for larger values of these cholesterol measurements.
+
+:::
+
+## 06-01 Examples of splines, 5
+
+![](../images/hu-2025 "Excerpt from Hu et al 2025")
+
+::: notes
+
+Here's a peer-reviewed study of how nutrtion is associated with the risk of chronic kidney disease (CKD). The authors got their data from the National Health and Nutrition Examination Survey (NHANES) data, a large scale CDC survey that includes a medical exam and dietary history. They estimated niacin intake through a dietary recall and classified patients as having CKD based on their Albumin to creatinine ratio and the estimated glomerular filtration rate.
+
+Hu C, Tang T. Association between niacin intake and chronic kidney disease in male participants-a cross-sectional study from the NHANES (2005-2018). Front Nutr. 2025 Jun 13;12:1578118. doi: 10.3389/fnut.2025.1578118. PMID: 40584108; PMCID: PMC12202428.
+
+:::
+
+## 06-01 Examples of splines, 6
+
+![](../images/hu-2025a "Figure shoing the odds ratio for risk of CKD associated with niacin consumption")
+
+::: notes
+
+The cubic spline shows that a deficiency of niacin increases the odds of CKD, but that larger levels of NIACIN above 20 to 30 do not have an impact.
+
+:::
+
+## 06-01 A real-world problem, without the data
+
+-   Threshold model
+    -   Nothing happens until you meet a threshold
+    -   Then things get worse
+    
+::: notes
+
+Several decades ago, I was faced with a data analysis problem. I wanted to fit a threshold model where everything is fine and normal until the exposure level meets a certain threshold. Then things get worse. 
+
+I don't have the data for this problem but let me illustrate conceptually how a threshold model might work. It provides a simple but useful analog to regression splines.
+
+:::
+
+## 06-01 Fake data
+
+```{r}
+#| label: 01-fake-0
+#| warning: false
+
+x0 <- c(0, 4, 6, 9, 11, 14, 18)
+e0 <- c(5.4, -6.0, 2.7, -2.4, -2.7,  3.0, -1.2)
+y0 <- round(80-(x0>9)*0.75*(x0-9)^2 + e0)
+x1 <- c(x0, seq(0, 18, length=400))
+y1 <- c(y0, rep(NA, 400))
+
+data.frame(y=y1, x1=x1) |>
+  mutate(x2=as.numeric(x1 > 9)) |>
+  mutate(x3=x2*(x1-9)) |>
+  mutate(x4=x2*(x1-9)^2) -> fake_0
+```
+
+```{r}
+#| label: 01-fake-1
+#| warning: false
+
+lm(y~x1, data=fake_0) |> 
+  augment(newdata=fake_0) |>
+  select(.fitted) |>
+  rename(f1=.fitted) |>
+  bind_cols(fake_0) -> fake_1
+```
+
+```{r}
+#| label: 01-fake-2
+#| warning: false
+
+
+lm(y~x2, data=fake_0) |> 
+  augment(newdata=fake_0) |>
+  select(.fitted) |>
+  rename(f2=.fitted) |>
+  bind_cols(fake_1) -> fake_2
+
+```
+
+```{r}
+#| label: 01-fake-3
+#| warning: false
+
+lm(y~x3, data=fake_0) |> 
+  augment(newdata=fake_0) |>
+  select(.fitted) |>
+  rename(f3=.fitted) |>
+  bind_cols(fake_2) -> fake_3
+```
+
+```{r}
+#| label: 01-fake-4
+#| warning: false
+
+
+lm(y~x4, data=fake_0) |> 
+  augment(newdata=fake_0) |>
+  select(.fitted) |>
+  rename(f4=.fitted) |>
+  bind_cols(fake_3) -> fake_4
+
+```
+
+```{r}
+#| label: 01-points
+#| warning: false
+
+fake_4 |>
+  ggplot() +
+  aes(x1, y) +
+  geom_point(size=4) +
+  expand_limits(y=c(0, 100)) +
+  scale_x_continuous(
+      breaks=3*(0:6),
+      minor_breaks=NULL,
+      name=" ") +
+  scale_y_continuous(
+      breaks=20*(0:5),
+      name= " ") -> plot_0
+
+plot(plot_0)
+```
+    
+## 06-01 Linear function
+
+```{r}
+#| label: 01-linear
+#| warning: false
+
+plot_0 +
+  geom_line(aes(x1, f1))
+```
+
+::: notes
+
+Here is what a linear function might look like. It is not what we want, but always start with the easiest model.
+
+:::
+
+## 06-01 Computational formula for linear regression
+
+$X = \begin{bmatrix}
+ 1 & 0 \\     
+ 1 & 4 \\
+ 1 & 6 \\
+ 1 & 9 \\
+ 1 & 11 \\
+ 1 & 14 \\
+ 1 & 18
+\end{bmatrix}$
+
+$\ $
+
+$\hat\beta = (X'X)^{-1}X'Y$
+
+::: notes
+
+This is the matrix formula for linear regression. Don't worry if you haven't used matrices before. Just focus on how the X matrix is laid out for linear regression. The first column is all 1's and the second column contains the X values.
+
+In multiple linear regression, you would have additional columns, but let's keep it simple for now.
+
+I do want to note here that you can get a different regression model by changing the second column.
+
+:::
+
+## 06-01 Step function
+
+```{r}
+#| label: 01-step
+#| warning: false
+
+plot_0 +
+  geom_line(aes(x1, f2))
+```
+
+::: notes
+
+Here is what a step function might look like. It is better than a linear fit, but the sudden jump at x=9 is not quite what you want.
+
+This is a discontinuous function. It might make sense in some settings. In other settings, you might expect the decline to be not so sudden and abrupt.
+
+:::
+
+## 06-01 Computational formula for step regression
+
+$X = \begin{bmatrix}
+ 1 & 0 \\     
+ 1 & 0 \\
+ 1 & 0 \\
+ 1 & 0 \\
+ 1 & 1 \\
+ 1 & 1 \\
+ 1 & 1
+\end{bmatrix}$
+
+$\ $
+
+$\hat\beta = (X'X)^{-1}X'Y$
+
+::: notes
+
+This is the matrix you would use if you wanted a step regression model. The first column is all 1's and the second column is zero for X values of 9 or less and 1 for X values larger than 9.
+
+Notice that the matrix formula has not changed. You are familiar with all the mathematical properties for linear regression. You know how to get confidence intervals and hypothesis tests for linear regression. The step regression model will use pretty much the same formulas, just with a slight tweak to the X matrix.
+
+More importantly, any statistical software that can compute a linear regression can also compute a step regression.
+
+:::
+
+## 06-01 Elbow function
+
+```{r}
+#| label: 01-elbow
+#| warning: false
+
+plot_0 +
+  geom_line(aes(x1, f3))
+```
+
+::: notes
+
+A threshold model could look like this. It is a step function that is at a high level prior to the threshold at X=9 and then drops after.
+
+Here is a better model. It is flat and at a high level for values less than 9 and declines linearly for values greater than 9.
+
+Note the "elbow" at the threshold. This might be okay, but it might be better for a transition that does not change slope so suddenly.
+
+
+:::
+
+## 06-01 Computational formula for elbow regression
+
+$X = \begin{bmatrix}
+ 1 & 0 \\     
+ 1 & 0 \\
+ 1 & 0 \\
+ 1 & 0 \\
+ 1 & 2 \\
+ 1 & 5 \\
+ 1 & 9
+\end{bmatrix}$
+
+$\ $
+
+$\hat\beta = (X'X)^{-1}X'Y$
+
+::: notes
+
+This is the matrix you would use if you wanted the elbow regression. The first column is all 1's and the second column is zero for X values of 9 or less and (x-9) for X values larger than 9. Again, it is important to subtract the 9 because you want the linear section to just start descending at when X reaches 9.
+
+Notice that the matrix formula still has not changed. Fitting an elbow regression is just as easy as a linear regression. You can do all the fun stuff and you can use the same software.
+
+:::
+
+## 06-01 Quadratic analog
+
+```{r}
+#| label: 01-quadratic
+#| warning: false
+
+plot_0 +
+  geom_line(aes(x1, f4))
+```
+
+::: notes
+
+Here is a functional form that avoid the elbow at the threshold value. It fits a quadratic decline, or a parabola, but the parabola starts at the point where the derivative is equal to zero.
+
+:::
+
+## 06-01 Computational formula for quadratic analog
+
+$X = \begin{bmatrix}
+ 1 & 0 \\     
+ 1 & 0 \\
+ 1 & 0 \\
+ 1 & 0 \\
+ 1 & 4 \\
+ 1 & 25 \\
+ 1 & 81
+\end{bmatrix}$
+
+$\ $
+
+$\hat\beta = (X'X)^{-1}X'Y$
+
+::: notes
+
+This is the matrix you would use if you wanted the quadratic analog to the elbow regression. The first column is all 1's and the second column is zero for X values of 9 or less and (x-9) squared for X values larger than 9. Again, it is important to subtract the 9 before squaring, because you want the quadratic curve to just start descending at when X reaches 9.
+
+Notice that the matrix formula still has not changed. Fitting an elbow regression is just as easy as a linear regression. You can do all the fun stuff and you can use the same software.
+
+:::

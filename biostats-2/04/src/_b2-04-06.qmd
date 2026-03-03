@@ -1,39 +1,83 @@
 ---
-title: "Interactions in multiple linear regression"
+title: "Interactions in analysis of covariance"
 format: 
   revealjs:
     slide-number: true
     embed-resources: true
 editor: source
 ---
-## Analysis of variance table
 
-![](images/exercise-analysis-09.png)
+## A second type of interaction
 
+-   Interactions in analysis of covariance
+    -   Between categorical predictor and continuous predictor
+    -   Different slopes within each category
+    
 ::: notes
+Last week, I touched briefly on the interaction in an analysis of covariance model. That model makes an assumption that the effect of a covariate on the outcome is the same in both the treatment group and the control group. That implies that the trend lines are parallel.
 
+If there is an interaction, then the slope differs within each category. It might be steeper in the treatment group for example, and shallower in the control group.
 :::
 
-## Table of means
+## Interaction between exercise program and hours spent exercising
 
-![](images/exercise-analysis-13.png)
-
-## Centered analysis
-
-![](images/exercise-analysis-10.png)
+![](images/exercise-analysis-05.png)
 
 ::: notes
+This plot shows a marked interaction. If you looked just at prog 1 (jogging program) and prog 2 (swimming program), there is no interaction. The more hours you spent on the program the more weight you lost.
 
+The reading program, however, has a different slope. Instead of increasing steadily, the more time you spent reading the less weight that you lost. You might even gain some weight if you followed the reading program religiously.
 :::
 
-## Weight loss at various conditions
+## Testing for interaction in analysis of covariance
 
--   hours = 2 (mean), effort = 30 (mean),
-    -   $\hat Y$ = 10.005
--   hours = 4 (mean+2), effort = 30 (mean),
-    -   $\hat y$ = `10.005 + 2.291*2` = `r 10.005 + 2.291*2`
--   hours = 2 (mean), effort = 40 (mean+20)
-    -   $\hat Y$ = `10.005 + 0.707*20` = `r 10.005 + 0.707*20`
--   hours = 4 (mean+2), effort = 40 (mean+20)
-    -   $\hat Y$ = `10.005 + 2.291*2 + 0.707*20 + 0.393*2*20` = `r 10.005 + 2.291*2 + 0.707*20 + 0.393*2*20`
+![](images/exercise-analysis-06.png)
 
+::: notes
+This table shows a statistically significant interaction. The F ratio is large and the p-value is small.
+:::
+
+## Table with irrelevant rows removed
+
+![](images/exercise-analysis-07.png)
+
+::: notes
+Remove the rows associated with the intercept and the (uncorrected) total.
+:::
+
+## Parameter estimates
+
+![](images/exercise-analysis-08.png)
+
+```{r}
+b0 <- 2.216
+b1 <- -8.997
+b2 <- 9.993
+b3 <- -2.956
+b4 <- 10.409
+b5 <- 9.830
+```
+
+-   Intercept for prog=1, `r b1` + `r b0` = `r b1+b0`
+-   Intercept for prog=2, `r b2` + `r b0` = `r b2+b0`
+-   Intercept for prog=3, `r b0`
+-   Slope for prog=1, `r b4` + `r b3` = `r b4+b3`
+-   Slope for prog=2, `r b5` + `r b3` = `r b5+b3`
+-   Slope for prog=3, `r b3`
+
+
+::: notes
+The first three coefficients are a bit of an extrapolation because they represent patients who spend zero hours on the proposed intervention.
+
+The intercept is the estimated average weight loss in the reference category (group=3 or reading program) when the number of hours devoted to the program is zero. In this case it is a weight gain of 2 pounds.
+
+The coefficient for group=1 is how much better the weight loss is when you switch from the reading program to the jogging program, but still put in zero hours.
+
+The coefficient for group=2 is how much better the weight loss is on average when you switch from the reading program to the jogging program, but still put in zero hours.
+
+The coefficient for hours is how much better the weight loss is when you add an extra hour of effort and you are in the reading program. Actually, it is how much worse. Each extra hour of reading and you gain an extra three pounds on average.
+
+The coefficient for hours*group=1 shows the change in slope when you switch from the reading program to the jogging program. Each hour invested is 10 pounds better (a loss of 7 pounds per hour invested instead of a gain of 3 pounds per hour invested) when you switch from the reading program to the jogging program.
+
+The interpretation for hours*group=2 is similar It shows the change in slope when you switch from the reading program to the swimming program. Each hour invested is 10 pounds better (a loss of 7 pounds per hour invested instead of a gain of 3 pounds per hour invested) when you switch from the reading program to the swimming program.
+:::

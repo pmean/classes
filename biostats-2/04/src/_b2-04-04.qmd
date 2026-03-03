@@ -7,6 +7,15 @@ format:
 editor: source
 ---
 
+```{r}
+#| label: 04-04-setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+load("../data/module04.RData")
+```
+
 ## What is an interaction
 
 -   Impact of one variable is influenced by a second variable
@@ -197,21 +206,45 @@ draw_lines(c( 59, 78, 8,  53))
 In this final plot, the lines are not parallel, indicating a third type of interaction. The slope is much steeper for boys. Girls see a moderate improvement on average, but boys see a really large improvement.
 :::
 
-## Line plot of exercise data
+## Group means for tracking data
 
 ```{r}
-#| label: plot-05
+#| label: trial4-interaction-table
 
-plot_05
+trial4_interaction_table
 ```
+
+::: notes
+The data used here is an exercise in motor skills where a subject is asked to maintain contact with a small area on a rotating disk. There were both male and female subjects and a wide range of ages. I decided to classify age into child=Yes (18 and younger) and child=NO (over 18).
+
+The means for this study are interesting. There is almost no difference between male and female children. Adults do better than children, but the gap is much larger when comparing male adults to male children.
+:::
+
+## Line plot of tracking data
+
+```{r}
+#| label: trial4-plot1
+
+trial4_plot1
+```
+
+::: notes
+The two lines are right on top of one another for child=Yes and diverge for child=No. So there is a gender gap, but only for adults.
+:::
 
 ## Alternative line plot of exercise data
 
 ```{r}
-#| label: plot-06
+#| label: trial4-plot2
 
-plot_06
+trial4_plot2
 ```
+
+::: notes
+This is an alternate display of the interaction. The chld=Yes line is flat indicating no change due to gender. The child=No line is above the child=Yes line, indicating superior performance for adults versus children. The gap is wider for males than for females.
+
+You should try both graphs and then display only one. Display the one that portrays the clearest picture of what is going on.
+:::
 
 ## When you can't estimate an interaction
 

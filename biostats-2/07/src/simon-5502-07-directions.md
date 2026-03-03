@@ -2,6 +2,10 @@
 title: "simon-5502-07-directions"
 ---
 
+## File details
+
+This programming assignment was written on 2025-02-25 and is placed in the public domain.
+
 ## General directions
 
 Refer to the paper

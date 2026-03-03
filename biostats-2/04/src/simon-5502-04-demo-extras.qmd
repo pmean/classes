@@ -1,0 +1,731 @@
+---
+title: "5502 module 04 demonstration program"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute: 
+  error: false
+---
+
+## File details
+
+This program was written by Steve Simon on 2025-01-30 and is placed in the public domain. You can use this program any way you please.
+
+There are two data files used in this program
+
+-   full-moon-er-admissions, [txt file][ref-moon-txt], [dictionary][ref-moon-yaml]
+-   tracking, [txt file][ref-tracking-txt], [dictionary][ref-tracking-yaml]
+
+[ref-moon-txt]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.txt
+[ref-moon-yaml]: https://github.com/pmean/data/blob/main/files/full-moon-er-admissions.yaml
+[ref-tracking-txt]: https://github.com/pmean/data/blob/main/files/tracking.txt
+[ref-tracking-yaml]: https://github.com/pmean/data/blob/main/files/tracking.yaml
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(glue)
+library(gt)
+library(tidyverse)
+
+R.version.string
+Sys.Date()
+```
+
+## Intermediate files, er_admits
+
+-   er_admits0: original data from full-moon-er-admissions.txt 
+-   er_admits1: re-order month and moon levels
+
+-   lm_null_model: null model for predicting admits
+-   lm_moon_model: model using moon to predict admits
+-   lm_moon_month_model: model using moon, month to predict admits
+
+## Intermediate files, tracking
+
+-   tracking0: oringinal data from tracking.txt
+-   tracking1: rename sex to gender
+-   tracking2: computed child variable from age
+
+-   lm_trial4_model: module using interaction
+
+# --- Part 1, Review one factor analysis of variance
+
+## Read the moon data
+
+```{r}
+#| label: moon-read
+
+er_admits0 <- read_tsv(
+  file="../data/full-moon-er-admissions.txt",
+  col_names=TRUE,
+  col_types="ccn")
+
+names(er_admits0) <- tolower(names(er_admits0))
+
+glimpse(er_admits0)
+```
+
+#### Comment on the code
+
+It is optional, but I often like to convert my variable names to all lower case rather than having an initial capital letter. So "Moon" changes to "moon", for example. Having variables as consistently all lower case makes things easier for me to remember when I switch from one dataset to another.
+
+## Create factors
+
+```{r}
+#| label: add-factors
+
+month_list <- c(
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul")
+
+phase_list <- c(
+  "Before",
+  "During",
+  "After")
+
+er_admits0 |>
+  mutate(month=factor(month, levels=month_list)) |>
+  mutate(moon=factor(moon, levels=phase_list)) -> er_admits1
+```
+
+#### Comment on the code
+
+By default, when R encounters a string, it will use alphabetical order in arranging the display in graphs. You can change this option by using the factor function. Create a vector listing the string values in the order that you want them displayed and then use that vector as the levels argument inside the factor function.
+
+## Descriptive statistics
+
+```{r}
+#| label: month-table
+
+library(gt)
+
+er_admits1 |>
+	count(month) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total) |>
+  gt() |>
+  fmt_number(pct, decimals=0, pattern="{x}%") |>
+  tab_source_note("Steve Simon, 2026-02-11, CC0") ->
+    month_table
+
+month_table
+```
+
+#### Comments on the code
+
+The gt function produces a nice table, and allows many possible customizations. The two most important customization functions are format_number and tab_source_note. The format_number function allws you to round the results in your table, add extra text (like a percent sign), and insert commas for numbers 1,000 and larger. The tab_source_note function places a note at the bottom of the table. I use this to identify the author, date, and copyright restrictions. for me, it functions largely the same as the caption argument in the labs function in ggplot2.
+
+For future assignments, please use gt for every table that you produce other than a listing of the data. Be sure to change the rounding of a column of numbers if needed, and put your own name, date, and copyright restrictions.
+
+I often need to re-use or adapt previously computed tables and plots. You can store the results in an object by using the [-> assignment shortcut][ref-assignment] at the end of a chain of pipes. After you make an assignment, you can display the table or plot just by naming the object that you made the assignment to. 
+
+In previous programs, I have fallen into the bad habit of just using sequence numbers (table_1, table_2, etc.). This is fine if you have a small number of tables or plots. In this program, I had so many that I couldn't remember which number went with which table/plot. So, in this code, I have tried to use more descriptive names for the tables and plots.
+
+[ref-assignment]: https://stat.ethz.ch/R-manual//R-devel/RHOME/library/base/html/assignOps.html
+
+#### Interpretation of the output
+
+There are twelve months, each representing 8% (1/12) of the data.
+
+```{r}
+#| label: moon-table
+
+er_admits1 |>
+	count(moon) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total) |>
+  gt() |>
+  fmt_number(pct, decimals=0, pattern="{x}%") |>
+  tab_source_note("Steve Simon, 2026-02-11, CC0") -> moon_table
+
+moon_table
+```
+
+#### Comment on the code
+
+The pattern argument of the fmt_number function allows you to display a variable with extra text. In this example, the pattern function adds a percentage sign to the pct variable.
+
+#### Interpretation of the output
+
+There are three phase times, each representing 33% (1/3) of the data.
+
+
+```{r}
+#| label: admits-table
+
+er_admits1 |>
+  summarize(
+    admission_mean=mean(admission),
+    admission_sd=sd(admission),
+    admission_min=min(admission),
+    admission_max=max(admission)) |>
+  gt() |>
+  fmt_number(admission_mean, decimals=1) |>
+  fmt_number(admission_sd, decimals=1) |>
+  tab_source_note("Steve Simon, 2026-02-11, CC0") -> admits_table
+
+admits_table
+```
+
+#### Interpretation of the output
+
+The average number of admissions is about 12 patients per day. There is a moderate amount of variation in the data.
+
+## Lineplot
+
+```{r}
+#| label: admits-plot-1
+
+er_admits1 |>
+  ggplot() +
+  aes(x=moon, y=admission) +
+  geom_line(aes(group=month)) +
+  geom_text(aes(label=month)) +
+  labs(
+    x="Moon phase",
+    y="ER admission rate",
+    caption="Steve Simon, 2025-02-08, CC0") -> admits_plot1
+
+admits_plot1
+```
+
+#### Comment on the output
+
+You have already used the [aes][ref07] function to define the x and y axes for various visualizations in ggplot. There are other applications of the aes function that can help control other features of your visualization.
+
+The group argument in the aes function tells the geom_line function that you want a separate line for each month of the year. The label argument in the aes function tells the geom_text function to write the string value of month at each combination of x=moon and y=admission.
+
+[ref07]: https://ggplot2.tidyverse.org/reference/aes.html
+
+## Alternative lineplot
+
+```{r}
+#| label: admits-plot-2
+
+er_admits1 |>
+  ggplot() +
+  aes(x=month, y=admission) +
+  geom_line(aes(group=moon)) +
+  geom_text(aes(label=moon)) +
+  labs(
+    y="ER admission rate (patients/day)",
+    caption="Steve Simon, 2025-02-08, CC0") -> admits_plot2
+
+admits_plot2
+```
+
+#### Comment on the code
+
+By swapping the roles of Month and Moon inside the ggplot function, you get a different appearance. It is not always clear which way to draw the line graph. It usually helps for you to look at both approaches, but then display only the one that you think helps create the simplest interpretation of what is going on.
+
+You don't need a label for the x-axis in this plot because "month" is sufficiently descriptive.
+
+Which graph do you like better? I tend to waver between the two.
+
+## Mean Admission by Moon
+
+```{r}
+#| label: admission-by-moon
+
+er_admits1 |>
+  group_by(moon) |>
+  summarize(
+    Admission_mean=mean(admission),
+    Admission_sd=sd(admission)) |>
+  gt() |>
+  fmt_number(decimals=1) |>
+  tab_source_note("Steve Simon, 2026-02-11, CC0") -> admits_by_moon_table
+
+admits_by_moon_table
+```
+
+#### Comment on the code
+
+If you leave the column name outof the fmt_number function of gt, then  
+
+#### Interpretation of the output
+
+The average admission rate before a full moon is 11 patients per day. During a full moon the average rises by 2.5 patients per day. It falls back after a full moon but only by 2 patients per day.
+
+## Fit one factor anova
+
+```{r}
+#| label: one-factor-anova
+
+lm_null_model <- lm(admission ~ 1, data=er_admits1)
+lm_moon_model <- lm(admission ~ moon, data=er_admits1)
+```
+
+
+## Single factor analysis of variance
+
+```{r}
+#| label: anova-moon-table
+
+anova(lm_null_model, lm_moon_model) |> 
+  tidy() |>
+  gt() |>
+  fmt_number(rss, decimals=1) |>
+  fmt_number(sumsq, decimals=1) |>
+  fmt_number(statistic, decimals=2) |>
+  fmt_number(p.value, decimals=3) |>
+  tab_source_note("Steve Simon, 2026-02-11, CC0") -> anova_moon_table
+
+anova_moon_table
+```
+
+## Parameter estimates
+
+```{r}
+#| label: estimates-moon-table
+
+lm_moon_model |>
+  tidy() |>
+  gt() |>
+  fmt_number(estimate, decimals=1) |>
+  fmt_number(std.error, decimals=1) |>
+  fmt_number(statistic, decimals=2) |>
+  fmt_number(p.value, decimals=3) |>
+  tab_source_note("Steve Simon, 2026-02-11, CC0") -> estimates_moon_table
+
+estimates_moon_table
+```
+
+#### Comment on the code
+
+Normally the reference category would be selected as the first alphabetically, but we used the factor function to place the strings in the order "Before", "During", and "After". So the reference category is "Before". You might prefer to use "During" as the reference category, which would be easy enough to achieve.
+
+#### Interpretation of the output
+
+Here are the parameter estimates. The intercept is the estimated average rate when the first and second indicator both equal zero. This is effectively the average rate for the reference category (before a full moon).
+
+The first slope is the estimated average difference in rates when you increase the first indicator by one unit and hold the second indicator constant. This is effectively the average rate for the second group (during a full moon) minus the average rate for the reference group (before a full moon). When the days switch from before a full moon to during a full moon, the estimated average admission rate increases by about 2.5 patients/day.
+
+The second slope is the estimated average difference in rates when you increase the second indicator by one unit and hold the first indicator constant. This is effectively the the average rate for the third group (after a full moon) minus the average rate for the reference group (before a full moon). When the days switch from before a full moon to after a full moon, the estimated average admission rate increases about half a patient per day.
+
+
+# --- Part 2, Two factor analysis of variance
+
+## Parameter estimates
+
+```{r}
+#| label: estimates-moon-month-table
+
+lm_moon_month_model <- lm(
+  admission ~ moon + month,
+  data=er_admits1)
+
+tidy(lm_moon_month_model) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> estimates_moon_month_table
+
+estimates_moon_month_table
+```
+
+#### Interpretation of the output
+
+These are the parameter estimates for the two factor analysis of variance. The reference categories are "Before" and "Aug".
+
+The intercept represents the average admission rate before a full moon when the month is August. The two terms associated with moon show how much changes there is from before a full moon to during a full moon and from before a full moon to after a full moon, respectively. The remaining parameter estimates show how much each month differs from the first month (August).
+
+## Anova table, 1
+
+```{r}
+#| label: anova-moon-month-table
+
+anova(lm_null_model, lm_moon_month_model) |>
+  tidy() |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> anova_moon_month_table
+
+anova_moon_month_table
+```
+
+#### Interpretation of the output
+
+There is a statistically significant improvement in prediction when you use Month and Moon to predict admission rates compared to a null model.
+
+## Anova table, 2
+
+```{r}
+#| label: partial-month_table
+
+anova(lm_moon_model, lm_moon_month_model) |>
+  tidy() |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> partial_month_table
+
+partial_month_table
+```
+
+#### Interpretation of the output
+
+There is a statistically significant improvement in prediction when you use Month and Moon to predict admission rates compared to a model with just Moon.
+
+## Comparison of r-squared values
+
+```{r}
+#| label: admits-rsquared-table
+
+glance(lm_null_model) |>
+	bind_rows(glance(lm_moon_model)) |>
+	bind_rows(glance(lm_moon_month_model)) |>
+	mutate(model=c("Null", "Moon", "Moon Month")) |>
+	select(model, r.squared, deviance) -> admits_rsquared_table
+
+admits_rsquared_table
+```
+
+#### Interpretation of the output
+
+The first factor, moon, only accounts for 7% of the variation in admission rates. Adding a second factor improves the model substantially.
+
+## Tukey post hoc test
+
+```{r}
+#| label: tukey-moon-table
+
+lm_moon_month_model |>
+  aov() |>
+  TukeyHSD(ordered=TRUE, which="moon") |>
+  tidy() |>
+  mutate(
+    adj.p.value =
+      case_when(
+        adj.p.value >= 0.001 ~ as.character(round(adj.p.value, 3),
+        adj.p.value <  0.001 ~ "< 0.001"))) -> tukey_moon_table
+
+tukey_moon_table
+```
+
+#### Comment on the code
+
+With two factors, you should provide information to the TukeyHSD function about the pairwise comparison(s) that you are interested in. Use the which argument to do this. If you leave the which argument out, the TukeyHSD function will do all pairwise comparisons among the three moon phases and all pairwise comparisons among the 12 months. The real interest in this study is how admission rates change by the phase of the moon and you only included the month in the model to remove some of the variations over time.
+
+#### Interpretation of the output
+
+There is no statistically significant difference between the average admission rate before and after a full moon. There is a statistically difference between the average admission rate before and during a full moon. This, however, is a borderline difference. The adjusted p-values is close to 0.05 and the lower limit of the confidence interval comes within kissing distance of zero. There is no statistically significant difference between the average admission rate during a full moon and after a full moon. This, however, is also a borderline result. The confidence interval does include zero, but just barely. Perhaps the only safe interpretation here is that you need more data.
+
+# --- Part 3, Checking assumptions
+
+```{r}
+#| label: qq-residual-plot
+
+augment_moon_month <- augment(lm_moon_month_model)
+
+augment_moon_month |>
+	ggplot() +
+	aes(sample=.resid) +
+	stat_qq() +
+  labs(
+    y="Residuals from moon month model",
+    caption="Steve Simon, 2025-02-11, CC0") -> qq_residuals_plot
+
+qq_residuals_plot
+```
+
+#### Interpretation of the output
+
+There is no evidence of non-normality.
+
+```{r}
+#| label: predicted-residual-moon-month-plot
+
+augment_moon_month |>
+	ggplot() +
+	aes(x=.fitted, y=.resid) +
+	geom_point() +
+  labs(
+    x="Predicted values from moon month model",
+    y="Residuals from moon month model",
+    caption="Steve Simon, 2025-02-11, CC0") -> predicted_residuals_plot
+
+predicted_residuals_plot
+```
+
+#### Interpretation of the output
+
+The is no evidence of heterogeneity. Note that while linearity is an assumption for multiple linear regression, it is not an assumption that you need to check for in multi-factor analysis of variance.
+
+# --- Part 4, Interactions in multi-factor analysis of variance
+
+## Read tracking data
+
+```{r}
+#| label: read-tracking
+
+tracking0 <- read_tsv(
+  file="../data/tracking.txt",
+  col_types="cncnnnn",
+  col_names=TRUE)
+names(tracking0) <- tolower(names(tracking0))
+tracking0 |>
+  rename(gender=sex) -> tracking1
+
+glimpse(tracking1)
+```
+
+#### Comments on the code
+
+When I was writing up some of the interpretations for this program, I decided I did not like the juxtaposition of "child" and "sex". I was worried that some filter would trap my code and flag it for an investigation of pedophilia. Without going into any of the technical distinctions between the two terms, I decided to change "sex" to "gender".
+
+The [rename function][ref-rename] changes the names in a data frame or tibble. The new name goes to the left of the equal sign and the old name goes to the right.
+
+[ref-rename]: https://dplyr.tidyverse.org/reference/rename.html
+
+
+::: notes
+The tracking dataset looks at a task where volunteer subjects of both genders and a wide range of ages performed a test of motor skills where they tried to track a moving target on a rotating disk. A larger value indicates better motor skills. We will use age to divide the sample into children and adults.
+:::
+
+## Create Child variable
+
+```{r}
+#| label: create-child
+
+tracking1 |>
+  mutate(child = case_when(
+    age <= 18 ~ "Yes",
+    age > 18 ~ "No")) |>
+  mutate(child=factor(child, levels=c("Yes", "No"))) -> tracking2
+```
+
+#### Comment on the code
+
+After looking at some of the tables, I decided that I wanted to use child="Yes" and gender="F" as the reference categories. The [factor function][ref-factor] allows you to override the default in R to use the first category that appears in alphabetical order as the reference category. I don't need to do anything with gender, because the default is already what I want.
+
+[ref-factor]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/factor.html
+
+## Descriptive statistics for gender
+
+```{r}
+#| label: gender-counts
+
+tracking2 |>
+  count(gender) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total) -> gender_table
+
+gender_table
+```
+
+#### Interpretatipon of the output
+
+Males comprise 62% of the sample
+
+## Descriptive statistics for child
+
+```{r}
+#| label: child-counts
+
+tracking2 |>
+  count(child) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total) -> child_table
+
+child_table
+```
+
+#### Interpretation of the output
+
+Children (18 and younger) comprise 56% of the sample.
+
+## Descriptive statistics for trial4
+
+```{r}
+#| label: trial4-mean
+
+tracking2 |>
+  summarize(
+    trial4_mean=mean(trial4),
+    trial4_sd=sd(trial4),
+    trial4_min=min(trial4),
+    trial4_max=max(trial4)) -> trial4_table
+
+trial4_table
+```
+
+#### Interpretation of the output
+
+Let's focus initially on the fourth trial. This is possibly a better indication of moter skills than the previous three trials (practice makes perfect), but that is a bit speculative on my part. The tracking task lasted for 15 seconds, so the average time is quite low. There is a wide range of variation, with one subject tracking for more than 11 seconds out of 15.
+
+## Group means
+
+```{r}
+#| label: trial4-interaction-table
+
+tracking2 |>
+  group_by(child, gender) |>
+  summarize(mean_trial4=mean(trial4), .groups="drop") -> trial4_interaction_table
+
+trial4_interaction_table
+```
+
+## Interaction plot, 1
+
+```{r}
+#| label: trial4-plot-1
+
+range_trial4 <- range(tracking2$trial4)
+
+trial4_interaction_table |>
+  ggplot() +
+  aes(
+    x=child,
+    y=mean_trial4,
+    group=gender,
+    label=gender) +
+  geom_line() +
+  geom_text() +
+  scale_y_continuous(limits=range_trial4) +
+  labs(
+    x="Child?",
+    y="Tracking time (seconds)",
+    caption="Simon, 2026-02-05") -> trial4_plot1
+
+trial4_plot1
+```
+
+#### Comments on the code
+
+The [aes function][ref-aes] tells you more than just what goes on the X and Y axes. Assigning a categorical variable to another graphical feature like `color` will end up stratifying your geom by that category. In this case, it produces boxplots with tracking time on the x axis, with separate boxplots on the y axis for children and adults and further stratified by gender (male and female). This produces four boxplots: female children, male children, female adults, and male adults.
+
+[ref-aes]: https://ggplot2.tidyverse.org/reference/aes.html
+
+#### Interpretation of the output
+
+The times are fairly similar for male and female children. Both tend to produce smaller times than adults. Among adults, there appears to be a difference between males and females. This is possible evidence of an interaction.
+
+
+## Interaction plot, 2
+
+```{r}
+#| label: trial4-plot-2
+
+trial4_interaction_table |>
+  ggplot() +
+  aes(
+    x=gender,
+    y=mean_trial4,
+    group=child,
+    label=child) +
+  geom_line() +
+  geom_text() +
+  scale_y_continuous(limits=range_trial4) +
+  labs(
+    x="gender",
+    y="Tracking time (seconds)",
+    caption="Simon, 2026-02-10") -> trial4_plot2
+
+trial4_plot2
+```
+
+## Analysis with an interaction
+
+```{r}
+#| label: lm-trial4-interaction-model
+
+lm_trial4_interaction_model <- lm(
+  trial4~gender+child+gender:child, 
+  data=tracking2)
+
+tidy(lm_trial4_interaction_model) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001")) -> estimates_trial4_interaction_table
+  
+estimates_trial4_interaction_table
+```
+
+#### Comment on the code
+
+In the [formula][ref-formula] used to specify your model inside the [lm function][ref-lm], placing a colon between two independent variables produce an interaction term.
+
+[ref-formula]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/formula.html
+
+[ref-lm]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html
+
+## Comparison to analysis without an interaction
+
+```{r}
+#| label: lm-trial4-main-effects-model
+
+library(gt)
+
+lm_trial4_main_effects_model <- lm(
+  trial4~gender+child, 
+  data=tracking2)
+
+tidy(lm_trial4_main_effects_model) |>
+  mutate(
+    p.value =
+      case_when(
+        p.value >= 0.001 ~ glue("p = {round(p.value, 3)}"),
+        p.value <  0.001 ~ "p < 0.001"))
+
+tidy(lm_trial4_main_effects_model) |>
+  gt() |>
+  fmt_number(estimate, decimals=2) |>
+  fmt_number(std.error, decimals=2) |>
+  fmt_number(statistics, decimals=2) |>
+  fmt_number(p.value, decimals=3) -> estimates_trial4_main_effects_table
+
+estimates_trial4_main_effects_table
+
+anova(
+  lm_trial4_main_effects_model, 
+  lm_trial4_interaction_model) |> 
+  tidy() |>  
+  gt() |>
+  fmt_number(rss, decimals=1) |>
+  fmt_number(sumsq, decimals=1) |>
+  fmt_number(statistic, decimals=2) |>
+  fmt_number(p.value, decimals=3) |>
+  tab_source_note("Steve Simon, 2026-02-11, CC0") -> anova_trial4_table
+
+anova_trial4_table
+```
+
+## Save everything
+
+```{r}
+#| label: save
+
+save.image(file="../data/module04.RData")
+```
+
+#### Comment on the code
+
+There are so many things that I needed to save, that I decided to use the [save.image function][ref-save-image], which saves every object that this program created.
+
+[ref-save-image]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html

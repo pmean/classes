@@ -64,7 +64,10 @@ sweep_files <- function(subdir, file_name) {
 z99 <- c(glue("0{1:9}"), as.character(10:99))
 
 loop_folders <- function(class_dir, n) {
-  modules <- paste0(class_dir,"/", z99[1:n])
+
+  modules <- class_dir
+  if (n > 0)  modules <- paste0(class_dir,"/", z99[1:n])
+
   for (s in modules) {
   	s00 <- glue("{s}/src")
     print(glue("Searching in module {s00}"))
@@ -72,7 +75,9 @@ loop_folders <- function(class_dir, n) {
     for (ext in c("docx", "html", "pdf", "pptx")) {
       file_list <- c(file_list, identify_files(s, ext))
     }
+    
     if (length(file_list) == 0) next
+    
     print(glue("---{s}/src/{file_list}"))
     for (f in file_list) {
       sweep_files(s, f)
@@ -111,5 +116,13 @@ loop_folders("clinical-research-methodology", 14)
 #| label: introduction-to-r
 
 loop_folders("introduction-to-r", 9)
+```
+
+## general
+
+```{r}
+#| label: general
+
+loop_folders("general", 0)
 ```
 

@@ -7,7 +7,6 @@ format:
 editor: source
 ---
 
-
 ```{r}
 #| label: 04-02-setup
 #| message: false
@@ -16,7 +15,6 @@ editor: source
 library(tidyverse)
 load("../data/module04.RData")
 ```
-
 
 ## Mathematical model, 1
 
@@ -60,50 +58,142 @@ There are two hypotheses. The first, testing that all the alphas equal zero is e
 
 :::
 
-## Parameter estimates for the two factor model
+## Testing the global hypothesis
 
-```{r}
-#| label: table-05
+-   $H_0:\ \alpha_i=0,\ \beta_j=0$ for all i,j
+-   $H_1$: At least one $\alpha$ or $\beta$ $\ne$ 0
 
-table_05
+```{}
+Model    rss        sumsq 
+null     SSE(null)  NA 
+full     SSE(full)  SSR(full)
+                     = SSE(null)-SSE(full)
+
+Note: SSE(null) is usually called SST or SS_Total.
+
+Degrees of freedom = n-a-b+1, n-1, a+b-2
 ```
 
-## Analysis of variance table comparing the two factor model to the null model
+::: notes
+To test the combined effect of both factors, you are testing the null hypothesis that all the alphas and betas are equal to zero versus the alternative hypothesis that one of more of the alphas and betas are not equal to zero.
 
-```{r}
-#| label: table-06
+You test this hypothesis by comparing the unexplained variation in the null model, SSE(null) to the unexplained variation in the full model, SSE(full). The difference between these is the amount of variation that this model explains, SSR(full).
+:::
 
-table_06
+## The more traditional layout
+
+```{}
+            SS       df    MS
+Regression  SSR    a+b-2   MSR = SSR/df
+Error       SSE   n-a-b+1  MSE = SSE/df
+Total       SST     n-1
+
+F = MSR / MSE
+
+SSR = SSR(full)
+SSE = SSE(full)
+SST = SSE(null)
 ```
+
+::: notes
+Here is the more traditional layout. This reinforces the additive nature of these models. Explained error (regression) plus unexplained error equals total.
+
+You may see a different term than "Regression" such as "Model".
+
+The F-ratio is a measure of how much evidence we have that the two factors help in predicting the outcome. If it is close to 1, you should accept the null hypothesis. If it is a lot larger than 1, you should reject the null hypothesis.
+:::
+
+## R-squared
+
+-   $R^2=\frac{explained\ variation}{total\ variation}= \frac{SSR(full)}{SSE(null)}$
+-   $R^2=1-\frac{unexplained\ variation}{total\ variation}= 1 - \frac{SSE(full)}{SSE(null)}$
+
+::: notes
+R-squared is defined in the multiple factor analysis of variance pretty much the same way as it is in multiple linear regression. It is the ratio of explained variation to total variation. Remember that total variation is the variation under the null model
+:::
+
+## Testing the partial hypothesis
+
+-   $H_0:\ \beta_j=0$ for all j
+-   $H_1$: At least one $\beta$ $\ne$ 0
+
+```{}
+Model    rss           sumsq 
+partial  SSE(partial)  NA 
+full     SSE(full)     SSR(full|partial)
+                         = SSE(partial)-SSE(full)
+
+Degrees of freedom = n-a-b+1, n-1, a+b-2
+```
+
+::: notes
+You can test the partial hypothesis, which is the effect of the second factor represented by the betas in a model that already includes the first factor. To do this, you note the sum of squares error for the partial model, the one with only the first factor to the sum of squares error for the full model, the one that includes both the first and the second factor. The difference between these is the partial sum of squares for regression. This partial sum of squares for regression measures the additional variation explained by the second factor after whatever the first factor accounted for.
+:::
+
+## Partial R-squared
+
+-   $partial\ R^2=\frac{partial\ explained\ variation}{total\ variation}= \frac{SSR(full|partial)}{SSE(null)}=\frac{SSE(partial)-SSE(full)}{SSE(null)}$
 
 ::: notes
 
 :::
 
+## Parameter estimates for the two factor model
+
+```{r}
+#| label: 04-02-estimate-moon-month-table
+
+estimates_moon_month_table
+```
+
+::: notes
+There are reference levels for both moon and month. For moon, the reference label is before. For month, the reference label is Aug. The moonDuring slope is the estimated average change in admission rates when switching from before a full moon to after a full moon holding month constant The moonAfter slope is the estimated average change in admission rates when comparing after a full moon to before a full moon.
+
+The estimates for month do not all fit on this slide, but monthSep represents the estimated average change in admissions when you move from the reference level (August) to September, holding phase of the moon constant. The slope for month Oct represents the estimated average change in admission rates fwhen yopu move from August to October, holding phase of the moon constant. The remaining slope terms have similar interpretations.
+:::
+
+## Analysis of variance table comparing the two factor model to the null model
+
+```{r}
+#| label: 04-02-anova-moon-month-table
+
+anova_moon_month_table
+```
+
+::: notes
+The F-ratio (7.13) is large and the p-value is small. There is a statistically significant effect in at least some of the factors. It could be differences among the months or differences among the phases or differences among both. This is a global test, so you do not know which months differ (if any) or which phases differ (again, if any).
+:::
+
 ## Analysis of variance table comparing the two factor model to the one factor model
 
 ```{r}
-#| label: table-07
+#| label: 04-02-partial-month-table
 
-table_07
+partial_month_table
 ```
+
+::: notes
+You compare the moon model with the moon plus month model by looking at the sum of squared error. In R, this is labeled as rss (residual sum of squares). The moon model has a large amount of unexplained variation (583) while the moon plus month model has a much smaller amount of unexplained variation (128). The large F ratio and the small p-value indicates that there is a statistically significant improvement in prediction when you use moon and month over a model using just moon alone.
+:::
 
 ## R-squared values
 
 ```{r}
-#| label: table-08
+#| label: 04-02-admits-rsquared-table
 
-table_08
+admits_rsquared_table
 ```
 
-
+::: notes
+The null model has a large amount of unexplained variation (625). The moon model can account for about 7% of this variation, while the moon plus month model accounts for almost 80% of the variation.
+:::
 
 ## Tukey post hoc test
 
 ```{r}
-#| label: table-09
+#| label: 04-02-tukey-moon-table
 
-table_09
+tukey_moon_table
 ```
 
 

@@ -27,6 +27,10 @@ load("../data/module05.RData")
     -   Placebo plus Drug B
     -   Drug A plus Drug B
     
+::: notes
+Consider a hypothetical case. This is a fairly common research scenario where you are looking at the combination effect of two drugs, A and B. The comparison is to a placebo for each drug. This leads to four choices, placebo for A plus a placebo for B, active drug A plus a placebo for drug B, placebo for A plus active drug for B, and finally active drug A plus active drug B.
+:::
+    
 ## Listing of hypothetical data
 
 ```{r}
@@ -48,6 +52,10 @@ hyp$b <- factor(hyp$b, levels=c("P", "B"))
 hyp
 ```
 
+::: notes
+This is what the data might look like if each combination had two observations.
+:::
+
 ## Line plot of hypothetical data, 1
 
 ```{r}
@@ -62,11 +70,16 @@ hyp |>
   expand_limits(y=c(0, 12)) +
   geom_line(aes(group=b)) +
   scale_y_continuous(breaks=(0:6)*2) +
-  ggtitle("Graph drawn by Steve Simon on 2025-02-18") +
-  xlab("Drug A") +
-  ylab("Hypothetical mean") -> p1
+  labs(
+    x="Drug A",
+    y="Hypothetical mean",
+    caption="Steve Simon, 2025-02-18, CC0") -> p1
 p1
 ```
+
+::: notes
+This is what the interaction plot looks like for this hypothetical data. Notice the lack of parallelism.
+:::
 
 ## Create indicator variables
 
@@ -81,11 +94,23 @@ hyp |>
 hyp_1
 ```
 
+::: notes
+Here is what the indicator variables look like. Notice that the indicator for the interaction is just the product of the indicator for drug A and the indicator for drug B.
+:::
+
 ## Interaction model, 1
 
 -   `lm(y=a+b+a:b, data=hyp)`
 -   `lm(y=a*b, data=hyp)`
 -   `lm(y=i_a+i_b+i_ab, data=hyp_1)`
+
+::: notes
+You can fit the interaction term by putting a colon between a and b. An asterisk between a and b means to fit the main effect of a, the main effect of b and the interaction between a and b.
+
+Alternately, you can create indicator variables and use them directly.
+:::
+
+## Estimates from the hypothetical data
 
 ```{r}
 #| label: 05-02-model
@@ -96,17 +121,19 @@ m1 |>
   select(term, estimate)
 ```
 
+::: notes
+Here are the estimates from the hypothetical data. The following slides will show you the proper interpretations of the estimates.
+:::
+
 ## Interaction model, 2
 
--   (Intercept): estimated average effort of two placebos
+-   (Intercept): estimated average outcome with two placebos
 -   i_a: estimated average change due to drug A alone
 -   i_b: estimated average change due to drug B alone
--   i_ab: estimated synergistic effect of both drugs
+-   i_ab: estimated synergistic (or antagonistic) effect of both drugs
 
 ::: notes
-
 The intercept is the estimated average value of Y when all of the indicator variables are equal to zero. This is the average in the P P group. The slope associated with i_a is the estimated average change when moving from placebo to drug A, holding drug B constant. The slope associated with i_b is the estimated average change when moving from placebo to drug B, holding drug A constant. The slope associated with i_ab is the interaction, a measure of how much more the effect of the two drugs combined compared to the effect of drug A along plus drug B alone.
-
 :::
 
 ## Interaction model, 3
@@ -115,6 +142,10 @@ The intercept is the estimated average value of Y when all of the indicator vari
 -   `A P mean = 1 + 2`
 -   `P B mean = 1     + 3`
 -   `A B mean = 1 + 2 + 3 + 4`
+
+::: notes
+The P P mean, the mean for both placebos, is the estimated intercept. The A P mean, the mean for drug A plus placebo, is the estimated intercept plus the estimate for the indicator for drug A. The P A mean, the mean for placebo plus drug B, is the estimated intercept plus the estimate for the indicator for drug B. The A B mean, the mean for drug A plus drug B, would be, if there was no interaction, the estimated intercept plus the estimate for the indicator for drug A plus the indicator for drug B. No interaction means that the combined effect of the two drugs is additive. With an interaction, you have to add in an extra term, the indicator for the interaction. This is a measure of the degree of super-additivity or sub-additivity. It is a measure of the degree of synergy or antagonism. In this case there is super-additivity or a lot of synergy.
+:::
 
 ## Line plot of hypothetical data, 2
 
@@ -135,6 +166,18 @@ p1 +
   geom_label(x="A", y=8,   label="b3=4")
 ```
 
+::: notes
+Here is the interaction plot, showing the impact of the individual estimates. 
+
+The intercept is 1 showing that the double placebo has an estimated average outcome of 1. 
+
+The estimate for the indicator for A is the change when you move from the double placebo to an active version of A while keeping B as the placebo. The individual effect of drug A by itself is an increase of 2 units on average in the outcome.
+
+The estimate for the indicator for B is the change when you move from the double placebo to an active version of B while keeping A as the placebo. The individual effect of drug B bt itself is an increase of 3 units on average in the outcome.
+
+The estimate for the indicator for the AB interaction is the degree to which the lines depart from parallelism.
+:::
+
 ## Line plot of hypothetical data, 3
 
 ```{r}
@@ -154,70 +197,153 @@ p1 +
   geom_label(x="A", y=10,label="b0+b1+b2+b3=1+2+3+4")
 ```
 
-## Study of three exercise programs
+::: notes
+This alternate version of the plot shows how to compute the estimated average for each of the combinations: double placebo, A alone, B alone, and A and B commined.
 
--   Swimming
--   Jogging
--   Reading (control)
+The estimated average for the double placebo is the estimated intercept = 1.
 
-## Descriptive statistics for exercise program
+The estimated average for drug A alone is the estimated intercept plus the estimate for the indicator for drug A = 1 + 2.
 
-```{r}
-#| label: 05-02-prog
+The estimated average for drug B alone is the estimated intercept plus the estimate for the indicator for drug B = 1 + 3.
 
-sv$prog_pct
-```
+The estimated average for both active drugs is the estimated intercept plus the estimate for both indicators plus the estimate for the indicator of interaction = 1 + 2 + 3 + 4. If there were no interaction, the combined effect would only = 1 + 2 + 3.
+:::
 
-## Descriptive statistics for hours
+## Tracking a moving target
 
-```{r}
-#| label: 05-02-hours
+-   gender (M or F)
+-   child (Yes or No)
+-   trial4 (tracking time in seconds)
 
-sv$hours_mean
-```
+::: notes
+Let's see what an interaction looks like with some more realistic data. Volunteers were given a test of motor skills where they tried to track a moving target. The outcome is the amount of time in seconds that the subjects were successful in tracking. There were both children and adults of both genders in the dataset.
+:::
 
-## Descriptive statistics for gender
-
-```{r}
-#| label: 05-02-gender
-
-sv$gender_pct
-```
-
-## Descriptive statistics for effort 
-
--   0 = no effort, 50=maximum effort
+## Means for each combination of gender and child
 
 ```{r}
-#| label: 05-02-effort
+#| label: 05-02-trial4-interaction-table
 
-sv$effort_mean
+trial4_interaction_table
 ```
 
-## Descriptive statistics for loss
+::: notes
+Here are the means and standard deviations for the four combinations: female child, male child, female adult, male adult. Notice that there is almost no diference between male and female children. There is a difference in adults and adults of both genders did better than the children.
+:::
 
--   A negative value is a weight gain
+## Interaction plot, 1
 
 ```{r}
-#| label: 05-02-loss
+#| label: 05-02-trial4-plot1
 
-sv$loss_mean
+trial4_plot1
 ```
 
-## Line plot, weight loss by program and gender
+::: notes
+Here is the interaction plot, showing a line for females and a line for males.
+:::
+
+## Interaction plot, 2
 
 ```{r}
-#| label: 05-02-line
+#| label: 05-02-trial4-plot2
 
-sv$loss_lines_2
+trial4_plot2
 ```
 
-## Interaction model
+::: notes
+Here is the alternate interaction plt, showing a line for children and a line for adults. I like this interaction plot a bit better, but both are good.
 
--   Reference categories: male and reading
+The child line is flat, showing no gender effect in children. The adult line has a positive slope showing that adult males did a better job on averag in tracking the target than adult females. The separation between the two lines shows that adults of either gender were better than the children of either gender.
+:::
+
+## Regression estimates for the interaction model
 
 ```{r}
-#| label: 05-02-interaction
+#| label: 05-02-estimates-trial4-table
 
-sv$m2_betas
+estimates_trial4_table
 ```
+
+::: notes
+Here are the regression estimates. I will show where these estimates appear within the interaction plot.
+:::
+
+
+## intercept
+
+```{r}
+#| label: 05-02-trial4-intercept
+
+trial4_plot2 +
+  geom_label(x="F", y=2.57, label="2.57")
+```
+
+::: notes
+The intercept is the estimated average tracking time for the two reference categories (female and child).
+:::
+
+## intercept + genderMale
+
+```{r}
+#| label: 05-02-trial4-male
+
+trial4_plot2 +
+  geom_label(x="M", y=2.54, label="2.57-0.03=2.54")
+```
+
+::: notes
+Add the genderMale term to the intercept to get the estimated average tracking time for male children.
+:::
+
+## intercept + childNo
+
+```{r}
+#| label: 05-02-trial4-child
+
+trial4_plot2 +
+  geom_label(x="F", y=4.46, label="2.57+1.89=4.46")
+```
+
+::: notes
+Add the childNo term to the intercept to get the estimated average tracking time for female adults.
+:::
+
+
+## intercept + genderMale + childNo
+
+```{r}
+#| label: 05-02-trial4-no-interaction
+
+trial4_plot2 +
+  geom_segment(
+    x="M", 
+    y=4.46, 
+    xend="F", 
+    yend=4.43, 
+    linetype=2) +
+  geom_label(x="M", y=4.43, label="2.57-0.03+1.89=4.46")
+```
+
+::: notes
+If there were no interaction, then you would add the estimates of effect of genderMale and childNo to the estimated intercept get the estimated average time for adult males.
+:::
+
+## intercept + genderMale + childNo + genderMale:childNo
+
+```{r}
+#| label: 05-02-trial4-interaction
+
+trial4_plot2 +
+  geom_segment(
+    x="M", 
+    y=4.46, 
+    xend="F", 
+    yend=4.43, 
+    linetype=2) +
+  geom_label(x="M", y=6.78, label="2.57-0.03+1.89+2.35=6.78")
+```
+
+::: notes
+Because there is an interaction, you have to add the estimates of the effect of the interaction to everything else. Male and adulthood are super-additive, meaning that the impact of both combined is more than you would expect from just looking at the individual effects. 
+:::

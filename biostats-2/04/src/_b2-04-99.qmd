@@ -1,0 +1,39 @@
+---
+title: "Review one factor analysis of variance"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Interaction of self-esteem and outcome
+
+![](../images/esteem-outcome-interaction.gif "Plot showing an interaction between self-esteem and outcome")
+
+::: notes
+Source: David M. Lane, Multi-Factor Between-Subjects Designs. Chapter XV, Section E of  Available in [html format][ref-lane-nodate].
+
+[ref-lane-nodate]: https://onlinestatbook.com/2/analysis_of_variance/multiway.html
+:::
+
+## Interaction of training and autonomy
+
+![](../images/training-autonomy-interaction.png "Interaction plot between training and autonomy")
+
+::: notes
+Source: Wikipedia. Moderation (statistics). Available in [html format][ref-wikipedia-moderation].
+
+[ref-wikipedia-moderation]: https://en.wikipedia.org/wiki/Moderation_(statistics)
+:::
+
+## Interaction of group and gender
+
+![](../images/group-gender-interaction.jpg "Interaction plot showing a gender difference but only in group 4")
+
+::: notes
+Source: Wikipedia. Analysis of covariance. Available in [html format][ref-wikipedia-ancova]
+
+[ref-wikipedia-ancova]: https://en.wikipedia.org/wiki/Analysis_of_covariance
+:::
+

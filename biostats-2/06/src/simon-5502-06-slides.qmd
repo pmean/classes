@@ -5,12 +5,12 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "Review of simple tests of two proportions"
-  topic_02: "Concepts behind the logistic regression model"
-  topic_03: "Logistic regression with categorical predictors"
-  topic_04: "Logistic regression with continuous predictors"
-  topic_05: "Logistic regression with interactions"
-  topic_06: "Diagnostics"
+  topic_01: "A humorous look at nonlinear fits"
+  topic_02: "Constructing a spline from small pieces"
+  topic_03: "B-splines"
+  topic_04: "Placement and number of knots"
+  topic_05: "Splines for linear and logistic regression"
+  topic_06: "Your homework"
 editor: source
 ---
 
@@ -38,10 +38,14 @@ editor: source
     -   `r params$topic_04`
     -   `r params$topic_05`
     -   `r params$topic_06`
+    
+## Web page on overfitting
 
-{{< include _b2-06-01.qmd >}}
+-   Simon, Overfitting example using hurricane frequencies, PMean blog 2021-12-11, available in [html format][ref-simon-2021]
 
-## Live demo, `r params$topic_01`
+[ref-simon-2021]: http://pmean.com/posts/hurricane-frequencies/
+
+{{< include _splines-01.qmd >}}
 
 ## Break #1
 
@@ -50,9 +54,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_02`
 
-{{< include _b2-06-02.qmd >}}
-
-## Live demo, `r params$topic_02`
+{{< include _splines-02.qmd >}}
 
 ## Break #2
 
@@ -61,7 +63,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_03`
 
-{{< include _b2-06-03.qmd >}}
+{{< include _splines-03.qmd >}}
 
 ## Break #3
 
@@ -70,9 +72,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_04`
 
-{{< include _b2-06-04.qmd >}}
-
-## Live demo, `r params$topic_04`
+{{< include _splines-04.qmd >}}
 
 ## Break #4
 
@@ -81,7 +81,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_05`
 
-{{< include _b2-06-05.qmd >}}
+{{< include _splines-05.qmd >}}
 
 ## Live demo, `r params$topic_05`
 
@@ -92,9 +92,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_06`
 
-{{< include _b2-06-06.qmd >}}
-
-## Live demo, `r params$topic_06`
+## Your homework
 
 ## Summary
 

@@ -1,0 +1,447 @@
+---
+title: "Splines, part 02"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+```{r}
+#| label: 02-setup 
+#| message: false
+#| warning: false
+
+library(broom)
+library(gt)
+library(splines)
+library(tidyverse)
+```
+
+## 06-02 Splines
+
+-   Piecewise cubic polynomial
+    -   Continuous (no jumps)
+    -   Smooth (no sharp turns)
+-   Transition points = knots
+
+::: notes
+
+A spline is a piecewise cubic polynomial. It converts from one cubic polynomial to a different cubic polynomial at pre-defined transition points known as knots. The individual cubic polynomials are constrained to be continuous and smooth at the knots. Continuous means no sudden jumps. Smooth means no sudden turns. You can also think of it as no elbows.  Mathematically, smooth means a continuous first and second derivative.
+
+:::
+
+## 06-02 A physical spline
+
+![](../images/spline.png "A flexible strip of wood curved and constrained at certain points")
+
+::: notes
+
+Before computers became powerful enough to compute splines, we had several alternatives.
+
+Here is an image from Wikipedia of physical spline. It is a thin strip of wood--thin enough to allow it to bend. It is constrained so that the bend follows a path that covers a few points.
+
+:::
+
+## 06-02 A french curve
+
+![](../images/french-curve.png "Several french curves showing varying curvatures")
+
+::: notes
+
+The french curve was a plastic template that showed a range of curvatures. You would line up the curve to four data points, draw along the french curve between the two interior points and then shift to the right and line up the french curve again. The resulting path looked seamless.
+
+:::
+
+```{r}
+#| label: 02-artificial-list-1
+
+x <- 0:20
+y <- rep(40, 21)
+y[6:21] <- y[6:21]-3*(0:15)
+y[11:21] <- y[11:21]+7*(0:10)
+y[16:21] <- y[16:21]-(0:5)^2
+y <- y+round(rnorm(21), 1)
+simulated_example <- data.frame(x, y)
+```
+
+## 06-02 Graph of artificial data
+
+```{r}
+#| label: 02-artificial-data-plot
+
+ggplot(simulated_example, aes(x, y)) +
+  geom_point()
+```
+
+::: notes
+
+Here is some artificial data. I manipulated the data so that the behavior of the underlying trendfor x=0 to 5, x=6 to 10, x=11 to 15, and x=16 to 20.
+
+:::
+
+```{r}
+#| label: 02-add-values
+
+x <- c(0:20, setdiff(seq(0, 20, by=1/64), 0:20))
+```
+
+```{r}
+#| label: 02-basic-cubics
+
+xm <- data.frame(
+  c1 =rep(1, length(x)),
+  c2 =x,
+  c3 =x^2,
+  c4 =x^3,
+  c5 =(x> 5)*rep(1, length(x)),
+  c6 =(x> 5)*(x- 5),
+  c7 =(x> 5)*(x- 5)^2,
+  c8 =(x> 5)*(x- 5)^3,
+  c9 =(x>10)*rep(1, length(x)),
+  c10=(x>10)*(x-10),
+  c11=(x>10)*(x-10)^2,
+  c12=(x>10)*(x-10)^3,
+  c13=(x>15)*rep(1, length(x)),
+  c14=(x>15)*(x-15),
+  c15=(x>15)*(x-15)^2,
+  c16=(x>15)*(x-15)^3,
+  x=x,
+  y=NA
+)
+xm$y[1:21] <- y
+```
+
+```{r}
+#| label: 02-functions
+
+display_curve <- function(dat, lb) {
+  # Plot a line connecting the points in dat
+  # Assume that column 1 is x and column 2 is y
+  # Work with either a data frame or matrix
+  dat %>%
+    data.frame %>%
+    select(1:2) %>%
+    set_names(c("x", "y")) %>%
+    ggplot(aes(x, y)) +
+      ggtitle(lb) +
+      geom_line() +
+      xlab(" ") +
+      ylab(" ")
+}
+
+display_dots <- function(cplot, dat) {
+  # Add dots in dat to an existing graph
+  # Assume that column 1 is x and column 2 is y
+  # Work with either a data frame or matrix
+  dat %>%
+    data.frame %>%
+    set_names(c("x", "y")) -> df
+  cplot + geom_point(data=df, aes(x, y))
+}
+
+lb1 <- rep(c("Intercept", "Linear term", "Quadratic term", "Cubic term"), 4)
+lb2 <- rep(c("for the full range", "restarted at x=5", "restarted at x=10", "restarted at x=15"), each=4)
+lb <- paste(lb1, lb2)
+```
+
+```{r}
+#| label: 02-loop
+
+c_plots <- list(rep(NULL, 16))
+for (j in 1:16) {
+  dat <- xm[ , c("x",  paste0("c", j))]
+  display_curve(dat, " ") %>%
+    display_dots(dat[1:21, ]) -> c_plots[[j]]
+}
+c_plots[[1]] <- c_plots[[1]] + expand_limits(y=0)
+```
+
+## 06-02 Single cubic polynomial
+
+```{r}
+#| label: 02-single-cubic
+
+lm(y~c2+c3+c4, data=xm) %>%
+  augment(newdata=xm) %>%
+  select(c2, .fitted) %>%
+    display_curve("Single cubic fit") %>%
+    display_dots(simulated_example)
+```
+
+::: notes
+
+The graph shown here represents the best fitting single cubic polynomial. It doesn't fit the data very well. The problem is that the data is largely flat from 0 to 5 and then starts wiggling a lot from 5 onward. A cubic polynomial (or any polynomial for that matter) can be mostly flat or very wiggly but it generally can't be both.
+
+You need a way to transition between a wiggly cubic and a mostly flat cubic.
+
+:::
+
+## 06-02 Cubic polynomials with knots at x=5, 10, 15
+
+```{r}
+#| label: 02-all-plots
+
+library(gridExtra)
+
+grid.arrange(
+  c_plots[[1]],
+  c_plots[[5]],
+  c_plots[[9]],
+  c_plots[[13]],
+  c_plots[[2]],
+  c_plots[[6]],
+  c_plots[[10]],
+  c_plots[[14]],
+  c_plots[[3]],
+  c_plots[[7]],
+  c_plots[[11]],
+  c_plots[[15]],
+  c_plots[[4]],
+  c_plots[[8]],
+  c_plots[[12]],
+  c_plots[[16]],
+  ncol=4,
+  nrow=4)
+```
+
+## 06-02 What the numbers look like
+
+![](../images/spline-data.png "Actual data values for overall terms and knots")
+
+::: notes
+
+This is what the raw numbers look like. I apologize for the size of the fonts. I want you to focus just on the patterns shown here.
+
+:::
+
+## 06-02 What the numbers look like, overall terms
+
+![](../images/spline-data-overall.png "Actual data values for overall terms")
+
+::: notes
+
+The overall terms are constant, linear, quadratic, or cubic across the entire range of the data.
+
+:::
+
+## 06-02 What the numbers look like, knot 1 terms
+
+![](../images/spline-data-knot-1.png "Actual data values for knot 1 terms")
+
+::: notes
+
+The knot 1 terms are all zero until you hit x=5. Then they are constant, linear, quadratic, or cubic across the rest of the data.
+
+:::
+
+## 06-02 What the numbers look like, knot 2 terms
+
+![](../images/spline-data-knot-2.png "Actual data values for knot 2 terms")
+
+::: notes
+
+The knot 1 terms are all zero until you hit x=10. Then they are constant, linear, quadratic, or cubic across the rest of the data.
+
+
+:::
+
+## 06-02 What the numbers look like, knot 3 terms
+
+![](../images/spline-data-knot-3.png "Actual data values for knot 3 terms")
+
+::: notes
+
+The knot 3 terms are all zero until you hit x=15. Then they are constant, linear, quadratic, or cubic across the rest of the data.
+
+
+:::
+
+## 06-02 Discontinuous cubic spline
+
+```{r}
+#| label: 02-discontinuous
+
+lm(y~c2+c3+c4+c5+c6+c7+c8+c9+c10+c11+c12+c13+c14+c15+c16, data=xm)  %>%
+  augment(newdata=xm) %>%
+  select(c2, .fitted) %>%
+    display_curve("Discontinuous cubic splines") %>%
+    display_dots(simulated_example)
+```
+
+::: notes
+
+So, we could fit a cubic model for the first five data points, for the second five, the third five, and the fourth five. This is a bit much: a cubic model has four parameters, so fitting four of them would use up 16 degrees of freedom in a data set with only 20 observations. But bear with me a bit on this.
+
+The trick to fitting four separate cubic polynomials is to "restart" the intercept, linear, quadratic, and cubic terms after x=5, x=10, and x=15, as shown above. This leads to a model with 16 degrees of freedom. This is way too many degrees of freedom for only 20 data points, but it helps anchor a series of more reasonable models.
+
+This function is not continuous or smooth. To make the function continuous, drop the extra intercept terms.
+
+:::
+
+## 06-02 Remove piece-wise intercepts
+
+```{r}
+#| label: 02-continuous-grid
+
+c_plots[[5]] <- c_plots[[5]] + geom_point(color="white") +geom_line(color="white")
+c_plots[[9]] <- c_plots[[9]] + geom_point(color="white") +geom_line(color="white")
+c_plots[[13]] <- c_plots[[13]] + geom_point(color="white") +geom_line(color="white")
+grid.arrange(
+  c_plots[[1]],
+  c_plots[[5]],
+  c_plots[[9]],
+  c_plots[[13]],
+  c_plots[[2]],
+  c_plots[[6]],
+  c_plots[[10]],
+  c_plots[[14]],
+  c_plots[[3]],
+  c_plots[[7]],
+  c_plots[[11]],
+  c_plots[[15]],
+  c_plots[[4]],
+  c_plots[[8]],
+  c_plots[[12]],
+  c_plots[[16]],
+  ncol=4,
+  nrow=4)
+```
+
+## 06-02 Continuous spline
+
+```{r}
+#| label: 02-continuous
+
+lm(y~c2+c3+c4+c6+c7+c8+c10+c11+c12+c14+c15+c16, data=xm)  %>%
+  augment(newdata=xm) %>%
+  select(c2, .fitted) %>%
+    display_curve("Continuous but not smooth cubic splines") %>%
+    display_dots(simulated_example)
+```
+
+::: notes
+
+While this graph is continuous, it still takes some abrupt turns. What this curve lacks is smoothness. The mathematical concept of smoothness is measured in terms of the continuity of derivatives. 
+
+:::
+
+## 06-02 Remove piecewise linear terms
+
+```{r}
+#| label: 02-smooth-grid
+
+c_plots[[6]] <- c_plots[[6]] + geom_point(color="white") +geom_line(color="white")
+c_plots[[10]] <- c_plots[[10]] + geom_point(color="white") +geom_line(color="white")
+c_plots[[14]] <- c_plots[[14]] + geom_point(color="white") +geom_line(color="white")
+grid.arrange(
+  c_plots[[1]],
+  c_plots[[5]],
+  c_plots[[9]],
+  c_plots[[13]],
+  c_plots[[2]],
+  c_plots[[6]],
+  c_plots[[10]],
+  c_plots[[14]],
+  c_plots[[3]],
+  c_plots[[7]],
+  c_plots[[11]],
+  c_plots[[15]],
+  c_plots[[4]],
+  c_plots[[8]],
+  c_plots[[12]],
+  c_plots[[16]],
+  ncol=4,
+  nrow=4)
+```
+
+## 06-02 Smooth splines
+
+```{r}
+#| label: smooth
+
+lm(y~c2+c3+c4+c7+c8+c11+c12+c15+c16, data=xm) %>%
+  augment(newdata=xm) %>%
+  select(c2, .fitted) %>%
+    display_curve("Continuous and smooth (1st derivative) cubic splines") %>%
+    display_dots(simulated_example)
+```
+
+::: notes
+
+Here is a function that has a continuous first derivative. You fit this model by dropping the extra linear terms beyond the first one. Notice a pattern here. As you place additional restrictions on the spline (continuity, smoothness), you need fewer parameters. The four cubic models with no restrictions used up 16 degrees of freedom. When you added a continuity restriction, you only needed 13 degrees of freedom for the model. Add a smoothness restriction and you only need 10 degrees of freedom.
+
+:::
+
+## 06-02 Remove piecewise quadratic terms
+
+```{r}
+#| label: 02-smoother-grid
+
+c_plots[[7]] <- c_plots[[7]] + geom_point(color="white") +geom_line(color="white")
+c_plots[[11]] <- c_plots[[11]] + geom_point(color="white") +geom_line(color="white")
+c_plots[[15]] <- c_plots[[15]] + geom_point(color="white") +geom_line(color="white")
+grid.arrange(
+  c_plots[[1]],
+  c_plots[[5]],
+  c_plots[[9]],
+  c_plots[[13]],
+  c_plots[[2]],
+  c_plots[[6]],
+  c_plots[[10]],
+  c_plots[[14]],
+  c_plots[[3]],
+  c_plots[[7]],
+  c_plots[[11]],
+  c_plots[[15]],
+  c_plots[[4]],
+  c_plots[[8]],
+  c_plots[[12]],
+  c_plots[[16]],
+  ncol=4,
+  nrow=4)
+```
+
+## 06-02 Even smoother
+
+```{r}
+#| label: 02-even-smoother
+lm(y~c2+c3+c4+c8+c12+c16, data=xm) %>%
+  augment(newdata=xm) %>%
+  select(c2, .fitted) %>%
+    display_curve("Continous and smooth (1st and 2nd derivatives) cubic splines") %>%
+    display_dots(simulated_example)
+```
+
+::: notes
+
+Here is a function that has continuous first and second derivatives. This is a greater degree of smoothness than above and it requires only 7 degrees of freedom.
+
+This is what most people refer to when they talk about splines: a piecewise cubic model with continuity and continuous first and second derivatives. It is a fairly simple model (not that many degrees of freedom), but it produces a curve that has the flexibility to fit a variety of curves that have the aesthetically pleasing features of continuity and smoothness.
+
+Continuity and smoothness are more than just aesthetics, though. There are many scientific settings where we expect no jumps (discontinuities) and no abrupt turns (lack of smoothness). If you are measuring the onset of symptoms from a disease, you know that the viruses or bacteria that are causing the disease are increasing in a continuous and smooth pattern. So any problems that they cause should also increase in a continuous and smooth pattern.
+
+Other settings, however, should not necessarily be expected to produce continuous and smooth outcomes. If a particular metabolic pathway becomes saturated or an anotomical barrier is breached, the suddenness transition could result in an abrupt turn or a discontinuity. So do think about the particular context of your problem when deciding what type of spline model to use.
+
+This approach is simple and easy to follow, but there is one catch. There is an issue with multicollinearity.
+
+:::
+
+## 06-02 Multicollinearity
+
+```{r}
+#| label: 02-multicollinearity
+xm |>
+  select(c(2:4, 6, 12, 16)) |>
+  set_names(paste0("S", 1:6)) |>
+  data.frame() |>
+  cor() |>
+  round(2)
+```
+
+::: notes
+
+The correlations are quite high and this can lead to computational problems, including rounding errors. So most spline models implemented on a computer use a different approach.
+
+:::
+

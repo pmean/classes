@@ -1,0 +1,193 @@
+---
+title: "Splines, part 04"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+```{r}
+#| label: 04-setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(tidyverse)
+```
+
+## 06-04 How many knots?
+
+-   Use AIC or BIC
+-   Eyeball the data
+-   Frank Harrell's suggestion
+    -   Use 4 knots if n < 100
+    -   Otherwise use 5 knots
+-   Use your a priori beliefs
+-   Looking at some preliminary graphs
+
+::: notes
+
+A difficult question is how many knots to use. Too many knots and you might end up overfitting. Too few and you might end up with not enough flexibility to fit your data well.
+
+The AIC (Akaike Information Criterion) and the BIC (Bayesian Information Criterion) are useful measures for comparing different statistical models. In linear regression both AIC and BIC look at how close the fitted curve is to the data, but adds a penalty for model complexity. This helps avoid the situation where an excessively complex model with only marginally better predictive power is selected over a simpler model that predicts almost as well.
+
+Note that a p-value will not work here except in some special cases where all of the knots but one coincide. The p-value fails because (with a few rare exceptions) one spline model is not nested inside another.
+
+Look at the number of bends in the data. If the data increases to a single maximum and then decreases after that, a simpler spline with 2 or 3 knots may be sufficient. This also applies if the data decreases to a single minimum and then increases after that. If there are more bends (e.g., increase to a maximum, decrease to a minimum, and then increase again), then a larger number of knots may be needed.
+
+Frank Harrell has a simple suggestion. Use 4 knots for small data sets. Small means n < 100. Use 5 knots for large data sets.
+
+You may have a feel for how much complexity is appropriate based on your years of experience as a data analyst and your scientific knowledge of the process at hand. After you work with enough splines, you do get an appreciation on how wiggly they can get. If you also have a rough idea of how the nonlinear relationship is going to be, perhaps based on seeing other similar problems in the area, you can match the degrees of freedom of the spline to your expectation, prior to looking at the data.
+
+Sometimes you have knowledge of the specific application that will help you to figure out where to put your knots. 
+
+I am not an expert on cars, but I have been told that many newer cars with automatic transmission change how the transmission behaves around 40 miles per hour. This transition helps with highway mileage. So if you are fitting a spline curve to data where how the transmission behaves, make sure that you place one or two of your knots near 40 miles per hour.
+
+I am also not an expert on kidneys, but I have been told that the Glomerural Filtration Rate is not too critical if the value is above 90, but becomes very serious when it is less than 30. So a model looking at health effects using GFR should probably have knots around 30 and 90.
+
+Similarly, CD4 cell counts above 500 are a good sign, but things turn rapidly worse if they dip below 200.
+
+This is a bit controversial. Selecting a statistical model post hoc (after viewing the data) leaves you open to a charge of data dredging or going on a fishing expedition. To be fair, it is not as bad as some approaches (such as running ten tests and then choosing the one with the smallest p-value).
+
+:::
+
+```{r}
+#| label: 04-aic-loop
+
+aplots <- list(rep(NULL, 4))
+
+linear_fit <- lm(y~x, data=xm)
+
+ti <- paste0("Linear fit, AIC = ", round(AIC(linear_fit), 1))
+
+linear_fit |> 
+  augment(newdata=xm) |>
+    select(c2, .fitted) |>
+    display_curve(ti) |>
+    display_dots(simulated_example) -> aplots[[1]]
+  
+
+for (k in 3:5) {
+  knots <- seq(3, 17, length=k)
+  lm(y~bs(c2, knots=knots), data=xm) -> rcs_fit
+  ti <- paste0(k, " knots, AIC = ", round(AIC(rcs_fit), 1))
+  rcs_fit %>%
+    augment(newdata=xm) |>
+    select(c2, .fitted) |>
+    display_curve(ti) |>
+    display_dots(simulated_example) +
+      geom_vline(
+        xintercept=knots, 
+        color="black") -> aplots[[k-1]]
+}
+```
+
+## 06-04 AIC for a linear fit
+
+```{r}
+#| label: 05-aplots-1
+
+i <- 1
+aplots[[i]]
+i <- i+1
+```
+
+## 06-04 AIC for a three knot spline
+
+```{r}
+#| label: 05-aplots-2
+
+aplots[[i]]
+i <- i+1
+```
+
+## 06-04 AIC for a four knot spline
+
+```{r}
+#| label: 05-aplots-3
+
+aplots[[i]]
+i <- i+1
+```
+
+## 06-04 AIC for a five knot spline
+
+```{r}
+#| label: 05-aplots-4
+
+aplots[[i]]
+i <- i+1
+```
+
+## 06-04 Use inside knowlege to place the knots
+
+-   Automatic transmission locks in at 40 miles per hour
+-   Kidney function is fine above 90, problematic below 30
+-   CD4 counts fine above 500, trouble below 200
+
+::: notes
+
+I am not an expert on cars, but I have been told that many newer cars with automatic transmission change how the transmission behaves around 40 miles per hour. This transition helps with highway mileage. So if you are fitting a spline curve to data where how the transmission behaves, make sure that you place one or two of your knots near 40 miles per hour.
+
+I am also not an expert on kidneys, but I have been told that the Glomerural Filtration Rate is not too critical if the value is above 90, but becomes very serious when it is less than 30. So a model looking at health effects using GFR should probably have knots around 30 and 90.
+
+Similarly, CD4 cell counts above 500 are a good sign, but things turn rapidly worse if they dip below 200.
+
+:::
+
+## 06-04 Frank Harrell's suggestion for knot placement
+
+-   Evenly spaced percentiles
+    -   More knots where there is more data
+-   Set boundary knots close to edge
+    -   For 3 knots, use $q_{0.1}$ and $q_{0.9}$
+    -   For 4-6 knots, use $q_{0.05}$ and $q_{0.95}$
+    -   For 7 or more knots, use $q_{0.025}$ and $q_{0.975}$
+-   Example: 4 knots
+    -   Boundary knots at $q_{0.05}$ and $q_{0.95}$
+    -   Interior knots at $q_{0.35}$ and $q_{0.65}$
+
+::: notes
+
+Frank Harrell suggests that you place the knots not evenly across the range of X but at equally spaced quantiles of the X distribution. This makes sense when the distribution of the X values is not uniform. If, for example, X is skewed to the right (has a tendency to produce most of the data on the left with a few scattered outliers on the right), the knots will tend to favor the data-rich left side of the distribution. He also suggests placing the leftmost and rightmost knots near, but not at the extremes of the X values, such as at the 10th or 90th percentiles or at the fifth smallest and the fifth largest values in the data. The actual percentiles are a bit tricky to explain.
+
+*"For 3 knots, the outer quantiles used are 0.10 and 0.90. For 4-6 knots, the outer quantiles used are 0.05 and 0.95. For more than 6 knots, the outer quantiles are 0.025 and 0.975. The knots are equally spaced between these on the quantile scale. For fewer than 100 non-missing values of x, the outer knots are the 5th smallest and the 5th largest x."* as quoted [here][har1],
+
+If you pick this apart, you can deduce that 4 knots for a large dataset would be placed at the 5th, 35th, 65th and 95th percentiles.
+
+:::
+
+## 06-04 Knot placement doesn't matter
+
+-   Number of knots is important
+-   Placement of knots is not important
+
+::: notes
+
+Most references I have looked at state that it is the number of knots rather than the placement of the knots that is critical. 
+
+:::
+
+## 06-04 Extensions
+
+-   Natural splines
+-   Penalized splines
+-   More than one spline variable
+    -   Spline surfaces
+    -   Generalized additive models
+
+::: notes
+
+A variant on B splines are natural splines (also called restricted cubic splines). These splines place an additional restriction to the left of the first X value and to the right of the last X value. The spline is constrained to be linear at both extremes. This makes practical sense, as there is less data at the extremes, making estimation of a complex cubic function here worrisome. This also makes extrapolation outside of the range of data less problematic. Cubic polynomials have the potential of extreme shifts and if these occur outside the range of the data, they could lead to some awful extrapolations.
+
+You should always be very careful, of course, as any effort to extrapolate beyond the range of data is [dangerous][sim3]. Nevertheless, restricting the extrapolation to a linear function is probably safer than letting the cubic polynomial wiggle around.
+
+Penalized splines offer a way out if you are not sure how many knots to use. In a penalized spline, you put in 20 to 40 knots. This is way too many and could lead to overfitting. But then you compute a penalty term for excessive "wiggling". It is effectively trying to minimize how much the spline coefficients change from one knot to the next.
+
+How do you handle more than one spline variable? There are spline surfaces. The mathematics is tricky, but not terribly so. The problem is that surfaces can bend in many more ways than a line can. You can end up burning way too many degrees of freedom.
+
+An alternative is to fit a spline for one variable and a spline for the other variables and just look at their additive effects. This is effectively the same as assuming that the splines do not interact with one another. This approach is called an additive spline model.
+
+:::
+

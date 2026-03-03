@@ -2,17 +2,30 @@
 title: "simon-5502-06-directions"
 ---
 
-## General directions
-
-Use the dataset, [gardasil.tsv][ref01], found on my github site. Refer to the [data dictionary][ref02] if needed. You may find it helpful to adapt some of the code from [simon-5502-06-demo.qmd][ref03]. 
-
-[ref01]: https://github.com/pmean/data/blob/main/files/gardasil.tsv
-[ref02]: https://github.com/pmean/data/blob/main/files/gardasil.yaml
-[ref03]: https://github.com/pmean/classes/blob/master/biostats-2/06/src/simon-5502-06-demo.qmd
-
 ## File details
 
-This assignment was written by Steve Simon on 2025-02-27 and is placed in the public domain.
+This programming assignment was written by Steve Simon on 2026-02-25 and is placed in the public domain.
+
+## Program
+
+-   Write a program to answer the questions listed below.
+-   Include the original questions above the appropriate program chunks in your code.
+-   Feel free to borrow code from the [demonstration program for this module][ref-demo].
+-   Place your name (not mine) and the creation date on every graph.
+-   Remove the "Comments on the code" sections.
+-   Provide a brief interpretation for every table and graph.
+-   Only include program chunks that address the questions listed below.
+
+[ref-demo]: https://github.com/pmean/classes/blob/master/biostats-2/06/src/simon-5502-06-demo.qmd
+
+## Data
+
+-   Download the [data][ref-data] file
+    -   Store it in your data folder
+-   Refer to the [data dictionary][ref-dictionary], if needed.
+
+[ref-data]: https://github.com/pmean/data/blob/main/files/marriage-age-2015.txt
+[ref-dictionary]: https://github.com/pmean/data/blob/main/files/marriage-age-2015.yaml
 
 ## Question 1
 
@@ -20,18 +33,19 @@ You will not be graded on this, but get in the habit of computing some simple st
 
 ## Question 2
 
-Create factors with descriptive levels for Completed, MedAssist, and LocationType. Orient your factor so that the reference category (the category that appears first) is "No" for Completed and MedAssist and "Urban" for LocationType. Calculate the probability of completing all three shorts for each level of MedAssist. Repeat for each level of LocationType.
+Compute the age gap between the average age at first marriage for men and the average at first marriage for women. Draw a plot showing the age gap on the y-axis and the year on the x-axis. Describe the trend or pattern that you see in this data.
 
 ## Question 3
 
-Calculate a logistic regression model using Age (not AgeGroup) to predict whether a patient has completed all three shots. Interpret the odds ratio from this model.
+Compute a linear model predicting age gap using year as the independent variable. Draw a plot showing the predicted values on top of the actual data. Does the linear model look like a good fit?
 
 ## Question 4
 
-You suspect that there is an interaction between MedAssist and LocationType in predicting whether a patient completed all three shots. Draw a line plot on the log odds scale. Interpret this plot. You should look at the plot two different ways, but please only include one plot here.
-
-Note: some versions of R may need to use trans="logit" instead of transform="logit" in the scale_y_continuous function.
+Compute a spline model with 5 degrees of freedom predicting age gap using year as the independent variable. Draw a plot showing the predicted values on top of the actual data. Does the spline model look like a good fit?
 
 ## Question 5
 
-Fit a model using MedAssist and LocationType to predict Completed, first without an interaction and then with an interaction. Test whether the interaction is statistically significant.
+Compute a spline model with 7 degrees of freedom predicting age gap using year as the independent variable. Draw a plot showing the predicted values on top of the actual data. Does this spline model look like a better fit than the 5 degree of freedom model?
+
+
+
