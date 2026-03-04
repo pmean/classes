@@ -5,7 +5,11 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "Please skip this module"
+  topic_01: "Getting started"
+  topic_02: "Research perspectives"
+  topic_03: "Research scope"
+  topic_04: "Qualitative and quantitative approaches"
+  topic_05: "Measures"
 editor: source
 ---
 
@@ -28,6 +32,10 @@ editor: source
 
 -   What you will learn
     -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
 
 {{< include _crm-07-01.qmd >}}
 
@@ -36,14 +44,45 @@ editor: source
 -   What you have learned
     -   `r params$topic_01`
 -   What's coming next
-    -   `r params$topic_01`
+    -   `r params$topic_02`
 
 {{< include _crm-07-02.qmd >}}
+
+## Break #2
+
+-   What you have learned
+    -   `r params$topic_02`
+-   What's coming next
+    -   `r params$topic_03`
+
+{{< include _crm-07-03.qmd >}}
+
+## Break #3
+
+-   What you have learned
+    -   `r params$topic_03`
+-   What's coming next
+    -   `r params$topic_04`
+
+{{< include _crm-07-04.qmd >}}
+
+## Break #4
+
+-   What you have learned
+    -   `r params$topic_04`
+-   What's coming next
+    -   `r params$topic_05`
+
+{{< include _crm-07-05.qmd >}}
 
 ## Summary
 
 -   What you have learned
     -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
 
 <!---
       You have to put the title down 
@@ -52,5 +91,5 @@ editor: source
 --->
 
 ---
-title: "Comments for MEDB 5510, Week 07"
+title: "simon-5510-07-slides"
 ---
