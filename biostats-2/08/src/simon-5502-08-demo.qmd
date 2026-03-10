@@ -14,12 +14,14 @@ execute:
 
 This program was written by Steve Simon on 2025-02-23 and is placed in the public domain. You can use this program any way you please.
 
+This is the correct program for the Spring 2026 semester.
+
 There is one data file used in this program
 
--   whas500, [Tab delimited file][ref-whas], [dictionary][ref-whas-dd]
+-   whas500, [Tab delimited file][ref-whas-dat], [dictionary][ref-whas-yaml]
 
-[ref-whas]: https://github.com/pmean/data/blob/main/files/whas500.dat
-[ref-whas-dd]: https://github.com/pmean/data/blob/main/files/whas500.yaml
+[ref-whas-dat]: https://github.com/pmean/data/blob/main/files/whas500.dat
+[ref-whas-yaml]: https://github.com/pmean/data/blob/main/files/whas500.yaml
 
 ```{r}
 #| label: setup
@@ -39,11 +41,11 @@ Sys.Date()
 
 ## Intermediate files
 
--   whas: Original data from whas500.dat
--   whas_1: Convert dates from strings, drop last column
--   whas_2: Check date calculations
--   whas_3: Remove patients who died in the hospital
--   whas_4: Convert days to years
+-   whas0: Original data from whas500.dat
+-   whas1: Convert dates, add factors, drop last column
+-   whas2: Convert days to years
+-   whas1: Create age groups
+-   whas4: Compute age in decades rather than years
 
 ## Read Worcester Heart Attack Study
 
@@ -75,99 +77,81 @@ whas_names <- c(
   "fstat",
   "not_needed")
 
-whas <- read_table(
+whas0 <- read_table(
   file="../data/whas500.dat",
   col_types="nnnnnnnnnnnnnnncccnnnnn",
   col_names=whas_names)
 
-glimpse(whas) 
+glimpse(whas0) 
 ```
 
-## Convert dates
+## Convert dates, add factors
 
 ```{r}
 #| label: dates
 
-whas |>
-  select(-23) |>
-  mutate(admitdate=mdy(admitdate)) |>
-  mutate(disdate=mdy(disdate)) |>
-  mutate(fdate=mdy(fdate)) -> whas_1
+whas0 |>
+  select(-not_needed) |>
+  mutate(lenfol=lenfol/365.25) -> whas1
 ```
+
+#### Comments on the code
+
+For long term studies, you will find it easier to interpret results if the follow-up time is measured in years rather than days. The 365.25 in the divisor accounts for leap years. It is not a perfect adjustment, especially for follow-up times less than four years, but it comes close enough.
 
 ## Count events
 
 ```{r}
 #| label: count
 
-whas_1 |>
-  count(fstat) -> event_count
+whas1 |>
+  count(fstat) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=round(100*n/total)) |>
+  mutate(pct=glue("{pct}% ({n}/{total})")) |>
+  select(-n, -total) -> whas_fstat_count_table
 
-event_count
+whas_fstat_count_table
 ```
 
 #### Interpretation of the output
 
 There are enough events to support a reasonably complex model (215/15 = 14.3).
 
-## Check lenfol calculations
-
-```{r}
-#| label: check-1
-
-whas_1 |>
-  mutate(f_minus_admit = fdate - admitdate) |>
-  mutate(f_minus_dis = fdate - disdate) |>
-  mutate(dis_minus_admit = disdate - admitdate) -> whas_2
-
-whas_2 |>
-  select(lenfol, f_minus_admit, f_minus_dis, dis_minus_admit)
-```
-
-## Check dstat=1
-
-```{r}
-#| label: check-2
-
-whas_2 |>
-  filter(dstat == 1) |>
-  select(lenfol, f_minus_admit, f_minus_dis, dis_minus_admit)
-```
-
-## Remove patients who died in the hospital
-
-```{r}
-#| label: remove
-
-whas_1 |>
-  filter(dstat != 1) -> whas_3
-```
-
-## Convert days to years
-
-```{r}
-#| label: convert
-
-whas_3 |>
-  mutate(lenfol=lenfol/365.25) -> whas_4
-```
-
 ## Overall Kaplan-Meier curve
 
 ```{r}
 #| label: overall
 
-m0 <- survfit(
-  Surv(lenfol, fstat) ~ 1,
-  data=whas_4)
+whas_null_km_model <- survfit(
+  formula=Surv(lenfol, fstat) ~ 1,
+  data=whas1)
 
-autoplot(m0, conf.int=FALSE) +
-  ggtitle("Graph drawn by Steve Simon on 2025-03-10") +
-  xlab("Survival time (years)") +
-  ylab("Percentage survived") -> km_overall
+autoplot(whas_null_km_model, conf.int=TRUE) +
+  labs(
+    x="Survival time (years)",
+    y="Percentage survived",
+    caption="Steve Simon, 2025-03-10, CC0") -> whas_null_km_plot
 
-km_overall
+whas_null_km_plot
 ```
+
+#### Comments on the code
+
+The [Surv function][ref-Surv], part of the survival package, creates a survival object that combines information about the follow-up time combined with a censoring variable. The [survfit function][ref-survfit] creates a Kaplan-Meier curve.
+
+The Kaplan-Meier curve can be easily plotted using the [plot function][ref-plot] in base R, but I prefer to use the ggplot2 functions. They require that you install the [ggfortify library][ref-ggfortify] before using the [autoplot function][ref-autoplot]. The autoplot function peeks inside the object being fed into it and draws a graph appropriate for that object.
+
+The conf.int argument tells R whether to place confidence limits on the survival curve. I generally don't do this because it can clutter up the graph, but other researchers like it. I will use confidence limits if there is only one survival curve.
+
+[ref-autoplot]: https://ggplot2.tidyverse.org/reference/autoplot.html
+[ref-ggfortify]: https://cran.r-project.org/web/packages/ggfortify/refman/ggfortify.html
+[ref-Surv]: https://stat.ethz.ch/R-manual/R-devel/library/survival/html/Surv.html
+[ref-survfit]: https://stat.ethz.ch/R-manual/R-devel/library/survival/html/survfit.html
+
+#### Interpretation of the output
+
+The survival probabilities decline over time, a bit more sharply in the first year than in later years. The censored observations (the plus signs on the graphs) are clustered. An investigation into this would yield a reasonable explanation, but I will leave this unsaid for now.
 
 ## Start part 2 ----------------------------------------------------------------
 
@@ -176,28 +160,45 @@ km_overall
 ```{r}
 #| label: count-gender
 
-whas_4 |>
-	count(gender, fstat) -> count_gender
+whas1 |>
+	count(gender, fstat) -> whas_gender_count_table
 
-count_gender
+whas_gender_count_table
 ```
+
+#### Comments on the code
+
+Although I normally compute percentages after using the count function, it is not needed here. I just want to make sure that the number of events is reasonably large in both groups.
+
+#### Interpretation of the output
+
+There are a reasonable number of events (fstat=1) among both males (111) and females (104).
 
 ## Comparison of two or more survival curves
 
 ```{r}
 #| label: km-gender-
 
-m1 <- survfit(
-  Surv(lenfol, fstat) ~ gender,
-  data=whas_4)
+whas_gender_km_model <- survfit(
+  formula=Surv(lenfol, fstat) ~ gender,
+  data=whas1)
 
-autoplot(m1, conf.int=FALSE) +
-  ggtitle("Graph drawn by Steve Simon on 2025-03-10") +
-  xlab("Survival time (days)") +
-  ylab("Percentage survived") -> km_by_gender
+autoplot(whas_gender_km_model, conf.int=FALSE) +
+  labs(
+    x="Survival time (years)",
+    y="Percentage survived",
+    caption="Steve Simon, 2025-03-10, CC0") -> whas_gender_km_plot
 
-km_by_gender
+whas_gender_km_plot
 ```
+
+#### Comments on the code
+
+The survift function, described above, allows you to draw seperate curves for any categorical variable. Place that categorical variable on the right hand side of the tilde. With two curves, I decided to suppress the confidence limits with the argument conf.int=FALSE.
+
+#### Interpretation of the output
+
+The females (gender=1) have a slightly worse outcome than males because their curve is closer to the sad lower left corner of the graph. At two years, the survival probability is about 10% lower.
 
 ## Log rank test
 
@@ -205,45 +206,158 @@ km_by_gender
 #| label: log-rank
 
 survdiff(
-  Surv(lenfol, fstat) ~ gender,
-  data=whas_4) -> log_rank_gender
+  formula=Surv(lenfol, fstat) ~ gender,
+  data=whas1) -> whas_gender_logrank_model
 
-log_rank_gender
+whas_gender_logrank_model
 ```
 
-## Start part 3 ----------------------------------------------------------------
+#### Comments on the code
 
-## Cox proportional hazards test for gender
+The [survdiff function][ref-survdiff] takes a formula for a survival model and runs a logrank test. Other tests are also available for this function.
+
+[ref-survdiff]: https://stat.ethz.ch/R-manual/R-devel/library/survival/html/survdiff.html
+
+#### Interpretation of the output
+
+Males (gender=0) have fewer deaths than you would expect under the null hypothesis while females (gender=1) have more deaths than expected. This difference is statistically significant because the chi-squared statistic is much larger than its degrees of freedom and the p-value is small.
+
+## Cox model for gender
 
 ```{r}
 coxph(
-  Surv(lenfol, fstat) ~ gender,
-  data=whas_4) -> cox_gender
+  formula=Surv(lenfol, fstat) ~ gender,
+  data=whas1) -> whas_gender_cox_model
 
-cox_gender
+whas_gender_cox_model
 ```
 
-## Comparison of ages
+
+
+## Start part 3 ----------------------------------------------------------------
+
+## Histogram for age
+
+```{r}
+#| label: age-histogram
+
+whas1 |>
+  ggplot() +
+  aes(x=age) |>
+  geom_histogram(
+    color="black",
+    fill="white",
+    binwidth=1) -> whas_age_histogram_plot
+
+whas_age_histogram_plot
+```
+
+#### Interpretation of the output
+
+The data follows a roughly bell-shaped curve. This plot also helps use decide how to combine the data into decades. There are very few patients under the age of 40 or over the age of 90. So it makes sense to combine these with the 50 to 59 year and 80 to 89 year groups, respectively.
+
+## Create age_groups
+
+```{r}
+#| label: age-groups
+
+whas1 |>
+  mutate(age_group=case_when(
+    age < 50 ~ "50 years and under",
+    age < 60 ~ "60 to 69 years",
+    age < 70 ~ "70 to 79 years",
+    age >= 80 ~ "80 years and above")) -> whas2
+```
+
+## Draw Kaplan-Meier curves for age groups
+
+```{r}
+#| label: km-age
+
+whas_age_group_km_model <- survfit(
+  formula=Surv(lenfol, fstat) ~ age_group,
+  data=whas2)
+
+autoplot(whas_age_group_km_model, conf.int=FALSE) +
+  labs(
+    x="Survival time (years)",
+    y="Percentage survived",
+    caption="Steve Simon, 2026-03-10, CC0") -> km_by_age_group
+
+km_by_age_group
+```
+
+#### Comments on the code
+
+You cannot do a good visualization of Kaplan-Meier curves for age. Age is continuous and there are too many values. You can get a rough approximation of the trends with age by creating age groups and seeing if they follow a dose-response pattern.
+
+#### Interpretation of the output
+
+Here the groups are ordered as you would expect, with the youngest patients closest to the happy upper right corner and the oldest patients closest to the sad lower left corner.
+
+One concern is that the spacing between the age groups is about the same for 50 and under, 60 to 69, and 70 to 79. The last group, 80 and above seems to be quite a bit worse. This might be okay, but it might mean that you should consider a model that accelerates for the very old patients. This could be done with a quadratic term or with a spline.
+
+## Cox model for age
+
+```{r}
+whas1 |>
+  mutate(age_in_decades=age/10) -> whas2
+
+coxph(
+  formula=Surv(lenfol, fstat) ~ age_in_decades,
+  data=whas2) -> whas_age_cox_model
+
+whas_age_cox_model
+```
+
+#### Comments on the code
+
+Many times in these survival models, you get more interesting and interpretable results by changing the units of measure. In this example, I convert age in years to age in decades. A one unit change for the latter variable means a change in risk for a one unit (one decade) change in age.
+
+#### Interpretation of the output
+
+Each additional decade causes an almost doubling of the hazard function.
+
+## Comparison of ages by gender
 
 ```{r}
 #| label: comparison
+#| fig.width: 6
+#| fig.height: 1.5
 
-whas_4 |>
+whas2 |>
 	group_by(gender) |>
 	summarize(age_mean=mean(age)) -> table_mean_age_by_gender
 
 table_mean_age_by_gender
+
+whas2 |>
+  ggplot() +
+  aes(x=age, y=factor(gender)) +
+  geom_boxplot()
 ```
+
+#### Comments on the code
+
+Perhaps an imbalance in ages between males and females could account for the worse survival results among females. Let's look at some descriptive statistics and a boxplot to see.
+
+#### Interpretation of the output
+
+Both the means and the boxplot indicate that males (gender=0) tend to be younger than females.
 
 ## Test for gender, adjusting for age
 
 ```{r}
 coxph(
-  Surv(lenfol, fstat) ~ gender + age,
-  data=whas_4) -> cox_adjusted
+  formula=Surv(lenfol, fstat) ~ gender + age_in_decades,
+  data=whas2) -> whas_adjusted_cox_model
 
-cox_adjusted
+whas_adjusted_cox_model
 ```
+
+#### Interpretation of the output
+
+Although the unadjusted model showed a strong effect of gender, when you control for the age gap, the hazard ratio for gender becomes statistically non-significant. This indicates, perhaps, that the better survival probabilities for men can be accounted for by the earlier age that they entered into the study.
 
 ## Save everything
 
