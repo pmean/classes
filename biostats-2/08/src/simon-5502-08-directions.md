@@ -31,11 +31,9 @@ This assignment was written by Steve Simon on 2025-02-27 and is placed in the pu
 
 You will not be graded on this, but get in the habit of computing some simple statistics (mean, standard deviation, minimum, and maximum for continuous variables and counts and percentages for categorical variables) for the important variables in this dataset. Provide brief interpretations.
 
-Note: you do not need to examine the dates, as I did in the section "Check lenfol calculations".
-
 ## Question 2
 
-Exclude the observations where the patient died in the hospital (dstat=1). Create a factor for chf and make "No" the reference category. Then draw Kaplan-Meier curves for the two values of chf. The survival times are in the variable lenfol, with fstat indicating whether an event occurred or was censored. Interpret the two curves.
+Draw Kaplan-Meier curves for the two values of chf. The survival times are in the variable lenfol, with fstat indicating whether an event occurred or was censored. Interpret the two curves.
 
 ## Question 3
 
