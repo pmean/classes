@@ -116,7 +116,7 @@ whas_fstat_count_table
 
 #### Interpretation of the output
 
-There are enough events to support a reasonably complex model (215/15 = 14.3).
+There are enough events to support a reasonably complex model.
 
 ## Overall Kaplan-Meier curve
 
@@ -177,7 +177,7 @@ There are a reasonable number of events (fstat=1) among both males (111) and fem
 ## Comparison of two or more survival curves
 
 ```{r}
-#| label: km-gender-
+#| label: whgas-gender-km-plot
 
 whas_gender_km_model <- survfit(
   formula=Surv(lenfol, fstat) ~ gender,
@@ -282,9 +282,9 @@ autoplot(whas_age_group_km_model, conf.int=FALSE) +
   labs(
     x="Survival time (years)",
     y="Percentage survived",
-    caption="Steve Simon, 2026-03-10, CC0") -> km_by_age_group
+    caption="Steve Simon, 2026-03-10, CC0") -> whas_age_km_plot
 
-km_by_age_group
+whas_age_km_plot
 ```
 
 #### Comments on the code
@@ -327,14 +327,16 @@ Each additional decade causes an almost doubling of the hazard function.
 
 whas2 |>
 	group_by(gender) |>
-	summarize(age_mean=mean(age)) -> table_mean_age_by_gender
+	summarize(age_mean=mean(age)) -> whas_imbalance_mean_table
 
-table_mean_age_by_gender
+whas_imbalance_mean_table
 
 whas2 |>
   ggplot() +
   aes(x=age, y=factor(gender)) +
-  geom_boxplot()
+  geom_boxplot() -> whas_imbalance_box_plot
+
+whas_imbalance_box_plot
 ```
 
 #### Comments on the code

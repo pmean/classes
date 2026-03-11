@@ -6,11 +6,10 @@ format:
     embed-resources: true
 params:
   topic_01: "A simple example of survival data"
-  topic_02: "Overall Kaplan-Meier curve"
-  topic_03: "The log rank test"
-  topic_04: "The hazard function"
-  topic_05: "The Cox regression model"
-  topic_06: "Assumptions and data management"
+  topic_02: " Kaplan-Meier curve and the log rank test"
+  topic_03: "The hazard function"
+  topic_04: "The Cox regression model"
+  topic_05: "Assumptions and data management"
 editor: source
 ---
 
@@ -37,7 +36,6 @@ editor: source
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
-    -   `r params$topic_06`
 
 {{< include _b2-08-01.qmd >}}
 
@@ -81,17 +79,6 @@ editor: source
 
 {{< include _b2-08-05.qmd >}}
 
-## Live demo, `r params$topic_05`
-
-## Break #5
-
--   What you have learned
-    -   `r params$topic_05`
--   What's coming next
-    -   `r params$topic_06`
-
-{{< include _b2-08-06.qmd >}}
-
 ## Summary
 
 -   What you have learned
@@ -100,7 +87,6 @@ editor: source
     -   `r params$topic_03`
     -   `r params$topic_04`
     -   `r params$topic_05`
-    -   `r params$topic_06`
 
 <!---
       You have to put the title down 
