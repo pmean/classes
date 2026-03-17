@@ -15,11 +15,11 @@ editor: source
     -   Subscripts are missing
 -   Correct formula
     -   $X_i=\Sigma_i B_{ij}$
-      -   Where $B_{ij}$ is binary (0 or 1)
+        -   Where $B_{ij}$ is binary (0 or 1)
     -   $KR-20=\frac{1}{I-1}\big(1-\frac{\Sigma_i \hat{p}_i\hat{q}_i}{S^2}\big)$
-      -   where $S^2=\Sigma_i(X_i-\bar{X})^2$,
-      -   $\hat{p}_j=\Sigma_i B_{ij}$,
-      -   $\hat{q}_j=\Sigma_i (1-B_{ij})$
+        -   where $S^2=\Sigma_i(X_i-\bar{X})^2$,
+        -   $\hat{p}_j=\Sigma_i B_{ij}$,
+        -   $\hat{q}_j=\Sigma_i (1-B_{ij})$
     
 ::: notes
 
@@ -31,10 +31,10 @@ Another measure for reliability, Kuder-Richardson 20, is used for composite meas
 
 -   KR-20
     -   $\frac{1}{I-1}\big(1-\frac{\Sigma_i \hat{p}_i\hat{q}_i}{S^2}\big)$
-      -   $\Sigma_i \hat{p}_i\hat{q}_i$ is a theoretical minimum variation
-      -   $S^2$ is observed variation
-      -   $S^2 = \Sigma_i \hat{p}_i\hat{q}_i$ implies randomness
-      -   $S^2 > \Sigma_i \hat{p}_i\hat{q}_i$ implies internal consistency
+        -   $\Sigma_i \hat{p}_i\hat{q}_i$ is a theoretical minimum variation
+        -   $S^2$ is observed variation
+        -   $S^2 = \Sigma_i \hat{p}_i\hat{q}_i$ implies randomness
+        -   $S^2 > \Sigma_i \hat{p}_i\hat{q}_i$ implies internal consistency
   
 ::: notes
 
@@ -56,8 +56,8 @@ Keep in mind that if you have a different population, the minimum variation woul
 -   Correct formula
     -   $X_i=\Sigma_j X_{ij}$
     -   $\alpha=\frac{1}{I-1}\Big(1-\frac{\Sigma_i S_i^2}{S^2}\Big)$
-      -   where $S_i^2=\Sigma_j(X_{ij}-\bar{X}_j)^2$, and
-      -   $S^2=\Sigma_i(X_i-\bar{X})^2$, and
+        -   where $S_i^2=\Sigma_j(X_{ij}-\bar{X}_j)^2$, and
+        -   $S^2=\Sigma_i(X_i-\bar{X})^2$
 
 ::: notes
 
@@ -71,10 +71,10 @@ Again, your book does a poor job explaining this, and the notation is confusing.
 
 -   Cronbach's $\alpha$
     -   $\frac{1}{I-1}\Big(1-\frac{\Sigma_i S_i^2}{S^2}\Big)$
-      -   $\Sigma_i S_i^2$ is a theoretical minimum variation
-      -   $S^2$ is observed variation
-      -   $S^2 = \Sigma_i S_i^2$ implies randomness
-      -   $S^2 > \Sigma_i S_i^2$ implies internal consistency
+        -   $\Sigma_i S_i^2$ is a theoretical minimum variation
+        -   $S^2$ is observed variation
+        -   $S^2 = \Sigma_i S_i^2$ implies randomness
+        -   $S^2 > \Sigma_i S_i^2$ implies internal consistency
 -   Cronbach's alpha is NOT a measure of unidimensionality
 
 ::: notes
