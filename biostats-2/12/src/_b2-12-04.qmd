@@ -1,5 +1,5 @@
 ---
-title: "Mathematical formulation of the random slopes model"
+title: "Within cluster comparisons"
 format: 
   revealjs:
     slide-number: true
@@ -7,73 +7,120 @@ format:
 editor: source
 ---
 
+## Physical activity study, data dictionary
+
 ```{r}
-#| label: 12-04-setup
+#| label: 11-04-setup
 #| message: false
 #| warning: false
 
+library(glue)
 library(tidyverse)
+library(yaml)
+load("../data/demo11.RData")
 ```
-
-
-
-## Random slopes model, 1
-
--   Same notation for the time and outcome variables
--   $Y_{ij},\ i=1,...,n;\ j=1,...,k$
-    -   n subjects, k time points
--   $t_j$, time of jth measurement
-
-::: notes
-The random slopes model has the same basic notation for the time and outcome variables. The outcome variable has two subscripts on for the individual patient and one for each time measurement.
-:::
-
-## Random slopes model, 2
-
--   $Y_{ij}=\beta_0+u_{0i}+\beta_1 t_j+u_{1i} t_j+\epsilon_{ij}$
-    -   $\beta_0$ and $\beta_1$ are unknown constants
-    -   $u_{0i}$, $u_{1i}$, and $\epsilon_{ij}$ are normally distributed
-        -   $SD(u_{0i})=\sigma_{intercept}$
-        -   $SD(u_{1i})=\sigma_{slope}$
-        -   $SD(\epsilon_{ij})=\sigma_{error}$
-
-::: notes
-There are three sources of random variation in the random slopes model, $u_{0i}$, $u_{1i}$, and $\epsilon_{ij}$.
-:::
-
-## Random slopes illustrated, 1
 
 ```{r}
-#| fig.width: 2.667
+#| label: 11-04-pa-dictionary
 
-t <- 0:3
-e1 <- c( 1, -3,  3, -1)
-e <- c(e1, rev(e1), e1)
-g <- rep(1:3, each=4)
-b0 <- rep(c(80, 20, 40), each=4)
-b1 <- rep(c( 0, 25,  5), each=4)
-data.frame(
-	  t=rep(t, 3), 
-	  g=g,
-	  y=b0 + b1*t + e) -> d
-c("-  10", "+ 15", "- 5") %>%
-  rep(each=4) %>%
-  paste0("i = ", d$g, ", Slope = 10 ", .) -> d$h
-d %>%
-	ggplot(aes(t,y)) +
-	  scale_y_continuous(breaks=(0:11)*10) +
-	  geom_text(label=g) +
-	  geom_smooth(
-	  	method="lm", 
-	  	se=FALSE,
-	  	ltype="dotted",
-	  	color="black")-> g1
-g1 + expand_limits(y=c(0, 110))
+f1 <- "https://raw.githubusercontent.com/pmean"
+f2 <- "data/refs/heads/main/files"
+f3 <- "physical-activity.yaml"
+
+dd <- read_yaml(glue("{f1}/{f2}/{f3}"))
 ```
 
-## Random slopes illustrated, 2
+`r dd$description`
+
+## Counts by school (partial listing)
 
 ```{r}
-#| fig.width: 7
-g1 + facet_grid(~ h) + expand_limits(y=0)
+#| label: 11-04-counts
+
+pa_counts[1:10, ]
 ```
+
+## Boxplot of change scores
+
+```{r}
+#| label: 11-04-pa-box
+#| fig.height: 1.5
+#| fig.width: 6
+
+pa_box
+```
+
+## Mixed model, 1
+
+```{r}
+#| label: 11-04-mixed
+#| echo: true
+
+library(lme4)
+
+m2 <- lmer(
+  change_score ~ Group_allocation + (1 | School),
+  data=pa_1)
+```
+
+::: notes
+
+Information about this code is in simon-5502-11-demo
+
+:::
+
+## Mixed model, 2
+
+```{}
+Linear mixed model fit by REML ['lmerMod']
+Formula: change_score ~ Group_allocation + (1 | School)
+   Data: pa_1
+
+REML criterion at convergence: 5013.3
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-4.6825 -0.5667  0.0021  0.5684  4.5686 
+```
+
+-   (You can ignore this part of the output)
+
+## Mixed model, 3
+
+```{}
+Random effects:
+ Groups   Name        Variance Std.Dev.
+ School   (Intercept) 1.590    1.261   
+ Residual             6.578    2.565   
+Number of obs: 1043, groups:  School, 57
+```
+
+-   $\sigma_{between}$ = 1.261
+-   $\sigma_{within}$ = 2.565
+-   ICC = 1.590/(1.590+6.578)
+    -   = `r round(1.590/(1.590+6.578), 2)`
+
+## Mixed model, 4
+
+```{}
+Fixed effects:
+                             Estimate Std. Error t value
+(Intercept)                   1.34079    0.27058   4.955
+Group_allocationIntervention -0.01049    0.38135  -0.028
+```
+
+-   $\bar{X}_{Intervention}-\bar{X}_{Control}$ = -0.01
+    -   t is close to zero, accept H0
+
+## Mixed model, 5
+
+```{}
+Correlation of Fixed Effects:
+            (Intr)
+Grp_llctnIn -0.710
+```
+
+-   (You can ignore this part of the output)
+
+
+

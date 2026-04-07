@@ -5,16 +5,18 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "Mathematical formulation of random intercepts model"
-  topic_02: "Description of HIV-intervention data"
-  topic_03: "Random intercepts model using hiv-intervention data"
-  topic_04: "Mathematical formulation of random slopes model"
-  topic_05: "Assumptions and complications"
-  topic_06: "Sample size justification"
+  topic_01: "Hierarchical models"
+  topic_02: "Hypothetical litter weights"
+  topic_03: "Cluster randomized trials"
+  topic_04: "Within cluster comparisons"
+  topic_05: "Random intercepts model"
+  topic_06: "Description of HIV-intervention data"
+  topic_07: "HIV-intervention data"
+  topic_08: "Random slopes model"
+  topic_09: "Assumptions and complications"
+  topic_10: "Sample size justification"
 editor: source
 ---
-
-## Topics to be covered
 
 ```{r}
 # Preliminaries, if needed
@@ -23,13 +25,18 @@ editor: source
 # params is populated from the yaml header.
 ```
 
--   What you will learn
-    -   `r params$topic_01`
-    -   `r params$topic_02`
-    -   `r params$topic_03`
-    -   `r params$topic_04`
-    -   `r params$topic_05`
-    -   `r params$topic_06`
+## Topics to be covered {.smaller}
+
+-   `r params$topic_01`
+-   `r params$topic_02`
+-   `r params$topic_03`
+-   `r params$topic_04`
+-   `r params$topic_05`
+-   `r params$topic_06`
+-   `r params$topic_07`
+-   `r params$topic_08`
+-   `r params$topic_09`
+-   `r params$topic_10`
 
 {{< include _b2-12-01.qmd >}}
 
@@ -78,15 +85,54 @@ editor: source
 
 {{< include _b2-12-06.qmd >}}
 
-## Summary
+## Break #6
 
 -   What you have learned
-    -   `r params$topic_01`
-    -   `r params$topic_02`
-    -   `r params$topic_03`
-    -   `r params$topic_04`
-    -   `r params$topic_05`
     -   `r params$topic_06`
+-   What's coming next
+    -   `r params$topic_07`
+
+{{< include _b2-12-07.qmd >}}
+
+## Break #7
+
+-   What you have learned
+    -   `r params$topic_07`
+-   What's coming next
+    -   `r params$topic_08`
+
+{{< include _b2-12-08.qmd >}}
+
+## Break #8
+
+-   What you have learned
+    -   `r params$topic_08`
+-   What's coming next
+    -   `r params$topic_09`
+
+{{< include _b2-12-09.qmd >}}
+
+## Break #9
+
+-   What you have learned
+    -   `r params$topic_09`
+-   What's coming next
+    -   `r params$topic_10`
+
+{{< include _b2-12-10.qmd >}}
+
+## Summary {.smaller}
+
+-   `r params$topic_01`
+-   `r params$topic_02`
+-   `r params$topic_03`
+-   `r params$topic_04`
+-   `r params$topic_05`
+-   `r params$topic_06`
+-   `r params$topic_07`
+-   `r params$topic_08`
+-   `r params$topic_09`
+-   `r params$topic_10`
 
 <!---
       You have to put the title down 
@@ -96,4 +142,5 @@ editor: source
 
 ---  
 title: "simon-5502-12-slides"
+subtitle: "This class will start at 1pm"
 ---
