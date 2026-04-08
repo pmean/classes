@@ -1,0 +1,191 @@
+---
+title: "To be determined"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## What is a p-value?
+
+-   p-value = $P[\bar{X}_1-\bar{X}_2>t \times se \ | \ \mu_1-\mu_2=0 ]$
+    -   Probability of sample results OR a result more extreme, given that $H_0$ is true
+
+::: notes
+
+Here's the formula for the p-value. It changes depending on what your hypothesis is, but this formula gets the general idea across. Don't worry for now about details like the absolute value sign and the "2 times" in front of the probability.
+
+In English, this formula is telling you that the p-value is the probability that you observe the sample results or a result more extreme, assuming that the null hypothesis is true.
+
+The p-value is, by far, the most popular statistic reported in research studies. In spite of its popularity, the p-value is quite controversial. One journal, Basic and Applied Social Psychology, banned the use of p-values in its journal.
+
+Fricker (2019) American Statistician, 73(S1): 374-384.
+
+:::
+
+## Alternate explanations of the p-value
+
+-   The p-value is a measure of consistency between the data and the null hypothesis
+    -   Small value implies inconsistent
+    -   Large value implies consistent
+-   The p-value as a measure of evidence against the null hypothesis
+    -   Small value implies lots of evidence
+    -   Large value implies little or no evidence
+
+::: notes
+
+There are two interpretations that I feel are more practical. You can think of the p-value as a measure of consistency between the data and the null hypothesis. A small value implies inconsistency. It is very unlikely that you will get a value like you've seen in your sample or a value more extreme under the assumption that the null hypothesis is true. So you should reject that assumption.
+
+On the other hand if the sample results or anything more extreme has a high probability under the assumption that the null hypothesis is true, then you should feel comfortable accepting that assumption.
+
+I have argued that the p-value is a measure of evidence. Some have called it a poor measure of evidence, but I stand by my interpretation.
+
+If the p-value is small, you have lots of evidence against the null hypothesis. If the p-value is large, you have little or no evidence against the null hypothesis.
+
+:::
+
+## What the p-value is NOT (1 of 2)
+
+-   Not the probability that the null hypothesis is true
+    -   Don't reverse the condition
+    -   p-value $=P\Big[\bar{X}_1-\bar{X}_2>t \times se \ | \ \mu_1-\mu_2=0 \Big]$
+    -   p-value $\ne P\Big[\mu_1-\mu_2=0 \ | \ \bar{X}_1-\bar{X}_2>t \times se \Big]$
+
+::: notes
+
+The p-value is a conditional probability, and you always need to be careful about conditional probabilities. It is a probability about a sample result given an assumption about the population result. It is not a probability about a population result given the sample result. There are two reasons for this. 
+
+First, you can't reorder a conditional probability. The probability of A given B is almost never the same as the probability of B given A. The example I give for this is the probability of being happy given that you are rich. That's a pretty high number, I hope you'll agree. There are a few rich people who lead miserable lives, but from everything I've seen, most rich people are pretty darn happy. The reverse of this is the probability of being rich given that you are happy. That number is much smaller. Because although I believe that money can buy happiness, a lot of other things can also buy happiness just as well. It's not quite as easy to find happiness if you're poor, but somehow, a lot of poor people find a way to be happy anyway.
+
+A second reason that you can't reverse the order is that you cannot make a probability statement about population parameters. They are numbers computed from the entire population, and are fixed values. You cannot make a probability statement about something that has no sampling error.
+
+:::
+
+## Pop quiz, revisited
+
+-   A research paper computes a p-value of 0.45. How would you interpret this p-value?
+    -   Strong evidence for the null hypothesis
+    -   Strong evidence for the alternative hypothesis
+    -   Little or no evidence for the null hypothesis
+    -   Little or no evidence for the alternative hypothesis
+    -   More than one answer above is correct.
+    -   I do not know the answer.
+  
+::: notes
+
+Here's that pop quiz again. Take a look at it quickly. Note that the p-value is of evidence against the null hypothesis. So each of the first four responses is wrong.
+
+I wrote this question quickly, so shame, shame on me. But I've reproduced the example because it illustrates an important point.
+
+:::
+
+## What the p-value is not (2 of 2)
+
+-   Not a measure FOR either hypothesis
+    -   Little evidence against the null $\ne$ lots of evidence for the null
+-   Not very informative if it is large
+    -   Need a power calculation, OR
+    -   Narrow confidence interval
+-   Not very helpful for huge data sets
+
+::: notes
+
+The p-value is not a measure for either hypothesis. It is always a measure against a particular hypothesis. Now when the p-value is small, you can make a strong statement. We have lots of evidence against the null hypothesis. That translates into lots of evidence in favor of the alternative hypothesis.
+
+When the p-value is large, however, you are in a quandary. Little or no evidence against the null hypothesis is not the same as lots of evidence for the null hypothesis.
+
+It's possible to have little or no evidence against the null and also have little or no evidence against the alternative. This happens whenever you have a really small sample size combined with a lot of noise.
+
+You can't prove a negative, so the saying goes. Well, you can prove a negative, but you have to work harder at it. A large p-value by itself is not persuasive, but if you combine it with a power calculation done prior to data collection, that's pretty good evidence in support of the null hypothesis.
+
+You could also combine a large p-value with a narrow confidence interval to support the null hypothesis. I'll talk about that more in just a bit.
+
+In general, the p-value is not very helpful for large samples. We're seeing this more and more. Just about everything pops up as statistically significant with these huge data sets, and you can't use the p-value to separate the important stuff from the trivial stuff. You need to look instead at the magnitude of the sample estimates and calculate how much uncertainty you can remove in your future predictions.
+
+:::
+
+## p-hacking (1 of 2)
+
+![xkcd cartoon about jelly beans and cancer](../images/significant.png)
+
+::: notes
+
+This cartoon is impossible to read, but you can find it on the Canvas site or in the readings. Here's a brief run down.
+
+In the first panel, a woman runs up to a man and shouts: Jelly beans cause acne!
+
+The man replies : Scientists! Investigate!
+
+In the second panel, one scientist, holding a clipboard announces: We found no link between jelly beans and acne (p > 0.05).
+
+In the third panel, the woman says: I hear it's only a certain color that causes it.
+
+In a bunch of small panels, the scientist with a clipboard reports: We found no link between purple jelly beans and acne (p > 0.05).
+
+We found no link between brown jelly beans and acne (p > 0.05).
+
+We found no link between pink jelly beans and acne (p > 0.05).
+
+The same for blue, teal, salmon, red, and so forth. And then...
+
+We found a link between green jelly beans and acne (p < 0.05). An off-screen voice goes: Whoa!
+
+The next six panels show
+
+We found no link between mauve jelly beans and acne (p > 0.05).
+
+We found no link between beige jelly beans and acne (p > 0.05).
+
+We found no link between lilac jelly beans and acne (p > 0.05).
+
+We found no link between black jelly beans and acne (p > 0.05).
+
+We found no link between peach jelly beans and acne (p > 0.05).
+
+We found no link between orange jelly beans and acne (p > 0.05).
+
+At the bottom is a newspaper with the headline: Green Jelly Beans Linked To Acne! 95% Confidence. Only 5% chance of coincidence!
+
+If you are interested in a transcript and a detailed explanation, https://www.explainxkcd.com/wiki/index.php/882:_Significant
+
+:::
+
+  
+## p-hacking (2 of 2)
+
+-   Abuse of the hypothesis testing framework.
+    -   Run multiple tests on the same outcome
+    -   Test multiple outcome measures
+    -   Remove outliers and retest
+-   Defenses against p-hacking
+    -   Bonferroni
+    -   Primary versus secondary
+    -   Published protocol
+
+::: notes
+
+This is an example of p-hacking. You change the testing process to increase the probability of a Type I error (Rejecting the null hypothesis when the null hypothesis is true). This increases the chance of getting a positive result, which you may find desirable, but only by increasing the probability of a false positive result.
+
+Some examples of p-hacking. Run multiple tests on the same outcome measure. Start with the regular t-test, include the t-test that allows for unequal variances, and run two different non-parametric tests, the Wilcoxon-Mann-Whitney test and the sign test. Choose the test with the smallest p-value.
+
+You also might consider multiple outcome measures. Compare the mortality rate, the relapse rate, and the re-hospitalization rate. If any of the three is statistically significant, claim victory.
+
+You could also do this with longitudinal data. Compare pain relief at one hour and at four hours. If you see a difference at one hour, claim that your new medication is faster acting. If you see a difference at four hours, claim that your medication is longer lasting.
+
+You might run a test with the full data set and then with an outlier or two removed. Report for the data set that has the smaller p-value and pretend that this was your original choice all along.
+
+These are only a few of the choices. I don't want to say more because I feel like I'm the devil tempting you.
+
+There are two defenses against p-hacking. Well three if you count being honest. But what I mean is there are two things that you can do that will satisfy others that you are playing fairly.
+
+First, you can adjust your decision rule by using a Bonferroni correction. Bonferroni divides alpha by the number of tests. If you are using three different outcome measures, compare your p-value of 0.0133 instead of 0.05.
+
+Second, you can designate one of your outcome measures as primary. If you achieve statistical significance on your primary outcome, great. The remaining outcome measures are secondary. If you achieve statistical significance on a secondary outcome meausure only, report the results as provisional and requiring independent replication.
+
+You should publish a detailed protocol, either through a clinical trial registry, or now there are journals which accept publications of the research protocols before any data are collected. It's a paper with literature review and methods section, but no results and no discussion section.
+
+Now p-hacking has happened because some people have a skewed view of research. They are interested in using research to promote their own agenda rather than using research to uncover the truth. Perfectly understandable if you are a drug company, but you as an independent researcher should never try to skew the data. It hurts you and it hurts your patients. You need to adopt a disinterested posture in that you are glad when the research points in one direction and you are glad when it points in the opposite direction, because either way, you know more than you did before and you can treat your patients better because of this knowledge.
+
+:::
+

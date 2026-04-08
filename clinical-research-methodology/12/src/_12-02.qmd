@@ -1,0 +1,104 @@
+---
+title: "Type I and Type II errors"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Directional alternatives
+
+-   Used when changes in opposite direction are
+    -   Impossible
+    -   Irrelevant/equivalent to no change
+-   $H_0 \ \mu_1-\mu_2 \le 0$ 
+-   $H_a \ \mu_1-\mu_2 \gt 0$ 
+-   Reject $H_0$ if $\bar{X}_1-\bar{X}_2 > t \times se$
+-   Must be stated a priori
+    -   "Wrong" direction now interesting
+    -   Switch for better power
+
+::: notes
+
+It is a bit unusual, but there are situations where changes in the "wrong" direction are considered impossible or irrelevant or equivalent to no change.
+
+Example: in a study of a robotic object hitting game, patients with Parkinson's disease were compared to age matched controls. Here the first group is Parkinson's and the second group is the control.
+
+The null hypothesis was that the score was equivalent between the two groups. The alternative was that the score would be worse in the Parkinson's group. An improved score for the Parkinson's group would not be interesting because there is no scientifically reason to believe that having a condition like Parkinson's would provide a benefit in a test of motor skills. The mean scores for the control group and the Parkinson's group were 8.40 and 4.85 respectively. The difference in the sample means was 3.65 which was sufficiently large to reject the null hypothesis. The game was intended to be a test of motor skills and showing a difference in the Parkinson's group would demonstrate validity of this measure. Other tests involved just the Parkinson's disease patients on and off a drug, levodopa, that can relieve some of the symptoms of Parkinson's disease. The authors concluded that there was a "dynamic interaction between cognitive and kinematic skills while the PD patients performed a virtual reality game."
+
+Consider the situation where you are testing a new drug versus placebo. A drug could be worse than a placebo. It happens all the time. But there is no reason to test for this. You would not adopt a new drug if it were equivalent to placebo and you would not adopt a new drug if it were inferior to placebo. So your null hypothesis is that the new drug is not better than placebo, meaning equal to placebo or worse than the placebo.
+
+The actual orientation of a directional hypothesis depends on whether a larger value of the outcome measure is good or a smaller value is good. So for an outcome like pain, pain is like golf. A lower score on a pain scale is good. It also depends on which group gets labelled with a 1 and which gets a 2. And it depends on whether you consider a good effect to be impossible/irrelevant or a bad effect to be impossible/irrelevant.
+
+Let's assume that you are testing a new pain relief drug versus placebo, that the placebo is group 1 and that higher values of pain with the new drug are irrelevant because that leads to the same decision as equivalent values of pain.
+
+In this case, mu1-mu2 a measure where positive values are good and worth reporting, and where negative values are bad and lead to the same decision as zero values. So the null hypothesis uses a less than or equal to sign and the alternative hypothesis uses a greater than sign.
+
+In this setting, you would compute the sample average pain levels in the placebo minus the sample average pain in the treatment group. If that difference was large and positive, you would reject the null hypothesis. How large? Typically you would compare this difference in sample means to a percentile from the t-distribution times the standard error for the difference in sample means.
+
+You must specify a directional alternative prior to data collection, and once you commit to a directional alternative, you can't back out. You run the risk of being accused of fraud. The concern is that a researcher might start with the directional alternative because it provide a bit of a boost to the power of a study. But when the results come back and the results are pointing in the opposite direction, all of a sudden things change. The researcher now thinks that the "wrong" direction is no interesting and relevant and comes up with all sorts of reasons why this finding, which was not anticipated prior to data collection, is now so obvious and worth pursuing.
+
+The opposite type of fraud can occur when you get a p-value for a two-sided alternative and it is just a bit too large. You want to shrink the p-value, and switching to a directional alternative (in the direction that you observed, of course) is what you really wanted all along. The switch cuts your p-value in half and now you have a statistically significant result.
+
+:::
+
+## Passive smoking controversy
+
+-   EPA meta-analysis of passive smoking
+-   Criticized for using a one-sided hypothesis
+    -   Samet JM, Burke TA. Turning science into junk: the tobacco industry and passive smoking. Am J Public Health. 2001;91(11):1742–1744. Available in [html format](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1446866/) or [PDF format](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1446866/pdf/0911742.pdf).
+  
+::: notes
+
+Consider a study of the effects of second-hand smoke. These studies always use directional alternatives. From what we know about active cigarette smoking is that it increases the risk of cancer and cardiovascular disease. So there is no reason to expect that passive smoke exposure should be any different than active smoking. Maybe it is less toxic, because of dilution and because the smoking coming off a cigarette from one end is different than the smoke coming off the cigarette from the other end. Fair enough, but there is not reason to believe that things are so different that all of a sudden the smoke becomes protective. 
+
+Since there is no scientific basis for a protective effect of passive smoking, it makes sense to test that passive smoking has no effect versus it having an increase in bad outcomes compared to the control group. So your null hypothesis is "not harmful" and your alternative is "harmful". The beneficial hypothesis is lumped into the null hypothesis, but no one would dare claim that passive smoking was protective.
+
+Actually, the tobacco companies did complain that the use of a directional alternative violated the norms of science. They won in a court battle in North Carolina, but lost on appeal.
+
+As another aside, I was involved with prayer study. We planned this study using a one-sided hypothesis (remote prayer has a positive effect on health). The Institutional Review Board suggested changing this to a two-sided hypothesis (remote prayer has either a positive or a negative effect on health). Thankfully, we did not observe an outcome in the opposite tail as that would have been very difficult to explain.
+
+:::
+
+## Hypothesis in English instead of Greek
+
+-   Only statisticians like Greek letters
+    -   Translate to simple text
+-   For two group comparisons
+    -   Safer, more effective
+-   For regression models
+    -   Trend, association
+  
+::: notes
+
+As a researcher, you should always think about your hypothesis in terms of population parameters, but your writing should use text. Translate the Greek letters to English.
+
+If you have a hypothesis that compares two groups, look for comparative words like "safer" or "more effective". If your hypothesis involves some type of regression model, you should consider terms like "trend" or "association".
+
+:::
+
+## Example of text hypotheses (1 of 1)
+
+-   "... the objective of this 78-week randomised, placebo-controlled study was to determine whether treatment with nilvadipine sustained-release 8 mg, once a day, was effective and safe in slowing the rate of cognitive decline in patients with mild to moderate Alzheimer disease."
+    -   Lawlor B, Segurado R, Kennelly S, et al. Nilvadipine in mild to moderate Alzheimer disease: A randomised controlled trial. PLoS Med. 2018; 15(9): e1002660. DOI: 10.1371/journal.pmed.1002660
+  
+::: notes
+
+Here's an example of a two group comparison. One group gets nilvadipine and the other group gets a placebo. Safety was measured as the proportion of patients who experienced an adverse event. The researchers also measured the proportion of patients who experienced a serious adverse event. So the Greek hypothesis would involve pi's. 
+
+Effectiveness was measured using the Alzheimer's Disease Assessment Scale Cognitive Subscale-12 and the Clinical Dementia Rating Scale sum of boxes. Both of these outcome measurements are continuous, so the Greek hypothesis would involve mu's.
+
+:::
+
+## Example of text hypotheses (2 of 2)
+
+-   "... we investigated trends in BCC incidence over a span of 20 years and the associations between incident BCC and risk factors in a total population of 140,171 participants from 2 large US-based cohort studies: women in the Nurses' Health Study (NHS; 1986–2006) and men in the Health Professionals' Follow-up Study (HPFS; 1988–2006)."
+    -   Wu S, Han J, Li WQ, Li T, Qureshi AA. Basal-cell carcinoma incidence and associated risk factors in U.S. women and men. Am J Epidemiol. 2013; 178(6): 890–897. DOI: 10.1093/aje/kwt073
+  
+::: notes
+
+This study used a regression model, a Cox regression model, to study trends and associations, so the Greek hypotheses would involve beta's.
+
+:::
+
