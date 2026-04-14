@@ -7,8 +7,8 @@ format:
 params:
   topic_01: "Hierarchical models"
   topic_02: "Hypothetical litter weights"
-  topic_03: "Cluster randomized trials"
-  topic_04: "Within cluster comparisons"
+  topic_03: "Within cluster comparisons"
+  topic_04: "Cluster randomized trials"
   topic_05: "Random intercepts model"
   topic_06: "Description of HIV-intervention data"
   topic_07: "HIV-intervention data"
@@ -58,6 +58,12 @@ editor: source
     
 {{< include _b2-12-03.qmd >}}
 
+## Live demo, part 1
+
+Refer to [simon-5502-12-demo.qmd][ref-simon-nodate].
+
+[ref-simon-nodate]: https://github.com/pmean/classes/blob/master/biostats-2/12/src/simon-5502-12-demo.qmd
+
 ## Break #3
 
 -   What you have learned
@@ -66,6 +72,10 @@ editor: source
     -   `r params$topic_04`
     
 {{< include _b2-12-04.qmd >}}
+
+## Live demo, part 2
+
+Refer to [simon-5502-12-demo.qmd][ref-simon-nodate].
 
 ## Break #4
 
@@ -94,6 +104,10 @@ editor: source
 
 {{< include _b2-12-07.qmd >}}
 
+## Live demo, part 3
+
+Refer to [simon-5502-12-demo.qmd][ref-simon-nodate].
+
 ## Break #7
 
 -   What you have learned
@@ -111,6 +125,10 @@ editor: source
     -   `r params$topic_09`
 
 {{< include _b2-12-09.qmd >}}
+
+## Live demo, part 4
+
+Refer to [simon-5502-12-demo.qmd][ref-simon-nodate].
 
 ## Break #9
 

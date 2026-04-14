@@ -8,7 +8,7 @@ editor: source
 ---
 
 ```{r}
-#| label: 12-06-setup
+#| label: 12-10-setup
 #| message: false
 #| warning: false
 
@@ -65,8 +65,8 @@ The researchers did some sample size calculations for a between cluster comparis
 ## Sample size estimate without clustering
 
 ```{r}
+#| label: 12-10-sample-size-1
 #| echo: true
-#| label: sample-size-1
 
 delta <- 4
 sd_independence <- 11.1
@@ -86,55 +86,23 @@ sample_size_1
 ## Sample size estimate with clustering, 4 animals per cage
 
 ```{r}
+#| label: 12-10-sample-size-2
 #| echo: true
-#| label: sample-size-2
 
-deff <- 1+(4-1)*0.049
-sd_correlated <- sd_independence * sqrt(deff)
+deff_4 <- 1+(4-1)*0.049
+deff_4
 
-power.t.test(
-	n=NULL, 
-	delta=4,
-	sd=sd_correlated,
-	sig.level=0.05,
-	power=0.8,
-	type="two.sample") |> 
-	tidy()
+sample_size_1$n * deff_4
 ```
-
-
 
 ## Sample size estimate with clustering, 8 animals per cage
 
 ```{r}
+#| label: 12-10-sample-size-3
 #| echo: true
-#| label: sample-size-3
 
-deff <- 1+(8-1)*0.049
-sd_correlated <- sd_independence * sqrt(deff)
+deff_8 <- 1+(8-1)*0.049
+deff_8
 
-power.t.test(
-	n=NULL, 
-	delta=4,
-	sd=sd_correlated,
-	sig.level=0.05,
-	power=0.8,
-	type="two.sample") |> 
-	tidy()
-```
-
-## You could also just multiply the sample size by the design effect
-
-```{r}
-#| echo: true
-#| label: sample-size-4
-
-sample_size_1$n * (1+(4-1)*0.049)
-```
-
-```{r}
-#| echo: true
-#| label: sample-size-8
-
-sample_size_1$n * (1+(8-1)*0.049)
+sample_size_1$n * deff_8
 ```

@@ -8,14 +8,14 @@ editor: source
 ---
 
 ```{r}
-#| label: 12-05-setup
+#| label: 12-09-setup
 #| message: false
 #| warning: false
 
 library(lme4)
 library(tidyverse)
 
-load("../data/demo_12.RData")
+load("../data/module12.RData")
 ```
 
 
@@ -42,12 +42,16 @@ The random intercepts and random slopes model assumes that the relationship betw
 ## Linearity check
 
 ```{r}
+#| label: 12-09-g1
+
 plot_4
 ```
 
 ## Normality check within clusters
 
 ```{r}
+#| label: 12-09-g2
+
 plot_5
 ```
 
@@ -58,6 +62,8 @@ The residuals represent the deviations of individual time measurements from the 
 ## Normality check for random intercepts
 
 ```{r}
+#| label: 12-09-g3
+
 plot_6
 ```
 
@@ -90,6 +96,3 @@ Covariates that change over time are called time varying covariates or within su
 There is one important distinction between time constant and time varying covariates. The latter are much better at removing variation from your outcome, and can greatly improve your power and precision.
 
 :::
-
-## Live demo, checking assumptions
-

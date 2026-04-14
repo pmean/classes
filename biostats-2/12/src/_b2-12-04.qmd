@@ -10,18 +10,19 @@ editor: source
 ## Physical activity study, data dictionary
 
 ```{r}
-#| label: 11-04-setup
+#| label: 12-04-setup
 #| message: false
 #| warning: false
 
 library(glue)
 library(tidyverse)
 library(yaml)
-load("../data/demo11.RData")
+
+load("../data/module12.RData")
 ```
 
 ```{r}
-#| label: 11-04-pa-dictionary
+#| label: 12-04-pa-dictionary
 
 f1 <- "https://raw.githubusercontent.com/pmean"
 f2 <- "data/refs/heads/main/files"
@@ -35,7 +36,7 @@ dd <- read_yaml(glue("{f1}/{f2}/{f3}"))
 ## Counts by school (partial listing)
 
 ```{r}
-#| label: 11-04-counts
+#| label: 12-04-counts
 
 pa_counts[1:10, ]
 ```
@@ -43,7 +44,7 @@ pa_counts[1:10, ]
 ## Boxplot of change scores
 
 ```{r}
-#| label: 11-04-pa-box
+#| label: 12-04-pa-box
 #| fig.height: 1.5
 #| fig.width: 6
 
@@ -53,7 +54,7 @@ pa_box
 ## Mixed model, 1
 
 ```{r}
-#| label: 11-04-mixed
+#| label: 12-04-mixed
 #| echo: true
 
 library(lme4)
@@ -65,7 +66,7 @@ m2 <- lmer(
 
 ::: notes
 
-Information about this code is in simon-5502-11-demo
+Information about this code is in simon-5502-12-demo
 
 :::
 

@@ -58,7 +58,7 @@ The correlation of two measurements on the same patient is comparable to a measu
 ## Random intercepts illustrated, 1
 
 ```{r}
-#| label: 12-01-plot-1
+#| label: 12-05-plot-1
 #| fig.width: 2.667
 
 library(tidyverse)
@@ -96,7 +96,7 @@ This graph shows a single line. It does reasonably well, but there is a fair amo
 ## Random intercepts illustrated, 2
 
 ```{r}
-#| label: 12-01-plot-2
+#| label: 12-05-plot-2
 #| fig.width: 7
 g1 + facet_grid(~lab)
 
@@ -111,13 +111,13 @@ If you fit a separate intercept for each line, you get a lot closer to the data.
 ## Illustration of random intercepts with real data
 
 ```{r}
-#| label: 12-01-setup
+#| label: 12-05-setup
 #| message: false
 #| warning: false
 
 library(tidyverse)
 
-load("../data/demo-12.RData")
+load("../data/module12.RData")
 
 plot_3
 ```

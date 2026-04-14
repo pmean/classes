@@ -29,18 +29,19 @@ editor: source
 ## Arthritis treatment, data dictionary
 
 ```{r}
-#| label: 11-03-setup
+#| label: 12-03-setup
 #| message: false
 #| warning: false
 
 library(glue)
 library(tidyverse)
 library(yaml)
-load("../data/demo11.RData")
+
+load("../data/module12.RData")
 ```
 
 ```{r}
-#| label: 11-03-pa-dictionary
+#| label: 12-03-pa-dictionary
 
 f1 <- "https://raw.githubusercontent.com/pmean"
 f2 <- "data/refs/heads/main/files"
@@ -54,7 +55,7 @@ This data set shows an experiment where ten subjects with osteoarthritis were ev
 ## Glimpse of original data
 
 ```{r}
-#| label: 11-03-oa
+#| label: 12-03-oa
 
 glimpse(oa)
 ```
@@ -62,7 +63,7 @@ glimpse(oa)
 ## Glimpse of restructured data
 
 ```{r}
-#| label: 11-03-oa-2
+#| label: 12-03-oa-2
 
 glimpse(oa_2)
 ```
@@ -70,7 +71,7 @@ glimpse(oa_2)
 ## Descriptive statistics
 
 ```{r}
-#| label: 11-03-descriptives
+#| label: 12-03-descriptives
 
 oa_means
 ```
@@ -78,7 +79,7 @@ oa_means
 ## Plot by subject
 
 ```{r}
-#| label: 11-03-plot
+#| label: 12-03-plot
 
 oa_plot
 ```
@@ -86,7 +87,7 @@ oa_plot
 ## Mixed model, 1
 
 ```{r}
-#| label: 11-03-mixed
+#| label: 12-03-mixed
 #| echo: true
 
 library(lme4)
@@ -98,7 +99,7 @@ m1 <- lmer(
 
 ::: notes
 
-Information about this code is in simon-5502-11-demo
+Information about this code is in simon-5502-12-demo
 
 :::
 

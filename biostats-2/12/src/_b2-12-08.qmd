@@ -8,14 +8,12 @@ editor: source
 ---
 
 ```{r}
-#| label: 12-04-setup
+#| label: 12-08-setup
 #| message: false
 #| warning: false
 
 library(tidyverse)
 ```
-
-
 
 ## Random slopes model, 1
 
@@ -44,6 +42,7 @@ There are three sources of random variation in the random slopes model, $u_{0i}$
 ## Random slopes illustrated, 1
 
 ```{r}
+#| label: 12-08-g1
 #| fig.width: 2.667
 
 t <- 0:3
@@ -74,6 +73,8 @@ g1 + expand_limits(y=c(0, 110))
 ## Random slopes illustrated, 2
 
 ```{r}
+#| label: 12-08-g2
 #| fig.width: 7
+
 g1 + facet_grid(~ h) + expand_limits(y=0)
 ```

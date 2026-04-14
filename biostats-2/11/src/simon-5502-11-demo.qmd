@@ -157,7 +157,7 @@ summary(m1)
 
 #### Comments on the code
 
-The [lmer][ref-lmer-nodate] function is part of the [lme4][ref-lme4-nodate] package. The packageis quite detailed, but you only need to use some basic parts of it. The lmer function uses a similar approach as the lm function. You specify a model with a formula that includes a tilde(~). The dependent variable goes on the left side of the tilde and the independent variables plus the cluster variable goes on the right side. The cluster variable needs to be defined as (1 | *cluster-variable*). This might seem a bit strange, but the syntax is required for more complex models that what you will be using, at least at the start.
+The [lmer][ref-lmer-nodate] function is part of the [lme4][ref-lme4-nodate] package. The package is quite detailed, but you only need to use some basic parts of it. The lmer function uses a similar approach as the lm function. You specify a model with a formula that includes a tilde(~). The dependent variable goes on the left side of the tilde and the independent variables plus the cluster variable goes on the right side. The cluster variable needs to be defined as (1 | *cluster-variable*). This might seem a bit strange, but the syntax is required for more complex models than what you will be using, at least at the start.
 
 The output from lmer is quite verbose and there is no easy way to select just what you want. You do want to use the summary function, which provides a list of fixed and random effects.
 

@@ -7,80 +7,72 @@ format:
 editor: source
 ---
 
+```{r}
+#| label: 12-02-setup
+#| message: false
+#| warning: false
+
+library(glue)
+library(tidyverse)
+library(yaml)
+
+load("../data/module12.RData")
+```
+
 ## Description of litter weights data, 1 of 3
 
 ```{r}
-library(glue)
-library(yaml)
+#| label: 12-02-ddf-1
+
 f1 <- "https://raw.githubusercontent.com"
 f2 <- "pmean/data/refs/heads/main/files"
 f3 <- "litter-weights.yaml"
+
 dd <- read_yaml(glue("{f1}/{f2}/{f3}"))
+
 cat(as.yaml(dd["data_dictionary"]))
 cat(as.yaml(dd["description"]))
 cat(as.yaml(dd["source"]))
 ```
 
+
+
 ## Description of litter weights data, 2 of 3
 
 ```{r}
+#| label: 12-02-ddf-2
+
 cat(as.yaml(dd$vars[1:3]))
 ```
 
 ## Description of litter weights data, 3 of 3
 
 ```{r}
+#| label: 12-02-ddf-3
+
 cat(as.yaml(dd$vars[4:5]))
 ```
 
 ## Layout of full dataset
 
-```{r}
-#| label: 11-02-setup
-#| message: false
-#| warning: false
-
-library(tidyverse)
-load("../data/module12.RData")
-```
-
-```{r}
-#| label: 11-02-g1
-#| fig.width: 6
-#| fig.height: 3
-
-litter_graph_1
-```
+![](../images/litter-graph-1 "Plot showing 6 rats per litter, 3 male, 3 female,across 20 litters, 10 in group 1 and 10 in group 2")
 
 ## Layout for two sample t-test
 
-```{r}
-#| label: 11-02-g2
-#| fig.width: 6
-#| fig.height: 3
-
-litter_graph_2
-```
+![](../images/litter-graph-2 "Plot showing subset of full data, 1 random male per litter in the 10 group 1 litters and in the 10 group 2 litters")
 
 ## Layout for the paired t-test
 
-```{r}
-#| label: 11-02-g3
-#| fig.width: 6
-#| fig.height: 3
-
-litter_graph_3
-```
-
+![](../images/litter-graph-3 "Plot showing subset of full data, 1 random male and 1 random female per litter in the 10 group 1 litters")
 
 ## Why you need to accommodate non-independence
 
--   Increase in power and precision
+-   Changes in power and precision
 -   Combine multiple tests into single framework
 -   Handle missing data 
 -   Allows more sophisticated analyses
 
-## How much more power/precision?
+## How does power/precision change?
 
 -   Within cluster comparisons standard error
     -   $\sqrt{\frac{\sigma^2_{within}}{an}}$
@@ -123,10 +115,8 @@ Festing, M.F.W. The “completely randomised” and the “randomised block” a
 
 ## Degrees of freedom
 
--   df = N - k
+-   df = N - k (for a simpler design)
     -   k = number of estimated parameters
     -   What is N?
         -   N=5? (Number of wells)
         -   N=20? (Number of water samples)
-
-

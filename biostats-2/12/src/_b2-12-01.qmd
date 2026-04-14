@@ -18,7 +18,7 @@ Throughout this class, I have discussed the assumptions that you need for the t-
 Hierarchical data has some additional grouping factor, often called a cluster. Measurements made within a cluster are correlated with one another, violating the assumption of independence.
 :::
 
-## Examples of hierarchical data, 1 of 2
+## Examples of hierarchical data, 1
 
 -   Body parts
     -   Left eye/right eye
@@ -35,7 +35,7 @@ You might select families from a population and make measurements on two or more
 Likewise, measurements on the animals from the same litter will be precise because of a shared inter-uterine environment prior to birth and shared feeding from the same mother before weaning.
 :::
 
-## Examples of hierarchical data, 2 of 2
+## Examples of hierarchical data, 2
 
 -   Clinics/hospitals
 -   Communities
@@ -49,7 +49,7 @@ You might select entire communities and then sample people within each community
 Often, you take measurements repeatedly on an individual under different experimental conditions.
 :::
 
-## Longitudinal data (topic for next module)
+## Longitudinal data (topic for later)
 
 -   Measurements taken at different times
     -   Emphasis in changes over time
@@ -67,7 +67,7 @@ A special case that I want to handle separately is longitudinal data. This is si
     -   Medication administered during pregnancy
     -   Medication administered after birth
 
-## Basic notation, 1 of 2
+## Basic notation, 1
 
 -   $Y_{ij}$
     -   i defines cluster
@@ -75,7 +75,7 @@ A special case that I want to handle separately is longitudinal data. This is si
     -   j defines individual within cluster
         -   j=1,...,n
 
-## Basic notation, 2 of 2
+## Basic notation, 2
 
 -   $Y_{ij} = \mu+\alpha_i+\epsilon_{ij}$
     -   $\mu$ unknown constant
@@ -91,12 +91,12 @@ A special case that I want to handle separately is longitudinal data. This is si
 -   $Corr(Y_{ij}, Y_{ik})=\frac{\sigma^2_{between}}{\sigma^2_{between}+\sigma^2_{within}}$
     -   Intraclass correlation (ICC)
 
-## Expected mean squares, 1 of 2
+## Expected mean squares, 1
 
 -   $MS(between) = \frac{1}{a-1}\Sigma n(\bar{Y}_{i.}-\bar{Y}_{..})^2$
     -   $E[MS(between)] = n\sigma^2_{between}+\sigma^2_{within}$
 
-## Expected mean squares, 2 of 2
+## Expected mean squares, 2
 
 -   $MS(within) = \frac{1}{a(n-1)}\Sigma\Sigma(\bar{Y}_{ij}-\bar{Y}_{i.})^2$
     -   $E[MS(within)] = \sigma^2_{within}$

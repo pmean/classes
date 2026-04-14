@@ -8,7 +8,7 @@ editor: source
 ---
 
 ```{r}
-#| label: 12-02-setup
+#| label: 12-06-setup
 #| message: false
 #| warning: false
 
@@ -16,13 +16,13 @@ library(lme4)
 library(tidyverse)
 library(yaml)
 
-load("../data/demo_12.RData")
+load("../data/module12.RData")
 ```
 
 ## Description of hiv-intervention data, 1
 
 ```{r}
-#| label: 12-02-yaml
+#| label: 12-06-yaml
 
 library(yaml)
 fn <- "https://raw.githubusercontent.com/pmean/data/refs/heads/main/files/hiv-intervention.yaml"
@@ -54,7 +54,7 @@ The remaining two variables FU6 and FU12 represent time=6 and time=12, respectiv
 ## Glimpse of the hiv-intervention data
 
 ```{r}
-#| label: 12-02-glimpse-1
+#| label: 12-06-glimpse-1
 
 glimpse(hiv)
 ```
@@ -68,7 +68,7 @@ The data uses a wide format with one row per subject and individual columns for 
 ## Plot of the data, 1
 
 ```{r}
-#| label: 12-02-plot-1
+#| label: 12-06-plot-1
 
 plot_1
 ```
@@ -82,7 +82,7 @@ This is a series of plots, one for each subject, in the treatment group (BST=1).
 ## Plot of the data, 2
 
 ```{r}
-#| label: 12-02-plot-2
+#| label: 12-06-plot-2
 
 plot_2
 ```
@@ -96,7 +96,7 @@ This is a similar series of plots for the control group (BST=0).
 ## Glimpse of the restructured and simplified data
 
 ```{r}
-#| label: 12-02-glimpse-2
+#| label: 12-06-glimpse-2
 
 
 glimpse(hiv_3)
