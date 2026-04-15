@@ -1,0 +1,108 @@
+AI Companion
+
+Sign in to get better responses and keep context from past meetings and conversation.
+From me: Prepare a summary of the lessons learned in this presentation.
+Prepare a summary of the lessons learned in this presentation.
+03:52 PM
+AI Companion Said:
+Summary of Lessons Learned
+Core Concepts
+Hierarchical Models
+
+Used when data has clustering (patients within hospitals, students within schools, measurements within subjects)
+Violates independence assumption of standard tests
+Requires accounting for two sources of variation: between-cluster and within-cluster
+Key Statistical Measures
+
+Intraclass Correlation (ICC): Ratio of between-cluster variance to total variance
+Calculated as: σ²_between / (σ²_between + σ²_within)
+Even small values (0.05-0.1) significantly impact sample size and power
+Design Effect: 1 + (n-1) × ICC, quantifies the penalty for clustering
+Model Types
+Random Intercept Model
+
+Assumes common slope across subjects but different starting points (intercepts)
+Appropriate for longitudinal data where treatment effect is uniform
+Random Slopes Model
+
+Allows both intercepts and slopes to vary by subject
+More complex but captures heterogeneous treatment responses
+Practical Applications
+Within-Cluster Comparisons
+
+Gain precision when ICC is high (repeated measures, paired designs)
+Multiply standard error by √(1 - ICC)
+Between-Cluster Comparisons
+
+Lose precision; multiply standard error by √(1 + (n-1) × ICC)
+Cluster randomized trials fall into this category
+Implementation
+
+Use lmer() function from LME4 package in R
+Syntax: outcome ~ predictor + (1|cluster) for random intercepts
+Missing data handled more gracefully than traditional methods
+Sample Size Planning
+
+Calculate naive sample size first
+Multiply by design effect to account for clustering
+Increasing clusters more effective than increasing observations per cluster
+How to choose between random intercept and random slopes models?
+
+What ICC values are considered problematic?
+
+How does missing data affect hierarchical models?
+
+Write a message or type / for more
+
+
+
+
+Summary of Lessons Learned
+Core Concepts
+
+Hierarchical Models
+
+Used when data has clustering (patients within hospitals, students within schools, measurements within subjects)12
+Violates independence assumption of standard tests34
+Requires accounting for two sources of variation: between-cluster and within-cluster56
+
+Key Statistical Measures
+
+Intraclass Correlation (ICC): Ratio of between-cluster variance to total variance78
+Calculated as: σ²_between / (σ²_between + σ²_within)
+Even small values (0.05-0.1) significantly impact sample size and power910
+Design Effect: 1 + (n-1) × ICC, quantifies the penalty for clustering1112
+Model Types
+
+Random Intercept Model
+
+Assumes common slope across subjects but different starting points (intercepts)1314
+Appropriate for longitudinal data where treatment effect is uniform1516
+
+Random Slopes Model
+
+Allows both intercepts and slopes to vary by subject1718
+More complex but captures heterogeneous treatment responses
+Practical Applications
+
+Within-Cluster Comparisons
+
+Gain precision when ICC is high (repeated measures, paired designs)1920
+Multiply standard error by √(1 - ICC)21
+
+Between-Cluster Comparisons
+
+Lose precision; multiply standard error by √(1 + (n-1) × ICC)2223
+Cluster randomized trials fall into this category2425
+
+Implementation
+
+Use lmer() function from LME4 package in R2627
+Syntax: outcome ~ predictor + (1|cluster) for random intercepts2829
+Missing data handled more gracefully than traditional methods3031
+
+Sample Size Planning
+
+Calculate naive sample size first3233
+Multiply by design effect to account for clustering3435
+Increasing clusters more effective than increasing observations per cluster3637

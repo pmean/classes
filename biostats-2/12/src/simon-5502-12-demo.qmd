@@ -42,8 +42,8 @@ This is the version used for Spring Semester, 2026.
 
 [ref-hiv-nodate]: https://github.com/pmean/data/blob/main/files/hiv-intervention.txt
 [ref-hiv-dd-nodate]: https://github.com/pmean/data/blob/main/files/hiv-intervention.yaml
-[ref-oa-nodate]: https://github.com/pmean/data/blob/main/files/oa.txt
-[ref-oa-dd-nodate]: https://github.com/pmean/data/blob/main/files/oa.yaml
+[ref-oa-nodate]: https://github.com/pmean/data/blob/main/files/arthritis-treatments.txt
+[ref-oa-dd-nodate]: https://github.com/pmean/data/blob/main/files/arthritis-treatments.yaml
 [ref-pa-nodate]: https://github.com/pmean/data/blob/main/files/physical-activity.sav
 [ref-pa-dd-nodate]: https://github.com/pmean/data/blob/main/files/physical-activity.yaml
 
@@ -203,6 +203,12 @@ pa <- read.spss(
 
 glimpse(pa)
 ```
+
+#### Comments on the code. 
+
+The [read.spss][ref-read-spss-nodate] function takes data saved by SPSS and inputs it into R.
+
+[ref-read-spss-nodate]: https://cran.r-project.org/web/packages/foreign/refman/foreign.html#read.spss
 
 ## Descriptive statistics, 1
 

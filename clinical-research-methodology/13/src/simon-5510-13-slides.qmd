@@ -19,8 +19,6 @@ params:
 editor: source
 ---
 
-## Topics to be covered
-
 ```{r}
 # Preliminaries, if needed
 
@@ -36,17 +34,21 @@ editor: source
 #   do not seem to work.
 ```
 
--   What you will learn
-    -   `r params$topic_01`
-    -   `r params$topic_02`
-    -   `r params$topic_03`
-    -   `r params$topic_04`
-    -   `r params$topic_05`
-    -   `r params$topic_06`
-    -   `r params$topic_07`
-    -   `r params$topic_08`
+## Topics to be covered {.smaller}
 
-{{< include _14-01.qmd >}}
+-   `r params$topic_01`
+-   `r params$topic_02`
+-   `r params$topic_03`
+-   `r params$topic_04`
+-   `r params$topic_05`
+-   `r params$topic_06`
+-   `r params$topic_07`
+-   `r params$topic_08`
+-   `r params$topic_09`
+-   `r params$topic_10`
+-   `r params$topic_11`
+
+{{< include _13-01.qmd >}}
 
 ## Break #1
 
@@ -55,9 +57,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_02`
 
-{{< include _14-02.qmd >}}
-
-## Live demo, ANOVA and R-squared
+{{< include _13-02.qmd >}}
 
 ## Break #2
 
@@ -66,9 +66,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_03`
     
-{{< include _14-03.qmd >}}
-
-## Live demo, partial F test
+{{< include _13-03.qmd >}}
 
 ## Break #3
 
@@ -77,9 +75,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_04`
     
-{{< include _14-04.qmd >}}
-
-## Live demo, stepwise regression
+{{< include _13-04.qmd >}}
 
 ## Break #4
 
@@ -88,9 +84,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_05`
 
-{{< include _14-05.qmd >}}
-
-## Live demo, regression diagnostics
+{{< include _13-05.qmd >}}
 
 ## Break #5
 
@@ -99,9 +93,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_06`
 
-{{< include _14-06.qmd >}}
-
-## Live demo, multicollinearity
+{{< include _13-06.qmd >}}
 
 ## Break #6
 
@@ -110,7 +102,7 @@ editor: source
 -   What's coming next
     -   `r params$topic_07`
 
-{{< include _14-07.qmd >}}
+{{< include _13-07.qmd >}}
 
 ## Break #7
 
@@ -119,27 +111,48 @@ editor: source
 -   What's coming next
     -   `r params$topic_08`
 
-{{< include _14-08.qmd >}}
+{{< include _13-08.qmd >}}
 
-## Summary
+## Break #8
 
 -   What you have learned
-    -   `r params$topic_01`
-    -   `r params$topic_02`
-    -   `r params$topic_03`
-    -   `r params$topic_04`
-    -   `r params$topic_05`
-    -   `r params$topic_06`
-    -   `r params$topic_07`
     -   `r params$topic_08`
-    
-## Additional topics??
+-   What's coming next
+    -   `r params$topic_09`
 
-::: notes
--   Learning objectives
-    -   To be determined
-    
-:::
+{{< include _13-09.qmd >}}
+
+## Break #9
+
+-   What you have learned
+    -   `r params$topic_09`
+-   What's coming next
+    -   `r params$topic_10`
+
+{{< include _13-10.qmd >}}
+
+## Break #10
+
+-   What you have learned
+    -   `r params$topic_10`
+-   What's coming next
+    -   `r params$topic_11`
+
+{{< include _13-11.qmd >}}
+
+## Summary {.smaller}
+
+-   `r params$topic_01`
+-   `r params$topic_02`
+-   `r params$topic_03`
+-   `r params$topic_04`
+-   `r params$topic_05`
+-   `r params$topic_06`
+-   `r params$topic_07`
+-   `r params$topic_08`
+-   `r params$topic_09`
+-   `r params$topic_10`
+-   `r params$topic_11`
 
 <!---
       You have to put the title down 

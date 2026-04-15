@@ -1,0 +1,7560 @@
+[Stephen Simon] 12:56:48
+Interesting, testing.
+
+[Suman Sahil] 13:00:34
+that we don't
+
+[Suman Sahil] 13:00:36
+Dr. Simon, good afternoon.
+
+[Stephen Simon] 13:00:39
+Okay, um, listen, I've got a bit of a cold.
+
+[Stephen Simon] 13:00:43
+And a very sore throat.
+
+[Suman Sahil] 13:00:45
+Okay?
+
+[Stephen Simon] 13:00:45
+And if I start a coughing fit, I may just call this thing short and record the video some other time.
+
+[Suman Sahil] 13:00:51
+No problem, no problem.
+
+[Stephen Simon] 13:00:52
+We'll see, we'll see.
+
+[Suman Sahil] 13:00:53
+Okay.
+
+[Stephen Simon] 13:00:55
+Okay, and also my speaker notes are a little bit sparse, so I'm going to do…
+
+[Stephen Simon] 13:01:01
+a transcript, and maybe cut and paste some of those in… We'll see.
+
+[Suman Sahil] 13:01:04
+Okay. Sounds good.
+
+[Stephen Simon] 13:01:05
+Okay, so anyway, yeah, that's a big program, because basically I combine two modules together,
+
+[Suman Sahil] 13:01:12
+Mm-hmm.
+
+[Stephen Simon] 13:01:13
+Uh, and, uh, there's a lot of material to cover.
+
+[Stephen Simon] 13:01:15
+But I thought we'd try it. Now, you're ready to do, um…
+
+[Stephen Simon] 13:01:19
+uh, cluster analysis next week.
+
+[Suman Sahil] 13:01:21
+Yes, I'm ready. I have… I already started writing the slides and program.
+
+[Stephen Simon] 13:01:22
+or the recapture. Okay.
+
+[Suman Sahil] 13:01:26
+So I can do cluster analysis.
+
+[Stephen Simon] 13:01:27
+Alright. Sure. Um, there's a conference I'll be at, actually.
+
+[Stephen Simon] 13:01:32
+And, um, uh, maybe we need to do the recording on a separate time.
+
+[Stephen Simon] 13:01:38
+Uh, let me look at my calendar while I'm here.
+
+[Stephen Simon] 13:01:42
+Okay.
+
+[Suman Sahil] 13:01:42
+And today, if you want to postpone another day, that works, because, um…
+
+[Stephen Simon] 13:01:47
+Okay,
+
+[Suman Sahil] 13:01:48
+you… you are really not well.
+
+[Suman Sahil] 13:01:50
+And…
+
+[Stephen Simon] 13:01:54
+Um, yeah, we'll see.
+
+[Stephen Simon] 13:01:59
+Okay, so next week…
+
+[Stephen Simon] 13:02:01
+We have the 19th Annual Innovations in Design
+
+[Stephen Simon] 13:02:06
+analysis and dissemination Symposium.
+
+[Suman Sahil] 13:02:11
+Yes.
+
+[Stephen Simon] 13:02:13
+And, um…
+
+[Stephen Simon] 13:02:14
+Uh, I do not know the agenda yet, but it should extend through
+
+[Stephen Simon] 13:02:18
+Tuesday afternoon.
+
+[Stephen Simon] 13:02:20
+Uh, so we may want to…
+
+[Stephen Simon] 13:02:22
+do a recording, maybe, uh…
+
+[Stephen Simon] 13:02:26
+On Wednesday, except I've got 55.10.
+
+[Stephen Simon] 13:02:30
+Um, or Thursday of next week. I'll let you know.
+
+[Suman Sahil] 13:02:33
+Okay.
+
+[Stephen Simon] 13:02:34
+Alright, and we have a bunch of defenses coming. You're in several of the committees, I'm sure.
+
+[Suman Sahil] 13:02:37
+Yes.
+
+[Stephen Simon] 13:02:38
+But, uh, you look at those, uh…
+
+[Suman Sahil] 13:02:39
+Yes.
+
+[Stephen Simon] 13:02:41
+The reds are the ones where I'm on the committee.
+
+[Stephen Simon] 13:02:44
+Um, the elders are the ones where I'm not, but I'd still like to attend.
+
+[Stephen Simon] 13:02:48
+So, um, yeah, look at that. The week of the 27th.
+
+[Stephen Simon] 13:02:52
+1, 2, 3, 4, 5, 6, 7,
+
+[Stephen Simon] 13:02:57
+Seven separate defenses.
+
+[Stephen Simon] 13:02:58
+Um, so, thankfully, nothing after that.
+
+[Suman Sahil] 13:03:00
+Yeah.
+
+[Stephen Simon] 13:03:03
+There's a hard deadline on May 1st, is what I understand.
+
+[Stephen Simon] 13:03:06
+And that's why we, um…
+
+[Stephen Simon] 13:03:08
+Uh, that's why we have to get all these things done.
+
+[Stephen Simon] 13:03:11
+a little bit earlier. Okay.
+
+[Stephen Simon] 13:03:13
+Um, we have another student here.
+
+[Stephen Simon] 13:03:15
+Okay, so let me… I was just sharing my calendar with Suman.
+
+[Suman Sahil] 13:03:16
+Yes.
+
+[Stephen Simon] 13:03:20
+We may change things next week, okay?
+
+[Stephen Simon] 13:03:23
+We may change things this week, too.
+
+[Stephen Simon] 13:03:27
+Let's close the calendar.
+
+[Stephen Simon] 13:03:28
+And that calendar.
+
+[Stephen Simon] 13:03:31
+Um, and let's get started with the recording.
+
+[Stephen Simon] 13:03:34
+Okay, I will, um… the demos don't start until after the 4th, um,
+
+[Stephen Simon] 13:03:40
+third or fourth, uh, break.
+
+[Stephen Simon] 13:03:43
+Okay, so let me find record…
+
+[Stephen Simon] 13:03:45
+Come on.
+
+[Stephen Simon] 13:03:53
+Okay, um, I've got a bit of a cold.
+
+[Stephen Simon] 13:03:56
+And it's got a very sore throat.
+
+[Stephen Simon] 13:03:59
+And it may affect my ability to talk. So far, I'm doing pretty well.
+
+[Stephen Simon] 13:04:04
+But if I have repeated coughing fits, I may just call it a day.
+
+[Stephen Simon] 13:04:08
+Uh, however, let's hope this thing works.
+
+[Stephen Simon] 13:04:11
+Um, if it doesn't work, then I'll just record it a couple days late. Uh, so…
+
+[Stephen Simon] 13:04:17
+Module 12 is actually interesting. I'm combining two separate modules.
+
+[Stephen Simon] 13:04:21
+And we'll see how that goes. Both are important.
+
+[Stephen Simon] 13:04:24
+So, what are we going to talk about? My goodness, we're going to talk about hierarchical models,
+
+[Stephen Simon] 13:04:30
+And they've talked about a hypothetical underweights data set.
+
+[Stephen Simon] 13:04:34
+Um, within cluster comparisons, cluster randomized trials,
+
+[Stephen Simon] 13:04:39
+Random intercepts my description of HIV intervention data.
+
+[Stephen Simon] 13:04:44
+Um, an analysis of the HIV intervention data,
+
+[Stephen Simon] 13:04:48
+A random slopes model, assumptions and complications.
+
+[Stephen Simon] 13:04:52
+And sample size justification, my goodness.
+
+[Stephen Simon] 13:04:55
+We'll see how we do. All right.
+
+[Stephen Simon] 13:05:00
+So, throughout this class…
+
+[Stephen Simon] 13:05:02
+I've discussed the assumptions that you need.
+
+[Stephen Simon] 13:05:05
+The assumptions for the t-test.
+
+[Stephen Simon] 13:05:08
+For the chi-squared test,
+
+[Stephen Simon] 13:05:10
+For the ANOVA test, and so forth.
+
+[Stephen Simon] 13:05:14
+Every single time
+
+[Stephen Simon] 13:05:15
+I mentioned the assumption of independence.
+
+[Stephen Simon] 13:05:19
+And it's often one that you can only check qualitatively.
+
+[Stephen Simon] 13:05:22
+And I mentioned special cases where you can't assume independence.
+
+[Stephen Simon] 13:05:28
+In this lecture, I want to talk about one of those special cases,
+
+[Stephen Simon] 13:05:32
+They have ethical data.
+
+[Stephen Simon] 13:05:34
+Hierarchical data has some additional grouping factor,
+
+[Stephen Simon] 13:05:38
+Often called a cluster.
+
+[Stephen Simon] 13:05:40
+Measurements made within a cluster are correlated with one another.
+
+[Stephen Simon] 13:05:45
+violating the assumption of independence.
+
+[Stephen Simon] 13:05:51
+So, and…
+
+[Stephen Simon] 13:05:55
+A simple example of hierarchical data.
+
+[Stephen Simon] 13:05:58
+When you select a group of patients,
+
+[Stephen Simon] 13:06:00
+And make measurements on 2.
+
+[Stephen Simon] 13:06:03
+or more parts of their body. You might, for example,
+
+[Stephen Simon] 13:06:06
+And then I drop medication in the left eye.
+
+[Stephen Simon] 13:06:09
+And a placebo drop in the right eye.
+
+[Stephen Simon] 13:06:12
+You might apply different types of sealants on different teeth,
+
+[Stephen Simon] 13:06:16
+And then now, you might put a different food allergens
+
+[Stephen Simon] 13:06:20
+on different parts of the patient's back.
+
+[Stephen Simon] 13:06:23
+Okay? You might select families from a population,
+
+[Stephen Simon] 13:06:27
+And make measurements on two or more members of the same family.
+
+[Stephen Simon] 13:06:31
+Since family members share the same environment,
+
+[Stephen Simon] 13:06:34
+And for the most part, have very similar genetics, not anyways.
+
+[Stephen Simon] 13:06:39
+Um, any comparison made within a family is likely to be more precise.
+
+[Stephen Simon] 13:06:46
+Likewise, measurements from animals
+
+[Stephen Simon] 13:06:48
+And the same letter will be precise because of the shared intrauterine environment prior to birth.
+
+[Stephen Simon] 13:06:54
+and shared feeding from the same mother before weaning. Oh, plus the genetic similarity.
+
+[Stephen Simon] 13:07:01
+that you would have. Okay.
+
+[Stephen Simon] 13:07:05
+Patients treated at the same clinic
+
+[Stephen Simon] 13:07:08
+or the same hospital, will often have similar outcomes.
+
+[Stephen Simon] 13:07:13
+They might be caused by the location of the clinic,
+
+[Stephen Simon] 13:07:16
+Which determines the type of patients that come in.
+
+[Stephen Simon] 13:07:19
+It might also be caused by sudden treatment practices,
+
+[Stephen Simon] 13:07:23
+that are agreed upon within a clinic.
+
+[Stephen Simon] 13:07:25
+But which might vary from one clinic to another.
+
+[Stephen Simon] 13:07:27
+By the way, when I used to work at Children's Mercy High Hospital,
+
+[Stephen Simon] 13:07:31
+Well, there was a phrase that several people mentioned, that they really hated.
+
+[Stephen Simon] 13:07:35
+And that's when people said, this is the Children's Mercy Way.
+
+[Stephen Simon] 13:07:40
+And there should not be a children's Mercy Way, in their opinion. It should be an evidence-based way of doing things.
+
+[Stephen Simon] 13:07:46
+All right, we don't do things just because everybody agrees on them informally.
+
+[Stephen Simon] 13:07:52
+We do things because we do a rational search of the evidence,
+
+[Stephen Simon] 13:07:56
+accumulate the information,
+
+[Stephen Simon] 13:07:57
+and make an intelligent decision. All right.
+
+[Stephen Simon] 13:08:00
+So anyway, for what it's worth, every place is going to be a little bit different.
+
+[Stephen Simon] 13:08:07
+So, clinics, if you have data across multiple clinics or multiple hospitals,
+
+[Stephen Simon] 13:08:12
+That's an example of hierarchical data.
+
+[Stephen Simon] 13:08:15
+Sometimes he might select entire communities,
+
+[Stephen Simon] 13:08:18
+And then sample people within each community.
+
+[Stephen Simon] 13:08:21
+Actually, this was done by CDC.
+
+[Stephen Simon] 13:08:24
+They do these nationwide databases.
+
+[Stephen Simon] 13:08:28
+And the nation. My databases represent a random sample
+
+[Stephen Simon] 13:08:33
+among all people in the United States, there's a national health…
+
+[Stephen Simon] 13:08:36
+and nutrition examination survey.
+
+[Stephen Simon] 13:08:39
+He's the National Ambutory Medical Condition Survey.
+
+[Stephen Simon] 13:08:43
+There's the behavioral risk factors, Act Surveillance System. Alright.
+
+[Stephen Simon] 13:08:50
+Some of these surveys require travel, and HANES is the classic.
+
+[Stephen Simon] 13:08:54
+They require travel.
+
+[Stephen Simon] 13:08:56
+If you did a purely random sample,
+
+[Stephen Simon] 13:09:01
+of a thousand people.
+
+[Stephen Simon] 13:09:03
+You'd probably travel to 800 communities.
+
+[Stephen Simon] 13:09:07
+And you might get some duplicates and repeats in the larger studies.
+
+[Stephen Simon] 13:09:11
+But the people in smaller towns, if you get someone from Podunk, Iowa,
+
+[Stephen Simon] 13:09:17
+You're not likely to find someone else from Podanka, Iowa.
+
+[Stephen Simon] 13:09:19
+So if you tried to do a simple, random sample,
+
+[Stephen Simon] 13:09:25
+Of all the people in the United States, it wouldn't work. The logistics
+
+[Stephen Simon] 13:09:29
+are just too complicated.
+
+[Stephen Simon] 13:09:31
+Okay, so instead, what they do is they take a random sample of communities.
+
+[Stephen Simon] 13:09:38
+And sample within each community.
+
+[Stephen Simon] 13:09:41
+Now, communities differ from one another for the same reason that hospitals differ.
+
+[Stephen Simon] 13:09:47
+from one another, alright? There's a different demographic mix, there's a different, uh…
+
+[Stephen Simon] 13:09:52
+amount of environmental exposures,
+
+[Stephen Simon] 13:09:55
+Um, and there's just a commonality in how people tend to behave.
+
+[Stephen Simon] 13:10:00
+in certain communities, okay?
+
+[Stephen Simon] 13:10:03
+So, when you do this study, and you randomly select communities,
+
+[Stephen Simon] 13:10:07
+And randomly select people within the communities.
+
+[Stephen Simon] 13:10:09
+It saves a ton of money.
+
+[Stephen Simon] 13:10:12
+A ton of money, because now you're…
+
+[Stephen Simon] 13:10:15
+I'm going to go to, like, 30 or 50 communities.
+
+[Stephen Simon] 13:10:19
+Instead of 800, and you'll get, um, a larger sample from them.
+
+[Stephen Simon] 13:10:25
+But because the communities themselves are randomly sampled, you have to do this carefully.
+
+[Stephen Simon] 13:10:30
+But because the communities themselves are randomly sampled,
+
+[Stephen Simon] 13:10:34
+Every individual in the United States has an equal probability
+
+[Stephen Simon] 13:10:37
+of getting in the sample.
+
+[Stephen Simon] 13:10:39
+But because we have clusters,
+
+[Stephen Simon] 13:10:43
+This far, lengthy assumption of independence.
+
+[Stephen Simon] 13:10:46
+to people in Baton Rouge are likely to have similar results.
+
+[Stephen Simon] 13:10:49
+Compared to that person in Baton Rouge and that person in Spokane, Warrington.
+
+[Stephen Simon] 13:10:55
+Okay? Um, repeated measurements.
+
+[Stephen Simon] 13:10:59
+Or another example, so how can you take measurements repeatedly on an individual?
+
+[Stephen Simon] 13:11:03
+Under different experimental conditions. And this is a very powerful technique.
+
+[Stephen Simon] 13:11:08
+Because you compare these conditions within an individual subject.
+
+[Stephen Simon] 13:11:14
+Okay, now I want to talk about longitudinal data briefly.
+
+[Stephen Simon] 13:11:19
+It's a special case we'll talk about in the second half of today's video.
+
+[Stephen Simon] 13:11:24
+Um, longitudinal data is similar to repeated measures.
+
+[Stephen Simon] 13:11:28
+Because measurements are taken at different times.
+
+[Stephen Simon] 13:11:32
+The emphasis and longitudinal… repeated measures
+
+[Stephen Simon] 13:11:35
+But you can't take 5 measurements all at the same time, but generally, it's a narrow timeframe.
+
+[Stephen Simon] 13:11:41
+All right? And use some data, there's large time gaps between the measurements.
+
+[Stephen Simon] 13:11:47
+And the emphasis is looking at trends.
+
+[Stephen Simon] 13:11:50
+Over time. Longitudinal data has some of the same issues.
+
+[Stephen Simon] 13:11:55
+That, uh, hierarchical data has.
+
+[Stephen Simon] 13:11:58
+And that measurements taken at baseline?
+
+[Stephen Simon] 13:12:02
+6 months and 12 months,
+
+[Stephen Simon] 13:12:04
+for an individual are likely to be correlated.
+
+[Stephen Simon] 13:12:11
+Okay. Now, there's some comparisons that are between clusters.
+
+[Stephen Simon] 13:12:16
+And some comparisons that are within clusters.
+
+[Stephen Simon] 13:12:20
+As a general rule,
+
+[Stephen Simon] 13:12:21
+Not always, but almost always.
+
+[Stephen Simon] 13:12:24
+then there's a positive correlation
+
+[Stephen Simon] 13:12:27
+within a cluster. Two members of the same cluster are going to have similar outcomes. Now,
+
+[Stephen Simon] 13:12:33
+Maybe not hugely similar.
+
+[Stephen Simon] 13:12:37
+But even if it's a small amount of similarity,
+
+[Stephen Simon] 13:12:40
+You'd be surprised how important it is to account for these things.
+
+[Stephen Simon] 13:12:43
+Okay? Because there's a positive correlation within each cluster,
+
+[Stephen Simon] 13:12:48
+That actually improved the precision of within-cluster comparisons.
+
+[Stephen Simon] 13:12:52
+We'll see some examples of this later.
+
+[Stephen Simon] 13:12:55
+But it hurts the precision of between-cluster comparisons.
+
+[Stephen Simon] 13:13:01
+Okay, if we have to compare two individuals both from the same community,
+
+[Stephen Simon] 13:13:06
+Because you're positively correlated, their results are similar.
+
+[Stephen Simon] 13:13:09
+Therefore, the difference that you see between the two individuals
+
+[Stephen Simon] 13:13:13
+That's going to be less variable.
+
+[Stephen Simon] 13:13:16
+And the difference you see between two individuals.
+
+[Stephen Simon] 13:13:19
+Or one is in Baton Rouge, and the other one's in Spokane.
+
+[Stephen Simon] 13:13:23
+Okay? Um…
+
+[Stephen Simon] 13:13:28
+So, just a quick example of between and within cluster comparisons.
+
+[Stephen Simon] 13:13:33
+If you're doing air removal experiments, we didn't talk about animal experiments that much.
+
+[Stephen Simon] 13:13:38
+in this class. But, uh, animal experiments, um, you know, I almost always have litter effects.
+
+[Stephen Simon] 13:13:45
+Okay, and you're studying the effect of medications on these animals?
+
+[Stephen Simon] 13:13:50
+Either because they're veterinary care,
+
+[Stephen Simon] 13:13:53
+And you're trying to make sure that they survive.
+
+[Stephen Simon] 13:13:56
+Or because they're a model organism that's used for testing stuff.
+
+[Stephen Simon] 13:14:01
+Before it's tested in humans, but in any case,
+
+[Stephen Simon] 13:14:04
+Some of the medications are administered during pregnancy.
+
+[Stephen Simon] 13:14:09
+If a medication is administered during pregnancy,
+
+[Stephen Simon] 13:14:11
+That medication goes to every animal.
+
+[Stephen Simon] 13:14:15
+in that litter.
+
+[Stephen Simon] 13:14:16
+So what we have to do is we have to take half of the litters,
+
+[Stephen Simon] 13:14:21
+and assign them to a treatment group.
+
+[Stephen Simon] 13:14:24
+Everyone in a particular litter
+
+[Stephen Simon] 13:14:27
+Uh, in particular, everyone…
+
+[Stephen Simon] 13:14:33
+is assigned to the treatment.
+
+[Stephen Simon] 13:14:36
+Where everyone's assigned to the control.
+
+[Stephen Simon] 13:14:38
+So the comparison is going to be a between
+
+[Stephen Simon] 13:14:42
+Letter comparison.
+
+[Stephen Simon] 13:14:44
+That's the case if you look at a medication administered during pregnancy.
+
+[Stephen Simon] 13:14:48
+But if you look at the effect of a medication administered shortly after birth,
+
+[Stephen Simon] 13:14:54
+Well, there, you do have the option
+
+[Stephen Simon] 13:14:57
+Within a letter of randomly assigning some letter mates
+
+[Stephen Simon] 13:15:01
+to the active drug,
+
+[Stephen Simon] 13:15:03
+And send to the placebo.
+
+[Stephen Simon] 13:15:05
+That's going to be a within-cluster comparison.
+
+[Stephen Simon] 13:15:11
+Okay, now you have to be perfect, but within cluster comparisons, if you can do it, but on the logistics.
+
+[Stephen Simon] 13:15:17
+prevent you from doing good.
+
+[Stephen Simon] 13:15:19
+Um, within cluster comparisons.
+
+[Stephen Simon] 13:15:23
+Okay, now, I'm going to present a bunch of formulas, and I always think about this.
+
+[Stephen Simon] 13:15:29
+Because I love formulas, but I know not everyone does.
+
+[Stephen Simon] 13:15:33
+But when I present a formula, I want you to look at the equations.
+
+[Stephen Simon] 13:15:39
+And see if there's a story behind it, because it's a very important story.
+
+[Stephen Simon] 13:15:43
+That we need to tame the air.
+
+[Stephen Simon] 13:15:46
+So we need to define why YIJ. Y is the outcome…
+
+[Stephen Simon] 13:15:51
+And the first subscript i defines the cluster.
+
+[Stephen Simon] 13:15:55
+And there are a total of 1, 2, 3, all the way up to A.
+
+[Stephen Simon] 13:16:00
+clusters. Stanium defines an individual within each cluster.
+
+[Stephen Simon] 13:16:06
+So, within each cluster, we randomly select
+
+[Stephen Simon] 13:16:09
+And observations, and glutamates.
+
+[Stephen Simon] 13:16:14
+We're in people, we're in whatever. Okay?
+
+[Stephen Simon] 13:16:18
+to YIJ.
+
+[Stephen Simon] 13:16:20
+Y and IJ, I, the first subscript, defines the cluster J, the second subscript,
+
+[Stephen Simon] 13:16:25
+defines the individual within the cluster.
+
+[Stephen Simon] 13:16:28
+So, when we build a model,
+
+[Stephen Simon] 13:16:30
+We're going to say YIJ is meaning an overall mean,
+
+[Stephen Simon] 13:16:34
+plus alpha i, plus epsilon ij.
+
+[Stephen Simon] 13:16:38
+And you've seen this formula before, it's the one that I introduced
+
+[Stephen Simon] 13:16:43
+When I talked about one factor analysis of variance.
+
+[Stephen Simon] 13:16:46
+All right, but there's a subtle difference here.
+
+[Stephen Simon] 13:16:50
+Muse of an unknown constant, but alpha I…
+
+[Stephen Simon] 13:16:54
+is normally distributed.
+
+[Stephen Simon] 13:16:55
+The effects of each cluster varies randomly,
+
+[Stephen Simon] 13:17:00
+about a calm than mean.
+
+[Stephen Simon] 13:17:04
+All right, that's very important.
+
+[Stephen Simon] 13:17:10
+uh… and I can't remember what I just said. I'm having a senior moment, bear with me.
+
+[Stephen Simon] 13:17:15
+The alphaRs are normally distributed.
+
+[Stephen Simon] 13:17:17
+That means that the overall effect within a cluster tends to very vary.
+
+[Stephen Simon] 13:17:22
+So, clusters tend to produce
+
+[Stephen Simon] 13:17:25
+Battleground comes?
+
+[Stephen Simon] 13:17:27
+Some clusters tend to produce worse outcomes.
+
+[Stephen Simon] 13:17:30
+All right, and we're going to assume that these are random.
+
+[Stephen Simon] 13:17:35
+Um… nah.
+
+[Stephen Simon] 13:17:41
+And the question is, why would you consider something to be random?
+
+[Stephen Simon] 13:17:45
+The point to this is the clusters generally represent a sampling.
+
+[Stephen Simon] 13:17:50
+Part of the sampling scheme.
+
+[Stephen Simon] 13:17:52
+All right, we randomly select communities.
+
+[Stephen Simon] 13:17:56
+And we go within AIMS to various communities.
+
+[Stephen Simon] 13:18:00
+Okay, so you sense the communities are part of the random sampling process,
+
+[Stephen Simon] 13:18:07
+We assume that there's some random variation.
+
+[Stephen Simon] 13:18:11
+Associated with that, okay?
+
+[Stephen Simon] 13:18:17
+Littermates are randomly selected.
+
+[Stephen Simon] 13:18:20
+All right, well, homeless, mothers, pregnant mothers,
+
+[Stephen Simon] 13:18:25
+are randomly selected, and then we do some treatments
+
+[Stephen Simon] 13:18:27
+either prior to birth or after birth.
+
+[Stephen Simon] 13:18:30
+All right, and it's electrical to think that some litters
+
+[Stephen Simon] 13:18:36
+will tend to be tougher, more hardy, they tend to have better outcomes.
+
+[Stephen Simon] 13:18:40
+Some letters will be a little bit more frail.
+
+[Stephen Simon] 13:18:43
+Okay, so we'll assume that that degree of hardiness or frailty
+
+[Stephen Simon] 13:18:48
+is normally distributed.
+
+[Stephen Simon] 13:18:52
+Okay?
+
+[Stephen Simon] 13:18:54
+Different parts of your back
+
+[Stephen Simon] 13:18:57
+tend to show slightly different, um,
+
+[Stephen Simon] 13:19:00
+reactions when a potential allergen
+
+[Stephen Simon] 13:19:03
+is placed underneath the skin.
+
+[Stephen Simon] 13:19:06
+Alright, these, um, locations are randomly selected.
+
+[Stephen Simon] 13:19:11
+And therefore, we assume that the variation from one
+
+[Stephen Simon] 13:19:16
+Very inspired to another, and the…
+
+[Stephen Simon] 13:19:20
+Let me say this more carefully, this is tricky, and I don't have a good speaker notes. Shame on me.
+
+[Stephen Simon] 13:19:26
+All right. Um…
+
+[Stephen Simon] 13:19:31
+There is, um, a tendency
+
+[Stephen Simon] 13:19:33
+for some people to overreact.
+
+[Stephen Simon] 13:19:36
+to Anglogens, they're extremely sensitive.
+
+[Stephen Simon] 13:19:38
+There's a tendency for others to, um…
+
+[Stephen Simon] 13:19:43
+I'd be just fine, okay?
+
+[Stephen Simon] 13:19:46
+Okay, let's look at the example with the two eyes.
+
+[Stephen Simon] 13:19:50
+You have a drop that's placed
+
+[Stephen Simon] 13:19:54
+In the left eye, that's an active medication.
+
+[Stephen Simon] 13:19:57
+A draft that's placed in the right eye, which is placebo.
+
+[Stephen Simon] 13:20:02
+Okay, now, some people's eyes
+
+[Stephen Simon] 13:20:06
+will tend to react very well.
+
+[Stephen Simon] 13:20:09
+Other people's eyes may not react so well.
+
+[Stephen Simon] 13:20:11
+And we're assuming that the pair of eyes
+
+[Stephen Simon] 13:20:15
+tend to be normally distributed around a particular mean.
+
+[Stephen Simon] 13:20:19
+Okay?
+
+[Stephen Simon] 13:20:23
+Now, we also have an error term, which is the deviation from one
+
+[Stephen Simon] 13:20:29
+observation to another observation.
+
+[Stephen Simon] 13:20:31
+within each cluster.
+
+[Stephen Simon] 13:20:34
+All right, um…
+
+[Stephen Simon] 13:20:37
+You may have a rat that has 6 pumps.
+
+[Stephen Simon] 13:20:40
+And there are going to be similar, but they're not going to be identical.
+
+[Stephen Simon] 13:20:44
+There's going to be some variation.
+
+[Stephen Simon] 13:20:48
+That's represented by epsilon and IJ.
+
+[Stephen Simon] 13:20:50
+Okay? So the trick to these models…
+
+[Stephen Simon] 13:20:55
+I want to go slowly here, because it's important to understand this.
+
+[Stephen Simon] 13:20:59
+And so we have to account for two sources of variation.
+
+[Stephen Simon] 13:21:03
+The agarination between clusters?
+
+[Stephen Simon] 13:21:06
+And variation within clusters, alright?
+
+[Stephen Simon] 13:21:08
+The variation within clusters is the variability of these alpha i's,
+
+[Stephen Simon] 13:21:13
+There are a few normally distributed.
+
+[Stephen Simon] 13:21:15
+And that was represented by a standard deviation called sigma between.
+
+[Stephen Simon] 13:21:21
+The epsilon of the Js, which is the variation within a cluster,
+
+[Stephen Simon] 13:21:26
+Um, that has…
+
+[Stephen Simon] 13:21:27
+a certain amount of variation.
+
+[Stephen Simon] 13:21:29
+And that's going to be sigma within.
+
+[Stephen Simon] 13:21:33
+Okay, let's hypothesize this model. There are certain very interesting things that happen.
+
+[Stephen Simon] 13:21:43
+Or in any individual VIN on IU.
+
+[Stephen Simon] 13:21:44
+Oops, I need to go over here if I want to highlight it.
+
+[Stephen Simon] 13:21:47
+Any individual value
+
+[Stephen Simon] 13:21:49
+is going to have a variability.
+
+[Stephen Simon] 13:21:54
+We're called sigma Total.
+
+[Stephen Simon] 13:21:55
+Which is a sum of between and within variation, but you have to square it.
+
+[Stephen Simon] 13:22:02
+Add them, take a square root,
+
+[Stephen Simon] 13:22:04
+Some people say this ads like Pythagoras, you know?
+
+[Stephen Simon] 13:22:07
+Um, A squared plus P squared equals C squared. The variation total.
+
+[Stephen Simon] 13:22:12
+There's a variation between… plus the variation within.
+
+[Stephen Simon] 13:22:15
+But we have to make sure that we handle the squaring and the square rooting properly, okay?
+
+[Stephen Simon] 13:22:21
+So, um, any individual is going to have two sources of variation.
+
+[Stephen Simon] 13:22:26
+Variation of that individual.
+
+[Stephen Simon] 13:22:29
+And variation caused by
+
+[Stephen Simon] 13:22:31
+The cluster that that individual has found in.
+
+[Stephen Simon] 13:22:35
+The other interesting thing…
+
+[Stephen Simon] 13:22:38
+is that the overall average, Y bar dot dot, the dot means average across
+
+[Stephen Simon] 13:22:43
+Both the I at the subscript,
+
+[Stephen Simon] 13:22:45
+And the J subscript is going to be the variation between divided by the number of clusters.
+
+[Stephen Simon] 13:22:51
+Plus, variation within.
+
+[Stephen Simon] 13:22:52
+Divided by the number of clusters.
+
+[Stephen Simon] 13:22:55
+times the number of observations within a cluster.
+
+[Stephen Simon] 13:22:59
+So if we do a study of tad litt letters,
+
+[Stephen Simon] 13:23:04
+And there are 6 pups in each litter.
+
+[Stephen Simon] 13:23:08
+Then, if you want to try to find the variation of the average,
+
+[Stephen Simon] 13:23:11
+You take the between variation and divide it by the 10 letters.
+
+[Stephen Simon] 13:23:15
+And the within variation, you divide by the 10 times 6
+
+[Stephen Simon] 13:23:21
+or 60 individual pucks.
+
+[Stephen Simon] 13:23:23
+So the standard deviation of the average is a little bit more complicated.
+
+[Stephen Simon] 13:23:29
+We have to account for two sources of variation.
+
+[Stephen Simon] 13:23:35
+Okay, that's a common theme.
+
+[Stephen Simon] 13:23:37
+When there's correlation,
+
+[Stephen Simon] 13:23:40
+in the data. That implies that there's different level of variation between clusters,
+
+[Stephen Simon] 13:23:44
+And within clusters.
+
+[Stephen Simon] 13:23:49
+There's one more statistic that's very important.
+
+[Stephen Simon] 13:23:53
+And you will need to use this statist a lot, it's called the Interclass correlation.
+
+[Stephen Simon] 13:24:01
+It's the correlation that you estimate between two observations taken within the same cluster.
+
+[Stephen Simon] 13:24:07
+And it's going to be in the between variation,
+
+[Stephen Simon] 13:24:10
+Divided by the between plus the within variation.
+
+[Stephen Simon] 13:24:16
+Now, let's look at that formula.
+
+[Stephen Simon] 13:24:20
+If the between variation's really, really small,
+
+[Stephen Simon] 13:24:27
+Is that right?
+
+[Stephen Simon] 13:24:32
+I need to think about this.
+
+[Stephen Simon] 13:24:35
+Nothing between one of them.
+
+[Stephen Simon] 13:24:40
+Let me come back to that, alright? Um…
+
+[Stephen Simon] 13:24:43
+The interclass correlation is a measure of how strongly two observations are correlated.
+
+[Stephen Simon] 13:24:51
+Okay.
+
+[Stephen Simon] 13:24:55
+Um, and I think it should be sigma squared within.
+
+[Stephen Simon] 13:24:59
+Let's do a quick calculation here. I am a little bit nervous now.
+
+[Stephen Simon] 13:25:02
+There might be a typo here.
+
+[Stephen Simon] 13:25:04
+Alright, so…
+
+[Stephen Simon] 13:25:07
+My friend Google, how do you calculate
+
+[Stephen Simon] 13:25:12
+And…
+
+[Stephen Simon] 13:25:14
+Intrix lasts…
+
+[Stephen Simon] 13:25:17
+Correlation.
+
+[Stephen Simon] 13:25:18
+All right.
+
+[Stephen Simon] 13:25:26
+Well, that doesn't seem to help too much.
+
+[Stephen Simon] 13:25:30
+Okay, let's see, look, I like Wikipedia, I don't know…
+
+[Stephen Simon] 13:25:33
+Other people don't.
+
+[Stephen Simon] 13:25:35
+Okay, pagan squared alpha divided by second squared alpha.
+
+[Stephen Simon] 13:25:42
+plus saga squared epsilon.
+
+[Stephen Simon] 13:25:43
+Okay, um…
+
+[Stephen Simon] 13:25:47
+Alright, so I have the formula correct.
+
+[Stephen Simon] 13:25:50
+But let's think about what that formula's implying.
+
+[Stephen Simon] 13:25:55
+If sigma squared between is large,
+
+[Stephen Simon] 13:25:58
+That means that there's a large difference
+
+[Stephen Simon] 13:26:01
+between one cluster and another.
+
+[Stephen Simon] 13:26:04
+The alphas tend to behave very wildly.
+
+[Stephen Simon] 13:26:08
+But clinics are all over the place.
+
+[Stephen Simon] 13:26:10
+The letters are either really, really hardy, or really, really frail.
+
+[Stephen Simon] 13:26:15
+Um,
+
+[Stephen Simon] 13:26:18
+Okay? When you have a lot of between-subject variation,
+
+[Stephen Simon] 13:26:24
+Relative to within-subject variation,
+
+[Stephen Simon] 13:26:27
+This correlation is going to be high.
+
+[Stephen Simon] 13:26:31
+All right, and this is an important thing to remember. When you have a lot of between-subject variation,
+
+[Stephen Simon] 13:26:37
+The correlation's going to be high.
+
+[Stephen Simon] 13:26:40
+When you… when you have very little,
+
+[Stephen Simon] 13:26:42
+between subject… between cluster
+
+[Stephen Simon] 13:26:46
+variation.
+
+[Stephen Simon] 13:26:48
+then sigma squared between is small.
+
+[Stephen Simon] 13:26:50
+We're relative to the Sun.
+
+[Stephen Simon] 13:26:52
+And therefore, the correlation is close to zero.
+
+[Stephen Simon] 13:26:57
+So the intra-class correlation, in some sense, is measuring how variable
+
+[Stephen Simon] 13:27:03
+The classes are, relative to overall variation.
+
+[Stephen Simon] 13:27:09
+Very important statistic.
+
+[Stephen Simon] 13:27:10
+Okay? Now, you don't have to memorize these formulas, and I'm not going to put these formulas on.
+
+[Stephen Simon] 13:27:18
+The final exam, okay?
+
+[Stephen Simon] 13:27:20
+But you do need to understand what the interclass correlation is measuring.
+
+[Stephen Simon] 13:27:25
+It's measuring the degree to which
+
+[Stephen Simon] 13:27:27
+between subject variation is large,
+
+[Stephen Simon] 13:27:31
+Right? To within subject variation.
+
+[Stephen Simon] 13:27:33
+Okay? There's one variation.
+
+[Stephen Simon] 13:27:36
+from one clinic to another, from one litter to another.
+
+[Stephen Simon] 13:27:43
+From one family to another, okay? So…
+
+[Stephen Simon] 13:27:49
+Um, I'm not sure I need to turn this formula, but you can calculate the mean square between
+
+[Stephen Simon] 13:27:54
+Just like you do for an analysis of variance table.
+
+[Stephen Simon] 13:27:57
+And, um, basically, you look at the variation
+
+[Stephen Simon] 13:28:01
+Uh, the, uh, cluster means relative to the overall variation.
+
+[Stephen Simon] 13:28:05
+And the mean square between is a function of the between and the within variation,
+
+[Stephen Simon] 13:28:11
+There's this factor in here that says that the mean square between
+
+[Stephen Simon] 13:28:15
+It's going to over-emphasize the between variation, fair enough.
+
+[Stephen Simon] 13:28:21
+And with that variation is going to be just sigma squared with N,
+
+[Stephen Simon] 13:28:25
+And because we have these two relationships,
+
+[Stephen Simon] 13:28:28
+We can figure out…
+
+[Stephen Simon] 13:28:31
+that sigma squared between is just the mean squared between.
+
+[Stephen Simon] 13:28:35
+minus the mean square with N.
+
+[Stephen Simon] 13:28:37
+Divided by N.
+
+[Stephen Simon] 13:28:39
+And sigma squared…
+
+[Stephen Simon] 13:28:41
+Within is just the mean square within.
+
+[Stephen Simon] 13:28:44
+So, the formulas for calculating the two sources of variation.
+
+[Stephen Simon] 13:28:49
+are not that more complicated than what we saw.
+
+[Stephen Simon] 13:28:52
+in one factor, and then this is the variance, okay?
+
+[Stephen Simon] 13:28:56
+Now, again, it's really nice because the computers will handle
+
+[Stephen Simon] 13:29:01
+All these calculations for you.
+
+[Stephen Simon] 13:29:04
+But the whole point here
+
+[Stephen Simon] 13:29:06
+is that these calculations are not mysterious in any way.
+
+[Stephen Simon] 13:29:10
+You can work these things out with just a little bit of mathematics.
+
+[Stephen Simon] 13:29:14
+Okay. So, our bunch of formulas…
+
+[Stephen Simon] 13:29:18
+And trying to introduce the concept of hierarchical models.
+
+[Stephen Simon] 13:29:22
+Um, I'm going to take a break here, but then I'm going to talk about a study
+
+[Stephen Simon] 13:29:26
+That involves hypothetical letter weights.
+
+[Stephen Simon] 13:29:30
+Um, let me stop. We have just one student, or do we have more?
+
+[Stephen Simon] 13:29:35
+And we got several, thank you, and I always appreciate it.
+
+[Stephen Simon] 13:29:37
+I've said this many times, but I do appreciate having an audience.
+
+[Stephen Simon] 13:29:43
+Okay, any questions?
+
+[Suman Sahil] 13:29:43
+Yeah, there are four students.
+
+[Stephen Simon] 13:29:46
+Forestine is good. Okay, any questions at all?
+
+[Suman Sahil] 13:29:50
+I don't see anything in chat so far.
+
+[Stephen Simon] 13:29:52
+Okay, yeah, and I appreciate you watching the chat box.
+
+[Suman Sahil] 13:29:56
+Yes.
+
+[Stephen Simon] 13:29:57
+Sometimes I'll miss that.
+
+[Suman Sahil] 13:29:59
+Absolutely.
+
+[Stephen Simon] 13:30:00
+Okay, let me stop recording here.
+
+[Stephen Simon] 13:30:08
+Let's start up again.
+
+[Stephen Simon] 13:30:15
+Okay, um, so…
+
+[Stephen Simon] 13:30:17
+talked about this thing from a very abstract perspective. Let's look at a real perspective.
+
+[Stephen Simon] 13:30:22
+Um, there's some data I found, and it's hypothetical data.
+
+[Stephen Simon] 13:30:27
+I'm not thrilled about hypothetical data.
+
+[Stephen Simon] 13:30:31
+But I've liked this one.
+
+[Stephen Simon] 13:30:34
+I like this one because it…
+
+[Stephen Simon] 13:30:39
+helps understand exactly what's going on.
+
+[Stephen Simon] 13:30:42
+So what they did is they did a study,
+
+[Stephen Simon] 13:30:44
+Where they looked at a bunch of atoms, 1 through 180,
+
+[Stephen Simon] 13:30:51
+And these 180…
+
+[Stephen Simon] 13:30:53
+And once we're split up,
+
+[Stephen Simon] 13:30:55
+into 30 litters.
+
+[Stephen Simon] 13:30:57
+All right, now 180 divided by 30 is 6.
+
+[Stephen Simon] 13:31:01
+Um, so what they did is they chose 6 atoms from each litter.
+
+[Stephen Simon] 13:31:07
+Now, what happens if…
+
+[Stephen Simon] 13:31:09
+Some animals have a larger litter,
+
+[Stephen Simon] 13:31:12
+Well, that's pretty easy. You just do 6 random, and then the 7th or 8th.
+
+[Stephen Simon] 13:31:17
+They're left behind. As long as they're randomly selected, that's fine.
+
+[Stephen Simon] 13:31:20
+What do you do if you have some that only have 4 or 5 animals in the litter?
+
+[Stephen Simon] 13:31:26
+Well, you need to think about that.
+
+[Stephen Simon] 13:31:30
+Carefully, because perhaps the litter summonize
+
+[Stephen Simon] 13:31:33
+It's going to be a covarian, a variable that you have to account for.
+
+[Stephen Simon] 13:31:38
+But in general,
+
+[Stephen Simon] 13:31:41
+Excuse me.
+
+[Stephen Simon] 13:31:44
+In general, um, the forms that I showed
+
+[Stephen Simon] 13:31:48
+Assume that we have an equal number.
+
+[Stephen Simon] 13:31:52
+observations within each cluster.
+
+[Stephen Simon] 13:31:55
+And you don't have to have that. That's not a requirement.
+
+[Stephen Simon] 13:31:59
+It turns out that the formulas still work,
+
+[Stephen Simon] 13:32:02
+But they've become tremendously tedious.
+
+[Stephen Simon] 13:32:07
+Tremendously tedious.
+
+[Stephen Simon] 13:32:08
+Now, tedious is my middle name. I don't mind Tedious details.
+
+[Stephen Simon] 13:32:14
+All right, but I'm not going to ask you to recall these tedious details.
+
+[Stephen Simon] 13:32:19
+Because the computer does all the work. Thank goodness for computers.
+
+[Stephen Simon] 13:32:25
+And I took my statistics classes in the late 1970s, early 1980s.
+
+[Stephen Simon] 13:32:33
+Okay, and even then, we had some pretty good computers. I use SaaS.
+
+[Stephen Simon] 13:32:38
+a lot for pretty much all of my homework problems. In fact,
+
+[Stephen Simon] 13:32:44
+My office mate was really good with theory. He couldn't program his way out of a paper bag, so…
+
+[Stephen Simon] 13:32:49
+I helped him with this task.
+
+[Stephen Simon] 13:32:52
+Uh, questions. I set my own basic sense that he's become
+
+[Stephen Simon] 13:32:56
+Moore applied than I am, and that means a really crackerjack programmer. But back then,
+
+[Stephen Simon] 13:33:01
+Yeah, I am so glad for these packages.
+
+[Stephen Simon] 13:33:05
+Because they automate a lot of things.
+
+[Stephen Simon] 13:33:08
+That would require tedious,
+
+[Stephen Simon] 13:33:11
+But not difficult calculations.
+
+[Stephen Simon] 13:33:15
+Okay? But anyway, let's assume that this is a nice, clean data set.
+
+[Stephen Simon] 13:33:20
+With exactly 6 animals per liter.
+
+[Stephen Simon] 13:33:23
+And we're not going to consider the complications.
+
+[Stephen Simon] 13:33:27
+Where some letters have more,
+
+[Stephen Simon] 13:33:29
+And some users have less, okay?
+
+[Stephen Simon] 13:33:31
+Now, the other interesting thing, and this will never happen in the real world,
+
+[Stephen Simon] 13:33:36
+is that exactly 3 of the 6 animals were male.
+
+[Stephen Simon] 13:33:42
+And exactly 3 of the 6 animals within a litter were female.
+
+[Stephen Simon] 13:33:49
+What are the chance to… that happens more often than not.
+
+[Stephen Simon] 13:33:55
+But I can see a lot of times where there are four males and 2 females.
+
+[Stephen Simon] 13:33:59
+One male and 5 females.
+
+[Stephen Simon] 13:34:02
+I mean, once in a while, you might get zero males and 6 females.
+
+[Stephen Simon] 13:34:06
+Right. Well, then my friends, I sent a letter, and I don't want to trivialize this,
+
+[Stephen Simon] 13:34:11
+Um, I had 4 girls.
+
+[Stephen Simon] 13:34:14
+and his family. And people ask him, don't you want a boy? He said, no, I love all my girls.
+
+[Stephen Simon] 13:34:19
+That's fine with him, alright? Some people want to have one of each.
+
+[Stephen Simon] 13:34:25
+Um, I'll be honest, I have one kid. One kid's plenty for me.
+
+[Stephen Simon] 13:34:29
+He keeps my hands full. I don't know how to do two.
+
+[Stephen Simon] 13:34:34
+Three kids? You're outnumbered! How do you handle that? Anyway, I'm babbling here.
+
+[Stephen Simon] 13:34:39
+Alright, so this is a hypothetical example. 180 animals split into 30 litters.
+
+[Stephen Simon] 13:34:45
+Each liner has exactly 3 males.
+
+[Stephen Simon] 13:34:47
+And 3 females, okay?
+
+[Stephen Simon] 13:34:51
+So now, some of the animals were, um, I just put into a group.
+
+[Stephen Simon] 13:34:58
+Group 1, Group 2, or Group 3, and I'm going to simplify this a little bit and throw out Group 3, alright?
+
+[Stephen Simon] 13:35:05
+And then they measured their weight, and since it's a hypothetical data set,
+
+[Stephen Simon] 13:35:10
+They don't have to specify the units of measurement.
+
+[Stephen Simon] 13:35:12
+Okay, so this is what the full dataset looks like.
+
+[Stephen Simon] 13:35:16
+Okay, so letter 2.
+
+[Stephen Simon] 13:35:20
+is in Group 1, and has
+
+[Stephen Simon] 13:35:22
+Three males and 3 females.
+
+[Stephen Simon] 13:35:25
+Letter 3 is also in Group 1.
+
+[Stephen Simon] 13:35:28
+It has females and 3 females, and so forth.
+
+[Stephen Simon] 13:35:32
+River 29 is the last litter.
+
+[Stephen Simon] 13:35:35
+in Group 1.
+
+[Stephen Simon] 13:35:36
+And it has 3 males and 3 females, alright? Now, actually, there are…
+
+[Stephen Simon] 13:35:42
+what is it, 180?
+
+[Stephen Simon] 13:35:45
+There are 30 lenders, okay? But I'm only showing two of the groups, just because…
+
+[Stephen Simon] 13:35:49
+Did the graph will get a little bit busy if I showed Group 3, alright?
+
+[Stephen Simon] 13:35:52
+So in Group 2, we randomly assign Group 1 to Group 2, but we assign
+
+[Stephen Simon] 13:35:58
+Based on the full letter.
+
+[Stephen Simon] 13:36:00
+So, 2 and 3, letters 2 and 3 are assigned to Group 1.
+
+[Stephen Simon] 13:36:04
+Letters 1 and 4 are assigned to group 2.
+
+[Stephen Simon] 13:36:08
+Okay? Now…
+
+[Stephen Simon] 13:36:10
+You look at this and think, man, that's a lot of data.
+
+[Stephen Simon] 13:36:14
+And you either think two things. You think, oh my goodness, I'm gonna have to work hard,
+
+[Stephen Simon] 13:36:19
+Or you think, oh my goodness, it's gonna have so much fun here.
+
+[Stephen Simon] 13:36:23
+All right, I have a lot of fun. I love rich data sets, ones I have a lot.
+
+[Stephen Simon] 13:36:27
+But let's suppose we wanted to simplify things.
+
+[Stephen Simon] 13:36:32
+Let's suppose we wanted to bypass
+
+[Stephen Simon] 13:36:37
+Because the…
+
+[Stephen Simon] 13:36:38
+complexities associated with
+
+[Stephen Simon] 13:36:41
+the correlations within each litter.
+
+[Stephen Simon] 13:36:45
+Let's suppose we wanted to do that analysis, where we didn't have to worry.
+
+[Stephen Simon] 13:36:50
+about between litter variation.
+
+[Stephen Simon] 13:36:53
+Well, you could do this, and it's pretty easy.
+
+[Stephen Simon] 13:36:58
+Just randomly select one male,
+
+[Stephen Simon] 13:37:01
+from each litter in Group 1.
+
+[Stephen Simon] 13:37:05
+And randomly select one male.
+
+[Stephen Simon] 13:37:08
+From each litter in group 2.
+
+[Stephen Simon] 13:37:10
+And then you can do a two-sample t-test.
+
+[Stephen Simon] 13:37:13
+Because there's no correlation here.
+
+[Stephen Simon] 13:37:17
+We only have one animal in each litter.
+
+[Stephen Simon] 13:37:21
+So I have no correlation between… well, there's no correlation.
+
+[Stephen Simon] 13:37:25
+for the, um, animal in the second litter and the animal in the third litter.
+
+[Stephen Simon] 13:37:31
+Okay, so by throwing away…
+
+[Stephen Simon] 13:37:35
+83% of the day doggling is the number.
+
+[Stephen Simon] 13:37:38
+By throwing away 83% of the data,
+
+[Stephen Simon] 13:37:41
+You can find yourself in a simple situation where you can do a two-sample t-test.
+
+[Stephen Simon] 13:37:47
+All right, now, some people say,
+
+[Stephen Simon] 13:37:49
+I am so glad. I want to do the easy test.
+
+[Stephen Simon] 13:37:53
+Not me! I want to do the fun test, alright?
+
+[Stephen Simon] 13:37:57
+Seems to me like there's a lot of stuff going on here.
+
+[Stephen Simon] 13:37:59
+And we're thrown the information.
+
+[Stephen Simon] 13:38:02
+So, one of the first times I got introduced to hierarchical data,
+
+[Stephen Simon] 13:38:09
+was when we were doing a study, and…
+
+[Stephen Simon] 13:38:13
+Certain variation, um, the hormonal cycle variation in women.
+
+[Stephen Simon] 13:38:18
+About the number of days between
+
+[Stephen Simon] 13:38:20
+Menstruation, alright?
+
+[Stephen Simon] 13:38:23
+down some of the women were able to provide one full menstrual cycle.
+
+[Stephen Simon] 13:38:28
+Some of the women were able to provide
+
+[Stephen Simon] 13:38:31
+two full menstrual cycles.
+
+[Stephen Simon] 13:38:34
+And at the time, I thought,
+
+[Stephen Simon] 13:38:36
+Well, let's just count the first menstrual cycle.
+
+[Stephen Simon] 13:38:41
+And voiding those problems. And, uh, epidemiologist, bless her soul,
+
+[Stephen Simon] 13:38:46
+work on this stuff. No, no, we don't want to throw away that information.
+
+[Stephen Simon] 13:38:50
+And she ended up doing a hierarchical model, good for her.
+
+[Stephen Simon] 13:38:55
+And to be honest, I thought, okay, that's a pretty good choice.
+
+[Stephen Simon] 13:38:58
+Okay? So, um, a lot of times,
+
+[Stephen Simon] 13:39:02
+If we allow for correlation,
+
+[Stephen Simon] 13:39:05
+We can get a richer data set.
+
+[Stephen Simon] 13:39:08
+Okay? But, if you really wanted to,
+
+[Stephen Simon] 13:39:11
+You could strip this dataset bare.
+
+[Stephen Simon] 13:39:15
+And only have 20 observations.
+
+[Stephen Simon] 13:39:19
+Okay, you could do that. That'd be a pretty easy thing to do.
+
+[Stephen Simon] 13:39:23
+There's another thing you can do…
+
+[Stephen Simon] 13:39:26
+You might be interested in a sex comparison.
+
+[Stephen Simon] 13:39:30
+Males versus females.
+
+[Stephen Simon] 13:39:32
+And if you randomly selected one male,
+
+[Stephen Simon] 13:39:35
+And one female from each litter
+
+[Stephen Simon] 13:39:39
+Like, I don't look through the first group…
+
+[Stephen Simon] 13:39:41
+then you could do a paired t-test.
+
+[Stephen Simon] 13:39:44
+Because the male-female pair within a litter are going to be correlated with one another.
+
+[Stephen Simon] 13:39:51
+Going to the compute a difference.
+
+[Stephen Simon] 13:39:54
+And the difference, the female…
+
+[Stephen Simon] 13:39:56
+Privest male difference is going to be independent.
+
+[Stephen Simon] 13:40:00
+from one letter to another.
+
+[Stephen Simon] 13:40:02
+So this is an important message.
+
+[Stephen Simon] 13:40:05
+Sometimes, if you have…
+
+[Stephen Simon] 13:40:08
+Hierarchical data.
+
+[Stephen Simon] 13:40:10
+And you want to take the easy way out.
+
+[Stephen Simon] 13:40:14
+I didn't take the easy way out, please. Let's do the fun stuff.
+
+[Stephen Simon] 13:40:17
+All right. Well, what you can do is to try to reduce the data
+
+[Stephen Simon] 13:40:21
+To a single measurement per cluster.
+
+[Stephen Simon] 13:40:24
+And in this case, the single measurement is the parent difference between a randomly selected male
+
+[Stephen Simon] 13:40:30
+And a randomly selected female.
+
+[Stephen Simon] 13:40:33
+Okay? Again, we're throwing away a tremendous amount of information.
+
+[Stephen Simon] 13:40:37
+In order to get simplicity.
+
+[Stephen Simon] 13:40:41
+Um, the other way of thinking about this…
+
+[Stephen Simon] 13:40:45
+is that this padding
+
+[Stephen Simon] 13:40:48
+Where we allow for a hierarchical model,
+
+[Stephen Simon] 13:40:51
+And we tried to explicitly estimate the variation
+
+[Stephen Simon] 13:40:55
+Between letters and the variation within letters,
+
+[Stephen Simon] 13:41:01
+Um, that leads to a very interesting comparison that we… allows us to do
+
+[Stephen Simon] 13:41:09
+All sorts of things. So if you look at the full data set here,
+
+[Stephen Simon] 13:41:13
+There are lots of opportunities.
+
+[Stephen Simon] 13:41:15
+So you can compare Group 1 to Group 2.
+
+[Stephen Simon] 13:41:20
+You can compare females to males.
+
+[Stephen Simon] 13:41:22
+You can compare, um, the interaction between group
+
+[Stephen Simon] 13:41:27
+and gender.
+
+[Stephen Simon] 13:41:29
+So there's all sorts of things that you can test here.
+
+[Stephen Simon] 13:41:32
+That you can examine. So it's an opportunity.
+
+[Stephen Simon] 13:41:36
+All right, and the… to be honest, the study that was done
+
+[Stephen Simon] 13:41:42
+That was in the early 1990s.
+
+[Stephen Simon] 13:41:44
+And really wasn't that popular to use these armor.
+
+[Stephen Simon] 13:41:48
+But these days, they're all over the place.
+
+[Stephen Simon] 13:41:53
+They're all over the place.
+
+[Stephen Simon] 13:41:55
+The mathematics is a bit messy, and you have to account for multiple sources of variation.
+
+[Stephen Simon] 13:42:01
+You have to work harder, you have to use more complex
+
+[Stephen Simon] 13:42:05
+functions. But it allows you to do really interesting things.
+
+[Stephen Simon] 13:42:09
+Using all of the available data.
+
+[Stephen Simon] 13:42:14
+So it's kind of cool, okay?
+
+[Stephen Simon] 13:42:18
+All right, so we've seen… we can do the full data set.
+
+[Stephen Simon] 13:42:21
+But we can look at a subset for a two-sample t-test.
+
+[Stephen Simon] 13:42:25
+prepared t-test, alright.
+
+[Stephen Simon] 13:42:27
+Why do we need to accommodate non-independence?
+
+[Stephen Simon] 13:42:32
+Well, there's four big reasons.
+
+[Stephen Simon] 13:42:33
+First is there's changes in power and precision.
+
+[Stephen Simon] 13:42:39
+Within-cluster comparisons have more power and more precision,
+
+[Stephen Simon] 13:42:43
+But between cluster comparisons have less power,
+
+[Stephen Simon] 13:42:47
+And less precision, and you think,
+
+[Stephen Simon] 13:42:49
+Oh, well, that's a mistake.
+
+[Stephen Simon] 13:42:51
+All right, we don't… less power and precision.
+
+[Stephen Simon] 13:42:55
+Oftentimes, when you have to put up with less power and precision, it's because you're facing the end-hane sort of framework.
+
+[Stephen Simon] 13:43:02
+You cannot economically get
+
+[Stephen Simon] 13:43:06
+independence by taking randomly… only one randomly selected person,
+
+[Stephen Simon] 13:43:11
+from a large number of clusters.
+
+[Stephen Simon] 13:43:13
+Okay, let's go back and look at this thing here.
+
+[Stephen Simon] 13:43:17
+We have 180 observations.
+
+[Stephen Simon] 13:43:20
+All right, I'm only showing…
+
+[Stephen Simon] 13:43:23
+120 of them.
+
+[Stephen Simon] 13:43:26
+Okay? But we have 180 observations.
+
+[Stephen Simon] 13:43:30
+across 30 litters.
+
+[Stephen Simon] 13:43:32
+We could have…
+
+[Stephen Simon] 13:43:34
+gotten 180 litters.
+
+[Stephen Simon] 13:43:36
+and randomly selected one animal.
+
+[Stephen Simon] 13:43:39
+from each litter.
+
+[Stephen Simon] 13:43:41
+Sure, we could do that.
+
+[Stephen Simon] 13:43:43
+But why would you sacrifice the ability to learn
+
+[Stephen Simon] 13:43:47
+from the remaining 5 animals.
+
+[Stephen Simon] 13:43:50
+Okay, plus…
+
+[Stephen Simon] 13:43:52
+You're going to have to deliver.
+
+[Stephen Simon] 13:43:55
+Uh-huh. 180 times!
+
+[Stephen Simon] 13:43:58
+I'm sorry, I can send them to have Perth's a lot easier than…
+
+[Stephen Simon] 13:44:03
+humans too, but still, 180?
+
+[Stephen Simon] 13:44:06
+Pregnancies? Come on, it's a whole lot easier.
+
+[Stephen Simon] 13:44:09
+So oftentimes, these hierarchical models are built in the name of efficient efficiency.
+
+[Stephen Simon] 13:44:14
+Okay? Now, there's one more thing I want to mention.
+
+[Stephen Simon] 13:44:18
+You can combine multiple tests into a single framework.
+
+[Stephen Simon] 13:44:22
+All right, so we have a pair of t-test.
+
+[Stephen Simon] 13:44:26
+And the two sample tests that are both hiding inside this representation.
+
+[Stephen Simon] 13:44:34
+Yeah, wouldn't it be nice to be able to incorporate both tests into a single model?
+
+[Stephen Simon] 13:44:40
+Plus, the ability to look at interactions?
+
+[Stephen Simon] 13:44:43
+Man! Alright, so instead of saying, okay, let's do sample t-tests,
+
+[Stephen Simon] 13:44:49
+On one Saturday of the data, and I'll do a paired detest and analysis done of the data. Let's try to build a hierarchical model
+
+[Stephen Simon] 13:44:57
+That will do the between-subject comparison, the between-cluster comparison, that we wanted to do for the two-sample t-tests.
+
+[Stephen Simon] 13:45:04
+And that within foster comparison that we wanted to do for the paired test.
+
+[Stephen Simon] 13:45:14
+Okay? So, these models open up…
+
+[Stephen Simon] 13:45:19
+A lot of avenues for consolidating multiple tests into a single framework.
+
+[Stephen Simon] 13:45:26
+The other thing that's nice about these models
+
+[Stephen Simon] 13:45:30
+is that they handle missing data reasonably well.
+
+[Stephen Simon] 13:45:35
+Um,
+
+[Stephen Simon] 13:45:37
+Let's go back to the paired t-test.
+
+[Stephen Simon] 13:45:41
+Alright, let's pose that, for some reason we lost letters 27 and…
+
+[Stephen Simon] 13:45:48
+29, not the whole letter, but we lost the two females.
+
+[Stephen Simon] 13:45:55
+Okay, and you think, oh, we have to throw out the entire…
+
+[Stephen Simon] 13:46:00
+wonder, because we don't have a pair.
+
+[Stephen Simon] 13:46:02
+For the mail in letter 27.
+
+[Stephen Simon] 13:46:04
+And the mail in letter 29. Well, you don't have…
+
+[Stephen Simon] 13:46:11
+there. Buh!
+
+[Stephen Simon] 13:46:13
+You can still incorporate that, because those two males provide between-subject
+
+[Stephen Simon] 13:46:19
+Between letter comparisons that still add a small amount to the precision.
+
+[Stephen Simon] 13:46:24
+Okay, so there's a real story here, and I do too many war stories, but true story!
+
+[Stephen Simon] 13:46:29
+Um, there's some… some people are doing research. It was an animal study.
+
+[Stephen Simon] 13:46:34
+Back at my job when I was working for the government.
+
+[Stephen Simon] 13:46:37
+Looking at a variety of alcohols.
+
+[Stephen Simon] 13:46:40
+And they're, in fact, on…
+
+[Stephen Simon] 13:46:42
+Teratology, basically birth defects.
+
+[Stephen Simon] 13:46:45
+Um, in mice.
+
+[Stephen Simon] 13:46:48
+Okay? And, um, they would do things like behavioral tests.
+
+[Stephen Simon] 13:46:54
+To see how well that, um, that there were any behavioral deficits.
+
+[Stephen Simon] 13:46:58
+associated with alcohol exposure.
+
+[Stephen Simon] 13:47:01
+Okay, so they started out with methane exposure.
+
+[Stephen Simon] 13:47:06
+Then it worked to…
+
+[Stephen Simon] 13:47:07
+I'm sorry, tackle. So, it's methanol exposure.
+
+[Stephen Simon] 13:47:12
+Followed by ethanol exposure.
+
+[Stephen Simon] 13:47:15
+Followed by… what is it? Isopropyl?
+
+[Stephen Simon] 13:47:19
+All right, so basically one carbon…
+
+[Stephen Simon] 13:47:23
+is methanol.
+
+[Stephen Simon] 13:47:25
+Two carbons is ethanol.
+
+[Stephen Simon] 13:47:28
+3 carbons is isopropanol,
+
+[Stephen Simon] 13:47:31
+Don't ask me what the fourth is. Guadenol, I don't know.
+
+[Stephen Simon] 13:47:35
+They got a rip to 9, but alcohol with 9.
+
+[Stephen Simon] 13:47:39
+carbons in the chain length.
+
+[Stephen Simon] 13:47:40
+Okay? But…
+
+[Stephen Simon] 13:47:44
+One of the experiments
+
+[Stephen Simon] 13:47:46
+At Tragedy…
+
+[Stephen Simon] 13:47:47
+And that they lost the control group.
+
+[Stephen Simon] 13:47:50
+So they're doing 9 different alcohols,
+
+[Stephen Simon] 13:47:54
+For 8 alcohols, they have both an exposed group
+
+[Stephen Simon] 13:47:57
+And a control group for the 9th, alcohol.
+
+[Stephen Simon] 13:48:01
+They did not have a control group.
+
+[Stephen Simon] 13:48:03
+So, you can't do the comparison.
+
+[Stephen Simon] 13:48:07
+Darn it all. For that ninth alcohol, the one with 9 carbons in the chain.
+
+[Stephen Simon] 13:48:13
+Because there's no control group.
+
+[Stephen Simon] 13:48:16
+But you can look at the variation of the previous 8 control groups.
+
+[Stephen Simon] 13:48:21
+And then for what the 9th control group might look at,
+
+[Stephen Simon] 13:48:24
+And do a valid inference.
+
+[Stephen Simon] 13:48:27
+Okay? Very important.
+
+[Stephen Simon] 13:48:29
+So we were totally missing a control group, but we were still able to do the analysis, and we were still able to come up with a valid comparison.
+
+[Stephen Simon] 13:48:38
+Now, for what it's worth, it was a weak comparison
+
+[Stephen Simon] 13:48:41
+Because it was a between-letter comparison, and in a cluster randomized trial between litter comparisons,
+
+[Stephen Simon] 13:48:49
+are less efficient.
+
+[Stephen Simon] 13:48:50
+But still, it's better than not doing any comparison at all.
+
+[Stephen Simon] 13:48:55
+Okay? So, handling listing data.
+
+[Stephen Simon] 13:48:59
+There's a big reason why you might want to accommodate
+
+[Stephen Simon] 13:49:03
+marin independence. And then finally, it allows for more sophisticated analyses.
+
+[Stephen Simon] 13:49:09
+Um,
+
+[Stephen Simon] 13:49:14
+There's a lot that you can do with
+
+[Stephen Simon] 13:49:16
+Hierarchical data.
+
+[Stephen Simon] 13:49:19
+that can inform…
+
+[Stephen Simon] 13:49:21
+Um, a lot of issues.
+
+[Stephen Simon] 13:49:23
+Uh, but, um…
+
+[Stephen Simon] 13:49:24
+Uh, if you have to reduce it to…
+
+[Stephen Simon] 13:49:28
+A non-hierarchical example.
+
+[Stephen Simon] 13:49:31
+Where each observation is independent, there's no cluster effects.
+
+[Stephen Simon] 13:49:35
+You lose the ability to look at different things.
+
+[Stephen Simon] 13:49:38
+So the classic example of a hierarchical model that everyone cites
+
+[Stephen Simon] 13:49:43
+is an educational intervention.
+
+[Stephen Simon] 13:49:47
+Alright, in an educational intervention, typically what they're going to do
+
+[Stephen Simon] 13:49:51
+Is it going to randomly select 10 schools.
+
+[Stephen Simon] 13:49:55
+And each side of each school, they're going to select
+
+[Stephen Simon] 13:49:59
+Four classrooms.
+
+[Stephen Simon] 13:50:02
+All right, and then each… inside of each of the classrooms,
+
+[Stephen Simon] 13:50:06
+They're going to select, and…
+
+[Stephen Simon] 13:50:08
+pupils. 10 students.
+
+[Stephen Simon] 13:50:11
+Okay? Now, when you do this hierarchical model, this is really messy.
+
+[Stephen Simon] 13:50:17
+Because they only have 3 sources of variation.
+
+[Stephen Simon] 13:50:20
+You have variation from one school to another.
+
+[Stephen Simon] 13:50:25
+You have variation from one classroom to another.
+
+[Stephen Simon] 13:50:29
+And then you have variation within the classroom.
+
+[Stephen Simon] 13:50:33
+All right?
+
+[Stephen Simon] 13:50:35
+So it's more complicated!
+
+[Stephen Simon] 13:50:39
+In understanding differences between classrooms, within classrooms, between schools,
+
+[Stephen Simon] 13:50:43
+And with that school allows you to do some fairly sophisticated things. It allows you to develop insights
+
+[Stephen Simon] 13:50:50
+that would not be available if we limited ourselves only to research designs,
+
+[Stephen Simon] 13:50:55
+Where only observations are independent of one another.
+
+[Stephen Simon] 13:50:58
+Okay? This stuff is big, big, big, all right?
+
+[Stephen Simon] 13:51:02
+Now, I need to mention I'm only going to give you a small taste of it, because, uh,
+
+[Stephen Simon] 13:51:06
+This is Arist Tats 2, alright? And there's so many things we have to cover.
+
+[Stephen Simon] 13:51:11
+But it's important to do, and for what it's worth,
+
+[Stephen Simon] 13:51:14
+We went through a class that was taught by Ayn Lin Cheng,
+
+[Stephen Simon] 13:51:17
+Bernstats 3. That focuses almost exclusively
+
+[Stephen Simon] 13:51:21
+want hierarchical models.
+
+[Stephen Simon] 13:51:24
+and longitudinal data.
+
+[Stephen Simon] 13:51:25
+So you only get one module.
+
+[Stephen Simon] 13:51:28
+Excuse me in my class.
+
+[Stephen Simon] 13:51:32
+On an online class?
+
+[Stephen Simon] 13:51:33
+you get 16 modules, one for every week of the semester. Good for her.
+
+[Stephen Simon] 13:51:39
+And these models are huge, huge, huge. They're used to long.
+
+[Stephen Simon] 13:51:44
+Okay, now…
+
+[Stephen Simon] 13:51:47
+How does the power and precision change?
+
+[Stephen Simon] 13:51:52
+For within cluster comparison, if they were independent, it would just be sigma squared within,
+
+[Stephen Simon] 13:51:58
+divided by the number of clusters times the number of, um…
+
+[Stephen Simon] 13:52:02
+Uh, um, subjects within each cluster.
+
+[Stephen Simon] 13:52:05
+Okay? That would be the case if there were no cluster effects.
+
+[Stephen Simon] 13:52:10
+But because there's a cluster effect,
+
+[Stephen Simon] 13:52:13
+You actually multiply that by 1 minus rho ICC.
+
+[Stephen Simon] 13:52:18
+ROICC is the interclass correlation.
+
+[Stephen Simon] 13:52:20
+And what this formula is telling you are the formulas.
+
+[Stephen Simon] 13:52:24
+What this formula is telling you.
+
+[Stephen Simon] 13:52:26
+is that…
+
+[Stephen Simon] 13:52:30
+is that if the interclause correlation is large,
+
+[Stephen Simon] 13:52:34
+Close to 1. You can now greatly reduce
+
+[Stephen Simon] 13:52:39
+The within-cluster Comparisons.
+
+[Stephen Simon] 13:52:42
+You gain a huge amount of efficiency.
+
+[Stephen Simon] 13:52:45
+Okay? Now, if the interclass correlation is close to zero,
+
+[Stephen Simon] 13:52:51
+He still gets some benefit, but it's not nearly as much.
+
+[Stephen Simon] 13:52:55
+So knowing this row ICC,
+
+[Stephen Simon] 13:52:58
+The inter-class correlation.
+
+[Stephen Simon] 13:53:00
+It's going to be very important.
+
+[Stephen Simon] 13:53:03
+When you're planning a research study.
+
+[Stephen Simon] 13:53:14
+Okay.
+
+[Stephen Simon] 13:53:17
+So, between cost and comparison,
+
+[Stephen Simon] 13:53:19
+Works in the opposite direction.
+
+[Stephen Simon] 13:53:22
+If there was no… if there was perfect independence,
+
+[Stephen Simon] 13:53:25
+We'd have one formula, which is the third line here.
+
+[Stephen Simon] 13:53:29
+But instead, we take the total variation
+
+[Stephen Simon] 13:53:32
+Divided by the total number of subjects times the total number of clusters.
+
+[Stephen Simon] 13:53:37
+And we multiply by 1 plus
+
+[Stephen Simon] 13:53:40
+N minus 1 times rho ICC.
+
+[Stephen Simon] 13:53:44
+Okay, now the interclass correlation is always positive.
+
+[Stephen Simon] 13:53:50
+So what this means is that we end up with a penalty.
+
+[Stephen Simon] 13:53:54
+Because it's 1 plus a positive number.
+
+[Stephen Simon] 13:53:59
+Okay, so we lose precision.
+
+[Stephen Simon] 13:54:03
+Now, the other thing to note here is that we lose more precision
+
+[Stephen Simon] 13:54:07
+When the interclass correlation is large,
+
+[Stephen Simon] 13:54:11
+But we also lose precision,
+
+[Stephen Simon] 13:54:14
+When the number of…
+
+[Stephen Simon] 13:54:16
+subjects within each cluster is large.
+
+[Stephen Simon] 13:54:20
+Okay? This quantity, 1 plus n minus 1,
+
+[Stephen Simon] 13:54:24
+times rho ICC.
+
+[Stephen Simon] 13:54:26
+It's often called the design effect.
+
+[Stephen Simon] 13:54:29
+And we'll see some examples later.
+
+[Stephen Simon] 13:54:32
+But it's really a measure of the penalty that you pay,
+
+[Stephen Simon] 13:54:37
+For doing a between-cluster comparison,
+
+[Stephen Simon] 13:54:40
+Because you have to, alright, because of logistics.
+
+[Stephen Simon] 13:54:43
+Alright, it's a penalty that you pay.
+
+[Stephen Simon] 13:54:48
+And this is very important when you're trying to plan sample sizes.
+
+[Stephen Simon] 13:54:52
+The sample size that you need…
+
+[Stephen Simon] 13:54:54
+There's going to be a lot worse, meaning a lot larger sample size,
+
+[Stephen Simon] 13:54:58
+When you have a large inter-class correlation,
+
+[Stephen Simon] 13:55:03
+Or, when you have a large number of patients within each cluster.
+
+[Stephen Simon] 13:55:07
+Okay?
+
+[Stephen Simon] 13:55:13
+Alright, so, there's an article that appeared in 1984.
+
+[Stephen Simon] 13:55:19
+And anyone's basically a little green statistician.
+
+[Stephen Simon] 13:55:22
+Starting to teach a bunch of classes, and…
+
+[Stephen Simon] 13:55:25
+And really woke me up.
+
+[Stephen Simon] 13:55:27
+Or it's a useless term called pseudo-replication.
+
+[Stephen Simon] 13:55:32
+And, um, this Luther said,
+
+[Stephen Simon] 13:55:35
+Let's look at a hypothetical study of water contamination.
+
+[Stephen Simon] 13:55:39
+We're going to drill five wells in an area,
+
+[Stephen Simon] 13:55:41
+And we're going to sample 4 times at each mill.
+
+[Stephen Simon] 13:55:46
+Now, the researchers who did the study treated it as 20
+
+[Stephen Simon] 13:55:50
+Independent observations.
+
+[Stephen Simon] 13:55:53
+But that was a mistake.
+
+[Stephen Simon] 13:55:57
+That is a mistake, because two measurements from the same well.
+
+[Stephen Simon] 13:56:01
+are likely to be correlated, in fact, pretty strictly correlated, if you ask me.
+
+[Stephen Simon] 13:56:07
+Okay.
+
+[Stephen Simon] 13:56:09
+From the sample size is not 20, you're not going to take your variation and divide by 20 to get a standard error.
+
+[Stephen Simon] 13:56:16
+Instead, it's going to be divided by 20, but then adjust
+
+[Stephen Simon] 13:56:19
+For the divine effect.
+
+[Stephen Simon] 13:56:21
+Okay? Um…
+
+[Stephen Simon] 13:56:27
+There's a second reference here.
+
+[Stephen Simon] 13:56:34
+fest thing at all, I'll have to look at that.
+
+[Stephen Simon] 13:56:37
+Available, I believe, online.
+
+[Stephen Simon] 13:56:39
+And it talks about the same thing.
+
+[Stephen Simon] 13:56:41
+more recent publication, 2020.
+
+[Stephen Simon] 13:56:46
+Okay. So, design considerations within cluster comparisons
+
+[Stephen Simon] 13:56:51
+When we have greater precision and power, but it's not always possible to do it.
+
+[Stephen Simon] 13:56:55
+If you're looking at medications that are administered to the mother during pregnancy,
+
+[Stephen Simon] 13:57:00
+You can't say 3 of the 6 pups
+
+[Stephen Simon] 13:57:04
+Get the medication, and 3 done. They all get it, or they all don't get it?
+
+[Stephen Simon] 13:57:08
+Okay? Um…
+
+[Stephen Simon] 13:57:13
+And it's best to increase the number of clusters.
+
+[Stephen Simon] 13:57:18
+Increasing the number of clusters improves
+
+[Stephen Simon] 13:57:21
+Reduce the space forces of variation.
+
+[Stephen Simon] 13:57:23
+Well, that's the important thing. Let's go back to these formulas.
+
+[Stephen Simon] 13:57:30
+I thought, oh, man.
+
+[Stephen Simon] 13:57:32
+Very important formula here.
+
+[Stephen Simon] 13:57:36
+Now, this is the standard deviation of the overall mean.
+
+[Stephen Simon] 13:57:39
+We take one variation, divide by A, the number of clusters,
+
+[Stephen Simon] 13:57:45
+And then another subversion divided by AN.
+
+[Stephen Simon] 13:57:49
+If you really want to get more bang for your buck,
+
+[Stephen Simon] 13:57:52
+Increase the number of clusters.
+
+[Stephen Simon] 13:57:56
+Now, if you can't increase the number of clusters because you've got a travel budget, we can only travel to 30 locations in the United States.
+
+[Stephen Simon] 13:58:03
+We cannot travel to 800.
+
+[Stephen Simon] 13:58:06
+then you have to live with it, okay?
+
+[Stephen Simon] 13:58:08
+But if you have an opportunity, increasing the number of clusters
+
+[Stephen Simon] 13:58:12
+is always better than increasing the number of patients within a cluster.
+
+[Stephen Simon] 13:58:18
+Okay.
+
+[Stephen Simon] 13:58:28
+Um, the other thing is the degrees of freedom.
+
+[Stephen Simon] 13:58:34
+are a fuzzy concept.
+
+[Stephen Simon] 13:58:35
+And there is no consensus yet.
+
+[Stephen Simon] 13:58:39
+In the research community about how to estimate degrees of freedom.
+
+[Stephen Simon] 13:58:43
+We talked about degrees of freedom for error,
+
+[Stephen Simon] 13:58:46
+in a one-factor analysis of variance,
+
+[Stephen Simon] 13:58:49
+I just add minus K. N is the total number of observations.
+
+[Stephen Simon] 13:58:53
+change the number of groups.
+
+[Stephen Simon] 13:58:55
+Or in a regression model case, the number of estimated parameters.
+
+[Stephen Simon] 13:58:59
+All right, but let's capital N? Is it 5 the number of wells?
+
+[Stephen Simon] 13:59:03
+Well, not really. Is it 20 the number of water samples? Well, not really.
+
+[Stephen Simon] 13:59:09
+that somewhere between those two, because you do get a slight improvement in
+
+[Stephen Simon] 13:59:14
+prediction by taking four samples from a well,
+
+[Stephen Simon] 13:59:19
+There have been one sample from a well.
+
+[Stephen Simon] 13:59:21
+But you don't give as much as if the samples were independent of one another.
+
+[Stephen Simon] 13:59:28
+The return is not… is not always that great.
+
+[Stephen Simon] 13:59:32
+Okay, so…
+
+[Stephen Simon] 13:59:40
+Let's stop here. We talked about hypothetical order weights, and why you would want to use these models.
+
+[Stephen Simon] 13:59:48
+what some of the limitations are.
+
+[Stephen Simon] 13:59:52
+Excuse me, next I want to talk about
+
+[Stephen Simon] 13:59:56
+Within foster comparisons, I want to do a real-world example of that.
+
+[Stephen Simon] 14:00:01
+Okay, let me stop and see if there are any questions.
+
+[Stephen Simon] 14:00:09
+Okay, no questions?
+
+[Suman Sahil] 14:00:15
+I don't see any.
+
+[Stephen Simon] 14:00:16
+Okay, thank you. Thank you. Okay, um, so let's start up recording again.
+
+[Suman Sahil] 14:00:17
+So…
+
+[Stephen Simon] 14:00:28
+Okay, so I just, um, found no questions. It's a small group who shows up live, that's fine.
+
+[Stephen Simon] 14:00:34
+Um, if they don't have questions, that's perfectly fine.
+
+[Stephen Simon] 14:00:37
+For those of you listening asynchronously,
+
+[Stephen Simon] 14:00:40
+You're welcome to come to the Friday help sessions, and I'm sorry I had to cancel the last
+
+[Stephen Simon] 14:00:44
+for any obsession with short notice.
+
+[Stephen Simon] 14:00:47
+And I apologize for that, but…
+
+[Stephen Simon] 14:00:48
+Normally, every Friday morning, 8.30 to 9.30am available.
+
+[Stephen Simon] 14:00:52
+send me an email, send Suman an email.
+
+[Stephen Simon] 14:00:54
+In particular, Simone's really great with those R programming questions.
+
+[Stephen Simon] 14:00:58
+All right? Uh, but either one of us would be glad to answer any emails that you send us, okay?
+
+[Stephen Simon] 14:01:04
+But ask questions, because we love questions.
+
+[Stephen Simon] 14:01:07
+Okay, so we talked about hypothetical letter weights, now let's do an actual within-cluster comparison.
+
+[Stephen Simon] 14:01:18
+Okay. So, we're going to definitely make two treatments.
+
+[Stephen Simon] 14:01:23
+1 and 2. And then we could do 3 or more treatments. That'll work fine.
+
+[Stephen Simon] 14:01:29
+Okay.
+
+[Stephen Simon] 14:01:32
+And then we're going to randomly assign cluster.
+
+[Stephen Simon] 14:01:36
+There are going to be a total of, um, oh, the notation's wrong here.
+
+[Stephen Simon] 14:01:41
+It's gonna be a total of A clusters. Each cluster gets the same treatment.
+
+[Stephen Simon] 14:01:46
+And it is possible to have unequal numbers within each treatment.
+
+[Stephen Simon] 14:01:50
+Okay?
+
+[Stephen Simon] 14:01:57
+And then you randomly select patients,
+
+[Stephen Simon] 14:02:02
+Within each cluster.
+
+[Stephen Simon] 14:02:04
+All right. Now, it's possible to have any unequal numbers within each cluster.
+
+[Stephen Simon] 14:02:16
+Um, this is probably not the best example of this, but let's work through this, okay?
+
+[Stephen Simon] 14:02:21
+Because if it's a within-cluster comparison.
+
+[Stephen Simon] 14:02:26
+And it's a repeated investment analysis. It's a real data set.
+
+[Stephen Simon] 14:02:30
+There are 10 subjects with osteo…
+
+[Stephen Simon] 14:02:35
+Excuse me, osteoarthritis.
+
+[Stephen Simon] 14:02:39
+Okay?
+
+[Stephen Simon] 14:02:43
+And they were evaluated 3 times.
+
+[Stephen Simon] 14:02:47
+One was called TENS, T-E-N-S.
+
+[Stephen Simon] 14:02:51
+One was called SWD, and one was called No Treatment.
+
+[Stephen Simon] 14:02:55
+Okay? Now, there's no information about whether the order of the three treatments were randomized.
+
+[Stephen Simon] 14:03:02
+Fair enough. They should do that, alright?
+
+[Stephen Simon] 14:03:05
+But it seems reasonable to assume that the effect of the three treatments was short,
+
+[Stephen Simon] 14:03:11
+They'll carryover effect.
+
+[Stephen Simon] 14:03:15
+So anyway, people with arthritis tend to have pain.
+
+[Stephen Simon] 14:03:19
+And we're trying to reduce the pain, so we measured pain.
+
+[Stephen Simon] 14:03:22
+After the tense and the SWD, and after no treatment,
+
+[Stephen Simon] 14:03:27
+Using, um, visual analog scale.
+
+[Stephen Simon] 14:03:31
+We also measured range of motion.
+
+[Stephen Simon] 14:03:33
+Okay?
+
+[Stephen Simon] 14:03:36
+So here's a glimpse of the original data.
+
+[Stephen Simon] 14:03:40
+And we're going to see right away there's some complications here.
+
+[Stephen Simon] 14:03:44
+All right, but we have 10 patients. We're seeing the entire data set.
+
+[Stephen Simon] 14:03:49
+And for the first patient, we have…
+
+[Stephen Simon] 14:03:52
+The range of motion and the VAS visual analog scale.
+
+[Stephen Simon] 14:03:57
+Pain measurement under no treatment.
+
+[Stephen Simon] 14:04:00
+And then range of motion and visual analog scale.
+
+[Stephen Simon] 14:04:03
+Under the TENS treatment.
+
+[Stephen Simon] 14:04:05
+And then range of motion and visual analog scale.
+
+[Stephen Simon] 14:04:09
+Under the VAS measurement.
+
+[Stephen Simon] 14:04:13
+Okay? Now, think of this one compared t-test.
+
+[Stephen Simon] 14:04:18
+Once the airboroites.
+
+[Stephen Simon] 14:04:21
+Instead of having a pair of observations for range of motion,
+
+[Stephen Simon] 14:04:25
+We have a triple of observations.
+
+[Stephen Simon] 14:04:28
+We have range of motion under no treatment.
+
+[Stephen Simon] 14:04:31
+range of motion under tens.
+
+[Stephen Simon] 14:04:34
+And range of motion under SWD.
+
+[Stephen Simon] 14:04:37
+Okay? So already this is intriguing. We're doing a paired t-test.
+
+[Stephen Simon] 14:04:41
+But it's not a paired t-test, it's a tripled.
+
+[Stephen Simon] 14:04:44
+t-test. And we can do it on range of motion or visual analog scale.
+
+[Stephen Simon] 14:04:50
+Geez, she's pretty cool.
+
+[Stephen Simon] 14:04:52
+Okay? The thing is that the way the data's structured here
+
+[Stephen Simon] 14:04:58
+It's good for some analyses, but sometimes you need to restructure it.
+
+[Stephen Simon] 14:05:02
+In a different format.
+
+[Stephen Simon] 14:05:05
+Okay, this format has 10 rows.
+
+[Stephen Simon] 14:05:09
+7 columns.
+
+[Stephen Simon] 14:05:14
+But what we may want to do…
+
+[Stephen Simon] 14:05:17
+is to get the range of motion.
+
+[Stephen Simon] 14:05:20
+And the visual analog scales.
+
+[Stephen Simon] 14:05:23
+One separate Renews. Let's see if we can do that here.
+
+[Stephen Simon] 14:05:28
+Alright, so I'm looking just at range of motion now, I dropped the AS.
+
+[Stephen Simon] 14:05:33
+Okay? When I do that,
+
+[Stephen Simon] 14:05:36
+I have 3 range of motions.
+
+[Stephen Simon] 14:05:39
+For each subject. So each subject should repeated 3 times.
+
+[Stephen Simon] 14:05:44
+So we have a no measurement.
+
+[Stephen Simon] 14:05:47
+For Subject 1, a TANS measurement. Subject 1,
+
+[Stephen Simon] 14:05:54
+And an SWD measurement.
+
+[Stephen Simon] 14:05:56
+For Subject 1.
+
+[Stephen Simon] 14:06:01
+Then we have a node measurement.
+
+[Stephen Simon] 14:06:03
+Subject to attends measurement for Subject 2.
+
+[Stephen Simon] 14:06:06
+And an SWD measurement for Subject 2.
+
+[Stephen Simon] 14:06:11
+may not be immediately obvious,
+
+[Stephen Simon] 14:06:13
+But the difference between this format and this format…
+
+[Stephen Simon] 14:06:17
+is that each measurement is a separate row.
+
+[Stephen Simon] 14:06:20
+And the restructured data.
+
+[Stephen Simon] 14:06:22
+Whereas here, each subject.
+
+[Stephen Simon] 14:06:24
+is a separate realm.
+
+[Stephen Simon] 14:06:27
+Now, on each subject is a separate row.
+
+[Stephen Simon] 14:06:29
+It has to be a wider format.
+
+[Stephen Simon] 14:06:33
+Where each measurement is a separate room. It has to be a taller.
+
+[Stephen Simon] 14:06:37
+format, okay?
+
+[Stephen Simon] 14:06:39
+So you'll see a lot of people discussing the tall format versus the wide format.
+
+[Stephen Simon] 14:06:45
+And we'll see, actually, how you can switch
+
+[Stephen Simon] 14:06:47
+From one to the other using our code.
+
+[Stephen Simon] 14:06:50
+It's pretty easy to do, actually.
+
+[Stephen Simon] 14:06:53
+But it turns out, if you really want to use, um,
+
+[Stephen Simon] 14:06:57
+a model that, uh…
+
+[Stephen Simon] 14:07:00
+If you really want to use the model,
+
+[Stephen Simon] 14:07:05
+that does, uh, hierarchical analysis.
+
+[Stephen Simon] 14:07:08
+through this data, you have to change the structure so that it's a tall format.
+
+[Stephen Simon] 14:07:14
+One observation for each…
+
+[Stephen Simon] 14:07:17
+I'm sorry, one measurement for each row.
+
+[Stephen Simon] 14:07:19
+Not one patient for each girl.
+
+[Stephen Simon] 14:07:23
+Okay?
+
+[Stephen Simon] 14:07:25
+So, descriptive statistics.
+
+[Stephen Simon] 14:07:27
+for range of motion. The means…
+
+[Stephen Simon] 14:07:30
+For now, it's 98.4.
+
+[Stephen Simon] 14:07:32
+for us to have UD, it's 102…
+
+[Stephen Simon] 14:07:34
+And for tens, it's 84.2.
+
+[Stephen Simon] 14:07:38
+We got a big problem right away. No treatment?
+
+[Stephen Simon] 14:07:41
+Range of motion is 98.4.
+
+[Stephen Simon] 14:07:44
+We do a teeny bit better for SWD.
+
+[Stephen Simon] 14:07:47
+But tenants, whatever that was,
+
+[Stephen Simon] 14:07:51
+It made things worse!
+
+[Stephen Simon] 14:07:53
+It made things worse, the range of motion got smaller. You could not move quite as far.
+
+[Stephen Simon] 14:08:00
+94.2, good grief!
+
+[Stephen Simon] 14:08:02
+So, whoever is recommending this TAS treatment
+
+[Stephen Simon] 14:08:06
+Needs to stop doing it!
+
+[Stephen Simon] 14:08:07
+Because it's hurting rather than helping.
+
+[Stephen Simon] 14:08:11
+All right, now…
+
+[Stephen Simon] 14:08:14
+For what's worth, the standard deviations are all pretty close to one another, and that's reassuring.
+
+[Stephen Simon] 14:08:18
+As a general rule, once you see a two- or three-fold ratio,
+
+[Stephen Simon] 14:08:22
+between the largest and the smallest standard deviation.
+
+[Stephen Simon] 14:08:25
+I don't get too worried.
+
+[Stephen Simon] 14:08:28
+Okay, here's a plot of the data.
+
+[Stephen Simon] 14:08:32
+So each subject is a separate line.
+
+[Stephen Simon] 14:08:35
+Conducting the no measurement.
+
+[Stephen Simon] 14:08:38
+With the rest of UD measurement?
+
+[Stephen Simon] 14:08:40
+with their TENS measurement. Okay?
+
+[Stephen Simon] 14:08:43
+And you can see one of the subjects…
+
+[Stephen Simon] 14:08:46
+I'm not sure if you can see my cursor.
+
+[Stephen Simon] 14:08:50
+I want to subjects.
+
+[Stephen Simon] 14:08:52
+I had a pretty crappy range of motion.
+
+[Stephen Simon] 14:08:56
+Under no treatment, it improved!
+
+[Stephen Simon] 14:08:59
+When he got SWD or C.
+
+[Stephen Simon] 14:09:02
+And then it declined a little bit, but still better than no treatment.
+
+[Stephen Simon] 14:09:06
+for, um, uh, the tens, alright?
+
+[Stephen Simon] 14:09:11
+Uh, one subject,
+
+[Stephen Simon] 14:09:13
+Had a really good range of motion, kind of like the owl that can turn its head.
+
+[Stephen Simon] 14:09:17
+like 270 degrees. If you ever seen that, it looks pretty creepy.
+
+[Stephen Simon] 14:09:20
+Okay, so anyway, this one had pretty high measurement for now.
+
+[Stephen Simon] 14:09:26
+Better for SWD.
+
+[Stephen Simon] 14:09:30
+Better than no treatment, monocquai is good for 10s, alright?
+
+[Stephen Simon] 14:09:33
+But for what it's worth, there are subjects in the middle.
+
+[Stephen Simon] 14:09:37
+Here's one that did better for now.
+
+[Stephen Simon] 14:09:40
+than for anything else.
+
+[Stephen Simon] 14:09:42
+All right, here's one that did better for SWD.
+
+[Stephen Simon] 14:09:48
+Then no, but, um…
+
+[Stephen Simon] 14:09:50
+TENS was actually worse. He could look at this.
+
+[Stephen Simon] 14:09:52
+And basically, it's a chaotic graph.
+
+[Stephen Simon] 14:09:57
+So, when I show people a graph like this,
+
+[Stephen Simon] 14:10:02
+I asked, do you see a pattern there?
+
+[Stephen Simon] 14:10:05
+And they'll try to argue for a pattern.
+
+[Stephen Simon] 14:10:08
+But because the date is so chaotic, the answer is there's not really a strong pattern here.
+
+[Stephen Simon] 14:10:14
+And what we're seeing is probably pretty close to random variation.
+
+[Stephen Simon] 14:10:20
+Okay, I'd like to see something.
+
+[Stephen Simon] 14:10:23
+Where every line shown a positive slope,
+
+[Stephen Simon] 14:10:26
+When you move from NO to SWD.
+
+[Stephen Simon] 14:10:29
+And that's not the case. There are 1, 2, 3…
+
+[Stephen Simon] 14:10:33
+Subjects that showed a decline a negative slope.
+
+[Stephen Simon] 14:10:37
+When you went from NO to SWD, okay?
+
+[Stephen Simon] 14:10:41
+There's another one that was kind of flat, just a very, very small change, okay?
+
+[Stephen Simon] 14:10:46
+And then tends everybody did worse, it seems, under 10s.
+
+[Stephen Simon] 14:10:51
+Well, not everybody is wanting to better under 10s.
+
+[Stephen Simon] 14:10:55
+Okay? I'm not seeing a clear and consistent pattern here.
+
+[Stephen Simon] 14:10:59
+So, I could say that maybe what we're seeing here
+
+[Stephen Simon] 14:11:04
+There's not a statistically significant effect of any of these treatments.
+
+[Stephen Simon] 14:11:09
+Now, the proof in the pudding is to actually run the analysis.
+
+[Stephen Simon] 14:11:13
+But it's always good to do a graph like this and look at it first.
+
+[Stephen Simon] 14:11:16
+Because then you want to see if the analysis supports your general impression.
+
+[Stephen Simon] 14:11:21
+Or doesn't? Okay, and sometimes your general impression is wrong, because their instincts are wrong.
+
+[Stephen Simon] 14:11:28
+But more often than not, if you look at the graph,
+
+[Stephen Simon] 14:11:30
+And you find out that the complex analysis
+
+[Stephen Simon] 14:11:34
+Using a hierarchical model.
+
+[Stephen Simon] 14:11:37
+Provides the same pattern that you saw on the graph. It gives you greater confidence in the results.
+
+[Stephen Simon] 14:11:43
+If it turns out that it's not showing,
+
+[Stephen Simon] 14:11:46
+The same pattern that you thought you saw on the graph.
+
+[Stephen Simon] 14:11:50
+Now, trust and statistics, but look carefully and see if maybe…
+
+[Stephen Simon] 14:11:53
+you had over-interpreted something.
+
+[Stephen Simon] 14:11:56
+Okay? Um, so anyway…
+
+[Stephen Simon] 14:11:58
+This graph looks kind of chaotic.
+
+[Stephen Simon] 14:12:01
+Um, and I think there's not a consistent trend or pattern here.
+
+[Stephen Simon] 14:12:07
+You might say, well, yeah, SWD's a little bit better than no.
+
+[Stephen Simon] 14:12:12
+I don't think so. Okay.
+
+[Stephen Simon] 14:12:14
+But, um,
+
+[Stephen Simon] 14:12:18
+The next mine… I'm going to show you the code here, so I'm going to go through this in greater detail.
+
+[Stephen Simon] 14:12:24
+uses a function called lemur.
+
+[Stephen Simon] 14:12:27
+L-M-E-R.
+
+[Stephen Simon] 14:12:28
+And it's part of the LME4 Library.
+
+[Stephen Simon] 14:12:33
+LME stands for Linear Mixed Effects.
+
+[Stephen Simon] 14:12:37
+One of your mixed effects will handle repeated measures,
+
+[Stephen Simon] 14:12:41
+It will handle our occupants, it will handle…
+
+[Stephen Simon] 14:12:45
+Um, longitudinal models.
+
+[Stephen Simon] 14:12:47
+Okay, it's a very flexible package.
+
+[Stephen Simon] 14:12:50
+Um, and it's very powerful.
+
+[Stephen Simon] 14:12:52
+Unfortunately, the model specification gets a little bit tricky.
+
+[Stephen Simon] 14:12:56
+All right, so we have a variable, our outcome variable,
+
+[Stephen Simon] 14:13:00
+this range of motion.
+
+[Stephen Simon] 14:13:02
+That goes to the left side of the tilde.
+
+[Stephen Simon] 14:13:05
+Our treatment variable, which we call treatment,
+
+[Stephen Simon] 14:13:09
+That's either no, or tens.
+
+[Stephen Simon] 14:13:11
+or SWD, that goes on the right-hand side.
+
+[Stephen Simon] 14:13:14
+But then we have to add a little bit of extra code here.
+
+[Stephen Simon] 14:13:18
+The parentheses one…
+
+[Stephen Simon] 14:13:20
+Um, vertical bar subject.
+
+[Stephen Simon] 14:13:22
+That says we have random variation.
+
+[Stephen Simon] 14:13:25
+From subject to subject.
+
+[Stephen Simon] 14:13:27
+All right, we're doing multiple measurements for subject.
+
+[Stephen Simon] 14:13:31
+Each subject is measuring range of motion,
+
+[Stephen Simon] 14:13:33
+Under no treatment, under TENS,
+
+[Stephen Simon] 14:13:36
+And under SWD, okay?
+
+[Stephen Simon] 14:13:39
+This is how you designate a random effects.
+
+[Stephen Simon] 14:13:42
+in a hierarchical model.
+
+[Stephen Simon] 14:13:44
+Now, it looks a little bit weird…
+
+[Stephen Simon] 14:13:47
+And, um, you think, well, maybe there could be an easier way of doing things.
+
+[Stephen Simon] 14:13:52
+And the reason this is complex
+
+[Stephen Simon] 14:13:54
+That's because you need to look at settings. You and I won't do it in this class.
+
+[Stephen Simon] 14:14:00
+If you need to look at settings, so the more complicated,
+
+[Stephen Simon] 14:14:03
+then this simple… this is fairly simple.
+
+[Stephen Simon] 14:14:06
+hierarchical model.
+
+[Stephen Simon] 14:14:08
+Okay? Fairly simple hierarchical model.
+
+[Stephen Simon] 14:14:13
+Um, this, uh, parentheses and the vertical bars can get really, really messy.
+
+[Stephen Simon] 14:14:19
+Uh, for some of these analyses.
+
+[Stephen Simon] 14:14:21
+And again, you'll get a feel for this if you take biostat Spring.
+
+[Stephen Simon] 14:14:25
+You want a ton in that class.
+
+[Stephen Simon] 14:14:28
+I guarantee. But anyway, um, when you put a mixed linear model,
+
+[Stephen Simon] 14:14:34
+A hierarchical model, a longitudinal model,
+
+[Stephen Simon] 14:14:37
+The dependent variable goes to the left of the tilde,
+
+[Stephen Simon] 14:14:40
+The independent variable or variables goes to the right of the delta,
+
+[Stephen Simon] 14:14:43
+And then you identify random effects,
+
+[Stephen Simon] 14:14:46
+Using this parentheses vertical bar.
+
+[Stephen Simon] 14:14:49
+Notation.
+
+[Stephen Simon] 14:14:51
+Okay?
+
+[Stephen Simon] 14:14:55
+Here's the results. Now, unfortunately,
+
+[Stephen Simon] 14:15:00
+Um, art gets a little bit, um…
+
+[Stephen Simon] 14:15:05
+For both here.
+
+[Stephen Simon] 14:15:06
+And I've only said R is a very terse language.
+
+[Stephen Simon] 14:15:09
+But this is an exception. They threw a bunch of stuff at you.
+
+[Stephen Simon] 14:15:13
+All right. This first number they throw at you is the ground criterion at convergence.
+
+[Stephen Simon] 14:15:20
+I've never needed this number, alright? And I've been practicing statistics for 40 years.
+
+[Stephen Simon] 14:15:26
+Why do they give you that number?
+
+[Stephen Simon] 14:15:28
+Well, because there are certain applications where…
+
+[Stephen Simon] 14:15:31
+You need to know that number, but it's not that common.
+
+[Stephen Simon] 14:15:35
+All right, now they're giving you the scaled residual. I don't need the scaled residual.
+
+[Stephen Simon] 14:15:41
+Okay, I think it's a waste of time.
+
+[Stephen Simon] 14:15:43
+But there's no easy way to suppress them.
+
+[Stephen Simon] 14:15:47
+That's the other thing that bugs me. R is normally very terse language,
+
+[Stephen Simon] 14:15:51
+And I'm like that, because I can only show the things
+
+[Stephen Simon] 14:15:55
+to my clients that they need to worry about.
+
+[Stephen Simon] 14:15:58
+And I can suppress the things that are not relevant.
+
+[Stephen Simon] 14:16:01
+But he… I just have to put a note.
+
+[Stephen Simon] 14:16:03
+You can ignore this part of the output.
+
+[Stephen Simon] 14:16:06
+The first third of the next model, you can ignore.
+
+[Stephen Simon] 14:16:11
+All right, now here's where it gets good.
+
+[Stephen Simon] 14:16:14
+You see random effects.
+
+[Stephen Simon] 14:16:15
+And we see variation in standard deviation. Now, standard deviation is just a square root.
+
+[Stephen Simon] 14:16:20
+So the square root of 481.7 is 21.95.
+
+[Stephen Simon] 14:16:26
+The square root of 301.8.
+
+[Stephen Simon] 14:16:28
+the 17.37, alright?
+
+[Stephen Simon] 14:16:30
+So, the between standard deviations drawing 1.95,
+
+[Stephen Simon] 14:16:35
+With that standard deviation is 17.43.
+
+[Stephen Simon] 14:16:39
+All right, now, R does not give you the interclass correlation.
+
+[Stephen Simon] 14:16:44
+And there's a good reason for it, but I'm still disappointed.
+
+[Stephen Simon] 14:16:47
+So you have to calculate this by hand.
+
+[Stephen Simon] 14:16:49
+It's going to be the variation between subjects.
+
+[Stephen Simon] 14:16:53
+481.7.
+
+[Stephen Simon] 14:16:55
+divided by the total variation.
+
+[Stephen Simon] 14:16:57
+variation within subjects, plus the variation between subjects.
+
+[Stephen Simon] 14:17:01
+So take 481.7…
+
+[Stephen Simon] 14:17:03
+And divided by 481.7 plus.
+
+[Stephen Simon] 14:17:07
+3 on 1.8. You get 0.61.
+
+[Stephen Simon] 14:17:11
+What we're seeing is a huge correlation here.
+
+[Stephen Simon] 14:17:16
+And if you go back to the plot, maybe it's not too surprising.
+
+[Stephen Simon] 14:17:21
+The people who tend to score high on range of motion
+
+[Stephen Simon] 14:17:25
+When no attempt to score high on the others, but people tend to score low tend to score low.
+
+[Stephen Simon] 14:17:30
+on the others, okay?
+
+[Stephen Simon] 14:17:32
+Um, probably because of the severity of the arthritis.
+
+[Stephen Simon] 14:17:36
+So I really mild arthritis is going to be near the top of the graft,
+
+[Stephen Simon] 14:17:41
+under no SWD intends.
+
+[Stephen Simon] 14:17:44
+People who tend to have very, um,
+
+[Stephen Simon] 14:17:47
+Severe arthritis,
+
+[Stephen Simon] 14:17:49
+are going to be near the bottom of the graph. They're going to have very…
+
+[Stephen Simon] 14:17:53
+poor range of motion. This poor guy here.
+
+[Stephen Simon] 14:17:56
+30 degrees! That's all that that person can do when it gets to around 60-something.
+
+[Stephen Simon] 14:18:02
+Okay. Still, this person is really, really hurting.
+
+[Stephen Simon] 14:18:07
+Okay? This… this plot is telling us something very interesting.
+
+[Stephen Simon] 14:18:12
+The subjects intend to score high on one measurement
+
+[Stephen Simon] 14:18:16
+tend to score high on all the measurements.
+
+[Stephen Simon] 14:18:19
+The subject, they tend to score, though.
+
+[Stephen Simon] 14:18:21
+Can youon measurement tends to score them.
+
+[Stephen Simon] 14:18:23
+on other measurements. Now, it's not a perfect relationship, but it is there, and that's rough.
+
+[Stephen Simon] 14:18:28
+represented by the inter-class correlation.
+
+[Stephen Simon] 14:18:31
+0.61.
+
+[Stephen Simon] 14:18:34
+Now, this is a totally within-subject comparison.
+
+[Stephen Simon] 14:18:38
+So we're happy to have a high interclass correlation.
+
+[Stephen Simon] 14:18:42
+Because when you're dealing within-subject comparisons, a high interclass correlation
+
+[Stephen Simon] 14:18:48
+means lots of improvement in precision.
+
+[Stephen Simon] 14:18:51
+Now, if we had to do this as a between-subjects comparison,
+
+[Stephen Simon] 14:18:55
+or between cluster comparison in general.
+
+[Stephen Simon] 14:18:57
+You'd lose some of the precision, okay?
+
+[Stephen Simon] 14:19:00
+But here, we're going to gain a lot of precision. We're happy
+
+[Stephen Simon] 14:19:03
+to do this research design this way.
+
+[Stephen Simon] 14:19:06
+Okay? Now, the third thing that you get is fixed effects.
+
+[Stephen Simon] 14:19:10
+And the intercept and treatment SWD and treatment tens…
+
+[Stephen Simon] 14:19:15
+These are all interpreted like we would for one-factor analysis of variance.
+
+[Stephen Simon] 14:19:20
+The reference category was set to the placebo.
+
+[Stephen Simon] 14:19:25
+Okay, to the no group.
+
+[Stephen Simon] 14:19:29
+And what does R do?
+
+[Stephen Simon] 14:19:32
+It, um, arranges the data in an alphabetical order.
+
+[Stephen Simon] 14:19:36
+And then the first thing that appears alphabetically.
+
+[Stephen Simon] 14:19:41
+becomes a reference category.
+
+[Stephen Simon] 14:19:42
+Well, now appears before FWD intense,
+
+[Stephen Simon] 14:19:46
+And that's what we want it. We're kind of glad to make the no treatment.
+
+[Stephen Simon] 14:19:50
+Good comparison. So when we look at the average,
+
+[Stephen Simon] 14:19:54
+For the comparison group,
+
+[Stephen Simon] 14:19:57
+I'm sorry, the average for the known treatment group.
+
+[Stephen Simon] 14:20:01
+98.4. That's the average range of motion.
+
+[Stephen Simon] 14:20:04
+for the no-treatment group. Treatment has to have a UD says, how much does that change?
+
+[Stephen Simon] 14:20:09
+How much should that change while we move?
+
+[Stephen Simon] 14:20:11
+from the no-treatment creep to the SWD group.
+
+[Stephen Simon] 14:20:14
+We get about 4.1 degrees
+
+[Stephen Simon] 14:20:18
+of better motion.
+
+[Stephen Simon] 14:20:20
+Alright, now, uh, I'm not an expert on operating list.
+
+[Stephen Simon] 14:20:25
+But tell you, 4 degrees…
+
+[Stephen Simon] 14:20:28
+Oh, it's not really something that we want to
+
+[Stephen Simon] 14:20:33
+be impressed by, alright.
+
+[Stephen Simon] 14:20:35
+Now, the treatment tens…
+
+[Stephen Simon] 14:20:39
+is the difference between TENS
+
+[Stephen Simon] 14:20:42
+and no treatment. And that's negative 14.2.
+
+[Stephen Simon] 14:20:46
+The task group did 14.2 degrees less
+
+[Stephen Simon] 14:20:50
+range of motion. The no treatment.
+
+[Stephen Simon] 14:20:54
+The treatment actually restricted the range of motion by an additional
+
+[Stephen Simon] 14:20:58
+14 degrees.
+
+[Stephen Simon] 14:21:00
+Not a good look at all, alright?
+
+[Stephen Simon] 14:21:04
+But the thing to note here,
+
+[Stephen Simon] 14:21:06
+Isn't the t-values?
+
+[Stephen Simon] 14:21:08
+are both small. Anything between plus or minus 2
+
+[Stephen Simon] 14:21:12
+I'll call that small. A t-value close to 0.
+
+[Stephen Simon] 14:21:15
+We should accept the null hypothesis.
+
+[Stephen Simon] 14:21:18
+So this .05Q.
+
+[Stephen Simon] 14:21:20
+It's close to zero. That's .1828?
+
+[Stephen Simon] 14:21:24
+Close to zero.
+
+[Stephen Simon] 14:21:26
+Now, R does not compute
+
+[Stephen Simon] 14:21:31
+a p-value here.
+
+[Stephen Simon] 14:21:33
+The reason for it is that
+
+[Stephen Simon] 14:21:35
+hard knows that there's a lot of controversy, and it's unresolved about what the degrees of freedom should be.
+
+[Stephen Simon] 14:21:44
+Okay. There are 10 subjects.
+
+[Stephen Simon] 14:21:52
+3 range motion measurements.
+
+[Stephen Simon] 14:21:54
+So, the total sample size 10.
+
+[Stephen Simon] 14:21:57
+Is it 30? Well, somewhere in between, probably.
+
+[Stephen Simon] 14:22:00
+You gain some precision.
+
+[Stephen Simon] 14:22:04
+Okay? Um…
+
+[Stephen Simon] 14:22:07
+So, because we can't calculate degrees of freedom,
+
+[Stephen Simon] 14:22:12
+We can't get a p-value here.
+
+[Stephen Simon] 14:22:16
+So, um, what do you do? Well, I generally think
+
+[Stephen Simon] 14:22:19
+Well, if you don't have degrees of freedom, assume the degrees of freedom is infinity, and treat the t-distribution like it's a normal distribution.
+
+[Stephen Simon] 14:22:28
+It's probably not a good thing to do.
+
+[Stephen Simon] 14:22:30
+I can get away with it for large sample sizes.
+
+[Stephen Simon] 14:22:34
+You can have a sample sizes are kind of small.
+
+[Stephen Simon] 14:22:37
+Okay, so I might want to think of an alternate solution.
+
+[Stephen Simon] 14:22:43
+Alright, so…
+
+[Stephen Simon] 14:22:44
+That's the third part. There's some more stuff. There's some more stuff. Correlation effects defects.
+
+[Stephen Simon] 14:22:51
+I almost never use these, all right? So you can ignore that part of the output.
+
+[Stephen Simon] 14:22:56
+So, actually, 4 pieces of output here.
+
+[Stephen Simon] 14:22:59
+The first piece you would… I'm sorry, four pieces of output. The first piece you ignore,
+
+[Stephen Simon] 14:23:04
+The second piece tells us what the variation is.
+
+[Stephen Simon] 14:23:07
+Between and with that… excuse me…
+
+[Stephen Simon] 14:23:11
+And allows us to calculate by hand
+
+[Stephen Simon] 14:23:14
+of the interclass correlation is.
+
+[Stephen Simon] 14:23:16
+The third part of the output tells us what the fixed effects are, what are the effects of FWD versus the reference category,
+
+[Stephen Simon] 14:23:24
+of no. What are the effect of tens?
+
+[Stephen Simon] 14:23:27
+Versus now. And since the t-values are all close to zero,
+
+[Stephen Simon] 14:23:32
+We would accept the null hypothesis.
+
+[Stephen Simon] 14:23:35
+And conclude that there's no difference.
+
+[Stephen Simon] 14:23:37
+There's no improvement, there's no decrement.
+
+[Stephen Simon] 14:23:40
+Since minus 14, you think I'm… that's terrible, but it's still within sampling error.
+
+[Stephen Simon] 14:23:47
+Now, that's a little bit disappointing, but we're kind of expecting it.
+
+[Stephen Simon] 14:23:51
+You have to this plot, and you think it's kind of chaotic, okay?
+
+[Stephen Simon] 14:23:56
+Um, so it's really hard to…
+
+[Stephen Simon] 14:23:59
+drawing any firm conclusions.
+
+[Stephen Simon] 14:24:01
+When there's so much noise in the data.
+
+[Stephen Simon] 14:24:03
+And that's what the next model tells us.
+
+[Stephen Simon] 14:24:07
+Okay. Um…
+
+[Stephen Simon] 14:24:10
+Let me stop here.
+
+[Stephen Simon] 14:24:12
+And see if there are any questions, and then Suman's going to do
+
+[Stephen Simon] 14:24:16
+a live demo of Part 1 of the demo program.
+
+[Stephen Simon] 14:24:20
+Any question?
+
+[Stephen Simon] 14:24:26
+Let me stop recording.
+
+[Suman Sahil] 14:24:35
+Thank you, Dr. Simon.
+
+[Stephen Simon] 14:24:37
+Yeah, so let me stop sharing.
+
+[Stephen Simon] 14:24:40
+And you can share your screen.
+
+[Suman Sahil] 14:25:00
+So, let's start…
+
+[Stephen Simon] 14:25:01
+Okay, so let me start recording, and I'll say go ahead.
+
+[Stephen Simon] 14:25:04
+And then you can start talking.
+
+[Suman Sahil] 14:25:04
+Okay.
+
+[Suman Sahil] 14:25:06
+Thank you, Dr. Salmon. Dr. Salmon, before we start recording, I was trying to find, um…
+
+[Stephen Simon] 14:25:14
+You could not find the YAML file?
+
+[Suman Sahil] 14:25:15
+The…
+
+[Suman Sahil] 14:25:17
+OYM. Yeah.
+
+[Suman Sahil] 14:25:20
+I think I'm…
+
+[Stephen Simon] 14:25:20
+Really? Does that not work?
+
+[Suman Sahil] 14:25:22
+Um, so I… I could get HIV intervention, and I could get the, um…
+
+[Stephen Simon] 14:25:22
+Um,
+
+[Suman Sahil] 14:25:30
+Physical activity, but for some reason, the OE
+
+[Stephen Simon] 14:25:34
+And tell you what, let's go…
+
+[Suman Sahil] 14:25:34
+Um…
+
+[Stephen Simon] 14:25:36
+Let's…
+
+[Suman Sahil] 14:25:36
+Uh-huh.
+
+[Stephen Simon] 14:25:38
+um, go back to data, click on data,
+
+[Stephen Simon] 14:25:41
+Uh, up in the upper left-hand corner, where it says B-mean.
+
+[Suman Sahil] 14:25:45
+Okay, data.
+
+[Stephen Simon] 14:25:46
+You see the Octocat? Yeah, click there.
+
+[Stephen Simon] 14:25:48
+All right, now let's go to Files.
+
+[Stephen Simon] 14:25:52
+I probably changed the name.
+
+[Stephen Simon] 14:25:55
+So, scroll down, maybe it's just arthritis.
+
+[Stephen Simon] 14:25:58
+Uh, so let's look under AR first.
+
+[Stephen Simon] 14:26:02
+Yeah, it's probably arthritis. Let's take a look at the AML file.
+
+[Suman Sahil] 14:26:02
+Yeah, that's fair.
+
+[Suman Sahil] 14:26:04
+Okay.
+
+[Stephen Simon] 14:26:06
+Same on me.
+
+[Suman Sahil] 14:26:06
+Yes. No, not at all. It's perfectly fine.
+
+[Stephen Simon] 14:26:09
+I will fix that. Okay.
+
+[Suman Sahil] 14:26:11
+Yeah, no problem. Thank you, appreciate it.
+
+[Stephen Simon] 14:26:13
+Okay. All right, so, um…
+
+[Stephen Simon] 14:26:16
+When you're ready to go, let me know.
+
+[Stephen Simon] 14:26:18
+I'll start recording and then say…
+
+[Suman Sahil] 14:26:19
+Yes.
+
+[Suman Sahil] 14:26:21
+I'm ready to go.
+
+[Stephen Simon] 14:26:22
+Okay, good. All right, so more…
+
+[Suman Sahil] 14:26:23
+Absolutely. Thank you.
+
+[Stephen Simon] 14:26:30
+Okay, go ahead.
+
+[Suman Sahil] 14:26:32
+Thank you. Uh, good afternoon, class. Dr. Simon gave a beautiful lecture, and we are going to look at the, um,
+
+[Suman Sahil] 14:26:42
+our program, uh, which will test the theory.
+
+[Suman Sahil] 14:26:45
+So, before I start wrangling the data and run some modules, let's load the library broom.
+
+[Suman Sahil] 14:26:55
+and Library Foreign.
+
+[Suman Sahil] 14:26:57
+Um, inside R. So, let's run that chunk.
+
+[Suman Sahil] 14:27:02
+And we should be… so our version is stated, uh, today's date is stated, so excellent.
+
+[Suman Sahil] 14:27:09
+Now, let's look at our, um, data dictionaries for the data that we are going to use. So, the data… the arthritis data is one of the data file that we want to use.
+
+[Suman Sahil] 14:27:22
+So, let's look at that.
+
+[Suman Sahil] 14:27:24
+So, this data shows an experiment where the subjects with osteoarthritis were evaluated.
+
+[Suman Sahil] 14:27:31
+Using transcutaneous electrical nerve stimulation, you can go by tense
+
+[Suman Sahil] 14:27:37
+treatment, T-E-N-S.
+
+[Suman Sahil] 14:27:39
+And it's… another treatment is shortwave diathermy, SWD treatment.
+
+[Suman Sahil] 14:27:46
+to estimate the range of motion in patients or the subject.
+
+[Suman Sahil] 14:27:52
+And then, of course, the reference will be no treatment.
+
+[Suman Sahil] 14:27:55
+So, there is no information on whether the
+
+[Suman Sahil] 14:27:59
+Order of these three treatments was randomized.
+
+[Suman Sahil] 14:28:03
+So, we'll take a look at different data points that this dataset comes with.
+
+[Suman Sahil] 14:28:08
+So we have, um, the subject, of course, it will be numeric, the range from 1 to 10.
+
+[Suman Sahil] 14:28:14
+So, range of motion with no treatment, so it says no.
+
+[Suman Sahil] 14:28:19
+No treatment for range of motion. ROM stands for range of motion.
+
+[Suman Sahil] 14:28:24
+And the scale is ratio.
+
+[Suman Sahil] 14:28:25
+So, pain measurement after no treatment,
+
+[Suman Sahil] 14:28:28
+that variable is NOVAS.
+
+[Suman Sahil] 14:28:32
+tense ROM, that is, range of motion after transcutaneous electrical nerve stimulation.
+
+[Suman Sahil] 14:28:39
+And tense vast, like you have estimated it right, it's vast after transcutaneous electrical nerve stimulation, that's the tense
+
+[Suman Sahil] 14:28:47
+treatment. And SWD-ROM range of motion after shortwave diathermy.
+
+[Suman Sahil] 14:28:54
+Again, the scale is racial.
+
+[Suman Sahil] 14:28:56
+So we are mostly going to use the range of motion with 3 treatments. No treatment and shortwave diathermy and tense treatment.
+
+[Suman Sahil] 14:29:05
+So let's look at our program.
+
+[Suman Sahil] 14:29:09
+So, we'll start with, um…
+
+[Suman Sahil] 14:29:12
+Loading the data file,
+
+[Suman Sahil] 14:29:14
+So, a regular drill.
+
+[Suman Sahil] 14:29:17
+We'll get the data file under our data folder,
+
+[Suman Sahil] 14:29:19
+And our data file arthritisTreatment.txt.
+
+[Suman Sahil] 14:29:23
+So, because we are in the source folder, so we go one level down,
+
+[Suman Sahil] 14:29:28
+Uh, we want to read the table because it's a text file.
+
+[Suman Sahil] 14:29:32
+The column names… it has the column names, that's where this flag is true, and we are stating the column type, they are all numeric.
+
+[Suman Sahil] 14:29:39
+Let's run that and look at our data has loaded.
+
+[Suman Sahil] 14:29:43
+Perfectly. So, subject 1 to 10,
+
+[Suman Sahil] 14:29:47
+Uh, two different treatments, SWD Intense, and then we have, um, calculated the range of motion for those treatments.
+
+[Suman Sahil] 14:29:56
+Also, um…
+
+[Suman Sahil] 14:29:57
+Now we want to create a subset for range of motion.
+
+[Suman Sahil] 14:30:02
+So, let's do that.
+
+[Suman Sahil] 14:30:05
+Um, how do we do that? So…
+
+[Suman Sahil] 14:30:08
+We are going to select the subject,
+
+[Suman Sahil] 14:30:12
+The range of motion with no treatment, range of motion with tense treatment, and range of motion with diathermy treatment.
+
+[Suman Sahil] 14:30:20
+So we have selected the columns that we want to be seen.
+
+[Suman Sahil] 14:30:24
+And then we want to rename those three treatments.
+
+[Suman Sahil] 14:30:28
+So, the data variables, the data point, no, no, no ROM that we saw in the data dictionary, we are renaming it as now for simplicity.
+
+[Suman Sahil] 14:30:40
+Tensorum, we are renaming it to Tense, and for that, the range of motion.
+
+[Suman Sahil] 14:30:45
+Uh, treatment, we are renaming it to SWD for clarity and for simplicity.
+
+[Suman Sahil] 14:30:51
+So, we have created a subset with only the variables that we need. We have, um, deselected the VAS,
+
+[Suman Sahil] 14:31:00
+Data points, we only want the range of motion for those three treatments, no reference. Reference category with no treatment, intense and SWD.
+
+[Suman Sahil] 14:31:09
+and renamed. So let's run this chunk, um…
+
+[Suman Sahil] 14:31:14
+And we are going to… let's run that.
+
+[Suman Sahil] 14:31:19
+So we have created another day… another subset that is OA underscore 1.
+
+[Suman Sahil] 14:31:25
+Now we want to restructure into long format, so let's restructure in the long format.
+
+[Suman Sahil] 14:31:31
+So, how do we do that? We use the pi-vote longer.
+
+[Suman Sahil] 14:31:35
+And here, remember, we want to specify the values. The values will be coming from range of motion.
+
+[Suman Sahil] 14:31:43
+And the names of the column will be coming in from treatment.
+
+[Suman Sahil] 14:31:47
+So, let's run that…
+
+[Suman Sahil] 14:31:50
+So, looking at the data, so this is what I'm going to show you.
+
+[Suman Sahil] 14:31:55
+So the ROM, the range of motion for no treatment was 35, range of motion for 10th treatment is 50.
+
+[Suman Sahil] 14:32:04
+The range of motion for diathermy treatment is 64.
+
+[Suman Sahil] 14:32:08
+So we have used Pyot underscore longer function.
+
+[Suman Sahil] 14:32:12
+The columns are…
+
+[Suman Sahil] 14:32:15
+three treatments. That is, no TENS, and that's a pretty. Remember, this colon?
+
+[Suman Sahil] 14:32:19
+It speaks of the range.
+
+[Suman Sahil] 14:32:21
+So there are 3 treatments available. So, we are going from NO to SWD.
+
+[Suman Sahil] 14:32:27
+How do we specify programmatically?
+
+[Suman Sahil] 14:32:30
+No, Colin SWD.
+
+[Suman Sahil] 14:32:32
+The names of the columns are treatments. This is what you're going to see in your glimpse of data.
+
+[Suman Sahil] 14:32:38
+And the values are coming from…
+
+[Suman Sahil] 14:32:41
+your variable range of motion, that is the variable. So if we look at the previous glimpse,
+
+[Suman Sahil] 14:32:46
+We see that when there is no rain… no treatment, the range of motion is 35 for Subject 1, 110 for Subject 2.
+
+[Suman Sahil] 14:32:55
+So, for Subject 1,
+
+[Suman Sahil] 14:32:57
+When there is tense treatment, the range of motion is 5-0. When there is
+
+[Suman Sahil] 14:33:02
+Um, SWD treatment, range of motion is 64. So in the longer format,
+
+[Suman Sahil] 14:33:08
+For Subject 1, we have specified the columns are the three treatments.
+
+[Suman Sahil] 14:33:13
+And the specific value for those range of motion for that specific treatment.
+
+[Suman Sahil] 14:33:18
+is written underneath that column.
+
+[Suman Sahil] 14:33:21
+So, this is one group. Like, no TENS and SWD,
+
+[Suman Sahil] 14:33:26
+These are repeat measurements for the same subject 111.
+
+[Suman Sahil] 14:33:29
+And these values are written based on the long format.
+
+[Suman Sahil] 14:33:35
+35, 50, and 64.
+
+[Suman Sahil] 14:33:37
+These are the range of motion for Subject 1. When there is no treatment versus tense treatment versus SWD diathermy treatment.
+
+[Suman Sahil] 14:33:45
+So, you must be familiar with the Pi-Wert-Longer function. It's a beautiful function, and you should keep it in your back pocket.
+
+[Suman Sahil] 14:33:52
+Sometimes you need to change from horizontal to longer format, and so on and so forth.
+
+[Suman Sahil] 14:33:57
+So now we are going to do our, um, as statistician, we love descriptive stats, so let's do our descriptive stats for…
+
+[Suman Sahil] 14:34:06
+We are grouping by treatment. We want to summarize to know the mean value and the standard deviation.
+
+[Suman Sahil] 14:34:13
+We use the mean function and the SD function.
+
+[Suman Sahil] 14:34:15
+Let's run that chunk.
+
+[Suman Sahil] 14:34:18
+And what do we see here?
+
+[Suman Sahil] 14:34:20
+We are seeing that, um, there is slight, um,
+
+[Suman Sahil] 14:34:23
+So, the range of motion, the… it has increased if we go from no treatment to SWD.
+
+[Suman Sahil] 14:34:30
+But if we do the tense treatment, it has gone down, and there is a slight variation in the standard deviation as well.
+
+[Suman Sahil] 14:34:37
+So, it's a slight improvement in ROM using SWD.
+
+[Suman Sahil] 14:34:43
+Versus no treatment, but using tense actually decreased the range of motion to 84.2.
+
+[Suman Sahil] 14:34:51
+So, we don't expect this, but it can happen.
+
+[Suman Sahil] 14:34:54
+So, let's plot by subject.
+
+[Suman Sahil] 14:34:57
+So, we know that our subjects run from 1 to 10, so we are grouping by subject.
+
+[Suman Sahil] 14:35:03
+Our x-axis is the treatment, and our y-axis is the range of motion.
+
+[Suman Sahil] 14:35:08
+So we specify our x-axis, y-axis, and so on and so forth.
+
+[Suman Sahil] 14:35:12
+So, let's run that. We have our line graph. We used the function geom underscore line.
+
+[Suman Sahil] 14:35:18
+And we have our graphs collected in the variable OA underscore plot.
+
+[Suman Sahil] 14:35:25
+And then we want to display the plot.
+
+[Suman Sahil] 14:35:27
+So, what do we see? With no treatment, um, if we change to the diathermy treatment, there is, uh, increase in range of motion for most of the subjects.
+
+[Suman Sahil] 14:35:37
+But when it comes to TENS treatment,
+
+[Suman Sahil] 14:35:40
+The range of motion has declined for many subjects, so there is tendency for some of these subjects to see
+
+[Suman Sahil] 14:35:47
+Best ROM for SWD, the diathermy treatment.
+
+[Suman Sahil] 14:35:51
+There are a few exceptions, um, because… or sometimes there is a lot of decrease on the tents. So you can, um, compare these line graphs across 10 subjects.
+
+[Suman Sahil] 14:36:02
+Now, let's look at, um…
+
+[Suman Sahil] 14:36:07
+Let's do a mixed model for our arthritis, um, folks.
+
+[Suman Sahil] 14:36:12
+So, uh, doing the mixed model, like Dr. Simon was talking about, we are going to use LMER function.
+
+[Suman Sahil] 14:36:19
+Which is part of LME4 package in R.
+
+[Suman Sahil] 14:36:24
+And we are trying to fit a linear mixed effects model.
+
+[Suman Sahil] 14:36:28
+So, mixed model. And why do we use these models? Um, when your data has repeated measure?
+
+[Suman Sahil] 14:36:35
+like, um, multiple measurements for the same subject, or multiple visit,
+
+[Suman Sahil] 14:36:40
+per patient. Or you can use it
+
+[Suman Sahil] 14:36:42
+for hierarchical structure.
+
+[Suman Sahil] 14:36:44
+like, patients from the same hospital.
+
+[Suman Sahil] 14:36:48
+Patients nested within a hospital.
+
+[Suman Sahil] 14:36:49
+Or you can also use it for cluster data.
+
+[Suman Sahil] 14:36:53
+For example, students within a school.
+
+[Suman Sahil] 14:36:55
+So we'll see that with the next dataset.
+
+[Suman Sahil] 14:36:58
+And, uh, so with…
+
+[Suman Sahil] 14:37:01
+With this linear mixed model, we have fixed effect and random effect. So, fixed effect affects you want to estimate and interpret directly.
+
+[Suman Sahil] 14:37:10
+Um, and the random effect, you want to look at the variability across clusters, huh?
+
+[Suman Sahil] 14:37:16
+groups. So, remember your clusters or groups could be the hospital, um, could be the treatment,
+
+[Suman Sahil] 14:37:23
+Or could be, um, the, uh, school where you are specifying or organizing your clusters or your groups.
+
+[Suman Sahil] 14:37:31
+So, let's run our LMER function for linear mixed effect model.
+
+[Suman Sahil] 14:37:37
+LLMs. So, it's… now, this is a very unique way of using the syntax here.
+
+[Suman Sahil] 14:37:44
+So we are going to use… we are saying that we are clustering by the subject.
+
+[Suman Sahil] 14:37:50
+So we say one,
+
+[Suman Sahil] 14:37:52
+And pipe the subject, whichever, however you want to do the, um, hierarchical or clustering.
+
+[Suman Sahil] 14:37:59
+So this is how you show your cluster.
+
+[Suman Sahil] 14:38:02
+Your dependent variable is on the left of the tilde, your independent variable is on the right of the tilde, your data is coming from
+
+[Suman Sahil] 14:38:09
+OE underscore 2, that's the data frame. You're going to use LMER function.
+
+[Suman Sahil] 14:38:15
+for fitting in the linear mixed effects model.
+
+[Suman Sahil] 14:38:18
+And we are going to collect everything in variable M1, which is…
+
+[Suman Sahil] 14:38:24
+argument inside of your summary function, because you want to run the summary.
+
+[Suman Sahil] 14:38:28
+to look at the various values that you calculate.
+
+[Suman Sahil] 14:38:32
+So, let's look at our, um, mixed model here.
+
+[Suman Sahil] 14:38:39
+Let's run this. I want to…
+
+[Suman Sahil] 14:38:42
+Cancel this and run the model again.
+
+[Suman Sahil] 14:38:46
+So, what do we see here?
+
+[Suman Sahil] 14:38:50
+The estimated range of motion in the reference category, that is no treatment,
+
+[Suman Sahil] 14:38:55
+It is, um, 98 degrees, and the range of motion for treatment with diathermy SWD
+
+[Suman Sahil] 14:39:03
+It is 4 degrees larger than the reference category of no treatment.
+
+[Suman Sahil] 14:39:09
+So, what does it represent? A very small, or slightly better result.
+
+[Suman Sahil] 14:39:14
+And the t-value is, again, very close to zero. So, we want to accept the null hypothesis.
+
+[Suman Sahil] 14:39:21
+that there is no statistically significant difference between the groups. Remember, we grouped
+
+[Suman Sahil] 14:39:27
+per subject. So, each subject had 3 treatments. That is, no treatment as SWD treatment and TAMS treatment.
+
+[Suman Sahil] 14:39:35
+So the estimated range of motion is smaller for SWD.
+
+[Suman Sahil] 14:39:40
+Then, no treatment.
+
+[Suman Sahil] 14:39:43
+So, remember it, um…
+
+[Suman Sahil] 14:39:45
+So, it is kind of surprising, um, and we don't expect this. The t-statistics, again, very borderline. It needs…
+
+[Suman Sahil] 14:39:52
+It needed to be larger, um, or it could be plus one, or plus 2, or you might consider this if it is a statistically significant.
+
+[Suman Sahil] 14:40:01
+But for the tense treatment, we had a decline in range of motion.
+
+[Suman Sahil] 14:40:06
+So, kind of, yeah, different.
+
+[Suman Sahil] 14:40:09
+So, now let's look at the variances, and here you cluster by subjects. Remember, your one…
+
+[Suman Sahil] 14:40:19
+pipe, subject, that's how you specify your cluster in LMER function, which is contained in LME4 package.
+
+[Suman Sahil] 14:40:25
+So, uh, the intra-class correlation. Let's see your intra-class correlation.
+
+[Suman Sahil] 14:40:31
+So how do you calculate that? So it will be…
+
+[Suman Sahil] 14:40:34
+you will, um, take the subject's variance, 481.7, divide by sum of…
+
+[Suman Sahil] 14:40:41
+The variance for subject and residual, that is 481.7 plus 301.8.
+
+[Suman Sahil] 14:40:48
+So that will be around 0.61.
+
+[Suman Sahil] 14:40:51
+So, what… what does it show?
+
+[Suman Sahil] 14:40:53
+0.61, it's a large degree of correlation.
+
+[Suman Sahil] 14:40:56
+Between the two measurements on the same subject.
+
+[Suman Sahil] 14:41:00
+So, you have to calculate the intraclass correlation, your LMER function,
+
+[Suman Sahil] 14:41:06
+gives you the random effect and the fixed effect that we talked about.
+
+[Suman Sahil] 14:41:10
+And, um, the output from LMER is
+
+[Suman Sahil] 14:41:15
+kind of verbose, and, um, you just need to know only few of the syntax. Remember, the tilde sign.
+
+[Suman Sahil] 14:41:21
+On the left, you're dependent, on the right, you're, um…
+
+[Suman Sahil] 14:41:25
+independent variables, and again, you specify your cluster with the variable you want it to cluster on.
+
+[Suman Sahil] 14:41:32
+So this is the specific way. And it's easy to use, and the output is great. You get both the effects, fixed effects and the random effects. Random effects for intract class correlation.
+
+[Suman Sahil] 14:41:42
+and fixed effects for the estimated range of motion.
+
+[Suman Sahil] 14:41:46
+Uh, where you compare reference category with the treatment category.
+
+[Suman Sahil] 14:41:51
+So, you can look at the comments and the interpretation. Should I go ahead with the part two, Dr. Simon?
+
+[Stephen Simon] 14:41:58
+Let's hold off on that, but thank you very much.
+
+[Suman Sahil] 14:42:01
+Absolutely.
+
+[Stephen Simon] 14:42:03
+I have to mention here, I committed a terrible sin…
+
+[Suman Sahil] 14:42:03
+Sure.
+
+[Stephen Simon] 14:42:08
+And I did not put my name and date on the graph.
+
+[Stephen Simon] 14:42:11
+same, same, same one there.
+
+[Stephen Simon] 14:42:13
+Yeah, I just noticed that now, alright? I will fix that for the next year's students, because uh…
+
+[Suman Sahil] 14:42:13
+No.
+
+[Stephen Simon] 14:42:19
+Uh, this is something that I emphasize for you to do.
+
+[Stephen Simon] 14:42:22
+Okay, um, so any questions from the students?
+
+[Suman Sahil] 14:42:22
+Sure.
+
+[Stephen Simon] 14:42:30
+Uh, let's stop recording here.
+
+[Stephen Simon] 14:42:38
+And then let me, uh, share my screen. Thank you, Shuman.
+
+[Stephen Simon] 14:42:43
+Um, let's see screen 2…
+
+[Stephen Simon] 14:42:59
+A. That is 240 chip.
+
+[Stephen Simon] 14:43:02
+We're not going to get through all of this. What we'll get through as much as we can.
+
+[Stephen Simon] 14:43:05
+Alright, so let me, uh…
+
+[Stephen Simon] 14:43:07
+Record to this computer.
+
+[Stephen Simon] 14:43:26
+Okay, um, those of you who've been listening to these videos,
+
+[Stephen Simon] 14:43:29
+I heard some hacking and coughing, even when Zuman was doing the talking.
+
+[Stephen Simon] 14:43:34
+I've got a terrible code.
+
+[Stephen Simon] 14:43:36
+cold, excuse me. And it will disappear after 7 days.
+
+[Stephen Simon] 14:43:41
+So that's fine, but for now, it's a bit of a struggle, but I'm surviving.
+
+[Stephen Simon] 14:43:46
+Certainly, we had a nice explanation about within cluster comparisons.
+
+[Stephen Simon] 14:43:50
+To be honest, I think that most people would characterize that as repeated measures, but repeated measures often involve, uh, within-cluster comparisons.
+
+[Stephen Simon] 14:43:59
+Uh, some people would call it a within-subjects design. There's a lot of different language for it, okay?
+
+[Stephen Simon] 14:44:04
+But I want to talk next about cluster randomized trials.
+
+[Stephen Simon] 14:44:09
+An actual example.
+
+[Stephen Simon] 14:44:12
+Okay, so…
+
+[Stephen Simon] 14:44:16
+Physical Activity Study.
+
+[Stephen Simon] 14:44:19
+Um, it's a cluster randomized trial in Norway.
+
+[Stephen Simon] 14:44:22
+students from 57 schools were recruited,
+
+[Stephen Simon] 14:44:24
+All right, and they're randomly assigned to physical activity.
+
+[Stephen Simon] 14:44:29
+And 28th schools served as a control group, alright?
+
+[Stephen Simon] 14:44:32
+I'm guessing that the physical activity was done at the school,
+
+[Stephen Simon] 14:44:37
+And they couldn't ask some of the students to participate and some of them not.
+
+[Stephen Simon] 14:44:41
+All right, either everybody participated in the extra physical activity,
+
+[Stephen Simon] 14:44:45
+Or nobody participated.
+
+[Stephen Simon] 14:44:48
+And the Triang Iron Schools for everybody participated.
+
+[Stephen Simon] 14:44:51
+Those were the treatments on the 28 schools.
+
+[Stephen Simon] 14:44:54
+where nobody's a control group.
+
+[Stephen Simon] 14:44:59
+This is an example of a cluster randomized trial.
+
+[Stephen Simon] 14:45:02
+We started with 57 schools total.
+
+[Stephen Simon] 14:45:04
+Randomly assigned roughly half of them to the treatment.
+
+[Stephen Simon] 14:45:08
+Roughly half of them to the control.
+
+[Stephen Simon] 14:45:13
+All right, so here's the data.
+
+[Stephen Simon] 14:45:18
+Um, and this is just a count.
+
+[Stephen Simon] 14:45:21
+Um, school number one,
+
+[Stephen Simon] 14:45:22
+was allocated the control, and there were 11 students.
+
+[Stephen Simon] 14:45:27
+Schoolometry was also controlled 10 students.
+
+[Stephen Simon] 14:45:30
+School 3 was an intervention group of 10 students.
+
+[Stephen Simon] 14:45:34
+Uh, school forms in Intervention 28, et cetera, et cetera, okay?
+
+[Stephen Simon] 14:45:40
+Here's the box plot, and man…
+
+[Stephen Simon] 14:45:43
+I've never seen two groups that were so similar in my life.
+
+[Stephen Simon] 14:45:48
+If this intervention did anything at all, I forget what the outcome measure is,
+
+[Stephen Simon] 14:45:52
+But if it did anything at all, I sure don't see it here.
+
+[Stephen Simon] 14:45:56
+So, we've got a second study in a row that's a total bust.
+
+[Stephen Simon] 14:46:01
+And for what it's worth, I don't want to get too luxury about this.
+
+[Stephen Simon] 14:46:06
+But, um, negative information is still valuable.
+
+[Stephen Simon] 14:46:11
+Even though people are disappointed when they fail to reject the null hypothesis,
+
+[Stephen Simon] 14:46:16
+It tells them what the next steps ought to be.
+
+[Stephen Simon] 14:46:19
+All right, and the next step should not be, let's do more physical plan, physical activity in the school.
+
+[Stephen Simon] 14:46:25
+Because it doesn't seem to matter. I met these kids,
+
+[Stephen Simon] 14:46:29
+But I went to school, and they automatically do a bunch of things.
+
+[Stephen Simon] 14:46:34
+play football, um, race around, et cetera, et cetera said, I don't even know.
+
+[Stephen Simon] 14:46:38
+But anyway, very little difference between the two groups. Now, there's a bunch of outliers.
+
+[Stephen Simon] 14:46:43
+I wouldn't worry about those, to be honest.
+
+[Stephen Simon] 14:46:45
+Okay, so to fit the mixed model, we're going to use the Limer function again, L-M-E-R.
+
+[Stephen Simon] 14:46:52
+We have to compute a change score. The change score is going to be the difference
+
+[Stephen Simon] 14:46:56
+And, um, the outcome. And I forget what the outcome is, I apologize.
+
+[Stephen Simon] 14:47:01
+I'm sure it's in the data dictionary. Alright, the change… or the change…
+
+[Stephen Simon] 14:47:06
+between when they first measured them and after they did the intervention,
+
+[Stephen Simon] 14:47:10
+If it was the treatment, um…
+
+[Stephen Simon] 14:47:14
+school, or it was from the first measurement, and then just wait.
+
+[Stephen Simon] 14:47:18
+And then do a second measurement.
+
+[Stephen Simon] 14:47:20
+All right. Really important to do this where you can measure things at baseline,
+
+[Stephen Simon] 14:47:25
+And then measure them, say, 6 months later.
+
+[Stephen Simon] 14:47:28
+Because if there's some temporal trend,
+
+[Stephen Simon] 14:47:32
+that, um, might be present, we can remove that temporal trend.
+
+[Stephen Simon] 14:47:36
+Because that temporal trend will appear in the control group.
+
+[Stephen Simon] 14:47:39
+Okay, so anyway, real easy syntax here. You have the dependent variable to the left of the tilde,
+
+[Stephen Simon] 14:47:45
+We have the independent variable to the right of the tilde,
+
+[Stephen Simon] 14:47:49
+And we use the parentheses, one vertical bar, school,
+
+[Stephen Simon] 14:47:53
+To designate schools a random factor.
+
+[Stephen Simon] 14:47:56
+We're going to look at variation between schools.
+
+[Stephen Simon] 14:47:59
+evaluation within schools.
+
+[Stephen Simon] 14:48:02
+All right, so anyway, mixed model, I'm going to give several pieces. The first piece does not have anything of interest to you.
+
+[Stephen Simon] 14:48:11
+Ramal convergence, we don't care. Scale residuals, we don't care.
+
+[Stephen Simon] 14:48:14
+But then we get the random effects.
+
+[Stephen Simon] 14:48:16
+And what we see here is that the variation from one school to another is 1.59.
+
+[Stephen Simon] 14:48:24
+Ashley, that's the variants, alright?
+
+[Stephen Simon] 14:48:27
+And the variation within the school is 6.578.
+
+[Stephen Simon] 14:48:30
+So you take the ratio of 1.59 to the sum,
+
+[Stephen Simon] 14:48:35
+The sum is going to be the total variation.
+
+[Stephen Simon] 14:48:37
+That gives you a ratio of 0.19.
+
+[Stephen Simon] 14:48:40
+I'll be honest, that's still a pretty large value. Doesn't seem large.
+
+[Stephen Simon] 14:48:44
+But in this study, it's very important.
+
+[Stephen Simon] 14:48:47
+I'm saying that there is significant variation.
+
+[Stephen Simon] 14:48:50
+in the outcome from one school to another.
+
+[Stephen Simon] 14:48:54
+Here's the fixed effects.
+
+[Stephen Simon] 14:48:57
+The intercept represents the estimated average for the control group, alright?
+
+[Stephen Simon] 14:49:01
+Now, again, remember what R does? It places the groups in alphabetical order.
+
+[Stephen Simon] 14:49:06
+And the first group that appears alphabetically becomes the control group.
+
+[Stephen Simon] 14:49:10
+I should say the reference category.
+
+[Stephen Simon] 14:49:13
+All right, so we see a measure of 1.34.
+
+[Stephen Simon] 14:49:17
+In the…
+
+[Stephen Simon] 14:49:22
+In the, um, control group,
+
+[Stephen Simon] 14:49:24
+The difference between the average intervention
+
+[Stephen Simon] 14:49:28
+And then control is negative .01.
+
+[Stephen Simon] 14:49:31
+All right, the t-value is negative 0.028.
+
+[Stephen Simon] 14:49:35
+That's pretty close to zero.
+
+[Stephen Simon] 14:49:37
+So we would accept the null hypothesis.
+
+[Stephen Simon] 14:49:41
+If you want an exact p-value here,
+
+[Stephen Simon] 14:49:44
+There's several ways of computing it, okay?
+
+[Stephen Simon] 14:49:47
+I'm not going to worry about it in this class, but I'm sure that, um…
+
+[Stephen Simon] 14:49:51
+online talks extensively about it in our class. Hope so.
+
+[Stephen Simon] 14:49:55
+Um, it's not an easy thing to figure out the degrees of freedom.
+
+[Stephen Simon] 14:49:58
+for this t-statistic.
+
+[Stephen Simon] 14:50:02
+All right, so the… and the correlation effects to facts, you can ignore that.
+
+[Stephen Simon] 14:50:06
+So what did we learn? We learned that there was a weak but still important, interclass correlation.
+
+[Stephen Simon] 14:50:12
+Um, showing that there was some variation from school to school.
+
+[Stephen Simon] 14:50:16
+But more variation from student to student within school.
+
+[Stephen Simon] 14:50:20
+We notice that the difference between the intervention and control was miniscule.
+
+[Stephen Simon] 14:50:24
+And it did not achieve statistical significance because the t-value
+
+[Stephen Simon] 14:50:29
+It's close to zero.
+
+[Stephen Simon] 14:50:31
+All right, so, um, I'm going to stop here, and let's see Mom take over with the demo, but before I do…
+
+[Stephen Simon] 14:50:38
+Um, any questions from the students in the audience?
+
+[niroshini] 14:50:43
+Yes, I have a question.
+
+[Stephen Simon] 14:50:44
+Go ahead.
+
+[niroshini] 14:50:47
+when the intra-class correlation is significant, is it…
+
+[niroshini] 14:50:51
+like, close to 1, or…?
+
+[niroshini] 14:50:54
+What's, uh…
+
+[Stephen Simon] 14:50:55
+So, the interclass correlation typically
+
+[Stephen Simon] 14:50:58
+It's designed with p-value associated with it.
+
+[Stephen Simon] 14:51:01
+Because there's no research hypothesis.
+
+[Stephen Simon] 14:51:04
+That says the interclassical relation is zero or non-zero.
+
+[Stephen Simon] 14:51:08
+You could attach a p-value to it.
+
+[Stephen Simon] 14:51:11
+You could place a confidence interval around it.
+
+[Stephen Simon] 14:51:14
+But it's normally not done. It is a measure that is very important.
+
+[Stephen Simon] 14:51:19
+Because it allows you to plan future studies,
+
+[Stephen Simon] 14:51:23
+Very carefully, and we'll actually see in some examples of that.
+
+[Stephen Simon] 14:51:26
+But typically, there's not something that says, this is a significant
+
+[Stephen Simon] 14:51:32
+Um, intraclass correlation.
+
+[Stephen Simon] 14:51:35
+I'll be honest, even inter-class correlations as small as 0.2,
+
+[Stephen Simon] 14:51:40
+can make a big difference if you have a large number of patients within each cluster.
+
+[Stephen Simon] 14:51:46
+Alright, but as a general rule, we just assess
+
+[Stephen Simon] 14:51:49
+The interclass correlation qualitatively.
+
+[Stephen Simon] 14:51:53
+We do not do any formal testing.
+
+[Stephen Simon] 14:51:55
+We do not do any formal hypothesis.
+
+[Stephen Simon] 14:51:59
+Is that clear? Did I answer your question?
+
+[niroshini] 14:52:01
+Yes, thank you.
+
+[Stephen Simon] 14:52:02
+Okay, thank you for the question, by the way. All right, so I'm going to stop recording here.
+
+[Stephen Simon] 14:52:16
+Okay, so now I'm gonna…
+
+[Suman Sahil] 14:52:16
+Mr. Simon, should I share my screen?
+
+[Suman Sahil] 14:52:18
+Okay.
+
+[Stephen Simon] 14:52:19
+I'm going to stop sharing. You can share your screen, and then…
+
+[Stephen Simon] 14:52:23
+I'll hit the record button and say go ahead.
+
+[Suman Sahil] 14:52:25
+Thank you.
+
+[Suman Sahil] 14:52:36
+Thank you.
+
+[Suman Sahil] 14:52:39
+So…
+
+[Stephen Simon] 14:52:41
+Oh, no, no, no, let me start. Sorry, you caught me unawares.
+
+[Suman Sahil] 14:52:43
+Sure.
+
+[Stephen Simon] 14:52:48
+Okay, go ahead.
+
+[Suman Sahil] 14:52:50
+Thank you, Dr. Simon. So, now we are going to look at physical activity data.
+
+[Suman Sahil] 14:52:55
+And that's the data we are going to work with. So, as Dr. Simon described, this data is from
+
+[Suman Sahil] 14:53:02
+cluster randomized trial in Norway.
+
+[Suman Sahil] 14:53:05
+So, students, this data is from students from 57 schools.
+
+[Suman Sahil] 14:53:10
+They were recruited for the study, 29 schools were randomly assigned to the physical activity intervention.
+
+[Suman Sahil] 14:53:16
+And 28 schools served as control group.
+
+[Suman Sahil] 14:53:19
+And the outcome was changes in various measures of cardiometabolic health.
+
+[Suman Sahil] 14:53:25
+The data points that we'll be looking into group allocation, that's the cluster assignment, uh, values run between control and intervention.
+
+[Suman Sahil] 14:53:35
+pre-protocol filter, sex, age, um, for the pre-protocol filter, the weight
+
+[Suman Sahil] 14:53:42
+before the treatment.
+
+[Suman Sahil] 14:53:44
+The height, the BMI, all the pre-values.
+
+[Suman Sahil] 14:53:47
+And then you have the waist circumference. This is the point, data point we are going to use.
+
+[Suman Sahil] 14:53:53
+pre… uh, so there are different measurements for the students' SBP, DBP, diastolic blood pressure at baseline.
+
+[Suman Sahil] 14:54:03
+So, we'll use some of the data points, not all of them. There are different data points for, um…
+
+[Suman Sahil] 14:54:10
+The, uh, for the sample population from the school.
+
+[Suman Sahil] 14:54:14
+For the student population from the school.
+
+[Suman Sahil] 14:54:16
+Um, and, uh, as you can see, the descriptors for each data points are given to you.
+
+[Suman Sahil] 14:54:22
+So, we'll be using WC Post Waste Circumrance.
+
+[Suman Sahil] 14:54:27
+post, um, the study.
+
+[Suman Sahil] 14:54:29
+So, let's look at our program.
+
+[Suman Sahil] 14:54:32
+So, our data file is physicalactivity.sav, which lives in the data folder. We, uh, because it is .savv, it is SPSS data file.
+
+[Suman Sahil] 14:54:43
+So we used the function read.sps, and we create a data stream PA, and we want to take a
+
+[Suman Sahil] 14:54:51
+glooms of our data.
+
+[Suman Sahil] 14:54:52
+So we have a lot of data points collected for these students in these 57 schools.
+
+[Suman Sahil] 14:55:00
+Let's look at the descriptive stats. We want to summarize, calculating the mean.
+
+[Suman Sahil] 14:55:05
+for the waist circumference pre- and post.
+
+[Suman Sahil] 14:55:09
+So, let's run that, and there is a slight increase in the waist circumference after the study is over.
+
+[Suman Sahil] 14:55:17
+could be due to the natural growth over time.
+
+[Suman Sahil] 14:55:21
+We have a high tendency to increase our waste.
+
+[Suman Sahil] 14:55:24
+If we are not careful. So, let's look at, um… we want to count, um, the group allocation per school, and we want to collect it in variable PA underscore counts, and then
+
+[Suman Sahil] 14:55:37
+print the P underscore counts. So, for the control 11…
+
+[Suman Sahil] 14:55:42
+Uh, for school one, for school 2, so we have a large 57 schools, so there'll be 57 rooms, only the top rows are shown to you.
+
+[Suman Sahil] 14:55:51
+So, a lot of variation in number of subjects per school.
+
+[Suman Sahil] 14:55:55
+And every school has at least 7 of those variations in.
+
+[Suman Sahil] 14:56:00
+So, now let's compute our change score. So, how do we do that?
+
+[Suman Sahil] 14:56:06
+We'll add a new data point, change score, which is the difference between, um…
+
+[Suman Sahil] 14:56:12
+waste, um…
+
+[Suman Sahil] 14:56:14
+post… post-study and waist circumference pre-study, and we create a new data frame PA1,
+
+[Suman Sahil] 14:56:21
+So, let's run that.
+
+[Suman Sahil] 14:56:23
+We are not printing anything. It doesn't show.
+
+[Suman Sahil] 14:56:26
+Now, we want to do a box plot by the group, so how do we do that?
+
+[Suman Sahil] 14:56:31
+So, we'll do, um…
+
+[Suman Sahil] 14:56:34
+will filter, um, any data where there is some missingness.
+
+[Suman Sahil] 14:56:39
+There is a missing change score.
+
+[Suman Sahil] 14:56:41
+And we'll use the function ggplot. Our x-axis will have the group allocation, y-axis will have the change score,
+
+[Suman Sahil] 14:56:48
+And we'll do a box plot, geom box plot, and we'll flip the coordinate, because it really looks very professional that way.
+
+[Suman Sahil] 14:56:56
+We title our graph appropriately, X-axis, we labor our X-axis and Y-axis.
+
+[Suman Sahil] 14:57:01
+And let's run that.
+
+[Suman Sahil] 14:57:03
+And, like Dr. Simon said, even I have not seen such a
+
+[Suman Sahil] 14:57:09
+such similar box plot for control and intervention groups.
+
+[Suman Sahil] 14:57:14
+So the amount of increase in the waste circumference is about the same in treatment and control groups.
+
+[Suman Sahil] 14:57:21
+Um, let's now fit our mixed model. Remember, we had talked about our LMER, um, in LME4.
+
+[Suman Sahil] 14:57:29
+package. So, um…
+
+[Suman Sahil] 14:57:32
+Let's do that.
+
+[Suman Sahil] 14:57:34
+But bef- uh, so how do we do that? We use…
+
+[Suman Sahil] 14:57:38
+See, LMER, we are… it has a specific, um…
+
+[Suman Sahil] 14:57:42
+way of describing what you want to cluster on, what you want to group on. We are grouping per school.
+
+[Suman Sahil] 14:57:49
+So, our dependent variable is change score on the left of tilde, right of tilde is group allocation.
+
+[Suman Sahil] 14:57:55
+And our data is coming from DataFrame PA underscore 1.
+
+[Suman Sahil] 14:58:00
+Um, the, uh, output for the mixed model is collected in variable M2, which is an argument to summary function, so we can
+
+[Suman Sahil] 14:58:08
+display our data,
+
+[Suman Sahil] 14:58:10
+So, let's run our data, and then we want to interpret our data. So, what do we see here?
+
+[Suman Sahil] 14:58:17
+The estimated change in the waist circumference, so it's around 1.34.
+
+[Suman Sahil] 14:58:24
+Estimated change in waste, circumference in your reference category.
+
+[Suman Sahil] 14:58:29
+Because your group allocation here was control.
+
+[Suman Sahil] 14:58:32
+Remember that? That was your, um…
+
+[Suman Sahil] 14:58:35
+So, 1.34, that was your reference category was group allocation is set to control.
+
+[Suman Sahil] 14:58:42
+And the estimated change in the treatment group versus the control group is
+
+[Suman Sahil] 14:58:48
+approx minus 0.
+
+[Suman Sahil] 14:58:51
+01, which is very, very, very slightly smaller.
+
+[Suman Sahil] 14:58:55
+Or maybe no difference.
+
+[Suman Sahil] 14:58:56
+And the t-statistics is, again, very negative, close to zero, indicating
+
+[Suman Sahil] 14:59:01
+that this difference is not statistically significant.
+
+[Suman Sahil] 14:59:05
+So we accept a love hypothesis in this case.
+
+[Suman Sahil] 14:59:08
+There is moderate amount of variation between clusters, and here our cluster is cool. Remember, our LMER model, we are one, um…
+
+[Suman Sahil] 14:59:18
+pipe schools, so we are clustering based on school.
+
+[Suman Sahil] 14:59:21
+So, the intraclass correlation, we are going to calculate from our random effects, that will be 1.590 divided by sum of both the variances.
+
+[Suman Sahil] 14:59:32
+Uh, 1.590 plus 6.578, which comes out to be 0.19.
+
+[Suman Sahil] 14:59:39
+So, what does it show? It's a weak degree of correlation for the two measurements.
+
+[Suman Sahil] 14:59:45
+in the same school.
+
+[Suman Sahil] 14:59:47
+So we had 7 measurements. The measurement, um, in this case was waist circumference.
+
+[Suman Sahil] 14:59:54
+So, Dr. Simon, should I talk about Part 3?
+
+[Stephen Simon] 14:59:57
+No, no, that's good then. Um, let me stop and see if there are any questions from the students.
+
+[Suman Sahil] 14:59:59
+Okay.
+
+[Stephen Simon] 15:00:08
+Okay, let me stop recording.
+
+[Stephen Simon] 15:00:17
+And let me start back up again.
+
+[Stephen Simon] 15:00:19
+Uh, let me share first.
+
+[Stephen Simon] 15:00:34
+Only, okay.
+
+[Stephen Simon] 15:00:39
+Um, I need to…
+
+[Stephen Simon] 15:00:42
+Find my speaker notes. Here we go.
+
+[Stephen Simon] 15:00:45
+Okay, so let's start recording again.
+
+[Stephen Simon] 15:00:56
+Okay, so we talked about cluster randomized trials.
+
+[Stephen Simon] 15:01:00
+That's where it's entirely a between-subject, uh, between-cluster.
+
+[Stephen Simon] 15:01:04
+comparison. Um, and of course, we had to do it that way, because you can't randomly assign students
+
+[Stephen Simon] 15:01:11
+to a physical activity that works in a school. It just doesn't work.
+
+[Stephen Simon] 15:01:14
+You're going to have to do it to the entire school.
+
+[Stephen Simon] 15:01:17
+All right, you lose a bit of efficiency there, but we're still able to do a pretty good analysis.
+
+[Stephen Simon] 15:01:22
+I want to talk next about longitudinal data.
+
+[Stephen Simon] 15:01:25
+And the random intercepts model.
+
+[Stephen Simon] 15:01:32
+Okay. Um…
+
+[Stephen Simon] 15:01:35
+So, previously, I talked about hierarchical models.
+
+[Stephen Simon] 15:01:39
+And longitudinal data can be thought of as
+
+[Stephen Simon] 15:01:42
+a separate case.
+
+[Stephen Simon] 15:01:43
+All right? It's similar to repeated measures, and it's similar to hierarchical.
+
+[Stephen Simon] 15:01:49
+Alright. Actually, it was both of you guys are on the same subject repeatedly.
+
+[Stephen Simon] 15:01:55
+So, repeated measures and longitudinal. The longitudinal thing, the emphasis is in the changes that occur over time.
+
+[Stephen Simon] 15:02:02
+Repeated measurements and contrast.
+
+[Stephen Simon] 15:02:05
+emphasize different treatments with them, that the time gaps between the measurements are small enough that you don't see changes.
+
+[Stephen Simon] 15:02:12
+over time, or just due to time.
+
+[Stephen Simon] 15:02:14
+So the difference between longitudinal data and repeated measures data
+
+[Stephen Simon] 15:02:19
+Or hierarchical data, for that matter, or citing.
+
+[Stephen Simon] 15:02:22
+Okay?
+
+[Stephen Simon] 15:02:24
+And perhaps these are distinctions without a difference.
+
+[Stephen Simon] 15:02:29
+I decided to separate out longitudinal data
+
+[Stephen Simon] 15:02:31
+Because more of a desire to split a complex topic,
+
+[Stephen Simon] 15:02:36
+into smaller, bite-sized pieces.
+
+[Stephen Simon] 15:02:40
+Okay. So…
+
+[Stephen Simon] 15:02:43
+The simplest and longitudinal model
+
+[Stephen Simon] 15:02:47
+is the random intercepts model.
+
+[Stephen Simon] 15:02:48
+It has n subjects and k time points.
+
+[Stephen Simon] 15:02:53
+TJ is the time of the change measurement. Let me move this out of the way.
+
+[Stephen Simon] 15:02:57
+Um, and the first time is often listed as zero.
+
+[Stephen Simon] 15:03:01
+doesn't have to be. Now, the timings here are usually evenly spaced, like 0, 6 months, 12 months.
+
+[Stephen Simon] 15:03:08
+or zero, four weeks, 8 weeks, 12 weeks.
+
+[Stephen Simon] 15:03:12
+Alright, but it doesn't have to be evenly spaced.
+
+[Stephen Simon] 15:03:15
+The other interesting thing with these models
+
+[Stephen Simon] 15:03:19
+is they can be different spacing for different subjects.
+
+[Stephen Simon] 15:03:21
+Man, when that happens, the formulas get really, really messy.
+
+[Stephen Simon] 15:03:25
+They don't have to, all right? But here, we're just assuming that everyone's measured at time zero,
+
+[Stephen Simon] 15:03:32
+Everyone's measured it a second time.
+
+[Stephen Simon] 15:03:35
+And a third time, etc.
+
+[Stephen Simon] 15:03:39
+Okay, the ring? There are two sources of random variation in the random intercepts model.
+
+[Stephen Simon] 15:03:46
+There's UI0…
+
+[Stephen Simon] 15:03:47
+I'm sorry.
+
+[Stephen Simon] 15:03:49
+Excuse me.
+
+[Stephen Simon] 15:03:55
+Much like a bit of a cold. Hopefully, I'll be able to get through this.
+
+[Stephen Simon] 15:03:59
+Eric, New ZealI…
+
+[Stephen Simon] 15:04:02
+It is one source of variation.
+
+[Stephen Simon] 15:04:05
+Absolutely not today is another source of variation.
+
+[Stephen Simon] 15:04:10
+We assume that U0i
+
+[Stephen Simon] 15:04:12
+And epsilon and IJ are normally distributed.
+
+[Stephen Simon] 15:04:16
+Okay? Now, um, normally…
+
+[Stephen Simon] 15:04:20
+language is a Greek letter instead of U, but I'm following the notation. I believe that's what you're…
+
+[Stephen Simon] 15:04:24
+I'm sure your book talks have been at this one. It's fairly common notation.
+
+[Stephen Simon] 15:04:29
+But we have variability due to the intersect,
+
+[Stephen Simon] 15:04:32
+and variability to the error.
+
+[Stephen Simon] 15:04:35
+Alright, so what we're assuming is that each person in the launch accrual Study
+
+[Stephen Simon] 15:04:41
+has a linear trend.
+
+[Stephen Simon] 15:04:43
+And linear trend is the same for each subject.
+
+[Stephen Simon] 15:04:47
+It's positive or negative.
+
+[Stephen Simon] 15:04:51
+But they start at a different spot.
+
+[Stephen Simon] 15:04:54
+Some people start at a high baseline,
+
+[Stephen Simon] 15:04:57
+And the increased linearly from that.
+
+[Stephen Simon] 15:05:00
+Some people started to live baseline.
+
+[Stephen Simon] 15:05:02
+And the increased linearly from that.
+
+[Stephen Simon] 15:05:05
+Okay?
+
+[Stephen Simon] 15:05:09
+The mathematics is fairly similar year.
+
+[Stephen Simon] 15:05:12
+Variation in an individual value.
+
+[Stephen Simon] 15:05:15
+There's a variation due to the random in extent.
+
+[Stephen Simon] 15:05:18
+and variation due to error. Error is basically the variation around the trend line.
+
+[Stephen Simon] 15:05:23
+for an individual subject.
+
+[Stephen Simon] 15:05:25
+And the correlation of two measurements
+
+[Stephen Simon] 15:05:28
+On the same subject are going to be the variation due to the intercept,
+
+[Stephen Simon] 15:05:32
+Divided by the variation of the intercept.
+
+[Stephen Simon] 15:05:35
+plus the variation due to error.
+
+[Stephen Simon] 15:05:36
+All right, pretty much the same formulas that we saw before.
+
+[Stephen Simon] 15:05:43
+So this graph shows a single line.
+
+[Stephen Simon] 15:05:47
+But three subjects, and there's a fair amount of variation here.
+
+[Stephen Simon] 15:05:51
+But there's something that's worth examining more closely.
+
+[Stephen Simon] 15:05:56
+The third group…
+
+[Stephen Simon] 15:05:59
+We're the third subject in this case, I believe it's a separate subject. This is hypothetical data.
+
+[Stephen Simon] 15:06:06
+is what about that trend line?
+
+[Stephen Simon] 15:06:08
+The second subject is well below. In fact, the first subject is also below, maybe not quite as far.
+
+[Stephen Simon] 15:06:15
+Well, it was the second subject.
+
+[Stephen Simon] 15:06:17
+Okay? And this is probably makes sense. When you're looking at an outcome over time,
+
+[Stephen Simon] 15:06:24
+If someone starts high at baseline at time zero,
+
+[Stephen Simon] 15:06:27
+They're likely to become… they're likely to be high,
+
+[Stephen Simon] 15:06:30
+After… next… after 1, 2, or 3, um, weeks, I assume this is weeks.
+
+[Stephen Simon] 15:06:37
+This is hypothetical data, and someone starts in,
+
+[Stephen Simon] 15:06:40
+Maybe they increase, but they're still well below the trend line, okay?
+
+[Stephen Simon] 15:06:45
+So you're noticing variation around the trend line.
+
+[Stephen Simon] 15:06:47
+And we can see that…
+
+[Stephen Simon] 15:06:51
+And this point. This shows the trend line.
+
+[Stephen Simon] 15:06:54
+For the first subject, the trend line for the second subject,
+
+[Stephen Simon] 15:06:58
+And the trend line for the third subject.
+
+[Stephen Simon] 15:07:01
+Okay, the overall intercept…
+
+[Stephen Simon] 15:07:03
+If we fit a single line, it's going to be 50.
+
+[Stephen Simon] 15:07:07
+But the first subject has an intercept that's 10 units below.
+
+[Stephen Simon] 15:07:12
+the overall trend line.
+
+[Stephen Simon] 15:07:14
+So the first subject has a random intercept of minus 10.
+
+[Stephen Simon] 15:07:18
+The second subject is even lower.
+
+[Stephen Simon] 15:07:21
+And it has a random intercept of minus 20.
+
+[Stephen Simon] 15:07:24
+And the third subject is higher as the random intercept of plus 30.
+
+[Stephen Simon] 15:07:30
+Okay? So the intercept for the first subject is the overall intercept 50,
+
+[Stephen Simon] 15:07:35
+minus 10. If her subject starts out close to 40.
+
+[Stephen Simon] 15:07:39
+Second subject starts out close to 30, 50 minus 20.
+
+[Stephen Simon] 15:07:43
+The third subject, born on, starts to have really high…
+
+[Stephen Simon] 15:07:48
+50 plus 30, or 80.
+
+[Stephen Simon] 15:07:50
+All the subjects show the same general trend.
+
+[Stephen Simon] 15:07:54
+The random intercepts model says,
+
+[Stephen Simon] 15:07:56
+Each subject may have a different intercept.
+
+[Stephen Simon] 15:07:59
+But the trend is common across everybody.
+
+[Stephen Simon] 15:08:05
+Okay? Now…
+
+[Stephen Simon] 15:08:07
+It's never quite this clean.
+
+[Stephen Simon] 15:08:09
+So let me show what the random intercepts look like for real data.
+
+[Stephen Simon] 15:08:13
+Uh, this is a subject, uh, we'll talk about it.
+
+[Stephen Simon] 15:08:17
+Um, let's see if I can read that.
+
+[Stephen Simon] 15:08:20
+Rain of using protected sex. So this is a study where they're trying to encourage, um,
+
+[Stephen Simon] 15:08:27
+better, um, use of commons and so forth to prevent the spread of AIDS and other sexually transmitted diseases.
+
+[Stephen Simon] 15:08:34
+And when we fit a random intercept model,
+
+[Stephen Simon] 15:08:37
+We're going to have a common slope.
+
+[Stephen Simon] 15:08:40
+And the convent slope is somewhat downward. Oh, man!
+
+[Stephen Simon] 15:08:44
+Lang views and protected sex is actually getting worse every time.
+
+[Stephen Simon] 15:08:51
+Not good, but not that much, all right? But notice that the first subject has an intercept of around 18,
+
+[Stephen Simon] 15:08:58
+The second subject has an intercept around 20.
+
+[Stephen Simon] 15:09:01
+Third subject, law of unprotected sex. Oh, okay.
+
+[Stephen Simon] 15:09:05
+Um, a protected sex.
+
+[Stephen Simon] 15:09:07
+So, third subject's doing pretty well. That's a rate of around 35.
+
+[Stephen Simon] 15:09:12
+Same with 4th and 5th. And so each subject of a different intercept.
+
+[Stephen Simon] 15:09:18
+by the common slope.
+
+[Stephen Simon] 15:09:22
+Okay? Let me take a short break here, and I'm going to talk about, um, the actual study that produced this final graph.
+
+[Stephen Simon] 15:09:31
+But let me stop to see, before I stop recording, if there are any questions.
+
+[Stephen Simon] 15:09:39
+Okay, let me stop recording.
+
+[Stephen Simon] 15:09:58
+Okay, so in the previous, um, video, we talked about the random intercepts model.
+
+[Stephen Simon] 15:10:05
+what it means conceptually. Everyone has the same slope.
+
+[Stephen Simon] 15:10:08
+But some subjects show
+
+[Stephen Simon] 15:10:10
+a different intercept. The intercept varies randomly. Some people have a large intercept, some people have a small interceptor.
+
+[Stephen Simon] 15:10:17
+And the intercept and the longitudinal design
+
+[Stephen Simon] 15:10:20
+represents the estimated average value of the outcome.
+
+[Stephen Simon] 15:10:24
+at T equal to 0. Think of it as the estimated average at baseline.
+
+[Stephen Simon] 15:10:29
+Everyone has a different baseline.
+
+[Stephen Simon] 15:10:30
+But they tend to improve or decline at the same rate.
+
+[Stephen Simon] 15:10:37
+Okay, so let's…
+
+[Stephen Simon] 15:10:41
+move forward.
+
+[Stephen Simon] 15:10:43
+Um, HIV? Hold on now…
+
+[Stephen Simon] 15:10:50
+Um, so this is a study.
+
+[Stephen Simon] 15:10:52
+of intervention, and…
+
+[Stephen Simon] 15:10:54
+14- to 18-year-old adolescents.
+
+[Stephen Simon] 15:10:57
+Um, and it was intended to increase the frequency of condom-protected sex.
+
+[Stephen Simon] 15:11:02
+They randomly allocated treatment and control groups.
+
+[Stephen Simon] 15:11:06
+Alls are evaluated prior to the intervention.
+
+[Stephen Simon] 15:11:08
+Immediately after the intervention, 6 months to 12 months after the intervention.
+
+[Stephen Simon] 15:11:14
+The outcome is the log transform frequency of condom-protected sex.
+
+[Stephen Simon] 15:11:19
+I'm not thrilled about doing a log Y plus 1.
+
+[Stephen Simon] 15:11:22
+I think that that's kind of a cheat, but…
+
+[Stephen Simon] 15:11:26
+That's probably what's doing.
+
+[Stephen Simon] 15:11:27
+doing the analysis.
+
+[Stephen Simon] 15:11:30
+Okay? Yeah, that's kind of a messy data set.
+
+[Stephen Simon] 15:11:35
+All right, and there's several things that we can do.
+
+[Stephen Simon] 15:11:38
+But the one thing I decided to do is, let's just look in the treatment group by itself.
+
+[Stephen Simon] 15:11:44
+Let's not do a treatment versus control study yet.
+
+[Stephen Simon] 15:11:47
+Let's just look at the treatment group.
+
+[Stephen Simon] 15:11:51
+What is the trend over time in the treatment group?
+
+[Stephen Simon] 15:11:53
+Okay?
+
+[Stephen Simon] 15:11:57
+All right, so we have pre, post, FU6, FU-12.
+
+[Stephen Simon] 15:12:02
+Pre-measurement, post-measurement follow-up at 6,
+
+[Stephen Simon] 15:12:05
+Following up at 12, and those are months.
+
+[Stephen Simon] 15:12:10
+So here's the data.
+
+[Stephen Simon] 15:12:13
+Alright, BST is whether they were in the intervention group or the control group.
+
+[Stephen Simon] 15:12:17
+We have pre-post follow-up, 6-follow-up 12.
+
+[Stephen Simon] 15:12:23
+I'm going to apply just the, uh…
+
+[Stephen Simon] 15:12:25
+treatment subjects.
+
+[Stephen Simon] 15:12:27
+And you look at this, and it's kind of crazy.
+
+[Stephen Simon] 15:12:32
+There's no real pattern here.
+
+[Stephen Simon] 15:12:33
+Um, everybody's got a different shape.
+
+[Stephen Simon] 15:12:38
+So, I don't put much hope here.
+
+[Stephen Simon] 15:12:41
+And trying to come up with a decent analysis, alright?
+
+[Stephen Simon] 15:12:45
+But this is just the first 10 subjects. There are 20.
+
+[Stephen Simon] 15:12:54
+All right, greater protected sets, subject to 11, same, same.
+
+[Stephen Simon] 15:12:59
+000, and that's the log of Y plus 1.
+
+[Stephen Simon] 15:13:03
+So that means Y is 0.
+
+[Stephen Simon] 15:13:05
+Oh, man, same, same, same. Anyway, we're seeing no consistent pattern or trend, and I apologize for this.
+
+[Stephen Simon] 15:13:12
+It's hard to find good data sets.
+
+[Stephen Simon] 15:13:17
+And all these data sets are negative. That doesn't mean it's a bad data set.
+
+[Stephen Simon] 15:13:21
+But it'd be kind of nice to look at one that shows a stream.
+
+[Stephen Simon] 15:13:25
+positive trend.
+
+[Stephen Simon] 15:13:27
+I'm seeing that.
+
+[Stephen Simon] 15:13:29
+Okay.
+
+[Stephen Simon] 15:13:32
+Oh, I'm sorry, I apologize.
+
+[Stephen Simon] 15:13:33
+This is what the treatment group looks like.
+
+[Stephen Simon] 15:13:36
+That's not what the control group looks like, okay?
+
+[Stephen Simon] 15:13:40
+Now, um, I'm going to restructure the data.
+
+[Stephen Simon] 15:13:45
+And I'm going to do just the treatments, Hall. The ST is all ones.
+
+[Stephen Simon] 15:13:50
+And I'm going to have 3 measurements for each ID, the zero value,
+
+[Stephen Simon] 15:13:54
+Which is the value just after the intervention started.
+
+[Stephen Simon] 15:13:58
+The 6-month value…
+
+[Stephen Simon] 15:14:00
+And the 12-month value. So we've changed to the long format, or a tall format.
+
+[Stephen Simon] 15:14:05
+Because now we have one row for each measurement.
+
+[Stephen Simon] 15:14:09
+One row for each time point, rather than one row for each subject. Very critical difference here.
+
+[Stephen Simon] 15:14:14
+And so, 13 rows.
+
+[Stephen Simon] 15:14:16
+Okay?
+
+[Stephen Simon] 15:14:19
+Because we have 10 subjects in the treatment group, but each one is measured at 0,
+
+[Stephen Simon] 15:14:27
+6 and 12 months.
+
+[Stephen Simon] 15:14:28
+Okay, so that was the repeat pattern, 0612, 0612, 0612.
+
+[Stephen Simon] 15:14:33
+Okay. Um, so that's just a very brief introduction to the HIV Intervention data.
+
+[Stephen Simon] 15:14:40
+But, uh, let's actually do the analysis.
+
+[Stephen Simon] 15:14:42
+Um, in the next video, but I want to break these into small pieces.
+
+[Stephen Simon] 15:14:46
+Are there any questions before we, um…
+
+[Stephen Simon] 15:14:49
+Move on.
+
+[Stephen Simon] 15:15:09
+Okay, so I just gave a brief description of the HIV intervention data.
+
+[Stephen Simon] 15:15:14
+And it's not showing much of a trend, alright? Uh, that's a shame, but…
+
+[Stephen Simon] 15:15:19
+To be honest, when you're talking about exercise interventions to get people to lose weight,
+
+[Stephen Simon] 15:15:25
+or pretensions that are intended to get people to quit smoking,
+
+[Stephen Simon] 15:15:30
+Or to have a better diet,
+
+[Stephen Simon] 15:15:33
+Or to, um, use protected sex more often.
+
+[Stephen Simon] 15:15:37
+It is hard to get people to change their behavior. It's really easy to add
+
+[Stephen Simon] 15:15:42
+A medication to someone's prescription.
+
+[Stephen Simon] 15:15:44
+And I know a lifestyle change to someone's prescription?
+
+[Stephen Simon] 15:15:47
+Not so easy. Okay.
+
+[Stephen Simon] 15:15:50
+So, let's take a look.
+
+[Stephen Simon] 15:15:53
+Let's see what we have.
+
+[Stephen Simon] 15:15:55
+All right, so we fit the linear mixed effects model.
+
+[Stephen Simon] 15:15:58
+And the first section, giving the RAML criterion and the scaled residuals,
+
+[Stephen Simon] 15:16:02
+we can ignore.
+
+[Stephen Simon] 15:16:06
+This is showing the variation between groups.
+
+[Stephen Simon] 15:16:09
+And within groups. And I didn't do the calculation here.
+
+[Stephen Simon] 15:16:13
+But there's a fair amount of variation between groups.
+
+[Stephen Simon] 15:16:17
+Okay, so I think that the interclass correlation is going to be pretty strong.
+
+[Stephen Simon] 15:16:26
+Um, the estimates, the random intercept, okay, the intercepts…
+
+[Stephen Simon] 15:16:31
+starting out at 22.23.
+
+[Stephen Simon] 15:16:33
+So if you look at the average rate of protected sex,
+
+[Stephen Simon] 15:16:37
+In the treatment group, it starts out at baseline at 22.
+
+[Stephen Simon] 15:16:41
+But we see just a small amount of backsliding over time.
+
+[Stephen Simon] 15:16:45
+We see it drop by about negative 0.2.
+
+[Stephen Simon] 15:16:50
+However, this decline that we see is not statistically significant,
+
+[Stephen Simon] 15:16:55
+Because the t-value is close to zero.
+
+[Stephen Simon] 15:17:00
+Oh, man, that's 3 studies in a row.
+
+[Stephen Simon] 15:17:04
+Where we accepted the null hypothesis. What am I going to do?
+
+[Stephen Simon] 15:17:08
+Um, by the way, there's a…
+
+[Stephen Simon] 15:17:12
+A lot of people who want to try to cheat the system,
+
+[Stephen Simon] 15:17:16
+And I always produce small p-values because they think they'll get better funding, they think that they're going to get, um,
+
+[Stephen Simon] 15:17:22
+The therapies adopted by large numbers of people and so forth. Watch out for these people.
+
+[Stephen Simon] 15:17:27
+A negative result is still valuable.
+
+[Stephen Simon] 15:17:29
+So, when we go back to that study of the Norwegian schools,
+
+[Stephen Simon] 15:17:35
+What we found is, if we're going to ask kids to lose weight,
+
+[Stephen Simon] 15:17:38
+Doing an intervention at the school may not be the right thing to do. Maybe we need to do an intervention
+
+[Stephen Simon] 15:17:44
+And how long…
+
+[Stephen Simon] 15:17:46
+Okay? So it tells us where we should or should not look, okay?
+
+[Stephen Simon] 15:17:51
+If we're deciding whether this intervention is worthwhile to do,
+
+[Stephen Simon] 15:17:56
+Um, I'm not seeing a lot of evidence for this, quite honestly. Things are quite…
+
+[Stephen Simon] 15:18:02
+noisy. If we see any changes over time, they're flat.
+
+[Stephen Simon] 15:18:06
+Okay? Um…
+
+[Stephen Simon] 15:18:10
+So, anyway, I want Simon to actually do this analysis for you.
+
+[Stephen Simon] 15:18:14
+And then I'm going to talk about, um,
+
+[Stephen Simon] 15:18:17
+Uh, testing the assumptions. We've got quite a bit more to do, actually.
+
+[Stephen Simon] 15:18:20
+But hopefully, I'll finish by 3.45.
+
+[Stephen Simon] 15:18:23
+Um, any questions before I turn it over to Zuman?
+
+[Stephen Simon] 15:18:32
+Let me stop recording here.
+
+[Stephen Simon] 15:18:36
+Stop share. You can share.
+
+[Stephen Simon] 15:18:39
+And then let me hit the record button and say go ahead, okay?
+
+[Suman Sahil] 15:18:43
+Yes, Dr. Sam.
+
+[Stephen Simon] 15:18:45
+All right.
+
+[Stephen Simon] 15:18:47
+Are you ready?
+
+[Suman Sahil] 15:18:47
+Yeah.
+
+[Suman Sahil] 15:18:49
+Yes, I'm ready.
+
+[Stephen Simon] 15:18:53
+Okay, go ahead.
+
+[Suman Sahil] 15:18:55
+Thank you, Dr. Simon. So, um…
+
+[Suman Sahil] 15:18:59
+Let's talk about HIV intervention data. So, first we want to take a look at the data.
+
+[Suman Sahil] 15:19:07
+And we looked at the physical activity, and uh…
+
+[Suman Sahil] 15:19:11
+I have the HIV intervention data dictionary presented here.
+
+[Suman Sahil] 15:19:17
+So, this is longitudinal study of intervention in 14 to 18 adolescents intended to increase
+
+[Suman Sahil] 15:19:26
+The frequency of condom.
+
+[Suman Sahil] 15:19:28
+for protected sex. And the subjects were allocated randomly to the treatment or the control groups.
+
+[Suman Sahil] 15:19:35
+And they were evaluated.
+
+[Suman Sahil] 15:19:37
+Prior to the intervention.
+
+[Suman Sahil] 15:19:40
+Immediately after the intervention?
+
+[Suman Sahil] 15:19:43
+6 months and 12 months.
+
+[Suman Sahil] 15:19:45
+So, prior to intervention means minus 6 months.
+
+[Suman Sahil] 15:19:49
+Ad intervention is zero.
+
+[Suman Sahil] 15:19:50
+And follow up immediately after intervention is 6 months and 12 months.
+
+[Suman Sahil] 15:19:55
+So the outcome variable…
+
+[Suman Sahil] 15:19:57
+is the logarithm transformed frequency of…
+
+[Suman Sahil] 15:20:01
+condom-protected sex.
+
+[Suman Sahil] 15:20:03
+So, the data points that we'll be having are…
+
+[Suman Sahil] 15:20:08
+Pre-, post, FU6 and FU12.
+
+[Suman Sahil] 15:20:11
+Um, and BST. BST is basically your treatment group, um, 0 and 1.
+
+[Suman Sahil] 15:20:17
+the intervention is 1, and control is zero.
+
+[Suman Sahil] 15:20:21
+And the pre is your log frequency of protected sex before intervention.
+
+[Suman Sahil] 15:20:28
+post is your log frequency of protected sex after intervention, and…
+
+[Suman Sahil] 15:20:34
+log frequency of protected sex reported at 6 months follow-up. So that's why you have FU word to it.
+
+[Suman Sahil] 15:20:41
+So, same thing for FU12.
+
+[Suman Sahil] 15:20:43
+So, let's look at our data.
+
+[Suman Sahil] 15:20:47
+So we want to load our data. It is a .txt, we'll use the function R…
+
+[Suman Sahil] 15:20:52
+beautiful function read underscore TSV.
+
+[Suman Sahil] 15:20:56
+We are loading HIVintervention.txt, the column types are, um, all numeric, and the column name's true.
+
+[Suman Sahil] 15:21:04
+So, let's run that, and we do have BST.
+
+[Suman Sahil] 15:21:09
+That is your treatment versus control.
+
+[Suman Sahil] 15:21:11
+And your pre-, post, and follow-up after 6 months and 12 months.
+
+[Suman Sahil] 15:21:16
+We want to add the subject ID, uh, because we don't have that mentioned here. So how do we do that?
+
+[Suman Sahil] 15:21:23
+We want to calculate the number of rows in our HIV intervention data file.
+
+[Suman Sahil] 15:21:29
+That is N, and then we want to add a column called ID, which has values ranging from 1 to n.
+
+[Suman Sahil] 15:21:37
+So, you know, and this colon is specifically telling you a range of values from 1 to n,
+
+[Suman Sahil] 15:21:43
+And it's your number of rows in the HIV data set.
+
+[Suman Sahil] 15:21:48
+You have your mutated dataset, HIV underscore 1, which has a new field ID,
+
+[Suman Sahil] 15:21:54
+And we want to take a look at the… we want to glimpse at our data.
+
+[Suman Sahil] 15:21:58
+So we have added a field ID with the values here.
+
+[Suman Sahil] 15:22:03
+So, now let's, um, look at switch to long format.
+
+[Suman Sahil] 15:22:08
+So we want… remember, we had done… we had used Pyot underscore longer.
+
+[Suman Sahil] 15:22:14
+Um, so for each subject, we had the values. So here…
+
+[Suman Sahil] 15:22:19
+The values we are going to…
+
+[Suman Sahil] 15:22:22
+use our protected sex.
+
+[Suman Sahil] 15:22:24
+And the name of the column is T, and T is pre-, post, and FU6, FU12.
+
+[Suman Sahil] 15:22:32
+Pri, we recognize it with minus 6.
+
+[Suman Sahil] 15:22:34
+Um, post is zero. After the intervention.
+
+[Suman Sahil] 15:22:39
+And FU6 is the follow-up, 6 months and 12 months.
+
+[Suman Sahil] 15:22:42
+So, with the pi boot underscore longer function…
+
+[Suman Sahil] 15:22:47
+for Subject 1.
+
+[Suman Sahil] 15:22:48
+We have…
+
+[Suman Sahil] 15:22:51
+minus 606, and 12.
+
+[Suman Sahil] 15:22:54
+So, these are the values. So, this is…
+
+[Suman Sahil] 15:22:57
+ID is your subject.
+
+[Suman Sahil] 15:22:59
+So, for ID1…
+
+[Suman Sahil] 15:23:01
+We have four variabilities, four time periods. They are minus 60, 6, and 12.
+
+[Suman Sahil] 15:23:08
+And the BST here, we have it for both the treatment and the control.
+
+[Suman Sahil] 15:23:13
+So, uh, remember your BST variable was recognizing your treatment versus control.
+
+[Suman Sahil] 15:23:19
+The value for protected sex is, um, coming in from your original data set.
+
+[Suman Sahil] 15:23:26
+data set, um, so remember for pre, it was 7.
+
+[Suman Sahil] 15:23:29
+For post-22, for FU613,
+
+[Suman Sahil] 15:23:33
+For a few 1240.
+
+[Suman Sahil] 15:23:35
+So, those are the values we are putting in here. 7, 20 to 13, and 14.
+
+[Suman Sahil] 15:23:41
+For Subject 1.
+
+[Suman Sahil] 15:23:42
+Then again, for Subject 2, we repeat, um, the four values in four different time periods.
+
+[Suman Sahil] 15:23:49
+before 6 months at the intervention and follow-up after the intervention, 6 months and 12 months.
+
+[Suman Sahil] 15:23:55
+And we get those values from our pre-post-FU6, FU-12.
+
+[Suman Sahil] 15:24:01
+from our original dataset.
+
+[Suman Sahil] 15:24:03
+So, pilot underscore longer does the heavy lifting.
+
+[Suman Sahil] 15:24:07
+The columns we want to see are
+
+[Suman Sahil] 15:24:10
+all the treatment, uh, all the pre to FU-12.
+
+[Suman Sahil] 15:24:15
+minus 6, 06, and 12.
+
+[Suman Sahil] 15:24:17
+The names will be specified by the time period T, and the values are coming in from
+
+[Suman Sahil] 15:24:23
+Uh, values too, they are coming in from the protected sex, um, values.
+
+[Suman Sahil] 15:24:28
+So, the one that was in our dataset.
+
+[Suman Sahil] 15:24:32
+So now, let's plot individual subjects for the treatment group. So how do we do that?
+
+[Suman Sahil] 15:24:38
+So, um, we filter by treatment group, and Y-axis is protected sex, the x-axis is your time period.
+
+[Suman Sahil] 15:24:47
+We are using GeoPoint and Geomline.
+
+[Suman Sahil] 15:24:50
+And we do a GG title, we title our graph appropriately, label our x-axis time in months, Y-axis
+
+[Suman Sahil] 15:24:57
+Rate of using protected sex.
+
+[Suman Sahil] 15:25:00
+And we scale, um,
+
+[Suman Sahil] 15:25:04
+We use… we give the breaks at different time periods, minus 60, 6, and 12.
+
+[Suman Sahil] 15:25:09
+We have used a specific function phase at wrap,
+
+[Suman Sahil] 15:25:13
+Which is a function which is part of ggplot2.
+
+[Suman Sahil] 15:25:17
+It creates a series of small plots based on subsetting variables.
+
+[Suman Sahil] 15:25:23
+So, um, here we are…
+
+[Suman Sahil] 15:25:26
+we are doing the plot by IDs. Remember, our IDs are…
+
+[Suman Sahil] 15:25:31
+1, 2, 3, like, our subjects.
+
+[Suman Sahil] 15:25:34
+And the columns we specify are 5.
+
+[Suman Sahil] 15:25:38
+So, the, um, different settings that we have done, um, we have…
+
+[Suman Sahil] 15:25:44
+Let's store them in a new variable called plot underscore 1, and we want to display plot underscore 1.
+
+[Suman Sahil] 15:25:51
+So, let's run that part, and let's see how our graphs come along.
+
+[Suman Sahil] 15:25:58
+So, we have, um…
+
+[Suman Sahil] 15:26:01
+10 plots total.
+
+[Suman Sahil] 15:26:02
+And this graph…
+
+[Suman Sahil] 15:26:04
+Um, and the one that follows, um…
+
+[Suman Sahil] 15:26:08
+kind of little bit of chaotic, but it's okay.
+
+[Suman Sahil] 15:26:11
+Um, of course, I don't see some trend or pattern across these multiple patients.
+
+[Suman Sahil] 15:26:17
+multiple subjects. So, we need to analyze, um, kind of a small subset of data.
+
+[Suman Sahil] 15:26:24
+thinking that something might emerge in the simplified setting.
+
+[Suman Sahil] 15:26:29
+So, remember, we were plotting it between time of the month and rate of protected sex, and we had our ticker
+
+[Suman Sahil] 15:26:37
+For the time of the month across these 10 graphs were minus 6, 0, 6, and 12.
+
+[Suman Sahil] 15:26:45
+So, excellent. Now, let's proceed on what we decided upon. We want to pl…
+
+[Suman Sahil] 15:26:50
+So we plotted where BST was 1, that is, uh, for your treatment group.
+
+[Suman Sahil] 15:26:55
+Let's plot it for your control group also. Here, BST is 0.
+
+[Suman Sahil] 15:27:00
+Uh, we set our variables similarly, Y-axis is protected SACS, rate of protected SACS, and x-axis is your time period.
+
+[Suman Sahil] 15:27:08
+your brakes are, uh, on…
+
+[Suman Sahil] 15:27:10
+four different time periods, minus 6, 0, 6, and 12.
+
+[Suman Sahil] 15:27:13
+We title our graph, we…
+
+[Suman Sahil] 15:27:17
+time, we specify and we label our X, X, and Y-axis.
+
+[Suman Sahil] 15:27:21
+And we use our face head wrap function to have…
+
+[Suman Sahil] 15:27:25
+many different plots, um,
+
+[Suman Sahil] 15:27:27
+having five columns in each. So, um, 11 to 20.
+
+[Suman Sahil] 15:27:32
+So, what do we see here? Again, a little bit of…
+
+[Suman Sahil] 15:27:35
+chaos, and not a unique pattern is not emerging.
+
+[Suman Sahil] 15:27:40
+So, let's do our… let's fit our model, and let's do some sub-analysis.
+
+[Suman Sahil] 15:27:46
+So, before we do that, we want to drop pre and controls. So, um, the pre, remember the time period for the previous 6 months, and where…
+
+[Suman Sahil] 15:27:56
+We want to filter it out. If fil… if…
+
+[Suman Sahil] 15:27:59
+The time period is not equal to minus 6.
+
+[Suman Sahil] 15:28:03
+And BST is not equal to zero, we create a new data frame, HIV3.
+
+[Suman Sahil] 15:28:08
+So, let's do that.
+
+[Suman Sahil] 15:28:11
+Now, we want to fit our random intercept model.
+
+[Suman Sahil] 15:28:14
+So, what are we doing here?
+
+[Suman Sahil] 15:28:16
+We are using the, um, linear mixed model. We are using LMER function, which is basically inside of LME4.
+
+[Suman Sahil] 15:28:24
+And it has a unique syntax of specifying its cluster, specifying its group,
+
+[Suman Sahil] 15:28:31
+Here we group by ID. ID is basically, we are recognizing our subject.
+
+[Suman Sahil] 15:28:36
+And, um,
+
+[Suman Sahil] 15:28:39
+are… dependent variable is protected sex, our independent variable is T. We are reading our data from data frame HIV underscore 3.
+
+[Suman Sahil] 15:28:48
+And we, um, collect everything in variable M3. We supply it as argument to function summary,
+
+[Suman Sahil] 15:28:55
+So, let's run that.
+
+[Suman Sahil] 15:28:59
+And we do… what do we see here? So, the subs…
+
+[Suman Sahil] 15:29:04
+there is some variation in the random intercepts.
+
+[Suman Sahil] 15:29:08
+So let's look at an intra-class correlation first.
+
+[Suman Sahil] 15:29:11
+So, um, 69.57 and 53.34.
+
+[Suman Sahil] 15:29:17
+So, if we calculate our intra-class correlation, that will be 69.57 divided by sum of…
+
+[Suman Sahil] 15:29:24
+both the values, 69.57 plus 53.34.
+
+[Suman Sahil] 15:29:28
+Approximately 0.57, which is quite… which is substantial high variation in the random intercept.
+
+[Suman Sahil] 15:29:36
+So, the intercept in the fixed effect, the intercept 22.3, it shows
+
+[Suman Sahil] 15:29:42
+Estimated average rate.
+
+[Suman Sahil] 15:29:44
+of protected sex at the start of the intervention.
+
+[Suman Sahil] 15:29:48
+When your T was 0.
+
+[Suman Sahil] 15:29:50
+Um, and uh, the slope…
+
+[Suman Sahil] 15:29:54
+minus point, um, 222.
+
+[Suman Sahil] 15:29:57
+Um, it represents the estimated average change in the rate of protected sex.
+
+[Suman Sahil] 15:30:04
+for each additional month.
+
+[Suman Sahil] 15:30:07
+So, at the end of the study, that means after 12 months, the rate has declined, how much will it decline?
+
+[Suman Sahil] 15:30:14
+You'll have to multiply minus 0.22 with 12.
+
+[Suman Sahil] 15:30:18
+So that comes out to be minus 2.64.
+
+[Suman Sahil] 15:30:21
+So the t-statistics is close to zero.
+
+[Suman Sahil] 15:30:25
+So you should accept the null hypothesis that the slope is flat.
+
+[Suman Sahil] 15:30:30
+That is, there is no change over…
+
+[Suman Sahil] 15:30:33
+time.
+
+[Suman Sahil] 15:30:35
+So…
+
+[Suman Sahil] 15:30:39
+Should I start with part 4?
+
+[Stephen Simon] 15:30:40
+Yeah, let's stop here.
+
+[Suman Sahil] 15:30:41
+Okay.
+
+[Stephen Simon] 15:30:42
+Yeah, thank you so much. Um, any questions?
+
+[Suman Sahil] 15:30:43
+Thank you, Dr. Smith.
+
+[Stephen Simon] 15:30:50
+Let's stop recording.
+
+[Stephen Simon] 15:30:55
+Okay, and let's switch so that I'm sharing my screen again.
+
+[Stephen Simon] 15:31:05
+Yeah.
+
+[Stephen Simon] 15:31:08
+By the way, of those of you listening live,
+
+[Stephen Simon] 15:31:11
+If I forget to share my screen, speak up right away, because it kind of ruins the videos for everyone else.
+
+[Stephen Simon] 15:31:16
+Um, okay.
+
+[Stephen Simon] 15:31:20
+Still a few more things to talk about. Um, we're going to cover quite a bit, and I just wanted to give a quick overview.
+
+[Stephen Simon] 15:31:26
+We're not going to be an expert after one week of this. You really need
+
+[Stephen Simon] 15:31:30
+on Lin Cheng's class.
+
+[Stephen Simon] 15:31:32
+For that. But, um, let me start recording.
+
+[Stephen Simon] 15:31:42
+Okay, I was just saying during breakout, this is a pretty rapid introduction to the topic.
+
+[Stephen Simon] 15:31:46
+And you really need Biostats 3 to get comfortable with these models.
+
+[Stephen Simon] 15:31:50
+But it's so important that I thought it was valuable to at least present a few of the ideas to a few of the analyses.
+
+[Stephen Simon] 15:31:58
+Okay, so let's talk about the random slopes model.
+
+[Stephen Simon] 15:32:01
+It's going to be different than the random intercepts model.
+
+[Stephen Simon] 15:32:06
+All right, same location.
+
+[Stephen Simon] 15:32:08
+You have IIJRs 1 through N, J is 1 through K.
+
+[Stephen Simon] 15:32:11
+And subjects, k time points, TJ is the time of the jth measurement.
+
+[Stephen Simon] 15:32:16
+All right, so YIJ is beta 0 plus U0…
+
+[Stephen Simon] 15:32:21
+Okay? Well, Spain on TJ…
+
+[Stephen Simon] 15:32:25
+plus U1i…
+
+[Stephen Simon] 15:32:29
+TJ plus epsilon ij.
+
+[Stephen Simon] 15:32:31
+We now have 3 random quantities.
+
+[Stephen Simon] 15:32:35
+Use your room, U1,
+
+[Stephen Simon] 15:32:38
+And epsilon.
+
+[Stephen Simon] 15:32:40
+The U0 represents a random intercept, so every subject
+
+[Stephen Simon] 15:32:45
+has a different intercept.
+
+[Stephen Simon] 15:32:47
+But we're also going to assume that each subject has a different slope.
+
+[Stephen Simon] 15:32:51
+And in the longitudinal study, what that means is that the effect of the treatment
+
+[Stephen Simon] 15:32:56
+Though it's probably positive that everybody is going to be stronger in some patients than weaker in others.
+
+[Stephen Simon] 15:33:05
+And finally, there's variation due to error.
+
+[Stephen Simon] 15:33:11
+That's going to be variation about the trend line.
+
+[Stephen Simon] 15:33:14
+All right, so here's a picture of some data.
+
+[Stephen Simon] 15:33:19
+And we see the ones tend to be larger.
+
+[Stephen Simon] 15:33:23
+The teams tend to be in the middle, the threes tend to be in, uh, it's kind of 2s and 3s are kind of mixed up.
+
+[Stephen Simon] 15:33:28
+All right, we have an overall slope, starts at about 45.
+
+[Stephen Simon] 15:33:33
+And I forget, I'm sorry, overall intercept.
+
+[Stephen Simon] 15:33:35
+And this looks good, see what the slope is. I'd say it's about 10.
+
+[Stephen Simon] 15:33:41
+Okay, I could be… could be wrong.
+
+[Stephen Simon] 15:33:44
+But, it turns out that the first subject is totally flat,
+
+[Stephen Simon] 15:33:49
+The second subject shows a very strong effect
+
+[Stephen Simon] 15:33:52
+And the third subject shows a moderate effect.
+
+[Stephen Simon] 15:33:56
+All right? So, the first subject is 10 units below the overall slope.
+
+[Stephen Simon] 15:34:02
+The second subject is 15 units above the overall slope.
+
+[Stephen Simon] 15:34:07
+Now, the third subject is 5 units below the overall slope.
+
+[Stephen Simon] 15:34:11
+So what we're seeing here…
+
+[Stephen Simon] 15:34:14
+is not only a difference in the intercept, so if you look at the intercepts, it's 80 for the first subject,
+
+[Stephen Simon] 15:34:19
+It's 20 for the second subject?
+
+[Stephen Simon] 15:34:22
+It's 40 from the third subject.
+
+[Stephen Simon] 15:34:26
+Now, I don't think is there a wide amount of variation?
+
+[Stephen Simon] 15:34:28
+Due to the intercept, but there's a wide amount of variation due to the slopes.
+
+[Stephen Simon] 15:34:32
+Okay, now what do you use a random slopes model versus a random intercepts model?
+
+[Stephen Simon] 15:34:39
+The answer is quite complicated, and the test… you can run some tests to say, does the random slip model
+
+[Stephen Simon] 15:34:46
+provide better predictions on a random intercept model.
+
+[Stephen Simon] 15:34:49
+But it's beyond the scope of this class. I've got, like, 10 minutes left.
+
+[Stephen Simon] 15:34:53
+So I'm not going to talk about this.
+
+[Stephen Simon] 15:34:56
+But I wanted to mention this because this is an important variation.
+
+[Stephen Simon] 15:35:01
+In some studies, we would hypothesize not only the each subject carries their own intercept,
+
+[Stephen Simon] 15:35:07
+But they also carry their own slope.
+
+[Stephen Simon] 15:35:11
+Okay? That's an introduction to the random slopes model. I'm not going to show an example of it.
+
+[Stephen Simon] 15:35:18
+Uh, it's not complicated to do, quite honestly.
+
+[Stephen Simon] 15:35:21
+Um, but I want to talk about assumptions and complications associated
+
+[Stephen Simon] 15:35:26
+with these hierarchical
+
+[Stephen Simon] 15:35:29
+And the longitudinal models.
+
+[Stephen Simon] 15:35:31
+Let me stop here, though, very quickly. Are there any questions?
+
+[Stephen Simon] 15:35:38
+Let's stop recording here.
+
+[Stephen Simon] 15:35:46
+Alright, let's see, I'll make you guys a little bit over time.
+
+[Stephen Simon] 15:35:50
+And I apologize if I do that.
+
+[Stephen Simon] 15:35:53
+record to this computer.
+
+[Stephen Simon] 15:35:58
+Okay, we've got 10 minutes left. Those students are listening live, if they have to drop off at 3.45.
+
+[Stephen Simon] 15:36:03
+I understand. Anyway, we talked about the random slopes model, which is very, very briefly.
+
+[Stephen Simon] 15:36:09
+I want to talk about general assumptions and complications.
+
+[Stephen Simon] 15:36:15
+Alright, we have to assume independence here.
+
+[Stephen Simon] 15:36:17
+But it's certainly independence between subjects.
+
+[Stephen Simon] 15:36:20
+All right, or if it's a litter study between litters.
+
+[Stephen Simon] 15:36:24
+Or if it's a hospital study, independence between hospitals.
+
+[Stephen Simon] 15:36:28
+All right, but you have a normality assumption.
+
+[Stephen Simon] 15:36:31
+And you have to take it for the residuals.
+
+[Stephen Simon] 15:36:34
+And for the random intercepts.
+
+[Stephen Simon] 15:36:36
+If you have a more complex model,
+
+[Stephen Simon] 15:36:38
+You have to check residuals.
+
+[Stephen Simon] 15:36:41
+Random intercepts and random slopes.
+
+[Stephen Simon] 15:36:43
+Okay? There's also an assumption of linearity. That's saying that the trend is linear as opposed to
+
+[Stephen Simon] 15:36:51
+curveball in here, okay?
+
+[Stephen Simon] 15:36:53
+Um, the linearity check, uh, it's not too hard to do. You can eyeball it here.
+
+[Stephen Simon] 15:36:59
+This is showing the HIV data.
+
+[Stephen Simon] 15:37:02
+And, um, looking at this, I don't see any evidence that, uh,
+
+[Stephen Simon] 15:37:06
+Oh, maybe a little bit of evidence. That's really hard to say, quite honestly.
+
+[Stephen Simon] 15:37:11
+Um, these are the residuals.
+
+[Stephen Simon] 15:37:14
+The residuals are the deviation of each individual
+
+[Stephen Simon] 15:37:18
+From there on trend line.
+
+[Stephen Simon] 15:37:21
+All right. Now, if there are non-linear pattern here,
+
+[Stephen Simon] 15:37:26
+We'd see the value of time 6 being a lot higher than time 0 and 12.
+
+[Stephen Simon] 15:37:32
+sort of an upside-down U.
+
+[Stephen Simon] 15:37:34
+Or we'd see it being a little bit lower. I'm not seeing that here.
+
+[Stephen Simon] 15:37:39
+The residuals are showing no obvious
+
+[Stephen Simon] 15:37:42
+deviation from linearity.
+
+[Stephen Simon] 15:37:47
+normality check within clusters.
+
+[Stephen Simon] 15:37:49
+All right, we can get within subject residuals. That's the deviation of each subject.
+
+[Stephen Simon] 15:37:54
+from the trend line at each time point.
+
+[Stephen Simon] 15:37:57
+And if you look at that normal probability plot,
+
+[Stephen Simon] 15:38:01
+Pretty close to a straight line.
+
+[Stephen Simon] 15:38:05
+Okay? But we can also get the random intercepts
+
+[Stephen Simon] 15:38:09
+and graph those. And if you look at the random intercepts, maybe one of those random intercepts is a little bit of an outlier.
+
+[Stephen Simon] 15:38:17
+And, um, value that's like a minus…
+
+[Stephen Simon] 15:38:21
+17? Might be worth investigating, but I don't think that's too serious.
+
+[Stephen Simon] 15:38:26
+It's not that large a deviation from a…
+
+[Stephen Simon] 15:38:29
+a trend line, alright? So the normality check is really easy. The only trick here
+
+[Stephen Simon] 15:38:34
+is how do you actually get the residuals, how do you actually get the random intercepts?
+
+[Stephen Simon] 15:38:38
+Once you have those, it's pretty easy to do everything else.
+
+[Stephen Simon] 15:38:43
+Complications.
+
+[Stephen Simon] 15:38:45
+Missing values are normally a big headache.
+
+[Stephen Simon] 15:38:48
+But it's less so.
+
+[Stephen Simon] 15:38:50
+The random intercepts of the random slopes model.
+
+[Stephen Simon] 15:38:56
+If a patient visits a visit at a particular time point,
+
+[Stephen Simon] 15:39:00
+And you can easily… you can easily extrapolate from a visitor's before,
+
+[Stephen Simon] 15:39:05
+And the visits afterwards. I mean, you're assuming linearity,
+
+[Stephen Simon] 15:39:08
+So that doesn't seem terrible.
+
+[Stephen Simon] 15:39:13
+Um, if in subclinical trials, if a patient came in at the intermediate evaluation,
+
+[Stephen Simon] 15:39:18
+But to not start with the final evaluation,
+
+[Stephen Simon] 15:39:22
+What you could do, what's called Last Observation Carried Forward, is to say the VAT that we saw at the interim.
+
+[Stephen Simon] 15:39:28
+This is what we use for the final evaluation.
+
+[Stephen Simon] 15:39:31
+That's called Last Observation Garen Ford LOCF.
+
+[Stephen Simon] 15:39:37
+Now, this was not very popular when it was introduced.
+
+[Stephen Simon] 15:39:41
+And it's been pretty much discredited.
+
+[Stephen Simon] 15:39:43
+The random intercepts or slopes models would extrapolate the trend,
+
+[Stephen Simon] 15:39:47
+friendly intermediate value, and that works much better.
+
+[Stephen Simon] 15:39:51
+Okay, interactions. Interactions are going to be tricky.
+
+[Stephen Simon] 15:39:55
+Um, and when the interactions involve time, it can get a bit messy.
+
+[Stephen Simon] 15:40:01
+non-linear trends over time are also a bit of a problem.
+
+[Stephen Simon] 15:40:04
+But, uh, in both cases, the work is more tedious than difficult, okay? I'm not going to introduce them here, because in one week,
+
+[Stephen Simon] 15:40:12
+We can just barely cover the basic cases, but you can handle them.
+
+[Stephen Simon] 15:40:16
+Knowing linear trends, you can handle interactions.
+
+[Stephen Simon] 15:40:19
+Two variants. You know, when we have two types of covariance. There's a covariant that's accessed at the cluster level,
+
+[Stephen Simon] 15:40:26
+So it may be that the clusters represent, um,
+
+[Stephen Simon] 15:40:30
+hospitals, it might be the size of the hospital, whether it's a teaching hospital,
+
+[Stephen Simon] 15:40:34
+Um, but there's also covariates within patients.
+
+[Stephen Simon] 15:40:39
+So we're looking at patients within each hospital.
+
+[Stephen Simon] 15:40:41
+We look at their age, gender…
+
+[Stephen Simon] 15:40:45
+race slash ethnicity, okay?
+
+[Stephen Simon] 15:40:47
+Um, covariant is a value that's not of direct interest.
+
+[Stephen Simon] 15:40:51
+But you do need to account for it to create a credible analysis.
+
+[Stephen Simon] 15:40:57
+Okay, now, an important distinction between time constant and time-varying covariance
+
+[Stephen Simon] 15:41:03
+variants that vary only between patients.
+
+[Stephen Simon] 15:41:07
+There are variations that were within patients.
+
+[Stephen Simon] 15:41:10
+conveyance within that are measured at the patient level rather than at the cluster level.
+
+[Stephen Simon] 15:41:16
+are far better at removing variation from the outcome, and can greatly improve your power and precision.
+
+[Stephen Simon] 15:41:24
+Okay, so I'm… I'll tell you what, I'm going to skip Suman's demo here.
+
+[Stephen Simon] 15:41:29
+Um, you can watch the code, it's pretty straightforward.
+
+[Stephen Simon] 15:41:33
+Okay? But I want to finish up at 345A, because my voice is about to give out, and B, because I think it's an abuse of authority.
+
+[Stephen Simon] 15:41:41
+two key people on. So let me just, uh, stop here. I'll do one more recording.
+
+[Suman Sahil] 15:41:45
+Dr. Simon, I might… I have a guest, I might have to… is it okay if I drop out?
+
+[Stephen Simon] 15:41:46
+Yes.
+
+[Stephen Simon] 15:41:52
+You can leave. Absolutely. All right. Now, I always appreciate it when you're here, and it's so much fun to be…
+
+[Suman Sahil] 15:41:52
+I appreciate it.
+
+[Suman Sahil] 15:41:55
+Thank you.
+
+[Suman Sahil] 15:41:57
+Absolutely!
+
+[Stephen Simon] 15:41:59
+It's so much fun to have you be half full of the…
+
+[Stephen Simon] 15:42:02
+the team. Correct.
+
+[Suman Sahil] 15:42:03
+Same, same, same. Just the tax time is there, and I'm, like, I'm freaking out from a tax return.
+
+[Stephen Simon] 15:42:04
+Okay.
+
+[Stephen Simon] 15:42:08
+Okay. All right, let me, uh, stop recording now.
+
+[Stephen Simon] 15:42:12
+And then, um, we'll start up again.
+
+[Suman Sahil] 15:42:14
+Thank you.
+
+[Stephen Simon] 15:42:16
+Okay, so you can drop off safely.
+
+[Suman Sahil] 15:42:18
+Thank you.
+
+[Stephen Simon] 15:42:19
+And then I will start up again.
+
+[Stephen Simon] 15:42:28
+Okay.
+
+[Stephen Simon] 15:42:35
+All right, well, it was good that I canceled the last computer demo. It's fairly straightforward, the code's easy.
+
+[Stephen Simon] 15:42:41
+That's, um, different, I write, but it's not difficult at all.
+
+[Stephen Simon] 15:42:45
+Let me talk about sample size calculations.
+
+[Stephen Simon] 15:42:48
+Very, very important.
+
+[Stephen Simon] 15:42:50
+Alright. This is a great study, and you don't see this too much.
+
+[Stephen Simon] 15:42:56
+All right, but uh… the effect of current housing on sample size calculations.
+
+[Stephen Simon] 15:43:03
+On axis of preclinical lifespan studies, this is how long the rats live.
+
+[Stephen Simon] 15:43:08
+Assume the outcome data from co-housed animals, animals in the same cage,
+
+[Stephen Simon] 15:43:13
+are independent. In practice, treatments such as controlled feeding,
+
+[Stephen Simon] 15:43:18
+punitive life-extending compounds,
+
+[Stephen Simon] 15:43:21
+are applied to home housing units.
+
+[Stephen Simon] 15:43:23
+As a result, the outcomes are potentially correlated within housing units.
+
+[Stephen Simon] 15:43:28
+We consider interclass correlation and three published and 2 unpublished lifespan studies.
+
+[Stephen Simon] 15:43:34
+And the independence assumption does not hold in this data
+
+[Stephen Simon] 15:43:37
+Particularly for traits associated with frailty.
+
+[Stephen Simon] 15:43:41
+We're going to describe in a very analytical tools, all of the stuff we just talked about.
+
+[Stephen Simon] 15:43:46
+Linear mixed models, in particular.
+
+[Stephen Simon] 15:43:48
+for handling this funding.
+
+[Stephen Simon] 15:43:52
+Okay, so this is impossible to read.
+
+[Stephen Simon] 15:43:55
+But they tell a bunch of bad cops and a bunch of studies,
+
+[Stephen Simon] 15:43:58
+And they show, um…
+
+[Stephen Simon] 15:44:05
+What are we showing here?
+
+[Stephen Simon] 15:44:07
+I believe this is, uh…
+
+[Stephen Simon] 15:44:09
+lifespan.
+
+[Stephen Simon] 15:44:11
+All right, so on the age of death…
+
+[Stephen Simon] 15:44:15
+Uh, for various studies.
+
+[Stephen Simon] 15:44:17
+And the next state variation from one study to another.
+
+[Stephen Simon] 15:44:21
+Oh, man.
+
+[Stephen Simon] 15:44:23
+Okay, um…
+
+[Stephen Simon] 15:44:27
+So, different studies have different, uh, results. That's fine.
+
+[Stephen Simon] 15:44:34
+Um, but you need to pick one. That's the reason we send out to humans.
+
+[Stephen Simon] 15:44:38
+And I decided to take the bottom of this graph for females, alright? Those females and males.
+
+[Stephen Simon] 15:44:44
+The median's around 28 months.
+
+[Stephen Simon] 15:44:46
+And the interquartile range is about 15. You can't see it here.
+
+[Stephen Simon] 15:44:52
+Okay? Now, there are two different ways of estimating the intraclass correlation.
+
+[Stephen Simon] 15:44:59
+The combined estimate from a linear mixed model is 0.049.
+
+[Stephen Simon] 15:45:04
+Okay, so this says that there is a small…
+
+[Stephen Simon] 15:45:08
+Inter-class correlation,
+
+[Stephen Simon] 15:45:10
+and lifespan, when you consider rats that share the same cage.
+
+[Stephen Simon] 15:45:16
+That correlation is .049. Now, be careful!
+
+[Stephen Simon] 15:45:19
+It's a small value, but it's still going to have an impact.
+
+[Stephen Simon] 15:45:22
+When the power calculations.
+
+[Stephen Simon] 15:45:24
+And in particular, they look at settings where the interclass correlation is zero,
+
+[Stephen Simon] 15:45:30
+0.01…
+
+[Stephen Simon] 15:45:32
+0.05…
+
+[Stephen Simon] 15:45:35
+0.1, and they show
+
+[Stephen Simon] 15:45:36
+Um, what sample size you would need for an effect size of 10%.
+
+[Stephen Simon] 15:45:42
+And with samples of 4 mice,
+
+[Stephen Simon] 15:45:46
+And for poor rats sharing the same cage.
+
+[Stephen Simon] 15:45:50
+Sex rats sharing the same cage.
+
+[Stephen Simon] 15:45:53
+8 rattle sharing the same cage.
+
+[Stephen Simon] 15:45:56
+And what you'll see, even with a small intra-class correlation, .01,
+
+[Stephen Simon] 15:46:01
+The number of female rats you need…
+
+[Stephen Simon] 15:46:03
+In order to have adequate power for an effect size of 10%.
+
+[Stephen Simon] 15:46:10
+I can raise it from $195 to 201.
+
+[Stephen Simon] 15:46:14
+If the interclass correlation is .05, it raises from 195
+
+[Stephen Simon] 15:46:19
+to 224. Let me point here.
+
+[Stephen Simon] 15:46:23
+195, 201,
+
+[Stephen Simon] 15:46:26
+224 in man, and is your cross-correlation to .1? That's still pretty small.
+
+[Stephen Simon] 15:46:31
+Your sample size, when you just have 4…
+
+[Stephen Simon] 15:46:34
+For animals in the same cage.
+
+[Stephen Simon] 15:46:36
+253.
+
+[Stephen Simon] 15:46:38
+Now, putting more animals in the cage is a disaster from the sample size calculation.
+
+[Stephen Simon] 15:46:44
+Because the design effect, which we'll talk about in a bit, becomes really large.
+
+[Stephen Simon] 15:46:49
+So we go from 195 if there's no…
+
+[Stephen Simon] 15:46:53
+affected due to cohousing to 208,
+
+[Stephen Simon] 15:46:55
+to 263 to 331. That's just for females. For males,
+
+[Stephen Simon] 15:47:00
+It's even worse, 241, 258, 325.
+
+[Stephen Simon] 15:47:05
+409, so this is pretty stark.
+
+[Stephen Simon] 15:47:07
+evidence that even a small inter-class correlation needs to be accounted for.
+
+[Stephen Simon] 15:47:13
+Okay, now, this value of 0.49 is very important, and it's hard to get, but once you have it,
+
+[Stephen Simon] 15:47:20
+You can estimate sample sizes.
+
+[Stephen Simon] 15:47:22
+So what you do is you first estimate the sample size,
+
+[Stephen Simon] 15:47:26
+Without clustering, hold on…
+
+[Stephen Simon] 15:47:34
+All right, and we just used the power.t.test.
+
+[Stephen Simon] 15:47:38
+So we're comparing two groups. We think there's a difference
+
+[Stephen Simon] 15:47:42
+In fact, 4 units.
+
+[Stephen Simon] 15:47:43
+And the standard deviation, assuming that there's no co-lasting effect,
+
+[Stephen Simon] 15:47:48
+is 11.1, okay?
+
+[Stephen Simon] 15:47:50
+If there were no co-housing effect,
+
+[Stephen Simon] 15:47:52
+The sample size we'd see for this research design is 122 animals.
+
+[Stephen Simon] 15:47:57
+And that's 122 animals per group.
+
+[Stephen Simon] 15:48:00
+Okay?
+
+[Stephen Simon] 15:48:03
+Now, if we account for clustering, what we have to do is compute a design effect.
+
+[Stephen Simon] 15:48:08
+And that's 1, plus the n minus 1 times the interclass correlation.
+
+[Stephen Simon] 15:48:13
+So if you have 4 animals per cage, it's 1 plus 4 minus 1.
+
+[Stephen Simon] 15:48:18
+times .049. The design effect is 1.147.
+
+[Stephen Simon] 15:48:23
+This design effect is effectively how much the sample size increases
+
+[Stephen Simon] 15:48:28
+When you have a positive correlation due to cohancing.
+
+[Stephen Simon] 15:48:33
+It increases by almost 15%.
+
+[Stephen Simon] 15:48:37
+Okay? Before, if we had no coexistencing effect, it'd be 122.
+
+[Stephen Simon] 15:48:44
+political housing effect, it's closer to $140.
+
+[Stephen Simon] 15:48:48
+What happens if we did 8 animals per cage?
+
+[Stephen Simon] 15:48:52
+163.
+
+[Stephen Simon] 15:48:55
+Now, to be honest,
+
+[Stephen Simon] 15:48:57
+Getting each animal its own cage is expensive.
+
+[Stephen Simon] 15:49:01
+And if you can come house any animals,
+
+[Stephen Simon] 15:49:03
+You can run the study for less money.
+
+[Stephen Simon] 15:49:06
+But you have to pay for it with an increase in sample size.
+
+[Stephen Simon] 15:49:11
+Okay? Now, it's a very simple example.
+
+[Stephen Simon] 15:49:14
+But it also shows that the calculations are not that intimidating.
+
+[Stephen Simon] 15:49:18
+What you do is you calculate the sample size without clustering,
+
+[Stephen Simon] 15:49:23
+We calculate this design effect,
+
+[Stephen Simon] 15:49:25
+Which is 1 plus n minus 1 times the intracost correlation.
+
+[Stephen Simon] 15:49:29
+And you multiply your sample size by the design effect.
+
+[Stephen Simon] 15:49:33
+So that increases from 122…
+
+[Stephen Simon] 15:49:37
+to 140.
+
+[Stephen Simon] 15:49:39
+With 8 per cage, it increases to 165… 164.
+
+[Stephen Simon] 15:49:43
+Let me stop here. I've kept you on a little bit over time, and I apologize. I'm going to simplify the homework assignment, so I'm not going to publish it yet, but I'll try to get that published in.
+
+[Stephen Simon] 15:49:54
+But we talked about hierarchical models.
+
+[Stephen Simon] 15:49:57
+Hothical integrates with M-cluster comparisons, cluster randomized trials,
+
+[Stephen Simon] 15:50:01
+Brandon intercept smiles. I was saying, I did a bunch of things, alright? Let me stop reading here.
+
+[Stephen Simon] 15:50:06
+I just wanted to show you the broad range of models that you can fit.
+
+[Stephen Simon] 15:50:10
+When you drop the assumption of independence and allow for cluster effects,
+
+[Stephen Simon] 15:50:16
+Or you allow for correlations due to the longitudinal nature, or you offer correlations,
+
+[Stephen Simon] 15:50:21
+Due to the fact that we're doing repeated measurements
+
+[Stephen Simon] 15:50:24
+on the same subject, okay?
+
+[Stephen Simon] 15:50:26
+Um,
+
+[Stephen Simon] 15:50:28
+Let me stop here.
+
+[Stephen Simon] 15:50:31
+And see if there are any questions.
+
+[Stephen Simon] 15:50:40
+Okay,
+
+[Stephen Simon] 15:50:53
+Alright, am I the last one here?
+
+[Stephen Simon] 15:51:01
+I guess I'm the last one here.
+
+[Stephen Simon] 15:51:03
+Okay.
+
