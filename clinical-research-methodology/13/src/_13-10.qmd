@@ -1,0 +1,121 @@
+---
+title: "13-10 Longitudinal/hierarchical designs"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+---
+
+## Hierarchical/longitudinal designs
+
+-   Matching
+-   Baseline measures
+-   Longitudinal designs
+-   Cluster effects
+
+::: notes
+
+If you have a hierarchical or longitudinal design, you must, must, must account for it in your data analysis plan. Failure to do this will lead to invalid statistical results.
+
+A longitudinal or hierarchical design appear in various forms, but I want to talk about four important settings: matching, baseline measaures, longitudinal designs, and cluster effects.
+
+:::
+
+## Matching
+
+-   Greatly improves precision
+-   Logistical issues
+    -   Close but not exact matches
+    -   Loss of data due to mismatches
+    -   Best when controls come from a large pool
+-   Analysis methods
+    -   Paired t-test
+    -   Random effects models
+  
+::: notes
+
+Matching is a great thing if you can do it. It greatly improves your precision. Matching is typically done by finding pairs of subjects with similar demographics: same gender, same race, and same age (plus or minus three years). Once in a while you are lucky and the pairs appear naturally. A study of children might have a child with a certain disease and a healthy sibling close in age. Identical twin studies are even better.
+
+The logistics of matching are tough. You have to decide how close is close enough to call a pair a match. You will end up losing some data for patients who don't have a good match. If you have a large pool of control subjects to draw your matches from, you may be okay.
+
+When you have matched data, you need to adjust your statistical model. Analysis of matched data uses either the paired t-test or a random effects model. I won't go into the details of a random effects model, but this is covered in Biostats 3, taught by An-Lin Cheng.
+
+:::
+
+## Baseline measures
+
+-   Nice to have
+    -   Adjust for baseline imbalance
+    -   Improve precision
+-   Analysis methods
+    -   Change score
+    -   Baseline covariate
+    -   Bonate, Analysis of Pretest-Posttest Designs
+  
+::: notes
+
+You also have to adjust your model if you have baseline measurements. This is a small added complication, but baseline measures allow you to adjust for baseline imbalance and can often greatly improve your precision.
+
+There are two competing methods for baseline data, change scores and using the baseline value as a covariate. There is a lot of controversy about these competing approaches and I can't afford the time to discuss them in detail. There's a great book by Peter Bonate that talks about this.
+
+:::
+
+## Longitudinal designs (1/2)
+
+-   Advantages
+    -   Rich, complete picture
+    -   Improved precision
+-   Disadvantages
+    -   Expensive
+    -   Dropout
+
+::: notes
+
+I love longitudinal data. It provides a rich and complete picture of health care over both short term and long term time frames. Longitudinal designs also provide extra precision, much in the same way that baseline measurements provide added precision. 
+
+But only if they weren't so darned expensive. Dropouts are also a big issue in longitudinal designs.
+
+:::
+  
+## Longitudinal designs (2/2)
+
+-   Analysis methods
+    -   Within subject designs
+    -   Nested effects
+    -   Repeated measures
+    -   Split plot designs
+    -   Random effects models
+  
+::: notes
+
+There are a variety of analysis methods for longitudinal data. Many of these, within subjects designs, nested effects, repeated measures, and split plot designs have fallen out of common use because they are complicated and require assumptions that are rarely met in the real world. Almost everyone these days use some time of random effects model for longitudinal data or generalized estimating equations.
+
+If you want more information about these approaches, take An-Lin's class.
+
+:::
+
+## Cluster effects
+-   More than one source of variation
+-   Sources
+    -   Families
+    -   Clinics/Hospitals
+    -   Schools
+    -   Multicenter trials
+-   What is the unit of randomization?
+-   Analysis methods
+    -   Random effects models
+    -   Hierarchical models
+
+::: notes
+
+Cluster effects occur when you have more than one source of variation. Two measurements from patients in the same cluster tend to be less variable than measurements from two patients in different clusters.
+
+Sources of cluster variations occur when you make measuremnts on multiple members of multiple different families. Siblings and parents share a common environment and most of the genes stay the same, so there is less variation within a family than variation between two unrelated patients. Clinics, hospitals, and schools all produce cluster effects.
+
+Be careful when you describe clusters in a randomized setting. Do you randomly assign within each cluster, or does everyone in a cluster get exactly the same treatment, but that treatment varies randomly from one cluster to another. It makes a really big difference.
+
+The two analysis methods used here are random effects models and hierarchical models. The math is too messy to describe here. Take An-Line's class. Please!
+
+:::
+

@@ -12,6 +12,8 @@ execute:
 
 This program was written by Steve Simon on 2025-02-23 and is placed in the public domain. You can use this program any way you please.
 
+This is the correct program for the Spring 2026 semester.
+
 -   Data used in this program
     -   art-malpresentations
         -   [comma delimited file][ref-art]
@@ -26,8 +28,10 @@ This program was written by Steve Simon on 2025-02-23 and is placed in the publi
 [ref-vax-dd]: https://github.com/pmean/data/blob/main/files/vaccine-willingness.yaml
 
 -   Tibbles created by this program
-    -   art: Original data from art-malpresentations.csv
-    -   vax: Original data from vaccine-willingness.csv
+    -   art0: Original data from art-malpresentations.csv
+    -   art1: manual calculation of key statistics
+    -   vax0: Original data from vaccine-willingness.csv
+    -   vax1: Manual calculation of key statistics
 -   Models created by this program
     -   m1: Analysis of art-malpresentations using log odds ratios
     -   m2: Subgroup analysis using study type
@@ -35,9 +39,9 @@ This program was written by Steve Simon on 2025-02-23 and is placed in the publi
     -   m4: Subgroup analysis using study type
 
 ```{r}
+#| label: setup
 #| message: false
 #| warning: false
-#| label: setup
 
 library(meta)
 library(tidyverse)
@@ -56,7 +60,6 @@ There is a book about meta analysis targeted to novices that uses a the meta pac
 
 -   Mathias Harrer, Pim Cuijpers, Toshi Furukawa, David Ebert (2022). Doing Meta-analysis with R. A Hands-on Guide. Boca Raton, FL and London: Chapman & Hall/CRC Press. ISBN 978-0-367-61007-4. Also available as a [free online book][ref-harrer-2022].
 
-
 You should also look at a tutorial article focused on using the meta package.
 
 -   Sara Balduzzi, Gerta Rücker, Guido Schwarzer. How to perform a meta-analysis with R: a practical tutorial: BMJ Mental Health 2019, Volume 22, Issue 4. DOI: [10.1136/ebmental-2019-300117][ref-balduzzi-2019].
@@ -71,12 +74,12 @@ You should also look at a tutorial article focused on using the meta package.
 ```{r}
 #| label: art-read
 
-art <- read_csv(
+art0 <- read_csv(
   file="../data/art-malpresentations.csv",
   col_types="ccnnnn",
   col_names=TRUE)
 
-glimpse(art) 
+glimpse(art0) 
 ```
 
 ## Calculate art odds ratio by hand
@@ -84,7 +87,7 @@ glimpse(art)
 ```{r}
 #| label: or
 
-art |>
+art0 |>
   mutate(art_prob = art_events/art_total) |>
   mutate(nc_prob = nc_events/nc_total) |>
   mutate(
@@ -99,13 +102,13 @@ art |>
 art1
 ```
 
-#### Interpretation of the output
-
-Most of the studies show an increased risk of malpresentation associated with art.
-
 #### Comments on the code
 
 You should wait and only round the probabilities after you have computed the odds ratio.
+
+#### Interpretation of the output
+
+Most of the studies show an increased risk of malpresentation associated with art.
 
 ## Fit binary meta-analysis
 
@@ -117,7 +120,7 @@ m1 <- metabin(
   n.e = art_total,
   event.c = nc_events,
   n.c = nc_total,
-  data = art,
+  data = art0,
   studlab = author,
   common = FALSE,
   random = TRUE,
@@ -125,12 +128,6 @@ m1 <- metabin(
 
 m1
 ```
-
-#### Interpretation of the output
-
-The overall odds ratio is 1.5 with a small p-value and a confidence interval that excludes 1. This indicates a significantly significant increase in the risk of malpresentation associated with art.
-
-I-squared is larger than 25% and H is larger than 1, indicating evidence of heterogeneity. The Cochran's Q test has a small p-value, also providing evidence of heterogeneity.
 
 #### Comment on the code
 
@@ -150,6 +147,12 @@ Specify an analysis of the log odds ratios using the sm = "OR" argument.
 
 [ref-metabin]: https://search.r-project.org/CRAN/refmans/meta/html/metabin.html
 
+#### Interpretation of the output
+
+The overall odds ratio is 1.5 with a small p-value and a confidence interval that excludes 1. This indicates a statistically significant increase in the risk of malpresentation associated with art.
+
+I-squared is larger than 25% and H is larger than 1, indicating evidence of heterogeneity. The Cochran's Q test has a small p-value, also providing evidence of heterogeneity.
+
 ## Forest plot for art
 
 ```{r}
@@ -163,10 +166,6 @@ forest(
   print.pval.Q = FALSE)
 ```
 
-#### Interpretation of the output
-
-The studies are somewhat inconsistent, but most indicate a significant increase in the risk of malpresentation, as does the overall estimate in the diamond at the bottom of the forest plot.
-
 #### Comments on the code
 
 The default output of the forest function provides so much detail that it can sometimes spill over the margins. The default layout is also crowded and difficult to read.
@@ -175,12 +174,16 @@ The leftcols="studlab" tells R to only print the study label, which you defined 
 
 The arguments print.I2 = FALSE, print.tau2 = FALSE, and print.pval.Q = FALSE suppresss the printing of various measures of heterogeneity. You saw these measures after running the metabin function, so there is no need to repeat them here.
 
-Finally, the forest function uses [grid][ref-grid-nodate], a specialized R plotting facility. This means that you cannot add a title to this graph.
+Finally, the forest function uses [grid][ref-grid-nodate], a specialized R plotting facility. This means that you cannot easily add a title to this graph.
 
-There is a package, [ref-forestploter-nodate], that will produce a forest plot using the ggplot2 approach, but it is rather complex.
+There is a package, [forestploter][ref-forestploter-nodate], that will produce a forest plot using the ggplot2 approach, but it is rather complex.
 
 [ref-forestploter-nodate]: https://cran.r-project.org/package=forestploter
 [ref-grid-nodate]: https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/grid.html
+
+#### Interpretation of the output
+
+The studies are somewhat inconsistent, but most indicate a significant increase in the risk of malpresentation, as does the overall estimate in the diamond at the bottom of the forest plot.
 
 ## Funnel plot for art
 
@@ -188,16 +191,16 @@ There is a package, [ref-forestploter-nodate], that will produce a forest plot u
 #| label: art-funnel
 
 funnel(m1)
-title("Plot drawn by Steve Simon on 2025-03-18")
+title("Steve Simon, 2025-03-18, CC0")
 ```
-
-#### Interpretation of the output
-
-The data is reasonably symmetric for both large studies (those near the top of the graph) and small studies (those near the bottom). This is evidence that publication bias may not be a problem with these studies.
 
 #### Comments on the code
 
 You need to use a separate title function rather than adding ggtitle because funnel uses base R graphs rather than the ggplot2 library.
+
+#### Interpretation of the output
+
+The data is reasonably symmetric for both large studies (those near the top of the graph) and small studies (those near the bottom). This is evidence that publication bias may not be a problem with these studies.
 
 ## Subgroup analysis for art
 
@@ -209,7 +212,7 @@ m2 <- metabin(
   n.e = art_total,
   event.c = nc_events,
   n.c = nc_total,
-  data = art,
+  data = art0,
   studlab = author,
   common = FALSE,
   random = TRUE,
@@ -219,15 +222,15 @@ m2 <- metabin(
 m2
 ```
 
+#### Comments on the code
+
+The subgroup argument produces separate estimates for each level of study_type as well as a statistical test of the hypothesis that the subgroups have the same overall effect.
+
 #### Interpretation of the output
 
 You can find the additional statistics associated with the subgroup analysis appended to the bottom of the output.
 
 The overall odds ratio for the case-control subgroup (1.4) and the overall odds ratio for the cohort study (1.6) are reasonably similar. The p-value for the comparison of subgroups is larger indicating that you should accept the null hypothesis and conclude that the overall measure of risk does not differ between the case-control studies and the cohort studies.
-
-#### Comments on the code
-
-The subgroup argument produces separate estimates for each level of study_type as well as a statistical test of the hypothesis that the subgroups have the same overall effect.
 
 ## Forest plot for art organized by subgroup
 
@@ -243,25 +246,25 @@ forest(
   test.subgroup = FALSE)
 ```
 
-#### Interpretation of the output
-
-The cohort studies are less variable than the case-control studies but otherwise do not appear to be much different.
-
 #### Comments on the code
 
 The forest function recognizes the subgroup and arranges the forest plot accordingly.
+
+#### Interpretation of the output
+
+The cohort studies are less variable than the case-control studies but otherwise do not appear to be much different.
 
 ## Read vaccine-willingness
 
 ```{r}
 #| label: vax-read
 
-vax <- read_csv(
+vax0 <- read_csv(
   file="../data/vaccine-willingness.csv",
   col_types="ccnnnnnn",
   col_names=TRUE)
 
-glimpse(vax) 
+glimpse(vax0) 
 ```
 
 ## Calculate effect sizes by hand
@@ -269,7 +272,7 @@ glimpse(vax)
 ```{r}
 #| label: vax-effect-sizes
 
-vax |>
+vax0 |>
   mutate(glass_delta = (willing_mean-unwilling_mean)/unwilling_sd) |>
   mutate(glass_delta = round(glass_delta, 2)) |>
   select(author, willing_mean, unwilling_mean, unwilling_sd, glass_delta) -> vax1
@@ -294,7 +297,7 @@ m3 <- metacont(
   mean.c = unwilling_mean,
   sd.c = unwilling_sd,
   studlab = author,
-  data = vax,
+  data = vax0,
   sm = "SMD", 
   method.smd = "Glass", 
   common = FALSE,
@@ -339,7 +342,7 @@ title("Plot drawn by Steve Simon on 2025-03-18")
 
 There is some asymmetry in this plot, but the portion of the funnel that is missing on the lower right corner of the plot just seems to indicate that the smaller studies seemed to show less significance. This is an odd finding that warrants further investigation but it could not be explained by publication bias.
 
-## Subgroup analysis for art
+## Subgroup analysis for vax
 
 ```{r}
 #| label: vax-subgroup
@@ -352,7 +355,7 @@ m4 <- metacont(
   mean.c = unwilling_mean,
   sd.c = unwilling_sd,
   studlab = author,
-  data = vax,
+  data = vax0,
   sm = "SMD", 
   method.smd = "Glass", 
   common = FALSE,

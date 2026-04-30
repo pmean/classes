@@ -30,13 +30,17 @@ If you need extensions in three or more consecutive weeks, we should discuss thi
 
 It is important to keep the class concurrent. If some students are several weeks behind the rest of the class, the concurrent comments on the discussion board lose their value and the review sessions tend to lose focus. If you really need an extension of more than seven days, please send a request by email to both instructors.
 
+## What about extensions for quizzes and discussion boards
+
+The same general policy applies for quizzes and discussion boards. You should not submit anything for the discussion board or the quiz (and please don't start any quiz until you are ready), but any short extension (less than seven days) is fine. It is important to keep this class reasonably concurrent, so being more than a week late and especially being late on multiple assignments is a problem. We need to discuss this and make sure you have a reasonable plan for catching up.
+
 ## Ask for extensions prior to the due date
 
 Please ask for an extension prior to the due date. This is very important. You can ask for an extension after the due date, but it makes it harder for us to track overall student progression in the class.
 
 ## Extensions near the end of the semester
 
-Starting with homework due in week 14 of the semester (the week of December 1 in Fall Semester 2025), you can no longer receive automatic extensions. Short extensions may be available for a limited number of students, but you must get permission from one of your instructors first. We have deadlines for reporting grades and we are not given an extension on our deadline.
+Starting with homework due in week 14 of the semester (the week of April 27 in Spring Semester 2026), you can no longer receive automatic extensions. Short extensions may be available for a limited number of students, but you must get permission from one of your instructors first. We have deadlines for reporting grades and we are not given an extension on our deadline.
 
 ## If you are falling behind
 

@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "13-08 Poisson regression"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,176 @@ format:
 editor: source
 ---
 
-## Slide 01-08
+## Poisson regression
+
+-   The problems with counts
+    -   Skewed
+    -   Non-negative
+    -   Unequal variances
+-   Analysis of rates
 
 ::: notes
 
+Poisson regression assumes that your outcome variable follows a Poisson distribution, a distribution that we frequently encounter when we are counting a number of events. The distribution was first used to characterize deaths by horse kicks in the Prussian army. Let's hope that your application is not as unpleasant.
+
+Poisson distributions have three special problems that make traditional (i.e., least squares) regression problematic.
+
+The Poisson distribution is skewed; traditional regression assumes a symmetric distribution of errors.
+
+The Poisson distribution is non-negative; traditional regression might sometimes produce predicted values that are negative.
+
+For the Poisson distribution, the variance increases as the mean increases; traditional regression assumes a constant variance.
+
+In contrast, the Poisson regression model is not troubled by any of the above conditions. In particular, Poisson regression implicitly uses a log transformation which adjusts for the skewness and prevents the model from producing negative predicted values. Poisson regression also models the variance as a function of the mean.
+
+What if my data is a rate and not a count?
+
+Poisson regression can also be used to analyze rate data. Rates are simply counts divided by a measure like area or time. For example, infection rates are often measured as a number per patient day of exposure. To fit a model using rates, you need to have the original counts (the numerator of the rate) and the measure of time/area (the denominator of the rate). The Poisson model is fit to the counts and uses the log of the denominator as an offset variable. The details are a bit messy, so refer to the appropriate software manual.
+
 :::
+
+## Poisson regression example, responses to an ad
+
+```{r}
+#| label: 13-08-responses
+
+ad_responses <- data.frame(
+  t=0:6, 
+  n=c(9, 4, 2, 3, 0, 0, 1)) 
+ad_responses
+```
+
+::: notes
+
+I've been working on an interesting project that requires Poisson regression. A company put out an ad on radio and gets a certain number of telephone calls back on the same day (t=0) or any of the days following. The number of phone calls is typically (but not always) highest on the first day afterwards and declines rapidly on successive days. I wanted to develop a simple Poisson regression model for this data.
+
+:::
+
+## Poisson regression example - output
+
+```{r}
+#| label: 13-08-glm-poisson
+
+glm(n~t, family=poisson(), data=ad_responses)
+glm(n~t, family=poisson(), data=ad_responses) %>%
+  tidy %>%
+  select(term, estimate) %>%
+  mutate(estimate=round(estimate, 2)) %>%
+  data.frame -> m2
+m2
+```
+
+::: notes
+
+Here is the output from R. Again, the output is too big to fit on a single slide, but the key values, the intercept and slope are shown here.
+
+The intercept and slope produce predicted values on a log count scale. You need to exponentiate these values to get predictions on the count scale.
+
+-   exp(2.1063) = 8.2
+-   exp(-0.5505) = 0.58
+
+How would you interpret these coefficients?  The Poisson regression model uses a log link function. This means that the average value for the data is assumed to be linear on a log scale.
+
+In a linear regression model, the intercept is the estimated average value of the dependent variable when the independent variable is equal to zero. In a Poisson regression model, the antilog of the intercept represents the estimated average count when the independent variable is zero. Since exp(2.1) = 8.2, you would say that the estimated average count at time zero is 8.2.
+
+You might be tempted to make the intercept equal to 9. While this is not an outrageous thing to do, it is not quite as efficient. The Poisson regression model has to fit all of the counts well, not just the count at 0.
+
+In a linear regression model, the slope represents the estimated average change in the dependent variable when the independent variable increases by one unit. In a Poisson regression model, the antilog of the slope represents the estimated average change in the count when the independent variable increases by one unit. An important difference, though, is that the change is a multiplicative change. Since exp(-0.55) = 0.58, you would say that the estimated average count declines by a factor of 0.58 (a 42% decline) when time increases by one day.
+
+A zero slope in a Poisson regression model corresponds to a multiplicative change of 1 which, of course, is no change. A positive slope in a Poisson regression model corresponds to a multiplicative change greater than 1. You could call this an exponential rise. A negative slope in a Poisson regression model corresponds to a multiplicative change less than 1. This is an exponential decline.
+
+The predict function in R produces estimated average values on a log scale for each time point.
+
+:::
+
+## Poisson regression example: Predictions 
+
+```{r}
+#| label: 13-08-poisson-predictions
+
+b0 <- round(m2[1, 2], 2)
+b1 <- round(m2[2, 2], 2)
+b0 %>%
+  paste0(b1) %>%
+  paste0("*") %>%
+  paste0(0:6) %>%
+  data.frame %>%
+  set_names("calculations") -> calculations
+b0+b1*(0:6) %>%
+  data.frame %>%
+  set_names("log_count") -> log_count
+ad_responses %>%
+  bind_cols(calculations) %>%
+  bind_cols(log_count) %>%
+  mutate(count=exp(log_count)) %>%
+  mutate(count=round(count, 2)) -> poisson_predictions
+poisson_predictions %>%
+  select(-count)
+```
+
+::: notes
+
+I've rounded these data slightly from the actual output to save space. Note that R places an index of 1 through 7 above each predicted value. This is a bit confusing, perhaps, because the first value corresponds to time=0 and the last value corresponds to time=6.
+
+If you take the antilog of these values, you get the estimated average count at each time point.
+
+:::
+
+## Transform to count scale
+
+```{r}
+#| label: 13-08-transform-to-count
+
+poisson_predictions %>%
+  select(-calculations)
+```
+
+## Plot predicted counts
+
+```{r}
+#| label: 13-08-plot-counts
+
+poisson_predictions %>%
+  ggplot(aes(x=t, y=count)) +
+    geom_line() +
+    geom_point(aes(y=n))
+```
+
+## Calculate rate ratio
+
+```{r}
+#| label: 13-08-rate-ratio
+
+poisson_predictions$count[-1] %>%
+  paste0("/") %>%
+  paste0(poisson_predictions$count[-7]) %>%
+  append(paste0("exp(", b1, ")"), after=0) %>%
+  data.frame %>%
+  set_names("rr_calculations") -> rr_calculations
+poisson_predictions$count[-1] %>%
+  divide_by(poisson_predictions$count[-7]) %>%
+  append(exp(b1), after=0) %>%
+  round(2) %>%
+  data.frame %>%
+  set_names("rr") -> rr
+poisson_predictions %>%
+  select(-log_count) %>%
+  select(-calculations) %>%
+  bind_cols(rr_calculations) %>%
+  bind_cols(rr)
+```
+
+## Interpretation of slope in Poisson regression
+
+-   Slope in Poisson regression
+    -   log rate ratio
+        -   for one unit change in x
+    -   exponentiate to get rate ratio
+  
+```{r}
+#| label: 13-08-rate-ratio-calculation
+#| echo: true
+
+exp(-0.55)
+```
 

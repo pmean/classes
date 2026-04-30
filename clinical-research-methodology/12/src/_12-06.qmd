@@ -7,9 +7,46 @@ format:
 editor: source
 ---
 
-## Slide 01-06
+## Non-inferiority testing
 
+-   Reasons for adopting a new drug/therapy
+    -   Greater efficacy
+    -   Lower cost
+    -   Better compliance
+    -   Fewer side effects
+-   $H_0 \ \pi_1-\pi_2 \le -\Delta$ 
+-   $H_a \ \pi_1-\pi_2 \gt -\Delta$ 
+    -   $\Delta$ is the non-inferiority margin
+    -   Reject $H_0$ if $p_1-p_2 \gt -\Delta + z \times se$
+    -   Trade-off between efficacy and cost, compliance, or side effects
+  
 ::: notes
+
+Why does a new drug replace an old drug? I should talk about therapies instead of drugs, but it is easier to pretend that the only thing that doctors do is hand out pills.
+
+There are several reasons to switch. First, the new drug might be more efficacious. It cures more people.
+
+But there are other things that are important as well. The new therapy might be cheaper. Money is never the only consideration, of course, but you can't ignore it either. Even when the cost of drugs is hidden by insurance coverage, there is a price that all of society pays when you ignore simple economics. 
+
+Another reason to switch is compliance. If you can replace needles with a pill or replace three times a day dosing with twice a day dosing, you'll find that a lot more of your patients will take the drug.
+
+A third reason to switch would be a change in side effects. All drugs have side effects, of course, but sometimes you can reduce the number of patients that experience these side effects. Sometimes, you can replace serious side effects with more mild side effects.
+
+If you expect a new drug to show reduced cost, better compliance, or fewer side effects, you might be willing to tolerate a deficit in efficacy. Now, it would have to be a small deficit, often a very small deficit. 
+
+Non-inferiority testing addresses the problem where you want to show that a new drug, superior in other ways, does not give away too much in efficacy. So you want to test that your new drug is not substantially inferior than the old drug with respect to therapy.
+
+A formal hypothesis test to demonstrate that a new drug is not substantially worse on an efficacy endpoint is called a non-inferiority test. To conduct this test, you need to define a non-inferiority margin. This a value that separate an intolerable loss in efficacy from a tolerable loss. How do you pick a non-inferiority margin? 
+
+Sometimes it's easy. So in testing a flu vaccine, you might tolerate a 20% decline in the number of colds if you could knew that you would be getting at least a 20% increase in the number of people who would be getting vaccinated.
+
+Other times, it's tricky. A side effect of the flu vaccine is localized soreness, and while we want to minimize this, experiencing localized soreness and experiencing the flu are not the same thing. You might want to set up a ratio, say, that ten localized soreness events equals one flu event. Then, if you knew that the new vaccine would have 20% fewer problems with localized soreness, you'd be able to only tolerate a 2% decline in efficacy. Anything worse, and you'd have less than a 10 to 1 ratio.
+
+If the new vaccine were 50% cheaper, you'd just have to figure out the dollar value associated with a single case of the flu and do make sure that the proportion of fewer cures times cost of a single cure was smaller than the cost savings. So if all the bad things associated with the flu, the suffering, the lost work time, and the increased risk of other bad things like pneumonia had a dollar value of five thousand dollars, and you could save two hundred dollars per dose of vaccine, then you'd need to need to make sure that the decline in efficacy was not 4% or worse. 
+
+I'm vastly oversimplifying things here. I'm not talking, for example, about the complexities associated with absolute versus relative risk. And some of my math calculations might be a bit dicey. But to be honest, no one even tries to look at things from this simplistic of an approach. They just pick a number out of thin air, and don't offer any justification. If you need to set a non-inferiority margin, talk to a bunch of people and make sure that you are assessing the trade-offs properly.
+
+Once you have your non-inferiority margin, the rest is easy. Your alternative hypothesis is that the difference in means is above the non-inferiority margin. The way I have described the hypotheses might need to change the direction of the sign depending on whether you label the group with the new drug with a 1 or a 2. Instead of rejecting H0 if you are above zero by a certain amount determined by sampling error, you reject 
 
 :::
 

@@ -140,7 +140,7 @@ The probability of survival drops by 4% (1/25) at each day of death.
 
 
 ```{r}
-#| label: fly-plot-1
+#| label: 08-01-fly-plot-1
 
 f1 <- survfit(
   Surv(fly1$day, rep(1, 25)) ~ 1,

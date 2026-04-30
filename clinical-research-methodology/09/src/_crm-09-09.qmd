@@ -10,12 +10,17 @@ editor: source
 
 ## Test-retest reliability
 
-```{r setup, echo=FALSE}
-knitr::opts_chunk$set(echo=FALSE)
-suppressMessages(suppressWarnings(library(tidyverse)))
+```{r}
+#| label: 09_09_setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
 ```
 
-```{r image}
+```{r}
+#| label: 09_09_image
+
 data.frame(x=0:1, y=0:1) %>%
   ggplot(aes(x, y)) +
   xlab(" ") + 
@@ -37,6 +42,7 @@ We talked about measures of internal consistency and why I don't like them. We a
 :::
 
 ## Test-retest reliability (also called repeatability)
+
 -   Correlation of two measurements separated by time
 -   Length of time interval is critical
     -   No carry-over
@@ -67,7 +73,9 @@ Test-retest reliability works well for any type of measure. But it can't always 
 
 ## Inter-rater reliability
 
-```{r image-2}
+```{r}
+#| label: image_2
+
 data.frame(x=0:1, y=0:1) %>%
   ggplot(aes(x, y)) +
   xlab(" ") + 
@@ -138,4 +146,3 @@ If you can't measure reliability using a test-retest approach or using inter-rat
 The general target value for a reliability coefficient is 0.7 or higher. You might get by with a reliability coefficient of 0.6, but don't count on it.
 
 :::
-

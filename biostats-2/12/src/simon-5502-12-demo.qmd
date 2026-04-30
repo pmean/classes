@@ -12,20 +12,40 @@ execute:
 
 This program was written by Steve Simon on 2025-04-12 and is placed in the public domain. You can use this program any way you please.
 
+This is the version used for Spring Semester, 2026.
+
 -   Data used in this program
+    -   oa
+        -   [tab delimited file][ref-oa-nodate]
+        -   [dictionary][ref-oa-dd-nodate]
+    -   physical-activity
+        -   [tab delimited file][ref-pa-nodate]
+        -   [dictionary][ref-pa-dd-nodate]
     -   hiv-intervention
         -   [tab delimited file][ref-hiv-nodate]
         -   [dictionary][ref-hiv-dd-nodate]
+    
 -   Tibbles created by this program
+    -   oa: Original data from arthritis-treatments
+    -   oa_1: Subset with only VAS values
+    -   oa_2: Restructure to long format
+    -   pa: Original data from physical-activity
+    -   pa_1: Compute change score
     -   hiv: Original data from hiv-intervention.csv
     -   hiv_1: Add subject id
     -   hiv_2: Restructure to long format
     -   hiv_3: Drop the pre measurement and controls
 -   Models created by this program
-    -   m1: Random intercepts model
+    -   m1: Within cluster analysis of arthritis treatments data
+    -   m2: Between cluster analysis of physical activity data
+    -   m3: Random intercepts model
 
 [ref-hiv-nodate]: https://github.com/pmean/data/blob/main/files/hiv-intervention.txt
 [ref-hiv-dd-nodate]: https://github.com/pmean/data/blob/main/files/hiv-intervention.yaml
+[ref-oa-nodate]: https://github.com/pmean/data/blob/main/files/arthritis-treatments.txt
+[ref-oa-dd-nodate]: https://github.com/pmean/data/blob/main/files/arthritis-treatments.yaml
+[ref-pa-nodate]: https://github.com/pmean/data/blob/main/files/physical-activity.sav
+[ref-pa-dd-nodate]: https://github.com/pmean/data/blob/main/files/physical-activity.yaml
 
 ```{r}
 #| message: false
@@ -33,6 +53,7 @@ This program was written by Steve Simon on 2025-04-12 and is placed in the publi
 #| label: setup
 
 library(broom)
+library(foreign)
 library(lme4)
 library(tidyverse)
 
@@ -40,7 +61,242 @@ R.version.string
 Sys.Date()
 ```
 
+#### Comments on the code
+
+The [foreign library][ref-foreign-nodate] allows you to import binary data files from various proprietary packages, such as SAS, SPSS, and Stata.
+
+[ref-foreign-nodate]: https://CRAN.R-project.org/package=foreign
+
 ------------------------------Begin part 1--------------------------------------
+
+## Read oa
+
+```{r}
+#| label: read-oa
+
+oa <- read_table(
+  file="../data/arthritis-treatments.txt",
+  col_names=TRUE,
+  col_types="nnnnnnn")
+
+glimpse(oa)
+```
+
+## Create subset for ROM
+
+```{r}
+#| label: subset
+
+oa |>
+  select(
+    Subject,
+    NoROM,
+    TENSROM,
+    SWDROM) |>
+  rename(
+    no=NoROM,
+    tens=TENSROM,
+    swd=SWDROM) -> oa_1
+```
+
+## Restructure into long format
+
+```{r}
+#| label: long-1
+
+oa_1 |>
+  pivot_longer(
+    cols=no:swd,
+    names_to="treatment",
+    values_to="rom") -> oa_2
+
+glimpse(oa_2)
+```
+
+#### Comments on the code
+
+The [pivot_longer][ref-pivot-nodate] function is in the [tidyr][ref-tidyr-nodate] package, which is part of the tidyverse.
+
+[ref-pivot-nodate]: https://tidyr.tidyverse.org/reference/pivot_longer.html
+[ref-tidyr-nodate]: https://tidyr.tidyverse.org/
+
+
+## Descriptive statistics
+
+```{r}
+#| label: descriptives-oa
+
+oa_2 |>
+  group_by(treatment) |>
+  summarize(
+    rom_mean=mean(rom),
+    rom_sd=sd(rom)) -> oa_means
+
+oa_means
+```
+
+#### Interpretation of the output
+
+There is a slight improvement in range of motion using swd versus no treatment. Using tens actually decreases the range of motion.
+
+## Plot by subject
+
+```{r}
+#| label: plot-1
+
+oa_2 |>
+  ggplot() +
+  aes(
+    x = treatment, 
+    y = rom, 
+    group = Subject) +
+  geom_line() -> oa_plot
+
+oa_plot
+```
+
+#### Interpretation of the output
+
+There is a tendency for some subjects to see the best range of motion under swd, but there are a few exceptions.
+
+## Mixed model for oa
+
+```{r}
+#| label: mixed-oa
+
+m1 <- lmer(
+  rom ~ treatment + (1 | Subject),
+  data=oa_2)
+
+summary(m1)
+```
+
+#### Comments on the code
+
+The [lmer][ref-lmer-nodate] function is part of the [lme4][ref-lme4-nodate] package. The package is quite detailed, but you only need to use some basic parts of it. The lmer function uses a similar approach as the lm function. You specify a model with a formula that includes a tilde(~). The dependent variable goes on the left side of the tilde and the independent variables plus the cluster variable goes on the right side. The cluster variable needs to be defined as (1 | *cluster-variable*). This might seem a bit strange, but the syntax is required for more complex models than what you will be using, at least at the start.
+
+The output from lmer is quite verbose and there is no easy way to select just what you want. You do want to use the summary function, which provides a list of fixed and random effects.
+
+I have not found a simple function that will compute the intraclass correlation. It is easy enough for you to calculate by hand.
+
+[ref-lmer-nodate]: https://cran.r-project.org/web/packages/multilevelTools/vignettes/lmer-vignette.html
+[ref-lme4-nodate]: https://github.com/lme4/lme4
+
+#### Interpretation of the output
+
+The estimated range of motion in the reference category (treament=no) is 98 degrees. The range of motion for treatment=swd is 4 degree larger than treatment=no, which represents a very small is only slightly better result. The t-value is close to zero, so you would accept the null hypothesis and conclude that there is no statistically significant difference between the groups.
+
+The estimated range of motion is smaller for treatment=swd than treatment=no. This is a surprising and disappointing result. The t statistic is borderline but probably needs to be larger than plus or minus two before you might consider this to be a statistically significant decline in range of motion.
+
+There is substantial variation between clusters (subjects are the cluster). The intraclass correlation is 481.7 / (481.7 + 301.8) = 0.61. This indicates a large degree of correlation for two measurements on the same subject.
+
+------------------------------Begin part 2--------------------------------------
+
+## Read physical-activity
+
+```{r}
+#| label: read-pa
+
+pa <- read.spss(
+  file="../data/physical-activity.sav",
+  to.data.frame=TRUE)
+
+glimpse(pa)
+```
+
+#### Comments on the code. 
+
+The [read.spss][ref-read-spss-nodate] function takes data saved by SPSS and inputs it into R.
+
+[ref-read-spss-nodate]: https://cran.r-project.org/web/packages/foreign/refman/foreign.html#read.spss
+
+## Descriptive statistics, 1
+
+```{r}
+#| label: stats-1
+
+pa |>
+  summarize(
+    mean_pre=mean(WC_PRE, na.rm=TRUE),
+    mean_post=mean(WC_POST, na.rm=TRUE)) -> pa_means
+
+pa_means
+```
+
+#### Interpretation of the output
+
+There is a small increase in waist circumference after the study is over. This may be due to natural growth over time.
+
+## Descriptive statistics, 2
+
+```{r}
+#| label: stats-2
+
+pa |>
+  count(School, Group_allocation) -> pa_counts
+
+pa_counts
+```
+
+#### Interpretation of the output
+
+There is a lot of variation in the number of subjects per school, but every school has at least 7.
+
+
+## Compute change score
+
+```{r}
+#| label: change-score
+
+pa |>
+  mutate(change_score=WC_POST - WC_PRE) -> pa_1
+```
+
+## Draw boxplot by group
+
+```{r}
+#| label: box-2
+#| fig.height: 1.5
+#| fig.width: 6
+
+pa_1 |>
+  filter(!is.na(change_score)) |>
+  ggplot() +
+  aes(
+    x=Group_allocation, 
+    y=change_score) +
+  geom_boxplot() +
+  coord_flip() +
+  ggtitle("Graph drawn by Steve Simon on 2025-04-06") +
+  xlab("Group") +
+  ylab("Change score") -> pa_box
+
+pa_box
+```
+
+### Interpretation of the output
+
+The amount of increase in waist circumference is about the same in the treatment and control groups.
+
+## Fit mixed model
+
+```{r}
+#| label: mixed
+
+m2 <- lmer(
+  change_score ~ Group_allocation + (1 | School),
+  data=pa_1)
+
+summary(m2)
+```
+
+#### Interpretation of the output
+
+The estimated change in waist circumference in the reference category (Group_allocation=Control) is 1.34 centimeters. The estimated change in the treatment group versus the control group is -0.01 which is so very very slightly smaller that you might as well call it no difference at all. The t-statistic is close to zero indicating that this difference is not statistically significant.
+
+There is a moderate amount of variation between clusters (schools are the cluster). The intraclass correlation is 1.590 / (1.590 + 6.578) = 0.19. This indicates a weak degree of correlation for two measurements within the same school.
+
+------------------------------Begin part 3--------------------------------------
 
 ## Read hiv-intervention
 
@@ -70,7 +326,7 @@ glimpse(hiv_1)
 ## Switch to long format
 
 ```{r}
-#| label: long
+#| label: long-2
 
 hiv_1 |>
   pivot_longer(
@@ -89,7 +345,7 @@ glimpse(hiv_2)
 ## Plot individual subjects for treatment group
 
 ```{r}
-#| label: plot-1
+#| label: plot-2
 
 hiv_2 |>
   filter(BST == 1) |>
@@ -120,7 +376,7 @@ This graph and the one that follows show a rather chaotic state with no obvious 
 ## Plot individual subjects for control group
 
 ```{r}
-#| label: plot-2
+#| label: plot-3
 
 hiv_2 |>
   filter(BST == 0) |>
@@ -152,11 +408,11 @@ hiv_2 |>
 ```{r}
 #| label: random-intercepts
 
-m1 <- lmer(
+m3 <- lmer(
   protected_sex ~ t + (1 | id),
   data=hiv_3)
 
-summary(m1)
+summary(m3)
 ```
 
 #### Comments on the code
@@ -169,16 +425,16 @@ There is substantial variation in the random intercepts. The intraclass correlat
 
 The intercept, 22.3 represents the estimated average rate of protected sex at the start of the intervention (when t=0). It is unclear what the units of measurement are for this mean. The slope, -0.22,  represents the estimated average change in the rate of protected sex for each additional month. At the end of the study (12 months), the rate has declined by -0.22 * 12 = -2.64. The t-statistic is close to zero, so you should accept the null hypothesis that the slope is flat (no change over time).
 
-------------------------------Begin part 2--------------------------------------
+------------------------------Begin part 4--------------------------------------
 
 ## Predictions, residuals, and random effects
 
 ```{r}
 #| label: predict
 
-m1_predicted <- predict(m1)
-m1_residuals <- resid(m1)
-m1_random_effects <- ranef(m1)
+m3_predicted <- predict(m3)
+m3_residuals <- resid(m3)
+m3_random_effects <- ranef(m3)
 ```
 
 #### Comments on the code
@@ -196,7 +452,7 @@ hiv_3 |>
   ggplot() +
   aes(x=t, y=protected_sex) +
   geom_point() +
-  geom_line(y=m1_predicted) + 
+  geom_line(y=m3_predicted) + 
   scale_x_continuous(breaks=c(0, 6, 12)) +
   ggtitle("Plot drawn by Steve Simon on 2025-04-12") +
   xlab("Time in months") +
@@ -217,9 +473,9 @@ The predicted values show a nearly flat line with only a small decrease over tim
 
 hiv_3 |>
   select(t) |>
-  bind_cols(tibble(m1_residuals)) |>
+  bind_cols(tibble(m3_residuals)) |>
   ggplot() +
-  aes(x=t, y=m1_residuals) +
+  aes(x=t, y=m3_residuals) +
   scale_x_continuous(breaks=c(0, 6, 12)) +
   geom_point() -> plot_4
 
@@ -242,9 +498,9 @@ There is no obvious deviation from linearity in this graph. It looks like the 6 
 ```{r}
 #| label: plot_5
 
-tibble(m1_residuals) |>
+tibble(m3_residuals) |>
   ggplot() +
-  aes(sample=m1_residuals) +
+  aes(sample=m3_residuals) +
   ggtitle("Plot drawn by Steve Simon on 2025-04-12") +
   xlab(" ") +
   ylab("Within subject residuals") +
@@ -255,7 +511,7 @@ plot_5
 
 #### Comments on the code
 
-The ggplot function expects to see a data frame or a tibble and m1_residuals is a vector. The [tibble][ref-tibble-nodate] function converts the vector into a tibble.
+The ggplot function expects to see a data frame or a tibble and m3_residuals is a vector. The [tibble][ref-tibble-nodate] function converts the vector into a tibble.
 
 [ref-tibble-nodate]: https://tibble.tidyverse.org/reference/tibble.html
 
@@ -268,7 +524,7 @@ There appears to be an outlier on the low end, but it is not too extreme. Otherw
 ```{r}
 #| label: plot_6
 
-tibble(x=unlist(m1_random_effects)) |>
+tibble(x=unlist(m3_random_effects)) |>
   ggplot() +
   aes(sample=x) +
   ggtitle("Plot drawn by Steve Simon on 2025-04-12") +
@@ -288,5 +544,5 @@ There is another outlier, but not too extreme among the random intercepts. Beyon
 ```{r}
 #| label: save
 
-save.image(file="../data/demo-12.RData")
+save.image(file="../data/module12.RData")
 ```

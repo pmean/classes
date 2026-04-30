@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "Type I and Type II errors"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,50 @@ format:
 editor: source
 ---
 
-## Slide 01-03
+## What is a Type I Error?
+
+-   Type I error
+    -   Rejecting the null hypothesis when the null hypothesis is true.
+    -   False positive result
+    -   Example: allowing an ineffective drug on the market
+-   $\alpha$ = P[Type I error]
 
 ::: notes
+
+In your research, you specify a null hypothesis (typically labeled H0) and an alternative hypothesis (typically labeled Ha, or sometimes H1). By tradition, the null hypothesis corresponds to no change. When you are using Statistics to decide between these two hypothesis, you have to allow for the possibility of error. Actually, if you are using any other procedure, you should still allow for the possibility of error, but we statisticians are the only ones honest enough to admit this.
+
+A Type I error is rejecting the null hypothesis when the null hypothesis is true.
+
+Consider a new drug that we will put on the market if we can show that it is better than a placebo. In this context, H0 would represent the hypothesis that the average improvement (or perhaps the probability of improvement) among all patients taking the new drug is equal to the average improvement (probability of improvement) among all patients taking the placebo. A Type I error would be allowing an ineffective drug onto the market.
+
+Remember that the hypotheses involve population parameters. Population parameters are impossible to compute. So you can only talk about Type I errors in an abstract sense. You will never know for certain if you have made a Type I error.
+
+Alpha is the probability of a Type I error, and alpha is a value that you can compute. In most studies, researchers work hard to keep the probability of a Type I error low, typically at 5%.
+
+:::
+
+## What is a Type II Error? 
+
+-   Type II error
+    -   Accepting the null hypothesis when the null hypothesis is false.
+    -   False negative result
+    -   Example: keeping an effective drug off of the market
+-   $\beta$ = P[Type II error]
+-   Power = $1-\beta$
+
+::: notes
+
+A Type II error is accepting the null hypothesis when the null hypothesis is false. You should always remember that it is impossible to prove a negative. Some statisticians will emphasize this fact by using the phrase "fail to reject the null hypothesis" in place of "accept the null hypothesis." The former phrase always strikes me as semantic overkill. 
+
+Many studies have small sample sizes that make it difficult to reject the null hypothesis, even when there is a big change in the data. In these situations, a Type II error might be a possible explanation for the negative study results.
+
+Consider a new drug that we will put on the market if we can show that it is better than a placebo. In this context, H0 would represent the hypothesis that the average improvement (or perhaps the probability of improvement) among all patients taking the new drug is equal to the average improvement (probability of improvement) among all patients taking the placebo. A Type II error would be keeping an effective drug off the market.
+
+It bears repeating that population parameters are impossible to compute. So you will never know for certain if you have made a Type I error.
+
+Beta is the probability of a Type II error. Beta is a known quantity. Typically researchers try to keep beta small. 10% is a typical value, though in some settings, a Type II error rate as large as 20% could be tolerated.
+
+Power is defined as 1-beta. I will talk more about power in a little bit.
 
 :::
 

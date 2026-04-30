@@ -1,5 +1,5 @@
 ---
-title: "To be determined"
+title: "13-02 Quality check of data"
 format: 
   revealjs:
     slide-number: true
@@ -7,9 +7,73 @@ format:
 editor: source
 ---
 
-## Slide 01-02
+## Steps in your data analysis
+
+-   Quality check of data
+-   Description of sample
+-   Test of hypotheses/research questions
+-   Additional exploratory analyses
 
 ::: notes
+
+Your data analysis should start with a quality check. This can be simple or elaborate depending on the source of your data. THen you need to provide descriptive statistics that help characterize the population you are sampling from. Then you need to test your research hypothesis or address your research questions. There may be additional exploratory analyses.
+
+:::
+
+
+## Quality check of your data (1/2)
+
+-   Completeness of data collection
+-   Review for responses that are ambiguous, out of range, etc
+-   Edit responses as needed
+-   Check response frequencies
+    -   Combine smaller categories, if needed
+
+::: notes
+
+Before you do anything else, make sure that you are comfortable with the quality of your data. How much effort you spend here is a judgement call. Most people don't spend enough time, but it is possible to get so obsessed about quality that you never get your regular analysis started.
+
+Look for responses that clearly don't belong. I attended a talk where they were talking about data values that were obviously so bad that they represented science fiction. Such as an age which is reminiscent of the Yoda quote "when 900 years old you reach, look as good you will not."
+
+Some errors will be easily correctable. If the only permissible values are on a 1 through 5 Likert scale with 9 or no response, an 11 is easily changed to 1. For others, though, you should go back to the original records, if possible, to fix things. Don't assume too much, as a missing value code may do less damage than an incorrectly corrected value. Please document whatever choices you make, and be consistent about your choices.
+
+For important categorical variables, look at the frequency counts for each category. If these are small, consider combining several categories together. So you may not have enough data to represent individual minority groups, so you would combine them with single to represent an overall category, non-white, to compare with white.
+
+:::
+
+## Quality check of your data (2/2)
+
+-   Zero (or near-zero) variation
+-   Missing value count
+-   List five five rows, last five rows
+-   Correlations
+
+::: notes
+
+There are some descriptive statistics that you should run just for your own benefit. Check the minimum and maximum values for every numeric variable in your data set. I received a data set with a bunch of 5 point Likert scale items and for most of the variables, the minimum was 1, but the maximum was 33 or 55. Guess what happened?
+
+Get a missing value count and monitor it closely. See if there are odd patterns, such as the missing values declining over time but then jumping back up at the end. It could be normal, but it could be an indication of a problem.
+
+When you get correlations, look for unexpected patterns, such as a negative correlation where a positive one was expected. It could be okay, or it could mean that the scales on a Likert scale got switched around halfway through the survey due to a misprint.
+
+In some data sets, you may find that certain variables are constant, or nearly constant. I had a data set with 82 white mothers and 2 non-white mothers. There is no point including race as a covariate in any statistical models when the data is this close to constant.
+
+Track missing value counts very carefully. In complex mutlivariate models, these missing values can accumulate to the point where you end up losing 50% or more of your data. How best to handle missing values is beyond the scope of this course, but no matter what approach you use, please document it carefully.
+
+Always take a peek at the first five and the last five rows of your data set. If these do not align, then something changed during the import, perhaps a row of data with one too few or one too many variables. Also check to see if the last row or last few rows of your data set are entirely missing values.
+
+:::
+
+## Data reduction
+
+-   Check composite scores
+    -   Check Cronbach's alpha
+    -   Examine leaving out single items
+    -   Factor analysis, Structural Equations Modeling
+
+::: notes
+
+If you have scales that are a composite score of multiple individual questions, you might want to look at a reliability coefficent like Cronbach's alpha. Some people advocate computing this statistic on a series of scores with individual variables deleted. If you get a sharp jump in alpha after a particular variable is deleted, this may indicate that, for your particular population, perhaps, a simplier composite without the one variable might be needed. You might consider running an exploratory factor analysis to see if the composite score still has a justifiable set of individual components. I, personally, do not like the idea of tampering with composite scores that were developed by others.
 
 :::
 

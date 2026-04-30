@@ -7,9 +7,40 @@ format:
 editor: source
 ---
 
-## Slide 01-07
+## Sample size justification
+
+-   Rules of thumb
+    -   Rule of 50
+    -   Rule of 16
+-   CI width  
+-   Power calculations
+    -   research hypothesis
+    -   standard deviation
+    -   minimum clinically important difference
+-   Post hoc power - never!
+-   Effect sizes - never!
 
 ::: notes
+
+There area lot of formulas out there and a lot of software that will help you justify your sample size, but I don't want to talk in detail about them. I do want to mention a few quick rules of thumb that you can apply to see if you are on the right track.
+
+The first of these is the rule of 50. If you are measuring a binary outcome, you need to plan for a large enough sample size so that you see 25 to 50 events in each group. This is a very useful rule for seeing if your sample size needs to be in the hundreds, or if it needs to be in the thousands.
+
+I was working with a researcher who wanted to study infants who were breastfeeding while at the hospital, go home and then come back in seven days with breastfeeding jaundice. I said, okay, about how often does this happen. And he said maybe somewhere between a half a percent and two percent of the babies. So I did the math. If the rate is on the high end, 2%, that means one out of every 50 patients will be readmitted. So you needs to get 50 times as many babies to assure that you will get 50 events. That's 2,500. In one group. And with the numbers on the high end of his interval. So I tell him, you'll probably need to study around 5,000 infants. He was not happy.
+
+No one every got thrown in jail for violating a rule of thumb. But when you do the formal sample size formula, you sure as heck won't get a sample size of 100. A sample of 100 patients would mean that you'd expect to see two infants readmitted. Do you want to hang your hat on two infants?
+
+The other rule, called the rule of 16, is useful for continuous outcomes. If you believe that a clinically important difference is a certain size, and that size is x% of a standard deviation, then you need to have 16/x-squared patients in each group. So if you believe that the clinically important difference is half a standard deviation, divide 16 by 0.5 squared to get 64 patients per group. If the clinically important difference is only one tenth of a standard deviation, watch out. You need to collect 16 divided by 0.1 squared or 1600 patients per group.
+
+You can also justify your sample size by specifying how narrow you'd like your confidence intervals to be. This is especially useful in settings where there is no formal research hypothesis. The calculations here are a bit tedious, but manageable. Suppose you are running a diagnostic test and you want sensitivity and specificity to both have very narrow confidence intervals. You plan to recruit in a population where the prevalence of the disease is only 10%. This means that sensitivity, which has the proportion of diseased patients in the denominator, is your most crucial confidence interval. Trial and error works well here. You'd like any interval to have a maximum width of plus or minus 0.1. If sensitivity were 90%, your 95% confidence interval would be 0.871 to 0.928. Now try 70% sensitivity. Your interval is 0.655 to 0.745. It looks like we could get by with a slightly smaller sample size.
+
+A formal power calculation is the most common way to justify your sample size. I won't show the details, but justification using a power calculation requires you to specify a research hypothesis (using Greek symbols like mu, pi, or beta), the standard deviation of your outcome measure (assuming a continuous outcome measure), and the minimum clinically important difference.
+
+Never try to justify your sample size after the fact. It is called a post hoc power calculation. It is very bad. If you didn't have the foresight to justify your sample size before collecting your data, rely on the width of your confidence intervals to show that your sample size was adequate.
+
+Your book and a lot of other books talk about effect sizes. While an effect size is a useful intermediate calculation, you cannot use the effect size, by itself, as it is impossible to interpret. Imagine a store with a sign in front announcing "Giant sale: all prices reduced by half a standard deviation".
+
+if you want to define a minimum clinically important difference, you must do it in the original scale of measurement, not using some unitless quantity like an effect size.
 
 :::
 

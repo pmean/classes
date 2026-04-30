@@ -1,5 +1,5 @@
 ---
-title: "HIV intervention study"
+title: "Hypothetical litter weights"
 format: 
   revealjs:
     slide-number: true
@@ -12,92 +12,111 @@ editor: source
 #| message: false
 #| warning: false
 
-library(lme4)
+library(glue)
 library(tidyverse)
 library(yaml)
 
-load("../data/demo_12.RData")
+load("../data/module12.RData")
 ```
 
-## Description of hiv-intervention data, 1
+## Description of litter weights data, 1 of 3
 
 ```{r}
-#| label: 12-02-yaml
+#| label: 12-02-ddf-1
 
-library(yaml)
-fn <- "https://raw.githubusercontent.com/pmean/data/refs/heads/main/files/hiv-intervention.yaml"
-dd <- read_yaml(fn)
+f1 <- "https://raw.githubusercontent.com"
+f2 <- "pmean/data/refs/heads/main/files"
+f3 <- "litter-weights.yaml"
+
+dd <- read_yaml(glue("{f1}/{f2}/{f3}"))
+
 cat(as.yaml(dd["data_dictionary"]))
-cat(as.yaml(dd["source"]))
 cat(as.yaml(dd["description"]))
+cat(as.yaml(dd["source"]))
 ```
+
+
+
+## Description of litter weights data, 2 of 3
+
+```{r}
+#| label: 12-02-ddf-2
+
+cat(as.yaml(dd$vars[1:3]))
+```
+
+## Description of litter weights data, 3 of 3
+
+```{r}
+#| label: 12-02-ddf-3
+
+cat(as.yaml(dd$vars[4:5]))
+```
+
+## Layout of full dataset
+
+![](../images/litter-graph-1 "Plot showing 6 rats per litter, 3 male, 3 female,across 20 litters, 10 in group 1 and 10 in group 2")
+
+## Layout for two sample t-test
+
+![](../images/litter-graph-2 "Plot showing subset of full data, 1 random male per litter in the 10 group 1 litters and in the 10 group 2 litters")
+
+## Layout for the paired t-test
+
+![](../images/litter-graph-3 "Plot showing subset of full data, 1 random male and 1 random female per litter in the 10 group 1 litters")
+
+## Why you need to accommodate non-independence
+
+-   Changes in power and precision
+-   Combine multiple tests into single framework
+-   Handle missing data 
+-   Allows more sophisticated analyses
+
+## How does power/precision change?
+
+-   Within cluster comparisons standard error
+    -   $\sqrt{\frac{\sigma^2_{within}}{an}}$
+    -   $\sqrt{\frac{\sigma^2_{total}}{an}(1-\rho_{ICC})}$
+-   Between cluster comparisons standard error
+    -   $\sqrt{\frac{\sigma^2_{within}}{an}+\frac{\sigma^2_{between}}{a}}$
+    -   $\sqrt{\frac{\sigma^2_{total}}{an}(1+(n-1) \rho_{ICC})}$
 
 ::: notes
 
-Here is a dataset I will use to illustrate the random intercepts model. It actually might require a more sophisticated model than the random intercepts, but it is always a good idea to start with the simplest model, even if you know it is an oversimplification. Slowly add layers of complexity, and don't fit the final model too early. You want to wade in from the shallow end of the pool rather than jump right away into the deep end.
+These calculations only work for the simple case where you have the exact same number of observations in each cluster. The formulas illustrate an important issue that also holds when the number of observations does vary from cluster to cluster. The actual formulas, though, become quite tedious in this setting.
 
 :::
+    
+## Pseudo-replication
 
-## Description of hiv-intervention data, 2
-
-```{r}
-cat(as.yaml(dd$vars[1:5]))
-```
-
-::: notes
-Here are the variables. The actual times associated with the Pre and Post measurements are unclear. It turns out that it will be best to hold the Pre measurement back for the time being and start the clock at time=0 for the Post measurement. Remember that you are wading in from the shallow end of the pool.
-
-The remaining two variables FU6 and FU12 represent time=6 and time=12, respectively.
-
-:::
-
-## Glimpse of the hiv-intervention data
-
-```{r}
-#| label: 12-02-glimpse-1
-
-glimpse(hiv)
-```
+-   Hypothetical study of water contamination
+    -   Drill 5 wells
+    -   Sample 4 times at each well
+    -   Treat as 20 independent observations
+-   Standard error is not
+    -   $\sqrt{\frac{\sigma^2_{total}}{an}}$
+-   Standard error is
+    -   $\sqrt{\frac{\sigma^2_{total}}{an}(1+(n-1) \rho_{ICC})}$
 
 ::: notes
 
-The data uses a wide format with one row per subject and individual columns for the measurements prior to the intervention, after the intervention, 6 months later, and 12 months later.
+Stuart H. Hurlbert. (1984), Pseudoreplication and the Design of Ecological Field Experiments. Ecological Monographs, 54: 187-211. https://doi.org/10.2307/1942661
+
+Festing, M.F.W. The “completely randomised” and the “randomised block” are the only experimental designs suitable for widespread use in pre-clinical research. Sci Rep 10, 17577 (2020). https://doi.org/10.1038/s41598-020-74538-3
 
 :::
 
-## Plot of the data, 1
+## Design considerations
 
-```{r}
-#| label: 12-02-plot-1
+-   Within cluster comparisons always have greater precision and power
+    -   Not always possible
+-   Best to increase number of clusters
+    -   Not always economical
 
-plot_1
-```
+## Degrees of freedom
 
-::: notes
-
-This is a series of plots, one for each subject, in the treatment group (BST=1). It uses the facet_wrap function.
-
-:::
-
-## Plot of the data, 2
-
-```{r}
-#| label: 12-02-plot-2
-
-plot_2
-```
-
-::: notes
-
-This is a similar series of plots for the control group (BST=0).
-
-:::
-
-## Glimpse of the restructured and simplified data
-
-```{r}
-#| label: 12-02-glimpse-2
-
-
-glimpse(hiv_3)
-```
+-   df = N - k (for a simpler design)
+    -   k = number of estimated parameters
+    -   What is N?
+        -   N=5? (Number of wells)
+        -   N=20? (Number of water samples)
