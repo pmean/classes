@@ -1,0 +1,77 @@
+---
+title: "See bottom of file for title"
+format: 
+  revealjs:
+    slide-number: true
+    embed-resources: true
+editor: source
+execute: 
+  error: true
+---
+
+## What did we learn in biostats-2, module 02?
+
+```{r}
+#| label: 14-02
+
+read_lines("../../02/src/simon-5502-02-slides.qmd") |>
+	str_subset("  topic") |>
+	str_replace_all('"', '') |>
+	str_replace("  topic.... ", "")
+```
+
+{{< include ../../02/src/_b2-02-01.qmd >}}
+
+## What did we learn in biostats-2, module 03?
+
+{{< include ../../03/src/_b2-03-01.qmd >}}
+
+## What did we learn in module 04?
+
+{{< include ../../04/src/_b2-04-02.qmd >}}
+
+## What did we learn in module 05?
+
+{{< include ../../05/src/_b2-05-01.qmd >}}
+
+## What did we learn in module 06?
+
+{{< include ../../06/src/_b2-06-01.qmd >}}
+
+## What did we learn in module 07?
+
+{{< include ../../07/src/_b2-07-01.qmd >}}
+
+## What did we learn in module 08?
+
+{{< include ../../08/src/_b2-08-01.qmd >}}
+
+## What did we learn in module 09?
+
+{{< include ../../09/src/_b2-09-01.qmd >}}
+
+## What did we learn in module 10?
+
+{{< include ../../10/src/_b2-10-01.qmd >}}
+
+## What did we learn in module 11?
+
+{{< include ../../11/src/_b2-11-01.qmd >}}
+
+## What did we learn in module 12?
+
+{{< include ../../12/src/_b2-12-01.qmd >}}
+
+## What did we learn in module 13?
+
+{{< include ../../13/src/_b2-13-02.qmd >}}
+
+<!---
+      You have to put the title down 
+      here to override the titles of
+      all the include files.
+--->
+
+---  
+title: "simon-5502-14-slides"
+---

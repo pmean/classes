@@ -1,70 +1,101 @@
 ---
-title: "See bottom of file for title"
+title: "See bottom for title"
 format: 
   revealjs:
     slide-number: true
     embed-resources: true
+params:
+  topic_01: "Modules 01, 02, 03"
+  topic_02: "Modules 04 and 05"
+  topic_03: "Modules 06 and 07"
+  topic_04: "Modules 08 and 09"
+  topic_05: "Modules 10 and 11"
+  topic_06: "Modules 12 and 13"
 editor: source
-execute: 
-  error: true
 ---
 
-## What did we learn in biostats-2, module 02?
+## Topics to be covered
 
 ```{r}
-#| label: 14-02
+# Preliminaries, if needed
 
-read_lines("../../02/src/simon-5502-02-slides.qmd") |>
-	str_subset("  topic") |>
-	str_replace_all('"', '') |>
-	str_replace("  topic.... ", "")
+# Keep this chunk, even if no code, so that
+# params is populated from the yaml header.
+
+# To print speaker notes, add
+#   ?print-pdf&showNotes=separate-page 
+#   to the end of the URL. Then open the
+#   print dialog box (ctrl-P) and choose
+#   Save as PDF for the printer. Other 
+#   options, like Microsoft Print to PDF
+#   do not seem to work.
 ```
 
-{{< include ../../02/src/_b2-02-01.qmd >}}
+-   What you will learn
+    -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
 
-## What did we learn in biostats-2, module 03?
+{{< include _b2-14-01.qmd >}}
 
-{{< include ../../03/src/_b2-03-01.qmd >}}
+## Break #1
 
-## What did we learn in module 04?
+-   What you have learned
+    -   `r params$topic_01`
+-   What's coming next
+    -   `r params$topic_02`
 
-{{< include ../../04/src/_b2-04-02.qmd >}}
+{{< include _b2-14-02.qmd >}}
 
-## What did we learn in module 05?
+## Break #2
 
-{{< include ../../05/src/_b2-05-01.qmd >}}
+-   What you have learned
+    -   `r params$topic_02`
+-   What's coming next
+    -   `r params$topic_03`
+    
+{{< include _b2-14-03.qmd >}}
 
-## What did we learn in module 06?
+## Break #3
 
-{{< include ../../06/src/_b2-06-01.qmd >}}
+-   What you have learned
+    -   `r params$topic_03`
+-   What's coming next
+    -   `r params$topic_04`
+    
+{{< include _b2-14-04.qmd >}}
 
-## What did we learn in module 07?
+## Break #4
 
-{{< include ../../07/src/_b2-07-01.qmd >}}
+-   What you have learned
+    -   `r params$topic_04`
+-   What's coming next
+    -   `r params$topic_05`
 
-## What did we learn in module 08?
+{{< include _b2-14-05.qmd >}}
 
-{{< include ../../08/src/_b2-08-01.qmd >}}
+## Break #5
 
-## What did we learn in module 09?
+-   What you have learned
+    -   `r params$topic_05`
+-   What's coming next
+    -   `r params$topic_06`
 
-{{< include ../../09/src/_b2-09-01.qmd >}}
+{{< include _b2-14-06.qmd >}}
 
-## What did we learn in module 10?
+## Summary
 
-{{< include ../../10/src/_b2-10-01.qmd >}}
-
-## What did we learn in module 11?
-
-{{< include ../../11/src/_b2-11-01.qmd >}}
-
-## What did we learn in module 12?
-
-{{< include ../../12/src/_b2-12-01.qmd >}}
-
-## What did we learn in module 13?
-
-{{< include ../../13/src/_b2-13-02.qmd >}}
+-   What you have learned
+    -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
 
 <!---
       You have to put the title down 
@@ -72,6 +103,6 @@ read_lines("../../02/src/simon-5502-02-slides.qmd") |>
       all the include files.
 --->
 
----  
+---
 title: "simon-5502-14-slides"
 ---
