@@ -48,7 +48,7 @@ You will not be graded on this, but get in the habit of drawing a few graphs and
 
 ## Question 2
 
-Select the pain variables (those ending in VAS) and pivot the data to a wider format. Include a glimpse of the original data and the pivoted data to show that the restructuring was done properly. The original dataset should have 10 rows and 4 columns (after removing the range of motion measurements). The restructured dataset should have 30 rows and 3 columns.
+Select the pain variables (those ending in VAS) and pivot the data to a longer format. Include a glimpse of the original data and the pivoted data to show that the restructuring was done properly. The original dataset should have 10 rows and 4 columns (after removing the range of motion measurements). The restructured dataset should have 30 rows and 3 columns.
 
 ## Question 3
 

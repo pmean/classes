@@ -45,7 +45,7 @@ Compute a spline model with 5 degrees of freedom predicting age gap using year a
 
 ## Question 5
 
-Compute a spline model with 7 degrees of freedom predicting age gap using year as the independent variable. Draw a plot showing the predicted values on top of the actual data. Does this spline model look like a better fit than the 5 degree of freedom model?
+Compute a spline model with 7 degrees of freedom predicting age gap using year as the independent variable. Draw a plot showing the predicted values on top of the actual data. Does this spline model look like a better fit than the 5 degree of freedom model? Provide a subjective impression, but do not try to test any hypothesis comparing the two splines.
 
 
 

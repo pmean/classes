@@ -5,7 +5,12 @@ format:
     slide-number: true
     embed-resources: true
 params:
-  topic_01: "To be determined"
+  topic_01: "Review of modules 01 and 02"
+  topic_02: "Review of modules 03 and 04"
+  topic_03: "Review of modules 05, 06, and 07"
+  topic_04: "Review of modules 08 and 09"
+  topic_05: "Review of modules 10 and 11"
+  topic_06: "Review of modules 12 and 13"
 editor: source
 ---
 
@@ -28,6 +33,11 @@ editor: source
 
 -   What you will learn
     -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
 
 {{< include _14-01.qmd >}}
 
@@ -36,12 +46,55 @@ editor: source
 -   What you have learned
     -   `r params$topic_01`
 -   What's coming next
-    -   `r params$topic_01`
+    -   `r params$topic_02`
+
+{{< include _14-02.qmd >}}
+
+## Break #2
+
+-   What you have learned
+    -   `r params$topic_02`
+-   What's coming next
+    -   `r params$topic_03`
+
+{{< include _14-03.qmd >}}
+
+## Break #3
+
+-   What you have learned
+    -   `r params$topic_03`
+-   What's coming next
+    -   `r params$topic_04`
+
+{{< include _14-04.qmd >}}
+
+## Break #4
+
+-   What you have learned
+    -   `r params$topic_04`
+-   What's coming next
+    -   `r params$topic_05`
+
+{{< include _14-05.qmd >}}
+
+## Break #5
+
+-   What you have learned
+    -   `r params$topic_05`
+-   What's coming next
+    -   `r params$topic_06`
+
+{{< include _14-06.qmd >}}
 
 ## Summary
 
 -   What you have learned
     -   `r params$topic_01`
+    -   `r params$topic_02`
+    -   `r params$topic_03`
+    -   `r params$topic_04`
+    -   `r params$topic_05`
+    -   `r params$topic_06`
 
 <!---
       You have to put the title down 
@@ -51,4 +104,5 @@ editor: source
 
 ---
 title: "simon-5510-14-slides"
+subtitle: "Class will start at 1:00pm"
 ---
