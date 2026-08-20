@@ -36,7 +36,7 @@ cat(dd[chunk_beg[1]:chunk_end[1]], sep="\n")
 cat(dd[chunk_beg[2]:chunk_end[2]], sep="\n")
 ```
 
-:::notes
+::: {.notes}
 This data comes from a paper on sharing services: sharing cars, sharing bikes, even sharing housing. It has a large number of variables, but for this module, we are only interested in some basic demographics.
 :::
 
@@ -46,7 +46,7 @@ This data comes from a paper on sharing services: sharing cars, sharing bikes, e
 cat(dd[chunk_beg[3]:chunk_end[3]], sep="\n")
 ```
 
-:::notes
+::: {.notes}
 The bulk of the data is a series of Likert scale items asking the degree of agreement or disagreement to various statements about sharing services.
 :::
 
@@ -56,7 +56,7 @@ The bulk of the data is a series of Likert scale items asking the degree of agre
 cat(dd[chunk_beg[4]:chunk_end[4]], sep="\n")
 ```
 
-:::notes
+::: {.notes}
 This is rare and greatly appreciated. You have information about the conditions under which you can use the data. This is a common open source license that allows you to use the dataset as long as you give appropriate credit.
 :::
 
@@ -78,7 +78,7 @@ cat(dd[chunk_beg[7]:chunk_end[7]], sep="\n")
 cat(dd[chunk_beg[8]:chunk_end[8]], sep="\n")
 ```
 
-:::notes
+::: {.notes}
 This is an Excel file with lots of columns. You will not be asked to analyze all 31 columns of data, just 3 related to basic demographics.
 :::
 
@@ -88,7 +88,7 @@ This is an Excel file with lots of columns. You will not be asked to analyze all
 cat(dd[chunk_beg[13]:chunk_end[13]], sep="\n")
 ```
 
-:::notes
+::: {.notes}
 This is the first demographic variable.
 :::
 
@@ -98,7 +98,7 @@ This is the first demographic variable.
 cat(dd[chunk_beg[14]:chunk_end[14]], sep="\n")
 ```
 
-:::notes
+::: {.notes}
 This is the second demographic variable.
 :::
 
@@ -108,7 +108,7 @@ This is the second demographic variable.
 cat(dd[chunk_beg[15]:chunk_end[15]], sep="\n")
 ```
 
-:::notes
+::: {.notes}
 This is the third demographic variable.
 :::
 
@@ -126,7 +126,7 @@ chunk_end <- c(h-1, length(template))
 cat(template[chunk_beg[1]:chunk_end[1]], sep="\n")
 ```
 
-:::notes
+::: {.notes}
 Here is a program template that illustrates how to calculate counts and percentages in R. You will make minor additions to this program in your programming assignment.
 
 The first few lines are the documentation header.
@@ -138,7 +138,7 @@ The first few lines are the documentation header.
 cat(template[chunk_beg[2]:chunk_end[2]], sep="\n")
 ```
 
-:::notes
+::: {.notes}
 Here is a bit of additional documentation.
 :::
 
@@ -148,7 +148,7 @@ Here is a bit of additional documentation.
 cat(template[chunk_beg[3]:chunk_end[3]], sep="\n")
 ```
 
-:::notes
+::: {.notes}
 Always load the tidyverse library. You also need the readxl library because the data is stored as an Excel file.
 :::
 
@@ -158,7 +158,7 @@ Always load the tidyverse library. You also need the readxl library because the 
 cat(template[chunk_beg[4]:chunk_end[4]], sep="\n")
 ```
 
-:::notes
+::: {.notes}
 While you might want to see information about all 31 columns of data, I can't display them all on a single slide. Column 1 is the id and columns 5, 6, and 7 are demographic variables.
 :::
 
@@ -168,7 +168,7 @@ While you might want to see information about all 31 columns of data, I can't di
 cat(template[chunk_beg[5]:chunk_end[5]], sep="\n")
 ```
 
-:::notes
+::: {.notes}
 Here are counts and percentages for the first demographic variable. There are several alternative methods to get counts and percentages. The table function and the count function are both good alternatives.
 
 Note the interpretation. You should always provide an interpretation.

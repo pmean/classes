@@ -17,7 +17,7 @@ editor: source
     -   Ricardo Moniz
     -   Suman Sahil
 
-:::notes
+::: {.notes}
 There are three sections in the class. 
 
 Section 0001 is a synchronous online class with lectures delivered via Zoom on Tuesdays from 1:00pm to 3:45pm. Students in this section are required to attend that class. If you are in this section, you must show up on Tuesday afternoons. Attendance will be taken. Two or more unexcused absences will require a discussion with the instructor and remedial actions may need to be taken.
@@ -36,7 +36,7 @@ All three sections are combined in Canvas to a single site. This makes it easier
 -   Optional review session on Zoom on Fridays
 -   Complete all assignments by Monday at 11:59pm
 
-:::notes
+::: {.notes}
 I'll record the Tuesday 1pm meeting and make it available on Canvas by noon on Wednesday for the asynchronous students.
 
 Everyone should also read the appropriate Chapter from the book.
@@ -57,12 +57,111 @@ The homework assignments, quizzes, and discussion boards are due by 11:59pm on M
     -   or both
 -   Failure to attend is a problem
 
-:::notes
+::: {.notes}
 Attendance at the Tuesday Zoom sessions is a requirement for all synchronous students. You can also watch part or all of the recordings of the Tuesday Zoom sessions if you like.
 
 Asynchronous students have an option that synchronous students do not.
 
 For synchronous students to attend the Tuesday Zoom sessions is a problem. For asynchronous students, failure to either attend or watch the videos is a problem. If you have work commitments, health issues, or personal issues that prevent you from meeting the attendance requirements, you must contact us, preferably beforehand.
+:::
+
+## Encouraging class participation
+
+-   Synchround students have more opportunities
+    -   Raised hand icon
+    -   Chat window
+    -   Just unmute yourself
+
+::: {.notes}
+If I had a fault as a teacher, it would be that I talk too much. Not that the stuff I talk about is bad, but it's difficult to get good student interactions.
+
+In a zoom session, it's hard. But certainly those of you who are watching asynchronously to my videos, it's even more difficult. We certainly encourage you to use the discussion boards and there's some interaction there.
+
+But those of you who are live, you have a special opportunity. Anytime something's confusing, raise your hand. There's a little icon where you can raise your hand.
+
+Or post something in the chat box. I have the chat window open.
+
+Or just unmute yourself and start talking.
+
+Uh, I will tell you right now that, uh, a lot of students are bashful and they think, uh, no one cares about my question. And that's almost certainly false, because when someone asks a question, it's usually 2 or 3 other people who have the exact same question, but they haven't figured out how to articulate it, or they're even shyer than you are.
+
+So please, please, if you are here, live, um, ask questions.
+
+Those of you who are listening asynchronously, you can't ask questions during the video, but you can show up at the help sessions on Friday morning.
+
+You can post questions on the discussion board. We always ask for feedback on the discussion board
+
+Or just drop an email if you need to ask a question. I am happy and Suman is happy to meet with you at any time to help you with this class.
+
+My favorite part of the job is interacting with students and you don't get to do that in an asynchronous online class very much.
+
+Even with, uh, those people listening live with zoom--Zoom's different.
+
+When you are talking on Zoom, you can't look around the room, you can't, walk around, you can't make grand gestures. That doesn't work. What's worse is that you miss a lot of the capabilities of reading the room--noticing when students are confused. 
+
+So don't be afraid to ask for help. I hate to say this. The students that I like the best are the ones that struggle the most. Because I get to know them. And I get to interact with them. And it's fun. Helping people through something difficult is something I really enjoy.
+
+The students who are just breezing the class never have any problems, I'm glad for them. But they are total strangers to me.
+
+Okay. So do not be bashful about asking for help.
+:::
+
+## Don't be scared about R
+
+-   Almost all computer assignments will use the R programming language
+    -   Early examples will be "sppon-fed"
+    -   R is easier than you might think.
+-   Don't expect miracles by the end of this class
+    -   You will not be an expert with R
+    -   You will be more comfortable with R
+-   What about MEDB 5507, Introduction to R?
+    -   That class places emphasis on data management
+    -   This class places emphasis on data analysis
+
+::: {.notes}
+
+I've always get comments about being a little scared about having to run this R program. I've never programed an hour before. 
+
+Suman and I will make it easy.
+The first time we tried this I was a little bit worried, but it went smoothly. It is not that hard to learn how to program in R.
+
+The first few assignments go very, very slowly and there's very little that you have to do.
+
+You just  make some minor modifications to an existing program.
+
+Gradually, you will start to make bigger modifications.
+
+At the end of the class, you will not be an expert in R, but you will be more comfortable with it and be able to learn more on your own.
+:::
+
+## Your book
+
+![]((../images/field-book-cover.png)
+
+::: {.notes}
+There's a book that we have, written by Andy Field, a real nice guy. The book is written a little bit flippantly and that turned some people off.
+
+I've been told by people who know more than I do that when you write really outrageously and come up with all these bizarre scenarios that it makes things more memorable. Andy Field does outrageous better than anyone.
+
+It's a bit unfortunate because this book shows all the examples in SPSS. There is an earlier edition that uses R. You are welcome to use that book instead. It is organized a bit differently and misses a few topics, but the book is still good enough.
+
+Either edition is very good. I can't take credit for this. The book was the one recommended by the person who used to teach this class, Monica Gaddis.
+
+She liked it because it is very comprehensive. It doesn't cover everything, but it comes a lot closer than just about any other book I have seen. Monica described it as the only statistics book you'll ever need.
+
+And she's not too far from the truth on that. If you are doing something statistical, you're likely to find it in this book.
+
+Now there will be times when I disagree with how Andy Field presents things. He loves effect sizes for example and I hate them. That's okay. His voice is often more mainstream than mine. 
+
+I am not bashful about expressing my opinions, but I will let you know when other experts, especially Andy Field, have a different opinion.
+:::
+
+## Stop the presses!!!
+
+![](../images/field-book-cover-r.png "Front cover of new Andy Field textbook")
+
+::: {.notes}
+Stop the presses! When I was getting an image file of the book cover for Andy Field's book, I noticed that there is a brand new version that just came out in July of this year. If you have not yet bought the SPSS version of Andy Field's book, buy this one instead. I don't have a copy yet myself, but it looks like it will be a winner.
 :::
 
 ## Assignments
@@ -72,14 +171,14 @@ For synchronous students to attend the Tuesday Zoom sessions is a problem. For a
 -   Due Mondays at 11:59pm
 -   Policy on Failure to submit on time is a problem
 
-:::notes
+::: {.notes}
 Assignments will include homework submissions, quizzes, and discussion boards
 :::
 
 ## This class is in transition
 
 -   Taught for many years by Dr. Monica Gaddis
--   My second time teaching this class
+-   My third time teaching this class
 -   Major changes
     -   Software agnosticism
         -   In class switch from SPSS to R
@@ -87,7 +186,7 @@ Assignments will include homework submissions, quizzes, and discussion boards
     -   Discussion boards ask for feedback
     -   Proposed exam questions
   
-:::notes
+::: {.notes}
 I'm excited at the opportunity to teach this class, but I am also a bit scared. The topics in this class are relatively easy, but teaching them well is not so easy.
 
 This class has been taught for many years by Dr. Monica Gaddis. She is an excellent teacher, but she retired this summer. I have a lot of respect for her and have kept a lot of her material. There are some important differences, however. I am not a wall flower, and I have a few ideas that might supplement an already good class. 
@@ -120,7 +219,7 @@ There's a risk in making changes. It may create some inconsistencies between wha
 -   Python, SAS, Stata would have also been good choices
     -   You are welcome to use these if you like
     
-:::notes
+::: {.notes}
 Last year, I taught the class using SPSS and it was an okay choice. But some of the faculty raised concerns about leaving students ill prepared if they needed to do data analysis for a capstone project or thesis. SPSS is okay for introductory statistics, but falls short for the sort of work needed in a thesis.
 
 While some jobs out in the real world will use SPSS, far more will use R. 
@@ -141,7 +240,7 @@ If you want to use something other than R, go for it! You'll have to do a bit of
 -   SLO1
     -   The graduate will be able to use statistics to analyze and interpret data.  They will understand the fundamentals of the field in the context of recognizing the effective use of data or information for the specific discipline(s). They will select and apply appropiate statistical procedures to the information. They will be able to analyze and accurately interpret of statistical result.
 
-:::notes
+::: {.notes}
 There are five student learning objectives that our department has committed to. We need to demonstrate to the university that anyone who graduates from our department has a particular set of capabilities. This class is one of several that provides you with these capabilities. 
 
 The first student learning objective asks that you are capable of using statistics to analyze and interpret data. This is not the only class where you will develop this capability, of course. The key elements are selecting the statistical procedures, running those procedures, and writing about the statistical procedures, and the ability to run those procedures.
@@ -154,7 +253,7 @@ Note: the Student Learning Outcomes spreadsheet has three entries: Select, Write
 -   SLO2
     -   The graduate will be able to design a testable research question or hypothesis. They will have adequate background knowledge about biological, biomedical, or population health contexts and problems including common research problems in order to generate a research question or hypothesis. They will be able to relate problems within and across levels of areas of the spectrum to bridge disciplines.
 
-:::notes
+::: {.notes}
 The second student learning objective is the ability to design a testable research question or hypothesis.
 
 Note: the Student Learning Outcomes spreadsheet has one entry: Hypothesis.
@@ -165,7 +264,7 @@ Note: the Student Learning Outcomes spreadsheet has one entry: Hypothesis.
 -   SLO5
     -   The graduate will be able to communicate scientific outcomes. This includes the ability to convey scientific methods and statistical findings, effectively field questions in an oral presentation format as well as in the preparation of thesis or capstone manuscripts.
 
-:::notes
+::: {.notes}
 The third and fourth student learning objectives are developed in other courses. The fifth (and last) learning objective is the ability to convey statistical findings and answer question in an oral presentation. This includes the ability to present your findings in a visual format.
 
 Note: the Student Learning Outcomes spreadsheet has two separate entries: Results Visual and Results Write-up

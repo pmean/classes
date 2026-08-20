@@ -38,7 +38,7 @@ plot(bar1)
 #ggsave("../images/illustrate-percentiles.png")
 ```
 
-::: notes
+::: {.notes}
 *Speaker notes*
 
 I want to mention percentiles briefly. A percentile is a value that splits the data so that a certain percentage is smaller and a certain percentage is larger.
@@ -60,7 +60,7 @@ I use a few weasel words like "roughly" and "about" because you can't always get
         -   No: Go halfway between
         -   Special cases: p(n+1) \< 1 or \> n
 
-::: notes
+::: {.notes}
 *Speaker notes*
 
 There are close to a dozen different ways to compute a percentile, but the differences between the values selected are small and not worth fussing about.
@@ -83,7 +83,7 @@ Likewise if p(n+1) is 0.8, you can't go halfway between the zeroth and first obs
     -   For 4th percentile, p(n+1)=1.6 -\> halfway between two smallest values
     -   For 2nd percentile, p(n+1)=0.8 -\> smallest value
 
-::: notes
+::: {.notes}
 *Speaker notes*
 
 Suppose you have 39 observations. For the 5th percentile or the 0.05 quantile, p(n+1) equals 2. Lucky you. The second smallest observation is the 5th percentile. For the 4th percentile or the 0.04 quantile, you get p(n+1) equal to 1.6. Go halfway between 1, the smallest value, and 2, the second smallest value.
@@ -101,7 +101,7 @@ The 2nd percentile represents one of the special cases. You calculate p(n+1) and
     -   Median/50th percentiles: $Q_2$ or $X_{0.5}$
     -   75th percentile: $Q_3,\ X_{0.75}$ or upper quartile
 
-::: notes
+::: {.notes}
 *Speaker notes*
 
 A percentile always refers to a percentage. So it has to be between 0% and 100%. Sometimes, you may see references to a quantile. A quantile is a percentile, but is expressed as a proportion rather than a percent. A quantile goes from 0.0 to 1.0. The 90th percentile and the 0.90 quantile are the same thing.
@@ -192,7 +192,7 @@ m3
 -   Quality control
     -   Almost all products must meet a minimum standard
 
-::: notes
+::: {.notes}
 *Speaker notes*
 
 There are many reasons why you might be interested in percentiles rather than the mean or median. Actually, the median is a percentile, the 50th percentile, but I want to talk about percentiles other than 50%.

@@ -44,7 +44,7 @@ Sys.Date()
 -   whas0: Original data from whas500.dat
 -   whas1: Convert dates, add factors, drop last column
 -   whas2: Convert days to years
--   whas1: Create age groups
+-   whas3: Create age groups
 -   whas4: Compute age in decades rather than years
 
 ## Read Worcester Heart Attack Study

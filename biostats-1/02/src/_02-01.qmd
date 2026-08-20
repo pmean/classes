@@ -25,7 +25,7 @@ time of all your employees to
 quality control.
 ```
 
-::: notes
+::: {.notes}
 *Speaker notes*
 
 Here's an exercise I want you to do. Just count the number of occurrences of the letter "e". Once you have your answer, type it in the chat box.
@@ -43,7 +43,7 @@ Did you count the e's in the quotes itself or also on the slide instructions and
 
 ![Image of a haemocytometer](../images/sperm-count.png)
 
-::: notes
+::: {.notes}
 *Speaker notes*
 
 This image is take from the WHO laboratory manual for the examination and processing of human semen, published in 2021. It shows a haemocytometer, an instrument used for counting the number of cells. To get a proper count, you need to include any cells inside the four by four grid of large squares in the middle of this micrograph. But what does "inside" mean? Should you count only those cells entirely inside the four by four grid. Or should you include cells that are partially inside the grid?
@@ -64,7 +64,7 @@ That's not the only way you can do this, but just make sure that whatever conven
         -   Body temperature
         -   Blood glucose
 
-::: notes
+::: {.notes}
 *Speaker notes*
 
 Statisticians are the only ones who openly admit the possibility of error. In fact, we obsess about error.
@@ -84,7 +84,7 @@ In medicine, there are lots of physical measurements that have measurement error
 -   Quality control
 -   Training
 
-::: notes
+::: {.notes}
 *Speaker notes*
 
 While you can't prevent measurement error, you can reduce it. Measurement that is done with medical equipment requires regular calibration. By the way, don't run all your control samples in the morning, re-calibrate during lunch, and the run all your treatment samples in the afternoon. This sounds obvious, but you'd be surprised how often researchers screw this up.
@@ -113,7 +113,7 @@ Training of the operators of an medical equipment can also help reduce measureme
     -   Many others
 -   Re-establishing validity
 
-::: notes
+::: {.notes}
 *Speaker notes*
 
 Statisticians also worry about errors in validity. These are errors that occur because you are measuring something different that what you think you are measuring.
@@ -143,7 +143,7 @@ If you are using a construct in a markedly different patient population, with di
     -   Inter-rater
     -   Inter-method
 
-::: notes
+::: {.notes}
 *Speaker notes*
 
 You might see errors associated with the use of unreliable measurements. Often the term "repeatable" is used interchangably. Some researchers make a distinction between these terms, but I don't. I do, however, draw a distinction between reliability and reproducibility. Reproducibility is a demonstration that two different researchers agree when given access to the same dataset and the same software code.
@@ -159,7 +159,7 @@ A measurement taken twice allows you to assess test-retest reliability. The time
 -   Easiest to quantify
 -   Less important in era of big data
 
-::: notes
+::: {.notes}
 *Speaker notes*
 
 Although I plan to cover it later in more detail, I have to mention another source of errors. The process of collecting a random sample, even one that is done perfectly, involves error, because a sample is an imperfect representation of the population that the sample is being drawn from.
