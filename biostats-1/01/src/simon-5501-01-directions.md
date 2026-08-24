@@ -6,7 +6,7 @@ This programming assignment was written by Steve Simon on 2024-08-18 and is plac
 
 ## Setup
 
--   Download the [template][tem]
+-   Download the [demo program][tem]
     -   Store it in your src folder
 -   Modify the file name
     -   Use your last name instead of "simon"
@@ -16,7 +16,7 @@ This programming assignment was written by Steve Simon on 2024-08-18 and is plac
 -   Download the [data file][dat]
     -   Store it in your data folder
 
-[tem]: https://github.com/pmean/classes/blob/master/biostats-1/01/src/simon-5501-01-template.qmd
+[tem]: https://github.com/pmean/classes/blob/master/biostats-1/01/src/simon-5501-01-demo.qmd
 [dat]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.csv
     
 ## Interpret the output

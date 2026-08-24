@@ -17,7 +17,7 @@ This is the correct program for the Fall 2026 semester.
 
 There is one data file used in this program
 
--   albuquerque-housing, [Comma delimited file][ref-alb-dat], [dictionary][ref-alb-yaml]
+-   albuquerque-housing, [Comma delimited file][ref-alb-data], [dictionary][ref-alb-yaml]
 
 [ref-alb-data]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.csv
 [ref-alb-yaml]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.yaml
@@ -31,6 +31,7 @@ This code is placed in the public domain.
 #| message: false
 #| warning: false
 
+library(gt)
 library(tidyverse)
 
 R.version.string
@@ -53,7 +54,7 @@ The [Sys.Date function][ref-date] lists the date that the output was created.
 [ref-library]: https://r-pkgs.org/introduction.html
 [ref-tidyverse]: https://tidyverse.org/
 [ref-version]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/Version.html
-[ref-date]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/Version.html
+[ref-date]: https://stat.ethz.ch/R-manual/R-devel/RHOME/library/base/html/Sys.time.html
 
 ## Read the data and view a brief summary
 
@@ -70,11 +71,11 @@ glimpse(alb)
 
 #### Comment on the code
 
-The [read_csv function][ref-read-csv] is part of the [readr library][ref-readr] which is included in tidyverse. to read the data. The [glimpse function][ref-glimpse] will produce a brief summary.
+The [read_csv function][ref-read-csv] is part of the [readr library][ref-readr] which is included in tidyverse. to read the data. The [glimpse function][ref-glimpse] will produce a brief summary of a data frame or tibble.
 
 [ref-read-csv]: https://readr.tidyverse.org/reference/read_delim.html
 [ref-readr]: https://readr.tidyverse.org/index.html
-[ref-glimpse]: https://tidyverse.org/
+[ref-glimpse]: https://dplyr.tidyverse.org/reference/glimpse.html
 
 ## Calculate the average price
 
@@ -82,18 +83,55 @@ The [read_csv function][ref-read-csv] is part of the [readr library][ref-readr] 
 #| label: mean-price
 
 alb |>
-  summarize(price_mean=mean(price)) |>
-  gt()
+  summarize(price_mean=mean(price))
 ```
 
-The summarize function computes a variety of statistics. By default, the statistics are computed for all observations in the dataset.
-## Summarize price
+#### Comment on the code
+
+The [summarize function][ref-summarize] computes a variety of statistics. By default, the statistics are computed for all observations in the dataset.
+
+[ref-summarize]: https://dplyr.tidyverse.org/reference/summarise.html
+
+## Interpretation of the output
 
 The average price of a home, 106 thousand dollars, is quite low because the data comes from 1993.
 
 ## Summarize sqft
 
+```{r}
+#| label: mean-sqft
+
+alb |>
+  summarize(sqft_mean=mean(sqft))
+```
+
+## Interpretation of the output
+
+Place your interpretation here. Your interpretation here and below should mention the units of measurement. It should also comment on the size of the mean. Round the mean to two or three significant digits. Tell your audieice if the mean seems reasonable or if it appears to be much lower/higher than you might have expected. Use your judgment here, but even if I disagree when you describe a mean as "reasonable" or "low" or "high", I will not deduct any points.  The only time you will lose points is if you leave out the interpretation.
+
 ## Summarize age
 
+```{r}
+#| label: mean-age
+
+alb |>
+  summarize(age_mean=mean(age))
+```
+
+## Interpretation of the output
+
+Place your interpretation here.
+
 ## Summarize features
+
+```{r}
+#| label: mean-features
+
+alb |>
+  summarize(features_mean=mean(features))
+```
+
+## Interpretation of the output
+
+Place your interpretation here.
 
