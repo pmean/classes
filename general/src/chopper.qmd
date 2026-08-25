@@ -182,8 +182,8 @@ partition_qmd <- function(qmd_name) {
   # surround_lines("^## ") |>
   create_sections("## ", 15) |>
   add_front("````\n") |>
-  add_rear("\n````") |>
-  add_headers(qmd_name)
+  add_rear("\n````") # |>
+  # add_headers(qmd_name)
 }
 ```
 

@@ -7,8 +7,6 @@ format:
 date: 2024-08-18
 ---
 
-# Start part 1 ----------------------------------------------------------------
-
 ## File details
 
 This program was written by Steve Simon on 2025-02-23 and is placed in the public domain. You can use this program any way you please.
@@ -69,7 +67,7 @@ alb <- read_csv(
 glimpse(alb)
 ```
 
-#### Comment on the code
+#### Comments on the code
 
 The [read_csv function][ref-read-csv] is part of the [readr library][ref-readr] which is included in tidyverse. to read the data. The [glimpse function][ref-glimpse] will produce a brief summary of a data frame or tibble.
 
@@ -86,13 +84,14 @@ alb |>
   summarize(price_mean=mean(price))
 ```
 
-#### Comment on the code
+#### Comments on the code
 
-The [summarize function][ref-summarize] computes a variety of statistics. By default, the statistics are computed for all observations in the dataset.
+The [summarize function][ref-summarize] computes a variety of statistics. By default, the statistics are computed for all observations in the dataset. The [mean function][ref-mean] computes the arithmetic mean or the average.
 
+[ref-mean]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/mean.html
 [ref-summarize]: https://dplyr.tidyverse.org/reference/summarise.html
 
-## Interpretation of the output
+#### Interpretation of the output
 
 The average price of a home, 106 thousand dollars, is quite low because the data comes from 1993.
 
@@ -105,7 +104,7 @@ alb |>
   summarize(sqft_mean=mean(sqft))
 ```
 
-## Interpretation of the output
+#### Interpretation of the output
 
 Place your interpretation here. Your interpretation here and below should mention the units of measurement. It should also comment on the size of the mean. Round the mean to two or three significant digits. Tell your audieice if the mean seems reasonable or if it appears to be much lower/higher than you might have expected. Use your judgment here, but even if I disagree when you describe a mean as "reasonable" or "low" or "high", I will not deduct any points.  The only time you will lose points is if you leave out the interpretation.
 
@@ -115,10 +114,10 @@ Place your interpretation here. Your interpretation here and below should mentio
 #| label: mean-age
 
 alb |>
-  summarize(age_mean=mean(age))
+  summarize(age_mean=mean(age, na.rm=TRUE))
 ```
 
-## Interpretation of the output
+#### Interpretation of the output
 
 Place your interpretation here.
 
@@ -131,7 +130,7 @@ alb |>
   summarize(features_mean=mean(features))
 ```
 
-## Interpretation of the output
+#### Interpretation of the output
 
 Place your interpretation here.
 

@@ -7,11 +7,18 @@ format:
 editor: source
 ---
 
-## Scales of measurement
+## Scales of measurement, 1
 
 -   Dichotomy
     -   Continuous
     -   Categorical
+    
+::: notes
+There is a basic dichotomy of data types: categorical and continuous. Now I have said many many times before that I hate dichotomies. Nevertheless, they are useful.
+:::
+
+## Scales of measurement, 2
+
 -   Stevens scales of measurement (controversial!)
     -   Nominal
     -   Ordinal
@@ -21,8 +28,6 @@ editor: source
     -   Mean of ordinal data is meaningless
 
 ::: notes
-There is a basic dichotomy of data types: categorical and continuous. Now I have said many many times before that I hate dichotomies. Nevertheless, they are useful.
-
 A psychologist, Stanley Smith Stevens divided the entire universe of data into four categories: nominal, ordinal, interval, ratio. I won't review the definitions for all of these, but ordinal data is categorical data where there is a natural ordering of categories. An important limitation to ordinal data, but where the spacing between successive units is not consistent.
 
 The belief among many (but not all) researchers, is that certain statistics are inappropriate for certain measurement scales. In particular, these researchers are very fussy about ordinal data.
