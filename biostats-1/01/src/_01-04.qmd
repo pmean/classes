@@ -13,7 +13,7 @@ editor: source
     -   Continuous
     -   Categorical
     
-::: notes
+::: {.notes}
 There is a basic dichotomy of data types: categorical and continuous. Now I have said many many times before that I hate dichotomies. Nevertheless, they are useful.
 :::
 
@@ -27,7 +27,7 @@ There is a basic dichotomy of data types: categorical and continuous. Now I have
 -   Addition/subtraction not allowed for ordinal data
     -   Mean of ordinal data is meaningless
 
-::: notes
+::: {.notes}
 A psychologist, Stanley Smith Stevens divided the entire universe of data into four categories: nominal, ordinal, interval, ratio. I won't review the definitions for all of these, but ordinal data is categorical data where there is a natural ordering of categories. An important limitation to ordinal data, but where the spacing between successive units is not consistent.
 
 The belief among many (but not all) researchers, is that certain statistics are inappropriate for certain measurement scales. In particular, these researchers are very fussy about ordinal data.
@@ -43,9 +43,7 @@ The belief among many (but not all) researchers, is that certain statistics are 
         -   4 = Agree
         -   5 = Strongly agree
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 An example of ordinal data is the Likert scale. This takes various forms, but often it is used with group of questions on a questionnaire that reads something like
 
 "Do you agree or disagree with the following statements"
@@ -73,9 +71,7 @@ If it only jumps to 3.6, then I have still done well, but not as much as that ju
 -   D = 1
 -   F = 0
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 Another example of ordinal data is grades assigned to students. Now everyone in this class is getting an A, but in other classes I teach I might assign different grades. You can attach a number to each of these grades, 4 for A, 3 for B, 2 for C, 1 for D, and 0 for F.
 
 These numbers seem to imply that a student with two B's is as smart as a student with an A and a C.

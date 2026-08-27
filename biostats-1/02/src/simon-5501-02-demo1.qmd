@@ -1,0 +1,106 @@
+---
+title: "Counts and percentages"
+format: 
+  html:
+    slide-number: true
+    embed-resources: true
+editor: source
+execute:
+  echo: true
+  message: false
+  warning: false
+---
+
+## File details source
+
+This program uses data from a study of sharing services (like sharing an automobile) and produces counts and percentages for a few demographic variables. There is a [data dictionary][dd] that provides more details about the data. 
+
+[dd]: https://github.com/pmean/datasets/blob/master/sharing.yaml
+
+This code is placed in the public domain.
+
+## Libraries
+
+Here are the libraries you need for this program.
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(readxl)
+library(tidyverse)
+
+R.version.string
+Sys.Date()
+```
+
+#### Comments on the code
+
+The [readxl library][ref-readxl] was developed by the tidyverse programming team, but it is not included in the tidyverse library. It does what the name implies, by providing functions to read Microsoft Excel files.
+
+[ref-readxl]: https://readxl.tidyverse.org/
+
+## Reading the data
+
+```{r}
+#| label: read
+
+fn <- "../data/sharing.xlsx"
+sharing <- read_excel(fn)
+
+glimpse(sharing)
+```
+
+#### Comments on the code
+
+The [read_excel function][ref-read-excel] is one of several functions in the readxl library that can import data from an Excel file. There are a variety of arguments in the read_excel function that control what is imported, but the defaults work just fine here.
+
+[ref-read-excel]: https://readxl.tidyverse.org/reference/read_excel.html
+
+## Calculate counts and percentages for age group
+
+```{r}
+#| label: count-age-groups
+
+sharing |>
+  count(age) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total)
+```
+
+#### Comments on the code
+
+The [count function][ref-count] is part of the [dplyr library][ref-dplyr], which is included with tidyverse. It produces a summary table for a categorical variable with the counts associated with each category. The counts are stored in a variable named The [summarize function][ref-summarize] creates a new variable functions of existing variables. The first summarize function creates a variable total which is the sum of the individual counts. The second summarize function calculates a percentage. There is an identical function, summarise, that uses the British spelling.
+
+[ref-count]: https://dplyr.tidyverse.org/reference/count.html
+[ref-dplyr]: https://dplyr.tidyverse.org
+[ref-summarize]: https://dplyr.tidyverse.org/reference/summarise.html
+
+#### Interpretation of the output
+
+The survey respondents as a whole were quite young. About half of the survey respondents were 18 to 25 years old. Only 3% were over 60. Six ages were missing.
+
+## Calculate counts and percentages for gender
+
+Copy the code from above and make modifications to the label and the variable names to calculate means and percentages for gender.
+
+#### Interpretation of the output
+
+Place your interpretations here. Round the percentages and replace them with words like "more than half", "about one third", or "almost all" as appropriate. Do not feel the need to interpret every single count or percentage.
+
+## Calculate counts and percentages for employment_status
+
+Copy the code from above and make modifications.
+
+#### Interpretation of the output
+
+Place your interpretations here.
+
+## Calculate counts and percentages for wise_move 
+
+Copy the code from above and make modifications.
+
+#### Interpretation of the output
+
+Place your interpretations here.

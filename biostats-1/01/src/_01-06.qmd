@@ -12,9 +12,7 @@ editor: source
 -   Range of plausible values
     -   Tries to quantify uncertainty associated with the sampling process.
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 We statisticians have a habit of hedging our bets. We always insert qualifiers into our reports, warn about all sorts of assumptions, and never admit to anything more extreme than probable. There's a famous saying: "Statistics means never having to say you're certain."
 
 We qualify our statements, of course, because we are always dealing with imperfect information. In particular, we are often asked to make statements about a population (a large group of subjects) using information from a sample (a small, but carefully selected subset of this population). No matter how carefully this sample is selected to be a fair and unbiased representation of the population, relying on information from a sample will always lead to some level of uncertainty.
@@ -38,8 +36,8 @@ If you repeatedly sampled from the same population, then 95% (or 90% or 99%) of 
     -   95% CI: -5.5 to 7.5 mm
     -   Lokken P, Straumsheim PA, Tveiten D, Skjelbred P, Borchgrevink CF. Effect of homoeopathy on pain and other events after acute trauma: placebo controlled trial with bilateral oral surgery BMJ. 1995;310(6992):1439-1442.
 
-::: notes
-*Speaker notes*
+::: {.notes}
+You can find this paper at
 
 http://www.bmj.com/content/310/6992/1439.full
 
@@ -54,9 +52,7 @@ Now, you can't drive a truck through an interval that goes from -5.5 to 7.5 mm, 
 
 ![Interval that contains the null value](../images/ci01.gif){#fig-ci01 fig-align="left"}
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 When you see a confidence interval in a published medical report, you should look for two things. First, does the interval contain a value that implies no change or no effect? For example, with a confidence interval for a difference look to see whether that interval includes zero. With a confidence interval for a ratio, look to see whether that interval contains one.
 
 Here's an example of a confidence interval that contains the null value. This interval implies no statistically significant change.
@@ -66,9 +62,7 @@ Here's an example of a confidence interval that contains the null value. This in
 
 ![Interval entirely above the null value](../images/ci02.gif){#fig-ci02 fig-align="left"}
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 Here's an example of a confidence interval that excludes the null value. If we assume that larger implies better, then the interval would imply a statistically significant improvement.
 :::
 
@@ -76,9 +70,7 @@ Here's an example of a confidence interval that excludes the null value. If we a
 
 ![Interval entirely below the null value](../images/ci03.gif){#fig-ci03 fig-align="left"}
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 Here's a different example of a confidence interval that excludes the null value. This interval implies a statistically significant decline.
 :::
 
@@ -86,9 +78,7 @@ Here's a different example of a confidence interval that excludes the null value
 
 ![Interval entirely inside the range of clinical indifference](../images/ci04.gif){#fig-ci04 fig-align="left"}
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 You should also see whether the confidence interval lies partly or entirely within a range of clinical indifference. Clinical indifference represents values of such a trivial size that you would not want to change your current practice. For example, you would not recommend a special diet that showed a one year weight loss of only five pounds. You would not order a diagnostic test that had a predictive value of less than 50%.
 
 Clinical indifference is a medical judgment, and not a statistical judgment. It depends on your knowledge of the range of possible treatments, their costs, and their side effects. As statistician, I can only speculate on what a range of clinical indifference is. I do want to emphasize, however, that if a confidence interval is contained entirely within your range of clinical indifference, then you have clear and convincing evidence to keep doing things the same way.
@@ -98,9 +88,7 @@ Clinical indifference is a medical judgment, and not a statistical judgment. It 
 
 ![Interval partly inside/outside range of clinical indifference](../images/ci05.gif){#fig-ci05 fig-align="left"}
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 One the other hand, if part of the confidence interval lies outside the range of clinical indifference, then you should consider the possibility that the sample size is too small.
 
 The interval contains zero, so it is plausible to behave as if the difference in population means or proportions is zero. But the interval also contains values that are clinically important. So it is plausible to behave as if there is a clinically important difference in means. How can you have two such different interpretations being plausible at the same time? That's the definition of ambiguity. If you don't like it, get used to it. Statistics will often identify areas of ambiguity, which is a good thing, because it tells us to not act prematurely, but instead demand more data before you make a definitive decision.
@@ -117,9 +105,7 @@ A research paper computes a confidence interval for a relative risk of 0.82 to 3
 5.  The result is ambiguous.
 6.  I do not know the answer.
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 Let's go back to that question I posed earlier.
 
 A research paper computes a confidence interval for a relative risk of 0.82 to 3.94. What does this confidence interval tell you.
@@ -135,9 +121,7 @@ It's a terrible thing, but it happens all the time and it doesn't seem to bother
 
 ![Confidence interval entirely inside the range of clinical indifference](../images/ci06.gif){#fig-ci06 fig-align="left"}
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 Some studies have sample sizes that are so large that even trivial differences are declared statistically significant, especially in this era of big data. If your confidence interval excludes the null value but still lies entirely within the range of clinical indifference, then you have a result with statistical significance, but no practical significance.
 :::
 
@@ -145,9 +129,7 @@ Some studies have sample sizes that are so large that even trivial differences a
 
 ![Confidence interval entirely outside the range of clinical indifference](../images/ci07.gif){#fig-ci07 fig-align="left"}
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 Finally, if your confidence interval excludes the null value and lies outside the range of clinical indifference, then you have both statistical and practical significance.
 
 Let's talk about one more case. I don't have a picture, but imagine a confidence interval that is mostly in the white region, the region of clinical importance, but the lower limit stretches into the range of clinical indifference. It doesn't quite include the null value, but it comes within kissing distance. That's a result that achieves statistical significance, but it does not provide definitive proof of clinical importance. No one ever talks about this case, but they should. Your confidence interval indicates statistical significance, but just barely. So don't pretend that your results are the final word. You should not stop researching until you get a confidence interval that lies entirely inside or entirely outside the range of clinical indifference.
@@ -161,4 +143,6 @@ Let's talk about one more case. I don't have a picture, but imagine a confidence
         -   definitive negative result, or
         -   more research is needed
 
-
+::: {.notes}
+Add notes here.
+:::

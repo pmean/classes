@@ -1,5 +1,5 @@
 ---
-title: "Template for 5501-01 programming assignment"
+title: "simon-5501-01-demo"
 author: "Steve Simon"
 format: 
   html:
@@ -29,7 +29,6 @@ This code is placed in the public domain.
 #| message: false
 #| warning: false
 
-library(gt)
 library(tidyverse)
 
 R.version.string
@@ -69,7 +68,7 @@ glimpse(alb)
 
 #### Comments on the code
 
-The [read_csv function][ref-read-csv] is part of the [readr library][ref-readr] which is included in tidyverse. to read the data. The [glimpse function][ref-glimpse] will produce a brief summary of a data frame or tibble.
+The [read_csv function][ref-read-csv] is part of the [readr library][ref-readr] which is included in tidyverse. The col_names argument tells R whether the first line of the file lists the variable names. The col_types argument uses the letters "n" and "c" to tell R which variables are numeric variables and which are character (string) variables. The na argument tells R which code is used to represent missing values. The [glimpse function][ref-glimpse] will produce a brief summary of a data frame or tibble.
 
 [ref-read-csv]: https://readr.tidyverse.org/reference/read_delim.html
 [ref-readr]: https://readr.tidyverse.org/index.html
@@ -116,6 +115,10 @@ Place your interpretation here. Your interpretation here and below should mentio
 alb |>
   summarize(age_mean=mean(age, na.rm=TRUE))
 ```
+
+#### Comments on the code
+
+The default option in R is to designate a missing value for a mean (or any other simple descriptive statistic) when the the variable has one or more missing values. This is a perfectly logical approach. You may, however, be interested in what the mean would be if the missing values were removed from the variable. The na.rm argument tells R whether to exclude missing values or not before calculating the mean.
 
 #### Interpretation of the output
 

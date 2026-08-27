@@ -18,9 +18,7 @@ editor: source
     -   Diagnosis,
     -   Or some combination of the above.
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 A population is a group that you have an interest in. You want to get a better understanding of this group, so you conduct a research study and wish to generalize the results of that study to the population.
 
 In clinical research, a population is almost always a group of people. There are a few exceptions. Sometimes you want to characterize inanimate objects, such as a group of hospitals or a group of medical devices. But let's keep the focus on people for now.
@@ -32,9 +30,7 @@ A population of people is defined in terms of certain characteristics. Usually i
 
 All infants born in the state of Missouri during the 1995 calendar year who have one or more visits to the Emergency room during their first year of life.
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 Here is an example of a population. It has many of the characteristics described on the previous slide: demography (infants), geography (born in Missouri), time (born in calendar year 1995, during first year of life) and care requirements (one or more ER visits).
 
 Most times the population is so large that it is difficult to get data on all the individuals of that population.
@@ -49,9 +45,7 @@ Here, we actually did have access to the data on all 29,637 infants, but most ti
 -   Biased sample: Some people have a decreased probability of being in the sample.
     -   Always ask "who was left out?"
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 A sample is a subset of a population. Because that population of infants was so large, you decided to collect data on a smaller group, a sample of 100 infants, say.
 
 Statistics, according to one definition is the use of data from samples to make inferences about populations. That may be a bit too narrow a definition, but it does characterize quite a bit of what we statisticians do.
@@ -70,9 +64,7 @@ In contrast a biased sample is one where some people in the population have a de
 
 *Type your ideas in the chat box.*
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 Here is a scenario where a researcher selects a biased sample. I should note here that this is an example specific to the United States. In Italy, you might talk about a survey distributed to the scuola secondaria di secondo grado.
 
 STOP AND GET STUDENT RESPONSES
@@ -136,9 +128,7 @@ There are a variety of responses here. The sample does not include home schooled
     -   For regression models
         -   Trend, association
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 As a researcher, you should always think about your hypothesis in terms of population parameters, but your writing should use text. Translate the Greek letters to English.
 
 If you have a hypothesis that compares two groups, look for comparative words like "safer" or "more effective". If your hypothesis involves some type of regression model, you should consider terms like "trend" or "association".
@@ -156,9 +146,7 @@ If you have a hypothesis that compares two groups, look for comparative words li
 -   "... the objective of this 78-week randomised, placebo-controlled study was to determine whether treatment with nilvadipine sustained-release 8 mg, once a day, was effective and safe in slowing the rate of cognitive decline in patients with mild to moderate Alzheimer disease."
     -   Lawlor B, Segurado R, Kennelly S, et al. Nilvadipine in mild to moderate Alzheimer disease: A randomised controlled trial. PLoS Med. 2018; 15(9): e1002660. DOI: 10.1371/journal.pmed.1002660
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 Here's an example of a two group comparison. One group gets nilvadipine and the other group gets a placebo. Safety was measured as the proportion of patients who experienced an adverse event. The researchers also measured the proportion of patients who experienced a serious adverse event. So the Greek hypothesis would involve pi's.
 
 Effectiveness was measured using the Alzheimer's Disease Assessment Scale Cognitive Subscale-12 and the Clinical Dementia Rating Scale sum of boxes. Both of these outcome measurements are continuous, so the Greek hypothesis would involve mu's.
@@ -176,9 +164,7 @@ Effectiveness was measured using the Alzheimer's Disease Assessment Scale Cognit
 -   "... we investigated trends in BCC incidence over a span of 20 years and the associations between incident BCC and risk factors in a total population of 140,171 participants from 2 large US-based cohort studies: women in the Nurses' Health Study (NHS; 1986--2006) and men in the Health Professionals' Follow-up Study (HPFS; 1988--2006)."
     -   Wu S, Han J, Li WQ, Li T, Qureshi AA. Basal-cell carcinoma incidence and associated risk factors in U.S. women and men. Am J Epidemiol. 2013; 178(6): 890--897. DOI: 10.1093/aje/kwt073
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 This study used a regression model, a Cox regression model, to study trends and associations, so the Greek hypotheses would involve beta's.
 :::
 
@@ -204,9 +190,7 @@ This study used a regression model, a Cox regression model, to study trends and 
     -   Criticized for using a one-sided hypothesis
     -   Samet JM, Burke TA. Turning science into junk: the tobacco industry and passive smoking. Am J Public Health. 2001;91(11):1742--1744.
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 Available in [html format](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1446866/) or [PDF format](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1446866/pdf/0911742.pdf).
 
 Consider a study of the effects of second-hand smoke. These studies always use directional alternatives. From what we know about active cigarette smoking is that it increases the risk of cancer and cardiovascular disease. So there is no reason to expect that passive smoke exposure should be any different than active smoking. Maybe it is less toxic, because of dilution and because the smoking coming off a cigarette from one end is different than the smoke coming off the cigarette from the other end. Fair enough, but there is not reason to believe that things are so different that all of a sudden the smoke becomes protective.
@@ -249,9 +233,7 @@ As another aside, I was involved with prayer study. We planned this study using 
     -   Example involving drug approval: a Type I error is allowing an ineffective drug onto the market.
 -   $\alpha$ = P\[Type I error\]
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 In your research, you specify a null hypothesis (typically labeled H0) and an alternative hypothesis (typically labeled Ha, or sometimes H1). By tradition, the null hypothesis corresponds to no change. When you are using Statistics to decide between these two hypothesis, you have to allow for the possibility of error. Actually, if you are using any other procedure, you should still allow for the possibility of error, but we statisticians are the only ones honest enough to admit this.
 
 A Type I error is rejecting the null hypothesis when the null hypothesis is true.
@@ -272,9 +254,7 @@ Alpha is the probability of a Type I error, and alpha is a value that you can co
 -   $\beta$ = P\[Type II error\]
 -   Power = $1-\beta$
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 A Type II error is accepting the null hypothesis when the null hypothesis is false. You should always remember that it is impossible to prove a negative. Some statisticians will emphasize this fact by using the phrase "fail to reject the null hypothesis" in place of "accept the null hypothesis." The former phrase always strikes me as semantic overkill.
 
 Many studies have small sample sizes that make it difficult to reject the null hypothesis, even when there is a big change in the data. In these situations, a Type II error might be a possible explanation for the negative study results.
@@ -299,9 +279,7 @@ Power is defined as 1-beta. I will talk more about power in a little bit.
 -   Small p-value, reject $H_0$
 -   Large p-value, accept $H_0$
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 A p-value is a measure of how much evidence we have against the null hypothesis.
 
 The smaller the p-value, the more evidence we have against H0.
@@ -320,9 +298,7 @@ The type of hypothesis (right tailed, left tailed or two tailed) will determine 
     -   Small, lots of evidence against the null
     -   Large, little evidence against the null
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 There are two interpretations that I feel are more practical. You can think of the p-value as a measure of consistency between the data and the null hypothesis. A small value implies inconsistency. It is very unlikely that you will get a value like you've seen in your sample or a value more extreme under the assumption that the null hypothesis is true. So you should reject that assumption.
 
 On the other hand if the sample results or anything more extreme has a high probability under the assumption that the null hypothesis is true, then you should feel comfortable accepting that assumption.
@@ -340,9 +316,7 @@ If the p-value is small, you have lots of evidence against the null hypothesis. 
         -   P\[null\] is nonsensical
         -   $\mu$, $\pi$, or $\rho$ are unknown constants (no sampling error)
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 The p-value is a conditional probability, and you always need to be careful about conditional probabilities. It is a probability about a sample result given an assumption about the population result. It is not a probability about a population result given the sample result. There are two reasons for this.
 
 First, you can't reorder a conditional probability. The probability of A given B is almost never the same as the probability of B given A. The example I give for this is the probability of being happy given that you are rich. That's a pretty high number, I hope you'll agree. There are a few rich people who lead miserable lives, but from everything I've seen, most rich people are pretty darn happy. The reverse of this is the probability of being rich given that you are happy. That number is much smaller. Because although I believe that money can buy happiness, a lot of other things can also buy happiness just as well. It's not quite as easy to find happiness if you're poor, but somehow, a lot of poor people find a way to be happy anyway.
@@ -361,9 +335,7 @@ Only numbers computed from a sample (i.e., statistics) have sampling error.
     -   Narrow confidence interval
 -   Not very helpful for huge data sets
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 The p-value is not a measure for either hypothesis. It is always a measure against a particular hypothesis. Now when the p-value is small, you can make a strong statement. We have lots of evidence against the null hypothesis. That translates into lots of evidence in favor of the alternative hypothesis.
 
 When the p-value is large, however, you are in a quandary. Little or no evidence against the null hypothesis is not the same as lots of evidence for the null hypothesis.
@@ -388,9 +360,7 @@ A research paper computes a p-value of 0.45. How would you interpret this p-valu
 5.  More than one answer above is correct.
 6.  I do not know the answer.
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 Here's that pop quiz again. Take a look at it quickly. Note that the p-value is of evidence against the null hypothesis. So each of the first four responses is wrong.
 
 I wrote this question quickly, so shame, shame on me. But I've reproduced the example because it illustrates an important point.
@@ -400,9 +370,7 @@ I wrote this question quickly, so shame, shame on me. But I've reproduced the ex
 
 ![xkcd cartoon about jelly beans and cancer](../images/xkcd-jelly-beans.png){#fig-xkcd-jelly-beans fig-align="left"}
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 This cartoon is impossible to read, but you can find it on the Canvas site or in the readings. Here's a brief run down.
 
 In the first panel, a woman runs up to a man and shouts: Jelly beans cause acne!
@@ -453,9 +421,7 @@ If you are interested in a transcript and a detailed explanation, https://www.ex
     -   Primary versus secondary
     -   Published protocol
 
-::: notes
-*Speaker notes*
-
+::: {.notes}
 This is an example of p-hacking. You change the testing process to increase the probability of a Type I error (Rejecting the null hypothesis when the null hypothesis is true). This increases the chance of getting a positive result, which you may find desirable, but only by increasing the probability of a false positive result.
 
 Some examples of p-hacking. Run multiple tests on the same outcome measure. Start with the regular t-test, include the t-test that allows for unequal variances, and run two different non-parametric tests, the Wilcoxon-Mann-Whitney test and the sign test. Choose the test with the smallest p-value.
