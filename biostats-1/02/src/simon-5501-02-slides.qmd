@@ -17,7 +17,17 @@ editor: source
 ## Topics to be covered
 
 ```{r}
-# A small section of R code to kick start the params.
+# A small section of R code to kick 
+# start the params.
+
+# To print speaker notes, add
+#   ?print-pdf&showNotes=separate-page 
+# to the end of the URL. Then open the
+# print dialog box (ctrl-P) and choose
+#   Save as PDF 
+# for the printer. Other options, like
+# Microsoft Print to PDF do not seem 
+# to work.
 ```
 
 -   What you will learn

@@ -11,17 +11,17 @@ execute:
   warning: false
 ---
 
-## File details source
+## File details
 
 This program uses data from a study of sharing services (like sharing an automobile) and produces counts and percentages for a few demographic variables. There is a [data dictionary][dd] that provides more details about the data. 
 
 [dd]: https://github.com/pmean/datasets/blob/master/sharing.yaml
 
+This is the correct program for the Fall 2026 semester.
+
 This code is placed in the public domain.
 
 ## Libraries
-
-Here are the libraries you need for this program.
 
 ```{r}
 #| label: setup
@@ -83,7 +83,7 @@ The survey respondents as a whole were quite young. About half of the survey res
 
 ## Calculate counts and percentages for gender
 
-Copy the code from above and make modifications to the label and the variable names to calculate means and percentages for gender.
+Copy the code from above and make modifications to the label and the variable names to calculate counts and percentages for gender.
 
 #### Interpretation of the output
 

@@ -17,61 +17,81 @@ This program uses data from a fictional study of Legionnaires disease and produc
 
 [dd]: https://github.com/pmean/data/blob/main/files/legionnaires-disease.yaml
 
-## Libraries
+This is the correct program for the Fall 2026 semester.
 
-Here are the libraries you need for this program.
+This code is placed in the public domain.
+
+## Datasets used in this program
+
+-   ld: the raw data from legionnaires disease
+-   ld1: modify a variable name
+
+## Libraries
 
 ```{r setup}
 library(tidyverse)
+
+R.version.string
+Sys.Date()
 ```
 
 ## Reading the data
 
-Here is the code to read the data and show a glimpse. There are 31 columns total, but I am showing just a few of the columns here.
-
 ```{r read}
 fn <- "../data/legionnaires-disease.txt"
-ld_raw_data <- read_tsv(fn, col_types="cnn")
-glimpse(ld_raw_data)
+ld <- read_tsv(fn, col_types="cnn")
+glimpse(ld)
 ```
 
-## Rename, 1
+## Rename variables
+
+```{r rename}
+ld |>
+  rename(room_number=`Room Number`) 
+  rename_with(tolower) -> ld1
+glimpse(ld1)
+```
+
+#### Comments on the code
 
 Notice how R encloses the first variable name (Room Number) in back-quotes. This is needed when a variable includes an embedded blank. You should rename this variable at your first opportunity.
 
-```{r rename-1}
-names(ld_raw_data)[1] <- "Room_Number"
-glimpse(ld_raw_data)
-```
-
-## Rename, 2
-
 I find that many of the mistakes that I make are due to inconsistencies in how I name variables. Capitalization is one of the biggest problems. So I have gotten into the habit of converting variable names to all lower case. That way I don't have to worry about whether it is "Before" or "before". Here is the code to convert every capital letter to a lowercase letter.
 
-```{r rename-2}
-names(ld_raw_data) <- tolower(names(ld_raw_data))
-glimpse(ld_raw_data)
-```
+The [rename function][ref-rename] is part of the dplyr package and will change the name of a variable. The new name goes to the left of the equal sign and the old name goes to the right. The rename_with function, described on the same link as above, will rename multiple variables using a function. The [tolower function][ref-tolower] is part of base R and converts any uppercase letters to lowercase. 
+
+[ref-rename]: https://dplyr.tidyverse.org/reference/rename.html
+[ref-tolower]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/chartr.html
 
 ## Calculate means and standard deviations before remediation
 
 ```{r before-means}
-ld_raw_data |>
+ld |>
   summarize(
     before_mn=mean(before),
     before_sd=sd(before)) 
 ```
+
+#### Comments on the code
+
+The [sd function][ref-sd] is part of base R and computes a standard deviation. This standard deviation uses the traditional n-1 in the denominator. If you have mssing values, the default for sd is to calculate the standard deviation as missing. If you want to exclude missing values, add the argument na.rm=TRUE. 
+
+[ref-sd]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/sd.html
+
+#### Interpretation of the output
 
 The average colony count per cubic foot before remediation, 11.3, is quite large. The standard deviation, 2.8, represents a moderate amount of variation in this variable.
 
 ## Calculate means and standard deviations after remediation
 
 ```{r after-means}
-ld_raw_data |>
+ld |>
   summarize(
     after_mn=mean(after),
     after_sd=sd(after)) 
 ```
+
+#### Interpretation of the output
 
 The average colony count per cubic foot after remediation, 9.7, is still quite large. The standard deviation, 3.2, represents a moderate amount of variation in this variable and is roughly comparable to the variation before remediation.
 
@@ -80,28 +100,16 @@ The average colony count per cubic foot after remediation, 9.7, is still quite l
 You could also use "median(before)" and  "min(before)" and "max(before)" in the code below.
 
 ```{r before-quantiles}
-ld_raw_data |>
+ld |>
   summarize(
     before_median=quantile(before, probs=0.5),
     before_min=quantile(before, probs=0), 
     before_max=quantile(before, probs=1)) 
 ```
 
-The median colony count before remediation, 11.3, is roughly the same as the mean. The data ranges from 7.1 to 14.6 colonies per cubic centimeter, a fairly wide range.
+#### Comments on the code
 
-## Calculate median and range after intervention
-
-```{r after-quantiles}
-ld_raw_data |>
-  summarize(
-    after_q50=quantile(after, probs=0.5),
-    after_min=quantile(after, probs=0), 
-    after_max=quantile(after, probs=1)) 
-```
-
-The median colony count, 10.3, is slightly lower after remediation. The data range from 3.8 to 13.7 colonies per cubic centimeter and is about as wide as the range before remediation.
-
-## Additional comments
+The [quantile function][ref-quantile] is part of base R and compute a quantile between 0 and 1. When you uses the argument probs=0.5, you are computing the median. There is a median function in base R that you could have used instead. The extreme values of 0 and 1 represent the minimum and maximum. and you can use the min and max functions instead. All of these functions can use the na.rm argument to contorl what happens when there are missing values.
 
 The names that you choose for the left hand side of the equal sign are arbitrary. You should choose a descriptive name, but you have lots of options. A median of the before and after values could be called
 
@@ -110,12 +118,32 @@ The names that you choose for the left hand side of the equal sign are arbitrary
 -   Second_quartile_A, Second_quartile_B
 -   or many other reasonable choices.
 
-## Calculate a change score
 
-For data like this with two measurements before and after an intervention, you should compute a change score. The way the computations are done below, a positive value means a reduction in colony counts. Note that any time you make a major change in a dataset, you should save it with a different name. That makes it easier for you to back up if you end up going down a blind alley.
+[ref-quantile]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/quantile.html
 
-```{r}
-ld_raw_data |>
-  mutate(change=before-after) -> ld_change_scores
-glimpse(ld_change_scores)
+#### Interpretation of the output
+
+The median colony count before remediation, 11.3, is roughly the same as the mean. The data ranges from 7.1 to 14.6 colonies per cubic centimeter, a fairly wide range.
+
+## Calculate median and range after intervention
+
+```{r after-quantiles}
+ld |>
+  summarize(
+    after_q50=quantile(after, probs=0.5),
+    after_min=quantile(after, probs=0), 
+    after_max=quantile(after, probs=1)) 
 ```
+
+#### Comments on the code
+
+The names that you choose for the left hand side of the equal sign are arbitrary. You should choose a descriptive name, but you have lots of options. A median of the before and after values could be called
+
+-   Before_median, After_median
+-   Median0, Median1
+-   Second_quartile_A, Second_quartile_B
+-   or many other reasonable choices.
+
+#### Interpretation of the output
+
+The median colony count, 10.3, is slightly lower after remediation. The data range from 3.8 to 13.7 colonies per cubic centimeter and is about as wide as the range before remediation.

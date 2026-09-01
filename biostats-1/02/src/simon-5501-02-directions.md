@@ -7,18 +7,15 @@ format:
 date: 2024-08-18
 ---
 
-Before you start this assignment, download all the files listed on the
-Canvas page for this programming assignment.
+Before you start this assignment, download all the files listed on the Canvas page for this programming assignment. Store the dataset in your data folder and the program in your src folder. Rename the file to use your last name rather than my last name. Change the documentation to reflect the new date and the new programmer.
 
 ## Question #1
 
-Calculate the counts and percentages for gender in the sharing dataset.
-Interpret these values.
+Calculate the counts and percentages for gender in the sharing dataset. Interpret these values.
 
 ## Question #2
 
-Calculate the counts and percentages for employment_status in the 
-sharing dataset. Interpret these values.
+Calculate the counts and percentages for employment_status in the sharing dataset. Interpret these values.
 
 ## Your submission
 
@@ -32,10 +29,7 @@ sharing dataset. Interpret these values.
 
 ## If it doesn't work
 
-If your program has any errors or fails to produce the output that you
-desire and you can't resolve the problem,  upload the program file 
-along with the pdf file to help us figure out what went wrong. You 
-will get a chance to resubmit the assignment if needed.
+If your program has any errors or fails to produce the output that you desire and you can't resolve the problem,  upload the program file along with the pdf file to help us figure out what went wrong. You will get a chance to resubmit the assignment if needed.
 
 ## File details
 
