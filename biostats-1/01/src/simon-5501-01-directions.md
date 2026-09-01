@@ -6,18 +6,18 @@ This programming assignment was written by Steve Simon on 2024-08-18 and is plac
 
 ## Setup
 
--   Download the [demo program][tem]
+-   Download the [demo program][ref-demo]
     -   Store it in your src folder
 -   Modify the file name
     -   Use your last name instead of "simon"
 -   Modify the documentation header
     -   Add your name to the author field
     -   Optional: change the copyright statement
--   Download the [data file][dat]
+-   Download the [data file][ref-data]
     -   Store it in your data folder
 
-[tem]: https://github.com/pmean/classes/blob/master/biostats-1/01/src/simon-5501-01-demo.qmd
-[dat]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.csv
+[ref-demo]: https://github.com/pmean/classes/blob/master/biostats-1/01/src/simon-5501-01-demo.qmd
+[ref-data]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.csv
     
 ## Interpret the output
 
@@ -42,6 +42,6 @@ for the other three means. Be sure to
 
 ## If it doesn't work
 
-Please review the [suggestions if you encounter an error page][sim3].
+Please review the [suggestions if you encounter an error page][ref-suggestions].
 
-[sim3]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
+[ref-suggestions]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md

@@ -7,7 +7,26 @@ format:
 date: 2024-08-18
 ---
 
-Before you start this assignment, download all the files listed on the Canvas page for this programming assignment. Store the dataset in your data folder and the program in your src folder. Rename the file to use your last name rather than my last name. Change the documentation to reflect the new date and the new programmer.
+## File details
+
+This programming assignment was written by Steve Simon on 2024-08-27 and is placed in the public domain.
+
+## Setup
+
+-   Download the [first demo program][ref-demo]
+    -   Store it in your src folder
+-   Modify the file name
+    -   Use your last name instead of "simon"
+-   Modify the documentation header
+    -   Add your name to the author field
+    -   Optional: change the copyright statement
+-   Download the [data file][ref-data]
+    -   Store it in your data folder
+    -   Refer to the [data dictionary][ref-dict], if needed.
+
+[ref-demo]: https://github.com/pmean/classes/blob/master/biostats-1/02/src/simon-5501-02-demo1.qmd
+[ref-data]: https://github.com/pmean/data/blob/main/files/sharing.xlsx
+[ref-dict]: https://github.com/pmean/data/blob/main/files/sharing.yaml
 
 ## Question #1
 
@@ -15,7 +34,11 @@ Calculate the counts and percentages for gender in the sharing dataset. Interpre
 
 ## Question #2
 
-Calculate the counts and percentages for employment_status in the sharing dataset. Interpret these values.
+Calculate the counts and percentages for employment_status. Interpret these values.
+
+## Question #3.
+
+Calculate counts and percentages for wise_move. Interpret these values. 
 
 ## Your submission
 
@@ -29,8 +52,6 @@ Calculate the counts and percentages for employment_status in the sharing datase
 
 ## If it doesn't work
 
-If your program has any errors or fails to produce the output that you desire and you can't resolve the problem,  upload the program file along with the pdf file to help us figure out what went wrong. You will get a chance to resubmit the assignment if needed.
+Please review the [suggestions if you encounter an error page][ref-suggestions].
 
-## File details
-
-This file was created on 2024-08-27 and is placed in the public domain.
+[ref-suggestions]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
