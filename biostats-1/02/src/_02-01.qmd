@@ -26,8 +26,6 @@ quality control.
 ```
 
 ::: {.notes}
-*Speaker notes*
-
 Here's an exercise I want you to do. Just count the number of occurrences of the letter "e". Once you have your answer, type it in the chat box.
 
 PAUSE HERE.
@@ -44,8 +42,6 @@ Did you count the e's in the quotes itself or also on the slide instructions and
 ![Image of a haemocytometer](../images/sperm-count.png)
 
 ::: {.notes}
-*Speaker notes*
-
 This image is take from the WHO laboratory manual for the examination and processing of human semen, published in 2021. It shows a haemocytometer, an instrument used for counting the number of cells. To get a proper count, you need to include any cells inside the four by four grid of large squares in the middle of this micrograph. But what does "inside" mean? Should you count only those cells entirely inside the four by four grid. Or should you include cells that are partially inside the grid?
 
 One rule is to count cells if the head of the sperm cell touches the top or right side of a square, but not if it touches the bottom or left side of the square. And don't count a sperm cell if only the tail is inside the square.
@@ -65,8 +61,6 @@ That's not the only way you can do this, but just make sure that whatever conven
         -   Blood glucose
 
 ::: {.notes}
-*Speaker notes*
-
 Statisticians are the only ones who openly admit the possibility of error. In fact, we obsess about error.
 
 One important source of error is measurement error. This is typically defined with respect to a physical measurement.
@@ -85,8 +79,6 @@ In medicine, there are lots of physical measurements that have measurement error
 -   Training
 
 ::: {.notes}
-*Speaker notes*
-
 While you can't prevent measurement error, you can reduce it. Measurement that is done with medical equipment requires regular calibration. By the way, don't run all your control samples in the morning, re-calibrate during lunch, and the run all your treatment samples in the afternoon. This sounds obvious, but you'd be surprised how often researchers screw this up.
 
 Consistency is also important. When I weigh myself, I try to do it in the morning before I've had anything to eat. It's usually when I weigh the less, but I'm not doing this to pretend that I am a few pounds lighter. I do it because I get more consistency.
@@ -114,8 +106,6 @@ Training of the operators of an medical equipment can also help reduce measureme
 -   Re-establishing validity
 
 ::: {.notes}
-*Speaker notes*
-
 Statisticians also worry about errors in validity. These are errors that occur because you are measuring something different that what you think you are measuring.
 
 Assessment of errors in validity is typically reserved for constructs. A construct is an assessment of something that has no direct physical manifestation. Your blood pressure is a physical measurement, but your stress level is not. Now maybe stress induces changes in blood pressure, hormone levels, etc. but stress itself is not a physical measurement like blood pressure is.
@@ -144,8 +134,6 @@ If you are using a construct in a markedly different patient population, with di
     -   Inter-method
 
 ::: {.notes}
-*Speaker notes*
-
 You might see errors associated with the use of unreliable measurements. Often the term "repeatable" is used interchangably. Some researchers make a distinction between these terms, but I don't. I do, however, draw a distinction between reliability and reproducibility. Reproducibility is a demonstration that two different researchers agree when given access to the same dataset and the same software code.
 
 You can assess reliability for both physical measurements and constructs. You demonstrate inter-rater reliability by showing that two evaluators working independently produce close to the same results. This does not work for self-reported outcomes like pain because only you can evaluate yourself.
@@ -160,8 +148,6 @@ A measurement taken twice allows you to assess test-retest reliability. The time
 -   Less important in era of big data
 
 ::: {.notes}
-*Speaker notes*
-
 Although I plan to cover it later in more detail, I have to mention another source of errors. The process of collecting a random sample, even one that is done perfectly, involves error, because a sample is an imperfect representation of the population that the sample is being drawn from.
 
 Sampling error goes down as the size of the sample increases. Unfortunately, other types of error (measurement error, errors in validity, errors in reliability) stay the same, or sometimes get worse as the sample size increases.

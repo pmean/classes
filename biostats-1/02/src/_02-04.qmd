@@ -39,8 +39,6 @@ plot(bar1)
 ```
 
 ::: {.notes}
-*Speaker notes*
-
 I want to mention percentiles briefly. A percentile is a value that splits the data so that a certain percentage is smaller and a certain percentage is larger.
 
 The 75th percentile, for example will be above 75% of the data and below 25% of the data. This graph illustrates the 75th percentile for some arbitrary data. The gray bars represent about 75% of the data and the white bars represent about 25% of the data.
@@ -61,8 +59,6 @@ I use a few weasel words like "roughly" and "about" because you can't always get
         -   Special cases: p(n+1) \< 1 or \> n
 
 ::: {.notes}
-*Speaker notes*
-
 There are close to a dozen different ways to compute a percentile, but the differences between the values selected are small and not worth fussing about.
 
 Here is my preference for choosing the pth quantile (remember that for quantiles, you range between 0 and 1, not between 0 and 100).
@@ -84,8 +80,6 @@ Likewise if p(n+1) is 0.8, you can't go halfway between the zeroth and first obs
     -   For 2nd percentile, p(n+1)=0.8 -\> smallest value
 
 ::: {.notes}
-*Speaker notes*
-
 Suppose you have 39 observations. For the 5th percentile or the 0.05 quantile, p(n+1) equals 2. Lucky you. The second smallest observation is the 5th percentile. For the 4th percentile or the 0.04 quantile, you get p(n+1) equal to 1.6. Go halfway between 1, the smallest value, and 2, the second smallest value.
 
 The 2nd percentile represents one of the special cases. You calculate p(n+1) and get 0.8. You can't go halfway between 0 and 1, so just choose the smallest value.
@@ -102,8 +96,6 @@ The 2nd percentile represents one of the special cases. You calculate p(n+1) and
     -   75th percentile: $Q_3,\ X_{0.75}$ or upper quartile
 
 ::: {.notes}
-*Speaker notes*
-
 A percentile always refers to a percentage. So it has to be between 0% and 100%. Sometimes, you may see references to a quantile. A quantile is a percentile, but is expressed as a proportion rather than a percent. A quantile goes from 0.0 to 1.0. The 90th percentile and the 0.90 quantile are the same thing.
 
 You might see the term "quartiles". These are the 25th, 50th, and 75th percentiles. These three values split the data into quarters.
@@ -193,8 +185,6 @@ m3
     -   Almost all products must meet a minimum standard
 
 ::: {.notes}
-*Speaker notes*
-
 There are many reasons why you might be interested in percentiles rather than the mean or median. Actually, the median is a percentile, the 50th percentile, but I want to talk about percentiles other than 50%.
 
 One important use of percentiles is looking at the middle 50% of the data. This is the data between the lower quartile (25th percentile) and the upper quartile (75th percentile). Is the middle 50% of the data bunched tightly together or spread widely apart?
@@ -205,4 +195,3 @@ Percentiles also help to define extreme groups. You can, for example, define the
 
 Percentiles also can help with quality control. If you make a claim about a product, you want to make sure that that claim is not valid at a median level but at a much higher level. You don't sell 500 mg bottles of liquid Tylenol is your factory is churning out a median fill level of 500 mg. Half of your customers would be cheated. Instead you insure that the 98th percentile coming out of the factory floor is at least 500 mg. You lose a bit of money because most bottles contain more than 500 mg, but the cost of an irate customer is worth more than the cost of 50 overfilled bottles.
 :::
-

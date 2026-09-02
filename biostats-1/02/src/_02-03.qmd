@@ -26,7 +26,7 @@ library(tidyverse)
         -   go halfway between the two middle values if n is even
 
 ::: {.notes}
-*Speaker notes*
+
 
 You already know how to compute the average. Add up all the values and divide by the sample size.
 
@@ -45,8 +45,6 @@ With an even number, there are two middle values. Go halfway between them. If yo
         -   $(X_{[n/2]}+X_{[n/2+1]})/2$ if n is even
 
 ::: {.notes}
-*Speaker notes*
-
 Here are the mathematical formulas for the mean and median. I know some people hate formulas, but I love them. With a few symbols and Greek letters, you can express really deep and beautiful ideas. Well these formulas aren't all that deep.
 :::
 
@@ -60,7 +58,7 @@ names(ld) <- tolower(names(ld))
 data.frame(ld)
 ```
 
-:::notes
+::: {.notes}
 Here is the dataset on bacteria counts. Measurements were done in 8 hotel rooms both before and after a rehaul of the air conditioning system.
 :::
 
@@ -184,8 +182,6 @@ m3
 -   Are you ignoring minorities?
 
 ::: {.notes}
-*Speaker notes*
-
 There's a wonderful cartoon by Dana Fradon that appeared in The New Yorker in 1976. She shows a road going into town and the sign by the side of the road reads "Hillsdale, Founded 1802, Altitude 600, Population 3,700. Total 6,122." You can't add these things together.
 
 It's similar for means. There was a dataset showing housing prices for homes in Boston and none of the analyses seemed to make sense. The problem in Boston is that a small number of the houses had prices that were out of sync with their other homes. These were historical houses, such as Paul Revere's house.
@@ -204,8 +200,6 @@ This is a big problem in a larger context than just the mean or median. There ar
 ![Excerpt from Gould 1985 publication](../images/gould-1985.png)
 
 ::: {.notes}
-*Speaker notes*
-
 Stephen Jay Gould was a famous Evolutionary Biologist. He was a prolific writer with 20 books and 300 essays. Much of his writing was for academic researchers, but just as much was for the general public.
 
 One of his most famous essays was "The Median Isn't the Message". The title is a take-off of a quote by Marshall McLuhan, "The medium is the message" which itself has an interesting history that you should investigate on your own.
@@ -245,8 +239,6 @@ The median isn't the message. It is a single number with half the people on the 
     -   When outliers/skewness might distort your conclusions
 
 ::: {.notes}
-*Speaker notes*
-
 While there is some consensus on when to use the mean versus the median, the choice is not always obvious. Controversies often arise over this issue.
 
 Here are some general guidelines.
@@ -271,8 +263,6 @@ Now the Elon Musk example is silly, but the issue of outliers having an effect o
 ![Chen et al 2019](../images/chen-2019.png)
 
 ::: {.notes}
-*Speaker notes*
-
 Here is an article I found on PubMed that compares median and mean improvements in life expectancy in cancer patients.
 :::
 
@@ -281,8 +271,6 @@ Here is an article I found on PubMed that compares median and mean improvements 
 Background: The prices of newly approved cancer drugs have risen over the past decades. **A key policy question is whether the clinical gains offered by these drugs in treating specific cancer indications justify the price increases.**
 
 ::: {.notes}
-*Speaker notes*
-
 Here's part of the abstract.
 
 The United States is like a lot of first world countries in that we spend more and more money each year on cancer treatments. Are we getting our money's worth?
@@ -293,8 +281,5 @@ The United States is like a lot of first world countries in that we spend more a
 Results: We found that between 1995 and 2012, price increases outstripped median survival gains, a finding consistent with previous literature. **Nevertheless, price per mean life-year gained increased at a considerably slower rate, suggesting that new drugs have been more effective in achieving longer-term survival.** Between 2013 and 2017, price increases reflected equally large gains in median and mean survival, resulting in a flat profile for benefit-adjusted launch prices in recent years.
 
 ::: {.notes}
-*Speaker notes*
-
 Later on in the abstract, the authors point out that from the perspective of the median, things are bleak. The median survival gains are not in line with the increasing amount of money spent on new treatments. But the mean survival gains show a different story. A flat profile means that increases in price are accompanied by an increase in benefits in terms of gains in the mean. What this implies is that the extreme tail of the distribution includes a number of Elon Musk types. A small number of people are showing amazingly big gains in survival, justifying the increase in cost.
 :::
-

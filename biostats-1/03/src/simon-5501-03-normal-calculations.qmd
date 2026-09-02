@@ -25,7 +25,7 @@ library(tidyverse)
 ```{r}
 #| label: standard-normal
 
-x <- seq(-4, 4, length=100)
+x <- seq(from=-4, to=4, length=100)
 y <- dnorm(x)
 data.frame(x, y) |>
   ggplot(aes(x, y)) + 
@@ -35,7 +35,22 @@ normal_curve
 
 #### Comments on the code
 
-Use seq to calculate 100 evenly spaced values between -4 and +4 and dnorm to compute the bell curve at each point. Use geom_polygon to paint the area surrounded by the bell curve.
+The [seq function][ref-seq], part of base R, calculates evenly spaced values within an interval. The code here calculates 100 evenly spaced values between -4 and +4 and dnorm to compute the bell curve at each point. Use geom_polygon to paint the area surrounded by the bell curve.
+
+[ref-seq]: https://stat.ethz.ch/R-manual/R-devel/RHOME/library/base/html/seq.html
+
+https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html
+
+https://ggplot2.tidyverse.org/
+
+https://cran.r-project.org/web/packages/ggplot2/refman/ggplot2.html#ggplot
+
+https://cran.r-project.org/web/packages/ggplot2/refman/ggplot2.html#aes
+
+https://cran.r-project.org/web/packages/ggplot2/refman/ggplot2.html#geom_polygon
+
+https://ggplot2.tidyverse.org/reference/geom_polygon.html
+
 
 ## P[Z < 1.5]
 

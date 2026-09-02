@@ -1,0 +1,136 @@
+---
+title: "yourname-5501-01-demo"
+author: "Yourname and Steve Simon"
+format: 
+  html:
+    embed-resources: true
+date: 2026-09-02
+---
+
+## File details
+
+This program was written by Steve Simon and Yourname on 2026-09-02 and is copyrighted. Do not use without written permission.
+
+This is the correct program for the Fall 2026 semester.
+
+There is one data file used in this program
+
+-   albuquerque-housing, [Comma delimited file][ref-alb-data], [dictionary][ref-alb-yaml]
+
+[ref-alb-data]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.csv
+[ref-alb-yaml]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.yaml
+
+## Load the tidyverse library
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+
+R.version.string
+Sys.Date()
+```
+
+#### Comments on the code
+
+This code includes several [chunk options][ref-chunk]. Every program chunk should include a brief label. The first chunk is traditionally named setup and it loads the appropriate libraries, and prints general information about the program.
+
+The next two chunk options suppress messages and warnings. This simplifies the output, but if you need to track down an unusual error, you might want to change one or both of these options to true.
+
+The [library function][ref-library] loads a package, extra programs that are not part of the base R package. For most of your programs, you should load the [tidyverse library][ref-tidyverse].
+
+[R.version.string][ref-version] is an internal scalar that lists the version of R that is used to create your output. 
+
+The [Sys.Date function][ref-date] lists the date that the output was created.
+
+[ref-chunk]: https://quarto.org/docs/computations/r.html#chunk-options
+[ref-library]: https://r-pkgs.org/introduction.html
+[ref-tidyverse]: https://tidyverse.org/
+[ref-version]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/Version.html
+[ref-date]: https://stat.ethz.ch/R-manual/R-devel/RHOME/library/base/html/Sys.time.html
+
+## Read the data and view a brief summary
+
+```{r}
+#| label: read
+
+alb <- read_csv(
+  file="../data/albuquerque-housing.csv",
+  col_names=TRUE,
+  col_types="nnnnccc",
+  na=".")
+glimpse(alb)
+```
+
+#### Comments on the code
+
+The [read_csv function][ref-read-csv] is part of the [readr library][ref-readr] which is included in tidyverse. The col_names argument tells R whether the first line of the file lists the variable names. The col_types argument uses the letters "n" and "c" to tell R which variables are numeric variables and which are character (string) variables. The na argument tells R which code is used to represent missing values. The [glimpse function][ref-glimpse] will produce a brief summary of a data frame or tibble.
+
+[ref-read-csv]: https://readr.tidyverse.org/reference/read_delim.html
+[ref-readr]: https://readr.tidyverse.org/index.html
+[ref-glimpse]: https://dplyr.tidyverse.org/reference/glimpse.html
+
+## Calculate the average price
+
+```{r}
+#| label: mean-price
+
+alb |>
+  summarize(price_mean=mean(price))
+```
+
+#### Comments on the code
+
+The [summarize function][ref-summarize] computes a variety of statistics. By default, the statistics are computed for all observations in the dataset. The [mean function][ref-mean] computes the arithmetic mean or the average.
+
+[ref-mean]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/mean.html
+[ref-summarize]: https://dplyr.tidyverse.org/reference/summarise.html
+
+#### Interpretation of the output
+
+The average price of a home, 106 thousand dollars, is quite low because the data comes from 1993.
+
+## Summarize sqft
+
+```{r}
+#| label: mean-sqft
+
+alb |>
+  summarize(sqft_mean=mean(sqft))
+```
+
+#### Interpretation of the output
+
+The average size of a home is 1,600 square feet. This value is low, perhaps because the data was collected in 1993. 
+
+## Summarize age
+
+```{r}
+#| label: mean-age
+
+alb |>
+  summarize(age_mean=mean(age, na.rm=TRUE))
+```
+
+#### Comments on the code
+
+The default option in R is to designate a missing value for a mean (or any other simple descriptive statistic) when the the variable has one or more missing values. This is a perfectly logical approach. You may, however, be interested in what the mean would be if the missing values were removed from the variable. The na.rm argument tells R whether to exclude missing values or not before calculating the mean.
+
+#### Interpretation of the output
+
+The average age of a house is 15 years. This means that the houses are fairly new.
+
+## Summarize features
+
+```{r}
+#| label: mean-features
+
+alb |>
+  summarize(features_mean=mean(features))
+```
+
+#### Interpretation of the output
+
+The average house has 3.5 features out of 13. This is quite low.
