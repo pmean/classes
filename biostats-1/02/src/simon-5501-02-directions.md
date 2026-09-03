@@ -13,15 +13,29 @@ This programming assignment was written by Steve Simon on 2024-08-27 and is plac
 
 ## Setup
 
+Create a fresh folder under `medb-5501` called `module02`. Inside the `module02` folder, create two subfolders, `data` and `src`. It should look something like this:
+
+```
+medb-5501
+  |--module01
+       |--data
+       |--src
+  |--module02
+       |--data
+       |--src
+```
+
+You can use a different name than `module02` but do make it consistent with the name you chose instead of `module01`.
+
 -   Download the [first demo program][ref-demo]
-    -   Store it in your src folder
+    -   Store it in your `src` folder under `module02`
 -   Modify the file name
     -   Use your last name instead of "simon"
 -   Modify the documentation header
     -   Add your name to the author field
     -   Optional: change the copyright statement
 -   Download the [data file][ref-data]
-    -   Store it in your data folder
+    -   Store it in your `data` folder under `module02`
     -   Refer to the [data dictionary][ref-dict], if needed.
 
 [ref-demo]: https://github.com/pmean/classes/blob/master/biostats-1/02/src/simon-5501-02-demo1.qmd

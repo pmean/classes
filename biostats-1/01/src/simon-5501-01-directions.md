@@ -6,18 +6,31 @@ This programming assignment was written by Steve Simon on 2024-08-18 and is plac
 
 ## Setup
 
+Create a directory structure that looks something like this:
+ 
+```
+medb-5501
+  |--module01
+       |--data
+       |--src
+```
+
+In other words, the directory `medb-5501` has a subdirectory `module01`. The `module01` directory has two subdirectories, `data` and `src`. Place the `medb-5501` directory in a location where you will remember where to find it. Your desktop or your documents folder are two logical places. You will end up creating module03, modlue04, etc. in the same way.
+
 -   Download the [demo program][ref-demo]
-    -   Store it in your src folder
+    -   Store it in your `src` folder
 -   Modify the file name
     -   Use your last name instead of "simon"
 -   Modify the documentation header
     -   Add your name to the author field
     -   Optional: change the copyright statement
 -   Download the [data file][ref-data]
-    -   Store it in your data folder
+    -   Store it in your `data` folder
+    -   Refer to the [data dictionary][ref-dictionary], if needed.
 
 [ref-demo]: https://github.com/pmean/classes/blob/master/biostats-1/01/src/simon-5501-01-demo.qmd
 [ref-data]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.csv
+[ref-dictionary]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.yaml
     
 ## Interpret the output
 
