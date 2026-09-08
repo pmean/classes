@@ -39,12 +39,11 @@ The heights of 14 year old girls in centimeters, according to the World Health O
 
 ![](../images/height-01.png)
 
-Calculate the 90th percentile for height. Provide a brief interpretation of this number that rounds the result and mentions the unit of measurment.
+Calculate the 90th percentile for height. Provide a brief interpretation of this number that rounds the result and mentions the unit of measurement.
 
 ## Question #2
 
-
-Use the fev dataset to assess the normality of ht. Draw two histograms--one with a small number of bars and another with a large number of narrow bars. Note that the binwidth valuess will not be the same those used for fev. Is your interpretation similar for both histograms?
+Use the fev dataset to assess the normality of ht. Draw two histograms--one with a small number of bars and another with a large number of narrow bars. Note that the binwidth values will not be the same those used for fev. Is your interpretation similar for both histograms?
 
 ## Question #3
 
