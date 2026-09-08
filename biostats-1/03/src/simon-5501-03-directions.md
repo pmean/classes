@@ -2,10 +2,9 @@
 title: "Directions for 5501-03 programming assignment"
 ---
 
-This programming assignment was written by Steve Simon on 2024-09-02 and is placed in the public domain.
+This programming assignment was written by Steve Simon on 2024-09-02 and is placed in the public domain. It will use [this grading rubric][ref-rubric].
 
-
-"Normal curve for the height of 14 year old girls"
+[ref-rubric]: https://github.com/pmean/classes/blob/master/general/src/general-grading-rubric.md
 
 ## Download programs
 
@@ -23,7 +22,7 @@ Also download the data file:
 
 -   [fev.csv][ref-fev-csv]
 
-[sim3]: https://github.com/pmean/data/blob/main/files/fev.csv
+[ref-fev-csv]: https://github.com/pmean/data/blob/main/files/fev.csv
 
 and store it in your data folder. You may wish to review the data dictionary
 
@@ -31,13 +30,26 @@ and store it in your data folder. You may wish to review the data dictionary
 
 [ref-fev-yaml]: https://github.com/pmean/data/blob/main/files/fev.yaml
 
-![](../images/height-01.png)
+Your directory structure should look something close to this. Be sure to separate your code and your data in two different directories. It may seem like overkill for assignments as simple as these, but it is a good habit to get into. It will serve you well in the real world where a project may have multiple datasets and multiple programs written by different people.
+
+```
+medb-5501
+  |--module01
+       |--data
+       |--src
+  |--module02
+       |--data
+       |--src
+  |--module03
+       |--data
+       |--src
+```
 
 ## Question #1
 
 The heights of 14 year old girls in centimeters, according to the World Health Organization, is normally distributed with a mean of 160 and a standard deviation of 7. This distirbution is shown below.
 
-![](../images/height-01.png)
+![](../images/height-01.png "Graph of a normal distribution with a mean of 160 and a standard deviaton of 7")
 
 Calculate the 90th percentile for height. Provide a brief interpretation of this number that rounds the result and mentions the unit of measurement.
 

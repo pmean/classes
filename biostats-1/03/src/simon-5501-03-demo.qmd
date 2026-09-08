@@ -8,9 +8,14 @@ execute:
   error: true
 ---
 
-This program assesses the normality of variables in a study of pulmonary function in children. There is a [data dictionary][dd] that provides more details about the data. The program was written by Steve Simon on 2024-09-02 and is placed in the public domain.
+## File details
 
-[dd]: https://github.com/pmean/datasets/blob/master/fev.yaml
+This program assesses the normality of variables in a study of pulmonary function in children. You can find the data, [fev.csv][ref-fev-csv], on my github site. There is a [data dictionary][ref-fev-yaml] that provides more details about the data. The program was written by Steve Simon on 2024-09-02 and is placed in the public domain.
+
+[ref-fev-csv]: https://github.com/pmean/datasets/blob/master/fev.csv
+[ref-fev-yaml]: https://github.com/pmean/datasets/blob/master/fev.yaml
+
+This is the correct program for Fall semester 2026.
 
 ## Libraries
 
@@ -21,10 +26,6 @@ This program assesses the normality of variables in a study of pulmonary functio
 
 library(tidyverse)
 ```
-
-#### Comments on the code
-
-The tidyverse library is the only one you need for this program. The message and warning options limit the diagnostic messages associated with the tidyverse library, which would have just gotten in the way here. If you have some unusual problems later on, removing these options might help you investigate the cause.
 
 ## List variable names
 
@@ -89,13 +90,16 @@ fev |>
     color="black",
     fill="white") + 
   scale_x_continuous(breaks=seq(from=1, to=6, by=0.5)) +
-  xlab("Forced Expiratory Volume (Liters)") +
-  labs(caption="Steve Simon, 2024-09-02")
+  labs(
+    x="Forced Expiratory Volume (Liters)",
+    caption="Steve Simon, 2024-09-02")
 ```
 
 #### Comments on the code
 
-The geom_histogram function draws a histogram. You should specify values for color (which is the outline of individual bars) and fill (which is what is inside the bars). Also be careful with your choice of binwidth. Don't rely on the default choice.
+The [geom_histogram function][ref-histogram] draws a histogram. You should specify values for color (which is the outline of individual bars) and fill (which is what is inside the bars). Also be careful with your choice of binwidth. Don't rely on the default choice.
+
+[ref-histogram]: https://ggplot2.tidyverse.org/reference/geom_histogram.html
 
 #### Interpretation of the output
 
@@ -114,8 +118,9 @@ fev |>
     color="black",
     fill="white") +
   scale_x_continuous(breaks=seq(from=1, to=6, by=0.5)) +
-  xlab("Height (inches)") +
-  labs(caption="Steve Simon, 2024-09-02")
+  labs(
+    x="Forced Expiratory Volume (Liters)",
+    caption="Steve Simon, 2024-09-02")
 ```
 
 #### Interpretation of the output
@@ -126,20 +131,23 @@ See above for the interpretation.
 
 ```{r}
 #| label: qqplot-fev
-#| fig-width: 5
-#| fig.height: 5
 
 fev |>
 	ggplot() +
 	aes(sample=fev) +
 	stat_qq() +
-	ylab("Forced Expiratory Volume (Liters)") +
-	ggtitle("Graph produced by Steve Simon on 2024-09-02")
+  coord_fixed() +
+  labs(
+    y="Forced Expiratory Volume (Liters)",
+    caption="Steve Simon, 2024-09-02")
 ```
 
 #### Comments on the code
 
-The stat_qq function produces a normal probability plot. Notice that the variable fev is identified using the sample argument of aes. I always forget and say aes(x=fev). The default option for most plots is landscape orientation (the width is larger than the height). The normal probability plot, however, looks best if figure is square (the x-axis is the same number of pixels as the y-axis). Setting the overall width and height to the same value doesn't quite make the plot square because of unequal margins around the axes, but it comes close.
+The [stat_qq function][ref-stat-qq] produces a normal probability plot. Notice that the variable fev is identified using the sample argument of aes. I always forget and say aes(x=fev). The default option for most plots is landscape orientation (the width is larger than the height). The normal probability plot, however, looks best if the units are the same size on both axes. The [coord_fixed function][ref-coord-fixed] will assure that number of pixels representing one unit on the x-axis is the same as the number of pixels representing one unit on the y-axis.
+
+[ref-stat-qq]: https://ggplot2.tidyverse.org/reference/geom_qq.html
+[ref-coord-fixed]: https://ggplot2.tidyverse.org/reference/coord_fixed.html
 
 #### Interpretation of the output
 

@@ -2,7 +2,9 @@
 title: "Directions for 5501-01 programming assignment"
 ---
 
-This programming assignment was written by Steve Simon on 2024-08-18 and is placed in the public domain.
+This programming assignment was written by Steve Simon on 2024-08-18 and is placed in the public domain. It will use [this grading rubric][ref-rubric].
+
+[ref-rubric]: https://github.com/pmean/classes/blob/master/general/src/general-grading-rubric.md
 
 ## Setup
 

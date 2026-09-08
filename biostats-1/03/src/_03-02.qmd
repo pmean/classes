@@ -191,6 +191,8 @@ Compute the 90th percentile using qnorm(0.9). The 90th percentile of a standard 
 If you have a normal distribution with a mean other than 0 and a standard deviation other than 1, the probability that this normal distribution is less than a value "a" is the probability that a standard normal is less than (a minus mu) divided by sigma. Subtracting mu will move shift the value of a to be relative to zero instead of relative to mu. Dividing by sigma will stetch or squeeze the value of a to match a standard deviation of 1 instead of a standard deviation of sigma.
 
 To get the pth percentile of a normal distribution with mean mu and standard deviation sigma, multiply the pth percentile of a standard normal by sigma and add mu. Multiplying by the standard deviation will stretch or squeeze the bell shaped curve, depending on whether the standard deviation is larger than or smaller than 1. Adding the mean shifts the bell shapped curve to the left or right, depending on whether the mean is less than zero or greater than zero.
+
+R allows you to automate these transformations with the mean and sd arguments.
 :::
 
 ## Birthweight (kg) is N(\mu=3.2, \sigma=0.5)
@@ -203,11 +205,11 @@ To get the pth percentile of a normal distribution with mean mu and standard dev
 #| label: bw1
 #| echo: true
 
-1-pnorm((4-3.2)/0.5)
+1-pnorm(4, mean=3.2, sd=0.5)
 ```
 
 ::: {.notes}
-To get the probability that a birthweight is greater than 4 kg, remember that greater than means area to the right and you must use 1-pnorm. You take the 4kg tartget, subtract the mean of 3.2 and divide by the standard deviation of 0.5. The probabilty of a big baby, more than 4 kilographs is about 5%.
+The probability of a big baby, more than 4 kilograms is about 5%.
 :::
 
 ## 10th percentile for birthweight
@@ -216,9 +218,9 @@ To get the probability that a birthweight is greater than 4 kg, remember that gr
 #| label: bw2
 #| echo: true
 
-4.2+qnorm(0.1)*0.5
+qnorm(0.1, mean=4.2, sd=0.5)
 ```
 
 ::: {.notes}
-To get the 10th percentile for birthweight, get the 10th percentile for the standard normal using the qnorm function, multiply by the standard deviation and then add the mean. The 10th percentile for birthweight is 3.6 kilograms.
+The 10th percentile for birthweight is 3.6 kilograms.
 :::
