@@ -7,124 +7,218 @@ format:
 editor: source
 ---
 
-## simon-5501-03-normal-calculations.qmd, 1
 
-```{r write0a}
-library(tidyverse)
-fn <- "simon-5501-03-normal-calculations.qmd"
-template <- read_lines(file=fn)
-h <- str_which(template, "##")
-chunk_beg <- c(1, h)
-chunk_end <- c(h-1, length(template))
-```
+## The standard normal distribution, again
 
-```{r write1a}
-cat(template[chunk_beg[1]:chunk_end[1]], sep="\n")
-```
+![](../images/normal-00.png "The standard normal distribution")
 
-:::notes
-Here is a program template that illustrates how to calculate probabilities and quantiles for the standard normal distribution
-
-The first few lines are the documentation header.
+::: {.notes}
+This is the standard normal distribution again. I changed the scaling a bit so it fills up most of the range. I want to show how to do some basic calculations for the standard normal distribution using this graph.
 :::
 
-## simon-5501-03-normal-calculations.qmd, 2
 
-```{r write3a}
-cat(template[chunk_beg[2]:chunk_end[2]], sep="\n")
-```
+## Using calculus to compute probabilities for a normal distribution
 
-:::notes
-You only need the tidyverse libraries for this program.
+$P[a < X < b]=\int_{a}^{b}\big(\frac{1}{\sigma\sqrt{2 \pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\big)dx$
+
+::: {.notes}
+For those of you who know calculus, normal probabilities are computed using integration. In simpler terms, probabilities are represented by areas. 
 :::
 
-## simon-5501-03-normal-calculations.qmd, 3
+## Illustrating P[Z < 1.5]
 
-```{r write2a}
-cat(template[chunk_beg[3]:chunk_end[3]], sep="\n")
-```
+![](../images/normal-01.png "Illustration of the probability that a standard normal distribution is less than 1.5")
 
-:::notes
-This code draws the bell shaped curve for a standard normal distribution. The graph is saved as normal_curve to allow for future modifications.
+::: {.notes}
+The probability that a standard normal distribution is less than 1.5 is the area of the standard normal curve that lies to the left of 1.5.
 :::
 
-## simon-5501-03-normal-calculations.qmd, 4
+## Calculating P[Z < 1.5]
 
-```{r write4a}
-cat(template[chunk_beg[4]:chunk_end[4]], sep="\n")
+```{r}
+#| label: p1
+#| echo: true
+
+pnorm(1.5)
 ```
 
-:::notes
-This code computes the probability that a standard normal variable is less than a particular number and displays the area associated with this probability.
+::: {.notes}
+The probability that a standard normal distribution is less than 1.5 is about 93%.
 :::
 
-## simon-5501-03-normal-calculations.qmd, 5
+## Illustrating P[Z < -0.5]
 
-```{r write5a}
-cat(template[chunk_beg[5]:chunk_end[5]], sep="\n")
+![](../images/normal-02.png "Illustration of the probability that a standard normal distribution is less than -0.5")
+
+::: {.notes}
+The probability that a standard normal distribution is less than -0.5 is the area of the standard normal curve that lies to the left of -0.5.
+:::
+
+## Calculating P[Z < -0.5]
+
+```{r}
+#| label: p2
+#| echo: true
+
+pnorm(-0.5)
 ```
 
-:::notes
-Here's a similar calculation.
+::: {.notes}
+Change the argument in the pnorm function to get the probabilty that a standard normal is less than -0.5.
 :::
 
-## simon-5501-03-normal-calculations.qmd, 6
+## Illustrating P[Z > 3]
 
-```{r write6a}
-cat(template[chunk_beg[6]:chunk_end[6]], sep="\n")
+![](../images/normal-03.png "Illustration of the probability that a standard normal distribution is greater than 3")
+
+::: {.notes}
+To find a probabilty of being greater than a specific value, you need to compute the area to the right. This image shows what area corresponds to the probability that a standard normal is greater than 3.
+:::
+
+```{r}
+#| label: p3
+#| echo: true
+
+1-pnorm(3)
 ```
 
-:::notes
-For greater than probabilities (probabilities corresponding to area to the right), subtract the pnorm result from 1.
+::: {.notes}
+The area to the right of 1 plus the area to the left of 1 has to equal the total probability. So the area to the right is 1 - the area to the left. The probability that a standard normal distribution is greater than 3 is about 0.1%.
 :::
 
-## simon-5501-03-normal-calculations.qmd, 7
+## Illustrating P[Z > -2]
 
-```{r write7a}
-cat(template[chunk_beg[7]:chunk_end[7]], sep="\n")
+![](../images/normal-04.png "Illustration of the probability that a standard normal distribution is greater than -2")
+
+::: {.notes}
+Similarly, the probability for the right of -2 plus the area to the left equals 1. So just subtract the probability to the left from one.
+:::
+
+```{r}
+#| label: p4
+#| echo: true
+
+1-pnorm(-2)
 ```
 
-:::notes
-Here's another greater than probability calculation.
+::: {.notes}
+You calculate the area to the right of -2, subtract pnorm(-2) from 1. The probability that a standard normal is greater than -2 is about 98%.
 :::
 
-## simon-5501-03-normal-calculations.qmd, 8
+## Illustrating P[-2.5 < Z < 2.5]
 
-```{r write8a}
-cat(template[chunk_beg[8]:chunk_end[8]], sep="\n")
+![](../images/normal-05.png "Illustration of the probability that a standard normal distribution is between plus or minus 2.5")
+
+::: {.notes}
+The area between -2.5 and 2.5 is the area to the left of 2.5 minus the area to the left of -2.5.
+:::
+
+```{r}
+#| label: p5
+#| echo: true
+
+pnorm(2.5)-pnorm(-2.5)
 ```
 
-:::notes
-For probabilities between two values, calculate the difference.
+::: {.notes}
+To get the probability that a standard normal falls between two number, calculate the difference between two pnorm results. The probability that a standard normal is betwen -2.5 and 2.5 is about 99%.
 :::
 
-## simon-5501-03-normal-calculations.qmd, 9
+## Illustrating P[-0.5 < Z < 0.5]
 
-```{r write9a}
-cat(template[chunk_beg[9]:chunk_end[9]], sep="\n")
+![](../images/normal-06.png "Illustration of the probability that a standard normal distribution is between plus or minus 0.5")
+
+::: {.notes}
+The area between -2.5 and 2.5 is the area to the left of 2.5 minus the area to the left of -2.5.
+:::
+
+```{r}
+#| label: p5
+#| echo: true
+
+pnorm(0.5)-pnorm(-0.5)
 ```
 
-:::notes
-Here's a similar probability calculation.
+::: {.notes}
+To get the probability that a standard normal falls between two number, calculate the difference between two pnorm results. The probability that a standard normal falls between -0.5 and 0.5 is about 38%.
 :::
 
-## simon-5501-03-normal-calculations.qmd, 10
+## Illustrating the 25th percentile of a standard normal
 
-```{r write10a}
-cat(template[chunk_beg[10]:chunk_end[10]], sep="\n")
+![](../images/normal-07.png "Illustration of the 25th percentile of a standard normal distribution")
+
+::: {.notes}
+The 25th percentile is the value such htatn 25% of the area is to the left and 75% is to the right.
+:::
+
+```{r}
+#| label: p7
+#| echo: true
+
+qnorm(0.25)
 ```
 
-:::notes
-The normal quantile is the value associated with a specified probability. Use the qnorm function for quantile calculations.
+::: {.notes}
+To get the percentile, use the qnorm function. The 25th percentile of a standard normal distribution is -0.67.
 :::
 
-## simon-5501-03-normal-calculations.qmd, 11
+## Illustrating the 90th percentile of a standard normal
 
-```{r write11a}
-cat(template[chunk_beg[11]:chunk_end[11]], sep="\n")
+![](../images/normal-08.png "Illustration of the 90th percentile of a standard normal distribution")
+
+::: {.notes}
+The 90th percentile is the value such that 90% of the area is to the left and 10% is to the right.
+:::
+
+```{r}
+#| label: p8
+#| echo: true
+
+qnorm(0.9)
 ```
 
-:::notes
-Here is another quantile calculation.
+::: {.notes}
+Compute the 90th percentile using qnorm(0.9). The 90th percentile of a standard normal distribution is 1.28.
 :::
 
+## Probabilities and percentiles for other normal distributions
+
+-   If X is $N(\mu,\sigma), then$
+    -   $P[X < a] = P[Z < \frac{a-\mu}{\sigma}]$
+    -   $X_{p}=\mu+Z_{p}\sigma$
+
+::: {.notes}
+If you have a normal distribution with a mean other than 0 and a standard deviation other than 1, the probability that this normal distribution is less than a value "a" is the probability that a standard normal is less than (a minus mu) divided by sigma. Subtracting mu will move shift the value of a to be relative to zero instead of relative to mu. Dividing by sigma will stetch or squeeze the value of a to match a standard deviation of 1 instead of a standard deviation of sigma.
+
+To get the pth percentile of a normal distribution with mean mu and standard deviation sigma, multiply the pth percentile of a standard normal by sigma and add mu. Multiplying by the standard deviation will stretch or squeeze the bell shaped curve, depending on whether the standard deviation is larger than or smaller than 1. Adding the mean shifts the bell shapped curve to the left or right, depending on whether the mean is less than zero or greater than zero.
+:::
+
+## Birthweight (kg) is N(\mu=3.2, \sigma=0.5)
+
+![](../images/birthweight-01.png)
+
+## Probability birthweight > 4 kg
+
+```{r}
+#| label: bw1
+#| echo: true
+
+1-pnorm((4-3.2)/0.5)
+```
+
+::: {.notes}
+To get the probability that a birthweight is greater than 4 kg, remember that greater than means area to the right and you must use 1-pnorm. You take the 4kg tartget, subtract the mean of 3.2 and divide by the standard deviation of 0.5. The probabilty of a big baby, more than 4 kilographs is about 5%.
+:::
+
+## 10th percentile for birthweight
+
+```{r}
+#| label: bw2
+#| echo: true
+
+4.2+qnorm(0.1)*0.5
+```
+
+::: {.notes}
+To get the 10th percentile for birthweight, get the 10th percentile for the standard normal using the qnorm function, multiply by the standard deviation and then add the mean. The 10th percentile for birthweight is 3.6 kilograms.
+:::

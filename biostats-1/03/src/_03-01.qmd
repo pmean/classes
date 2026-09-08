@@ -13,40 +13,6 @@ editor: source
 library(tidyverse)
 ```
 
-```{r histogram}
-draw_histogram <- function(x, w=1) {
-  x1 <- round(x/w)*w
-  data.frame(x=x1, wt=w/length(x1)) |>
-    ggplot(aes(x, weight=wt)) +
-      theme(legend.position="none") +
-      xlab(" ") +
-      ylab(" ") +
-      geom_bar(
-        color="black", 
-        fill="white",
-        width=w)
-}
-```
-
-```{r boxplot}
-draw_boxplot <- function(x) {
-  data.frame(x) |>
-    ggplot(aes(x)) +
-      geom_boxplot()
-}
-```
-
-```{r q-q-plot}
-draw_qqplot <- function(y) {
-  data.frame(x=y) |>
-    mutate(z=(x-mean(y))/sd(y)) |>
-    mutate(r=percent_rank(z)) |>
-    mutate(q=qnorm(r)) |>
-    ggplot(aes(x=x, y=q)) +
-      geom_point()
-}
-```
-
 ## The bell shaped curve
 
 -   Does your variation follow a bell shaped curve?
@@ -61,31 +27,21 @@ draw_qqplot <- function(y) {
 Much variation in the real world follows a bell shaped curve, alternately called a normal distribution. You can assess whether you have a bell shaped curve using a histogram. Look for values in the middle being most common. The frequencies should taper off slowly as you moved away from the middle. The histogram should have symmetry. The left side of the histogram should be roughly equivalent to the right side of the histogram.
 :::
 
-## Bell-shaped curve is a limit
+## Bell-shaped curve is a limit, 1
 
-```{r limit-1}
-n <- 100; w <- 1
-x_bell <- qnorm((1:n)/(n+1), mean=15, sd=5)
-draw_histogram(x_bell, w)
-```
+![](../images/histogram-01.png "A histogram of a normal distribution at low resolution")
+## Bell-shaped curve is a limit, 2
 
-## Bell-shaped curve is a limit
-
-```{r limit-2}
-n <- n*4; w <- w/2
-x_bell <- qnorm((1:n)/(n+1), mean=15, sd=5)
-draw_histogram(x_bell, w)
-```
+![](../images/histogram-02.png "A histogram of a normal distribution at a higher resolution")
 
 ## Bell-shaped curve is a limit
 
-```{r limit-3}
-n <- n*4; w <- w/2
-x_bell <- qnorm((1:n)/(n+1), mean=15, sd=5)
-draw_histogram(x_bell, w)
-```
+![](../images/histogram-03.png "A histogram of a normal distribution at a still higher resolution")
 
 ## Bell-shaped curve is a limit
+
+![](../images/histogram-04.png "A histogram of a normal distribution at a very high resolution")
+
 
 ```{r limit-4}
 n <- n*4; w <- w/2
@@ -126,43 +82,29 @@ normal_bell <- function(mu=0, sigma=1) {
 
 ## Normal distribution with mu=2, sigma=1
 
-```{r normal_a}
-normal_bell(mu=2, sigma=1)
-```
+![](../images/bell-01.png "Normal distribution with mu=2, sigma=1")
 
 ## Normal distribution with mu=-3, sigma=1
 
-```{r normal_b}
-normal_bell(mu=-3, sigma=1)
-```
+![](../images/bell-02.png "Normal distribution with mu=-3, sigma=1")
 
 ## Normal distribution with mu=1, sigma=1
 
-```{r normal_c}
-normal_bell(mu=1, sigma=1)
-```
-
+![](../images/bell-03.png "Normal distribution with mu=1, sigma=1")
 
 ## Normal distribution with mu=1, sigma=2
 
-```{r normal_d}
-normal_bell(mu=1, sigma=2)
-```
+![](../images/bell-04.png "Normal distribution with mu=1, sigma=2")
 
 ## Normal distribution with mu=1, sigma=0.5
 
-```{r normal_e}
-normal_bell(mu=1, sigma=0.5)
-```
+![](../images/bell-05.png "Normal distribution with mu=1, sigma=0.5")
 
 ## Standard normal distribution (mu=0, sigma=1)
 
-```{r normal_f}
-normal_bell()
-```
+![](../images/bell-01.png "Normal distribution with mu=0, sigma=1")
 
 ## Why concern yourself with the bell shaped curve?
 
 -   You can characterize individual observations
 -   You can characterize summary measures
-

@@ -1,0 +1,426 @@
+---
+title: "Normal probabilities and quantiles"
+format: 
+  html:
+    embed-resources: true
+editor: source
+execute: 
+  error: true
+---
+
+## File details
+
+This program displays the standard normal curve along with various probabilities and quantiles. It was written by Steve Simon on 2024-09-01 and is placed in the public domain.
+
+## Load the tidyverse library
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+```
+
+## Functions for drawing
+
+```{r histogram}
+draw_histogram <- function(x, w=1) {
+  x1 <- round(x/w)*w
+  data.frame(x=x1, wt=w/length(x1)) |>
+    ggplot(aes(x, weight=wt)) +
+      theme(legend.position="none") +
+      xlab(" ") +
+      ylab(" ") +
+      geom_bar(
+        color="black", 
+        fill="white",
+        width=w)
+}
+```
+
+```{r boxplot}
+draw_boxplot <- function(x) {
+  data.frame(x) |>
+    ggplot(aes(x)) +
+      geom_boxplot()
+}
+```
+
+```{r q-q-plot}
+draw_qqplot <- function(y) {
+  data.frame(x=y) |>
+    mutate(z=(x-mean(y))/sd(y)) |>
+    mutate(r=percent_rank(z)) |>
+    mutate(q=qnorm(r)) |>
+    ggplot(aes(x=x, y=q)) +
+      geom_point()
+}
+```
+
+## Bell-shaped curve is a limit
+
+```{r limit-1}
+n <- 100; w <- 1
+x_bell <- qnorm((1:n)/(n+1), mean=15, sd=5)
+draw_histogram(x_bell, w)
+ggsave("../images/histogram-01.png")
+```
+
+## Bell-shaped curve is a limit
+
+```{r limit-2}
+n <- n*4; w <- w/2
+x_bell <- qnorm((1:n)/(n+1), mean=15, sd=5)
+draw_histogram(x_bell, w)
+ggsave("../images/histogram-02.png")
+```
+
+## Bell-shaped curve is a limit
+
+```{r limit-3}
+n <- n*4; w <- w/2
+x_bell <- qnorm((1:n)/(n+1), mean=15, sd=5)
+draw_histogram(x_bell, w)
+ggsave("../images/histogram-03.png")
+```
+
+## Bell-shaped curve is a limit
+
+```{r limit-4}
+n <- n*4; w <- w/2
+x_bell <- qnorm((1:n)/(n+1), mean=15, sd=5)
+draw_histogram(x_bell, w)
+ggsave("../images/histogram-04.png")
+```
+
+```{r normal-bell}
+#| echo: false
+
+normal_bell <- function(mu=0, sigma=1) {
+  x0 <- seq(-8, 8, length=500)
+  y0 <- dnorm(x0, mu, sigma)
+  normal <- data.frame(
+    x = c(-8, x0, 8),
+    y = c(0, y0, 0))
+  ggplot(data=normal, aes(x, y)) +
+    geom_polygon(
+      fill="white",
+      color="black") +
+    expand_limits(y=c(0, 0.8)) +
+    scale_x_continuous(breaks=2*(-4:4))
+}
+```
+
+## Normal distribution with mu=2, sigma=1
+
+```{r normal_a}
+normal_bell(mu=2, sigma=1)
+ggsave("../images/bell-01.png")
+```
+
+## Normal distribution with mu=-3, sigma=1
+
+```{r normal_b}
+normal_bell(mu=-3, sigma=1)
+ggsave("../images/bell-02.png")
+```
+
+## Normal distribution with mu=1, sigma=1
+
+```{r normal_c}
+normal_bell(mu=1, sigma=1)
+ggsave("../images/bell-03.png")
+```
+
+
+## Normal distribution with mu=1, sigma=2
+
+```{r normal_d}
+normal_bell(mu=1, sigma=2)
+ggsave("../images/bell-04.png")
+```
+
+## Normal distribution with mu=1, sigma=0.5
+
+```{r normal_e}
+normal_bell(mu=1, sigma=0.5)
+ggsave("../images/bell-05.png")
+```
+
+## Standard normal distribution (mu=0, sigma=1)
+
+```{r normal_f}
+normal_bell()
+ggsave("../images/bell-06.png")
+```
+
+
+## Using R to draw the standard normal curve
+
+```{r}
+#| label: standard-normal
+
+x <- seq(from=-4, to=4, length=100)
+y <- dnorm(x)
+data.frame(x, y) |>
+  ggplot() + 
+  aes(x, y) +
+  geom_polygon(fill="white", color="black") -> normal_curve
+normal_curve
+ggsave("../images/normal-00.png")
+```
+
+#### Comments on the code
+
+The [seq function][ref-seq], part of base R, calculates evenly spaced values within an interval. The code here calculates 100 evenly spaced values between -4 and +4. The [dnorm function][ref-dnorm] is part of base R and calculates the height of the normal curve. You can specify a mean and standard deviation, but if you leave it out, it specifies the height for a standard normal.
+
+The [ggplot function][ref-ggplot] is part of the [ggplot2 library][ref-ggplot2] and included within the tidyverse libary. This function allows you to specify the data for plotting.
+
+The [aes function][ref-aes] is short for aesthetics. It is part of the ggplot2 library and defines which variables are used for axes, color, markers, etc.
+
+The [geom-polygon function][ref-polygon] defines an irregular shape using the X and Y values defined in aes. It allows you to control the style of the border and the color used to fill the polygon.
+
+The [ggsave function][ref-ggsave] is part of the ggplot2 library. It saves the results of a ggplot function as a file. It looks at the extension to decide what format to use.
+
+[ref-seq]: https://stat.ethz.ch/R-manual/R-devel/RHOME/library/base/html/seq.html
+
+[ref-dnorm]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html
+
+[ref-ggplot]: https://ggplot2.tidyverse.org/reference/ggplot.html
+
+[ref-ggplot2]: https://ggplot2.tidyverse.org/
+
+[ref-aes]: https://ggplot2.tidyverse.org/reference/aes.html
+
+[ref-polygon]: https://ggplot2.tidyverse.org/reference/geom_polygon.html
+
+[ref-ggsave]: https://ggplot2.tidyverse.org/reference/ggsave.html
+
+## P[Z < 1.5]
+
+```{r}
+#| label: prob-1
+
+a <- 1.5
+normal_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label=a) +
+  geom_label(x=a-0.5, y=0, label="Area = ?") -> prob1
+prob1
+ggsave("../images/normal-01.png")
+pnorm(1.5)
+```
+
+#### Comments on the code
+
+Use the [geom_vline function][ref-vline] and [geom_label function][ref-label], both part of the ggplot2 library to draw a vertical reference line and add text to the normal curve.
+
+The [pnorm function][ref-pnorm] computes the standard normal probability. The link listed here also describes the qnorm function used later in this program.
+
+[ref-vline]: https://ggplot2.tidyverse.org/reference/geom_abline.html
+
+[ref-label]: https://ggplot2.tidyverse.org/reference/geom_text.html
+
+[ref-pnorm]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html
+
+#### Interpretation of the output
+
+The probability that a standard normal variable is less than 1.5 is about 93%.
+
+## P[Z < -0.5]
+
+```{r}
+#| label: prob-2
+
+a <- -0.5
+normal_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label=a) +
+  geom_label(x=a-0.5, y=0, label="Area = ?") -> prob2
+prob2
+ggsave("../images/normal-02.png")
+pnorm(-0.5)
+```
+
+#### Interpretation of the output
+
+The probability that a standard normal variable is less than -0.5 is about 31%.
+
+## P[Z > 1]
+
+```{r}
+#| label: prob-3
+a <- 3
+normal_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label=a) +
+  geom_label(x=a+0.5, y=0, label="Area = ?") -> prob3
+prob3
+ggsave("../images/normal-03.png")
+1- pnorm(3)
+```
+
+#### Comments on the code
+
+When you are calculating the probability on the right (probability greater than some number), use 1-pnorm.
+
+#### Interpretation of the output
+
+The probability that a standard normal variable is larger than 3 is about 0.1%.
+
+## P[Z > -2]
+
+```{r}
+#| label: prob-4
+
+a <- -2
+normal_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label=a) +
+  geom_label(x=a+0.5, y=0, label="Area = ?") -> prob4
+prob4
+ggsave("../images/normal-04.png")
+1- pnorm(-2)
+```
+
+#### Interpretation of the output
+
+The probability that a standard normal variable is larger than -2 is about 98%.
+
+## P[-2.5 < Z < 2.5]
+
+```{r}
+#| label: prob-5
+
+a <- 2.5
+normal_curve +
+  geom_vline(xintercept=-a) +
+  geom_vline(xintercept= a) +
+  geom_label(x=-a, y=0.4, label=-a) +
+  geom_label(x= a, y=0.4, label= a) +
+  geom_label(x=0, y=0, label="Area = ?") -> prob5
+prob5
+ggsave("../images/normal-05.png")
+pnorm(2.5)- pnorm(-2.5)
+```
+
+#### Comments on the code
+
+When you are calculating the probability between two values, compute pnorm of the larger value minus pnorm of the smaller value.
+
+#### Interpretation of the output.
+
+The probability that a standard normal variable is between -2.5 and 2.5 is approximately 99%.
+
+## P[-0.5 < Z < 0.5]
+
+```{r}
+#| label: prob-6
+
+a <- 0.5
+normal_curve +
+  geom_vline(xintercept=-a) +
+  geom_vline(xintercept= a) +
+  geom_label(x=-a, y=0.4, label=-a) +
+  geom_label(x= a, y=0.4, label= a) +
+  geom_label(x=0, y=0, label="Area = ?") -> prob6
+prob6
+ggsave("../images/normal-06.png")
+pnorm(0.5) - pnorm(-0.5)
+```
+
+#### Interpretation of the output
+
+The probability that a standard normal variable is between -0.5 and 0.5 is about 38%.
+
+## 25th percentile of a standard normal
+
+```{r}
+#| label: quantile-1
+
+p <- 0.25
+a <- qnorm(p)
+normal_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label="Quantile = ?") +
+  geom_label(x=a-0.5, y=0, label=p) -> prob7
+prob7
+ggsave("../images/normal-07.png")
+qnorm(0.25)
+```
+
+#### Comments on the code
+
+Use the qnorm function, part of base R, to calculate quantiles of the standard normal distribution. A description of the qnorm function is included in the link describing the pnorm function.
+
+#### Interpretation of the output
+
+The 25th percentile of a standard normal distribution is -0.67.
+
+## 90th percentile of a standard normal
+
+```{r}
+#| label: quantile-2
+
+p <- 0.9
+a <- qnorm(p)
+normal_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=0.4, label="Quantile = ?") +
+  geom_label(x=a-0.5, y=0, label=p) -> prob8
+prob8
+ggsave("../images/normal-08.png")
+qnorm(0.9)
+```
+
+#### Interpretation of the output
+
+The 90th percentile of a standard normal distribution is 1.28.
+
+## Birthweight calculations
+
+```{r}
+#| label: bw
+
+mu <- 3.2
+sigma <- 0.5
+
+x <- seq(mu-4*sigma, mu+4*sigma, length=100)
+y <- dnorm(x, mu, sigma)
+
+data.frame(x, y) |>
+  ggplot() +
+  aes(x, y) +
+  scale_x_continuous(breaks=seq(1.4, 5.0, by=0.2)) +
+  geom_polygon(fill="white", color="black") -> bw
+bw
+ggsave("../images/birthweight-01.png")
+```
+
+```{r}
+mu+qnorm(0.9)*sigma
+mu+qnorm(0.1)*sigma
+pnorm((4-mu)/sigma)
+```
+
+## Height calculations
+
+```{r}
+#| label: ht
+
+mu <- 160
+sigma <- 7
+
+x <- seq(mu-4*sigma, mu+4*sigma, length=100)
+y <- dnorm(x, mu, sigma)
+
+data.frame(x, y) |>
+  ggplot() +
+  aes(x, y) +
+  scale_x_continuous(breaks=seq(135, 185, by=5)) +
+  geom_polygon(fill="white", color="black") -> bw
+bw
+ggsave("../images/height-01.png")
+```
+
