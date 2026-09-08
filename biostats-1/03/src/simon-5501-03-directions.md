@@ -12,7 +12,7 @@ Download
 
 -   [simon-5501-03-demo.qmd][ref-demo]
 
-[ref-demo]: https://github.com/pmean/classes/blob/master/biostats-1/03/src/simon-5501-03-fev.qmd
+[ref-demo]: https://github.com/pmean/classes/blob/master/biostats-1/03/src/simon-5501-03-demo.qmd
 
 and store them in your src folder. Rename the file to use your last name.
 

@@ -2,7 +2,7 @@
 title: General grading rubric
 ---
 
-## Use of AI for your homework
+## Use of human assistance and AI for your homework
 
 You are welcome to use any non-human resource to write your programs. This includes websites that have sample programs. It also includes large language models (e.g., ChatGPT, Gemini). Please give appropriate credit in your assignment. A statement like "This code is loosely based on code found at ..." or "Gemini provided a first draft of the section of this program dealing with ..." is sufficient. You won't lose any points for failing to cite your sources, but it is a nice programming habit that you should develop.
 

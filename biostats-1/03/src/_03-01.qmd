@@ -30,6 +30,7 @@ Much variation in the real world follows a bell shaped curve, alternately called
 ## Bell-shaped curve is a limit, 1
 
 ![](../images/histogram-01.png "A histogram of a normal distribution at low resolution")
+
 ## Bell-shaped curve is a limit, 2
 
 ![](../images/histogram-02.png "A histogram of a normal distribution at a higher resolution")
@@ -42,19 +43,11 @@ Much variation in the real world follows a bell shaped curve, alternately called
 
 ![](../images/histogram-04.png "A histogram of a normal distribution at a very high resolution")
 
-
-```{r limit-4}
-n <- n*4; w <- w/2
-x_bell <- qnorm((1:n)/(n+1), mean=15, sd=5)
-draw_histogram(x_bell, w)
-```
-
-
 ## Overview
 
 The normal distribution is an important component of most statistical analyses. The formula for the normal distribution is quite complex, 
 
-$f(x; \mu, \sigma)=\frac{1}{\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
+$f(x; \mu, \sigma)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$
 
 but the shape is readily recognizable.
 
@@ -102,7 +95,7 @@ normal_bell <- function(mu=0, sigma=1) {
 
 ## Standard normal distribution (mu=0, sigma=1)
 
-![](../images/bell-01.png "Normal distribution with mu=0, sigma=1")
+![](../images/bell-06.png "Normal distribution with mu=0, sigma=1")
 
 ## Why concern yourself with the bell shaped curve?
 

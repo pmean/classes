@@ -133,7 +133,7 @@ The area between -2.5 and 2.5 is the area to the left of 2.5 minus the area to t
 :::
 
 ```{r}
-#| label: p5
+#| label: p6
 #| echo: true
 
 pnorm(0.5)-pnorm(-0.5)
