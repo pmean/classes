@@ -39,7 +39,7 @@ Documentation should include
 Always modify your graphs. **Do not settle for the default options**.
 
 -   Include your name and date on the title of any graph
-    -   "Steve Simon produced this graph on 2023-09-19."
+    -   "Steve Simon, 2023-09-19"
 -   Avoid unnecessary decimal places
     -   Use 10, 20, 30 and not 10.00, 20.00, 30.00
 -   Use comma separators for large numbers
