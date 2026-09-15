@@ -8,29 +8,29 @@ This programming assignment was written by Steve Simon on 2024-09-02 and is plac
 
 Download the program templates:
 
--   [simon-5501-04-fev.qmd][sim1]
+-   [simon-5501-04-demo1.qmd][ref-demo1]
 
-[sim1]: https://github.com/pmean/classes/blob/master/biostats-1/04/src/simon-5501-04-fev.qmd
+[ref-demo1]: https://github.com/pmean/classes/blob/master/biostats-1/04/src/simon-5501-04-demo1.qmd
 
 and store it in your src folder.
 
 ## Download data
 
-Also download the data files:
+Also download the data file:
 
--   [fev.csv][sim3]
+-   [fev.csv][ref-fev-csv]
 
-[sim3]: https://github.com/pmean/data/blob/main/files/fev.csv
+[ref-fev-csv]: https://github.com/pmean/data/blob/main/files/fev.csv
 
 and store it in your data folder. You may already have the first file from a previous homework assignment. You may wish to review the data dictionary
 
--   [fev.yaml][sim5]
+-   [fev.yaml][ref-fev-yaml]
 
-[sim5]: https://github.com/pmean/data/blob/main/files/fev.yaml
+[ref-fev-yaml]: https://github.com/pmean/data/blob/main/files/fev.yaml
 
 ## Question #1
 
-Use the  simon-5501-04-fev.qmd file. Update the program to calculate descriptive statistics (mean and standard deviation) for ht. Interpret these statistics.
+Use the simon-5501-04-demo1.qmd file. Update the program to calculate descriptive statistics (mean and standard deviation) for ht. Interpret these statistics.
 
 ## Question #2
 
@@ -52,6 +52,6 @@ Calculate the correlation between ht and fev. Interpret this correlation.
 
 ## If it doesn't work
 
-Please review the [suggestions if you encounter an error page][sim3].
+Please review the [suggestions if you encounter an error page][ref-suggestions].
 
-[sim3]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md
+[ref-suggestions]: https://github.com/pmean/classes/blob/master/general/suggestions-if-you-encounter-an-error.md

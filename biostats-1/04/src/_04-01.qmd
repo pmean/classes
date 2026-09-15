@@ -13,7 +13,7 @@ editor: source
     -   Scatterplot
     -   Correlation
 
-:::notes
+::: {.notes}
 The previous modules talked about how to examine individual variables. I used the term univariate statistics. After you understand how each individual variable behaves, you need to start examining how variables relate to one another. I will focus on graphical approaches, but also some numeric measures.
 
 Recall that continuous variables have a large number of possible values, potentially any value in some interval. Categorical variables have a small number of possible values with each value corresponding to a particular label.
@@ -29,9 +29,8 @@ If you are visualizing the relationship between two continuous variable, use a s
     -   Effect size
 
     
-:::notes
+::: {.notes}
 If you are visualizing the relationship between a categorical and a continuous variable, use a boxplot. A common numeric summary is the effect size. I do not like effect sizes, but they are used so commonly that I have to teach them.
-
 :::
 
 ## Assessing relationships (bivariate statistics), 3
@@ -40,7 +39,7 @@ If you are visualizing the relationship between a categorical and a continuous v
     -   Bar plots
     -   Many numeric measures (covered later)
     
-:::notes
+::: {.notes}
 
 If you are visualizing the relationship between two categorical variables, use a bar plot of the probabilities. There are many numeric measures, and I will defer discussion of these until a later module.
 :::
@@ -51,7 +50,7 @@ If you are visualizing the relationship between two categorical variables, use a
     -   Outcome on y-axis
     -   Exposure/intervention on x-axis
     
-:::notes
+::: {.notes}
 The scatterplot is a simple and easy way to examine the relationship between two independent variables. By tradition (and for no other good reason), the outcome variable is plotted on the y-axis (the vertical axis) and the exposure or treatment variable is plotted on the x-axis (the horizontal axis). If you conceive of the relationship as cause and effect, the cause variable goes on the x-axis Sometimes it is not clear which is which. You have to use your best judgement. I will usually provide some guidance in the programming assignments.
 :::
   
@@ -64,7 +63,7 @@ The scatterplot is a simple and easy way to examine the relationship between two
     -   Exponential acceleration
     -   Hormesis
     
-:::notes
+::: {.notes}
 Scatterplots require you to make a subjective interpretation. Is the relationship strong or weak? Is there any relationship at all?
 
 What is the direction of the relationship? Does an increase in exposure lead to an increase in the outcome? That's a positive relationship. If an increase in exposure leads to a decrease in the outcome, that's a negative relationship.
@@ -80,7 +79,7 @@ Look for nonlinear patterns. These can take many forms, but three common ones ar
     -   $X_i > \bar{X}$ and $Y_i < \bar{Y};\ \ \ $ (+) $\times$ (-) = -
     -   $X_i < \bar{X}$ and $Y_i > \bar{Y};\ \ \ $ (-) $\times$ (+) = -
     
-:::notes
+::: {.notes}
 Your book introduces the term covariance first before defining correlation. The covariance is a product involving the individual X and Y values compared to their respective means.
 
 There are four possibilities. An individual X_i and Y_i values could both be above average. This makes the terms (X_i-Xbar) and (Y_i - Ybar) both positive. When you multiply two positive numbers together, you get a positive result.
@@ -98,7 +97,7 @@ You might have the opposite pattern occur. Above average values of X are mostly 
     -   r is always between -1 and +1.
     -   r is a unitless quantity
 
-:::notes
+::: {.notes}
 The correlation coefficient between X and Y is computed as the covariance between X and Y divided by the standard deviation of X and the standard deviation of Y. 
 
 This creates a unitless quantity. While the covariance will change when you convert measurements from grams to kilograms, the correlation will not.
@@ -115,7 +114,7 @@ In general, I am not in favor of unitless quantities. They may allow you to comp
     -  -0.7 < r < -0.3 is a weak negative relationship
     -  -1.0 < r < -0.7 is a strong negative relationship
 
-:::notes
+::: {.notes}
 The closer the correlation is to +1, the stronger the positive relationship. The closer the correlation is to -1, the stronger the negative relationship. A correlation close to 0 implies little or no relationship.
 
 There is some debate about the dividing lines between strong and weak relationships, but a dividing line around +/-0.6 or 0.7 is common. Anything closer to zero than +/-0.2 or 0.3 is considered evidence of little or no relationship.
@@ -123,53 +122,41 @@ There is some debate about the dividing lines between strong and weak relationsh
 
 ## An example of a strong positive relationship
 
-```{r strong-positive}
-#| echo: false
+![](../images/correlation-01.png "Scatterplot of hypothetical data illustrating a strong upward trend")
 
-library(MASS)
-library(tidyverse)
-# set.seed(123) # Set a seed for reproducibility
-illustrate_correlation <- function(rho) {
-  bvn <- mvrnorm(
-    n = 100, 
-    mu = c(0, 0), 
-    Sigma = matrix(
-  	  c(1.0, rho, rho, 1.0), 
-      ncol = 2))
-  x <- bvn[, 1]*10+50
-  y <- bvn[, 2]*3+20
-  r <- cor(bvn)
-  data.frame(x, y) |>
-	  ggplot(aes(x, y)) + 
-	    geom_point() +
-	    ggtitle(paste0("r = ", round(cor(x, y), 2))) +
-  	  expand_limits(
-  	  	x=c(20, 80),
-  	  	y=c(10, 30))
-}
-illustrate_correlation(0.8)
-```
+::: {.notes}
+This graph shows some hypothetical data illustrating a strong positive trend. Notice that small values tend to be associated with small values and large values tend to be associated with large values. When X1 is around 10, X2 is roughly between 30 and 50. When X2 is around 20, X2 is much larger, roughly between 50 and 70.
+:::
+
 
 ## An example of a weak positive relationship
 
-```{r weak-positive}
-illustrate_correlation(0.5)
-```
+![](../images/correlation-02.png "Scatterplot of hypothetical data illustrating a weak upward trend")
+
+::: {.notes}
+This graph shows some hypothetical data illustrating a strong positive trend. Notice that small values tend to be associated with small values and large values tend to be associated with large values. When X1 is around 10, X2 is roughly between 20 and 60. When X2 is around 20, X2 is somewhat, roughly between 40 and 80.
+:::
 
 ## An example of a little or no relationship
 
-```{r no-relationship}
-illustrate_correlation(0.1)
-```
+![](../images/correlation-03.png "Scatterplt of hypothetical data illustrating a strong upward trend")
+
+::: {.notes}
+This graph shows some hypothetical data illustrating little or no relationship.When X1 is around 10, X2 is between 30 and 80. When X1 is around 20, X2 is largely unchanged, ranging between 25 and 75.
+:::
 
 ## An example of a weak negative relationship
 
-```{r weak-negative}
-illustrate_correlation(-0.5)
-```
+![](../images/correlation-04.png "Scatterplt of hypothetical data illustrating a weak downward trend")
+
+::: {.notes}
+This graph shows some hypothetical data illustrating a weak negative trend. Notice that small values tend to be associated with large values and large values tend to be associated with small values. When X1 is around 10, X2 is between 30 and 80. When X2 is around 60. X2 is a bit smaller, somewhere between 20 and 60.
+:::
 
 ## An example of a strong negative relationship
 
-```{r strong-negative}
-illustrate_correlation(-0.8)
-```
+![](../images/correlation-05.png "Scatterplt of hypothetical data illustrating a strong downward trend")
+
+::: {.notes}
+This graph shows some hypothetical data illustrating a strong positive trend. Notice that small values tend to be associated with small values and large values tend to be associated with large values. When X1 is around 10, X2 is between 50 and 80. When X2 is around 20. X2 is noticably smaller around 20 to 50.
+:::
