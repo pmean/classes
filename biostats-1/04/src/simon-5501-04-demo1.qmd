@@ -6,6 +6,8 @@ format:
 editor: source
 ---
 
+## File details
+
 This program assesses the relationships among variables in a study of pulmonary function in children. There is a [data dictionary][dd] that provides more details about the data. The program was written by Steve Simon on 2024-09-07 and is placed in the public domain.
 
 [dd]: https://github.com/pmean/datasets/blob/master/fev.yaml
@@ -96,9 +98,7 @@ The mean age is small, 9.9 years, and the standard deviation, 3.0 implies a tigh
 
 pulmonary |>
   count(smoke) |>
-  mutate(total=sum(n)) |>
-  mutate(pct=round(100*n/total)) |>
-  mutate(pct=paste0(pct, "%"))
+  mutate(total=sum(n))
 ```
 
 #### Comments on the code
