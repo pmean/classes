@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Sweep html files from src to results</title>
+<title>Analysis of gardasil shots by demographic factors</title>
 <style>
 
 code{white-space: pre-wrap;}
@@ -19,6 +19,41 @@ ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+}
+pre.numberSource { margin-left: 3em; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -2172,7 +2207,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Sweep html files from src to results</h1>
+<h1 class="title">Analysis of gardasil shots by demographic factors</h1>
 </div>
 
 
@@ -2191,118 +2226,159 @@ vertical-align: -.125em;
 
 <section id="file-details" class="level2">
 <h2 class="anchored" data-anchor-id="file-details">File details</h2>
-<p>This program moves files from the src folder to results folder in each of the modules. It was written by Steve Simon on 2025-01-08 and is placed in the public domain.</p>
+<p>This program reads data on Gardasil vaccinations in young women. Find more information in the <a href="https://raw.githubusercontent.com/pmean/datasets/master/gardasil.yaml">data dictionary</a>.</p>
+<p>The program was written by Steve Simon on 2024-09-07 and is placed in the public domain.</p>
 </section>
-<section id="reminder-on-how-to-print-pdf-files-with-speaker-notes" class="level2">
-<h2 class="anchored" data-anchor-id="reminder-on-how-to-print-pdf-files-with-speaker-notes">Reminder on how to print pdf files with speaker notes</h2>
-<p>To print speaker notes, add</p>
-<ul>
-<li>?print-pdf&amp;showNotes=separate-page</li>
-</ul>
-<p>to the end of the URL. Then open the print dialog box (ctrl-P) and choose</p>
-<ul>
-<li>Save as PDF</li>
-</ul>
-<p>for the printer. Other options, like Microsoft Print to PDF, do not seem to work.</p>
-</section>
-<section id="identify-html-files" class="level2">
-<h2 class="anchored" data-anchor-id="identify-html-files">Identify html files</h2>
-</section>
-<section id="move-html-files" class="level2">
-<h2 class="anchored" data-anchor-id="move-html-files">Move html files</h2>
-</section>
-<section id="loop-across-folders" class="level2">
-<h2 class="anchored" data-anchor-id="loop-across-folders">Loop across folders</h2>
-</section>
-<section id="biostats-1" class="level2">
-<h2 class="anchored" data-anchor-id="biostats-1">Biostats-1</h2>
+<section id="load-the-tidyverse-library" class="level2">
+<h2 class="anchored" data-anchor-id="load-the-tidyverse-library">Load the tidyverse library</h2>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="read-the-data-and-view-a-brief-summary" class="level2">
+<h2 class="anchored" data-anchor-id="read-the-data-and-view-a-brief-summary">Read the data and view a brief summary</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gard <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">file=</span><span class="st">&quot;../data/gardasil.csv&quot;</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names=</span><span class="cn">TRUE</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types=</span><span class="st">&quot;nnnnnnnnnn&quot;</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(gard) <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">names</span>(gard))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gard)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Searching in module biostats-1/01/src
-Searching in module biostats-1/02/src
-Searching in module biostats-1/03/src
-Searching in module biostats-1/04/src
----biostats-1/04/src/simon-5501-04-demo1.html
----biostats-1/04/src/simon-5501-04-demo2.html
-Searching in module biostats-1/05/src
-Searching in module biostats-1/06/src
-Searching in module biostats-1/07/src
-Searching in module biostats-1/08/src
-Searching in module biostats-1/09/src
-Searching in module biostats-1/10/src
-Searching in module biostats-1/11/src
-Searching in module biostats-1/12/src
-Searching in module biostats-1/13/src
-Searching in module biostats-1/14/src
-Searching in module biostats-1/15/src</code></pre>
+<pre><code>Rows: 1,413
+Columns: 10
+$ age           &lt;dbl&gt; 21, 21, 20, 14, 17, 11, 17, 15, 13, 18, 17, 22, 16, 13, …
+$ agegroup      &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0,…
+$ race          &lt;dbl&gt; 0, 0, 0, 0, 3, 1, 0, 3, 3, 0, 1, 0, 3, 1, 1, 0, 1, 1, 0,…
+$ shots         &lt;dbl&gt; 3, 3, 1, 3, 2, 1, 1, 3, 3, 3, 2, 2, 1, 2, 1, 1, 1, 3, 3,…
+$ completed     &lt;dbl&gt; 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1,…
+$ insurancetype &lt;dbl&gt; 3, 3, 1, 3, 3, 0, 3, 1, 1, 2, 1, 3, 1, 3, 0, 1, 1, 1, 1,…
+$ medassist     &lt;dbl&gt; 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,…
+$ location      &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+$ locationtype  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+$ practicetype  &lt;dbl&gt; 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1,…</code></pre>
 </div>
 </div>
 </section>
-<section id="biostats-2" class="level2">
-<h2 class="anchored" data-anchor-id="biostats-2">Biostats-2</h2>
+<section id="create-factors-for-agegroup" class="level2">
+<h2 class="anchored" data-anchor-id="create-factors-for-agegroup">Create factors for agegroup</h2>
+<p>The factor function identifies a variable as categorical and assigns labels to number codes. You don’t necessarily need to use factor if the data you read in is character strings, as R automatically treats those variable as categorical.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Searching in module biostats-2/01/src
-Searching in module biostats-2/02/src
-Searching in module biostats-2/03/src
-Searching in module biostats-2/04/src
-Searching in module biostats-2/05/src
-Searching in module biostats-2/06/src
-Searching in module biostats-2/07/src
-Searching in module biostats-2/08/src
-Searching in module biostats-2/09/src
-Searching in module biostats-2/10/src
-Searching in module biostats-2/11/src
-Searching in module biostats-2/12/src
-Searching in module biostats-2/13/src
-Searching in module biostats-2/14/src</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gard<span class="sc">$</span>agegroup <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  gard<span class="sc">$</span>agegroup,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels=</span><span class="fu">c</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;11 to 17 years&quot;</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;18 to 26 years&quot;</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<section id="comments-on-the-code" class="level4">
+<h4 class="anchored" data-anchor-id="comments-on-the-code">Comments on the code</h4>
+<p>The <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/factor.html">factor function</a>, part of base R, assigns labels to categories. This is most useful for numeric codes. You can also use factor for to spell out the full meaning for letter codes or abbreviations. A final application of factor is to control the order in which the categories are displayed.</p>
+</section>
+</section>
+<section id="counts-and-percentages-for-agegroup" class="level2">
+<h2 class="anchored" data-anchor-id="counts-and-percentages-for-agegroup">Counts and percentages for agegroup</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gard <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(agegroup) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  agegroup           n total   pct
+  &lt;fct&gt;          &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
+1 11 to 17 years   701  1413  49.6
+2 18 to 26 years   712  1413  50.4</code></pre>
+</div>
+</div>
+<section id="interpretation-of-the-output" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output">Interpretation of the output</h4>
+<p>There are roughly the same number of patients 11 to 17 years as there are patients 18 to 26 years.</p>
+</section>
+</section>
+<section id="create-factors-for-shots" class="level2">
+<h2 class="anchored" data-anchor-id="create-factors-for-shots">Create factors for shots</h2>
+<p>It is a bit silly to replace 1, 2, 3 with One, Two, Three. The main reason is to clearly identify shots as categorical rather than continuous.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gard<span class="sc">$</span>shots <span class="ot">&lt;-</span> <span class="fu">factor</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  gard<span class="sc">$</span>shots,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">levels=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels=</span><span class="fu">c</span>(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;One&quot;</span>, </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Two&quot;</span>, </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Three&quot;</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="clinical-research-methodology" class="level2">
-<h2 class="anchored" data-anchor-id="clinical-research-methodology">clinical-research-methodology</h2>
+<section id="counts-and-percentages-for-shots" class="level2">
+<h2 class="anchored" data-anchor-id="counts-and-percentages-for-shots">Counts and percentages for shots</h2>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gard <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(shots) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>total)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Searching in module clinical-research-methodology/01/src
-Searching in module clinical-research-methodology/02/src
-Searching in module clinical-research-methodology/03/src
-Searching in module clinical-research-methodology/04/src
-Searching in module clinical-research-methodology/05/src
-Searching in module clinical-research-methodology/06/src
-Searching in module clinical-research-methodology/07/src
-Searching in module clinical-research-methodology/08/src
-Searching in module clinical-research-methodology/09/src
-Searching in module clinical-research-methodology/10/src
-Searching in module clinical-research-methodology/11/src
-Searching in module clinical-research-methodology/12/src
-Searching in module clinical-research-methodology/13/src
-Searching in module clinical-research-methodology/14/src</code></pre>
+<pre><code># A tibble: 3 × 4
+  shots     n total   pct
+  &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
+1 One     440  1413  31.1
+2 Two     436  1413  30.9
+3 Three   537  1413  38.0</code></pre>
 </div>
 </div>
+<p>Slightly more patients got three shots than one or two shots, but this is still less than half of the patients overall.</p>
 </section>
-<section id="introduction-to-r" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-to-r">introduction-to-r</h2>
+<section id="compare-number-of-shots-by-age-group" class="level2">
+<h2 class="anchored" data-anchor-id="compare-number-of-shots-by-age-group">Compare number of shots by age group</h2>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gard <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(agegroup, shots) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(agegroup) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">row_total=</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct=</span><span class="dv">100</span><span class="sc">*</span>n<span class="sc">/</span>row_total)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Searching in module introduction-to-r/01/src
-Searching in module introduction-to-r/02/src
-Searching in module introduction-to-r/03/src
-Searching in module introduction-to-r/04/src
-Searching in module introduction-to-r/05/src
-Searching in module introduction-to-r/06/src
-Searching in module introduction-to-r/07/src
-Searching in module introduction-to-r/08/src
-Searching in module introduction-to-r/09/src</code></pre>
+<pre><code># A tibble: 6 × 5
+# Groups:   agegroup [2]
+  agegroup       shots     n row_total   pct
+  &lt;fct&gt;          &lt;fct&gt; &lt;int&gt;     &lt;int&gt; &lt;dbl&gt;
+1 11 to 17 years One     188       701  26.8
+2 11 to 17 years Two     217       701  31.0
+3 11 to 17 years Three   296       701  42.2
+4 18 to 26 years One     252       712  35.4
+5 18 to 26 years Two     219       712  30.8
+6 18 to 26 years Three   241       712  33.8</code></pre>
 </div>
 </div>
+<section id="comments-on-the-code-1" class="level4">
+<h4 class="anchored" data-anchor-id="comments-on-the-code-1">Comments on the code</h4>
+<p>As mentioned in the earlier demo program, the group_by function will require that any further calculations should be done separately for each level of agegroup. This means that the sum function creates a separate total for each agegroup.</p>
 </section>
-<section id="general" class="level2">
-<h2 class="anchored" data-anchor-id="general">general</h2>
+<section id="interpretation-of-the-output-1" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-1">Interpretation of the output</h4>
+<p>The probability of getting all three shots was higher in the 11 to 17 year old group compared to the 18 to 26 year old group.</p>
+</section>
+</section>
+<section id="bar-chart-of-shots-by-age-group" class="level2">
+<h2 class="anchored" data-anchor-id="bar-chart-of-shots-by-age-group">Bar chart of shots by age group</h2>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Searching in module general/src</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gard <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>agegroup, <span class="at">fill=</span>shots)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">&quot;fill&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">x=</span><span class="st">&quot;Age group&quot;</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y=</span><span class="st">&quot;Proportion&quot;</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption=</span><span class="st">&quot;Steve Simon, 2024-09-07&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img role="img" src="data:image/png;base64,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wUZltMpJ9dghoK2PwtcC2v+Pbmz6m0jGrxidMTrquU8edMVgozJa5aR67BLQtueB1m/C936YZ9NNeLMHjuqMjnrukwddMdiojFY5qR67BHTayxer64TVK5FqAZ3+x+zBox5/gJj7QKHDYKMyWuWkeuwU0Om1zMVr4V8s4lYP6PQK40tfTKonhabZ9Hfhzf4SZ53RUc998qArBhuV0Son1WOngE7OP2q+G1M9oJPT6i/AvZbctA33gZ6URbZmdNRznzzoisFGZbTKSfXYLaCr7wfaCGj1WviP05u2IaDffTYavfAK70iPnTDYqIxWOakeuwZUYuODSLyhMnbGYKMyWuWkehBQo6Oe++RBVww2KqNVTqrHHgVUxOio5z550BWDjcpolZPqQUCNjnrukwddMdiojFY5qR4E1Oio5z550BWDjcpolZPqsWcB/e7zS6PRhUvFk0+tGB313CcPumKwURmtclI99iugJ4uHkJLfY3Qjo6Oe++RBVww2KqNVTqrHXgW06OcLr7z91sttBX16+3A8fvdO7TNPboxLP/x1+9dnjI567pMHXTHYqIxWOSVVexXQ+wfzlyI9uDlafVlnVctZLGceHtYC2vL1GaOjnvvkQVcMNiqjVU5J1V4FdPlXlItX4a/8GeXj8dU7k0e3xlfvLT51Nn5j69dnjI567pMHXTHYqIxWOSVV+xTQxpuJrP6hkIeH1fXMy79YfO54/OHWr88YHfXcJw+6YrBRGa1ySqp0P3kXPf4u/N3q2ubd8fvzTz29VYtly9crRkc998mDrhhsVEarnJIq3U/eRY+Azq9t1m62P7lx5S8/GI9/cmfD1ytGRz33yYOuGGxURquckirdT97FppvwtXcWXXmb5sW1zYeHizs5548hFels+fr3K0a/c+6TB10x2KiMVjnFPgV024NIbQE9G4/fuzf53e3x9EsEFHMMNiqjVU6RcgMle0DvH4xenP05+K/fXHkaUy2Qiycqze/2PB6/3/r1Str/hmwkOytgjMFGZbTKKanaq4DOXoh06dKl9ZcitV0DnTsbX7235etGR112VsAYg43KaJVTUrVfAS3+wNLMhXeaX9gW0OJKJwHFHIONymiVU1K1ZwGdnH/11vQa6Csfr/05j82Pss+ayaPwqDDYqIxWOSVV+xbQjebP71w+z/PprXoz178+Z3TUZWcFjDHYqIxWOaU7+xjQv2n7ZMsrjY5nVzZnIeWVSKgw2KiMVjklVfsW0K/+sLwH9NW1P288zeSVlde6Pzwsnsb06IPyUy1frxgdddlZAWMMNiqjVU5J1X4F9Pzm4v1AX1u9F/RR7d2WHh6W1zPvVm/GdGf16w1GR112VsAYg43KaJVTUrVXAS36eeGVf/1n/+Gtg9HqmzFNC3l72sd3y+uXVUAnj346Hl9+797a1xuMjrrsrIAxBhuV0SqnpGqvAnoyGv3+7Irn+Wej2ss6d2N01GVnBYwx2KiMVjmpHkm/nlGynmnja+GXz54/Wr8K2pPRUZedFTDGYKMyWuWkeiT9ekbJeqZN78bUeD/Q5rsx9Wd01GVnBYwx2KiMVjmpHkm/nk2xnq3H29n1Z3TUZWcFjDHYqIxWOakeSb+eTbGercc70vdndNRlZwWMMdiojFY5qR5Jv17zssu/MWz6Z4YnWx5Eutj677sxOuqyswLGGGxURqucVI+kX695WfeAnt9cPP3zZGR1C56APm8YbFRGq5xUj6Rfr+UH2N0XWbPhJvzPiud/vvLjP/tPxT9/8Hbpj3a+IW901GVnBYwx2KiMVjmpHkm/XssPcAzo42ujdbv/txsdddlZAWMMNiqjVU6qR9Kv11q1WcKq5xidlLflZ4/wPPhoGrj1V613QEChw2CjMlrlpHok/XqtVasSdlS+NGj2/PbyEZ7T2ZsfX+jxiqEeb2fXn9FRl50VMMZgozJa5aR6JP16LWhitk8AACAASURBVD9gEdDT4rrn9Epi8WER0/sHo1e/mZx/uvLHizohoNBhsFEZrXJSPZJ+vZYfsAjo/YOLxX9cmvay/Nz8eUZ9XnNJQKHDYKMyWuWkeiT9ei0/YBHQ85tlNX90cL28C3TxR9xX/oB7J5sD+t3nl0ajC5d+/E3qj9zM6KjLzgoYY7BRGa1yUj2Sfr2WH7B8FP5oet3z6Hv/5drr5SNJixeu93mYfmNAl089tXveqdFRl50VMMZgozJa5aR6JP16LT9g2cfT0fXH1176nzcvli+5XHzeMqBFP1945e23XrYsqNFRl50VMMZgozJa5aR6JP16LT9g2cf7B69P/9/k6KX/UXxKcQ30/sHopdmzoh7c7PPYVDujoy47K2CMwUZltMpJ9Uj69Vp+wLKP5zdf+nJ0fXL6vf9YPGykuA/0aPmjpj+e18KjFwYbldEqJ9Uj6ddr+QG1K5hH3/uH06uF9//uW2U67R+F592YYIHBRmW0ykn1SPr1Wn5ALaCno+Ia4uNrs1vXs+eBfveR3fNAeT9QWGCwURmtclI9kn69lh9QC9k0mbPb7rPrhuavRCKgsMBgozJa5aR6JP16LT+gFrLqbxYdzR8gt34t/OJu1UKfu1bbGR112VkBYww2KqNVTqpH0q9nU6xn40Ek6DDYqIxWOakeSb+eUbKeafPTmF78ZflvX7/J05jQE4ONymiVk+qR9OsZJeuZtj2RfnTp0iXTlyIZHXXZWQFjDDYqo1VOqkfSr2fVrGfZ+FLOLw+qV3JeeMfsv8zoqMvOChhjsFEZrXJSPZJ+PbNoPcPmNxM5/+qt6TXQVz42egCpYHTUZWcFjDHYqIxWOakeSb+eXbW24+3soMNgozJa5aR6JP16qoat2vQofK/nRD2L0VGXnRUwxmCjMlrlpHok/XqCfLXa+DeRejwp/5mMjrrsrIAxBhuV0Son1SPp1xPkq1WHVyLZMTrqsrMCxhhsVEarnFSPpF9PkK9WHd5MxI7RUZedFTDGYKMyWuWkeiT9eoJ8tdpwH+jJ/O1ATRkdddlZAWMMNiqjVdbVw75e7TYE9LvPyjekr/wRr4VHHww2KqNV1tXDpljPtvFBpDrejQm9MNiojFZZVw+bYj0bAYUOg43KaJV19bAp1rPxRHroMNiojFY5qR5/vzsCuk3ukwddMdiojFY5qR77FNBvJP9lRkc998mDrhhsVEarnFSPfQno+afFGzG98I7hu4hUjI567pMHXTHYqIxWOakeexLQ+/P3sXvR/MVIRkc998mDrhhsVEarnFSP/Qho+QD8C3/v5dHI7E8hLRgd9dwnD7pisFEZrXJSPfYjoCej2Z/w+Gp6RdT6DUWMjnrukwddMdiojFY5qR57EdDzm/NuTktq9cfk5oyOeu6TB10x2KiMVjmpHvsS0Op9RO4fmN+GNzrquU8edMVgozJa5aR67EVAH1+bv+5o+W9mjI567pMHXTHYqIxWOakeBNToqOc+edAVg43KaJWT6kFAjY567pMHXTHYqIxWOakeBNToqCccSGSVONjcVUBnRqucVI+kE8+2XJsRUOgkDjZ3FdCZ0Son1SPpxLMt12YEFDqJg81dBXRmtMpJ9Ug68ZqXPam/O+frk6Pp/zdCQKGTONjcVUBnRqucVI+kE695WdeArhvYGyrL9h3GEgebuwrozGiVk+qRdOK1/IDl3xomoNgLiYPNXQV0ZrTKSfVIOvFafoBLQM9/9va6gf1ROdm+w1jiYHNXAZ0ZrXJSPZJOvJYf0Ajo/TdHo1eLrp2OXv/yYPTiJ5PJg48ORqMfVH+NuPHBFvv4jvSyfYexxMHmrgI6M1rlpHoknXgtP6Ae0FfKN+0sXqt+Wv779N+q9/G8UL4VSOODbQgodBIHm7sK6MxolZPqkXTitfyAekBHL30xmV7xvF4EdPaeH4+vjV77dnL+WXmHZeODrQgodBIHm7sK6MxolZPqkXTitfyAekDLZpZ3hZ5W7550Ur353EnxycYHWxFQ6CQONncV0JnRKifVI+nEa/kB9YCWfSwzeTqL6fnNxbvQvfRt44PtvxUBhU7iYHNXAZ0ZrXJSPZJOvJYfsPYofDOgtScdNT7Y/lsRUOgkDjZ3FdCZ0Son1SPpxGv5AZsCenH2xVozGx9s/60IKHQSB5u7CujMaJWT6pF04rX8gGcEtLrVvvbBdgQUOomDzV0FdGa0ykn1SDrxWn7A1oBOb7Uvn7LU+GA7AgqdxMHmrgI6M1rlpHoknXgtP2BrQKcfzB4vKu8TbXywFQGFTuJgc1cBnRmtclI9kk68lh+wPaCPrxXPDa2eHNr4YCsCCp3EweauAjozWuWkeiSdeC0/YHtAJ6ezFx+NXlv7YBsCCp3EweauAjozWuWkeiSdeC0/4BkBrV7+/nHLB1sQUOgkDjZ3FdCZ0Son1SPpxFM1bBUBhU7iYHNXAZ0ZrXJSPZJOPFXDVhFQ6CQONncV0JnRKifVI+nEUzVsFQGFTuJgc1cBnRmtclI9kk48VcNWEVDoJA42dxXQmdEqJ9Uj6cRTNWwVAYVO4mBzVwGdGa1yUj2STjxVw1YRUOgkDjZ3FdCZ0Son1SPpxFM1bBUBhU7iYHNXAZ0ZrXJSPZJOPFXDVhFQ6CQONncV0JnRKifVI+nEUzVsFQGFTuJgc1cBnRmtclI9kk48VcNWEVDoJA42dxXQmdEqJ9Uj6cRTNWwVAYVO4mBzVwGdGa1yUj2STjxVw1YRUOgkDjZ3FdCZ0Srr6qFq2CoCCp3EweauAjozWmXP+mgQUOgkDjZ3FdCZ0Sp71keDgEIncbC5q4DOjFbZsz4argE1kjsL6CpxsLmrgM4ki72PuAYKncTB5q4COjNaZc/6aBBQ6CQONncV0JnRKnvWR4OAQidxsLmrgM6MVtmzPhoEFDqJg81dBXRmtMqe9dEgoNBJHGzuKqAzo1X2rI8GAYVO4mBzVwGdGa2yZ300CCh0EgebuwrozGiVPeujQUChkzjY3FVAZ0ar7FkfDQIKncTB5q4COjNaZc/6aBBQ6CQONncV0JnRKnvWR4OAQidxsLmrgM6MVtmzPhoEFDqJg81dBXRmtMqe9dEgoNBJHGzuKqAzo1X2rI8GAYVO4mBzVwGdGa2yZ300CCh0EgebuwrozGiVPeujQUChkzjY3FVAZ0ar7FkfDQIKncTB5q4COjNaZc/6aBBQ6CQONncV0JnRKnvWR4OAQidxsLmrgM6MVtmzPhoEFDqJg81dBXRmtMqe9dEgoNBJHGzuKqAzo1X2rI8GAYVO4mBzVwGdGa2yZ300CCh0EgebuwrozGiVPeujQUChkzjY3FVAZ0ar7FkfDQIKncTB5q4COjNaZc/6aBBQ6CQONncV0JnRKnvWR4OAQidxsLmrgM6MVtmzPhoEFDoMNiqjVfasjwYBhQ6DjcpolT3ro0FAocNgozJaZc/6aBBQ6DDYqIxW2bM+GgQUOgw2KqNV9qyPBgGFDoONymiVPeujQUChw2CjMlplz/poEFDoMNiojFbZsz4aBBQ6DDYqo1X2rI8GAYUOg43KaJU966NBQKHDYKMyWmXP+mgQUOgw2KiMVtmzPhoEFDoMNiqjVfasjwYBhQ6DjcpolT3ro0FAocNgozJaZc/6aBBQ6DDYqIxW2bM+GgQUOgw2KqNV9qyPBgGFDoONymiVPeujQUChw2CjMlplz/poEFDoMNiojFbZsz4aBBQ6DDYqo1X2rI8GAYUOg43KaJU966NBQKHDYKMyWmXP+mgQUOgw2KiMVtmzPhoEFDoMNiqjVfasjwYBhQ6DjcpolT3ro0FAocNgozJaZc/6aBBQ6DDYqIxW2bM+GgQUOgw2KqNV9qyPBgGFDoONymiVPeujQUChw2CjMlplz/poEFDoMNiojFbZsz4aBBQ6DDYqo1X2rI8GAYUOg43KaJU966NBQKHDYKMyWmXP+mgQUOgw2KiMVtmzPhoEFDoMNiqjVfasjwYBhQ6DjcpolT3ro0FAocNgozJaZc/6aBBQ6DDYqIxW2bM+GgQUOgw2KqNV9qyPBgGFDoONymiVPeujQUChw2CjMlplz/poEFDoMNiojFbZsz4aBBQ6DDYqo1X2rI8GAYUOg43KaJU966NBQKHDYKMyWmXP+mgQUOgw2KiMVtmzPhoEFDoMNiqjVfasjwYBhQ6DjcpolT3ro0FAocNgozJaZc/6aBBQ6DDYqIxW2bM+GgQUOgw2KqNV9qyPBgGFDoONymiVPeujQUChw2CjMlplz/poEFDoMNiojFbZsz4aBBQ6DDYqo1X2rI8GAYUOg43KaJU966NBQKHDYKMyWmXP+mj0CujT24fj8bt36p/67U/H48vVp57cGJd++OuVyxkd9dwnD7pisFEZrXK/aA1Jn4BWgaz38VezZF7+RfHBw0MCigKDjcpolfuHayj6BPR4fPXO5NGt8dV788+cjS//6aT4VNnMs/Eb7Rc0Ouq5Tx50xWCjMlrlftEakh4BfXhYZvLJjdn1zamnt8YfTspPlf88nn20zuio5z550BWDjcpolXs1a1B6BPRudQXz7vj96jNPblS31o+LTz29tSjrCqOjnvvkQVcMNiqjVe5RrIHpEdD5FcyWW+plQJ/cuPKXH4zHP7mzdkmjo5775EFXDDYqo1VOr8/QpAd0cQXz4eHyTtCZ2a36+WNIyxvy36/s9qsu5D550BWDjcpolfefaUBnN+7PxuP37k1+d3u8uCVPQJ9TDDYqo1XefzsFdOV5SmezZM7vIz1e3Ec6Z3S9P/fJg64YbFRGq9wnWcNieA307PBy49H3s/HqNVSjo5775EFXDDYqo1VOrs/g2AX07njlwfe1a6gE9HnDYKMyWuXk+gyO2aPwv1rtZ8t9pEZHPffJg64YbFRGq5xen6Hp9TzQ9xv/LDw9Hl+prm7On1Xf8jQno6Oe++RBVww2KqNV7pOsYTF5JVL56s57y38vw7kI6ZLRUc998qArBhuV0Sr3atag9AjotIxXVl4Lf7f+eNHDw+JpTI8+WHsMiYA+bxhsVEar3Ddbw9HnzUQe1d6N6eHh9Hro/P3rpoorn3erN2NaeymS0VHPffKgKwYbldEq79yv7Hq9H+ij29M+vltevywDejZuBHTyqHhz0PdWr38S0OcOg43KaJV3atcg8I700GGwURmtsmd9NAgodBhsVEar7FkfDQIKHQYbldEqe9ZHg4BCh8FGZbTKnvXRIKDQYbBRGa2yZ300CCh0GGxURqvsWR8NAgodBhuV0Sp71keDgEKHwUZltMqe9dEgoNBhsFEZrbJnfTQIKHQYbFRGq+xZHw0CCh0GG5XRKnvWR4OAQofBRmW0yp710SCg0GGwURmtsmd9NAgodBhsVEar7FkfDQIKHQYbldEqe9ZHg4BCh8FGZbTKnvXRIKDQYbBRGa2yZ300CCh0GGxURqvsWR8NAgodBhuV0Sp71keDgEKHwUZltMqe9dEgoNBhsFEZrbJnfTQIKHQYbFRGq+xZHw0CCh0GG5XRKnvWR4OAQofBRmW0yp710SCg0GGwURmtsmd9NAgodBhsVEar7FkfDQIKHQYbldEqe9ZHg4BCh8FGZbTKnvXRIKDQYbBRGa2yZ300CCh0GGxURqvsWR8NAgodBhuV0Sp71keDgEKHwUZltMqe9dEgoNBhsFEZrbJnfTQIKHQYbFRGq+xZHw0CCh0GG5XRKnvWR4OAQofBRmW0yp710SCg0GGwURmtsmd9NAgodBhsVEar7FkfDQIKHQYbldEqe9ZHg4BCh8FGZbTKnvXRIKDQYbBRGa2yZ300CCh0GGxURqvsWR8NAgodBhuV0Sp71keDgEKHwUZltMqe9dEgoNBhsFEZrbJnfTQIKHQYbFRGq+xZHw0CCh0GG5XRKnvWR4OAQofBRmW0yp710SCg0GGwURmtsmd9NAgodBhsVEar7FkfDQIKHQYbldEqe9ZHg4BCh8FGZbTKnvXRIKDQYbBRGa2yZ300CCh0GGxURqvsWR8NAgodBhuV0Sp71keDgEKHwUZltMqe9dEgoNBhsFEZrbJnfTQIKHQYbFRGq+xZHw0CCh0GG5XRKnvWR4OAQofBRmW0yp710SCg0GGwURmtsmd9NAgodBhsVEar7FkfDQIKHQYbldEqe9ZHg4BCh8FGZbTKnvXRIKDQYbBRGa2yZ300CCh0GGxURqvsWR8NAgodBhuV0Sp71keDgEKHwUZltMqe9dEgoNBhsFEZrbJnfTQIKHQYbFRGq+xZHw0CCh0GG5XRKnvWR4OAQofBRmW0yp710SCg0GGwURmtsmd9NAgodBhsVEar7FkfDQIKHQYbldEqe9ZHg4BCh8FGZbTKnvXRIKDQYbBRGa2yZ300CCh0GGxURqvsWR8NAgodBhuV0Sp71keDgEKHwUZltMqe9dEgoNBhsFEZrbJnfTQIKHQYbFRGq+xZHw0CCh0GG5XRKnvWR8M1oEZynzzoisFGJVnsfcQ1UOgw2KiMVtmzPhoEFDoMNiqjVfasjwYBhQ6DjcpolT3ro0FAocNgozJaZc/6aBBQ6DDYqIxW2bM+GgQUOgw2KqNV9qyPBgGFDoONymiVPeujQUChw2CjMlplz/poEFDoMNiojFbZsz4aBBQ6DDYqo1X2rI8GAYUOg43KaJU966NBQKHDYKMyWmXP+mgQUOgw2KiMVtmzPhoEFDoMNiqjVfasjwYBhQ6DjcpolT3ro0FAocNgozJaZc/6aBBQ6DDYqIxW2bM+GgQUOgw2KqNV9qyPBgGFDoONymiVPeujQUChw2CjMlplz/poEFDoMNiojFbZsz4aBBQ6DDYqo1X2rI8GAYUOg43KaJU966NBQKHDYKMyWmXP+mgQUOgw2KiMVtmzPhoEFDoMNiqjVfasjwYBhQ6DjcpolT3ro0FAocNgozJaZc/6aBBQ6DDYqIxW2bM+GgQUOgw2KqNV9qyPBgGFDoONymiVPeujQUChw2CjMlplz/poEFDoMNiojFbZsz4aBBQ6DDYqo1X2rI8GAYUOg43KaJU966NBQKHDYKMyWmXP+mgQUOgw2KiMVtmzPhoEFDoMNiqjVfasjwYBhQ6DjcpolT3ro0FAocNgozJaZc/6aBBQ6DDYqIxW2bM+GgQUOgw2KqNV9qyPBgGFDoONymiVPeujQUChw2CjMlplz/poEFDoMNiojFbZsz4aBBQ6DDYqo1X2rI8GAYUOg43KaJU966NBQKHDYKMyWmXP+mgQUOgw2KiMVtmzPhoEFDoMNiqjVfasjwYBhQ6DjcpolT3ro0FAocNgozJaZc/6aBBQ6DDYqIxW2bM+GgQUOgw2KqNV9qyPBgGFDoONymiVPeujQUChw2CjMlplz/poEFDoMNiojFbZsz4aBBQ6DDYqo1X2rI8GAYUOg43KaJU966NBQKHDYKMyWmXP+mgQUOgw2KiMVtmzPhoEFDoMNiqjVfasjwYBhQ6DjcpolT3ro0FAocNgozJaZc/6aBBQ6DDYqIxW2bM+GgQUOgw2KqNV9qyPBgGFDoONymiVPeujQUChw2CjMlplz/poEFDoMNiojFbZsz4aBBQ6DDYqo1X2rI8GAYUOg43KaJU966NBQKHDYKMyWmXP+mgQUOgw2KiMVtmzPhoEFDoMNiqjVfasjwYBhQ6DjcpolT3ro0FAocNgozJaZc/6aBBQ6DDYqIxW2bM+GgQUOgw2KqNV9qyPBgGFDoONymiVPeujQUChw2CjMlplz/poEFDoMNiojFbZsz4aBBQ6DDYqo1X2rI8GAYUOg43KaJU966NBQKHDYKMyWmXP+mgQUOgw2KiMVtmzPhq9Avr09uF4/O6djZ9q+XrJ6KjnPnnQFYONymiV+9RnWPoE9MmNceGHv97wqZavzxgd9dwnD7pisFEZrXLvbg1Gn4Aej6/emTy6Nb56r/1TLV+fMTrquU8edMVgozJa5V3SNQw9AvrwsLxu+eTG5V+0fqrl6xWjo5775EFXDDYqo1XeJV3D0COgd8dvVP98v/VTLV+vGB313CcPumKwURmtcr9oDUmPgB6PPyz/eVaFcvVTLV+vGB313CcPumKwURmtcr9oDUl6QJ/eqm6aPzyc38nZ+FTL179f2f3XLeU+edAVg43KaJX33z4GFAAGYaeAzp+o1PhUy9fnjK73R8TBiYrJbtE/XEPhcg10Lve4BoyDExWT3aJ/uIaCgA4DBycqJrtF/3ANxT4+Ch8RBycqJrtFv2gNSa/ngb7f+Ofqp1q+Xsk9rgHj4ETFZLfoF60h2cdXIkXEwYmKyW6xS7qGoUdAn94aX1l5rXvjUy1fr+Qe14BxcKJislvsWK8B6PNmIo9q77b08LC8nln/VPODutzjGjAOTlRMdosd6zUAvd4P9NHtaR/fLa9fVgGtf2rlg5rc4xowDk5UTHaL3t0ajH18R/qIODhRMdktPOujQUCHgYMTFZPdwrM+GgR0GDg4UTHZLTzro0FAh4GDExWT3cKzPhoEdBg4OFEx2S0866NBQIeBgxMVk93Csz4aBHQYODhRMdktPOujQUCHgYMTFZPdwrM+GgR0GDg4UTHZLTzro0FAh4GDExWT3cKzPhoEdBg4OFEx2S0866NBQIeBgxMVk93Csz4aBHQYODhRMdktPOujQUCHgYMTFZPdwrM+GgR0GDg4UTHZLTzro0FAh4GDExWT3cKzPhoEdBg4OFEx2S0866NBQIeBgxMVk93Csz4aBHQYODhRMdktPOujQUCHgYMTFZPdwrM+GgR0GDg4UTHZLTzro0FAh4GDExWT3cKzPhoEdBg4OFEx2S0866NBQIeBgxMVk93Csz4aBHQYODhRMdktPOujQUCHgYMTFZPdwrM+GgR0GDg4UTHZLTzro0FAh4GDExWT3cKzPhquAcVG3/9+7t8AGkw2NAI6DKxZVEw2NAI6DKxZVEw2NAI6DKxZVEw2NAI6DKxZVEw2NAI6DKxZVEw2NAI6DKxZVEw2NAIKAD0RUADoiYACQE8EFAB6IqAA0BMBBYCeCCgA9ERAAaAnAmrhyY03Nnwwefpf33v2BZ/eGs/98NeaXxG9LIf56KfT6bx7Z/mlLZP97fR7L8+/9+mvDsfjP/hT4S+JfAiohePxGxs+mJw1PtpwQQI6VIthPjwsx3P5F4svbZ7sr8a17310Y/bRtv8dxd4ioLt7ejxe7lLjg8n2gK5+73RLawuK7JYDmv5P3NU7k0fT/7w3/+LGyZ6NL0+vb06/t/gfw+kFr9yZPP2LMZMNiYDu7LcfjJcdbHxQ2BLQte+dLtv7kl8RvdQG9PCwvGnw5Mayg5smO53ih5Pye4t/nlW3Ke5uvSWCfUVAd3V3euvsN/PtaHwwmd82Lz5+dHvlLrS17y0+U79+M/v3u9Wlp7cgf1JduriHbfwH/+xe+V3v/+ZwfOUXs3vo/jF3tFmqD+hscV/Lh7Mvbp7skxvV3TDH0/85XF5ggclGQkB3dffKz5dXRhofTGprdlbdhfbhhgsWZldZFh+UazhbwIf1S1f3sJWXPBv/yfRLV+9V38C1HEv1Aa1dA9022UoR0EVNl5hsJATUQqODZy034adr8O7/nTz91eo9YY3vbd7KOy5rWm7btKzv3SvuRys272x8+efTL/ym/FFn4/LqzHQZ/8n0H7/lLlRr8wEt7gN9Y+VLmyZbxfbh4dV7v/lH4/GVny+/wGQDIaAWnhnQeRuPV65J1L+3fv/a4kvlf84vfbe4i/R4dj/p7ArM2WxvVy4KM4sBPZ1dPXzv3sqXNk22+so0oLdnVyHfX7kgkw2BgFp4VkAX94Sd1e7lXP3ela/NbukV11ae3qqWqLg6U/7L7/73v/lgPFuz8jPFQ71/Zfp/EWYWA3r4QZnBK3eaX9o42aqAZ7PoNq6hMtlACKiFZwV0cT1i9S6x2veuPdxQbFj5/SvPEn30QfXBcs2Kxzumy/1vmyuM3S3vA13r4DMme1jer3k2v+pZv4bKZOMgoBaeHdBqu7YEtHqYov619+eXrq9Z8ajC5Z/807+qbuhVly/uZ2vewoSFs8Ut9LUObp3s3aq0i2f2Lq5jTphsJATUgsU10LWnFT65cfVe+XhD436w6ZWWN6rbdh82r8H+t5827mmDhcXTl9Y7uG2yi2uqi/9ZrP/vI5ONg4BasLgP9HhtRY4v/7tb1YtZ6k9vmu3c/GnajSfi/8XqHXHY0bMC2jrZp8fjK1UtFxdsTJ7JhkFALRg8Cr/YtPoX/+Sw/PL8CfbFEs7XbHbnWnX5+dWb+u1EWHjWTfjWyR7Xane88gOqizLZIAioha0BLc782bMFf3d78/NAW59xXd1wm/7L1TuTyW8Oywduixt602sk9TWbPUux+TRFWJgP6Gz9wfSNk62/oKz8+p3V54ky2TAIqIUtAX1Yvp5k0+tVlt/bchVjujzz23+Hy3f0OZv969W/KF8Gs3yQePYsG97LydbyNWbj1adzbpps7ZGh8vmeLZNnsmEQUAtbAjr5X4flFZL118I3v3fteYST+lWZ2SumZ69mKd7i4g/+dHaBxeXLb5i9ihqGlgP6P8UjOT+pD3DDZM/GjYA2X+1eYbJRENABu8tDr0Ex2SgI6HC1PK6EEJhsGAR0uH7DAwdBMdkwCOhQHY95E/OYmGwgBHSo/qL8wxCIh8kGQkABoCcCCgA9EVAA6ImAAkBPBBQAeiKgANATAQWAnggoAPREQNHP0Wj00re5fwkgLwKKXu4fjEYXPsn9WwB5EVD0cjJ68c3Rxdy/BZAXAUUf5zdHF09G3/vz3L8HkBUBRR/TW/DXT0ej67l/DyArAoo+jqbXPh9f42EkPOcIKHqYtvNicT9o7WGkr/5wNLrw2reL2/UPPioeZnr1i9WLNr7v/Obo+ldvjkYvfLJ6iel/w+uzC8y+s/j4/PPpN7z4sfr/OKAzAooeZrfep7fjq8gVJSx976MqoCejymuNeFyf5gAACEpJREFUC6583/TDt8sP/3x5iQt/XHxjS0B/v7osV3sxGAQUPRzN8zeP2dG0lN9Ozj+tYljUsLgq+d2nKwVd+b6ip9NrsQ8+Li/x4i8nk6/fnN2z2hLQ6Y/8prwoD/5jKAgo0s1uwZfRmz2MtLguejIL4/TjqnKNm/lr31cE9Pr8R85iPP3U/Cb7/CfMAzr7kUc8/xSDQUCRbl7FRScX93xOOze7OT5/hlPxfKf6BZvfV9VyUg/tLLItAV1elKugGAgCimTLm+6zm/L1SpafqVfzqHaf5er3rf+kyTyQLQG92PITgawIKJIVL+NcKDK3rN0sd+UdlgvLp9uvft+yqLW7U2f/2vYofHXRo9pPBLIioEh2Us9j0T2TgDavs7YE9HrjosAAEFCkmj8VqXrW0SeN29fzgLbeTbn6fVwDxZ4joEh1Olq0rPj3i633gbbeTdl2H+jF+seF1ftAj9YDyn2gGAgCilT15xGtPupefbz8lmZLWx6FXzzdaX4TfdbnxZXV5dOaqp9TSymQGQFFouZL4I+ar0laPg+0+p7mO460PA/04spPrYK5CO/paPE80Ner/0aeB4qhIKBIVL8FX35UhO5k/ZVIxYvWzz9beeXlydorkZZ3ii5eifR69fFLX0zKl78vXon0+99OHnw04gooBoOAIs20efVrgNWH50ezh5Re/Berr4Vv3l+58n31B9+br4VfPFT10mfzgL5ysHziFDAIBBRplrfOZ06qoq2/G9PL09j9YO29k1bfjWn5cP3s3Zhe+6b68Pzz6Q944Z3ao/DFtc/R+vs7AdkQUJjq+hB56kPpPHSEISKgMLB4ElLzpe+9v28dAcUQEVAYWH9bpt2+bx0BxRARUBiY9vDCO9PrlV8ebH+VUNfvW0dAMUQEFBZO5+8v8uL2x3i6ft8aAoohIqAw8d2nswfdn/XIUNfvW0VAMUQEFAB6IqAA0BMBBYCeCCgA9ERAAaAnAgoAPRFQAOiJgAJATwQUAHoioADQEwEFgJ4IKAD0REABoCcCCgA9EVAA6ImAAkBPBBTIpvzTzfO//Xz++Ws7Xf5kp7ecLv/c9PxvRp8Xf2F6/kHjK4X7Byt/UbXx7Q+Kb//xyhtmL7/j/OZoLvGvugwSAQVyub/4AydFSk4T/1Dp6uV3Cuinsx904ZPig8fXaoFrfKUwTWAzoI1v/7L2G7V9BwEFYKEoUXGl7Ks3y3QmB3Tl8rs4Lf/Y34Obs6gdFT/3wayTza8UTkYrAa1/+7Tp0w/OP21+S/07KvcPlkneYwQUyOR0HpTH14qYJAd05fI7mKb4+uwHFf+8f1DGsvypza8Uiqu9jTrWv71IZfm1o/m3r33H4r8xxN+4IqBAJieLYh6NXp/dtC0+8aC4v/AHX0yWFTpZ+Xzb5aub8NOL3H9zdOGPJ5O/Phi9MLtz9MFHo/ldlNMvf/ny8v7KucfXquuX1Q+6WP3811e+MinL96PmfaD1b5/3tvm/BvXvWHzqpdS/KzhIBBTI5LR+L+AioNUdmxeuLyo0q1Lt822XXwT0R+X3vX60uOPytHbBo9GlrXc/HlURrn7+xZWvlP+8uPIgUv3bz29WVzIb37P+A5dXaPccAQUymVbkwo+/WXw4y8v0k699Ozn/rGhcdfWvvAVc/3z75auATr9t+l3FPZcPblZBfvWb4l7J2S3s0cVvJ18ebMhXdau9JYLzm9/F3QbNgDa+vfWyLZ882fle24EgoEAuD94srg3+4F/NIjgLaOPm7uyqW/mplpvBK5evLlE9lPP6pLqTdH7Bo+Kf1V2URxvugCy/tzWC1U8pO7oloLP/lsnyvtD171j8mBAIKJDN+VdlAkevFl05Xa9X9alpRttvGzcuXwW0SGMVqCKgtXsll33bcAXwtLyWWvuvWlzbPa2exlT++I0BnX77NN3FFeVP6/cSrP/A0yD3gBJQILOviyfDF2GZ17L2NMnyNnyZnc1Pn1xcvj2giyt75c+qrnq2B/T0oLyftKXV1Veqh362XQMtnuRU+NG2m/CLqO8/Agrk9uBa0bUyoNVTzuehPJqm56Tl822Xr93obwS0+v5nBvSkupa5HtD5V6rnbs4+fzr7ba6vfntxpfgHXxQfbPqO+lXbfUdAgTxqdwSWN2mrgDbuHTwpn990vfVew9XLbwpox2ugny5ebLT6oPniKyejWsXneWx/0L74YON3pL/marAIKJBH7YbsMqArt26n19n++0H1CsjVW72rl28P6Op9oBsCen60fPXl/HGq2T9rX2kEdHHR5rdXGg9TrX7Hpsew9hABBTI5WWSofGxn/ij87Gbu7HGW6a3ffzl/3Kf++bbLtwd09VH4DQGtP2refOHQ0doDPivPA218e9XI5gs1V16JtLhJHwABBTIpnsf5zrflK4VmL+UsujT9ZPEC9/lTNU/K28CTtc+3XH5DQGfPA/3uo+p5oO0BbbwwaHql9cXFS9dbXjK0EtDGt89eOv/VQeM6ZuM7aq97CoCAArnMnsc5f5VQ9SLz6oVDo9l7200/OX/qT+PzLZffENCVVyItA1q7llh7iKp80ejyzZNWvlL9Ts2mPmh586Yt37H+dnh7jIAC2ZwX77U5eqF6OdFfH5Tdmb3m/ePqO24uwtX4fMvlNwW0+Vr41oCejpqZnF3i25avFNYCuPz2qeK19i+8s/J/aOM74jwLlIACz63H/+CT3L/C3iOgwHPqJM5dkdkQUOD5dP7PP8n9K+w/AgoAPRFQAOiJgAJATwQUAHoioADQEwEFgJ4IKAD0REABoCcCCgA9EVAA6ImAAkBPBBQAeiKgANATAQWAnggoAPREQAGgp/8P9oY0iexf4zUAAAAASUVORK5CYII=" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
+</div>
+<section id="interpretation-of-the-output-2" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-of-the-output-2">Interpretation of the output</h4>
+<p>The bar plot shows the sameprobability of getting all three shots was higher in the 11 to 17 year old group compared to the 18 to 26 year old group.</p>
+</section>
 </section>
 
 </main>

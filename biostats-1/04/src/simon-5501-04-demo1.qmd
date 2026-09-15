@@ -22,10 +22,6 @@ This program assesses the relationships among variables in a study of pulmonary 
 library(tidyverse)
 ```
 
-#### Comments on the code
-
-The tidyverse set of libraries are the only ones you need for this program.
-
 ## List variable names
 
 ```{r}
@@ -39,13 +35,7 @@ pulmonary_names <- c(
     "smoke")
 ```
 
-#### Comments on the code
-
-Since the variable names are not listed in the data file itself, you need to list them here.
-
 ## Reading the data
-
-Here is the code to read the data and show a glimpse. 
 
 ```{r}
 #| label: read
@@ -56,10 +46,6 @@ pulmonary <- read_csv(
   col_types="nnncc")
 glimpse(pulmonary)
 ```
-
-#### Comments on the code
-
-Here is the code to read the data and show a glimpse. The col_names argument allows you to specify the names. The col_types argument here tells R that the first three columns are numeric and the last two columns are character (string).
 
 ## Calculate mean, standard deviation for fev
 
@@ -98,12 +84,13 @@ The mean age is small, 9.9 years, and the standard deviation, 3.0 implies a tigh
 
 pulmonary |>
   count(smoke) |>
-  mutate(total=sum(n))
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total)
 ```
 
 #### Comments on the code
 
-The count function produces a count for each level of smoke. The first mutate function calculates a total count for the entire dataset. The second mutate function calculates a percentage and rounds it to the nearest whole number. The third mutate function adds the % sign to the end.
+The count function produces a count for each level of smoke. The first mutate function calculates a total count for the entire dataset. The second mutate function calculates a percentage.
 
 #### Interpretation of the output
 
@@ -119,14 +106,18 @@ pulmonary |>
 	  aes(age, fev) +
     geom_point() +
     geom_smooth() +
-    xlab("Age (years)") +
-    ylab("Forced Expiratory Volume (Liters)") +
-    labs(caption="Steve Simon, 2024-09-07")
+    labs(
+      x="Age (years)",
+      y="Forced Expiratory Volume (Liters)",
+      caption="Steve Simon, 2024-09-07")
 ```
 
 #### Comments on the code
 
-The aes function identifies the two variables that belong on the X and Y axes, respectively. The geom_point function adds points on the X and Y axes to create a scatterplot. The geom_smooth function adds a smoothing curve to graph.
+The [geom_point][ref-point] function adds points on the X and Y axes to create a scatterplot. The [geom_smooth][ref-smooth] function adds a smoothing curve to graph.
+
+[ref-point]: https://ggplot2.tidyverse.org/reference/geom_point.html
+[ref-smooth]: https://ggplot2.tidyverse.org/reference/geom_smooth.html
 
 #### Interpretation of the output
 
@@ -146,7 +137,7 @@ The cor function calculates the correlation between age and fev. The with functi
 
 #### Interpretation of the output
 
-The correlation, 0.75, and the plot drawn earlier show a strong positive association between age and fev.
+The correlation, 0.75, which supports the plot drawn earlier by showing a strong positive association between age and fev.
 
 ## Plot smoke versus fev
 
@@ -156,17 +147,19 @@ The correlation, 0.75, and the plot drawn earlier show a strong positive associa
 
 pulmonary |>
   ggplot() +
-    aes(smoke, fev) +
+    aes(fev, smoke) +
     geom_boxplot() +
-    xlab("Smoker (Yes/No)") +
-    ylab("Forced Expiratory Volume (Liters)") +
-    labs(caption="Steve Simon, 2024-09-07") +
-    coord_flip()
+    labs(
+      x="Smoker (Yes/No)",
+      y="Forced Expiratory Volume (Liters)",
+      caption="Steve Simon, 2024-09-07")
 ```
 
 #### Comments on the code
 
-The geom_boxplot function produces a set of boxplots. It assumes that the X axis contains a categorical variable and the Y axis contains a continuous variable. The coord_flip function swaps the X and Y axes, effectively turning the boxplots horizontal. The fig.height option narrows the boxplots and brings them closer together.
+The [geom_boxplot function][ref-boxplot] produces a set of boxplots. The categorical variable is clearly smoke, so placing it on the y-axis produces a horizontal set of boxplots. 
+
+[ref-boxplot]: https://ggplot2.tidyverse.org/reference/geom_boxplot.html
 
 #### Interpretation of the output
 
@@ -186,8 +179,10 @@ pulmonary |>
 
 #### Comments on the code
 
-The group_by function tells R that any further calculations should be done separately for each level of smoke.
+The [group_by function][ref-group-by], part of the dplyr and tidyverse libraries, tells R that any further calculations should be done separately for each level of smoke.
+
+[ref-group-by]: https://dplyr.tidyverse.org/reference/group_by.html
 
 #### Interpretation of the output
 
-The average fev values is 3.1 for smokers and much smaller, 2.6, for non-smokers. This is also opposite from what we expected. The standard deviations, 0.82 and 0.86, are roughly equal.
+The average fev values is 3.3 for smokers and much smaller, 2.6, for non-smokers. This is also opposite from what we expected. The standard deviations, 0.82 and 0.86, are roughly equal.
