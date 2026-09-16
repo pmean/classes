@@ -152,8 +152,8 @@ pulmonary |>
     aes(fev, smoke) +
     geom_boxplot() +
     labs(
-      x="Smoker (Yes/No)",
-      y="Forced Expiratory Volume (Liters)",
+      y="Smoker (Yes/No)",
+      x="Forced Expiratory Volume (Liters)",
       caption="Steve Simon, 2024-09-07")
 ```
 
