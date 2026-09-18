@@ -166,6 +166,8 @@ The normal probability plot has a slight bend,  indicating that the data may hav
 
 ## Question 1
 
+The heights of 14 year old girls in centimeters, according to the World Health Organization, is normally distributed with a mean of 160 and a standard deviation of 7. Calculate the 90th percentile for height. Provide a brief interpretation of this number that rounds the result and mentions the unit of measurement.
+
 ```{r}
 #| label: question-1
 
@@ -177,6 +179,8 @@ qnorm(0.9, 160, 7)
 Do this on your own!
 
 ## Question 2, wide bars
+
+Use the fev dataset to assess the normality of ht. Draw two histograms--one with a small number of bars and another with a large number of narrow bars. Note that the binwidth values will not be the same those used for fev. Is your interpretation similar for both histograms?
 
 ```{r}
 #| label: histogram-ht-wide
@@ -217,6 +221,8 @@ fev |>
 ## Interpretation of the output
 
 ## Question 3
+
+Draw a normal probability plot for ht. Interpret this plot.
 
 ## Normal probability plot for fev
 

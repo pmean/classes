@@ -7,20 +7,17 @@ format:
 date: 2024-09-11
 ---
 
-Note to myself: put in #--- Part x breaks
+## Documentation
 
 This program reads data and fits various linear regression models on a breast feeding study in pre-term infants.  Find more information in the [data dictionary][dd]. This code is placed in the public domain.
 
 [dd]: https://raw.githubusercontent.com/pmean/datasets/master/breast-feeding-preterm.yaml
-
-## Datasets used in this program
-
 If you have more than one dataset, possibly because you changed something, then it is a good idea to list the datasets and explain what changes were made.
 
 -   bf: read from breast-feeding-preterm.csv
--   bf1: convierted -1 to missing for age_stop
+-   bf1: converted -1 to missing for age_stop
 
-## Load the tidyverse library
+## Libraries and data entry
 
 ```{r}
 #| label: setup
@@ -34,8 +31,6 @@ library(tidyverse)
 #### Comments on the code
 
 The broom library provides simple format for output from various statistical functions in R. We will use it for the lm function, but it does a nice job with quite a few other functions as well.
-
-## Read the data and view a brief summary
 
 ```{r}
 #| label: read
@@ -51,7 +46,7 @@ glimpse(bf)
 
 Use the read_csv function to read the data. With a large number of variables, you may choose to leave the col_types out. R will usually figure out which variables are numeric and which are strings.
 
-## Convert -1 to NA
+## Data management
 
 ```{r}
 #| label: convert-missing
@@ -66,7 +61,7 @@ The na_if function sets a value to missing (NA) if the first argument equals the
 
 There are several other variables that use -1 for missing. You should extend this section if you plan on using any of those variables.
 
-## Calculate statistics for mother's age
+## Basic descriptive statistics
 
 ```{r}
 #| label: mom-age
@@ -85,8 +80,6 @@ bf1 |>
 
 This is a reasonable distribution of ages. If you saw mothers much younger than 16 years or much older than 44 years, that might raise some concerns about the data.
 
-## Calculate statistics for age_stop
-
 ```{r}
 #| label: dc-age
 
@@ -103,8 +96,6 @@ bf1 |>
 #### Interpretation of the output
 
 The maximum value, 34 weeks, was a bit of concern for me, because the study was a six month study, which would imply the largest value would be 24 or 26. But I was told that breast feeding duration included time in the hospital, which could easily be as long as 8 or 10 weeks for a pre-term infant.
-
-## Plot mother's age and age when breast feeding stopped
 
 ```{r}
 #| label: plot
@@ -123,7 +114,7 @@ bf1 |>
 
 There is a weak relationship between mother's age and age when she stopped breast feeding.
 
-## Linear regression estimates for predicting age_stop
+## Statistical models
 
 ```{r}
 #| label: linear-regression
@@ -148,7 +139,7 @@ The results of the lm function are stored in a list. This list is very complex i
 
 The estimated average duration of breast feeding increases by 0.39 weeks for each increase of one year in the mother's age. The estimated average duration of breast feeding is 5.9 weeks for a mother of age zero. This is an extrapolation well beyond the range of the data. 
 
-## Analysis of variance table for age_stop
+#--- End of Part 1
 
 ```{r}
 #| label: anova
@@ -159,8 +150,6 @@ anova(m1)
 #### Interpretation of the output
 
 The F-ratio is large and the p-value is small, so you would reject the null hypothesis and conclude that there is a linear relationship between mother's age and duration of breast feeding.
-
-## R-squared for age_stop
 
 ```{r}
 #| label: r-squared
@@ -176,7 +165,7 @@ The glance function is part of the broom library. It provides a variety of singl
 
 Although there is a statistically significant relationship between mother's age and duration of breast feeding, as shown above, this relationship is very weak.
 
-## Confidence interval for the slope
+#--- End of Part 2
 
 ```{r}
 #| label: ci-age-stop
@@ -187,8 +176,6 @@ confint(m1)
 #### Interpretation of the output
 
 The confidence interval includes only positive values, so we are 95% confident that the duration of breast feeding increases as the mother's age increases. The slope could be as small as  0.067 weeks per year of mother's age or as large as 0.71 weeks per year of mother's age. This is a very wide interval indicating a large degree of uncertainty about the true value of the slope parameter.
-
-## Alternate test for the slope parameter
 
 ```{r}
 #| label: t-test-for-age-stop

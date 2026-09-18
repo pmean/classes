@@ -1,0 +1,245 @@
+---
+title: "Analysis of relationships in pulmonary data"
+format: 
+  html:
+    embed-resources: true
+editor: source
+---
+
+## File details
+
+This program assesses the relationships among variables in a study of pulmonary function in children. There is a [data dictionary][dd] that provides more details about the data. The program was written by Steve Simon and Your Name on 2026-09-16 and is placed in the public domain.
+
+[dd]: https://github.com/pmean/datasets/blob/master/fev.yaml
+
+This is the correct version of this program for Fall semester 2026
+
+## Libraries
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+```
+
+## List variable names
+
+```{r}
+#| label: names
+
+pulmonary_names <- c(
+    "age",
+    "fev",
+    "ht",
+    "sex",
+    "smoke")
+```
+
+## Reading the data
+
+```{r}
+#| label: read
+
+pulmonary <- read_csv(
+  file="../data/fev.csv",
+  col_names=pulmonary_names,
+  col_types="nnncc")
+glimpse(pulmonary)
+```
+
+## Calculate mean, standard deviation for fev
+
+```{r}
+#| label: descriptive-fev
+
+pulmonary |>
+  summarize(
+    fev_mean=mean(fev),
+    fev_stdv=sd(fev))
+```
+
+#### Interpretation of the output
+
+The mean fev is 2.6 liters and the standard deviation is 0.87 liters. I am not an expert on pulmonary function, but these values do not appear to be unusually large or small.
+
+## Calculate mean, standard deviation for age
+
+```{r}
+#| label: descriptive-age
+
+pulmonary |>
+  summarize(
+    age_mean=mean(age),
+    age_stdv=sd(age))
+```
+
+#### Interpretation of the output
+
+The mean age is small, 9.9 years, and the standard deviation, 3.0 implies a tightly packed distribution. This is consistent with a pediatric population.
+
+## Calculate counts for smoke
+
+```{r}
+#| label: descriptive-smoke
+
+pulmonary |>
+  count(smoke) |>
+  mutate(total=sum(n)) |>
+  mutate(pct=100*n/total)
+```
+
+#### Comments on the code
+
+The count function produces a count for each level of smoke. The first mutate function calculates a total count for the entire dataset. The second mutate function calculates a percentage.
+
+#### Interpretation of the output
+
+Almost all of the subjects (90% or 589 out of 654) were non-smokers.
+
+## Plot age versus fev
+
+```{r}
+#| label: plot-age-fev
+
+pulmonary |>
+  ggplot() +
+	  aes(age, fev) +
+    geom_point() +
+    geom_smooth() +
+    labs(
+      x="Age (years)",
+      y="Forced Expiratory Volume (Liters)",
+      caption="Steve Simon, 2024-09-07")
+```
+
+#### Comments on the code
+
+The [geom_point][ref-point] function adds points on the X and Y axes to create a scatterplot. The [geom_smooth][ref-smooth] function adds a smoothing curve to graph.
+
+[ref-point]: https://ggplot2.tidyverse.org/reference/geom_point.html
+[ref-smooth]: https://ggplot2.tidyverse.org/reference/geom_smooth.html
+
+#### Interpretation of the output
+
+The is a positive relationship between age and fev, though things seems to level off around 14 years.
+
+## Correlation between age and fev
+
+```{r}
+#| label: correlation
+
+with(pulmonary, cor(age, fev))
+```
+
+#### Comments on the code
+
+The cor function calculates the correlation between age and fev. The with function identifies pulmonary as the dataset where you can find age and fev.
+
+#### Interpretation of the output
+
+The correlation, 0.75, which supports the plot drawn earlier by showing a strong positive association between age and fev.
+
+## Plot smoke versus fev
+
+```{r}
+#| label: plot-smoke-fev
+#| fig.height: 1.5
+
+pulmonary |>
+  ggplot() +
+    aes(fev, smoke) +
+    geom_boxplot() +
+    labs(
+      y="Smoker (Yes/No)",
+      x="Forced Expiratory Volume (Liters)",
+      caption="Steve Simon, 2024-09-07")
+```
+
+#### Comments on the code
+
+The [geom_boxplot function][ref-boxplot] produces a set of boxplots. The categorical variable is clearly smoke, so placing it on the y-axis produces a horizontal set of boxplots. 
+
+[ref-boxplot]: https://ggplot2.tidyverse.org/reference/geom_boxplot.html
+
+#### Interpretation of the output
+
+The fev values are larger for smokers versus non-smokers. This is the opposite direction from what we expected.
+
+## Means and standard deviations for smokers and non-smokers.
+
+```{r}
+#| label: mean-fev-by-smoke
+
+pulmonary |>
+  group_by(smoke) |>
+  summarize(
+    mean_fev=mean(fev),
+    sd_fev=sd(fev))
+```
+
+#### Comments on the code
+
+The [group_by function][ref-group-by], part of the dplyr and tidyverse libraries, tells R that any further calculations should be done separately for each level of smoke.
+
+[ref-group-by]: https://dplyr.tidyverse.org/reference/group_by.html
+
+#### Interpretation of the output
+
+The average fev values is 3.3 for smokers and much smaller, 2.6, for non-smokers. This is also opposite from what we expected. The standard deviations, 0.82 and 0.86, are roughly equal.
+
+## Question 1
+
+Use the simon-5501-04-demo1.qmd file. Update the program to calculate descriptive statistics (mean and standard deviation) for ht. Interpret these statistics.
+
+
+```{r}
+#| label: descriptive-ht
+
+pulmonary |>
+  summarize(
+    fev_mean=mean(ht),
+    fev_stdv=sd(ht))
+```
+
+#### Interpretation of the output
+
+Please include an interpretation here. 
+
+## Question #2
+
+Draw a scatterplot of ht versus fev. Include a smoothing curve. Place ht on the x-axis and fev on the y-axis. Interpret this plot.
+
+```{r}
+#| label: plot-ht-fev
+
+pulmonary |>
+  ggplot() +
+	  aes(ht, fev) +
+    geom_point() +
+    geom_smooth() +
+    labs(
+      x="Height (inches)",
+      y="Forced Expiratory Volume (Liters)",
+      caption="Your Name, 2026-09-16")
+```
+
+#### Interpretation of the output
+
+Please include an interpretation here. 
+
+## Question #3
+
+Calculate the correlation between ht and fev. Interpret this correlation.
+
+```{r}
+#| label: ht-fev-correlation
+
+with(pulmonary, cor(ht, fev))
+```
+
+#### Interpretation of the output
+
+Please include an interpretation here. 
+
