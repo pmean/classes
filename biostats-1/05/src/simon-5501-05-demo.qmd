@@ -1,23 +1,21 @@
 ---
-title: "Analysis of breast feeding study"
-author: "Steve Simon"
+title: "simon-5501-05-demo"
 format: 
   html:
     embed-resources: true
-date: 2024-09-11
 ---
+
+# --- Start of part 1
 
 ## Documentation
 
-This program reads data and fits various linear regression models on a breast feeding study in pre-term infants.  Find more information in the [data dictionary][dd]. This code is placed in the public domain.
+This program reads data and fits various linear regression models on a breast feeding study in pre-term infants.  Find more information in the [data dictionary][dd]. This program was written by Steve Simon on 2024-09-11 and is placed in the public domain.
 
 [dd]: https://raw.githubusercontent.com/pmean/datasets/master/breast-feeding-preterm.yaml
 If you have more than one dataset, possibly because you changed something, then it is a good idea to list the datasets and explain what changes were made.
 
 -   bf: read from breast-feeding-preterm.csv
 -   bf1: converted -1 to missing for age_stop
-
-## Libraries and data entry
 
 ```{r}
 #| label: setup
@@ -28,9 +26,11 @@ library(broom)
 library(tidyverse)
 ```
 
-#### Comments on the code
+### Comments on the code
 
-The broom library provides simple format for output from various statistical functions in R. We will use it for the lm function, but it does a nice job with quite a few other functions as well.
+The [broom library][ref-broom] provides simple format for output from various statistical functions in R. We will use it for the lm function, but it does a nice job with quite a few other functions as well.
+
+[ref-broom]: https://broom.tidymodels.org/
 
 ```{r}
 #| label: read
@@ -42,7 +42,7 @@ bf <- read_csv(
 glimpse(bf)
 ```
 
-#### Comments on the code
+### Comments on the code
 
 Use the read_csv function to read the data. With a large number of variables, you may choose to leave the col_types out. R will usually figure out which variables are numeric and which are strings.
 
@@ -55,11 +55,13 @@ bf |>
   mutate(age_stop=na_if(age_stop, -1)) -> bf1
 ```
 
-#### Comments on the code
+### Comments on the code
 
-The na_if function sets a value to missing (NA) if the first argument equals the second argument. If they are not equal, it keeps the first argument.
+The [na_if function][ref-na-if] sets a value to missing (NA) if the first argument equals the second argument. If they are not equal, it keeps the first argument.
 
 There are several other variables that use -1 for missing. You should extend this section if you plan on using any of those variables.
+
+[ref-na-if]: https://dplyr.tidyverse.org/reference/na_if.html
 
 ## Basic descriptive statistics
 
@@ -76,7 +78,7 @@ bf1 |>
 	data.frame()
 ```
 
-#### Interpretation of the output
+### Interpretation of the output
 
 This is a reasonable distribution of ages. If you saw mothers much younger than 16 years or much older than 44 years, that might raise some concerns about the data.
 
@@ -93,53 +95,65 @@ bf1 |>
 	data.frame()
 ```
 
-#### Interpretation of the output
+### Interpretation of the output
 
 The maximum value, 34 weeks, was a bit of concern for me, because the study was a six month study, which would imply the largest value would be 24 or 26. But I was told that breast feeding duration included time in the hospital, which could easily be as long as 8 or 10 weeks for a pre-term infant.
 
 ```{r}
 #| label: plot
+#| message: false
 
 bf1 |>
+  filter(!is.na(age_stop)) |>
 	ggplot(aes(mom_age, age_stop)) +
 	  geom_point() +
     geom_smooth(method="lm", se=FALSE) +
 	  labs(
 	  	x="Mother's age (years)",
 	  	y="When breast feeding ended (weeks)",
-	  	caption="Steve Simon, 2024-09-17")
+	  	caption="Simon, 2024-09-17")
 ```
 
-#### Interpretation of the output
+### Interpretation of the output
 
 There is a weak relationship between mother's age and age when she stopped breast feeding.
 
-## Statistical models
+## Data analysis
 
 ```{r}
 #| label: linear-regression
 
-m1 <- lm(age_stop~mom_age, data=bf1)
+m1 <- lm(
+  formula=age_stop~mom_age, 
+  data=bf1,
+  na.action=na.omit)
 m1
 ```
 
-#### Comments on the code
+### Comments on the code
 
-The lm function computes a linear regression model. The first argument is a formula. A formula is an R object that has a tilde (~) with variables either on the left, on the right, or on both sides of the tilde.
+The [lm function][ref-lm], part of base R, computes a linear regression model. The first argument is a formula. A [formula][ref-formula] is an R object that has a tilde (~) with variables either on the left, on the right, or on both sides of the tilde. This has various interpretations in R, but the simplest interpretation is the one that is used with lm. For the lm function, the left side of the tilde represents a continuous outcome. You can only have one outcome.
 
-For the lm function, the left side of the tilde represents a continuous outcome. You can only have one outcome.
+The na.action argument tells R how to handle missing values.
 
 The right side of the tilde lists an independent variable. The independent variable can be either continuous or categorical. There is a way to specify multiple independent variables, interactions, and other complex analyses. In this module, just list a single independent variable.
 
 The data argument tells R what data frame or tibble has the variables that you specified in your formula.
 
-The results of the lm function are stored in a list. This list is very complex if you try to peek at all the details. Just printing the list gives an abbreviated summary of the linear regression.
+The results of the lm function are stored in a [list][ref-list]. This list is very complex if you try to peek at all the details. Just printing the list gives an abbreviated summary of the linear regression. If you are interested in exploring more about how the list that lm creates, read my web page, [Creatures in the R zoo][ref-simon-2024].
 
-#### Interpretation of the output
+[ref-lm]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/lm.html
+[ref-formula]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/formula.html
+[ref-list]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/list.html
+[ref-simon-2024]: http://pmean.com/posts/r-creatures/
+
+### Interpretation of the output
 
 The estimated average duration of breast feeding increases by 0.39 weeks for each increase of one year in the mother's age. The estimated average duration of breast feeding is 5.9 weeks for a mother of age zero. This is an extrapolation well beyond the range of the data. 
 
-#--- End of Part 1
+# --- Start of part 2
+
+## Additional data analysis
 
 ```{r}
 #| label: anova
@@ -147,7 +161,7 @@ The estimated average duration of breast feeding increases by 0.39 weeks for eac
 anova(m1)
 ```
 
-#### Interpretation of the output
+### Interpretation of the output
 
 The F-ratio is large and the p-value is small, so you would reject the null hypothesis and conclude that there is a linear relationship between mother's age and duration of breast feeding.
 
@@ -157,15 +171,17 @@ The F-ratio is large and the p-value is small, so you would reject the null hypo
 glance(m1)$r.squared
 ```
 
-#### Comments on the code
+### Comments on the code
 
 The glance function is part of the broom library. It provides a variety of single number summaries of the statistical model. The only summary we are interested in for now is r.squared.
 
-#### Interpretation of the output
+### Interpretation of the output
 
 Although there is a statistically significant relationship between mother's age and duration of breast feeding, as shown above, this relationship is very weak.
 
-#--- End of Part 2
+# --- Start of part 3
+
+## Additional data analysis
 
 ```{r}
 #| label: ci-age-stop
@@ -173,7 +189,7 @@ Although there is a statistically significant relationship between mother's age 
 confint(m1)
 ```
 
-#### Interpretation of the output
+### Interpretation of the output
 
 The confidence interval includes only positive values, so we are 95% confident that the duration of breast feeding increases as the mother's age increases. The slope could be as small as  0.067 weeks per year of mother's age or as large as 0.71 weeks per year of mother's age. This is a very wide interval indicating a large degree of uncertainty about the true value of the slope parameter.
 
@@ -183,10 +199,10 @@ The confidence interval includes only positive values, so we are 95% confident t
 tidy(m1)
 ```
 
-#### Comments on the code
+### Comments on the code
 
 The tidy function is part of the broom library and chooses a simple and flexible display of the intercept, slope, their standard efforts, t-statistics, and p-values.
 
-#### Interpretation of the output
+### Interpretation of the output
 
 The T statistic is testing the slope parameter is large and the p-value is small, both indicating that you should reject the null hypothesis and conclude that there is a positive relationship between mother's age and duration of breast feeding.
