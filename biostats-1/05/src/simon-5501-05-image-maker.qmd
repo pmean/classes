@@ -1,0 +1,198 @@
+---
+title: "simon-5501-05-image-maker"
+format: 
+  html:
+    embed-resources: true
+editor: source
+---
+
+# --- Preliminaries
+
+## Documentation
+
+This program is for internal use, but you are welcome to look things over.
+
+This program Create and store datasets and images for module05 slides. It was written by Steve Simon on 2026-09-15 and is placed in the public domain.
+
+## Setup
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(tidyverse)
+```
+
+# --- Data entry
+
+## Read breast-feeding-preterm data
+
+```{r}
+#| label: read-bf
+#| message: false
+#| warning: false
+
+bf <- read_csv(
+  file="../data/breast-feeding-preterm.csv",
+  col_names=TRUE)
+```
+
+## Create simple dataset
+
+```{r read-simple}
+fn <- "../data/hypothetical-correlation.csv"
+read_csv(
+  file=fn,
+  col_types="nn") -> simple
+```
+
+# --- Create graphic images for _05-01
+
+## Create draw_line function
+
+```{r draw-line}
+draw_line <- function(a, b, plot_number, d=simple, pts=simple$y) {
+  # sse <- sum(d$res^2)
+  d %>%
+    mutate(y=pts) |>
+    mutate(pred=a+b*x) |>
+    mutate(res=pts-pred) -> d
+  d |>
+    ggplot() +
+      aes(x=x, y=pts, xend=x, yend=pred) +
+      expand_limits(x=c(0, 20), y=c(-5, 40)) +
+      geom_point() +
+      geom_segment() +
+      annotate(
+        "label",
+        x=d$x,
+        y=-3,
+        label=d$res) +
+      annotate(
+        "segment",
+        x=0,
+        y=a,
+        xend=20,
+        yend=a+b*20) +
+      labs(
+        x="x (hypothetical data)",
+        y="y (hypothetical data)",
+        caption= "Simon 2026-09-22") -> least_squares_plot
+  
+  ggsave(paste0("../images/plot", plot_number, ".png"))
+  
+  least_squares_plot
+}
+```
+
+## Create regression model and coefficients
+
+```{r}
+#| label: m1
+
+m1 <- lm(age_stop~mom_age, data=bf, subset=(mom_age != -1))
+b <- coef(m1)
+```
+
+## Draw plots
+
+```{r}
+#| label: plot01
+#| message: false
+
+bf |>
+  filter(mom_age != -1) |>
+  ggplot() +
+  aes(mom_age, age_stop) +
+  geom_point() -> plot01
+plot01  
+ggsave("../images/plot01.png")
+```
+
+```{r}
+#| label: plot02
+#| message: false
+
+plot01 +
+  geom_smooth(
+    method="lm",
+    se=FALSE) -> plot02
+plot02
+ggsave("../images/plot02.png")
+```
+
+```{r}
+#| label: plot03
+#| message: false
+
+plot02 +
+  expand_limits(x=0) +
+  geom_segment(
+    x=0, 
+    y=b[1],
+    xend=16,
+    yend=b[1]+16*b[2],
+    linetype="dotted") -> plot03
+plot03
+ggsave("../images/plot03.png")
+```
+
+# --- Draw plots for _05-03
+
+## Bad fit, a=20, b=1
+
+```{r}
+draw_line(20, 1, "04")
+```
+
+## Better fit, a=10, b=1
+
+```{r}
+draw_line(10, 1, "05")
+```
+
+## Best fit, a=30, b=-1
+
+```{r}
+draw_line(30, -1, "06")
+```
+
+## --- Draw plots for _05-04
+
+## Sum of squares regression
+
+```{r}
+yhat <- 30-simple$x
+draw_line(20, 0, "07", pts=yhat)
+```
+
+## Sum of squares error
+
+```{r}
+draw_line(30, -1, "08")
+```
+
+## Sum of squares total / corrected total
+
+```{r}
+draw_line(20, 0, "09")
+```
+
+## Sum of squares total (uncorrected)
+
+```{r}
+draw_line(0, 0, "10")
+```
+
+## Save everything
+
+```{r save}
+save(
+  bf, 
+  m1, 
+  b, 
+  simple, 
+  file="../data/module05.RData")
+```
