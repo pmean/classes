@@ -29,7 +29,7 @@ load("../data/module05.RData")
 ## Sum of squares error, 1
 
 -   Variation in the residuals values
-    -   $SS_{error} = \Sigma(\hat{Y}_i - \bar{Y})^2$
+    -   $SS_{error} = \Sigma(\hat{Y}_i - Y_i)^2$
     -   Sometimes called $SS_{residual}$
     -   Sometimes abbreviated as SSE
 
@@ -37,15 +37,20 @@ load("../data/module05.RData")
 
 ![](../images/plot08.png "Computation of SS error")
 
-## Sum of squares total / corrected total
+## Sum of squares total / corrected total, 1
+
+-   Variation in the predicted values
+    -   $SS_{total} = \Sigma(Y_i - \bar{Y})^2$
+    -   Sometimes abbreviated as SST
+
+## Sum of squares total / corrected total, 2
 
 ![](../images/plot09.png "Computation of SS corrected total")
 
 ## Sum of squares total (uncorrected), 1
 
 -   Variation in the predicted values
-    -   $SS_{regression} = \Sigma(\hat{Y}_i - \bar{Y})^2$
-    -   Sometimes abbreviated as SSR
+    -   $SS_{uncorrected total} = \Sigma Y_i^2$
 
 ## Sum of squares total (uncorrected), 2
 
