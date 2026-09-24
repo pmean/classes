@@ -39,6 +39,16 @@ bf <- read_csv(
   col_names=TRUE)
 ```
 
+## Convert -1 to NA
+
+```{r}
+#| label: missing
+
+bf |>
+  mutate(age_stop=na_if(age_stop, -1)) -> bf1
+
+```
+
 ## Create simple dataset
 
 ```{r read-simple}
@@ -92,7 +102,7 @@ draw_line <- function(a, b, plot_number, d=simple, pts=simple$y) {
 ```{r}
 #| label: m1
 
-m1 <- lm(age_stop~mom_age, data=bf, subset=(mom_age != -1))
+m1 <- lm(age_stop~mom_age, data=bf1)
 b <- coef(m1)
 ```
 
@@ -102,11 +112,14 @@ b <- coef(m1)
 #| label: plot01
 #| message: false
 
-bf |>
-  filter(mom_age != -1) |>
+bf1 |>
   ggplot() +
   aes(mom_age, age_stop) +
-  geom_point() -> plot01
+  geom_point() +
+	labs(
+	 	x="Mother's age (years)",
+	 	y="When breast feeding ended (weeks)",
+	 	caption="Simon, 2024-09-17") -> plot01
 plot01  
 ggsave("../images/plot01.png")
 ```
@@ -186,13 +199,77 @@ draw_line(20, 0, "09")
 draw_line(0, 0, "10")
 ```
 
+## --- Florida 2000 election results
+
+```{r}
+#| label: read-florida
+
+candidate_names <- c(
+  "County",
+  "Bush_count",
+  "Bush_percent",
+  "Gore_count",
+  "Gore_percent",
+  "Nader_count",
+  "Nader_percent",
+  "Buchanan_count",
+  "Buchanan_percent",
+  "Other_count",
+  "Other_percent",
+  "Margin_count",
+  "Margin_percent",
+  "Total_count"
+)
+
+fl <- read_tsv(
+  "../data/florida-votes-2000.txt",
+  col_names = candidate_names,
+  col_types="cnnnnnnnnnnnn"
+)
+
+glimpse(fl)
+```
+
+```{r}
+fl |>
+  mutate(Bush_count_thousands = Bush_count/1000) |>
+  filter(County != "Totals") -> fl1
+
+with(fl1, cor(Buchanan_count, Bush_count))
+with(fl1, cor(Buchanan_count, Total_count))
+```
+
+```{r}
+m2 <- lm(Buchanan_count ~ Bush_count_thousands, data=fl1)
+m2
+augment(m2) |>
+  filter(fl1$County=="Palm Beach")
+```
+
+```{r}
+fl1 |>
+  ggplot() +
+  aes(x=Bush_count_thousands, y=Buchanan_count) +
+  geom_point(shape=1) +
+  labs(
+    x="Votes for Bush (thousands)",
+    y="Votes for Buchanan",
+    caption="Simon 2026-09-23") -> plot11
+plot11
+ggsave("../images/plot11.png")
+```
+
 ## Save everything
 
 ```{r save}
 save(
-  bf, 
+  bf,
+  bf1,
   m1, 
   b, 
-  simple, 
+  simple,
+  fl,
+  fl1,
+  m2,
   file="../data/module05.RData")
 ```

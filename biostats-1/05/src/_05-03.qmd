@@ -78,3 +78,10 @@ It turns out that you can't do any better than this. You might be the line to be
 -   $r_{XY}<0$ implies $b_1<0$
     -   and vice versa
 
+## Some properties of the residuals
+
+-   Recall that $e_i$ is unexplained portion of $Y_i$
+-   Minimizing $\Sigma e_i^2$ implies that
+    -   $\Sigma e_i = 0$
+    -   Corr($e_i$, $X_i$) = 0
+    -   Corr($e_i$, $\hat{Y}_i$) = 0

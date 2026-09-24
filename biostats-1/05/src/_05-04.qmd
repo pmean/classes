@@ -21,6 +21,7 @@ load("../data/module05.RData")
 -   Variation in the predicted values
     -   $SS_{regression} = \Sigma(\hat{Y}_i - \bar{Y})^2$
     -   Sometimes abbreviated as SSR
+    -   Explained variation
 
 ## Sum of squares regression, 2
 
@@ -29,9 +30,10 @@ load("../data/module05.RData")
 ## Sum of squares error, 1
 
 -   Variation in the residuals values
-    -   $SS_{error} = \Sigma(\hat{Y}_i - Y_i)^2$
+    -   $SS_{error} = \Sigma e_i^2$
     -   Sometimes called $SS_{residual}$
     -   Sometimes abbreviated as SSE
+    -   Unexplained variation
 
 ## Sum of squares error, 2
 
@@ -39,9 +41,10 @@ load("../data/module05.RData")
 
 ## Sum of squares total / corrected total, 1
 
--   Variation in the predicted values
+-   Variation in the observed values
     -   $SS_{total} = \Sigma(Y_i - \bar{Y})^2$
     -   Sometimes abbreviated as SST
+    -   Total variation
 
 ## Sum of squares total / corrected total, 2
 
@@ -49,12 +52,24 @@ load("../data/module05.RData")
 
 ## Sum of squares total (uncorrected), 1
 
--   Variation in the predicted values
+-   Deviation from zero in the predicted values
     -   $SS_{uncorrected total} = \Sigma Y_i^2$
+    -   Only used in specialized applications
 
 ## Sum of squares total (uncorrected), 2
 
 ![](../images/plot10.png "Computation of SS uncorrected total")
+
+## Fundamental property of linear regression
+
+```{=tex}
+\begin{matrix}
+\hat{Y}_i                     & + & e_i                    & = & Y_i \\
+\Sigma(\hat{Y}_i - \bar{Y})^2 & + & \Sigma e_i^2           & = & \Sigma(Y_i - \bar{Y})^2 \\
+SS_{Regression}               & + & SS_{Error}             & = & SS_{Total} \\
+Explained\ variation          & + & Unexplained\ variation & = & Total\ variation
+\end{matrix}
+```
 
 ## ANOVA table for linear regression
 

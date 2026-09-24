@@ -217,6 +217,10 @@ Here is the predicted value from R.
 -   $e_i=Y_i-\hat{Y}_i$
     -   Residual = Observed - Predicted
 -   Very helpful in assessing assumptions
+-   Linear regression splits the observed value into two parts
+    -   $Y_i =  \hat{Y}_i + e_i$
+    -   $\hat{Y}_i$ is explained portion
+    -   $e_i$ is unexplained portion
     
 :::notes
 The residual is also important. It represents the deviation between what was actually observed and what was predicted.
@@ -236,7 +240,7 @@ Image taken from: http://en.wikipedia.org/wiki/File:Butterfly_large.jpg.
 
 ## Residuals, 3
 
-![](http://pmean.com/news/images/201011/04a.gif)
+![](../images/plot11.png "Scatterplot of Bush votes versus Buchanan votes")
 
 :::notes
 There are several ways to look at the data, and they all show that the vote for Buchanna in Palm Beach County was unusual. Here is a graph looking at the votes for Bush in each county of Florida on the X-axis and the votes for Buchanan in that same county.
@@ -245,32 +249,32 @@ Notice that there is a strong positive trend. Counties with lots of votes for Bu
 
 The relationship occurs in part because both Bush and Buchanan were candidates that appealed to the same type of voter, someone on the conservative side of the voting spectrum. More importantly, though, is that bigger counties would tend to produce more votes for both candidates.
 
-Notice the one point very hight in the middle of the graph. This is Palm Beach County. Buchanan got over 3,000 votes there and 
+Notice the one point very hight in the middle of the graph. This is Palm Beach County. Buchanan got over 3,000 votes there and this is not at all similar to the Buchanan votes in any other county. 
 :::
 
 ## Residuals, 4
 
--   Votes (Buchanan) = 45.3 +0.0049 * Votes (Bush)
-    -   The estimated average number of votes for Buchanan increase by 1/200 for every increase of one vote for Bush.
+-   Buchanan_votes = 50 + 5 * Bush_count_thousands (rounding liberally)
+    -   The estimated average number of votes for Buchanan increase by 5 for every increase of one thousand votes for Bush.
     
 ## Residuals, 5
--   In Palm Beach County
-    -   Votes (Bush) = 152,846
-    -   Predicted Votes (Buchanan) = 797
-        -   45 + 0.0049 * 152,846
-    -   Actual Votes (Buchanan) = 3,407
--   Residual = 3,407 - 797 = 2,610
+-   (Rounding liberally) In Palm Beach County
+    -   Votes (Bush) = 150 thousand
+    -   Predicted Votes (Buchanan) = 800
+        -   50 + 5*150
+    -   Actual Votes (Buchanan) = 3,400
+-   Residual = 3,400 - 800 = 2,600
 
 :::notes
-We can compute a predicted number of votes for Buchanan for each county by using the above equation. Palm Beach County had 152,846 votes for Bush. So the regression model would predict that Buchanan should get:
+We can compute a predicted number of votes for Buchanan for each county by using the above equation. Palm Beach County had 150 thousand votes for Bush. So the regression model would predict that Buchanan should get:
 
-45 + 0.0049 * 152,846 =  797.
+50 + 5 * 150 = 800 votes
 
-Thus, if the relationship observed across the entire state held exactly in Palm Beach County, then we would estimate the vote count for Buchanan to be 797.
+Thus, if the relationship observed across the entire state held exactly in Palm Beach County, then we would estimate the vote count for Buchanan to be around 800.
 
-There were actually 3,407 votes recorded for Buchanan, which is quite a discrepancy from what we predicted. The residual, the difference between what we observed and what would be predicted by the regression model is:
+There were actually 3,400 votes recorded for Buchanan, which is quite a discrepancy from what we predicted. The residual, the difference between what we observed and what would be predicted by the regression model is:
 
-3,407 - 797 = 2,610.
+3,400 - 800 = 2,600.
 
 One possible interpretation is that this discrepancy represents an estimate of the number of people who voted incorrectly for Buchanan. Such an interpretation would have to consider other possibilities, though. Is there something unique about Palm Beach County that would cause that county to vote in disproportionate numbers for Buchanan? Buchanan does indeed have some relatives in the area, and although they do not number in the thousands, perhaps they exerted some influence on their community.
 
@@ -294,3 +298,7 @@ augment(m1) |>
 		.fitted,
 		.resid)
 ```
+
+:::notes
+Here are the predicted and residual calculations for the breast feeding study. Looking at just the 20 year old mothers, the predicted value is 13.7. The first mother stopped at 5 weeks, 8.7 weeks short of the predicted value. The second mom was a champ. She stopped only after 29 weeks which is 15.3 weeks above the prediction. The third mother also stopped early. Her residual is -7.7, meaning that her actual stopping time was 7.7 weeks below what we might have predicted. The fourth mother was just a small amount below the prediction, and has a residual of -1.7 weeks. 
+:::
