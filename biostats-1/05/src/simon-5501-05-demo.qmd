@@ -12,6 +12,7 @@ format:
 This program reads data and fits various linear regression models on a breast feeding study in pre-term infants.  Find more information in the [data dictionary][dd]. This program was written by Steve Simon on 2024-09-11 and is placed in the public domain.
 
 [dd]: https://raw.githubusercontent.com/pmean/datasets/master/breast-feeding-preterm.yaml
+
 If you have more than one dataset, possibly because you changed something, then it is a good idea to list the datasets and explain what changes were made.
 
 -   bf: read from breast-feeding-preterm.csv
