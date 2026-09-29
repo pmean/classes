@@ -1,17 +1,15 @@
 ---
 title: "Regression analysis and diagnostics for Albuquerque housing prices"
-author: "Steve Simon"
 format: 
   html:
     embed-resources: true
-date: 2024-08-18
 ---
 
 This program reads data on housing prices in Albuquerque, New Mexico in 1993. Find more information in the [data dictionary][dd].
 
 [dd]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.yaml
 
-This code is placed in the public domain.
+This program was written by Steve Simon on 2024-08-18 and the code is placed in the public domain.
 
 ## Load the tidyverse library
 
@@ -26,11 +24,9 @@ library(broom)
 library(tidyverse)
 ```
 
-#--- Part 1: Diagnostic plots
+# --- Part 1: Diagnostic plots
 
 ## Read the data and view a brief summary
-
-Use the read_csv function to read the data. The glimpse function will produce a brief summary.
 
 ```{r}
 #| label: read
@@ -43,7 +39,7 @@ alb <- read_csv(
 glimpse(alb)
 ```
 
-## m1: regression analysis using features to predict price
+### Interpretation of the output
 
 You might expect that a house with more features would have a higher sales price. Your first steps are to compute simple descriptive statistics for both the independent variable (features) and the dependent variable (price). Then you should plot the data.
 
@@ -111,23 +107,32 @@ m1
 
 #### Interpretation of the output
 
-The estimated average sales price for a house with no features is \$66,000. This not an extrapolation beyond the range of the data. The estimated average sales price increases by \$11,000 for each additional feature. This is surprisingly large when you look at what the features are. Perhaps houses with more features are bigger and newer. 
-
-## Skip some of the functions for hypothesis tests and p-values
-
-Normally, you would follow this up with various functions like anova(), confint(), or tidy(). This program skips those steps to focus on the diagnostic plots of the residuals.
+The estimated average sales price for a house with no features is \$66,000. This is NOT an extrapolation beyond the range of the data. The estimated average sales price increases by \$11,000 for each additional feature. This is surprisingly large when you look at what the features are. Perhaps houses with more features are bigger and newer. 
 
 ## m1: Calculate residuals and predicted values
 
 ```{r}
 #| label: residuals-1
+
 r1 <- augment(m1)
 glimpse(r1)
 ```
 
+### Comments on the code
+
+Normally, you would follow this up with various functions like anova(), confint(), or tidy(). This program skips those steps to focus on the diagnostic plots of the residuals.
+
+The [augment function][ref-augment], part of the broom library, calculates predicted values, residuals, and measures of influence.
+
+You could have also used the [resid() function][ref-resid] and [predict() function][ref-predict], both part of base R. 
+
+[ref-augment]: https://broom.tidymodels.org/reference/augment.lm.html
+[ref-resid]: https://broom.tidymodels.org/reference/augment.lm.html
+[ref-predict]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/predict.lm.html
+
 #### Interpretation of the output
 
-You could have also used the resid() and predict() functions. No interpretation is needed here, as these numbers are better reviewed using various graphical displays.
+No interpretation is needed here, as these numbers are better reviewed using various graphical displays.
 
 ## m1: Normal probability plot for residuals
 
@@ -138,7 +143,8 @@ r1 |>
   ggplot() +
   aes(sample=.resid) +
   stat_qq() +
-  labs(caption="Simon 2025-09-30, CC0")
+  labs(
+    caption="Simon, 2025-09-30")
 ```
 
 #### Interpretation of the output
@@ -151,14 +157,15 @@ The normal probability plot deviates markedly from a straight line, indicating s
 #| label: histogram-1
 
 r1 |>
-  ggplot(aes(.resid)) +
-    geom_histogram(
-      binwidth=10000,
-      color="black",
-      fill="white") +
-    labs(
-      x="Residuals from m1",
-      caption="Simon 2025-09-30, CC0")
+  ggplot() +
+  aes(.resid) +
+  geom_histogram(
+    binwidth=10000,
+    color="black",
+    fill="white") +
+  labs(
+    x="Residuals from m1",
+    caption="Simon, 2025-09-30")
 ```
 
 #### Interpretation of the output
@@ -172,18 +179,19 @@ The histogram reinforces these concerns. It looks like the data is skewed to the
 
 r1 |>
   ggplot(aes(features, .resid)) + 
+  aes(features, .resid) +
   geom_point() +
   labs(
     x="Number of features",
     y="Residuals from m1",
-    caption="Simon 2025-09-30, CC0") 
+    caption="Simon, 2025-09-30") 
 ```
 
 #### Interpretation of the output
 
 This plot is difficult to interpret. There is some evidence of heterogeneity. It looks, perhaps, like houses with more features also tend to exhibit more variation. There is no evidence of non-linearity.
 
-#--- Part 2: Influence measures
+# --- Part 2: Influence measures
 
 ## m1: Leverage values
 
@@ -224,7 +232,7 @@ r1 |>
 
 No houses had a large value for Cook's distance. Even though there are a few high leverage points and one outlier, no single data point has unusually high influence on the predicted values.
 
-#--- Part 3: Log transformation
+# --- Part 3: Log transformation
 
 ## m2: Using features to predict log(price)
 
@@ -235,8 +243,10 @@ Because there are some concerns about non-normality and heterogeneity, you might
 ```{r}
 #| label: scatterplot-2
 
-alb$log_price <- log10(alb$price)
 alb |>
+  mutate(log_price = log10(price)) -> alb1
+
+alb1 |>
   ggplot(aes(features, log_price)) +
     geom_point() +
     geom_smooth(method="lm", se=FALSE) +
@@ -255,7 +265,7 @@ There is a weak positive linear relationship between log price and features.
 ```{r}
 #| label: regression-2
 
-m2 <- lm(log_price~features, data=alb)
+m2 <- lm(log_price~features, data=alb1)
 m2
 ```
 
@@ -286,7 +296,7 @@ r2 |>
   aes(sample=.resid) +
   stat_qq() +
   labs(
-    caption="Simon 2025-09-30, CC0")
+    caption="Simon, 2025-09-30")
 
 ```
 
@@ -300,14 +310,15 @@ The normal probability plot is close to a straight line, indicating a reasonably
 #| label: histogram-2
 
 r2 |>
-  ggplot(aes(.resid)) +
-    geom_histogram(
-      binwidth=0.05,
-      color="black",
-      fill="white") +
-	  labs(
-	    x="Residuals from m2",
-      caption="Simon 2025-09-30, CC0")
+  ggplot() +
+  aes(.resid) +
+  geom_histogram(
+    binwidth=0.05,
+    color="black",
+    fill="white") +
+	 labs(
+	   x="Residuals from m2",
+    caption="Simon, 2025-09-30")
 ```
 
 #### Interpretation of the output
@@ -320,11 +331,13 @@ The histogram of residuals also indicates a close fit to a normal distribution. 
 #| label: residual-scatterplot-2
 
 r2 |>
-  ggplot(aes(features, .resid)) + 
-    geom_point() +
-	  ggtitle("Plot drawn by Steve Simon on 2023-09-24") +
-	  xlab("Number of features") +
-	  ylab("Residuals from m2")
+  ggplot() + 
+  aes(features, .resid) +
+  geom_point() +
+  labs(
+    caption="Steve Simon, 2023-09-24",
+	  x="Number of features",
+	  y="Residuals from m2")
 ```
 
 #### Interpretation of the output

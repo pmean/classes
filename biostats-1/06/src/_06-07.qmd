@@ -7,48 +7,8 @@ format:
 editor: source
 ---
 
-## simon-5501-06-directions.qmd, 1
+## Your homework
 
-```{r prog1}
-load("../data/module06.RData")
-cat(progc[1])
-```
-
-## simon-5501-06-directions.qmd, 2
-
-```{r prog2}
-cat(progc[2])
-```
-
-## simon-5501-06-directions.qmd, 3
-
-```{r prog3}
-cat(progc[3])
-```
-
-## simon-5501-06-directions.qmd, 4
-
-```{r prog4}
-cat(progc[4])
-cat(progc[5])
-cat(progc[6])
-cat(progc[7])
-```
-
-## simon-5501-06-directions.qmd, 5
-
-```{r prog5}
-cat(progc[8])
-cat(progc[9])
-cat(progc[10])
-cat(progc[11])
-```
-
-## simon-5501-06-directions.qmd, 6
-
-```{r prog6}
-cat(progc[12])
-cat(progc[13])
-cat(progc[14])
-cat(progc[15])
-```
+-   [simon-5501-06-directions.md][ref-directions]
+    
+[ref-directions]: https://github.com/pmean/classes/blob/master/biostats-1/06/src/simon-5501-06-directions.md

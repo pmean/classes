@@ -1,0 +1,207 @@
+---
+title: "simon-5501-06-image-maker"
+format: 
+  html:
+    embed-resources: true
+editor: source
+---
+
+```{r setup-0}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(yaml)
+```
+
+## Artificial data, 1
+
+```{r artificial-1}
+n <- 500
+
+b0 <- 20
+b1 <- 0.5
+b2 <- 5
+x1 <- runif(n, 10, 30)
+epsilon1 <- 50*rnorm(n)
+y1 <- b0 + b1*x1 + b2*x1^2 + epsilon1
+e1 <- resid(lm(y1~x1))
+artificial_1 <- data.frame(x1, y1, e1)
+head(artificial_1)
+```
+
+## Artificial data, 2
+
+```{r artificial-2}
+b0 <- 20
+b1 <- 50
+x2 <- x1
+epsilon2 <- 2*(x2-9)*runif(n,-1, 1)
+y2 <- b0 + b1*x2 + epsilon2
+e2 <- resid(lm(y2~x2))
+artificial_2 <- data.frame(x2, y2, e2)
+head(artificial_2)
+```
+
+## Artificial data, 3
+
+```{r artificial-3}
+b0 <- 20
+b1 <- 50
+x3 <- 10 + 15*rbeta(n, 10, 10) + 10*(runif(n) > 0.5)
+epsilon3 <- rnorm(n, 0, 50)
+y3 <- b0 + b1*x3 + epsilon3
+e3 <- resid(lm(y3~x3))
+artificial_3 <- data.frame(x3, y3, e3)
+head(artificial_3)
+```
+
+## Plot01
+
+```{r}
+#| label: non-linear-1
+
+artificial_1 |>
+  ggplot() + 
+  aes(x1, y1) +
+  geom_point() + 
+	labs(
+	  caption="Simon, 2024-09-23",
+	  x="Hypothetical independent variable",
+	  y="Hypothetical dependent variable") -> plot01
+plot01
+ggsave("../images/plot01.png")
+```
+
+## Plot02
+
+```{r}
+#| label: non-linear-2
+
+artificial_1 |>
+  ggplot() + 
+  aes(x1, e1) + 
+  geom_point() + 
+	labs(
+	  caption="Simon, 2024-09-23",
+	  x="Hypothetical independent variable",
+	  y="Residual") -> plot02
+plot02
+ggsave("../images/plot02.png")
+```
+
+
+## Plot03
+
+```{r}
+#| label: heterogeneity-1
+
+artificial_2 |>
+  ggplot() +
+  aes(x2, y2) +
+  geom_point() + 
+	labs(
+	  caption="Simon, 2024-09-23",
+	  x="Hypothetical independent variable",
+	  y="Hypothetical dependent variable") -> plot03
+plot03
+ggsave("../images/plot03.png")
+
+```
+
+## Plot04
+
+```{r}
+#| label: heterogeneity-2
+
+artificial_2 |>
+  ggplot() +
+  aes(x2, e2) +
+  geom_point() + 
+	labs(
+	  caption="Simon, 2024-09-23",
+	  x="Hypothetical independent variable",
+	  y="Residual") -> plot04
+plot04
+ggsave("../images/plot04.png")
+```
+
+## Plot05
+
+```{r}
+#| label: non-normality-1
+
+artificial_3 |>
+  ggplot() +
+  aes(x3, y3) +
+  geom_point() + 
+	labs(
+	  caption="Simon, 2024-09-23",
+	  x="Hypothetical independent variable",
+	  y="Hypothetical dependent variable") -> plot05
+plot05
+ggsave("../images/plot05.png")
+```
+
+## Plot06
+
+```{r}
+#| label: non-normality-2
+#| 
+artificial_3 |>
+  ggplot() +
+  aes(x3) +
+  geom_histogram(
+    binwidth=3,
+    color="black",
+    fill="white") + 
+	labs(
+	  caption="Simon, 2024-09-23",
+	  x="Hypothetical independent variable") -> plot06
+plot06
+ggsave("../images/plot06.png")
+```
+
+## Plot07
+
+```{r}
+#| label: non-normality-3
+
+artificial_3 |>
+  ggplot(aes(y3)) +
+    geom_histogram(
+      binwidth=50,
+      color="black",
+      fill="white") + 
+	  labs(
+	    caption="Simon, 2024-09-23",
+	    x="Hypothetical dependent variable") -> plot07
+plot07
+ggsave("../images/plot07.png")
+```
+
+## Plot08
+
+```{r}
+#| label: non-normality-4
+
+artificial_3 |>
+  ggplot(aes(e3)) +
+    geom_histogram(
+      binwidth=20,
+      color="black",
+      fill="white") + 
+	  labs(
+	    caption="Simon, 2024-09-23",
+	    x="Residual") -> plot08
+plot08
+ggsave("../images/plot08.png")
+```
+
+
+```{r save}
+save(
+	artificial_1, 
+	artificial_2, 
+	artificial_3, 
+	file="../data/module06.RData")
+```

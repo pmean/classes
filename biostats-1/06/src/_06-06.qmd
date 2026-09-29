@@ -7,45 +7,10 @@ format:
 editor: source
 ---
 
-## simon-5501-06-albuquerque.qmd, 17
+## Live demo, part 3
 
-```{r write17}
-load("../data/module06.RData")
-cat(codec[17])
-```
+-   This section is another continuation of the demo. It uses the same files.:
+    -   simon-5501-06-demo.qmd
+    -   albuquerque-housing,csv
+    -   albuquerque-housing.yaml
 
-## simon-5501-06-albuquerque.qmd, 18
-
-```{r write18}
-cat(codec[18])
-```
-
-## simon-5501-06-albuquerque.qmd, 19
-
-```{r write19}
-cat(codec[19])
-```
-
-## simon-5501-06-albuquerque.qmd, 20
-
-```{r write20}
-cat(codec[20])
-```
-
-## simon-5501-06-albuquerque.qmd, 21
-
-```{r write21}
-cat(codec[21])
-```
-
-## simon-5501-06-albuquerque.qmd, 22
-
-```{r write22}
-cat(codec[22])
-```
-
-## simon-5501-06-albuquerque.qmd, 23
-
-```{r write23}
-cat(codec[23])
-```

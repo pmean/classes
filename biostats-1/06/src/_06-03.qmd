@@ -7,27 +7,53 @@ format:
 editor: source
 ---
 
-## Deleted Predicted value
+## Influence measures
 
--   $\hat{Y}_{j(i)}$ is the predicted value of Y at $X = X_j$ using all the data except $(X_i,Y_i)$
+-   Does one data point dominate the regression fit?
+    -   Extreme in the X direction
+    -   Deviation from the trend line
+-   Influential data points are NOT a violation of assumptions
+    
+:::notes
+Linear regression has been around for hundreds of years. Recently (meaning 1980s), reserachers have been paying attention to linear regression models where one data point dominates the regression fit.
+
+You can think of these influential data points as outliers, just like Elon Mush was an outlier when looking at average incomes. But you can be an outlier in two different ways. You can be extreme in the X direction, or you can deviate from the trend line in the y direction.
+
+Influential data points are not a violation of assumptions. If you find an influential data point, study it carefully and make sure that it is not a typo or an ineligible patient who sliped by the initial screen.
+:::
+
+## Studentized deleted residual
+
+-   $\hat{Y}_{(i)}$ is the predicted value of Y at $X = X_i$ using all the data except $(X_i,Y_i)$
+-   $e_{(i)} = \hat{Y}_{(i)}-Y_i$ is the deleted residual
+-   $se(e_{(i)})$ is the standard error
+    -   or, the estimated standard deviation of the deleted residual
+-   $e_{(i)} / se(e_{(i)})$ is the studentized deleted residual
+    -   Investigate if > +3 or < -3
+
+:::notes
+One way to measure whether a data point is influential is to see what happens to the predicted value when that data point is removed. You can do this for every data point in your sample. It seems like that would take a lot of work, but computers these days are very fast, so even having thousand of data points will not slow these calculations down too much.
+
+The deleted residual is a residual computed without the potentially influential data point. You can compute the standard error of the deleted residual. In general, the standard error is the estimated standard deviation of a statistic. When you divide a statistic by its standard error, you get something that is small if it is between plus or minus three.
+:::
 
 ## Leverage
 
 -   $h_{ii}=\frac{1}{n}+\frac{(X_i-\bar{X})^2}{\Sigma(X_j-\bar{X})^2}$
+    -   Investigate if > 3*2/n
 
 :::notes
-(Add notes)
+Leverage is a measure of deviation in the X direction, or outliers with the independent variable. The average leverage is 2/n. A large value ( > 3 times the average value of 3*2/n) is worth investigating. 
 :::
 
-## Studentized residual
-
--   $Z_i=\frac{e_i}{\sqrt{(1-h_{ii})MSE}}$
-
-:::notes
-(Add notes)
-:::
 
 ## Cook's distance
 
 -   $D_i=\frac{\Sigma(\hat{Y}_j-\hat{Y}_{j(i)})^2}{(k+1)\sqrt{MSE}}$
     -   where k is the number of independent variables
+    -   investigate if > 1
+
+:::notes
+Cook's distance is a measure of how much the predicted value changes when a point is removed. it is measured relative to a constant times the square root of MSE. Think of the denominator as a measure of noise. If the change stands out relative to noise, if it is greater than 1, then that data point is influential. Cook's distance is a measure that combines leverage with the studentized deleted residual. Cook's distance is largest if both the leverage is large and the studentized deleted residual is not close to zero.
+:::
+
