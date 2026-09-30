@@ -19,6 +19,17 @@ editor: source
 
 ```{r}
 # A small section of R code to kick start the params.
+
+# Changes for 2027
+#   message-FALSE for plots with lines
+#   remove xlab and ylab from demo
+#   identify .hat, .cooksd in the slides
+#   square qqplots
+#   move aes from ggplot
+#   document m1, m2, alb, alb1
+#   hint at R functions (augment, mutate)
+#   link for coef function
+#   aes(x= , y=)
 ```
 
 -   What you will learn
@@ -104,6 +115,6 @@ editor: source
 --->
 
 ---
-title: "MEDB 5501, Module 06"
+title: "simon-5501-06-slides"
 date: 2026-09-29
 ---
