@@ -6,7 +6,7 @@ This programming assignment was written by Steve Simon on 2024-08-18 and is plac
 
 ## Program
 
--   Download [simon-5501-06-albuquerque.qmd][tem]
+-   Download [simon-5501-06-demo.qmd][ref-demo]
     -   Store it in your src folder
 -   Modify the file name
     -   Use your last name instead of "simon"
@@ -14,14 +14,16 @@ This programming assignment was written by Steve Simon on 2024-08-18 and is plac
     -   Add your name to the author field
     -   Optional: change the copyright statement
 
-[tem]: https://github.com/pmean/classes/blob/master/biostats-1/06/src/simon-5501-06-albuquerque.qmd
+[ref-demo]: https://github.com/pmean/classes/blob/master/biostats-1/06/src/simon-5501-06-demo.qmd
 
 ## Data
 
--   Download [albuquerque-housing-prices.csv][dat]
+-   Download [albuquerque-housing-prices.csv][ref-csv]
     -   Store it in your data folder
+    -   Refer to the [data dictionary][ref-yaml], if needed
 
-[dat]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.csv
+[ref-csv]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.csv
+[ref-yaml]: https://github.com/pmean/datasets/blob/master/albuquerque-housing.yaml
     
 ## Question 1
 
