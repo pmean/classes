@@ -1,0 +1,70 @@
+---
+title: "simon-5501-07-image-maker"
+format: 
+  html:
+    embed-resources: true
+editor: source
+---
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(yaml)
+```
+
+## FEV data
+
+```{r read-fev}
+fn <- "../data/fev.csv"
+read_csv(
+  fn, 
+  col_names=FALSE,
+  col_types="nnncc") %>%
+  data.frame -> pulmonary
+names(pulmonary) <- c(
+  "age",
+  "fev",
+  "height",
+  "sex",
+  "smoker")
+glimpse(pulmonary)
+```
+
+## Creating an indicator variable
+
+```{r}
+#| label: 07-01-fev-1
+
+pulmonary |>
+	select(fev, sex) |>
+	mutate(sex_male=as.numeric(sex=="M")) -> pulmonary1
+```
+
+
+```{r}
+#| label: fev-2
+
+pulmonary1 |>
+	ggplot() + 
+	aes(sex_male, fev) +
+  geom_point(shape=1, size=2) +
+	  geom_smooth(
+	  	method="lm", 
+	  	se=FALSE) +
+	  ggtitle("Plot drawn by Steve Simon on 2024-09-27") +
+	  xlab("Indicator variable for sex=M") +
+	  ylab("Forced expiratory volume (liters)")
+```
+
+
+
+
+```{r save}
+save(
+	pulmonary,
+	pulmonary1,
+	file="../data/module07.RData")
+```
