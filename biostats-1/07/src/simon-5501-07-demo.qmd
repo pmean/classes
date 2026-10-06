@@ -5,7 +5,11 @@ format:
     embed-resources: true
 ---
 
+# --- Documentation
+
 There is a [data dictionary][dd] that provides more details about the data. The program was written by Steve Simon on 2024-09-02 and is placed in the public domain.
+
+This is the version of the program used for Fall semester 2026.
 
 [dd]: https://github.com/pmean/datasets/blob/master/fev.yaml
 
@@ -32,7 +36,15 @@ library(tidyverse)
 
 #### Comments on the code
 
-You should always load the tidyverse library. The broom library provides the glance, tidy, and augment functions that help you with computations of linear regression models. The car library provides the vif function for measuring collinearity.
+You should always load the tidyverse library. The [broom library][ref-broom] (part of the [tidymodels package][ref-tidymodels])  provides the [glance][ref-glance], [tidy][ref-tidy], and [augment][ref-augment] functions that help you with computations of linear regression models. The [car library][ref-car] provides the [vif function][ref-vif] for measuring collinearity.
+
+[ref-broom]: https://broom.tidymodels.org/
+[ref-tidymodels]: https://www.tidymodels.org/
+[ref-glance]: https://broom.tidymodels.org/reference/glance.lm.html
+[ref-tidy]: https://broom.tidymodels.org/reference/tidy.lm.html
+[ref--augment]: https://broom.tidymodels.org/reference/augment.lm.html
+[ref-car]: https://cran.r-project.org/package=car
+[ref-vif]: https://cran.r-project.org/web/packages/car/refman/car.html#vif
 
 ## List variable names
 
@@ -59,7 +71,7 @@ pulmonary <- read_csv(
 glimpse(pulmonary)
 ```
 
-## m1: Linear regression model using sex to predict fev
+# --- m1: Linear regression model using sex to predict fev
 
 Is there a relationship between sex and fev? Do males tend to have larger fev values than females. This section (labelled m1) shows some simple descriptive and graphical summaries followed by a linear regression model.
 
@@ -111,24 +123,7 @@ pulmonary |>
 
 The average fev is 0.36 liters higher for males than females. There is very slightly more variation in the males (the standard deviation is 1.00 versus 0.65). In general, only a two or three fold change in standard deviations is worth worrying about.
 
-## m1: Graphical summary of the relationship between sex and fev, 2
-
-```{r}
-#| label: sex-and-fev-2
-#| eval: false
-
-# This chunk of code will not be run.
-
-pulmonary |>
-  ggplot() +
-  aes(sex, fev) +
-	geom_boxplot() + 
-  coord_flip() +
-	labs(
-    caption="Graph drawn by Steve Simon on 2024-09-26",
-    x="Sex",
-    y="Forced Expiratory Volume (liters)")
-```
+## m1: Graphical summary of the relationship between sex and fev, 1
 
 ```{r}
 #| label: sex-and-fev-3
@@ -147,7 +142,7 @@ pulmonary |>
 
 #### Comments on the code
 
-I learned recently that the coord_flip function has been deprecated. That means that you can still use it for now, but its use is discouraged and it might disappear in future versions of ggplot2. The better way to handle this is to swap the x and y values in the aes function. R is smart enough to recognize that a categorical variable for y instead of x means that you want a horizontal boxplot.
+R can draw a vertical or a horizontal boxplot. Place the categorical variable on the y axis, as done here, and R draws a horizontal boxplot. This plot looks best when the height of the plot is small relative to the width.
 
 Warning: if you are using number codes for your categorical variable, you need to inform R that the number codes are not a continuous variable by using the factor function. For example, if sex had codes 0 and 1, you would use
   
