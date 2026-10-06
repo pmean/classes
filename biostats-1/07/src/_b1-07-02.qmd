@@ -7,15 +7,18 @@ format:
 editor: source
 ---
 
-## fev data dictionary
+## Live demo, part 1
+
+Use the following files
+
+-   Code: [simon-5501-07-demo.qmd][ref-code]
+-   Data: [fev.csv][ref-csv] 
+-   Dictionary: [fev.yaml][ref-yaml]
 
 Refer to the [data dictionary][ref-simon-nodate1].
 
-[ref-simon-nodate1]: https://github.com/pmean/data/blob/main/files/fev.yaml
-
-## simon-5501-07-fev.qmd
-
-Refer to part 1 of [my code][ref-simon-nodate2].
-
-[ref-simon-nodate2]: https://github.com/pmean/classes/blob/master/biostats-1/07/src/simon-5501-07-fev.qmd
+[ref-code]: https://github.com/pmean/classes/blob/master/biostats-1/07/src/simon-5501-07-demo.qmd
+[ref-csv]: https://github.com/pmean/data/blob/main/files/fev.csv
+[ref-yaml]: https://github.com/pmean/data/blob/main/files/fev.yaml
+[ref-code]: https://github.com/pmean/classes/blob/master/biostats-1/07/src/simon-5501-07-demo.qmd
 

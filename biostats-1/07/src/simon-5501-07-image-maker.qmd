@@ -6,24 +6,31 @@ format:
 editor: source
 ---
 
+# --- Documentation
+
 ```{r}
 #| label: setup
 #| message: false
 #| warning: false
 
+library(tidymodels)
 library(tidyverse)
-library(yaml)
 ```
+
+# --- Data input and management
 
 ## FEV data
 
-```{r read-fev}
+```{r}
+#| label: read
+
 fn <- "../data/fev.csv"
 read_csv(
   fn, 
   col_names=FALSE,
   col_types="nnncc") %>%
   data.frame -> pulmonary
+
 names(pulmonary) <- c(
   "age",
   "fev",
@@ -36,35 +43,232 @@ glimpse(pulmonary)
 ## Creating an indicator variable
 
 ```{r}
-#| label: 07-01-fev-1
+#| label: pulmonary1
 
 pulmonary |>
 	select(fev, sex) |>
 	mutate(sex_male=as.numeric(sex=="M")) -> pulmonary1
 ```
 
+# --- Data analysis
+
+## Scaterplot
 
 ```{r}
-#| label: fev-2
+#| label: plot01
 
 pulmonary1 |>
 	ggplot() + 
 	aes(sex_male, fev) +
   geom_point(shape=1, size=2) +
-	  geom_smooth(
-	  	method="lm", 
-	  	se=FALSE) +
-	  ggtitle("Plot drawn by Steve Simon on 2024-09-27") +
-	  xlab("Indicator variable for sex=M") +
-	  ylab("Forced expiratory volume (liters)")
+	geom_smooth(
+	 	method="lm", 
+	 	se=FALSE) +
+	labs(
+	  caption="Simon, 2024-09-27",
+	  x="Indicator variable for sex=M",
+	  y="Forced expiratory volume (liters)") -> plot01
+
+plot01
+ggsave("../images/plot01.png")
+```
+
+## Regression model
+
+```{r}
+#| label: m1
+
+m1 <- lm(fev ~ sex_male, data=pulmonary1)
+m1
+```
+
+## Alternate scatterplot
+
+```{r}
+#| label: pulmonary2
+
+pulmonary |>
+	select(fev, sex) |>
+	mutate(sex_female=as.numeric(sex=="F")) -> pulmonary2
+```
+
+```{r}
+#| label: alternate
+
+pulmonary2 |>
+	ggplot() + 
+  aes(sex_female, fev) +
+	geom_point(shape=1, size=2) +
+	geom_smooth(
+	  method="lm", 
+	  se=FALSE) +
+	labs(
+	  caption="Simon, 2024-09-27",
+	  x="Indicator variable for sex=F",
+	  y="Forced expiratory volume (liters)") -> plot02
+
+plot02
+ggsave("../images/plot02.png")
+```
+
+## Regression model
+
+```{r}
+#| label: m2
+
+m2 <- lm(fev ~ sex_female, data=pulmonary2)
+m2
+```
+
+## Regression model
+
+```{r}
+#| label: height model
+
+lm(fev~height, data=pulmonary) %>%
+  tidy %>%
+  pull(estimate) -> bu
+
+pulmonary |>
+  ggplot() +
+  aes(x=height, y=fev, label=age) +
+  geom_text() +
+  geom_abline(slope=bu[2], intercept=bu[1]) +
+  labs(
+    x="Height (inches)",
+    y="Forced expiratory volume (liters)",
+    caption="Simon, 2024-09-27") -> plot03
+
+plot03
+ggsave("../images/plot03.png")
+```
+
+## Partial graph functions
+
+```{r}
+#| label: control-age-
+
+lm(fev~height+age, data=pulmonary) %>%
+  tidy %>%
+  pull(estimate) -> b
+  
+control_age <- function(a) {
+  co=ifelse(pulmonary$age==a, "black", "gray")
+  ht_min <- min(pulmonary$height[co=="black"])
+  ht_max <- max(pulmonary$height[co=="black"])
+  fev_min <- b[1] + b[2]*ht_min + b[3]*a
+  fev_max <- b[1] + b[2]*ht_max + b[3]*a
+  o <- order(co)
+  pulmonary[o, ] %>%
+    ggplot(aes(height, fev, label=age)) +
+    geom_text(color=co[o]) +
+    annotate(
+      "segment",
+      x=46,
+      y=bu[1]+46*bu[2],
+      xend=74,
+      yend=bu[1]+74*bu[2],
+      color="gray") +
+  	annotate(
+  	  "segment",
+	  	x=ht_min,
+	  	y=fev_min,
+	  	xend=ht_max,
+	  	yend=fev_max) +
+    labs(
+      x="Height (inches)",
+      y="Forced expiratory volume (liters)",
+      caption="Simon, 2024-09-27")
+}
+
+```
+
+```{r}
+for(a in 3:8) {
+  print(control_age(a))
+  ggsave(paste0("../images/plot0", a+1, ".png"))
+}
+for(a in 9:19) {
+  print(control_age(a))
+  ggsave(paste0("../images/plot", a+1, ".png"))
+}
+```
+
+## Unadjusted relationship between age and fev
+
+```{r}
+lm(fev~age, data=pulmonary) %>%
+  tidy %>%
+  pull(estimate) -> bu
+pulmonary |>
+  ggplot() +
+  aes(age, fev, label=height) +
+  geom_text() +
+  annotate(
+    "segment",
+    x=3,
+    xend=19,
+    y=bu[1]+3*bu[2],
+    yend=bu[1]+19*bu[2]) +
+  labs(
+    x="Age (years)",
+    y="Forced expiratory volume (liters)",
+    caption="Simon, 2024-09-27")
+ggsave("../images/plot21.png")
+h <- 48
+```
+
+## Partial plots for height
+
+```{r}
+#| label: control-height
+
+g <- 4*floor((pulmonary$height-2)/4)+4
+control_height <- function(h) {
+  co <- ifelse(g==h, "black", "gray")
+  age_min <- min(pulmonary$age[co=="black"])
+  age_max <- max(pulmonary$age[co=="black"])
+  fev_min <- b[1] + b[2]*h + b[3]*age_min
+  fev_max <- b[1] + b[2]*h + b[3]*age_max
+  o <- rev(order(co))
+  pulmonary[o, ] %>%
+    ggplot() +
+    aes(age, fev, label=height) +
+    geom_text(color=co[o]) +
+    annotate(
+      "segment",
+      x=3,
+      xend=19,
+      y=bu[1]+3*bu[2],
+      yend=bu[1]+19*bu[2],
+      color="gray") +
+    annotate(
+      "segment",
+  	  x=age_min,
+  	  y=fev_min,
+  	  xend=age_max,
+  	  yend=fev_max)
+}
+```
+
+```{r}
+for (i in 0:6) {
+  h <- 48+4*i
+  print(control_height(h))
+  ggsave(paste0("../images/plot", 22+i, ".png"))}
 ```
 
 
-
+# --- Save everything
 
 ```{r save}
 save(
+  bu,
+	control_age,
+	m1,
+	m2,
 	pulmonary,
 	pulmonary1,
+	pulmonary2,
 	file="../data/module07.RData")
 ```

@@ -100,7 +100,7 @@ r4 |>
 ```
 
 :::notes
-Here are the leverage values for a regression model using both hieght and age to predict fev. There are quite a few values and they are a bit tricky to interpret. This is typical for two independent variables. Finding out why a data point has high leverage gets even harder when there are three or more independent variables.
+Here are the leverage values for a regression model using both height and age to predict fev. There are quite a few values and they are a bit tricky to interpret. This is typical for two independent variables. Finding out why a data point has high leverage gets even harder when there are three or more independent variables.
 :::
 
 ## Leverage, 2

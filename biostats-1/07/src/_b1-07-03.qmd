@@ -26,240 +26,118 @@ Add note.
     -   when $X_2$ increases by one unit, and
     -   $X_1$ is held constant
     
-## Unadjusted relationship between height and FEV
+## Relationship between height and FEV unadjusted for age
 
 ```{r}
 library(broom)
 library(tidyverse)
 load("../data/module07.RData")
-lm(fev~height, data=pulmonary) %>%
-  tidy %>%
-  pull(estimate) -> bu
-ggplot(pulmonary, aes(height, fev, label=age)) +
-  geom_text() +
-  geom_abline(slope=bu[2], intercept=bu[1])
 ```
 
-```{r}
-lm(fev~height+age, data=pulmonary) %>%
-  tidy %>%
-  pull(estimate) -> b
-control_age <- function(a) {
-  co=ifelse(pulmonary$age==a, "black", "gray")
-  ht_min <- min(pulmonary$height[co=="black"])
-  ht_max <- max(pulmonary$height[co=="black"])
-  fev_min <- b[1] + b[2]*ht_min + b[3]*a
-  fev_max <- b[1] + b[2]*ht_max + b[3]*a
-  o <- order(co)
-  pulmonary[o, ] %>%
-    ggplot(aes(height, fev, label=age)) +
-      geom_text(color=co[o]) +
-  	  geom_segment(
-  	  	x=ht_min,
-  	  	y=fev_min,
-  	  	xend=ht_max,
-  	  	yend=fev_max) +
-      geom_abline(slope=bu[2], intercept=bu[1], color="gray")
-}
-a <- 3
-```
 
-## Relationship between height and FEV controlling at Age=`r a`
+![](../images/plot03 "Scatterplot of height versus fev")
 
-```{r}
-control_age(a)
-a <- a+1
-```
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Relationship between height and FEV controlling for age
 
-```{r}
-control_age(a)
-a <- a+1
-```
+![](../images/plot04 "Scatterplot of height versus fev controlling age at 3")
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Relationship between height and FEV controlling for age
 
-```{r}
-control_age(a)
-a <- a+1
-```
+![](../images/plot05 "Scatterplot of height versus fev controlling age at 4")
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Relationship between height and FEV controlling for age
 
-```{r}
-control_age(a)
-a <- a+1
-```
+![](../images/plot06 "Scatterplot of height versus fev controlling age at 5")
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Relationship between height and FEV controlling for age
 
-```{r}
-control_age(a)
-a <- a+1
-```
+![](../images/plot07 "Scatterplot of height versus fev controlling age at 6")
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Relationship between height and FEV controlling for age
 
-```{r}
-control_age(a)
-a <- a+1
-```
+![](../images/plot08 "Scatterplot of height versus fev controlling age at 7")
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Relationship between height and FEV controlling for age
 
-```{r}
-control_age(a)
-a <- a+1
-```
+![](../images/plot09 "Scatterplot of height versus fev controlling age at 8")
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Relationship between height and FEV controlling for age
 
-```{r}
-control_age(a)
-a <- a+1
-```
+![](../images/plot10 "Scatterplot of height versus fev controlling age at 9")
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Relationship between height and FEV controlling for age
 
-```{r}
-control_age(a)
-a <- a+1
-```
+![](../images/plot11 "Scatterplot of height versus fev controlling age at 10")
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Relationship between height and FEV controlling for age
 
-```{r}
-control_age(a)
-a <- a+1
-```
+![](../images/plot12 "Scatterplot of height versus fev controlling age at 11")
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Relationship between height and FEV controlling for age
 
-```{r}
-control_age(a)
-a <- a+1
-```
+![](../images/plot13 "Scatterplot of height versus fev controlling age at 12")
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Relationship between height and FEV controlling for age
 
-```{r}
-control_age(a)
-a <- a+1
-```
+![](../images/plot14 "Scatterplot of height versus fev controlling age at 13")
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Relationship between height and FEV controlling for age
 
-```{r}
-control_age(a)
-a <- a+1
-```
+![](../images/plot15 "Scatterplot of height versus fev controlling age at 14")
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Relationship between height and FEV controlling for age
 
-```{r}
-control_age(a)
-a <- a+1
-```
+![](../images/plot16 "Scatterplot of height versus fev controlling age at 15")
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Relationship between height and FEV controlling for age
 
-```{r}
-control_age(a)
-a <- a+1
-```
+![](../images/plot17 "Scatterplot of height versus fev controlling age at 16")
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Relationship between height and FEV controlling for age
 
-```{r}
-control_age(a)
-a <- a+1
-```
+![](../images/plot18 "Scatterplot of height versus fev controlling age at 17")
 
-## Relationship between height and FEV controlling at Age=`r a`
+## Relationship between height and FEV controlling for age
 
-```{r}
-control_age(a)
-a <- a+1
-```
+![](../images/plot19 "Scatterplot of height versus fev controlling age at 18")
 
-## Unadjusted relationship between age and fev
+## Relationship between height and FEV controlling for age
 
-```{r}
-lm(fev~age, data=pulmonary) %>%
-  tidy %>%
-  pull(estimate) -> bu
-ggplot(pulmonary, aes(age, fev, label=height)) +
-  geom_text() +
-  geom_abline(slope=bu[2], intercept=bu[1])
-h <- 48
-```
+![](../images/plot20 "Scatterplot of height versus fev controlling age at 19")
 
-## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
+## Relationship between age and FEV unadjusted for height
 
-```{r}
-g <- 4*floor((pulmonary$height-2)/4)+4
-control_height <- function(a) {
-  co=ifelse(g==h, "black", "gray")
-  age_min <- min(pulmonary$age[co=="black"])
-  age_max <- max(pulmonary$age[co=="black"])
-  fev_min <- b[1] + b[2]*a + b[3]*age_min
-  fev_max <- b[1] + b[2]*a + b[3]*age_max
-  o <- order(co)
-  pulmonary[o, ] %>%
-    ggplot(aes(age, fev, label=height)) +
-      geom_text(color=co[o]) +
-  	  geom_segment(
-  	  	x=age_min,
-  	  	y=fev_min,
-  	  	xend=age_max,
-  	  	yend=fev_max) +
-      # geom_abline(slope=b[3], intercept=b[1]+b[2]*h) +
-      geom_abline(slope=bu[2], intercept=bu[1], color="gray")
-}
-h <- 48
-control_height(h)
-h <- h+4
-```
+![](../images/plot21 "Scatterplot of age versus fev")
 
-## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
+## Relationship between age and FEV controlling for height
 
-```{r}
-control_height(h)
-h <- h+4
-```
+![](../images/plot22 "Scatterplot of height versus age controlling height close to 48")
 
-## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
+## Relationship between age and FEV controlling for height
 
-```{r}
-control_height(h)
-h <- h+4
-```
+![](../images/plot23 "Scatterplot of height versus age controlling height close to 52")
 
-## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
+## Relationship between age and FEV controlling for height
 
-```{r}
-control_height(h)
-h <- h+4
-```
+![](../images/plot24 "Scatterplot of height versus age controlling height close to 56")
 
-## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
+## Relationship between age and FEV controlling for height
 
-```{r}
-control_height(h)
-h <- h+4
-```
+![](../images/plot25 "Scatterplot of height versus age controlling height close to 60")
 
-## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
+## Relationship between age and FEV controlling for height
 
-```{r}
-control_height(h)
-h <- h+4
-```
+![](../images/plot26 "Scatterplot of height versus age controlling height close to 64")
 
-## Relationship between age and FEV controlling for height between `r h-2` and `r h+1.5`
+## Relationship between age and FEV controlling for height
 
-```{r}
-control_height(h)
-h <- h+4
-```
+![](../images/plot27 "Scatterplot of height versus age controlling height close to 68")
+
+## Relationship between age and FEV controlling for height
+
+![](../images/plot28 "Scatterplot of height versus age controlling height close to 72")
+
+
+
+

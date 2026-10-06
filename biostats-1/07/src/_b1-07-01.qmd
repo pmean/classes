@@ -52,13 +52,35 @@ When X is equal to either zero or one, the equation simplifies. For the "zero ca
 The intepretation changes, but only slightly, when X is an indicator variable.
 :::
 
+## Descriptive statistics
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+load("../data/module07.RData")
+```
+
+```{r}
+#| label: means
+#| echo: true
+
+pulmonary |>
+  group_by(sex) |>
+  summarize(
+    fev_mean=mean(fev),
+    fev_std=sd(fev) )
+```
+
 ## Creating an indicator variable
 
 ```{r}
 #| label: indicator
 
 load("../data/module07.RData")
-slice(pulmonary, 1:6)
+slice(pulmonary1, 1:6)
 ```
 
 :::notes
@@ -67,17 +89,8 @@ Here is a small piece of the fev dataset with an indicator variable, sex_male, a
 
 ## Graphical display using the indicator variable
 
-```{r fev-2}
-fev_a |>
-	ggplot(aes(sex_male, fev)) + 
-	  geom_point(shape=1, size=2) +
-	  geom_smooth(
-	  	method="lm", 
-	  	se=FALSE) +
-	  ggtitle("Plot drawn by Steve Simon on 2024-09-27") +
-	  xlab("Indicator variable for sex=M") +
-	  ylab("Forced expiratory volume (liters)")
-```
+
+![](../images/plot01.png "Scatterplot of the indicator variable versus fev")
 
 :::notes
 It's a bit hard to read this graph, but it looks like the line is around 2.4 when X equals zero. That would be the intercept. The line does show an increase . At X equals one, the line appears to be around 2.8. This is a 0.4 unit increase in Y for a one unit increase in X.
@@ -85,33 +98,33 @@ It's a bit hard to read this graph, but it looks like the line is around 2.4 whe
 
 ## Linear regression using the indicator variable
 
-```{r fev-3}
-m1 <- lm(fev ~ sex_male, data=fev_a)
+```{r}
+#| label: m1
+#| echo: true
+
+m1 <- lm(fev ~ sex_male, data=pulmonary1)
 m1
 ```
 
-The estimated average fev value is 2.45 liters for females. The estimated average fev value is 0.36 liters larger for males.
-
 :::notes
 The intercept represents the estimated average value of Y when X equals zero. In this case, it represents the estimated average fev for female.s The slope represents the estimated average value of Y when X increases by one unit. In this case, it represents how much larger the estimated average fev is for males compared to females.
+
+The estimated average fev value is 2.45 liters for females. The estimated average fev value is 0.36 liters larger for males.
 :::
+
+## Creating an alternate indicator variable
+
+```{r}
+#| label: alternate-indicator
+
+load("../data/module07.RData")
+slice(pulmonary2, 1:6)
+```
+
 
 ## Graphical display using alternate indicator variable
 
-```{r fev-4}
-pulmonary |>
-	select(fev, sex) |>
-	mutate(sex_female=as.numeric(sex=="F")) -> fev_b
-fev_b |>
-	ggplot(aes(sex_female, fev)) + 
-	  geom_point(shape=1, size=2) +
-	  geom_smooth(
-	  	method="lm", 
-	  	se=FALSE) +
-	  ggtitle("Plot drawn by Steve Simon on 2024-09-27") +
-	  xlab("Indicator variable for sex=F") +
-	  ylab("Forced expiratory volume (liters)")
-```
+![](../images/plot02.png "Scatterplot of the alternate indicator variable versus fev")
 
 :::notes
 The choice of 1 for males was arbitrary, and you could have just as easily designated 1 as the female category. When you do, the graph flips. The intercept is a bit larger (2.8) and the slope is negative.
@@ -119,10 +132,17 @@ The choice of 1 for males was arbitrary, and you could have just as easily desig
 
 ## Linear regression using alternate indicator variable
 
-```{r fev-5}
-m1 <- lm(fev ~ sex_female, data=fev_b)
-m1
+```{r}
+#| label: m2
+#| echo: true
+
+m2 <- lm(fev ~ sex_female, data=pulmonary2)
+m2
 ```
+
+:::notes
+The estimated average fev value is 2.45 liters for females. The estimated average fev value is 0.36 liters larger for males.
+:::
 
 ## Letting your software create the indicator variable
 
@@ -136,4 +156,14 @@ You don't have to create the indicator variable yourself. Most statistical softw
 
 It is easy to get confused about this, so you should always orient yourself by looking at the graphs and simple descriptive statistics before trying to interpret the output from a linear regression model.
 :::
+
+## Linear regression using alternate indicator variable
+
+```{r}
+#| label: m3
+#| echo: true
+
+m3 <- lm(fev ~ sex, data=pulmonary)
+m3
+```
 
