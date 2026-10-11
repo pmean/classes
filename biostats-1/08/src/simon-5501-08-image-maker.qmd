@@ -1,0 +1,309 @@
+---
+title: "08-00, Resources needed for module 08 slides"
+format: 
+  html:
+    embed-resources: true
+editor: source
+---
+
+```{r setup}
+#| message: false
+#| warning: false
+#| 
+library(tidyverse)
+```
+
+```{r compare-t-and-z}
+yl <- 0.38
+x <- seq(-6, 6, length=100)
+y1 <- dnorm(x)
+y2 <- dt(x, 10)
+y3 <- dt(x, 4)
+
+data.frame(x, y1, y2, y3) |>
+  ggplot() +
+  aes(x, y1) +
+  geom_line(
+    color="black",
+    size=1) +
+  geom_line(
+    aes(y=y2), 
+    color="darkgreen",
+    size=1,
+    linetype="51") +
+  geom_line(
+    aes(y=y3), 
+    color="darkred",
+    size=1,
+    linetype="11") +
+  geom_text(
+    x=1.5, y=0.38, hjust=0, 
+    label="Black solid line is the normal distribution") +
+  geom_text(
+    x=1.5, y=0.36, hjust=0,
+    color="darkgreen",
+    label="Dark green dashed line is the t with df=10") +
+  geom_text(
+    x=1.5, y=0.34, hjust=0,  
+    color="darkred",
+    label="Dark red dotted line is the t with df=4") +
+  labs(caption="Steve Simon, 2024-10-06") -> plot01
+
+plot01
+ggsave("../images/plot01.png")
+```
+
+```{r t-with-4-df}
+data.frame(x, y3) |>
+  ggplot() + 
+  aes(x, y3) +
+  geom_polygon(fill="white", color="black") +
+  expand_limits(x=c(-7, 7)) +
+  labs(
+    caption="Simon, 2024-10-06",
+    x=" ",
+    y=" ") -> t_4_curve
+```
+
+## P[t(4) < 1.5]
+
+```{r prob-1}
+a <- 1.5
+t_4_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=yl, label=a) +
+  geom_label(x=a-0.5, y=0, label="Area = ?") -> plot02
+
+plot02
+ggsave("../images/plot02.png")
+```
+
+## P[t(4) < -0.5]
+
+```{r prob-2}
+a <- -0.5
+t_4_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=yl, label=a) +
+  geom_label(x=a-0.5, y=0, label="Area = ?") -> plot03
+
+plot03
+ggsave("../images/plot03.png")
+```
+
+## P[t(4) > 1]
+
+```{r prob-3}
+a <- 1
+t_4_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=yl, label=a) +
+  geom_label(x=a+0.5, y=0, label="Area = ?") -> plot04
+
+plot04
+ggsave("../images/plot04.png")
+```
+
+## P[t(4) > -2]
+
+```{r prob-4}
+a <- -2
+t_4_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=yl, label=a) +
+  geom_label(x=a+0.5, y=0, label="Area = ?") -> plot05
+
+plot05
+ggsave("../images/plot05.png")
+```
+
+## P[-2.5 < t(4) < 2.5]
+
+```{r prob-5}
+a <- 2.5
+t_4_curve +
+  geom_vline(xintercept=-a) +
+  geom_vline(xintercept= a) +
+  geom_label(x=-a, y=yl, label=-a) +
+  geom_label(x= a, y=yl, label= a) +
+  geom_label(x=0, y=0, label="Area = ?") -> plot06
+
+plot06
+ggsave("../images/plot06.png")
+```
+
+## P[-0.5 < t(4) < 0.5]
+
+```{r prob-6}
+a <- 0.5
+t_4_curve +
+  geom_vline(xintercept=-a) +
+  geom_vline(xintercept= a) +
+  geom_label(x=-a, y=yl, label=-a) +
+  geom_label(x= a, y=yl, label= a) +
+  geom_label(x=0, y=0, label="Area = ?") -> plot07
+
+plot07
+ggsave("../images/plot07.png")
+```
+
+## 25th percentile of t(4)
+
+```{r quantile-1}
+p <- 0.25
+a <- qt(p, 4)
+t_4_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=yl, label="Quantile = ?") +
+  geom_label(x=a-0.5, y=0, label=p) -> plot08
+
+plot08
+ggsave("../images/plot08.png")
+```
+
+## 90th percentile of t(4)
+
+```{r quantile-2}
+p <- 0.9
+a <- qt(p, 4)
+t_4_curve +
+  geom_vline(xintercept=a) +
+  geom_label(x=a, y=yl, label="Quantile = ?") +
+  geom_label(x=a-0.5, y=0, label=p) -> plot09
+
+plot09
+ggsave("../images/plot09.png")
+```
+
+## Critical values for area=1-alpha
+
+```{r}
+#| label: t-curve
+
+x <- seq(-6, 6, length=100)
+y <- dt(x, 4)
+
+data.frame(x, y) |>
+  ggplot(aes(x, y)) + 
+  geom_line(
+    color="black",
+    size=1) +
+  expand_limits(y=0.4) +
+  expand_limits(x=c(-7, 7)) +
+  scale_x_continuous(breaks=seq(from=-6, to=6, by=2)) +
+  labs(
+    caption="Simon, 2024-10-06",
+    x=" ",
+    y=" ") -> t_curve
+```
+
+```{r}
+#| label: expressions
+
+a <- qt(0.98, 4)
+eq0 <- expression(paste("Area = 1 - ", alpha))
+eq1 <- expression(paste("t(", alpha, "/2, df)"))
+eq2 <- expression(paste("t(1-", alpha, "/2, df)"))
+eq3 <- expression(paste("Area = ", alpha, "/2"))
+```
+
+```{r}
+#| label: plot10
+#| message: false
+#| warning: false
+
+t_curve +
+  geom_segment(x=-a, y=0, xend=-a, yend=0.38) +
+  geom_segment(x= a, y=0, xend= a, yend=0.38) +
+  geom_label(x=0, y=0, label=eq0) +
+  geom_label(x=-a, y=0.4, label=eq1) +
+  geom_label(x= a, y=0.4, label=eq2) +
+  geom_label(x=-a-1.4, y=0, label=eq3) +
+  geom_label(x= a+1.4, y=0, label=eq3) -> plot10
+
+plot10
+ggsave("../images/plot10.png")
+```
+
+## Critical values for area=0.90
+
+```{r}
+#| label: plot11
+#| message: false
+#| warning: false
+
+a <- qt(0.95, 4)
+eq0 <- "Area = 0.90"
+eq1 <- "t(0.05, df)"
+eq2 <- "t(0.95, df)"
+eq3 <- "Area = 0.05"
+t_curve +
+  geom_segment(x=-a, y=0, xend=-a, yend=0.38) +
+  geom_segment(x= a, y=0, xend= a, yend=0.38) +
+  geom_label(x=0, y=0, label=eq0) +
+  geom_label(x=-a, y=0.4, label=eq1) +
+  geom_label(x= a, y=0.4, label=eq2) +
+  geom_label(x=-a-1.4, y=0, label=eq3) +
+  geom_label(x= a+1.4, y=0, label=eq3) -> plot11
+
+plot11
+ggsave("../images/plot11.png")
+```
+## Critical values for area=0.99
+
+```{r}
+#| label: plot12
+#| message: false
+#| warning: false
+
+a <- qt(0.995, 4)
+eq0 <- "Area = 0.99"
+eq1 <- "t(0.005, df)"
+eq2 <- "t(0.995, df)"
+eq3 <- "Area = 0.005"
+t_curve +
+  geom_segment(x=-a, y=0, xend=-a, yend=0.38) +
+  geom_segment(x= a, y=0, xend= a, yend=0.38) +
+  geom_label(x=0, y=0, label=eq0) +
+  geom_label(x=-a, y=0.4, label=eq1) +
+  geom_label(x= a, y=0.4, label=eq2) +
+  geom_label(x=-a-1.4, y=0, label=eq3) +
+  geom_label(x= a+1.4, y=0, label=eq3) -> plot12
+
+plot12
+ggsave("../images/plot12.png")
+```
+
+## Critical values for area=0.90
+
+```{r}
+#| label: plot13
+#| message: false
+#| warning: false
+
+a <- qt(0.975, 4)
+eq0 <- "Area = 0.95"
+eq1 <- "t(0.025, df)"
+eq2 <- "t(0.975, df)"
+eq3 <- "Area = 0.025"
+t_curve +
+  geom_segment(x=-a, y=0, xend=-a, yend=0.38) +
+  geom_segment(x= a, y=0, xend= a, yend=0.38) +
+  geom_label(x=0, y=0, label=eq0) +
+  geom_label(x=-a, y=0.4, label=eq1) +
+  geom_label(x= a, y=0.4, label=eq2) +
+  geom_label(x=-a-1.4, y=0, label=eq3) +
+  geom_label(x= a+1.4, y=0, label=eq3) -> plot13
+
+plot13
+ggsave("../images/plot13.png")
+```
+
+
+
+```{r save}
+test01 <- 1
+save(
+	test01,
+	file="../data/module08.RData")
+```

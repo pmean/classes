@@ -6,7 +6,7 @@ This programming assignment was written by Steve Simon on 2024-09-27 and revised
 
 ## Program
 
--   Download [simon-5501-07-fev.qmd][tem]
+-   Download [simon-5501-07-demo.qmd][tem]
     -   Store it in your src folder
 -   Modify the file name
     -   Use your last name instead of "simon"
@@ -14,7 +14,7 @@ This programming assignment was written by Steve Simon on 2024-09-27 and revised
     -   Add your name to the author field
     -   Optional: change the copyright statement
 
-[tem]: https://github.com/pmean/classes/blob/master/biostats-1/07/src/simon-5501-07-fev.qmd
+[tem]: https://github.com/pmean/classes/blob/master/biostats-1/07/src/simon-5501-07-demo.qmd
 
 ## Data
 
