@@ -299,11 +299,21 @@ plot13
 ggsave("../images/plot13.png")
 ```
 
+## Read sway data
 
+```{r}
+#| label: read
 
-```{r save}
-test01 <- 1
+sway <- read_tsv(
+  file="../data/postural-sway.txt",
+  col_types="cnn")
+glimpse(sway)
+```
+
+```{r}
+#| label: save
+
 save(
-	test01,
+	sway,
 	file="../data/module08.RData")
 ```
