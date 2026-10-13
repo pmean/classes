@@ -12,10 +12,6 @@ editor: source
 -    $\bar{X}_1-\bar{X}_2 \pm t(1-\alpha/2, n_1+n_2-2) se$
      -   Range of plausible values for $\mu_1-\mu_2$
 
-```{r ci}
-m1
-```
-
 :::notes
 The formula for a confidence interval for the difference between two means is shown here. The calculations are tedious, but not difficult.
 :::
@@ -28,3 +24,18 @@ The formula for a confidence interval for the difference between two means is sh
     -   95% confidence does not mean 95% probability
 -   If you collected 100 independent samples,
     -   Roughly 95 would contain $\mu_1-\mu_2$
+    
+## Using a confidence interval to test a hypothesis
+
+-   A confidence interval is a statement about $\mu_1-\mu_2$
+    -   Accept $H_0$ if interval contains zero
+    -   Reject $H+0$ if interval does not contain zero
+    
+## Example with the postural sway data
+
+```{r ci}
+m1
+```
+
+We are 95% confident that the difference in front-to-back sway between the population means for elderly and young patients is somewhere between 0.3 and 16.1. This is a wide interval, which is not unexpected for such a small sample size. The interval excludes the value of 0, indicating that there is a statistically significant different in the two population means.
+

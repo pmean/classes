@@ -7,14 +7,11 @@ format:
 editor: source
 ---
 
-## postural-sway data dictionary
+## Live demo
 
-Refer to the [data dictionary][ref-simon-nodate] on my github site.
+This will be a live demonstration of part 1 of [simon-5501-08-demo][ref-demo]. This program uses the dataset [postural-sway.tsv][ref-tsv]. Refer to the [data dictionary][ref-yaml] for information about this dataset.
 
-[ref-simon-nodate]: https://github.com/pmean/data/blob/main/files/postural-sway.yaml
+[ref-demo]: https://github.com/pmean/classes/blob/master/biostats-1/08/src/simon-5501-08-demo.qmd
+[ref-tsv]: https://github.com/pmean/data/blob/main/files/postural-sway.txt
+[ref-yaml]: https://github.com/pmean/data/blob/main/files/postural-sway.yaml
 
-## simon-5501-08-sway.qmd
-
-Refer to the [R program][ref-simon-nodate1] on my github site.
-
-[ref-simon-nodate1]: https://github.com/pmean/classes/blob/master/biostats-1/08/src/simon-5501-08-sway.qmd

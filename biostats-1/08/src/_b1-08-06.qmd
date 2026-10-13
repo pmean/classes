@@ -7,11 +7,56 @@ format:
 editor: source
 ---
 
+## Bad joke about sample size
+
+-   How many research subjects does it take to screw in a light bulb?
+
+::: {.notes}
+Here's a bad joke about sample size. How many research subjects does it take to screw in a light bulb? At least 300 if you want the bulb to have adequate power.
+:::
+
+## Another bad joke
+
+-   A researcher gets a six-year, ten million dollar grant and writes up a report after the grant is over.
+
+::: {.notes}
+Here's another bad joke. A researcher gets a six-year, ten million dollar grant and writes up a report after the grant is over. "This is a new and innovative surgical procedure and we are 95% confident that the cure rate is somewhere between 3% and 98%.
+
+Sometimes I will tell a joke during a consulting session and it sails over the head of my client. The two statistics in a bar is a joke that sometimes requires a bit of experience with Statistics before it makes sense. But this joke always lands. It always makes people laugh. This is why sample size calculations are so important.
+:::
+
+## Two ways to justify your sample size
+
+-   For studies without a research hypothesis
+    -   Show that your confidence intervals will be reasonably narrow
+    -   Not too narrow
+-   For studies that have a research hypothesis
+    -   Show that your Type I and Type II error rates are both small
+    -   Equivalently, show that the power is large
+
+::: {.notes}
+If you came to me with a question about sample size, the first thing I ask is "What is your research hypothesis". Most times, you already has a hypothesis in mind. Sometimes, though, you and I have to brainstorm together to come up with a research hypothesis.
+
+Other times, the work that you have in mind does not lend itself well to a research hypothesis. Studies of diagnostic tests, for example, normally do not have a formal research hypothesis. In these settings, you can often justify the sample size by showing that any confidence intervals that you produce will be reasonably narrow.
+
+If you do have a research hypothesis, then you can justify your sample size by showing that it will produce a study where both the Type I and Type II error rates are small. This is often stated not with a small Type II error rate, but a large power. Power is defined as one minuss the Type II error rate.
+:::
+
 ## Three things you need to justify your sample size
 
 1.  Research hypothesis
 2.  Measure of variability
 3.  Minimum clinically important difference (MCID)
+
+::: {.notes}
+If you came into my office asking about a sample size, I would start with asking about your research hypothesis. That's the easy one. 
+
+Let's presume that your hypothesis involves the comparison of outcomes for two groups. They might be drug versus placebo, exposed versus unexposed. It might be a comparison of two demographic groups: young versus old patients, males versus females. 
+
+Next I would ask you about a measure of variability for your outcome measure. If it is a continuous outcome, then I would need you to provide me with a measure of variability for your outcome measure. A standard deviation is best, but other measures of variation, like the range, would also be okay.
+
+Finally, you need to define the minimum clinically important difference. How much of a difference is big enough to convince you that the two groups differ in a way that is important.
+:::
 
 ## Scenario
 

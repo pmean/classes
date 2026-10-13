@@ -76,7 +76,7 @@ Here is a set of critical values that places 95% of the probability in the middl
     -   Use t(0.05, df) and t(0.95)
     -   P[Type I error] = 0.10 (liberal)
 -   If you want to avoid controversy
-    -   Use t(0.025, df) and t(0.975)
+    -   Use t(0.025, df) and t(0.975, df)
     -   P[Type I error] = 0.05
     -   Lemming school of research
 
@@ -237,6 +237,7 @@ The good news is that while I suffered doing these calculations, you don't have 
 At the bottom are the two sample means. Above that is the 95% confidence interval, which you encounter later in today's lecture. Near the top is the test statistic, 2.2, the degrees of freedom, 15, and the p-value, 0.044. Notice that I am rounding in my interpretations.
 
 Because the p-value is small, less than 0.05, you would reject the null hypothesis. Let's interpret this result in the next slide.
+:::
 
 ## A proper interpretation
 
