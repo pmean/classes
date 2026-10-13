@@ -14,7 +14,7 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
     -   Add your name
     -   Optional: change the copyright statement
     
-[sway]: https://github.com/pmean/classes/blob/master/biostats-1/08/src/simon-5501-08-sway.qmd
+[sway]: https://github.com/pmean/classes/blob/master/biostats-1/08/src/simon-5501-08-demo.qmd
 
 ## Data
 
@@ -60,10 +60,6 @@ Change the power in scenario 1 from 0.9 to 0.8, keeping everything else the same
 #### Scenario 9, power=0.95
 
 Change the power in scenario 1 from 0.9 to 0.95, keeping everything else the same. How does the sample size change if you assume a much higher level of power?
-
-#### Scenario 10, alternative="greater"
-
-Change the alternative in scenario 1 from alternative="two.sided" to alternative="one.sided", keeping everything else the same. How does the sample size change if you use a one-sided test instead of a two-sided test?
 
 #### Your submission
 
