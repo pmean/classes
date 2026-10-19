@@ -1,0 +1,77 @@
+---
+title: "09-00, Resources needed for module 09 slides"
+format: 
+  html:
+    embed-resources: true
+editor: source
+---
+
+This program was written by Steve Simon on 2024-10-15 and is placed in the public domain.
+
+```{r 09-00-setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(yaml)
+```
+
+```{r}
+#| label: t-curve
+
+x <- seq(-6, 6, length=100)
+y <- dt(x, 4)
+
+data.frame(x, y) |>
+  ggplot(aes(x, y)) + 
+  geom_line(
+    color="black",
+    size=1) +
+  expand_limits(y=0.4) +
+  expand_limits(x=c(-7, 7)) +
+  scale_x_continuous(breaks=seq(from=-6, to=6, by=2)) +
+  labs(
+    caption="Simon, 2024-10-06",
+    x=" ",
+    y=" ") -> t_curve
+```
+
+## plot01
+
+```{r}
+#| label: plot01
+
+a <- qt(0.95, 4)
+eq0 <- expression(paste("Area = 1 - ", alpha))
+eq1 <- expression(paste("t(", alpha, ", df)"))
+eq2 <- expression(paste("t(1-", alpha, ", df)"))
+eq3 <- expression(paste("Area = ", alpha))
+t_curve +
+  geom_segment(x= a, y=0, xend= a, yend=0.38) +
+  geom_label(x=0, y=0, label=eq0) +
+  geom_label(x= a, y=0.4, label=eq2) +
+  geom_label(x= a+1.4, y=0, label=eq3) -> plot01
+
+plot01
+ggsave("../images/plot01.png")
+```
+
+## plot02
+
+```{r}
+#| label: plot02
+
+a <- qt(0.05, 4)
+t_curve +
+  geom_segment(x=a, y=0, xend=a, yend=0.38) +
+  geom_label(x=0, y=0, label=eq0) +
+  geom_label(x=a, y=0.4, label=eq1) +
+  geom_label(x=a-0.9, y=0, label=eq3) -> plot02
+
+plot02
+ggsave("../images/plot02.png")
+```
+
+
+
+
+

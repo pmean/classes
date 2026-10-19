@@ -7,6 +7,46 @@ format:
 editor: source
 ---
 
+## Equivalence of the t-test and linear regression
+
+-   Compare
+    -   t.test(y~x, data=, var.equal=TRUE)
+    -   lm(y~x, data=)
+    
+## Output from t.test
+
+```{r}
+#| label: read-sway
+#| message: false
+#| warning: false
+
+library(tidyverse)
+
+sway <- read_tsv(
+  file="../data/postural-sway.txt",
+  col_types="cnn")
+names(sway) <- tolower(names(sway))
+```
+
+```{r}
+t.test(
+  fbsway ~ age, 
+  data=sway,
+  var.equal=TRUE)
+```
+
+## Output from lm
+
+```{r}
+lm(
+  fbsway ~ age, 
+  data=sway)
+```
+
+
+
+
+
 ## Population model for the two-sample t-test
 
 -   Population 1
@@ -31,7 +71,7 @@ Here is the population model for the two-sample t-test.
     -   Between groups
     
 :::notes
-There are several possible violations of the population model
+There are several possible violations of the population model.
 :::
     
 ## Checking for non-normality
@@ -66,6 +106,10 @@ If one standard deviation is a lot larger than another, you may have problems wi
 
 Unbalanced data, where you have more observations in one group than the other is not a violation of assumptions, but it does tend to exacerbate problems with heterogeneity if it exists.
 :::
+
+## Using residuals
+
+
     
 ## Checking for independence
 

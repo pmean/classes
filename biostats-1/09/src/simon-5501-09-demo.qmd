@@ -106,7 +106,7 @@ log_sway |>
   aes(age, log_fbsway) +
   geom_boxplot() +
   labs(
-    caption="Steve Simon, 2024-10-13, CC0",
+    caption="Simon, 2024-10-13",
     x="Front to back sway",
     y="Treatment group")
 ```

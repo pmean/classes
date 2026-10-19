@@ -14,7 +14,7 @@ editor: source
     -   Group 2 in second column
 -   Long format
     -   Group 1 in first $n_1$ rows
-    -   Group 2 in remaining rows
+    -   Group 2 in  next $n_2$ rows
     -   Could be different order or mixed
     -   Additional column for group
 
@@ -28,15 +28,21 @@ Being able to move from the wide format to the long format or vice versa is an i
   
 ## Hypothetical data in the wide format
 
-```{r 09-01-wide}
+```{r}
+#| label: 09-01-wide
 #| message: false
 #| warn: false
+
 library(tidyverse)
 wide_form <- tibble(
   trt=c(15, 13, 18, 19),
   pbo=c(34, 31, 36, NA))
 wide_form
 ```
+
+::: {.notes}
+Here is an example of data in the wide format. The first column shows the four observations associated with the treatment group and the second column shows the three observations associated with the control group. Notice that we have to pad the shorter column with a missing value code.
+:::
 
 ## Pivoting from wide form to long form
 
@@ -51,9 +57,19 @@ wide_form |>
   filter(!is.na(outcome))
 ```
 
+::: {.notes}
+Here is the code to convert from a wide format to a long format. It uses the pivot_longer function, which is part of the tidyr package which is included in the tidyverse library. Provide the names of columns that you want to pivot. Here there are two columns, "trt" and "pbo", but you can use pivot_longer with more complex settings with three or more columns.
+
+In the long format, you will need a column that tells you which rows are associated with "trt" and which rows are associated with "pbo". You specify that with the names_to argument. You specify the column containing the actual numbers using the values+to argument.
+
+Once you have all the data in a single column, you no longer need the missing value placeholder. Get rid of it using the filter command.
+:::
+
 ## Hypothetical data in the long format
 
-```{r 09-01-long}
+```{r}
+#| label: 09-01-long
+
 long_form <- tibble(
   id=c(1:4, 1:4),
   result=c(45, 43, 48, 49, 64, 61, 66, 62),
@@ -61,13 +77,27 @@ long_form <- tibble(
 long_form
 ```
 
+::: {.notes}
+This is a different hypothetical dataset with four subjects and measurements taken on each subject when they are exposed to some unspecified toxin and when they are not exposed to that toxin.
+
+This data is arranged in the long format. All of the outcomes are in a single column. The data is paired with the first and fifth rows representing measurements from the first subject (id=1) with the first row representing the outcome for that patient when there was no exposure and the fifth row representing the outcome for that patient when there was exposure to the unspecified toxin. The second and sixth rows represent measurements from the second subject (id=2) with the second row representing the outcome for that patient when there was no exposure and the sixth row representing the the outcome for that patient when there was exposure to the unspecified toxin.
+
+The third and seventh rows represent the third subject. The fourth and eighth rows represent the fourth subject.
+:::
+
 ## Pivoting from long form to wide form
 
-```{r 09-01-pivot-wide}
+```{r}
+#| label: 09-01-pivot-wider
 #| echo: true
 #| output-location: column
+
 long_form |>
   pivot_wider( 
     names_from=exposed,
     values_from=result)
 ```
+
+::: {.notes}
+The pivot_wider function, also part of the tdyr package and included when you load the tidyverse library, restructures the data. You need two columns for the outcome rather than one. The names of those two columns come from the variable "exposed" and the values come from the variable "result".
+:::

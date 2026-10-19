@@ -6,7 +6,7 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
 
 ## Program
 
--   Download the [program][tem]
+-   Download [simon-5501-09-demo][tem]
     -   Store it in your src folder
 -   Modify the file name
     -   Use your last name instead of "simon"
@@ -14,7 +14,7 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
     -   Add your name to the author field
     -   Optional: change the copyright statement
     
-[tem]: https://github.com/pmean/classes/blob/master/biostats-1/09/src/simon-5501-09-sway.qmd
+[tem]: https://github.com/pmean/classes/blob/master/biostats-1/09/src/simon-5501-09-demo.qmd
 
 ## Data
 
