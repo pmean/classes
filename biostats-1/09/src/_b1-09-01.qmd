@@ -9,14 +9,14 @@ editor: source
 
 ## Two different data structures
 
--   Wide format
+-   Wide format (two columns)
     -   Group 1 in first column
     -   Group 2 in second column
--   Long format
-    -   Group 1 in first $n_1$ rows
-    -   Group 2 in  next $n_2$ rows
+-   Long format (one column)
+    -   Group 1 in first $n_1$ rows of column
+    -   Group 2 in  next $n_2$ rows of column
     -   Could be different order or mixed
-    -   Additional column for group
+    -   Additional column for group code
 
 :::notes
 There are two different data structures that you will encounter in research settings. The wide format places the data from each group in a different column. The long format places both groups in the same column, usually with the first group on the top and the second group on the bottom. It could be reversed, however, or it could be all jumbled together.
@@ -29,7 +29,7 @@ Being able to move from the wide format to the long format or vice versa is an i
 ## Hypothetical data in the wide format
 
 ```{r}
-#| label: 09-01-wide
+#| label: create-wide-form
 #| message: false
 #| warn: false
 
@@ -37,6 +37,12 @@ library(tidyverse)
 wide_form <- tibble(
   trt=c(15, 13, 18, 19),
   pbo=c(34, 31, 36, NA))
+```
+
+```{r}
+#| label: display-wide-form
+#| echo: true
+
 wide_form
 ```
 
@@ -46,9 +52,11 @@ Here is an example of data in the wide format. The first column shows the four o
 
 ## Pivoting from wide form to long form
 
-```{r 09-01-pivot-long}
+```{r}
+#| label: pivot-longer
 #| echo: true
 #| output-location: column
+
 wide_form |>
   pivot_longer( 
     cols=c("trt", "pbo"), 
@@ -68,12 +76,18 @@ Once you have all the data in a single column, you no longer need the missing va
 ## Hypothetical data in the long format
 
 ```{r}
-#| label: 09-01-long
+#| label: create-long-form
 
 long_form <- tibble(
   id=c(1:4, 1:4),
   result=c(45, 43, 48, 49, 64, 61, 66, 62),
   exposed=c("n", "n", "n", "n", "y", "y", "y", "y"))
+```
+
+```{r}
+#| label: display-long-form
+#| echo: true
+
 long_form
 ```
 

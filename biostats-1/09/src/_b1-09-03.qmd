@@ -9,17 +9,12 @@ editor: source
 
 ## Equivalence of the t-test and linear regression
 
--   Compare
-    -   t.test(y~x, data=, var.equal=TRUE)
-    -   lm(y~x, data=)
-    
-## Output from t.test
-
 ```{r}
 #| label: read-sway
 #| message: false
 #| warning: false
 
+library(broom)
 library(tidyverse)
 
 sway <- read_tsv(
@@ -29,22 +24,47 @@ names(sway) <- tolower(names(sway))
 ```
 
 ```{r}
-t.test(
+#| label: fit-models
+#| echo: true
+
+m1 <- t.test(
   fbsway ~ age, 
   data=sway,
   var.equal=TRUE)
-```
-
-## Output from lm
-
-```{r}
-lm(
+m2 <- lm(
   fbsway ~ age, 
   data=sway)
 ```
 
+## Output from t.test and lm
 
+```{r}
+#| label: compare-outputs
+#| echo: true
 
+m1
+m2
+```
+
+## Output from t.test and tidy
+
+```{r}
+#| label: compare-tidy
+#| echo: true
+
+m1
+tidy(m2)
+```
+
+## Output from t.test and confint
+
+```{r}
+#| label: compare-confint
+#| echo: true
+
+m1
+confint(m2)
+```
 
 
 ## Population model for the two-sample t-test
@@ -62,18 +82,36 @@ lm(
 Here is the population model for the two-sample t-test. 
 :::
 
-## Violations of these population model
+## Violations of assumptions, linear regression
 
+-   Nonlinearity
 -   Non-normality
 -   Heterogeneity
 -   Lack of independence
-    -   Within each group
-    -   Between groups
     
+## Violations of assumptions, t-test
+
+-   ~~Nonlinearity~~
+-   Non-normality
+-   Heterogeneity
+-   Lack of independence
+    -   Within groups
+    -   Between groups
+        
 :::notes
 There are several possible violations of the population model.
 :::
     
+## Checking for independence
+
+-   Qualitative assessments only
+    -   Clustering
+    -   Geographic proximity
+
+:::notes
+The independence needs to be evaluated qualitatively. Look for features of the data such as clustering or geographic proximity, especially for infectious diseases.
+:::
+  
 ## Checking for non-normality
 
 -   Boxplot
@@ -95,7 +133,10 @@ You really don't need to look at residuals, but if you do, compute them the same
 -   Boxplot
 -   Compare group standard deviations
     -   3 to 1 or higher ratio
--   Is the data unbalanced ($n_1 \ne n_2$)
+-   Predicted values versus residuals
+    -   Look for a fanning out pattern
+-   If heterogeneity is found
+    -   Is the data unbalanced ($n_1 \ne n_2$)
     
 :::notes
 The boxplot is also a simple way to check for heterogeneity. Is one box a lot bigger than the other?
@@ -107,21 +148,6 @@ If one standard deviation is a lot larger than another, you may have problems wi
 Unbalanced data, where you have more observations in one group than the other is not a violation of assumptions, but it does tend to exacerbate problems with heterogeneity if it exists.
 :::
 
-## Using residuals
-
-
-    
-## Checking for independence
-
--   Qualitative assessments only
-    -   Clustering
-    -   Geographic proximity
-
-
-:::notes
-The independence needs to be evaluated qualitatively. Look for features of the data such as clustering or geographic proximity, especially for infectious diseases.
-:::
-  
 ## Consequences of violations
 
 -   Loss of control of Type I error rate
