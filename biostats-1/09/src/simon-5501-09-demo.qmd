@@ -103,7 +103,7 @@ sway |>
 
 log_sway |>
   ggplot() +
-  aes(age, log_fbsway) +
+  aes(log_fbsway, age) +
   geom_boxplot() +
   labs(
     caption="Simon, 2024-10-13",
