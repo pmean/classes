@@ -40,7 +40,7 @@ Since N1, N2, etc. are denoted by capital letters, that reflects the fact that t
         -   Independent
         
 ::: notes
-The three assumptions in analysis of variance are normality, homogeneity, and indepdendence. Violations of the assumptions would be characterized as non-normality, heterogeneity, and lack of independence.
+The three assumptions in analysis of variance are normality, homogeneity, and independence. Violations of the assumptions would be characterized as non-normality, heterogeneity, and lack of independence.
 :::
 
 ## Residuals in analysis of variance
@@ -77,7 +77,7 @@ One more important note. You do not have to have exactly the same number of obse
 -   Studentized residuals may still be worth examining. 
 
 ::: notes
-In the modules on linear regression, you saw several measures of influence, leverage, studentized residuals, and Cook's distance. Leverage is a measure of how extreme an outlier is in the indepdent variable. When the independent variable is categorical, you almost never see an outlier in that dimension. It can happen when the first and second groups have several hundred patients and the third group only has five or ten patients. Such extreme imbalances are uncommon. Because of this, you really don't need to examine leverage. Cook's distance is not too critical either. There might be some value in looking at the studentized residual.
+In the modules on linear regression, you saw several measures of influence, leverage, studentized residuals, and Cook's distance. Leverage is a measure of how extreme an outlier is in the independent variable. When the independent variable is categorical, you almost never see an outlier in that dimension. It can happen when the first and second groups have several hundred patients and the third group only has five or ten patients. Such extreme imbalances are uncommon. Because of this, you really don't need to examine leverage. Cook's distance is not too critical either. There might be some value in looking at the studentized residual.
 
 Actually, a simple set of boxplots works just as well as the studentized residual in identifying extreme values in the outcome measure.
 :::

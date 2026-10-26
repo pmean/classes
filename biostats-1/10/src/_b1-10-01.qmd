@@ -35,28 +35,13 @@ With three or more groups, the hypothesis changes slightly. The null hypothesis 
 ## Artificial data
 
 ```{r}
-#| label: 10-01-create-artificial
-#| message: false
-#| warning: false
+#| label: create-artificial
 
 library(broom)
 library(tidyverse)
+
 load("../data/module10.RData")
-g <- rep(1:3, c(3, 5, 3))
-y <- c(
-  23, 30, 25, 
-  33, 36, 41, 37, 43,
-  24, 29, 31
-)
-ybarbar <- rep(mean(y), 11)
-ybar <- rep(tapply(y, g, mean), c(3, 5, 3))
-xpos <- c(1:3, 6:10, 13:15)
-d <- data.frame(g, y, ybarbar, ybar, xpos)
-sst <- (y-ybarbar)^2
-ssw  <- (y-ybar)^2
-ssb <- (ybar-ybarbar)^2
 d[ , 1:2]
-write_csv(d[ , 1:2], file="../data/data-08-artificial-anova.csv")
 ```
 
 ::: notes
@@ -65,68 +50,33 @@ To motivate some of the calculations in Analysis of Variance, I created an artif
 
 ## Scatterplot
 
-```{r}
-#| label: 10-01-plot-artificial
-
-ggplot(d, aes(xpos, y, col=factor(g))) +
-  expand_limits(y=c(15,50), breaks=5**(3:10)) +
-  scale_x_continuous(
-      breaks=c(2, 8, 14), 
-      minor=NULL,
-      labels=1:3) +
-  ggtitle("Graph drawn by Steve Simon on 2024-10-22") +
-  xlab(" ") +
-  ylab(" ") +
-  theme(legend.position="none") -> g1
-  g1 + geom_text(label=y) -> g2
-g2
-```
+![](../images/plot01.png "Plot of individual data values")
 
 ::: notes
 Here is a plot of the data.
 :::
 
-##  SS(Total) = `r sum(sst)`
+##  SS(Total) = `r sum(d$sst)`
 
-```{r}
-#| label: 10-01-total-ss
-
-g2 +
-  geom_segment(xend=xpos, yend=ybarbar) +
-  geom_text(y=ybarbar, label=ybarbar) +
-  geom_text(y=15, label=sst)
-```
+![](../images/plot02.png "Plot showing SST calculations")
 
 ::: notes
 Total sum of squares is the squared deviation between each individual value and the overall mean. The first observation is 23, 9 units below the overall mean of 32. This contributes 81 to the total sum of squares. The second observation is 30, 2 units below the overall mean of 32. This contributes 4 to the total sum of squares. Keep on going. The last observation is 31, 1 unit below the overall mean of 32. It contributes 1 to the total sum of squares.
 :::
 
-## SS(Within) = `r sum(ssw)`
+## SS(Within) = `r sum(d$ssw)`
 
-```{r}
-#| label: 10-01-within-ss
+![](../images/plot03.png "Image showing SSW calculations")
 
-g2 +
-  geom_segment(xend=xpos, yend=ybar) +
-  geom_text(y=ybar, label=ybar) +
-  geom_text(y=15, label=ssw)
-```
 
 ::: notes
 Within sum of squares is the squared deviation between each individual value and the group means. The first group has a mean of 26. The first observation in the group, 23, is 3 units below the group 1 mean and contributes 9 to the within sum of squares. The second observation in the group, 40, is 4 units above the mean and contributes 16 to the within sum of squares. The third observation in the group, 25, is one unit below the group 1 mean and contributes only 1 to the within sum of squares. You compare the fourth observation, 33, to the group 2 mean. It is 5 units below the group 2 mean and contributes 25 to the within sum of squares. And so on.
 :::
 
-## SS(Between) = `r sum(ssb)`
+## SS(Between) = `r sum(d$ssb)`
 
-```{r}
-#| label: 10-01-between-ss
+![](../images/plot04.png "Plot showing SSB calculations")
 
-g1 +
-  geom_text(y=ybar, label=ybar) +
-  geom_segment(x=xpos, y=ybar, xend=xpos, yend=ybarbar) +
-  geom_text(y=ybarbar, label=ybarbar) +
-  geom_text(y=15, label=ssb)
-```
 
 ::: notes
 The between sum of squares is the squared deviation between the group means and the overall mean. In the first group, there are three observations. In each case, the group 1 mean, 26, is 6 units smaller than the overall mean. So the first three observations each contribute 36 to the between sum of squares. The next five observations come from a group with a mean of 38. This is 6 units above the overall mean, so each of these five observations contribute 36 to the between sum of squares. Finally, the last three observations have a group mean of 28, which is 4 units below the overall mean. So the last three observations contribute 16 to the between sum of squares.
@@ -151,10 +101,10 @@ If sum of squares between is small, there is very little variation in the group 
 -   For SS(Within), df = 8
 -   For SS(Between), df = 2
 -   In general,
-    -   N = number of observations total
+    -   n = number of observations total
     -   k = number of groups
-        -   Total df = N-1
-        -   Within df = N-k
+        -   Total df = n-1
+        -   Within df = n-k
         -   Between df = k-1
 
 ::: notes
@@ -166,18 +116,15 @@ For Within SS, you also have 11 observations, but there are 3 estimated paramete
 
 For Between SS, you only have three observations, the three group means. There is one estimated parameter, the overall mean. The degrees of freedom is 3-1 = 2.
 
-In general, if you let N represent the total number of observations across all groups and let k represent the number of groups, then the degrees of freedom are N-1, N-k, and k-1.
+In general, if you let n represent the total number of observations across all groups and let k represent the number of groups, then the degrees of freedom are n-1, n-k, and k-1.
 :::
 
 ## R calculations of sums of squares
 
 ```{r}
-#| label: 10-01-r-calculation
-#| echo: true
+#| label: table01
 
-m2 <- aov(y ~ factor(g), data=aa)
-tidy(m2) |>
-  select(term, df, sumsq, meansq)
+table01
 ```
 
 :::notes

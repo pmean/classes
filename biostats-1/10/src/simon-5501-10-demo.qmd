@@ -1,5 +1,5 @@
 ---
-title: "Analysis of Wolf River pollution"
+title: "simon-5501-10-demo"
 format: 
   html:
     embed-resources: true
@@ -51,7 +51,7 @@ river |>
   labs(
     x="Aldrin concentration",
     y="River depth",
-    caption="Steve Simon, 2024-10-20, CC0")
+    caption="Steve Simon, 2024-10-20")
 ```
 
 #### Interpretation of the output

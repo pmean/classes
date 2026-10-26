@@ -51,42 +51,39 @@ The solution is to test each individual hypothesis at a smaller level. If you ha
 A similar approach is known as the Tukey post hoc test. This is based on a statistic known as the studentized range. The details are not important, but it helps you identify for which values of i and j, the groups differ. And even though there are k (k-1)/2 comparisons, the Tukey post hoc test adjusts the individual Type I error rates so that the overall Type I error rate is still less than alpha.
 :::
 
-## Example of Tukey post hoc test with artificial data
+## Tukey post hoc test for k=3
 
-```{r 10-04-tukey}
-load("../data/module10.RData")
-aa |>
-	group_by(g) |>
-	summarize(y_mean=mean(y))
-m1 <- aov(y ~ factor(g), data=aa)
-TukeyHSD(m1)
-```
+-   $H_1:\ \mu_i \ne \mu_j$ for some i, j 
+-   There are 3 sub-hypotheses
+    -   $H_{1a}:\ \mu_1 \ne \mu_2$ and/or
+    -   $H_{1b}:\ \mu_1 \ne \mu_3$ and/or
+    -   $H_{1c}:\ \mu_2 \ne \mu_3$
+        -   Does the confidence interval exclude zero
+        -   Is the adjusted p-value less than alpha?
+        
+::: {.notes}
+If there are three groups, the Tukey post hoc test examines three sub-hypotheses: mu1 not equal to mu2, mu1 not equal to mu3, and/or mu2 not equal to mu3.
 
-::: notes
-Now the sample sizes are not quite equal here, but they are close enough to try the Tukey post hoc test.
+If the confidence interval for mu1-mu2 excludes zero, then you would conclude that mu1 is not equal to mu2. Likewise if the confidence interval for mu1-mu3 excludes zero, then you would conclude that mu1 is not equal to mu3. If the confidence interval for mu2-mu3 excludes zero, then you would claim that mu2 is not equal to mu3.
+
+Equivalently, you could look at the adjusted p-value. If the adjusted p-value is less than alpha for a particular pair, conclude that the population means for that pair are different.
 :::
 
-## Interpretation, 1
+## Tukey post hoc test for k=4
 
--   Group 2 (mean=38) is significantly larger than Group 1 (mean=26)
--   Group 3 (mean=28) and Group 1 (mean=26) are not significantly different
--   Group 3 (mean=28) is significantly smaller than Group 2 (mean=38)
+-   $H_1:\ \mu_i \ne \mu_j$ for some i, j 
+-   There are 6 sub-hypotheses
+    -   $H_{1a}:\ \mu_1 \ne \mu_2$
+    -   $H_{1b}:\ \mu_1 \ne \mu_3$
+    -   $H_{1c}:\ \mu_1 \ne \mu_4$
+    -   $H_{1d}:\ \mu_2 \ne \mu_3$
+    -   $H_{1e}:\ \mu_2 \ne \mu_4$
+    -   $H_{1f}:\ \mu_3 \ne \mu_4$
 
-::: notes
-Here is how you would interpret the data. The word "significant" means statistically significant. It means that the difference that you see between a pair of means is larger than what you might expect due to sampling error.
+::: {.notes}
+If there are four groups, then there are six possible pairwise comparisons. Compute six different confidence intervals and then see which ones include or exclude the value of zero.
 :::
 
-## Interpretation, 2
-
--   Group 2 (mean=38) is significantly larger than Group 1 (mean=26)
--   Group 2 (mean=38) is significantly larger than Group 3 (mean=28)
--   Group 1 (mean=28) and Group 3 (mean=26) are not different
-
-::: notes
-It might help to orient your groups from the largest mean to the smallest mean (or from the smallest mean to the largest mean). Here you conclude that group 2 has a population mean that is larger than the population means for groups 1 and 3. You also conclude that group 1 and group 3 have the same population mean.
-
-Sorting the data like this doesn't always lead to a nice simple interpretation, but it is always worth a try.
-:::
 
 ## Alternatives to Tukey post hoc tests, 1
 
@@ -122,4 +119,35 @@ Although most researchers like using a Tukey or Bonferroni adjustment in analysi
 The other problem is that these adjustments are impractical for very large numbers of comparisons, such as you might see in many genomics studies.
 
 There is something to be said for these critiques, but you will probably have less resistance in any peer review of your work if you do try to control the Type I error rate with Tukey or Bonferroni.
+:::
+
+## Ambiguities in Tukey post hoc test results
+
+-   One possible outcome
+    -   Conclude that $\mu_1\ =\ \mu_2$
+    -   Conclude that $\mu_2\ =\ \mu_3$
+    -   Conclude that $\mu_1\ \ne\ \mu_3$    
+    
+::: {.notes}
+When you have three or more groups, the results of your Tukey post hoc tests can sometimes be ambiguous. You might, for example, conclude that mu1 equals mu2 becaose the confidence interval for mu1-mu2 includes the value of zero. And you might also conclude that mu2 dquals mu3 because the confidence interval for mu2 minus mu3 includes the value of zero.
+
+But, it could turn out that you would have the confidence interval for mu1-mu3 excluding the value of zero which would lead you to conclude that mu1 is not equal to mu3.
+
+How could you have mu1 equal to mu2 and mu2 equal to mu3 but not have mu1 equal to mu3?
+
+It turns out thatuse of a sample means that you make statements about whether xbar1-xbar2, xbar2-xbar3, and xbar1-xbar3 are close to zero or not. And depending on where the means lie, it is possible for xbar1 to be close to xbar2, xbar2 be close to xbar3 but xbar1 NOT be close to xbar3.
+:::
+
+## Geography analogy
+
+![](../images/kc-suburbs.png)
+
+::: {.notes}
+Here's a map that illsutrates this. Steve Simon lives in Leawood. That's the middle car on this map. His son, Nick, used to live with him, but has moved to his own place in Lee's Summit. That's the easternmost car on this map. Nick gets his car serviced in Olathe. That's the westernmost car on the map.
+
+Now Leawood and Olathe are close to each other. When Nick lived in Leawood, he was close to Olathe. When he moved to Lee's summit, he was still close to Steve's home in Leawood, but now he was far away from his car repair shop in Olathe.
+
+So Olathe and Leawood are cose. Leawood and Lee's Summi are close. That does not mean that Olathe and Lee's Summit are close.
+
+That's an analogy to the unexpected findings that you will see at times with the Tukey post hoc test.
 :::

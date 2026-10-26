@@ -22,20 +22,7 @@ The F distribution appears many times in Statistics when you are comparing two d
 
 ## Graph of the F distribution
   
-```{r}
-#| label: 10-02-f-plot
-#| message: false
-#| warning: false
-
-library(tidyverse)
-load("../data/module10.RData")
-x <- seq(0, 6, length=99)
-y <- df(x, 5, 28)
-data.frame(x, y) |>
-	ggplot(aes(x, y)) + 
-	geom_line() +
-	ggtitle("Graph drawn by Steve Simon on 2024-10-22")
-```
+![](../images/plot05.png "Illustration of the F-distribution")
 
 :::notes
 Here is a picture of the F distribution. 
@@ -96,10 +83,9 @@ You've probably been wondering about the similarity of wording between the analy
 ## R code for the F test
 
 ```{r}
-#| label: 10-02-f-test
+#| label: table02
 
-m1 <- aov(y ~ factor(g), data=aa)
-tidy(m1)
+table02
 ```
 
 ::: notes
@@ -111,11 +97,11 @@ Because the F-ratio is large and the p-value is less than 0.05, you should rejec
 -   $R^2 = \frac{SS(Between)}{SS(Total)}$
     -   Proportion of variation explained by groups
     
-```{r}
-#| label: 10-02-r-squared
 
-#| echo: true
-glance(m1)$r.squared
+```{r}
+#| label: table03
+
+table03
 ```
 
 ::: notes
