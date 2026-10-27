@@ -96,7 +96,7 @@ If there are four groups, then there are six possible pairwise comparisons. Comp
     -   Works for complex comparison
         -   Example $\mu_1\ vs.\ \frac{\mu_2+\mu_3+\mu_4}{3}$
         
-::: notes
+::: {.notes}
 There are several good alternatives to the Tukey post hoc test. You won't have to run any of these in your programming assignment, but it helps to mention their names in case you see reference to them in a published research paper.
 
 The Bonferroni adjustment, mentioned earlier is not quite as good as the Tukey post hoc test, but it still works even with unequal sample sizes and even with unequal variances.
@@ -147,7 +147,7 @@ Here's a map that illsutrates this. Steve Simon lives in Leawood. That's the mid
 
 Now Leawood and Olathe are close to each other. When Nick lived in Leawood, he was close to Olathe. When he moved to Lee's summit, he was still close to Steve's home in Leawood, but now he was far away from his car repair shop in Olathe.
 
-So Olathe and Leawood are cose. Leawood and Lee's Summi are close. That does not mean that Olathe and Lee's Summit are close.
+So Olathe and Leawood are close. Leawood and Lee's Summit are close. That does not mean that Olathe and Lee's Summit are close.
 
 That's an analogy to the unexpected findings that you will see at times with the Tukey post hoc test.
 :::

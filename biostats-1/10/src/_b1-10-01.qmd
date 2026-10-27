@@ -56,7 +56,7 @@ To motivate some of the calculations in Analysis of Variance, I created an artif
 Here is a plot of the data.
 :::
 
-##  SS(Total) = `r sum(d$sst)`
+##  SS(Total) or SST = `r sum(d$sst)`
 
 ![](../images/plot02.png "Plot showing SST calculations")
 
@@ -64,7 +64,7 @@ Here is a plot of the data.
 Total sum of squares is the squared deviation between each individual value and the overall mean. The first observation is 23, 9 units below the overall mean of 32. This contributes 81 to the total sum of squares. The second observation is 30, 2 units below the overall mean of 32. This contributes 4 to the total sum of squares. Keep on going. The last observation is 31, 1 unit below the overall mean of 32. It contributes 1 to the total sum of squares.
 :::
 
-## SS(Within) = `r sum(d$ssw)`
+## SS(Within) or SSW = `r sum(d$ssw)`
 
 ![](../images/plot03.png "Image showing SSW calculations")
 
@@ -73,7 +73,7 @@ Total sum of squares is the squared deviation between each individual value and 
 Within sum of squares is the squared deviation between each individual value and the group means. The first group has a mean of 26. The first observation in the group, 23, is 3 units below the group 1 mean and contributes 9 to the within sum of squares. The second observation in the group, 40, is 4 units above the mean and contributes 16 to the within sum of squares. The third observation in the group, 25, is one unit below the group 1 mean and contributes only 1 to the within sum of squares. You compare the fourth observation, 33, to the group 2 mean. It is 5 units below the group 2 mean and contributes 25 to the within sum of squares. And so on.
 :::
 
-## SS(Between) = `r sum(d$ssb)`
+## SS(Between) or SSB = `r sum(d$ssb)`
 
 ![](../images/plot04.png "Plot showing SSB calculations")
 
@@ -93,6 +93,15 @@ The between sum of squares is the squared deviation between the group means and 
 The sum of squares total represents the variation about the overall mean. It can be partitioned into unexplained variation (sum of squares error) and explained variation (sum of squares between). The ratio of sum of squares between to sum of squares total is denoted by R-squared and has the same interpretation that you saw in linear regression, the proportion of explained variation.
 
 If sum of squares between is small, there is very little variation in the group means. Thois means that knowing group membership does not help that much in predicting your outcome. if the sum of squares between is large, there is quite a bit of variation in the group means. One mean might be really big, another really small and a third in the middle. Knowing which group a patient is in tells you a lot about whether the outcome would be big, small, or somewhere in the middle.
+:::
+
+## Other names for the sum of squares
+
+-   SSW is sometimes abbreviated as SSE or SSR
+-   SSB is sometimes abbreviated as SSR(!)
+    
+::: {.notes}
+There is some ambiguity in how these sums of squares are labeled. You may see SSW abbreviated as SSE (E stands for error) or SSR (R stands for residual). You may see SSB abbreviates as SSR (R stands for regression). Be careful, of course and don't abbreviate both sums of squares as SSR.
 :::
 
 ## Degrees of freedom

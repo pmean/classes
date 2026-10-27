@@ -84,6 +84,14 @@ m1 <- aov(aldrin ~ depth, data=river)
 tidy(m1)
 ```
 
+#### Comments on the code
+
+The [aov function][ref-aov], part of base R, produces an analysis of variance model. The documentation warns about unbalanced data. Unbalanced data is not an issue with a single factor analysis of variance model. You will see a limited discussion of unbalanced data in a two factor analysis of variance model in an upcoming module.
+
+The tidy function was used earlier with the output of the lm function and can also be used with the output of the aov function. With the output from aov, it provides a nicely formatted version of the analysis of variance table.
+
+[ref-aov]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/aov.html
+
 #### Interpretation of the output
 
 The F-ratio is large and the p-value is less than alpha. You should reject the null hypothesis and conclude that at least two means differ from one another.
@@ -95,6 +103,12 @@ The F-ratio is large and the p-value is less than alpha. You should reject the n
 
 TukeyHSD(m1)
 ```
+
+#### Comments on the code
+
+The [TukeyHSD function][ref-tukey], part of base R, produces confidence intervals for the difference in means for each pair of observations. It should be used only for balanced data (same number of observations in each group). For small deviations from balanced data, it provides a reasonable approximation, but a Bonferroni correction would be preferred. 
+
+[ref-tukey]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TukeyHSD.html
 
 #### Interpretation of the output
 
@@ -123,13 +137,22 @@ power.anova.test(
 	power=0.90)
 ```
 
+#### Comments on the code
+
+The [power.anova.test function][ref-power-anova] provides an estimated sample size for a given power or an estimated power for a given sample size. Set the argument n to NULL to get an estimated sample size or set the argument power to NULL to get an estimated power. The power and sample size calculations assume balanced data.
+
+Another argument for the power.anova.test function are sig.level. You specify the Type I error rate (usually 0.05) with this argument. The groups argument (obviously) specifies the number of groups. The between.var and within.var arguments represent the estimated values for means square between groups (MSB) and the mean square for error (MSE). To get between.var, specify the individual averages for each group and feed them into the [var function][ref-var], which computes a sample variance or a square of the sample standard deviation. You can get this value from previous research or using an intelligent guess from a scientific or medical expert.
+
+[ref-power-anova]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/power.anova.test.html
+[ref-var]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/cor.html
+
 #### Interpretation of the output
 
 A sample size of 221 measurements per depth level would provide 90% power for detecting a difference between means of 4.8, 5.0, and 5.2 in aldrin concentration. This assumes that the variation within groups is similar to the previous study (1.39) and an alpha level of 0.05.
 
 There is no way in heaven or earth that you can afford to make 221 measurements at each depth. So give up the idea that you can detect changes in means across such a narrow range. Suppose that you want to be able to detect differences among means that are 4.5, 5.0, and 5.5. If you could live with that and if everything remains the same, what sample size would you need?
 
-## Recalculate sample size, R code
+## Recalculate sample size
 
 ```{r}
 #| label: recalculate
@@ -147,3 +170,28 @@ power.anova.test(
 #### Interpretation of the output
 
 Much better! A sample size of 37 measurements per depth level would provide 90% power for detecting a difference between means of 4.5, 5.0, and 5.5 in aldrin concentration. This assumes that the variation within groups is similar to the previous study (1.39) and an alpha level of 0.05.
+
+## Estimate power
+
+```{r}
+#| label: recalculate
+
+v <- var(c(4.5, 5.0, 5.5))
+power.anova.test(
+	groups=3,
+	n=33,
+	between.var=v,
+	within.var=1.39,
+	sig.level=0.05,
+	power=NULL)
+```
+
+#### Interpretation of the output
+
+One more consideration. The research team expects that they might lose 10% of their sample due to dropouts. Assuming that you only had 33 observations in each group, would you will have reasonable power?
+
+Yes! The power is a bit less than 87%. That's still pretty good. 
+
+So here is a proposed write-up for the protocol. We plan to recruit 37 patients in each of three groups. After accounting for a 10% dropout rate, we would have 33 patients contributing to the analysis of variance model. The within group variation is estimated to be 1.39 based on previous research. If the groups had means of 4.5, 5.0, and 5.5, equivalent to a between group variation of 0.25, then we would have 87% power.
+
+Notice how the interpretation included every one of the arguments in the power.anova.test function (groups, n, between.var, within.var, sig.level, and power).
