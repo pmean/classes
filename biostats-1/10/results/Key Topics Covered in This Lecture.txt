@@ -1,0 +1,34 @@
+Key Topics Covered in This Lecture (2026-10-27)
+1. Analysis of Variance (ANOVA) Overview
+
+ANOVA is a statistical method used to compare means of three or more groups, testing whether at least one group mean differs significantly. 12
+Null hypothesis: all group means are equal; Alternative: at least one differs. 3
+2. Sum of Squares & Degrees of Freedom
+
+Total variation (SST) partitions into explained variation (SSB) and unexplained variation (SSE/SSW). 45
+R² = SSB/SST represents the proportion of explained variation. 4
+Degrees of freedom: SST = N−1, SSW = N−K, SSB = K−1. 67
+3. F-Test
+
+F = MS Between / MS Within; reject H₀ for large F values or small p-values (< alpha). 89
+F can never be negative; F ≈ 1 means group variation is comparable to within-group variation. 1011
+4. ANOVA Assumptions
+
+Normality, homogeneity of variance, and independence. 12
+Box plots are recommended for checking skewness, outliers, and heterogeneity. 1314
+5. Confidence Intervals & Multiple Comparisons
+
+Tukey post hoc test identifies which group pairs differ after rejecting H₀, adjusting for multiple comparisons. 1516
+Bonferroni adjustment: test each hypothesis at α/M. 17
+Alternatives include Dunnett test (treatment vs. control) and Scheffé test (complex comparisons). 1819
+6. R Code Demonstration (Wolf River Pollution Data)
+
+Used aov(), tidy(), and TukeyHSD() functions; box plots and descriptive statistics by depth group. 2021
+7. Sample Size Justification
+
+Used power.anova.test() specifying groups, between.var, within.var, sig.level, and power. 22
+A sample of 37 per group achieves 90% power; with 10% dropout (n=33), power remains ~87%. 2324
+
+Show sources (1)
+Write a message
+2026FS-MEDB-5501-synchronous-zoom-s

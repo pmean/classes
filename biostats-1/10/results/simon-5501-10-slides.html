@@ -1610,8 +1610,6 @@ display:block!important;
 <ul>
 <li>Check normality only in the residuals</li>
 <li>Non-normality is less of a concern for large sample sizes</li>
-</ul></li>
-<li><ul>
 <li>Unequal sample sizes is not a violation of assumptions</li>
 </ul></li>
 </ul>
@@ -1921,7 +1919,7 @@ display:block!important;
 </ul></li>
 <li>Dunnett’s test
 <ul>
-<li>Treatment versus multiple controls</li>
+<li>Multiple treatments versus a single control</li>
 </ul></li>
 <li>Scheffe’s test
 <ul>
@@ -1934,7 +1932,7 @@ display:block!important;
 <aside class="notes">
 <p>There are several good alternatives to the Tukey post hoc test. You won’t have to run any of these in your programming assignment, but it helps to mention their names in case you see reference to them in a published research paper.</p>
 <p>The Bonferroni adjustment, mentioned earlier is not quite as good as the Tukey post hoc test, but it still works even with unequal sample sizes and even with unequal variances.</p>
-<p>The Dunnett’s test is helpful when you have multiple treatment and you want to compare each treatment to a control group, but you are not intersted in comparisons within each treatment. In this setting, you get a bit more precision and power with Dunnett’s test compared to the Tukey post hoc test.</p>
+<p>The Dunnett’s test is helpful when you have multiple treatment and you want to compare each treatment to a control group, but you are not interested in comparisons within each treatment. In this setting, you get a bit more precision and power with Dunnett’s test compared to the Tukey post hoc test.</p>
 <p>Finally there is Scheffe’s test which works for more complex comparisons such as whether the first group mean differs from an average of the second, third, and fourth group means.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
@@ -2056,7 +2054,7 @@ display:block!important;
 <ul>
 <li><em>groups</em> is the number of groups</li>
 <li><em>n</em> is the number of observations per group</li>
-<li><em>between.var</em> is the estimate of MSTR</li>
+<li><em>between.var</em> is the estimate of MSB</li>
 <li><em>within.var</em> is the estimate of MSE</li>
 <li><em>sig.level</em> is the alpha level</li>
 <li><em>power</em> is the power</li>

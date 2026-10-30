@@ -7,7 +7,7 @@ format:
 
 This program reads data on the relationship sampling depth and two pollutant concentrations. Find more information in the [data dictionary][dd].
 
-[dd]: https://github.com/pmean/datasets/blob/master/wolf-river-pollution.yaml
+[dd]: https://github.com/pmean/data/blob/main/files/wolf-river-pollution.yaml
 
 This program was written by Steve Simon on 2024-10-20 and is placed in the public domain.
 
@@ -174,7 +174,7 @@ Much better! A sample size of 37 measurements per depth level would provide 90% 
 ## Estimate power
 
 ```{r}
-#| label: recalculate
+#| label: recalculate-power
 
 v <- var(c(4.5, 5.0, 5.5))
 power.anova.test(

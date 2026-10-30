@@ -38,8 +38,8 @@ Then prepare a five minute presentation with slides that discusses the details o
     -   Good (4 points) Only minor problems with readable. Careful and well thought out order of presentation.
 -   Did you finish within the established time limit? This element also addresses student learning objective 5.
     -   More than 120 seconds over time (0 points)
-    -   Up to 60 seconds over time (1 points)
-    -   Up to 60 seconds over time (2 points)
+    -   Between 60 and 119 seconds over time (1 points)
+    -   Between 1 and 59 seconds over time (2 points)
     -   On time (five minutes zero seconds or under) (3 points)
 -   Did you remember to talk only about the hypothesis and not the data analysis?
     -   No (0 points)

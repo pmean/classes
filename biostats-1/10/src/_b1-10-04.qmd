@@ -91,7 +91,7 @@ If there are four groups, then there are six possible pairwise comparisons. Comp
     -   Works for unequal sample sizes per group
     -   Works for unequal variances
 -   Dunnett's test
-    -   Treatment versus multiple controls
+    -   Multiple treatments versus a single control
 -   Scheffe's test
     -   Works for complex comparison
         -   Example $\mu_1\ vs.\ \frac{\mu_2+\mu_3+\mu_4}{3}$
@@ -101,11 +101,10 @@ There are several good alternatives to the Tukey post hoc test. You won't have t
 
 The Bonferroni adjustment, mentioned earlier is not quite as good as the Tukey post hoc test, but it still works even with unequal sample sizes and even with unequal variances.
 
-The Dunnett's test is helpful when you have multiple treatment and you want to compare each treatment to a control group, but you are not intersted in comparisons within each treatment. In this setting, you get a bit more precision and power with Dunnett's test compared to the Tukey post hoc test.
+The Dunnett's test is helpful when you have multiple treatment and you want to compare each treatment to a control group, but you are not interested in comparisons within each treatment. In this setting, you get a bit more precision and power with Dunnett's test compared to the Tukey post hoc test.
 
 Finally there is Scheffe's test which works for more complex comparisons such as whether the first group mean differs from an average of the second, third, and fourth group means.
 :::
-
 
 ## Controversies over Tukey/Bonferroni adjustment
 

@@ -12,7 +12,7 @@ editor: source
 -   *power.anova.test*
     -   *groups* is the number of groups
     -   *n* is the number of observations per group
-    -   *between.var* is the estimate of MSTR
+    -   *between.var* is the estimate of MSB
     -   *within.var* is the estimate of MSE
     -   *sig.level* is the alpha level
     -   *power* is the power

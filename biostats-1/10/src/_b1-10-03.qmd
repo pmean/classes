@@ -62,7 +62,7 @@ You can compute residuals in analysis of variance much in the same way as you co
 -   Important notes
     -   Check normality only in the residuals
     -   Non-normality is less of a concern for large sample sizes
--   -   Unequal sample sizes is not a violation of assumptions
+    -   Unequal sample sizes is not a violation of assumptions
 
 ::: notes
 The assumptions for analysis of variance are pretty much identical to the assumptions of the independent samples t-test and not all that different from the assumptions of linear regression. You need to assume normality, though it is normality of the residuals that you care about. The original outcome variable could be bimodal or trimodal or worse, just because the means are unequal. You are assuming that each group has a normal distribution, but the means of each normal distributions can be (and often are) quite different.
