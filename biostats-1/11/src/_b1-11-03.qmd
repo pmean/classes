@@ -122,55 +122,7 @@ From a statistical perspective what this means is that back transformation conve
 
 ::: notes
 Ask yourself if the interval contains the value of 1. A ratio of 1 implies equality. So if 1 is a plausible value, then it is plausible to behave as if the two population means are equal. 
-
 If the confidence interval only includes values larger than 1, then it is plausible to behave as if the population mean of the first group is larger than the population mean of the second group.
 
 If the confidence interval only includes values smaller than 1, then it is plausible to behave as if the population mean of the first group is smaller than the population mean of the second group.
-
 :::
-
-## Log transformation, 1
-
-```{r}
-#| label: log-longevity-anova-1
-#| message: false
-#| warning: false
-
-library(broom)
-library(tidyverse)
-
-load("../data/fruitfly.RData")
-
-aov(log_longevity ~ cage, data=fly_3) |>
-  TukeyHSD() |>
-	tidy() -> t3
-t3
-```
-
-:::notes
-Although there are no problems with heterogeneity or non-normality with this particular dataset, here is an illustration of how to use a log transformation with analysis of variance.
-
-Here are the results of the Tukey post hoc tests on the log scale. You can examine whether these intervals include or exclude the value of zero, but further interpretation, using log-days as the unit of measurement, is tricky.
-:::
- 
-## Log transformation, 3
-
-```{r log-longevity-anova-3}
-t3 |>
-  select(contrast, estimate, conf.low, conf.high) |> 
-  mutate(
-    estimate=10^estimate,
-    conf.low=10^conf.low,
-    conf.high=10^conf.high)
-```
-
-:::notes
-Here are the results translated back to the original scale. The confidence intervals are intervals for the ratio. Notice that six of the ten intervals include the value of 1.
-
-Let's interpret the first and last intervals.
-
-The ratio of average longevity comparing one pregnant female to no females is 1.02, or 2% larger. The confidence interval ranges from 0.82 or 18% smaller to 1.28 or 28% larger. There is no statistically significant change in longevity between fruitflies caged alone and fruitflies caged with one pregnant female.
-
-The ratio of average longevity comparing eight virgin females to one virgin female is 0.67 or 33% smaller. The confidence interval ranges from 0.54 or 46% smaller to 0.84 or 16% smaller. The average longevity of fruitflies with 8 virgin females is significantly shorter than the average longevity of fruitflies with only 1 virgin female.
-:::
-

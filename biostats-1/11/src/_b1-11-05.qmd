@@ -20,22 +20,7 @@ editor: source
     
 ## The Chi-squared distribution
 
-```{r 11-03-chi-squared-graph}
-#| message: false
-#| warning: false
-
-library(tidyverse)
-
-load("../data/fruitfly.RData")
-
-df <- 5
-x <- seq(0, df+5*sqrt(df), length=100)
-y <- dchisq(x, df)
-data.frame(x, y) |>
-	ggplot(aes(x, y)) +
-	  geom_line() +
-	  ggtitle("Graph drawn by Steve Simon on 2024-10-29")
-```
+![](../images/plot01.png "Plot of the chi-squared distribution with 5 degrees of freedom")
 
 :::notes
 This is a graph of the Chi-squared distribution with 5 degrees of freedom.
@@ -99,15 +84,4 @@ While normality is not an assumption of the Kruskal-Wallis test, you still have 
 The Kruskal-Wallis test has fewer assumptions and is not affected by outliers. An extreme value is still going to have a reasonable rank.
 
 A big disadvantage of Kruskal-Wallis and other tests based on ranks is that it is difficult to compute confidence intervals. It can be done, but it is tedious. It is also unclear exactly what population parameters the confidence intervals are for.
-:::
-
-## Application of Kruskal-Wallis test to fruitfly longevity
-
-```{r 11-03-kw-test}
-#| echo: true
-kruskal.test(longevity ~ cage, data=fly_1)
-```
-
-:::notes
-There a five groups, so four degrees of freedom. The test statistic is much larger than the degrees of freedom and the p-value is small. Reject the null hypothesis and conclude that there are differences between at least two of the five groups.
 :::

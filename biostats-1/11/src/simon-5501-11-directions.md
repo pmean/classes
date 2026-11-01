@@ -24,7 +24,7 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
 
 [dat]: https://github.com/pmean/data/blob/main/files/fruitfly.txt
 [dic]: https://github.com/pmean/data/blob/main/files/fruitfly.yaml
-    
+
 ## Question 1
 
 Review the fruitfly analysis discussed in this module. There is a second 
@@ -52,10 +52,6 @@ variance table. Interpret the F-ratio and the p-value.
 Calculate and interpret confidence intervals using the Tukey post hoc 
 comparisons. Which intervals include 0 and which do not. Provide a general 
 conclusion about which groups, if any, differ from one another.
-
-## Question 6
-
-Conduct a Kruskal-Wallis test. Interpret your results.
 
 ## Your submission
 

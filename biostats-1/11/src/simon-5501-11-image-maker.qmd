@@ -1,5 +1,5 @@
 ---
-title: "11-00, Resources needed for module 11 slides"
+title: "simon-5501-11-image-maker"
 format: 
   html:
     embed-resources: true
@@ -18,186 +18,29 @@ https://jse.amstat.org/datasets/fruitfly.txt
 
 https://jse.amstat.org/v2n1/datasets.hanley.html
 
-
-```{r 11-00-setup}
+```{r}
+#| label: 11-01-read-fruitfly-data
 #| message: false
 #| warning: false
-library(magrittr)
+
+library(broom)
 library(tidyverse)
-library(yaml)
-```
-
-## Data dictionary 1, part 1
-
-```{r dd-1-1}
-f1 <- "https://raw.githubusercontent.com/"
-f2 <- "pmean/data/main/files/"
-f3 <- "wolf-river-pollution.yaml"
-yaml_text <- read_yaml(paste0(f1, f2, f3))
-
-dictionary_1a <- 
-	setdiff(names(yaml_text), "vars")
-n <- length(dictionary_1a)
-dictionary_1a
-```
-
-## Data dictionary 1, part 2
-
-```{r dd-1-2}
-dictionary_1b <- rep(" ", n)
-for (i in 1:n) {
-  dictionary_1b[i] <- 
-    as.yaml(
-      yaml_text[
-        dictionary_1a[i]])
-}
-dictionary_1b <- paste0(dictionary_1b, "\n")
-dictionary_1b[1]
-length(dictionary_1b)
-```
-
-## Data dictionary 1, part 3
-
-```{r dd-1-3}
-dictionary_1c <- names(yaml_text$vars)
-m <- length(dictionary_1c)
-dictionary_1c
-```
-
-## Data dictionary 1, part 4
-
-```{r dd-1-4}
-vars_text <- yaml_text$vars
-dictionary_1d <- rep(" ", m)
-for (i in 1:m) {
-  dictionary_1d[i] <- 
-    as.yaml(
-      vars_text[
-        dictionary_1c[i]])
-}
-dictionary_1d <- paste0(dictionary_1d, "\n")
-dictionary_1d[1]
-length(dictionary_1d)
-```
-
-## Code-1
-
-```{r 11-00-code-template}
-fn <- "simon-5501-11-fruitfly.qmd"
-code_text <- read_lines(file=fn)
-chunk <- 
-	cumsum(
-	  str_detect(
-	  	code_text, "## "))
-data.frame(code_text, chunk) |>
-	group_by(chunk) |>
-	summarize(
-		chunk_text =
-			paste0(
-				code_text, 
-				sep="\n", 
-				collapse="")) |>
-	pull(chunk_text) -> code_1
-code_1 <- paste0(code_1, "\n")
-cat(code_1[1])
-length(code_1)
 ```
 
 ```{r}
-condense_chunks <- function(file_text, separator, max_lines) {
-  boundaries <- c(0, str_which(file_text, separator))
-  n_chunks <- length(boundaries)
-  j <- 2
-  print(boundaries)
-  for (i in 2:n_chunks) {
-    if (j > (length(boundaries)-1)) break
-    if (boundaries[j+1]-boundaries[j-1] > max_lines) {
-      j <- j+1
-      next
-    }  
-    boundaries <- boundaries[-j]
-    print(boundaries)
-  }
-  boundaries
-}
-condense_chunks(code_text, "## ", 40)
-```
+#| label: plot01
 
+df <- 5
+x <- seq(0, df+5*sqrt(df), length=100)
+y <- dchisq(x, df)
+data.frame(x, y) |>
+	ggplot(aes(x, y)) +
+	geom_line() +
+	labs(
+	  caption="Simon, 2024-10-29",
+	  x=" ",
+	  y=" ") -> plot01
 
-## Programming assignment
-
-```{r 11-00-directions}
-fn <- "simon-5501-11-directions.md"
-prog_text <- read_lines(file=fn)
-chunk <- 
-	cumsum(
-	  str_detect(
-	  	prog_text, "## "))
-data.frame(prog_text, chunk) |>
-	group_by(chunk) |>
-	summarize(
-		chunk_text =
-			paste0(
-				prog_text, 
-				sep="\n", 
-				collapse="")) |>
-	pull(chunk_text) -> directions_1
-cat(directions_1[length(directions_1)])
-length(directions_1)
-```
-
-## Read the fruitfly data
-
-```{r 11-00-fruitfly}
-fn <- "https://jse.amstat.org/datasets/fruitfly.dat.txt"
-vlist <- c(
-  "id",
-  "partners",
-  "type",
-  "longevity",
-  "thorax",
-  "sleep")
-fly <- read.fwf(
-  "https://jse.amstat.org/datasets/fruitfly.dat.txt",
-  widths=c(2, 2, 2, 3, 5, 3),
-  col.names=vlist)
-fly$cage <- 
-  case_when(
-    fly$partners==0 & fly$type==9 ~ "No females",
-    fly$partners==1 & fly$type==0 ~ "One pregnant female",
-    fly$partners==1 & fly$type==1 ~ "One virgin female",
-    fly$partners==8 & fly$type==0 ~ "Eight pregnant females",
-    fly$partners==8 & fly$type==1 ~ "Eight virgin females")
-glimpse(fly)
-```
-
-## Read the bacterial soap data
-
-```{r 11-00-soap}
-wash <- read_tsv(
-  file="../data/bacterial-soap.txt",
-  col_names=TRUE,
-  col_types="nc")
-glimpse(wash)
-names(wash) <- c("count", "method")
-glimpse(wash)
-```
-
-## Condense
-
-Eventually, I want to combine chunks as long as the number of lines does not exceed a specified number 
-
-## Save everything important
-
-```{r 11-00-save}
-save(
-	dictionary_1a,
-	dictionary_1b,
-	dictionary_1c,
-	dictionary_1d,
-	code_1,
-	directions_1,
-	fly,
-	wash,
-	file="../data/module11.RData")
+plot01
+ggsave("../images/plot01.png", width=6, height=4, units="in")
 ```

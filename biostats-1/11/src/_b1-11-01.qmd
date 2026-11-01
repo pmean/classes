@@ -9,7 +9,7 @@ editor: source
 
 ## Indicator variables, 1
 
--  Two levels is less complex with three or more levels
+-  Review with two category levels
    -   R assigns 0 to first category (alphabetically)
    -   R assigns 1 to second category
    -   Examples:
@@ -62,6 +62,7 @@ Female 40.5      40.1      37.3         0
 ::: notes
 R will assign 0 to the category level that appears first alphabetically, which is "Female". It assigns 1 to the category level that appears second alphabetically, which is "Male".
 :::
+
 ## Indicator variables, 2
 
 -  With k levels, you need k-1 indicators
@@ -264,54 +265,4 @@ In the third set of cages, the one male fruitfly shares the cage with a virgin f
 The fourth cage is where it gets really interesting. The one male fly shares a cage with EIGHT pregnant females. If there is an effect of crowding on longevity, surely you will see it here.
 
 The first cage includes eight virgin flies with the one male fly. Lots of crowding and lots of opportunities for mating. It will be interesting to tabulate the results from this cage and compare it to the previous cage with eight pregnant females which has lots of crowding and no opportunities for mating. it will also be interesting to compare it to groups 2 and 3. The presence of only female fly means a lot less crowding. Finally, there is an interesting comparison to the first group, the group with no female flies and therefore no crowding.
-
-:::
-
-## Fruitfly lifespan boxplots
-
-```{r}
-#| label: 11-01-read-fruitfly-data
-#| message: false
-#| warning: false
-
-library(broom)
-library(tidyverse)
-load("../data/fruitfly.RData")
-```
-
-```{r}
-#| label: 11-01-boxplots
-#| fig.width: 6
-#| fig.height: 2.5
-
-fly_1 |>
-  ggplot(aes(cage, longevity)) +
-    geom_boxplot() +
-    ggtitle("Graph drawn by Steve Simon on 2024-10-23") +
-    xlab("Cage residents") +
-    ylab("Lifespan (days)") +
-    coord_flip()
-```
-
-::: notes
-Here are the boxplots of the five groups. Notice that R alphabetizes these groups. You can change this using the factor function as noted above.
-:::
-
-## Fruitfly lifespan group means
-
-```{r}
-#| label: 11-01-group-means
-
-fly_1 |>
-  group_by(cage) |>
-  summarize(
-    longevity_mn=mean(longevity),
-    longevity_sd=sd(longevity),
-    n=n())
-```
-
-::: notes
-The means show the same pattern. The lifespans tend to be much lower in the cages with eight virgin females. The second lowest mean is with the cages with one virgin female. This tends to support the belief that it is mating rather than crowding that affects longevity.
-
-The formal statistical models will be covered in the next video.
 :::
