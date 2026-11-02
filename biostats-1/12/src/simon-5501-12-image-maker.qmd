@@ -1,0 +1,152 @@
+---
+title: "simon-5501-12-image-maker"
+format: 
+  html:
+    embed-resources: true
+editor: source
+---
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(broom)
+library(tidyverse)
+```
+
+## Artificial data
+
+```{r b1-12-01-setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+db <- c(
+  45, 60, 60,
+  65, 60, 70,
+  20, 20,  5,
+  25, 20, 30)
+age <- rep(c("old", "young"), c(6, 6))
+gender <- rep(c("female", "male", "female", "male"), c(3, 3, 3, 3))
+code <- rep(c("of", "om", "yf", "ym"), each=3)
+id <- c(1:12)
+
+hearing <- tibble(id, age, gender, code, db)
+hearing
+write_csv(hearing, file="../data/hearing.csv")
+```
+
+## Artificial data with means
+
+```{r b1-12-01-means}
+hearing |>
+  group_by(age) |>
+  mutate(age_mean=mean(db)) |>
+  ungroup() |>
+  group_by(gender) |>
+  mutate(gender_mean=mean(db)) |>
+  ungroup() |>
+  mutate(overall_mean=mean(db)) -> hearing_means
+hearing_means
+```
+
+## SS(Total)
+
+```{r b1-12-01-ss-total}
+hearing_means |>
+  ggplot(
+    aes(
+      x=id, 
+      xend=id,
+      y=db,
+      yend=overall_mean,
+      label=code, 
+      color=code)) +
+    geom_segment(size=1.5) +
+    geom_label(size=4) +
+    xlab(" ") + 
+    ylab("Decibels perceived at 8000 Hz") +
+    scale_color_manual(
+      values=c("#FFC0CB", "lightblue", "#FE828C", "blue")) +
+    scale_x_continuous(
+      breaks=c(2, 5, 8, 11),
+      minor_breaks=NULL,
+      labels=c(
+        "Old Female",
+        "Old Male",
+        "Young Female",
+        "Young Male")) +
+     theme(legend.position="none") +
+     expand_limits(y=c(0, 80)) +
+     ggtitle("Graph drawn by Steve Simon on 2024-11-03")
+```
+
+## SS(Age)
+
+```{r b1-12-01-ss-a}
+hearing_means |>
+  ggplot(
+    aes(
+      x=id, 
+      xend=id,
+      y=age_mean,
+      yend=overall_mean,
+      label=age, 
+      color=code)) +
+    geom_segment(size=1.5) +
+    geom_label(size=4) +
+    xlab(" ") + 
+    ylab("Decibels perceived at 8000 Hz") +
+    scale_color_manual(
+      values=c("#FFC0CB", "lightblue", "#FE828C", "blue")) +
+    scale_x_continuous(
+      breaks=c(2, 5, 8, 11),
+      minor_breaks=NULL,
+      labels=c(
+        "Old Female",
+        "Old Male",
+        "Young Female",
+        "Young Male")) +
+     theme(legend.position="none") +
+     expand_limits(y=c(0, 80)) +
+     ggtitle("Graph drawn by Steve Simon on 2024-11-03")
+```
+
+## SS(Gender)
+
+```{r b1-12-01-ss-b}
+hearing_means |>
+  ggplot(
+    aes(
+      x=id, 
+      xend=id,
+      y=gender_mean,
+      yend=overall_mean,
+      label=gender, 
+      color=code)) +
+    geom_segment(size=1.5) +
+    geom_label(size=4) +
+    xlab(" ") + 
+    ylab("Decibels perceived at 8000 Hz") +
+    scale_color_manual(
+      values=c("#FFC0CB", "lightblue", "#FE828C", "blue")) +
+    scale_x_continuous(
+      breaks=c(2, 5, 8, 11),
+      minor_breaks=NULL,
+      labels=c(
+        "Old Female",
+        "Old Male",
+        "Young Female",
+        "Young Male")) +
+     theme(legend.position="none") +
+     expand_limits(y=c(0, 80)) +
+     ggtitle("Graph drawn by Steve Simon on 2024-11-03")
+```
+
+## Analysis of variance table
+
+```{r b1-12-01-anova}
+m1 <- aov(db ~ age + gender, data=hearing)
+anova(m1)
+```
+

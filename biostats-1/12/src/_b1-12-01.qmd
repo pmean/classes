@@ -79,8 +79,6 @@ I've met both Milliken and Johnson at several "Agriculture and Statistics" confe
 A third and more receint pioneer in this area is Russell Lenth, a faculty member in Statistics at the University of Iowa and also long retired. I know Russ very well, as he was my dissertation adviser when I got my PhD from Iowa in 1982. He wrote the definitive package in R for unbalanced data, emmeans.
 :::
 
-
-
 ## A simple illustration of the complexities of unbalanced data, 1
 
 ![](../images/unbalanced-means-raw-data.png "List of hypothetical data")
@@ -124,7 +122,7 @@ With two levels, you need three subscripts (i, j, k) to keep track of the observ
 
 ## Mathematical model, 2
 
-$\begin{smallmatrix} Age & Gender & Outcome \\ Old   & Female & Y_{111} \\ Old   & Female & Y_{112} \\ Old   & Female & Y_{113} \\ Old   & Male   & Y_{121} \\ Old   & Male   & Y_{122} \\ Old   & Male   & Y_{123} \\ Young & Female & Y_{211} \\ Young & Female & Y_{212} \\ Young & Female & Y_{213} \\ Young & Male   & Y_{221} \\ Young & Male   & Y_{222} \\ Young & Male   & Y_{223}\end{smallmatrix}$
+$\begin{smallmatrix} Age & Gender & Outcome \\ Old & Female & Y_{111} \\ Old & Female & Y_{112} \\ Old & Female & Y_{113} \\ Old & Male & Y_{121} \\ Old & Male & Y_{122} \\ Old & Male & Y_{123} \\ Young & Female & Y_{211} \\ Young & Female & Y_{212} \\ Young & Female & Y_{213} \\ Young & Male & Y_{221} \\ Young & Male & Y_{222} \\ Young & Male & Y_{223}\end{smallmatrix}$
 
 :::notes
 Here's a simple example where the first categorical predictor and the second categorical predictor have two levels and there are three observation in each combination.
@@ -166,137 +164,7 @@ To assess the impact of the two categorical predictors, you compute sums of squa
 SS(Total) represents the deviation of the individual values from the overall mean. SS(A) represents deviations of the first category means from the overall mean. SS(B) reprsents deviations of the second category means from the overall mean. Whatever is left over is SS(Error).
 :::
 
-## Artificial data
+## Use of indicator variables
 
-```{r b1-12-01-setup}
-#| message: false
-#| warning: false
-library(tidyverse)
-db <- c(
-  45, 60, 60,
-  65, 60, 70,
-  20, 20,  5,
-  25, 20, 30)
-age <- rep(c("old", "young"), c(6, 6))
-gender <- rep(c("female", "male", "female", "male"), c(3, 3, 3, 3))
-code <- rep(c("of", "om", "yf", "ym"), each=3)
-id <- c(1:12)
+$\begin{smallmatrix} Age & Gender & Outcome & iYoung & iMale \\ Old & Female & Y_{111} & 0 & 0 \\ Old & Female & Y_{112} & 0 & 0 \\\ Old & Female & Y_{113} & 0 & 0 \\\ Old & Male & Y_{121} & 0 & 1 \\\ Old & Male & Y_{122} & 0 & 1 \\ Old & Male & Y_{123} & 0 & 1 \\ Young & Female & Y_{211} & 1 & 0 \\ Young & Female & Y_{212} & 1 & 0 \\ Young & Female & Y_{213} & 1 & 0 \\ Young & Male & Y_{221} & 1 & 1 \\ Young & Male & Y_{222} & 1 & 1 \\ Young & Male & Y_{223}& 1 & 1 \end{smallmatrix}$
 
-hearing <- tibble(id, age, gender, code, db)
-hearing
-write_csv(hearing, file="../data/hearing.csv")
-```
-
-## Artificial data with means
-
-```{r b1-12-01-means}
-hearing |>
-  group_by(age) |>
-  mutate(age_mean=mean(db)) |>
-  ungroup() |>
-  group_by(gender) |>
-  mutate(gender_mean=mean(db)) |>
-  ungroup() |>
-  mutate(overall_mean=mean(db)) -> hearing_means
-hearing_means
-```
-
-## SS(Total)
-
-```{r b1-12-01-ss-total}
-hearing_means |>
-  ggplot(
-    aes(
-      x=id, 
-      xend=id,
-      y=db,
-      yend=overall_mean,
-      label=code, 
-      color=code)) +
-    geom_segment(size=1.5) +
-    geom_label(size=4) +
-    xlab(" ") + 
-    ylab("Decibels perceived at 8000 Hz") +
-    scale_color_manual(
-      values=c("#FFC0CB", "lightblue", "#FE828C", "blue")) +
-    scale_x_continuous(
-      breaks=c(2, 5, 8, 11),
-      minor_breaks=NULL,
-      labels=c(
-        "Old Female",
-        "Old Male",
-        "Young Female",
-        "Young Male")) +
-     theme(legend.position="none") +
-     expand_limits(y=c(0, 80)) +
-     ggtitle("Graph drawn by Steve Simon on 2024-11-03")
-```
-
-## SS(Age)
-
-```{r b1-12-01-ss-a}
-hearing_means |>
-  ggplot(
-    aes(
-      x=id, 
-      xend=id,
-      y=age_mean,
-      yend=overall_mean,
-      label=age, 
-      color=code)) +
-    geom_segment(size=1.5) +
-    geom_label(size=4) +
-    xlab(" ") + 
-    ylab("Decibels perceived at 8000 Hz") +
-    scale_color_manual(
-      values=c("#FFC0CB", "lightblue", "#FE828C", "blue")) +
-    scale_x_continuous(
-      breaks=c(2, 5, 8, 11),
-      minor_breaks=NULL,
-      labels=c(
-        "Old Female",
-        "Old Male",
-        "Young Female",
-        "Young Male")) +
-     theme(legend.position="none") +
-     expand_limits(y=c(0, 80)) +
-     ggtitle("Graph drawn by Steve Simon on 2024-11-03")
-```
-
-## SS(Gender)
-
-```{r b1-12-01-ss-b}
-hearing_means |>
-  ggplot(
-    aes(
-      x=id, 
-      xend=id,
-      y=gender_mean,
-      yend=overall_mean,
-      label=gender, 
-      color=code)) +
-    geom_segment(size=1.5) +
-    geom_label(size=4) +
-    xlab(" ") + 
-    ylab("Decibels perceived at 8000 Hz") +
-    scale_color_manual(
-      values=c("#FFC0CB", "lightblue", "#FE828C", "blue")) +
-    scale_x_continuous(
-      breaks=c(2, 5, 8, 11),
-      minor_breaks=NULL,
-      labels=c(
-        "Old Female",
-        "Old Male",
-        "Young Female",
-        "Young Male")) +
-     theme(legend.position="none") +
-     expand_limits(y=c(0, 80)) +
-     ggtitle("Graph drawn by Steve Simon on 2024-11-03")
-```
-
-## Analysis of variance table
-
-```{r b1-12-01-anova}
-m1 <- aov(db ~ age + gender, data=hearing)
-anova(m1)
-```
