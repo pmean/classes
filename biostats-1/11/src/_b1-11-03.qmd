@@ -109,7 +109,7 @@ Recall that antilog, the reversal of the log transformation means raising 10 to 
 From a statistical perspective what this means is that back transformation converts a difference of means into a ratio of means.
 :::
 
-## Interpretation of the back transformed confidence intervals
+## Interpretation of the back transformed confidence intervals {.smaller}
 
 -   A confidence interval is a range of plausible values.
     -   A back transformed confidence interval is a range of plausible ratios.

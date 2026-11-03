@@ -15,14 +15,19 @@ editor: source
    -   Examples:
        -   Female=0, Male=1
        -   Man=0, Woman=1
+
+::: notes
+Back in the previous modules, you saw a relationship between creating an indicator variable for a linear regression model and running a two-sample t-test. Just to review, when R sees a string that represents a categorical variable, it assigns the value of 0 to the level that appears first in alphabetical order and 1 to the level that appears last in alphabetical order. So a variable that has strings "male" and "female", R will assign 0 to "female" and 1 to "male". If the string were "man" and "woman", R would assign 0 to "man" and 1 to "woman".
+:::
+
+## Indicator variables, 2
+
 -  Interpretation
    -   Intercept is estimated average outcome for first category
    -   Slope is the estimated average change
        -   Second category average minus first category average
        
 ::: notes
-Back in the previous modules, you saw a relationship between creating an indicator variable for a linear regression model and running a two-sample t-test. Just to review, when R sees a string that represents a categorical variable, it assigns the value of 0 to the level that appears first in alphabetical order and 1 to the level that appears last in alphabetical order. So a variable that has strings "male" and "female", R will assign 0 to "female" and 1 to "male". If the string were "man" and "woman", R would assign 0 to "man" and 1 to "woman".
-
 The intercept represents the estimated average value of Y for the first or zero category. The slope represents the estimated average change in Y when you switch from the 0 category to the 1 category.
 :::
 
@@ -63,7 +68,7 @@ Female 40.5      40.1      37.3         0
 R will assign 0 to the category level that appears first alphabetically, which is "Female". It assigns 1 to the category level that appears second alphabetically, which is "Male".
 :::
 
-## Indicator variables, 2
+## Indicator variables, 3
 
 -  With k levels, you need k-1 indicators
    -   First indicator

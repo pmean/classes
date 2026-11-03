@@ -72,7 +72,7 @@ glimpse(fly)
 
 #### Comments on the code
 
-The read_table function is part of the readr library, which is included when you specify the tidyverse library. You can use this function when you have one or more blanks or tabls between each data value.
+The read_table function is part of the readr library, which is included when you specify the tidyverse library. You can use this function when you have one or more blanks or tabs between each data value.
 
 ## Create cage groups
 
@@ -90,7 +90,9 @@ fly |>
 
 #### Comments on the code
 
-The case_when function is part of the dplyr library, which is included when you specify the tidyverse library. This function evaluates a series of tests (listed on the left side of the tilde) and assigns the particular value to the first test that evaluates to TRUE. If no test evaluates to TRUE, the case_when function assigns a missing value.
+The [case_when function][ref-case-when] is part of the dplyr library, which is included when you specify the tidyverse library. This function evaluates a series of tests (listed on the left side of the tilde) and assigns the particular value to the first test that evaluates to TRUE. If no test evaluates to TRUE, the case_when function assigns a missing value.
+
+[ref-case-when]: https://dplyr.tidyverse.org/reference/case-and-replace-when.html
 
 ## Calculate descriptive statistics
 

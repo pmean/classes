@@ -23,9 +23,47 @@ editor: source
 ![](../images/plot01.png "Plot of the chi-squared distribution with 5 degrees of freedom")
 
 :::notes
-This is a graph of the Chi-squared distribution with 5 degrees of freedom.
+This is a graph of the Chi-squared distribution with 5 degrees of freedom. 
+
+To review, you've seen graphs of the t-distribution. This is a symmetric distribution centered around zero. THe t-distribution is used You compare the t-test to the t-distribution. If the t-test is close to zero, you accept the null hypothesis. You also use the t-distribution to compute confidence intervals for mu1-mu2, the population means of the two groups.
+
+You've also seen the F-distribution. This is a skewed distribution bounded below by zero and centered around the value of 1. It is used in the analysis of variance table. You compare the F-test to the F-distribution. If the F-statistic is close to 1, you accept the null hypothesis. If it is a lot larger than 1, you reject the null hypothesis
+
+Now, we introduce a third distribution, the chi-squared distribution. It is skewed and centered around the degrees of freedom. You compared a chi-squared-test to the chi-squared distribution. If the test is close to the degrees of freedom, you accept the null hypothesis. if the test is a lot larger than the degrees of freedom, you reject the null hypothesis.
+
+This can be a bit much to remember. So many people rely on the p-value. The p-vale for the t-test, for the F-test, and the chi-squared-test all have the same decision rule. Accept the null hypothesis if the p-value is large. Reject the null hypothesis if the p-value is small.
 :::
 
+## Decision rules
+
+-   T (t-test)
+    -   Copmpare to the t-disctirbution
+    -   Accept H0 if the t-test is close to zero
+-   F (F-test)
+    -   Compare to the F distribution
+    -   Accept HO if the F-test is close to 1
+-   X2 (chi-squared-test)
+    -   Compare to the chi-squared distribution
+    -   Accept HO if the chi-squared test is close to the degrees of freedom
+    
+::: notes
+To review, you've seen graphs of the t-distribution. This is a symmetric distribution centered around zero. THe t-distribution is used You compare the t-test to the t-distribution. If the t-test is close to zero, you accept the null hypothesis. You also use the t-distribution to compute confidence intervals for mu1-mu2, the population means of the two groups.
+
+You've also seen the F-distribution. This is a skewed distribution bounded below by zero and centered around the value of 1. It is used in the analysis of variance table. You compare the F-test to the F-distribution. If the F-statistic is close to 1, you accept the null hypothesis. If it is a lot larger than 1, you reject the null hypothesis
+
+Now, we introduce a third distribution, the chi-squared distribution. It is skewed and centered around the degrees of freedom. You compared a chi-squared-test to the chi-squared distribution. If the test is close to the degrees of freedom, you accept the null hypothesis. if the test is a lot larger than the degrees of freedom, you reject the null hypothesis.
+:::
+
+## P-value is easier to remember
+
+-   Same diecision rule for any test
+    -   Accept H0 if the p-value is large
+    -   Reject H0 if the p-value is small
+    
+::: notes
+This can be a bit much to remember. So many people rely on the p-value. The p-vale for the t-test, for the F-test, and the chi-squared-test all have the same decision rule. Accept the null hypothesis if the p-value is large. Reject the null hypothesis if the p-value is small.
+:::
+    
 ## Computing the Kruskal-Wallis test
 
 -   Rank the observations, $R(X_{ij})$
