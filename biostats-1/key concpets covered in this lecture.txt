@@ -1,0 +1,38 @@
+Here is a summary of the major lessons covered in this Module 11 lecture:
+
+1. Analysis of Variance (ANOVA) & Linear Regression
+
+ANOVA is a special case of linear regression; both use the general linear model to explain variation in a continuous outcome. 12
+ANOVA compares means of two or more groups using categorical predictors, while linear regression can use continuous or categorical predictors. 3
+2. Indicator Variables & Reference Categories
+
+For a categorical variable with K levels, K-1 indicator variables are needed. 4
+By default, R assigns the first alphabetical category as the reference (zero) level. 56
+The reference category can be changed using the factor function or by creating custom indicators. 78
+3. Interpreting Regression Coefficients with Indicators
+
+The intercept = estimated average outcome for the reference category. 9
+Each slope = estimated difference between that category and the reference. 10
+4. Log Transformation
+
+Used to reduce right skewness, stabilize variance, and improve model fit. 1112
+Consider it when values are positive, max/min ratio > 3, and data is right-skewed. 1314
+After back-transformation, confidence intervals are ratios; check if the interval includes 1 (not 0). 1516
+5. Tukey Post Hoc Test
+
+Used after rejecting the ANOVA null hypothesis to identify which specific group differences are significant. 17
+Intervals excluding zero (or 1 on log scale) indicate statistically significant differences. 1819
+6. Kruskal-Wallis Test
+
+A nonparametric alternative to one-way ANOVA for comparing three or more independent groups. 20
+Useful when normality assumption is violated or data is highly skewed/contains outliers. 21
+Uses chi-square distribution; does not require normality but still requires homogeneity and independence. 2223
+
+Show sources (1)
+Write a message
+2026FS-MEDB-5501-synchronous-zoom-session
+
+
+Write a message
+
+AI can make mistakes. Review for ac

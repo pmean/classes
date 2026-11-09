@@ -5,26 +5,24 @@ format:
     embed-resources: true
 ---
 
-This program reads data on fruit fly life span. Find more information in the [data dictionary][dd].
+This code was written by Steve Simon on 2024-10-29 and is placed in the public domain.
 
-[dd]: https://github.com/pmean/data/blob/master/files/fruitfly.yaml
+This program is split into two parts.
 
-This code was written by Steve Simon on 2024-10-23 and is placed in the public domain.
+# --- Part 1
+
+This section of the program reads data on admissions to an emergency room before, during, and after a full moon. Find more information in the [data dictionary][ref-moon-yaml].
+
+[ref-moon-yaml]: https://github.com/pmean/data/blob/master/files/full-moon-er-admissions.yaml
 
 ## Datasets
 
--   fly: original data from fruitfly.txt
--   fly_1: created category levels
--   fly_2: re-order the categories in the variable cage
--   fly_3: log transformed life spans
+-   er: original data from full-moon-er-admissions.txt
+-   er1: re-ordered factors
 
 ## Models
 
--   m1: analysis of variance, longevity ~ cage
--   m2: linear regression, same variables
--   m3: analysis of variance, make no females the reference category
--   m4: analysis of variance on log transformed data
--   m5: Tukey post hoc confidence intervals for log transformed data
+-   m1: two-factor ANOVA using aov function
 
 ## Load the tidyverse library
 
@@ -37,14 +35,184 @@ library(broom)
 library(tidyverse)
 ```
 
-# --- Part 1
+## Read the data and view a brief summary
+
+```{r}
+#| label: read-moon
+
+er <- read_tsv(
+  "../data/full-moon-er-admissions.txt",
+  col_types="ccn",
+  col_names=TRUE)
+names(er) <- tolower(names(er))
+glimpse(er)
+```
+
+#### Comments on the code
+
+This is a tab delimited file. I changed all the variable names to all lowercase. That's one less thing opportunity for inconsistency errors.
+
+## Reorder the category levels, 1
+
+```{r}
+#| label: reorder-moon
+
+moon_levels <- c(
+    "Before",
+    "During",
+    "After")
+
+
+month_levels <- c(
+    "Aug", "Sep", "Oct",
+    "Nov", "Dec", "Jan",
+    "Feb", "Mar", "Apr",
+    "May", "Jun", "Jul")
+
+er |>
+  mutate(moon=factor(moon, levels=moon_levels)) |>
+  mutate(month=factor(month, levels=month_levels)) -> er1
+```
+
+#### Comments on the code
+
+If you let R order the categories, it will do it alphabetically. The factor function will place them in a more logical order.
+
+Since the study started in August, it makes sense to order the months starting then. An alphabetical ordering (April, August, December, ..., September) makes no sense here. Starting the levels at the first month of the study (August) makes that month the reference category.
+
+There are several ways to think about the proper ordering of the moon factor. One is to list them in the order before, during, and after. This makes the time before a full moon the reference category.
+
+## Draw boxplot of admission versus moon
+
+```{r}
+#| label: boxplots-admission-vs-moon
+#| fig.width: 6
+#| fig.height: 2.0
+
+er1 |>
+  ggplot() +
+    aes(x=admission, y=moon) +
+	  geom_boxplot() +
+	  labs(
+	  	x="ER admissions per day",
+	  	y="Moon phase",
+	  	caption="Simon, 2024-11-02")
+```
+
+#### Interpretation of the output
+
+Although there are a few outliers, I would not worry too much about the normality assumption. It also looks like heterogeneity would not be too much of a concern.
+
+## Draw scatterplot of admission versus month
+
+```{r}
+#| label: boxplots-admission-vs-month
+#| fig.width: 6
+#| fig.height: 6
+
+er1 |>
+  ggplot() +
+  aes(admission, month) +
+  geom_point(shape="circle open") +
+	labs(
+	 	x="ER admissions per day",
+	 	y="Month",
+	 	caption="Simon, 2024-11-02")
+```
+
+#### Comment on the code
+
+Normally, I would use a boxplot here. But in this dataset, there are only three data points per month. A boxplot is a graphical display of five number summary (min, 25th percentle, 50th percentile, 75th percentile, and maximum) and makes little sense with three observations.
+
+#### Interpretation of the output
+
+Although there are some unusual patterns here, keep in mind that there are only three observations per month. It looks like later months, shown near the top of the graph, are larger than earlier months, shown near the bottom of the graph.
+
+## Calculate average ER admissions versus moon
+
+```{r}
+#| label: by-moon
+
+er1 |>
+  group_by(moon) |>
+  summarize(
+    admission_mn=mean(admission),
+    admission_sd=sd(admission),
+    n=n())
+```
+
+#### Interpretation of the output
+
+There is a slightly higher average admission rate and slightly more variation during a full moon.
+
+## Calculate average ER admissions versus month
+
+```{r}
+#| label: by-month
+
+er1 |>
+  group_by(month) |>
+  summarize(
+    admission_mn=mean(admission),
+    admission_sd=sd(admission),
+    n=n())
+```
+
+#### Interpretation of the output
+
+Er admissions are trending upward over time and there is some evidence of heterogeneity. Again, treat this with caution as there are only three observations per month.
+
+## Analysis of variance
+
+```{r}
+#| label: anova
+
+m1 <- aov(admission ~ moon + month, data=er1)
+tidy(m1)
+```
+
+#### Interpretation of the output
+
+There is a borderline, but statistically significant difference in average admission rates during different phases of the moon. There is a statistically significant difference in average admission rates between some of the months.
+
+## Tukey post hoc test
+
+```{r}
+#| label: tukey
+
+TukeyHSD(m1)
+```
+
+#### Interpretation of the output
+
+The interpretation here is tricky. Start by ignoring the Tukey post hoc intervals for months. There are just too many intervals and the focus is not on the months anyway.
+
+There is the temptation to state that the average number of admissions jumps from the time before a full moon to the time during a full moon and that it falls back again to about the same level after a full moon. There is a statistically significant difference between the "before" and "during" groups, but it is borderline. The lower limit is just barely above zero. 
+There is not a statistically significant difference between the "during" and "after" groups, but again the results are borderline. The upper limit is just barely above zero.
+
+The only really definitive finding is that there is no statistically significant difference between the "before" and "after" groups.
+
+# --- Part 2
+
+This section of the program reads data on fruit fly longevity. Find more information in the [data dictionary][ref-fruitfly-yaml].
+
+[ref-fruitfly-yaml]: https://github.com/pmean/data/blob/master/files/fruitfly.yaml
+
+## Datasets
+
+-   fly: original data from ../data/fruitfly.txt
+-   fly1: subset appropriate for two factor ANOVA
+
+## Models
+
+-   m2: two-factor ANOVA using aov function
+-   m3: two-factor ANOVA using lm function
 
 ## List the variable names
 
 ```{r}
 #| label: variable-list
 
-fn <- "https://jse.amstat.org/datasets/fruitfly.dat.txt"
 vlist <- c(
   "id",
   "partners",
@@ -61,280 +229,180 @@ When a dataset does not have variables on the first line, you need to specify th
 ## Read the data and view a brief summary
 
 ```{r}
-#| label: read
+#| label: read-fly
 
-fly <- read_table(
+fly <- read_fwf(
   "../data/fruitfly.txt",
   col_types="nnnnnn",
-  col_names=vlist)
+  fwf_widths(
+    widths=c(2, 2, 2, 3, 5, 3),
+    col_names=vlist))
 glimpse(fly)
 ```
 
 #### Comments on the code
 
-The read_table function is part of the readr library, which is included when you specify the tidyverse library. You can use this function when you have one or more blanks or tabls between each data value.
+The fruitfly dataset has a fixed width format (fwf). You need to specify the columns that each variable uses.
 
-## Create cage groups
+Notice that the two categorical variables, partners and type, are actually numbers rather than strings. To avoid having R treat these variables as if they were continuous, use the factor function in some of the code below.
+
+## Create a subset of fruitfly dataset
 
 ```{r}
-#| label: cage
+#| label: subset
 
 fly |>
-  mutate(cage=case_when(
-    fly$partners==0 & fly$type==9 ~ "No females",
-    fly$partners==1 & fly$type==0 ~ "One pregnant female",
-    fly$partners==1 & fly$type==1 ~ "One virgin female",
-    fly$partners==8 & fly$type==0 ~ "Eight pregnant females",
-    fly$partners==8 & fly$type==1 ~ "Eight virgin females")) -> fly_1
+  filter(type != 9) -> fly1
 ```
 
 #### Comments on the code
 
-The case_when function is part of the dplyr library, which is included when you specify the tidyverse library. This function evaluates a series of tests (listed on the left side of the tilde) and assigns the particular value to the first test that evaluates to TRUE. If no test evaluates to TRUE, the case_when function assigns a missing value.
+If you exclude the pure control group (No females), you can analyze the two factors, partners and type individually. Partners has two category levels, 1 for when one female was included in the cage and 8 for when eight females were included in the cage. Type also has two category levels, 0 for pregnant female fly/flies and 1 for virgin fly/flies. A male fly will not mate with a pregnant females, so you can think of this as a second level of controls. The two factors are crossed, meaning that every possible combination of partners and type has outcomes measured.
 
-## Calculate descriptive statistics
-
-```{r}
-#| label: longevity-means
-
-fly_1 |>
-  group_by(cage) |>
-  summarize(
-    longevity_mn=mean(longevity),
-    longevity_sd=sd(longevity),
-    n=n())
-```
-
-#### Interpretation of the output
-
-The mean lifespan is 39 days for the "Eight virgin females" category, which is much lower than the other means. The means lifespan is 57 days for the "One virgin female" category and this is slightly lower than the remained three categories. The standard deviations are reasonably small and more or less consistent across all groups.
-
-## Draw boxplot
+## Draw boxplot of longevity by partners and type
 
 ```{r}
-#| label: longevity-boxplot
+#| label: boxplots-partners-type
 #| fig.width: 6
 #| fig.height: 2.5
 
-fly_1 |>
+fly1 |>
   ggplot() +
-  aes(longevity, cage) +
+	aes(
+		x=longevity, 
+		y=factor(partners), 
+		fill=factor(type)) +
   geom_boxplot() +
   labs(
-    caption="Simon, 2024-10-23",
-    x="Lifespan (days)",
-    y="Cage residents")
+  	x="Lifespan in days",
+  	y="Number of partners",
+  	fill="Female fly type",
+  	caption="Steve Simon, 2024-10-28, CC0") +
+  scale_fill_discrete(labels=c("Pregnant", "Virgin"))
 ```
 
 #### Interpretation of the output
 
-The boxplot shows a roughly normal distribution with no outliers.
+The lifespans tend to be quite a bit shorter in cages with 8 virgin females. There are no problems with the homogeneity and normality assumptions.
 
-## One factor analysis of variance for longevity
+## Calculate average longevity by partners and type
 
 ```{r}
-#| label: longevity-one-factor-anova
+#| label: by-partners-and-type
+#| message: false
 
-m1 <- aov(longevity ~ cage, data=fly_1)
-tidy(m1)
+fly1 |>
+  group_by(type, partners) |>
+  summarize(
+    longevity_mn=mean(longevity),
+    longevity_sd=sd(longevity),
+    n=n()) -> fly_means
+fly_means
 ```
 
 #### Interpretation of the output
 
-The F-ratio is large and the p-value is small. Conclude that there is a 
-difference among some or all of the population mean lifespans.
+The means show the same pattern as noted above. The standard deviations are all roughly the same.
 
-## Linear model for longevity, 1
+## Draw line graph
 
 ```{r}
-#| label: longevity-lm-1
+#| label: line-graph
 
-m2 <- lm(longevity ~ cage, data=fly_1)
+fly_means |>
+  ggplot() +
+  aes(
+    x=factor(partners), 
+    y=longevity_mn, 
+    group=factor(type),
+    color=factor(type)) +
+    geom_line(linewidth=2) +
+	expand_limits(y=range(fly1$longevity)) +
+	labs(
+		x="Number of partners",
+		y="Lifespan in days",
+		color="Female fly type",
+		caption="Simon, 2024-10-28") +
+  scale_color_discrete(labels=c("Pregnant", "Virgin"))
+```
+
+#### Interpretation of the output
+
+This plot shows strong evidence of an interaction.
+
+Male fruitflies do appear to have shorter average lifespans when sharing a cage with virgin females compared to pregnant females, but this effect is far stronger when the number of female fruitflies is eight rather than one.
+
+The line for pregnant (sharing a cage with pregnant females) is close to flat, indicating that there is little impact of the number of pregnant females on average longevity.
+
+## Analysis of variance including the interaction
+
+```{r}
+#| label: anova-with-interaction
+
+m2 <- aov(longevity ~ factor(partners)*factor(type), data=fly1)
 anova(m2)
 ```
 
 #### Interpretation of the output
 
-You can use linear regression to reach the same conclusion. The sums of squares,
-degrees of freedom, F-ratio, and p-value all match.
+There is a statistically significant interaction between the number of female partners and the type of partners (pregnant or virgin). When you have an interaction, you do not normally interpret the individual categorical predictors.
 
-## Linear model for longevity, 2
+## Using lm, 1
 
 ```{r}
-#| label: longevity-lm-2
+#| label: lm-with-interactions-1
 
-tidy(m2)
+m3 <- lm(longevity ~ factor(partners)*factor(type), data=fly1)
+anova(m3)
 ```
-
-#### Comments on the code
-
-The test statistics and p-values listed here do not make any adjustments for multiple comparisons. Some researchers think this is fine. Others prefer that you use the Tukey post hoc comparisons, which insures that the overall Type I error rate is less than 0.05.
 
 #### Interpretation of the output
 
-The linear model creates indicator variable for four out of the five category
-levels. The reference category is "Eight pregnant females" which is the first category level in alphabetical order. 
+The analysis of variance table is identical when using lm instead of aov.
 
-The intercept, 63 days, is the estimated average life span in days for the "Eight pregnant females" category.
-
-The first slope is -25. The estimated average life span decreases by 25 days when you switch from the "Eight pregnant females" category to the "Eight virgin females" category.
-
-The second slope is 0.2. The estimated average life span increases by 0.2 days when you switch from the "Eight pregnant females" category to the "No females" category.
-
-The third slope is 1.4. The estimated average life span increases by 1.4 days when you switch from the "Eight pregnant females" category to the "One pregnant female" category.
-
-The fourth slope is -6.6. The estimated average life span decreases by 6.6 days when you switch from the "Eight pregnant females" category to the "One virgin female" category.
-
-## Re-order cage groups, 1
+## Using lm, 2
 
 ```{r}
-#| label: re-order-1
-new_order <- c(
-  "No females",
-  "One pregnant female",
-  "Eight pregnant females",
-  "One virgin female",
-  "Eight virgin females")
+#| label: lm-with-interactions-2
 
-fly_1 |>
-  mutate(cage=factor(cage, levels=new_order)) -> fly_2
-```
-
-#### Comments on the code
-
-The [factor function][ref-factor], part of base R, creates a new variable with number codes and labels. The order of labels is designated by the levels argument.
-
-In this example, the code creates a reference category of "no females" instead of the default reference category based on alphabetical order.
-
-[ref-factor]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/factor.html
-
-## Re-order cage groups, 2
-
-```{r}
-#| label: re-order-2
-
-m3 <- lm(longevity ~ cage, data=fly_2)
 tidy(m3)
 ```
 
 #### Interpretation of the output
 
-The estimated average life span is 64 days for the cage with no females. The cages with one and eight pregnant females change only slightly: one day or less on average. The cage with one virgin female has 6.8 days less in life span on average and the cage with eight virgin females has 25 fewer days in average life span.
+The lifespan of fruitflies in cages with 8 virgin females is 17 days shorter than what you would expect. If the effect of type and partners were independent, you'd expect to see a 9.4 (= 8.0 + 1.4) day decline on average. The interaction shows that this cage is actually 16.6 days worse than that on average.
 
-Do not interpret the p-values because they are not adjusted for multiple comparisons.
-
-## Tukey post-hoc test
+## Using lm, 3
 
 ```{r}
-m4 <- aov(longevity ~ cage, data=fly_2)
-TukeyHSD(m4)
-```
+#| label: add-coefficients
 
-#### Interpretation of the output
-
-There are ten possible comparisons among the five groups. Six of the confidence intervals contain zero. This indicates that there is no statistically significant difference between 
-
--   one pregnant female and no females
--   eight pregnant females and no females
--   eight pregnant females and one pregnant female
--   one virgin female and no females
--   one virgin female and one pregnant female
--   one virgin female and eight pregnant females
-
-There is a statistically significant decrease in average life span for
-
--   eight virgin females compared to no females
--   eight virgin females compared to one pregnant female
--   eight virgin females compared to eight pregnant females
--   eight virgin females compared to one virgin female
-
-# --- Part 2
-
-## Log transformation, 1
-
-```{r}
-#| label: log-longevity-anova-1
-
-fly_2 |>
-  mutate(log_longevity=log10(longevity)) -> fly_3
-
-m4 <- aov(log_longevity ~ cage, data=fly_3)
-tidy(m4)
-```
-
-#### Interpretation of the output
-
-Although there are no problems with heterogeneity or non-normality, here is an 
-illustration of how to use a log transformation with analysis of variance.
-
-The F-ratio is large and the p-value is small. You can conclude that at least two of the population mean log life spans differ from one another.
-
-You can use the Tukey post hoc test examine whether the intervals include or exclude the value of zero, but interpretation using log-days as the unit of measurement is tricky.
-
-## Log transformation, 2
-
-```{r}
-#| label: log-longevity-anova-2
-
-m4 |>
-  TukeyHSD() |>
-  tidy() -> m5
-
-m5 |> 
-  select(contrast, estimate, conf.low, conf.high) |>
-  mutate(estimate=10^estimate) |>
-  mutate(conf.low=10^conf.low) |>
-  mutate(conf.high=10^conf.high)
+b <- coef(m2) 
+fly_means |>
+  mutate(b0=b[1]) |>
+  mutate(b1=b[2]) |>
+  mutate(b2=b[3]) |>
+  mutate(b3=b[4]) |>
+	select(-longevity_sd, -n) -> fly_coefficients
+fly_coefficients[1, 5:7] <- 0
+fly_coefficients[2, 6:7] <- 0
+fly_coefficients[3, c(5,7)] <- 0
+fly_coefficients
 ```
 
 #### Comments on the code
 
-It is better to transform these results back to the original scale of measurement before interpreting the confidence intervals.
+The coef function takes the intercept and slopes from a linear regression model and stores them in a vector. The mutate command adds the individual intercept and slopes to separate columns. Finally, place zeros in places where the various slopes are not needed.
 
 #### Interpretation of the output
 
-When you back-transform after a log transformation, the confidence intervals are confidence intervals for a ratio of means. If the confidence interval includes the value of 1, there is no statistically significant difference between the two groups.
+This table is not needed for the data analysis, but is included to illustrate how the regression coefficients are computed in a two factor analysis of variance with an interaction.
 
-In this example, there are four statistically significant differences, all involving the cage with eight virgin females. The fruitflies with eight virgin females have a life span that 40% shorter on average frutiflies with no females. The relevant computation is 100*(1-0.5961729). This ratio is statistically significant meaning that it is too large to be accounted for by sampling error. The confidence interval for the ratio is 0.48 to 0.75. Even after allowing for sampling error, the life span is at least 25% shorter and possibly as much as 52% shorter.
+The intercept is the estimated average with both categories each to the "zero" or reference level. In this case, the average lifespan of flies in a cage with one pregnant female.
 
-The interpretations comparing the average life span of the flies with eight virgin females to the other cages (one virgin female, one pregnant female, eight pregnant females). The average life span of flies with eight virgin females is 42% shorter than flies with one pregnant female, 40% shorter than flies with pregnant females, and 33% shorter than flies with one virgin female. All of these changes are statistically significant.
+The first slope coefficient (b1) represents the estimated average difference in lifespan between eight pregnant females and one pregnant females.
 
-There are no statistically significant difference in average life spans among the files with no females, one pregnant female, eight pregnant females, and one virgin female. For example, the ratio of average longevity comparing one pregnant female to no females is 1.02, or 2% larger. The confidence interval ranges from 0.82 or 18% smaller to 1.28 or 28% larger. There is no statistically significant change in longevity between fruitflies caged alone and fruitflies caged with one pregnant female.
+The second slope coefficient (b2) represents the estimated average difference in lifespan between one pregnant females and one virgin female.
 
-Always provide an interpretation, but you should not have to interpret every statistic that your computer spits out. Interpreting everything leads to turgid prose. This is especially true for the Tukey post hoc confidence intervals when you have a large number of categories. If you say, this interval means this and this interval means this and this interval means this, and so on, your writing will be boring at best and confusing at worst. Use your judgement on this, of course, but focusing on a limited number of intervals, such as those compared to the "best" group or those compared to the current standard of treatment or those that show statistical significance may make sense.
+The third slope coefficient (b3) represents the interaction. It is a measure of how much shorter the average lifespan is with eight virgin females above and beyond the individual impact of eight versus one and virgin versus pregnant.
 
-# --- Part 3
-
-## Kruskal-Wallis test
-
-```{r}
-#| label: kw
-
-kruskal.test(longevity ~ cage, data=fly_2)
-```
-
-#### Comments on the code
-
-The [kruskal.test function][ref-kruskal], part of base R, produces the Kruskal-Wallis test, non-parametric alternative to one factor analysis of variance.
-
-[ref-kruskal]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/kruskal.test.html
-
-#### Interpretation of the output
-
-It may not be needed with this particular dataset, but this is an illustration
-of how to use the Kruskal-Wallis test. 
-
-The chi-squared statistic is much larger than its degrees of freedom and the p-value is small, so you should reject the null hypothesis and conclude that there is a difference between at least two of the five population means.
-
-## Save important files for later use
-
-```{r}
-#| label: save
-
-save(
-  fly,
-  fly_1,
-  fly_2,
-  fly_3,
-  file="../data/fruitfly.RData")
-```

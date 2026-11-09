@@ -2241,7 +2241,7 @@ vertical-align: -.125em;
 <section id="models" class="level2">
 <h2 class="anchored" data-anchor-id="models">Models</h2>
 <ul>
-<li>m1: analysis of variance, life spans ~ cage</li>
+<li>m1: analysis of variance, longevity ~ cage</li>
 <li>m2: linear regression, same variables</li>
 <li>m3: analysis of variance, make no females the reference category</li>
 <li>m4: analysis of variance on log transformed data</li>
@@ -2295,7 +2295,7 @@ $ sleep     &lt;dbl&gt; 22, 9, 49, 1, 23, 83, 23, 15, 9, 81, 12, 15, 37, 24, 26,
 </div>
 <section id="comments-on-the-code-1" class="level4">
 <h4 class="anchored" data-anchor-id="comments-on-the-code-1">Comments on the code</h4>
-<p>The read_table function is part of the readr library, which is included when you specify the tidyverse library. You can use this function when you have one or more blanks or tabls between each data value.</p>
+<p>The read_table function is part of the readr library, which is included when you specify the tidyverse library. You can use this function when you have one or more blanks or tabs between each data value.</p>
 </section>
 </section>
 <section id="create-cage-groups" class="level2">
@@ -2311,7 +2311,7 @@ $ sleep     &lt;dbl&gt; 22, 9, 49, 1, 23, 83, 23, 15, 9, 81, 12, 15, 37, 24, 26,
 </div>
 <section id="comments-on-the-code-2" class="level4">
 <h4 class="anchored" data-anchor-id="comments-on-the-code-2">Comments on the code</h4>
-<p>The case_when function is part of the dplyr library, which is included when you specify the tidyverse library. This function evaluates a series of tests (listed on the left side of the tilde) and assigns the particular value to the first test that evaluates to TRUE. If no test evaluates to TRUE, the case_when function assigns a missing value.</p>
+<p>The <a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when function</a> is part of the dplyr library, which is included when you specify the tidyverse library. This function evaluates a series of tests (listed on the left side of the tilde) and assigns the particular value to the first test that evaluates to TRUE. If no test evaluates to TRUE, the case_when function assigns a missing value.</p>
 </section>
 </section>
 <section id="calculate-descriptive-statistics" class="level2">
@@ -2551,6 +2551,7 @@ Eight virgin females-One virgin female      0.0003240</code></pre>
 <h4 class="anchored" data-anchor-id="interpretation-of-the-output-7">Interpretation of the output</h4>
 <p>Although there are no problems with heterogeneity or non-normality, here is an illustration of how to use a log transformation with analysis of variance.</p>
 <p>The F-ratio is large and the p-value is small. You can conclude that at least two of the population mean log life spans differ from one another.</p>
+<p>You can use the Tukey post hoc test examine whether the intervals include or exclude the value of zero, but interpretation using log-days as the unit of measurement is tricky.</p>
 </section>
 </section>
 <section id="log-transformation-2" class="level2">
@@ -2590,7 +2591,8 @@ Eight virgin females-One virgin female      0.0003240</code></pre>
 <p>When you back-transform after a log transformation, the confidence intervals are confidence intervals for a ratio of means. If the confidence interval includes the value of 1, there is no statistically significant difference between the two groups.</p>
 <p>In this example, there are four statistically significant differences, all involving the cage with eight virgin females. The fruitflies with eight virgin females have a life span that 40% shorter on average frutiflies with no females. The relevant computation is 100*(1-0.5961729). This ratio is statistically significant meaning that it is too large to be accounted for by sampling error. The confidence interval for the ratio is 0.48 to 0.75. Even after allowing for sampling error, the life span is at least 25% shorter and possibly as much as 52% shorter.</p>
 <p>The interpretations comparing the average life span of the flies with eight virgin females to the other cages (one virgin female, one pregnant female, eight pregnant females). The average life span of flies with eight virgin females is 42% shorter than flies with one pregnant female, 40% shorter than flies with pregnant females, and 33% shorter than flies with one virgin female. All of these changes are statistically significant.</p>
-<p>There are no statistically significant difference in average life spans among the files with no females, one pregnant female, eight pregnant females, and one virgin female.</p>
+<p>There are no statistically significant difference in average life spans among the files with no females, one pregnant female, eight pregnant females, and one virgin female. For example, the ratio of average longevity comparing one pregnant female to no females is 1.02, or 2% larger. The confidence interval ranges from 0.82 or 18% smaller to 1.28 or 28% larger. There is no statistically significant change in longevity between fruitflies caged alone and fruitflies caged with one pregnant female.</p>
+<p>Always provide an interpretation, but you should not have to interpret every statistic that your computer spits out. Interpreting everything leads to turgid prose. This is especially true for the Tukey post hoc confidence intervals when you have a large number of categories. If you say, this interval means this and this interval means this and this interval means this, and so on, your writing will be boring at best and confusing at worst. Use your judgement on this, of course, but focusing on a limited number of intervals, such as those compared to the “best” group or those compared to the current standard of treatment or those that show statistical significance may make sense.</p>
 </section>
 </section>
 </section>
