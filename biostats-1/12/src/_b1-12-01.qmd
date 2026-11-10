@@ -161,6 +161,7 @@ You will need to compute averages for the first factor, $\bar{Y}_{i..}$, the sec
 
 :::notes
 To assess the impact of the two categorical predictors, you compute sums of squares. 
+
 SS(Total) represents the deviation of the individual values from the overall mean. SS(A) represents deviations of the first category means from the overall mean. SS(B) reprsents deviations of the second category means from the overall mean. Whatever is left over is SS(Error).
 :::
 
@@ -168,3 +169,13 @@ SS(Total) represents the deviation of the individual values from the overall mea
 
 $\begin{smallmatrix} Age & Gender & Outcome & iYoung & iMale \\ Old & Female & Y_{111} & 0 & 0 \\ Old & Female & Y_{112} & 0 & 0 \\\ Old & Female & Y_{113} & 0 & 0 \\\ Old & Male & Y_{121} & 0 & 1 \\\ Old & Male & Y_{122} & 0 & 1 \\ Old & Male & Y_{123} & 0 & 1 \\ Young & Female & Y_{211} & 1 & 0 \\ Young & Female & Y_{212} & 1 & 0 \\ Young & Female & Y_{213} & 1 & 0 \\ Young & Male & Y_{221} & 1 & 1 \\ Young & Male & Y_{222} & 1 & 1 \\ Young & Male & Y_{223}& 1 & 1 \end{smallmatrix}$
 
+## Interpretation of coefficients
+
+-   Intercept
+    -   Estimated average value at two reference levels (Old, Female)
+-   Slope for age
+    -   Estimated average change when you switch from Old to Young
+    -   Holding gender constant
+-   Slope for gender
+    -   Estimated average change when you switch from female to male
+    -   Holding age constant

@@ -50,9 +50,49 @@ hearing |>
 hearing_means
 ```
 
+## Data
+
+```{r}
+#| label: data
+
+hearing_means |>
+  ggplot(
+    aes(
+      x=id, 
+      xend=id,
+      y=db,
+      yend=overall_mean,
+      label=code, 
+      color=code)) +
+    geom_label(size=4) +
+    xlab(" ") + 
+    ylab("Decibels perceived at 8000 Hz") +
+    scale_color_manual(
+      values=c("#FFC0CB", "lightblue", "#FE828C", "blue")) +
+    scale_x_continuous(
+      breaks=c(2, 5, 8, 11),
+      minor_breaks=NULL,
+      labels=c(
+        "Old Female",
+        "Old Male",
+        "Young Female",
+        "Young Male")) +
+     theme(legend.position="none") +
+     expand_limits(y=c(0, 80)) +
+     labs(
+       x="Age/gender",
+       y="Hearing level",
+       caption="Simon, 2024-11-03") -> plot01
+
+plot01
+ggsave(file="../images/plot01.png")
+```
+
 ## SS(Total)
 
-```{r b1-12-01-ss-total}
+```{r}
+#|label: Total
+
 hearing_means |>
   ggplot(
     aes(
@@ -78,12 +118,20 @@ hearing_means |>
         "Young Male")) +
      theme(legend.position="none") +
      expand_limits(y=c(0, 80)) +
-     ggtitle("Graph drawn by Steve Simon on 2024-11-03")
+     labs(
+       x="Age/gender",
+       y="Hearing level",
+       caption="Simon, 2024-11-03") -> plot02
+
+plot02
+ggsave(file="../images/plot02.png")
 ```
 
 ## SS(Age)
 
-```{r b1-12-01-ss-a}
+```{r}
+#| label: age
+
 hearing_means |>
   ggplot(
     aes(
@@ -95,8 +143,6 @@ hearing_means |>
       color=code)) +
     geom_segment(size=1.5) +
     geom_label(size=4) +
-    xlab(" ") + 
-    ylab("Decibels perceived at 8000 Hz") +
     scale_color_manual(
       values=c("#FFC0CB", "lightblue", "#FE828C", "blue")) +
     scale_x_continuous(
@@ -109,12 +155,20 @@ hearing_means |>
         "Young Male")) +
      theme(legend.position="none") +
      expand_limits(y=c(0, 80)) +
-     ggtitle("Graph drawn by Steve Simon on 2024-11-03")
+     labs(
+       x="Age/gender",
+       y="Hearing level",
+       caption="Simon, 2024-11-03") -> plot03
+
+plot03
+ggsave(file="../images/plot03.png")
 ```
 
 ## SS(Gender)
 
-```{r b1-12-01-ss-b}
+```{r}
+#| label: gender
+
 hearing_means |>
   ggplot(
     aes(
@@ -140,7 +194,13 @@ hearing_means |>
         "Young Male")) +
      theme(legend.position="none") +
      expand_limits(y=c(0, 80)) +
-     ggtitle("Graph drawn by Steve Simon on 2024-11-03")
+     labs(
+       x="Age/gender",
+       y="Hearing level",
+       caption="Simon, 2024-11-03") -> plot04
+
+plot04
+ggsave(file="../images/plot04.png")
 ```
 
 ## Analysis of variance table
