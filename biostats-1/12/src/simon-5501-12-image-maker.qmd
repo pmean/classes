@@ -210,3 +210,55 @@ m1 <- aov(db ~ age + gender, data=hearing)
 anova(m1)
 ```
 
+```{r}
+#| label: draw-lines
+
+draw_lines <- function(y,
+    lab1=c("Placebo", "Treatment"),
+    lab2=c("Girl", "Boy"),
+    color_list=c("pink3", "darkblue")) {
+  data.frame(x=0:1, y=c(10, 70), g=0:1) %>%
+    ggplot(aes(x, y, group=g)) +
+      theme(text = element_text(size=30)) +
+      expand_limits(
+        x=c(-0.2, 1.2),
+        y=c(0, 80)) +
+      scale_x_continuous(
+        name=" ",
+        breaks=0:1,
+        labels=lab1) +
+      scale_y_continuous(
+        name="Outcome\n(larger is better)",
+        breaks=10*(0:8)) +
+      geom_segment(
+        x=0, xend=1, 
+        y=y[1], yend=y[2], 
+        linetype="solid",
+        linewidth=3,
+        color=color_list[1]) +
+      geom_segment(
+        x=0, xend=1, 
+        y=y[3], yend=y[4], 
+        linetype="22",
+        linewidth=3,
+        color=color_list[2]) +
+      geom_label(
+        x=1.1, 
+        y=y[2], label=lab2[1],
+        color=color_list[1],
+        size=5) +
+      geom_label(
+        x=1.1, y=y[4], 
+        label=lab2[2],
+        color=color_list[2],
+        size=5)
+}
+```
+
+```{r}
+#| label: save
+
+save(draw_lines, file="../data/module12.RData")
+```
+
+
