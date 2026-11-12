@@ -1,0 +1,44 @@
+Response complete
+You Said: Create a summary of the key points in this lecture.
+Create a summary of the key points in this lecture.
+2026FS-MEDB-5501-synchronous-zoom-session
+03:13 PM
+AI chat said
+Thought process
+Show
+Key Points: Module 12 – Two-Factor Analysis of Variance
+Two-Factor ANOVA Fundamentals
+
+Analyzes a continuous outcome with two categorical predictors simultaneously. 1
+Balanced data requires proportional observations in each category combination; unbalanced data creates complexity in how averages are computed. 23
+Mathematical Model
+
+The model is: Y_ijk = μ + αi + βj + ε_ijk, where αi and βj represent deviations for each factor. 4
+Indicator variables are created for each categorical factor (K levels → K−1 indicators). 5
+Relationship to Linear Regression
+
+The intercept estimates the average at the two reference (alphabetically first) categories; slopes represent changes when switching categories, holding the other constant. 67
+Checking Assumptions
+
+Three assumptions: normality, homogeneity, and independence — same as one-factor ANOVA. 8
+No need to check linearity; no non-parametric analog exists for two-factor ANOVA. 910
+Log transformation may help when data is right-skewed and larger means have larger variation. 11
+Interactions
+
+An interaction occurs when the effect of one variable depends on the level of another. 12
+Non-parallel lines in an interaction plot indicate a significant interaction. 13
+When interaction is present, effects cannot be described independently — the combined effect must be interpreted. 1415
+Synergy = combined effect exceeds sum of parts; antagonism = combined effect is sub-additive. 1617
+Interactions cannot be estimated when only one observation exists per cell. 18
+Fruit Fly Example
+
+Male fruit flies with 8 virgin females showed a ~26-day decline in lifespan — far greater than the additive effects of crowding (~1.4 days) and mating opportunity (~8 days) alone, confirming a significant interaction. 1920
+
+Show sources (1)
+Write a message
+2026FS-MEDB-5501-synchronous-zoom-session
+
+
+Write a message
+
+AI can make mistakes. Review for accuracy.
