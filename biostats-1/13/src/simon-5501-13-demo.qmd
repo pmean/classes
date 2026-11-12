@@ -5,11 +5,23 @@ format:
     embed-resources: true
 ---
 
+# --- Part 1
+
 This program reads data on survival of passengers on the Titanic. Find more information in the [data dictionary][ref-simon-nodate].
 
 [ref-simon-nodate]: https://github.com/pmean/data/blob/main/files/titanic.yaml
 
 This code was written by Steve Simon on 2024-11-09 and is placed in the public domain.
+
+## Files created in this program
+
+-   ti: Original data read from titanic.txt
+-   ti1: Numeric codes converted to factors
+-   ti2: Matrix crosstabulation of sex and survived
+
+## Overview of part 1
+
+THis section of the program creates a two by two crosstabulation and compares 
 
 ## Load the tidyverse  and epitools library
 
@@ -24,7 +36,7 @@ library(tidyverse)
 
 #### Comments on the code
 
-For most of your programs, you should load the tidyverse library. The [epitools][ref-aragon-2020] library helps with calculations involving the odds ratio and relative risk.
+For most of your programs, you should load the tidyverse library. The [epitools library][ref-aragon-2020] helps with calculations involving the odds ratio and relative risk.
 
 [ref-aragon-2020]: https://CRAN.R-project.org/package=epitools 
 
@@ -43,21 +55,22 @@ glimpse(ti)
 
 #### Comments on the code
 
-Use read_tsv from the [readr package][web02] to  read this file. Use col_names=TRUE because the column names are included as the first row of the file. The col_types="ccncn" specifies the first second and fourth columns as strings and the third and fifth as numeric. There are missing values in this dataset, designated by the letters "NA".
+There are missing values in this dataset, designated by the letters "NA".
 
 [web02]: https://readr.tidyverse.org/
-
-# --- Part 1
 
 ## Replace numeric codes for survived
 
 ```{r}
 #| label: replace-numbers
-ti$survived <-
-	factor(
-		ti$survived,
-		level=1:0,
-		labels=c("yes", "no"))
+
+ti |>
+  mutate(
+    survived=
+	    factor(
+		    survived,
+		    levels=1:0,
+		    labels=c("yes", "no"))) -> ti1
 ```
 
 #### Comments on the code
@@ -70,13 +83,15 @@ The [factor function][web03] places the levels of a categorical variable in a sp
 
 ```{r}
 #| label: counts
-table1 <-xtabs(~sex+survived, data=ti)
-table1
+ti2 <-xtabs(~sex+survived, data=ti1)
+ti2
 ```
 
 #### Comments on the code
 
 The [table function][web04] or the [xtabs function][web05] creates a matrix with the number of observations in each combination of sex and survived. The [count function][web06] provides an alternative where these values are placed in a single column. 
+
+Most of the later functions for data analysis expect to see a matrix, so you should use xtabs or table.
 
 [web04]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/table.html
 [web05]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/xtabs.html
@@ -90,13 +105,13 @@ There are 154 female passengers who died and 308 who survived. There are 709 mal
 
 ```{r}
 #| label: proportions
-table1 |>
+ti2 |>
   proportions("sex")
 ```
 
 #### Comments on the code
 
-The [proportions function][pro1] calculate proportions for a matrix, either by row (margin=1), by column (margin=2) or across all cells (margin=NULL). This code shows an alternative where you specify which variable to summarize across. The line proportions("sex") tells R to compute totals for each level of sex and divide by those totals. In this case, since sex represents the rows of table1, R produces row percentages. This syntax is easier to remember than margin=1 and margin=2.
+The [proportions function][pro1] calculate proportions for a matrix, either by row (margin=1), by column (margin=2) or across all cells (margin=NULL). This code shows an alternative where you specify which variable to summarize across. The line proportions("sex") tells R to compute totals for each level of sex and divide by those totals. In this case, since sex represents the rows of ti2, R produces row percentages. This syntax is easier to remember than margin=1 and margin=2.
 
 [pro1]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/proportions.html
 
@@ -111,14 +126,14 @@ The proportion of women who died is 33%. The proportion of men who died is much 
 #| fig-height: 1.5
 #| fig-width: 8
 
-ti |>
+ti1 |>
   ggplot() +
   aes(y = sex, fill = survived) +
   geom_bar(position = "fill") +
   labs(
     x="Sex",
     y="Proportion",
-    caption="Steve Simon, 2024-11-11, CC0")
+    caption="Simon, 2024-11-11")
 ```
 
 #### Comments on the code
@@ -137,7 +152,8 @@ I am not a big fan of bar charts, but they are quite popular. This bar chart sho
 ```{r}
 #| label: equality-of-proportions
 
-prop.test(table1, correct=FALSE)
+m1 <- prop.test(ti2, correct=FALSE)
+m1
 ```
 
 #### Comments on the code
@@ -153,6 +169,10 @@ The Chi-squared statistic is much larger than the degrees of freedom and the p-v
 55% lower for men.
 
 # --- Part 2
+
+## Overview of part 2
+
+This section shows how to calculate an appropriate sample size for a test of two proportions.
 
 ## Power calculation
 
@@ -173,11 +193,15 @@ Clearly, a sample size of 1,313 passengers provided more than enough power and p
 
 # --- Part 3
 
-## Chi-squared test
+## Overview of part 3
+
+This section shows how to conduct a chi-square test of independence and compute confidence intervals for odds ratios and relative risks.
+
+## Chi-square test
 
 ```{r}
 #| label: chi-square-test
-chisq.test(table1, correct=FALSE)
+chisq.test(ti2, correct=FALSE)
 ```
 
 #### Comments on the code
@@ -194,7 +218,7 @@ The chi-squared statistic is much larger than the degrees of freedom and the p-v
 
 ```{r}
 #| label: fishers-exact
-fisher.test(table1)
+fisher.test(ti2)
 ```
 
 #### Comments on the code
@@ -213,7 +237,7 @@ The p-value is small. You should reject the null hypothesis and conclude that se
 
 ```{r}
 #| label: odds-ratio
-oddsratio(table1)
+oddsratio(ti2)
 ```
 
 #### Comments on the code
@@ -228,7 +252,7 @@ We are 95% confident that the odds ratio of survival for women versus men is at 
 
 ```{r}
 #| label: risk-ratio-1
-table1 |>
+ti2 |>
   proportions("sex")
 ```
 
@@ -240,7 +264,7 @@ Before calculating the risk ratio, let's look at the row percentages one more ti
 
 ```{r}
 #| label: risk-ratio-2
-riskratio(table1)
+riskratio(ti2)
 ```
 
 #### Interpretation of the output
@@ -251,7 +275,7 @@ The risk ratio is comparing the probability of death between men and women. Men 
 
 ```{r}
 #| label: risk-ratio-3
-riskratio(table1, rev="columns")
+riskratio(ti2, rev="columns")
 ```
 
 #### Interpretation of the output

@@ -14,7 +14,7 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
     -   Add your name to the author field
     -   Optional: change the copyright statement
     
-[tem]: https://github.com/pmean/classes/blob/master/biostats-1/13/src/simon-5501-13-titanic.qmd
+[tem]: https://github.com/pmean/classes/blob/master/biostats-1/13/src/simon-5501-13-demo.qmd
 
 ## Data
 
@@ -27,8 +27,7 @@ This programming assignment was written by Steve Simon on 2024-10-08 and is plac
     
 ## Question 1
 
-Create a new variable, third_class that indicates whether a passenger is in 
-third class or not. The code would look something like this.
+Create a new variable, third_class that indicates whether a passenger is in third class or not. The code would look something like this.
 
 ```{}
 ti$third_class <- 
@@ -42,14 +41,11 @@ How many passengers were in third class?
 
 ## Question 2
 
-What are the probabilities of survival for third class passengers. How does this
-compare to the probability of survival for the other passengers.
+What are the probabilities of survival for third class passengers. How does this compare to the probability of survival for the other passengers.
 
 ## Question 3
 
-Test the hypothesis that the survival probability is different for third class
-passengers and the other passengers. Interpret the p-value and confidence 
-interval.
+Test the hypothesis that the survival probability is different for third class passengers and the other passengers using the prop.test function. Interpret the p-value and confidence interval.
 
 ## Your submission
 
