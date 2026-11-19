@@ -116,23 +116,6 @@ m1$expected
         -   Accept $H_0$ if T < $\chi^2(1-\alpha, df=1)$
         -   Accept $H_0$ if p-value > $\alpha$
     
-## Example with Titanic data
-
--   $H_0:$ Mortality is independent of sex
--   $H_1:$ Mortality is related to sex
-    
-```{r}
-#| label: 13-06-chi-squared
-#| echo: true
-
-m1 <- chisq.test(table1, correct=FALSE)
-m1
-```
-
-:::notes
-Since the test statistic is a lot larger than the degrees of freedom and since the p-value is small, reject the null hypothesis and conclude that there is a relationship between sex and survival.
-:::
-
 ## Chi-squared test is an approximation
 
 -   Reasonable if all expected counts > 5

@@ -19,9 +19,19 @@ This code was written by Steve Simon on 2024-11-09 and is placed in the public d
 -   ti1: Numeric codes converted to factors
 -   ti2: Matrix crosstabulation of sex and survived
 
+## Models in this program
+
+-   m1: prop.test
+-   m2: power.prop.test
+-   m3: chisq.test
+-   m4: fisher.exact
+-   m5: oddsratio
+-   m6: riskratio
+-   m7: riskratio, rev="columns"
+
 ## Overview of part 1
 
-THis section of the program creates a two by two crosstabulation and compares 
+This section of the program creates a two by two crosstabulation and compares 
 
 ## Load the tidyverse  and epitools library
 
@@ -91,7 +101,9 @@ ti2
 
 The [table function][web04] or the [xtabs function][web05] creates a matrix with the number of observations in each combination of sex and survived. The [count function][web06] provides an alternative where these values are placed in a single column. 
 
-Most of the later functions for data analysis expect to see a matrix, so you should use xtabs or table.
+Most of the later functions for data analysis expect to see a matrix, so you should use xtabs or table. 
+
+The major exception is the glm function, which you will see in the next module. The glm function runs (among other things) logistic regression. It takes the unaggregated data and not the matrices of table/xtabs.
 
 [web04]: https://stat.ethz.ch/R-manual/R-devel/library/base/html/table.html
 [web05]: https://stat.ethz.ch/R-manual/R-devel/library/stats/html/xtabs.html
@@ -178,7 +190,13 @@ This section shows how to calculate an appropriate sample size for a test of two
 
 ```{r}
 #| label: power
-power.prop.test(p1=0.17, p2=0.67, power=0.9)
+m2 <- power.prop.test(
+  p1=0.10, 
+  p2=0.20, 
+  power=0.9,
+  alternative="one.sided")
+
+m2
 ```
 
 #### Comments on the code
@@ -201,7 +219,9 @@ This section shows how to conduct a chi-square test of independence and compute 
 
 ```{r}
 #| label: chi-square-test
-chisq.test(ti2, correct=FALSE)
+m3 <- chisq.test(ti2, correct=FALSE)
+
+m3
 ```
 
 #### Comments on the code
@@ -218,7 +238,9 @@ The chi-squared statistic is much larger than the degrees of freedom and the p-v
 
 ```{r}
 #| label: fishers-exact
-fisher.test(ti2)
+m4 <- fisher.test(ti2)
+
+m4
 ```
 
 #### Comments on the code
@@ -237,7 +259,9 @@ The p-value is small. You should reject the null hypothesis and conclude that se
 
 ```{r}
 #| label: odds-ratio
-oddsratio(ti2)
+m5 <- oddsratio(ti2)
+
+m5
 ```
 
 #### Comments on the code
@@ -264,7 +288,9 @@ Before calculating the risk ratio, let's look at the row percentages one more ti
 
 ```{r}
 #| label: risk-ratio-2
-riskratio(ti2)
+m6 <- riskratio(ti2)
+
+m6
 ```
 
 #### Interpretation of the output
@@ -275,7 +301,10 @@ The risk ratio is comparing the probability of death between men and women. Men 
 
 ```{r}
 #| label: risk-ratio-3
-riskratio(ti2, rev="columns")
+
+m7 <- riskratio(ti2, rev="columns")
+
+m7
 ```
 
 #### Interpretation of the output
@@ -285,7 +314,10 @@ The risk ratio is comparing the probability of survival between men and women. M
 ## Save data for later use
 
 ```{r save}
-save(ti, file="../data/titanic.RData")
+save(ti, 
+     ti1,
+     ti2,
+     file="../data/titanic.RData")
 ```
 
 #### Comments on the code
